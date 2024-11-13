@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Calculator</title>
+    <style>
+        #calculator {
+            max-width: 200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+        }
+
+        #display {
+            grid-column: span 4;
+            height: 30px;
+            text-align: right;
+            font-size: 20px;
+        }
+
+        button {
+            font-size: 18px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="calculator">
+        <input type="text" id="previous-display" disabled />
+        <input type="text" id="display" disabled />
+        <button>7</button><button>8</button><button>9</button><button>/</button>
+        <button>4</button><button>5</button><button>6</button><button>*</button>
+        <button>1</button><button>2</button><button>3</button><button>-</button>
+        <button>0</button><button>C</button><button>=</button><button>+</button>
+    </div>
+
+    <script>
+        const previousDisplay = document.getElementById('previous-display');
+const display = document.getElementById('display');
+let currentInput = '';
+let previousInput = '';
+let operator = '';
+let resetDisplay = false; 
+
+const buttons = document.querySelectorAll('#calculator button');
+buttons.forEach(button => {
+    button.addEventListener('click', () => handleButtonClick(button.textContent));
+});
+
+function handleButtonClick(value) {
+    if (!isNaN(value) || value === '.') { 
+        if (resetDisplay) {
+            currentInput = ''; 
+            resetDisplay = false;
+        }
+        currentInput += value;
+        display.value = currentInput;
+    } else if (value === 'C') {           
+        clearCalculator();
+    } else if (value === '=') {           
+        calculateResult();
+    } else {                              
+        handleOperator(value);
+    }
+}
+
+function handleOperator(op) {
+    if (currentInput !== '') {
+        previousInput = currentInput;
+        currentInput = '';
+        operator = op;
+        resetDisplay = true; 
+        previousDisplay.value = `${previousInput} ${operator}`;
+    }
+}
+
+function calculateResult() {
+    let result;
+    const prev = parseFloat(previousInput);
+    const curr = parseFloat(currentInput);
+
+    if (isNaN(prev) || isNaN(curr)) return;
+
+    switch (operator) {
+        case '+':
+            result = prev + curr;
+            break;
+        case '-':
+            result = prev - curr;
+            break;
+        case '*':
+            result = prev * curr;
+            break;
+        case '/':
+            result = prev / curr;
+            break;
+        default:
+            return;
+    }
+
+    display.value = result;
+    previousDisplay.value = `${previousInput} ${operator} ${currentInput} =`; 
+    currentInput = result;
+    resetDisplay = true; 
+    operator = '';
+}
+
+function clearCalculator() {
+    currentInput = '';
+    previousInput = '';
+    operator = '';
+    display.value = '';
+    previousDisplay.value = '';
+    resetDisplay = false;
+}
+
+    </script>
+</body>
+</html>
