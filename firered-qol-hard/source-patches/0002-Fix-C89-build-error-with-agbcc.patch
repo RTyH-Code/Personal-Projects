@@ -1,0 +1,40 @@
+From 988b73f957dfc0bab9f79688758400acca0834cd Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 31 Oct 2026 23:07:15 +0000
+Subject: [PATCH 2/2] Fix C89 build error with agbcc
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ HACK_NOTES.md | 2 +-
+ src/pokemon.c | 3 +--
+ 2 files changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/HACK_NOTES.md b/HACK_NOTES.md
+index c950cb1..8b79cb8 100644
+--- a/HACK_NOTES.md
++++ b/HACK_NOTES.md
+@@ -24,4 +24,4 @@ original data, so re-run it on a clean checkout of `src/data/trainer*.h`.
+ 
+ ## Building
+     make modern          # system arm-none-eabi-gcc
+-    make                 # original agbcc compiler (needed to produce a patch for retail ROMs)
++    make                 # original agbcc compiler (matches retail; used to make the .bps)
+diff --git a/src/pokemon.c b/src/pokemon.c
+index dcfc54c..0232a7b 100644
+--- a/src/pokemon.c
++++ b/src/pokemon.c
+@@ -5936,9 +5936,8 @@ const struct CompressedSpritePalette *GetMonSpritePalStructFromOtIdPersonality(u
+ 
+ bool32 IsHMMove2(u16 move)
+ {
+-    return FALSE; // HMs can be forgotten
+-
+     int i = 0;
++    return FALSE; // HMs can be forgotten
+     while (sHMMoves[i] != HM_MOVES_END)
+     {
+         if (sHMMoves[i++] == move)
+-- 
+2.43.0
+
