@@ -1,0 +1,278 @@
+From c8fe28f30e1e9e09d36cd9a733913bfc78a68cff Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 31 Oct 2026 23:26:33 +0000
+Subject: [PATCH 4/8] Add IV/EV editor to the summary skills page
+
+START on the skills page opens it. Set IVs 0-31 freely; move EVs between
+stats in steps of 4 through a pool, so the total can't increase.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ src/pokemon_summary_screen.c | 225 ++++++++++++++++++++++++++++++++++-
+ 1 file changed, 224 insertions(+), 1 deletion(-)
+
+diff --git a/src/pokemon_summary_screen.c b/src/pokemon_summary_screen.c
+index b3e3c77..24733b2 100644
+--- a/src/pokemon_summary_screen.c
++++ b/src/pokemon_summary_screen.c
+@@ -122,6 +122,8 @@ static void PokeSum_PrintTrainerMemo_Mon_NotHeldByOT(void);
+ static bool32 CurrentMonIsFromGBA(void);
+ static u8 PokeSum_BufferOtName_IsEqualToCurrentOwner(struct Pokemon * mon);
+ static void PokeSum_PrintAbilityNameAndDesc(void);
++static bool8 IvEvEdit_IsAllowed(void);
++static void IvEvEdit_Start(u8 taskId);
+ static void PokeSum_DrawMoveTypeIcons(void);
+ static void PokeSum_DestroySprites(void);
+ static void PokeSum_FlipPages_HandleBgHofs(void);
+@@ -906,6 +908,12 @@ static const struct WindowTemplate sWindowTemplates_Dummy[] =
+ };
+ 
+ 
++static const u8 sText_IvEv_ControlsPageEdit[] = _("{DPAD_LEFTRIGHT}PAGE {START_BUTTON}IV/EV");
++static const u8 sText_IvEv_Pool[] = _("EV POOL");
++static const u8 sText_IvEv_Columns[] = _("IV    EV");
++static const u8 sText_IvEv_Help1[] = _("{DPAD_UPDOWN}Stat  {DPAD_LEFTRIGHT}IV 0-31  {L_BUTTON}{R_BUTTON}Move 4 EVs");
++static const u8 sText_IvEv_Help2[] = _("{A_BUTTON}Save (pool must be 0)  {B_BUTTON}Cancel");
++
+ static const u8 sLevelNickTextColors[][3] =
+ {
+     {0, 14, 10},
+@@ -1163,6 +1171,14 @@ static void Task_InputHandler_Info(u8 taskId)
+             }
+         }
+ 
++        if (JOY_NEW(START_BUTTON) && sMonSummaryScreen->curPageIndex == PSS_PAGE_SKILLS
++         && !FuncIsActiveTask(Task_PokeSum_FlipPages) && !FuncIsActiveTask(Task_PokeSum_SwitchDisplayedPokemon)
++         && IvEvEdit_IsAllowed())
++        {
++            IvEvEdit_Start(taskId);
++            return;
++        }
++
+         if ((!FuncIsActiveTask(Task_PokeSum_FlipPages)) || FuncIsActiveTask(Task_PokeSum_SwitchDisplayedPokemon))
+         {
+             if (JOY_NEW(DPAD_UP))
+@@ -2941,7 +2957,10 @@ static void PokeSum_PrintPageHeaderText(u8 curPageIndex)
+         break;
+     case PSS_PAGE_SKILLS:
+         PokeSum_PrintPageName(gText_PokeSum_PageName_PokemonSkills);
+-        PokeSum_PrintControlsString(gText_PokeSum_Controls_Page);
++        if (IvEvEdit_IsAllowed())
++            PokeSum_PrintControlsString(sText_IvEv_ControlsPageEdit);
++        else
++            PokeSum_PrintControlsString(gText_PokeSum_Controls_Page);
+         PrintMonLevelNickOnWindow2(gText_PokeSum_NoData);
+         break;
+     case PSS_PAGE_MOVES:
+@@ -5222,3 +5241,207 @@ static void ShowPokemonSummaryScreen_NullParty(void)
+ {
+     ShowPokemonSummaryScreen(NULL, 0, 0, CB2_ReturnToField, PSS_MODE_NORMAL);
+ }
++
++// ---------------------------------------------------------------------------
++// IV/EV editor (skills page, START). IVs can be set freely; EVs can only be
++// moved between stats through a temporary pool, so the total never increases.
++// ---------------------------------------------------------------------------
++
++#define IVEV_NUM_STATS 6
++#define IVEV_EV_STEP   4
++#define IVEV_MAX_EV    255
++
++// Display order matches the skills page rows: HP, Atk, Def, SpAtk, SpDef, Speed
++static const u8 sIvEvIvIds[IVEV_NUM_STATS] = {MON_DATA_HP_IV, MON_DATA_ATK_IV, MON_DATA_DEF_IV, MON_DATA_SPATK_IV, MON_DATA_SPDEF_IV, MON_DATA_SPEED_IV};
++static const u8 sIvEvEvIds[IVEV_NUM_STATS] = {MON_DATA_HP_EV, MON_DATA_ATK_EV, MON_DATA_DEF_EV, MON_DATA_SPATK_EV, MON_DATA_SPDEF_EV, MON_DATA_SPEED_EV};
++static const u8 sIvEvRowY[IVEV_NUM_STATS] = {4, 22, 35, 48, 61, 74};
++
++static EWRAM_DATA struct {
++    u8 iv[IVEV_NUM_STATS];
++    u8 ev[IVEV_NUM_STATS];
++    u16 pool;
++    u8 cursor;
++} sIvEvEdit = {0};
++
++static void Task_InputHandler_IvEvEdit(u8 taskId);
++
++static bool8 IvEvEdit_IsAllowed(void)
++{
++    if (sMonSummaryScreen->isEgg || sMonSummaryScreen->isEnemyParty || gMain.inBattle)
++        return FALSE;
++    if (sMonSummaryScreen->mode != PSS_MODE_NORMAL && sMonSummaryScreen->mode != PSS_MODE_BOX)
++        return FALSE;
++    if (sMonSummaryScreen->savedCallback == CB2_ReturnToTradeMenuFromSummary || gReceivedRemoteLinkPlayers)
++        return FALSE;
++    return TRUE;
++}
++
++static void IvEvEdit_PrintRightAligned(u8 windowId, const u8 *str, u8 right, u8 y, const u8 *colors)
++{
++    AddTextPrinterParameterized3(windowId, FONT_NORMAL, right - GetStringWidth(FONT_NORMAL, str, 0), y, colors, TEXT_SKIP_DRAW, str);
++}
++
++static void IvEvEdit_Draw(void)
++{
++    u8 i;
++    u8 str[8];
++    u8 pane = sMonSummaryScreen->windowIds[POKESUM_WIN_RIGHT_PANE];
++    u8 memo = sMonSummaryScreen->windowIds[POKESUM_WIN_TRAINER_MEMO];
++    u8 help = sMonSummaryScreen->windowIds[5];
++
++    FillWindowPixelBuffer(pane, 0);
++    for (i = 0; i < IVEV_NUM_STATS; i++)
++    {
++        const u8 *colors = (i == sIvEvEdit.cursor) ? sLevelNickTextColors[3] : sLevelNickTextColors[0];
++        ConvertIntToDecimalStringN(str, sIvEvEdit.iv[i], STR_CONV_MODE_LEFT_ALIGN, 2);
++        IvEvEdit_PrintRightAligned(pane, str, 36, sIvEvRowY[i], colors);
++        ConvertIntToDecimalStringN(str, sIvEvEdit.ev[i], STR_CONV_MODE_LEFT_ALIGN, 3);
++        IvEvEdit_PrintRightAligned(pane, str, 74, sIvEvRowY[i], colors);
++    }
++    ConvertIntToDecimalStringN(str, sIvEvEdit.pool, STR_CONV_MODE_LEFT_ALIGN, 3);
++    IvEvEdit_PrintRightAligned(pane, str, 74, 87, sLevelNickTextColors[sIvEvEdit.pool ? 3 : 0]);
++
++    FillWindowPixelBuffer(memo, 0);
++    AddTextPrinterParameterized3(memo, FONT_NORMAL, 26, 7, sLevelNickTextColors[0], TEXT_SKIP_DRAW, sText_IvEv_Pool);
++    AddTextPrinterParameterized3(memo, FONT_NORMAL, 26, 20, sLevelNickTextColors[0], TEXT_SKIP_DRAW, sText_IvEv_Columns);
++
++    FillWindowPixelBuffer(help, 0);
++    AddTextPrinterParameterized3(help, FONT_NORMAL, 2, 1, sLevelNickTextColors[0], TEXT_SKIP_DRAW, sText_IvEv_Help1);
++    AddTextPrinterParameterized3(help, FONT_NORMAL, 2, 15, sLevelNickTextColors[0], TEXT_SKIP_DRAW, sText_IvEv_Help2);
++
++    CopyWindowToVram(pane, COPYWIN_FULL);
++    CopyWindowToVram(memo, COPYWIN_FULL);
++    CopyWindowToVram(help, COPYWIN_FULL);
++}
++
++static void IvEvEdit_Start(u8 taskId)
++{
++    u8 i;
++
++    for (i = 0; i < IVEV_NUM_STATS; i++)
++    {
++        sIvEvEdit.iv[i] = GetMonData(&sMonSummaryScreen->currentMon, sIvEvIvIds[i]);
++        sIvEvEdit.ev[i] = GetMonData(&sMonSummaryScreen->currentMon, sIvEvEvIds[i]);
++    }
++    sIvEvEdit.pool = 0;
++    sIvEvEdit.cursor = 0;
++    PlaySE(SE_SELECT);
++    IvEvEdit_Draw();
++    gTasks[taskId].func = Task_InputHandler_IvEvEdit;
++}
++
++static void IvEvEdit_Save(void)
++{
++    u8 i;
++    u8 idx = GetLastViewedMonIndex();
++
++    if (!sMonSummaryScreen->isBoxMon)
++    {
++        struct Pokemon *mon = &sMonSummaryScreen->monList.mons[idx];
++        for (i = 0; i < IVEV_NUM_STATS; i++)
++        {
++            SetMonData(mon, sIvEvIvIds[i], &sIvEvEdit.iv[i]);
++            SetMonData(mon, sIvEvEvIds[i], &sIvEvEdit.ev[i]);
++        }
++        CalculateMonStats(mon);
++    }
++    else
++    {
++        struct BoxPokemon *boxMon = &sMonSummaryScreen->monList.boxMons[idx];
++        for (i = 0; i < IVEV_NUM_STATS; i++)
++        {
++            SetBoxMonData(boxMon, sIvEvIvIds[i], &sIvEvEdit.iv[i]);
++            SetBoxMonData(boxMon, sIvEvEvIds[i], &sIvEvEdit.ev[i]);
++        }
++    }
++    BufferSelectedMonData(&sMonSummaryScreen->currentMon);
++    BufferMonSkills();
++}
++
++static void IvEvEdit_Exit(u8 taskId)
++{
++    FillWindowPixelBuffer(sMonSummaryScreen->windowIds[POKESUM_WIN_RIGHT_PANE], 0);
++    PrintSkillsPage();
++    PokeSum_PrintBottomPaneText();
++    PokeSum_PrintAbilityNameAndDesc();
++    UpdateHpBarObjs();
++    CopyWindowToVram(sMonSummaryScreen->windowIds[POKESUM_WIN_RIGHT_PANE], COPYWIN_FULL);
++    CopyWindowToVram(sMonSummaryScreen->windowIds[POKESUM_WIN_TRAINER_MEMO], COPYWIN_FULL);
++    CopyWindowToVram(sMonSummaryScreen->windowIds[5], COPYWIN_FULL);
++    gTasks[taskId].func = Task_InputHandler_Info;
++}
++
++static void Task_InputHandler_IvEvEdit(u8 taskId)
++{
++    u8 *iv = &sIvEvEdit.iv[sIvEvEdit.cursor];
++    u8 *ev = &sIvEvEdit.ev[sIvEvEdit.cursor];
++    u16 amount;
++
++    if (JOY_REPT(DPAD_UP))
++    {
++        sIvEvEdit.cursor = (sIvEvEdit.cursor == 0) ? IVEV_NUM_STATS - 1 : sIvEvEdit.cursor - 1;
++    }
++    else if (JOY_REPT(DPAD_DOWN))
++    {
++        sIvEvEdit.cursor = (sIvEvEdit.cursor + 1) % IVEV_NUM_STATS;
++    }
++    else if (JOY_REPT(DPAD_LEFT))
++    {
++        *iv = (*iv == 0) ? MAX_PER_STAT_IVS : *iv - 1;
++    }
++    else if (JOY_REPT(DPAD_RIGHT))
++    {
++        *iv = (*iv >= MAX_PER_STAT_IVS) ? 0 : *iv + 1;
++    }
++    else if (JOY_REPT(L_BUTTON))
++    {
++        // Take EVs out of this stat into the pool
++        amount = (*ev < IVEV_EV_STEP) ? *ev : IVEV_EV_STEP;
++        if (amount == 0)
++        {
++            PlaySE(SE_FAILURE);
++            return;
++        }
++        *ev -= amount;
++        sIvEvEdit.pool += amount;
++    }
++    else if (JOY_REPT(R_BUTTON))
++    {
++        // Put EVs from the pool into this stat
++        amount = (sIvEvEdit.pool < IVEV_EV_STEP) ? sIvEvEdit.pool : IVEV_EV_STEP;
++        if (amount > IVEV_MAX_EV - *ev)
++            amount = IVEV_MAX_EV - *ev;
++        if (amount == 0)
++        {
++            PlaySE(SE_FAILURE);
++            return;
++        }
++        *ev += amount;
++        sIvEvEdit.pool -= amount;
++    }
++    else if (JOY_NEW(A_BUTTON))
++    {
++        if (sIvEvEdit.pool != 0)
++        {
++            PlaySE(SE_FAILURE);
++            return;
++        }
++        PlaySE(SE_SELECT);
++        IvEvEdit_Save();
++        IvEvEdit_Exit(taskId);
++        return;
++    }
++    else if (JOY_NEW(B_BUTTON))
++    {
++        PlaySE(SE_SELECT);
++        IvEvEdit_Exit(taskId);
++        return;
++    }
++    else
++    {
++        return;
++    }
++
++    PlaySE(SE_SELECT);
++    IvEvEdit_Draw();
++}
+-- 
+2.43.0
+

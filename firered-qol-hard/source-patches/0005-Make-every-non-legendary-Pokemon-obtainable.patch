@@ -1,0 +1,1657 @@
+From d9a650985db894b779855553067b921f8f9b971e Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 31 Oct 2026 23:34:50 +0000
+Subject: [PATCH 5/8] Make every non-legendary Pokemon obtainable
+
+- tools/hack/encounters.py places ~130 species in thematic FireRed tables,
+  taking slots only from common species, and verifies all 386 are obtainable
+- Altering Cave holds all of its Mystery Gift species
+- Evolution items (incl. Deep Sea Tooth/Scale) sold at Celadon 4F
+- No National Dex lock on evolutions
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ .../scripts.inc                               |   8 +
+ src/data/items.json                           |  12 +-
+ src/data/wild_encounters.json                 | 342 +++++++++---------
+ src/evolution_scene.c                         |   6 +-
+ src/party_menu.c                              |   3 +-
+ tools/hack/encounters.py                      | 321 ++++++++++++++++
+ 6 files changed, 512 insertions(+), 180 deletions(-)
+ create mode 100644 tools/hack/encounters.py
+
+diff --git a/data/maps/CeladonCity_DepartmentStore_4F/scripts.inc b/data/maps/CeladonCity_DepartmentStore_4F/scripts.inc
+index 98069ca..850f3df 100644
+--- a/data/maps/CeladonCity_DepartmentStore_4F/scripts.inc
++++ b/data/maps/CeladonCity_DepartmentStore_4F/scripts.inc
+@@ -32,6 +32,14 @@ CeladonCity_DepartmentStore_4F_Items::
+ 	.2byte ITEM_THUNDER_STONE
+ 	.2byte ITEM_WATER_STONE
+ 	.2byte ITEM_LEAF_STONE
++	.2byte ITEM_MOON_STONE
++	.2byte ITEM_SUN_STONE
++	.2byte ITEM_KINGS_ROCK
++	.2byte ITEM_METAL_COAT
++	.2byte ITEM_DRAGON_SCALE
++	.2byte ITEM_UP_GRADE
++	.2byte ITEM_DEEP_SEA_TOOTH
++	.2byte ITEM_DEEP_SEA_SCALE
+ 	.2byte ITEM_NONE
+ 	release
+ 	end
+diff --git a/src/data/items.json b/src/data/items.json
+index 141b957..1788480 100644
+--- a/src/data/items.json
++++ b/src/data/items.json
+@@ -2995,7 +2995,7 @@
+     {
+       "english": "KING'S ROCK",
+       "itemId": "ITEM_KINGS_ROCK",
+-      "price": 100,
++      "price": 3000,
+       "holdEffect": "HOLD_EFFECT_FLINCH",
+       "holdEffectParam": 10,
+       "description_english": "An item to be held by a POKéMON.\\nIt may cause the foe to flinch\\nupon taking damage.",
+@@ -3075,7 +3075,7 @@
+     {
+       "english": "DEEPSEATOOTH",
+       "itemId": "ITEM_DEEP_SEA_TOOTH",
+-      "price": 200,
++      "price": 3000,
+       "holdEffect": "HOLD_EFFECT_DEEP_SEA_TOOTH",
+       "holdEffectParam": 0,
+       "description_english": "An item to be held by a POKéMON.\\nA fang that gleams a sharp silver.\\nIt raises the SP. ATK stat.",
+@@ -3091,7 +3091,7 @@
+     {
+       "english": "DEEPSEASCALE",
+       "itemId": "ITEM_DEEP_SEA_SCALE",
+-      "price": 200,
++      "price": 3000,
+       "holdEffect": "HOLD_EFFECT_DEEP_SEA_SCALE",
+       "holdEffectParam": 0,
+       "description_english": "An item to be held by a POKéMON.\\nA scale that shines a faint pink.\\nIt raises the SP. DEF stat.",
+@@ -3187,7 +3187,7 @@
+     {
+       "english": "METAL COAT",
+       "itemId": "ITEM_METAL_COAT",
+-      "price": 100,
++      "price": 3000,
+       "holdEffect": "HOLD_EFFECT_STEEL_POWER",
+       "holdEffectParam": 10,
+       "description_english": "An item to be held by a POKéMON.\\nA special metallic film that boosts\\nthe power of STEEL-type moves.",
+@@ -3219,7 +3219,7 @@
+     {
+       "english": "DRAGON SCALE",
+       "itemId": "ITEM_DRAGON_SCALE",
+-      "price": 2100,
++      "price": 3000,
+       "holdEffect": "HOLD_EFFECT_DRAGON_SCALE",
+       "holdEffectParam": 10,
+       "description_english": "A thick and tough scale.\\nA DRAGON-type POKéMON may be\\nholding it.",
+@@ -3491,7 +3491,7 @@
+     {
+       "english": "UP-GRADE",
+       "itemId": "ITEM_UP_GRADE",
+-      "price": 2100,
++      "price": 3000,
+       "holdEffect": "HOLD_EFFECT_UP_GRADE",
+       "holdEffectParam": 0,
+       "description_english": "A transparent device filled with all\\nsorts of data.\\nIt is made by SILPH CO.",
+diff --git a/src/data/wild_encounters.json b/src/data/wild_encounters.json
+index 176027b..72ef10e 100644
+--- a/src/data/wild_encounters.json
++++ b/src/data/wild_encounters.json
+@@ -578,7 +578,7 @@
+               {
+                 "min_level": 5,
+                 "max_level": 5,
+-                "species": "SPECIES_CATERPIE"
++                "species": "SPECIES_SLAKOTH"
+               },
+               {
+                 "min_level": 5,
+@@ -588,12 +588,12 @@
+               {
+                 "min_level": 3,
+                 "max_level": 3,
+-                "species": "SPECIES_CATERPIE"
++                "species": "SPECIES_SEEDOT"
+               },
+               {
+                 "min_level": 3,
+                 "max_level": 3,
+-                "species": "SPECIES_WEEDLE"
++                "species": "SPECIES_SHROOMISH"
+               },
+               {
+                 "min_level": 5,
+@@ -667,7 +667,7 @@
+               {
+                 "min_level": 9,
+                 "max_level": 9,
+-                "species": "SPECIES_GEODUDE"
++                "species": "SPECIES_ARON"
+               },
+               {
+                 "min_level": 8,
+@@ -815,12 +815,12 @@
+               {
+                 "min_level": 11,
+                 "max_level": 11,
+-                "species": "SPECIES_ZUBAT"
++                "species": "SPECIES_LUNATONE"
+               },
+               {
+                 "min_level": 11,
+                 "max_level": 11,
+-                "species": "SPECIES_ZUBAT"
++                "species": "SPECIES_SOLROCK"
+               },
+               {
+                 "min_level": 11,
+@@ -963,12 +963,12 @@
+               {
+                 "min_level": 21,
+                 "max_level": 21,
+-                "species": "SPECIES_DIGLETT"
++                "species": "SPECIES_TRAPINCH"
+               },
+               {
+                 "min_level": 22,
+                 "max_level": 22,
+-                "species": "SPECIES_DIGLETT"
++                "species": "SPECIES_WHISMUR"
+               },
+               {
+                 "min_level": 17,
+@@ -1022,7 +1022,7 @@
+               {
+                 "min_level": 46,
+                 "max_level": 46,
+-                "species": "SPECIES_ONIX"
++                "species": "SPECIES_MEDITITE"
+               },
+               {
+                 "min_level": 32,
+@@ -1089,9 +1089,9 @@
+                 "species": "SPECIES_ONIX"
+               },
+               {
+-                "min_level": 48,
+-                "max_level": 48,
+-                "species": "SPECIES_ONIX"
++                "min_level": 25,
++                "max_level": 29,
++                "species": "SPECIES_BAGON"
+               },
+               {
+                 "min_level": 34,
+@@ -1158,9 +1158,9 @@
+                 "species": "SPECIES_ONIX"
+               },
+               {
+-                "min_level": 46,
+-                "max_level": 46,
+-                "species": "SPECIES_ONIX"
++                "min_level": 25,
++                "max_level": 29,
++                "species": "SPECIES_BELDUM"
+               },
+               {
+                 "min_level": 32,
+@@ -1219,7 +1219,7 @@
+               {
+                 "min_level": 30,
+                 "max_level": 30,
+-                "species": "SPECIES_KOFFING"
++                "species": "SPECIES_VULPIX"
+               },
+               {
+                 "min_level": 36,
+@@ -1441,7 +1441,7 @@
+               {
+                 "min_level": 38,
+                 "max_level": 38,
+-                "species": "SPECIES_RATICATE"
++                "species": "SPECIES_MAGMAR"
+               },
+               {
+                 "min_level": 28,
+@@ -1495,7 +1495,7 @@
+               {
+                 "min_level": 24,
+                 "max_level": 24,
+-                "species": "SPECIES_EXEGGCUTE"
++                "species": "SPECIES_PINSIR"
+               },
+               {
+                 "min_level": 25,
+@@ -1620,7 +1620,7 @@
+               {
+                 "min_level": 15,
+                 "max_level": 35,
+-                "species": "SPECIES_PSYDUCK"
++                "species": "SPECIES_BARBOACH"
+               },
+               {
+                 "min_level": 25,
+@@ -1649,7 +1649,7 @@
+               {
+                 "min_level": 23,
+                 "max_level": 23,
+-                "species": "SPECIES_EXEGGCUTE"
++                "species": "SPECIES_PINSIR"
+               },
+               {
+                 "min_level": 25,
+@@ -1679,7 +1679,7 @@
+               {
+                 "min_level": 22,
+                 "max_level": 22,
+-                "species": "SPECIES_PARAS"
++                "species": "SPECIES_GIRAFARIG"
+               },
+               {
+                 "min_level": 25,
+@@ -1803,7 +1803,7 @@
+               {
+                 "min_level": 25,
+                 "max_level": 25,
+-                "species": "SPECIES_EXEGGCUTE"
++                "species": "SPECIES_GIRAFARIG"
+               },
+               {
+                 "min_level": 27,
+@@ -1928,7 +1928,7 @@
+               {
+                 "min_level": 15,
+                 "max_level": 35,
+-                "species": "SPECIES_PSYDUCK"
++                "species": "SPECIES_FEEBAS"
+               },
+               {
+                 "min_level": 25,
+@@ -1957,7 +1957,7 @@
+               {
+                 "min_level": 25,
+                 "max_level": 25,
+-                "species": "SPECIES_EXEGGCUTE"
++                "species": "SPECIES_KECLEON"
+               },
+               {
+                 "min_level": 27,
+@@ -2082,7 +2082,7 @@
+               {
+                 "min_level": 15,
+                 "max_level": 35,
+-                "species": "SPECIES_PSYDUCK"
++                "species": "SPECIES_CORPHISH"
+               },
+               {
+                 "min_level": 25,
+@@ -2583,7 +2583,7 @@
+               {
+                 "min_level": 17,
+                 "max_level": 17,
+-                "species": "SPECIES_GEODUDE"
++                "species": "SPECIES_ARON"
+               },
+               {
+                 "min_level": 16,
+@@ -2608,7 +2608,7 @@
+               {
+                 "min_level": 15,
+                 "max_level": 15,
+-                "species": "SPECIES_GEODUDE"
++                "species": "SPECIES_MAKUHITA"
+               },
+               {
+                 "min_level": 13,
+@@ -2677,7 +2677,7 @@
+               {
+                 "min_level": 15,
+                 "max_level": 15,
+-                "species": "SPECIES_GEODUDE"
++                "species": "SPECIES_MAWILE"
+               },
+               {
+                 "min_level": 15,
+@@ -2712,7 +2712,7 @@
+               {
+                 "min_level": 15,
+                 "max_level": 30,
+-                "species": "SPECIES_GEODUDE"
++                "species": "SPECIES_NOSEPASS"
+               },
+               {
+                 "min_level": 25,
+@@ -2776,7 +2776,7 @@
+               {
+                 "min_level": 33,
+                 "max_level": 33,
+-                "species": "SPECIES_PSYDUCK"
++                "species": "SPECIES_SLOWPOKE"
+               },
+               {
+                 "min_level": 26,
+@@ -2850,7 +2850,7 @@
+               {
+                 "min_level": 26,
+                 "max_level": 26,
+-                "species": "SPECIES_ZUBAT"
++                "species": "SPECIES_SNORUNT"
+               },
+               {
+                 "min_level": 35,
+@@ -2894,7 +2894,7 @@
+               {
+                 "min_level": 22,
+                 "max_level": 22,
+-                "species": "SPECIES_ZUBAT"
++                "species": "SPECIES_SNORUNT"
+               },
+               {
+                 "min_level": 24,
+@@ -2953,7 +2953,7 @@
+               {
+                 "min_level": 32,
+                 "max_level": 32,
+-                "species": "SPECIES_PSYDUCK"
++                "species": "SPECIES_SPHEAL"
+               },
+               {
+                 "min_level": 30,
+@@ -3281,7 +3281,7 @@
+               {
+                 "min_level": 19,
+                 "max_level": 19,
+-                "species": "SPECIES_GASTLY"
++                "species": "SPECIES_SHUPPET"
+               },
+               {
+                 "min_level": 15,
+@@ -3360,7 +3360,7 @@
+               {
+                 "min_level": 17,
+                 "max_level": 17,
+-                "species": "SPECIES_GASTLY"
++                "species": "SPECIES_DUSKULL"
+               },
+               {
+                 "min_level": 17,
+@@ -3429,7 +3429,7 @@
+               {
+                 "min_level": 17,
+                 "max_level": 17,
+-                "species": "SPECIES_GASTLY"
++                "species": "SPECIES_MISDREAVUS"
+               },
+               {
+                 "min_level": 17,
+@@ -3478,7 +3478,7 @@
+               {
+                 "min_level": 15,
+                 "max_level": 15,
+-                "species": "SPECIES_GASTLY"
++                "species": "SPECIES_DUSKULL"
+               },
+               {
+                 "min_level": 19,
+@@ -3498,7 +3498,7 @@
+               {
+                 "min_level": 18,
+                 "max_level": 18,
+-                "species": "SPECIES_GASTLY"
++                "species": "SPECIES_SHUPPET"
+               },
+               {
+                 "min_level": 19,
+@@ -3547,7 +3547,7 @@
+               {
+                 "min_level": 19,
+                 "max_level": 19,
+-                "species": "SPECIES_GASTLY"
++                "species": "SPECIES_CHIMECHO"
+               },
+               {
+                 "min_level": 23,
+@@ -3567,7 +3567,7 @@
+               {
+                 "min_level": 18,
+                 "max_level": 18,
+-                "species": "SPECIES_GASTLY"
++                "species": "SPECIES_MISDREAVUS"
+               },
+               {
+                 "min_level": 23,
+@@ -3606,12 +3606,12 @@
+               {
+                 "min_level": 25,
+                 "max_level": 25,
+-                "species": "SPECIES_VOLTORB"
++                "species": "SPECIES_PLUSLE"
+               },
+               {
+                 "min_level": 25,
+                 "max_level": 25,
+-                "species": "SPECIES_MAGNEMITE"
++                "species": "SPECIES_MINUN"
+               },
+               {
+                 "min_level": 22,
+@@ -3636,7 +3636,7 @@
+               {
+                 "min_level": 26,
+                 "max_level": 26,
+-                "species": "SPECIES_PIKACHU"
++                "species": "SPECIES_ELECTRIKE"
+               },
+               {
+                 "min_level": 32,
+@@ -3693,14 +3693,14 @@
+                 "species": "SPECIES_GEODUDE"
+               },
+               {
+-                "min_level": 36,
+-                "max_level": 36,
+-                "species": "SPECIES_PONYTA"
++                "min_level": 15,
++                "max_level": 18,
++                "species": "SPECIES_TORCHIC"
+               },
+               {
+                 "min_level": 40,
+                 "max_level": 40,
+-                "species": "SPECIES_FEAROW"
++                "species": "SPECIES_NUMEL"
+               },
+               {
+                 "min_level": 30,
+@@ -4031,7 +4031,7 @@
+               {
+                 "min_level": 38,
+                 "max_level": 38,
+-                "species": "SPECIES_GEODUDE"
++                "species": "SPECIES_MAGMAR"
+               },
+               {
+                 "min_level": 40,
+@@ -4130,7 +4130,7 @@
+               {
+                 "min_level": 42,
+                 "max_level": 42,
+-                "species": "SPECIES_GEODUDE"
++                "species": "SPECIES_TORKOAL"
+               },
+               {
+                 "min_level": 28,
+@@ -4630,12 +4630,12 @@
+               {
+                 "min_level": 31,
+                 "max_level": 31,
+-                "species": "SPECIES_PSYDUCK"
++                "species": "SPECIES_SUDOWOODO"
+               },
+               {
+                 "min_level": 37,
+                 "max_level": 37,
+-                "species": "SPECIES_VENOMOTH"
++                "species": "SPECIES_SUNKERN"
+               },
+               {
+                 "min_level": 37,
+@@ -4938,7 +4938,7 @@
+               {
+                 "min_level": 31,
+                 "max_level": 31,
+-                "species": "SPECIES_SWINUB"
++                "species": "SPECIES_SNEASEL"
+               },
+               {
+                 "min_level": 48,
+@@ -4948,7 +4948,7 @@
+               {
+                 "min_level": 23,
+                 "max_level": 23,
+-                "species": "SPECIES_SWINUB"
++                "species": "SPECIES_SNORUNT"
+               },
+               {
+                 "min_level": 48,
+@@ -5007,7 +5007,7 @@
+               {
+                 "min_level": 31,
+                 "max_level": 31,
+-                "species": "SPECIES_SWINUB"
++                "species": "SPECIES_SPHEAL"
+               },
+               {
+                 "min_level": 48,
+@@ -5017,7 +5017,7 @@
+               {
+                 "min_level": 23,
+                 "max_level": 23,
+-                "species": "SPECIES_SWINUB"
++                "species": "SPECIES_SNEASEL"
+               },
+               {
+                 "min_level": 48,
+@@ -5228,9 +5228,9 @@
+                 "species": "SPECIES_METAPOD"
+               },
+               {
+-                "min_level": 20,
+-                "max_level": 20,
+-                "species": "SPECIES_HERACROSS"
++                "min_level": 15,
++                "max_level": 18,
++                "species": "SPECIES_TREECKO"
+               },
+               {
+                 "min_level": 9,
+@@ -5299,7 +5299,7 @@
+               {
+                 "min_level": 48,
+                 "max_level": 48,
+-                "species": "SPECIES_HAUNTER"
++                "species": "SPECIES_SABLEYE"
+               },
+               {
+                 "min_level": 50,
+@@ -5575,7 +5575,7 @@
+               {
+                 "min_level": 48,
+                 "max_level": 48,
+-                "species": "SPECIES_HAUNTER"
++                "species": "SPECIES_SABLEYE"
+               },
+               {
+                 "min_level": 50,
+@@ -5920,7 +5920,7 @@
+               {
+                 "min_level": 48,
+                 "max_level": 48,
+-                "species": "SPECIES_HAUNTER"
++                "species": "SPECIES_DUSKULL"
+               },
+               {
+                 "min_level": 50,
+@@ -6245,7 +6245,7 @@
+               {
+                 "min_level": 31,
+                 "max_level": 31,
+-                "species": "SPECIES_PONYTA"
++                "species": "SPECIES_NUMEL"
+               },
+               {
+                 "min_level": 31,
+@@ -6258,9 +6258,9 @@
+                 "species": "SPECIES_MEOWTH"
+               },
+               {
+-                "min_level": 30,
+-                "max_level": 30,
+-                "species": "SPECIES_SPEAROW"
++                "min_level": 15,
++                "max_level": 18,
++                "species": "SPECIES_CYNDAQUIL"
+               },
+               {
+                 "min_level": 34,
+@@ -6444,7 +6444,7 @@
+               {
+                 "min_level": 38,
+                 "max_level": 38,
+-                "species": "SPECIES_FEAROW"
++                "species": "SPECIES_WINGULL"
+               },
+               {
+                 "min_level": 31,
+@@ -6489,7 +6489,7 @@
+               {
+                 "min_level": 35,
+                 "max_level": 40,
+-                "species": "SPECIES_TENTACOOL"
++                "species": "SPECIES_CORSOLA"
+               },
+               {
+                 "min_level": 35,
+@@ -6529,7 +6529,7 @@
+               {
+                 "min_level": 5,
+                 "max_level": 15,
+-                "species": "SPECIES_HORSEA"
++                "species": "SPECIES_LUVDISC"
+               },
+               {
+                 "min_level": 15,
+@@ -6576,9 +6576,9 @@
+                 "species": "SPECIES_ODDISH"
+               },
+               {
+-                "min_level": 32,
+-                "max_level": 32,
+-                "species": "SPECIES_ODDISH"
++                "min_level": 15,
++                "max_level": 18,
++                "species": "SPECIES_TOTODILE"
+               },
+               {
+                 "min_level": 36,
+@@ -6643,7 +6643,7 @@
+               {
+                 "min_level": 35,
+                 "max_level": 40,
+-                "species": "SPECIES_PSYDUCK"
++                "species": "SPECIES_LOTAD"
+               },
+               {
+                 "min_level": 35,
+@@ -6797,7 +6797,7 @@
+               {
+                 "min_level": 35,
+                 "max_level": 40,
+-                "species": "SPECIES_TENTACOOL"
++                "species": "SPECIES_WAILMER"
+               },
+               {
+                 "min_level": 35,
+@@ -6955,7 +6955,7 @@
+               {
+                 "min_level": 35,
+                 "max_level": 40,
+-                "species": "SPECIES_TENTACOOL"
++                "species": "SPECIES_MANTINE"
+               },
+               {
+                 "min_level": 35,
+@@ -7089,7 +7089,7 @@
+               {
+                 "min_level": 15,
+                 "max_level": 25,
+-                "species": "SPECIES_HORSEA"
++                "species": "SPECIES_FEEBAS"
+               },
+               {
+                 "min_level": 15,
+@@ -7142,8 +7142,8 @@
+               },
+               {
+                 "min_level": 15,
+-                "max_level": 15,
+-                "species": "SPECIES_SENTRET"
++                "max_level": 18,
++                "species": "SPECIES_CHIKORITA"
+               },
+               {
+                 "min_level": 41,
+@@ -7153,12 +7153,12 @@
+               {
+                 "min_level": 15,
+                 "max_level": 15,
+-                "species": "SPECIES_HOPPIP"
++                "species": "SPECIES_MILTANK"
+               },
+               {
+                 "min_level": 41,
+                 "max_level": 41,
+-                "species": "SPECIES_PSYDUCK"
++                "species": "SPECIES_TROPIUS"
+               },
+               {
+                 "min_level": 50,
+@@ -7307,7 +7307,7 @@
+               {
+                 "min_level": 16,
+                 "max_level": 16,
+-                "species": "SPECIES_HOPPIP"
++                "species": "SPECIES_SWABLU"
+               },
+               {
+                 "min_level": 6,
+@@ -7486,7 +7486,7 @@
+               {
+                 "min_level": 15,
+                 "max_level": 25,
+-                "species": "SPECIES_HORSEA"
++                "species": "SPECIES_CLAMPERL"
+               },
+               {
+                 "min_level": 15,
+@@ -7729,7 +7729,7 @@
+               {
+                 "min_level": 15,
+                 "max_level": 25,
+-                "species": "SPECIES_HORSEA"
++                "species": "SPECIES_CHINCHOU"
+               },
+               {
+                 "min_level": 15,
+@@ -7801,9 +7801,9 @@
+                 "species": "SPECIES_PSYDUCK"
+               },
+               {
+-                "min_level": 20,
+-                "max_level": 20,
+-                "species": "SPECIES_NATU"
++                "min_level": 15,
++                "max_level": 18,
++                "species": "SPECIES_MUDKIP"
+               },
+               {
+                 "min_level": 49,
+@@ -7813,7 +7813,7 @@
+               {
+                 "min_level": 20,
+                 "max_level": 20,
+-                "species": "SPECIES_NATU"
++                "species": "SPECIES_BALTOY"
+               },
+               {
+                 "min_level": 52,
+@@ -8026,7 +8026,7 @@
+               {
+                 "min_level": 15,
+                 "max_level": 15,
+-                "species": "SPECIES_SENTRET"
++                "species": "SPECIES_ABSOL"
+               },
+               {
+                 "min_level": 41,
+@@ -8150,12 +8150,12 @@
+               {
+                 "min_level": 35,
+                 "max_level": 50,
+-                "species": "SPECIES_GRAVELER"
++                "species": "SPECIES_LILEEP"
+               },
+               {
+                 "min_level": 30,
+                 "max_level": 40,
+-                "species": "SPECIES_GEODUDE"
++                "species": "SPECIES_ANORITH"
+               },
+               {
+                 "min_level": 30,
+@@ -8229,7 +8229,7 @@
+               {
+                 "min_level": 15,
+                 "max_level": 25,
+-                "species": "SPECIES_HORSEA"
++                "species": "SPECIES_RELICANTH"
+               },
+               {
+                 "min_level": 15,
+@@ -8293,12 +8293,12 @@
+               {
+                 "min_level": 3,
+                 "max_level": 3,
+-                "species": "SPECIES_PIDGEY"
++                "species": "SPECIES_ZIGZAGOON"
+               },
+               {
+                 "min_level": 3,
+                 "max_level": 3,
+-                "species": "SPECIES_RATTATA"
++                "species": "SPECIES_TAILLOW"
+               },
+               {
+                 "min_level": 4,
+@@ -8362,12 +8362,12 @@
+               {
+                 "min_level": 5,
+                 "max_level": 5,
+-                "species": "SPECIES_RATTATA"
++                "species": "SPECIES_WURMPLE"
+               },
+               {
+                 "min_level": 5,
+                 "max_level": 5,
+-                "species": "SPECIES_PIDGEY"
++                "species": "SPECIES_RALTS"
+               },
+               {
+                 "min_level": 4,
+@@ -8426,12 +8426,12 @@
+               {
+                 "min_level": 7,
+                 "max_level": 7,
+-                "species": "SPECIES_PIDGEY"
++                "species": "SPECIES_SKITTY"
+               },
+               {
+                 "min_level": 8,
+                 "max_level": 8,
+-                "species": "SPECIES_SPEAROW"
++                "species": "SPECIES_POOCHYENA"
+               },
+               {
+                 "min_level": 3,
+@@ -8498,14 +8498,14 @@
+                 "species": "SPECIES_RATTATA"
+               },
+               {
+-                "min_level": 12,
++                "min_level": 8,
+                 "max_level": 12,
+-                "species": "SPECIES_SPEAROW"
++                "species": "SPECIES_CHARMANDER"
+               },
+               {
+                 "min_level": 12,
+                 "max_level": 12,
+-                "species": "SPECIES_RATTATA"
++                "species": "SPECIES_SANDSHREW"
+               },
+               {
+                 "min_level": 10,
+@@ -8659,7 +8659,7 @@
+               {
+                 "min_level": 16,
+                 "max_level": 16,
+-                "species": "SPECIES_PIDGEY"
++                "species": "SPECIES_SNUBBULL"
+               },
+               {
+                 "min_level": 15,
+@@ -8723,12 +8723,12 @@
+               {
+                 "min_level": 16,
+                 "max_level": 16,
+-                "species": "SPECIES_ODDISH"
++                "species": "SPECIES_SNUBBULL"
+               },
+               {
+                 "min_level": 16,
+                 "max_level": 16,
+-                "species": "SPECIES_PIDGEY"
++                "species": "SPECIES_MARILL"
+               },
+               {
+                 "min_level": 15,
+@@ -8768,7 +8768,7 @@
+               {
+                 "min_level": 25,
+                 "max_level": 30,
+-                "species": "SPECIES_PSYDUCK"
++                "species": "SPECIES_LOTAD"
+               },
+               {
+                 "min_level": 30,
+@@ -8887,7 +8887,7 @@
+               {
+                 "min_level": 17,
+                 "max_level": 17,
+-                "species": "SPECIES_MEOWTH"
++                "species": "SPECIES_VULPIX"
+               },
+               {
+                 "min_level": 19,
+@@ -8936,7 +8936,7 @@
+               {
+                 "min_level": 20,
+                 "max_level": 20,
+-                "species": "SPECIES_MEOWTH"
++                "species": "SPECIES_GULPIN"
+               },
+               {
+                 "min_level": 17,
+@@ -8946,12 +8946,12 @@
+               {
+                 "min_level": 17,
+                 "max_level": 17,
+-                "species": "SPECIES_GROWLITHE"
++                "species": "SPECIES_VULPIX"
+               },
+               {
+                 "min_level": 19,
+                 "max_level": 19,
+-                "species": "SPECIES_EKANS"
++                "species": "SPECIES_SANDSHREW"
+               },
+               {
+                 "min_level": 17,
+@@ -9020,7 +9020,7 @@
+               {
+                 "min_level": 17,
+                 "max_level": 17,
+-                "species": "SPECIES_RATTATA"
++                "species": "SPECIES_CACNEA"
+               },
+               {
+                 "min_level": 14,
+@@ -9089,7 +9089,7 @@
+               {
+                 "min_level": 17,
+                 "max_level": 17,
+-                "species": "SPECIES_VOLTORB"
++                "species": "SPECIES_ELECTRIKE"
+               },
+               {
+                 "min_level": 14,
+@@ -9238,7 +9238,7 @@
+               {
+                 "min_level": 15,
+                 "max_level": 15,
+-                "species": "SPECIES_EKANS"
++                "species": "SPECIES_SPOINK"
+               },
+               {
+                 "min_level": 17,
+@@ -9392,7 +9392,7 @@
+               {
+                 "min_level": 26,
+                 "max_level": 26,
+-                "species": "SPECIES_ODDISH"
++                "species": "SPECIES_HOOTHOOT"
+               },
+               {
+                 "min_level": 27,
+@@ -9437,7 +9437,7 @@
+               {
+                 "min_level": 20,
+                 "max_level": 30,
+-                "species": "SPECIES_TENTACOOL"
++                "species": "SPECIES_SLOWPOKE"
+               },
+               {
+                 "min_level": 30,
+@@ -9497,7 +9497,7 @@
+               {
+                 "min_level": 25,
+                 "max_level": 35,
+-                "species": "SPECIES_HORSEA"
++                "species": "SPECIES_BARBOACH"
+               },
+               {
+                 "min_level": 25,
+@@ -9546,7 +9546,7 @@
+               {
+                 "min_level": 26,
+                 "max_level": 26,
+-                "species": "SPECIES_ODDISH"
++                "species": "SPECIES_HOOTHOOT"
+               },
+               {
+                 "min_level": 25,
+@@ -9695,12 +9695,12 @@
+               {
+                 "min_level": 26,
+                 "max_level": 26,
+-                "species": "SPECIES_VENONAT"
++                "species": "SPECIES_CASTFORM"
+               },
+               {
+                 "min_level": 26,
+                 "max_level": 26,
+-                "species": "SPECIES_ODDISH"
++                "species": "SPECIES_ROSELIA"
+               },
+               {
+                 "min_level": 30,
+@@ -9749,7 +9749,7 @@
+               {
+                 "min_level": 22,
+                 "max_level": 22,
+-                "species": "SPECIES_ODDISH"
++                "species": "SPECIES_ILLUMISE"
+               },
+               {
+                 "min_level": 27,
+@@ -9764,12 +9764,12 @@
+               {
+                 "min_level": 26,
+                 "max_level": 26,
+-                "species": "SPECIES_VENONAT"
++                "species": "SPECIES_VOLBEAT"
+               },
+               {
+                 "min_level": 26,
+                 "max_level": 26,
+-                "species": "SPECIES_ODDISH"
++                "species": "SPECIES_SUNKERN"
+               },
+               {
+                 "min_level": 25,
+@@ -9838,12 +9838,12 @@
+               {
+                 "min_level": 22,
+                 "max_level": 22,
+-                "species": "SPECIES_RATTATA"
++                "species": "SPECIES_KECLEON"
+               },
+               {
+                 "min_level": 22,
+                 "max_level": 22,
+-                "species": "SPECIES_DODUO"
++                "species": "SPECIES_SPINDA"
+               },
+               {
+                 "min_level": 18,
+@@ -9907,12 +9907,12 @@
+               {
+                 "min_level": 28,
+                 "max_level": 28,
+-                "species": "SPECIES_DODUO"
++                "species": "SPECIES_ZANGOOSE"
+               },
+               {
+                 "min_level": 29,
+                 "max_level": 29,
+-                "species": "SPECIES_RATICATE"
++                "species": "SPECIES_SEVIPER"
+               },
+               {
+                 "min_level": 22,
+@@ -9976,7 +9976,7 @@
+               {
+                 "min_level": 28,
+                 "max_level": 28,
+-                "species": "SPECIES_DODUO"
++                "species": "SPECIES_WINGULL"
+               },
+               {
+                 "min_level": 29,
+@@ -10025,12 +10025,12 @@
+               {
+                 "min_level": 20,
+                 "max_level": 30,
+-                "species": "SPECIES_TENTACOOL"
++                "species": "SPECIES_WINGULL"
+               },
+               {
+                 "min_level": 30,
+                 "max_level": 35,
+-                "species": "SPECIES_TENTACOOL"
++                "species": "SPECIES_MANTINE"
+               },
+               {
+                 "min_level": 35,
+@@ -10070,12 +10070,12 @@
+               {
+                 "min_level": 15,
+                 "max_level": 25,
+-                "species": "SPECIES_HORSEA"
++                "species": "SPECIES_CHINCHOU"
+               },
+               {
+                 "min_level": 15,
+                 "max_level": 25,
+-                "species": "SPECIES_HORSEA"
++                "species": "SPECIES_CARVANHA"
+               },
+               {
+                 "min_level": 15,
+@@ -10114,12 +10114,12 @@
+               {
+                 "min_level": 20,
+                 "max_level": 30,
+-                "species": "SPECIES_TENTACOOL"
++                "species": "SPECIES_WAILMER"
+               },
+               {
+                 "min_level": 30,
+                 "max_level": 35,
+-                "species": "SPECIES_TENTACOOL"
++                "species": "SPECIES_CORSOLA"
+               },
+               {
+                 "min_level": 35,
+@@ -10149,7 +10149,7 @@
+               {
+                 "min_level": 5,
+                 "max_level": 15,
+-                "species": "SPECIES_MAGIKARP"
++                "species": "SPECIES_LUVDISC"
+               },
+               {
+                 "min_level": 5,
+@@ -10164,7 +10164,7 @@
+               {
+                 "min_level": 15,
+                 "max_level": 25,
+-                "species": "SPECIES_HORSEA"
++                "species": "SPECIES_CLAMPERL"
+               },
+               {
+                 "min_level": 15,
+@@ -10318,7 +10318,7 @@
+               {
+                 "min_level": 15,
+                 "max_level": 25,
+-                "species": "SPECIES_HORSEA"
++                "species": "SPECIES_STARYU"
+               },
+               {
+                 "min_level": 15,
+@@ -10467,12 +10467,12 @@
+               {
+                 "min_level": 15,
+                 "max_level": 25,
+-                "species": "SPECIES_HORSEA"
++                "species": "SPECIES_STARYU"
+               },
+               {
+                 "min_level": 15,
+                 "max_level": 25,
+-                "species": "SPECIES_HORSEA"
++                "species": "SPECIES_REMORAID"
+               },
+               {
+                 "min_level": 15,
+@@ -10576,7 +10576,7 @@
+               {
+                 "min_level": 25,
+                 "max_level": 30,
+-                "species": "SPECIES_PSYDUCK"
++                "species": "SPECIES_SURSKIT"
+               },
+               {
+                 "min_level": 30,
+@@ -10700,7 +10700,7 @@
+               {
+                 "min_level": 42,
+                 "max_level": 42,
+-                "species": "SPECIES_FEAROW"
++                "species": "SPECIES_GLIGAR"
+               },
+               {
+                 "min_level": 32,
+@@ -10839,12 +10839,12 @@
+               {
+                 "min_level": 13,
+                 "max_level": 13,
+-                "species": "SPECIES_PIDGEY"
++                "species": "SPECIES_BELLSPROUT"
+               },
+               {
+-                "min_level": 14,
++                "min_level": 10,
+                 "max_level": 14,
+-                "species": "SPECIES_ODDISH"
++                "species": "SPECIES_SQUIRTLE"
+               },
+               {
+                 "min_level": 8,
+@@ -10854,7 +10854,7 @@
+               {
+                 "min_level": 8,
+                 "max_level": 8,
+-                "species": "SPECIES_ABRA"
++                "species": "SPECIES_NINCADA"
+               },
+               {
+                 "min_level": 8,
+@@ -10993,12 +10993,12 @@
+               {
+                 "min_level": 11,
+                 "max_level": 11,
+-                "species": "SPECIES_PIDGEY"
++                "species": "SPECIES_BELLSPROUT"
+               },
+               {
+-                "min_level": 12,
+-                "max_level": 12,
+-                "species": "SPECIES_ODDISH"
++                "min_level": 10,
++                "max_level": 14,
++                "species": "SPECIES_BULBASAUR"
+               },
+               {
+                 "min_level": 9,
+@@ -11454,7 +11454,7 @@
+               {
+                 "min_level": 25,
+                 "max_level": 35,
+-                "species": "SPECIES_HORSEA"
++                "species": "SPECIES_REMORAID"
+               },
+               {
+                 "min_level": 25,
+@@ -11706,7 +11706,7 @@
+               {
+                 "min_level": 15,
+                 "max_level": 25,
+-                "species": "SPECIES_HORSEA"
++                "species": "SPECIES_STARYU"
+               },
+               {
+                 "min_level": 15,
+@@ -12015,44 +12015,44 @@
+                 "species": "SPECIES_ZUBAT"
+               },
+               {
+-                "min_level": 8,
+-                "max_level": 8,
+-                "species": "SPECIES_ZUBAT"
++                "min_level": 18,
++                "max_level": 22,
++                "species": "SPECIES_MAREEP"
+               },
+               {
+-                "min_level": 14,
+-                "max_level": 14,
+-                "species": "SPECIES_ZUBAT"
++                "min_level": 20,
++                "max_level": 24,
++                "species": "SPECIES_PINECO"
+               },
+               {
+-                "min_level": 10,
+-                "max_level": 10,
+-                "species": "SPECIES_ZUBAT"
++                "min_level": 20,
++                "max_level": 24,
++                "species": "SPECIES_HOUNDOUR"
+               },
+               {
+-                "min_level": 12,
+-                "max_level": 12,
+-                "species": "SPECIES_ZUBAT"
++                "min_level": 20,
++                "max_level": 24,
++                "species": "SPECIES_TEDDIURSA"
+               },
+               {
+-                "min_level": 16,
+-                "max_level": 16,
+-                "species": "SPECIES_ZUBAT"
++                "min_level": 20,
++                "max_level": 24,
++                "species": "SPECIES_AIPOM"
+               },
+               {
+-                "min_level": 6,
+-                "max_level": 6,
+-                "species": "SPECIES_ZUBAT"
++                "min_level": 20,
++                "max_level": 24,
++                "species": "SPECIES_SHUCKLE"
+               },
+               {
+-                "min_level": 8,
+-                "max_level": 8,
+-                "species": "SPECIES_ZUBAT"
++                "min_level": 20,
++                "max_level": 24,
++                "species": "SPECIES_STANTLER"
+               },
+               {
+-                "min_level": 14,
+-                "max_level": 14,
+-                "species": "SPECIES_ZUBAT"
++                "min_level": 20,
++                "max_level": 24,
++                "species": "SPECIES_SMEARGLE"
+               },
+               {
+                 "min_level": 8,
+diff --git a/src/evolution_scene.c b/src/evolution_scene.c
+index 442aa15..d3dc1ae 100644
+--- a/src/evolution_scene.c
++++ b/src/evolution_scene.c
+@@ -638,7 +638,8 @@ static void Task_EvolutionScene(u8 taskId)
+ 
+     // Automatically cancel if the Pokemon would evolve into a species you have not
+     // yet unlocked, such as Crobat.
+-    if (!IsNationalPokedexEnabled()
++    if (FALSE // hack: no National Dex lock on evolution
++       
+         && gTasks[taskId].tState == EVOSTATE_WAIT_CYCLE_MON_SPRITE
+         && gTasks[taskId].tPostEvoSpecies > SPECIES_MEW)
+     {
+@@ -1096,7 +1097,8 @@ static void Task_TradeEvolutionScene(u8 taskId)
+ 
+     // Automatically cancel if the Pokemon would evolve into a species you have not
+     // yet unlocked, such as Crobat.
+-    if (!IsNationalPokedexEnabled()
++    if (FALSE // hack: no National Dex lock on evolution
++       
+         && gTasks[taskId].tState == T_EVOSTATE_WAIT_CYCLE_MON_SPRITE
+         && gTasks[taskId].tPostEvoSpecies > SPECIES_MEW)
+     {
+diff --git a/src/party_menu.c b/src/party_menu.c
+index 845e299..0ee0376 100644
+--- a/src/party_menu.c
++++ b/src/party_menu.c
+@@ -5319,7 +5319,8 @@ static void CB2_UseEvolutionStone(void)
+ 
+ static bool8 MonCanEvolve(void)
+ {
+-    if (!IsNationalPokedexEnabled()
++    if (FALSE // hack: no National Dex lock on evolution
++       
+      && GetEvolutionTargetSpecies(&gPlayerParty[gPartyMenu.slotId], EVO_MODE_ITEM_USE, gSpecialVar_ItemId) > KANTO_DEX_COUNT)
+         return FALSE;
+     else
+diff --git a/tools/hack/encounters.py b/tools/hack/encounters.py
+new file mode 100644
+index 0000000..f25711a
+--- /dev/null
++++ b/tools/hack/encounters.py
+@@ -0,0 +1,321 @@
++#!/usr/bin/env python3
++"""Wild encounter pass: make every non-legendary Pokemon obtainable in FireRed.
++
++Each placement overwrites one slot of an existing FireRed encounter table. Only
++slots whose species also appears in another slot of the same table are used, so
++nothing that was already there disappears. Afterwards the script re-checks that
++all 386 species can be obtained (wild, gift, static, evolution or breeding).
++
++Run from the repo root on a checkout without these changes applied:
++    python3 tools/hack/encounters.py
++"""
++import json
++import re
++import sys
++
++WILD = "src/data/wild_encounters.json"
++
++# Preferred slot order per table kind (index into the mons list).
++#   land  rates: 20 20 10 10 10 10 5 5 4 4 1 1
++#   water/rock : 60 30 5 4 1
++#   fishing    : old 70 30 | good 60 20 20 | super 40 40 15 4 1
++PREF = {
++    "land": [6, 7, 8, 9, 4, 5, 2, 3, 10, 11],
++    "water": [2, 3, 1, 4],
++    "rock": [2, 3, 1, 4],
++    "good": [3, 4],
++    "super": [7, 8, 6, 9, 5],
++}
++RATES = {
++    "land": [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1],
++    "water": [60, 30, 5, 4, 1],
++    "rock": [60, 30, 5, 4, 1],
++    "good": [70, 30, 60, 20, 20, 40, 40, 15, 4, 1],
++    "super": [70, 30, 60, 20, 20, 40, 40, 15, 4, 1],
++}
++RATE_PREF = {
++    "land": [5, 4, 10, 1, 20],
++    "water": [5, 4, 30, 1, 60],
++    "rock": [5, 4, 30, 1, 60],
++    "good": [20, 60],
++    "super": [15, 4, 40, 1],
++}
++ORIG_TOTAL = {}
++KIND_KEY = {"land": "land_mons", "water": "water_mons", "rock": "rock_smash_mons",
++            "good": "fishing_mons", "super": "fishing_mons"}
++
++# (map, table, species, levels or None to keep the slot's levels)
++PLACEMENTS = [
++    # --- Kanto starters
++    ("ROUTE25", "land", "BULBASAUR", (10, 14)),
++    ("ROUTE4", "land", "CHARMANDER", (8, 12)),
++    ("ROUTE24", "land", "SQUIRTLE", (10, 14)),
++    # --- Early routes: common Hoenn critters
++    ("ROUTE1", "land", "ZIGZAGOON", None),
++    ("ROUTE1", "land", "TAILLOW", None),
++    ("ROUTE2", "land", "WURMPLE", None),
++    ("ROUTE2", "land", "RALTS", None),
++    ("VIRIDIAN_FOREST", "land", "SEEDOT", None),
++    ("VIRIDIAN_FOREST", "land", "SHROOMISH", None),
++    ("ROUTE3", "land", "POOCHYENA", None),
++    ("ROUTE3", "land", "SKITTY", None),
++    ("MT_MOON_1F", "land", "ARON", None),
++    ("MT_MOON_B2F", "land", "LUNATONE", None),
++    ("MT_MOON_B2F", "land", "SOLROCK", None),
++    ("ROUTE4", "land", "SANDSHREW", None),
++    ("ROUTE24", "land", "BELLSPROUT", None),
++    ("ROUTE25", "land", "BELLSPROUT", None),
++    ("ROUTE24", "land", "NINCADA", None),
++    ("ROUTE22", "water", "SURSKIT", None),
++    ("ROUTE6", "water", "LOTAD", None),
++    ("ROUTE5", "land", "SNUBBULL", None),
++    ("ROUTE6", "land", "MARILL", None),
++    ("ROUTE9", "land", "CACNEA", None),
++    ("VIRIDIAN_FOREST", "land", "SLAKOTH", None),
++    ("ROUTE6", "land", "SNUBBULL", None),
++    ("ROUTE7", "land", "VULPIX", None),
++    ("ROUTE8", "land", "VULPIX", None),
++    ("ROUTE8", "land", "SANDSHREW", None),
++    ("ROUTE8", "land", "GULPIN", None),
++    ("ROUTE10", "land", "ELECTRIKE", None),
++    ("ROUTE11", "land", "SPOINK", None),
++    ("DIGLETTS_CAVE_B1F", "land", "TRAPINCH", None),
++    ("DIGLETTS_CAVE_B1F", "land", "WHISMUR", None),
++    ("ROCK_TUNNEL_1F", "land", "MAKUHITA", None),
++    ("ROCK_TUNNEL_1F", "land", "ARON", None),
++    ("ROCK_TUNNEL_B1F", "land", "MAWILE", None),
++    ("ROCK_TUNNEL_B1F", "rock", "NOSEPASS", None),
++    ("POKEMON_TOWER_3F", "land", "SHUPPET", None),
++    ("POKEMON_TOWER_4F", "land", "DUSKULL", None),
++    ("POKEMON_TOWER_5F", "land", "MISDREAVUS", None),
++    ("POKEMON_TOWER_6F", "land", "SHUPPET", None),
++    ("POKEMON_TOWER_6F", "land", "DUSKULL", None),
++    ("POKEMON_TOWER_7F", "land", "MISDREAVUS", None),
++    ("POKEMON_TOWER_7F", "land", "CHIMECHO", None),
++    ("ROUTE12", "land", "HOOTHOOT", None),
++    ("ROUTE12", "water", "SLOWPOKE", None),
++    ("ROUTE13", "land", "HOOTHOOT", None),
++    ("ROUTE14", "land", "ROSELIA", None),
++    ("ROUTE14", "land", "CASTFORM", None),
++    ("ROUTE15", "land", "SUNKERN", None),
++    ("ROUTE15", "land", "VOLBEAT", None),
++    ("ROUTE15", "land", "ILLUMISE", None),
++    ("ROUTE16", "land", "SPINDA", None),
++    ("ROUTE16", "land", "KECLEON", None),
++    ("ROUTE17", "land", "ZANGOOSE", None),
++    ("ROUTE17", "land", "SEVIPER", None),
++    ("ROUTE18", "land", "WINGULL", None),
++    ("POWER_PLANT", "land", "ELECTRIKE", None),
++    ("POWER_PLANT", "land", "PLUSLE", None),
++    ("POWER_PLANT", "land", "MINUN", None),
++    ("POKEMON_MANSION_1F", "land", "VULPIX", None),
++    ("POKEMON_MANSION_B1F", "land", "MAGMAR", None),
++    ("SEAFOAM_ISLANDS_1F", "land", "SLOWPOKE", None),
++    ("SEAFOAM_ISLANDS_B1F", "land", "SNORUNT", None),
++    ("SEAFOAM_ISLANDS_B2F", "land", "SNORUNT", None),
++    ("SEAFOAM_ISLANDS_B3F", "land", "SPHEAL", None),
++    # --- Safari Zone
++    ("SAFARI_ZONE_CENTER", "land", "PINSIR", None),
++    ("SAFARI_ZONE_EAST", "land", "PINSIR", None),
++    ("SAFARI_ZONE_EAST", "land", "GIRAFARIG", None),
++    ("SAFARI_ZONE_NORTH", "land", "GIRAFARIG", None),
++    ("SAFARI_ZONE_WEST", "land", "KECLEON", None),
++    ("SAFARI_ZONE_CENTER", "super", "BARBOACH", None),
++    ("SAFARI_ZONE_WEST", "super", "CORPHISH", None),
++    ("SAFARI_ZONE_NORTH", "super", "FEEBAS", None),
++    # --- Sea routes
++    ("ROUTE19", "water", "WINGULL", None),
++    ("ROUTE19", "water", "MANTINE", None),
++    ("ROUTE19", "super", "CARVANHA", None),
++    ("ROUTE19", "super", "CHINCHOU", None),
++    ("ROUTE20", "water", "WAILMER", None),
++    ("ROUTE20", "water", "CORSOLA", None),
++    ("ROUTE20", "good", "LUVDISC", None),
++    ("ROUTE20", "super", "CLAMPERL", None),
++    ("ROUTE21_NORTH", "super", "STARYU", None),
++    ("ROUTE21_SOUTH", "super", "REMORAID", None),
++    ("ROUTE21_SOUTH", "super", "STARYU", None),
++    ("CINNABAR_ISLAND", "super", "STARYU", None),
++    ("VERMILION_CITY", "super", "REMORAID", None),
++    ("ROUTE12", "super", "BARBOACH", None),
++    # --- Victory Road
++    ("VICTORY_ROAD_1F", "land", "MEDITITE", None),
++    ("VICTORY_ROAD_2F", "land", "BAGON", (25, 29)),
++    ("VICTORY_ROAD_3F", "land", "BELDUM", (25, 29)),
++    # --- Sevii Islands 1-3 (mid-game)
++    ("ONE_ISLAND_KINDLE_ROAD", "land", "CYNDAQUIL", (15, 18)),
++    ("ONE_ISLAND_KINDLE_ROAD", "land", "NUMEL", None),
++    ("ONE_ISLAND_TREASURE_BEACH", "land", "WINGULL", None),
++    ("ONE_ISLAND_TREASURE_BEACH", "water", "CORSOLA", None),
++    ("ONE_ISLAND_TREASURE_BEACH", "good", "LUVDISC", None),
++    ("TWO_ISLAND_CAPE_BRINK", "land", "TOTODILE", (15, 18)),
++    ("TWO_ISLAND_CAPE_BRINK", "water", "LOTAD", None),
++    ("THREE_ISLAND_BERRY_FOREST", "land", "SUDOWOODO", None),
++    ("THREE_ISLAND_BERRY_FOREST", "land", "SUNKERN", None),
++    ("THREE_ISLAND_BOND_BRIDGE", "water", "WAILMER", None),
++    ("MT_EMBER_EXTERIOR", "land", "TORCHIC", (15, 18)),
++    ("MT_EMBER_EXTERIOR", "land", "NUMEL", None),
++    ("MT_EMBER_RUBY_PATH_1F", "land", "MAGMAR", None),
++    ("MT_EMBER_RUBY_PATH_B1F", "land", "TORKOAL", None),
++    # --- Sevii Islands 4-7 (post-game)
++    ("FOUR_ISLAND_ICEFALL_CAVE_1F", "land", "SNEASEL", None),
++    ("FOUR_ISLAND_ICEFALL_CAVE_1F", "land", "SNORUNT", None),
++    ("FOUR_ISLAND_ICEFALL_CAVE_B1F", "land", "SPHEAL", None),
++    ("FOUR_ISLAND_ICEFALL_CAVE_B1F", "land", "SNEASEL", None),
++    ("FIVE_ISLAND_MEADOW", "land", "CHIKORITA", (15, 18)),
++    ("FIVE_ISLAND_MEADOW", "land", "MILTANK", None),
++    ("FIVE_ISLAND_MEADOW", "land", "TROPIUS", None),
++    ("FIVE_ISLAND_MEMORIAL_PILLAR", "land", "SWABLU", None),
++    ("FIVE_ISLAND_WATER_LABYRINTH", "super", "FEEBAS", None),
++    ("FIVE_ISLAND_RESORT_GORGEOUS", "water", "MANTINE", None),
++    ("FIVE_ISLAND_LOST_CAVE_ROOM1", "land", "SABLEYE", None),
++    ("FIVE_ISLAND_LOST_CAVE_ROOM5", "land", "SABLEYE", None),
++    ("FIVE_ISLAND_LOST_CAVE_ROOM10", "land", "DUSKULL", None),
++    ("SIX_ISLAND_PATTERN_BUSH", "land", "TREECKO", (15, 18)),
++    ("SIX_ISLAND_RUIN_VALLEY", "land", "MUDKIP", (15, 18)),
++    ("SIX_ISLAND_RUIN_VALLEY", "land", "BALTOY", None),
++    ("SIX_ISLAND_WATER_PATH", "super", "CHINCHOU", None),
++    ("SIX_ISLAND_OUTCAST_ISLAND", "super", "CLAMPERL", None),
++    ("SEVEN_ISLAND_SEVAULT_CANYON_ENTRANCE", "land", "ABSOL", None),
++    ("ROUTE23", "land", "GLIGAR", None),
++    ("SEVEN_ISLAND_SEVAULT_CANYON", "rock", "LILEEP", None),
++    ("SEVEN_ISLAND_SEVAULT_CANYON", "rock", "ANORITH", None),
++    ("SEVEN_ISLAND_TANOBY_RUINS", "super", "RELICANTH", None),
++]
++
++# The first Altering Cave table is the only one used without Mystery Gift.
++# Turn it into a mixed cave holding all of the Mystery Gift species.
++ALTERING_CAVE = [  # slot: (species, min, max)
++    (2, "MAREEP", 18, 22), (3, "PINECO", 20, 24), (4, "HOUNDOUR", 20, 24),
++    (5, "TEDDIURSA", 20, 24), (6, "AIPOM", 20, 24), (7, "SHUCKLE", 20, 24),
++    (8, "STANTLER", 20, 24), (9, "SMEARGLE", 20, 24),
++]
++
++# Obtainable outside the wild/scripted-gift scan below.
++EXTRA_SOURCES = [
++    "HITMONLEE",    # Fighting Dojo (species held in a variable)
++    "PORYGON",      # Game Corner (species held in a variable)
++]
++# Placed as one-time legendary encounters by tools/hack/legendaries.py
++LEGENDARY_EVENTS = [
++    "MEW", "CELEBI", "RAIKOU", "ENTEI", "SUICUNE", "LUGIA", "HO_OH", "DEOXYS",
++    "REGIROCK", "REGICE", "REGISTEEL", "KYOGRE", "GROUDON", "RAYQUAZA",
++    "LATIAS", "LATIOS", "JIRACHI",
++]
++
++
++def fr_tables(data):
++    """Map name -> FireRed encounter entry (first one only, see Altering Cave)."""
++    out = {}
++    for e in data["wild_encounter_groups"][0]["encounters"]:
++        if e["base_label"].endswith("FireRed") and e["map"] not in out:
++            out[e["map"]] = e
++    return out
++
++
++def mons_for(entry, kind):
++    mons = entry[KIND_KEY[kind]]["mons"]
++    if kind == "good":
++        return mons, range(2, 5)
++    if kind == "super":
++        return mons, range(5, 10)
++    if kind in ("water", "rock"):
++        return mons, range(0, 5)
++    return mons, range(0, 12)
++
++
++FALLBACK = {"super": ["super", "good"], "good": ["good", "super"]}
++
++
++def place(tables, used, mapname, kind, species, levels):
++    for k in FALLBACK.get(kind, [kind]):
++        if try_place(tables, used, mapname, k, species, levels):
++            return True
++    print(f"no free slot for {species} in {mapname} {kind}")
++    return False
++
++
++def try_place(tables, used, mapname, kind, species, levels):
++    entry = tables["MAP_" + mapname]
++    mons, allowed = mons_for(entry, kind)
++    # A slot may be replaced if its species still appears elsewhere on this map.
++    counts = {}
++    for k in set(KIND_KEY.values()):
++        for m in entry.get(k, {}).get("mons", []):
++            counts[m["species"]] = counts.get(m["species"], 0) + 1
++    rates = RATES[kind]
++    total = {}
++    for i in allowed:
++        total[mons[i]["species"]] = total.get(mons[i]["species"], 0) + rates[i]
++    free = [slot for slot in PREF[kind]
++            if slot in allowed and (mapname, kind, slot) not in used
++            and counts[mons[slot]["species"]] >= 2]
++    # Only common species (>= 20% of the table) give up slots, and never more
++    # than half of their original share; otherwise fall back to any duplicate.
++    candidates = [i for i in free
++                  if total[mons[i]["species"]] >= 20
++                  and total[mons[i]["species"]] - rates[i] >= ORIG_TOTAL.setdefault((mapname, kind, mons[i]["species"]), total[mons[i]["species"]]) / 2]
++    if not candidates:
++        candidates = free
++    if not candidates:
++        return False
++    # Prefer slots with ~5% odds, and among those take from the most common
++    # species so rarer ones keep their odds.
++    slot = min(candidates, key=lambda i: (RATE_PREF[kind].index(rates[i]), -total[mons[i]["species"]]))
++    mons[slot]["species"] = "SPECIES_" + species
++    if levels:
++        mons[slot]["min_level"], mons[slot]["max_level"] = levels
++    used.add((mapname, kind, slot))
++    return True
++
++
++def obtainable(data):
++    species = [k for k in re.findall(r"#define (SPECIES_\w+)\s+\d+", open("include/constants/species.h").read())
++               if not k.startswith(("SPECIES_OLD_UNOWN", "SPECIES_UNOWN_")) and k not in ("SPECIES_NONE", "SPECIES_EGG")]
++    ok = {"SPECIES_" + s for s in EXTRA_SOURCES + LEGENDARY_EVENTS}
++    for e in fr_tables(data).values():
++        for k in KIND_KEY.values():
++            for m in e.get(k, {}).get("mons", []):
++                ok.add(m["species"])
++    import glob
++    for f in glob.glob("data/**/*.inc", recursive=True):
++        for sp in re.findall(r"(?:givemon|setwildbattle|giveegg)\s+(SPECIES_\w+)", open(f).read()):
++            ok.add(sp)
++    ok.update(re.findall(r"\.species = (SPECIES_\w+)", open("src/data/ingame_trades.h").read()))
++    evo, pre = {}, {}
++    for a, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", open("src/data/pokemon/evolution.h").read(), re.S):
++        evo[a] = re.findall(r"SPECIES_\w+", body)
++        for t in evo[a]:
++            pre[t] = a
++    changed = True
++    while changed:
++        changed = False
++        for a in list(ok):
++            for t in evo.get(a, []) + ([pre[a]] if a in pre else []):
++                if t not in ok:
++                    ok.add(t)
++                    changed = True
++    return [s for s in species if s not in ok]
++
++
++def main():
++    data = json.load(open(WILD))
++    tables = fr_tables(data)
++    used = set()
++    ok = [place(tables, used, *p) for p in PLACEMENTS]
++    if not all(ok):
++        sys.exit("some placements failed")
++    cave = tables["MAP_SIX_ISLAND_ALTERING_CAVE"]["land_mons"]["mons"]
++    for slot, species, lo, hi in ALTERING_CAVE:
++        cave[slot] = {"min_level": lo, "max_level": hi, "species": "SPECIES_" + species}
++    missing = obtainable(data)
++    if missing:
++        sys.exit("still unobtainable: " + " ".join(missing))
++    with open(WILD, "w") as f:
++        json.dump(data, f, indent=2)
++        f.write("\n")
++    print(f"{len(PLACEMENTS)} placements + Altering Cave applied; all species obtainable")
++
++
++if __name__ == "__main__":
++    main()
+-- 
+2.43.0
+
