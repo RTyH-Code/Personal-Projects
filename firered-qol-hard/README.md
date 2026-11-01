@@ -143,12 +143,17 @@ done. The first time you beat it, or the peak round 3, you get:
 
 ## Playing it
 
-You need your own **Pokémon FireRed (USA, v1.0)** ROM. No ROM is included here.
-Its SHA-1 should be `41cb23d8dccc8ebd7c649cd8fbb58eeace6e2fdc`.
+You need your own **Pokémon FireRed (USA)** ROM. No ROM is included here.
+There are two patches, one per game revision; both produce the same hacked ROM.
 
-1. Download `FireRed-QoL-Hard.bps`.
-2. Apply it to your ROM with a BPS patcher, such as
-   [Rom Patcher JS](https://www.marcrobledo.com/RomPatcher.js/) or Floating IPS.
+| Your ROM's SHA-1 | Version | Patch to use |
+|---|---|---|
+| `41cb23d8dccc8ebd7c649cd8fbb58eeace6e2fdc` | v1.0 | `FireRed-QoL-Hard.bps` |
+| `dd5945db9b930750cb39d00c84da8571feebf417` | v1.1 ("Rev 1") | `FireRed-QoL-Hard-v1.1.bps` |
+
+1. Check your ROM's SHA-1. [Rom Patcher JS](https://www.marcrobledo.com/RomPatcher.js/)
+   shows it when you load the ROM.
+2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
 Patched ROM SHA-1: `71d65f3123dee2692b404d0d257947948bb6b5c3`
