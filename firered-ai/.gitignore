@@ -1,0 +1,8 @@
+__pycache__/
+.venv/
+runs/
+states/
+*.gba
+*.mp4
+*.gif
+*.png
