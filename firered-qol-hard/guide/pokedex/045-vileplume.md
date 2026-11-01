@@ -1,0 +1,130 @@
+← #044 [Gloom](044-gloom.md) · [Index](../POKEDEX.md) · [Paras](046-paras.md) #046 →
+
+# #045 Vileplume
+
+*The Flower Pokémon* — **Grass / Poison**
+
+> Its petals are the largest in the world. It fiendishly scatters allergy-causing pollen from its petals.
+
+Height 1.2 m (3′11″) · Weight 18.6 kg (41.0 lbs)
+
+## Abilities
+
+- **Chlorophyll**: Raises Speed in sunshine.
+
+## Base stats
+
+| Stat | Base | | Lv 50 | Lv 100 |
+|---|--:|---|--:|--:|
+| HP | **75** | `████████` | 135–182 | 260–354 |
+| Attack | **80** | `████████` | 76–145 | 148–284 |
+| Defense | **85** | `████████` | 81–150 | 157–295 |
+| Sp. Atk | **110** *(was 100)* | `███████████` | 103–178 | 202–350 |
+| Sp. Def | **90** | `█████████` | 85–156 | 166–306 |
+| Speed | **50** | `█████` | 49–112 | 94–218 |
+| **Total** | **490** | | | |
+
+*Ranges: the minimum uses 0 IVs, 0 EVs and a hindering nature; the maximum uses 31 IVs, 252 EVs and a helpful nature. HP is not affected by nature.*
+
+## Type defenses
+
+| Damage taken | Types |
+|---|---|
+| 2× | Flying, Fire, Psychic, Ice |
+| ½× | Fighting, Water, Electric |
+| ¼× | Grass |
+
+## Training and breeding
+
+| | |
+|---|---|
+| Catch rate | 45 |
+| Base Exp. yield | 184 |
+| EV yield | 3 Sp. Atk |
+| Held items (wild) | None |
+| Base friendship | 70 |
+| Growth rate | Medium Slow (1,059,860 Exp. to Lv 100) |
+| Gender | 50% male, 50% female |
+| Egg groups | Grass |
+| Hatch time | 20 egg cycles (5,120 steps) |
+
+## Evolution
+
+- [Oddish](043-oddish.md) → [Gloom](044-gloom.md): Level 21
+  - [Gloom](044-gloom.md) → **Vileplume**: Use a Leaf Stone
+  - [Gloom](044-gloom.md) → [Bellossom](182-bellossom.md): Use a Sun Stone
+
+## Where to find it
+
+- Evolve [Gloom](044-gloom.md)
+
+## Moves
+
+★ = not learned this way in the original FireRed. After you become Champion, the Move Maniac on Two Island can teach every move on this page (any level, egg, TM/HM, tutor).
+
+### By level up
+
+| Lv | Move | Type | Cat. | Power | Acc. | PP |
+|--:|---|---|---|--:|--:|--:|
+| 1 | Absorb | Grass | Special | 20 | 100% | 25 |
+| 1 | Acid ★ | Poison | Special | 40 | 100% | 30 |
+| 1 | Growth ★ | Normal | Status | — | — | 20 |
+| 1 | Sweet Scent ★ | Normal | Status | — | 100% | 20 |
+| 15 | Mega Drain | Grass | Special | 40 | 100% | 15 |
+| 17 | Poison Powder ★ | Poison | Status | — | 75% | 35 |
+| 19 | Stun Spore | Grass | Status | — | 75% | 30 |
+| 21 | Sleep Powder ★ | Grass | Status | — | 75% | 15 |
+| 23 | Giga Drain ★ | Grass | Special | 75 | 100% | 10 |
+| 30 | Toxic ★ | Poison | Status | — | 90% | 10 |
+| 51 | Moonlight ★ | Normal | Status | — | — | 5 |
+| 58 | Petal Dance | Grass | Special | 120 | 100% | 10 |
+
+### By TM/HM
+
+| TM | Move | Type | Cat. | Power | Acc. | PP |
+|---|---|---|---|--:|--:|--:|
+| TM06 | Toxic | Poison | Status | — | 90% | 10 |
+| TM09 | Bullet Seed | Grass | Physical | 25 | 100% | 30 |
+| TM10 | Hidden Power | Normal | Special | varies | 100% | 15 |
+| TM11 | Sunny Day | Fire | Status | — | — | 5 |
+| TM15 | Hyper Beam | Normal | Special | 150 | 90% | 5 |
+| TM17 | Protect | Normal | Status | — | — | 10 |
+| TM19 | Giga Drain | Grass | Special | 75 | 100% | 10 |
+| TM21 | Frustration | Normal | Physical | varies | 100% | 20 |
+| TM22 | Solar Beam | Grass | Special | 120 | 100% | 10 |
+| TM27 | Return | Normal | Physical | varies | 100% | 20 |
+| TM32 | Double Team | Normal | Status | — | — | 15 |
+| TM36 | Sludge Bomb | Poison | Special | 90 | 100% | 10 |
+| TM42 | Facade | Normal | Physical | 70 | 100% | 20 |
+| TM43 | Secret Power | Normal | Physical | 70 | 100% | 20 |
+| TM44 | Rest | Psychic | Status | — | — | 5 |
+| TM45 | Attract | Normal | Status | — | 100% | 15 |
+| HM01 | Cut | Normal | Physical | 50 | 95% | 30 |
+| HM05 | Flash | Normal | Status | — | 100% | 20 |
+
+### By move tutor
+
+| Move | Type | Cat. | Power | Acc. | PP | Tutor |
+|---|---|---|--:|--:|--:|---|
+| Swords Dance | Normal | Status | — | — | 20 | Seven Island |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
+| Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
+| Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
+| Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### By breeding (egg moves)
+
+Breed a Oddish (passed down to Oddish, which then evolves) with a father that knows the move.
+
+| Move | Type | Cat. | Power | Acc. | PP |
+|---|---|---|--:|--:|--:|
+| Swords Dance | Normal | Status | — | — | 20 |
+| Razor Leaf | Grass | Physical | 55 | 95% | 25 |
+| Flail | Normal | Physical | varies | 100% | 15 |
+| Synthesis | Grass | Status | — | — | 5 |
+| Charm | Normal | Status | — | 100% | 20 |
+| Ingrain | Grass | Status | — | — | 20 |
+
+---
+
+← #044 [Gloom](044-gloom.md) · [Index](../POKEDEX.md) · [Paras](046-paras.md) #046 →

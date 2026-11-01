@@ -1,7 +1,7 @@
 From 4e72e230d0e52c9ef46003aaad6ad477e5a9f7a1 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Sun, 1 Nov 2026 00:02:37 +0000
-Subject: [PATCH 09/22] Stone evolutions keep learning moves by level-up
+Subject: [PATCH 09/24] Stone evolutions keep learning moves by level-up
 
 tools/hack/evo_moves.py gives the 18 item-evolved species that modern games
 leave with only level-1 moves their pre-evolution's later moves, a few levels

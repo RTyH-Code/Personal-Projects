@@ -952,14 +952,14 @@ Includes the rival's earlier battles; which team you face depends on your starte
 | Pokemaniac Steve | Charmander Lv25, Cubone Lv25 |
 | Pokemaniac Winston | Slowpoke Lv29 |
 
-### Silph Co 10F
+### Silph Co. 10F
 
 | Trainer | Pokémon |
 |---|---|
 | Team Rocket Grunt | Machoke Lv38 |
 | Scientist Travis | Magnemite Lv33, Koffing Lv33 |
 
-### Silph Co 11F
+### Silph Co. 11F
 
 | Trainer | Pokémon |
 |---|---|
@@ -967,7 +967,7 @@ Includes the rival's earlier battles; which team you face depends on your starte
 | Team Rocket Grunt | Rattata Lv29, Rattata Lv29, Zubat Lv29, Rattata Lv29, Ekans Lv29 |
 | Team Rocket Grunt | Cubone Lv37, Drowzee Lv37, Marowak Lv37 |
 
-### Silph Co 2F
+### Silph Co. 2F
 
 | Trainer | Pokémon |
 |---|---|
@@ -976,14 +976,14 @@ Includes the rival's earlier battles; which team you face depends on your starte
 | Team Rocket Grunt | Golbat Lv29, Zubat Lv29, Zubat Lv29, Raticate Lv29, Zubat Lv29 |
 | Scientist Jerry | Magnemite Lv32, Voltorb Lv32, Magneton Lv32 |
 
-### Silph Co 3F
+### Silph Co. 3F
 
 | Trainer | Pokémon |
 |---|---|
 | Team Rocket Grunt | Raticate Lv32, Hypno Lv32, Raticate Lv32 |
 | Scientist Jose | Electrode Lv33, Weezing Lv33 |
 
-### Silph Co 4F
+### Silph Co. 4F
 
 | Trainer | Pokémon |
 |---|---|
@@ -991,7 +991,7 @@ Includes the rival's earlier battles; which team you face depends on your starte
 | Team Rocket Grunt | Ekans Lv32, Zubat Lv32, Cubone Lv32 |
 | Scientist Rodney | Electrode Lv38 |
 
-### Silph Co 5F
+### Silph Co. 5F
 
 | Trainer | Pokémon |
 |---|---|
@@ -1000,7 +1000,7 @@ Includes the rival's earlier battles; which team you face depends on your starte
 | Team Rocket Grunt | Arbok Lv38 |
 | Team Rocket Grunt | Hypno Lv38 |
 
-### Silph Co 6F
+### Silph Co. 6F
 
 | Trainer | Pokémon |
 |---|---|
@@ -1008,7 +1008,7 @@ Includes the rival's earlier battles; which team you face depends on your starte
 | Team Rocket Grunt | Zubat Lv32, Zubat Lv32, Golbat Lv32 |
 | Scientist Taylor | Voltorb Lv29, Koffing Lv29, Magneton Lv29, Magnemite Lv29, Koffing Lv29 |
 
-### Silph Co 7F
+### Silph Co. 7F
 
 | Trainer | Pokémon |
 |---|---|
@@ -1020,7 +1020,7 @@ Includes the rival's earlier battles; which team you face depends on your starte
 | Rival (your rival) | Pidgeot Lv43, Gyarados Lv44, Growlithe Lv40, Alakazam Lv40, Venusaur Lv46 |
 | Rival (your rival) | Pidgeot Lv43, Exeggcute Lv44, Gyarados Lv40, Alakazam Lv40, Charizard Lv46 |
 
-### Silph Co 8F
+### Silph Co. 8F
 
 | Trainer | Pokémon |
 |---|---|
@@ -1028,7 +1028,7 @@ Includes the rival's earlier battles; which team you face depends on your starte
 | Team Rocket Grunt | Weezing Lv32, Golbat Lv32, Koffing Lv32 |
 | Scientist Parker | Grimer Lv33, Electrode Lv33 |
 
-### Silph Co 9F
+### Silph Co. 9F
 
 | Trainer | Pokémon |
 |---|---|
@@ -1036,20 +1036,20 @@ Includes the rival's earlier battles; which team you face depends on your starte
 | Team Rocket Grunt | Drowzee Lv32, Grimer Lv32, Machop Lv32 |
 | Team Rocket Grunt | Golbat Lv32, Drowzee Lv32, Hypno Lv32 |
 
-### S.S. Anne 1F Room2
+### S.S. Anne 1F Room 2
 
 | Trainer | Pokémon |
 |---|---|
 | Lass Ann | Pidgey Lv21, Nidoran♀ Lv21 |
 | Youngster Tyler | Nidoran♂ Lv24 |
 
-### S.S. Anne 1F Room5
+### S.S. Anne 1F Room 5
 
 | Trainer | Pokémon |
 |---|---|
 | Gentleman Arthur | Nidoran♂ Lv22, Nidoran♀ Lv22 |
 
-### S.S. Anne 1F Room7
+### S.S. Anne 1F Room 7
 
 | Trainer | Pokémon |
 |---|---|
@@ -1063,40 +1063,40 @@ Includes the rival's earlier battles; which team you face depends on your starte
 | Rival (your rival) | Pidgeotto Lv22, Raticate Lv18, Kadabra Lv21, Ivysaur Lv23 |
 | Rival (your rival) | Pidgeotto Lv22, Raticate Lv18, Kadabra Lv21, Charmeleon Lv23 |
 
-### S.S. Anne 2F Room2
+### S.S. Anne 2F Room 2
 
 | Trainer | Pokémon |
 |---|---|
 | Gentleman Brooks | Pikachu Lv26 |
 | Fisherman Dale | Goldeen Lv20, Tentacool Lv20, Goldeen Lv20 |
 
-### S.S. Anne 2F Room4
+### S.S. Anne 2F Room 4
 
 | Trainer | Pokémon |
 |---|---|
 | Lass Dawn | Rattata Lv21, Pikachu Lv21 |
 | Gentleman Lamar | Growlithe Lv20, Ponyta Lv20 |
 
-### S.S. Anne B1F Room1
+### S.S. Anne B1F Room 1
 
 | Trainer | Pokémon |
 |---|---|
 | Fisherman Barny | Tentacool Lv20, Staryu Lv20, Shellder Lv20 |
 | Sailor Phillip | Machop Lv23 |
 
-### S.S. Anne B1F Room2
+### S.S. Anne B1F Room 2
 
 | Trainer | Pokémon |
 |---|---|
 | Sailor Huey | Tentacool Lv21, Staryu Lv21 |
 
-### S.S. Anne B1F Room3
+### S.S. Anne B1F Room 3
 
 | Trainer | Pokémon |
 |---|---|
 | Sailor Dylan | Horsea Lv20, Horsea Lv20, Horsea Lv20 |
 
-### S.S. Anne B1F Room4
+### S.S. Anne B1F Room 4
 
 | Trainer | Pokémon |
 |---|---|
@@ -1196,19 +1196,19 @@ Includes the rival's earlier battles; which team you face depends on your starte
 |---|---|
 | Team Rocket Grunt | Zubat Lv44, Zubat Lv44, Golbat Lv44 |
 
-### Five Island Lost Cave Room1
+### Five Island Lost Cave Room 1
 
 | Trainer | Pokémon |
 |---|---|
 | Ruin Maniac Lawson | Onix Lv54, Graveler Lv55, Marowak Lv56 |
 
-### Five Island Lost Cave Room10
+### Five Island Lost Cave Room 10
 
 | Trainer | Pokémon |
 |---|---|
 | Lady Selphy | Persian Lv56, Persian Lv56 — items: Persian @ Nugget, Persian @ Nugget |
 
-### Five Island Lost Cave Room4
+### Five Island Lost Cave Room 4
 
 | Trainer | Pokémon |
 |---|---|
