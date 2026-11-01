@@ -1,0 +1,596 @@
+#!/usr/bin/env python3
+"""Generate the FireRed QoL+Hard spoiler guide (Markdown) from the game data.
+
+Everything is read from the source, FireRed only (LeafGreen variants are
+skipped), so the guide always matches the built ROM. New additions are marked
+by comparing against vanilla pret/pokefirered (commit ce6406d).
+
+Usage (from the repo root):
+    python3 tools/hack/spoiler_guide.py OUTPUT_DIR
+"""
+import glob
+import json
+import os
+import re
+import subprocess
+import sys
+
+VANILLA = "ce6406d"
+OUT = sys.argv[1]
+
+# ---------------------------------------------------------------- helpers
+
+def read(path):
+    return open(path, encoding="utf-8").read()
+
+
+def vanilla(path):
+    return subprocess.run(["git", "show", f"{VANILLA}:{path}"], capture_output=True, text=True).stdout
+
+
+def firered_only(text):
+    """Drop LeafGreen-only blocks (.ifdef FIRERED/LEAFGREEN in scripts, #if in C)."""
+    out, stack = [], []
+    for line in text.split("\n"):
+        s = line.strip()
+        m = re.match(r"(?:\.ifdef|#ifdef|#if defined\(|#if)\s*\(?\s*(FIRERED|LEAFGREEN)", s)
+        if m:
+            stack.append(m.group(1) == "FIRERED")
+            continue
+        if re.match(r"#elif\s+defined\(\s*LEAFGREEN|#elif\s+LEAFGREEN", s):
+            stack[-1] = False
+            continue
+        if re.match(r"#elif\s+defined\(\s*FIRERED|#elif\s+FIRERED", s):
+            stack[-1] = True
+            continue
+        if s in (".else", "#else") and stack:
+            stack[-1] = not stack[-1]
+            continue
+        if s in (".endif", "#endif") and stack:
+            stack.pop()
+            continue
+        if all(stack):
+            out.append(line)
+    return "\n".join(out)
+
+
+SPECIAL_NAMES = {"NIDORAN_F": "Nidoran♀", "NIDORAN_M": "Nidoran♂", "MR_MIME": "Mr. Mime",
+                 "FARFETCHD": "Farfetch'd", "HO_OH": "Ho-Oh", "PORYGON2": "Porygon2",
+                 "DEOXYS_ATTACK": "Deoxys (Attack)", "DEOXYS_DEFENSE": "Deoxys (Defense)",
+                 "DEOXYS_SPEED": "Deoxys (Speed)"}
+
+
+def mon(const):
+    c = const.replace("SPECIES_", "")
+    return SPECIAL_NAMES.get(c, c.replace("_", " ").title())
+
+
+def move(const):
+    c = const.replace("MOVE_", "")
+    return {"SOFTBOILED": "Soft-Boiled", "WILL_O_WISP": "Will-O-Wisp", "U_TURN": "U-turn",
+            "DOUBLE_EDGE": "Double-Edge", "SELF_DESTRUCT": "Self-Destruct", "X_SCISSOR": "X-Scissor",
+            "LOCK_ON": "Lock-On", "MUD_SLAP": "Mud-Slap"}.get(c, c.replace("_", " ").title())
+
+
+def map_name(const):
+    c = const.replace("MAP_", "")
+    words = []
+    for w in c.split("_"):
+        if re.fullmatch(r"B?\d+F|\d+R", w):
+            words.append(w)
+        elif w == "SSANNE":
+            words.append("S.S. Anne")
+        elif w == "MT":
+            words.append("Mt.")
+        elif w == "POKEMON":
+            words.append("Pokémon")
+        elif re.fullmatch(r"ROUTE\d+", w):
+            words.append("Route " + w[5:])
+        else:
+            words.append(w.title())
+    return " ".join(words)
+
+
+SEVII = ["ONE_ISLAND", "TWO_ISLAND", "THREE_ISLAND", "FOUR_ISLAND", "FIVE_ISLAND", "SIX_ISLAND",
+         "SEVEN_ISLAND", "NAVEL_ROCK", "BIRTH_ISLAND"]
+TOWNS = ["PALLET_TOWN", "VIRIDIAN_CITY", "PEWTER_CITY", "CERULEAN_CITY", "VERMILION_CITY", "LAVENDER_TOWN",
+         "CELADON_CITY", "FUCHSIA_CITY", "SAFFRON_CITY", "CINNABAR_ISLAND", "INDIGO_PLATEAU"]
+
+
+def map_order(const):
+    c = const.replace("MAP_", "")
+    m = re.match(r"ROUTE(\d+)", c)
+    if m:
+        return (1, int(m.group(1)), c)
+    for i, t in enumerate(TOWNS):
+        if c.startswith(t):
+            return (0, i, c)
+    for i, s in enumerate(SEVII):
+        if c.startswith(s):
+            return (3, i, c)
+    return (2, 0, c)
+
+
+def anchor(title):
+    return re.sub(r"[^a-z0-9 -]", "", title.lower()).replace(" ", "-")
+
+
+# ---------------------------------------------------------------- shared data
+
+items_json = json.loads(read("src/data/items.json"))["items"]
+item_ids = {}
+for name, val in re.findall(r"#define (ITEM_\w+)\s+(\w+)", read("include/constants/items.h")):
+    item_ids[name] = val
+def item_index(const):
+    v = const
+    for _ in range(4):
+        if v.isdigit():
+            return int(v)
+        v = item_ids.get(v, v)
+    return None
+tm_moves = {}
+for name, base in re.findall(r"#define (ITEM_(?:TM|HM)\d\d_\w+)\s+(ITEM_(?:TM|HM)\d\d)\b", read("include/constants/items.h")):
+    tm_moves[base] = name[len(base) + 1:]
+
+
+ITEM_WORDS = {"DEEPSEATOOTH": "Deep Sea Tooth", "DEEPSEASCALE": "Deep Sea Scale", "NEVERMELTICE": "Never-Melt Ice",
+              "TWISTEDSPOON": "Twisted Spoon", "SILVERPOWDER": "Silver Powder", "BLACKGLASSES": "Black Glasses",
+              "BRIGHTPOWDER": "Bright Powder", "MYSTICTICKET": "Mystic Ticket", "AURORATICKET": "Aurora Ticket",
+              "BLACKBELT": "Black Belt", "SILKSCARF": "Silk Scarf", "SHARPBEAK": "Sharp Beak",
+              "DRAGONFANG": "Dragon Fang", "SPELLTAG": "Spell Tag", "THUNDERSTONE": "Thunder Stone",
+              "TV": "TV", "PP": "PP", "HP": "HP", "TM": "TM", "HM": "HM", "SS": "S.S.", "EXP.": "Exp.",
+              "POKéDEX": "Pokédex", "POKé": "Poké", "POKéBLOCK": "Pokéblock", "POKéFLUTE": "Poké Flute"}
+
+
+def nice_item_name(raw):
+    words = []
+    for w in raw.split(" "):
+        if w in ITEM_WORDS:
+            words.append(ITEM_WORDS[w])
+        elif re.fullmatch(r"(TM|HM)\d\d", w):
+            words.append(w)
+        else:
+            words.append("-".join(p[:1] + p[1:].lower() for p in w.split("-")))
+    return " ".join(words)
+
+
+def item(const):
+    idx = item_index(const)
+    raw = items_json[idx]["english"] if idx is not None and idx < len(items_json) else const[5:]
+    name = nice_item_name(raw)
+    base = re.match(r"ITEM_(?:TM|HM)\d\d", const)
+    if base and base.group(0) in tm_moves:
+        name = f"{raw} {move('MOVE_' + tm_moves[base.group(0)])}"
+    return name
+
+
+maps = {}  # map const -> (dir, json)
+for f in glob.glob("data/maps/*/map.json"):
+    m = json.loads(read(f))
+    maps[m["id"]] = (f.split("/")[2], m)
+dir_to_map = {d: k for k, (d, _) in maps.items()}
+
+script_text = {}
+for f in glob.glob("data/maps/*/scripts.inc") + glob.glob("data/scripts/*.inc") + ["data/event_scripts.s"]:
+    script_text[f] = firered_only(read(f))
+all_scripts = "\n".join(script_text.values())
+
+# label -> map const, from any event in map.json that runs it
+label_map = {}
+for k, (d, m) in maps.items():
+    for ev in (m.get("object_events") or []) + (m.get("bg_events") or []) + (m.get("coord_events") or []):
+        if ev.get("script"):
+            label_map.setdefault(ev["script"], k)
+
+
+def labels_in(text):
+    """Yield (label, body) for each script label in a file."""
+    parts = re.split(r"^(\w+)::\s*$", text, flags=re.M)
+    for i in range(1, len(parts) - 1, 2):
+        yield parts[i], parts[i + 1]
+
+
+def reached_from(label, file_map, seen=None):
+    """Which map runs this label (directly, or via goto/call from another label)."""
+    if label in label_map:
+        return label_map[label]
+    return file_map
+
+
+label_body = {}
+label_file_map = {}
+for f, text in script_text.items():
+    fmap = dir_to_map.get(f.split("/")[2]) if f.startswith("data/maps/") else None
+    for lab, body in labels_in(text):
+        label_body[lab] = body
+        label_file_map[lab] = fmap
+callers = {}
+for lab, body in label_body.items():
+    for tgt in re.findall(r"\b(?:goto|call|goto_if_\w+|call_if_\w+)\b[^\n]*?\b(\w+_EventScript_\w+|EventScript_\w+)", body):
+        callers.setdefault(tgt, set()).add(lab)
+
+
+def label_location(lab, depth=0):
+    if lab in label_map:
+        return label_map[lab]
+    if label_file_map.get(lab):
+        return label_file_map[lab]
+    if depth < 4:
+        for c in sorted(callers.get(lab, ())):
+            loc = label_location(c, depth + 1)
+            if loc:
+                return loc
+    return None
+
+# ---------------------------------------------------------------- encounters
+
+RATES = {"land_mons": [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1], "water_mons": [60, 30, 5, 4, 1],
+         "rock_smash_mons": [60, 30, 5, 4, 1]}
+ROD_SLOTS = {"Old Rod": (0, 2, [70, 30]), "Good Rod": (2, 5, [60, 20, 20]), "Super Rod": (5, 10, [40, 40, 15, 4, 1])}
+KIND_NAME = {"land_mons": "Grass / cave", "water_mons": "Surfing", "rock_smash_mons": "Rock Smash"}
+
+
+def fr_tables(data):
+    out = {}
+    for e in data["wild_encounter_groups"][0]["encounters"]:
+        if e["base_label"].endswith("FireRed") and e["map"] not in out:
+            out[e["map"]] = e
+    return out
+
+
+def summarize(mons, rates):
+    agg = {}
+    for r, m in zip(rates, mons):
+        a = agg.setdefault(m["species"], [0, 100, 0])
+        a[0] += r
+        a[1] = min(a[1], m["min_level"])
+        a[2] = max(a[2], m["max_level"])
+    return sorted(agg.items(), key=lambda kv: -kv[1][0])
+
+
+def encounter_rows(e):
+    rows = []
+    for kind in ("land_mons", "water_mons", "rock_smash_mons"):
+        if kind in e:
+            rows.append((KIND_NAME[kind], summarize(e[kind]["mons"], RATES[kind])))
+    if "fishing_mons" in e:
+        for rod, (a, b, rates) in ROD_SLOTS.items():
+            rows.append((rod, summarize(e["fishing_mons"]["mons"][a:b], rates)))
+    return rows
+
+
+def write_encounters():
+    cur = fr_tables(json.loads(read("src/data/wild_encounters.json")))
+    old = fr_tables(json.loads(vanilla("src/data/wild_encounters.json")))
+    order = sorted(cur, key=map_order)
+    out = ["# Wild encounters", "",
+           "Every FireRed encounter table. Percentages are the chance per encounter; "
+           "**★** marks a Pokémon that wasn't in that spot in the original FireRed.", "",
+           "Altering Cave uses one mixed table (the Mystery Gift tables aren't used). "
+           "Tanoby Chambers only have Unown.", ""]
+    out += ["## Contents", ""] + [f"- [{map_name(k)}](#{anchor(map_name(k))})" for k in order] + [""]
+    for k in order:
+        out += [f"## {map_name(k)}", "", "| Method | Pokémon | Levels | Chance |", "|---|---|---|---|"]
+        oldset = set()
+        if k in old:
+            for _, rows in encounter_rows(old[k]):
+                oldset |= {s for s, _ in rows}
+        for method, rows in encounter_rows(cur[k]):
+            for i, (sp, (pct, lo, hi)) in enumerate(rows):
+                star = " ★" if sp not in oldset else ""
+                lv = f"{lo}" if lo == hi else f"{lo}–{hi}"
+                out.append(f"| {method if i == 0 else ''} | {mon(sp)}{star} | {lv} | {pct}% |")
+        out.append("")
+    open(os.path.join(OUT, "ENCOUNTERS.md"), "w").write("\n".join(out))
+
+# ---------------------------------------------------------------- items
+
+def write_items():
+    ball_items = {lab: (re.search(r"finditem (ITEM_\w+)(?:, (\d+))?", body)) for lab, body in label_body.items()}
+    per_map = {}
+    for k, (d, m) in maps.items():
+        for o in m.get("object_events") or []:
+            if o.get("graphics_id") == "OBJ_EVENT_GFX_ITEM_BALL":
+                f = ball_items.get(o.get("script"))
+                if f:
+                    q = f" ×{f.group(2)}" if f.group(2) else ""
+                    per_map.setdefault(k, []).append(("Item ball", item(f.group(1)) + q, (o["x"], o["y"])))
+        for b in m.get("bg_events") or []:
+            if b.get("type") == "hidden_item":
+                q = f" ×{b['quantity']}" if b.get("quantity", 1) > 1 else ""
+                per_map.setdefault(k, []).append(("Hidden", item(b["item"]) + q, (b["x"], b["y"])))
+    gifts = {}
+    for lab, body in label_body.items():
+        for it in re.findall(r"^\s*(?:giveitem|giveitem_msg [^,]+,|msgreceiveditem [^,]+,)\s*(ITEM_\w+)", body, re.M):
+            loc = label_location(lab)
+            if loc:
+                gifts.setdefault(loc, set()).add(item(it))
+    marts = {}
+    for f, text in script_text.items():
+        for lab in re.findall(r"pokemart (\w+)", text):
+            m = re.search(r"^%s::\s*\n((?:\s*\.2byte ITEM_\w+\n)+)" % lab, all_scripts, re.M)
+            if not m:
+                continue
+            its = [i for i in re.findall(r"(ITEM_\w+)", m.group(1)) if i != "ITEM_NONE"]
+            loc = label_location(lab) or (dir_to_map.get(f.split("/")[2]) if f.startswith("data/maps/") else None)
+            if loc:
+                marts.setdefault(loc, []).append(its)
+
+    out = ["# Items", "",
+           "Item balls, hidden items (use the Itemfinder), NPC gifts and shop stock, by location. "
+           "Coordinates are map tiles (x, y), counted from the top-left corner.", "",
+           "**Changed from the original game:**",
+           "- TMs are reusable.",
+           "- Celadon Dept. Store 4F sells every evolution item.",
+           "- After beating the round 2 Champion, vitamins (HP Up, Protein, Iron, Calcium, Zinc, Carbos) cost ₽0.",
+           "- Sevault Canyon has a Root Fossil and a Claw Fossil.", ""]
+    order = sorted(set(per_map) | set(gifts) | set(marts), key=map_order)
+    for k in order:
+        out += [f"## {map_name(k)}", ""]
+        if k in per_map:
+            out += ["| Type | Item | At |", "|---|---|---|"]
+            for t, it, (x, y) in sorted(per_map[k], key=lambda r: (r[0], r[1])):
+                out.append(f"| {t} | {it} | {x}, {y} |")
+            out.append("")
+        if k in gifts:
+            out += ["Gifts / events: " + ", ".join(sorted(gifts[k])), ""]
+        if k in marts:
+            for its in marts[k]:
+                prices = []
+                for i in its:
+                    idx = item_index(i)
+                    p = items_json[idx]["price"] if idx is not None else 0
+                    prices.append(f"{item(i)} (₽{p})")
+                out += ["Shop: " + ", ".join(prices), ""]
+    open(os.path.join(OUT, "ITEMS.md"), "w").write("\n".join(out))
+
+# ---------------------------------------------------------------- trainers
+
+def parse_parties():
+    text = firered_only(read("src/data/trainer_parties.h"))
+    parties = {}
+    for name, body in re.findall(r"static const struct \w+ (sParty_\w+)\[\] = \{\n(.*?)\n\};", text, re.S):
+        mons = []
+        for blk in re.findall(r"\{(.*?)\n    \}", body, re.S):
+            sp = re.search(r"\.species = (SPECIES_\w+)", blk)
+            if not sp:
+                continue
+            lv = re.search(r"\.lvl = (\d+)", blk).group(1)
+            held = re.search(r"\.heldItem = (ITEM_\w+)", blk)
+            mv = re.search(r"\.moves = \{(.*?)\}", blk)
+            mons.append({"species": sp.group(1), "lvl": int(lv),
+                         "item": held.group(1) if held and held.group(1) != "ITEM_NONE" else None,
+                         "moves": [x.strip() for x in mv.group(1).split(",") if x.strip() not in ("", "MOVE_NONE")] if mv else []})
+        parties[name] = mons
+    return parties
+
+
+def parse_trainers():
+    text = firered_only(read("src/data/trainers.h"))
+    out = {}
+    for tid, body in re.findall(r"\[(TRAINER_\w+)\] = \{(.*?)\n    \},", text, re.S):
+        cls = re.search(r"\.trainerClass = TRAINER_CLASS_(\w+)", body)
+        nm = re.search(r'\.trainerName = _\("(.*?)"\)', body)
+        party = re.search(r"\((sParty_\w+)\)", body)
+        double = "doubleBattle = TRUE" in body
+        if cls and nm and party:
+            out[tid] = {"class": cls.group(1), "name": nm.group(1), "party": party.group(1), "double": double}
+    aliases = dict(re.findall(r"#define (TRAINER_PEAK_\w+)\s+(TRAINER_\w+)", read("include/constants/opponents.h")))
+    return out, aliases
+
+
+CLASS_NAMES = {"RIVAL_EARLY": "Rival", "RIVAL_LATE": "Rival", "CHAMPION": "Champion", "LEADER": "Leader",
+               "ELITE_FOUR": "Elite Four", "TEAM_ROCKET": "Team Rocket", "BOSS": "Boss",
+               "PKMN_PROF": "Prof.", "COOLTRAINER": "Cool Trainer", "SUPER_NERD": "Super Nerd",
+               "PSYCHIC": "Psychic", "CRUSH_KIN": "Crush Kin", "SIS_AND_BRO": "Sis and Bro"}
+
+
+def trainer_title(t):
+    cls = CLASS_NAMES.get(t["class"], t["class"].replace("_", " ").title())
+    name = t["name"].replace("TERRY", "(your rival)") if t["class"] in ("RIVAL_EARLY", "RIVAL_LATE", "CHAMPION") else t["name"].title()
+    return f"{cls} {name}".strip()
+
+
+def party_line(mons):
+    return ", ".join(f"{mon(m['species'])} Lv{m['lvl']}" for m in mons)
+
+
+def party_detail(mons):
+    rows = ["| Pokémon | Lv | Item | Moves |", "|---|---|---|---|"]
+    for m in mons:
+        rows.append(f"| {mon(m['species'])} | {m['lvl']} | {item(m['item']) if m['item'] else '—'} | "
+                    f"{', '.join(move(x) for x in m['moves']) or 'level-up moves'} |")
+    return rows
+
+
+def write_trainers():
+    parties = parse_parties()
+    trainers, aliases = parse_trainers()
+    rev_alias = {v: k for k, v in aliases.items()}
+    where = {}
+    for lab, body in label_body.items():
+        for tid in re.findall(r"trainerbattle\w*\s+(TRAINER_\w+)", body):
+            loc = label_location(lab)
+            if loc:
+                where.setdefault(tid, set()).add(loc)
+    # resolve peak aliases used in scripts
+    resolved = {}
+    for tid, locs in where.items():
+        resolved.setdefault(aliases.get(tid, tid), set()).update(locs)
+
+    def block(title, tid):
+        t = trainers[tid]
+        out = [f"### {title}", ""]
+        if t["double"]:
+            out += ["*Double battle.*", ""]
+        return out + party_detail(parties[t["party"]]) + [""]
+
+    out = ["# Trainers", "",
+           "Gym Leaders, the Elite Four, the Champion and post-game peak trainers are listed in full first. "
+           "Then every other trainer, by location.", "",
+           "Regular trainers use their normal level-up moves unless moves are listed. "
+           "Peak trainers' Pokémon have perfect IVs, a nature that boosts their main attacking stat, "
+           "and 252/252 EVs (attack stat and Speed, or HP for slow Pokémon).", ""]
+    gyms = [("Brock", "LEADER_BROCK"), ("Misty", "LEADER_MISTY"), ("Lt. Surge", "LEADER_LT_SURGE"),
+            ("Erika", "LEADER_ERIKA"), ("Koga", "LEADER_KOGA"), ("Sabrina", "LEADER_SABRINA"),
+            ("Blaine", "LEADER_BLAINE"), ("Giovanni", "LEADER_GIOVANNI")]
+    out += ["## Gym Leaders", ""]
+    for n, t in gyms:
+        out += block(n, "TRAINER_" + t)
+    out += ["## Elite Four and Champion", ""]
+    e4 = [("Lorelei", "ELITE_FOUR_LORELEI"), ("Bruno", "ELITE_FOUR_BRUNO"), ("Agatha", "ELITE_FOUR_AGATHA"),
+          ("Lance", "ELITE_FOUR_LANCE")]
+    for rnd, suffix in [("round 1", ""), ("round 2 (after the Sevii Islands story)", "_2")]:
+        for n, t in e4:
+            out += block(f"{n}, {rnd}", f"TRAINER_{t}{suffix}")
+        for starter, rival in [("Bulbasaur", "CHARMANDER"), ("Charmander", "SQUIRTLE"), ("Squirtle", "BULBASAUR")]:
+            kind = "FIRST" if not suffix else "REMATCH"
+            out += block(f"Champion, {rnd} (you chose {starter})", f"TRAINER_CHAMPION_{kind}_{rival}")
+    out += ["## Post-game peak trainers (Lv. 100)", "",
+            "Gym Leaders offer these rematches any number of times after you become Champion. "
+            "The Elite Four and Champion use them when the PEAK challenge is on "
+            "(League official in the Indigo Plateau Pokémon Center).", ""]
+    for alias, slot in aliases.items():
+        n = alias.replace("TRAINER_PEAK_", "")
+        title = n.replace("CHAMPION_", "Champion (rival's ") .replace("_", " ").title()
+        if n.startswith("CHAMPION_"):
+            rival = n.split("_")[1].title()
+            chose = {"Charmander": "Bulbasaur", "Squirtle": "Charmander", "Bulbasaur": "Squirtle"}[rival]
+            title = f"Champion, peak (you chose {chose})"
+        out += block(f"Peak {title}" if not n.startswith("CHAMPION_") else title, slot)
+    shown = {"TRAINER_" + t for _, t in gyms} | {f"TRAINER_{t}{s}" for _, t in e4 for s in ("", "_2")} | set(aliases.values())
+    shown |= {f"TRAINER_CHAMPION_{k}_{r}" for k in ("FIRST", "REMATCH") for r in ("SQUIRTLE", "BULBASAUR", "CHARMANDER")}
+    by_map = {}
+    for tid, locs in resolved.items():
+        if tid in shown or tid not in trainers:
+            continue
+        for loc in locs:
+            by_map.setdefault(loc, []).append(tid)
+    out += ["## All other trainers, by location", "",
+            "Includes the rival's earlier battles; which team you face depends on your starter.", ""]
+    for k in sorted(by_map, key=map_order):
+        out += [f"### {map_name(k)}", "", "| Trainer | Pokémon |", "|---|---|"]
+        for tid in sorted(by_map[k], key=lambda t: trainers[t]["name"]):
+            t = trainers[tid]
+            mons = parties[t["party"]]
+            line = party_line(mons)
+            extra = []
+            if any(m["item"] for m in mons):
+                extra.append("items: " + ", ".join(f"{mon(m['species'])} @ {item(m['item'])}" for m in mons if m["item"]))
+            dbl = " *(double)*" if t["double"] else ""
+            out.append(f"| {trainer_title(t)}{dbl} | {line}{' — ' + '; '.join(extra) if extra else ''} |")
+        out.append("")
+    open(os.path.join(OUT, "TRAINERS.md"), "w").write("\n".join(out))
+
+# ---------------------------------------------------------------- Pokemon: gifts, statics, trades, changes
+
+def write_pokemon():
+    out = ["# Pokémon", "", "Gift and one-time Pokémon, in-game trades, and every change to evolutions, "
+           "base stats and moves.", ""]
+    rows = []
+    for lab, body in label_body.items():
+        for cmd, sp, lv in re.findall(r"^\s*(givemon|giveegg|setwildbattle|seteventmon)\s+(SPECIES_\w+)(?:,\s*(\d+))?", body, re.M):
+            loc = label_location(lab)
+            if not loc:
+                continue
+            kind = {"givemon": "Gift", "giveegg": "Egg", "setwildbattle": "Battle", "seteventmon": "Battle"}[cmd]
+            rows.append((map_order(loc), map_name(loc), mon(sp), lv or "egg", kind))
+    for lab, body in label_body.items():
+        if "PrizeRoom" in lab or "Dojo" in lab:
+            for sp in re.findall(r"setvar VAR_TEMP_1, (SPECIES_\w+)", body):
+                loc = label_location(lab)
+                coins = re.search(r"setvar VAR_TEMP_2, (\d+)", body)
+                kind = (f"Game Corner prize ({coins.group(1)} coins)" if coins else "Game Corner prize") \
+                    if "PrizeRoom" in lab else "Gift (choose one)"
+                lvl = re.search(r"case %s,\s*(\w+)" % sp, all_scripts)
+                lv = "?"
+                if lvl and lvl.group(1) in label_body:
+                    m = re.search(r"givemon VAR_TEMP_1, (\d+)", label_body[lvl.group(1)])
+                    lv = m.group(1) if m else "?"
+                elif "Dojo" in lab:
+                    m = re.search(r"givemon VAR_TEMP_1, (\d+)", all_scripts[all_scripts.find("SaffronCity_Dojo"):])
+                    lv = m.group(1) if m else "?"
+                rows.append((map_order(loc), map_name(loc), mon(sp), lv, kind))
+    rows = sorted(set(rows))
+    out += ["## Gift, static and legendary Pokémon", "",
+            "Legendaries added by this hack appear after your first Hall of Fame entry (see the main README "
+            "for exact spots). Starters other than yours are wild; see ENCOUNTERS.md.", "",
+            "| Location | Pokémon | Lv | How |", "|---|---|---|---|"]
+    out += [f"| {r[1]} | {r[2]} | {r[3]} | {r[4]} |" for r in rows] + [""]
+
+    trades = firered_only(read("src/data/ingame_trades.h"))
+    out += ["## In-game trades", "", "| Location | You give | You get | Nickname |", "|---|---|---|---|"]
+    for tid, body in re.findall(r"\[(INGAME_TRADE_\w+)\] =\s*\{(.*?)\n    \}", trades, re.S):
+        get = re.search(r"\.species = (SPECIES_\w+)", body).group(1)
+        give = re.search(r"\.requestedSpecies = (SPECIES_\w+)", body).group(1)
+        nick = re.search(r'\.nickname = _\("(.*?)"\)', body).group(1)
+        loc = next((label_location(l) for l, b in label_body.items() if re.search(r"\b%s\b" % tid, b)), None)
+        out.append(f"| {map_name(loc) if loc else '?'} | {mon(give)} | {mon(get)} | {nick} |")
+    out.append("")
+
+    def evos(text):
+        res = {}
+        for a, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", text, re.S):
+            for meth, param, t in re.findall(r"\{(EVO_\w+), ([^,]+), (SPECIES_\w+)", body):
+                res[(a, t)] = (meth, param.strip())
+        return res
+
+    def evo_text(meth, param):
+        if meth == "EVO_ITEM":
+            return f"use {item(param)}"
+        if meth == "EVO_LEVEL":
+            return f"level {param}"
+        if meth == "EVO_TRADE":
+            return "trade"
+        if meth == "EVO_TRADE_ITEM":
+            return f"trade holding {item(param)}"
+        return meth.replace("EVO_", "").replace("_", " ").lower()
+
+    new, old = evos(read("src/data/pokemon/evolution.h")), evos(vanilla("src/data/pokemon/evolution.h"))
+    out += ["## Changed evolutions", "", "| Evolution | Original | Now |", "|---|---|---|"]
+    for k in sorted(new, key=lambda k: k[0]):
+        if old.get(k) != new[k]:
+            o = evo_text(*old[k]) if k in old else "—"
+            out.append(f"| {mon(k[0])} → {mon(k[1])} | {o} | {evo_text(*new[k])} |")
+    out.append("")
+    out += ["Deoxys changes Forme with the **Meteorite** (key item, given when you catch it on Birth Island).", ""]
+
+    changes = read("tools/hack/modernize_changes.txt").strip().split("\n") if os.path.exists("tools/hack/modernize_changes.txt") else []
+    stat = [c for c in changes if c.startswith("SPECIES_")]
+    mv = [c for c in changes if c.startswith("MOVE_")]
+    out += ["## Base stat changes (modern values)", "", "| Pokémon | Stat | Original | Now |", "|---|---|---|---|"]
+    for c in stat:
+        m = re.match(r"(SPECIES_\w+): base(\w+) (\d+) -> (\d+)", c)
+        out.append(f"| {mon(m.group(1))} | {m.group(2).replace('SpAttack','Sp. Atk').replace('SpDefense','Sp. Def')} | {m.group(3)} | {m.group(4)} |")
+    out += ["", "## Move changes (modern values)", "",
+            "Power and accuracy changes below; many PP values also match modern games. "
+            "Every move uses the physical/special split.", "",
+            "| Move | Change |", "|---|---|"]
+    for c in mv:
+        m = re.match(r"(MOVE_\w+): (\w+) (\d+) -> (\d+)", c)
+        out.append(f"| {move(m.group(1))} | {m.group(2)} {m.group(3)} → {m.group(4)} |")
+    out.append("")
+    open(os.path.join(OUT, "POKEMON.md"), "w").write("\n".join(out))
+
+
+def write_index():
+    open(os.path.join(OUT, "README.md"), "w").write("""# FireRed QoL + Hard: spoiler guide
+
+**Spoilers ahead.** Generated from the game's data, so it matches the patched ROM.
+
+- [Wild encounters](ENCOUNTERS.md): every map's grass, cave, surf, Rock Smash and fishing tables, with rates and levels. ★ marks additions.
+- [Items](ITEMS.md): item balls, hidden items, NPC gifts and shop stock, by location.
+- [Trainers](TRAINERS.md): Gym Leaders, Elite Four and Champion (rounds 1–2 and peak) in full, then every other trainer by location.
+- [Pokémon](POKEMON.md): gift, static and legendary Pokémon, in-game trades, changed evolutions, base stat and move changes.
+
+Regenerate with `python3 tools/hack/spoiler_guide.py <output dir>` from the source tree.
+""")
+
+
+os.makedirs(OUT, exist_ok=True)
+write_encounters()
+write_items()
+write_trainers()
+write_pokemon()
+write_index()
+print("guide written to", OUT)
