@@ -1,7 +1,8 @@
 From f7dd224759a826cc1abbb4fe4c562a582dcdbd44 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Sat, 31 Oct 2026 23:24:11 +0000
-Subject: [PATCH 3/8] Physical/special split and modern stats, moves, learnsets
+Subject: [PATCH 03/13] Physical/special split and modern stats, moves,
+ learnsets
 
 - Per-move category (.split) drives damage calc, Hustle, Counter/Mirror Coat
 - Thick Fat halves Attack too; Fury Cutter capped at 160 power

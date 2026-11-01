@@ -15,6 +15,24 @@ A quality-of-life, modernization and difficulty hack built on the pret/pokefirer
 - Celadon Department Store 4F sells every evolution item: all stones,
   including the Moon and Sun Stones, plus the trade items above.
 - Pokémon from Johto and Hoenn can evolve before you have the National Dex.
+- Stone evolutions keep learning moves by level-up. Modern games only give
+  them level-1 moves, so the 18 affected Pokémon now learn their
+  pre-evolution's later moves a few levels later instead, e.g. Ninetales
+  learns Flamethrower at 37 (Vulpix: 32) and Fire Blast at 60 (Vulpix: 52).
+
+## Move relearner
+The Move Maniac on Two Island works as usual (for mushrooms) until you
+become Champion. After that he's free and can teach any move the Pokémon can
+learn: level-up moves at any level, egg moves, every compatible TM/HM, and
+move tutor moves (including Frenzy Plant, Blast Burn and Hydro Cannon).
+
+## Deoxys formes
+- Deoxys has all four formes: Normal, Attack, Defense and Speed. Each has its
+  own sprite, icon and stats.
+- The Deoxys you catch on Birth Island starts in its Normal Forme.
+- Catching it gives you the **Meteorite**. Use it on Deoxys from the Key
+  Items pocket to cycle Normal → Attack → Defense → Speed.
+- The Speed Forme sprites come from pret's Pokémon Emerald decompilation.
 
 ## IV/EV editor
 On a Pokémon's summary, go to the **POKéMON SKILLS** page and press **START**.
@@ -85,6 +103,19 @@ spots shows a hint.
 - Regular trainers have at least ~18 IVs. The Elite Four, Champion, Rival and Giovanni have max IVs.
 - Every trainer uses the smart battle AI.
 
+## Post-game peak trainers
+- **Gym Leader rematches:** once you're Champion, talk to any Gym Leader
+  for a rematch, as many times as you like. Each one fields six Lv. 100
+  Pokémon from Gen 1–3 that fit their type, e.g. Brock: Golem, Omastar,
+  Kabutops, Aggron, Steelix and Tyranitar.
+- **Elite Four round 3:** a League official (gentleman) in the Indigo Plateau
+  Pokémon Center switches the "peak" challenge on or off. When it's on,
+  the Elite Four and Champion each use six Lv. 100 Pokémon.
+- **Peak Pokémon:** they have perfect IVs, a nature that boosts the side
+  their moves use (physical or special), 252 EVs in that attack stat, and
+  252 in Speed (or in HP for slow Pokémon). Each peak trainer carries Full
+  Restores.
+
 ## Playing it
 
 You need your own **Pokémon FireRed (USA, v1.0)** ROM. No ROM is included here.
@@ -95,7 +126,7 @@ Its SHA-1 should be `41cb23d8dccc8ebd7c649cd8fbb58eeace6e2fdc`.
    [Rom Patcher JS](https://www.marcrobledo.com/RomPatcher.js/) or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `ed53f5a4450f87f94d86d47d9e0fea19e4be2257`
+Patched ROM SHA-1: `97cdd90d8d3bebc4a073c51687e02633a1983858`
 
 Start a new game. Saves from earlier versions of this hack aren't supported.
 
@@ -119,3 +150,5 @@ unmodified pret data:
   learnsets. It reads Pokémon Showdown's data files as text and never runs them.
 - `encounters.py`: wild placements. It checks that all 386 Pokémon are obtainable.
 - `legendaries.py`: legendary events, flags and the Hall of Fame tickets.
+- `evo_moves.py`: later level-up moves for stone evolutions (run after `modernize.py`).
+- `peak_trainers.py`: peak teams, gym rematches and the Elite Four round 3.

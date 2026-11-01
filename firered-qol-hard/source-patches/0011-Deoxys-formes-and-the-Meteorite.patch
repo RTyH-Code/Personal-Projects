@@ -1,0 +1,1102 @@
+From d8a28054028cc0388c77b70a43f7950ab2ce3365 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 1 Nov 2026 00:09:09 +0000
+Subject: [PATCH 11/13] Deoxys formes and the Meteorite
+
+- Attack, Defense and Speed Formes are their own species, reusing three
+  unused placeholder slots (Speed Forme sprites from pret/pokeemerald)
+- Plain Deoxys is now the Normal Forme (sprite, icon and stats)
+- The Meteorite (returned on catching Deoxys at Birth Island) cycles
+  Normal -> Attack -> Defense -> Speed when used on Deoxys
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ data/maps/BirthIsland_Exterior/scripts.inc    |   1 +
+ graphics/pokemon/deoxys/attack/back.png       | Bin 0 -> 667 bytes
+ graphics/pokemon/deoxys/attack/front.png      | Bin 0 -> 1006 bytes
+ graphics/pokemon/deoxys/defense/back.png      | Bin 0 -> 589 bytes
+ graphics/pokemon/deoxys/defense/front.png     | Bin 0 -> 1062 bytes
+ graphics/pokemon/deoxys/speed/back.png        | Bin 0 -> 707 bytes
+ graphics/pokemon/deoxys/speed/front.png       | Bin 0 -> 970 bytes
+ graphics/pokemon/deoxys/speed/icon.png        | Bin 0 -> 376 bytes
+ graphics/pokemon/deoxys/speed/normal.pal      |  19 +++
+ graphics/pokemon/deoxys/speed/shiny.pal       |  19 +++
+ include/constants/species.h                   |   5 +
+ include/graphics.h                            |  15 +++
+ include/item_use.h                            |   1 +
+ include/party_menu.h                          |   1 +
+ src/data/graphics/pokemon.h                   |  17 +++
+ src/data/items.json                           |   6 +-
+ src/data/pokemon/level_up_learnset_pointers.h |   6 +-
+ src/data/pokemon/species_info.h               |  90 +++++++++++++-
+ src/data/pokemon/tmhm_learnsets.h             | 111 +++++++++++++++++-
+ src/data/pokemon/tutor_learnsets.h            |  33 ++++++
+ .../pokemon_graphics/back_pic_coordinates.h   |  18 +--
+ src/data/pokemon_graphics/back_pic_table.h    |   6 +-
+ .../pokemon_graphics/enemy_mon_elevation.h    |   3 +
+ src/data/pokemon_graphics/footprint_table.h   |   6 +-
+ .../pokemon_graphics/front_pic_coordinates.h  |  12 +-
+ src/data/pokemon_graphics/front_pic_table.h   |   6 +-
+ src/data/pokemon_graphics/palette_table.h     |   6 +-
+ .../pokemon_graphics/shiny_palette_table.h    |   6 +-
+ src/data/text/species_names.h                 |   6 +-
+ src/decompress.c                              |   4 +-
+ src/item_use.c                                |   6 +
+ src/menu2.c                                   |   6 +-
+ src/party_menu.c                              |  53 +++++++++
+ src/pokemon.c                                 |  27 +++--
+ src/pokemon_icon.c                            |  15 ++-
+ 35 files changed, 438 insertions(+), 66 deletions(-)
+ create mode 100644 graphics/pokemon/deoxys/attack/back.png
+ create mode 100644 graphics/pokemon/deoxys/attack/front.png
+ create mode 100644 graphics/pokemon/deoxys/defense/back.png
+ create mode 100644 graphics/pokemon/deoxys/defense/front.png
+ create mode 100644 graphics/pokemon/deoxys/speed/back.png
+ create mode 100644 graphics/pokemon/deoxys/speed/front.png
+ create mode 100644 graphics/pokemon/deoxys/speed/icon.png
+ create mode 100644 graphics/pokemon/deoxys/speed/normal.pal
+ create mode 100644 graphics/pokemon/deoxys/speed/shiny.pal
+
+diff --git a/data/maps/BirthIsland_Exterior/scripts.inc b/data/maps/BirthIsland_Exterior/scripts.inc
+index 5bef2d0..414d30f 100644
+--- a/data/maps/BirthIsland_Exterior/scripts.inc
++++ b/data/maps/BirthIsland_Exterior/scripts.inc
+@@ -90,6 +90,7 @@ BirthIsland_Exterior_EventScript_Deoxys::
+ 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, BirthIsland_Exterior_EventScript_RanFromDeoxys
+ 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, BirthIsland_Exterior_EventScript_RanFromDeoxys
+ 	setflag FLAG_FOUGHT_DEOXYS
++	giveitem ITEM_METEORITE
+ 	release
+ 	end
+ 
+diff --git a/graphics/pokemon/deoxys/attack/back.png b/graphics/pokemon/deoxys/attack/back.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..34b8cde20e5d86218fbd5adba38f7b846ccbdebe
+GIT binary patch
+literal 667
+zcmV;M0%ZM(P)<h;3K|Lk000e1NJLTq002M$002M)0{{R3SVwH_0000mP)t-s&CUOF
+zN-@=HYX5^u|Ez;^)vQvidpTlS0001-oP%lzoB(3xb8~9N#nu1+{}>n;Ae06U00001
+zbW%=J06^y0W&i*J8A(JzRCt`_l(BBpP!xv0>jp$665l8c3@vpX2DZ8|Bg#N0q=0w=
+zCKwrb0Mz%W*jTA}08}9mOG7fSMzKi6h_90jk<#=q*e2I@VjiG(@wvy}{m(f*=Nhiu
+za=aDJnq~WU2+OA|+c^FTS<4oqbS3ad;@wK1fjA`zC%=vM{sS;F6+j#UkE#?xU}7o&
+z&=6GT0B!}aML9-Up^&Bn;Q#A^0w&r9YJlT|3^PxC6zT#X;EN$b1AKkjDTa`bkx}=3
+zky`*vKiPl+aPI<ea|&Ymj~SS}0`X@6egd#(usfENsZSyK(uRga=axb;ld{zUIRHsS
+z_KOO{J!k;Q(N?1bp!=C;VmNK<5+K`<MhH<GVIc<~{<R<LBn2+4DwY>V#~fgQhtOOC
+zYH7OOQ~>G|t21`H<G!l_#z{eC1sDgZ@k6f$+*a}&Sl$&Ah1jQxfB-$#0V9~dXP{ZL
+zT;Jb46UjSmg%Qj*lv)SuNPwJ_WV27LF1ud<7N(Fvs^H!}<~ht^n17!soPSs(L(k%(
+zmID$6_Yl4%EnFO*u23*Ov!fSXes_UkE)4}B!Pq$MoksuiHNf?kg%EBV)$}BtSY~fc
+z0T@9#&(1sG$m`?*6)-VKcI=+V)RL%yFAOFD3wm(l0f$XZ#|9i7)n9D_T|hlML9+Xk
+zhG?R{GwY}OYfm&$Wc{Zc*F)a0xt*15P5f0_e*qCmqfVBDSD63+002ovPDHLkV1oPG
+B8D#(f
+
+literal 0
+HcmV?d00001
+
+diff --git a/graphics/pokemon/deoxys/attack/front.png b/graphics/pokemon/deoxys/attack/front.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..82a0c35232e4a905fa2acc088747bf7f20090390
+GIT binary patch
+literal 1006
+zcmV<K0}=d*P)<h;3K|Lk000e1NJLTq002M$002M)0{{R3SVwH_0000mP)t-s&CUOF
+zN-@=HYX5^u|Ez;^)vQvidpTlS0001-oP%lzoB(3xb8~9N#nu1+{}>n;Ae06U00001
+zbW%=J06^y0W&i*KY)M2xRCt_)l|O77bri=xKPO6DRNwuaMu<oaK3^(^O2{@TOQpo_
+z&;<#J0WlOcDIg_VYX)FLVeD2a76zmsqzVQ^SpbP5WEjfe$d208?Jopa_~YN%P2E`M
+z{20!E?k>i>>E3%Ez3+SPe!n}2S~}*Fh`Fo(1Gw>g96(P763)Jy2uOpP2<#nGK!hFp
+z4Ce2>2^A79VqQ-Ge#3<#iL@C9*mI&J$(oiaxTUcbva3!Bp%dp^z8(j7zupJHxDS4i
+zV=Fv3xecE;*zrU8FmT$@h`lzcUH-$o7r$ROuB#)#$fBNp)#pwl5{mBOFTdoccA^!c
+z*4oJV)!GC=7~ik?nb0Dc4yj4|neMIbTlFuOJbPRZbJ^CFTUTbb>7)xrjsYGX6?py5
+zrQR=F#w=yLf$9jb^+ogDSBE#!{L>Urv*Q&!+0+JTHnn)U#tS+Q;QhFPcx|KEB-MGR
+zAuk-C(yP`?ty*z&+Pu5bUY5rI+ppECel@4Tetd1Y5SO5}obToDQIX&+bW}pd0qf^%
+z{vK1(0G_>yiUYr2<`iIG)WFSYbs-L9?$;%~Y>NVL=qM`&*v}fV2(+<A!4M#{z`gwZ
+z)WZ^O3EXg^K*l>z=DC?q&YqE=0N>sX17>RF6<S=P>kym=D>6mqoNO6Xm+q>g4FzDz
+zNQMVS%(HV)#OU)_kBr6w)Jmv_C0X6fIGGjGZ0f;G`N{}LI43txxQcdf6x&a|H*&6V
+zH=T44daBX*Dfp7vd6Gk5_Osp_*WW)v+qj;sfIX(=-O-}fjK1F4!XO$oi2@YLl*Is;
+z(aP$qDWypX36KX-ve*hu@y!}XO;VN7;?v)rkON>n!Asj1sK~)uB{&}pdyq+M|Lmud
+zRFFRn77(cQB`kIqLYELI2SWzH%_m;H=-m!pGEjmUg*O7Q%ZqLKXQ}_4exg83*Rmtv
+zP~z2<`KVw0Dzq(>6{_%I2dBUSMF3lgdDQTn1P@7i7G52IKZ5qHN1-VWXUhPK6@aI{
+z_&69$g@$^pMK0{R2kW$QA&FylUShX(1dyS$Q=(Hgx;O-8-<E^D0B{I$i(XsPKeWjt
+ziEvB6Ru^x7*q5z2r9)ZqW^Q&9>^a$&@FYj!9?Wf$N$`4e!>A}m1X{V^c8TG?-qvwo
+cvW5760TsYDP_NCf(f|Me07*qoM6N<$g4_|>eE<Le
+
+literal 0
+HcmV?d00001
+
+diff --git a/graphics/pokemon/deoxys/defense/back.png b/graphics/pokemon/deoxys/defense/back.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..1fa45c49245a0a46fec1789b0d24ad761beae47d
+GIT binary patch
+literal 589
+zcmV-T0<!&yP)<h;3K|Lk000e1NJLTq002M$002M)0{{R3SVwH_0000mP)t-s&CUOF
+zN-@=HYX5^u|Ez;^)vQvidpTlS0001-oP%lzoB(3xb8~9N#nu1+{}>n;Ae06U00001
+zbW%=J06^y0W&i*I%Sl8*RCt{2lD}>fK@f+(U0;d_>vnwf#0~`|4x&Wj@&s{{GLL}d
+zM}aqiHvmy1hX*j66p2)@dx~9wJQRC-zB^2hM5fxE-?#H`2k!0O{w*{8>nXsOt|#l!
+zQV3{|=teNb834Nav3J_8K5Gs$IS3Rpr_FJ82ryIXIshnE4gdwtIR|LyhG@GmQ))o)
+z0QsLl0SZxujf7!}ik`LCGzasn5A0Th2t{At7m<KL2JQwmm~sFlJpnm?Gke&ryzBuc
+z8|ZC@2-wHfK-YCbGJw-*Pxt8O=SBQDEMTW*px5WvC(9Nn%((38)Dsvzx^024q0^-T
+zB8*PhEgQg;XR-$ZVBjfm+W<LShfV-R7y-sDQx~7ct`ndZz+l#s@3fO_dO|_Pz?@=j
+zkO+(b*DQ2^I-+C13RtKD)N!Fbs30KbeJqv?Q2)!3)-k^W`0xTW#A4h-P#XsT1i=X4
+zC%|r%e$%_A50$jt9>~FR15kzSB4z;a-jkNf0$Bhqwg7xg1MvVG!MZu+1yh0o=)BRh
+z%b-Aog^Z)%5YuJ=D7gYS$KC*@$`|h*aJkQ*Z}@f{Ajd+<F>HUnJ@Sk6p4IVdd8L6(
+b;Qz4S#o3Lb1RUvz00000NkvXXu0mjf_(1_?
+
+literal 0
+HcmV?d00001
+
+diff --git a/graphics/pokemon/deoxys/defense/front.png b/graphics/pokemon/deoxys/defense/front.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..0a2c600771e5bc30b6183a89de7505f82c8650a2
+GIT binary patch
+literal 1062
+zcmV+>1ljwEP)<h;3K|Lk000e1NJLTq002M$002M)0{{R3SVwH_0000mP)t-s&CUOF
+zN-@=HYX5^u|Ez;^)vQvidpTlS0001-oP%lzoB(3xb8~9N#nu1+{}>n;Ae06U00001
+zbW%=J06^y0W&i*Kq)9|URCt`lltE}*MHt6_GfhY~X6MZ|A`}|;?M835-9-?Dmfc<j
+z$$If*Azo6XDC<R#de~m<MM2OWyh!n)Hv<YeNFj?SFS@Z{FK#lMCgzs+y=*|l<c){-
+zUb1PDf+xSzoB4k4`@Z@Ahk^e;)bW)idK#cBmbE7cJ-Vn?pjti~&><FP<V>Ih0;+Kq
+zpu#u+7|Iy{I@BR}8m9yLJQjr)HteZDm9UBO!mp)@Jq6Gq079{@UVOuz1U%FC;oCkx
+zq5XK}Brro$P=jHyrYsM%oB*8KZ9P}0)Hbl;LB-CWa?Eps?<Q_CP{$3*fuP~#rTyl9
+zv2MX3kL3wqD-q&PR#rAGtc`k}RSRC2-h(7&wV5TRyT>YMmL2HmAj>PeC&z$|={ArU
+z=hAss6!W7%&|GE>a6hgCL~@(FL<)?XP9bpckNgZo6z(o5t{(xqmdG7;oEk5A@D#fj
+z-o<Kr2vk{C7Qf#OBLSgn<9j_tB?naaOxptSMSb%fB8nDDuZz`^0Ym={9|GvO6hzQ1
+z3xD5R7v@tyHFm;+1=P#wA=R_jg$r-Nrho>6X(<51B>~@`vvHmH?h3&?XxQWt9f0uz
+zT|Vf?)mnss(nrLb7L97+3Kqa6=$Sc-7l6sXTo5=kMv``Bkmv#UhaP~~Iu+N^U=4Qw
+z0>7&+t@l^U&i4U2?-4wYW-POftx!ehs&h4n=LSH@AdjtP-Qods>$3Hc$Ctgu0h0hu
+zqp}KBAczD5Py^x#XF;om-K7I+7VT6IkT}0+4(i&(qL+Z(?~z%q34l#&b^xRC9=8qC
+zjmQss!(zXOQfZ%~`*0P4H$k}8A1JjN!q6T9yMmacy-m$SR{;hD2NSoN0@^#+yHBTt
+zP_(IMIDp9{Z{c}u`%41o=5@;ei$8eS)c~^h)!U^deA+m6T&B*1a{`ej0AISgeH&CZ
+znS+*LXR4VhX#h9#%co?m0bbc6Sok7!fLI`5_V*Ul)3m`Q!$0?%0^aKMKc`o=$mKC(
+zR^3?m%>xDv0gyx&lUDwO#!lG}_O0Yf8UQh+&Y`@2*uuis9$<imxR-7hGoipd_;{)*
+z>49`E3&j0gD6{we=N`aYG>`!Hk+QiCFbR^WuE~11$-@zdCHv^Y7{Kg|O4?IL01wA*
+z0r)Vx4{;AeX9VEYaRH3vFU+i6F4&QLF#PNWBkqD<6h?vSl|^5@GP>nC7U!#e(F<os
+g;PLIJ<o`?j3%|5l+^ifTM*si-07*qoM6N<$g5)>sN&o-=
+
+literal 0
+HcmV?d00001
+
+diff --git a/graphics/pokemon/deoxys/speed/back.png b/graphics/pokemon/deoxys/speed/back.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..c3ac4c13e7676bb925c5c8342a21533c1dddc4d7
+GIT binary patch
+literal 707
+zcmV;!0zCbRP)<h;3K|Lk000e1NJLTq002M$002M)0{{R3SVwH_0000mP)t-s&CUOF
+zN-@=HYX5^u|Ez;^)vSZ0oH=4zQc6LboP&!9&E9I}dvj97#nu1+{}>n;cwv7G00001
+zbW%=J06^y0W&i*JK}keGRCt{2(?4jFK^(^M@7q_C8ccI%T?&ST1l+_|vvpBHT#JJQ
+zIt7P1nn5gX6$Q~L;wFeMifDDwMQ|t>1VPa>f^MeGpo1NJFHLBhlH?rnHh=FO+<QxY
+zy!YXGem4a6&;OjoT+qz~0O7Um>jA(5AeQw={c(c<TX~O(#J#`@W|ET5x@i+Xft`}8
+z6^rLp5QxQR!3+Ob9~FKDwU3uUHt(Md0>tN!gM4~>P6dEk*-e7=Y*h3B@vSFG=p1Ye
+z3#&hFI?-$uQm+obk-{5KAWnTb32T=cbM@28kiZc^G+TxE>(1t}qNPU@@aSgzRuiJ3
+zro|Z0$`{(}e;fpOKz%tG2F1BVbsXq2P+z_Unkj8aAP!J>0QKEeL9N^it11(q(gSB*
+zBWUbJOzDCVyg%U&zaqvRxLWtCs~cv}Tj7i=k^meSxe@*fil{Or6r$bV54gGRWDSGZ
+z^y(>~ZAWH5eKS=waTNSb)1oL$6+2~1N|}b;RKP0=m4)u`To`vCw!&K%pd^e5v5hhp
+z0HVTJp>Gr*3{)=eeHwa&ekeU<r=iks9t8TXCFB;5DubK#$H_Z~N@)QL!+ZC3n7p~$
+z_ErH`nZb5UbZ?rEl?iAk>=&xY3j;``KhI<1fVQxf#z4XbG%p1pATbK$Q9-DzqzkC-
+zA8ZK76hsM0nhN`xqrbje8Uiu}?P7B!gO#@(><;bxAdneBt0?$FCKFOX4y!N#WE#~f
+p3fh2u<!9@GotHC%&)7cz`~%#ey_IV13*i6&002ovPDHLkV1i}pH6H)~
+
+literal 0
+HcmV?d00001
+
+diff --git a/graphics/pokemon/deoxys/speed/front.png b/graphics/pokemon/deoxys/speed/front.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..aa0908897064a88946ccb93364f9f99a743707b0
+GIT binary patch
+literal 970
+zcmV;*12z1KP)<h;3K|Lk000e1NJLTq002M$002M)0{{R3SVwH_0000mP)t-s&CUOF
+zN-@=HYX5^u|Ez;^)vSZ0oH=4zQc6LboP&!9&E9I}dvj97#nu1+{}>n;cwv7G00001
+zbW%=J06^y0W&i*KNJ&INRCt_~luw8oRUF4ZFB_8G)y%xfmSPm_BrQV0#pxy}cxkX_
+zu?M{<;=0J{rR&}nM6f+cp~ZlwD#B6^;z8=gV{wCJv9e)PDtJjZu@pto=DppevSrfe
+zVg6+DZ=t`-Oy2v<_xt_*W?ta&E4!Nfl^We&`SVafSie7Yn7)|XTvmrDi2TX*89DiR
+z=lH_r(trRWyq0!^gpzsq^37WVKxmP2MZR>u^rL#yuQLuXYR{vx^>(JykYfR>dscy`
+z7#4_tw544PJRBB?fc8B%g}R{_7KrC?7fMjRGc3>_R0ceh9^Q`tiGkedk?nq)voL#p
+z%zg|U152tq*Tyjb*l+z{c1!+EH7TV2Qorxznp5_$PuxY}hM#MAQ(qh#0@C3%yZo_5
+z!#m(FB?o};b+0|@h{DOre9hLGcL#{TBD>Q`6>H*!y2Sqcv>63fxLUX<->C{kmc5Ee
+zXruwMovSlI6Ecgxe&<yx#kLwySV_$Qy7GZJ_uEEMv^G-3fuPwpRspcL&Gwc7?7gxx
+zG6z6=&3Ug0>^@IfCV&rTYeCCLyxX^X3Xwmu#i?Y-kj}f#Kd>+IuF>D0l`2xmstdub
+zYaHNK-lZp>p%`0ChhmPataZL#aOr}+mXgCE@4_!rU-1ftI#@VEfL(28*8k>p7ljL^
+z^Xy2Qyk{glGT;FB_f-gJxdsq4mRT?=w`~Ea*CK`U)4?Rwss}>m8Unz?ZQ}g*X<$*#
+zmOW_TLf-@6!SWg$JXk6jfBU&5->(+|L|H~53$^YVkmh*VBiFpV^8|otI}xA@weBbD
+z-%<t9q-S$4P`2VWb)ohV2UpUs)`1NO%)5Iso`ZIL_8V6&ND4qthT%H>K}|23>Ior1
+z*UqHpJN@BBz#nO*g6HH`ZzEVU>Qr*n`{Dc5i+;RjB>=zL3g;r?`6Ml#{^lYfag=5P
+zh|Z=?n+C1mTuKxEO?2%(0K!&{mXe^;y?9Nk#P^`ZnKA&2{Hwx@orD6Q!?RxfsWK8W
+zSw~;8o*c8BD6@Gf@W{)t3Wyh5Z2&sXV1~Hnu3tag1OI0QAd2HHV2(C`CFDejOHs-R
+sWd|O+#Yq7EX8`tOz*Yd5i9l5U1J;)gK38EMB>(^b07*qoM6N<$f<{W!vj6}9
+
+literal 0
+HcmV?d00001
+
+diff --git a/graphics/pokemon/deoxys/speed/icon.png b/graphics/pokemon/deoxys/speed/icon.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..674b93a9c1dcaaf8caf68dde7ba7e340fe623df6
+GIT binary patch
+literal 376
+zcmV-;0f+vHP)<h;3K|Lk000e1NJLTq001BW002M)0{{R3iJ)km0000mP)t-sVw{76
+zgLA#Tz5oCJy`(|*_9@k3LH3j>i+lfKO3m(bod2|>q{aVgtej$ET0ucUS*eg@00034
+zNkl<ZIE~ekF>b>k6o%gkc*@d|d-OuiR<<(LK1T;1DT=yeL#9i*7>rcOmL=p@NC=Rw
+zU7BCA44;2J8~FoxydYH@A|QV(&rnKQ-b4n=BBkg~t^m`&imnu3R{d!ar2zP>hPf&L
+zuIl>^z^aCZTwUoKVe28DXx+|TCU~&Z`$qdNgClHY9m!k8J8XBH^n9y~nzg%03igtK
+z(c_c-YAu}g6<9EwX2UZ8_|(8g4lIMXVjp>1YWHEk!NcUg=ur89Q`Dgm`OCbDI@m@g
+zf`={Y;D{3O;TClWC)me1IE3q>Lm=^880b}pc*-<3=}?k%sDQobP!fN<;ktmo`SAm$
+Wdc_ue-`=tS0000<MNUMnLSTZvZmxF#
+
+literal 0
+HcmV?d00001
+
+diff --git a/graphics/pokemon/deoxys/speed/normal.pal b/graphics/pokemon/deoxys/speed/normal.pal
+new file mode 100644
+index 0000000..90fcff1
+--- /dev/null
++++ b/graphics/pokemon/deoxys/speed/normal.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++205 205 255
++115 74 49
++213 106 106
++255 131 74
++255 172 131
++115 213 172
++131 164 156
++57 98 90
++82 74 65
++156 156 131
++139 8 205
++222 106 230
++123 115 82
++197 197 213
++255 255 255
++24 24 24
+diff --git a/graphics/pokemon/deoxys/speed/shiny.pal b/graphics/pokemon/deoxys/speed/shiny.pal
+new file mode 100644
+index 0000000..74b8fc7
+--- /dev/null
++++ b/graphics/pokemon/deoxys/speed/shiny.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++205 205 255
++106 90 24
++197 189 65
++255 222 57
++255 246 139
++115 213 172
++82 172 123
++57 98 90
++82 74 65
++156 156 131
++106 8 156
++0 98 230
++115 115 106
++197 197 213
++255 255 255
++24 24 24
+diff --git a/include/constants/species.h b/include/constants/species.h
+index 7446cc1..3004031 100644
+--- a/include/constants/species.h
++++ b/include/constants/species.h
+@@ -282,6 +282,11 @@
+ #define SPECIES_OLD_UNOWN_X 274
+ #define SPECIES_OLD_UNOWN_Y 275
+ #define SPECIES_OLD_UNOWN_Z 276
++// FireRed QoL+Hard: Deoxys formes live in unused placeholder species slots
++#define SPECIES_DEOXYS_ATTACK  SPECIES_OLD_UNOWN_B
++#define SPECIES_DEOXYS_DEFENSE SPECIES_OLD_UNOWN_C
++#define SPECIES_DEOXYS_SPEED   SPECIES_OLD_UNOWN_D
++#define IS_DEOXYS_FORME(species) ((species) >= SPECIES_DEOXYS_ATTACK && (species) <= SPECIES_DEOXYS_SPEED)
+ 
+ #define SPECIES_TREECKO 277
+ #define SPECIES_GROVYLE 278
+diff --git a/include/graphics.h b/include/graphics.h
+index 069924f..0ef1845 100644
+--- a/include/graphics.h
++++ b/include/graphics.h
+@@ -2339,6 +2339,21 @@ extern const u32 gMonPalette_Deoxys[];
+ extern const u32 gMonBackPic_Deoxys[];
+ extern const u32 gMonShinyPalette_Deoxys[];
+ extern const u8 gMonIcon_Deoxys[];
++extern const u32 gMonFrontPic_DeoxysAttack[];
++extern const u32 gMonBackPic_DeoxysAttack[];
++extern const u32 gMonPalette_DeoxysAttack[];
++extern const u32 gMonShinyPalette_DeoxysAttack[];
++extern const u8 gMonIcon_DeoxysAttack[];
++extern const u32 gMonFrontPic_DeoxysDefense[];
++extern const u32 gMonBackPic_DeoxysDefense[];
++extern const u32 gMonPalette_DeoxysDefense[];
++extern const u32 gMonShinyPalette_DeoxysDefense[];
++extern const u8 gMonIcon_DeoxysDefense[];
++extern const u32 gMonFrontPic_DeoxysSpeed[];
++extern const u32 gMonBackPic_DeoxysSpeed[];
++extern const u32 gMonPalette_DeoxysSpeed[];
++extern const u32 gMonShinyPalette_DeoxysSpeed[];
++extern const u8 gMonIcon_DeoxysSpeed[];
+ extern const u8 gMonFootprint_Deoxys[];
+ extern const u32 gMonFrontPic_Chimecho[];
+ extern const u32 gMonPalette_Chimecho[];
+diff --git a/include/item_use.h b/include/item_use.h
+index 77aed78..b8d0a2a 100644
+--- a/include/item_use.h
++++ b/include/item_use.h
+@@ -17,6 +17,7 @@ void FieldUseFunc_Ether(u8 taskId);
+ void FieldUseFunc_PpUp(u8 taskId);
+ void FieldUseFunc_RareCandy(u8 taskId);
+ void FieldUseFunc_EvoItem(u8 taskId);
++void FieldUseFunc_FormChange(u8 taskId);
+ void FieldUseFunc_SacredAsh(u8 taskId);
+ void FieldUseFunc_TmCase(u8 taskId);
+ void FieldUseFunc_BerryPouch(u8 taskId);
+diff --git a/include/party_menu.h b/include/party_menu.h
+index 4207166..e9060fa 100644
+--- a/include/party_menu.h
++++ b/include/party_menu.h
+@@ -63,6 +63,7 @@ void ItemUseCB_TMHM(u8 taskId, TaskFunc func);
+ void ItemUseCB_RareCandy(u8 taskId, TaskFunc func);
+ void ItemUseCB_SacredAsh(u8 taskId, TaskFunc func);
+ void ItemUseCB_EvolutionStone(u8 taskId, TaskFunc func);
++void ItemUseCB_FormChange(u8 taskId, TaskFunc func);
+ u8 GetItemEffectType(u16 item);
+ void CB2_PartyMenuFromStartMenu(void);
+ void CB2_ChooseMonToGiveItem(void);
+diff --git a/src/data/graphics/pokemon.h b/src/data/graphics/pokemon.h
+index e744f80..9d778cb 100644
+--- a/src/data/graphics/pokemon.h
++++ b/src/data/graphics/pokemon.h
+@@ -2714,6 +2714,23 @@ const u8 gMonIcon_Deoxys[] = INCBIN_U8("graphics/pokemon/deoxys/icon.4bpp", "gra
+ const u8 gMonFootprint_Deoxys[] = INCBIN_U8("graphics/pokemon/deoxys/footprint.1bpp");
+ #endif
+ 
++// Deoxys formes (FireRed QoL+Hard)
++const u32 gMonFrontPic_DeoxysAttack[] = INCBIN_U32("graphics/pokemon/deoxys/attack/front.4bpp.lz");
++const u32 gMonBackPic_DeoxysAttack[] = INCBIN_U32("graphics/pokemon/deoxys/attack/back.4bpp.lz");
++const u32 gMonPalette_DeoxysAttack[] = INCBIN_U32("graphics/pokemon/deoxys/normal.gbapal.lz");
++const u32 gMonShinyPalette_DeoxysAttack[] = INCBIN_U32("graphics/pokemon/deoxys/shiny.gbapal.lz");
++const u8 gMonIcon_DeoxysAttack[] = INCBIN_U8("graphics/pokemon/deoxys/icon_attack.4bpp");
++const u32 gMonFrontPic_DeoxysDefense[] = INCBIN_U32("graphics/pokemon/deoxys/defense/front.4bpp.lz");
++const u32 gMonBackPic_DeoxysDefense[] = INCBIN_U32("graphics/pokemon/deoxys/defense/back.4bpp.lz");
++const u32 gMonPalette_DeoxysDefense[] = INCBIN_U32("graphics/pokemon/deoxys/normal.gbapal.lz");
++const u32 gMonShinyPalette_DeoxysDefense[] = INCBIN_U32("graphics/pokemon/deoxys/shiny.gbapal.lz");
++const u8 gMonIcon_DeoxysDefense[] = INCBIN_U8("graphics/pokemon/deoxys/icon_defense.4bpp");
++const u32 gMonFrontPic_DeoxysSpeed[] = INCBIN_U32("graphics/pokemon/deoxys/speed/front.4bpp.lz");
++const u32 gMonBackPic_DeoxysSpeed[] = INCBIN_U32("graphics/pokemon/deoxys/speed/back.4bpp.lz");
++const u32 gMonPalette_DeoxysSpeed[] = INCBIN_U32("graphics/pokemon/deoxys/speed/normal.gbapal.lz");
++const u32 gMonShinyPalette_DeoxysSpeed[] = INCBIN_U32("graphics/pokemon/deoxys/speed/shiny.gbapal.lz");
++const u8 gMonIcon_DeoxysSpeed[] = INCBIN_U8("graphics/pokemon/deoxys/speed/icon.4bpp");
++
+ const u32 gMonFrontPic_Chimecho[] = INCBIN_U32("graphics/pokemon/chimecho/front.4bpp.lz");
+ const u32 gMonPalette_Chimecho[] = INCBIN_U32("graphics/pokemon/chimecho/normal.gbapal.lz");
+ const u32 gMonBackPic_Chimecho[] = INCBIN_U32("graphics/pokemon/chimecho/back.4bpp.lz");
+diff --git a/src/data/items.json b/src/data/items.json
+index 1788480..8a8eeef 100644
+--- a/src/data/items.json
++++ b/src/data/items.json
+@@ -4486,12 +4486,12 @@
+       "price": 0,
+       "holdEffect": "HOLD_EFFECT_NONE",
+       "holdEffectParam": 0,
+-      "description_english": "A meteorite that fell from space\\nonto MT. MOON long ago.\\nIt is very lumpy and hard.",
++      "description_english": "A meteorite that fell from space.\\nUse it on DEOXYS to change\\nits FORME.",
+       "importance": 1,
+       "registrability": 0,
+       "pocket": "POCKET_KEY_ITEMS",
+-      "type": "ITEM_TYPE_BAG_MENU",
+-      "fieldUseFunc": "FieldUseFunc_OakStopsYou",
++      "type": "ITEM_TYPE_PARTY_MENU",
++      "fieldUseFunc": "FieldUseFunc_FormChange",
+       "battleUsage": 0,
+       "battleUseFunc": "NULL",
+       "secondaryId": 0
+diff --git a/src/data/pokemon/level_up_learnset_pointers.h b/src/data/pokemon/level_up_learnset_pointers.h
+index 661458c..68a0fe1 100644
+--- a/src/data/pokemon/level_up_learnset_pointers.h
++++ b/src/data/pokemon/level_up_learnset_pointers.h
+@@ -252,9 +252,9 @@ const u16 *const gLevelUpLearnsets[NUM_SPECIES] =
+     [SPECIES_LUGIA] = sLugiaLevelUpLearnset,
+     [SPECIES_HO_OH] = sHoOhLevelUpLearnset,
+     [SPECIES_CELEBI] = sCelebiLevelUpLearnset,
+-    [SPECIES_OLD_UNOWN_B] = sSpecies252LevelUpLearnset,
+-    [SPECIES_OLD_UNOWN_C] = sSpecies253LevelUpLearnset,
+-    [SPECIES_OLD_UNOWN_D] = sSpecies254LevelUpLearnset,
++    [SPECIES_DEOXYS_ATTACK] = sDeoxysLevelUpLearnset, // sSpecies252LevelUpLearnset,
++    [SPECIES_DEOXYS_DEFENSE] = sDeoxysLevelUpLearnset, // sSpecies253LevelUpLearnset,
++    [SPECIES_DEOXYS_SPEED] = sDeoxysLevelUpLearnset, // sSpecies254LevelUpLearnset,
+     [SPECIES_OLD_UNOWN_E] = sSpecies255LevelUpLearnset,
+     [SPECIES_OLD_UNOWN_F] = sSpecies256LevelUpLearnset,
+     [SPECIES_OLD_UNOWN_G] = sSpecies257LevelUpLearnset,
+diff --git a/src/data/pokemon/species_info.h b/src/data/pokemon/species_info.h
+index febc981..71b38f9 100644
+--- a/src/data/pokemon/species_info.h
++++ b/src/data/pokemon/species_info.h
+@@ -7314,9 +7314,93 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .bodyColor = BODY_COLOR_GREEN,
+         .noFlip = FALSE,
+     },
+-    [SPECIES_OLD_UNOWN_B] = OLD_UNOWN_SPECIES_INFO,
+-    [SPECIES_OLD_UNOWN_C] = OLD_UNOWN_SPECIES_INFO,
+-    [SPECIES_OLD_UNOWN_D] = OLD_UNOWN_SPECIES_INFO,
++    [SPECIES_DEOXYS_ATTACK] =
++    {
++        .baseHP = 50,
++        .baseAttack = 180,
++        .baseDefense = 20,
++        .baseSpeed = 150,
++        .baseSpAttack = 180,
++        .baseSpDefense = 20,
++        .types = {TYPE_PSYCHIC, TYPE_PSYCHIC},
++        .catchRate = 3,
++        .expYield = 215,
++        .evYield_HP = 0,
++        .evYield_Attack = 2,
++        .evYield_Defense = 0,
++        .evYield_Speed = 0,
++        .evYield_SpAttack = 1,
++        .evYield_SpDefense = 0,
++        .itemCommon = ITEM_NONE,
++        .itemRare = ITEM_NONE,
++        .genderRatio = MON_GENDERLESS,
++        .eggCycles = 120,
++        .friendship = 0,
++        .growthRate = GROWTH_SLOW,
++        .eggGroups = {EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED},
++        .abilities = {ABILITY_PRESSURE, ABILITY_NONE},
++        .safariZoneFleeRate = 0,
++        .bodyColor = BODY_COLOR_RED,
++        .noFlip = TRUE,
++    },
++    [SPECIES_DEOXYS_DEFENSE] =
++    {
++        .baseHP = 50,
++        .baseAttack = 70,
++        .baseDefense = 160,
++        .baseSpeed = 90,
++        .baseSpAttack = 70,
++        .baseSpDefense = 160,
++        .types = {TYPE_PSYCHIC, TYPE_PSYCHIC},
++        .catchRate = 3,
++        .expYield = 215,
++        .evYield_HP = 0,
++        .evYield_Attack = 0,
++        .evYield_Defense = 2,
++        .evYield_Speed = 0,
++        .evYield_SpAttack = 0,
++        .evYield_SpDefense = 1,
++        .itemCommon = ITEM_NONE,
++        .itemRare = ITEM_NONE,
++        .genderRatio = MON_GENDERLESS,
++        .eggCycles = 120,
++        .friendship = 0,
++        .growthRate = GROWTH_SLOW,
++        .eggGroups = {EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED},
++        .abilities = {ABILITY_PRESSURE, ABILITY_NONE},
++        .safariZoneFleeRate = 0,
++        .bodyColor = BODY_COLOR_RED,
++        .noFlip = TRUE,
++    },
++    [SPECIES_DEOXYS_SPEED] =
++    {
++        .baseHP = 50,
++        .baseAttack = 95,
++        .baseDefense = 90,
++        .baseSpeed = 180,
++        .baseSpAttack = 95,
++        .baseSpDefense = 90,
++        .types = {TYPE_PSYCHIC, TYPE_PSYCHIC},
++        .catchRate = 3,
++        .expYield = 215,
++        .evYield_HP = 0,
++        .evYield_Attack = 0,
++        .evYield_Defense = 0,
++        .evYield_Speed = 3,
++        .evYield_SpAttack = 0,
++        .evYield_SpDefense = 0,
++        .itemCommon = ITEM_NONE,
++        .itemRare = ITEM_NONE,
++        .genderRatio = MON_GENDERLESS,
++        .eggCycles = 120,
++        .friendship = 0,
++        .growthRate = GROWTH_SLOW,
++        .eggGroups = {EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED},
++        .abilities = {ABILITY_PRESSURE, ABILITY_NONE},
++        .safariZoneFleeRate = 0,
++        .bodyColor = BODY_COLOR_RED,
++        .noFlip = TRUE,
++    },
+     [SPECIES_OLD_UNOWN_E] = OLD_UNOWN_SPECIES_INFO,
+     [SPECIES_OLD_UNOWN_F] = OLD_UNOWN_SPECIES_INFO,
+     [SPECIES_OLD_UNOWN_G] = OLD_UNOWN_SPECIES_INFO,
+diff --git a/src/data/pokemon/tmhm_learnsets.h b/src/data/pokemon/tmhm_learnsets.h
+index 0aa21e8..c85c96d 100644
+--- a/src/data/pokemon/tmhm_learnsets.h
++++ b/src/data/pokemon/tmhm_learnsets.h
+@@ -6055,11 +6055,116 @@ static const u32 sTMHMLearnsets[][2] =
+                                         | TMHM(HM01_CUT)
+                                         | TMHM(HM05_FLASH)),
+ 
+-    [SPECIES_OLD_UNOWN_B] = TMHM_LEARNSET(0),
++    [SPECIES_DEOXYS_ATTACK] = TMHM_LEARNSET(TMHM(TM01_FOCUS_PUNCH)
++                                        | TMHM(TM03_WATER_PULSE)
++                                        | TMHM(TM04_CALM_MIND)
++                                        | TMHM(TM06_TOXIC)
++                                        | TMHM(TM10_HIDDEN_POWER)
++                                        | TMHM(TM11_SUNNY_DAY)
++                                        | TMHM(TM12_TAUNT)
++                                        | TMHM(TM13_ICE_BEAM)
++                                        | TMHM(TM15_HYPER_BEAM)
++                                        | TMHM(TM16_LIGHT_SCREEN)
++                                        | TMHM(TM17_PROTECT)
++                                        | TMHM(TM18_RAIN_DANCE)
++                                        | TMHM(TM20_SAFEGUARD)
++                                        | TMHM(TM21_FRUSTRATION)
++                                        | TMHM(TM22_SOLAR_BEAM)
++                                        | TMHM(TM24_THUNDERBOLT)
++                                        | TMHM(TM25_THUNDER)
++                                        | TMHM(TM27_RETURN)
++                                        | TMHM(TM29_PSYCHIC)
++                                        | TMHM(TM30_SHADOW_BALL)
++                                        | TMHM(TM31_BRICK_BREAK)
++                                        | TMHM(TM32_DOUBLE_TEAM)
++                                        | TMHM(TM33_REFLECT)
++                                        | TMHM(TM34_SHOCK_WAVE)
++                                        | TMHM(TM39_ROCK_TOMB)
++                                        | TMHM(TM40_AERIAL_ACE)
++                                        | TMHM(TM41_TORMENT)
++                                        | TMHM(TM42_FACADE)
++                                        | TMHM(TM43_SECRET_POWER)
++                                        | TMHM(TM44_REST)
++                                        | TMHM(TM48_SKILL_SWAP)
++                                        | TMHM(TM49_SNATCH)
++                                        | TMHM(HM01_CUT)
++                                        | TMHM(HM04_STRENGTH)
++                                        | TMHM(HM05_FLASH)
++                                        | TMHM(HM06_ROCK_SMASH)),
+ 
+-    [SPECIES_OLD_UNOWN_C] = TMHM_LEARNSET(0),
++    [SPECIES_DEOXYS_DEFENSE] = TMHM_LEARNSET(TMHM(TM01_FOCUS_PUNCH)
++                                        | TMHM(TM03_WATER_PULSE)
++                                        | TMHM(TM04_CALM_MIND)
++                                        | TMHM(TM06_TOXIC)
++                                        | TMHM(TM10_HIDDEN_POWER)
++                                        | TMHM(TM11_SUNNY_DAY)
++                                        | TMHM(TM12_TAUNT)
++                                        | TMHM(TM13_ICE_BEAM)
++                                        | TMHM(TM15_HYPER_BEAM)
++                                        | TMHM(TM16_LIGHT_SCREEN)
++                                        | TMHM(TM17_PROTECT)
++                                        | TMHM(TM18_RAIN_DANCE)
++                                        | TMHM(TM20_SAFEGUARD)
++                                        | TMHM(TM21_FRUSTRATION)
++                                        | TMHM(TM22_SOLAR_BEAM)
++                                        | TMHM(TM24_THUNDERBOLT)
++                                        | TMHM(TM25_THUNDER)
++                                        | TMHM(TM27_RETURN)
++                                        | TMHM(TM29_PSYCHIC)
++                                        | TMHM(TM30_SHADOW_BALL)
++                                        | TMHM(TM31_BRICK_BREAK)
++                                        | TMHM(TM32_DOUBLE_TEAM)
++                                        | TMHM(TM33_REFLECT)
++                                        | TMHM(TM34_SHOCK_WAVE)
++                                        | TMHM(TM39_ROCK_TOMB)
++                                        | TMHM(TM40_AERIAL_ACE)
++                                        | TMHM(TM41_TORMENT)
++                                        | TMHM(TM42_FACADE)
++                                        | TMHM(TM43_SECRET_POWER)
++                                        | TMHM(TM44_REST)
++                                        | TMHM(TM48_SKILL_SWAP)
++                                        | TMHM(TM49_SNATCH)
++                                        | TMHM(HM01_CUT)
++                                        | TMHM(HM04_STRENGTH)
++                                        | TMHM(HM05_FLASH)
++                                        | TMHM(HM06_ROCK_SMASH)),
+ 
+-    [SPECIES_OLD_UNOWN_D] = TMHM_LEARNSET(0),
++    [SPECIES_DEOXYS_SPEED] = TMHM_LEARNSET(TMHM(TM01_FOCUS_PUNCH)
++                                        | TMHM(TM03_WATER_PULSE)
++                                        | TMHM(TM04_CALM_MIND)
++                                        | TMHM(TM06_TOXIC)
++                                        | TMHM(TM10_HIDDEN_POWER)
++                                        | TMHM(TM11_SUNNY_DAY)
++                                        | TMHM(TM12_TAUNT)
++                                        | TMHM(TM13_ICE_BEAM)
++                                        | TMHM(TM15_HYPER_BEAM)
++                                        | TMHM(TM16_LIGHT_SCREEN)
++                                        | TMHM(TM17_PROTECT)
++                                        | TMHM(TM18_RAIN_DANCE)
++                                        | TMHM(TM20_SAFEGUARD)
++                                        | TMHM(TM21_FRUSTRATION)
++                                        | TMHM(TM22_SOLAR_BEAM)
++                                        | TMHM(TM24_THUNDERBOLT)
++                                        | TMHM(TM25_THUNDER)
++                                        | TMHM(TM27_RETURN)
++                                        | TMHM(TM29_PSYCHIC)
++                                        | TMHM(TM30_SHADOW_BALL)
++                                        | TMHM(TM31_BRICK_BREAK)
++                                        | TMHM(TM32_DOUBLE_TEAM)
++                                        | TMHM(TM33_REFLECT)
++                                        | TMHM(TM34_SHOCK_WAVE)
++                                        | TMHM(TM39_ROCK_TOMB)
++                                        | TMHM(TM40_AERIAL_ACE)
++                                        | TMHM(TM41_TORMENT)
++                                        | TMHM(TM42_FACADE)
++                                        | TMHM(TM43_SECRET_POWER)
++                                        | TMHM(TM44_REST)
++                                        | TMHM(TM48_SKILL_SWAP)
++                                        | TMHM(TM49_SNATCH)
++                                        | TMHM(HM01_CUT)
++                                        | TMHM(HM04_STRENGTH)
++                                        | TMHM(HM05_FLASH)
++                                        | TMHM(HM06_ROCK_SMASH)),
+ 
+     [SPECIES_OLD_UNOWN_E] = TMHM_LEARNSET(0),
+ 
+diff --git a/src/data/pokemon/tutor_learnsets.h b/src/data/pokemon/tutor_learnsets.h
+index 5396c1e..3d24e45 100644
+--- a/src/data/pokemon/tutor_learnsets.h
++++ b/src/data/pokemon/tutor_learnsets.h
+@@ -2805,6 +2805,39 @@ static const u16 sTutorLearnsets[] =
+                      | TUTOR(MOVE_THUNDER_WAVE)
+                      | TUTOR(MOVE_ROCK_SLIDE)
+                      | TUTOR(MOVE_SUBSTITUTE),
++    [SPECIES_DEOXYS_ATTACK] = TUTOR(MOVE_MEGA_PUNCH)
++                     | TUTOR(MOVE_MEGA_KICK)
++                     | TUTOR(MOVE_BODY_SLAM)
++                     | TUTOR(MOVE_DOUBLE_EDGE)
++                     | TUTOR(MOVE_COUNTER)
++                     | TUTOR(MOVE_SEISMIC_TOSS)
++                     | TUTOR(MOVE_MIMIC)
++                     | TUTOR(MOVE_DREAM_EATER)
++                     | TUTOR(MOVE_THUNDER_WAVE)
++                     | TUTOR(MOVE_ROCK_SLIDE)
++                     | TUTOR(MOVE_SUBSTITUTE),
++    [SPECIES_DEOXYS_DEFENSE] = TUTOR(MOVE_MEGA_PUNCH)
++                     | TUTOR(MOVE_MEGA_KICK)
++                     | TUTOR(MOVE_BODY_SLAM)
++                     | TUTOR(MOVE_DOUBLE_EDGE)
++                     | TUTOR(MOVE_COUNTER)
++                     | TUTOR(MOVE_SEISMIC_TOSS)
++                     | TUTOR(MOVE_MIMIC)
++                     | TUTOR(MOVE_DREAM_EATER)
++                     | TUTOR(MOVE_THUNDER_WAVE)
++                     | TUTOR(MOVE_ROCK_SLIDE)
++                     | TUTOR(MOVE_SUBSTITUTE),
++    [SPECIES_DEOXYS_SPEED] = TUTOR(MOVE_MEGA_PUNCH)
++                     | TUTOR(MOVE_MEGA_KICK)
++                     | TUTOR(MOVE_BODY_SLAM)
++                     | TUTOR(MOVE_DOUBLE_EDGE)
++                     | TUTOR(MOVE_COUNTER)
++                     | TUTOR(MOVE_SEISMIC_TOSS)
++                     | TUTOR(MOVE_MIMIC)
++                     | TUTOR(MOVE_DREAM_EATER)
++                     | TUTOR(MOVE_THUNDER_WAVE)
++                     | TUTOR(MOVE_ROCK_SLIDE)
++                     | TUTOR(MOVE_SUBSTITUTE),
+ 
+     [SPECIES_CHIMECHO] = TUTOR(MOVE_DOUBLE_EDGE)
+                        | TUTOR(MOVE_MIMIC)
+diff --git a/src/data/pokemon_graphics/back_pic_coordinates.h b/src/data/pokemon_graphics/back_pic_coordinates.h
+index 17f818f..f81cda5 100644
+--- a/src/data/pokemon_graphics/back_pic_coordinates.h
++++ b/src/data/pokemon_graphics/back_pic_coordinates.h
+@@ -1260,20 +1260,20 @@ const struct MonCoords gMonBackPicCoords[] =
+         .size = MON_COORDS_SIZE(48, 48),
+         .y_offset = 8,
+     },
+-    [SPECIES_OLD_UNOWN_B] =
++    [SPECIES_DEOXYS_ATTACK] =
+     {
+-        .size = MON_COORDS_SIZE(64, 64),
+-        .y_offset = 1,
++        .size = MON_COORDS_SIZE(64, 56),
++        .y_offset = 7,
+     },
+-    [SPECIES_OLD_UNOWN_C] =
++    [SPECIES_DEOXYS_DEFENSE] =
+     {
+-        .size = MON_COORDS_SIZE(64, 64),
+-        .y_offset = 1,
++        .size = MON_COORDS_SIZE(64, 56),
++        .y_offset = 7,
+     },
+-    [SPECIES_OLD_UNOWN_D] =
++    [SPECIES_DEOXYS_SPEED] =
+     {
+-        .size = MON_COORDS_SIZE(64, 64),
+-        .y_offset = 1,
++        .size = MON_COORDS_SIZE(64, 56),
++        .y_offset = 7,
+     },
+     [SPECIES_OLD_UNOWN_E] =
+     {
+diff --git a/src/data/pokemon_graphics/back_pic_table.h b/src/data/pokemon_graphics/back_pic_table.h
+index 60ee8fe..2387b50 100644
+--- a/src/data/pokemon_graphics/back_pic_table.h
++++ b/src/data/pokemon_graphics/back_pic_table.h
+@@ -252,9 +252,9 @@ const struct CompressedSpriteSheet gMonBackPicTable[] =
+     SPECIES_SPRITE(LUGIA, gMonBackPic_Lugia),
+     SPECIES_SPRITE(HO_OH, gMonBackPic_HoOh),
+     SPECIES_SPRITE(CELEBI, gMonBackPic_Celebi),
+-    SPECIES_SPRITE(OLD_UNOWN_B, gMonBackPic_DoubleQuestionMark),
+-    SPECIES_SPRITE(OLD_UNOWN_C, gMonBackPic_DoubleQuestionMark),
+-    SPECIES_SPRITE(OLD_UNOWN_D, gMonBackPic_DoubleQuestionMark),
++    SPECIES_SPRITE(DEOXYS_ATTACK, gMonBackPic_DeoxysAttack),
++    SPECIES_SPRITE(DEOXYS_DEFENSE, gMonBackPic_DeoxysDefense),
++    SPECIES_SPRITE(DEOXYS_SPEED, gMonBackPic_DeoxysSpeed),
+     SPECIES_SPRITE(OLD_UNOWN_E, gMonBackPic_DoubleQuestionMark),
+     SPECIES_SPRITE(OLD_UNOWN_F, gMonBackPic_DoubleQuestionMark),
+     SPECIES_SPRITE(OLD_UNOWN_G, gMonBackPic_DoubleQuestionMark),
+diff --git a/src/data/pokemon_graphics/enemy_mon_elevation.h b/src/data/pokemon_graphics/enemy_mon_elevation.h
+index dccd063..04ac818 100644
+--- a/src/data/pokemon_graphics/enemy_mon_elevation.h
++++ b/src/data/pokemon_graphics/enemy_mon_elevation.h
+@@ -61,5 +61,8 @@ const u8 gEnemyMonElevation[NUM_SPECIES] =
+     [SPECIES_LATIOS] = 6,
+     [SPECIES_JIRACHI] = 12,
+     [SPECIES_DEOXYS] = 8,
++    [SPECIES_DEOXYS_ATTACK] = 8,
++    [SPECIES_DEOXYS_DEFENSE] = 8,
++    [SPECIES_DEOXYS_SPEED] = 8,
+     [SPECIES_CHIMECHO] = 12,
+ };
+diff --git a/src/data/pokemon_graphics/footprint_table.h b/src/data/pokemon_graphics/footprint_table.h
+index 86ca067..d5e368c 100644
+--- a/src/data/pokemon_graphics/footprint_table.h
++++ b/src/data/pokemon_graphics/footprint_table.h
+@@ -252,9 +252,9 @@ const u8 *const gMonFootprintTable[] =
+     [SPECIES_LUGIA] = gMonFootprint_Lugia,
+     [SPECIES_HO_OH] = gMonFootprint_HoOh,
+     [SPECIES_CELEBI] = gMonFootprint_Celebi,
+-    [SPECIES_OLD_UNOWN_B] = gMonFootprint_QuestionMark,
+-    [SPECIES_OLD_UNOWN_C] = gMonFootprint_QuestionMark,
+-    [SPECIES_OLD_UNOWN_D] = gMonFootprint_QuestionMark,
++    [SPECIES_DEOXYS_ATTACK] = gMonFootprint_Deoxys,
++    [SPECIES_DEOXYS_DEFENSE] = gMonFootprint_Deoxys,
++    [SPECIES_DEOXYS_SPEED] = gMonFootprint_Deoxys,
+     [SPECIES_OLD_UNOWN_E] = gMonFootprint_QuestionMark,
+     [SPECIES_OLD_UNOWN_F] = gMonFootprint_QuestionMark,
+     [SPECIES_OLD_UNOWN_G] = gMonFootprint_QuestionMark,
+diff --git a/src/data/pokemon_graphics/front_pic_coordinates.h b/src/data/pokemon_graphics/front_pic_coordinates.h
+index d521b61..b7bbd2c 100644
+--- a/src/data/pokemon_graphics/front_pic_coordinates.h
++++ b/src/data/pokemon_graphics/front_pic_coordinates.h
+@@ -1260,20 +1260,20 @@ const struct MonCoords gMonFrontPicCoords[] =
+         .size = MON_COORDS_SIZE(40, 40),
+         .y_offset = 14,
+     },
+-    [SPECIES_OLD_UNOWN_B] =
++    [SPECIES_DEOXYS_ATTACK] =
+     {
+         .size = MON_COORDS_SIZE(64, 64),
+-        .y_offset = 6,
++        .y_offset = 1,
+     },
+-    [SPECIES_OLD_UNOWN_C] =
++    [SPECIES_DEOXYS_DEFENSE] =
+     {
+         .size = MON_COORDS_SIZE(64, 64),
+-        .y_offset = 6,
++        .y_offset = 1,
+     },
+-    [SPECIES_OLD_UNOWN_D] =
++    [SPECIES_DEOXYS_SPEED] =
+     {
+         .size = MON_COORDS_SIZE(64, 64),
+-        .y_offset = 6,
++        .y_offset = 1,
+     },
+     [SPECIES_OLD_UNOWN_E] =
+     {
+diff --git a/src/data/pokemon_graphics/front_pic_table.h b/src/data/pokemon_graphics/front_pic_table.h
+index 82af860..51fa241 100644
+--- a/src/data/pokemon_graphics/front_pic_table.h
++++ b/src/data/pokemon_graphics/front_pic_table.h
+@@ -252,9 +252,9 @@ const struct CompressedSpriteSheet gMonFrontPicTable[] =
+     SPECIES_SPRITE(LUGIA, gMonFrontPic_Lugia),
+     SPECIES_SPRITE(HO_OH, gMonFrontPic_HoOh),
+     SPECIES_SPRITE(CELEBI, gMonFrontPic_Celebi),
+-    SPECIES_SPRITE(OLD_UNOWN_B, gMonFrontPic_DoubleQuestionMark),
+-    SPECIES_SPRITE(OLD_UNOWN_C, gMonFrontPic_DoubleQuestionMark),
+-    SPECIES_SPRITE(OLD_UNOWN_D, gMonFrontPic_DoubleQuestionMark),
++    SPECIES_SPRITE(DEOXYS_ATTACK, gMonFrontPic_DeoxysAttack),
++    SPECIES_SPRITE(DEOXYS_DEFENSE, gMonFrontPic_DeoxysDefense),
++    SPECIES_SPRITE(DEOXYS_SPEED, gMonFrontPic_DeoxysSpeed),
+     SPECIES_SPRITE(OLD_UNOWN_E, gMonFrontPic_DoubleQuestionMark),
+     SPECIES_SPRITE(OLD_UNOWN_F, gMonFrontPic_DoubleQuestionMark),
+     SPECIES_SPRITE(OLD_UNOWN_G, gMonFrontPic_DoubleQuestionMark),
+diff --git a/src/data/pokemon_graphics/palette_table.h b/src/data/pokemon_graphics/palette_table.h
+index 35edcc7..74e14ad 100644
+--- a/src/data/pokemon_graphics/palette_table.h
++++ b/src/data/pokemon_graphics/palette_table.h
+@@ -252,9 +252,9 @@ const struct CompressedSpritePalette gMonPaletteTable[] =
+     SPECIES_PAL(LUGIA, gMonPalette_Lugia),
+     SPECIES_PAL(HO_OH, gMonPalette_HoOh),
+     SPECIES_PAL(CELEBI, gMonPalette_Celebi),
+-    SPECIES_PAL(OLD_UNOWN_B, gMonPalette_DoubleQuestionMark),
+-    SPECIES_PAL(OLD_UNOWN_C, gMonPalette_DoubleQuestionMark),
+-    SPECIES_PAL(OLD_UNOWN_D, gMonPalette_DoubleQuestionMark),
++    SPECIES_PAL(DEOXYS_ATTACK, gMonPalette_DeoxysAttack),
++    SPECIES_PAL(DEOXYS_DEFENSE, gMonPalette_DeoxysDefense),
++    SPECIES_PAL(DEOXYS_SPEED, gMonPalette_DeoxysSpeed),
+     SPECIES_PAL(OLD_UNOWN_E, gMonPalette_DoubleQuestionMark),
+     SPECIES_PAL(OLD_UNOWN_F, gMonPalette_DoubleQuestionMark),
+     SPECIES_PAL(OLD_UNOWN_G, gMonPalette_DoubleQuestionMark),
+diff --git a/src/data/pokemon_graphics/shiny_palette_table.h b/src/data/pokemon_graphics/shiny_palette_table.h
+index 8b1cfca..5cfbb93 100644
+--- a/src/data/pokemon_graphics/shiny_palette_table.h
++++ b/src/data/pokemon_graphics/shiny_palette_table.h
+@@ -252,9 +252,9 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
+     SPECIES_SHINY_PAL(LUGIA, gMonShinyPalette_Lugia),
+     SPECIES_SHINY_PAL(HO_OH, gMonShinyPalette_HoOh),
+     SPECIES_SHINY_PAL(CELEBI, gMonShinyPalette_Celebi),
+-    SPECIES_SHINY_PAL(OLD_UNOWN_B, gMonShinyPalette_DoubleQuestionMark),
+-    SPECIES_SHINY_PAL(OLD_UNOWN_C, gMonShinyPalette_DoubleQuestionMark),
+-    SPECIES_SHINY_PAL(OLD_UNOWN_D, gMonShinyPalette_DoubleQuestionMark),
++    SPECIES_SHINY_PAL(DEOXYS_ATTACK, gMonShinyPalette_DeoxysAttack),
++    SPECIES_SHINY_PAL(DEOXYS_DEFENSE, gMonShinyPalette_DeoxysDefense),
++    SPECIES_SHINY_PAL(DEOXYS_SPEED, gMonShinyPalette_DeoxysSpeed),
+     SPECIES_SHINY_PAL(OLD_UNOWN_E, gMonShinyPalette_DoubleQuestionMark),
+     SPECIES_SHINY_PAL(OLD_UNOWN_F, gMonShinyPalette_DoubleQuestionMark),
+     SPECIES_SHINY_PAL(OLD_UNOWN_G, gMonShinyPalette_DoubleQuestionMark),
+diff --git a/src/data/text/species_names.h b/src/data/text/species_names.h
+index 25f2c9a..77ac5e6 100644
+--- a/src/data/text/species_names.h
++++ b/src/data/text/species_names.h
+@@ -251,9 +251,9 @@ const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {
+     [SPECIES_LUGIA] = _("LUGIA"),
+     [SPECIES_HO_OH] = _("HO-OH"),
+     [SPECIES_CELEBI] = _("CELEBI"),
+-    [SPECIES_OLD_UNOWN_B] = _("?"),
+-    [SPECIES_OLD_UNOWN_C] = _("?"),
+-    [SPECIES_OLD_UNOWN_D] = _("?"),
++    [SPECIES_DEOXYS_ATTACK] = _("DEOXYS"),
++    [SPECIES_DEOXYS_DEFENSE] = _("DEOXYS"),
++    [SPECIES_DEOXYS_SPEED] = _("DEOXYS"),
+     [SPECIES_OLD_UNOWN_E] = _("?"),
+     [SPECIES_OLD_UNOWN_F] = _("?"),
+     [SPECIES_OLD_UNOWN_G] = _("?"),
+diff --git a/src/decompress.c b/src/decompress.c
+index f4740f9..4735ebe 100644
+--- a/src/decompress.c
++++ b/src/decompress.c
+@@ -107,8 +107,8 @@ void LoadSpecialPokePic(const struct CompressedSpriteSheet *src, void *dest, s32
+ 
+ static void DuplicateDeoxysTiles(void *pointer, s32 species)
+ {
+-    if (species == SPECIES_DEOXYS)
+-        CpuCopy32(pointer + 0x800, pointer, 0x800);
++    // FireRed QoL+Hard: Deoxys formes are separate species, so plain Deoxys
++    // keeps its Normal Forme frame.
+ }
+ 
+ static void Unused_LZDecompressWramIndirect(const void **src, void *dest)
+diff --git a/src/item_use.c b/src/item_use.c
+index 954f482..1783c6b 100644
+--- a/src/item_use.c
++++ b/src/item_use.c
+@@ -436,6 +436,12 @@ void FieldUseFunc_EvoItem(u8 taskId)
+     DoSetUpItemUseCallback(taskId);
+ }
+ 
++void FieldUseFunc_FormChange(u8 taskId)
++{
++    gItemUseCB = ItemUseCB_FormChange;
++    DoSetUpItemUseCallback(taskId);
++}
++
+ void FieldUseFunc_SacredAsh(u8 taskId)
+ {
+     gItemUseCB = ItemUseCB_SacredAsh;
+diff --git a/src/menu2.c b/src/menu2.c
+index e4e5eed..84c64c5 100644
+--- a/src/menu2.c
++++ b/src/menu2.c
+@@ -264,9 +264,9 @@ static const u8 sMonPosAttributes[][PSA_MON_ATTR_COUNT] = {
+     [SPECIES_LUGIA           - 1] = { 8, 42,  8, 20, 52},
+     [SPECIES_HO_OH           - 1] = {13, 37,  8, 14, 52},
+     [SPECIES_CELEBI          - 1] = {21, 33,  8, 26, 43},
+-    [SPECIES_OLD_UNOWN_B     - 1] = {31, 18,  8, 30, 28},
+-    [SPECIES_OLD_UNOWN_C     - 1] = {32, 23,  8, 31, 33},
+-    [SPECIES_OLD_UNOWN_D     - 1] = {28, 25,  8, 27, 35},
++    [SPECIES_DEOXYS_ATTACK   - 1] = {27,  8, 40, 28, 22},
++    [SPECIES_DEOXYS_DEFENSE  - 1] = {26,  9, 40, 26, 23},
++    [SPECIES_DEOXYS_SPEED    - 1] = {27,  8, 40, 28, 22},
+     [SPECIES_OLD_UNOWN_E     - 1] = {33, 25,  8, 32, 35},
+     [SPECIES_OLD_UNOWN_F     - 1] = {27, 19,  8, 26, 29},
+     [SPECIES_OLD_UNOWN_G     - 1] = {32, 22,  8, 31, 33},
+diff --git a/src/party_menu.c b/src/party_menu.c
+index 553089b..970f110 100644
+--- a/src/party_menu.c
++++ b/src/party_menu.c
+@@ -1931,6 +1931,59 @@ static bool8 CanLearnTutorMove(u16 species, u8 tutor)
+     }
+ }
+ 
++static const u8 sText_DeoxysChangedForme[] = _("{STR_VAR_1} changed to\nits {STR_VAR_2} FORME!{PAUSE_UNTIL_PRESS}");
++static const u8 sText_FormeNormal[] = _("NORMAL");
++static const u8 sText_FormeAttack[] = _("ATTACK");
++static const u8 sText_FormeDefense[] = _("DEFENSE");
++static const u8 sText_FormeSpeed[] = _("SPEED");
++
++// Meteorite: cycles Deoxys through Normal -> Attack -> Defense -> Speed
++void ItemUseCB_FormChange(u8 taskId, TaskFunc func)
++{
++    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
++    u16 species = GetMonData(mon, MON_DATA_SPECIES);
++    u16 next;
++    const u8 *formeName;
++
++    switch (species)
++    {
++    case SPECIES_DEOXYS:
++        next = SPECIES_DEOXYS_ATTACK;
++        formeName = sText_FormeAttack;
++        break;
++    case SPECIES_DEOXYS_ATTACK:
++        next = SPECIES_DEOXYS_DEFENSE;
++        formeName = sText_FormeDefense;
++        break;
++    case SPECIES_DEOXYS_DEFENSE:
++        next = SPECIES_DEOXYS_SPEED;
++        formeName = sText_FormeSpeed;
++        break;
++    case SPECIES_DEOXYS_SPEED:
++        next = SPECIES_DEOXYS;
++        formeName = sText_FormeNormal;
++        break;
++    default:
++        gPartyMenuUseExitCallback = FALSE;
++        PlaySE(SE_SELECT);
++        DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
++        ScheduleBgCopyTilemapToVram(2);
++        gTasks[taskId].func = func;
++        return;
++    }
++
++    gPartyMenuUseExitCallback = FALSE;
++    PlaySE(SE_USE_ITEM);
++    SetMonData(mon, MON_DATA_SPECIES, &next);
++    CalculateMonStats(mon);
++    GetMonNickname(mon, gStringVar1);
++    StringCopy(gStringVar2, formeName);
++    StringExpandPlaceholders(gStringVar4, sText_DeoxysChangedForme);
++    DisplayPartyMenuMessage(gStringVar4, TRUE);
++    ScheduleBgCopyTilemapToVram(2);
++    gTasks[taskId].func = func;
++}
++
+ u16 Hack_GetTutorMove(u8 tutor)
+ {
+     return GetTutorMove(tutor);
+diff --git a/src/pokemon.c b/src/pokemon.c
+index ecba399..52127e3 100644
+--- a/src/pokemon.c
++++ b/src/pokemon.c
+@@ -354,9 +354,9 @@ static const u16 sSpeciesToHoennPokedexNum[NUM_SPECIES - 1] =
+     SPECIES_TO_HOENN(LUGIA),
+     SPECIES_TO_HOENN(HO_OH),
+     SPECIES_TO_HOENN(CELEBI),
+-    SPECIES_TO_HOENN(OLD_UNOWN_B),
+-    SPECIES_TO_HOENN(OLD_UNOWN_C),
+-    SPECIES_TO_HOENN(OLD_UNOWN_D),
++    HOENN_DEX_DEOXYS,
++    HOENN_DEX_DEOXYS,
++    HOENN_DEX_DEOXYS,
+     SPECIES_TO_HOENN(OLD_UNOWN_E),
+     SPECIES_TO_HOENN(OLD_UNOWN_F),
+     SPECIES_TO_HOENN(OLD_UNOWN_G),
+@@ -770,9 +770,9 @@ static const u16 sSpeciesToNationalPokedexNum[NUM_SPECIES - 1] =
+     SPECIES_TO_NATIONAL(LUGIA),
+     SPECIES_TO_NATIONAL(HO_OH),
+     SPECIES_TO_NATIONAL(CELEBI),
+-    SPECIES_TO_NATIONAL(OLD_UNOWN_B),
+-    SPECIES_TO_NATIONAL(OLD_UNOWN_C),
+-    SPECIES_TO_NATIONAL(OLD_UNOWN_D),
++    NATIONAL_DEX_DEOXYS,
++    NATIONAL_DEX_DEOXYS,
++    NATIONAL_DEX_DEOXYS,
+     SPECIES_TO_NATIONAL(OLD_UNOWN_E),
+     SPECIES_TO_NATIONAL(OLD_UNOWN_F),
+     SPECIES_TO_NATIONAL(OLD_UNOWN_G),
+@@ -5172,6 +5172,10 @@ static u16 HoennPokedexNumToSpecies(u16 hoennNum)
+     if (species == NUM_SPECIES - 1)
+         return 0;
+ 
++    // Deoxys formes share Deoxys's dex number; report the Normal Forme
++    if (IS_DEOXYS_FORME(species + 1))
++        return SPECIES_DEOXYS;
++
+     return species + 1;
+ }
+ 
+@@ -5190,6 +5194,10 @@ u16 NationalPokedexNumToSpecies(u16 nationalNum)
+     if (species == NUM_SPECIES - 1)
+         return 0;
+ 
++    // Deoxys formes share Deoxys's dex number; report the Normal Forme
++    if (IS_DEOXYS_FORME(species + 1))
++        return SPECIES_DEOXYS;
++
+     return species + 1;
+ }
+ 
+@@ -5237,6 +5245,9 @@ u16 HoennToNationalOrder(u16 hoennNum)
+ 
+ u16 SpeciesToCryId(u16 species)
+ {
++    if (IS_DEOXYS_FORME(species + 1))
++        species = SPECIES_DEOXYS - 1;
++
+     if (species < SPECIES_OLD_UNOWN_B - 1)
+         return species;
+ 
+@@ -6258,8 +6269,8 @@ static u16 GetDeoxysStat(struct Pokemon *mon, s32 statId)
+     u16 statValue = 0;
+     u8 nature;
+ 
+-    if (gBattleTypeFlags & BATTLE_TYPE_LINK_IN_BATTLE || GetMonData(mon, MON_DATA_SPECIES, NULL) != SPECIES_DEOXYS)
+-        return 0;
++    // FireRed QoL+Hard: formes are separate species; plain Deoxys is Normal Forme
++    return 0;
+ 
+     ivVal = GetMonData(mon, MON_DATA_HP_IV + statId, NULL);
+     evVal = GetMonData(mon, MON_DATA_HP_EV + statId, NULL);
+diff --git a/src/pokemon_icon.c b/src/pokemon_icon.c
+index 037b1bf..08022a2 100644
+--- a/src/pokemon_icon.c
++++ b/src/pokemon_icon.c
+@@ -278,9 +278,9 @@ const u8 *const gMonIconTable[] = {
+     [SPECIES_LUGIA]       = gMonIcon_Lugia,
+     [SPECIES_HO_OH]       = gMonIcon_HoOh,
+     [SPECIES_CELEBI]      = gMonIcon_Celebi,
+-    [SPECIES_OLD_UNOWN_B] = gMonIcon_QuestionMark,
+-    [SPECIES_OLD_UNOWN_C] = gMonIcon_QuestionMark,
+-    [SPECIES_OLD_UNOWN_D] = gMonIcon_QuestionMark,
++    [SPECIES_DEOXYS_ATTACK] = gMonIcon_DeoxysAttack,
++    [SPECIES_DEOXYS_DEFENSE] = gMonIcon_DeoxysDefense,
++    [SPECIES_DEOXYS_SPEED] = gMonIcon_DeoxysSpeed,
+     [SPECIES_OLD_UNOWN_E] = gMonIcon_QuestionMark,
+     [SPECIES_OLD_UNOWN_F] = gMonIcon_QuestionMark,
+     [SPECIES_OLD_UNOWN_G] = gMonIcon_QuestionMark,
+@@ -721,9 +721,9 @@ const u8 gMonIconPaletteIndices[] = {
+     [SPECIES_LUGIA]       = 0,
+     [SPECIES_HO_OH]       = 1,
+     [SPECIES_CELEBI]      = 1,
+-    [SPECIES_OLD_UNOWN_B] = 0,
+-    [SPECIES_OLD_UNOWN_C] = 0,
+-    [SPECIES_OLD_UNOWN_D] = 0,
++    [SPECIES_DEOXYS_ATTACK] = 0,
++    [SPECIES_DEOXYS_DEFENSE] = 0,
++    [SPECIES_DEOXYS_SPEED] = 0,
+     [SPECIES_OLD_UNOWN_E] = 0,
+     [SPECIES_OLD_UNOWN_F] = 0,
+     [SPECIES_OLD_UNOWN_G] = 0,
+@@ -1108,8 +1108,7 @@ u16 MailSpeciesToIconSpecies(u16 species)
+ const u8 *GetMonIconTiles(u16 species, bool32 extra)
+ {
+     const u8 *iconSprite = gMonIconTable[species];
+-    if (species == SPECIES_DEOXYS && extra == TRUE)
+-        iconSprite += 0x400;
++    // FireRed QoL+Hard: plain Deoxys uses its Normal Forme icon
+     return iconSprite;
+ }
+ 
+-- 
+2.43.0
+

@@ -1,7 +1,7 @@
 From 988b73f957dfc0bab9f79688758400acca0834cd Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Sat, 31 Oct 2026 23:07:15 +0000
-Subject: [PATCH 2/8] Fix C89 build error with agbcc
+Subject: [PATCH 02/13] Fix C89 build error with agbcc
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
