@@ -1,5 +1,3 @@
-Here I will be uploading projects I work on in order to become better at JavaScript.
-
 ## FireRed QoL + Hard
 
 `firered-qol-hard/` is a Pokémon FireRed romhack with quality-of-life
