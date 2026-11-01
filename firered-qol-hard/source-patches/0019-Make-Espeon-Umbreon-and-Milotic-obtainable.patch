@@ -1,0 +1,233 @@
+From 0ebdcb4aa5f8f71e7ded68346a286b041c3386f9 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 1 Nov 2026 14:48:42 +0000
+Subject: [PATCH 19/21] Make Espeon, Umbreon and Milotic obtainable
+
+FireRed has no clock or Pokeblocks, so day/night friendship and beauty
+evolutions never trigger. Sun Stone -> Espeon, Moon Stone -> Umbreon and
+Deep Sea Scale -> Milotic instead. The obtainability check now ignores
+evolution methods FireRed can't trigger.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ HACK_NOTES.md                                   |   3 +++
+ src/data/pokemon/evolution.h                    |   6 +++---
+ .../hack/__pycache__/encounters.cpython-313.pyc | Bin 0 -> 13503 bytes
+ tools/hack/encounters.py                        |   4 +++-
+ 4 files changed, 9 insertions(+), 4 deletions(-)
+ create mode 100644 tools/hack/__pycache__/encounters.cpython-313.pyc
+
+diff --git a/HACK_NOTES.md b/HACK_NOTES.md
+index eace547..e106791 100644
+--- a/HACK_NOTES.md
++++ b/HACK_NOTES.md
+@@ -12,6 +12,9 @@ A quality-of-life, modernization and difficulty hack built on the pret/pokefirer
+   - Use King's Rock on Poliwhirl or Slowpoke, Metal Coat on Onix or Scyther,
+     Dragon Scale on Seadra, Up-Grade on Porygon, and Deep Sea Tooth or
+     Deep Sea Scale on Clamperl, the same way you use an evolution stone.
++- Evolutions FireRed can't trigger (it has no clock and no Pokéblocks):
++  - Use a Sun Stone on Eevee for Espeon, or a Moon Stone for Umbreon.
++  - Use a Deep Sea Scale on Feebas for Milotic.
+ - Celadon Department Store 4F sells every evolution item: all stones,
+   including the Moon and Sun Stones, plus the trade items above.
+ - Pokémon from Johto and Hoenn can evolve before you have the National Dex.
+diff --git a/src/data/pokemon/evolution.h b/src/data/pokemon/evolution.h
+index 1c038e9..bdef29c 100644
+--- a/src/data/pokemon/evolution.h
++++ b/src/data/pokemon/evolution.h
+@@ -76,8 +76,8 @@ const struct Evolution gEvolutionTable[NUM_SPECIES][EVOS_PER_MON] =
+     [SPECIES_EEVEE]      = {{EVO_ITEM, ITEM_THUNDER_STONE, SPECIES_JOLTEON},
+                             {EVO_ITEM, ITEM_WATER_STONE, SPECIES_VAPOREON},
+                             {EVO_ITEM, ITEM_FIRE_STONE, SPECIES_FLAREON},
+-                            {EVO_FRIENDSHIP_DAY, 0, SPECIES_ESPEON},
+-                            {EVO_FRIENDSHIP_NIGHT, 0, SPECIES_UMBREON}},
++                            {EVO_ITEM, ITEM_SUN_STONE, SPECIES_ESPEON},
++                            {EVO_ITEM, ITEM_MOON_STONE, SPECIES_UMBREON}},
+     [SPECIES_PORYGON]    = {{EVO_ITEM, ITEM_UP_GRADE, SPECIES_PORYGON2}},
+     [SPECIES_OMANYTE]    = {{EVO_LEVEL, 40, SPECIES_OMASTAR}},
+     [SPECIES_KABUTO]     = {{EVO_LEVEL, 40, SPECIES_KABUTOPS}},
+@@ -149,7 +149,7 @@ const struct Evolution gEvolutionTable[NUM_SPECIES][EVOS_PER_MON] =
+     [SPECIES_BALTOY]     = {{EVO_LEVEL, 36, SPECIES_CLAYDOL}},
+     [SPECIES_BARBOACH]   = {{EVO_LEVEL, 30, SPECIES_WHISCASH}},
+     [SPECIES_CORPHISH]   = {{EVO_LEVEL, 30, SPECIES_CRAWDAUNT}},
+-    [SPECIES_FEEBAS]     = {{EVO_BEAUTY, 170, SPECIES_MILOTIC}},
++    [SPECIES_FEEBAS]     = {{EVO_ITEM, ITEM_DEEP_SEA_SCALE, SPECIES_MILOTIC}},
+     [SPECIES_CARVANHA]   = {{EVO_LEVEL, 30, SPECIES_SHARPEDO}},
+     [SPECIES_TRAPINCH]   = {{EVO_LEVEL, 35, SPECIES_VIBRAVA}},
+     [SPECIES_VIBRAVA]    = {{EVO_LEVEL, 45, SPECIES_FLYGON}},
+diff --git a/tools/hack/__pycache__/encounters.cpython-313.pyc b/tools/hack/__pycache__/encounters.cpython-313.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..7409865b6d28b43d71089810e9b7ed153484836b
+GIT binary patch
+literal 13503
+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
+
+literal 0
+HcmV?d00001
+
+diff --git a/tools/hack/encounters.py b/tools/hack/encounters.py
+index f25711a..f01dca4 100644
+--- a/tools/hack/encounters.py
++++ b/tools/hack/encounters.py
+@@ -284,7 +284,9 @@ def obtainable(data):
+     ok.update(re.findall(r"\.species = (SPECIES_\w+)", open("src/data/ingame_trades.h").read()))
+     evo, pre = {}, {}
+     for a, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", open("src/data/pokemon/evolution.h").read(), re.S):
+-        evo[a] = re.findall(r"SPECIES_\w+", body)
++        # FireRed has no clock or Pokeblocks: day/night friendship and beauty never happen
++        evo[a] = [t for m, t in re.findall(r"\{(EVO_\w+), [^,]+, (SPECIES_\w+)", body)
++                  if m not in ("EVO_FRIENDSHIP_DAY", "EVO_FRIENDSHIP_NIGHT", "EVO_BEAUTY")]
+         for t in evo[a]:
+             pre[t] = a
+     changed = True
+-- 
+2.43.0
+

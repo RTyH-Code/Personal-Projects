@@ -284,7 +284,9 @@ def obtainable(data):
     ok.update(re.findall(r"\.species = (SPECIES_\w+)", open("src/data/ingame_trades.h").read()))
     evo, pre = {}, {}
     for a, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", open("src/data/pokemon/evolution.h").read(), re.S):
-        evo[a] = re.findall(r"SPECIES_\w+", body)
+        # FireRed has no clock or Pokeblocks: day/night friendship and beauty never happen
+        evo[a] = [t for m, t in re.findall(r"\{(EVO_\w+), [^,]+, (SPECIES_\w+)", body)
+                  if m not in ("EVO_FRIENDSHIP_DAY", "EVO_FRIENDSHIP_NIGHT", "EVO_BEAUTY")]
         for t in evo[a]:
             pre[t] = a
     changed = True

@@ -4,7 +4,10 @@
 * Mew, Celebi, Raikou, Entei and Suicune appear as overworld sprites after
   the first Hall of Fame entry.
 * Pokemon without an overworld sprite (Regis, weather trio, Latis, Jirachi)
-  are invisible tile events: examine the spot after becoming Champion.
+  are marked by a meteorite rock (the Birth Island stone) that shows a hint
+  before you become Champion and starts the battle after.
+* There is no roaming beast: Raikou, Entei and Suicune are static (the
+  roamer itself is disabled in src/roamer.c and the One Island script).
 * The first Hall of Fame entry also hands out the Mystic and Aurora Tickets,
   which open Navel Rock (Lugia, Ho-Oh) and Birth Island (Deoxys).
 Losing or running keeps the encounter available; catching removes it.
@@ -15,7 +18,8 @@ Run once from the repo root on a checkout without these changes applied:
 import json
 import struct
 
-# name, map dir, x, y, level, has overworld sprite
+# name, map dir, x, y, level, has overworld sprite.
+# Marker objects (no sprite) are placed at MARKER_POS, faced from STAND_POS.
 LEGENDS = [
     ("MEW",       "PokemonMansion_B1F",                     6,  4, 30, True),
     ("CELEBI",    "ViridianForest",                        36, 16, 30, True),
@@ -32,6 +36,11 @@ LEGENDS = [
     ("LATIOS",    "FiveIsland_MemorialPillar",             12,  3, 40, False),
     ("JIRACHI",   "MtMoon_B2F",                            11,  2, 30, False),
 ]
+
+MARKER_POS = {"REGIROCK": (11, 8), "REGICE": (10, 8), "REGISTEEL": (10, 8), "KYOGRE": (20, 14),
+              "GROUDON": (13, 3), "RAYQUAZA": (13, 4), "LATIAS": (10, 22), "LATIOS": (12, 4),
+              "JIRACHI": (11, 3)}
+STAND_POS = {n: (x, y + 1) for n, (x, y) in MARKER_POS.items()}
 
 # Free flags: the 9 unused hidden-item flags, then the trainer flags of
 # Ruby/Sapphire placeholder trainers that FireRed never battles.
@@ -112,8 +121,7 @@ def write_scripts():
                 "\tspecialvar VAR_RESULT, GetBattleOutcome",
                 "\tgoto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, EventScript_ReleaseEnd",
                 f"\tsetflag {flag(name)}"]
-        if sprite:
-            out += ["\tremoveobject VAR_LAST_TALKED"]
+        out += ["\tremoveobject VAR_LAST_TALKED"]
         out += ["\trelease", "\tend", ""]
     out += ["Hack_EventScript_LegendSleeping::",
             "\tmsgbox Hack_Text_LegendSleeping",
@@ -147,28 +155,22 @@ def write_map_events():
         p = f"data/maps/{mapdir}/map.json"
         m = json.load(open(p))
         if sprite:
-            m.setdefault("object_events", []).append({
-                "type": "object",
-                "graphics_id": f"OBJ_EVENT_GFX_{name}",
-                "x": x, "y": y,
-                "elevation": tile_elevation(mapdir, x, y),
-                "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-                "movement_range_x": 1, "movement_range_y": 1,
-                "trainer_type": "TRAINER_TYPE_NONE",
-                "trainer_sight_or_berry_tree_id": "0",
-                "script": label(name),
-                "flag": flag(name),
-            })
+            gfx, pos, height = f"OBJ_EVENT_GFX_{name}", (x, y), tile_elevation(mapdir, x, y)
         else:
-            if not m.get("bg_events"):
-                m["bg_events"] = []
-            m["bg_events"].append({
-                "type": "sign",
-                "x": x, "y": y,
-                "elevation": 0,
-                "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-                "script": label(name),
-            })
+            gfx, pos = "OBJ_EVENT_GFX_METEORITE", MARKER_POS[name]
+            height = tile_elevation(mapdir, *STAND_POS[name])
+        m.setdefault("object_events", []).append({
+            "type": "object",
+            "graphics_id": gfx,
+            "x": pos[0], "y": pos[1],
+            "elevation": height,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "movement_range_x": 1, "movement_range_y": 1,
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "trainer_sight_or_berry_tree_id": "0",
+            "script": label(name),
+            "flag": flag(name),
+        })
         with open(p, "w") as f:
             json.dump(m, f, indent=2)
             f.write("\n")
