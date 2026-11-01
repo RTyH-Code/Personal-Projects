@@ -484,9 +484,8 @@ def write_trainers():
 
 # ---------------------------------------------------------------- Pokemon: gifts, statics, trades, changes
 
-def write_pokemon():
-    out = ["# Pokémon", "", "Gift and one-time Pokémon, in-game trades, and every change to evolutions, "
-           "base stats and moves.", ""]
+def special_encounters():
+    """(map const, species const, level, how) for gifts, eggs, statics, prizes."""
     rows = []
     for lab, body in label_body.items():
         for cmd, sp, lv in re.findall(r"^\s*(givemon|giveegg|setwildbattle|seteventmon)\s+(SPECIES_\w+)(?:,\s*(\d+))?", body, re.M):
@@ -494,7 +493,7 @@ def write_pokemon():
             if not loc:
                 continue
             kind = {"givemon": "Gift", "giveegg": "Egg", "setwildbattle": "Battle", "seteventmon": "Battle"}[cmd]
-            rows.append((map_order(loc), map_name(loc), mon(sp), lv or "egg", kind))
+            rows.append((loc, sp, lv or "egg", kind))
     for lab, body in label_body.items():
         if "PrizeRoom" in lab or "Dojo" in lab:
             for sp in re.findall(r"setvar VAR_TEMP_1, (SPECIES_\w+)", body):
@@ -510,7 +509,47 @@ def write_pokemon():
                 elif "Dojo" in lab:
                     m = re.search(r"givemon VAR_TEMP_1, (\d+)", all_scripts[all_scripts.find("SaffronCity_Dojo"):])
                     lv = m.group(1) if m else "?"
-                rows.append((map_order(loc), map_name(loc), mon(sp), lv, kind))
+                rows.append((loc, sp, lv, kind))
+    return sorted(set(rows), key=lambda r: (map_order(r[0]), r[1]))
+
+
+def ingame_trades():
+    """(map const or None, species you give, species you get, nickname)."""
+    trades = firered_only(read("src/data/ingame_trades.h"))
+    out = []
+    for tid, body in re.findall(r"\[(INGAME_TRADE_\w+)\] =\s*\{(.*?)\n    \}", trades, re.S):
+        get = re.search(r"\.species = (SPECIES_\w+)", body).group(1)
+        give = re.search(r"\.requestedSpecies = (SPECIES_\w+)", body).group(1)
+        nick = re.search(r'\.nickname = _\("(.*?)"\)', body).group(1)
+        loc = next((label_location(l) for l, b in label_body.items() if re.search(r"\b%s\b" % tid, b)), None)
+        out.append((loc, give, get, nick))
+    return out
+
+
+def evos(text):
+    res = {}
+    for a, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", text, re.S):
+        for meth, param, t in re.findall(r"\{(EVO_\w+), ([^,]+), (SPECIES_\w+)", body):
+            res[(a, t)] = (meth, param.strip())
+    return res
+
+
+def evo_text(meth, param):
+    if meth == "EVO_ITEM":
+        return f"use {item(param)}"
+    if meth == "EVO_LEVEL":
+        return f"level {param}"
+    if meth == "EVO_TRADE":
+        return "trade"
+    if meth == "EVO_TRADE_ITEM":
+        return f"trade holding {item(param)}"
+    return meth.replace("EVO_", "").replace("_", " ").lower()
+
+
+def write_pokemon():
+    out = ["# Pokémon", "", "Gift and one-time Pokémon, in-game trades, and every change to evolutions, "
+           "base stats and moves.", ""]
+    rows = [(map_order(l), map_name(l), mon(sp), lv, kind) for l, sp, lv, kind in special_encounters()]
     rows = sorted(set(rows))
     out += ["## Gift, static and legendary Pokémon", "",
             "Legendaries added by this hack appear after your first Hall of Fame entry (see the main README "
@@ -518,33 +557,10 @@ def write_pokemon():
             "| Location | Pokémon | Lv | How |", "|---|---|---|---|"]
     out += [f"| {r[1]} | {r[2]} | {r[3]} | {r[4]} |" for r in rows] + [""]
 
-    trades = firered_only(read("src/data/ingame_trades.h"))
     out += ["## In-game trades", "", "| Location | You give | You get | Nickname |", "|---|---|---|---|"]
-    for tid, body in re.findall(r"\[(INGAME_TRADE_\w+)\] =\s*\{(.*?)\n    \}", trades, re.S):
-        get = re.search(r"\.species = (SPECIES_\w+)", body).group(1)
-        give = re.search(r"\.requestedSpecies = (SPECIES_\w+)", body).group(1)
-        nick = re.search(r'\.nickname = _\("(.*?)"\)', body).group(1)
-        loc = next((label_location(l) for l, b in label_body.items() if re.search(r"\b%s\b" % tid, b)), None)
+    for loc, give, get, nick in ingame_trades():
         out.append(f"| {map_name(loc) if loc else '?'} | {mon(give)} | {mon(get)} | {nick} |")
     out.append("")
-
-    def evos(text):
-        res = {}
-        for a, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", text, re.S):
-            for meth, param, t in re.findall(r"\{(EVO_\w+), ([^,]+), (SPECIES_\w+)", body):
-                res[(a, t)] = (meth, param.strip())
-        return res
-
-    def evo_text(meth, param):
-        if meth == "EVO_ITEM":
-            return f"use {item(param)}"
-        if meth == "EVO_LEVEL":
-            return f"level {param}"
-        if meth == "EVO_TRADE":
-            return "trade"
-        if meth == "EVO_TRADE_ITEM":
-            return f"trade holding {item(param)}"
-        return meth.replace("EVO_", "").replace("_", " ").lower()
 
     new, old = evos(read("src/data/pokemon/evolution.h")), evos(vanilla("src/data/pokemon/evolution.h"))
     out += ["## Changed evolutions", "", "| Evolution | Original | Now |", "|---|---|---|"]
@@ -573,6 +589,438 @@ def write_pokemon():
     open(os.path.join(OUT, "POKEMON.md"), "w").write("\n".join(out))
 
 
+# ---------------------------------------------------------------- Pokédex
+
+TYPES = ["NORMAL", "FIGHTING", "FLYING", "POISON", "GROUND", "ROCK", "BUG", "GHOST", "STEEL",
+         "FIRE", "WATER", "GRASS", "ELECTRIC", "PSYCHIC", "ICE", "DRAGON", "DARK"]
+GROWTH = {"GROWTH_MEDIUM_FAST": ("Medium Fast", 1000000), "GROWTH_ERRATIC": ("Erratic", 600000),
+          "GROWTH_FLUCTUATING": ("Fluctuating", 1640000), "GROWTH_MEDIUM_SLOW": ("Medium Slow", 1059860),
+          "GROWTH_FAST": ("Fast", 800000), "GROWTH_SLOW": ("Slow", 1250000)}
+EGG_GROUPS = {"MONSTER": "Monster", "WATER_1": "Water 1", "BUG": "Bug", "FLYING": "Flying", "FIELD": "Field",
+              "FAIRY": "Fairy", "GRASS": "Grass", "HUMAN_LIKE": "Human-Like", "WATER_3": "Water 3",
+              "MINERAL": "Mineral", "AMORPHOUS": "Amorphous", "WATER_2": "Water 2", "DITTO": "Ditto",
+              "DRAGON": "Dragon", "UNDISCOVERED": "Undiscovered (can't breed)"}
+STATS = [("HP", "baseHP"), ("Attack", "baseAttack"), ("Defense", "baseDefense"),
+         ("Sp. Atk", "baseSpAttack"), ("Sp. Def", "baseSpDefense"), ("Speed", "baseSpeed")]
+EV_FIELDS = [("HP", "evYield_HP"), ("Attack", "evYield_Attack"), ("Defense", "evYield_Defense"),
+             ("Sp. Atk", "evYield_SpAttack"), ("Sp. Def", "evYield_SpDefense"), ("Speed", "evYield_Speed")]
+DEOXYS_FORMES = [("SPECIES_DEOXYS", "Normal Forme"), ("SPECIES_DEOXYS_ATTACK", "Attack Forme"),
+                 ("SPECIES_DEOXYS_DEFENSE", "Defense Forme"), ("SPECIES_DEOXYS_SPEED", "Speed Forme")]
+
+
+def tname(t):
+    return "???" if t == "TYPE_MYSTERY" else t.replace("TYPE_", "").title()
+
+
+def c_blocks(text, key_re=r"SPECIES_\w+"):
+    """[KEY] = { ... } blocks of a designated-initializer table."""
+    out = {}
+    for k, body in re.findall(r"\[(%s)\]\s*=\s*\{\n(.*?)\n    \}," % key_re, text, re.S):
+        out[k] = body
+    return out
+
+
+def fields(body):
+    return {k: v.strip() for k, v in re.findall(r"\.(\w+)\s*=\s*([^\n]*?),?\s*(?:\n|$)", body)}
+
+
+def species_info(text):
+    return {k: fields(v) for k, v in c_blocks(text).items()}
+
+
+def levelup_learnsets(text):
+    text = firered_only(text)
+    arrays = {n: [(int(l), m) for l, m in re.findall(r"LEVEL_UP_MOVE\(\s*(\d+),\s*(MOVE_\w+)\)", b)]
+              for n, b in re.findall(r"static const u16 (s\w+LevelUpLearnset)\[\] = \{(.*?)\};", text, re.S)}
+    return arrays
+
+
+def learnset_pointers(text):
+    return dict(re.findall(r"\[(SPECIES_\w+)\]\s*=\s*(s\w+LevelUpLearnset)", text))
+
+
+def stat_range(base, level, hp=False):
+    def calc(iv, ev, nat):
+        core = (2 * base + iv + ev // 4) * level // 100
+        if hp:
+            return core + level + 10
+        return int((core + 5) * nat)
+    if hp:
+        return calc(0, 0, 1), calc(31, 252, 1)
+    return calc(0, 0, 0.9), calc(31, 252, 1.1)
+
+
+def bar(v):
+    n = max(1, round(v / 10))
+    return "█" * n
+
+
+def write_pokedex():
+    info = species_info(read("src/data/pokemon/species_info.h"))
+    old_info = species_info(vanilla("src/data/pokemon/species_info.h"))
+    dex_order = re.findall(r"NATIONAL_DEX_(\w+),", read("include/constants/pokedex.h").split("HOENN_DEX_NONE")[0])
+    dex_order = [d for d in dex_order if d != "NONE"]
+    dex_order = dex_order[:dex_order.index("DEOXYS") + 1]
+    species = ["SPECIES_" + d for d in dex_order]
+    dexno = {sp: i + 1 for i, sp in enumerate(species)}
+    for f, _ in DEOXYS_FORMES:
+        dexno.setdefault(f, dexno["SPECIES_DEOXYS"])
+
+    # moves
+    mv = {}
+    for k, body in c_blocks(read("src/data/battle_moves.h"), r"MOVE_\w+").items():
+        f = fields(body)
+        mv[k] = f
+    def move_cells(m):
+        f = mv.get(m, {})
+        split = {"SPLIT_PHYSICAL": "Physical", "SPLIT_SPECIAL": "Special", "SPLIT_STATUS": "Status"}.get(f.get("split"), "?")
+        pw = f.get("power", "0")
+        acc = f.get("accuracy", "0")
+        pw = "—" if pw in ("0", "1") and split == "Status" else ("varies" if pw == "1" else ("—" if pw == "0" else pw))
+        acc = "—" if acc == "0" else acc + "%"
+        return f"{move(m)} | {tname(f.get('type', 'TYPE_NORMAL'))} | {split} | {pw} | {acc} | {f.get('pp', '?')}"
+
+    # learnsets
+    lu_arrays = levelup_learnsets(read("src/data/pokemon/level_up_learnsets.h"))
+    lu_ptr = learnset_pointers(read("src/data/pokemon/level_up_learnset_pointers.h"))
+    old_arrays = levelup_learnsets(vanilla("src/data/pokemon/level_up_learnsets.h"))
+    old_ptr = learnset_pointers(vanilla("src/data/pokemon/level_up_learnset_pointers.h"))
+    def levelup(sp, arrays=lu_arrays, ptr=lu_ptr):
+        return arrays.get(ptr.get(sp), [])
+
+    tmhm = {}
+    for sp, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*TMHM_LEARNSET\((.*?)\)\s*,", read("src/data/pokemon/tmhm_learnsets.h"), re.S):
+        tmhm[sp] = re.findall(r"TMHM\(((?:TM|HM)\d\d)_\w+\)", body)
+    tutor = {}
+    for sp, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*((?:\s*\|?\s*TUTOR\(MOVE_\w+\))+)", read("src/data/pokemon/tutor_learnsets.h")):
+        tutor[sp] = re.findall(r"TUTOR\((MOVE_\w+)\)", body)
+    for sp, m in (("SPECIES_VENUSAUR", "MOVE_FRENZY_PLANT"), ("SPECIES_CHARIZARD", "MOVE_BLAST_BURN"),
+                  ("SPECIES_BLASTOISE", "MOVE_HYDRO_CANNON")):
+        tutor.setdefault(sp, []).append(m)
+    starter_tutor = label_location("TwoIsland_CapeBrink_House_EventScript_StarterTutor")
+    tutor_loc = {m: starter_tutor for m in ("MOVE_FRENZY_PLANT", "MOVE_BLAST_BURN", "MOVE_HYDRO_CANNON")}
+    for lab, body in labels_in(script_text["data/scripts/move_tutors.inc"]):
+        t = re.search(r"setvar VAR_0x8005, MOVETUTOR_(\w+)", body)
+        loc = label_location(lab)
+        if t and loc:
+            tutor_loc.setdefault("MOVE_" + t.group(1), loc)
+    egg = {}
+    for sp, body in re.findall(r"egg_moves\((\w+),(.*?)\)", read("src/data/pokemon/egg_moves.h"), re.S):
+        egg["SPECIES_" + sp] = re.findall(r"MOVE_\w+", body)
+
+    # evolutions
+    ev = evos(read("src/data/pokemon/evolution.h"))
+    old_ev = evos(vanilla("src/data/pokemon/evolution.h"))
+    pre = {t: a for (a, t) in ev}
+    def root(sp):
+        while sp in pre:
+            sp = pre[sp]
+        return sp
+    def evo_desc(meth, param):
+        lv = param
+        return {
+            "EVO_LEVEL": f"Level {lv}",
+            "EVO_ITEM": f"Use a {item(param)}",
+            "EVO_TRADE": "Trade",
+            "EVO_TRADE_ITEM": f"Trade holding {item(param)}",
+            "EVO_FRIENDSHIP": "Level up with high friendship (220+)",
+            "EVO_FRIENDSHIP_DAY": "Level up with high friendship during the day",
+            "EVO_FRIENDSHIP_NIGHT": "Level up with high friendship at night",
+            "EVO_LEVEL_ATK_GT_DEF": f"Level {lv} with Attack > Defense",
+            "EVO_LEVEL_ATK_EQ_DEF": f"Level {lv} with Attack = Defense",
+            "EVO_LEVEL_ATK_LT_DEF": f"Level {lv} with Attack < Defense",
+            "EVO_LEVEL_SILCOON": f"Level {lv} (50% chance, set by personality)",
+            "EVO_LEVEL_CASCOON": f"Level {lv} (50% chance, set by personality)",
+            "EVO_LEVEL_NINJASK": f"Level {lv}",
+            "EVO_LEVEL_SHEDINJA": f"Level {lv} as Nincada evolves, with an empty party slot and a spare Poké Ball",
+            "EVO_BEAUTY": "Level up with high Beauty",
+        }.get(meth, meth)
+
+    # text data
+    abil_names = {k: v for k, v in re.findall(r"\[(ABILITY_\w+)\] = _\(\"(.*?)\"\)", read("src/data/text/abilities.h"))}
+    abil_desc_vars = dict(re.findall(r"static const u8 (s\w+Description)\[\] = _\(\"(.*?)\"\);", read("src/data/text/abilities.h")))
+    abil_desc = {k: abil_desc_vars.get(v, "") for k, v in re.findall(r"\[(ABILITY_\w+)\] = (s\w+Description)", read("src/data/text/abilities.h"))}
+    dex_entries = c_blocks(read("src/data/pokemon/pokedex_entries.h"), r"NATIONAL_DEX_\w+")
+    dex_text = {n: " ".join(re.findall(r'"(.*?)"', b)).replace("\\n", " ").replace("  ", " ")
+                for n, b in re.findall(r"const u8 (g\w+PokedexText)\[\] = (_\(.*?\));", firered_only(read("src/data/pokemon/pokedex_text_fr.h")), re.S)}
+    def gametext(t):
+        t = t.replace("POKéMON", "Pokémon").replace("POKé", "Poké")
+        keep = {"DNA", "PP", "HP", "KO", "TV", "UFO"}
+        return re.sub(r"\b([A-Z][A-Z'.-]+)\b",
+                      lambda m: m.group(1) if len(m.group(1)) < 2 or m.group(1) in keep else m.group(1).title(), t)
+
+    # type chart
+    chart = {}
+    for a, d, mul in re.findall(r"TYPE_(\w+), TYPE_(\w+), TYPE_MUL_(\w+)", read("src/battle_main.c").split("gTypeEffectiveness")[1].split("};")[0]):
+        if a in ("FORESIGHT", "ENDTABLE"):
+            continue
+        chart[(a, d)] = {"NO_EFFECT": 0, "NOT_EFFECTIVE": 0.5, "SUPER_EFFECTIVE": 2, "NORMAL": 1}[mul]
+
+    # where to find
+    where = {}
+    cur = fr_tables(json.loads(read("src/data/wild_encounters.json")))
+    for k in sorted(cur, key=map_order):
+        per = {}
+        for method, rows in encounter_rows(cur[k]):
+            for sp, (pct, lo, hi) in rows:
+                lv = f"{lo}" if lo == hi else f"{lo}–{hi}"
+                per.setdefault(sp, []).append(f"{method} Lv {lv} ({pct}%)")
+        for sp, bits in per.items():
+            where.setdefault(sp, []).append(f"**{map_name(k)}**: " + "; ".join(bits))
+    hack_legends = set(re.findall(r"setwildbattle (SPECIES_\w+)", read("data/scripts/hack_legendaries.inc")))
+    for loc, sp, lv, kind in special_encounters():
+        lvs = "" if lv == "egg" else f", Lv {lv}"
+        if kind == "Battle":
+            kind = "one-time encounter"
+            if sp in hack_legends:
+                kind += " (appears after your first Hall of Fame entry)"
+            elif loc.startswith("MAP_NAVEL_ROCK"):
+                kind += " (Mystic Ticket, given at your first Hall of Fame entry)"
+            elif loc.startswith("MAP_BIRTH_ISLAND"):
+                kind += " (Aurora Ticket, given at your first Hall of Fame entry)"
+        where.setdefault(sp, []).append(f"**{map_name(loc)}**: {kind}{lvs}")
+    for loc, give, get, nick in ingame_trades():
+        where.setdefault(get, []).append(f"**{map_name(loc) if loc else '?'}**: in-game trade for {mon(give)} (\"{nick}\")")
+
+    changes = read("tools/hack/modernize_changes.txt").strip().split("\n") if os.path.exists("tools/hack/modernize_changes.txt") else []
+
+    def slug(sp):
+        return f"{dexno[sp]:03d}-" + sp.replace("SPECIES_", "").lower().replace("_", "-")
+    def link(sp, here=True):
+        return f"[{mon(sp)}]({slug(sp)}.md)" if here else f"[{mon(sp)}](pokedex/{slug(sp)}.md)"
+    def types_of(i):
+        t = re.findall(r"TYPE_\w+", i["types"])
+        return list(dict.fromkeys(t))
+
+    def stat_section(sp, title=None):
+        i = info[sp]
+        o = old_info.get(sp, {})
+        out = []
+        if title:
+            out += [f"### {title}", ""]
+        out += ["| Stat | Base | | Lv 50 | Lv 100 |", "|---|--:|---|--:|--:|"]
+        total = 0
+        for name, f in STATS:
+            b = int(i[f])
+            total += b
+            hp = name == "HP"
+            changed = f" *(was {o[f]})*" if o.get(f) and o[f] != i[f] else ""
+            if sp == "SPECIES_SHEDINJA" and hp:
+                r50 = r100 = "1"
+            else:
+                a, z = stat_range(b, 50, hp)
+                r50 = f"{a}–{z}"
+                a, z = stat_range(b, 100, hp)
+                r100 = f"{a}–{z}"
+            out.append(f"| {name} | **{b}**{changed} | `{bar(b)}` | {r50} | {r100} |")
+        out += [f"| **Total** | **{total}** | | | |", "",
+                ]
+        return out, total
+
+    def type_defense(ts):
+        groups = {}
+        for atk in TYPES:
+            mul = 1
+            for d in ts:
+                mul *= chart.get((atk, d.replace("TYPE_", "")), 1)
+            groups.setdefault(mul, []).append(atk.title())
+        out = ["| Damage taken | Types |", "|---|---|"]
+        for mul, label in ((4, "4×"), (2, "2×"), (0.5, "½×"), (0.25, "¼×"), (0, "0× (immune)")):
+            if groups.get(mul):
+                out.append(f"| {label} | {', '.join(groups[mul])} |")
+        return out
+
+    def family_lines(sp):
+        r = root(sp)
+        lines = []
+        def walk(a, depth):
+            kids = [(t, ev[(x, t)]) for (x, t) in ev if x == a]
+            for t, (meth, param) in kids:
+                was = ""
+                if (a, t) in old_ev and old_ev[(a, t)] != (meth, param):
+                    was = f" *(originally: {evo_desc(*old_ev[(a, t)])})*"
+                elif (a, t) not in old_ev:
+                    was = " *(new in this hack)*"
+                cur_a = f"**{mon(a)}**" if a == sp else link(a)
+                cur_t = f"**{mon(t)}**" if t == sp else link(t)
+                lines.append(f"{'  ' * depth}- {cur_a} → {cur_t}: {evo_desc(meth, param)}{was}")
+                walk(t, depth + 1)
+        walk(r, 0)
+        return lines or [f"{mon(sp)} does not evolve."]
+
+    def gender(g):
+        if g == "MON_GENDERLESS":
+            return "Genderless"
+        if g == "MON_MALE":
+            return "100% male"
+        if g == "MON_FEMALE":
+            return "100% female"
+        m = re.search(r"PERCENT_FEMALE\(([\d.]+)\)", g)
+        f = float(m.group(1))
+        return f"{100 - f:g}% male, {f:g}% female"
+
+    os.makedirs(os.path.join(OUT, "pokedex"), exist_ok=True)
+    index_rows = []
+    for n, sp in enumerate(species):
+        i = info[sp]
+        ts = types_of(i)
+        nav = []
+        if n > 0:
+            nav.append(f"← #{n:03d} {link(species[n - 1])}")
+        nav.append("[Index](../POKEDEX.md)")
+        if n + 1 < len(species):
+            nav.append(f"{link(species[n + 1])} #{n + 2:03d} →")
+        de = fields(dex_entries.get("NATIONAL_DEX_" + sp[8:], ""))
+        cat = gametext(re.sub(r'_\("(.*)"\)', r"\1", de.get("categoryName", '_("?")')))
+        h, w = int(de.get("height", 0)), int(de.get("weight", 0))
+        inches = round(h * 3.937)
+        out = [" · ".join(nav), "", f"# #{n + 1:03d} {mon(sp)}", "",
+               f"*The {cat} Pokémon* — **{' / '.join(tname(t) for t in ts)}**", ""]
+        txt = dex_text.get(de.get("description", ""), "")
+        if txt:
+            out += [f"> {gametext(txt)}", ""]
+        out += [f"Height {h / 10:g} m ({inches // 12}′{inches % 12:02d}″) · Weight {w / 10:g} kg ({w * 0.220462:.1f} lbs)", ""]
+
+        # abilities
+        abil = [a for a in re.findall(r"ABILITY_\w+", i["abilities"]) if a != "ABILITY_NONE"]
+        abil = list(dict.fromkeys(abil))
+        out += ["## Abilities", ""]
+        for a in abil:
+            out.append(f"- **{gametext(abil_names.get(a, a[8:]))}**: {gametext(abil_desc.get(a, ''))}")
+        if len(abil) == 2:
+            out.append("")
+            out.append("*Each individual has one of the two, set by its personality value.*")
+        out.append("")
+
+        # stats
+        out += ["## Base stats", ""]
+        if sp == "SPECIES_DEOXYS":
+            for f, title in DEOXYS_FORMES:
+                sec, total = stat_section(f, title)
+                out += sec
+            out += ["Use the **Meteorite** (key item) on Deoxys to cycle Normal → Attack → Defense → Speed.", ""]
+        else:
+            sec, total = stat_section(sp)
+            out += sec
+        out += ["*Ranges: the minimum uses 0 IVs, 0 EVs and a hindering nature; the maximum uses 31 IVs, "
+                "252 EVs and a helpful nature. HP is not affected by nature.*", ""]
+        index_rows.append((n + 1, sp, ts, [int(i[f]) for _, f in STATS], total))
+
+        # type defenses
+        out += ["## Type defenses", ""] + type_defense(ts) + [""]
+        notes = {"ABILITY_LEVITATE": "immune to Ground moves", "ABILITY_FLASH_FIRE": "immune to Fire moves",
+                 "ABILITY_VOLT_ABSORB": "Electric moves heal it instead", "ABILITY_WATER_ABSORB": "Water moves heal it instead",
+                 "ABILITY_THICK_FAT": "Fire and Ice moves do half damage",
+                 "ABILITY_WONDER_GUARD": "only super-effective moves can hit it"}
+        for a in abil:
+            if a in notes:
+                who = "With" if len(abil) > 1 else "Its ability"
+                out += [f"*{who} {gametext(abil_names[a])}: {notes[a]}.*", ""]
+
+        # training / breeding
+        evy = ", ".join(f"{i[f]} {name}" for name, f in EV_FIELDS if i.get(f, "0") != "0") or "None"
+        held = []
+        if i.get("itemCommon", "ITEM_NONE") != "ITEM_NONE":
+            held.append(f"{item(i['itemCommon'])} (50%)")
+        if i.get("itemRare", "ITEM_NONE") != "ITEM_NONE":
+            held.append(f"{item(i['itemRare'])} (5%)")
+        if held and i.get("itemCommon") == i.get("itemRare"):
+            held = [f"{item(i['itemCommon'])} (100%)"]
+        gname, gexp = GROWTH.get(i["growthRate"], (i["growthRate"], 0))
+        eggs = list(dict.fromkeys(EGG_GROUPS.get(g, g) for g in re.findall(r"EGG_GROUP_(\w+)", i["eggGroups"])))
+        cyc = int(i["eggCycles"])
+        out += ["## Training and breeding", "", "| | |", "|---|---|",
+                f"| Catch rate | {i['catchRate']} |",
+                f"| Base Exp. yield | {i['expYield']} |",
+                f"| EV yield | {evy} |",
+                f"| Held items (wild) | {', '.join(held) if held else 'None'} |",
+                f"| Base friendship | {i['friendship']} |",
+                f"| Growth rate | {gname} ({gexp:,} Exp. to Lv 100) |",
+                f"| Gender | {gender(i['genderRatio'])} |",
+                f"| Egg groups | {', '.join(eggs)} |",
+                f"| Hatch time | {cyc} egg cycles ({cyc * 256:,} steps) |", ""]
+
+        # evolution
+        out += ["## Evolution", ""] + family_lines(sp) + [""]
+
+        # where
+        out += ["## Where to find it", ""]
+        places = where.get(sp, [])
+        if sp in pre:
+            places = places + [f"Evolve {link(pre[sp])}"]
+        if root(sp) == sp and "UNDISCOVERED" not in info[sp]["eggGroups"] and sp != "SPECIES_DITTO":
+            fam = [sp] + [t for (x, t) in ev if root(x) == sp]
+            fam = [f for f in dict.fromkeys(fam) if "UNDISCOVERED" not in info[f]["eggGroups"]]
+            parents = " or ".join(mon(f) for f in fam)
+            places.append(f"Breeding: hatches from an Egg left by a {parents} at the Four Island Day Care")
+        babies = {"SPECIES_PICHU", "SPECIES_CLEFFA", "SPECIES_IGGLYBUFF", "SPECIES_TOGEPI", "SPECIES_TYROGUE",
+                  "SPECIES_SMOOCHUM", "SPECIES_ELEKID", "SPECIES_MAGBY", "SPECIES_AZURILL", "SPECIES_WYNAUT"}
+        if sp in babies:
+            kids = [t for (x, t) in ev if x == sp]
+            need = {"SPECIES_AZURILL": " holding a Sea Incense", "SPECIES_WYNAUT": " holding a Lax Incense"}.get(sp, "")
+            places = [p for p in places if not p.startswith("Breeding")]
+            places.append(f"Breeding: hatches from an Egg left by a {' or '.join(link(k) for k in kids)}{need} "
+                          "at the Four Island Day Care")
+        lines = [f"- {p}" for p in places]
+        if len(lines) > 12:
+            out += [f"<details><summary>{len(lines)} places (click to expand)</summary>", ""] + lines + ["", "</details>"]
+        else:
+            out += lines
+        out.append("")
+
+        # moves
+        def lu_rows(s):
+            rows = levelup(s)
+            oldmoves = {m for _, m in levelup(s, old_arrays, old_ptr)}
+            res = ["| Lv | Move | Type | Cat. | Power | Acc. | PP |", "|--:|---|---|---|--:|--:|--:|"]
+            for lv, m in rows:
+                star = " ★" if m not in oldmoves else ""
+                res.append(f"| {lv if lv > 1 else '1'} | " + move_cells(m).replace(" | ", star + " | ", 1) + " |")
+            return res
+        out += ["## Moves", "", "★ = not learned this way in the original FireRed. After you become Champion, the "
+                "Move Maniac on Two Island can teach every move on this page (any level, egg, TM/HM, tutor).", "",
+                "### By level up", ""]
+        out += lu_rows(sp) + [""]
+        if sp == "SPECIES_DEOXYS":
+            out += ["All four formes share this learnset.", ""]
+
+        tms = tmhm.get(sp, [])
+        if tms:
+            out += ["### By TM/HM", "", "| TM | Move | Type | Cat. | Power | Acc. | PP |", "|---|---|---|---|--:|--:|--:|"]
+            for t in sorted(tms, key=lambda t: (t[:2] == "HM", t)):
+                mname = "MOVE_" + tm_moves.get("ITEM_" + t, "?")
+                out.append(f"| {t} | {move_cells(mname)} |")
+            out.append("")
+        tut = tutor.get(sp, [])
+        if tut:
+            out += ["### By move tutor", "", "| Move | Type | Cat. | Power | Acc. | PP | Tutor |", "|---|---|---|--:|--:|--:|---|"]
+            for m in tut:
+                loc = tutor_loc.get(m)
+                out.append(f"| {move_cells(m)} | {map_name(loc) if loc else '?'} |")
+            out.append("")
+        eb = root(sp)
+        em = egg.get(eb, [])
+        if em:
+            via = "" if eb == sp else f" (passed down to {mon(eb)}, which then evolves)"
+            out += ["### By breeding (egg moves)", "",
+                    f"Breed a {mon(eb)}{via} with a father that knows the move.", "",
+                    "| Move | Type | Cat. | Power | Acc. | PP |", "|---|---|---|--:|--:|--:|"]
+            out += [f"| {move_cells(m)} |" for m in em] + [""]
+
+        out += ["---", "", " · ".join(nav), ""]
+        open(os.path.join(OUT, "pokedex", slug(sp) + ".md"), "w").write("\n".join(out))
+
+    idx = ["# Pokédex", "", "All 386 Pokémon in National Dex order, with this hack's stats. Click a name for its full "
+           "page: stat ranges, abilities, type defenses, evolution, where to find it and every learnset.", "",
+           "| # | Pokémon | Type | HP | Atk | Def | SpA | SpD | Spe | Total |",
+           "|--:|---|---|--:|--:|--:|--:|--:|--:|--:|"]
+    for no, sp, ts, st, total in index_rows:
+        idx.append(f"| {no:03d} | {link(sp, here=False)} | {' / '.join(tname(t) for t in ts)} | "
+                   + " | ".join(str(x) for x in st) + f" | {total} |")
+    idx.append("")
+    open(os.path.join(OUT, "POKEDEX.md"), "w").write("\n".join(idx))
+
+
 def write_index():
     open(os.path.join(OUT, "README.md"), "w").write("""# FireRed QoL + Hard: spoiler guide
 
@@ -581,6 +1029,7 @@ def write_index():
 - [Wild encounters](ENCOUNTERS.md): every map's grass, cave, surf, Rock Smash and fishing tables, with rates and levels. ★ marks additions.
 - [Items](ITEMS.md): item balls, hidden items, NPC gifts and shop stock, by location.
 - [Trainers](TRAINERS.md): Gym Leaders, Elite Four and Champion (rounds 1–2 and peak) in full, then every other trainer by location.
+- [Pokédex](POKEDEX.md): all 386 Pokémon with stat ranges, abilities, type defenses, evolutions, locations and full learnsets.
 - [Pokémon](POKEMON.md): gift, static and legendary Pokémon, in-game trades, changed evolutions, base stat and move changes.
 
 Regenerate with `python3 tools/hack/spoiler_guide.py <output dir>` from the source tree.
@@ -592,5 +1041,6 @@ write_encounters()
 write_items()
 write_trainers()
 write_pokemon()
+write_pokedex()
 write_index()
 print("guide written to", OUT)

@@ -1,6 +1,6 @@
 # FireRed QoL + Hard
 
-> **Spoiler guide:** every encounter table, item, trainer team and gift Pokémon is listed in [guide/](guide/README.md).
+> **Spoiler guide:** every encounter table, item, trainer team and gift Pokémon is listed in [guide/](guide/README.md), plus a full [Pokédex](guide/POKEDEX.md) with stat ranges, evolutions, locations and learnsets for all 386 Pokémon.
 
 A quality-of-life, modernization and difficulty hack built on the pret/pokefirered decompilation.
 
