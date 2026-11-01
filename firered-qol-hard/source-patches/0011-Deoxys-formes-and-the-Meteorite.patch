@@ -1,7 +1,7 @@
 From d8a28054028cc0388c77b70a43f7950ab2ce3365 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Sun, 1 Nov 2026 00:09:09 +0000
-Subject: [PATCH 11/13] Deoxys formes and the Meteorite
+Subject: [PATCH 11/18] Deoxys formes and the Meteorite
 
 - Attack, Defense and Speed Formes are their own species, reusing three
   unused placeholder slots (Speed Forme sprites from pret/pokeemerald)

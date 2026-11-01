@@ -121,8 +121,8 @@ def write_scripts():
             "\tend",
             "",
             "Hack_Text_LegendSleeping::",
-            '\t.string "A powerful presence is sleeping here.\\n'
-            'Perhaps a true CHAMPION could wake it…$"',
+            '\t.string "A powerful presence is sleeping here.\\p'
+            'Perhaps a true CHAMPION\\ncould wake it…$"',
             ""]
     open("data/scripts/hack_legendaries.inc", "w").write("\n".join(out))
 

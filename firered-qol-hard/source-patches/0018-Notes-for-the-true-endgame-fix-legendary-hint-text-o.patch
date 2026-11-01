@@ -1,0 +1,63 @@
+From 57bf0c513397d78a8bb40c00ff4f5a87a341d2a3 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 1 Nov 2026 00:53:40 +0000
+Subject: [PATCH 18/18] Notes for the true endgame; fix legendary hint text
+ overflow
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ HACK_NOTES.md                     | 10 ++++++++++
+ data/scripts/hack_legendaries.inc |  2 +-
+ tools/hack/legendaries.py         |  4 ++--
+ 3 files changed, 13 insertions(+), 3 deletions(-)
+
+diff --git a/HACK_NOTES.md b/HACK_NOTES.md
+index e4da8a7..eace547 100644
+--- a/HACK_NOTES.md
++++ b/HACK_NOTES.md
+@@ -116,6 +116,16 @@ spots shows a hint.
+   252 in Speed (or in HP for slow Pokémon). Each peak trainer carries Full
+   Restores.
+ 
++## True endgame (after beating the round 2 Champion)
++The Champion's rematch (round 2) unlocks once the Sevii Islands story is
++done. The first time you beat it, or the peak round 3, you get:
++- **Special Candy:** a key item that works like a Rare Candy but is never
++  used up. Use it as often as you like.
++- **Free vitamins:** HP Up, Protein, Iron, Calcium, Zinc and Carbos cost
++  ₽0 at the Celadon Dept. Store. One use now fills that stat's EVs up to
++  the base game's caps: 255 per stat and 510 in total.
++  Use the IV/EV editor to spread them exactly how you want.
++
+ ## Generator scripts (`tools/hack/`)
+ Each script runs once against the original pret data:
+ - `difficulty.py`: gym teams, trainer levels and IVs, AI.
+diff --git a/data/scripts/hack_legendaries.inc b/data/scripts/hack_legendaries.inc
+index 59f9b66..caaae71 100644
+--- a/data/scripts/hack_legendaries.inc
++++ b/data/scripts/hack_legendaries.inc
+@@ -378,4 +378,4 @@ Hack_EventScript_LegendSleeping::
+ 	end
+ 
+ Hack_Text_LegendSleeping::
+-	.string "A powerful presence is sleeping here.\nPerhaps a true CHAMPION could wake it…$"
++	.string "A powerful presence is sleeping here.\pPerhaps a true CHAMPION\ncould wake it…$"
+diff --git a/tools/hack/legendaries.py b/tools/hack/legendaries.py
+index 99e02fb..7070080 100644
+--- a/tools/hack/legendaries.py
++++ b/tools/hack/legendaries.py
+@@ -121,8 +121,8 @@ def write_scripts():
+             "\tend",
+             "",
+             "Hack_Text_LegendSleeping::",
+-            '\t.string "A powerful presence is sleeping here.\\n'
+-            'Perhaps a true CHAMPION could wake it…$"',
++            '\t.string "A powerful presence is sleeping here.\\p'
++            'Perhaps a true CHAMPION\\ncould wake it…$"',
+             ""]
+     open("data/scripts/hack_legendaries.inc", "w").write("\n".join(out))
+ 
+-- 
+2.43.0
+

@@ -116,6 +116,16 @@ spots shows a hint.
   252 in Speed (or in HP for slow Pokémon). Each peak trainer carries Full
   Restores.
 
+## True endgame (after beating the round 2 Champion)
+The Champion's rematch (round 2) unlocks once the Sevii Islands story is
+done. The first time you beat it, or the peak round 3, you get:
+- **Special Candy:** a key item that works like a Rare Candy but is never
+  used up. Use it as often as you like.
+- **Free vitamins:** HP Up, Protein, Iron, Calcium, Zinc and Carbos cost
+  ₽0 at the Celadon Dept. Store. One use now fills that stat's EVs up to
+  the base game's caps: 255 per stat and 510 in total.
+  Use the IV/EV editor to spread them exactly how you want.
+
 ## Playing it
 
 You need your own **Pokémon FireRed (USA, v1.0)** ROM. No ROM is included here.
@@ -126,7 +136,7 @@ Its SHA-1 should be `41cb23d8dccc8ebd7c649cd8fbb58eeace6e2fdc`.
    [Rom Patcher JS](https://www.marcrobledo.com/RomPatcher.js/) or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `97cdd90d8d3bebc4a073c51687e02633a1983858`
+Patched ROM SHA-1: `f4418ced9d63103c2b444064498fdb1a8e8620e5`
 
 Start a new game. Saves from earlier versions of this hack aren't supported.
 
