@@ -1,5 +1,7 @@
 # FireRed QoL + Hard
 
+> **Spoiler guide:** every encounter table, item, trainer team and gift Pokémon is listed in [guide/](guide/README.md).
+
 A quality-of-life, modernization and difficulty hack built on the pret/pokefirered decompilation.
 
 ## Quality of life
@@ -182,3 +184,4 @@ unmodified pret data:
 - `legendaries.py`: legendary events, flags and the Hall of Fame tickets.
 - `evo_moves.py`: later level-up moves for stone evolutions (run after `modernize.py`).
 - `peak_trainers.py`: peak teams, gym rematches and the Elite Four round 3.
+- `spoiler_guide.py <dir>`: regenerates the spoiler guide from the game data.
