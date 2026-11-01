@@ -23,11 +23,14 @@ from .ram import GameState
 DATA = Path(__file__).parent / "data"
 GOAL_NAMES = ("badges", "champion", "pokedex")
 
-# CRC32 of the whole ROM -> Pokédex list. The QoL + Hard value is the target
-# checksum stored in the last 12 bytes of firered-qol-hard/FireRed-QoL-Hard.bps.
+# CRC32 of the whole ROM -> Pokédex list. The values are the source and
+# target checksums in the last 12 bytes of the hack's .bps patches: both
+# patches (for v1.0 and v1.1) produce the same hacked ROM. v1.0 and v1.1
+# have the same game data, so they share a Pokédex list.
 KNOWN_ROMS = {
     0xDD88761C: "firered",  # Pokémon FireRed (US) v1.0
-    0xC6B98153: "firered_qol_hard",  # FireRed QoL + Hard
+    0x84EE4776: "firered",  # Pokémon FireRed (US) v1.1 (Rev 1)
+    0xC6B98153: "firered_qol_hard",  # FireRed QoL + Hard, from either patch
 }
 
 
