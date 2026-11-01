@@ -229,9 +229,12 @@ class FireRedEnv(gym.Env):
         return progress_score(s, self.goals, len(self.rewards.tiles), self.rewards.tile_count)
 
     def _save_progress(self) -> None:
-        """Add this state to the pool when it's further than this episode has been."""
+        """Add this state to the pool when it's further than this episode has been.
+
+        Finished states aren't added: an episode starting from one would end at once.
+        """
         s = self.state
-        if self.pool is None or not s.valid or s.in_battle or s.all_fainted:
+        if self.pool is None or not s.valid or s.in_battle or s.all_fainted or self.rewards.complete:
             return
         score = self._score()
         if score < self.best_score + MIN_GAIN:

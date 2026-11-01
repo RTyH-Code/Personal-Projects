@@ -17,7 +17,7 @@ every way to get a Pokémon without trading or Mystery Gift:
   the incense can be found.
 
 Some choices lock others out for the rest of the save: the starter (which
-also decides the roaming legendary) and the Mt. Moon fossil. These come out
+also decides the roaming legendary) and, in vanilla, the Mt. Moon fossil. These come out
 as "choices": the Pokédex counts as complete when one option of each is.
 
 The Navel Rock and Birth Island legendaries count only if some script gives
@@ -35,7 +35,7 @@ import sys
 VERSION_DEFINES = {"FIRERED"}
 STARTER_MAP = "PalletTown_ProfessorOaksLab"
 FOSSIL_MAP = "CinnabarIsland_PokemonLab_ExperimentRoom"
-FOSSIL_CHOICE = ["OMANYTE", "KABUTO"]  # Mt. Moon: you can take only one (Old Amber is separate)
+FOSSIL_CHOICE = ["OMANYTE", "KABUTO"]  # Mt. Moon fossils (the Old Amber is separate)
 EVENT_ISLANDS = {"NavelRock": "MYSTIC_TICKET", "BirthIsland": "AURORA_TICKET"}
 ALWAYS_OK = {
     "EVO_FRIENDSHIP", "EVO_LEVEL", "EVO_LEVEL_ATK_GT_DEF", "EVO_LEVEL_ATK_EQ_DEF",
@@ -146,6 +146,18 @@ def obtainable_items(root, scripts, open_islands):
     return items
 
 
+def mt_moon_fossils_exclusive(scripts):
+    """In vanilla, taking one Mt. Moon fossil also removes the other one.
+
+    Each fossil object is then removed twice in the script (once when you take
+    it, once when you take the other); if it's removed only once, you can
+    take both.
+    """
+    text = scripts.get(os.path.join("data", "maps", "MtMoon_B2F", "scripts.inc"), "")
+    counts = [len(re.findall(rf"removeobject\s+LOCALID_{f}_FOSSIL\b", text)) for f in ("HELIX", "DOME")]
+    return max(counts) > 1
+
+
 def analyse(root):
     dex = species_tables(root)
     evo = evolutions(root)
@@ -174,7 +186,7 @@ def analyse(root):
         if m == STARTER_MAP:
             choice_seeds.setdefault("starter", set()).update(found)
             continue
-        if m == FOSSIL_MAP:
+        if m == FOSSIL_MAP and mt_moon_fossils_exclusive(scripts):
             choice_seeds.setdefault("fossil", set()).update(found & set(FOSSIL_CHOICE))
             found -= set(FOSSIL_CHOICE)
         seeds |= found

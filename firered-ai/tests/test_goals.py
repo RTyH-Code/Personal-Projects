@@ -60,10 +60,10 @@ def test_vanilla_pokedex_list():
 def test_qol_hard_pokedex_list():
     dex = PokedexTarget.load("firered-qol-hard")
     names = {v: k for k, v in dex.names.items()}
-    assert dex.progress(frozenset())[1] == 381
-    for missing in ["ESPEON", "UMBREON", "MILOTIC"]:
-        assert names[missing] not in dex.species
-    assert names["DEOXYS"] in dex.required and names["CHIKORITA"] in dex.required
+    # The hack makes every species obtainable in one save, with no either/or choices.
+    assert dex.progress(frozenset())[1] == 386 and not dex.choices
+    for fixed in ["ESPEON", "UMBREON", "MILOTIC", "OMASTAR", "KABUTOPS", "LILEEP", "ANORITH", "DEOXYS"]:
+        assert names[fixed] in dex.required
 
 
 def test_pokedex_choices():
@@ -161,3 +161,14 @@ def test_env_continues_from_progress_pool(tmp_path):
     assert info["tiles_explored"] == 51  # carried over
     _, r, *_ = env.step(2)  # UP, back over old ground: no explore reward
     assert r == 0
+
+
+def test_finished_states_stay_out_of_the_pool(tmp_path):
+    emu = FakeEmulator()
+    env = FireRedEnv(emulator=emu, goals=Goals(badges=True, champion=False), progress_dir=str(tmp_path))
+    env.reset()
+    for i in range(8):
+        emu.set_flag(ram.FLAG_BADGE01 + i)  # +80,000 score, and every goal met
+    _, _, term, _, _ = env.step(0)
+    assert term
+    assert not list(tmp_path.glob("*.state"))

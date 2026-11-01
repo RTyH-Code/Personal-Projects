@@ -8,7 +8,7 @@ What "complete Pokédex" means depends on the game. The lists in
 firered_ai/data/ were generated from the game's source by
 tools/pokedex_targets.py: every species one save can own without trading or
 Mystery Gift. Some are either/or (the starter, which also decides the roaming
-legendary, and the Mt. Moon fossil); one option of each is enough.
+legendary, and in vanilla the Mt. Moon fossil); one option of each is enough.
 """
 
 from __future__ import annotations
@@ -27,7 +27,7 @@ GOAL_NAMES = ("badges", "champion", "pokedex")
 # checksum stored in the last 12 bytes of firered-qol-hard/FireRed-QoL-Hard.bps.
 KNOWN_ROMS = {
     0xDD88761C: "firered",  # Pokémon FireRed (US) v1.0
-    0xAA31C96E: "firered_qol_hard",  # FireRed QoL + Hard
+    0xC6B98153: "firered_qol_hard",  # FireRed QoL + Hard
 }
 
 

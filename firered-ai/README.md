@@ -74,12 +74,13 @@ breeding.
 | Game | Species for a complete Pokédex | Not obtainable in one save |
 |---|---|---|
 | FireRed (US v1.0) | 170 | LeafGreen exclusives, trade evolutions (Alakazam, Machamp, Golem, Gengar), Mew and the other event Pokémon, Espeon and Umbreon (FRLG has no clock), most of Johto and Hoenn |
-| FireRed QoL + Hard | 381 | Espeon, Umbreon, Milotic (FRLG has no Pokéblocks to raise Feebas's Beauty) |
+| FireRed QoL + Hard | 386 | none |
 
-Some choices lock others out for the rest of the save. Each counts as one
-either/or: the starter, which also decides the roaming legendary
-(Bulbasaur → Entei, Charmander → Suicune, Squirtle → Raikou), and the
-Mt. Moon fossil (Omanyte or Kabuto). The lists are in `firered_ai/data/`.
+In vanilla, some choices lock others out for the rest of the save. Each
+counts as one either/or: the starter, which also decides the roaming
+legendary (Bulbasaur → Entei, Charmander → Suicune, Squirtle → Raikou),
+and the Mt. Moon fossil (Omanyte or Kabuto). The QoL + Hard hack has no
+such choices. The lists are in `firered_ai/data/`.
 The right one is picked from the ROM's checksum. Override it with
 `--pokedex firered`, `--pokedex firered-qol-hard` or a JSON file.
 
