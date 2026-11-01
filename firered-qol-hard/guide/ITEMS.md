@@ -72,7 +72,7 @@ Gifts / events: Bicycle
 
 Gifts / events: TM03 Water Pulse
 
-## Cerulean City House5
+## Cerulean City House
 
 Gifts / events: Powder Jar
 
@@ -90,7 +90,7 @@ Shop: Poké Ball (₽200), Super Potion (₽700), Potion (₽300), Antidote (₽
 
 Gifts / events: TM34 Shock Wave
 
-## Vermilion City House1
+## Vermilion City House
 
 Gifts / events: Old Rod
 
@@ -176,7 +176,7 @@ Gifts / events: Coin Case
 
 Gifts / events: TM06 Toxic
 
-## Fuchsia City House2
+## Fuchsia City House
 
 Gifts / events: Good Rod
 
@@ -475,9 +475,9 @@ Gifts / events: Ruby
 | Hidden | Big Mushroom | 24, 35 |
 | Hidden | Big Mushroom | 6, 12 |
 | Hidden | Big Mushroom | 25, 34 |
-| Hidden | Tinymushroom | 46, 2 |
-| Hidden | Tinymushroom | 26, 2 |
-| Hidden | Tinymushroom | 39, 34 |
+| Hidden | Tiny Mushroom | 46, 2 |
+| Hidden | Tiny Mushroom | 26, 2 |
+| Hidden | Tiny Mushroom | 39, 34 |
 
 ## Mt. Moon B2F
 
@@ -701,7 +701,7 @@ Gifts / events: HM03 Surf
 | Hidden | Water Stone | 13, 8 |
 | Item ball | Ultra Ball | 22, 19 |
 
-## Silph Co 10F
+## Silph Co. 10F
 
 | Type | Item | At |
 |---|---|---|
@@ -710,7 +710,7 @@ Gifts / events: HM03 Surf
 | Item ball | Rare Candy | 3, 17 |
 | Item ball | Ultra Ball | 2, 15 |
 
-## Silph Co 11F
+## Silph Co. 11F
 
 | Type | Item | At |
 |---|---|---|
@@ -719,20 +719,20 @@ Gifts / events: HM03 Surf
 
 Gifts / events: Master Ball
 
-## Silph Co 2F
+## Silph Co. 2F
 
 | Type | Item | At |
 |---|---|---|
 | Hidden | Ultra Ball | 11, 21 |
 
-## Silph Co 3F
+## Silph Co. 3F
 
 | Type | Item | At |
 |---|---|---|
 | Hidden | Protein | 34, 18 |
 | Item ball | Hyper Potion | 8, 10 |
 
-## Silph Co 4F
+## Silph Co. 4F
 
 | Type | Item | At |
 |---|---|---|
@@ -742,7 +742,7 @@ Gifts / events: Master Ball
 | Item ball | Max Revive | 3, 11 |
 | Item ball | TM41 Torment | 30, 18 |
 
-## Silph Co 5F
+## Silph Co. 5F
 
 | Type | Item | At |
 |---|---|---|
@@ -752,7 +752,7 @@ Gifts / events: Master Ball
 | Item ball | Protein | 4, 9 |
 | Item ball | TM01 Focus Punch | 1, 18 |
 
-## Silph Co 6F
+## Silph Co. 6F
 
 | Type | Item | At |
 |---|---|---|
@@ -760,7 +760,7 @@ Gifts / events: Master Ball
 | Item ball | HP Up | 2, 14 |
 | Item ball | X Special | 1, 17 |
 
-## Silph Co 7F
+## Silph Co. 7F
 
 | Type | Item | At |
 |---|---|---|
@@ -768,33 +768,33 @@ Gifts / events: Master Ball
 | Item ball | Calcium | 0, 12 |
 | Item ball | TM08 Bulk Up | 30, 11 |
 
-## Silph Co 8F
+## Silph Co. 8F
 
 | Type | Item | At |
 |---|---|---|
 | Hidden | Nugget | 29, 10 |
 | Item ball | Iron | 24, 8 |
 
-## Silph Co 9F
+## Silph Co. 9F
 
 | Type | Item | At |
 |---|---|---|
 | Hidden | Calcium | 5, 8 |
 | Hidden | Max Potion | 11, 14 |
 
-## S.S. Anne 1F Room2
+## S.S. Anne 1F Room 2
 
 | Type | Item | At |
 |---|---|---|
 | Item ball | TM31 Brick Break | 5, 7 |
 
-## S.S. Anne 2F Room2
+## S.S. Anne 2F Room 2
 
 | Type | Item | At |
 |---|---|---|
 | Item ball | Stardust | 3, 3 |
 
-## S.S. Anne 2F Room4
+## S.S. Anne 2F Room 4
 
 | Type | Item | At |
 |---|---|---|
@@ -806,19 +806,19 @@ Gifts / events: Master Ball
 |---|---|---|
 | Hidden | Hyper Potion | 21, 5 |
 
-## S.S. Anne B1F Room2
+## S.S. Anne B1F Room 2
 
 | Type | Item | At |
 |---|---|---|
 | Item ball | TM44 Rest | 3, 2 |
 
-## S.S. Anne B1F Room3
+## S.S. Anne B1F Room 3
 
 | Type | Item | At |
 |---|---|---|
 | Item ball | Ether | 1, 5 |
 
-## S.S. Anne B1F Room5
+## S.S. Anne B1F Room 5
 
 | Type | Item | At |
 |---|---|---|
@@ -1040,31 +1040,31 @@ Shop: Ultra Ball (₽1200), Hyper Potion (₽1200), Revive (₽1500), Full Heal 
 
 Shop: Ultra Ball (₽1200), Full Restore (₽3000), Max Potion (₽2500), Revive (₽1500), Ice Heal (₽250), Full Heal (₽600), Escape Rope (₽550), Max Repel (₽700)
 
-## Five Island Lost Cave Room10
+## Five Island Lost Cave Room 10
 
 | Type | Item | At |
 |---|---|---|
 | Item ball | Silk Scarf | 5, 2 |
 
-## Five Island Lost Cave Room11
+## Five Island Lost Cave Room 11
 
 | Type | Item | At |
 |---|---|---|
 | Item ball | Lax Incense | 5, 5 |
 
-## Five Island Lost Cave Room12
+## Five Island Lost Cave Room 12
 
 | Type | Item | At |
 |---|---|---|
 | Item ball | Sea Incense | 5, 5 |
 
-## Five Island Lost Cave Room13
+## Five Island Lost Cave Room 13
 
 | Type | Item | At |
 |---|---|---|
 | Item ball | Max Revive | 5, 5 |
 
-## Five Island Lost Cave Room14
+## Five Island Lost Cave Room 14
 
 | Type | Item | At |
 |---|---|---|
@@ -1153,7 +1153,7 @@ Shop: Ultra Ball (₽1200), Full Restore (₽3000), Max Potion (₽2500), Revive
 | Item ball | Dragon Scale | 17, 87 |
 | Item ball | Elixir | 17, 19 |
 
-## Six Island Water Path House1
+## Six Island Water Path House
 
 Gifts / events: Nest Ball
 

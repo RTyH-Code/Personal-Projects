@@ -75,7 +75,7 @@ Height 0.2 m (0′08″) · Weight 2 kg (4.4 lbs)
 | 15 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | 20 | Night Shade | Ghost | Special | varies | 100% | 15 |
 | 35 | Psychic | Psychic | Special | 90 | 100% | 10 |
-| 40 | Wish | Normal | Status | — | 100% | 10 |
+| 40 | Wish | Normal | Status | — | — | 10 |
 | 45 | Future Sight | Psychic | Special | 120 | 100% | 10 |
 
 ### By TM/HM
@@ -114,7 +114,7 @@ Height 0.2 m (0′08″) · Weight 2 kg (4.4 lbs)
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
-| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co 2F |
+| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
 ### By breeding (egg moves)
@@ -130,7 +130,7 @@ Breed a Natu with a father that knows the move.
 | Steel Wing | Steel | Physical | 70 | 90% | 25 |
 | Psych Up | Normal | Status | — | — | 10 |
 | Feather Dance | Flying | Status | — | 100% | 15 |
-| Refresh | Normal | Status | — | 100% | 20 |
+| Refresh | Normal | Status | — | — | 20 |
 
 ---
 

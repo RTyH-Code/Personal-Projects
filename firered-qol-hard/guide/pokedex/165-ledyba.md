@@ -127,7 +127,7 @@ Breed a Ledyba with a father that knows the move.
 | Move | Type | Cat. | Power | Acc. | PP |
 |---|---|---|--:|--:|--:|
 | Psybeam | Psychic | Special | 65 | 100% | 20 |
-| Bide | Normal | Physical | varies | 100% | 10 |
+| Bide | Normal | Physical | varies | — | 10 |
 | Silver Wind | Bug | Special | 60 | 100% | 5 |
 
 ---

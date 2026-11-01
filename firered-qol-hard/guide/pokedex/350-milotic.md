@@ -107,7 +107,7 @@ Height 6.2 m (20′04″) · Weight 162 kg (357.1 lbs)
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
@@ -120,7 +120,7 @@ Breed a Feebas (passed down to Feebas, which then evolves) with a father that kn
 |---|---|---|--:|--:|--:|
 | Mirror Coat | Psychic | Special | varies | 100% | 20 |
 | Dragon Breath | Dragon | Special | 60 | 100% | 20 |
-| Mud Sport | Ground | Status | — | 100% | 15 |
+| Mud Sport | Ground | Status | — | — | 15 |
 | Hypnosis | Psychic | Status | — | 60% | 20 |
 | Light Screen | Psychic | Status | — | — | 30 |
 | Confuse Ray | Ghost | Status | — | 100% | 10 |

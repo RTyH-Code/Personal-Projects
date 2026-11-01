@@ -4,7 +4,7 @@
 
 *The Meditate Pokémon* — **Fighting / Psychic**
 
-> It elegantly avoids attacks with dance- like steps, then launches a devastating blow in the same motion.
+> It elegantly avoids attacks with dance-like steps, then launches a devastating blow in the same motion.
 
 Height 1.3 m (4′03″) · Weight 31.5 kg (69.4 lbs)
 
@@ -112,7 +112,7 @@ Height 1.3 m (4′03″) · Weight 31.5 kg (69.4 lbs)
 |---|---|---|--:|--:|--:|---|
 | Mega Punch | Normal | Physical | 80 | 85% | 20 | Route 4 |
 | Mega Kick | Normal | Physical | 120 | 75% | 5 | Route 4 |
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Counter | Fighting | Physical | varies | 100% | 20 | Celadon City Department Store 3F |
 | Seismic Toss | Fighting | Physical | varies | 100% | 20 | Pewter City Museum 1F |

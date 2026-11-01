@@ -66,7 +66,7 @@ Height 1.8 m (5′11″) · Weight 22.6 kg (49.8 lbs)
 |--:|---|---|---|--:|--:|--:|
 | 1 | Confusion | Psychic | Special | 50 | 100% | 25 |
 | 1 | Whirlpool | Water | Special | 35 | 85% | 15 |
-| 5 | Water Sport ★ | Water | Status | — | 100% | 15 |
+| 5 | Water Sport ★ | Water | Status | — | — | 15 |
 | 9 | Agility | Psychic | Status | — | — | 30 |
 | 14 | Water Pulse | Water | Special | 60 | 100% | 20 |
 | 16 | Amnesia | Psychic | Status | — | — | 20 |
@@ -106,7 +106,7 @@ Height 1.8 m (5′11″) · Weight 22.6 kg (49.8 lbs)
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
@@ -117,8 +117,8 @@ Breed a Clamperl (passed down to Clamperl, which then evolves) with a father tha
 
 | Move | Type | Cat. | Power | Acc. | PP |
 |---|---|---|--:|--:|--:|
-| Refresh | Normal | Status | — | 100% | 20 |
-| Mud Sport | Ground | Status | — | 100% | 15 |
+| Refresh | Normal | Status | — | — | 20 |
+| Mud Sport | Ground | Status | — | — | 15 |
 | Body Slam | Normal | Physical | 85 | 100% | 15 |
 | Supersonic | Normal | Status | — | 55% | 20 |
 | Barrier | Psychic | Status | — | — | 20 |

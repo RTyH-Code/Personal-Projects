@@ -69,7 +69,7 @@ Height 1.5 m (4′11″) · Weight 49.8 kg (109.8 lbs)
 | 1 | Tackle ★ | Normal | Physical | 40 | 100% | 35 |
 | 1 | Focus Energy | Normal | Status | — | — | 30 |
 | 1 | Fake Out ★ | Normal | Physical | 40 | 100% | 10 |
-| 1 | Helping Hand ★ | Normal | Status | — | 100% | 20 |
+| 1 | Helping Hand ★ | Normal | Status | — | — | 20 |
 | 1 | Brick Break | Fighting | Physical | 75 | 100% | 15 |
 | 4 | Double Kick | Fighting | Physical | 30 | 100% | 30 |
 | 8 | Low Kick ★ | Fighting | Physical | varies | 100% | 20 |
@@ -110,7 +110,7 @@ Height 1.5 m (4′11″) · Weight 49.8 kg (109.8 lbs)
 |---|---|---|--:|--:|--:|---|
 | Mega Punch | Normal | Physical | 80 | 85% | 20 | Route 4 |
 | Mega Kick | Normal | Physical | 120 | 75% | 5 | Route 4 |
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Counter | Fighting | Physical | varies | 100% | 20 | Celadon City Department Store 3F |
 | Seismic Toss | Fighting | Physical | varies | 100% | 20 | Pewter City Museum 1F |
@@ -129,7 +129,7 @@ Breed a Tyrogue (passed down to Tyrogue, which then evolves) with a father that 
 | Hi Jump Kick | Fighting | Physical | 130 | 90% | 10 |
 | Mach Punch | Fighting | Physical | 40 | 100% | 30 |
 | Mind Reader | Normal | Status | — | 100% | 5 |
-| Helping Hand | Normal | Status | — | 100% | 20 |
+| Helping Hand | Normal | Status | — | — | 20 |
 
 ---
 

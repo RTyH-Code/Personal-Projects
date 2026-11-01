@@ -79,7 +79,7 @@ Height 0.7 m (2′04″) · Weight 19 kg (41.9 lbs)
 | 4 | Howl ★ | Normal | Status | — | — | 40 |
 | 8 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 12 | Flame Wheel | Fire | Physical | 60 | 100% | 25 |
-| 16 | Helping Hand | Normal | Status | — | 100% | 20 |
+| 16 | Helping Hand | Normal | Status | — | — | 20 |
 | 20 | Agility | Psychic | Status | — | — | 30 |
 | 32 | Crunch ★ | Dark | Physical | 80 | 100% | 15 |
 | 36 | Take Down | Normal | Physical | 90 | 85% | 20 |
@@ -117,7 +117,7 @@ Height 0.7 m (2′04″) · Weight 19 kg (41.9 lbs)
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |

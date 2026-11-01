@@ -117,7 +117,7 @@ Height 0.7 m (2′04″) · Weight 28 kg (61.7 lbs)
 |---|---|---|--:|--:|--:|---|
 | Mega Punch | Normal | Physical | 80 | 85% | 20 | Route 4 |
 | Mega Kick | Normal | Physical | 120 | 75% | 5 | Route 4 |
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Counter | Fighting | Physical | varies | 100% | 20 | Celadon City Department Store 3F |
 | Seismic Toss | Fighting | Physical | varies | 100% | 20 | Pewter City Museum 1F |
@@ -131,7 +131,7 @@ Breed a Mudkip (passed down to Mudkip, which then evolves) with a father that kn
 
 | Move | Type | Cat. | Power | Acc. | PP |
 |---|---|---|--:|--:|--:|
-| Refresh | Normal | Status | — | 100% | 20 |
+| Refresh | Normal | Status | — | — | 20 |
 | Uproar | Normal | Special | 90 | 100% | 10 |
 | Curse | ??? | Status | — | — | 10 |
 | Stomp | Normal | Physical | 65 | 100% | 20 |

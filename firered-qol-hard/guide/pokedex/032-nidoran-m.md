@@ -76,7 +76,7 @@ Height 0.5 m (1′08″) · Weight 9 kg (19.8 lbs)
 | 15 | Fury Attack | Normal | Physical | 15 | 85% | 20 |
 | 25 | Double Kick | Fighting | Physical | 30 | 100% | 30 |
 | 30 | Horn Attack | Normal | Physical | 65 | 100% | 25 |
-| 35 | Helping Hand | Normal | Status | — | 100% | 20 |
+| 35 | Helping Hand | Normal | Status | — | — | 20 |
 | 40 | Toxic ★ | Poison | Status | — | 90% | 10 |
 | 45 | Flatter | Dark | Status | — | 100% | 15 |
 
@@ -114,7 +114,7 @@ Height 0.5 m (1′08″) · Weight 9 kg (19.8 lbs)
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Counter | Fighting | Physical | varies | 100% | 20 | Celadon City Department Store 3F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |

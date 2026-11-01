@@ -65,20 +65,20 @@ Height 1.6 m (5′03″) · Weight 0.1 kg (0.2 lbs)
 - **Pokémon Tower 5F**: Grass / cave Lv 20 (5%)
 - **Pokémon Tower 6F**: Grass / cave Lv 21–23 (6%)
 - **Pokémon Tower 7F**: Grass / cave Lv 23–25 (15%)
-- **Five Island Lost Cave Room1**: Grass / cave Lv 44–52 (25%)
-- **Five Island Lost Cave Room10**: Grass / cave Lv 44–52 (25%)
-- **Five Island Lost Cave Room11**: Grass / cave Lv 44–52 (30%)
-- **Five Island Lost Cave Room12**: Grass / cave Lv 44–52 (30%)
-- **Five Island Lost Cave Room13**: Grass / cave Lv 44–52 (30%)
-- **Five Island Lost Cave Room14**: Grass / cave Lv 44–52 (30%)
-- **Five Island Lost Cave Room2**: Grass / cave Lv 44–52 (30%)
-- **Five Island Lost Cave Room3**: Grass / cave Lv 44–52 (30%)
-- **Five Island Lost Cave Room4**: Grass / cave Lv 44–52 (30%)
-- **Five Island Lost Cave Room5**: Grass / cave Lv 44–52 (25%)
-- **Five Island Lost Cave Room6**: Grass / cave Lv 44–52 (30%)
-- **Five Island Lost Cave Room7**: Grass / cave Lv 44–52 (30%)
-- **Five Island Lost Cave Room8**: Grass / cave Lv 44–52 (30%)
-- **Five Island Lost Cave Room9**: Grass / cave Lv 44–52 (30%)
+- **Five Island Lost Cave Room 1**: Grass / cave Lv 44–52 (25%)
+- **Five Island Lost Cave Room 10**: Grass / cave Lv 44–52 (25%)
+- **Five Island Lost Cave Room 11**: Grass / cave Lv 44–52 (30%)
+- **Five Island Lost Cave Room 12**: Grass / cave Lv 44–52 (30%)
+- **Five Island Lost Cave Room 13**: Grass / cave Lv 44–52 (30%)
+- **Five Island Lost Cave Room 14**: Grass / cave Lv 44–52 (30%)
+- **Five Island Lost Cave Room 2**: Grass / cave Lv 44–52 (30%)
+- **Five Island Lost Cave Room 3**: Grass / cave Lv 44–52 (30%)
+- **Five Island Lost Cave Room 4**: Grass / cave Lv 44–52 (30%)
+- **Five Island Lost Cave Room 5**: Grass / cave Lv 44–52 (25%)
+- **Five Island Lost Cave Room 6**: Grass / cave Lv 44–52 (30%)
+- **Five Island Lost Cave Room 7**: Grass / cave Lv 44–52 (30%)
+- **Five Island Lost Cave Room 8**: Grass / cave Lv 44–52 (30%)
+- **Five Island Lost Cave Room 9**: Grass / cave Lv 44–52 (30%)
 - Evolve [Gastly](092-gastly.md)
 
 </details>
@@ -150,7 +150,7 @@ Breed a Gastly (passed down to Gastly, which then evolves) with a father that kn
 | Haze | Ice | Status | — | — | 30 |
 | Astonish | Ghost | Physical | 30 | 100% | 15 |
 | Will-O-Wisp | Fire | Status | — | 85% | 15 |
-| Grudge | Ghost | Status | — | 100% | 5 |
+| Grudge | Ghost | Status | — | — | 5 |
 | Explosion | Normal | Physical | 250 | 100% | 5 |
 
 ---

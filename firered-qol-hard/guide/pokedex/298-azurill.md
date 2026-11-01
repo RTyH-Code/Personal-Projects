@@ -72,7 +72,7 @@ Height 0.2 m (0′08″) · Weight 2 kg (4.4 lbs)
 | 1 | Tail Whip | Normal | Status | — | 100% | 30 |
 | 1 | Water Gun | Water | Special | 40 | 100% | 25 |
 | 1 | Splash | Normal | Status | — | — | 40 |
-| 3 | Helping Hand ★ | Normal | Status | — | 100% | 20 |
+| 3 | Helping Hand ★ | Normal | Status | — | — | 20 |
 | 6 | Bubble Beam ★ | Water | Special | 65 | 100% | 20 |
 | 9 | Charm | Normal | Status | — | 100% | 20 |
 | 12 | Slam | Normal | Physical | 80 | 75% | 20 |
@@ -105,7 +105,7 @@ Height 0.2 m (0′08″) · Weight 2 kg (4.4 lbs)
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
@@ -118,7 +118,7 @@ Breed a Azurill with a father that knows the move.
 |---|---|---|--:|--:|--:|
 | Encore | Normal | Status | — | 100% | 5 |
 | Sing | Normal | Status | — | 55% | 15 |
-| Refresh | Normal | Status | — | 100% | 20 |
+| Refresh | Normal | Status | — | — | 20 |
 | Slam | Normal | Physical | 80 | 75% | 20 |
 | Tickle | Normal | Status | — | 100% | 20 |
 

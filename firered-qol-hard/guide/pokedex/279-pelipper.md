@@ -74,7 +74,7 @@ Height 1.2 m (3′11″) · Weight 28 kg (61.7 lbs)
 | 15 | Wing Attack | Flying | Physical | 60 | 100% | 35 |
 | 20 | Water Pulse ★ | Water | Special | 60 | 100% | 20 |
 | 28 | Stockpile | Normal | Status | — | — | 20 |
-| 28 | Spit Up | Normal | Special | 100 | 100% | 10 |
+| 28 | Spit Up | Normal | Special | varies | 100% | 10 |
 | 28 | Swallow | Normal | Status | — | — | 10 |
 | 41 | Mist | Ice | Status | — | — | 30 |
 | 62 | Hydro Pump | Water | Special | 110 | 80% | 5 |
@@ -124,7 +124,7 @@ Breed a Wingull (passed down to Wingull, which then evolves) with a father that 
 | Twister | Dragon | Special | 40 | 100% | 20 |
 | Agility | Psychic | Status | — | — | 30 |
 | Gust | Flying | Special | 40 | 100% | 35 |
-| Water Sport | Water | Status | — | 100% | 15 |
+| Water Sport | Water | Status | — | — | 15 |
 
 ---
 

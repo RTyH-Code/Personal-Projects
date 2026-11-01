@@ -128,7 +128,7 @@ Breed a Exeggcute (passed down to Exeggcute, which then evolves) with a father t
 | Reflect | Psychic | Status | — | — | 20 |
 | Ancient Power | Rock | Special | 60 | 100% | 5 |
 | Psych Up | Normal | Status | — | — | 10 |
-| Ingrain | Grass | Status | — | 100% | 20 |
+| Ingrain | Grass | Status | — | — | 20 |
 | Curse | ??? | Status | — | — | 10 |
 
 ---

@@ -118,7 +118,7 @@ Height 0.8 m (2′07″) · Weight 34.5 kg (76.1 lbs)
 |---|---|---|--:|--:|--:|---|
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
-| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co 2F |
+| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
 ---

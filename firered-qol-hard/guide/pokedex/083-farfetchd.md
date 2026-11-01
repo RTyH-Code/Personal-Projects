@@ -57,7 +57,7 @@ Farfetch'd does not evolve.
 
 ## Where to find it
 
-- **Vermilion City House2**: in-game trade for Spearow ("CH'DING")
+- **Vermilion City House**: in-game trade for Spearow ("CH'DING")
 - Breeding: hatches from an Egg left by a Farfetch'd at the Four Island Day Care
 
 ## Moves
@@ -109,7 +109,7 @@ Farfetch'd does not evolve.
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
 | Swords Dance | Normal | Status | — | — | 20 | Seven Island |
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |

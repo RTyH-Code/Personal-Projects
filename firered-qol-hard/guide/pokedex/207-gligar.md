@@ -2,7 +2,7 @@
 
 # #207 Gligar
 
-*The Flyscorpion Pokémon* — **Ground / Flying**
+*The FlyScorpion Pokémon* — **Ground / Flying**
 
 > It usually clings to cliffs. When it spots its prey, it spreads its wings and glides down to attack.
 

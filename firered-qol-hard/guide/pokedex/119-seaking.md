@@ -125,7 +125,7 @@ Breed a Goldeen (passed down to Goldeen, which then evolves) with a father that 
 | Haze | Ice | Status | — | — | 30 |
 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 | Sleep Talk | Normal | Status | — | — | 10 |
-| Mud Sport | Ground | Status | — | 100% | 15 |
+| Mud Sport | Ground | Status | — | — | 15 |
 
 ---
 

@@ -108,7 +108,7 @@ Height 0.5 m (1′08″) · Weight 4 kg (8.8 lbs)
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
 | Swords Dance | Normal | Status | — | — | 20 | Seven Island |
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Explosion | Normal | Physical | 250 | 100% | 5 | Mt. Ember Exterior |

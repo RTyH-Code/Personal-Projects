@@ -74,7 +74,7 @@ Height 1.4 m (4′07″) · Weight 62 kg (136.7 lbs)
 | 18 | Fury Attack ★ | Normal | Physical | 15 | 85% | 20 |
 | 33 | Double Kick | Fighting | Physical | 30 | 100% | 30 |
 | 41 | Horn Attack ★ | Normal | Physical | 65 | 100% | 25 |
-| 49 | Helping Hand ★ | Normal | Status | — | 100% | 20 |
+| 49 | Helping Hand ★ | Normal | Status | — | — | 20 |
 | 58 | Toxic ★ | Poison | Status | — | 90% | 10 |
 | 66 | Flatter ★ | Dark | Status | — | 100% | 15 |
 
@@ -127,7 +127,7 @@ Height 1.4 m (4′07″) · Weight 62 kg (136.7 lbs)
 |---|---|---|--:|--:|--:|---|
 | Mega Punch | Normal | Physical | 80 | 85% | 20 | Route 4 |
 | Mega Kick | Normal | Physical | 120 | 75% | 5 | Route 4 |
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Counter | Fighting | Physical | varies | 100% | 20 | Celadon City Department Store 3F |
 | Seismic Toss | Fighting | Physical | varies | 100% | 20 | Pewter City Museum 1F |

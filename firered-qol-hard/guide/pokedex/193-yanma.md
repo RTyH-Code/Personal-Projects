@@ -11,7 +11,7 @@ Height 1.2 m (3′11″) · Weight 38 kg (83.8 lbs)
 ## Abilities
 
 - **Speed Boost**: Gradually boosts Speed.
-- **Compoundeyes**: Raises accuracy.
+- **Compound Eyes**: Raises accuracy.
 
 *Each individual has one of the two, set by its personality value.*
 

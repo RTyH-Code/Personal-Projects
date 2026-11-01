@@ -42,7 +42,7 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 - [Cerulean Cave 1F](#cerulean-cave-1f)
 - [Cerulean Cave 2F](#cerulean-cave-2f)
 - [Cerulean Cave B1F](#cerulean-cave-b1f)
-- [Digletts Cave B1F](#digletts-cave-b1f)
+- [Diglett's Cave B1F](#digletts-cave-b1f)
 - [Mt. Ember Exterior](#mt-ember-exterior)
 - [Mt. Ember Ruby Path 1F](#mt-ember-ruby-path-1f)
 - [Mt. Ember Ruby Path B1F](#mt-ember-ruby-path-b1f)
@@ -95,20 +95,20 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 - [Four Island Icefall Cave Back](#four-island-icefall-cave-back)
 - [Four Island Icefall Cave Entrance](#four-island-icefall-cave-entrance)
 - [Five Island](#five-island)
-- [Five Island Lost Cave Room1](#five-island-lost-cave-room1)
-- [Five Island Lost Cave Room10](#five-island-lost-cave-room10)
-- [Five Island Lost Cave Room11](#five-island-lost-cave-room11)
-- [Five Island Lost Cave Room12](#five-island-lost-cave-room12)
-- [Five Island Lost Cave Room13](#five-island-lost-cave-room13)
-- [Five Island Lost Cave Room14](#five-island-lost-cave-room14)
-- [Five Island Lost Cave Room2](#five-island-lost-cave-room2)
-- [Five Island Lost Cave Room3](#five-island-lost-cave-room3)
-- [Five Island Lost Cave Room4](#five-island-lost-cave-room4)
-- [Five Island Lost Cave Room5](#five-island-lost-cave-room5)
-- [Five Island Lost Cave Room6](#five-island-lost-cave-room6)
-- [Five Island Lost Cave Room7](#five-island-lost-cave-room7)
-- [Five Island Lost Cave Room8](#five-island-lost-cave-room8)
-- [Five Island Lost Cave Room9](#five-island-lost-cave-room9)
+- [Five Island Lost Cave Room 1](#five-island-lost-cave-room-1)
+- [Five Island Lost Cave Room 10](#five-island-lost-cave-room-10)
+- [Five Island Lost Cave Room 11](#five-island-lost-cave-room-11)
+- [Five Island Lost Cave Room 12](#five-island-lost-cave-room-12)
+- [Five Island Lost Cave Room 13](#five-island-lost-cave-room-13)
+- [Five Island Lost Cave Room 14](#five-island-lost-cave-room-14)
+- [Five Island Lost Cave Room 2](#five-island-lost-cave-room-2)
+- [Five Island Lost Cave Room 3](#five-island-lost-cave-room-3)
+- [Five Island Lost Cave Room 4](#five-island-lost-cave-room-4)
+- [Five Island Lost Cave Room 5](#five-island-lost-cave-room-5)
+- [Five Island Lost Cave Room 6](#five-island-lost-cave-room-6)
+- [Five Island Lost Cave Room 7](#five-island-lost-cave-room-7)
+- [Five Island Lost Cave Room 8](#five-island-lost-cave-room-8)
+- [Five Island Lost Cave Room 9](#five-island-lost-cave-room-9)
 - [Five Island Meadow](#five-island-meadow)
 - [Five Island Memorial Pillar](#five-island-memorial-pillar)
 - [Five Island Resort Gorgeous](#five-island-resort-gorgeous)
@@ -691,7 +691,7 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 |  | Gyarados | 15–35 | 16% |
 |  | Psyduck | 15–25 | 4% |
 
-## Digletts Cave B1F
+## Diglett's Cave B1F
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
@@ -1445,7 +1445,7 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 |  | Seadra | 25–35 | 4% |
 |  | Psyduck | 25–35 | 1% |
 
-## Five Island Lost Cave Room1
+## Five Island Lost Cave Room 1
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
@@ -1456,7 +1456,7 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 |  | Sableye ★ | 48 | 5% |
 |  | Murkrow | 22 | 5% |
 
-## Five Island Lost Cave Room10
+## Five Island Lost Cave Room 10
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
@@ -1467,7 +1467,7 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 |  | Duskull ★ | 48 | 5% |
 |  | Murkrow | 22 | 5% |
 
-## Five Island Lost Cave Room11
+## Five Island Lost Cave Room 11
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
@@ -1477,7 +1477,7 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 |  | Murkrow | 15–22 | 20% |
 |  | Golbat | 41 | 10% |
 
-## Five Island Lost Cave Room12
+## Five Island Lost Cave Room 12
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
@@ -1487,7 +1487,7 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 |  | Murkrow | 15–22 | 20% |
 |  | Golbat | 41 | 10% |
 
-## Five Island Lost Cave Room13
+## Five Island Lost Cave Room 13
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
@@ -1497,7 +1497,7 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 |  | Murkrow | 15–22 | 20% |
 |  | Golbat | 41 | 10% |
 
-## Five Island Lost Cave Room14
+## Five Island Lost Cave Room 14
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
@@ -1507,7 +1507,7 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 |  | Murkrow | 15–22 | 20% |
 |  | Golbat | 41 | 10% |
 
-## Five Island Lost Cave Room2
+## Five Island Lost Cave Room 2
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
@@ -1517,7 +1517,7 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 |  | Golbat | 41–43 | 20% |
 |  | Murkrow | 22 | 5% |
 
-## Five Island Lost Cave Room3
+## Five Island Lost Cave Room 3
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
@@ -1527,7 +1527,7 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 |  | Golbat | 41–43 | 20% |
 |  | Murkrow | 22 | 5% |
 
-## Five Island Lost Cave Room4
+## Five Island Lost Cave Room 4
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
@@ -1537,7 +1537,7 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 |  | Golbat | 41–43 | 20% |
 |  | Murkrow | 22 | 5% |
 
-## Five Island Lost Cave Room5
+## Five Island Lost Cave Room 5
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
@@ -1548,7 +1548,7 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 |  | Sableye ★ | 48 | 5% |
 |  | Murkrow | 22 | 5% |
 
-## Five Island Lost Cave Room6
+## Five Island Lost Cave Room 6
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
@@ -1558,7 +1558,7 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 |  | Golbat | 41–43 | 20% |
 |  | Murkrow | 22 | 5% |
 
-## Five Island Lost Cave Room7
+## Five Island Lost Cave Room 7
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
@@ -1568,7 +1568,7 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 |  | Golbat | 41–43 | 20% |
 |  | Murkrow | 22 | 5% |
 
-## Five Island Lost Cave Room8
+## Five Island Lost Cave Room 8
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
@@ -1578,7 +1578,7 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 |  | Golbat | 41–43 | 20% |
 |  | Murkrow | 22 | 5% |
 
-## Five Island Lost Cave Room9
+## Five Island Lost Cave Room 9
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|

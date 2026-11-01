@@ -57,7 +57,7 @@ Height 0.2 m (0′08″) · Weight 0.8 kg (1.8 lbs)
 
 ## Where to find it
 
-- **Digletts Cave B1F**: Grass / cave Lv 15–20 (85%)
+- **Diglett's Cave B1F**: Grass / cave Lv 15–20 (85%)
 - Breeding: hatches from an Egg left by a Diglett or Dugtrio at the Four Island Day Care
 
 ## Moves
@@ -107,7 +107,7 @@ Height 0.2 m (0′08″) · Weight 0.8 kg (1.8 lbs)
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |

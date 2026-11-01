@@ -42,7 +42,7 @@ Height 0.3 m (1′00″) · Weight 5.4 kg (11.9 lbs)
 | Catch rate | 190 |
 | Base Exp. yield | 70 |
 | EV yield | 1 Attack |
-| Held items (wild) | Tinymushroom (50%), Big Mushroom (5%) |
+| Held items (wild) | Tiny Mushroom (50%), Big Mushroom (5%) |
 | Base friendship | 70 |
 | Growth rate | Medium Fast (1,000,000 Exp. to Lv 100) |
 | Gender | 50% male, 50% female |
@@ -112,7 +112,7 @@ Height 0.3 m (1′00″) · Weight 5.4 kg (11.9 lbs)
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
 | Swords Dance | Normal | Status | — | — | 20 | Seven Island |
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Counter | Fighting | Physical | varies | 100% | 20 | Celadon City Department Store 3F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |

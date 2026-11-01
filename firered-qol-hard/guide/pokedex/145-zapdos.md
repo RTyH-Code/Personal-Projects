@@ -70,7 +70,7 @@ Zapdos does not evolve.
 | 10 | Light Screen | Psychic | Status | — | — | 30 |
 | 20 | Agility | Psychic | Status | — | — | 30 |
 | 25 | Ancient Power ★ | Rock | Special | 60 | 100% | 5 |
-| 30 | Charge | Electric | Status | — | 100% | 20 |
+| 30 | Charge | Electric | Status | — | — | 20 |
 | 35 | Drill Peck | Flying | Physical | 80 | 100% | 20 |
 | 50 | Rain Dance ★ | Water | Status | — | — | 5 |
 | 55 | Thunder | Electric | Special | 110 | 70% | 10 |
@@ -111,7 +111,7 @@ Zapdos does not evolve.
 |---|---|---|--:|--:|--:|---|
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
-| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co 2F |
+| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
 ---

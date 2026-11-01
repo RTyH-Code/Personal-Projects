@@ -4,7 +4,7 @@
 
 *The Pincer Pokémon* — **Water**
 
-> Its large and hard pincer has 10,000- horsepower strength. However, being so big, it is unwieldy to move.
+> Its large and hard pincer has 10,000-horsepower strength. However, being so big, it is unwieldy to move.
 
 Height 1.3 m (4′03″) · Weight 60 kg (132.3 lbs)
 
@@ -114,7 +114,7 @@ Height 1.3 m (4′03″) · Weight 60 kg (132.3 lbs)
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
 | Swords Dance | Normal | Status | — | — | 20 | Seven Island |
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |

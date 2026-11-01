@@ -115,7 +115,7 @@ Mantine does not evolve.
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
@@ -130,7 +130,7 @@ Breed a Mantine with a father that knows the move.
 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 | Haze | Ice | Status | — | — | 30 |
 | Slam | Normal | Physical | 80 | 75% | 20 |
-| Mud Sport | Ground | Status | — | 100% | 15 |
+| Mud Sport | Ground | Status | — | — | 15 |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 |
 
 ---

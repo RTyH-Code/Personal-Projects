@@ -80,7 +80,7 @@ Tangela does not evolve.
 | 36 | Sleep Powder | Grass | Status | — | 75% | 15 |
 | 40 | Slam | Normal | Physical | 80 | 75% | 20 |
 | 44 | Tickle | Normal | Status | — | 100% | 20 |
-| 52 | Ingrain | Grass | Status | — | 100% | 20 |
+| 52 | Ingrain | Grass | Status | — | — | 20 |
 
 ### By TM/HM
 
@@ -112,7 +112,7 @@ Tangela does not evolve.
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
 | Swords Dance | Normal | Status | — | — | 20 | Seven Island |
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |

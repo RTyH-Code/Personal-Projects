@@ -4,7 +4,7 @@
 
 *The String Spit Pokémon* — **Bug / Poison**
 
-> It spins a web using fine--but durable-- thread. It then waits patiently for prey to be trapped.
+> It spins a web using fine--but durable--thread. It then waits patiently for prey to be trapped.
 
 Height 0.5 m (1′08″) · Weight 8.5 kg (18.7 lbs)
 
@@ -105,7 +105,7 @@ Height 0.5 m (1′08″) · Weight 8.5 kg (18.7 lbs)
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |

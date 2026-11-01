@@ -114,12 +114,12 @@ Height 0.4 m (1′04″) · Weight 6 kg (13.2 lbs)
 |---|---|---|--:|--:|--:|---|
 | Mega Punch | Normal | Physical | 80 | 85% | 20 | Route 4 |
 | Mega Kick | Normal | Physical | 120 | 75% | 5 | Route 4 |
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Counter | Fighting | Physical | varies | 100% | 20 | Celadon City Department Store 3F |
 | Seismic Toss | Fighting | Physical | varies | 100% | 20 | Pewter City Museum 1F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
-| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co 2F |
+| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
 ### By breeding (egg moves)
@@ -129,12 +129,14 @@ Breed a Pichu (passed down to Pichu, which then evolves) with a father that know
 | Move | Type | Cat. | Power | Acc. | PP |
 |---|---|---|--:|--:|--:|
 | Reversal | Fighting | Physical | varies | 100% | 15 |
-| Bide | Normal | Physical | varies | 100% | 10 |
+| Bide | Normal | Physical | varies | — | 10 |
 | Present | Normal | Physical | varies | 90% | 15 |
 | Encore | Normal | Status | — | 100% | 5 |
 | Double Slap | Normal | Physical | 15 | 85% | 10 |
-| Wish | Normal | Status | — | 100% | 10 |
-| Charge | Electric | Status | — | 100% | 20 |
+| Wish | Normal | Status | — | — | 10 |
+| Charge | Electric | Status | — | — | 20 |
+
+**Volt Tackle** (Electric, Physical, 120, 100%, 15 PP): a Pichu Egg knows it if either parent holds a **Light Ball**. The Move Maniac can't teach it.
 
 ---
 

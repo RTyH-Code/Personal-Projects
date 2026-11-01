@@ -108,12 +108,12 @@ Height 1.1 m (3′07″) · Weight 12.5 kg (27.6 lbs)
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Metronome | Normal | Status | — | — | 10 | Cinnabar Island Pokémon Lab Research Room |
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
-| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co 2F |
+| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
 ### By breeding (egg moves)
@@ -126,7 +126,7 @@ Breed a Shuppet (passed down to Shuppet, which then evolves) with a father that 
 | Destiny Bond | Ghost | Status | — | — | 5 |
 | Foresight | Normal | Status | — | 100% | 40 |
 | Astonish | Ghost | Physical | 30 | 100% | 15 |
-| Imprison | Psychic | Status | — | 100% | 10 |
+| Imprison | Psychic | Status | — | — | 10 |
 
 ---
 

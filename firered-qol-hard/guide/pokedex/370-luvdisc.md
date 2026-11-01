@@ -69,7 +69,7 @@ Luvdisc does not evolve.
 | 1 | Charm | Normal | Status | — | 100% | 20 |
 | 4 | Water Gun | Water | Special | 40 | 100% | 25 |
 | 7 | Agility | Psychic | Status | — | — | 30 |
-| 13 | Wish ★ | Normal | Status | — | 100% | 10 |
+| 13 | Wish ★ | Normal | Status | — | — | 10 |
 | 17 | Water Pulse ★ | Water | Special | 60 | 100% | 20 |
 | 20 | Attract | Normal | Status | — | 100% | 15 |
 | 26 | Flail | Normal | Physical | varies | 100% | 15 |
@@ -118,8 +118,8 @@ Breed a Luvdisc with a father that knows the move.
 |---|---|---|--:|--:|--:|
 | Splash | Normal | Status | — | — | 40 |
 | Supersonic | Normal | Status | — | 55% | 20 |
-| Water Sport | Water | Status | — | 100% | 15 |
-| Mud Sport | Ground | Status | — | 100% | 15 |
+| Water Sport | Water | Status | — | — | 15 |
+| Mud Sport | Ground | Status | — | — | 15 |
 
 ---
 

@@ -74,7 +74,7 @@ Height 0.8 m (2′07″) · Weight 1.2 kg (2.6 lbs)
 | 1 | Mud-Slap ★ | Ground | Special | 20 | 100% | 10 |
 | 1 | False Swipe ★ | Normal | Physical | 40 | 100% | 40 |
 | 1 | Metal Claw ★ | Steel | Physical | 50 | 95% | 35 |
-| 1 | Grudge | Ghost | Status | — | 100% | 5 |
+| 1 | Grudge | Ghost | Status | — | — | 5 |
 | 15 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | 23 | Absorb ★ | Grass | Special | 20 | 100% | 25 |
 | 36 | Fury Swipes | Normal | Physical | 18 | 80% | 15 |

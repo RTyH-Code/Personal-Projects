@@ -49,7 +49,7 @@ Height 0.8 m (2′07″) · Weight 36.5 kg (80.5 lbs)
 
 ## Evolution
 
-- **Porygon** → [Porygon2](233-porygon2.md): Use a Up-Grade *(originally: Trade holding Up-Grade)*
+- **Porygon** → [Porygon2](233-porygon2.md): Use an Up-Grade *(originally: Trade holding Up-Grade)*
 
 ## Where to find it
 
@@ -66,10 +66,10 @@ Height 0.8 m (2′07″) · Weight 36.5 kg (80.5 lbs)
 |--:|---|---|---|--:|--:|--:|
 | 1 | Tackle | Normal | Physical | 40 | 100% | 35 |
 | 1 | Conversion | Normal | Status | — | — | 30 |
-| 5 | Recycle | Normal | Status | — | 100% | 10 |
+| 5 | Recycle | Normal | Status | — | — | 10 |
 | 15 | Thunder Shock ★ | Electric | Special | 40 | 100% | 30 |
 | 20 | Psybeam | Psychic | Special | 65 | 100% | 20 |
-| 25 | Conversion 2 | Normal | Status | — | 100% | 30 |
+| 25 | Conversion 2 | Normal | Status | — | — | 30 |
 | 30 | Agility | Psychic | Status | — | — | 30 |
 | 35 | Recover | Normal | Status | — | — | 5 |
 | 45 | Tri Attack | Normal | Special | 80 | 100% | 10 |
@@ -113,7 +113,7 @@ Height 0.8 m (2′07″) · Weight 36.5 kg (80.5 lbs)
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
-| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co 2F |
+| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
 ---

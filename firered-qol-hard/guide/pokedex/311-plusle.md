@@ -67,11 +67,11 @@ Plusle does not evolve.
 | 1 | Growl | Normal | Status | — | 100% | 40 |
 | 1 | Thunder Wave | Electric | Status | — | 90% | 20 |
 | 1 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
-| 4 | Helping Hand | Normal | Status | — | 100% | 20 |
+| 4 | Helping Hand | Normal | Status | — | — | 20 |
 | 7 | Spark | Electric | Physical | 65 | 100% | 20 |
 | 10 | Encore | Normal | Status | — | 100% | 5 |
 | 16 | Swift ★ | Normal | Special | 60 | — | 20 |
-| 26 | Charge | Electric | Status | — | 100% | 20 |
+| 26 | Charge | Electric | Status | — | — | 20 |
 | 34 | Baton Pass | Normal | Status | — | — | 40 |
 | 37 | Agility | Psychic | Status | — | — | 30 |
 | 43 | Thunder | Electric | Special | 110 | 70% | 10 |
@@ -104,13 +104,13 @@ Plusle does not evolve.
 |---|---|---|--:|--:|--:|---|
 | Mega Punch | Normal | Physical | 80 | 85% | 20 | Route 4 |
 | Mega Kick | Normal | Physical | 120 | 75% | 5 | Route 4 |
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Counter | Fighting | Physical | varies | 100% | 20 | Celadon City Department Store 3F |
 | Seismic Toss | Fighting | Physical | varies | 100% | 20 | Pewter City Museum 1F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Metronome | Normal | Status | — | — | 10 | Cinnabar Island Pokémon Lab Research Room |
-| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co 2F |
+| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
 ### By breeding (egg moves)
@@ -120,7 +120,7 @@ Breed a Plusle with a father that knows the move.
 | Move | Type | Cat. | Power | Acc. | PP |
 |---|---|---|--:|--:|--:|
 | Substitute | Normal | Status | — | — | 10 |
-| Wish | Normal | Status | — | 100% | 10 |
+| Wish | Normal | Status | — | — | 10 |
 
 ---
 

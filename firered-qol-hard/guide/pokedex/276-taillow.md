@@ -2,7 +2,7 @@
 
 # #276 Taillow
 
-*The Tinyswallow Pokémon* — **Normal / Flying**
+*The Tiny Swallow Pokémon* — **Normal / Flying**
 
 > It dislikes cold seasons. They migrate to other lands in search of warmth, flying over 180 miles a day.
 
@@ -114,7 +114,7 @@ Breed a Taillow with a father that knows the move.
 |---|---|---|--:|--:|--:|
 | Pursuit | Dark | Physical | 40 | 100% | 20 |
 | Supersonic | Normal | Status | — | 55% | 20 |
-| Refresh | Normal | Status | — | 100% | 20 |
+| Refresh | Normal | Status | — | — | 20 |
 | Mirror Move | Flying | Status | — | — | 20 |
 | Rage | Normal | Physical | 20 | 100% | 20 |
 | Sky Attack | Flying | Physical | 140 | 90% | 5 |

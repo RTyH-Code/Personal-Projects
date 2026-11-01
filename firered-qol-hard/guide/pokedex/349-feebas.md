@@ -108,7 +108,7 @@ Breed a Feebas with a father that knows the move.
 |---|---|---|--:|--:|--:|
 | Mirror Coat | Psychic | Special | varies | 100% | 20 |
 | Dragon Breath | Dragon | Special | 60 | 100% | 20 |
-| Mud Sport | Ground | Status | — | 100% | 15 |
+| Mud Sport | Ground | Status | — | — | 15 |
 | Hypnosis | Psychic | Status | — | 60% | 20 |
 | Light Screen | Psychic | Status | — | — | 30 |
 | Confuse Ray | Ghost | Status | — | 100% | 10 |

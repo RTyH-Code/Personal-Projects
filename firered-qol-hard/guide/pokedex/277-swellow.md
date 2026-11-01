@@ -114,7 +114,7 @@ Breed a Taillow (passed down to Taillow, which then evolves) with a father that 
 |---|---|---|--:|--:|--:|
 | Pursuit | Dark | Physical | 40 | 100% | 20 |
 | Supersonic | Normal | Status | — | 55% | 20 |
-| Refresh | Normal | Status | — | 100% | 20 |
+| Refresh | Normal | Status | — | — | 20 |
 | Mirror Move | Flying | Status | — | — | 20 |
 | Rage | Normal | Physical | 20 | 100% | 20 |
 | Sky Attack | Flying | Physical | 140 | 90% | 5 |

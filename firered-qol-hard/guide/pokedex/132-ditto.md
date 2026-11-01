@@ -4,7 +4,7 @@
 
 *The Transform Pokémon* — **Normal**
 
-> It can freely recombine its own cellular structure to transform into other life- forms.
+> It can freely recombine its own cellular structure to transform into other life-forms.
 
 Height 0.3 m (1′00″) · Weight 4 kg (8.8 lbs)
 

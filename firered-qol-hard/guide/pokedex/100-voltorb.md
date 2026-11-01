@@ -69,7 +69,7 @@ Height 0.5 m (1′08″) · Weight 10.4 kg (22.9 lbs)
 | Lv | Move | Type | Cat. | Power | Acc. | PP |
 |--:|---|---|---|--:|--:|--:|
 | 1 | Tackle | Normal | Physical | 40 | 100% | 35 |
-| 1 | Charge | Electric | Status | — | 100% | 20 |
+| 1 | Charge | Electric | Status | — | — | 20 |
 | 4 | Thunder Shock ★ | Electric | Special | 40 | 100% | 30 |
 | 9 | Spark | Electric | Physical | 65 | 100% | 20 |
 | 11 | Rollout | Rock | Physical | 30 | 90% | 20 |
@@ -108,7 +108,7 @@ Height 0.5 m (1′08″) · Weight 10.4 kg (22.9 lbs)
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
-| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co 2F |
+| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Explosion | Normal | Physical | 250 | 100% | 5 | Mt. Ember Exterior |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 

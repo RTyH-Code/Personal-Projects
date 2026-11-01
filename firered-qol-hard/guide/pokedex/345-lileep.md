@@ -69,13 +69,13 @@ Height 1 m (3′03″) · Weight 23.8 kg (52.5 lbs)
 | 1 | Astonish | Ghost | Physical | 30 | 100% | 15 |
 | 4 | Acid | Poison | Special | 40 | 100% | 30 |
 | 8 | Confuse Ray | Ghost | Status | — | 100% | 10 |
-| 12 | Ingrain | Grass | Status | — | 100% | 20 |
+| 12 | Ingrain | Grass | Status | — | — | 20 |
 | 16 | Ancient Power | Rock | Special | 60 | 100% | 5 |
 | 20 | Mega Drain ★ | Grass | Special | 40 | 100% | 15 |
 | 28 | Amnesia | Psychic | Status | — | — | 20 |
 | 36 | Giga Drain ★ | Grass | Special | 75 | 100% | 10 |
 | 41 | Stockpile | Normal | Status | — | — | 20 |
-| 41 | Spit Up | Normal | Special | 100 | 100% | 10 |
+| 41 | Spit Up | Normal | Special | varies | 100% | 10 |
 | 41 | Swallow | Normal | Status | — | — | 10 |
 
 ### By TM/HM
@@ -103,7 +103,7 @@ Height 1 m (3′03″) · Weight 23.8 kg (52.5 lbs)
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |

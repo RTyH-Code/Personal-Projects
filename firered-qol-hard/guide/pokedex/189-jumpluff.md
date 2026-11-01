@@ -4,7 +4,7 @@
 
 *The Cottonweed Pokémon* — **Grass / Flying**
 
-> It drifts on seasonal winds and spreads its cotton-like spores all over the world  to make more offspring.
+> It drifts on seasonal winds and spreads its cotton-like spores all over the world to make more offspring.
 
 Height 0.8 m (2′07″) · Weight 3 kg (6.6 lbs)
 
@@ -125,7 +125,7 @@ Breed a Hoppip (passed down to Hoppip, which then evolves) with a father that kn
 | Double-Edge | Normal | Physical | 120 | 100% | 15 |
 | Reflect | Psychic | Status | — | — | 20 |
 | Amnesia | Psychic | Status | — | — | 20 |
-| Helping Hand | Normal | Status | — | 100% | 20 |
+| Helping Hand | Normal | Status | — | — | 20 |
 | Psych Up | Normal | Status | — | — | 10 |
 
 ---

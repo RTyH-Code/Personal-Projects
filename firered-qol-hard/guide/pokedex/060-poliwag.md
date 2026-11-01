@@ -132,7 +132,7 @@ Height 0.6 m (2′00″) · Weight 12.4 kg (27.3 lbs)
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
@@ -148,7 +148,7 @@ Breed a Poliwag with a father that knows the move.
 | Bubble Beam | Water | Special | 65 | 100% | 20 |
 | Haze | Ice | Status | — | — | 30 |
 | Mind Reader | Normal | Status | — | 100% | 5 |
-| Water Sport | Water | Status | — | 100% | 15 |
+| Water Sport | Water | Status | — | — | 15 |
 | Ice Ball | Ice | Physical | 30 | 90% | 20 |
 
 ---

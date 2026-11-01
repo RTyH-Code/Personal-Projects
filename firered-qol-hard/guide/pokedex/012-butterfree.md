@@ -10,7 +10,7 @@ Height 1.1 m (3′07″) · Weight 32 kg (70.5 lbs)
 
 ## Abilities
 
-- **Compoundeyes**: Raises accuracy.
+- **Compound Eyes**: Raises accuracy.
 
 ## Base stats
 

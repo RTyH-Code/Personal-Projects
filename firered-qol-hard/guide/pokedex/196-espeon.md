@@ -76,7 +76,7 @@ Height 0.9 m (2′11″) · Weight 26.5 kg (58.4 lbs)
 | 1 | Confusion | Psychic | Special | 50 | 100% | 25 |
 | 1 | Charm ★ | Normal | Status | — | 100% | 20 |
 | 1 | Baton Pass ★ | Normal | Status | — | — | 40 |
-| 1 | Helping Hand | Normal | Status | — | 100% | 20 |
+| 1 | Helping Hand | Normal | Status | — | — | 20 |
 | 1 | Covet ★ | Normal | Physical | 60 | 100% | 25 |
 | 5 | Sand Attack | Ground | Status | — | 100% | 15 |
 | 10 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
@@ -119,7 +119,7 @@ Height 0.9 m (2′11″) · Weight 26.5 kg (58.4 lbs)
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
@@ -136,7 +136,7 @@ Breed a Eevee (passed down to Eevee, which then evolves) with a father that know
 | Endure | Normal | Status | — | — | 10 |
 | Curse | ??? | Status | — | — | 10 |
 | Tickle | Normal | Status | — | 100% | 20 |
-| Wish | Normal | Status | — | 100% | 10 |
+| Wish | Normal | Status | — | — | 10 |
 
 ---
 

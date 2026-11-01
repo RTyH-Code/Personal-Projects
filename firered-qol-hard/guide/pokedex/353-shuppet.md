@@ -109,11 +109,11 @@ Height 0.6 m (2′00″) · Weight 2.3 kg (5.1 lbs)
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
-| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co 2F |
+| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
 ### By breeding (egg moves)
@@ -126,7 +126,7 @@ Breed a Shuppet with a father that knows the move.
 | Destiny Bond | Ghost | Status | — | — | 5 |
 | Foresight | Normal | Status | — | 100% | 40 |
 | Astonish | Ghost | Physical | 30 | 100% | 15 |
-| Imprison | Psychic | Status | — | 100% | 10 |
+| Imprison | Psychic | Status | — | — | 10 |
 
 ---
 

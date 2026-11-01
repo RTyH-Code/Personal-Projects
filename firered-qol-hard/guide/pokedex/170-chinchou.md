@@ -77,7 +77,7 @@ Height 0.5 m (1′08″) · Weight 12 kg (26.5 lbs)
 | 12 | Bubble Beam ★ | Water | Special | 65 | 100% | 20 |
 | 16 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | 20 | Spark | Electric | Physical | 65 | 100% | 20 |
-| 24 | Charge | Electric | Status | — | 100% | 20 |
+| 24 | Charge | Electric | Status | — | — | 20 |
 | 36 | Flail | Normal | Physical | varies | 100% | 15 |
 | 40 | Take Down | Normal | Physical | 90 | 85% | 20 |
 | 44 | Hydro Pump | Water | Special | 110 | 80% | 5 |
@@ -115,7 +115,7 @@ Height 0.5 m (1′08″) · Weight 12 kg (26.5 lbs)
 |---|---|---|--:|--:|--:|---|
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
-| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co 2F |
+| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
 ### By breeding (egg moves)

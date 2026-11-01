@@ -125,7 +125,7 @@ Height 1.7 m (5′07″) · Weight 76.6 kg (168.9 lbs)
 |---|---|---|--:|--:|--:|---|
 | Mega Punch | Normal | Physical | 80 | 85% | 20 | Route 4 |
 | Mega Kick | Normal | Physical | 120 | 75% | 5 | Route 4 |
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Counter | Fighting | Physical | varies | 100% | 20 | Celadon City Department Store 3F |
 | Seismic Toss | Fighting | Physical | varies | 100% | 20 | Pewter City Museum 1F |
@@ -145,7 +145,7 @@ Breed a Psyduck (passed down to Psyduck, which then evolves) with a father that 
 | Future Sight | Psychic | Special | 120 | 100% | 10 |
 | Psychic | Psychic | Special | 90 | 100% | 10 |
 | Cross Chop | Fighting | Physical | 100 | 80% | 5 |
-| Refresh | Normal | Status | — | 100% | 20 |
+| Refresh | Normal | Status | — | — | 20 |
 
 ---
 

@@ -66,7 +66,7 @@ Height 0.8 m (2′07″) · Weight 8.5 kg (18.7 lbs)
 | 1 | Pound | Normal | Physical | 40 | 100% | 35 |
 | 1 | Tackle ★ | Normal | Physical | 40 | 100% | 35 |
 | 1 | Growth | Normal | Status | — | — | 20 |
-| 4 | Ingrain | Grass | Status | — | 100% | 20 |
+| 4 | Ingrain | Grass | Status | — | — | 20 |
 | 7 | Absorb | Grass | Special | 20 | 100% | 25 |
 | 10 | Mega Drain ★ | Grass | Special | 40 | 100% | 15 |
 | 13 | Leech Seed ★ | Grass | Status | — | 90% | 10 |
@@ -123,7 +123,7 @@ Breed a Sunkern (passed down to Sunkern, which then evolves) with a father that 
 | Leech Seed | Grass | Status | — | 90% | 10 |
 | Nature Power | Normal | Status | — | — | 20 |
 | Curse | ??? | Status | — | — | 10 |
-| Helping Hand | Normal | Status | — | 100% | 20 |
+| Helping Hand | Normal | Status | — | — | 20 |
 
 ---
 

@@ -120,7 +120,7 @@ Breed a Wingull with a father that knows the move.
 | Twister | Dragon | Special | 40 | 100% | 20 |
 | Agility | Psychic | Status | — | — | 30 |
 | Gust | Flying | Special | 40 | 100% | 35 |
-| Water Sport | Water | Status | — | 100% | 15 |
+| Water Sport | Water | Status | — | — | 15 |
 
 ---
 

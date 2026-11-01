@@ -104,7 +104,7 @@ Height 0.4 m (1′04″) · Weight 4.5 kg (9.9 lbs)
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
 | Swords Dance | Normal | Status | — | — | 20 | Seven Island |
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
@@ -119,7 +119,7 @@ Breed a Shroomish with a father that knows the move.
 | Swagger | Normal | Status | — | 85% | 15 |
 | Charm | Normal | Status | — | 100% | 20 |
 | False Swipe | Normal | Physical | 40 | 100% | 40 |
-| Helping Hand | Normal | Status | — | 100% | 20 |
+| Helping Hand | Normal | Status | — | — | 20 |
 
 ---
 

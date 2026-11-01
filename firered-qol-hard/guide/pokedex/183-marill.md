@@ -75,7 +75,7 @@ Height 0.4 m (1′04″) · Weight 8.5 kg (18.7 lbs)
 | 1 | Water Gun | Water | Special | 40 | 100% | 25 |
 | 1 | Defense Curl | Normal | Status | — | — | 40 |
 | 1 | Rollout | Rock | Physical | 30 | 90% | 20 |
-| 1 | Helping Hand ★ | Normal | Status | — | 100% | 20 |
+| 1 | Helping Hand ★ | Normal | Status | — | — | 20 |
 | 6 | Bubble Beam | Water | Special | 65 | 100% | 20 |
 | 9 | Charm ★ | Normal | Status | — | 100% | 20 |
 | 12 | Slam ★ | Normal | Physical | 80 | 75% | 20 |
@@ -120,7 +120,7 @@ Height 0.4 m (1′04″) · Weight 8.5 kg (18.7 lbs)
 |---|---|---|--:|--:|--:|---|
 | Mega Punch | Normal | Physical | 80 | 85% | 20 | Route 4 |
 | Mega Kick | Normal | Physical | 120 | 75% | 5 | Route 4 |
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Seismic Toss | Fighting | Physical | varies | 100% | 20 | Pewter City Museum 1F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
@@ -134,7 +134,7 @@ Breed a Azurill (passed down to Azurill, which then evolves) with a father that 
 |---|---|---|--:|--:|--:|
 | Encore | Normal | Status | — | 100% | 5 |
 | Sing | Normal | Status | — | 55% | 15 |
-| Refresh | Normal | Status | — | 100% | 20 |
+| Refresh | Normal | Status | — | — | 20 |
 | Slam | Normal | Physical | 80 | 75% | 20 |
 | Tickle | Normal | Status | — | 100% | 20 |
 

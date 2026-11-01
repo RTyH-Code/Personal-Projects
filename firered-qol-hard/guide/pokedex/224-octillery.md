@@ -67,7 +67,7 @@ Height 0.9 m (2′11″) · Weight 28.5 kg (62.8 lbs)
 | 1 | Water Gun | Water | Special | 40 | 100% | 25 |
 | 1 | Focus Energy | Normal | Status | — | — | 30 |
 | 1 | Octazooka | Water | Special | 65 | 85% | 10 |
-| 1 | Helping Hand ★ | Normal | Status | — | 100% | 20 |
+| 1 | Helping Hand ★ | Normal | Status | — | — | 20 |
 | 1 | Rock Blast ★ | Rock | Physical | 25 | 90% | 10 |
 | 1 | Water Pulse ★ | Water | Special | 60 | 100% | 20 |
 | 12 | Psybeam | Psychic | Special | 65 | 100% | 20 |
@@ -116,7 +116,7 @@ Height 0.9 m (2′11″) · Weight 28.5 kg (62.8 lbs)
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Seismic Toss | Fighting | Physical | varies | 100% | 20 | Pewter City Museum 1F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
-| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co 2F |
+| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
 ### By breeding (egg moves)

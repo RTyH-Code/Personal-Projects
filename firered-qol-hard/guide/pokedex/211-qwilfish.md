@@ -83,7 +83,7 @@ Qwilfish does not evolve.
 | 20 | Spikes | Ground | Status | — | — | 20 |
 | 32 | Pin Missile | Bug | Physical | 25 | 95% | 20 |
 | 40 | Stockpile ★ | Normal | Status | — | — | 20 |
-| 40 | Spit Up ★ | Normal | Special | 100 | 100% | 10 |
+| 40 | Spit Up ★ | Normal | Special | varies | 100% | 10 |
 | 44 | Toxic ★ | Poison | Status | — | 90% | 10 |
 | 56 | Destiny Bond | Ghost | Status | — | — | 5 |
 
@@ -120,7 +120,7 @@ Qwilfish does not evolve.
 | Swords Dance | Normal | Status | — | — | 20 | Seven Island |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
-| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co 2F |
+| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
 ### By breeding (egg moves)

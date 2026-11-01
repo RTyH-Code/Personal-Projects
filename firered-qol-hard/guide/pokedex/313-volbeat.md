@@ -72,9 +72,9 @@ Volbeat does not evolve.
 | 8 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | 12 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
 | 19 | Moonlight | Normal | Status | — | — | 5 |
-| 22 | Tail Glow | Bug | Status | — | 100% | 20 |
+| 22 | Tail Glow | Bug | Status | — | — | 20 |
 | 26 | Protect | Normal | Status | — | — | 10 |
-| 33 | Helping Hand | Normal | Status | — | 100% | 20 |
+| 33 | Helping Hand | Normal | Status | — | — | 20 |
 | 43 | Double-Edge | Normal | Physical | 120 | 100% | 15 |
 
 ### By TM/HM
@@ -113,13 +113,13 @@ Volbeat does not evolve.
 |---|---|---|--:|--:|--:|---|
 | Mega Punch | Normal | Physical | 80 | 85% | 20 | Route 4 |
 | Mega Kick | Normal | Physical | 120 | 75% | 5 | Route 4 |
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Counter | Fighting | Physical | varies | 100% | 20 | Celadon City Department Store 3F |
 | Seismic Toss | Fighting | Physical | varies | 100% | 20 | Pewter City Museum 1F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Metronome | Normal | Status | — | — | 10 | Cinnabar Island Pokémon Lab Research Room |
-| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co 2F |
+| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
 ### By breeding (egg moves)

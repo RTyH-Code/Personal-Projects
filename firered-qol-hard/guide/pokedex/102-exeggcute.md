@@ -4,7 +4,7 @@
 
 *The Egg Pokémon* — **Grass / Psychic**
 
-> Even though it appears to be eggs of some sort, it was discovered to be a life- form more like plant seeds.
+> Even though it appears to be eggs of some sort, it was discovered to be a life-form more like plant seeds.
 
 Height 0.4 m (1′04″) · Weight 2.5 kg (5.5 lbs)
 
@@ -130,7 +130,7 @@ Breed a Exeggcute with a father that knows the move.
 | Reflect | Psychic | Status | — | — | 20 |
 | Ancient Power | Rock | Special | 60 | 100% | 5 |
 | Psych Up | Normal | Status | — | — | 10 |
-| Ingrain | Grass | Status | — | 100% | 20 |
+| Ingrain | Grass | Status | — | — | 20 |
 | Curse | ??? | Status | — | — | 10 |
 
 ---

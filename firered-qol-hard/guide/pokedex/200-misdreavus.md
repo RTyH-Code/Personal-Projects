@@ -115,7 +115,7 @@ Misdreavus does not evolve.
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
-| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co 2F |
+| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
 ### By breeding (egg moves)
@@ -127,7 +127,7 @@ Breed a Misdreavus with a father that knows the move.
 | Screech | Normal | Status | — | 85% | 40 |
 | Destiny Bond | Ghost | Status | — | — | 5 |
 | Psych Up | Normal | Status | — | — | 10 |
-| Imprison | Psychic | Status | — | 100% | 10 |
+| Imprison | Psychic | Status | — | — | 10 |
 
 ---
 

@@ -74,7 +74,7 @@ Height 1.6 m (5′03″) · Weight 48.4 kg (106.7 lbs)
 | 9 | Hypnosis | Psychic | Status | — | 60% | 20 |
 | 15 | Teleport | Psychic | Status | — | — | 20 |
 | 18 | Psybeam ★ | Psychic | Special | 65 | 100% | 20 |
-| 28 | Wish ★ | Normal | Status | — | 100% | 10 |
+| 28 | Wish ★ | Normal | Status | — | — | 10 |
 | 35 | Calm Mind | Psychic | Status | — | — | 20 |
 | 42 | Psychic | Psychic | Special | 90 | 100% | 10 |
 | 56 | Dream Eater | Psychic | Special | 100 | 100% | 15 |
@@ -116,11 +116,11 @@ Height 1.6 m (5′03″) · Weight 48.4 kg (106.7 lbs)
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
-| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co 2F |
+| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
 ### By breeding (egg moves)

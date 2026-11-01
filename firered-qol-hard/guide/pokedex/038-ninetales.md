@@ -4,7 +4,7 @@
 
 *The Fox Pokémon* — **Fire**
 
-> It has nine long tails and fur that  gleams gold. It is said to live for  1,000 years.
+> It has nine long tails and fur that gleams gold. It is said to live for 1,000 years.
 
 Height 1.1 m (3′07″) · Weight 19.9 kg (43.9 lbs)
 
@@ -74,7 +74,7 @@ Height 1.1 m (3′07″) · Weight 19.9 kg (43.9 lbs)
 | 28 | Will-O-Wisp ★ | Fire | Status | — | 85% | 15 |
 | 32 | Extrasensory ★ | Psychic | Special | 80 | 100% | 20 |
 | 37 | Flamethrower ★ | Fire | Special | 90 | 100% | 15 |
-| 41 | Imprison ★ | Psychic | Status | — | 100% | 10 |
+| 41 | Imprison ★ | Psychic | Status | — | — | 10 |
 | 46 | Fire Spin | Fire | Special | 35 | 85% | 15 |
 | 51 | Safeguard | Normal | Status | — | — | 25 |
 | 60 | Fire Blast ★ | Fire | Special | 110 | 85% | 5 |
@@ -107,7 +107,7 @@ Height 1.1 m (3′07″) · Weight 19.9 kg (43.9 lbs)
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |

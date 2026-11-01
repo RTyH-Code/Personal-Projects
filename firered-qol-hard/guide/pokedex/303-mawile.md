@@ -73,7 +73,7 @@ Mawile does not evolve.
 | 8 | Baton Pass | Normal | Status | — | — | 40 |
 | 12 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 16 | Stockpile | Normal | Status | — | — | 20 |
-| 16 | Spit Up | Normal | Special | 100 | 100% | 10 |
+| 16 | Spit Up | Normal | Special | varies | 100% | 10 |
 | 16 | Swallow | Normal | Status | — | — | 10 |
 | 24 | Iron Defense | Steel | Status | — | — | 15 |
 | 28 | Crunch | Dark | Physical | 80 | 100% | 15 |
@@ -119,7 +119,7 @@ Mawile does not evolve.
 | Mega Punch | Normal | Physical | 80 | 85% | 20 | Route 4 |
 | Swords Dance | Normal | Status | — | — | 20 | Seven Island |
 | Mega Kick | Normal | Physical | 120 | 75% | 5 | Route 4 |
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Counter | Fighting | Physical | varies | 100% | 20 | Celadon City Department Store 3F |
 | Seismic Toss | Fighting | Physical | varies | 100% | 20 | Pewter City Museum 1F |

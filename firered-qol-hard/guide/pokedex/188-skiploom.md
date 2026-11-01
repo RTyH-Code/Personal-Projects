@@ -124,7 +124,7 @@ Breed a Hoppip (passed down to Hoppip, which then evolves) with a father that kn
 | Double-Edge | Normal | Physical | 120 | 100% | 15 |
 | Reflect | Psychic | Status | — | — | 20 |
 | Amnesia | Psychic | Status | — | — | 20 |
-| Helping Hand | Normal | Status | — | 100% | 20 |
+| Helping Hand | Normal | Status | — | — | 20 |
 | Psych Up | Normal | Status | — | — | 10 |
 
 ---

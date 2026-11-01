@@ -120,7 +120,7 @@ Height 2.3 m (7′07″) · Weight 88.8 kg (195.8 lbs)
 | Mega Punch | Normal | Physical | 80 | 85% | 20 | Route 4 |
 | Swords Dance | Normal | Status | — | — | 20 | Seven Island |
 | Mega Kick | Normal | Physical | 120 | 75% | 5 | Route 4 |
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Counter | Fighting | Physical | varies | 100% | 20 | Celadon City Department Store 3F |
 | Seismic Toss | Fighting | Physical | varies | 100% | 20 | Pewter City Museum 1F |
@@ -139,8 +139,8 @@ Breed a Totodile (passed down to Totodile, which then evolves) with a father tha
 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 | Ancient Power | Rock | Special | 60 | 100% | 5 |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 |
-| Mud Sport | Ground | Status | — | 100% | 15 |
-| Water Sport | Water | Status | — | 100% | 15 |
+| Mud Sport | Ground | Status | — | — | 15 |
+| Water Sport | Water | Status | — | — | 15 |
 | Dragon Claw | Dragon | Physical | 80 | 100% | 15 |
 
 ---

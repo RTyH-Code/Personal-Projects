@@ -74,7 +74,7 @@ Stantler does not evolve.
 | 23 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | 27 | Calm Mind | Psychic | Status | — | — | 20 |
 | 32 | Role Play | Psychic | Status | — | 100% | 10 |
-| 49 | Imprison ★ | Psychic | Status | — | 100% | 10 |
+| 49 | Imprison ★ | Psychic | Status | — | — | 10 |
 | 55 | Double-Edge ★ | Normal | Physical | 120 | 100% | 15 |
 
 ### By TM/HM
@@ -113,11 +113,11 @@ Stantler does not evolve.
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
-| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co 2F |
+| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
 ### By breeding (egg moves)

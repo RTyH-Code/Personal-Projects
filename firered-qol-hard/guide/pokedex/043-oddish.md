@@ -138,7 +138,7 @@ Breed a Oddish with a father that knows the move.
 | Flail | Normal | Physical | varies | 100% | 15 |
 | Synthesis | Grass | Status | — | — | 5 |
 | Charm | Normal | Status | — | 100% | 20 |
-| Ingrain | Grass | Status | — | 100% | 20 |
+| Ingrain | Grass | Status | — | — | 20 |
 
 ---
 

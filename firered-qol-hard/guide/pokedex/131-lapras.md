@@ -60,7 +60,7 @@ Lapras does not evolve.
 ## Where to find it
 
 - **Four Island Icefall Cave Back**: Surfing Lv 30–45 (1%)
-- **Silph Co 7F**: Gift, Lv 25
+- **Silph Co. 7F**: Gift, Lv 25
 - Breeding: hatches from an Egg left by a Lapras at the Four Island Day Care
 
 ## Moves
@@ -121,7 +121,7 @@ Lapras does not evolve.
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
@@ -136,7 +136,7 @@ Breed a Lapras with a father that knows the move.
 | Foresight | Normal | Status | — | 100% | 40 |
 | Substitute | Normal | Status | — | — | 10 |
 | Tickle | Normal | Status | — | 100% | 20 |
-| Refresh | Normal | Status | — | 100% | 20 |
+| Refresh | Normal | Status | — | — | 20 |
 | Dragon Dance | Dragon | Status | — | — | 20 |
 | Curse | ??? | Status | — | — | 10 |
 | Sleep Talk | Normal | Status | — | — | 10 |

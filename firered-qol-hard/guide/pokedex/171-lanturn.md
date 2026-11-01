@@ -73,12 +73,12 @@ Height 1.2 m (3′11″) · Weight 22.5 kg (49.6 lbs)
 | 1 | Water Gun | Water | Special | 40 | 100% | 25 |
 | 1 | Thunder Wave | Electric | Status | — | 90% | 20 |
 | 1 | Stockpile ★ | Normal | Status | — | — | 20 |
-| 1 | Spit Up ★ | Normal | Special | 100 | 100% | 10 |
+| 1 | Spit Up ★ | Normal | Special | varies | 100% | 10 |
 | 1 | Swallow ★ | Normal | Status | — | — | 10 |
 | 12 | Bubble Beam ★ | Water | Special | 65 | 100% | 20 |
 | 16 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | 20 | Spark | Electric | Physical | 65 | 100% | 20 |
-| 24 | Charge | Electric | Status | — | 100% | 20 |
+| 24 | Charge | Electric | Status | — | — | 20 |
 | 42 | Flail | Normal | Physical | varies | 100% | 15 |
 | 48 | Take Down | Normal | Physical | 90 | 85% | 20 |
 | 54 | Hydro Pump | Water | Special | 110 | 80% | 5 |
@@ -117,7 +117,7 @@ Height 1.2 m (3′11″) · Weight 22.5 kg (49.6 lbs)
 |---|---|---|--:|--:|--:|---|
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
-| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co 2F |
+| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
 ### By breeding (egg moves)

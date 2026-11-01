@@ -11,7 +11,7 @@ Height 1.5 m (4′11″) · Weight 40.2 kg (88.6 lbs)
 ## Abilities
 
 - **Static**: Paralyzes on contact.
-- **Lightningrod**: Draws electrical moves.
+- **Lightning Rod**: Draws electrical moves.
 
 *Each individual has one of the two, set by its personality value.*
 
@@ -74,7 +74,7 @@ Height 1.5 m (4′11″) · Weight 40.2 kg (88.6 lbs)
 | 16 | Shock Wave ★ | Electric | Special | 60 | — | 20 |
 | 20 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 30 | Roar | Normal | Status | — | 100% | 20 |
-| 42 | Charge | Electric | Status | — | 100% | 20 |
+| 42 | Charge | Electric | Status | — | — | 20 |
 | 54 | Thunder | Electric | Special | 110 | 70% | 10 |
 
 ### By TM/HM
@@ -106,10 +106,10 @@ Height 1.5 m (4′11″) · Weight 40.2 kg (88.6 lbs)
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
-| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co 2F |
+| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
 ### By breeding (egg moves)

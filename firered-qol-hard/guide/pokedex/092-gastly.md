@@ -65,20 +65,20 @@ Height 1.3 m (4′03″) · Weight 0.1 kg (0.2 lbs)
 - **Pokémon Tower 5F**: Grass / cave Lv 13–19 (82%)
 - **Pokémon Tower 6F**: Grass / cave Lv 14–19 (71%)
 - **Pokémon Tower 7F**: Grass / cave Lv 15–18 (61%)
-- **Five Island Lost Cave Room1**: Grass / cave Lv 38–40 (25%)
-- **Five Island Lost Cave Room10**: Grass / cave Lv 38–40 (25%)
-- **Five Island Lost Cave Room11**: Grass / cave Lv 40 (20%)
-- **Five Island Lost Cave Room12**: Grass / cave Lv 40 (20%)
-- **Five Island Lost Cave Room13**: Grass / cave Lv 40 (20%)
-- **Five Island Lost Cave Room14**: Grass / cave Lv 40 (20%)
-- **Five Island Lost Cave Room2**: Grass / cave Lv 38–40 (25%)
-- **Five Island Lost Cave Room3**: Grass / cave Lv 38–40 (25%)
-- **Five Island Lost Cave Room4**: Grass / cave Lv 38–40 (25%)
-- **Five Island Lost Cave Room5**: Grass / cave Lv 38–40 (25%)
-- **Five Island Lost Cave Room6**: Grass / cave Lv 38–40 (25%)
-- **Five Island Lost Cave Room7**: Grass / cave Lv 38–40 (25%)
-- **Five Island Lost Cave Room8**: Grass / cave Lv 38–40 (25%)
-- **Five Island Lost Cave Room9**: Grass / cave Lv 38–40 (25%)
+- **Five Island Lost Cave Room 1**: Grass / cave Lv 38–40 (25%)
+- **Five Island Lost Cave Room 10**: Grass / cave Lv 38–40 (25%)
+- **Five Island Lost Cave Room 11**: Grass / cave Lv 40 (20%)
+- **Five Island Lost Cave Room 12**: Grass / cave Lv 40 (20%)
+- **Five Island Lost Cave Room 13**: Grass / cave Lv 40 (20%)
+- **Five Island Lost Cave Room 14**: Grass / cave Lv 40 (20%)
+- **Five Island Lost Cave Room 2**: Grass / cave Lv 38–40 (25%)
+- **Five Island Lost Cave Room 3**: Grass / cave Lv 38–40 (25%)
+- **Five Island Lost Cave Room 4**: Grass / cave Lv 38–40 (25%)
+- **Five Island Lost Cave Room 5**: Grass / cave Lv 38–40 (25%)
+- **Five Island Lost Cave Room 6**: Grass / cave Lv 38–40 (25%)
+- **Five Island Lost Cave Room 7**: Grass / cave Lv 38–40 (25%)
+- **Five Island Lost Cave Room 8**: Grass / cave Lv 38–40 (25%)
+- **Five Island Lost Cave Room 9**: Grass / cave Lv 38–40 (25%)
 - Breeding: hatches from an Egg left by a Gastly or Haunter or Gengar at the Four Island Day Care
 
 </details>
@@ -149,7 +149,7 @@ Breed a Gastly with a father that knows the move.
 | Haze | Ice | Status | — | — | 30 |
 | Astonish | Ghost | Physical | 30 | 100% | 15 |
 | Will-O-Wisp | Fire | Status | — | 85% | 15 |
-| Grudge | Ghost | Status | — | 100% | 5 |
+| Grudge | Ghost | Status | — | — | 5 |
 | Explosion | Normal | Physical | 250 | 100% | 5 |
 
 ---

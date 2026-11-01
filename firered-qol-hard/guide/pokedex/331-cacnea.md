@@ -71,7 +71,7 @@ Height 0.4 m (1′04″) · Weight 51.3 kg (113.1 lbs)
 | 10 | Leech Seed | Grass | Status | — | 90% | 10 |
 | 13 | Sand Attack | Ground | Status | — | 100% | 15 |
 | 16 | Bullet Seed ★ | Grass | Physical | 25 | 100% | 30 |
-| 22 | Ingrain | Grass | Status | — | 100% | 20 |
+| 22 | Ingrain | Grass | Status | — | — | 20 |
 | 30 | Spikes | Ground | Status | — | — | 20 |
 | 38 | Pin Missile | Bug | Physical | 25 | 95% | 20 |
 | 46 | Cotton Spore | Grass | Status | — | 100% | 40 |
@@ -107,7 +107,7 @@ Height 0.4 m (1′04″) · Weight 51.3 kg (113.1 lbs)
 |---|---|---|--:|--:|--:|---|
 | Mega Punch | Normal | Physical | 80 | 85% | 20 | Route 4 |
 | Swords Dance | Normal | Status | — | — | 20 | Seven Island |
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Counter | Fighting | Physical | varies | 100% | 20 | Celadon City Department Store 3F |
 | Seismic Toss | Fighting | Physical | varies | 100% | 20 | Pewter City Museum 1F |

@@ -4,7 +4,7 @@
 
 *The Poison Pin Pokémon* — **Poison**
 
-> It is easily angered. By swinging its well- developed horn wildly, it can even punch through diamond.
+> It is easily angered. By swinging its well-developed horn wildly, it can even punch through diamond.
 
 Height 0.9 m (2′11″) · Weight 19.5 kg (43.0 lbs)
 
@@ -75,7 +75,7 @@ Height 0.9 m (2′11″) · Weight 19.5 kg (43.0 lbs)
 | 15 | Fury Attack | Normal | Physical | 15 | 85% | 20 |
 | 29 | Double Kick | Fighting | Physical | 30 | 100% | 30 |
 | 36 | Horn Attack | Normal | Physical | 65 | 100% | 25 |
-| 43 | Helping Hand | Normal | Status | — | 100% | 20 |
+| 43 | Helping Hand | Normal | Status | — | — | 20 |
 | 50 | Toxic ★ | Poison | Status | — | 90% | 10 |
 | 57 | Flatter | Dark | Status | — | 100% | 15 |
 
@@ -113,7 +113,7 @@ Height 0.9 m (2′11″) · Weight 19.5 kg (43.0 lbs)
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Counter | Fighting | Physical | varies | 100% | 20 | Celadon City Department Store 3F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |

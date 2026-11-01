@@ -67,7 +67,7 @@ Raikou does not evolve.
 | 1 | Thunder Shock | Electric | Special | 40 | 100% | 30 |
 | 1 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
 | 1 | Extreme Speed ★ | Normal | Physical | 80 | 100% | 5 |
-| 1 | Charge ★ | Electric | Status | — | 100% | 20 |
+| 1 | Charge ★ | Electric | Status | — | — | 20 |
 | 6 | Spark | Electric | Physical | 65 | 100% | 20 |
 | 12 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 18 | Calm Mind | Psychic | Status | — | — | 20 |
@@ -114,10 +114,10 @@ Raikou does not evolve.
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
-| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co 2F |
+| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
 ---

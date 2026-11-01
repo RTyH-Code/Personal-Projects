@@ -66,11 +66,11 @@ Latias does not evolve.
 | Lv | Move | Type | Cat. | Power | Acc. | PP |
 |--:|---|---|---|--:|--:|--:|
 | 1 | Charm | Normal | Status | — | 100% | 20 |
-| 5 | Helping Hand | Normal | Status | — | 100% | 20 |
+| 5 | Helping Hand | Normal | Status | — | — | 20 |
 | 10 | Recover | Normal | Status | — | — | 5 |
 | 15 | Confusion ★ | Psychic | Special | 50 | 100% | 25 |
 | 25 | Dragon Breath | Dragon | Special | 60 | 100% | 20 |
-| 30 | Wish | Normal | Status | — | 100% | 10 |
+| 30 | Wish | Normal | Status | — | — | 10 |
 | 35 | Mist Ball | Psychic | Special | 95 | 100% | 5 |
 | 60 | Psychic | Psychic | Special | 90 | 100% | 10 |
 
@@ -120,11 +120,11 @@ Latias does not evolve.
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
-| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co 2F |
+| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
 ---

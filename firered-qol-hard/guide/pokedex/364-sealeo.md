@@ -116,7 +116,7 @@ Height 1.1 m (3′07″) · Weight 87.6 kg (193.1 lbs)
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
@@ -128,10 +128,10 @@ Breed a Spheal (passed down to Spheal, which then evolves) with a father that kn
 
 | Move | Type | Cat. | Power | Acc. | PP |
 |---|---|---|--:|--:|--:|
-| Water Sport | Water | Status | — | 100% | 15 |
+| Water Sport | Water | Status | — | — | 15 |
 | Stockpile | Normal | Status | — | — | 20 |
 | Swallow | Normal | Status | — | — | 10 |
-| Spit Up | Normal | Special | 100 | 100% | 10 |
+| Spit Up | Normal | Special | varies | 100% | 10 |
 | Yawn | Normal | Status | — | 100% | 10 |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 |
 | Curse | ??? | Status | — | — | 10 |

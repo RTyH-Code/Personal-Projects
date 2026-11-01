@@ -121,7 +121,7 @@ Breed a Sunkern with a father that knows the move.
 | Leech Seed | Grass | Status | — | 90% | 10 |
 | Nature Power | Normal | Status | — | — | 20 |
 | Curse | ??? | Status | — | — | 10 |
-| Helping Hand | Normal | Status | — | 100% | 20 |
+| Helping Hand | Normal | Status | — | — | 20 |
 
 ---
 

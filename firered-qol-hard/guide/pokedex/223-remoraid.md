@@ -66,7 +66,7 @@ Height 0.6 m (2′00″) · Weight 12 kg (26.5 lbs)
 | Lv | Move | Type | Cat. | Power | Acc. | PP |
 |--:|---|---|---|--:|--:|--:|
 | 1 | Water Gun | Water | Special | 40 | 100% | 25 |
-| 1 | Helping Hand ★ | Normal | Status | — | 100% | 20 |
+| 1 | Helping Hand ★ | Normal | Status | — | — | 20 |
 | 4 | Water Pulse ★ | Water | Special | 60 | 100% | 20 |
 | 8 | Focus Energy | Normal | Status | — | — | 30 |
 | 12 | Psybeam | Psychic | Special | 65 | 100% | 20 |
@@ -112,7 +112,7 @@ Height 0.6 m (2′00″) · Weight 12 kg (26.5 lbs)
 |---|---|---|--:|--:|--:|---|
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
-| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co 2F |
+| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
 ### By breeding (egg moves)

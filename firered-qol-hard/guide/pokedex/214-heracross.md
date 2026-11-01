@@ -115,7 +115,7 @@ Heracross does not evolve.
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
 | Swords Dance | Normal | Status | — | — | 20 | Seven Island |
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Counter | Fighting | Physical | varies | 100% | 20 | Celadon City Department Store 3F |
 | Seismic Toss | Fighting | Physical | varies | 100% | 20 | Pewter City Museum 1F |
@@ -130,7 +130,7 @@ Breed a Heracross with a father that knows the move.
 | Move | Type | Cat. | Power | Acc. | PP |
 |---|---|---|--:|--:|--:|
 | Harden | Normal | Status | — | — | 30 |
-| Bide | Normal | Physical | varies | 100% | 10 |
+| Bide | Normal | Physical | varies | — | 10 |
 | Flail | Normal | Physical | varies | 100% | 15 |
 | False Swipe | Normal | Physical | 40 | 100% | 40 |
 

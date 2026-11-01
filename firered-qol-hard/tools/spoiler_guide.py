@@ -28,6 +28,25 @@ def vanilla(path):
     return subprocess.run(["git", "show", f"{VANILLA}:{path}"], capture_output=True, text=True).stdout
 
 
+def revision1(text):
+    """Keep the Rev 1 (v1.1) side of `#if REVISION == 0` blocks."""
+    out, stack = [], []
+    for line in text.split("\n"):
+        st = line.strip()
+        if re.match(r"#if REVISION == 0\b", st):
+            stack.append(False)
+            continue
+        if st == "#else" and stack:
+            stack[-1] = not stack[-1]
+            continue
+        if st == "#endif" and stack:
+            stack.pop()
+            continue
+        if all(stack):
+            out.append(line)
+    return "\n".join(out)
+
+
 def firered_only(text):
     """Drop LeafGreen-only blocks (.ifdef FIRERED/LEAFGREEN in scripts, #if in C)."""
     out, stack = [], []
@@ -69,7 +88,7 @@ def move(const):
     c = const.replace("MOVE_", "")
     return {"SOFTBOILED": "Soft-Boiled", "WILL_O_WISP": "Will-O-Wisp", "U_TURN": "U-turn",
             "DOUBLE_EDGE": "Double-Edge", "SELF_DESTRUCT": "Self-Destruct", "X_SCISSOR": "X-Scissor",
-            "LOCK_ON": "Lock-On", "MUD_SLAP": "Mud-Slap"}.get(c, c.replace("_", " ").title())
+            "LOCK_ON": "Lock-On", "MUD_SLAP": "Mud-Slap", "SOFT_BOILED": "Soft-Boiled"}.get(c, c.replace("_", " ").title())
 
 
 def map_name(const):
@@ -82,6 +101,14 @@ def map_name(const):
             words.append("S.S. Anne")
         elif w == "MT":
             words.append("Mt.")
+        elif w == "CO":
+            words.append("Co.")
+        elif w == "DIGLETTS":
+            words.append("Diglett's")
+        elif re.fullmatch(r"HOUSE\d", w):
+            words.append("House")
+        elif re.fullmatch(r"ROOM\d+", w):
+            words.append("Room " + w[4:])
         elif w == "POKEMON":
             words.append("Pokémon")
         elif re.fullmatch(r"ROUTE\d+", w):
@@ -134,7 +161,7 @@ for name, base in re.findall(r"#define (ITEM_(?:TM|HM)\d\d_\w+)\s+(ITEM_(?:TM|HM
 
 
 ITEM_WORDS = {"DEEPSEATOOTH": "Deep Sea Tooth", "DEEPSEASCALE": "Deep Sea Scale", "NEVERMELTICE": "Never-Melt Ice",
-              "TWISTEDSPOON": "Twisted Spoon", "SILVERPOWDER": "Silver Powder", "BLACKGLASSES": "Black Glasses",
+              "TWISTEDSPOON": "Twisted Spoon", "TINYMUSHROOM": "Tiny Mushroom", "SILVERPOWDER": "Silver Powder", "BLACKGLASSES": "Black Glasses",
               "BRIGHTPOWDER": "Bright Powder", "MYSTICTICKET": "Mystic Ticket", "AURORATICKET": "Aurora Ticket",
               "BLACKBELT": "Black Belt", "SILKSCARF": "Silk Scarf", "SHARPBEAK": "Sharp Beak",
               "DRAGONFANG": "Dragon Fang", "SPELLTAG": "Spell Tag", "THUNDERSTONE": "Thunder Stone",
@@ -677,7 +704,9 @@ def write_pokedex():
         pw = f.get("power", "0")
         acc = f.get("accuracy", "0")
         pw = "—" if pw in ("0", "1") and split == "Status" else ("varies" if pw == "1" else ("—" if pw == "0" else pw))
-        acc = "—" if acc == "0" else acc + "%"
+        if m == "MOVE_SPIT_UP":
+            pw = "varies"
+        acc = "—" if acc == "0" or f.get("target") == "MOVE_TARGET_USER" else acc + "%"
         return f"{move(m)} | {tname(f.get('type', 'TYPE_NORMAL'))} | {split} | {pw} | {acc} | {f.get('pp', '?')}"
 
     # learnsets
@@ -720,7 +749,7 @@ def write_pokedex():
         lv = param
         return {
             "EVO_LEVEL": f"Level {lv}",
-            "EVO_ITEM": f"Use a {item(param)}",
+            "EVO_ITEM": f"Use {'an' if item(param)[0] in 'AEIOU' else 'a'} {item(param)}",
             "EVO_TRADE": "Trade",
             "EVO_TRADE_ITEM": f"Trade holding {item(param)}",
             "EVO_FRIENDSHIP": "Level up with high friendship (220+)",
@@ -741,11 +770,17 @@ def write_pokedex():
     abil_desc_vars = dict(re.findall(r"static const u8 (s\w+Description)\[\] = _\(\"(.*?)\"\);", read("src/data/text/abilities.h")))
     abil_desc = {k: abil_desc_vars.get(v, "") for k, v in re.findall(r"\[(ABILITY_\w+)\] = (s\w+Description)", read("src/data/text/abilities.h"))}
     dex_entries = c_blocks(read("src/data/pokemon/pokedex_entries.h"), r"NATIONAL_DEX_\w+")
-    dex_text = {n: " ".join(re.findall(r'"(.*?)"', b)).replace("\\n", " ").replace("  ", " ")
-                for n, b in re.findall(r"const u8 (g\w+PokedexText)\[\] = (_\(.*?\));", firered_only(read("src/data/pokemon/pokedex_text_fr.h")), re.S)}
+    def join_dex(b):
+        t = "".join(re.findall(r'"(.*?)"', b))
+        t = re.sub(r"-\s*\\n\s*", "-", t)
+        return re.sub(r"\s+", " ", t.replace("\\n", " ")).strip()
+    dex_text = {n: join_dex(b)
+                for n, b in re.findall(r"const u8 (g\w+PokedexText)\[\] = (_\(.*?\));", revision1(firered_only(read("src/data/pokemon/pokedex_text_fr.h"))), re.S)}
     def gametext(t):
         t = t.replace("POKéMON", "Pokémon").replace("POKé", "Poké")
         keep = {"DNA", "PP", "HP", "KO", "TV", "UFO"}
+        t = re.sub(r"\b(TINY)(RACCOON|SWALLOW)\b", r"\1 \2", t)
+        t = t.replace("FLYSCORPION", "FlyScorpion").replace("LIGHTNINGROD", "LIGHTNING ROD").replace("COMPOUNDEYES", "COMPOUND EYES")
         return re.sub(r"\b([A-Z][A-Z'.-]+)\b",
                       lambda m: m.group(1) if len(m.group(1)) < 2 or m.group(1) in keep else m.group(1).title(), t)
 
@@ -1006,6 +1041,9 @@ def write_pokedex():
                     f"Breed a {mon(eb)}{via} with a father that knows the move.", "",
                     "| Move | Type | Cat. | Power | Acc. | PP |", "|---|---|---|--:|--:|--:|"]
             out += [f"| {move_cells(m)} |" for m in em] + [""]
+            if eb == "SPECIES_PICHU":
+                out += [f"**Volt Tackle** ({move_cells('MOVE_VOLT_TACKLE').split(' | ', 1)[1].replace(' | ', ', ')} PP): "
+                        "a Pichu Egg knows it if either parent holds a **Light Ball**. The Move Maniac can't teach it.", ""]
 
         out += ["---", "", " · ".join(nav), ""]
         open(os.path.join(OUT, "pokedex", slug(sp) + ".md"), "w").write("\n".join(out))

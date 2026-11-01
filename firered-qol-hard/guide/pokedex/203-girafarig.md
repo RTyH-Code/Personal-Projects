@@ -116,11 +116,11 @@ Girafarig does not evolve.
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
-| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co 2F |
+| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
 ### By breeding (egg moves)
@@ -135,7 +135,7 @@ Breed a Girafarig with a father that knows the move.
 | Future Sight | Psychic | Special | 120 | 100% | 10 |
 | Beat Up | Dark | Physical | 10 | 100% | 10 |
 | Psych Up | Normal | Status | — | — | 10 |
-| Wish | Normal | Status | — | 100% | 10 |
+| Wish | Normal | Status | — | — | 10 |
 | Magic Coat | Psychic | Status | — | 100% | 15 |
 
 ---

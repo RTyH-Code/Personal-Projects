@@ -80,7 +80,7 @@ Height 2 m (6′07″) · Weight 6.9 kg (15.2 lbs)
 | 17 | Screech | Normal | Status | — | 85% | 40 |
 | 20 | Acid | Poison | Special | 40 | 100% | 30 |
 | 25 | Stockpile | Normal | Status | — | — | 20 |
-| 25 | Spit Up | Normal | Special | 100 | 100% | 10 |
+| 25 | Spit Up | Normal | Special | varies | 100% | 10 |
 | 25 | Swallow | Normal | Status | — | — | 10 |
 | 33 | Sludge Bomb ★ | Poison | Special | 90 | 100% | 10 |
 | 41 | Haze | Ice | Status | — | — | 30 |
@@ -115,7 +115,7 @@ Height 2 m (6′07″) · Weight 6.9 kg (15.2 lbs)
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |

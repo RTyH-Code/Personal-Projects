@@ -56,20 +56,20 @@ Murkrow does not evolve.
 
 <details><summary>15 places (click to expand)</summary>
 
-- **Five Island Lost Cave Room1**: Grass / cave Lv 22 (5%)
-- **Five Island Lost Cave Room10**: Grass / cave Lv 22 (5%)
-- **Five Island Lost Cave Room11**: Grass / cave Lv 15–22 (20%)
-- **Five Island Lost Cave Room12**: Grass / cave Lv 15–22 (20%)
-- **Five Island Lost Cave Room13**: Grass / cave Lv 15–22 (20%)
-- **Five Island Lost Cave Room14**: Grass / cave Lv 15–22 (20%)
-- **Five Island Lost Cave Room2**: Grass / cave Lv 22 (5%)
-- **Five Island Lost Cave Room3**: Grass / cave Lv 22 (5%)
-- **Five Island Lost Cave Room4**: Grass / cave Lv 22 (5%)
-- **Five Island Lost Cave Room5**: Grass / cave Lv 22 (5%)
-- **Five Island Lost Cave Room6**: Grass / cave Lv 22 (5%)
-- **Five Island Lost Cave Room7**: Grass / cave Lv 22 (5%)
-- **Five Island Lost Cave Room8**: Grass / cave Lv 22 (5%)
-- **Five Island Lost Cave Room9**: Grass / cave Lv 22 (5%)
+- **Five Island Lost Cave Room 1**: Grass / cave Lv 22 (5%)
+- **Five Island Lost Cave Room 10**: Grass / cave Lv 22 (5%)
+- **Five Island Lost Cave Room 11**: Grass / cave Lv 15–22 (20%)
+- **Five Island Lost Cave Room 12**: Grass / cave Lv 15–22 (20%)
+- **Five Island Lost Cave Room 13**: Grass / cave Lv 15–22 (20%)
+- **Five Island Lost Cave Room 14**: Grass / cave Lv 15–22 (20%)
+- **Five Island Lost Cave Room 2**: Grass / cave Lv 22 (5%)
+- **Five Island Lost Cave Room 3**: Grass / cave Lv 22 (5%)
+- **Five Island Lost Cave Room 4**: Grass / cave Lv 22 (5%)
+- **Five Island Lost Cave Room 5**: Grass / cave Lv 22 (5%)
+- **Five Island Lost Cave Room 6**: Grass / cave Lv 22 (5%)
+- **Five Island Lost Cave Room 7**: Grass / cave Lv 22 (5%)
+- **Five Island Lost Cave Room 8**: Grass / cave Lv 22 (5%)
+- **Five Island Lost Cave Room 9**: Grass / cave Lv 22 (5%)
 - Breeding: hatches from an Egg left by a Murkrow at the Four Island Day Care
 
 </details>
@@ -125,7 +125,7 @@ Murkrow does not evolve.
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
-| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co 2F |
+| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
 ### By breeding (egg moves)

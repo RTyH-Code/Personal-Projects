@@ -71,8 +71,8 @@ Height 1.8 m (5′11″) · Weight 32.5 kg (71.7 lbs)
 | 1 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
 | 1 | Defense Curl | Normal | Status | — | — | 40 |
 | 13 | Fury Swipes | Normal | Physical | 18 | 80% | 15 |
-| 17 | Helping Hand | Normal | Status | — | 100% | 20 |
-| 21 | Follow Me | Normal | Status | — | 100% | 20 |
+| 17 | Helping Hand | Normal | Status | — | — | 20 |
+| 21 | Follow Me | Normal | Status | — | — | 20 |
 | 28 | Slam | Normal | Physical | 80 | 75% | 20 |
 | 32 | Rest | Psychic | Status | — | — | 5 |
 | 42 | Amnesia | Psychic | Status | — | — | 20 |
@@ -120,7 +120,7 @@ Height 1.8 m (5′11″) · Weight 32.5 kg (71.7 lbs)
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |

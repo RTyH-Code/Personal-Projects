@@ -75,7 +75,7 @@ Height 1.5 m (4′11″) · Weight 108 kg (238.1 lbs)
 | 9 | Rock Tomb | Rock | Physical | 60 | 95% | 15 |
 | 15 | Psybeam | Psychic | Special | 65 | 100% | 20 |
 | 18 | Ancient Power | Rock | Special | 60 | 100% | 5 |
-| 21 | Imprison ★ | Psychic | Status | — | 100% | 10 |
+| 21 | Imprison ★ | Psychic | Status | — | — | 10 |
 | 24 | Cosmic Power | Psychic | Status | — | — | 20 |
 | 27 | Extrasensory ★ | Psychic | Special | 80 | 100% | 20 |
 | 33 | Self-Destruct | Normal | Physical | 200 | 100% | 5 |

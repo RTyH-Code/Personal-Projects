@@ -118,7 +118,7 @@ Corsola does not evolve.
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Explosion | Normal | Physical | 250 | 100% | 5 | Mt. Ember Exterior |
@@ -136,7 +136,7 @@ Breed a Corsola with a father that knows the move.
 | Mist | Ice | Status | — | — | 30 |
 | Amnesia | Psychic | Status | — | — | 20 |
 | Barrier | Psychic | Status | — | — | 20 |
-| Ingrain | Grass | Status | — | 100% | 20 |
+| Ingrain | Grass | Status | — | — | 20 |
 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | Icicle Spear | Ice | Physical | 25 | 100% | 30 |
 

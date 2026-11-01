@@ -139,7 +139,7 @@ Breed a Goldeen with a father that knows the move.
 | Haze | Ice | Status | — | — | 30 |
 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 | Sleep Talk | Normal | Status | — | — | 10 |
-| Mud Sport | Ground | Status | — | 100% | 15 |
+| Mud Sport | Ground | Status | — | — | 15 |
 
 ---
 

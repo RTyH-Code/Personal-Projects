@@ -58,7 +58,7 @@ Height 0.8 m (2′07″) · Weight 15 kg (33.1 lbs)
 
 - **Pokémon Tower 4F**: Grass / cave Lv 17 (4%)
 - **Pokémon Tower 6F**: Grass / cave Lv 15 (10%)
-- **Five Island Lost Cave Room10**: Grass / cave Lv 48 (5%)
+- **Five Island Lost Cave Room 10**: Grass / cave Lv 48 (5%)
 - Breeding: hatches from an Egg left by a Duskull or Dusclops at the Four Island Day Care
 
 ## Moves
@@ -112,7 +112,7 @@ Height 0.8 m (2′07″) · Weight 15 kg (33.1 lbs)
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
@@ -124,10 +124,10 @@ Breed a Duskull with a father that knows the move.
 
 | Move | Type | Cat. | Power | Acc. | PP |
 |---|---|---|--:|--:|--:|
-| Imprison | Psychic | Status | — | 100% | 10 |
+| Imprison | Psychic | Status | — | — | 10 |
 | Destiny Bond | Ghost | Status | — | — | 5 |
 | Pain Split | Normal | Status | — | 100% | 20 |
-| Grudge | Ghost | Status | — | 100% | 5 |
+| Grudge | Ghost | Status | — | — | 5 |
 | Memento | Dark | Status | — | 100% | 10 |
 | Faint Attack | Dark | Physical | 60 | — | 20 |
 

@@ -36,7 +36,7 @@ Legendaries added by this hack appear after your first Hall of Fame entry (see t
 | Power Plant | Zapdos | 50 | Battle |
 | Seafoam Islands B3F | Kyogre | 45 | Battle |
 | Seafoam Islands B4F | Articuno | 50 | Battle |
-| Silph Co 7F | Lapras | 25 | Gift |
+| Silph Co. 7F | Lapras | 25 | Gift |
 | Viridian Forest | Celebi | 30 | Battle |
 | Two Island Cape Brink | Suicune | 50 | Battle |
 | Three Island Berry Forest | Hypno | 30 | Battle |
@@ -56,9 +56,9 @@ Legendaries added by this hack appear after your first Hall of Fame entry (see t
 | Location | You give | You get | Nickname |
 |---|---|---|---|
 | Route 2 House | Abra | Mr. Mime | MIMIEN |
-| Cerulean City House3 | Poliwhirl | Jynx | ZYNX |
+| Cerulean City House | Poliwhirl | Jynx | ZYNX |
 | Underground Path North Entrance | Nidoran♂ | Nidoran♀ | MS. NIDO |
-| Vermilion City House2 | Spearow | Farfetch'd | CH'DING |
+| Vermilion City House | Spearow | Farfetch'd | CH'DING |
 | Route 11 East Entrance 2F | Nidorino | Nidorina | NINA |
 | Route 18 East Entrance 2F | Golduck | Lickitung | MARC |
 | Cinnabar Island Pokémon Lab Lounge | Raichu | Electrode | ESPHERE |

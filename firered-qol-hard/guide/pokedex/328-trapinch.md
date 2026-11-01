@@ -58,7 +58,7 @@ Height 0.7 m (2′04″) · Weight 15 kg (33.1 lbs)
 
 ## Where to find it
 
-- **Digletts Cave B1F**: Grass / cave Lv 21 (5%)
+- **Diglett's Cave B1F**: Grass / cave Lv 21 (5%)
 - Breeding: hatches from an Egg left by a Trapinch or Vibrava or Flygon at the Four Island Day Care
 
 ## Moves
@@ -110,7 +110,7 @@ Height 0.7 m (2′04″) · Weight 15 kg (33.1 lbs)
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |

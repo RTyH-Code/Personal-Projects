@@ -119,7 +119,7 @@ Height 0.4 m (1′04″) · Weight 8.5 kg (18.7 lbs)
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
@@ -134,10 +134,10 @@ Breed a Wooper with a father that knows the move.
 | Ancient Power | Rock | Special | 60 | 100% | 5 |
 | Safeguard | Normal | Status | — | — | 25 |
 | Curse | ??? | Status | — | — | 10 |
-| Mud Sport | Ground | Status | — | 100% | 15 |
+| Mud Sport | Ground | Status | — | — | 15 |
 | Stockpile | Normal | Status | — | — | 20 |
 | Swallow | Normal | Status | — | — | 10 |
-| Spit Up | Normal | Special | 100 | 100% | 10 |
+| Spit Up | Normal | Special | varies | 100% | 10 |
 
 ---
 

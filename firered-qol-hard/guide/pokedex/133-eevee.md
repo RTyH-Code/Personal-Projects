@@ -71,7 +71,7 @@ Height 0.3 m (1′00″) · Weight 6.5 kg (14.3 lbs)
 | 1 | Tackle | Normal | Physical | 40 | 100% | 35 |
 | 1 | Tail Whip | Normal | Status | — | 100% | 30 |
 | 1 | Growl | Normal | Status | — | 100% | 40 |
-| 1 | Helping Hand | Normal | Status | — | 100% | 20 |
+| 1 | Helping Hand | Normal | Status | — | — | 20 |
 | 1 | Covet ★ | Normal | Physical | 60 | 100% | 25 |
 | 5 | Sand Attack | Ground | Status | — | 100% | 15 |
 | 10 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
@@ -106,7 +106,7 @@ Height 0.3 m (1′00″) · Weight 6.5 kg (14.3 lbs)
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
@@ -122,7 +122,7 @@ Breed a Eevee with a father that knows the move.
 | Endure | Normal | Status | — | — | 10 |
 | Curse | ??? | Status | — | — | 10 |
 | Tickle | Normal | Status | — | 100% | 20 |
-| Wish | Normal | Status | — | 100% | 10 |
+| Wish | Normal | Status | — | — | 10 |
 
 ---
 

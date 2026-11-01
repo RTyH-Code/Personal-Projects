@@ -116,7 +116,7 @@ Height 1 m (3′03″) · Weight 86.4 kg (190.5 lbs)
 |---|---|---|--:|--:|--:|---|
 | Mega Punch | Normal | Physical | 80 | 85% | 20 | Route 4 |
 | Mega Kick | Normal | Physical | 120 | 75% | 5 | Route 4 |
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Counter | Fighting | Physical | varies | 100% | 20 | Celadon City Department Store 3F |
 | Seismic Toss | Fighting | Physical | varies | 100% | 20 | Pewter City Museum 1F |
@@ -134,7 +134,7 @@ Breed a Makuhita with a father that knows the move.
 | Faint Attack | Dark | Physical | 60 | — | 20 |
 | Detect | Fighting | Status | — | — | 5 |
 | Foresight | Normal | Status | — | 100% | 40 |
-| Helping Hand | Normal | Status | — | 100% | 20 |
+| Helping Hand | Normal | Status | — | — | 20 |
 | Cross Chop | Fighting | Physical | 100 | 80% | 5 |
 | Revenge | Fighting | Physical | 60 | 100% | 10 |
 | Dynamic Punch | Fighting | Physical | 100 | 50% | 5 |

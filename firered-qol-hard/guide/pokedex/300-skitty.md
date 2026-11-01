@@ -113,11 +113,11 @@ Height 0.6 m (2′00″) · Weight 11 kg (24.3 lbs)
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
-| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co 2F |
+| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
 ### By breeding (egg moves)
@@ -126,11 +126,11 @@ Breed a Skitty with a father that knows the move.
 
 | Move | Type | Cat. | Power | Acc. | PP |
 |---|---|---|--:|--:|--:|
-| Helping Hand | Normal | Status | — | 100% | 20 |
+| Helping Hand | Normal | Status | — | — | 20 |
 | Psych Up | Normal | Status | — | — | 10 |
 | Uproar | Normal | Special | 90 | 100% | 10 |
 | Fake Tears | Dark | Status | — | 100% | 20 |
-| Wish | Normal | Status | — | 100% | 10 |
+| Wish | Normal | Status | — | — | 10 |
 | Baton Pass | Normal | Status | — | — | 40 |
 | Substitute | Normal | Status | — | — | 10 |
 | Tickle | Normal | Status | — | 100% | 20 |

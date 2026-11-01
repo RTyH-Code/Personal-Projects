@@ -72,7 +72,7 @@ Height 1.4 m (4′07″) · Weight 61.5 kg (135.6 lbs)
 | 1 | Thunder Wave | Electric | Status | — | 90% | 20 |
 | 1 | Zap Cannon ★ | Electric | Special | 120 | 50% | 5 |
 | 11 | Cotton Spore | Grass | Status | — | 100% | 40 |
-| 16 | Charge ★ | Electric | Status | — | 100% | 20 |
+| 16 | Charge ★ | Electric | Status | — | — | 20 |
 | 20 | Take Down ★ | Normal | Physical | 90 | 85% | 20 |
 | 29 | Confuse Ray ★ | Ghost | Status | — | 100% | 10 |
 | 57 | Light Screen | Psychic | Status | — | — | 30 |
@@ -111,12 +111,12 @@ Height 1.4 m (4′07″) · Weight 61.5 kg (135.6 lbs)
 |---|---|---|--:|--:|--:|---|
 | Mega Punch | Normal | Physical | 80 | 85% | 20 | Route 4 |
 | Mega Kick | Normal | Physical | 120 | 75% | 5 | Route 4 |
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Counter | Fighting | Physical | varies | 100% | 20 | Celadon City Department Store 3F |
 | Seismic Toss | Fighting | Physical | varies | 100% | 20 | Pewter City Museum 1F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
-| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co 2F |
+| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
 ### By breeding (egg moves)
@@ -131,7 +131,7 @@ Breed a Mareep (passed down to Mareep, which then evolves) with a father that kn
 | Screech | Normal | Status | — | 85% | 40 |
 | Reflect | Psychic | Status | — | — | 20 |
 | Odor Sleuth | Normal | Status | — | 100% | 40 |
-| Charge | Electric | Status | — | 100% | 20 |
+| Charge | Electric | Status | — | — | 20 |
 
 ---
 

@@ -57,7 +57,7 @@ Height 0.7 m (2′04″) · Weight 33.3 kg (73.4 lbs)
 
 ## Where to find it
 
-- **Digletts Cave B1F**: Grass / cave Lv 29–31 (5%)
+- **Diglett's Cave B1F**: Grass / cave Lv 29–31 (5%)
 - Evolve [Diglett](050-diglett.md)
 
 ## Moves
@@ -110,7 +110,7 @@ Height 0.7 m (2′04″) · Weight 33.3 kg (73.4 lbs)
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |

@@ -70,7 +70,7 @@ Height 0.6 m (2′00″) · Weight 7.8 kg (17.2 lbs)
 | 4 | Thunder Wave | Electric | Status | — | 90% | 20 |
 | 8 | Thunder Shock | Electric | Special | 40 | 100% | 30 |
 | 11 | Cotton Spore | Grass | Status | — | 100% | 40 |
-| 15 | Charge ★ | Electric | Status | — | 100% | 20 |
+| 15 | Charge ★ | Electric | Status | — | — | 20 |
 | 18 | Take Down ★ | Normal | Physical | 90 | 85% | 20 |
 | 25 | Confuse Ray ★ | Ghost | Status | — | 100% | 10 |
 | 43 | Light Screen | Psychic | Status | — | — | 30 |
@@ -102,10 +102,10 @@ Height 0.6 m (2′00″) · Weight 7.8 kg (17.2 lbs)
 
 | Move | Type | Cat. | Power | Acc. | PP | Tutor |
 |---|---|---|--:|--:|--:|---|
-| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House1 |
+| Body Slam | Normal | Physical | 85 | 100% | 15 | Four Island House |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
-| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co 2F |
+| Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
 ### By breeding (egg moves)
@@ -120,7 +120,7 @@ Breed a Mareep with a father that knows the move.
 | Screech | Normal | Status | — | 85% | 40 |
 | Reflect | Psychic | Status | — | — | 20 |
 | Odor Sleuth | Normal | Status | — | 100% | 40 |
-| Charge | Electric | Status | — | 100% | 20 |
+| Charge | Electric | Status | — | — | 20 |
 
 ---
 

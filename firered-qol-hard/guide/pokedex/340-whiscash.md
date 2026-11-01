@@ -4,7 +4,7 @@
 
 *The Whiskers Pokémon* — **Water / Ground**
 
-> It makes its nest at the bottom of  swamps. It will eat anything - if it is alive, Whiscash will eat it.
+> It makes its nest at the bottom of swamps. It will eat anything - if it is alive, Whiscash will eat it.
 
 Height 0.9 m (2′11″) · Weight 23.6 kg (52.0 lbs)
 
