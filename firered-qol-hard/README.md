@@ -15,6 +15,12 @@ A quality-of-life, modernization and difficulty hack built on the pret/pokefirer
 - Evolutions FireRed can't trigger (it has no clock and no Pokéblocks):
   - Use a Sun Stone on Eevee for Espeon, or a Moon Stone for Umbreon.
   - Use a Deep Sea Scale on Feebas for Milotic.
+- Fossils:
+  - At Mt. Moon you can take both the Helix and the Dome Fossil.
+  - A Root Fossil and a Claw Fossil are in Sevault Canyon (Seven Island).
+  - The Cinnabar Lab revives every fossil you bring: Omanyte, Kabuto,
+    Aerodactyl, Lileep and Anorith. Lileep and Anorith can also turn up
+    by smashing rocks in Sevault Canyon.
 - Celadon Department Store 4F sells every evolution item: all stones,
   including the Moon and Sun Stones, plus the trade items above.
 - Pokémon from Johto and Hoenn can evolve before you have the National Dex.
@@ -139,7 +145,7 @@ Its SHA-1 should be `41cb23d8dccc8ebd7c649cd8fbb58eeace6e2fdc`.
    [Rom Patcher JS](https://www.marcrobledo.com/RomPatcher.js/) or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `ab7533e392d573d900260f253825038594e00b22`
+Patched ROM SHA-1: `d05f21baf2ea4c93e9388d32ad24aadd75d5b98c`
 
 Start a new game. Saves from earlier versions of this hack aren't supported.
 

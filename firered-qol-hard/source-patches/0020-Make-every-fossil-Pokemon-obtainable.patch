@@ -1,0 +1,305 @@
+From e838cec773c7ef37fb32be059918224d0e174fbc Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 1 Nov 2026 14:56:27 +0000
+Subject: [PATCH 20/20] Make every fossil Pokemon obtainable
+
+- Mt. Moon: Miguel no longer takes the other fossil, so both can be picked up
+- Root and Claw Fossil item balls in Sevault Canyon
+- Cinnabar Lab offers to revive each fossil you carry, including Root (Lileep)
+  and Claw (Anorith), and no longer stops after the Amber + one Mt. Moon fossil
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ HACK_NOTES.md                                 |   6 +
+ .../scripts.inc                               | 122 ++++++++++++++++--
+ data/maps/MtMoon_B2F/scripts.inc              |  24 +---
+ data/maps/SevenIsland_SevaultCanyon/map.json  |  28 ++++
+ data/scripts/item_ball_scripts.inc            |   9 ++
+ include/constants/flags.h                     |   2 +
+ 6 files changed, 158 insertions(+), 33 deletions(-)
+
+diff --git a/HACK_NOTES.md b/HACK_NOTES.md
+index e106791..5b92c13 100644
+--- a/HACK_NOTES.md
++++ b/HACK_NOTES.md
+@@ -15,6 +15,12 @@ A quality-of-life, modernization and difficulty hack built on the pret/pokefirer
+ - Evolutions FireRed can't trigger (it has no clock and no Pokéblocks):
+   - Use a Sun Stone on Eevee for Espeon, or a Moon Stone for Umbreon.
+   - Use a Deep Sea Scale on Feebas for Milotic.
++- Fossils:
++  - At Mt. Moon you can take both the Helix and the Dome Fossil.
++  - A Root Fossil and a Claw Fossil are in Sevault Canyon (Seven Island).
++  - The Cinnabar Lab revives every fossil you bring: Omanyte, Kabuto,
++    Aerodactyl, Lileep and Anorith. Lileep and Anorith can also turn up
++    by smashing rocks in Sevault Canyon.
+ - Celadon Department Store 4F sells every evolution item: all stones,
+   including the Moon and Sun Stones, plus the trade items above.
+ - Pokémon from Johto and Hoenn can evolve before you have the National Dex.
+diff --git a/data/maps/CinnabarIsland_PokemonLab_ExperimentRoom/scripts.inc b/data/maps/CinnabarIsland_PokemonLab_ExperimentRoom/scripts.inc
+index 92cfb97..c69d70c 100644
+--- a/data/maps/CinnabarIsland_PokemonLab_ExperimentRoom/scripts.inc
++++ b/data/maps/CinnabarIsland_PokemonLab_ExperimentRoom/scripts.inc
+@@ -1,6 +1,8 @@
+ .equ HELIX_FOSSIL, 1
+ .equ DOME_FOSSIL,  2
+ .equ OLD_AMBER,    3
++.equ ROOT_FOSSIL,  4
++.equ CLAW_FOSSIL,  5
+ 
+ CinnabarIsland_PokemonLab_ExperimentRoom_MapScripts::
+ 	.byte 0
+@@ -42,19 +44,9 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_AlreadyTraded::
+ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_FossilScientist::
+ 	lock
+ 	faceplayer
+-	setvar VAR_RESULT, FALSE
+-	call_if_set FLAG_REVIVED_AMBER, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckRevivedMtMoonFossil
+-	goto_if_eq VAR_RESULT, TRUE, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_RevivedAllFossils
+ 	goto_if_eq VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE, 2, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveRevivedMon
+ 	goto_if_eq VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE, 1, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_FossilStillReviving
+-	call CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddHelixFossilToList
+-	goto_if_eq VAR_RESULT, TRUE, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilHelix
+-	call CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddDomeFossilToList
+-	goto_if_eq VAR_RESULT, TRUE, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilDome
+-	call CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddOldAmberToList
+-	goto_if_eq VAR_RESULT, TRUE, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_ChooseFossilAmber
+-	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_HaveYouAFossilForMe
+-	goto CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil
++	goto CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_HackAskHelix
+ 	end
+ 
+ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddHelixFossilToList::
+@@ -192,6 +184,8 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveRevivedMon::
+ 	goto_if_eq VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_WHICH_FOSSIL, HELIX_FOSSIL, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveOmanyte
+ 	goto_if_eq VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_WHICH_FOSSIL, DOME_FOSSIL, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveKabuto
+ 	goto_if_eq VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_WHICH_FOSSIL, OLD_AMBER, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveAerodactyl
++	goto_if_eq VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_WHICH_FOSSIL, ROOT_FOSSIL, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveLileep
++	goto_if_eq VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_WHICH_FOSSIL, CLAW_FOSSIL, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveAnorith
+ 	end
+ 
+ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveOmanyte::
+@@ -283,3 +277,109 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckRevivedDome::
+ 	goto_if_unset FLAG_REVIVED_DOME, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse
+ 	setvar VAR_RESULT, TRUE
+ 	return
++
++@ FireRed QoL+Hard: offer to revive each fossil the player carries, one at a time
++CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_HackAskHelix::
++	checkitem ITEM_HELIX_FOSSIL
++	goto_if_eq VAR_RESULT, FALSE, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_HackAskDome
++	bufferspeciesname STR_VAR_1, SPECIES_OMANYTE
++	bufferitemname STR_VAR_2, ITEM_HELIX_FOSSIL
++	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_ThatFossilIsOfMonMakeItLiveAgain, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_HackAskDome
++	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_HandedFossilToWeirdDoctor
++	textcolor NPC_TEXT_COLOR_MALE
++	removeitem ITEM_HELIX_FOSSIL
++	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalk
++	setvar VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE, 1
++	setvar VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_WHICH_FOSSIL, HELIX_FOSSIL
++	release
++	end
++
++CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_HackAskDome::
++	checkitem ITEM_DOME_FOSSIL
++	goto_if_eq VAR_RESULT, FALSE, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_HackAskAmber
++	bufferspeciesname STR_VAR_1, SPECIES_KABUTO
++	bufferitemname STR_VAR_2, ITEM_DOME_FOSSIL
++	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_ThatFossilIsOfMonMakeItLiveAgain, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_HackAskAmber
++	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_HandedFossilToWeirdDoctor
++	textcolor NPC_TEXT_COLOR_MALE
++	removeitem ITEM_DOME_FOSSIL
++	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalk
++	setvar VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE, 1
++	setvar VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_WHICH_FOSSIL, DOME_FOSSIL
++	release
++	end
++
++CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_HackAskAmber::
++	checkitem ITEM_OLD_AMBER
++	goto_if_eq VAR_RESULT, FALSE, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_HackAskRoot
++	bufferspeciesname STR_VAR_1, SPECIES_AERODACTYL
++	bufferitemname STR_VAR_2, ITEM_OLD_AMBER
++	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_ThatFossilIsOfMonMakeItLiveAgain, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_HackAskRoot
++	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_HandedFossilToWeirdDoctor
++	textcolor NPC_TEXT_COLOR_MALE
++	removeitem ITEM_OLD_AMBER
++	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalk
++	setvar VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE, 1
++	setvar VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_WHICH_FOSSIL, OLD_AMBER
++	release
++	end
++
++CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_HackAskRoot::
++	checkitem ITEM_ROOT_FOSSIL
++	goto_if_eq VAR_RESULT, FALSE, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_HackAskClaw
++	bufferspeciesname STR_VAR_1, SPECIES_LILEEP
++	bufferitemname STR_VAR_2, ITEM_ROOT_FOSSIL
++	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_ThatFossilIsOfMonMakeItLiveAgain, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_HackAskClaw
++	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_HandedFossilToWeirdDoctor
++	textcolor NPC_TEXT_COLOR_MALE
++	removeitem ITEM_ROOT_FOSSIL
++	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalk
++	setvar VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE, 1
++	setvar VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_WHICH_FOSSIL, ROOT_FOSSIL
++	release
++	end
++
++CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_HackAskClaw::
++	checkitem ITEM_CLAW_FOSSIL
++	goto_if_eq VAR_RESULT, FALSE, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_HackNoFossil
++	bufferspeciesname STR_VAR_1, SPECIES_ANORITH
++	bufferitemname STR_VAR_2, ITEM_CLAW_FOSSIL
++	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_ThatFossilIsOfMonMakeItLiveAgain, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_HackNoFossil
++	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_HandedFossilToWeirdDoctor
++	textcolor NPC_TEXT_COLOR_MALE
++	removeitem ITEM_CLAW_FOSSIL
++	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalk
++	setvar VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE, 1
++	setvar VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_WHICH_FOSSIL, CLAW_FOSSIL
++	release
++	end
++
++CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_HackNoFossil::
++	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_HaveYouAFossilForMe
++	goto CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil
++	end
++
++CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveLileep::
++	setvar VAR_TEMP_1, SPECIES_LILEEP
++	bufferspeciesname STR_VAR_1, SPECIES_LILEEP
++	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife
++	givemon SPECIES_LILEEP, 5
++	goto_if_eq VAR_RESULT, 2, EventScript_NoMoreRoomForPokemon
++	goto_if_eq VAR_RESULT, 0, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonParty
++	goto_if_eq VAR_RESULT, 1, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonPC
++	end
++
++CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveAnorith::
++	setvar VAR_TEMP_1, SPECIES_ANORITH
++	bufferspeciesname STR_VAR_1, SPECIES_ANORITH
++	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife
++	givemon SPECIES_ANORITH, 5
++	goto_if_eq VAR_RESULT, 2, EventScript_NoMoreRoomForPokemon
++	goto_if_eq VAR_RESULT, 0, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonParty
++	goto_if_eq VAR_RESULT, 1, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonPC
++	end
+diff --git a/data/maps/MtMoon_B2F/scripts.inc b/data/maps/MtMoon_B2F/scripts.inc
+index 2cd0798..0b362a6 100644
+--- a/data/maps/MtMoon_B2F/scripts.inc
++++ b/data/maps/MtMoon_B2F/scripts.inc
+@@ -58,17 +58,7 @@ MtMoon_B2F_EventScript_DomeFossil::
+ 	removeobject LOCALID_DOME_FOSSIL
+ 	giveitem_msg MtMoon_B2F_Text_ObtainedDomeFossil, ITEM_DOME_FOSSIL, 1, MUS_OBTAIN_KEY_ITEM
+ 	closemessage
+-	special QuestLog_CutRecording
+-	delay 10
+-	applymovement LOCALID_MIGUEL, MtMoon_B2F_Movement_MiguelToHelixFossil
+-	waitmovement 0
+-	copyobjectxytoperm LOCALID_MIGUEL
+-	textcolor NPC_TEXT_COLOR_MALE
+-	playfanfare MUS_OBTAIN_KEY_ITEM
+-	message MtMoon_B2F_Text_ThenThisFossilIsMine
+-	waitmessage
+-	waitfanfare
+-	removeobject LOCALID_HELIX_FOSSIL
++	@ FireRed QoL+Hard: the other fossil stays, so both can be taken
+ 	setflag FLAG_GOT_DOME_FOSSIL
+ 	setflag FLAG_GOT_FOSSIL_FROM_MT_MOON
+ 	release
+@@ -89,17 +79,7 @@ MtMoon_B2F_EventScript_HelixFossil::
+ 	removeobject LOCALID_HELIX_FOSSIL
+ 	giveitem_msg MtMoon_B2F_Text_ObtainedHelixFossil, ITEM_HELIX_FOSSIL, 1, MUS_OBTAIN_KEY_ITEM
+ 	closemessage
+-	special QuestLog_CutRecording
+-	delay 10
+-	applymovement LOCALID_MIGUEL, MtMoon_B2F_Movement_MiguelToDomeFossil
+-	waitmovement 0
+-	copyobjectxytoperm LOCALID_MIGUEL
+-	textcolor NPC_TEXT_COLOR_MALE
+-	playfanfare MUS_OBTAIN_KEY_ITEM
+-	message MtMoon_B2F_Text_ThenThisFossilIsMine
+-	waitmessage
+-	waitfanfare
+-	removeobject LOCALID_DOME_FOSSIL
++	@ FireRed QoL+Hard: the other fossil stays, so both can be taken
+ 	setflag FLAG_GOT_HELIX_FOSSIL
+ 	setflag FLAG_GOT_FOSSIL_FROM_MT_MOON
+ 	release
+diff --git a/data/maps/SevenIsland_SevaultCanyon/map.json b/data/maps/SevenIsland_SevaultCanyon/map.json
+index af3c702..448dc0d 100644
+--- a/data/maps/SevenIsland_SevaultCanyon/map.json
++++ b/data/maps/SevenIsland_SevaultCanyon/map.json
+@@ -305,6 +305,34 @@
+       "trainer_sight_or_berry_tree_id": "0",
+       "script": "SevenIsland_SevaultCanyon_EventScript_BlackBelt",
+       "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
++      "x": 9,
++      "y": 27,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "SevenIsland_SevaultCanyon_EventScript_ItemRootFossil",
++      "flag": "FLAG_HIDE_SEVAULT_CANYON_ROOT_FOSSIL"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
++      "x": 6,
++      "y": 42,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "SevenIsland_SevaultCanyon_EventScript_ItemClawFossil",
++      "flag": "FLAG_HIDE_SEVAULT_CANYON_CLAW_FOSSIL"
+     }
+   ],
+   "warp_events": [
+diff --git a/data/scripts/item_ball_scripts.inc b/data/scripts/item_ball_scripts.inc
+index 25233ba..eca7a21 100644
+--- a/data/scripts/item_ball_scripts.inc
++++ b/data/scripts/item_ball_scripts.inc
+@@ -669,3 +669,12 @@ SevenIsland_SevaultCanyon_House_EventScript_ItemLuckyPunch::
+ SilphCo_4F_EventScript_ItemTM41::
+ 	finditem ITEM_TM41
+ 	end
++
++@ FireRed QoL+Hard: Hoenn fossils
++SevenIsland_SevaultCanyon_EventScript_ItemRootFossil::
++	finditem ITEM_ROOT_FOSSIL
++	end
++
++SevenIsland_SevaultCanyon_EventScript_ItemClawFossil::
++	finditem ITEM_CLAW_FOSSIL
++	end
+diff --git a/include/constants/flags.h b/include/constants/flags.h
+index b043540..5558d55 100644
+--- a/include/constants/flags.h
++++ b/include/constants/flags.h
+@@ -1322,6 +1322,8 @@
+ // FireRed QoL+Hard: legendary encounter flags (see tools/hack/legendaries.py)
+ #define FLAG_HACK_PEAK_LEAGUE            (TRAINER_FLAGS_START + TRAINER_RS_COOLTRAINER_M)
+ #define FLAG_HACK_TRUE_ENDGAME           (TRAINER_FLAGS_START + TRAINER_RS_COOLTRAINER_F) // beat the round 2 Champion
++#define FLAG_HIDE_SEVAULT_CANYON_ROOT_FOSSIL (TRAINER_FLAGS_START + TRAINER_HEX_MANIAC)
++#define FLAG_HIDE_SEVAULT_CANYON_CLAW_FOSSIL (TRAINER_FLAGS_START + TRAINER_RS_LADY)
+ #define FLAG_HACK_LEGENDS_RELEASED       FLAG_UNUSED_0x4A7
+ #define FLAG_HACK_CAUGHT_MEW             FLAG_UNUSED_0x4A8
+ #define FLAG_HACK_CAUGHT_CELEBI          FLAG_UNUSED_0x4A9
+-- 
+2.43.0
+
