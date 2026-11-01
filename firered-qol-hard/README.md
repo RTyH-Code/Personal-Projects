@@ -85,26 +85,32 @@ All 386 Pokémon can be caught, evolved or bred in a single FireRed save:
 - Altering Cave holds all of its Mystery Gift species at once.
 
 ### Legendaries (after your first Hall of Fame entry)
-| Pokémon | Where | How |
-|---|---|---|
-| Mew | Pokémon Mansion B1F, top-left room | Overworld sprite |
-| Celebi | Viridian Forest, north-east clearing | Overworld sprite |
-| Raikou | Power Plant, large middle room | Overworld sprite |
-| Entei | Mt. Ember, path to the summit | Overworld sprite |
-| Suicune | Cape Brink, south shore | Overworld sprite |
-| Regirock / Regice / Registeel | Tanoby Liptoo / Weepth / Dilford Chamber | Examine the north wall of the innermost room |
-| Kyogre | Seafoam Islands B3F | Examine the deep pool from its south shore |
-| Groudon | Mt. Ember Ruby Path B3F | Examine the north wall of the first room |
-| Rayquaza | Sevault Canyon | Examine the wall at the very top of the canyon |
-| Latias | Outcast Island | Examine the cave wall on the island's north side |
-| Latios | Memorial Pillar | Examine the north wall above the pillar |
-| Jirachi | Mt. Moon B2F | Examine the north wall of the large north-west room |
-| Lugia / Ho-Oh | Navel Rock | Mystic Ticket (received at the Hall of Fame) |
-| Deoxys | Birth Island | Aurora Ticket (received at the Hall of Fame) |
+| Pokémon | Where |
+|---|---|
+| Mew | Pokémon Mansion B1F, top-left room |
+| Celebi | Viridian Forest, north-east clearing |
+| Raikou | Power Plant, large middle room |
+| Entei | Mt. Ember, path to the summit |
+| Suicune | Cape Brink, south shore |
+| Regirock / Regice / Registeel | Innermost room of the Tanoby Liptoo / Weepth / Dilford Chamber |
+| Kyogre | Seafoam Islands B3F, on the shore of the deep pool |
+| Groudon | Mt. Ember Ruby Path B3F, north wall of the first room |
+| Rayquaza | The very top of Sevault Canyon |
+| Latias | Outcast Island, by the cave wall on the north side |
+| Latios | Memorial Pillar, just north of the pillar |
+| Jirachi | Mt. Moon B2F, north wall of the large north-west room |
+| Lugia / Ho-Oh | Navel Rock: Mystic Ticket (received at the Hall of Fame) |
+| Deoxys | Birth Island: Aurora Ticket (received at the Hall of Fame) |
 
-If you run or knock out a legendary, it stays there for another try.
-Catching it removes it. Before the Hall of Fame, examining one of the hidden
-spots shows a hint.
+- **Sprites and markers:** Mew, Celebi and the three beasts appear as their
+  own overworld sprites. The others have no overworld sprite in FireRed, so a
+  dark meteorite rock marks the spot; talk to it.
+- **Before the Hall of Fame:** the meteorites are already there and show a
+  hint.
+- **No roaming beast:** Raikou, Entei and Suicune are all static encounters,
+  whichever starter you chose.
+- **Retries:** if you run or knock a legendary out, it stays for another try.
+  Catching it removes it.
 
 ## Difficulty
 - Every Gym Leader has a new, larger team with max IVs, better moves and a held item.
@@ -145,7 +151,7 @@ Its SHA-1 should be `41cb23d8dccc8ebd7c649cd8fbb58eeace6e2fdc`.
    [Rom Patcher JS](https://www.marcrobledo.com/RomPatcher.js/) or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `d05f21baf2ea4c93e9388d32ad24aadd75d5b98c`
+Patched ROM SHA-1: `71d65f3123dee2692b404d0d257947948bb6b5c3`
 
 Start a new game. Saves from earlier versions of this hack aren't supported.
 

@@ -1,0 +1,659 @@
+From e52c4a98e02a9bf08d83a478f02282f1fb17efcd Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 1 Nov 2026 15:05:49 +0000
+Subject: [PATCH 21/21] Static legendary beasts and visible markers for
+ sprite-less legendaries
+
+- No roaming beast: Celio no longer starts the roamer and roamer encounters
+  are disabled; Raikou, Entei and Suicune are the static encounters
+- Regis, Kyogre, Groudon, Rayquaza, Latias, Latios and Jirachi are marked by
+  the Birth Island meteorite rock instead of invisible tiles (Kyogre's moved
+  onto the shore so it can be talked to)
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ HACK_NOTES.md                                 | 46 +++++++++-------
+ data/maps/FiveIsland_MemorialPillar/map.json  | 22 +++++---
+ data/maps/MtEmber_RubyPath_B3F/map.json       | 25 +++++----
+ data/maps/MtMoon_B2F/map.json                 | 22 +++++---
+ .../OneIsland_PokemonCenter_1F/scripts.inc    |  2 +-
+ data/maps/SeafoamIslands_B3F/map.json         | 22 +++++---
+ data/maps/SevenIsland_SevaultCanyon/map.json  | 22 +++++---
+ .../map.json                                  | 28 ++++++----
+ .../map.json                                  | 28 ++++++----
+ .../map.json                                  | 28 ++++++----
+ data/maps/SixIsland_OutcastIsland/map.json    | 22 +++++---
+ data/scripts/hack_legendaries.inc             |  9 ++++
+ src/roamer.c                                  |  3 ++
+ tools/hack/legendaries.py                     | 52 ++++++++++---------
+ 14 files changed, 202 insertions(+), 129 deletions(-)
+
+diff --git a/HACK_NOTES.md b/HACK_NOTES.md
+index 5b92c13..75dcb60 100644
+--- a/HACK_NOTES.md
++++ b/HACK_NOTES.md
+@@ -85,26 +85,32 @@ All 386 Pokémon can be caught, evolved or bred in a single FireRed save:
+ - Altering Cave holds all of its Mystery Gift species at once.
+ 
+ ### Legendaries (after your first Hall of Fame entry)
+-| Pokémon | Where | How |
+-|---|---|---|
+-| Mew | Pokémon Mansion B1F, top-left room | Overworld sprite |
+-| Celebi | Viridian Forest, north-east clearing | Overworld sprite |
+-| Raikou | Power Plant, large middle room | Overworld sprite |
+-| Entei | Mt. Ember, path to the summit | Overworld sprite |
+-| Suicune | Cape Brink, south shore | Overworld sprite |
+-| Regirock / Regice / Registeel | Tanoby Liptoo / Weepth / Dilford Chamber | Examine the north wall of the innermost room |
+-| Kyogre | Seafoam Islands B3F | Examine the deep pool from its south shore |
+-| Groudon | Mt. Ember Ruby Path B3F | Examine the north wall of the first room |
+-| Rayquaza | Sevault Canyon | Examine the wall at the very top of the canyon |
+-| Latias | Outcast Island | Examine the cave wall on the island's north side |
+-| Latios | Memorial Pillar | Examine the north wall above the pillar |
+-| Jirachi | Mt. Moon B2F | Examine the north wall of the large north-west room |
+-| Lugia / Ho-Oh | Navel Rock | Mystic Ticket (received at the Hall of Fame) |
+-| Deoxys | Birth Island | Aurora Ticket (received at the Hall of Fame) |
+-
+-If you run or knock out a legendary, it stays there for another try.
+-Catching it removes it. Before the Hall of Fame, examining one of the hidden
+-spots shows a hint.
++| Pokémon | Where |
++|---|---|
++| Mew | Pokémon Mansion B1F, top-left room |
++| Celebi | Viridian Forest, north-east clearing |
++| Raikou | Power Plant, large middle room |
++| Entei | Mt. Ember, path to the summit |
++| Suicune | Cape Brink, south shore |
++| Regirock / Regice / Registeel | Innermost room of the Tanoby Liptoo / Weepth / Dilford Chamber |
++| Kyogre | Seafoam Islands B3F, on the shore of the deep pool |
++| Groudon | Mt. Ember Ruby Path B3F, north wall of the first room |
++| Rayquaza | The very top of Sevault Canyon |
++| Latias | Outcast Island, by the cave wall on the north side |
++| Latios | Memorial Pillar, just north of the pillar |
++| Jirachi | Mt. Moon B2F, north wall of the large north-west room |
++| Lugia / Ho-Oh | Navel Rock: Mystic Ticket (received at the Hall of Fame) |
++| Deoxys | Birth Island: Aurora Ticket (received at the Hall of Fame) |
++
++- **Sprites and markers:** Mew, Celebi and the three beasts appear as their
++  own overworld sprites. The others have no overworld sprite in FireRed, so a
++  dark meteorite rock marks the spot; talk to it.
++- **Before the Hall of Fame:** the meteorites are already there and show a
++  hint.
++- **No roaming beast:** Raikou, Entei and Suicune are all static encounters,
++  whichever starter you chose.
++- **Retries:** if you run or knock a legendary out, it stays for another try.
++  Catching it removes it.
+ 
+ ## Difficulty
+ - Every Gym Leader has a new, larger team with max IVs, better moves and a held item.
+diff --git a/data/maps/FiveIsland_MemorialPillar/map.json b/data/maps/FiveIsland_MemorialPillar/map.json
+index 14a01d8..d4db494 100644
+--- a/data/maps/FiveIsland_MemorialPillar/map.json
++++ b/data/maps/FiveIsland_MemorialPillar/map.json
+@@ -91,6 +91,20 @@
+       "trainer_sight_or_berry_tree_id": "0",
+       "script": "FiveIsland_MemorialPillar_EventScript_ItemMetalCoat",
+       "flag": "FLAG_HIDE_FIVE_ISLAND_MEMORIAL_PILLAR_METAL_COAT"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_METEORITE",
++      "x": 12,
++      "y": 4,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "Hack_EventScript_Legend_Latios",
++      "flag": "FLAG_HACK_CAUGHT_LATIOS"
+     }
+   ],
+   "warp_events": [],
+@@ -143,14 +157,6 @@
+       "flag": "FLAG_HIDDEN_ITEM_FIVE_ISLAND_MEMORIAL_PILLAR_BLUK_BERRY",
+       "quantity": 1,
+       "underfoot": false
+-    },
+-    {
+-      "type": "sign",
+-      "x": 12,
+-      "y": 3,
+-      "elevation": 0,
+-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+-      "script": "Hack_EventScript_Legend_Latios"
+     }
+   ]
+ }
+diff --git a/data/maps/MtEmber_RubyPath_B3F/map.json b/data/maps/MtEmber_RubyPath_B3F/map.json
+index bc8a329..fd44c27 100644
+--- a/data/maps/MtEmber_RubyPath_B3F/map.json
++++ b/data/maps/MtEmber_RubyPath_B3F/map.json
+@@ -154,6 +154,20 @@
+       "trainer_sight_or_berry_tree_id": "0",
+       "script": "EventScript_StrengthBoulder",
+       "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_METEORITE",
++      "x": 13,
++      "y": 3,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "Hack_EventScript_Legend_Groudon",
++      "flag": "FLAG_HACK_CAUGHT_GROUDON"
+     }
+   ],
+   "warp_events": [
+@@ -180,14 +194,5 @@
+     }
+   ],
+   "coord_events": [],
+-  "bg_events": [
+-    {
+-      "type": "sign",
+-      "x": 13,
+-      "y": 3,
+-      "elevation": 0,
+-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+-      "script": "Hack_EventScript_Legend_Groudon"
+-    }
+-  ]
++  "bg_events": []
+ }
+diff --git a/data/maps/MtMoon_B2F/map.json b/data/maps/MtMoon_B2F/map.json
+index c4151cc..00aeefe 100644
+--- a/data/maps/MtMoon_B2F/map.json
++++ b/data/maps/MtMoon_B2F/map.json
+@@ -171,6 +171,20 @@
+       "trainer_sight_or_berry_tree_id": "0",
+       "script": "MtMoon_B2F_EventScript_ItemAntidote",
+       "flag": "FLAG_HIDE_MT_MOON_B2F_ANTIDOTE"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_METEORITE",
++      "x": 11,
++      "y": 3,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "Hack_EventScript_Legend_Jirachi",
++      "flag": "FLAG_HACK_CAUGHT_JIRACHI"
+     }
+   ],
+   "warp_events": [
+@@ -234,14 +248,6 @@
+       "flag": "FLAG_HIDDEN_ITEM_MT_MOON_B2F_ETHER",
+       "quantity": 1,
+       "underfoot": false
+-    },
+-    {
+-      "type": "sign",
+-      "x": 11,
+-      "y": 2,
+-      "elevation": 0,
+-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+-      "script": "Hack_EventScript_Legend_Jirachi"
+     }
+   ]
+ }
+diff --git a/data/maps/OneIsland_PokemonCenter_1F/scripts.inc b/data/maps/OneIsland_PokemonCenter_1F/scripts.inc
+index 0907948..5b2c72a 100644
+--- a/data/maps/OneIsland_PokemonCenter_1F/scripts.inc
++++ b/data/maps/OneIsland_PokemonCenter_1F/scripts.inc
+@@ -277,7 +277,7 @@ OneIsland_PokemonCenter_1F_EventScript_GiveCelioSapphire::
+ 	setflag FLAG_HIDE_CERULEAN_CAVE_GUARD
+ 	setflag FLAG_HIDE_LORELEI_IN_HER_HOUSE
+ 	setvar VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 6
+-	special InitRoamer
++	@ FireRed QoL+Hard: no roamer; Raikou, Entei and Suicune are static encounters
+ 	release
+ 	end
+ 
+diff --git a/data/maps/SeafoamIslands_B3F/map.json b/data/maps/SeafoamIslands_B3F/map.json
+index ba49f51..4f660ed 100644
+--- a/data/maps/SeafoamIslands_B3F/map.json
++++ b/data/maps/SeafoamIslands_B3F/map.json
+@@ -98,6 +98,20 @@
+       "trainer_sight_or_berry_tree_id": "0",
+       "script": "EventScript_StrengthBoulder",
+       "flag": "FLAG_HIDE_SEAFOAM_B3F_BOULDER_3"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_METEORITE",
++      "x": 20,
++      "y": 14,
++      "elevation": 4,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "Hack_EventScript_Legend_Kyogre",
++      "flag": "FLAG_HACK_CAUGHT_KYOGRE"
+     }
+   ],
+   "warp_events": [
+@@ -176,14 +190,6 @@
+       "flag": "FLAG_HIDDEN_ITEM_SEAFOAM_ISLANDS_B3F_NUGGET",
+       "quantity": 1,
+       "underfoot": false
+-    },
+-    {
+-      "type": "sign",
+-      "x": 20,
+-      "y": 13,
+-      "elevation": 0,
+-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+-      "script": "Hack_EventScript_Legend_Kyogre"
+     }
+   ]
+ }
+diff --git a/data/maps/SevenIsland_SevaultCanyon/map.json b/data/maps/SevenIsland_SevaultCanyon/map.json
+index 448dc0d..369a1de 100644
+--- a/data/maps/SevenIsland_SevaultCanyon/map.json
++++ b/data/maps/SevenIsland_SevaultCanyon/map.json
+@@ -333,6 +333,20 @@
+       "trainer_sight_or_berry_tree_id": "0",
+       "script": "SevenIsland_SevaultCanyon_EventScript_ItemClawFossil",
+       "flag": "FLAG_HIDE_SEVAULT_CANYON_CLAW_FOSSIL"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_METEORITE",
++      "x": 13,
++      "y": 4,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "Hack_EventScript_Legend_Rayquaza",
++      "flag": "FLAG_HACK_CAUGHT_RAYQUAZA"
+     }
+   ],
+   "warp_events": [
+@@ -370,14 +384,6 @@
+       "elevation": 0,
+       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+       "script": "SevenIsland_SevaultCanyon_EventScript_RouteSign"
+-    },
+-    {
+-      "type": "sign",
+-      "x": 13,
+-      "y": 3,
+-      "elevation": 0,
+-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+-      "script": "Hack_EventScript_Legend_Rayquaza"
+     }
+   ]
+ }
+diff --git a/data/maps/SevenIsland_TanobyRuins_DilfordChamber/map.json b/data/maps/SevenIsland_TanobyRuins_DilfordChamber/map.json
+index 1ab02f8..3015399 100644
+--- a/data/maps/SevenIsland_TanobyRuins_DilfordChamber/map.json
++++ b/data/maps/SevenIsland_TanobyRuins_DilfordChamber/map.json
+@@ -14,7 +14,22 @@
+   "floor_number": 0,
+   "battle_scene": "MAP_BATTLE_SCENE_INDOOR_1",
+   "connections": null,
+-  "object_events": [],
++  "object_events": [
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_METEORITE",
++      "x": 10,
++      "y": 8,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "Hack_EventScript_Legend_Registeel",
++      "flag": "FLAG_HACK_CAUGHT_REGISTEEL"
++    }
++  ],
+   "warp_events": [
+     {
+       "x": 11,
+@@ -25,14 +40,5 @@
+     }
+   ],
+   "coord_events": [],
+-  "bg_events": [
+-    {
+-      "type": "sign",
+-      "x": 10,
+-      "y": 7,
+-      "elevation": 0,
+-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+-      "script": "Hack_EventScript_Legend_Registeel"
+-    }
+-  ]
++  "bg_events": []
+ }
+diff --git a/data/maps/SevenIsland_TanobyRuins_LiptooChamber/map.json b/data/maps/SevenIsland_TanobyRuins_LiptooChamber/map.json
+index 51c5cb5..45fb957 100644
+--- a/data/maps/SevenIsland_TanobyRuins_LiptooChamber/map.json
++++ b/data/maps/SevenIsland_TanobyRuins_LiptooChamber/map.json
+@@ -14,7 +14,22 @@
+   "floor_number": 0,
+   "battle_scene": "MAP_BATTLE_SCENE_INDOOR_1",
+   "connections": null,
+-  "object_events": [],
++  "object_events": [
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_METEORITE",
++      "x": 11,
++      "y": 8,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "Hack_EventScript_Legend_Regirock",
++      "flag": "FLAG_HACK_CAUGHT_REGIROCK"
++    }
++  ],
+   "warp_events": [
+     {
+       "x": 11,
+@@ -25,14 +40,5 @@
+     }
+   ],
+   "coord_events": [],
+-  "bg_events": [
+-    {
+-      "type": "sign",
+-      "x": 11,
+-      "y": 7,
+-      "elevation": 0,
+-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+-      "script": "Hack_EventScript_Legend_Regirock"
+-    }
+-  ]
++  "bg_events": []
+ }
+diff --git a/data/maps/SevenIsland_TanobyRuins_WeepthChamber/map.json b/data/maps/SevenIsland_TanobyRuins_WeepthChamber/map.json
+index 7b635d8..c493216 100644
+--- a/data/maps/SevenIsland_TanobyRuins_WeepthChamber/map.json
++++ b/data/maps/SevenIsland_TanobyRuins_WeepthChamber/map.json
+@@ -14,7 +14,22 @@
+   "floor_number": 0,
+   "battle_scene": "MAP_BATTLE_SCENE_INDOOR_1",
+   "connections": null,
+-  "object_events": [],
++  "object_events": [
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_METEORITE",
++      "x": 10,
++      "y": 8,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "Hack_EventScript_Legend_Regice",
++      "flag": "FLAG_HACK_CAUGHT_REGICE"
++    }
++  ],
+   "warp_events": [
+     {
+       "x": 11,
+@@ -25,14 +40,5 @@
+     }
+   ],
+   "coord_events": [],
+-  "bg_events": [
+-    {
+-      "type": "sign",
+-      "x": 10,
+-      "y": 7,
+-      "elevation": 0,
+-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+-      "script": "Hack_EventScript_Legend_Regice"
+-    }
+-  ]
++  "bg_events": []
+ }
+diff --git a/data/maps/SixIsland_OutcastIsland/map.json b/data/maps/SixIsland_OutcastIsland/map.json
+index aed556f..9b6aff6 100644
+--- a/data/maps/SixIsland_OutcastIsland/map.json
++++ b/data/maps/SixIsland_OutcastIsland/map.json
+@@ -118,6 +118,20 @@
+       "trainer_sight_or_berry_tree_id": "0",
+       "script": "SixIsland_OutcastIsland_EventScript_ItemPPUp",
+       "flag": "FLAG_HIDE_SIX_ISLAND_OUTCAST_ISLAND_PP_UP"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_METEORITE",
++      "x": 10,
++      "y": 22,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "Hack_EventScript_Legend_Latias",
++      "flag": "FLAG_HACK_CAUGHT_LATIAS"
+     }
+   ],
+   "warp_events": [
+@@ -150,14 +164,6 @@
+       "flag": "FLAG_HIDDEN_ITEM_SIX_ISLAND_OUTCAST_ISLAND_NET_BALL",
+       "quantity": 1,
+       "underfoot": false
+-    },
+-    {
+-      "type": "sign",
+-      "x": 10,
+-      "y": 21,
+-      "elevation": 0,
+-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+-      "script": "Hack_EventScript_Legend_Latias"
+     }
+   ]
+ }
+diff --git a/data/scripts/hack_legendaries.inc b/data/scripts/hack_legendaries.inc
+index caaae71..b115d32 100644
+--- a/data/scripts/hack_legendaries.inc
++++ b/data/scripts/hack_legendaries.inc
+@@ -169,6 +169,7 @@ Hack_EventScript_Legend_Regirock::
+ 	specialvar VAR_RESULT, GetBattleOutcome
+ 	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, EventScript_ReleaseEnd
+ 	setflag FLAG_HACK_CAUGHT_REGIROCK
++	removeobject VAR_LAST_TALKED
+ 	release
+ 	end
+ 
+@@ -194,6 +195,7 @@ Hack_EventScript_Legend_Regice::
+ 	specialvar VAR_RESULT, GetBattleOutcome
+ 	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, EventScript_ReleaseEnd
+ 	setflag FLAG_HACK_CAUGHT_REGICE
++	removeobject VAR_LAST_TALKED
+ 	release
+ 	end
+ 
+@@ -219,6 +221,7 @@ Hack_EventScript_Legend_Registeel::
+ 	specialvar VAR_RESULT, GetBattleOutcome
+ 	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, EventScript_ReleaseEnd
+ 	setflag FLAG_HACK_CAUGHT_REGISTEEL
++	removeobject VAR_LAST_TALKED
+ 	release
+ 	end
+ 
+@@ -244,6 +247,7 @@ Hack_EventScript_Legend_Kyogre::
+ 	specialvar VAR_RESULT, GetBattleOutcome
+ 	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, EventScript_ReleaseEnd
+ 	setflag FLAG_HACK_CAUGHT_KYOGRE
++	removeobject VAR_LAST_TALKED
+ 	release
+ 	end
+ 
+@@ -269,6 +273,7 @@ Hack_EventScript_Legend_Groudon::
+ 	specialvar VAR_RESULT, GetBattleOutcome
+ 	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, EventScript_ReleaseEnd
+ 	setflag FLAG_HACK_CAUGHT_GROUDON
++	removeobject VAR_LAST_TALKED
+ 	release
+ 	end
+ 
+@@ -294,6 +299,7 @@ Hack_EventScript_Legend_Rayquaza::
+ 	specialvar VAR_RESULT, GetBattleOutcome
+ 	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, EventScript_ReleaseEnd
+ 	setflag FLAG_HACK_CAUGHT_RAYQUAZA
++	removeobject VAR_LAST_TALKED
+ 	release
+ 	end
+ 
+@@ -319,6 +325,7 @@ Hack_EventScript_Legend_Latias::
+ 	specialvar VAR_RESULT, GetBattleOutcome
+ 	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, EventScript_ReleaseEnd
+ 	setflag FLAG_HACK_CAUGHT_LATIAS
++	removeobject VAR_LAST_TALKED
+ 	release
+ 	end
+ 
+@@ -344,6 +351,7 @@ Hack_EventScript_Legend_Latios::
+ 	specialvar VAR_RESULT, GetBattleOutcome
+ 	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, EventScript_ReleaseEnd
+ 	setflag FLAG_HACK_CAUGHT_LATIOS
++	removeobject VAR_LAST_TALKED
+ 	release
+ 	end
+ 
+@@ -369,6 +377,7 @@ Hack_EventScript_Legend_Jirachi::
+ 	specialvar VAR_RESULT, GetBattleOutcome
+ 	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, EventScript_ReleaseEnd
+ 	setflag FLAG_HACK_CAUGHT_JIRACHI
++	removeobject VAR_LAST_TALKED
+ 	release
+ 	end
+ 
+diff --git a/src/roamer.c b/src/roamer.c
+index b3f2623..200449c 100644
+--- a/src/roamer.c
++++ b/src/roamer.c
+@@ -227,6 +227,9 @@ void CreateRoamerMonInstance(void)
+ 
+ bool8 TryStartRoamerEncounter(void)
+ {
++    // FireRed QoL+Hard: Raikou, Entei and Suicune are static encounters instead
++    if (TRUE)
++        return FALSE;
+     if (IsRoamerAt(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum) == TRUE && (Random() % 4) == 0)
+     {
+         CreateRoamerMonInstance();
+diff --git a/tools/hack/legendaries.py b/tools/hack/legendaries.py
+index 7070080..74a5234 100644
+--- a/tools/hack/legendaries.py
++++ b/tools/hack/legendaries.py
+@@ -4,7 +4,10 @@
+ * Mew, Celebi, Raikou, Entei and Suicune appear as overworld sprites after
+   the first Hall of Fame entry.
+ * Pokemon without an overworld sprite (Regis, weather trio, Latis, Jirachi)
+-  are invisible tile events: examine the spot after becoming Champion.
++  are marked by a meteorite rock (the Birth Island stone) that shows a hint
++  before you become Champion and starts the battle after.
++* There is no roaming beast: Raikou, Entei and Suicune are static (the
++  roamer itself is disabled in src/roamer.c and the One Island script).
+ * The first Hall of Fame entry also hands out the Mystic and Aurora Tickets,
+   which open Navel Rock (Lugia, Ho-Oh) and Birth Island (Deoxys).
+ Losing or running keeps the encounter available; catching removes it.
+@@ -15,7 +18,8 @@ Run once from the repo root on a checkout without these changes applied:
+ import json
+ import struct
+ 
+-# name, map dir, x, y, level, has overworld sprite
++# name, map dir, x, y, level, has overworld sprite.
++# Marker objects (no sprite) are placed at MARKER_POS, faced from STAND_POS.
+ LEGENDS = [
+     ("MEW",       "PokemonMansion_B1F",                     6,  4, 30, True),
+     ("CELEBI",    "ViridianForest",                        36, 16, 30, True),
+@@ -33,6 +37,11 @@ LEGENDS = [
+     ("JIRACHI",   "MtMoon_B2F",                            11,  2, 30, False),
+ ]
+ 
++MARKER_POS = {"REGIROCK": (11, 8), "REGICE": (10, 8), "REGISTEEL": (10, 8), "KYOGRE": (20, 14),
++              "GROUDON": (13, 3), "RAYQUAZA": (13, 4), "LATIAS": (10, 22), "LATIOS": (12, 4),
++              "JIRACHI": (11, 3)}
++STAND_POS = {n: (x, y + 1) for n, (x, y) in MARKER_POS.items()}
++
+ # Free flags: the 9 unused hidden-item flags, then the trainer flags of
+ # Ruby/Sapphire placeholder trainers that FireRed never battles.
+ FREE_FLAGS = ["FLAG_UNUSED_0x4A%s" % c for c in "789ABCDEF"] + [
+@@ -112,8 +121,7 @@ def write_scripts():
+                 "\tspecialvar VAR_RESULT, GetBattleOutcome",
+                 "\tgoto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, EventScript_ReleaseEnd",
+                 f"\tsetflag {flag(name)}"]
+-        if sprite:
+-            out += ["\tremoveobject VAR_LAST_TALKED"]
++        out += ["\tremoveobject VAR_LAST_TALKED"]
+         out += ["\trelease", "\tend", ""]
+     out += ["Hack_EventScript_LegendSleeping::",
+             "\tmsgbox Hack_Text_LegendSleeping",
+@@ -147,28 +155,22 @@ def write_map_events():
+         p = f"data/maps/{mapdir}/map.json"
+         m = json.load(open(p))
+         if sprite:
+-            m.setdefault("object_events", []).append({
+-                "type": "object",
+-                "graphics_id": f"OBJ_EVENT_GFX_{name}",
+-                "x": x, "y": y,
+-                "elevation": tile_elevation(mapdir, x, y),
+-                "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+-                "movement_range_x": 1, "movement_range_y": 1,
+-                "trainer_type": "TRAINER_TYPE_NONE",
+-                "trainer_sight_or_berry_tree_id": "0",
+-                "script": label(name),
+-                "flag": flag(name),
+-            })
++            gfx, pos, height = f"OBJ_EVENT_GFX_{name}", (x, y), tile_elevation(mapdir, x, y)
+         else:
+-            if not m.get("bg_events"):
+-                m["bg_events"] = []
+-            m["bg_events"].append({
+-                "type": "sign",
+-                "x": x, "y": y,
+-                "elevation": 0,
+-                "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+-                "script": label(name),
+-            })
++            gfx, pos = "OBJ_EVENT_GFX_METEORITE", MARKER_POS[name]
++            height = tile_elevation(mapdir, *STAND_POS[name])
++        m.setdefault("object_events", []).append({
++            "type": "object",
++            "graphics_id": gfx,
++            "x": pos[0], "y": pos[1],
++            "elevation": height,
++            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++            "movement_range_x": 1, "movement_range_y": 1,
++            "trainer_type": "TRAINER_TYPE_NONE",
++            "trainer_sight_or_berry_tree_id": "0",
++            "script": label(name),
++            "flag": flag(name),
++        })
+         with open(p, "w") as f:
+             json.dump(m, f, indent=2)
+             f.write("\n")
+-- 
+2.43.0
+
