@@ -4,13 +4,16 @@ from __future__ import annotations
 
 import gzip
 import os
+import random
 from pathlib import Path
 
 import gymnasium as gym
 import numpy as np
 from gymnasium import spaces
 
+from .goals import Goals
 from .maps import map_name
+from .progress import MIN_GAIN, ProgressPool, progress_score
 from .ram import DEFAULT_ADDRESSES, GameState, read_state
 from .rewards import RewardTracker
 
@@ -36,7 +39,9 @@ def save_state_file(path: str | os.PathLike, state: bytes) -> None:
 class FireRedEnv(gym.Env):
     """The agent sees the screen, a map of where it has been, and a few stats.
 
-    Each step presses one button, then waits for the game to react.
+    Each step presses one button, then waits for the game to react. The
+    episode ends ("terminated") when every goal is met, or is cut off
+    ("truncated") after max_steps presses.
     """
 
     metadata = {"render_modes": ["rgb_array"], "render_fps": 60}
@@ -52,6 +57,9 @@ class FireRedEnv(gym.Env):
         reward_weights: dict[str, float] | None = None,
         addresses: dict[str, int] | None = None,
         milestone_dir: str | None = None,
+        goals: Goals | None = None,
+        progress_dir: str | None = None,
+        progress_prob: float = 0.8,
         render_mode: str | None = None,
         emulator=None,
     ):
@@ -69,8 +77,12 @@ class FireRedEnv(gym.Env):
         self.wait_frames = wait_frames
         self.actions = ACTIONS if allow_start else ACTIONS[:-1]
         self.addresses = addresses or DEFAULT_ADDRESSES
-        self.rewards = RewardTracker(reward_weights or {})
+        self.goals = goals if goals is not None else Goals()
+        self.rewards = RewardTracker(reward_weights or {}, self.goals)
         self.milestone_dir = Path(milestone_dir) if milestone_dir else None
+        self.pool = ProgressPool(progress_dir) if progress_dir else None
+        self.progress_prob = progress_prob
+        self.rng = random.Random()
         self.render_mode = render_mode
 
         self.action_space = spaces.Discrete(len(self.actions))
@@ -86,13 +98,25 @@ class FireRedEnv(gym.Env):
 
     def reset(self, *, seed=None, options=None):
         super().reset(seed=seed)
-        self.emu.load_state(self.start_state)
+        if seed is not None:
+            self.rng.seed(seed)
+        picked = None
+        if self.pool is not None and self.rng.random() < self.progress_prob:
+            picked = self.pool.sample(self.rng)
+        if picked is not None:
+            state, tiles, _ = picked
+            self.emu.load_state(state)
+        else:
+            tiles = None
+            self.emu.load_state(self.start_state)
         self.steps = 0
         self.frames = np.zeros((*SCREEN_SHAPE, FRAME_STACK), np.uint8)
         self.recent_actions = [len(self.actions)] * N_RECENT_ACTIONS  # "none"
         self.state = self._read()
-        self.rewards.reset(self.state)
+        self.rewards.reset(self.state, tiles)
+        self.from_pool = picked is not None
         self.best_badges = self.state.badge_count if self.state.valid else 0
+        self.start_score = self.best_score = self._score()
         self._push_frame()
         return self._obs(), self._info()
 
@@ -107,8 +131,10 @@ class FireRedEnv(gym.Env):
         reward = self.rewards.step(self.state)
         self._push_frame()
         self._save_milestones()
-        truncated = self.steps >= self.max_steps
-        return self._obs(), reward, False, truncated, self._info()
+        self._save_progress()
+        terminated = self.rewards.complete
+        truncated = self.steps >= self.max_steps and not terminated
+        return self._obs(), reward, terminated, truncated, self._info()
 
     def render(self):
         return self.emu.screen()
@@ -140,7 +166,7 @@ class FireRedEnv(gym.Env):
         return m
 
     def _stats_size(self) -> int:
-        return 6 + 6 + 8 + 4 + (len(self.actions) + 1) * N_RECENT_ACTIONS
+        return 6 + 6 + 8 + 7 + (len(self.actions) + 1) * N_RECENT_ACTIONS
 
     def _stats(self) -> np.ndarray:
         s = self.state
@@ -150,8 +176,17 @@ class FireRedEnv(gym.Env):
             hp[i] = mon.hp / mon.max_hp
             lv[i] = mon.level / 100
         badges = np.array([(s.badges >> i) & 1 for i in range(8)], np.float32)
+        goal = self.goals.status(s) if s.valid else {}
         misc = np.array(
-            [float(s.in_battle), s.dex_owned / 386, min(s.money / 100_000, 1.0), self.steps / self.max_steps],
+            [
+                float(s.in_battle),
+                s.dex_owned / 386,
+                min(s.money / 100_000, 1.0),
+                self.steps / self.max_steps,
+                float(s.champion),
+                float(s.national_dex),
+                goal.get("pokedex", 0.0),
+            ],
             np.float32,
         )
         recent = np.zeros((N_RECENT_ACTIONS, len(self.actions) + 1), np.float32)
@@ -175,9 +210,37 @@ class FireRedEnv(gym.Env):
             "dex_owned": s.dex_owned,
             "tiles_explored": self.rewards.tile_count,
             "maps_explored": len(self.rewards.tiles),
+            "champion": s.champion,
+            "goal_progress": self.goals.fraction(s) if s.valid else 0.0,
+            "complete": self.rewards.complete,
+            "from_pool": self.from_pool,
+            "start_score": self.start_score,
+            "score": self.best_score,
         }
+        if s.valid:
+            info.update({f"goal/{k}": v for k, v in self.goals.status(s).items()})
         info.update({f"reward/{k}": v for k, v in self.rewards.totals.items()})
         return info
+
+    def _score(self) -> float:
+        s = self.state
+        if not s.valid:
+            return -1
+        return progress_score(s, self.goals, len(self.rewards.tiles), self.rewards.tile_count)
+
+    def _save_progress(self) -> None:
+        """Add this state to the pool when it's further than this episode has been."""
+        s = self.state
+        if self.pool is None or not s.valid or s.in_battle or s.all_fainted:
+            return
+        score = self._score()
+        if score < self.best_score + MIN_GAIN:
+            return
+        self.best_score = score
+        if self.pool.worth_saving(score):
+            info = {"map": map_name(*s.map_id), "badges": s.badge_count, "level_sum": s.level_sum,
+                    "dex_owned": s.dex_owned, "champion": s.champion}
+            self.pool.add(score, self.emu.save_state(), self.rewards.tile_list(), info)
 
     def _save_milestones(self) -> None:
         """Keep a save state each time an agent gets a new badge, so you can look."""

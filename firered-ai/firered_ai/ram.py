@@ -43,6 +43,8 @@ DEX_FLAG_BYTES = 52
 FLAG_BADGE01 = 0x820  # FLAG_BADGE01_GET .. FLAG_BADGE08_GET are consecutive
 FLAG_SYS_POKEMON_GET = 0x828
 FLAG_SYS_POKEDEX_GET = 0x829
+FLAG_SYS_GAME_CLEAR = 0x82C  # set when you enter the Hall of Fame
+FLAG_SYS_NATIONAL_DEX = 0x840
 
 MON_SIZE = 100
 MON_STATUS = 0x50
@@ -83,8 +85,11 @@ class GameState:
     money: int = 0
     dex_owned: int = 0
     dex_seen: int = 0
+    owned: frozenset[int] = frozenset()  # national dex numbers
     has_pokemon: bool = False
     has_pokedex: bool = False
+    champion: bool = False
+    national_dex: bool = False
 
     @property
     def map_id(self) -> tuple[int, int]:
@@ -116,8 +121,13 @@ def _u32(read: Reader, a: int) -> int:
     return struct.unpack("<I", read(a, 4))[0]
 
 
-def _popcount(data: bytes) -> int:
-    return sum(bin(b).count("1") for b in data)
+def _flag(flags: bytes, flag: int) -> bool:
+    i = flag // 8 - FLAG_BADGE01 // 8
+    return bool(flags[i] >> (flag % 8) & 1)
+
+
+def _dex_numbers(data: bytes) -> frozenset[int]:
+    return frozenset(i * 8 + b + 1 for i, byte in enumerate(data) if byte for b in range(8) if byte >> b & 1)
 
 
 def read_state(read: Reader, addrs: dict[str, int] = DEFAULT_ADDRESSES) -> GameState:
@@ -141,9 +151,10 @@ def read_state(read: Reader, addrs: dict[str, int] = DEFAULT_ADDRESSES) -> GameS
             continue
         party.append(Mon(level, min(hp, max_hp), max_hp, status))
 
-    flags = read(sb1 + SB1_FLAGS + FLAG_BADGE01 // 8, 2)
+    flags = read(sb1 + SB1_FLAGS + FLAG_BADGE01 // 8, 5)
     key = _u32(read, sb2 + SB2_ENCRYPTION_KEY)
     money = _u32(read, sb1 + SB1_MONEY) ^ key
+    owned = frozenset(n for n in _dex_numbers(read(sb2 + SB2_DEX_OWNED, DEX_FLAG_BYTES)) if n <= 386)
 
     return GameState(
         valid=True,
@@ -155,8 +166,11 @@ def read_state(read: Reader, addrs: dict[str, int] = DEFAULT_ADDRESSES) -> GameS
         party=party,
         badges=flags[0],
         money=money if money <= 999999 else 0,
-        dex_owned=_popcount(read(sb2 + SB2_DEX_OWNED, DEX_FLAG_BYTES)),
-        dex_seen=_popcount(read(sb2 + SB2_DEX_SEEN, DEX_FLAG_BYTES)),
-        has_pokemon=bool(flags[1] & 0x1),
-        has_pokedex=bool(flags[1] & 0x2),
+        dex_owned=len(owned),
+        dex_seen=len(_dex_numbers(read(sb2 + SB2_DEX_SEEN, DEX_FLAG_BYTES))),
+        owned=owned,
+        has_pokemon=_flag(flags, FLAG_SYS_POKEMON_GET),
+        has_pokedex=_flag(flags, FLAG_SYS_POKEDEX_GET),
+        champion=_flag(flags, FLAG_SYS_GAME_CLEAR),
+        national_dex=_flag(flags, FLAG_SYS_NATIONAL_DEX),
     )

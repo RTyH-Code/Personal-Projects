@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 
+from firered_ai.cli import add_goal_args, goals_from_args
 from firered_ai.env import FireRedEnv
 from firered_ai.ram import load_addresses
 
@@ -25,7 +26,9 @@ def main():
     p.add_argument("--deterministic", action="store_true", help="always pick the most likely button")
     p.add_argument("--allow-start", action="store_true")
     p.add_argument("--addresses")
+    add_goal_args(p)
     args = p.parse_args()
+    goals = goals_from_args(args)
 
     env = FireRedEnv(
         rom_path=args.rom,
@@ -33,6 +36,7 @@ def main():
         max_steps=args.steps,
         allow_start=args.allow_start,
         addresses=load_addresses(args.addresses),
+        goals=goals,
     )
     model = None
     if args.model:
@@ -53,12 +57,17 @@ def main():
             frames.append(env.render())
         if t % 250 == 0:
             print(f"step {t:5d}  reward {total:7.2f}  {info['map']} ({info['x']},{info['y']})  "
-                  f"badges {info['badges']}  levels {info['level_sum']}")
+                  f"badges {info['badges']}  levels {info['level_sum']}  goals {info['goal_progress']:.0%}")
         if terminated or truncated:
             break
 
     print(f"Done: reward {total:.2f}, {info['maps_explored']} maps, {info['tiles_explored']} tiles, "
-          f"{info['badges']} badges")
+          f"{info['badges']} badges, goals {info['goal_progress']:.0%}"
+          + (" (all goals met!)" if info["complete"] else ""))
+    if goals.pokedex is not None:
+        missing = goals.pokedex.missing(env.state.owned)
+        names = [goals.pokedex.names.get(n, str(n)) for n in missing[:20]]
+        print(f"Pokédex: {len(missing)} still to catch, e.g. {', '.join(names)}")
     save_video(frames, args.out)
     env.close()
 

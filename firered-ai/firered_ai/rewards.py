@@ -14,6 +14,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
+from .goals import Goals
 from .ram import GameState
 
 DEFAULT_WEIGHTS = {
@@ -21,37 +22,55 @@ DEFAULT_WEIGHTS = {
     "new_map": 0.5,  # per new map entered
     "level": 1.0,  # per level gained (highest party level total so far)
     "badge": 20.0,  # per badge
-    "dex": 2.0,  # per newly caught species
+    "dex": 2.0,  # per newly caught species (only ones on the Pokédex goal, if set)
+    "champion": 100.0,  # once, for entering the Hall of Fame
     "starter": 5.0,  # once, for getting the first Pokémon
     "pokedex": 5.0,  # once, for getting the Pokédex
     "heal": 1.0,  # per full party heal (Pokémon Center, potions)
     "blackout": -2.0,  # each time the whole party faints
+    "complete": 200.0,  # once, for meeting every goal (ends the episode)
 }
 
 
 @dataclass
 class RewardTracker:
     weights: dict[str, float] = field(default_factory=lambda: dict(DEFAULT_WEIGHTS))
+    goals: Goals = field(default_factory=Goals)
 
     def __post_init__(self) -> None:
         self.weights = {**DEFAULT_WEIGHTS, **self.weights}
         self.reset(None)
 
-    def reset(self, state: GameState | None) -> None:
+    def reset(self, state: GameState | None, tiles=None) -> None:
+        """Start an episode. `tiles` carries exploration over from earlier episodes."""
         self.tiles: dict[tuple[int, int], set[tuple[int, int]]] = {}  # map -> (x, y)
         self.tile_count = 0
+        for g, n, x, y in tiles or ():
+            self.tiles.setdefault((g, n), set()).add((x, y))
+            self.tile_count += 1
         self.totals = {k: 0.0 for k in self.weights}
         self.max_level_sum = 0
         self.max_badges = 0
-        self.max_dex = 0
+        self.owned: set[int] = set()
+        self.champion = False
+        self.complete = False
         self.prev: GameState | None = None
         if state is not None and state.valid:
             # Whatever the start state already has is not something to reward.
             self._visit(state)
             self.max_level_sum = state.level_sum
             self.max_badges = state.badge_count
-            self.max_dex = state.dex_owned
+            self.owned = set(self._counted(state.owned))
+            self.champion = state.champion
+            self.complete = self.goals.complete(state)
             self.prev = state
+
+    def _counted(self, owned):
+        dex = self.goals.pokedex
+        return owned & dex.species if dex is not None else owned
+
+    def tile_list(self) -> list[tuple[int, int, int, int]]:
+        return [(g, n, x, y) for (g, n), xy in self.tiles.items() for x, y in xy]
 
     def _visit(self, s: GameState) -> tuple[bool, bool]:
         new_map = s.map_id not in self.tiles
@@ -83,9 +102,16 @@ class RewardTracker:
         if s.badge_count > self.max_badges:
             got["badge"] = w["badge"] * (s.badge_count - self.max_badges)
             self.max_badges = s.badge_count
-        if s.dex_owned > self.max_dex:
-            got["dex"] = w["dex"] * (s.dex_owned - self.max_dex)
-            self.max_dex = s.dex_owned
+        new = self._counted(s.owned) - self.owned
+        if new:
+            got["dex"] = w["dex"] * len(new)
+            self.owned |= new
+        if s.champion and not self.champion:
+            got["champion"] = w["champion"]
+            self.champion = True
+        if not self.complete and self.goals.complete(s):
+            got["complete"] = w["complete"]
+            self.complete = True
 
         p = self.prev
         if p is not None and p.valid:
