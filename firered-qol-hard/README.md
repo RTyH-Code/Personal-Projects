@@ -12,6 +12,9 @@ A quality-of-life, modernization and difficulty hack built on the pret/pokefirer
   - Use King's Rock on Poliwhirl or Slowpoke, Metal Coat on Onix or Scyther,
     Dragon Scale on Seadra, Up-Grade on Porygon, and Deep Sea Tooth or
     Deep Sea Scale on Clamperl, the same way you use an evolution stone.
+- Evolutions FireRed can't trigger (it has no clock and no Pokéblocks):
+  - Use a Sun Stone on Eevee for Espeon, or a Moon Stone for Umbreon.
+  - Use a Deep Sea Scale on Feebas for Milotic.
 - Celadon Department Store 4F sells every evolution item: all stones,
   including the Moon and Sun Stones, plus the trade items above.
 - Pokémon from Johto and Hoenn can evolve before you have the National Dex.
@@ -136,7 +139,7 @@ Its SHA-1 should be `41cb23d8dccc8ebd7c649cd8fbb58eeace6e2fdc`.
    [Rom Patcher JS](https://www.marcrobledo.com/RomPatcher.js/) or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `f4418ced9d63103c2b444064498fdb1a8e8620e5`
+Patched ROM SHA-1: `ab7533e392d573d900260f253825038594e00b22`
 
 Start a new game. Saves from earlier versions of this hack aren't supported.
 
