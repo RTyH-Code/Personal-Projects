@@ -1,0 +1,309 @@
+From 7fa4ec56832718768286b665cb876ddb357a1113 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 1 Nov 2026 00:33:37 +0000
+Subject: [PATCH 14/18] Special Candy and free max-out vitamins after the round
+ 2 Champion
+
+- Beating the Champion's rematch (round 2 or peak) gives the SPECIAL CANDY,
+  a key item that works like a Rare Candy and is never used up
+- From then on HP Up/Protein/Iron/Carbos/Calcium/Zinc cost nothing and one
+  use fills that stat's EVs up to the normal caps (255 per stat, 510 total)
+- Shops handle free items (no divide by zero)
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ .../PokemonLeague_ChampionsRoom/scripts.inc   | 10 ++++++
+ data/scripts/hack_peak_trainers.inc           | 13 ++++++++
+ include/constants/flags.h                     |  1 +
+ include/constants/items.h                     |  1 +
+ include/pokemon.h                             |  1 +
+ src/data/item_icon_table.h                    |  2 +-
+ src/data/items.json                           | 14 ++++----
+ src/item.c                                    | 13 ++++++++
+ src/party_menu.c                              |  7 ++--
+ src/pokemon.c                                 | 32 +++++++++++++------
+ src/shop.c                                    |  5 ++-
+ 11 files changed, 78 insertions(+), 21 deletions(-)
+
+diff --git a/data/maps/PokemonLeague_ChampionsRoom/scripts.inc b/data/maps/PokemonLeague_ChampionsRoom/scripts.inc
+index 883ebcf..0354174 100644
+--- a/data/maps/PokemonLeague_ChampionsRoom/scripts.inc
++++ b/data/maps/PokemonLeague_ChampionsRoom/scripts.inc
+@@ -65,6 +65,7 @@ PokemonLeague_ChampionsRoom_EventScript_EnterRoom::
+ 	setflag FLAG_DEFEATED_CHAMP
+ 	setflag FLAG_TEMP_4
+ 	msgbox PokemonLeague_ChampionsRoom_Text_PostBattle
++	call_if_set FLAG_SYS_CAN_LINK_WITH_RS, PokemonLeague_ChampionsRoom_EventScript_HackGiveSpecialCandy
+ 	playbgm MUS_SLOW_PALLET, 0
+ 	addobject LOCALID_CHAMPIONS_ROOM_PROF_OAK
+ 	msgbox PokemonLeague_ChampionsRoom_Text_OakPlayer
+@@ -254,3 +255,12 @@ PokemonLeague_ChampionsRoom_EventScript_HackPeakCharmander::
+ 	cleartrainerflag TRAINER_PEAK_CHAMPION_CHARMANDER
+ 	trainerbattle_no_intro TRAINER_PEAK_CHAMPION_CHARMANDER, PokemonLeague_ChampionsRoom_Text_Defeat
+ 	return
++
++@ FireRed QoL+Hard: beating the round 2 (or peak) Champion unlocks the true endgame
++PokemonLeague_ChampionsRoom_EventScript_HackGiveSpecialCandy::
++	goto_if_set FLAG_HACK_TRUE_ENDGAME, EventScript_Return
++	msgbox Hack_Text_SpecialCandyGift
++	giveitem ITEM_SPECIAL_CANDY
++	setflag FLAG_HACK_TRUE_ENDGAME
++	msgbox Hack_Text_SpecialCandyExplain
++	return
+diff --git a/data/scripts/hack_peak_trainers.inc b/data/scripts/hack_peak_trainers.inc
+index b2e1f16..07380e7 100644
+--- a/data/scripts/hack_peak_trainers.inc
++++ b/data/scripts/hack_peak_trainers.inc
+@@ -53,3 +53,16 @@ Hack_Text_PeakOfficialNowOff::
+ 
+ Hack_Text_PeakOfficialDone::
+ 	.string "Talk to me any time to switch.$"
++
++Hack_Text_SpecialCandyGift::
++	.string "…Hey. You beat me at my very best.\p"
++	.string "I won't need this anymore.\n"
++	.string "Take it.$"
++
++Hack_Text_SpecialCandyExplain::
++	.string "That SPECIAL CANDY never runs out.\n"
++	.string "Level up whoever you like with it.\p"
++	.string "Oh, and the DEPT. STORE will hand\n"
++	.string "out vitamins for free to someone\l"
++	.string "like you. One is enough to max out\l"
++	.string "a stat's training!$"
+diff --git a/include/constants/flags.h b/include/constants/flags.h
+index f94bc1c..b043540 100644
+--- a/include/constants/flags.h
++++ b/include/constants/flags.h
+@@ -1321,6 +1321,7 @@
+ 
+ // FireRed QoL+Hard: legendary encounter flags (see tools/hack/legendaries.py)
+ #define FLAG_HACK_PEAK_LEAGUE            (TRAINER_FLAGS_START + TRAINER_RS_COOLTRAINER_M)
++#define FLAG_HACK_TRUE_ENDGAME           (TRAINER_FLAGS_START + TRAINER_RS_COOLTRAINER_F) // beat the round 2 Champion
+ #define FLAG_HACK_LEGENDS_RELEASED       FLAG_UNUSED_0x4A7
+ #define FLAG_HACK_CAUGHT_MEW             FLAG_UNUSED_0x4A8
+ #define FLAG_HACK_CAUGHT_CELEBI          FLAG_UNUSED_0x4A9
+diff --git a/include/constants/items.h b/include/constants/items.h
+index cfc4225..e74c35c 100644
+--- a/include/constants/items.h
++++ b/include/constants/items.h
+@@ -54,6 +54,7 @@
+ #define ITEM_YELLOW_SHARD 50
+ #define ITEM_GREEN_SHARD 51
+ #define ITEM_034 52
++#define ITEM_SPECIAL_CANDY ITEM_034 // FireRed QoL+Hard: reusable Rare Candy
+ #define ITEM_035 53
+ #define ITEM_036 54
+ #define ITEM_037 55
+diff --git a/include/pokemon.h b/include/pokemon.h
+index ef565e7..f80a006 100644
+--- a/include/pokemon.h
++++ b/include/pokemon.h
+@@ -393,6 +393,7 @@ u32 CanMonLearnTMHM(struct Pokemon *mon, u8 tm);
+ // After the Elite Four the relearner offers every move a Pokemon can learn
+ #define MAX_RELEARNER_MOVES 160
+ u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves);
++bool8 Hack_IsTrueEndgame(void);
+ u8 GetLevelUpMovesBySpecies(u16 species, u16 *moves);
+ u8 GetNumberOfRelearnableMoves(struct Pokemon *mon);
+ u16 SpeciesToPokedexNum(u16 species);
+diff --git a/src/data/item_icon_table.h b/src/data/item_icon_table.h
+index a9dd7f0..e5635b4 100644
+--- a/src/data/item_icon_table.h
++++ b/src/data/item_icon_table.h
+@@ -56,7 +56,7 @@ static const u32 *const sItemIconTable[ITEMS_COUNT + 1][2] =
+     [ITEM_YELLOW_SHARD]   = {gItemIcon_Shard, gItemIconPalette_YellowShard},
+     [ITEM_GREEN_SHARD]    = {gItemIcon_Shard, gItemIconPalette_GreenShard},
+     // ????????
+-    [ITEM_034]            = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
++    [ITEM_SPECIAL_CANDY]  = {gItemIcon_RareCandy, gItemIconPalette_RareCandy},
+     [ITEM_035]            = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+     [ITEM_036]            = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+     [ITEM_037]            = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+diff --git a/src/data/items.json b/src/data/items.json
+index 8a8eeef..da2feca 100644
+--- a/src/data/items.json
++++ b/src/data/items.json
+@@ -833,17 +833,17 @@
+       "secondaryId": 0
+     },
+     {
+-      "english": "????????",
+-      "itemId": "ITEM_NONE",
++      "english": "SPECIAL CANDY",
++      "itemId": "ITEM_SPECIAL_CANDY",
+       "price": 0,
+       "holdEffect": "HOLD_EFFECT_NONE",
+       "holdEffectParam": 0,
+-      "description_english": "?????",
+-      "importance": 0,
++      "description_english": "A RARE CANDY that never runs out.\\nIt raises the level of a POKéMON\\nby one, as often as you like.",
++      "importance": 1,
+       "registrability": 0,
+-      "pocket": "POCKET_ITEMS",
+-      "type": "ITEM_TYPE_BAG_MENU",
+-      "fieldUseFunc": "FieldUseFunc_OakStopsYou",
++      "pocket": "POCKET_KEY_ITEMS",
++      "type": "ITEM_TYPE_PARTY_MENU",
++      "fieldUseFunc": "FieldUseFunc_RareCandy",
+       "battleUsage": 0,
+       "battleUseFunc": "NULL",
+       "secondaryId": 0
+diff --git a/src/item.c b/src/item.c
+index 0587adf..a3d888a 100644
+--- a/src/item.c
++++ b/src/item.c
+@@ -620,6 +620,19 @@ u16 ItemId_GetId(u16 itemId)
+ 
+ u16 ItemId_GetPrice(u16 itemId)
+ {
++    // FireRed QoL+Hard: vitamins are free once you reach the true endgame
++    switch (itemId)
++    {
++    case ITEM_HP_UP:
++    case ITEM_PROTEIN:
++    case ITEM_IRON:
++    case ITEM_CARBOS:
++    case ITEM_CALCIUM:
++    case ITEM_ZINC:
++        if (Hack_IsTrueEndgame())
++            return 0;
++        break;
++    }
+     return gItems[SanitizeItemId(itemId)].price;
+ }
+ 
+diff --git a/src/party_menu.c b/src/party_menu.c
+index 970f110..c8057a8 100644
+--- a/src/party_menu.c
++++ b/src/party_menu.c
+@@ -5086,6 +5086,8 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc func)
+     u16 item = gSpecialVar_ItemId;
+     bool8 noEffect;
+ 
++    if (item == ITEM_SPECIAL_CANDY)
++        item = ITEM_RARE_CANDY; // same effect, never used up
+     if (GetMonData(mon, MON_DATA_LEVEL) != MAX_LEVEL)
+         noEffect = PokemonItemUseNoEffect(mon, item, gPartyMenu.slotId, 0);
+     else
+@@ -5113,13 +5115,14 @@ static void ItemUseCB_RareCandyStep(u8 taskId, TaskFunc func)
+     u8 level;
+ 
+     GetMonLevelUpWindowStats(mon, arrayPtr);
+-    ExecuteTableBasedItemEffect_(gPartyMenu.slotId, gSpecialVar_ItemId, 0);
++    ExecuteTableBasedItemEffect_(gPartyMenu.slotId, gSpecialVar_ItemId == ITEM_SPECIAL_CANDY ? ITEM_RARE_CANDY : gSpecialVar_ItemId, 0);
+     GetMonLevelUpWindowStats(mon, &ptr->data[NUM_STATS]);
+     gPartyMenuUseExitCallback = TRUE;
+     ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, mon, gSpecialVar_ItemId, 0xFFFF);
+     PlayFanfareByFanfareNum(FANFARE_LEVEL_UP);
+     UpdateMonDisplayInfoAfterRareCandy(gPartyMenu.slotId, mon);
+-    RemoveBagItem(gSpecialVar_ItemId, 1);
++    if (gSpecialVar_ItemId != ITEM_SPECIAL_CANDY)
++        RemoveBagItem(gSpecialVar_ItemId, 1);
+     GetMonNickname(mon, gStringVar1);
+     level = GetMonData(mon, MON_DATA_LEVEL);
+     ConvertIntToDecimalStringN(gStringVar2, level, STR_CONV_MODE_LEFT_ALIGN, 3);
+diff --git a/src/pokemon.c b/src/pokemon.c
+index 52127e3..16534da 100644
+--- a/src/pokemon.c
++++ b/src/pokemon.c
+@@ -26,6 +26,11 @@
+ #include "berry.h"
+ #include "constants/items.h"
+ #include "constants/party_menu.h"
++
++// FireRed QoL+Hard: vitamins after the true endgame (see Hack_IsTrueEndgame)
++bool8 Hack_IsTrueEndgame(void);
++#define HACK_EV_ITEM_LIMIT (Hack_IsTrueEndgame() ? MAX_PER_STAT_EVS : EV_ITEM_RAISE_LIMIT)
++#define HACK_EV_ITEM_AMOUNT(amount) (Hack_IsTrueEndgame() ? MAX_PER_STAT_EVS : (amount))
+ #include "constants/item_effects.h"
+ #include "constants/hoenn_cries.h"
+ #include "constants/pokemon.h"
+@@ -4239,13 +4244,13 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
+                         if (evCount >= MAX_TOTAL_EVS)
+                             return TRUE;
+                         data = GetMonData(mon, sGetMonDataEVConstants[i], NULL);
+-                        if (data < EV_ITEM_RAISE_LIMIT)
++                        if (data < HACK_EV_ITEM_LIMIT)
+                         {
+                             // Limit the increase
+-                            if (data + itemEffect[idx] > EV_ITEM_RAISE_LIMIT)
+-                                evDelta = EV_ITEM_RAISE_LIMIT - (data + itemEffect[idx]) + itemEffect[idx];
++                            if (data + HACK_EV_ITEM_AMOUNT(itemEffect[idx]) > HACK_EV_ITEM_LIMIT)
++                                evDelta = HACK_EV_ITEM_LIMIT - data;
+                             else
+-                                evDelta = itemEffect[idx];
++                                evDelta = HACK_EV_ITEM_AMOUNT(itemEffect[idx]);
+                             if (evCount + evDelta > MAX_TOTAL_EVS)
+                                 evDelta += MAX_TOTAL_EVS - (evCount + evDelta);
+ 
+@@ -4446,13 +4451,13 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
+                         if (evCount >= MAX_TOTAL_EVS)
+                             return TRUE;
+                         data = GetMonData(mon, sGetMonDataEVConstants[i + 2], NULL);
+-                        if (data < EV_ITEM_RAISE_LIMIT)
++                        if (data < HACK_EV_ITEM_LIMIT)
+                         {
+                             // Limit the increase
+-                            if (data + itemEffect[idx] > EV_ITEM_RAISE_LIMIT)
+-                                evDelta = EV_ITEM_RAISE_LIMIT - (data + itemEffect[idx]) + itemEffect[idx];
++                            if (data + HACK_EV_ITEM_AMOUNT(itemEffect[idx]) > HACK_EV_ITEM_LIMIT)
++                                evDelta = HACK_EV_ITEM_LIMIT - data;
+                             else
+-                                evDelta = itemEffect[idx];
++                                evDelta = HACK_EV_ITEM_AMOUNT(itemEffect[idx]);
+                             if (evCount + evDelta > MAX_TOTAL_EVS)
+                                 evDelta += MAX_TOTAL_EVS - (evCount + evDelta);
+                             
+@@ -4705,7 +4710,7 @@ bool8 PokemonItemUseNoEffect(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mo
+                         if (GetMonEVCount(mon) >= MAX_TOTAL_EVS)
+                             return TRUE;
+                         data = GetMonData(mon, sGetMonDataEVConstants[i], NULL);
+-                        if (data < EV_ITEM_RAISE_LIMIT)
++                        if (data < HACK_EV_ITEM_LIMIT)
+                         {
+                             idx++;
+                             retVal = FALSE;
+@@ -4789,7 +4794,7 @@ bool8 PokemonItemUseNoEffect(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mo
+                         if (GetMonEVCount(mon) >= MAX_TOTAL_EVS)
+                             return TRUE;
+                         data = GetMonData(mon, sGetMonDataEVConstants[i + 2], NULL);
+-                        if (data < EV_ITEM_RAISE_LIMIT)
++                        if (data < HACK_EV_ITEM_LIMIT)
+                         {
+                             retVal = FALSE;
+                             idx++;
+@@ -5837,6 +5842,13 @@ static u8 GetFullRelearnerMoves(struct Pokemon *mon, u16 *moves)
+     return count;
+ }
+ 
++// True endgame = beaten the round 2 Champion. Unlocks free vitamins that fill
++// a stat's EVs up to the normal caps (255 per stat, 510 total) in one use.
++bool8 Hack_IsTrueEndgame(void)
++{
++    return FlagGet(FLAG_HACK_TRUE_ENDGAME);
++}
++
+ u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves)
+ {
+     u16 learnedMoves[MAX_MON_MOVES];
+diff --git a/src/shop.c b/src/shop.c
+index 3d6b1cd..c434a64 100644
+--- a/src/shop.c
++++ b/src/shop.c
+@@ -920,7 +920,10 @@ static void Task_BuyHowManyDialogueInit(u8 taskId)
+     BuyMenuQuantityBoxNormalBorder(3, 0);
+     BuyMenuPrintItemQuantityAndPrice(taskId);
+     ScheduleBgCopyTilemapToVram(0);
+-    maxQuantity = GetMoney(&gSaveBlock1Ptr->money) / ItemId_GetPrice(tItemId);
++    if (ItemId_GetPrice(tItemId) == 0)
++        maxQuantity = 99; // free items
++    else
++        maxQuantity = GetMoney(&gSaveBlock1Ptr->money) / ItemId_GetPrice(tItemId);
+     if (maxQuantity > 99)
+         sShopData.maxQuantity = 99;
+     else
+-- 
+2.43.0
+

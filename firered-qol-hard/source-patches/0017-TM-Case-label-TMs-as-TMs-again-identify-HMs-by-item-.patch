@@ -1,0 +1,32 @@
+From 2eadfb156fbe120e8f499f8d2a991996ce74bb4d Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 1 Nov 2026 00:43:57 +0000
+Subject: [PATCH 17/18] TM Case: label TMs as TMs again (identify HMs by item
+ ID)
+
+TMs are marked important so they can't be sold or tossed, which made the
+TM Case draw them as HMs.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ src/tm_case.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/src/tm_case.c b/src/tm_case.c
+index 8975761..bfca5f7 100644
+--- a/src/tm_case.c
++++ b/src/tm_case.c
+@@ -26,7 +26,8 @@
+ #include "constants/quest_log.h"
+ 
+ // Any item in the TM Case with nonzero importance is considered an HM
+-#define IS_HM(itemId) (ItemId_GetImportance(itemId) != 0)
++// FireRed QoL+Hard: TMs are also "important" (reusable, unsellable), so check the ID
++#define IS_HM(itemId) ((itemId) >= ITEM_HM01)
+ 
+ #define TAG_SCROLL_ARROW 110
+ 
+-- 
+2.43.0
+

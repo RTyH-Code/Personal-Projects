@@ -1,0 +1,296 @@
+From 537f1a79d5649c4ada5f1b84fd9711af30f3acbd Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 1 Nov 2026 00:04:29 +0000
+Subject: [PATCH 10/18] Full move relearner after the Elite Four
+
+Once you're Champion, the Two Island Move Maniac teaches for free any
+level-up (any level), egg, TM/HM or tutor move the Pokemon can learn.
+MAX_LEVEL_UP_MOVES raised to 32 (Deoxys has 24).
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ data/maps/TwoIsland_House/scripts.inc | 34 ++++++++++
+ data/maps/TwoIsland_House/text.inc    | 11 ++++
+ include/constants/pokemon.h           |  2 +-
+ include/party_menu.h                  |  2 +
+ include/pokemon.h                     |  2 +
+ src/learn_move.c                      |  6 +-
+ src/party_menu.c                      | 10 +++
+ src/pokemon.c                         | 94 +++++++++++++++++++++++++++
+ 8 files changed, 157 insertions(+), 4 deletions(-)
+
+diff --git a/data/maps/TwoIsland_House/scripts.inc b/data/maps/TwoIsland_House/scripts.inc
+index 903e093..779b10a 100644
+--- a/data/maps/TwoIsland_House/scripts.inc
++++ b/data/maps/TwoIsland_House/scripts.inc
+@@ -11,6 +11,7 @@ TwoIsland_House_EventScript_MoveManiac::
+ 	special QuestLog_CutRecording
+ 	lock
+ 	faceplayer
++	goto_if_set FLAG_SYS_GAME_CLEAR, TwoIsland_House_EventScript_ChampionTutor
+ 	clearflag HAS_BIG_MUSHROOM
+ 	clearflag HAS_TINY_MUSHROOMS
+ 	clearflag HAS_BOTH_MUSHROOMS
+@@ -118,3 +119,36 @@ TwoIsland_House_EventScript_SetHasTinyMushrooms::
+ TwoIsland_House_EventScript_SetHasBothMushrooms::
+ 	setflag HAS_BOTH_MUSHROOMS
+ 	return
++
++@ After the Elite Four: free, and every move the Pokemon can learn
++TwoIsland_House_EventScript_ChampionTutor::
++	msgbox TwoIsland_House_Text_ChampionTutorOffer, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, TwoIsland_House_EventScript_ChampionTutorEnd
++TwoIsland_House_EventScript_ChampionTutorChooseMon::
++	msgbox TwoIsland_House_Text_TutorWhichMon
++	special ChooseMonForMoveRelearner
++	waitstate
++	goto_if_ge VAR_0x8004, PARTY_SIZE, TwoIsland_House_EventScript_ChampionTutorEnd
++	special IsSelectedMonEgg
++	goto_if_eq VAR_RESULT, TRUE, TwoIsland_House_EventScript_ChampionTutorEgg
++	goto_if_eq VAR_0x8005, 0, TwoIsland_House_EventScript_ChampionTutorNoMoves
++	msgbox TwoIsland_House_Text_TeachWhichMove
++	special TeachMoveRelearnerMove
++	waitstate
++	goto TwoIsland_House_EventScript_ChampionTutorChooseMon
++	end
++
++TwoIsland_House_EventScript_ChampionTutorEgg::
++	msgbox TwoIsland_House_Text_CantTeachAnEgg
++	goto TwoIsland_House_EventScript_ChampionTutorChooseMon
++	end
++
++TwoIsland_House_EventScript_ChampionTutorNoMoves::
++	msgbox TwoIsland_House_Text_NoMoveICanTeachThatMon
++	goto TwoIsland_House_EventScript_ChampionTutorChooseMon
++	end
++
++TwoIsland_House_EventScript_ChampionTutorEnd::
++	msgbox TwoIsland_House_Text_ChampionTutorBye
++	release
++	end
+diff --git a/data/maps/TwoIsland_House/text.inc b/data/maps/TwoIsland_House/text.inc
+index 2f0a70c..2b3cc8d 100644
+--- a/data/maps/TwoIsland_House/text.inc
++++ b/data/maps/TwoIsland_House/text.inc
+@@ -45,3 +45,14 @@ TwoIsland_House_Text_CantTeachAnEgg::
+     .string "Hunh? There isn't a single move\n"
+     .string "that I can teach an EGG.$"
+ 
++
++TwoIsland_House_Text_ChampionTutorOffer::
++    .string "Oh! You're the new CHAMPION!\p"
++    .string "For you, I'll teach any move a\n"
++    .string "POKéMON can learn. Level-up moves,\l"
++    .string "EGG moves, TMs, HMs, tutor moves…\p"
++    .string "And I won't take any MUSHROOMS!\n"
++    .string "Shall I teach your POKéMON a move?$"
++
++TwoIsland_House_Text_ChampionTutorBye::
++    .string "Come back any time, CHAMPION!$"
+diff --git a/include/constants/pokemon.h b/include/constants/pokemon.h
+index 21c6787..bb1cef5 100644
+--- a/include/constants/pokemon.h
++++ b/include/constants/pokemon.h
+@@ -206,7 +206,7 @@
+ #define LEVEL_UP_MOVE_LV   0xFE00
+ #define LEVEL_UP_END       0xFFFF
+ 
+-#define MAX_LEVEL_UP_MOVES       20
++#define MAX_LEVEL_UP_MOVES       32
+ 
+ #define MON_MALE       0x00
+ #define MON_FEMALE     0xFE
+diff --git a/include/party_menu.h b/include/party_menu.h
+index 9737991..4207166 100644
+--- a/include/party_menu.h
++++ b/include/party_menu.h
+@@ -55,6 +55,8 @@ void ItemUseCB_MedicineStep(u8 taskId, TaskFunc func);
+ void ItemUseCB_TryRestorePP(u8 taskId, TaskFunc func);
+ void ItemUseCB_PPUp(u8 taskId, TaskFunc func);
+ u16 ItemIdToBattleMoveId(u16 item);
++u16 Hack_GetTutorMove(u8 tutor);
++bool8 Hack_CanLearnTutorMove(u16 species, u8 tutor);
+ bool8 IsMoveHm(u16 move);
+ bool8 MonKnowsMove(struct Pokemon *mon, u16 move);
+ void ItemUseCB_TMHM(u8 taskId, TaskFunc func);
+diff --git a/include/pokemon.h b/include/pokemon.h
+index 66dd196..ef565e7 100644
+--- a/include/pokemon.h
++++ b/include/pokemon.h
+@@ -390,6 +390,8 @@ u8 CheckPartyHasHadPokerus(struct Pokemon *party, u8 selection);
+ void PartySpreadPokerus(struct Pokemon *party);
+ bool8 TryIncrementMonLevel(struct Pokemon *mon);
+ u32 CanMonLearnTMHM(struct Pokemon *mon, u8 tm);
++// After the Elite Four the relearner offers every move a Pokemon can learn
++#define MAX_RELEARNER_MOVES 160
+ u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves);
+ u8 GetLevelUpMovesBySpecies(u16 species, u16 *moves);
+ u8 GetNumberOfRelearnableMoves(struct Pokemon *mon);
+diff --git a/src/learn_move.c b/src/learn_move.c
+index 0529644..fca6633 100644
+--- a/src/learn_move.c
++++ b/src/learn_move.c
+@@ -135,9 +135,9 @@ struct LearnMoveGfxResources
+     u8 unk_1C;
+     u8 unk_1D;
+     u8 unk_1E;
+-    struct ListMenuItem listMenuItems[25];
+-    u16 learnableMoves[25];
+-    u8 listMenuStrbufs[25][13];
++    struct ListMenuItem listMenuItems[MAX_RELEARNER_MOVES + 1];
++    u16 learnableMoves[MAX_RELEARNER_MOVES + 1];
++    u8 listMenuStrbufs[MAX_RELEARNER_MOVES + 1][13];
+     bool8 scheduleMoveInfoUpdate;
+     u8 selectedPartyMember;
+     u8 selectedMoveSlot;
+diff --git a/src/party_menu.c b/src/party_menu.c
+index 0ee0376..553089b 100644
+--- a/src/party_menu.c
++++ b/src/party_menu.c
+@@ -1931,6 +1931,16 @@ static bool8 CanLearnTutorMove(u16 species, u8 tutor)
+     }
+ }
+ 
++u16 Hack_GetTutorMove(u8 tutor)
++{
++    return GetTutorMove(tutor);
++}
++
++bool8 Hack_CanLearnTutorMove(u16 species, u8 tutor)
++{
++    return CanLearnTutorMove(species, tutor);
++}
++
+ // Tutorial battle messages
+ 
+ static void Task_FirstBattleEnterParty_WaitFadeIn(u8 taskId)
+diff --git a/src/pokemon.c b/src/pokemon.c
+index 938074f..ecba399 100644
+--- a/src/pokemon.c
++++ b/src/pokemon.c
+@@ -25,6 +25,7 @@
+ #include "field_specials.h"
+ #include "berry.h"
+ #include "constants/items.h"
++#include "constants/party_menu.h"
+ #include "constants/item_effects.h"
+ #include "constants/hoenn_cries.h"
+ #include "constants/pokemon.h"
+@@ -5741,6 +5742,90 @@ u32 CanMonLearnTMHM(struct Pokemon *mon, u8 tm)
+     }
+ }
+ 
++// ---------------------------------------------------------------------------
++// Full move relearner (after the Elite Four): level-up moves at any level,
++// egg moves of the family's base form, TMs/HMs and move tutors.
++// ---------------------------------------------------------------------------
++extern const u16 gEggMoves[];
++#define HACK_EGG_MOVES_SPECIES_OFFSET 20000
++#define HACK_EGG_MOVES_TERMINATOR 0xFFFF
++
++static u16 GetFamilyBaseSpecies(u16 species)
++{
++    u16 s;
++    u8 i, depth;
++    bool8 found = TRUE;
++
++    for (depth = 0; depth < 3 && found; depth++)
++    {
++        found = FALSE;
++        for (s = 1; s < NUM_SPECIES && !found; s++)
++        {
++            for (i = 0; i < EVOS_PER_MON; i++)
++            {
++                if (gEvolutionTable[s][i].method != 0 && gEvolutionTable[s][i].targetSpecies == species)
++                {
++                    species = s;
++                    found = TRUE;
++                    break;
++                }
++            }
++        }
++    }
++    return species;
++}
++
++static u8 AddRelearnerMove(u16 *moves, u8 count, const u16 *known, u16 move)
++{
++    u8 i;
++
++    if (move == MOVE_NONE || count >= MAX_RELEARNER_MOVES)
++        return count;
++    for (i = 0; i < MAX_MON_MOVES; i++)
++        if (known[i] == move)
++            return count;
++    for (i = 0; i < count; i++)
++        if (moves[i] == move)
++            return count;
++    moves[count] = move;
++    return count + 1;
++}
++
++static u8 GetFullRelearnerMoves(struct Pokemon *mon, u16 *moves)
++{
++    u16 known[MAX_MON_MOVES];
++    u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
++    u16 base, i, j;
++    u8 count = 0;
++
++    for (i = 0; i < MAX_MON_MOVES; i++)
++        known[i] = GetMonData(mon, MON_DATA_MOVE1 + i, NULL);
++
++    for (i = 0; i < MAX_LEVEL_UP_MOVES && gLevelUpLearnsets[species][i] != LEVEL_UP_END; i++)
++        count = AddRelearnerMove(moves, count, known, gLevelUpLearnsets[species][i] & LEVEL_UP_MOVE_ID);
++
++    base = GetFamilyBaseSpecies(species);
++    for (i = 0; gEggMoves[i] != HACK_EGG_MOVES_TERMINATOR; i++)
++    {
++        if (gEggMoves[i] == base + HACK_EGG_MOVES_SPECIES_OFFSET)
++        {
++            for (j = i + 1; gEggMoves[j] != HACK_EGG_MOVES_TERMINATOR && gEggMoves[j] < HACK_EGG_MOVES_SPECIES_OFFSET; j++)
++                count = AddRelearnerMove(moves, count, known, gEggMoves[j]);
++            break;
++        }
++    }
++
++    for (i = 0; i < NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES; i++)
++        if (CanMonLearnTMHM(mon, i))
++            count = AddRelearnerMove(moves, count, known, ItemIdToBattleMoveId(ITEM_TM01 + i));
++
++    for (i = 0; i <= TUTOR_MOVE_HYDRO_CANNON; i++)
++        if (Hack_CanLearnTutorMove(species, i))
++            count = AddRelearnerMove(moves, count, known, Hack_GetTutorMove(i));
++
++    return count;
++}
++
+ u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves)
+ {
+     u16 learnedMoves[MAX_MON_MOVES];
+@@ -5749,6 +5834,9 @@ u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves)
+     u8 level = GetMonData(mon, MON_DATA_LEVEL, NULL);
+     int i, j, k;
+ 
++    if (FlagGet(FLAG_SYS_GAME_CLEAR))
++        return GetFullRelearnerMoves(mon, moves);
++
+     for (i = 0; i < MAX_MON_MOVES; i++)
+         learnedMoves[i] = GetMonData(mon, MON_DATA_MOVE1 + i, NULL);
+ 
+@@ -5803,6 +5891,12 @@ u8 GetNumberOfRelearnableMoves(struct Pokemon *mon)
+     if (species == SPECIES_EGG)
+         return 0;
+ 
++    if (FlagGet(FLAG_SYS_GAME_CLEAR))
++    {
++        u16 fullMoves[MAX_RELEARNER_MOVES];
++        return GetFullRelearnerMoves(mon, fullMoves);
++    }
++
+     for (i = 0; i < MAX_MON_MOVES; i++)
+         learnedMoves[i] = GetMonData(mon, MON_DATA_MOVE1 + i, NULL);
+ 
+-- 
+2.43.0
+

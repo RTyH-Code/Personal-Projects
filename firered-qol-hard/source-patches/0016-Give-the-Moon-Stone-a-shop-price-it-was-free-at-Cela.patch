@@ -1,0 +1,28 @@
+From 21ecc14bd27922a8d626ccce21e683ee139ca7cb Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 1 Nov 2026 00:43:02 +0000
+Subject: [PATCH 16/18] Give the Moon Stone a shop price (it was free at
+ Celadon 4F)
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ src/data/items.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/data/items.json b/src/data/items.json
+index da2feca..d367725 100644
+--- a/src/data/items.json
++++ b/src/data/items.json
+@@ -1507,7 +1507,7 @@
+     {
+       "english": "MOON STONE",
+       "itemId": "ITEM_MOON_STONE",
+-      "price": 0,
++      "price": 2100,
+       "holdEffect": "HOLD_EFFECT_NONE",
+       "holdEffectParam": 0,
+       "description_english": "A peculiar stone that makes certain\\nspecies of POKéMON evolve.\\nIt is as black as the night sky.",
+-- 
+2.43.0
+
