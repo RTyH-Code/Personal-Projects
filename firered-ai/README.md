@@ -37,8 +37,10 @@ You need your own ROM; none is included.
   | Enter a new map | 0.5 |
   | Party gains a level (beyond its best so far) | 1 |
   | Get the starter / the Pokédex | 5 each |
-  | Catch a new species | 2 |
+  | Catch a new species (one on the Pokédex goal) | 2 |
   | Earn a badge | 20 |
+  | Become Champion | 100 |
+  | Meet every goal (ends the run) | 200 |
   | Heal the party (full heal) | 1 |
   | Party blacks out | −2 |
 
@@ -46,6 +48,58 @@ You need your own ROM; none is included.
   repeating something.
 - **Learning.** [Stable-Baselines3](https://stable-baselines3.readthedocs.io/)
   PPO with a CNN for the images and a small MLP for the stats.
+
+## The goal
+
+By default the agent works towards three things:
+
+1. **All 8 badges.**
+2. **Become Champion** (enter the Hall of Fame).
+3. **A complete Pokédex** for the game you're playing.
+
+How it gets there, and in what order, is up to the agent. When all of them
+are met, the episode ends with a big bonus. Choose a subset with
+`--goals`, e.g. `--goals badges,champion`, or `--goals none` for open-ended
+play.
+
+### What "complete Pokédex" means
+
+Only Pokémon one save can actually own count: no trading, no Mystery Gift.
+`tools/pokedex_targets.py` worked these out from the game's source (the pret
+decompilation, with your hack's patches applied). It follows wild
+encounters, gifts, legendary encounters, in-game trades, the roaming
+legendary, evolution (only by methods that work in this game) and Day Care
+breeding.
+
+| Game | Species for a complete Pokédex | Not obtainable in one save |
+|---|---|---|
+| FireRed (US v1.0) | 170 | LeafGreen exclusives, trade evolutions (Alakazam, Machamp, Golem, Gengar), Mew and the other event Pokémon, Espeon and Umbreon (FRLG has no clock), most of Johto and Hoenn |
+| FireRed QoL + Hard | 386 | none |
+
+In vanilla, some choices lock others out for the rest of the save. Each
+counts as one either/or: the starter, which also decides the roaming
+legendary (Bulbasaur → Entei, Charmander → Suicune, Squirtle → Raikou),
+and the Mt. Moon fossil (Omanyte or Kabuto). The QoL + Hard hack has no
+such choices. The lists are in `firered_ai/data/`.
+The right one is picked from the ROM's checksum. Override it with
+`--pokedex firered`, `--pokedex firered-qol-hard` or a JSON file.
+
+To make a list for another hack, run the generator on its source:
+
+```bash
+python tools/pokedex_targets.py path/to/pokefirered my-hack > my-hack.json
+```
+
+### Building on progress
+
+A full playthrough is hundreds of thousands of button presses, far longer
+than one episode. So each time an agent gets further than before (new
+ground, a new map, levels, a new species, a badge), its save state goes
+into a **progress pool** (`runs/<name>/progress/`). 80% of episodes start
+from one of the 8 best states in the pool, and the rest start from the
+bedroom. Explored tiles carry over, so the agent isn't paid twice for the
+same ground. Turn it off with `--no-progress-pool`, or change the mix with
+`--progress-prob`.
 
 ## Setup
 
@@ -101,8 +155,11 @@ Watch progress with TensorBoard:
 tensorboard --logdir runs
 ```
 
-`game/maps_explored`, `game/level_sum` and `game/badges` show how far the
-agents get per episode. `rollout/ep_rew_mean` is the average reward.
+`game/goal_progress` (0 to 1) and `goal/badges`, `goal/champion` and
+`goal/pokedex` show progress towards the goal. `game/start_score` and
+`game/score` show how far into the game episodes start and end up. `game/maps_explored`,
+`game/level_sum` and `game/badges` show how far agents get per episode.
+`rollout/ep_rew_mean` is the average reward.
 
 ## 3. Watch it play
 
@@ -110,7 +167,10 @@ agents get per episode. `rollout/ep_rew_mean` is the average reward.
 python play.py path/to/firered.gba runs/firered/latest.zip --out play.mp4
 ```
 
-Leave out the model to see random button presses for comparison.
+Leave out the model to see random button presses for comparison. At the
+end it lists which Pokémon are still missing from the Pokédex goal. Start
+from a pool state with `--state runs/firered/progress/<file>.state` to
+watch the furthest an agent has got.
 Use `--out play.gif` if you don't have ffmpeg.
 
 ## What to expect
@@ -124,6 +184,9 @@ projects for Pokémon Red:
   Pallet Town and Route 1.
 - **~10M+:** reaches Viridian, levels up in the tall grass, Pewter.
 - Badges take tens of millions of presses and some reward tuning.
+- Becoming Champion, let alone completing the Pokédex, is beyond anything
+  this kind of AI has done so far. The goal gives it a direction and a way
+  to measure how far it gets.
 
 Each emulator does about 60 presses per second (each press is 24 frames),
 so speed scales with CPU cores: on 4 cores, 10M presses takes roughly
@@ -175,6 +238,9 @@ that fakes FireRed's RAM and runs it on the real mGBA core.
 | `firered_ai/emulator.py` | Runs the ROM in mGBA via stable-retro |
 | `firered_ai/ram.py` | Reads the game state from RAM |
 | `firered_ai/rewards.py` | Reward shaping |
+| `firered_ai/goals.py` | The end goal: badges, Champion, Pokédex; ROM detection |
+| `firered_ai/progress.py` | Progress pool: start episodes from the best states so far |
+| `firered_ai/data/` | Pokédex lists for FireRed and FireRed QoL + Hard |
 | `firered_ai/env.py` | The Gymnasium environment the agent plays in |
 | `firered_ai/bootstrap.py` | Scripted intro skip |
 | `firered_ai/maps.py` | Map names (from pret/pokefirered) |
@@ -182,3 +248,4 @@ that fakes FireRed's RAM and runs it on the real mGBA core.
 | `play.py` | Watch an agent and record video |
 | `make_start_state.py` | Create the start save state |
 | `tools/symbols_from_map.py` | RAM addresses for other hacks |
+| `tools/pokedex_targets.py` | Work out which Pokémon a game lets you own |
