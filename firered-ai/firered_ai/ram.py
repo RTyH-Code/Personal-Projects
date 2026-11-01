@@ -1,9 +1,10 @@
 """Reading Pokémon FireRed's RAM.
 
-Addresses are for FireRed (US, rev 0, game code BPRE). They were checked
-against pret/pokefirered. They also hold for the FireRed QoL + Hard hack in
-this repo, because every symbol used here is linked before the hack's only
-new EWRAM data.
+Addresses are for FireRed (US, game code BPRE). They were checked against
+pret/pokefirered, and are the same in v1.0 and v1.1: the two revisions
+differ only in code and text, never in what's in RAM. They also hold for the
+FireRed QoL + Hard hack in this repo, because every symbol used here is
+linked before the hack's only new EWRAM data.
 
 If you play a different hack, generate an address file from its linker map:
     python tools/symbols_from_map.py pokefirered.map > addresses.json

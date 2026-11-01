@@ -8,9 +8,9 @@ walking somewhere new, leveling up, catching a Pokémon or winning a badge.
 Over millions of button presses it learns which actions lead to rewards.
 This is **reinforcement learning**, using the PPO algorithm.
 
-It works with vanilla FireRed (US, v1.0) and with the
-[FireRed QoL + Hard](../firered-qol-hard/README.md) hack in this repo.
-You need your own ROM; none is included.
+It works with vanilla FireRed (US, v1.0 or v1.1) and with the
+[FireRed QoL + Hard](../firered-qol-hard/README.md) hack in this repo,
+patched from either revision. You need your own ROM; none is included.
 
 ## How it works
 
@@ -73,7 +73,7 @@ breeding.
 
 | Game | Species for a complete Pokédex | Not obtainable in one save |
 |---|---|---|
-| FireRed (US v1.0) | 170 | LeafGreen exclusives, trade evolutions (Alakazam, Machamp, Golem, Gengar), Mew and the other event Pokémon, Espeon and Umbreon (FRLG has no clock), most of Johto and Hoenn |
+| FireRed (US v1.0 or v1.1) | 170 | LeafGreen exclusives, trade evolutions (Alakazam, Machamp, Golem, Gengar), Mew and the other event Pokémon, Espeon and Umbreon (FRLG has no clock), most of Johto and Hoenn |
 | FireRed QoL + Hard | 386 | none |
 
 In vanilla, some choices lock others out for the rest of the save. Each

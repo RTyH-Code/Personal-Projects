@@ -91,10 +91,18 @@ def test_detect_game(tmp_path):
     rom = tmp_path / "x.gba"
     rom.write_bytes(b"not a real rom")
     assert detect_game(str(rom)) is None
-    bps = REPO / "firered-qol-hard" / "FireRed-QoL-Hard.bps"
-    if bps.exists():
+    # One patch per FireRed revision; each must map its base ROM to vanilla
+    # FireRed and its output to the hack.
+    patches = sorted((REPO / "firered-qol-hard").glob("*.bps"))
+    if patches:
+        assert {p.name for p in patches} >= {"FireRed-QoL-Hard.bps", "FireRed-QoL-Hard-v1.1.bps"}
+    sources = set()
+    for bps in patches:
         source, target = struct.unpack("<II", bps.read_bytes()[-12:-4])
-        assert KNOWN_ROMS[source] == "firered" and KNOWN_ROMS[target] == "firered_qol_hard"
+        assert KNOWN_ROMS[source] == "firered", bps.name
+        assert KNOWN_ROMS[target] == "firered_qol_hard", bps.name
+        sources.add(source)
+    assert len(sources) == len(patches)  # v1.0 and v1.1 really are different base ROMs
     assert zlib.crc32(b"not a real rom") not in KNOWN_ROMS
 
 
