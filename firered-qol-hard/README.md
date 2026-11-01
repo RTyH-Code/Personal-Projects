@@ -1,6 +1,6 @@
 # FireRed QoL + Hard
 
-> **Spoiler guide:** every encounter table, item, trainer team and gift Pokémon is listed in [guide/](guide/README.md), plus a full [Pokédex](guide/POKEDEX.md) with stat ranges, evolutions, locations and learnsets for all 386 Pokémon.
+> **Spoiler guide:** every encounter table, item, trainer team and gift Pokémon is listed in [guide/](guide/README.md), plus a full [Pokédex](guide/POKEDEX.md) for all 386 Pokémon, [peak trainer prep](guide/PEAK.md) and a [type chart and move list](guide/TYPES.md).
 
 A quality-of-life, modernization and difficulty hack built on the pret/pokefirered decompilation.
 
@@ -60,6 +60,15 @@ On a Pokémon's summary, go to the **POKéMON SKILLS** page and press **START**.
 You can set IVs freely. EVs can only be moved between stats, so the total
 you earned never goes up. Each stat is capped at 255. The editor works for
 party and PC Pokémon, but not during battles, trades or link play.
+
+## Nature and ability coach
+Once you're Champion, an old woman in the Indigo Plateau Pokémon Center (next
+to the League official) changes a party Pokémon's nature or ability. It's free
+and you can use her as often as you like.
+- **Nature:** pick the stat to raise and the stat to lower (or Neutral).
+  Stats update at once. Gender, shininess, Unown's letter and Wurmple's
+  evolution don't change.
+- **Ability:** switches a Pokémon to its species' other ability, if it has two.
 
 ## Modern battle mechanics
 - **Physical/special split.** Each move has its own category (from Gen 4
@@ -158,7 +167,7 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `71d65f3123dee2692b404d0d257947948bb6b5c3`
+Patched ROM SHA-1: `ce9374505b5eb890d6e624ad822ea3231aed7c51`
 
 Start a new game. Saves from earlier versions of this hack aren't supported.
 

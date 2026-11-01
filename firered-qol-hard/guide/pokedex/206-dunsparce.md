@@ -13,7 +13,7 @@ Height 1.5 m (4′11″) · Weight 14 kg (30.9 lbs)
 - **Serene Grace**: Promotes added effects.
 - **Run Away**: Makes escaping easier.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

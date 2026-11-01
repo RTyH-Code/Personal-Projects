@@ -13,7 +13,7 @@ Height 1.1 m (3′07″) · Weight 32.8 kg (72.3 lbs)
 - **Hyper Cutter**: Prevents Attack reduction.
 - **Shell Armor**: Blocks critical hits.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

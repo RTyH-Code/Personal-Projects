@@ -13,7 +13,7 @@ Height 0.3 m (1′00″) · Weight 1.5 kg (3.3 lbs)
 - **Hustle**: Trades accuracy for power.
 - **Serene Grace**: Promotes added effects.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

@@ -1,0 +1,621 @@
+From 912c1b6d78d2949be1500663f2fee10adba29544 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 1 Nov 2026 22:31:13 +0000
+Subject: [PATCH 25/26] Add a post-game nature and ability coach
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+An NPC in the Indigo Plateau Pokémon Center changes a party Pokémon's
+nature (choose the stat to raise and lower) or swaps it to its other
+ability. The new personality keeps gender, shininess, Unown's letter and
+Wurmple's branch; stats are recalculated.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ .gitignore                                    |   1 +
+ HACK_NOTES.md                                 |   9 ++
+ .../IndigoPlateau_PokemonCenter_1F/map.json   |  14 ++
+ .../scripts.inc                               |  97 ++++++++++++++
+ .../IndigoPlateau_PokemonCenter_1F/text.inc   |  53 ++++++++
+ data/specials.inc                             |   4 +
+ include/constants/menu.h                      |   3 +
+ src/pokemon.c                                 | 123 ++++++++++++++++++
+ src/script_menu.c                             |  29 +++++
+ .../__pycache__/encounters.cpython-313.pyc    | Bin 13503 -> 0 bytes
+ 10 files changed, 333 insertions(+)
+ delete mode 100644 tools/hack/__pycache__/encounters.cpython-313.pyc
+
+diff --git a/.gitignore b/.gitignore
+index fa6c4c1..93261e5 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -68,3 +68,4 @@ build-cmake-*/
+ CMakeLists.txt
+ compile_commands.json
+ .porydaw/
++__pycache__/
+diff --git a/HACK_NOTES.md b/HACK_NOTES.md
+index 75dcb60..17a4b0a 100644
+--- a/HACK_NOTES.md
++++ b/HACK_NOTES.md
+@@ -59,6 +59,15 @@ You can set IVs freely. EVs can only be moved between stats, so the total
+ you earned never goes up. Each stat is capped at 255. The editor works for
+ party and PC Pokémon, but not during battles, trades or link play.
+ 
++## Nature and ability coach
++Once you're Champion, an old woman in the Indigo Plateau Pokémon Center (next
++to the League official) changes a party Pokémon's nature or ability. It's free
++and you can use her as often as you like.
++- **Nature:** pick the stat to raise and the stat to lower (or Neutral).
++  Stats update at once. Gender, shininess, Unown's letter and Wurmple's
++  evolution don't change.
++- **Ability:** switches a Pokémon to its species' other ability, if it has two.
++
+ ## Modern battle mechanics
+ - **Physical/special split.** Each move has its own category (from Gen 4
+   onward), so Shadow Ball is special and Fire Punch is physical. Thick Fat now
+diff --git a/data/maps/IndigoPlateau_PokemonCenter_1F/map.json b/data/maps/IndigoPlateau_PokemonCenter_1F/map.json
+index 2e083e1..e10b1f9 100644
+--- a/data/maps/IndigoPlateau_PokemonCenter_1F/map.json
++++ b/data/maps/IndigoPlateau_PokemonCenter_1F/map.json
+@@ -142,6 +142,20 @@
+       "trainer_sight_or_berry_tree_id": "0",
+       "script": "IndigoPlateau_PokemonCenter_1F_EventScript_PeakOfficial",
+       "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN",
++      "x": 5,
++      "y": 6,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "IndigoPlateau_PokemonCenter_1F_EventScript_NatureCoach",
++      "flag": "0"
+     }
+   ],
+   "warp_events": [
+diff --git a/data/maps/IndigoPlateau_PokemonCenter_1F/scripts.inc b/data/maps/IndigoPlateau_PokemonCenter_1F/scripts.inc
+index 15cb0cc..890e856 100644
+--- a/data/maps/IndigoPlateau_PokemonCenter_1F/scripts.inc
++++ b/data/maps/IndigoPlateau_PokemonCenter_1F/scripts.inc
+@@ -99,3 +99,100 @@ IndigoPlateau_PokemonCenter_1F_EventScript_PeakOfficialDone::
+ 	msgbox Hack_Text_PeakOfficialDone
+ 	release
+ 	end
++
++@ FireRed QoL+Hard: changes a Pokémon's nature or ability (after becoming Champion)
++IndigoPlateau_PokemonCenter_1F_EventScript_NatureCoach::
++	lock
++	faceplayer
++	goto_if_unset FLAG_SYS_GAME_CLEAR, IndigoPlateau_PokemonCenter_1F_EventScript_CoachNotChampion
++	msgbox Hack_Text_CoachIntro
++IndigoPlateau_PokemonCenter_1F_EventScript_CoachMenu::
++	message Hack_Text_CoachWhichService
++	waitmessage
++	multichoice 19, 6, MULTICHOICE_HACK_NATURE_ABILITY, FALSE
++	switch VAR_RESULT
++	case 0, IndigoPlateau_PokemonCenter_1F_EventScript_CoachNature
++	case 1, IndigoPlateau_PokemonCenter_1F_EventScript_CoachAbility
++	goto IndigoPlateau_PokemonCenter_1F_EventScript_CoachDone
++	end
++
++@ VAR_0x8007: 0 = chosen, 1 = cancelled, 2 = egg
++IndigoPlateau_PokemonCenter_1F_EventScript_CoachChooseMon::
++	setvar VAR_0x8007, 1
++	special ChoosePartyMon
++	waitstate
++	goto_if_ge VAR_0x8004, PARTY_SIZE, IndigoPlateau_PokemonCenter_1F_EventScript_CoachChosen
++	setvar VAR_0x8007, 2
++	special IsSelectedMonEgg
++	goto_if_eq VAR_RESULT, TRUE, IndigoPlateau_PokemonCenter_1F_EventScript_CoachChosen
++	setvar VAR_0x8007, 0
++	special Hack_BufferNatureAndAbility
++IndigoPlateau_PokemonCenter_1F_EventScript_CoachChosen::
++	return
++
++IndigoPlateau_PokemonCenter_1F_EventScript_CoachEgg::
++	msgbox Hack_Text_CoachEgg
++	goto IndigoPlateau_PokemonCenter_1F_EventScript_CoachMenu
++	end
++
++IndigoPlateau_PokemonCenter_1F_EventScript_CoachNature::
++	msgbox Hack_Text_CoachWhichMon
++	call IndigoPlateau_PokemonCenter_1F_EventScript_CoachChooseMon
++	goto_if_eq VAR_0x8007, 1, IndigoPlateau_PokemonCenter_1F_EventScript_CoachMenu
++	goto_if_eq VAR_0x8007, 2, IndigoPlateau_PokemonCenter_1F_EventScript_CoachEgg
++	message Hack_Text_CoachRaise
++	waitmessage
++	multichoice 20, 0, MULTICHOICE_HACK_RAISE_STAT, FALSE
++	goto_if_eq VAR_RESULT, SCR_MENU_CANCEL, IndigoPlateau_PokemonCenter_1F_EventScript_CoachMenu
++	copyvar VAR_0x8005, VAR_RESULT
++	setvar VAR_0x8006, 5
++	goto_if_eq VAR_0x8005, 5, IndigoPlateau_PokemonCenter_1F_EventScript_CoachApplyNature
++	message Hack_Text_CoachLower
++	waitmessage
++	multichoice 20, 0, MULTICHOICE_HACK_LOWER_STAT, FALSE
++	goto_if_eq VAR_RESULT, SCR_MENU_CANCEL, IndigoPlateau_PokemonCenter_1F_EventScript_CoachMenu
++	copyvar VAR_0x8006, VAR_RESULT
++IndigoPlateau_PokemonCenter_1F_EventScript_CoachApplyNature::
++	special Hack_SetNature
++	goto_if_eq VAR_RESULT, FALSE, IndigoPlateau_PokemonCenter_1F_EventScript_CoachSameNature
++	playfanfare MUS_LEVEL_UP
++	waitfanfare
++	msgbox Hack_Text_CoachNatureDone
++	goto IndigoPlateau_PokemonCenter_1F_EventScript_CoachDone
++	end
++
++IndigoPlateau_PokemonCenter_1F_EventScript_CoachSameNature::
++	msgbox Hack_Text_CoachSameNature
++	goto IndigoPlateau_PokemonCenter_1F_EventScript_CoachMenu
++	end
++
++IndigoPlateau_PokemonCenter_1F_EventScript_CoachAbility::
++	msgbox Hack_Text_CoachWhichMon
++	call IndigoPlateau_PokemonCenter_1F_EventScript_CoachChooseMon
++	goto_if_eq VAR_0x8007, 1, IndigoPlateau_PokemonCenter_1F_EventScript_CoachMenu
++	goto_if_eq VAR_0x8007, 2, IndigoPlateau_PokemonCenter_1F_EventScript_CoachEgg
++	special Hack_CanSwapAbility
++	goto_if_eq VAR_RESULT, FALSE, IndigoPlateau_PokemonCenter_1F_EventScript_CoachOneAbility
++	msgbox Hack_Text_CoachSwapAbility, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, IndigoPlateau_PokemonCenter_1F_EventScript_CoachMenu
++	special Hack_SwapAbility
++	playfanfare MUS_LEVEL_UP
++	waitfanfare
++	msgbox Hack_Text_CoachAbilityDone
++	goto IndigoPlateau_PokemonCenter_1F_EventScript_CoachDone
++	end
++
++IndigoPlateau_PokemonCenter_1F_EventScript_CoachOneAbility::
++	msgbox Hack_Text_CoachOneAbility
++	goto IndigoPlateau_PokemonCenter_1F_EventScript_CoachMenu
++	end
++
++IndigoPlateau_PokemonCenter_1F_EventScript_CoachNotChampion::
++	msgbox Hack_Text_CoachNotChampion
++	release
++	end
++
++IndigoPlateau_PokemonCenter_1F_EventScript_CoachDone::
++	msgbox Hack_Text_CoachBye
++	release
++	end
+diff --git a/data/maps/IndigoPlateau_PokemonCenter_1F/text.inc b/data/maps/IndigoPlateau_PokemonCenter_1F/text.inc
+index 857fc13..1add47b 100644
+--- a/data/maps/IndigoPlateau_PokemonCenter_1F/text.inc
++++ b/data/maps/IndigoPlateau_PokemonCenter_1F/text.inc
+@@ -41,3 +41,56 @@ IndigoPlateau_PokemonCenter_1F_Text_LancesCousinGymLeaderFarAway::
+     .string "a cousin who's a GYM LEADER\l"
+     .string "somewhere far away.$"
+ 
++
++@ FireRed QoL+Hard: nature and ability coach
++Hack_Text_CoachNotChampion::
++    .string "I train POKéMON for the very top.\n"
++    .string "I can reshape a POKéMON's nature,\p"
++    .string "or bring out its other ability.\n"
++    .string "But only for a true CHAMPION.$"
++
++Hack_Text_CoachIntro::
++    .string "Ah, the CHAMPION! I can reshape\n"
++    .string "a POKéMON's nature or swap it\l"
++    .string "to its other ability. Free of\l"
++    .string "charge, as often as you like.$"
++
++Hack_Text_CoachWhichService::
++    .string "What would you like to change?$"
++
++Hack_Text_CoachWhichMon::
++    .string "Which POKéMON?$"
++
++Hack_Text_CoachEgg::
++    .string "That's an EGG! Let it hatch first.$"
++
++Hack_Text_CoachRaise::
++    .string "{STR_VAR_1}'s nature is {STR_VAR_2}.\n"
++    .string "Which stat should it raise?$"
++
++Hack_Text_CoachLower::
++    .string "And which stat should it lower?$"
++
++Hack_Text_CoachNatureDone::
++    .string "{STR_VAR_1} now has\n"
++    .string "a {STR_VAR_2} nature!$"
++
++Hack_Text_CoachSameNature::
++    .string "{STR_VAR_1} already has\n"
++    .string "a {STR_VAR_2} nature.$"
++
++Hack_Text_CoachSwapAbility::
++    .string "{STR_VAR_1} has {STR_VAR_3}\n"
++    .string "as its other ability.\p"
++    .string "Swap to {STR_VAR_3}?$"
++
++Hack_Text_CoachAbilityDone::
++    .string "{STR_VAR_1}'s ability is\n"
++    .string "now {STR_VAR_3}!$"
++
++Hack_Text_CoachOneAbility::
++    .string "{STR_VAR_1} only has one\n"
++    .string "ability, {STR_VAR_3}.$"
++
++Hack_Text_CoachBye::
++    .string "Come back any time.$"
+diff --git a/data/specials.inc b/data/specials.inc
+index d880bf6..f008e75 100644
+--- a/data/specials.inc
++++ b/data/specials.inc
+@@ -452,4 +452,8 @@ gSpecials::
+ 	def_special UpdateLoreleiDollCollection
+ 	def_special LoopWingFlapSound
+ 	def_special CreateEnemyEventMon
++	def_special Hack_BufferNatureAndAbility
++	def_special Hack_SetNature
++	def_special Hack_CanSwapAbility
++	def_special Hack_SwapAbility
+ gSpecialsEnd::
+diff --git a/include/constants/menu.h b/include/constants/menu.h
+index 7c36f36..372e87c 100644
+--- a/include/constants/menu.h
++++ b/include/constants/menu.h
+@@ -69,6 +69,9 @@
+ #define MULTICHOICE_62                                         62
+ #define MULTICHOICE_JOIN_OR_LEAD                               63
+ #define MULTICHOICE_TRAINER_TOWER_MODE                         64
++#define MULTICHOICE_HACK_NATURE_ABILITY                        65
++#define MULTICHOICE_HACK_RAISE_STAT                            66
++#define MULTICHOICE_HACK_LOWER_STAT                            67
+ 
+ #define MULTICHOICE_NONE                                      255
+ 
+diff --git a/src/pokemon.c b/src/pokemon.c
+index 16534da..1e87fa5 100644
+--- a/src/pokemon.c
++++ b/src/pokemon.c
+@@ -3,6 +3,8 @@
+ #include "global.h"
+ #include "gflib.h"
+ #include "random.h"
++#include "pokemon_icon.h"
++#include "pokemon_summary_screen.h"
+ #include "text.h"
+ #include "data.h"
+ #include "battle.h"
+@@ -6572,3 +6574,124 @@ u8 *MonSpritesGfxManager_GetSpritePtr(u8 spriteNum)
+         return sMonSpritesGfxManager->spritePointers[spriteNum];
+     }
+ }
++
++// ---------------------------------------------------------------------------
++// Nature and ability changer (post-game NPC, Indigo Plateau Pokémon Center).
++// The party slot is in VAR_0x8004.
++// ---------------------------------------------------------------------------
++// Nature = raised * 5 + lowered, with stats in the order Atk, Def, Spe, SpA, SpD.
++#define HACK_NATURE_STAT_NONE 5
++
++static void Hack_SetBoxMonPersonality(struct BoxPokemon *boxMon, u32 personality)
++{
++    union PokemonSubstruct subs[4];
++    u32 old = boxMon->personality;
++    u8 i;
++
++    DecryptBoxMon(boxMon);
++    for (i = 0; i < 4; i++)
++        subs[i] = *GetSubstruct(boxMon, old, i);
++    boxMon->personality = personality;
++    for (i = 0; i < 4; i++)
++        *GetSubstruct(boxMon, personality, i) = subs[i];
++    boxMon->checksum = CalculateBoxMonChecksum(boxMon);
++    EncryptBoxMon(boxMon);
++}
++
++// A personality with the wanted nature that keeps everything else the
++// personality decides: gender, shininess (pHi ^ pLo is unchanged), Unown's
++// letter and Wurmple's evolution.
++static u32 Hack_PersonalityWithNature(u16 species, u32 old, u8 nature)
++{
++    u16 shinyBits = (old >> 16) ^ (old & 0xFFFF);
++    u16 start = Random();
++    u8 gender = GetGenderFromSpeciesAndPersonality(species, old);
++    u32 n, p;
++    u16 lo;
++
++    for (n = 0; n < 0x10000; n++)
++    {
++        lo = start + n;
++        p = ((u32)(shinyBits ^ lo) << 16) | lo;
++        if (p % NUM_NATURES != nature)
++            continue;
++        if (GetGenderFromSpeciesAndPersonality(species, p) != gender)
++            continue;
++        if (species == SPECIES_UNOWN && GetUnownLetterByPersonality(p) != GetUnownLetterByPersonality(old))
++            continue;
++        if (species == SPECIES_WURMPLE && ((p >> 16) % 10 <= 4) != ((old >> 16) % 10 <= 4))
++            continue;
++        return p;
++    }
++    return old;
++}
++
++static void Hack_BufferAbilityName(u8 *dest, u16 species, u8 abilityNum)
++{
++    StringCopy(dest, gAbilityNames[GetAbilityBySpecies(species, abilityNum)]);
++}
++
++// STR_VAR_1 = nickname, STR_VAR_2 = nature, STR_VAR_3 = ability.
++void Hack_BufferNatureAndAbility(void)
++{
++    struct Pokemon *mon = &gPlayerParty[gSpecialVar_0x8004];
++    u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
++
++    GetMonData(mon, MON_DATA_NICKNAME, gStringVar1);
++    StringGet_Nickname(gStringVar1);
++    StringCopy(gStringVar2, gNatureNamePointers[GetNature(mon)]);
++    Hack_BufferAbilityName(gStringVar3, species, GetMonData(mon, MON_DATA_ABILITY_NUM, NULL));
++}
++
++// VAR_0x8005 = stat to raise, VAR_0x8006 = stat to lower (5 = none).
++// VAR_RESULT = FALSE if it already has that nature. STR_VAR_2 = new nature.
++void Hack_SetNature(void)
++{
++    struct Pokemon *mon = &gPlayerParty[gSpecialVar_0x8004];
++    u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
++    u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
++    u8 nature;
++
++    if (gSpecialVar_0x8005 >= HACK_NATURE_STAT_NONE || gSpecialVar_0x8006 >= HACK_NATURE_STAT_NONE
++     || gSpecialVar_0x8005 == gSpecialVar_0x8006)
++    {
++        // Neutral: keep the current nature if it's already neutral.
++        nature = GetNature(mon);
++        if (nature % 6 != 0)
++            nature = NATURE_SERIOUS;
++    }
++    else
++    {
++        nature = gSpecialVar_0x8005 * 5 + gSpecialVar_0x8006;
++    }
++    StringCopy(gStringVar2, gNatureNamePointers[nature]);
++    if (nature == GetNature(mon))
++    {
++        gSpecialVar_Result = FALSE;
++        return;
++    }
++    Hack_SetBoxMonPersonality(&mon->box, Hack_PersonalityWithNature(species, personality, nature));
++    CalculateMonStats(mon);
++    gSpecialVar_Result = (GetNature(mon) == nature);
++}
++
++// VAR_RESULT = TRUE if the species has a second, different ability.
++// STR_VAR_3 = the ability it would switch to.
++void Hack_CanSwapAbility(void)
++{
++    struct Pokemon *mon = &gPlayerParty[gSpecialVar_0x8004];
++    u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
++    u8 num = GetMonData(mon, MON_DATA_ABILITY_NUM, NULL);
++
++    gSpecialVar_Result = gSpeciesInfo[species].abilities[1] != ABILITY_NONE
++                      && gSpeciesInfo[species].abilities[1] != gSpeciesInfo[species].abilities[0];
++    Hack_BufferAbilityName(gStringVar3, species, num ^ 1);
++}
++
++void Hack_SwapAbility(void)
++{
++    struct Pokemon *mon = &gPlayerParty[gSpecialVar_0x8004];
++    u8 num = GetMonData(mon, MON_DATA_ABILITY_NUM, NULL) ^ 1;
++
++    SetMonData(mon, MON_DATA_ABILITY_NUM, &num);
++}
+diff --git a/src/script_menu.c b/src/script_menu.c
+index 41eebd8..ecf5b84 100644
+--- a/src/script_menu.c
++++ b/src/script_menu.c
+@@ -498,6 +498,32 @@ static const struct MenuAction sMultichoiceList_TrainerTowerMode[] = {
+     { gOtherText_Exit }
+ };
+ 
++// FireRed QoL+Hard: nature and ability changer
++static const u8 sText_HackNature[] = _("NATURE");
++static const u8 sText_HackAbility[] = _("ABILITY");
++static const u8 sText_HackAttack[] = _("ATTACK");
++static const u8 sText_HackDefense[] = _("DEFENSE");
++static const u8 sText_HackSpeed[] = _("SPEED");
++static const u8 sText_HackSpAtk[] = _("SP. ATK");
++static const u8 sText_HackSpDef[] = _("SP. DEF");
++static const u8 sText_HackNeither[] = _("NEUTRAL");
++
++static const struct MenuAction sMultichoiceList_HackNatureAbility[] = {
++    { sText_HackNature },
++    { sText_HackAbility },
++    { gOtherText_Exit }
++};
++
++// Order matches the nature table: Atk, Def, Spe, SpA, SpD.
++static const struct MenuAction sMultichoiceList_HackStats[] = {
++    { sText_HackAttack },
++    { sText_HackDefense },
++    { sText_HackSpeed },
++    { sText_HackSpAtk },
++    { sText_HackSpDef },
++    { sText_HackNeither }
++};
++
+ static const struct MenuAction sMultichoiceList_Exit[] = {
+     { gOtherText_Exit }
+ };
+@@ -568,6 +594,9 @@ static const struct MultichoiceListStruct sMultichoiceLists[] = {
+     [MULTICHOICE_62]                                         = MULTICHOICE(sMultichoiceList_62),
+     [MULTICHOICE_JOIN_OR_LEAD]                               = MULTICHOICE(sMultichoiceList_JoinOrLead),
+     [MULTICHOICE_TRAINER_TOWER_MODE]                         = MULTICHOICE(sMultichoiceList_TrainerTowerMode),
++    [MULTICHOICE_HACK_NATURE_ABILITY]                        = MULTICHOICE(sMultichoiceList_HackNatureAbility),
++    [MULTICHOICE_HACK_RAISE_STAT]                            = MULTICHOICE(sMultichoiceList_HackStats),
++    [MULTICHOICE_HACK_LOWER_STAT]                            = MULTICHOICE(sMultichoiceList_HackStats),
+ };
+ 
+ // From Cool to Berries goes unused
+diff --git a/tools/hack/__pycache__/encounters.cpython-313.pyc b/tools/hack/__pycache__/encounters.cpython-313.pyc
+deleted file mode 100644
+index 7409865b6d28b43d71089810e9b7ed153484836b..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 13503
+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
+
+-- 
+2.43.0
+

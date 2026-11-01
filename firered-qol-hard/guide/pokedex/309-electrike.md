@@ -13,7 +13,7 @@ Height 0.6 m (2′00″) · Weight 15.2 kg (33.5 lbs)
 - **Static**: Paralyzes on contact.
 - **Lightning Rod**: Draws electrical moves.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

@@ -13,7 +13,7 @@ Height 0.2 m (0′08″) · Weight 2 kg (4.4 lbs)
 - **Thick Fat**: Heat-and-cold protection.
 - **Huge Power**: Raises Attack.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

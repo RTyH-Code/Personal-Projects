@@ -13,7 +13,7 @@ Height 0.5 m (1′08″) · Weight 3.9 kg (8.6 lbs)
 - **Poison Point**: Poisons foe on contact.
 - **Swift Swim**: Raises Speed in rain.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

@@ -13,7 +13,7 @@ Height 1.1 m (3′07″) · Weight 34.6 kg (76.3 lbs)
 - **Natural Cure**: Heals upon switching out.
 - **Serene Grace**: Promotes added effects.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

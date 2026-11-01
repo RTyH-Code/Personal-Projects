@@ -13,7 +13,7 @@ Height 1 m (3′03″) · Weight 35 kg (77.2 lbs)
 - **Swift Swim**: Raises Speed in rain.
 - **Shell Armor**: Blocks critical hits.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

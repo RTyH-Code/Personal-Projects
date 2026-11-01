@@ -13,7 +13,7 @@ Height 2 m (6′07″) · Weight 130 kg (286.6 lbs)
 - **Water Veil**: Prevents burns.
 - **Oblivious**: Prevents attraction.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

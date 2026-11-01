@@ -13,7 +13,7 @@ Height 0.9 m (2′11″) · Weight 71.5 kg (157.6 lbs)
 - **Thick Fat**: Heat-and-cold protection.
 - **Own Tempo**: Prevents confusion.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

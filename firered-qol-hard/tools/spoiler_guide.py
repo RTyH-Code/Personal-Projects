@@ -682,6 +682,33 @@ def bar(v):
     return "█" * n
 
 
+# ---------------------------------------------------------------- shared move / type data
+
+# moves
+mv = {}
+for k, body in c_blocks(read("src/data/battle_moves.h"), r"MOVE_\w+").items():
+    f = fields(body)
+    mv[k] = f
+def move_cells(m):
+    f = mv.get(m, {})
+    split = {"SPLIT_PHYSICAL": "Physical", "SPLIT_SPECIAL": "Special", "SPLIT_STATUS": "Status"}.get(f.get("split"), "?")
+    pw = f.get("power", "0")
+    acc = f.get("accuracy", "0")
+    pw = "—" if pw in ("0", "1") and split == "Status" else ("varies" if pw == "1" else ("—" if pw == "0" else pw))
+    if m == "MOVE_SPIT_UP":
+        pw = "varies"
+    acc = "—" if acc == "0" or f.get("target") == "MOVE_TARGET_USER" else acc + "%"
+    return f"{move(m)} | {tname(f.get('type', 'TYPE_NORMAL'))} | {split} | {pw} | {acc} | {f.get('pp', '?')}"
+
+
+# type chart
+chart = {}
+for a, d, mul in re.findall(r"TYPE_(\w+), TYPE_(\w+), TYPE_MUL_(\w+)", read("src/battle_main.c").split("gTypeEffectiveness")[1].split("};")[0]):
+    if a in ("FORESIGHT", "ENDTABLE"):
+        continue
+    chart[(a, d)] = {"NO_EFFECT": 0, "NOT_EFFECTIVE": 0.5, "SUPER_EFFECTIVE": 2, "NORMAL": 1}[mul]
+
+
 def write_pokedex():
     info = species_info(read("src/data/pokemon/species_info.h"))
     old_info = species_info(vanilla("src/data/pokemon/species_info.h"))
@@ -692,22 +719,6 @@ def write_pokedex():
     dexno = {sp: i + 1 for i, sp in enumerate(species)}
     for f, _ in DEOXYS_FORMES:
         dexno.setdefault(f, dexno["SPECIES_DEOXYS"])
-
-    # moves
-    mv = {}
-    for k, body in c_blocks(read("src/data/battle_moves.h"), r"MOVE_\w+").items():
-        f = fields(body)
-        mv[k] = f
-    def move_cells(m):
-        f = mv.get(m, {})
-        split = {"SPLIT_PHYSICAL": "Physical", "SPLIT_SPECIAL": "Special", "SPLIT_STATUS": "Status"}.get(f.get("split"), "?")
-        pw = f.get("power", "0")
-        acc = f.get("accuracy", "0")
-        pw = "—" if pw in ("0", "1") and split == "Status" else ("varies" if pw == "1" else ("—" if pw == "0" else pw))
-        if m == "MOVE_SPIT_UP":
-            pw = "varies"
-        acc = "—" if acc == "0" or f.get("target") == "MOVE_TARGET_USER" else acc + "%"
-        return f"{move(m)} | {tname(f.get('type', 'TYPE_NORMAL'))} | {split} | {pw} | {acc} | {f.get('pp', '?')}"
 
     # learnsets
     lu_arrays = levelup_learnsets(read("src/data/pokemon/level_up_learnsets.h"))
@@ -783,13 +794,6 @@ def write_pokedex():
         t = t.replace("FLYSCORPION", "FlyScorpion").replace("LIGHTNINGROD", "LIGHTNING ROD").replace("COMPOUNDEYES", "COMPOUND EYES")
         return re.sub(r"\b([A-Z][A-Z'.-]+)\b",
                       lambda m: m.group(1) if len(m.group(1)) < 2 or m.group(1) in keep else m.group(1).title(), t)
-
-    # type chart
-    chart = {}
-    for a, d, mul in re.findall(r"TYPE_(\w+), TYPE_(\w+), TYPE_MUL_(\w+)", read("src/battle_main.c").split("gTypeEffectiveness")[1].split("};")[0]):
-        if a in ("FORESIGHT", "ENDTABLE"):
-            continue
-        chart[(a, d)] = {"NO_EFFECT": 0, "NOT_EFFECTIVE": 0.5, "SUPER_EFFECTIVE": 2, "NORMAL": 1}[mul]
 
     # where to find
     where = {}
@@ -924,7 +928,8 @@ def write_pokedex():
             out.append(f"- **{gametext(abil_names.get(a, a[8:]))}**: {gametext(abil_desc.get(a, ''))}")
         if len(abil) == 2:
             out.append("")
-            out.append("*Each individual has one of the two, set by its personality value.*")
+            out.append("*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau "
+                       "Pokémon Center can swap it.*")
         out.append("")
 
         # stats
@@ -1059,6 +1064,259 @@ def write_pokedex():
     open(os.path.join(OUT, "POKEDEX.md"), "w").write("\n".join(idx))
 
 
+# ---------------------------------------------------------------- types and moves
+
+GEN3_PHYSICAL = {"NORMAL", "FIGHTING", "FLYING", "POISON", "GROUND", "ROCK", "BUG", "GHOST", "STEEL"}
+TYPE_ABBR = {"NORMAL": "Nor", "FIGHTING": "Fig", "FLYING": "Fly", "POISON": "Poi", "GROUND": "Gro", "ROCK": "Roc",
+             "BUG": "Bug", "GHOST": "Gho", "STEEL": "Ste", "FIRE": "Fir", "WATER": "Wat", "GRASS": "Gra",
+             "ELECTRIC": "Ele", "PSYCHIC": "Psy", "ICE": "Ice", "DRAGON": "Dra", "DARK": "Dar"}
+
+
+def write_types():
+    def eff(a, d):
+        return chart.get((a, d), 1)
+    sym = {2: "**2**", 0.5: "½", 0: "**0**", 1: ""}
+    out = ["# Types and moves", "",
+           "FireRed's type chart (Gen 3: no Fairy type; Steel resists Ghost and Dark) and every move in the game, "
+           "with this hack's physical/special split and modern power, accuracy and PP.", "",
+           "- [Type chart](#type-chart)", "- [Type by type](#type-by-type)",
+           "- [Moves that changed category](#moves-that-changed-category)", "- [All moves by type](#all-moves-by-type)", "",
+           "## Type chart", "",
+           "Rows are the **attacking** move's type, columns the **defending** Pokémon's type. "
+           "**2** = super effective, ½ = not very effective, **0** = no effect, blank = normal damage. "
+           "Against a dual type, multiply both columns (e.g. Ice vs Dragon/Flying = 2 × 2 = 4×).", "",
+           "| Atk ↓ / Def → | " + " | ".join(TYPE_ABBR[t] for t in TYPES) + " |",
+           "|---|" + ":-:|" * len(TYPES)]
+    for a in TYPES:
+        out.append(f"| **{a.title()}** | " + " | ".join(sym[eff(a, d)] for d in TYPES) + " |")
+    out += ["", "## Type by type", "",
+            "| Type | Super effective against | Not very effective against | No effect on | Weak to | Resists | Immune to |",
+            "|---|---|---|---|---|---|---|"]
+    for t in TYPES:
+        def names(lst):
+            return ", ".join(x.title() for x in lst) or "—"
+        out.append("| **%s** | %s | %s | %s | %s | %s | %s |" % (
+            t.title(),
+            names([d for d in TYPES if eff(t, d) == 2]), names([d for d in TYPES if eff(t, d) == 0.5]),
+            names([d for d in TYPES if eff(t, d) == 0]), names([a for a in TYPES if eff(a, t) == 2]),
+            names([a for a in TYPES if eff(a, t) == 0.5]), names([a for a in TYPES if eff(a, t) == 0])))
+    out.append("")
+
+    # move descriptions
+    md = read("src/move_descriptions.c")
+    dtext = {n: re.sub(r"\s+", " ", re.sub(r"-\\n", "-", "".join(re.findall(r'"(.*?)"', b))).replace("\\n", " ")).strip()
+             for n, b in re.findall(r"const u8 (gMoveDescription_\w+)\[\] = (_\(.*?\));", md, re.S)}
+    desc = {m: dtext.get(v, "") for m, v in re.findall(r"\[(MOVE_\w+)\s*- 1\] = (gMoveDescription_\w+)", md)}
+    def gtext(t):
+        keep = {"HP", "PP", "KO"}
+        t = t.replace("POKéMON", "Pokémon")
+        return re.sub(r"\b([A-Z][A-Z'.-]+)\b", lambda m: m.group(1) if len(m.group(1)) < 2 or m.group(1) in keep else m.group(1).title(), t)
+
+    damaging = {m: f for m, f in mv.items() if m != "MOVE_NONE" and f.get("split") in ("SPLIT_PHYSICAL", "SPLIT_SPECIAL")}
+    changed = {"Physical": [], "Special": []}
+    for m, f in damaging.items():
+        t = f["type"].replace("TYPE_", "")
+        if t == "MYSTERY":
+            continue
+        old = "Physical" if t in GEN3_PHYSICAL else "Special"
+        new = "Physical" if f["split"] == "SPLIT_PHYSICAL" else "Special"
+        if old != new:
+            changed[new].append(m)
+    out += ["## Moves that changed category", "",
+            "In the original FireRed a move's type decided whether it was physical or special: Normal, Fighting, "
+            "Flying, Poison, Ground, Rock, Bug, Ghost and Steel moves were physical, everything else special. "
+            "Now each move has its own category, as in Gen 4 onward. These damaging moves switched:", ""]
+    for new, label in (("Physical", "Now physical (were special)"), ("Special", "Now special (were physical)")):
+        out += [f"### {label}", "", "| Move | Type | Cat. | Power | Acc. | PP |", "|---|---|---|--:|--:|--:|"]
+        for m in sorted(changed[new], key=lambda m: (TYPES.index(mv[m]["type"][5:]), move(m))):
+            out.append(f"| {move_cells(m)} |")
+        out.append("")
+    out += ["*Hidden Power counts as Normal here; in the original game its category followed the type it rolled. "
+            "In this hack it is always special.*", ""]
+
+    out += ["## All moves by type", "", "Power \"varies\" means the game works it out in battle (e.g. Return, "
+            "Low Kick, Seismic Toss). Effects are Gen 3's; only power, accuracy, PP and category were modernized.", ""]
+    for t in TYPES + ["MYSTERY"]:
+        ms = sorted((m for m, f in mv.items() if m != "MOVE_NONE" and f.get("type") == "TYPE_" + t), key=move)
+        if not ms:
+            continue
+        out += [f"### {tname('TYPE_' + t)}", "", "| Move | Type | Cat. | Power | Acc. | PP | Effect |", "|---|---|---|--:|--:|--:|---|"]
+        out += [f"| {move_cells(m)} | {gtext(desc.get(m, ''))} |" for m in ms] + [""]
+    open(os.path.join(OUT, "TYPES.md"), "w").write("\n".join(out))
+
+
+# ---------------------------------------------------------------- peak trainer prep
+
+LEGENDARY = {"ARTICUNO", "ZAPDOS", "MOLTRES", "MEWTWO", "MEW", "RAIKOU", "ENTEI", "SUICUNE", "LUGIA", "HO_OH",
+             "CELEBI", "REGIROCK", "REGICE", "REGISTEEL", "LATIAS", "LATIOS", "KYOGRE", "GROUDON", "RAYQUAZA",
+             "JIRACHI", "DEOXYS"}
+ABILITY_IMMUNE = {"ABILITY_LEVITATE": {"GROUND": 0}, "ABILITY_FLASH_FIRE": {"FIRE": 0}, "ABILITY_VOLT_ABSORB": {"ELECTRIC": 0},
+                  "ABILITY_WATER_ABSORB": {"WATER": 0}, "ABILITY_THICK_FAT": {"FIRE": 0.5, "ICE": 0.5}}
+PEAK_ORDER = [("BROCK", "Pewter City Gym"), ("MISTY", "Cerulean City Gym"), ("LT_SURGE", "Vermilion City Gym"),
+              ("ERIKA", "Celadon City Gym"), ("KOGA", "Fuchsia City Gym"), ("SABRINA", "Saffron City Gym"),
+              ("BLAINE", "Cinnabar Island Gym"), ("GIOVANNI", "Viridian City Gym"),
+              ("LORELEI", "Elite Four"), ("BRUNO", "Elite Four"), ("AGATHA", "Elite Four"), ("LANCE", "Elite Four"),
+              ("CHAMPION_CHARMANDER", "Champion (you chose Bulbasaur)"),
+              ("CHAMPION_SQUIRTLE", "Champion (you chose Charmander)"),
+              ("CHAMPION_BULBASAUR", "Champion (you chose Squirtle)")]
+NATURE_MOD = {"Jolly": ("Speed", "Sp. Atk"), "Adamant": ("Attack", "Sp. Atk"),
+              "Timid": ("Speed", "Attack"), "Modest": ("Sp. Atk", "Attack")}
+
+
+def write_peak():
+    info = species_info(read("src/data/pokemon/species_info.h"))
+    ev = evos(read("src/data/pokemon/evolution.h"))
+    dex_order = [d for d in re.findall(r"NATIONAL_DEX_(\w+),", read("include/constants/pokedex.h").split("HOENN_DEX_NONE")[0]) if d != "NONE"]
+    dex_order = dex_order[:dex_order.index("DEOXYS") + 1]
+    dexno = {"SPECIES_" + d: i + 1 for i, d in enumerate(dex_order)}
+    def link(sp):
+        return f"[{mon(sp)}](pokedex/{dexno[sp]:03d}-" + sp[8:].lower().replace("_", "-") + ".md)"
+    def types_of(sp):
+        return list(dict.fromkeys(t[5:] for t in re.findall(r"TYPE_\w+", info[sp]["types"])))
+    def abilities(sp):
+        return [a for a in dict.fromkeys(re.findall(r"ABILITY_\w+", info[sp]["abilities"])) if a != "ABILITY_NONE"]
+    def eff(atk, ts):
+        m = 1
+        for d in ts:
+            m *= chart.get((atk, d), 1)
+        return m
+    def damaging(m):
+        f = mv.get(m, {})
+        return f.get("power", "0") != "0"
+    def mtype(m):
+        return mv[m]["type"][5:]
+
+    parties = parse_parties()
+    trainers, aliases = parse_trainers()
+    trainer_text = firered_only(read("src/data/trainers.h"))
+
+    # Candidate counters: fully evolved, non-legendary Pokémon (any of their abilities, since the coach can swap).
+    has_evo = {a for a, _ in ev}
+    candidates = [sp for sp in dexno if sp not in has_evo and sp[8:] not in LEGENDARY and sp != "SPECIES_SHEDINJA"
+                  and sum(int(info[sp][f]) for _, f in STATS) >= 470
+                  and max(int(info[sp]["baseAttack"]), int(info[sp]["baseSpAttack"])) >= 80]
+
+    def peak_stats(sp, moves):
+        i = info[sp]
+        phys = sum(1 for m in moves if damaging(m) and mv[m].get("split") == "SPLIT_PHYSICAL")
+        spec = sum(1 for m in moves if damaging(m) and mv[m].get("split") == "SPLIT_SPECIAL")
+        use_phys = phys > spec if phys != spec else int(i["baseAttack"]) >= int(i["baseSpAttack"])
+        fast = int(i["baseSpeed"]) >= 80
+        nature = ("Jolly" if fast else "Adamant") if use_phys else ("Timid" if fast else "Modest")
+        evs = {"HP": 0, "Attack": 0, "Defense": 0, "Sp. Atk": 0, "Sp. Def": 0, "Speed": 0}
+        evs["Attack" if use_phys else "Sp. Atk"] = 252
+        if int(i["baseSpeed"]) >= 50:
+            evs["Speed"], evs["HP"] = 252, 6
+        else:
+            evs["HP"] = 252
+            evs["Defense" if use_phys else "Sp. Def"] = 6
+        up, down = NATURE_MOD[nature]
+        st = {}
+        for name, f in STATS:
+            core = (2 * int(i[f]) + 31 + evs[name] // 4)
+            if name == "HP":
+                st[name] = 1 if sp == "SPECIES_SHEDINJA" else core + 110
+            else:
+                st[name] = int((core + 5) * (1.1 if name == up else 0.9 if name == down else 1))
+        return nature, st
+
+    out = ["# Peak trainer prep", "",
+           "Every post-game peak team (all Lv. 100), with each Pokémon's real stats, what the team attacks with, "
+           "what it's weak to, and Pokémon that match up well. Gym Leaders rematch any number of times once you're "
+           "Champion; the Elite Four and Champion use these teams when the League official in the Indigo Plateau "
+           "Pokémon Center has the PEAK challenge switched on.", "",
+           "How peak Pokémon are built: perfect IVs; 252 EVs in the attacking stat their moves use; 252 Speed EVs "
+           "(or 252 HP for Pokémon with base Speed under 50); Jolly/Timid if base Speed is 80+, otherwise "
+           "Adamant/Modest. Their held items are listed below, and each trainer also carries Full Restores.", "",
+           "**Suggested counters** are picked automatically from fully evolved, non-legendary Pokémon (base stat "
+           "total 470+, Attack or Sp. Atk 80+): they score for hitting team members super effectively with their own types and for "
+           "resisting the team's attacks, counting either ability (the nature and ability coach can swap it). "
+           "Treat them as a starting point; each links to its Pokédex page, which says where to catch it.", "",
+           "## Contents", ""]
+    sections = []
+    for key, where in PEAK_ORDER:
+        alias = "TRAINER_PEAK_" + key
+        slot = aliases.get(alias)
+        if not slot:
+            continue
+        t = trainers[slot]
+        team = parties[t["party"]]
+        title = f"{t['name'].title()}, {where}" if not key.startswith("CHAMPION") else f"Rival, {where}"
+        out.append(f"- [{title}](#{anchor(title)})")
+        items = re.search(r"\[%s\] = \{.*?\.items = \{(.*?)\}" % slot, trainer_text, re.S)
+        bag = [x.strip() for x in items.group(1).split(",") if x.strip() not in ("", "ITEM_NONE")] if items else []
+        sec = [f"## {title}", ""]
+        if bag:
+            counts = {}
+            for b in bag:
+                counts[b] = counts.get(b, 0) + 1
+            sec += ["Carries " + ", ".join(f"{n}× {item(b)}" for b, n in counts.items()) + ".", ""]
+        sec += ["| Pokémon | Type | Item | Moves | Nature | HP | Atk | Def | SpA | SpD | Spe |",
+                "|---|---|---|---|---|--:|--:|--:|--:|--:|--:|"]
+        atk_types = {}
+        for p in team:
+            sp = p["species"]
+            nature, st = peak_stats(sp, p["moves"])
+            moves_txt = ", ".join(f"{move(m)}" + (f" *({TYPE_ABBR.get(mtype(m), '???')})*" if damaging(m) else "") for m in p["moves"])
+            sec.append(f"| {link(sp)} | {' / '.join(x.title() for x in types_of(sp))} | {item(p['item']) if p['item'] else '—'} | "
+                       f"{moves_txt} | {nature} | " + " | ".join(str(st[n]) for n, _ in STATS) + " |")
+            for m in p["moves"]:
+                if damaging(m) and mtype(m) != "MYSTERY":
+                    atk_types[mtype(m)] = atk_types.get(mtype(m), 0) + 1
+        sec.append("")
+        sec += ["**Attacks with:** " + ", ".join(f"{a.title()} ×{n}" for a, n in sorted(atk_types.items(), key=lambda kv: -kv[1])) + ".", ""]
+
+        def taken(a, sp):
+            """Damage multiplier on an enemy, counting an ability immunity every one of its abilities grants."""
+            m = eff(a, types_of(sp))
+            mods = [ABILITY_IMMUNE.get(ab, {}).get(a, 1) for ab in abilities(sp)]
+            return m * max(mods) if mods else m
+        rows = []
+        for a in TYPES:
+            weak = sum(1 for p in team if taken(a, p["species"]) >= 2)
+            res = sum(1 for p in team if taken(a, p["species"]) <= 0.5)
+            rows.append((weak - res, weak, res, a))
+        good = [r for r in sorted(rows, reverse=True) if r[1] >= 2 and r[0] > 0][:5]
+        bad = [r for r in sorted(rows) if r[2] >= 3][:5]
+        if good:
+            sec += ["**Hit them with:** " + "; ".join(f"{a.title()} ({w} weak, {r} resist)" for _, w, r, a in good) + ".", ""]
+        if bad:
+            sec += ["**Avoid relying on:** " + "; ".join(f"{a.title()} ({r} resist or immune)" for _, w, r, a in bad) + ".", ""]
+
+        enemy_moves = [m for p in team for m in p["moves"] if damaging(m) and mtype(m) != "MYSTERY"]
+        scored = []
+        for c in candidates:
+            cts = types_of(c)
+            off = sum(1 for p in team if max(taken(t, p["species"]) for t in cts) >= 2)
+            best_def = None
+            for ab in abilities(c):
+                hurt = good_def = 0
+                for m in enemy_moves:
+                    e = eff(mtype(m), cts) * ABILITY_IMMUNE.get(ab, {}).get(mtype(m), 1)
+                    hurt += e >= 2
+                    good_def += e <= 0.5
+                d = good_def - 2 * hurt
+                if best_def is None or d > best_def[0]:
+                    best_def = (d, ab)
+            bst = sum(int(info[c][f]) for _, f in STATS)
+            scored.append((3 * off + best_def[0], bst, c, best_def[1]))
+        scored.sort(reverse=True)
+        picks = []
+        for sc, bst, c, ab in scored[:6]:
+            note = ""
+            if ab in ABILITY_IMMUNE and len(abilities(c)) > 1:
+                note = f" with {gametext_ability(ab)}"
+            picks.append(f"{link(c)} ({' / '.join(x.title() for x in types_of(c))}{note})")
+        sec += ["**Suggested counters:** " + ", ".join(picks) + ".", ""]
+        sections += sec
+    out += [""] + sections
+    open(os.path.join(OUT, "PEAK.md"), "w").write("\n".join(out))
+
+
+def gametext_ability(a):
+    return a.replace("ABILITY_", "").replace("_", " ").title()
+
+
 def write_index():
     open(os.path.join(OUT, "README.md"), "w").write("""# FireRed QoL + Hard: spoiler guide
 
@@ -1068,6 +1326,8 @@ def write_index():
 - [Items](ITEMS.md): item balls, hidden items, NPC gifts and shop stock, by location.
 - [Trainers](TRAINERS.md): Gym Leaders, Elite Four and Champion (rounds 1–2 and peak) in full, then every other trainer by location.
 - [Pokédex](POKEDEX.md): all 386 Pokémon with stat ranges, abilities, type defenses, evolutions, locations and full learnsets.
+- [Peak trainer prep](PEAK.md): every Lv. 100 peak team with real stats, what they attack with, what they're weak to, and suggested counters.
+- [Types and moves](TYPES.md): the type chart, moves whose physical/special category changed, and every move with its power, accuracy, PP and effect.
 - [Pokémon](POKEMON.md): gift, static and legendary Pokémon, in-game trades, changed evolutions, base stat and move changes.
 
 Regenerate with `python3 tools/hack/spoiler_guide.py <output dir>` from the source tree.
@@ -1080,5 +1340,7 @@ write_items()
 write_trainers()
 write_pokemon()
 write_pokedex()
+write_types()
+write_peak()
 write_index()
 print("guide written to", OUT)

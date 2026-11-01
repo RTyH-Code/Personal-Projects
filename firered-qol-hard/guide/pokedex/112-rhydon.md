@@ -13,7 +13,7 @@ Height 1.9 m (6′03″) · Weight 120 kg (264.6 lbs)
 - **Lightning Rod**: Draws electrical moves.
 - **Rock Head**: Prevents recoil damage.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

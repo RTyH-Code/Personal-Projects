@@ -13,7 +13,7 @@ Height 1.6 m (5′03″) · Weight 78.5 kg (173.1 lbs)
 - **Oblivious**: Prevents attraction.
 - **Own Tempo**: Prevents confusion.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

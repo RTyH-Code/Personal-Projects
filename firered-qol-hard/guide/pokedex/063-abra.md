@@ -13,7 +13,7 @@ Height 0.9 m (2′11″) · Weight 19.5 kg (43.0 lbs)
 - **Synchronize**: Passes on status problems.
 - **Inner Focus**: Prevents flinching.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

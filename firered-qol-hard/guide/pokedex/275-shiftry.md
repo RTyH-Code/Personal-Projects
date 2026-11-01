@@ -13,7 +13,7 @@ Height 1.3 m (4′03″) · Weight 59.6 kg (131.4 lbs)
 - **Chlorophyll**: Raises Speed in sunshine.
 - **Early Bird**: Awakens quickly from sleep.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

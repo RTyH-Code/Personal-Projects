@@ -13,7 +13,7 @@ Height 0.8 m (2′07″) · Weight 20.2 kg (44.5 lbs)
 - **Synchronize**: Passes on status problems.
 - **Trace**: Copies special ability.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

@@ -13,7 +13,7 @@ Height 2.5 m (8′02″) · Weight 220 kg (485.0 lbs)
 - **Water Absorb**: Changes water into HP.
 - **Shell Armor**: Blocks critical hits.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

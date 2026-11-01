@@ -13,7 +13,7 @@ Height 1.1 m (3′07″) · Weight 64.8 kg (142.9 lbs)
 - **Hyper Cutter**: Prevents Attack reduction.
 - **Sand Veil**: Ups evasion in a sandstorm.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

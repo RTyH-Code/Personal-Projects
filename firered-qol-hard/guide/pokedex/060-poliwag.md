@@ -13,7 +13,7 @@ Height 0.6 m (2′00″) · Weight 12.4 kg (27.3 lbs)
 - **Water Absorb**: Changes water into HP.
 - **Damp**: Prevents self-destruction.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 
