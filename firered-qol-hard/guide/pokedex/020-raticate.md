@@ -13,7 +13,7 @@ Height 0.7 m (2′04″) · Weight 18.5 kg (40.8 lbs)
 - **Run Away**: Makes escaping easier.
 - **Guts**: Ups Attack if suffering.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

@@ -13,7 +13,7 @@ Height 0.8 m (2′07″) · Weight 15 kg (33.1 lbs)
 - **Keen Eye**: Prevents loss of accuracy.
 - **Inner Focus**: Prevents flinching.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

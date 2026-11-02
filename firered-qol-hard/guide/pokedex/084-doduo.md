@@ -13,7 +13,7 @@ Height 1.4 m (4′07″) · Weight 39.2 kg (86.4 lbs)
 - **Run Away**: Makes escaping easier.
 - **Early Bird**: Awakens quickly from sleep.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

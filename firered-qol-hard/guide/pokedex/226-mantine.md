@@ -13,7 +13,7 @@ Height 2.1 m (6′11″) · Weight 220 kg (485.0 lbs)
 - **Swift Swim**: Raises Speed in rain.
 - **Water Absorb**: Changes water into HP.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

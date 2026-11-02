@@ -13,7 +13,7 @@ Height 1.4 m (4′07″) · Weight 35.6 kg (78.5 lbs)
 - **Swarm**: Ups Bug moves in a pinch.
 - **Early Bird**: Awakens quickly from sleep.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

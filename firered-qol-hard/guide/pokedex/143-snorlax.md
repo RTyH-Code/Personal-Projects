@@ -13,7 +13,7 @@ Height 2.1 m (6′11″) · Weight 460 kg (1014.1 lbs)
 - **Immunity**: Prevents poisoning.
 - **Thick Fat**: Heat-and-cold protection.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

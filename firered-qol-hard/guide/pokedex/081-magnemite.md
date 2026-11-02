@@ -13,7 +13,7 @@ Height 0.3 m (1′00″) · Weight 6 kg (13.2 lbs)
 - **Magnet Pull**: Traps Steel-type Pokémon.
 - **Sturdy**: Negates 1-hit KO attacks.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

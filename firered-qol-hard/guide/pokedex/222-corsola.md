@@ -13,7 +13,7 @@ Height 0.6 m (2′00″) · Weight 5 kg (11.0 lbs)
 - **Hustle**: Trades accuracy for power.
 - **Natural Cure**: Heals upon switching out.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

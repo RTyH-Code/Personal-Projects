@@ -13,7 +13,7 @@ Height 1.5 m (4′11″) · Weight 41.5 kg (91.5 lbs)
 - **Inner Focus**: Prevents flinching.
 - **Early Bird**: Awakens quickly from sleep.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

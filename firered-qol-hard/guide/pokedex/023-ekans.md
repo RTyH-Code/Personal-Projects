@@ -13,7 +13,7 @@ Height 2 m (6′07″) · Weight 6.9 kg (15.2 lbs)
 - **Intimidate**: Lowers the foe's Attack.
 - **Shed Skin**: Heals the body by shedding.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

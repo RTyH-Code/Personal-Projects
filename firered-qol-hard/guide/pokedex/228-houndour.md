@@ -13,7 +13,7 @@ Height 0.6 m (2′00″) · Weight 10.8 kg (23.8 lbs)
 - **Early Bird**: Awakens quickly from sleep.
 - **Flash Fire**: Powers up if hit by fire.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

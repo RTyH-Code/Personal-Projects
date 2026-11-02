@@ -13,7 +13,7 @@ Height 1.7 m (5′07″) · Weight 50.5 kg (111.3 lbs)
 - **Keen Eye**: Prevents loss of accuracy.
 - **Sturdy**: Negates 1-hit KO attacks.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

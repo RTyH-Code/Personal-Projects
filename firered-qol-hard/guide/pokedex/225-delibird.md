@@ -13,7 +13,7 @@ Height 0.9 m (2′11″) · Weight 16 kg (35.3 lbs)
 - **Vital Spirit**: Prevents sleep.
 - **Hustle**: Trades accuracy for power.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

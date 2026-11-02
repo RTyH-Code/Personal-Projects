@@ -13,7 +13,7 @@ Height 1.2 m (3′11″) · Weight 22.5 kg (49.6 lbs)
 - **Volt Absorb**: Turns electricity into HP.
 - **Illuminate**: Encounter rate increases.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

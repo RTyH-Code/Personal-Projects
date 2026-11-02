@@ -13,7 +13,7 @@ Height 0.8 m (2′07″) · Weight 34.5 kg (76.1 lbs)
 - **Illuminate**: Encounter rate increases.
 - **Natural Cure**: Heals upon switching out.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

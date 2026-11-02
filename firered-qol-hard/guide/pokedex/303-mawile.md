@@ -13,7 +13,7 @@ Height 0.6 m (2′00″) · Weight 11.5 kg (25.4 lbs)
 - **Hyper Cutter**: Prevents Attack reduction.
 - **Intimidate**: Lowers the foe's Attack.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

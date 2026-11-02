@@ -13,7 +13,7 @@ Height 0.6 m (2′00″) · Weight 7.8 kg (17.2 lbs)
 - **Intimidate**: Lowers the foe's Attack.
 - **Run Away**: Makes escaping easier.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

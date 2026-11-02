@@ -13,7 +13,7 @@ Height 1.2 m (3′11″) · Weight 66.6 kg (146.8 lbs)
 - **Soundproof**: Avoids sound-based moves.
 - **Static**: Paralyzes on contact.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

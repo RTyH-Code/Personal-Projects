@@ -13,7 +13,7 @@ Height 0.7 m (2′04″) · Weight 15 kg (33.1 lbs)
 - **Hyper Cutter**: Prevents Attack reduction.
 - **Arena Trap**: Prevents fleeing.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

@@ -13,7 +13,7 @@ Height 1.1 m (3′07″) · Weight 33.5 kg (73.9 lbs)
 - **Swarm**: Ups Bug moves in a pinch.
 - **Insomnia**: Prevents sleep.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

@@ -13,7 +13,7 @@ Height 0.4 m (1′04″) · Weight 60 kg (132.3 lbs)
 - **Sturdy**: Negates 1-hit KO attacks.
 - **Rock Head**: Prevents recoil damage.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

@@ -13,7 +13,7 @@ Height 1.6 m (5′03″) · Weight 40.8 kg (89.9 lbs)
 - **Insomnia**: Prevents sleep.
 - **Keen Eye**: Prevents loss of accuracy.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 

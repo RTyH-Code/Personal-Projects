@@ -13,7 +13,7 @@ Height 0.6 m (2′00″) · Weight 15 kg (33.1 lbs)
 - **Swift Swim**: Raises Speed in rain.
 - **Water Veil**: Prevents burns.
 
-*Each individual has one of the two, set by its personality value.*
+*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
 
 ## Base stats
 
