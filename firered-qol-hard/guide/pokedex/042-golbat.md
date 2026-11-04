@@ -11,6 +11,9 @@ Height 1.6 m (5′03″) · Weight 55 kg (121.3 lbs)
 ## Abilities
 
 - **Inner Focus**: Prevents flinching.
+- **Infiltrator** *(hidden ability)*: Passes through barriers.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

@@ -11,6 +11,9 @@ Height 2.7 m (8′10″) · Weight 52.5 kg (115.7 lbs)
 ## Abilities
 
 - **Shed Skin**: Heals the body by shedding.
+- **Infiltrator** *(hidden ability)*: Passes through barriers.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

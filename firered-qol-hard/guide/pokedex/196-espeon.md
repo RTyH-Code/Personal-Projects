@@ -11,6 +11,9 @@ Height 0.9 m (2′11″) · Weight 26.5 kg (58.4 lbs)
 ## Abilities
 
 - **Synchronize**: Passes on status problems.
+- **Magic Bounce** *(hidden ability)*: Reflects status moves.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

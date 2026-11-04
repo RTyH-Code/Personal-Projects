@@ -12,6 +12,7 @@ Height 1.3 m (4′03″) · Weight 59.6 kg (131.4 lbs)
 
 - **Chlorophyll**: Raises Speed in sunshine.
 - **Wind Rider**: Wind moves raise Attack.
+- **Pickpocket** *(hidden ability)*: Steals items on contact.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 

@@ -100,24 +100,18 @@ and you can use her as often as you like.
     games teach them that way.
   - Lance's Dragons carry Iron Tail so they aren't helpless against Fairies.
 
-## Modern abilities (in progress)
+## Modern abilities
 - Every Pokémon can have up to three abilities, as in modern games: two
   regular ones and a hidden ability. Wild Pokémon get one of the regular ones;
   the coach in the Indigo Plateau Pokémon Center (after you become Champion)
   can switch a Pokémon to any of them, including the hidden one.
-- Abilities come from the modern games. Abilities that were added after
-  Gen 3 are being implemented in batches; until one is ready, that slot keeps
-  the Pokémon's Gen 3 ability. Working so far:
-  Adaptability, Aftermath, Analytic, Anger Point, Big Pecks, Competitive,
-  Contrary, Cursed Body, Defiant, Download, Dry Skin, Filter, Friend Guard,
-  Frisk, Gluttony, Healer, Heavy Metal, Hydration, Ice Body, Iron Fist,
-  Justified, Light Metal, Magic Guard, Moody, Moxie, Multiscale, No Guard,
-  Normalize, Overcoat, Poison Heal, Poison Touch, Quick Feet, Rattled,
-  Reckless, Regenerator, Rivalry, Sand Force, Sand Rush, Sap Sipper, Scrappy,
-  Sheer Force, Simple, Skill Link, Sniper, Snow Cloak, Solar Power, Solid Rock,
-  Stall, Steadfast, Storm Drain, Super Luck, Tangled Feet, Technician,
-  Telepathy, Tinted Lens, Toxic Boost, Unaware, Unnerve, Weak Armor,
-  Wind Rider and Wonder Skin.
+- All 74 abilities that later games gave Gen 1–3 Pokémon work, from
+  Adaptability to Wonder Skin, including Mold Breaker, Magic Bounce, Imposter,
+  Protean (once per switch-in, as in Gen 9), Neutralizing Gas, Prankster
+  (Dark types are immune to its boosted moves) and Infiltrator.
+- Honey Gather is the one exception (FireRed has no Honey), so Teddiursa keeps
+  its other abilities.
+- Pickpocket steals for the rest of the battle only; items go back afterwards.
 - Critical hits still do double damage (Gen 3); Sniper makes them triple.
 - Sun, rain and Flash Fire now boost physical Fire and Water moves too (with
   the physical/special split, moves like Fire Punch had been missing out).
@@ -229,7 +223,7 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `3396a57c91a3b8ef7fea1b951e32d80e5ab933b7`
+Patched ROM SHA-1: `5c9246b1504fa9615dc54f787a33b5d9c0c19638`
 
 Start a new game. Saves from earlier versions of this hack aren't supported.
 

@@ -11,6 +11,7 @@ Height 0.6 m (2′00″) · Weight 1 kg (2.2 lbs)
 ## Abilities
 
 - **Levitate**: Not hit by Ground attacks.
+- **Neutral. Gas**: Neutralizes abilities.
 - **Stench** *(hidden ability)*: Helps repel wild Pokémon.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*

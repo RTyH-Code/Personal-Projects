@@ -112,6 +112,9 @@ IMPLEMENTED = {
     "Moxie", "Defiant", "Competitive", "Justified", "Rattled", "Steadfast", "Weak Armor", "Anger Point",
     "Sap Sipper", "Storm Drain", "Wind Rider", "Cursed Body", "Poison Touch", "Aftermath", "Regenerator",
     "Download", "Frisk", "Unnerve", "Moody", "Healer",
+    # batch 3
+    "Prankster", "Magic Bounce", "Infiltrator", "Mold Breaker", "Unburden", "Pickpocket", "Harvest",
+    "Forewarn", "Anticipation", "Imposter", "Neutralizing Gas", "Protean", "Leaf Guard",
 }
 
 

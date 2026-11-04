@@ -11,6 +11,9 @@ Height 1.2 m (3′11″) · Weight 15.8 kg (34.8 lbs)
 ## Abilities
 
 - **Overgrow**: Ups Grass moves in a pinch.
+- **Leaf Guard** *(hidden ability)*: Prevents status in sunlight.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

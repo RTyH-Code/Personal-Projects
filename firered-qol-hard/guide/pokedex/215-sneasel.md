@@ -12,6 +12,7 @@ Height 0.9 m (2′11″) · Weight 28 kg (61.7 lbs)
 
 - **Inner Focus**: Prevents flinching.
 - **Keen Eye**: Prevents loss of accuracy.
+- **Pickpocket** *(hidden ability)*: Steals items on contact.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
