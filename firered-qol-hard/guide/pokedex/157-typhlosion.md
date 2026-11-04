@@ -11,6 +11,9 @@ Height 1.7 m (5′07″) · Weight 79.5 kg (175.3 lbs)
 ## Abilities
 
 - **Blaze**: Ups Fire moves in a pinch.
+- **Flash Fire** *(hidden ability)*: Powers up if hit by fire.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 
@@ -32,6 +35,8 @@ Height 1.7 m (5′07″) · Weight 79.5 kg (175.3 lbs)
 |---|---|
 | 2× | Ground, Rock, Water |
 | ½× | Bug, Steel, Fire, Grass, Ice, Fairy |
+
+*With Flash Fire: immune to Fire moves.*
 
 ## Training and breeding
 

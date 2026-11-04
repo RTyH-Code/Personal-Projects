@@ -11,6 +11,9 @@ Height 0.6 m (2′00″) · Weight 32.5 kg (71.7 lbs)
 ## Abilities
 
 - **Trace**: Copies special ability.
+- **Analytic** *(hidden ability)*: Ups power when moving last.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

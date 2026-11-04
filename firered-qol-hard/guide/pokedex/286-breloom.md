@@ -11,6 +11,10 @@ Height 1.2 m (3′11″) · Weight 39.2 kg (86.4 lbs)
 ## Abilities
 
 - **Effect Spore**: Leaves spores on contact.
+- **Poison Heal**: Poison restores HP.
+- **Technician** *(hidden ability)*: Powers up weak moves.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

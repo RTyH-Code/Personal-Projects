@@ -12,8 +12,9 @@ Height 0.8 m (2′07″) · Weight 19.6 kg (43.2 lbs)
 
 - **Damp**: Prevents self-destruction.
 - **Cloud Nine**: Negates weather effects.
+- **Swift Swim** *(hidden ability)*: Raises Speed in rain.
 
-*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

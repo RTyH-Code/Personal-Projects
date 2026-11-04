@@ -11,6 +11,9 @@ Height 2 m (6′07″) · Weight 187 kg (412.3 lbs)
 ## Abilities
 
 - **Pressure**: Raises foe's PP usage.
+- **Inner Focus** *(hidden ability)*: Prevents flinching.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

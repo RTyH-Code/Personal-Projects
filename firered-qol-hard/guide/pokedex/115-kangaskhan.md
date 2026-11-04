@@ -11,6 +11,10 @@ Height 2.2 m (7′03″) · Weight 80 kg (176.4 lbs)
 ## Abilities
 
 - **Early Bird**: Awakens quickly from sleep.
+- **Scrappy**: Hits Ghost-type Pokémon.
+- **Inner Focus** *(hidden ability)*: Prevents flinching.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

@@ -11,6 +11,9 @@ Height 1.3 m (4′03″) · Weight 77.4 kg (170.6 lbs)
 ## Abilities
 
 - **Sand Veil**: Ups evasion in a sandstorm.
+- **Water Absorb** *(hidden ability)*: Changes water into HP.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 
@@ -34,6 +37,8 @@ Height 1.3 m (4′03″) · Weight 77.4 kg (170.6 lbs)
 | 2× | Fighting, Flying, Poison, Fire, Ice, Fairy |
 | ½× | Ground, Ghost, Water, Grass, Electric, Dark |
 | 0× (immune) | Psychic |
+
+*With Water Absorb: Water moves heal it instead.*
 
 ## Training and breeding
 

@@ -12,8 +12,9 @@ Height 1.2 m (3′11″) · Weight 32.5 kg (71.7 lbs)
 
 - **Swift Swim**: Raises Speed in rain.
 - **Rain Dish**: Slight HP recovery in rain.
+- **Own Tempo** *(hidden ability)*: Prevents confusion.
 
-*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

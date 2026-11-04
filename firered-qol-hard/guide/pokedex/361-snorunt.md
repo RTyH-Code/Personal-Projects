@@ -11,6 +11,9 @@ Height 0.7 m (2′04″) · Weight 16.8 kg (37.0 lbs)
 ## Abilities
 
 - **Inner Focus**: Prevents flinching.
+- **Ice Body**: Slight HP recovery in hail.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

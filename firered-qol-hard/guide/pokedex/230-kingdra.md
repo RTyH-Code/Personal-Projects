@@ -11,6 +11,10 @@ Height 1.8 m (5′11″) · Weight 152 kg (335.1 lbs)
 ## Abilities
 
 - **Swift Swim**: Raises Speed in rain.
+- **Sniper**: Powers up critical hits.
+- **Damp** *(hidden ability)*: Prevents self-destruction.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

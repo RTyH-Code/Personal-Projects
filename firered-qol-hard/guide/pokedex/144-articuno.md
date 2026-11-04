@@ -11,6 +11,9 @@ Height 1.7 m (5′07″) · Weight 55.4 kg (122.1 lbs)
 ## Abilities
 
 - **Pressure**: Raises foe's PP usage.
+- **Snow Cloak** *(hidden ability)*: Ups evasion in hail.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

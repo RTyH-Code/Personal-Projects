@@ -11,6 +11,10 @@ Height 0.6 m (2′00″) · Weight 20.5 kg (45.2 lbs)
 ## Abilities
 
 - **Sturdy**: Negates 1-hit KO attacks.
+- **Gluttony**: Eats pinch Berries early.
+- **Contrary** *(hidden ability)*: Inverts stat changes.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

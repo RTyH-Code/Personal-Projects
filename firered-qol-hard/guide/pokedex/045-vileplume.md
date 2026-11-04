@@ -11,6 +11,9 @@ Height 1.2 m (3′11″) · Weight 18.6 kg (41.0 lbs)
 ## Abilities
 
 - **Chlorophyll**: Raises Speed in sunshine.
+- **Effect Spore** *(hidden ability)*: Leaves spores on contact.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

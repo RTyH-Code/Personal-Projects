@@ -11,6 +11,10 @@ Height 0.7 m (2′04″) · Weight 24 kg (52.9 lbs)
 ## Abilities
 
 - **Oblivious**: Prevents attraction.
+- **Simple**: Doubles stat changes.
+- **Own Tempo** *(hidden ability)*: Prevents confusion.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

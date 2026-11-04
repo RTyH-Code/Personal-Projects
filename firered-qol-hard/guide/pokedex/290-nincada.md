@@ -11,6 +11,9 @@ Height 0.5 m (1′08″) · Weight 5.5 kg (12.1 lbs)
 ## Abilities
 
 - **Compound Eyes**: Raises accuracy.
+- **Run Away** *(hidden ability)*: Makes escaping easier.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

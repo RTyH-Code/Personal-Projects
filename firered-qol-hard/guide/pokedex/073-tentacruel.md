@@ -12,8 +12,9 @@ Height 1.6 m (5′03″) · Weight 55 kg (121.3 lbs)
 
 - **Clear Body**: Prevents ability reduction.
 - **Liquid Ooze**: Draining causes injury.
+- **Rain Dish** *(hidden ability)*: Slight HP recovery in rain.
 
-*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

@@ -100,6 +100,25 @@ and you can use her as often as you like.
     games teach them that way.
   - Lance's Dragons carry Iron Tail so they aren't helpless against Fairies.
 
+## Modern abilities (in progress)
+- Every Pokémon can have up to three abilities, as in modern games: two
+  regular ones and a hidden ability. Wild Pokémon get one of the regular ones;
+  the coach in the Indigo Plateau Pokémon Center (after you become Champion)
+  can switch a Pokémon to any of them, including the hidden one.
+- Abilities come from the modern games. Abilities that were added after
+  Gen 3 are being implemented in batches; until one is ready, that slot keeps
+  the Pokémon's Gen 3 ability. Working so far:
+  Adaptability, Analytic, Big Pecks, Contrary, Dry Skin, Filter, Friend Guard,
+  Gluttony, Heavy Metal, Hydration, Ice Body, Iron Fist, Light Metal,
+  Magic Guard, Multiscale, No Guard, Normalize, Overcoat, Poison Heal,
+  Quick Feet, Reckless, Rivalry, Sand Force, Sand Rush, Scrappy, Sheer Force,
+  Simple, Skill Link, Sniper, Snow Cloak, Solar Power, Solid Rock, Stall,
+  Super Luck, Tangled Feet, Technician, Telepathy, Tinted Lens, Toxic Boost,
+  Unaware and Wonder Skin.
+- Critical hits still do double damage (Gen 3); Sniper makes them triple.
+- Sun, rain and Flash Fire now boost physical Fire and Water moves too (with
+  the physical/special split, moves like Fire Punch had been missing out).
+
 ## Every Pokémon is obtainable
 All 386 Pokémon can be caught, evolved or bred in a single FireRed save:
 - About 130 new wild slots in places that fit each Pokémon. New Pokémon only
@@ -207,7 +226,7 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `ae9876f1b85286e09e6d043707644814ec6748e0`
+Patched ROM SHA-1: `fc5ac3dcb2edc7bd603403b1cb46038980f9010b`
 
 Start a new game. Saves from earlier versions of this hack aren't supported.
 
@@ -232,6 +251,7 @@ unmodified pret data:
 - `encounters.py`: wild placements. It checks that all 386 Pokémon are obtainable.
 - `legendaries.py`: legendary events, flags and the Hall of Fame tickets.
 - `fairy.py <pokemon-showdown>/data`: the Fairy type, retyped Pokémon, Fairy moves and their learnsets.
+- `abilities.py <pokemon-showdown>/data`: ability slots, new ability names and each Pokémon's modern abilities (`--species` re-assigns them).
 - `evo_moves.py`: later level-up moves for stone evolutions (run after `modernize.py`).
 - `peak_trainers.py`: peak teams, gym rematches and the Elite Four round 3.
 - `spoiler_guide.py <dir>`: regenerates the spoiler guide from the game data.

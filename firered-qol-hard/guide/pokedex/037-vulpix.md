@@ -11,6 +11,9 @@ Height 0.6 m (2′00″) · Weight 9.9 kg (21.8 lbs)
 ## Abilities
 
 - **Flash Fire**: Powers up if hit by fire.
+- **Drought** *(hidden ability)*: Summons sunlight in battle.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 
@@ -33,7 +36,7 @@ Height 0.6 m (2′00″) · Weight 9.9 kg (21.8 lbs)
 | 2× | Ground, Rock, Water |
 | ½× | Bug, Steel, Fire, Grass, Ice, Fairy |
 
-*Its ability Flash Fire: immune to Fire moves.*
+*With Flash Fire: immune to Fire moves.*
 
 ## Training and breeding
 

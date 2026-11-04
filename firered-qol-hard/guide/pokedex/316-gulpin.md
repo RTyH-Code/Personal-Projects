@@ -12,8 +12,9 @@ Height 0.4 m (1′04″) · Weight 10.3 kg (22.7 lbs)
 
 - **Liquid Ooze**: Draining causes injury.
 - **Sticky Hold**: Prevents item theft.
+- **Gluttony** *(hidden ability)*: Eats pinch Berries early.
 
-*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

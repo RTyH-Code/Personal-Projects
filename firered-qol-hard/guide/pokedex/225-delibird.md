@@ -12,8 +12,9 @@ Height 0.9 m (2′11″) · Weight 16 kg (35.3 lbs)
 
 - **Vital Spirit**: Prevents sleep.
 - **Hustle**: Trades accuracy for power.
+- **Insomnia** *(hidden ability)*: Prevents sleep.
 
-*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

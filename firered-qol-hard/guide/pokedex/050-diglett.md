@@ -12,8 +12,9 @@ Height 0.2 m (0′08″) · Weight 0.8 kg (1.8 lbs)
 
 - **Sand Veil**: Ups evasion in a sandstorm.
 - **Arena Trap**: Prevents fleeing.
+- **Sand Force** *(hidden ability)*: Powers up moves in sand.
 
-*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

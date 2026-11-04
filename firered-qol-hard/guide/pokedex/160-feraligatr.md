@@ -11,6 +11,9 @@ Height 2.3 m (7′07″) · Weight 88.8 kg (195.8 lbs)
 ## Abilities
 
 - **Torrent**: Ups Water moves in a pinch.
+- **Sheer Force** *(hidden ability)*: Drops added effects for power.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

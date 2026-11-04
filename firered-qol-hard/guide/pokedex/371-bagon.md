@@ -11,6 +11,9 @@ Height 0.6 m (2′00″) · Weight 42.1 kg (92.8 lbs)
 ## Abilities
 
 - **Rock Head**: Prevents recoil damage.
+- **Sheer Force** *(hidden ability)*: Drops added effects for power.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

@@ -64,7 +64,7 @@ Carries 2× Full Restore.
 
 **Avoid relying on:** Water (6 resist or immune); Fire (5 resist or immune); Ice (5 resist or immune); Steel (5 resist or immune).
 
-**Suggested counters:** [Ludicolo](pokedex/272-ludicolo.md) (Water / Grass), [Exeggutor](pokedex/103-exeggutor.md) (Grass / Psychic), [Jolteon](pokedex/135-jolteon.md) (Electric), [Ampharos](pokedex/181-ampharos.md) (Electric), [Electrode](pokedex/101-electrode.md) (Electric), [Electabuzz](pokedex/125-electabuzz.md) (Electric).
+**Suggested counters:** [Ludicolo](pokedex/272-ludicolo.md) (Water / Grass), [Exeggutor](pokedex/103-exeggutor.md) (Grass / Psychic), [Jolteon](pokedex/135-jolteon.md) (Electric with Volt Absorb), [Ampharos](pokedex/181-ampharos.md) (Electric), [Electrode](pokedex/101-electrode.md) (Electric), [Electabuzz](pokedex/125-electabuzz.md) (Electric).
 
 ## Lt. Surge, Vermilion City Gym
 
@@ -123,11 +123,11 @@ Carries 2× Full Restore.
 
 **Attacks with:** Poison ×4, Normal ×3, Ice ×2, Bug ×2, Fire ×2, Electric ×2, Water ×1, Psychic ×1, Ground ×1, Ghost ×1.
 
-**Hit them with:** Psychic (6 weak, 0 resist); Ground (3 weak, 2 resist).
+**Hit them with:** Psychic (6 weak, 0 resist); Ground (4 weak, 1 resist).
 
 **Avoid relying on:** Bug (6 resist or immune); Fairy (6 resist or immune); Fighting (6 resist or immune); Poison (6 resist or immune); Grass (4 resist or immune).
 
-**Suggested counters:** [Metagross](pokedex/376-metagross.md) (Steel / Psychic), [Swampert](pokedex/260-swampert.md) (Water / Ground), [Grumpig](pokedex/326-grumpig.md) (Psychic with Thick Fat), [Golem](pokedex/076-golem.md) (Rock / Ground), [Rhydon](pokedex/112-rhydon.md) (Ground / Rock), [Starmie](pokedex/121-starmie.md) (Water / Psychic).
+**Suggested counters:** [Metagross](pokedex/376-metagross.md) (Steel / Psychic), [Swampert](pokedex/260-swampert.md) (Water / Ground), [Golem](pokedex/076-golem.md) (Rock / Ground), [Rhydon](pokedex/112-rhydon.md) (Ground / Rock), [Flygon](pokedex/330-flygon.md) (Ground / Dragon), [Grumpig](pokedex/326-grumpig.md) (Psychic with Thick Fat).
 
 ## Sabrina, Saffron City Gym
 
@@ -274,7 +274,7 @@ Carries 2× Full Restore.
 
 **Avoid relying on:** Fire (6 resist or immune); Ground (5 resist or immune); Bug (4 resist or immune); Fighting (3 resist or immune); Grass (3 resist or immune).
 
-**Suggested counters:** [Gardevoir](pokedex/282-gardevoir.md) (Psychic / Fairy), [Clefable](pokedex/036-clefable.md) (Fairy), [Kingdra](pokedex/230-kingdra.md) (Water / Dragon), [Walrein](pokedex/365-walrein.md) (Ice / Water), [Flygon](pokedex/330-flygon.md) (Ground / Dragon), [Lapras](pokedex/131-lapras.md) (Water / Ice with Water Absorb).
+**Suggested counters:** [Gardevoir](pokedex/282-gardevoir.md) (Psychic / Fairy), [Clefable](pokedex/036-clefable.md) (Fairy), [Kingdra](pokedex/230-kingdra.md) (Water / Dragon), [Walrein](pokedex/365-walrein.md) (Ice / Water with Thick Fat), [Flygon](pokedex/330-flygon.md) (Ground / Dragon), [Lapras](pokedex/131-lapras.md) (Water / Ice with Water Absorb).
 
 ## Rival, Champion (you chose Bulbasaur)
 

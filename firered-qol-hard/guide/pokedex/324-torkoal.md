@@ -11,6 +11,10 @@ Height 0.5 m (1′08″) · Weight 80.4 kg (177.3 lbs)
 ## Abilities
 
 - **White Smoke**: Prevents ability reduction.
+- **Drought**: Summons sunlight in battle.
+- **Shell Armor** *(hidden ability)*: Blocks critical hits.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

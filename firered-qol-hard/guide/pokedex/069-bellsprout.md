@@ -11,6 +11,9 @@ Height 0.7 m (2′04″) · Weight 4 kg (8.8 lbs)
 ## Abilities
 
 - **Chlorophyll**: Raises Speed in sunshine.
+- **Gluttony** *(hidden ability)*: Eats pinch Berries early.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

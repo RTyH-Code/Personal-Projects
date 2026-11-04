@@ -11,6 +11,9 @@ Height 1 m (3′03″) · Weight 29 kg (63.9 lbs)
 ## Abilities
 
 - **Water Absorb**: Changes water into HP.
+- **Hydration** *(hidden ability)*: Heals status in rain.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 
@@ -33,7 +36,7 @@ Height 1 m (3′03″) · Weight 29 kg (63.9 lbs)
 | 2× | Grass, Electric |
 | ½× | Steel, Fire, Water, Ice |
 
-*Its ability Water Absorb: Water moves heal it instead.*
+*With Water Absorb: Water moves heal it instead.*
 
 ## Training and breeding
 

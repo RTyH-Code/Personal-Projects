@@ -11,6 +11,9 @@ Height 0.3 m (1′00″) · Weight 3.2 kg (7.1 lbs)
 ## Abilities
 
 - **Shield Dust**: Prevents added effects.
+- **Run Away** *(hidden ability)*: Makes escaping easier.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

@@ -11,6 +11,9 @@ Height 0.6 m (2′00″) · Weight 17.7 kg (39.0 lbs)
 ## Abilities
 
 - **Oblivious**: Prevents attraction.
+- **Tinted Lens**: Ups not very effective hits.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

@@ -11,6 +11,9 @@ Height 0.5 m (1′08″) · Weight 33.5 kg (73.9 lbs)
 ## Abilities
 
 - **Pickup**: May pick up items.
+- **Sand Veil** *(hidden ability)*: Ups evasion in a sandstorm.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

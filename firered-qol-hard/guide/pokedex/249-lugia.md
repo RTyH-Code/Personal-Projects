@@ -11,6 +11,9 @@ Height 5.2 m (17′01″) · Weight 216 kg (476.2 lbs)
 ## Abilities
 
 - **Pressure**: Raises foe's PP usage.
+- **Multiscale** *(hidden ability)*: Halves damage at full HP.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 
@@ -34,6 +37,8 @@ Height 5.2 m (17′01″) · Weight 216 kg (476.2 lbs)
 | ½× | Grass, Psychic |
 | ¼× | Fighting |
 | 0× (immune) | Ground |
+
+*With Multiscale: takes half damage at full HP.*
 
 ## Training and breeding
 

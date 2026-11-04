@@ -11,6 +11,9 @@ Height 0.5 m (1′08″) · Weight 11 kg (24.3 lbs)
 ## Abilities
 
 - **Keen Eye**: Prevents loss of accuracy.
+- **Stall**: Moves after the foe.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

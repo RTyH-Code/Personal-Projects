@@ -11,6 +11,10 @@ Height 1.5 m (4′11″) · Weight 132.5 kg (292.1 lbs)
 ## Abilities
 
 - **Shell Armor**: Blocks critical hits.
+- **Skill Link**: Multi-hit moves hit 5 times.
+- **Overcoat** *(hidden ability)*: Blocks weather and powder.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

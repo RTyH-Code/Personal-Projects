@@ -12,8 +12,9 @@ Height 0.7 m (2′04″) · Weight 18.5 kg (40.8 lbs)
 
 - **Run Away**: Makes escaping easier.
 - **Guts**: Ups Attack if suffering.
+- **Hustle** *(hidden ability)*: Trades accuracy for power.
 
-*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

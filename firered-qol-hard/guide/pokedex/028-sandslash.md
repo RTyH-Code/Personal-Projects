@@ -11,6 +11,9 @@ Height 1 m (3′03″) · Weight 29.5 kg (65.0 lbs)
 ## Abilities
 
 - **Sand Veil**: Ups evasion in a sandstorm.
+- **Sand Rush** *(hidden ability)*: Ups Speed in a sandstorm.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

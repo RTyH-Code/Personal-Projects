@@ -12,8 +12,9 @@ Height 2.1 m (6′11″) · Weight 460 kg (1014.1 lbs)
 
 - **Immunity**: Prevents poisoning.
 - **Thick Fat**: Heat-and-cold protection.
+- **Gluttony** *(hidden ability)*: Eats pinch Berries early.
 
-*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

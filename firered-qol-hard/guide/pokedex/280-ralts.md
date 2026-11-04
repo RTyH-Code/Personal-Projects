@@ -12,8 +12,9 @@ Height 0.4 m (1′04″) · Weight 6.6 kg (14.6 lbs)
 
 - **Synchronize**: Passes on status problems.
 - **Trace**: Copies special ability.
+- **Telepathy** *(hidden ability)*: Dodges allies' attacks.
 
-*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 
