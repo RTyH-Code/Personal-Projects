@@ -78,6 +78,7 @@ Zangoose does not evolve.
 | 1 | Belly Drum ★ | Normal | Status | — | — | 10 |
 | 1 | Night Slash ★ | Dark | Physical | 70 | 100% | 15 |
 | 1 | Double Hit ★ | Normal | Physical | 35 | 90% | 10 |
+| 1 | Feint ★ | Normal | Physical | 30 | 100% | 10 |
 | 5 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
 | 8 | Fury Cutter | Bug | Physical | 40 | 95% | 20 |
 | 12 | Metal Claw ★ | Steel | Physical | 50 | 95% | 35 |
@@ -154,6 +155,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
@@ -184,6 +186,7 @@ Breed a Zangoose with a father that knows the move.
 | Curse | ??? | Status | — | — | 10 |
 | Night Slash | Dark | Physical | 70 | 100% | 15 |
 | Double Hit | Normal | Physical | 35 | 90% | 10 |
+| Feint | Normal | Physical | 30 | 100% | 10 |
 
 ---
 

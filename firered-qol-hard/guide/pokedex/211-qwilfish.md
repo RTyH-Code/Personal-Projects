@@ -80,11 +80,13 @@ Qwilfish does not evolve.
 | 1 | Poison Sting | Poison | Physical | 15 | 100% | 35 |
 | 4 | Harden | Normal | Status | — | — | 30 |
 | 8 | Water Gun | Water | Special | 40 | 100% | 25 |
+| 12 | Fell Stinger ★ | Bug | Physical | 50 | 100% | 25 |
 | 16 | Minimize | Normal | Status | — | — | 10 |
 | 20 | Spikes | Ground | Status | — | — | 20 |
 | 24 | Brine ★ | Water | Special | 65 | 100% | 10 |
 | 28 | Poison Jab ★ | Poison | Physical | 80 | 100% | 20 |
 | 32 | Pin Missile | Bug | Physical | 25 | 95% | 20 |
+| 36 | Toxic Spikes ★ | Poison | Status | — | — | 20 |
 | 40 | Stockpile ★ | Normal | Status | — | — | 20 |
 | 40 | Spit Up ★ | Normal | Special | varies | 100% | 10 |
 | 44 | Toxic ★ | Poison | Status | — | 90% | 10 |
@@ -135,9 +137,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Acid Spray | Poison | Special | 40 | 100% | 20 | 0 |
 | Brine | Water | Special | 65 | 100% | 10 | 0 |
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
+| Flip Turn | Water | Physical | 60 | 100% | 20 | 0 |
 | Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
 | Hex | Ghost | Special | 65 | 100% | 10 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
+| Toxic Spikes | Poison | Status | — | — | 20 | 0 |
 | Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
@@ -145,6 +150,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+| Sludge Wave | Poison | Special | 95 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

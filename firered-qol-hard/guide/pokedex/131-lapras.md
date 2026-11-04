@@ -139,6 +139,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
 | Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
 | Frost Breath | Ice | Special | 60 | 90% | 10 | 0 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |

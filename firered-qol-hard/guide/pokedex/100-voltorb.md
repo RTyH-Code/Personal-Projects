@@ -130,6 +130,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Electro Ball | Electric | Special | varies | 100% | 10 | 0 |
 | Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
 | Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
+| Volt Switch | Electric | Special | 70 | 100% | 20 | 3 |
 | Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 

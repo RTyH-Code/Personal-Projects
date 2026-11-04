@@ -130,6 +130,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Volt Switch | Electric | Special | 70 | 100% | 20 | 3 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 
 ---

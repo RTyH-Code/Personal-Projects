@@ -78,6 +78,7 @@ Height 0.7 m (2′04″) · Weight 35 kg (77.2 lbs)
 | 8 | Rock Throw | Rock | Physical | 50 | 90% | 15 |
 | 13 | Harden | Normal | Status | — | — | 30 |
 | 22 | Ancient Power ★ | Rock | Special | 60 | 100% | 5 |
+| 27 | Incinerate ★ | Fire | Special | 60 | 100% | 15 |
 | 29 | Rock Slide | Rock | Physical | 75 | 90% | 10 |
 | 34 | Lava Plume ★ | Fire | Special | 80 | 100% | 15 |
 | 36 | Amnesia | Psychic | Status | — | — | 20 |
@@ -127,8 +128,11 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
 | Heat Crash | Fire | Physical | varies | 100% | 10 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| High Horsepower | Ground | Physical | 95 | 95% | 10 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)
@@ -140,6 +144,7 @@ Breed a Slugma with a father that knows the move.
 | Acid Armor | Poison | Status | — | — | 20 |
 | Heat Wave | Fire | Special | 95 | 90% | 10 |
 | Earth Power | Ground | Special | 90 | 100% | 10 |
+| Inferno | Fire | Special | 100 | 50% | 5 |
 
 ---
 

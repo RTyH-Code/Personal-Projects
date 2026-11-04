@@ -131,6 +131,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Dragon Tail | Dragon | Physical | 60 | 90% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Work Up | Normal | Status | — | — | 30 | 0 |
@@ -158,6 +159,7 @@ Breed a Chikorita (passed down to Chikorita, which then evolves) with a father t
 | Ingrain | Grass | Status | — | — | 20 |
 | Grass Whistle | Grass | Status | — | 55% | 15 |
 | Leaf Storm | Grass | Special | 130 | 90% | 5 |
+| Wring Out | Normal | Special | varies | 100% | 5 |
 
 ---
 

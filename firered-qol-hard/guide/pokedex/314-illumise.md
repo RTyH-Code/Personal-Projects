@@ -135,14 +135,20 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
+| Defog | Flying | Status | — | — | 15 | 0 |
 | Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
 | Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Pounce | Bug | Physical | 50 | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Roost | Flying | Status | — | — | 5 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Skitter Smack | Bug | Physical | 70 | 90% | 10 | 3 |
+| U-turn | Bug | Physical | 70 | 100% | 20 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
@@ -157,6 +163,7 @@ Breed a Illumise with a father that knows the move.
 | Silver Wind | Bug | Special | 60 | 100% | 5 |
 | Growth | Normal | Status | — | — | 20 |
 | Bug Buzz | Bug | Special | 90 | 100% | 10 |
+| Roost | Flying | Status | — | — | 5 |
 
 ---
 

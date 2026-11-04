@@ -145,6 +145,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
 | Hex | Ghost | Special | 65 | 100% | 10 | 0 |
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
@@ -157,12 +158,14 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Skitter Smack | Bug | Physical | 70 | 90% | 10 | 3 |
 | Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 | Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Poltergeist | Ghost | Physical | 110 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)
 
@@ -175,6 +178,7 @@ Breed a Sableye with a father that knows the move.
 | Moonlight | Fairy | Status | — | — | 5 |
 | Nasty Plot | Dark | Status | — | — | 20 |
 | Sucker Punch | Dark | Physical | 70 | 100% | 5 |
+| Feint | Normal | Physical | 30 | 100% | 10 |
 
 ---
 

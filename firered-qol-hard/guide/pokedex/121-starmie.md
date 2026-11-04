@@ -132,8 +132,10 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Brine | Water | Special | 65 | 100% | 10 | 0 |
+| Flip Turn | Water | Physical | 60 | 100% | 20 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
+| Trick Room | Psychic | Status | — | — | 5 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
 | Power Gem | Rock | Special | 80 | 100% | 20 | 3 |

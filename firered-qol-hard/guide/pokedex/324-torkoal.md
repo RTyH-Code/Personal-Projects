@@ -82,6 +82,7 @@ Torkoal does not evolve.
 | 44 | Curse | ??? | Status | — | — | 10 |
 | 48 | Heat Wave | Fire | Special | 95 | 90% | 10 |
 | 52 | Amnesia | Psychic | Status | — | — | 20 |
+| 56 | Inferno ★ | Fire | Special | 100 | 50% | 5 |
 | 60 | Shell Smash ★ | Normal | Status | — | — | 15 |
 | 64 | Eruption ★ | Fire | Special | 150 | 100% | 5 |
 
@@ -130,6 +131,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
 | Heat Crash | Fire | Physical | varies | 100% | 10 | 0 |
 | Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |

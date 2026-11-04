@@ -75,6 +75,7 @@ Kecleon does not evolve.
 | 1 | Astonish | Ghost | Physical | 30 | 100% | 15 |
 | 4 | Bind | Normal | Physical | 15 | 85% | 20 |
 | 7 | Shadow Sneak ★ | Ghost | Physical | 40 | 100% | 30 |
+| 10 | Feint ★ | Normal | Physical | 30 | 100% | 10 |
 | 13 | Fury Swipes | Normal | Physical | 18 | 80% | 15 |
 | 16 | Faint Attack | Dark | Physical | 60 | — | 20 |
 | 18 | Psybeam | Psychic | Special | 65 | 100% | 20 |
@@ -151,7 +152,10 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
+| Trick Room | Psychic | Status | — | — | 5 | 0 |
 | Work Up | Normal | Status | — | — | 30 | 0 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |

@@ -78,6 +78,7 @@ Height 0.6 m (2′00″) · Weight 8.5 kg (18.7 lbs)
 | 24 | Flamethrower | Fire | Special | 90 | 100% | 15 |
 | 28 | Scary Face | Normal | Status | — | 100% | 10 |
 | 32 | Fire Spin | Fire | Special | 35 | 85% | 15 |
+| 36 | Inferno ★ | Fire | Special | 100 | 50% | 5 |
 | 40 | Flare Blitz ★ | Fire | Physical | 120 | 100% | 15 |
 
 ### By TM/HM
@@ -131,9 +132,11 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Dragon Tail | Dragon | Physical | 60 | 90% | 10 | 0 |
 | Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
 | Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Work Up | Normal | Status | — | — | 30 | 0 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |

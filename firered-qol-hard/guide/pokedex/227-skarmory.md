@@ -128,9 +128,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Defog | Flying | Status | — | — | 15 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
+| Roost | Flying | Status | — | — | 5 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
@@ -155,6 +159,9 @@ Breed a Skarmory with a father that knows the move.
 | Curse | ??? | Status | — | — | 10 |
 | Night Slash | Dark | Physical | 70 | 100% | 15 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 |
+| Roost | Flying | Status | — | — | 5 |
+| Stealth Rock | Rock | Status | — | — | 20 |
+| Feint | Normal | Physical | 30 | 100% | 10 |
 
 ---
 

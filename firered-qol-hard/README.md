@@ -102,7 +102,7 @@ and you can use her as often as you like.
   - Lance's Dragons carry Iron Tail so they aren't helpless against Fairies.
 
 ## Later moves
-- 111 moves from Gen 4 onward. 74 of them reuse Gen 3 effects, such as
+- 143 moves from Gen 4 onward. 74 of them reuse Gen 3 effects, such as
   Night Slash, Dark Pulse, Drain Punch, Aura Sphere, Focus Blast, Bullet
   Punch, Poison Jab, Gunk Shot, Earth Power, Stone Edge, X-Scissor, Bug Buzz,
   Shadow Claw, Shadow Sneak, Flash Cannon, Iron Head, Zen Headbutt, Psychic
@@ -129,6 +129,32 @@ and you can use her as often as you like.
   - Hurricane never misses in rain (50% in sun) and may confuse.
   - Sucker Punch strikes first but fails unless the target is about to
     attack.
+- 32 more moves that needed new battle systems or effects:
+  - U-turn, Volt Switch and Flip Turn switch the user out after the hit.
+  - Tailwind doubles your side's Speed for 4 turns.
+  - Trick Room makes slower Pokémon move first for 5 turns (using it again
+    ends it).
+  - Entry hazards hit Pokémon as they switch in:
+    - Stealth Rock does 1/8 HP, scaled by Rock-type effectiveness.
+    - Toxic Spikes poisons (two layers: badly poisons); a grounded Poison
+      type absorbs them.
+    - Sticky Web lowers Speed.
+  - Defog clears hazards on both sides and the target's Reflect, Light
+    Screen, Safeguard and Mist, and lowers evasion. Rapid Spin clears the
+    new hazards too.
+  - Dragon Tail and Circle Throw drag out a random foe in trainer battles
+    and end wild battles, like Roar.
+  - Feint breaks through Protect and Detect.
+  - Poltergeist fails if the target holds no item.
+  - Fell Stinger drastically raises Attack if it knocks out the target.
+  - Dragon Ascent lowers the user's defenses.
+  - Wring Out and Hard Press are stronger the more HP the target has.
+    Punishment is stronger the more the target has raised its stats.
+  - Others: Sludge Wave, Inferno, Incinerate, Triple Axel, Origin Pulse
+    (Kyogre), Precipice Blades (Groudon), High Horsepower, Brutal Swing,
+    Skitter Smack, Pounce, Chilling Water, Ice Spinner, Supercell Slam.
+  - Roost heals half HP. It doesn't remove the Flying type for the turn.
+- Knock Off is modern: 65 power, 1.5x if the target holds an item.
 - Pokémon learn them by level-up and as egg moves wherever modern games
   teach them that way.
 - **Modern tutor:** the old man in the Viridian City Pokémon Center teaches,
@@ -276,7 +302,7 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `18101201f476f0a7cebfcd2d66b45ac51ff3bc51`
+Patched ROM SHA-1: `dc75db8994d89b27ebf2f62335ce297ffc3a5147`
 
 Start a new game. Saves from earlier versions of this hack aren't supported.
 

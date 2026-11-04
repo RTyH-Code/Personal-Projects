@@ -134,6 +134,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
 | Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |

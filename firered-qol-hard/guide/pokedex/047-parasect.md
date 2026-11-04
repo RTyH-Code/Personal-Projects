@@ -157,6 +157,7 @@ Breed a Paras (passed down to Paras, which then evolves) with a father that know
 | Light Screen | Psychic | Status | — | — | 30 |
 | Pursuit | Dark | Physical | 40 | 100% | 20 |
 | Cross Poison | Poison | Physical | 70 | 100% | 20 |
+| Fell Stinger | Bug | Physical | 50 | 100% | 25 |
 
 ---
 

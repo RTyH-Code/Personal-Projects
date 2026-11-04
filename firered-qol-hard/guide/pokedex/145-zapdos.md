@@ -75,6 +75,7 @@ Zapdos does not evolve.
 | 25 | Ancient Power ★ | Rock | Special | 60 | 100% | 5 |
 | 30 | Charge | Electric | Status | — | — | 20 |
 | 35 | Drill Peck | Flying | Physical | 80 | 100% | 20 |
+| 40 | Roost ★ | Flying | Status | — | — | 5 |
 | 45 | Discharge ★ | Electric | Special | 80 | 100% | 15 |
 | 50 | Rain Dance ★ | Water | Status | — | — | 5 |
 | 55 | Thunder | Electric | Special | 110 | 70% | 10 |
@@ -126,13 +127,19 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
+| Defog | Flying | Status | — | — | 15 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
 | Electro Ball | Electric | Special | varies | 100% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Roost | Flying | Status | — | — | 5 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
+| U-turn | Bug | Physical | 70 | 100% | 20 | 3 |
+| Volt Switch | Electric | Special | 70 | 100% | 20 | 3 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Hurricane | Flying | Special | 110 | 70% | 10 | 5 |
+| Supercell Slam | Electric | Physical | 100 | 95% | 15 | 5 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 
 ---

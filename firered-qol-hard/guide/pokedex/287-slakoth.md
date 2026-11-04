@@ -130,7 +130,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Work Up | Normal | Status | — | — | 30 | 0 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |

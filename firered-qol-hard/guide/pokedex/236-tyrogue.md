@@ -134,6 +134,7 @@ Breed a Tyrogue with a father that knows the move.
 | Helping Hand | Normal | Status | — | — | 20 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 |
 | Bullet Punch | Steel | Physical | 40 | 100% | 30 |
+| Feint | Normal | Physical | 30 | 100% | 10 |
 
 ---
 

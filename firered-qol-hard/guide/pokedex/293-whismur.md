@@ -125,6 +125,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Work Up | Normal | Status | — | — | 30 | 0 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 
@@ -141,6 +142,7 @@ Breed a Whismur with a father that knows the move.
 | Smelling Salt | Normal | Physical | 70 | 100% | 10 |
 | Disarming Voice | Fairy | Special | 40 | — | 15 |
 | Hammer Arm | Fighting | Physical | 100 | 90% | 10 |
+| Circle Throw | Fighting | Physical | 60 | 90% | 10 |
 
 ---
 

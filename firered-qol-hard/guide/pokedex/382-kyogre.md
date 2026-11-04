@@ -67,6 +67,7 @@ Kyogre does not evolve.
 | 1 | Scary Face | Normal | Status | — | 100% | 10 |
 | 1 | Ancient Power | Rock | Special | 60 | 100% | 5 |
 | 1 | Water Pulse | Water | Special | 60 | 100% | 20 |
+| 1 | Origin Pulse ★ | Water | Special | 110 | 85% | 10 |
 | 9 | Aqua Tail ★ | Water | Physical | 90 | 90% | 10 |
 | 18 | Calm Mind | Psychic | Status | — | — | 20 |
 | 27 | Muddy Water ★ | Water | Special | 90 | 85% | 10 |
@@ -130,6 +131,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
 | Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |

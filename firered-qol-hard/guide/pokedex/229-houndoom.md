@@ -78,12 +78,14 @@ Height 1.4 m (4′07″) · Weight 35 kg (77.2 lbs)
 | 1 | Thunder Fang ★ | Electric | Physical | 65 | 95% | 15 |
 | 13 | Roar | Normal | Status | — | 100% | 20 |
 | 16 | Bite | Dark | Physical | 60 | 100% | 25 |
+| 20 | Incinerate ★ | Fire | Special | 60 | 100% | 15 |
 | 26 | Beat Up ★ | Dark | Physical | 10 | 100% | 10 |
 | 30 | Fire Fang ★ | Fire | Physical | 65 | 95% | 15 |
 | 35 | Torment ★ | Dark | Status | — | 100% | 15 |
 | 45 | Foul Play ★ | Dark | Physical | 95 | 100% | 15 |
 | 50 | Flamethrower | Fire | Special | 90 | 100% | 15 |
 | 56 | Crunch | Dark | Physical | 80 | 100% | 15 |
+| 62 | Inferno ★ | Fire | Special | 100 | 50% | 5 |
 
 ### By TM/HM
 
@@ -135,6 +137,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
 | Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
 | Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |

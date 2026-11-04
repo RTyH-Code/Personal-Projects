@@ -131,7 +131,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Brutal Swing | Dark | Physical | 60 | 100% | 20 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Pounce | Bug | Physical | 50 | 100% | 20 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
@@ -139,11 +141,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Work Up | Normal | Status | — | — | 30 | 0 |
 | Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Skitter Smack | Bug | Physical | 70 | 90% | 10 | 3 |
 | Smart Strike | Steel | Physical | 70 | — | 10 | 3 |
 | Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
 | Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| High Horsepower | Ground | Physical | 95 | 95% | 10 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)
@@ -157,6 +161,7 @@ Breed a Heracross with a father that knows the move.
 | Flail | Normal | Physical | varies | 100% | 15 |
 | False Swipe | Normal | Physical | 40 | 100% | 40 |
 | Night Slash | Dark | Physical | 70 | 100% | 15 |
+| Feint | Normal | Physical | 30 | 100% | 10 |
 
 ---
 

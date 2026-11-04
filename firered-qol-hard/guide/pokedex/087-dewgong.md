@@ -133,8 +133,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Brine | Water | Special | 65 | 100% | 10 | 0 |
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
+| Flip Turn | Water | Physical | 60 | 100% | 20 | 0 |
 | Frost Breath | Ice | Special | 60 | 90% | 10 | 0 |
+| Triple Axel | Ice | Physical | 20 | 90% | 10 | 0 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
+| Ice Spinner | Ice | Physical | 80 | 100% | 15 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Smart Strike | Steel | Physical | 70 | — | 10 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |

@@ -85,6 +85,7 @@ Height 0.6 m (2′00″) · Weight 1 kg (2.2 lbs)
 | 24 | Mega Drain | Grass | Special | 40 | 100% | 15 |
 | 28 | Acrobatics ★ | Flying | Physical | 55 | 100% | 15 |
 | 31 | Cotton Spore | Grass | Status | — | 100% | 40 |
+| 34 | U-turn ★ | Bug | Physical | 70 | 100% | 20 |
 | 37 | Giga Drain ★ | Grass | Special | 75 | 100% | 10 |
 | 41 | Bounce ★ | Flying | Physical | 85 | 85% | 5 |
 | 44 | Memento ★ | Dark | Status | — | 100% | 10 |
@@ -127,10 +128,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| U-turn | Bug | Physical | 70 | 100% | 20 | 3 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 | Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
 

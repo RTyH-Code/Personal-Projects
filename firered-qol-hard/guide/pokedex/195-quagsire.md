@@ -141,8 +141,11 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Acid Spray | Poison | Special | 40 | 100% | 20 | 0 |
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
 | Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
+| Toxic Spikes | Poison | Status | — | — | 20 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
@@ -152,6 +155,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| High Horsepower | Ground | Physical | 95 | 95% | 10 | 5 |
+| Sludge Wave | Poison | Special | 95 | 100% | 10 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)

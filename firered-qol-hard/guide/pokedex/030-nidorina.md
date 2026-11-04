@@ -76,6 +76,7 @@ Height 0.8 m (2′07″) · Weight 20 kg (44.1 lbs)
 | 1 | Poison Sting | Poison | Physical | 15 | 100% | 35 |
 | 1 | Growl | Normal | Status | — | 100% | 40 |
 | 15 | Fury Swipes | Normal | Physical | 18 | 80% | 15 |
+| 22 | Toxic Spikes ★ | Poison | Status | — | — | 20 |
 | 29 | Double Kick | Fighting | Physical | 30 | 100% | 30 |
 | 36 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 43 | Helping Hand | Normal | Status | — | — | 20 |
@@ -132,6 +133,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Toxic Spikes | Poison | Status | — | — | 20 | 0 |
 | Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |

@@ -95,6 +95,7 @@ Height 1 m (3′03″) · Weight 105 kg (231.5 lbs)
 | 12 | Bulldoze ★ | Ground | Physical | 60 | 100% | 20 |
 | 16 | Rock Throw | Rock | Physical | 50 | 90% | 15 |
 | 24 | Self-Destruct | Normal | Physical | 200 | 100% | 5 |
+| 30 | Stealth Rock ★ | Rock | Status | — | — | 20 |
 | 34 | Rock Blast | Rock | Physical | 25 | 90% | 10 |
 | 40 | Earthquake | Ground | Physical | 100 | 100% | 10 |
 | 44 | Explosion | Normal | Physical | 250 | 100% | 5 |
@@ -150,14 +151,18 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
+| Hard Press | Steel | Physical | varies | 100% | 10 | 0 |
 | Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| High Horsepower | Ground | Physical | 95 | 95% | 10 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 

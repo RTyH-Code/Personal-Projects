@@ -148,6 +148,7 @@ Breed a Chikorita (passed down to Chikorita, which then evolves) with a father t
 | Ingrain | Grass | Status | — | — | 20 |
 | Grass Whistle | Grass | Status | — | 55% | 15 |
 | Leaf Storm | Grass | Special | 130 | 90% | 5 |
+| Wring Out | Normal | Special | varies | 100% | 5 |
 
 ---
 

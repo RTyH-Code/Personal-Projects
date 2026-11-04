@@ -151,15 +151,19 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Brutal Swing | Dark | Physical | 60 | 100% | 20 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
 | Electro Ball | Electric | Special | varies | 100% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Hex | Ghost | Special | 65 | 100% | 10 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Trick Room | Psychic | Status | — | — | 5 | 0 |
 | Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |

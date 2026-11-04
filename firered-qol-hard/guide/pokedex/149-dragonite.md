@@ -81,6 +81,8 @@ Height 2.2 m (7′03″) · Weight 210 kg (463.0 lbs)
 | 1 | Twister | Dragon | Special | 40 | 100% | 20 |
 | 1 | Extreme Speed ★ | Normal | Physical | 80 | 100% | 5 |
 | 1 | Hurricane ★ | Flying | Special | 110 | 70% | 10 |
+| 1 | Roost ★ | Flying | Status | — | — | 5 |
+| 15 | Dragon Tail ★ | Dragon | Physical | 60 | 90% | 10 |
 | 20 | Agility | Psychic | Status | — | — | 30 |
 | 25 | Slam | Normal | Physical | 80 | 75% | 20 |
 | 33 | Aqua Tail ★ | Water | Physical | 90 | 90% | 10 |
@@ -153,14 +155,22 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Brutal Swing | Dark | Physical | 60 | 100% | 20 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
+| Defog | Flying | Status | — | — | 15 | 0 |
+| Dragon Tail | Dragon | Physical | 60 | 90% | 10 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Roost | Flying | Status | — | — | 5 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Ice Spinner | Ice | Physical | 80 | 100% | 15 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
 | Draco Meteor | Dragon | Special | 130 | 90% | 5 | 5 |

@@ -119,12 +119,18 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Brutal Swing | Dark | Physical | 60 | 100% | 20 | 0 |
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
+| Defog | Flying | Status | — | — | 15 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Frost Breath | Ice | Special | 60 | 90% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Triple Axel | Ice | Physical | 20 | 90% | 10 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
+| Ice Spinner | Ice | Physical | 80 | 100% | 15 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
 | Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |

@@ -134,7 +134,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Electro Ball | Electric | Special | varies | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Volt Switch | Electric | Special | 70 | 100% | 20 | 3 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Supercell Slam | Electric | Physical | 100 | 95% | 15 | 5 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 
 ### By breeding (egg moves)
@@ -151,6 +153,7 @@ Breed a Elekid with a father that knows the move.
 | Fire Punch | Fire | Physical | 75 | 100% | 15 |
 | Ice Punch | Ice | Physical | 75 | 100% | 15 |
 | Hammer Arm | Fighting | Physical | 100 | 90% | 10 |
+| Feint | Normal | Physical | 30 | 100% | 10 |
 
 ---
 

@@ -134,7 +134,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
+| Trick Room | Psychic | Status | — | — | 5 | 0 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
 | Power Gem | Rock | Special | 80 | 100% | 20 | 3 |

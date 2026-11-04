@@ -131,10 +131,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Acid Spray | Poison | Special | 40 | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Toxic Spikes | Poison | Status | — | — | 20 | 0 |
 | Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+| Sludge Wave | Poison | Special | 95 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

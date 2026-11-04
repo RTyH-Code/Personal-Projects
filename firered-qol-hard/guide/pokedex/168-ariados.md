@@ -73,6 +73,7 @@ Height 1.1 m (3′07″) · Weight 33.5 kg (73.9 lbs)
 | 1 | Absorb ★ | Grass | Special | 20 | 100% | 25 |
 | 1 | String Shot | Bug | Status | — | 95% | 40 |
 | 1 | Focus Energy ★ | Normal | Status | — | — | 30 |
+| 1 | Fell Stinger ★ | Bug | Physical | 50 | 100% | 25 |
 | 12 | Scary Face | Normal | Status | — | 100% | 10 |
 | 15 | Night Shade | Ghost | Special | varies | 100% | 15 |
 | 19 | Shadow Sneak ★ | Ghost | Physical | 40 | 100% | 30 |
@@ -83,6 +84,7 @@ Height 1.1 m (3′07″) · Weight 33.5 kg (73.9 lbs)
 | 41 | Psychic | Psychic | Special | 90 | 100% | 10 |
 | 46 | Poison Jab ★ | Poison | Physical | 80 | 100% | 20 |
 | 50 | Cross Poison ★ | Poison | Physical | 70 | 100% | 20 |
+| 54 | Sticky Web ★ | Bug | Status | — | — | 20 |
 
 ### By TM/HM
 
@@ -127,17 +129,21 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
 | Hex | Ghost | Special | 65 | 100% | 10 | 0 |
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Pounce | Bug | Physical | 50 | 100% | 20 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Toxic Spikes | Poison | Status | — | — | 20 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Skitter Smack | Bug | Physical | 70 | 90% | 10 | 3 |
 | Smart Strike | Steel | Physical | 70 | — | 10 | 3 |
 | Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
 | Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
 | Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Sludge Wave | Poison | Special | 95 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

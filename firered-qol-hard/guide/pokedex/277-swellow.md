@@ -117,8 +117,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Defog | Flying | Status | — | — | 15 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Roost | Flying | Status | — | — | 5 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Work Up | Normal | Status | — | — | 30 | 0 |
+| U-turn | Bug | Physical | 70 | 100% | 20 | 3 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)
@@ -136,6 +140,7 @@ Breed a Taillow (passed down to Taillow, which then evolves) with a father that 
 | Brave Bird | Flying | Physical | 120 | 100% | 15 |
 | Boomburst | Normal | Special | 140 | 100% | 10 |
 | Hurricane | Flying | Special | 110 | 70% | 10 |
+| Roost | Flying | Status | — | — | 5 |
 
 ---
 

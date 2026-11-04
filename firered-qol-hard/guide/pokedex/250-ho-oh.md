@@ -142,9 +142,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
+| Defog | Flying | Status | — | — | 15 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Roost | Flying | Status | — | — | 5 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Mystical Fire | Fire | Special | 75 | 100% | 10 | 3 |

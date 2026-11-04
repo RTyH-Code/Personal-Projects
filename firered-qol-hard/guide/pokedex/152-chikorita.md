@@ -147,6 +147,7 @@ Breed a Chikorita with a father that knows the move.
 | Ingrain | Grass | Status | — | — | 20 |
 | Grass Whistle | Grass | Status | — | 55% | 15 |
 | Leaf Storm | Grass | Special | 130 | 90% | 5 |
+| Wring Out | Normal | Special | varies | 100% | 5 |
 
 ---
 

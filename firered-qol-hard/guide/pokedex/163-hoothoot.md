@@ -75,10 +75,12 @@ Height 0.7 m (2′04″) · Weight 21.2 kg (46.7 lbs)
 | 3 | Tackle | Normal | Physical | 40 | 100% | 35 |
 | 9 | Confusion | Psychic | Special | 50 | 100% | 25 |
 | 12 | Reflect | Psychic | Status | — | — | 20 |
+| 15 | Defog ★ | Flying | Status | — | — | 15 |
 | 18 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
 | 21 | Extrasensory ★ | Psychic | Special | 80 | 100% | 20 |
 | 24 | Take Down | Normal | Physical | 90 | 85% | 20 |
 | 27 | Uproar ★ | Normal | Special | 90 | 100% | 10 |
+| 30 | Roost ★ | Flying | Status | — | — | 5 |
 | 33 | Moonblast ★ | Fairy | Special | 95 | 100% | 15 |
 | 36 | Hypnosis | Psychic | Status | — | 60% | 20 |
 | 39 | Dream Eater | Psychic | Special | 100 | 100% | 15 |
@@ -124,9 +126,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
+| Defog | Flying | Status | — | — | 15 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Roost | Flying | Status | — | — | 5 | 0 |
 | Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Work Up | Normal | Status | — | — | 30 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
@@ -148,6 +153,7 @@ Breed a Hoothoot with a father that knows the move.
 | Sky Attack | Flying | Physical | 140 | 90% | 5 |
 | Feather Dance | Flying | Status | — | 100% | 15 |
 | Hurricane | Flying | Special | 110 | 70% | 10 |
+| Defog | Flying | Status | — | — | 15 |
 
 ---
 

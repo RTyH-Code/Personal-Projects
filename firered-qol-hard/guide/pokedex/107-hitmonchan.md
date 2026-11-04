@@ -75,6 +75,7 @@ Height 1.4 m (4′07″) · Weight 50.2 kg (110.7 lbs)
 | 1 | Fake Out ★ | Normal | Physical | 40 | 100% | 10 |
 | 1 | Helping Hand ★ | Normal | Status | — | — | 20 |
 | 1 | Drain Punch ★ | Fighting | Physical | 75 | 100% | 10 |
+| 1 | Feint ★ | Normal | Physical | 30 | 100% | 10 |
 | 4 | Mach Punch | Fighting | Physical | 40 | 100% | 30 |
 | 8 | Vacuum Wave ★ | Fighting | Special | 40 | 100% | 30 |
 | 12 | Detect | Fighting | Status | — | — | 5 |
@@ -162,6 +163,7 @@ Breed a Tyrogue (passed down to Tyrogue, which then evolves) with a father that 
 | Helping Hand | Normal | Status | — | — | 20 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 |
 | Bullet Punch | Steel | Physical | 40 | 100% | 30 |
+| Feint | Normal | Physical | 30 | 100% | 10 |
 
 ---
 

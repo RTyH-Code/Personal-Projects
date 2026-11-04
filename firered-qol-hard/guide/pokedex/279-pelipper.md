@@ -76,12 +76,14 @@ Height 1.2 m (3′11″) · Weight 28 kg (61.7 lbs)
 | 1 | Quick Attack ★ | Normal | Physical | 40 | 100% | 30 |
 | 1 | Protect | Normal | Status | — | — | 10 |
 | 1 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
+| 1 | Tailwind ★ | Flying | Status | — | — | 15 |
 | 15 | Wing Attack | Flying | Physical | 60 | 100% | 35 |
 | 20 | Water Pulse ★ | Water | Special | 60 | 100% | 20 |
 | 28 | Stockpile | Normal | Status | — | — | 20 |
 | 28 | Spit Up | Normal | Special | varies | 100% | 10 |
 | 28 | Swallow | Normal | Status | — | — | 10 |
 | 41 | Mist | Ice | Status | — | — | 30 |
+| 48 | Roost ★ | Flying | Status | — | — | 5 |
 | 55 | Hurricane ★ | Flying | Special | 110 | 70% | 10 |
 | 62 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 
@@ -128,13 +130,18 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Brine | Water | Special | 65 | 100% | 10 | 0 |
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
+| Defog | Flying | Status | — | — | 15 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
+| Roost | Flying | Status | — | — | 5 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| U-turn | Bug | Physical | 70 | 100% | 20 | 3 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
@@ -152,6 +159,7 @@ Breed a Wingull (passed down to Wingull, which then evolves) with a father that 
 | Gust | Flying | Special | 40 | 100% | 35 |
 | Water Sport | Water | Status | — | — | 15 |
 | Brine | Water | Special | 65 | 100% | 10 |
+| Roost | Flying | Status | — | — | 5 |
 
 ---
 

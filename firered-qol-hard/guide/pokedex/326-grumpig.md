@@ -138,6 +138,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
@@ -145,6 +146,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
 | Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Trick Room | Psychic | Status | — | — | 5 | 0 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |

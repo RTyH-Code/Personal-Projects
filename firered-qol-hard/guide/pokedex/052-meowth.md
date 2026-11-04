@@ -86,6 +86,7 @@ Height 0.4 m (1′04″) · Weight 4.2 kg (9.3 lbs)
 |--:|---|---|---|--:|--:|--:|
 | 1 | Growl | Normal | Status | — | 100% | 40 |
 | 1 | Fake Out | Normal | Physical | 40 | 100% | 10 |
+| 4 | Feint ★ | Normal | Physical | 30 | 100% | 10 |
 | 8 | Scratch | Normal | Physical | 40 | 100% | 35 |
 | 12 | Pay Day | Normal | Physical | 40 | 100% | 20 |
 | 16 | Bite | Dark | Physical | 60 | 100% | 25 |
@@ -143,6 +144,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
@@ -153,6 +155,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| U-turn | Bug | Physical | 70 | 100% | 20 | 3 |
 | Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
@@ -170,6 +173,7 @@ Breed a Meowth with a father that knows the move.
 | Psych Up | Normal | Status | — | — | 10 |
 | Assist | Normal | Status | — | 100% | 20 |
 | Foul Play | Dark | Physical | 95 | 100% | 15 |
+| Punishment | Dark | Physical | varies | 100% | 5 |
 
 ---
 

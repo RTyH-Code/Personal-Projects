@@ -77,6 +77,7 @@ Height 1.4 m (4′07″) · Weight 62 kg (136.7 lbs)
 | 1 | Poison Sting | Poison | Physical | 15 | 100% | 35 |
 | 1 | Poison Jab ★ | Poison | Physical | 80 | 100% | 20 |
 | 1 | Earth Power ★ | Ground | Special | 90 | 100% | 10 |
+| 1 | Toxic Spikes ★ | Poison | Status | — | — | 20 |
 | 18 | Fury Attack ★ | Normal | Physical | 15 | 85% | 20 |
 | 33 | Double Kick | Fighting | Physical | 30 | 100% | 30 |
 | 41 | Horn Attack ★ | Normal | Physical | 65 | 100% | 25 |
@@ -149,9 +150,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Dragon Tail | Dragon | Physical | 60 | 90% | 10 | 0 |
 | Hex | Ghost | Special | 65 | 100% | 10 | 0 |
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
+| Toxic Spikes | Poison | Status | — | — | 20 | 0 |
 | Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
@@ -165,7 +170,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| High Horsepower | Ground | Physical | 95 | 95% | 10 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+| Sludge Wave | Poison | Special | 95 | 100% | 10 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)

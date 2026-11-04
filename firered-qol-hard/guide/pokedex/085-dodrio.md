@@ -121,6 +121,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
+| Pounce | Bug | Physical | 50 | 100% | 20 | 0 |
+| Roost | Flying | Status | — | — | 5 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Work Up | Normal | Status | — | — | 30 | 0 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |

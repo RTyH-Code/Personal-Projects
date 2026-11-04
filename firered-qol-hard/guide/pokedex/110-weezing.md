@@ -133,11 +133,14 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Acid Spray | Poison | Special | 40 | 100% | 20 | 0 |
 | Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
+| Toxic Spikes | Poison | Status | — | — | 20 | 0 |
 | Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+| Sludge Wave | Poison | Special | 95 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 
@@ -151,6 +154,7 @@ Breed a Koffing (passed down to Koffing, which then evolves) with a father that 
 | Destiny Bond | Ghost | Status | — | — | 5 |
 | Pain Split | Normal | Status | — | 100% | 20 |
 | Will-O-Wisp | Fire | Status | — | 85% | 15 |
+| Toxic Spikes | Poison | Status | — | — | 20 |
 
 ---
 

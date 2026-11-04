@@ -128,10 +128,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Skitter Smack | Bug | Physical | 70 | 90% | 10 | 3 |
 | Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
 | Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Poltergeist | Ghost | Physical | 110 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)
 

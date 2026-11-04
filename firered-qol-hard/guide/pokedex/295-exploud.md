@@ -144,6 +144,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
 | Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
 | Work Up | Normal | Status | — | — | 30 | 0 |
@@ -165,6 +166,7 @@ Breed a Whismur (passed down to Whismur, which then evolves) with a father that 
 | Smelling Salt | Normal | Physical | 70 | 100% | 10 |
 | Disarming Voice | Fairy | Special | 40 | — | 15 |
 | Hammer Arm | Fighting | Physical | 100 | 90% | 10 |
+| Circle Throw | Fighting | Physical | 60 | 90% | 10 |
 
 ---
 

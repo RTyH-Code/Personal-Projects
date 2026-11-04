@@ -142,8 +142,10 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Volt Switch | Electric | Special | 70 | 100% | 20 | 3 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+| Supercell Slam | Electric | Physical | 100 | 95% | 15 | 5 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 
 ---

@@ -98,6 +98,7 @@ Height 1.6 m (5′03″) · Weight 55 kg (121.3 lbs)
 | 34 | Acid Armor ★ | Poison | Status | — | — | 20 |
 | 40 | Poison Jab ★ | Poison | Physical | 80 | 100% | 20 |
 | 46 | Surf ★ | Water | Special | 90 | 100% | 15 |
+| 52 | Sludge Wave ★ | Poison | Special | 95 | 100% | 10 |
 | 58 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 
 ### By TM/HM
@@ -145,16 +146,23 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Acid Spray | Poison | Special | 40 | 100% | 20 | 0 |
 | Brine | Water | Special | 65 | 100% | 10 | 0 |
+| Brutal Swing | Dark | Physical | 60 | 100% | 20 | 0 |
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
+| Flip Turn | Water | Physical | 60 | 100% | 20 | 0 |
 | Hex | Ghost | Special | 65 | 100% | 10 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
+| Pounce | Bug | Physical | 50 | 100% | 20 | 0 |
+| Toxic Spikes | Poison | Status | — | — | 20 | 0 |
 | Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Cross Poison | Poison | Physical | 70 | 100% | 20 | 3 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Skitter Smack | Bug | Physical | 70 | 90% | 10 | 3 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+| Sludge Wave | Poison | Special | 95 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

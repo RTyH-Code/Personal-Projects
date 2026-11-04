@@ -76,6 +76,7 @@ Height 1.8 m (5′11″) · Weight 3.3 kg (7.3 lbs)
 | 1 | Leer | Normal | Status | — | 100% | 30 |
 | 5 | Twister | Dragon | Special | 40 | 100% | 20 |
 | 10 | Thunder Wave | Electric | Status | — | 90% | 20 |
+| 15 | Dragon Tail ★ | Dragon | Physical | 60 | 90% | 10 |
 | 20 | Agility | Psychic | Status | — | — | 30 |
 | 25 | Slam | Normal | Physical | 80 | 75% | 20 |
 | 31 | Aqua Tail ★ | Water | Physical | 90 | 90% | 10 |
@@ -134,6 +135,10 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Brutal Swing | Dark | Physical | 60 | 100% | 20 | 0 |
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
+| Dragon Tail | Dragon | Physical | 60 | 90% | 10 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |

@@ -88,6 +88,7 @@ Height 1.2 m (3′11″) · Weight 38 kg (83.8 lbs)
 | 18 | Mirror Move | Flying | Status | — | — | 20 |
 | 27 | Agility | Psychic | Status | — | — | 30 |
 | 32 | Focus Energy ★ | Normal | Status | — | — | 30 |
+| 36 | Roost ★ | Flying | Status | — | — | 5 |
 | 41 | Drill Peck | Flying | Physical | 80 | 100% | 20 |
 
 ### By TM/HM
@@ -126,9 +127,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Defog | Flying | Status | — | — | 15 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Roost | Flying | Status | — | — | 5 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Work Up | Normal | Status | — | — | 30 | 0 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
+| U-turn | Bug | Physical | 70 | 100% | 20 | 3 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)

@@ -134,6 +134,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
 | Petal Blizzard | Grass | Physical | 90 | 100% | 15 | 5 |
+| Sludge Wave | Poison | Special | 95 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

@@ -133,6 +133,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |

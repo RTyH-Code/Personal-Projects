@@ -143,9 +143,11 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Brutal Swing | Dark | Physical | 60 | 100% | 20 | 0 |
 | Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Hex | Ghost | Special | 65 | 100% | 10 | 0 |
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |

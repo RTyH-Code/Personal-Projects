@@ -137,6 +137,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
+| Dragon Tail | Dragon | Physical | 60 | 90% | 10 | 0 |
+| Flip Turn | Water | Physical | 60 | 100% | 20 | 0 |
 | Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Work Up | Normal | Status | — | — | 30 | 0 |
@@ -145,6 +148,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
+| Ice Spinner | Ice | Physical | 80 | 100% | 15 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |

@@ -77,6 +77,7 @@ Suicune does not evolve.
 | 18 | Calm Mind | Psychic | Status | — | — | 20 |
 | 24 | Roar ★ | Normal | Status | — | 100% | 20 |
 | 30 | Ice Fang ★ | Ice | Physical | 65 | 95% | 15 |
+| 36 | Tailwind ★ | Flying | Status | — | — | 15 |
 | 42 | Crunch ★ | Dark | Physical | 80 | 100% | 15 |
 | 48 | Extrasensory ★ | Psychic | Special | 80 | 100% | 20 |
 | 54 | Surf ★ | Water | Special | 90 | 100% | 15 |
@@ -135,9 +136,11 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
 | Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |

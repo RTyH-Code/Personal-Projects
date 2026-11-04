@@ -71,6 +71,7 @@ Height 0.6 m (2′00″) · Weight 11.2 kg (24.7 lbs)
 | 1 | Work Up ★ | Normal | Status | — | — | 30 |
 | 9 | Detect | Fighting | Status | — | — | 5 |
 | 12 | Endure ★ | Normal | Status | — | — | 10 |
+| 15 | Feint ★ | Normal | Physical | 30 | 100% | 10 |
 | 17 | Force Palm ★ | Fighting | Physical | 60 | 100% | 10 |
 | 20 | Psybeam ★ | Psychic | Special | 65 | 100% | 20 |
 | 23 | Calm Mind | Psychic | Status | — | — | 20 |
@@ -136,6 +137,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Trick Room | Psychic | Status | — | — | 5 | 0 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
 | Work Up | Normal | Status | — | — | 30 | 0 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |

@@ -139,6 +139,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
@@ -157,6 +158,7 @@ Breed a Aron with a father that knows the move.
 | Iron Head | Steel | Physical | 80 | 100% | 15 |
 | Dragon Rush | Dragon | Physical | 100 | 75% | 10 |
 | Head Smash | Rock | Physical | 150 | 80% | 5 |
+| Stealth Rock | Rock | Status | — | — | 20 |
 
 ---
 

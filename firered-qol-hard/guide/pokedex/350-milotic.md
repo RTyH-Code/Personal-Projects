@@ -76,6 +76,7 @@ Height 6.2 m (20′04″) · Weight 162 kg (357.1 lbs)
 | 4 | Disarming Voice ★ | Fairy | Special | 40 | — | 15 |
 | 8 | Twister | Dragon | Special | 40 | 100% | 20 |
 | 16 | Attract | Normal | Status | — | 100% | 15 |
+| 24 | Dragon Tail ★ | Dragon | Physical | 60 | 90% | 10 |
 | 28 | Recover | Normal | Status | — | — | 5 |
 | 32 | Aqua Tail ★ | Water | Physical | 90 | 90% | 10 |
 | 36 | Safeguard | Normal | Status | — | — | 25 |
@@ -128,12 +129,18 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
 | Brine | Water | Special | 65 | 100% | 10 | 0 |
+| Brutal Swing | Dark | Physical | 60 | 100% | 20 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
 | Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
+| Dragon Tail | Dragon | Physical | 60 | 90% | 10 | 0 |
 | Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
+| Flip Turn | Water | Physical | 60 | 100% | 20 | 0 |
+| Triple Axel | Ice | Physical | 20 | 90% | 10 | 0 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Skitter Smack | Bug | Physical | 70 | 90% | 10 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 

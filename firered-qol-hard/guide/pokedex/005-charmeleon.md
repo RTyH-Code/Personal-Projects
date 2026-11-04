@@ -76,6 +76,7 @@ Height 1.1 m (3′07″) · Weight 19 kg (41.9 lbs)
 | 24 | Slash | Normal | Physical | 70 | 100% | 20 |
 | 30 | Flamethrower | Fire | Special | 90 | 100% | 15 |
 | 37 | Scary Face | Normal | Status | — | 100% | 10 |
+| 48 | Inferno ★ | Fire | Special | 100 | 50% | 5 |
 | 54 | Flare Blitz ★ | Fire | Physical | 120 | 100% | 15 |
 
 ### By TM/HM
@@ -129,9 +130,11 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Dragon Tail | Dragon | Physical | 60 | 90% | 10 | 0 |
 | Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
 | Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Work Up | Normal | Status | — | — | 30 | 0 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |

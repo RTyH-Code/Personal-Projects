@@ -196,11 +196,14 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Brutal Swing | Dark | Physical | 60 | 100% | 20 | 0 |
 | Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
+| Trick Room | Psychic | Status | — | — | 5 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |

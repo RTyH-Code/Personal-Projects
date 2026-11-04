@@ -142,6 +142,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Brutal Swing | Dark | Physical | 60 | 100% | 20 | 0 |
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
+| Defog | Flying | Status | — | — | 15 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Hex | Ghost | Special | 65 | 100% | 10 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
@@ -149,6 +152,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
+| Toxic Spikes | Poison | Status | — | — | 20 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
@@ -180,6 +185,7 @@ Breed a Seedot (passed down to Seedot, which then evolves) with a father that kn
 | Night Slash | Dark | Physical | 70 | 100% | 15 |
 | Nasty Plot | Dark | Status | — | — | 20 |
 | Foul Play | Dark | Physical | 95 | 100% | 15 |
+| Defog | Flying | Status | — | — | 15 |
 
 ---
 

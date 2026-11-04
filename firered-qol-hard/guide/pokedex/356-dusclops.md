@@ -148,9 +148,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Trick Room | Psychic | Status | — | — | 5 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Skitter Smack | Bug | Physical | 70 | 90% | 10 | 3 |
 | Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Poltergeist | Ghost | Physical | 110 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)
 

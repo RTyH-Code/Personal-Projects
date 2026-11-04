@@ -71,6 +71,8 @@ Height 1.1 m (3′07″) · Weight 19.9 kg (43.9 lbs)
 | 1 | Ember | Fire | Special | 40 | 100% | 25 |
 | 1 | Tail Whip ★ | Normal | Status | — | 100% | 30 |
 | 1 | Nasty Plot ★ | Dark | Status | — | — | 20 |
+| 1 | Inferno ★ | Fire | Special | 100 | 50% | 5 |
+| 1 | Incinerate ★ | Fire | Special | 60 | 100% | 15 |
 | 7 | Disable ★ | Normal | Status | — | 100% | 20 |
 | 11 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
 | 15 | Spite ★ | Ghost | Status | — | 100% | 10 |
@@ -124,6 +126,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
 | Hex | Ghost | Special | 65 | 100% | 10 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |

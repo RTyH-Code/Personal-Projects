@@ -145,6 +145,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Work Up | Normal | Status | — | — | 30 | 0 |
+| Volt Switch | Electric | Special | 70 | 100% | 20 | 3 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 

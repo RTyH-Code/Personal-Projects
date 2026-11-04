@@ -85,6 +85,7 @@ Height 1.7 m (5′07″) · Weight 95 kg (209.4 lbs)
 | 30 | Stomp | Normal | Physical | 65 | 100% | 20 |
 | 35 | Fire Spin | Fire | Special | 35 | 85% | 15 |
 | 43 | Take Down | Normal | Physical | 90 | 85% | 20 |
+| 49 | Inferno ★ | Fire | Special | 100 | 50% | 5 |
 | 56 | Fire Blast | Fire | Special | 110 | 85% | 5 |
 | 63 | Flare Blitz ★ | Fire | Physical | 120 | 100% | 15 |
 
@@ -127,6 +128,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
 | Mystical Fire | Fire | Special | 75 | 100% | 10 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
@@ -134,6 +136,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Smart Strike | Steel | Physical | 70 | — | 10 | 3 |
 | Flare Blitz | Fire | Physical | 120 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| High Horsepower | Ground | Physical | 95 | 95% | 10 | 5 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 
@@ -149,6 +152,7 @@ Breed a Ponyta (passed down to Ponyta, which then evolves) with a father that kn
 | Hypnosis | Psychic | Status | — | 60% | 20 |
 | Charm | Fairy | Status | — | 100% | 20 |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 |
+| High Horsepower | Ground | Physical | 95 | 95% | 10 |
 
 ---
 

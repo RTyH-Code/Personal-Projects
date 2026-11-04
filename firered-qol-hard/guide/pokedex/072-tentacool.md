@@ -113,6 +113,7 @@ Height 0.9 m (2′11″) · Weight 45.5 kg (100.3 lbs)
 | 32 | Acid Armor ★ | Poison | Status | — | — | 20 |
 | 36 | Poison Jab ★ | Poison | Physical | 80 | 100% | 20 |
 | 40 | Surf ★ | Water | Special | 90 | 100% | 15 |
+| 44 | Sludge Wave ★ | Poison | Special | 95 | 100% | 10 |
 | 48 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 
 ### By TM/HM
@@ -159,8 +160,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Acid Spray | Poison | Special | 40 | 100% | 20 | 0 |
 | Brine | Water | Special | 65 | 100% | 10 | 0 |
+| Brutal Swing | Dark | Physical | 60 | 100% | 20 | 0 |
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
+| Flip Turn | Water | Physical | 60 | 100% | 20 | 0 |
 | Hex | Ghost | Special | 65 | 100% | 10 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
+| Pounce | Bug | Physical | 50 | 100% | 20 | 0 |
+| Toxic Spikes | Poison | Status | — | — | 20 | 0 |
 | Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Cross Poison | Poison | Physical | 70 | 100% | 20 | 3 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
@@ -168,6 +174,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+| Sludge Wave | Poison | Special | 95 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 
