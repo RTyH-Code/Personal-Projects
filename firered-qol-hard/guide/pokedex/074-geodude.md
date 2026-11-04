@@ -157,8 +157,10 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
@@ -174,6 +176,7 @@ Breed a Geodude with a father that knows the move.
 | Block | Normal | Status | — | 100% | 5 |
 | Autotomize | Steel | Status | — | — | 15 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 |
+| Hammer Arm | Fighting | Physical | 100 | 90% | 10 |
 
 ---
 

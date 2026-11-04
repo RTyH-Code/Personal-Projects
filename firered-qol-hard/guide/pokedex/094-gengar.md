@@ -72,9 +72,12 @@ Height 1.5 m (4′11″) · Weight 40.5 kg (89.3 lbs)
 | 1 | Perish Song ★ | Normal | Status | — | — | 5 |
 | 1 | Mean Look | Normal | Status | — | 100% | 5 |
 | 1 | Shadow Punch | Ghost | Physical | 60 | — | 20 |
+| 12 | Payback ★ | Dark | Physical | 50 | 100% | 10 |
 | 16 | Spite | Ghost | Status | — | 100% | 10 |
 | 20 | Curse | ??? | Status | — | — | 10 |
+| 24 | Hex ★ | Ghost | Special | 65 | 100% | 10 |
 | 30 | Night Shade | Ghost | Special | varies | 100% | 15 |
+| 36 | Sucker Punch ★ | Dark | Physical | 70 | 100% | 5 |
 | 42 | Dark Pulse ★ | Dark | Special | 80 | 100% | 15 |
 | 48 | Shadow Ball | Ghost | Special | 80 | 100% | 15 |
 | 54 | Destiny Bond | Ghost | Status | — | — | 5 |
@@ -135,16 +138,22 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acid Spray | Poison | Special | 40 | 100% | 20 | 0 |
+| Hex | Ghost | Special | 65 | 100% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
 

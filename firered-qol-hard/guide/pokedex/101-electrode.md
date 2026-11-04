@@ -79,11 +79,14 @@ Height 1.2 m (3′11″) · Weight 66.6 kg (146.8 lbs)
 | 9 | Spark | Electric | Physical | 65 | 100% | 20 |
 | 11 | Rollout | Rock | Physical | 30 | 90% | 20 |
 | 13 | Screech | Normal | Status | — | 85% | 40 |
+| 16 | Charge Beam ★ | Electric | Special | 50 | 90% | 10 |
 | 20 | Swift | Normal | Special | 60 | — | 20 |
+| 22 | Electro Ball ★ | Electric | Special | varies | 100% | 10 |
 | 26 | Self-Destruct | Normal | Physical | 200 | 100% | 5 |
 | 29 | Light Screen | Psychic | Status | — | — | 30 |
 | 41 | Discharge ★ | Electric | Special | 80 | 100% | 15 |
 | 47 | Explosion | Normal | Physical | 250 | 100% | 5 |
+| 54 | Gyro Ball ★ | Steel | Physical | varies | 100% | 5 |
 | 58 | Mirror Coat | Psychic | Special | varies | 100% | 20 |
 
 ### By TM/HM
@@ -125,8 +128,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
 | Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Electro Ball | Electric | Special | varies | 100% | 10 | 0 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
+| Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 

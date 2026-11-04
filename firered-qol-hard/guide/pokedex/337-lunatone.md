@@ -75,6 +75,7 @@ Lunatone does not evolve.
 | 5 | Hypnosis | Psychic | Status | — | 60% | 20 |
 | 10 | Rock Polish ★ | Rock | Status | — | — | 20 |
 | 15 | Rock Slide ★ | Rock | Physical | 75 | 90% | 10 |
+| 20 | Psyshock ★ | Psychic | Special | 80 | 100% | 10 |
 | 25 | Cosmic Power | Psychic | Status | — | — | 20 |
 | 30 | Psychic | Psychic | Special | 90 | 100% | 10 |
 | 35 | Stone Edge ★ | Rock | Physical | 100 | 80% | 5 |
@@ -127,12 +128,17 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
 | Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
+| Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |

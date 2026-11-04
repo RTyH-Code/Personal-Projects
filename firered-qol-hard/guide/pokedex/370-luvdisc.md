@@ -121,6 +121,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
@@ -136,6 +137,7 @@ Breed a Luvdisc with a father that knows the move.
 | Water Sport | Water | Status | — | — | 15 |
 | Mud Sport | Ground | Status | — | — | 15 |
 | Aqua Jet | Water | Physical | 40 | 100% | 20 |
+| Brine | Water | Special | 65 | 100% | 10 |
 
 ---
 

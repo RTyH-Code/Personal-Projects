@@ -78,8 +78,11 @@ Height 1.3 m (4′03″) · Weight 77.4 kg (170.6 lbs)
 | 10 | Leech Seed | Grass | Status | — | 90% | 10 |
 | 13 | Sand Attack | Ground | Status | — | 100% | 15 |
 | 16 | Bullet Seed ★ | Grass | Physical | 25 | 100% | 30 |
+| 19 | Power Trip ★ | Dark | Physical | 20 | 100% | 10 |
 | 22 | Ingrain | Grass | Status | — | — | 20 |
+| 26 | Payback ★ | Dark | Physical | 50 | 100% | 10 |
 | 30 | Spikes | Ground | Status | — | — | 20 |
+| 35 | Sucker Punch ★ | Dark | Physical | 70 | 100% | 5 |
 | 38 | Pin Missile | Bug | Physical | 25 | 95% | 20 |
 | 44 | Energy Ball ★ | Grass | Special | 90 | 100% | 10 |
 | 49 | Cotton Spore | Grass | Status | — | 100% | 40 |
@@ -132,16 +135,21 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
 | Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
 

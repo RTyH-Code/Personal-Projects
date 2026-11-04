@@ -143,6 +143,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |

@@ -147,19 +147,24 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Hurricane | Flying | Special | 110 | 70% | 10 | 5 |
 
 ---
 

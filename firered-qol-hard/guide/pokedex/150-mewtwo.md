@@ -76,6 +76,7 @@ Mewtwo does not evolve.
 | 40 | Aura Sphere ★ | Fighting | Special | 80 | — | 20 |
 | 48 | Psychic | Psychic | Special | 90 | 100% | 10 |
 | 64 | Mist | Ice | Status | — | — | 30 |
+| 72 | Psystrike ★ | Psychic | Special | 100 | 100% | 10 |
 | 80 | Recover | Normal | Status | — | — | 5 |
 | 88 | Future Sight | Psychic | Special | 120 | 100% | 10 |
 
@@ -151,9 +152,14 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
+| Electro Ball | Electric | Special | varies | 100% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Hex | Ghost | Special | 65 | 100% | 10 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
@@ -161,12 +167,15 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
 | Psycho Cut | Psychic | Physical | 70 | 100% | 20 | 3 |
+| Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Hurricane | Flying | Special | 110 | 70% | 10 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 

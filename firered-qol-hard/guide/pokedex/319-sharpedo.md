@@ -75,6 +75,7 @@ Height 1.8 m (5′11″) · Weight 88.8 kg (195.8 lbs)
 | 1 | Aqua Jet ★ | Water | Physical | 40 | 100% | 20 |
 | 12 | Scary Face | Normal | Status | — | 100% | 10 |
 | 16 | Bite | Dark | Physical | 60 | 100% | 25 |
+| 20 | Ice Fang ★ | Ice | Physical | 65 | 95% | 15 |
 | 24 | Screech | Normal | Status | — | 85% | 40 |
 | 28 | Swagger | Normal | Status | — | 85% | 15 |
 | 34 | Crunch | Dark | Physical | 80 | 100% | 15 |
@@ -129,7 +130,10 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
@@ -137,6 +141,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)
@@ -149,6 +154,7 @@ Breed a Carvanha (passed down to Carvanha, which then evolves) with a father tha
 | Double-Edge | Normal | Physical | 120 | 100% | 15 |
 | Thrash | Normal | Physical | 120 | 100% | 10 |
 | Psychic Fangs | Psychic | Physical | 85 | 100% | 10 |
+| Brine | Water | Special | 65 | 100% | 10 |
 
 ---
 

@@ -229,6 +229,7 @@ Power "varies" means the game works it out in battle (e.g. Return, Low Kick, Sei
 | Secret Power | Normal | Physical | 70 | 100% | 20 | An attack that may have an additional effect that varies with the terrain. |
 | Self-Destruct | Normal | Physical | 200 | 100% | 5 | The user blows up to inflict severe damage, even making itself faint. |
 | Sharpen | Normal | Status | — | — | 30 | The user reduces its polygon count to sharpen edges and raise Attack. |
+| Shell Smash | Normal | Status | — | — | 15 | Breaks its shell. Lowers defenses but sharply ups Atk, Sp. Atk, Speed. |
 | Sing | Normal | Status | — | 55% | 15 | A soothing song in a calming voice lulls the foe into a deep slumber. |
 | Sketch | Normal | Status | — | — | 1 | This move copies the move last used by the foe, then disappears. |
 | Skull Bash | Normal | Physical | 130 | 100% | 10 | The user raises its Defense in the 1st turn, then attacks in the 2nd turn. |
@@ -269,6 +270,7 @@ Power "varies" means the game works it out in battle (e.g. Return, Low Kick, Sei
 | Weather Ball | Normal | Special | 50 | 100% | 10 | An attack that varies in power and type depending on the weather. |
 | Whirlwind | Normal | Status | — | 100% | 20 | The foe is made to switch out with an ally. In the wild, the battle ends. |
 | Wish | Normal | Status | — | — | 10 | A self-healing move that restores half the full HP on the next turn. |
+| Work Up | Normal | Status | — | — | 30 | Rouses itself to raise Attack and Sp. Atk. |
 | Wrap | Normal | Physical | 15 | 90% | 20 | A long body or vines are used to wrap the foe for two to five turns. |
 | Yawn | Normal | Status | — | 100% | 10 | A huge yawn lulls the foe into falling asleep on the next turn. |
 
@@ -278,8 +280,10 @@ Power "varies" means the game works it out in battle (e.g. Return, Low Kick, Sei
 |---|---|---|--:|--:|--:|---|
 | Arm Thrust | Fighting | Physical | 15 | 100% | 20 | A quick flurry of straight-arm punches that hit two to five times. |
 | Aura Sphere | Fighting | Special | 80 | — | 20 | Looses a blast of aura power from deep within. It never misses. |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | Slams its body into the foe. Damage uses the user's Defense. |
 | Brick Break | Fighting | Physical | 75 | 100% | 15 | An attack that also breaks any barrier like Light Screen and Reflect. |
 | Bulk Up | Fighting | Status | — | — | 20 | The user bulks up its body to boost both its Attack and Defense stats. |
+| Close Combat | Fighting | Physical | 120 | 100% | 5 | Fights up close without guarding. Lowers the user's Def and Sp. Def. |
 | Counter | Fighting | Physical | varies | 100% | 20 | A retaliation move that counters any physical hit with double the damage. |
 | Cross Chop | Fighting | Physical | 100 | 80% | 5 | The foe is hit with double chops. It has a high critical-hit ratio. |
 | Detect | Fighting | Status | — | — | 5 | Enables the user to evade all attacks. It may fail if used in succession. |
@@ -289,6 +293,7 @@ Power "varies" means the game works it out in battle (e.g. Return, Low Kick, Sei
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | Heightens mental focus and unleashes power. May lower Sp. Def. |
 | Focus Punch | Fighting | Physical | 150 | 100% | 20 | An attack that is executed last. The user flinches if hit beforehand. |
 | Force Palm | Fighting | Physical | 60 | 100% | 10 | A shock wave hits the foe's body. It may cause paralysis. |
+| Hammer Arm | Fighting | Physical | 100 | 90% | 10 | Swings its heavy fist. Lowers the user's Speed. |
 | Hi Jump Kick | Fighting | Physical | 130 | 90% | 10 | A strong jumping knee kick. If it misses, the user is hurt. |
 | Jump Kick | Fighting | Physical | 100 | 95% | 10 | The user jumps up high, then kicks. If it misses, the user hurts itself. |
 | Karate Chop | Fighting | Physical | 50 | 100% | 25 | The foe is attacked with a sharp chop. It has a high critical-hit ratio. |
@@ -302,6 +307,7 @@ Power "varies" means the game works it out in battle (e.g. Return, Low Kick, Sei
 | Rolling Kick | Fighting | Physical | 60 | 85% | 15 | A quick kick from a rolling spin. It may make the foe flinch. |
 | Seismic Toss | Fighting | Physical | varies | 100% | 20 | A gravity-fed throw that causes damage matching the user's level. |
 | Sky Uppercut | Fighting | Physical | 85 | 90% | 15 | The user attacks with an uppercut thrown skywards with force. |
+| Storm Throw | Fighting | Physical | 60 | 100% | 10 | A fierce throw. It always results in a critical hit. |
 | Submission | Fighting | Physical | 80 | 80% | 20 | A reckless, full-body throw attack that also hurts the user a little. |
 | Superpower | Fighting | Physical | 120 | 100% | 5 | A powerful attack, but it also lowers the user's Attack and Defense stats. |
 | Triple Kick | Fighting | Physical | 10 | 90% | 10 | A 3-kick attack that becomes more powerful with each successive hit. |
@@ -312,6 +318,7 @@ Power "varies" means the game works it out in battle (e.g. Return, Low Kick, Sei
 
 | Move | Type | Cat. | Power | Acc. | PP | Effect |
 |---|---|---|--:|--:|--:|---|
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | Nimbly strikes the foe. Double power if the user holds no item. |
 | Aerial Ace | Flying | Physical | 60 | — | 20 | An extremely fast attack against one target. It can't be evaded. |
 | Aeroblast | Flying | Special | 100 | 95% | 5 | A vortex of air is shot at the foe. It has a high critical-hit ratio. |
 | Air Cutter | Flying | Special | 60 | 95% | 25 | The foe is hit with razor-like wind. It has a high critical-hit ratio. |
@@ -323,6 +330,7 @@ Power "varies" means the game works it out in battle (e.g. Return, Low Kick, Sei
 | Feather Dance | Flying | Status | — | 100% | 15 | The foe is covered with a mass of down that sharply cuts the Attack stat. |
 | Fly | Flying | Physical | 90 | 95% | 15 | A 2-turn move that hits on the 2nd turn. Use it to fly to any known town. |
 | Gust | Flying | Special | 40 | 100% | 35 | Strikes the foe with a gust of wind whipped up by wings. |
+| Hurricane | Flying | Special | 110 | 70% | 10 | A fierce wind that may confuse. Never misses in rain. |
 | Mirror Move | Flying | Status | — | — | 20 | The user counters the move last used by the foe with the same move. |
 | Peck | Flying | Physical | 35 | 100% | 35 | The foe is jabbed with a sharply pointed beak or horn. |
 | Sky Attack | Flying | Physical | 140 | 90% | 5 | A 2nd-turn attack move with a high critical-hit ratio. The foe may flinch. |
@@ -334,6 +342,8 @@ Power "varies" means the game works it out in battle (e.g. Return, Low Kick, Sei
 |---|---|---|--:|--:|--:|---|
 | Acid | Poison | Special | 40 | 100% | 30 | The foe is sprayed with a harsh, hide-melting acid that may lower Defense. |
 | Acid Armor | Poison | Status | — | — | 20 | The user alters its cells to liquefy itself and sharply raise Defense. |
+| Acid Spray | Poison | Special | 40 | 100% | 20 | Spits a fluid that melts the foe. Sharply lowers its Sp. Def. |
+| Coil | Poison | Status | — | — | 20 | Coils up to raise its Attack, Defense and accuracy. |
 | Cross Poison | Poison | Physical | 70 | 100% | 20 | A slashing attack that may poison. High critical-hit ratio. |
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 | Shoots filthy garbage at the foe. It may poison the foe. |
 | Poison Fang | Poison | Physical | 50 | 100% | 15 | The foe is bitten with toxic fangs. It may also badly poison the foe. |
@@ -346,6 +356,7 @@ Power "varies" means the game works it out in battle (e.g. Return, Low Kick, Sei
 | Sludge Bomb | Poison | Special | 90 | 100% | 10 | Filthy sludge is hurled at the foe. It may poison the target. |
 | Smog | Poison | Special | 30 | 70% | 20 | The foe is attacked with exhaust gases. It may also poison the foe. |
 | Toxic | Poison | Status | — | 90% | 10 | A move that badly poisons the foe. Its poison damage worsens every turn. |
+| Venoshock | Poison | Special | 65 | 100% | 10 | Drenches the foe in toxic liquid. Double power if it is poisoned. |
 
 ### Ground
 
@@ -375,6 +386,7 @@ Power "varies" means the game works it out in battle (e.g. Return, Low Kick, Sei
 | Move | Type | Cat. | Power | Acc. | PP | Effect |
 |---|---|---|--:|--:|--:|---|
 | Ancient Power | Rock | Special | 60 | 100% | 5 | An ancient power is used to attack. It may also raise all the user's stats. |
+| Head Smash | Rock | Physical | 150 | 80% | 5 | A life-risking headbutt. The user takes heavy recoil damage. |
 | Power Gem | Rock | Special | 80 | 100% | 20 | Attacks with a ray of light that sparkles like gemstones. |
 | Rock Blast | Rock | Physical | 25 | 90% | 10 | The user hurls two to five hard rocks at the foe to attack. |
 | Rock Polish | Rock | Status | — | — | 20 | Polishes its body to reduce drag. Sharply raises Speed. |
@@ -395,6 +407,7 @@ Power "varies" means the game works it out in battle (e.g. Return, Low Kick, Sei
 | Lunge | Bug | Physical | 80 | 100% | 15 | Lunges at the foe with full force. Lowers the foe's Attack. |
 | Megahorn | Bug | Physical | 120 | 85% | 10 | A brutal ramming attack delivered with a tough and impressive horn. |
 | Pin Missile | Bug | Physical | 25 | 95% | 20 | Sharp pins are shot at the foe and hit two to five times at once. |
+| Quiver Dance | Bug | Status | — | — | 20 | Dances lightly to raise its Sp. Atk, Sp. Def and Speed. |
 | Signal Beam | Bug | Special | 75 | 100% | 15 | The foe is hit with a flashing beam that may also cause confusion. |
 | Silver Wind | Bug | Special | 60 | 100% | 5 | The foe is attacked with a silver dust. It may raise all the user's stats. |
 | Spider Web | Bug | Status | — | 100% | 10 | Ensnares the foe with sticky string so it doesn't flee or switch out. |
@@ -412,6 +425,7 @@ Power "varies" means the game works it out in battle (e.g. Return, Low Kick, Sei
 | Confuse Ray | Ghost | Status | — | 100% | 10 | The foe is exposed to a sinister ray that triggers confusion. |
 | Destiny Bond | Ghost | Status | — | — | 5 | If the user faints, the foe delivering the final hit also faints. |
 | Grudge | Ghost | Status | — | — | 5 | If the user faints, this move deletes the PP of the move that finished it. |
+| Hex | Ghost | Special | 65 | 100% | 10 | Double power if the foe has a status problem. |
 | Lick | Ghost | Physical | 30 | 100% | 30 | The foe is licked and hit with a long tongue. It may also paralyze. |
 | Night Shade | Ghost | Special | varies | 100% | 15 | An attack with a mirage that inflicts damage matching the user's level. |
 | Nightmare | Ghost | Status | — | 100% | 15 | A sleeping foe is shown a nightmare that inflicts some damage every turn. |
@@ -430,6 +444,8 @@ Power "varies" means the game works it out in battle (e.g. Return, Low Kick, Sei
 | Bullet Punch | Steel | Physical | 40 | 100% | 30 | Punches as fast as a bullet. It always strikes first. |
 | Doom Desire | Steel | Special | 140 | 100% | 5 | A move that attacks the foe with a blast of light two turns after use. |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | Gathers light energy and fires it. It may lower Sp. Def. |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | A high-speed spin. The slower the user is than the foe, the stronger. |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | Slams into the foe. Stronger the heavier the user is than the foe. |
 | Iron Defense | Steel | Status | — | — | 15 | The user hardens its body's surface to sharply raise its Defense stat. |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | Slams the foe with its steel-hard head. It may cause flinching. |
 | Iron Tail | Steel | Physical | 100 | 75% | 15 | An attack with a steel-hard tail. It may lower the foe's Defense stat. |
@@ -450,10 +466,14 @@ Power "varies" means the game works it out in battle (e.g. Return, Low Kick, Sei
 | Ember | Fire | Special | 40 | 100% | 25 | The foe is attacked with small flames. The foe may suffer a burn. |
 | Eruption | Fire | Special | 150 | 100% | 5 | The higher the user's HP, the more powerful this attack becomes. |
 | Fire Blast | Fire | Special | 110 | 85% | 5 | The foe is hit with an intense flame. It may leave the target with a burn. |
+| Fire Fang | Fire | Physical | 65 | 95% | 15 | Bites with flame-cloaked fangs. May burn or make the foe flinch. |
 | Fire Punch | Fire | Physical | 75 | 100% | 15 | The foe is punched with a fiery fist. It may leave the foe with a burn. |
 | Fire Spin | Fire | Special | 35 | 85% | 15 | The foe is trapped in an intense spiral of fire that rages two to five turns. |
+| Flame Charge | Fire | Physical | 50 | 100% | 20 | Cloaks itself in flame and attacks. Raises the user's Speed. |
 | Flame Wheel | Fire | Physical | 60 | 100% | 25 | The user makes a fiery charge at the foe. It may cause a burn. |
 | Flamethrower | Fire | Special | 90 | 100% | 15 | The foe is scorched with intense flames. The foe may suffer a burn. |
+| Flare Blitz | Fire | Physical | 120 | 100% | 15 | Charges cloaked in fire. The user is also hurt. It may burn the foe. |
+| Heat Crash | Fire | Physical | varies | 100% | 10 | Slams a flaming body into the foe. The heavier the user, the stronger. |
 | Heat Wave | Fire | Special | 95 | 90% | 10 | The user exhales a heated breath to attack. It may also inflict a burn. |
 | Lava Plume | Fire | Special | 80 | 100% | 15 | Scarlet flames torch everything around. It may cause a burn. |
 | Mystical Fire | Fire | Special | 75 | 100% | 10 | Breathes a special hot fire. Lowers the foe's Sp. Atk. |
@@ -468,6 +488,7 @@ Power "varies" means the game works it out in battle (e.g. Return, Low Kick, Sei
 |---|---|---|--:|--:|--:|---|
 | Aqua Jet | Water | Physical | 40 | 100% | 20 | Lunges at the foe at blinding speed. It always strikes first. |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | Swings its tail like a vicious wave in a raging storm. |
+| Brine | Water | Special | 65 | 100% | 10 | Double power if the foe's HP is down to half or less. |
 | Bubble | Water | Special | 40 | 100% | 30 | A spray of bubbles hits the foe. It may lower the foe's Speed stat. |
 | Bubble Beam | Water | Special | 65 | 100% | 20 | A spray of bubbles strikes the foe. It may lower the foe's Speed stat. |
 | Clamp | Water | Physical | 35 | 85% | 15 | The foe is clamped and squeezed by the user's shell for two to five turns. |
@@ -497,6 +518,7 @@ Power "varies" means the game works it out in battle (e.g. Return, Low Kick, Sei
 | Absorb | Grass | Special | 20 | 100% | 25 | An attack that absorbs half the damage it inflicted to restore HP. |
 | Aromatherapy | Grass | Status | — | — | 5 | A soothing scent is released to heal all status problems in the user's party. |
 | Bullet Seed | Grass | Physical | 25 | 100% | 30 | The user shoots seeds at the foe. Two to five seeds are shot at once. |
+| Cotton Guard | Grass | Status | — | — | 10 | Wraps itself in soft cotton. Drastically raises Defense. |
 | Cotton Spore | Grass | Status | — | 100% | 40 | Cotton-like spores cling to the foe, sharply reducing its Speed stat. |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | Draws power from nature and fires it. It may lower Sp. Def. |
 | Frenzy Plant | Grass | Special | 150 | 90% | 5 | The foe is hit with an enormous branch. The user can't move on the next turn. |
@@ -520,6 +542,7 @@ Power "varies" means the game works it out in battle (e.g. Return, Low Kick, Sei
 | Spore | Grass | Status | — | 100% | 15 | The user scatters bursts of fine spores that induce sleep. |
 | Stun Spore | Grass | Status | — | 75% | 30 | Paralyzing dust is scattered wildly. It may paralyze the foe. |
 | Synthesis | Grass | Status | — | — | 5 | Restores the user's HP. The amount of HP regained varies with the weather. |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | Leaps out as if from tall grass. Raises the user's Speed. |
 | Vine Whip | Grass | Physical | 45 | 100% | 25 | The foe is struck with slender, whip-like vines. |
 | Wood Hammer | Grass | Physical | 120 | 100% | 15 | Slams its rugged body into the foe. The user is also hurt. |
 
@@ -528,13 +551,16 @@ Power "varies" means the game works it out in battle (e.g. Return, Low Kick, Sei
 | Move | Type | Cat. | Power | Acc. | PP | Effect |
 |---|---|---|--:|--:|--:|---|
 | Charge | Electric | Status | — | — | 20 | The user charges power to boost the Electric move it uses next. |
+| Charge Beam | Electric | Special | 50 | 90% | 10 | Fires an electric beam. It may raise the user's Sp. Atk. |
 | Discharge | Electric | Special | 80 | 100% | 15 | A loose flare of electricity hits all others. It may paralyze. |
 | Eerie Impulse | Electric | Status | — | 100% | 15 | Exposes the foe to an eerie impulse. Sharply lowers its Sp. Atk. |
+| Electro Ball | Electric | Special | varies | 100% | 10 | Hurls an electric orb. Stronger the faster the user is than the foe. |
 | Electroweb | Electric | Special | 55 | 95% | 15 | Snares the foes in an electric net. Lowers their Speed. |
 | Nuzzle | Electric | Physical | 20 | 100% | 20 | Nuzzles the foe with electrified cheeks. It paralyzes the foe. |
 | Shock Wave | Electric | Special | 60 | — | 20 | A rapid jolt of electricity strikes the foe. It can't be evaded. |
 | Spark | Electric | Physical | 65 | 100% | 20 | An electrically charged tackle that may also paralyze the foe. |
 | Thunder | Electric | Special | 110 | 70% | 10 | A brutal lightning attack that may also leave the foe paralyzed. |
+| Thunder Fang | Electric | Physical | 65 | 95% | 15 | Bites with charged fangs. May paralyze or make the foe flinch. |
 | Thunder Punch | Electric | Physical | 75 | 100% | 15 | The foe is punched with an electrified fist. It may leave the foe paralyzed. |
 | Thunder Shock | Electric | Special | 40 | 100% | 30 | An electric shock attack that may also leave the foe paralyzed. |
 | Thunder Wave | Electric | Status | — | 90% | 20 | A weak electric shock that is sure to cause paralysis if it hits. |
@@ -570,11 +596,14 @@ Power "varies" means the game works it out in battle (e.g. Return, Low Kick, Sei
 | Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | Bites with psychic power. It also breaks barriers such as Reflect. |
 | Psycho Boost | Psychic | Special | 140 | 90% | 5 | An intense attack that also sharply reduces the user's Sp. Atk stat. |
 | Psycho Cut | Psychic | Physical | 70 | 100% | 20 | Tears at the foe with blades of psychic power. High critical-hit ratio. |
+| Psyshock | Psychic | Special | 80 | 100% | 10 | An odd psychic wave. Its damage is based on the foe's Defense. |
+| Psystrike | Psychic | Special | 100 | 100% | 10 | A strange psychic wave. Its damage is based on the foe's Defense. |
 | Psywave | Psychic | Special | varies | 100% | 15 | The foe is attacked with an odd, hot energy wave that varies in intensity. |
 | Reflect | Psychic | Status | — | — | 20 | A wall of light cuts damage from physical attacks for five turns. |
 | Rest | Psychic | Status | — | — | 5 | The user sleeps for two turns to fully restore HP and heal any status problem. |
 | Role Play | Psychic | Status | — | 100% | 10 | The user mimics the foe completely and copies the foe's ability. |
 | Skill Swap | Psychic | Status | — | 100% | 10 | The user employs its psychic power to swap abilities with the foe. |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | Stronger the more the user's stats are raised. |
 | Teleport | Psychic | Status | — | — | 20 | Use it to flee from any wild Pokémon. Also warps to the last POKé Center. |
 | Trick | Psychic | Status | — | 100% | 10 | A move that tricks the foe into trading held items with the user. |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | Focuses its will into its head and rams. It may cause flinching. |
@@ -586,10 +615,13 @@ Power "varies" means the game works it out in battle (e.g. Return, Low Kick, Sei
 | Aurora Beam | Ice | Special | 65 | 100% | 20 | A rainbow-colored attack beam. It may lower the foe's Attack stat. |
 | Avalanche | Ice | Physical | 60 | 100% | 10 | Strikes last. Double power if the user was hurt by the foe this turn. |
 | Blizzard | Ice | Special | 110 | 70% | 5 | The foe is blasted with a blizzard. It may freeze the foe solid. |
+| Freeze Dry | Ice | Special | 70 | 100% | 20 | Rapidly cools the foe. May freeze. Super effective on Water types. |
+| Frost Breath | Ice | Special | 60 | 90% | 10 | Blows a cold breath. It always results in a critical hit. |
 | Hail | Ice | Status | — | — | 10 | A hailstorm lasting five turns damages all Pokémon except the Ice-type. |
 | Haze | Ice | Status | — | — | 30 | Eliminates all stat changes among all Pokémon engaged in battle. |
 | Ice Ball | Ice | Physical | 30 | 90% | 20 | A 5-turn rolling attack that becomes stronger each time it rolls. |
 | Ice Beam | Ice | Special | 90 | 100% | 10 | The foe is struck with an icy beam. It may freeze the foe solid. |
+| Ice Fang | Ice | Physical | 65 | 95% | 15 | Bites with icy fangs. May freeze or make the foe flinch. |
 | Ice Punch | Ice | Physical | 75 | 100% | 15 | The foe is punched with an icy fist. It may leave the foe frozen. |
 | Ice Shard | Ice | Physical | 40 | 100% | 30 | Hurls flash-frozen chunks of ice. It always strikes first. |
 | Icicle Crash | Ice | Physical | 85 | 90% | 10 | Drops large icicles on the foe. It may cause flinching. |
@@ -626,13 +658,18 @@ Power "varies" means the game works it out in battle (e.g. Return, Low Kick, Sei
 | Faint Attack | Dark | Physical | 60 | — | 20 | The user draws up close to the foe disarmingly, then hits without fail. |
 | Fake Tears | Dark | Status | — | 100% | 20 | The user feigns crying to sharply lower the foe's Sp. Def stat. |
 | Flatter | Dark | Status | — | 100% | 15 | Flattery is used to confuse the foe, but its Sp. Atk also rises. |
+| Foul Play | Dark | Physical | 95 | 100% | 15 | Turns the foe's power against it. Uses the foe's Attack. |
+| Hone Claws | Dark | Status | — | — | 15 | Sharpens its claws to raise Attack and accuracy. |
 | Knock Off | Dark | Physical | 65 | 100% | 20 | Knocks down the foe's held item to prevent its use during the battle. |
 | Memento | Dark | Status | — | 100% | 10 | The user faints, but sharply lowers the foe's Attack and Sp. Atk. |
 | Nasty Plot | Dark | Status | — | — | 20 | Thinks bad thoughts to sharply raise its Sp. Atk. |
 | Night Slash | Dark | Physical | 70 | 100% | 15 | Slashes the foe the instant it gets a chance. High critical-hit ratio. |
+| Payback | Dark | Physical | 50 | 100% | 10 | Double power if the user moves after the foe. |
+| Power Trip | Dark | Physical | 20 | 100% | 10 | Boasts its strength. Stronger the more the user's stats are raised. |
 | Pursuit | Dark | Physical | 40 | 100% | 20 | An attack move that works especially well on a foe that is switching out. |
 | Snarl | Dark | Special | 55 | 95% | 15 | Yells as if ranting. Lowers the foes' Sp. Atk. |
 | Snatch | Dark | Status | — | 100% | 10 | Steals the effects of the foe's healing or status-changing move. |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | Strikes first if the foe is readying an attack. Fails otherwise. |
 | Taunt | Dark | Status | — | 100% | 20 | The foe is taunted into a rage that allows it to use only attack moves. |
 | Thief | Dark | Physical | 60 | 100% | 25 | An attack that may take the foe's held item if the user isn't holding one. |
 | Torment | Dark | Status | — | 100% | 15 | It enrages the foe, making it incapable of using the same move successively. |

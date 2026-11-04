@@ -73,6 +73,7 @@ Spinda does not evolve.
 | 14 | Psybeam | Psychic | Special | 65 | 100% | 20 |
 | 19 | Hypnosis | Psychic | Status | — | 60% | 20 |
 | 23 | Dizzy Punch | Normal | Physical | 70 | 100% | 10 |
+| 28 | Sucker Punch ★ | Dark | Physical | 70 | 100% | 5 |
 | 32 | Teeter Dance | Normal | Status | — | 100% | 20 |
 | 37 | Uproar | Normal | Special | 90 | 100% | 10 |
 | 41 | Psych Up | Normal | Status | — | — | 10 |
@@ -136,7 +137,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 

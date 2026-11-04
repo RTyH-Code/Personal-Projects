@@ -75,6 +75,9 @@ Height 9.2 m (30′02″) · Weight 400 kg (881.8 lbs)
 | 1 | Harden | Normal | Status | — | — | 30 |
 | 1 | Crunch | Dark | Physical | 80 | 100% | 15 |
 | 1 | Rock Polish ★ | Rock | Status | — | — | 20 |
+| 1 | Fire Fang ★ | Fire | Physical | 65 | 95% | 15 |
+| 1 | Ice Fang ★ | Ice | Physical | 65 | 95% | 15 |
+| 1 | Thunder Fang ★ | Electric | Physical | 65 | 95% | 15 |
 | 8 | Autotomize ★ | Steel | Status | — | — | 15 |
 | 12 | Dragon Breath | Dragon | Special | 60 | 100% | 20 |
 | 16 | Curse ★ | ??? | Status | — | — | 10 |
@@ -135,7 +138,14 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
+| Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
@@ -160,6 +170,8 @@ Breed a Onix (passed down to Onix, which then evolves) with a father that knows 
 | Explosion | Normal | Physical | 250 | 100% | 5 |
 | Block | Normal | Status | — | 100% | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 |
+| Head Smash | Rock | Physical | 150 | 80% | 5 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 |
 
 ---
 

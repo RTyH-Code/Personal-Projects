@@ -127,9 +127,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
 | Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ---

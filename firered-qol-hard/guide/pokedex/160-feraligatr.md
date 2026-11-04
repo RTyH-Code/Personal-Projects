@@ -73,6 +73,7 @@ Height 2.3 m (7′07″) · Weight 88.8 kg (195.8 lbs)
 | 1 | Agility ★ | Psychic | Status | — | — | 30 |
 | 13 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 15 | Scary Face | Normal | Status | — | 100% | 10 |
+| 21 | Ice Fang ★ | Ice | Physical | 65 | 95% | 15 |
 | 24 | Flail ★ | Normal | Physical | varies | 100% | 15 |
 | 32 | Crunch ★ | Dark | Physical | 80 | 100% | 15 |
 | 37 | Slash | Normal | Physical | 70 | 100% | 20 |
@@ -141,8 +142,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |

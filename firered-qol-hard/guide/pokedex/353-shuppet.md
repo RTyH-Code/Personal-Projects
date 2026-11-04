@@ -76,9 +76,11 @@ Height 0.6 m (2′00″) · Weight 2.3 kg (5.1 lbs)
 | 10 | Spite | Ghost | Status | — | 100% | 10 |
 | 16 | Will-O-Wisp | Fire | Status | — | 85% | 15 |
 | 19 | Shadow Sneak ★ | Ghost | Physical | 40 | 100% | 30 |
+| 22 | Hex ★ | Ghost | Special | 65 | 100% | 10 |
 | 26 | Curse | ??? | Status | — | — | 10 |
 | 30 | Shadow Ball | Ghost | Special | 80 | 100% | 15 |
 | 34 | Role Play ★ | Psychic | Status | — | 100% | 10 |
+| 38 | Sucker Punch ★ | Dark | Physical | 70 | 100% | 5 |
 | 42 | Trick ★ | Psychic | Status | — | 100% | 10 |
 
 ### By TM/HM
@@ -127,10 +129,15 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
+| Hex | Ghost | Special | 65 | 100% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
+| Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)
@@ -147,6 +154,7 @@ Breed a Shuppet with a father that knows the move.
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 |
 | Shadow Sneak | Ghost | Physical | 40 | 100% | 30 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 |
+| Payback | Dark | Physical | 50 | 100% | 10 |
 
 ---
 

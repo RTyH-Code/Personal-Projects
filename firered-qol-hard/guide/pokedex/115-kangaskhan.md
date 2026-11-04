@@ -77,6 +77,7 @@ Kangaskhan does not evolve.
 | 16 | Stomp ★ | Normal | Physical | 65 | 100% | 20 |
 | 20 | Focus Energy ★ | Normal | Status | — | — | 30 |
 | 24 | Headbutt ★ | Normal | Physical | 70 | 100% | 15 |
+| 28 | Sucker Punch ★ | Dark | Physical | 70 | 100% | 5 |
 | 32 | Double Hit ★ | Normal | Physical | 35 | 90% | 10 |
 | 36 | Crunch ★ | Dark | Physical | 80 | 100% | 15 |
 | 40 | Endure | Normal | Status | — | — | 10 |
@@ -149,8 +150,10 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
@@ -170,6 +173,7 @@ Breed a Kangaskhan with a father that knows the move.
 | Counter | Fighting | Physical | varies | 100% | 20 |
 | Crush Claw | Normal | Physical | 75 | 95% | 10 |
 | Substitute | Normal | Status | — | — | 10 |
+| Hammer Arm | Fighting | Physical | 100 | 90% | 10 |
 
 ---
 

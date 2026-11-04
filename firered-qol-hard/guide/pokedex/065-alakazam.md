@@ -76,6 +76,7 @@ Height 1.5 m (4′11″) · Weight 48 kg (105.8 lbs)
 | 10 | Reflect | Psychic | Status | — | — | 20 |
 | 20 | Psycho Cut ★ | Psychic | Physical | 70 | 100% | 20 |
 | 25 | Recover | Normal | Status | — | — | 5 |
+| 30 | Psyshock ★ | Psychic | Special | 80 | 100% | 10 |
 | 35 | Psychic | Psychic | Special | 90 | 100% | 10 |
 | 40 | Role Play ★ | Psychic | Status | — | 100% | 10 |
 | 45 | Future Sight | Psychic | Special | 120 | 100% | 10 |
@@ -136,14 +137,18 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
 | Psycho Cut | Psychic | Physical | 70 | 100% | 20 | 3 |
+| Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)

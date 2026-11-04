@@ -73,9 +73,11 @@ Height 1.5 m (4′11″) · Weight 40.2 kg (88.6 lbs)
 | 1 | Leer | Normal | Status | — | 100% | 30 |
 | 1 | Thunder Wave | Electric | Status | — | 90% | 20 |
 | 1 | Howl | Normal | Status | — | — | 40 |
+| 1 | Fire Fang ★ | Fire | Physical | 65 | 95% | 15 |
 | 12 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
 | 16 | Shock Wave ★ | Electric | Special | 60 | — | 20 |
 | 20 | Bite | Dark | Physical | 60 | 100% | 25 |
+| 24 | Thunder Fang ★ | Electric | Physical | 65 | 95% | 15 |
 | 30 | Roar | Normal | Status | — | 100% | 20 |
 | 36 | Discharge ★ | Electric | Special | 80 | 100% | 15 |
 | 42 | Charge | Electric | Status | — | — | 20 |
@@ -123,8 +125,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
+| Electro Ball | Electric | Special | varies | 100% | 10 | 0 |
+| Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
+| Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
 | Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
@@ -142,6 +149,9 @@ Breed a Electrike (passed down to Electrike, which then evolves) with a father t
 | Swift | Normal | Special | 60 | — | 20 |
 | Discharge | Electric | Special | 80 | 100% | 15 |
 | Eerie Impulse | Electric | Status | — | 100% | 15 |
+| Fire Fang | Fire | Physical | 65 | 95% | 15 |
+| Ice Fang | Ice | Physical | 65 | 95% | 15 |
+| Thunder Fang | Electric | Physical | 65 | 95% | 15 |
 
 ---
 

@@ -77,6 +77,7 @@ Rayquaza does not evolve.
 | 45 | Hyper Voice ★ | Normal | Special | 90 | 100% | 10 |
 | 54 | Rest | Psychic | Status | — | — | 5 |
 | 63 | Fly | Flying | Physical | 90 | 95% | 15 |
+| 72 | Hurricane ★ | Flying | Special | 110 | 70% | 10 |
 | 81 | Outrage | Dragon | Physical | 120 | 100% | 10 |
 | 90 | Hyper Beam | Normal | Special | 150 | 90% | 5 |
 
@@ -141,6 +142,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
@@ -151,6 +154,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Hurricane | Flying | Special | 110 | 70% | 10 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 

@@ -75,6 +75,8 @@ Height 0.3 m (1′00″) · Weight 6 kg (13.2 lbs)
 | 1 | Thunder Shock | Electric | Special | 40 | 100% | 30 |
 | 4 | Supersonic | Normal | Status | — | 55% | 20 |
 | 8 | Thunder Wave | Electric | Status | — | 90% | 20 |
+| 12 | Electro Ball ★ | Electric | Special | varies | 100% | 10 |
+| 16 | Gyro Ball ★ | Steel | Physical | varies | 100% | 5 |
 | 20 | Spark | Electric | Physical | 65 | 100% | 20 |
 | 24 | Screech | Normal | Status | — | 85% | 40 |
 | 32 | Flash Cannon ★ | Steel | Special | 80 | 100% | 10 |
@@ -120,8 +122,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
 | Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Electro Ball | Electric | Special | varies | 100% | 10 | 0 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |

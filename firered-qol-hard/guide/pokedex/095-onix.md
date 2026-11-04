@@ -138,7 +138,11 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
@@ -159,6 +163,8 @@ Breed a Onix with a father that knows the move.
 | Explosion | Normal | Physical | 250 | 100% | 5 |
 | Block | Normal | Status | — | 100% | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 |
+| Head Smash | Rock | Physical | 150 | 80% | 5 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 |
 
 ---
 

@@ -131,7 +131,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |

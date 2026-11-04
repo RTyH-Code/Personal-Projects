@@ -147,6 +147,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Razor Shell | Water | Physical | 75 | 95% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
@@ -166,6 +168,7 @@ Breed a Krabby with a father that knows the move.
 | Knock Off | Dark | Physical | 65 | 100% | 20 |
 | Swords Dance | Normal | Status | — | — | 20 |
 | Night Slash | Dark | Physical | 70 | 100% | 15 |
+| Hammer Arm | Fighting | Physical | 100 | 90% | 10 |
 
 ---
 

@@ -121,6 +121,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
@@ -142,6 +144,8 @@ Breed a Phanpy with a father that knows the move.
 | Fissure | Ground | Physical | varies | 30% | 5 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 |
 | Ice Shard | Ice | Physical | 40 | 100% | 30 |
+| Head Smash | Rock | Physical | 150 | 80% | 5 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 |
 
 ---
 

@@ -150,7 +150,11 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Hex | Ghost | Special | 65 | 100% | 10 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |

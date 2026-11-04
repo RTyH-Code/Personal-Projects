@@ -89,7 +89,9 @@ Snorlax does not evolve.
 | 20 | Sleep Talk | Normal | Status | — | — | 10 |
 | 24 | Crunch ★ | Dark | Physical | 80 | 100% | 15 |
 | 28 | Body Slam | Normal | Physical | 85 | 100% | 15 |
+| 32 | Heavy Slam ★ | Steel | Physical | varies | 100% | 10 |
 | 36 | Amnesia | Psychic | Status | — | — | 20 |
+| 44 | Hammer Arm ★ | Fighting | Physical | 100 | 90% | 10 |
 | 48 | Belly Drum | Normal | Status | — | — | 10 |
 | 56 | Giga Impact ★ | Normal | Physical | 150 | 90% | 5 |
 
@@ -151,7 +153,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Heat Crash | Fire | Physical | varies | 100% | 10 | 0 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |

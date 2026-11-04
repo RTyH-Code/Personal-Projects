@@ -83,6 +83,7 @@ Height 1.7 m (5′07″) · Weight 120 kg (264.6 lbs)
 | 21 | Rest | Psychic | Status | — | — | 5 |
 | 27 | Aurora Beam | Ice | Special | 65 | 100% | 20 |
 | 31 | Aqua Jet ★ | Water | Physical | 40 | 100% | 20 |
+| 33 | Brine ★ | Water | Special | 65 | 100% | 10 |
 | 39 | Take Down | Normal | Physical | 90 | 85% | 20 |
 | 45 | Dive ★ | Water | Physical | 80 | 100% | 10 |
 | 49 | Aqua Tail ★ | Water | Physical | 90 | 90% | 10 |
@@ -131,6 +132,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
+| Frost Breath | Ice | Special | 60 | 90% | 10 | 0 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Smart Strike | Steel | Physical | 70 | — | 10 | 3 |

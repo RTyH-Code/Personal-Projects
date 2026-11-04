@@ -75,6 +75,7 @@ Raikou does not evolve.
 | 12 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 18 | Calm Mind | Psychic | Status | — | — | 20 |
 | 24 | Roar | Normal | Status | — | 100% | 20 |
+| 30 | Thunder Fang ★ | Electric | Physical | 65 | 95% | 15 |
 | 36 | Howl ★ | Normal | Status | — | — | 40 |
 | 42 | Crunch | Dark | Physical | 80 | 100% | 15 |
 | 48 | Extrasensory ★ | Psychic | Special | 80 | 100% | 20 |
@@ -131,9 +132,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
 | Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Electro Ball | Electric | Special | varies | 100% | 10 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |

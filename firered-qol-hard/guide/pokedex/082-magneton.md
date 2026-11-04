@@ -79,6 +79,8 @@ Height 1 m (3′03″) · Weight 60 kg (132.3 lbs)
 | 1 | Thunder Shock | Electric | Special | 40 | 100% | 30 |
 | 1 | Thunder Wave | Electric | Status | — | 90% | 20 |
 | 1 | Tri Attack | Normal | Special | 80 | 100% | 10 |
+| 12 | Electro Ball ★ | Electric | Special | varies | 100% | 10 |
+| 16 | Gyro Ball ★ | Steel | Physical | varies | 100% | 5 |
 | 20 | Spark | Electric | Physical | 65 | 100% | 20 |
 | 24 | Screech | Normal | Status | — | 85% | 40 |
 | 34 | Flash Cannon ★ | Steel | Special | 80 | 100% | 10 |
@@ -125,8 +127,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
 | Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Electro Ball | Electric | Special | varies | 100% | 10 | 0 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |

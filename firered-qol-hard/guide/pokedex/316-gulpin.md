@@ -73,6 +73,7 @@ Height 0.4 m (1′04″) · Weight 10.3 kg (22.7 lbs)
 | 8 | Poison Gas | Poison | Status | — | 90% | 40 |
 | 10 | Sludge | Poison | Special | 65 | 100% | 20 |
 | 12 | Amnesia | Psychic | Status | — | — | 20 |
+| 17 | Acid Spray ★ | Poison | Special | 40 | 100% | 20 |
 | 20 | Encore | Normal | Status | — | 100% | 5 |
 | 25 | Toxic | Poison | Status | — | 90% | 10 |
 | 28 | Stockpile | Normal | Status | — | — | 20 |
@@ -128,7 +129,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acid Spray | Poison | Special | 40 | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |

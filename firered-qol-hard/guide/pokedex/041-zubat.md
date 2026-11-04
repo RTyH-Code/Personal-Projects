@@ -111,6 +111,7 @@ Height 0.8 m (2′07″) · Weight 7.5 kg (16.5 lbs)
 | 25 | Air Cutter | Flying | Special | 60 | 95% | 25 |
 | 30 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 35 | Haze | Ice | Status | — | — | 30 |
+| 40 | Venoshock ★ | Poison | Special | 65 | 100% | 10 |
 | 45 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | 50 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
 | 55 | Leech Life | Bug | Physical | 80 | 100% | 10 |
@@ -155,8 +156,11 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |

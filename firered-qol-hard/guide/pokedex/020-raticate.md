@@ -84,6 +84,7 @@ Height 0.7 m (2′04″) · Weight 18.5 kg (40.8 lbs)
 | 13 | Pursuit | Dark | Physical | 40 | 100% | 20 |
 | 16 | Hyper Fang | Normal | Physical | 80 | 90% | 15 |
 | 24 | Crunch ★ | Dark | Physical | 80 | 100% | 15 |
+| 29 | Sucker Punch ★ | Dark | Physical | 70 | 100% | 5 |
 | 34 | Super Fang | Normal | Physical | varies | 90% | 10 |
 | 39 | Double-Edge ★ | Normal | Physical | 120 | 100% | 15 |
 | 44 | Endeavor | Normal | Physical | varies | 100% | 5 |
@@ -137,7 +138,10 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |

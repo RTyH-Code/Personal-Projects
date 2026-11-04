@@ -137,7 +137,10 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
@@ -147,6 +150,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
 | Draco Meteor | Dragon | Special | 130 | 90% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Hurricane | Flying | Special | 110 | 70% | 10 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)
@@ -163,6 +167,7 @@ Breed a Bagon (passed down to Bagon, which then evolves) with a father that know
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 |
 | Dragon Rush | Dragon | Physical | 100 | 75% | 10 |
+| Fire Fang | Fire | Physical | 65 | 95% | 15 |
 
 ---
 

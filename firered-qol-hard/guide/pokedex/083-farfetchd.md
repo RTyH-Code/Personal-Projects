@@ -123,11 +123,14 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
+| Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
 
 ### By breeding (egg moves)
 

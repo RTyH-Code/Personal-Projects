@@ -125,6 +125,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
+| Heat Crash | Fire | Physical | varies | 100% | 10 | 0 |
 | Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |

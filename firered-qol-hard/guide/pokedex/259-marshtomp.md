@@ -137,6 +137,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |

@@ -1,7 +1,7 @@
 From 1758eae33a9a91e3974d8d12271c1f4aef4362e0 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Wed, 4 Nov 2026 12:16:18 +0000
-Subject: [PATCH 30/33] Modern abilities, batch 2: 20 triggered and switch-in
+Subject: [PATCH 30/34] Modern abilities, batch 2: 20 triggered and switch-in
  abilities
 
 - New battle script command callnative, a move-end state for attacker-side

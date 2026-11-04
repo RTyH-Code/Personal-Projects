@@ -88,6 +88,7 @@ Height 0.4 m (1′04″) · Weight 0.5 kg (1.1 lbs)
 | 15 | Synthesis | Grass | Status | — | — | 5 |
 | 19 | Leech Seed | Grass | Status | — | 90% | 10 |
 | 22 | Mega Drain | Grass | Special | 40 | 100% | 15 |
+| 24 | Acrobatics ★ | Flying | Physical | 55 | 100% | 15 |
 | 27 | Cotton Spore | Grass | Status | — | 100% | 40 |
 | 32 | Giga Drain ★ | Grass | Special | 75 | 100% | 10 |
 | 35 | Bounce ★ | Flying | Physical | 85 | 85% | 5 |
@@ -129,7 +130,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
@@ -150,6 +153,7 @@ Breed a Hoppip with a father that knows the move.
 | Helping Hand | Normal | Status | — | — | 20 |
 | Psych Up | Normal | Status | — | — | 10 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 |
+| Cotton Guard | Grass | Status | — | — | 10 |
 
 ---
 

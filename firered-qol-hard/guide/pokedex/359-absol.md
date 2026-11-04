@@ -78,6 +78,7 @@ Absol does not evolve.
 | 25 | Slash | Normal | Physical | 70 | 100% | 20 |
 | 30 | Night Slash ★ | Dark | Physical | 70 | 100% | 15 |
 | 35 | Focus Energy ★ | Normal | Status | — | — | 30 |
+| 40 | Sucker Punch ★ | Dark | Physical | 70 | 100% | 5 |
 | 45 | Swords Dance | Normal | Status | — | — | 20 |
 | 50 | Future Sight | Psychic | Special | 120 | 100% | 10 |
 | 55 | Perish Song | Normal | Status | — | — | 5 |
@@ -142,13 +143,20 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
+| Hex | Ghost | Special | 65 | 100% | 10 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Psycho Cut | Psychic | Physical | 70 | 100% | 20 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
+| Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
@@ -167,6 +175,8 @@ Breed a Absol with a father that knows the move.
 | Substitute | Normal | Status | — | — | 10 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 |
+| Hex | Ghost | Special | 65 | 100% | 10 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 |
 
 ---
 

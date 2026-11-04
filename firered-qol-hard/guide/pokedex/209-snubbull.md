@@ -75,11 +75,15 @@ Height 0.6 m (2′00″) · Weight 7.8 kg (17.2 lbs)
 | 1 | Growl ★ | Normal | Status | — | 100% | 40 |
 | 1 | Scary Face | Normal | Status | — | 100% | 10 |
 | 1 | Charm | Fairy | Status | — | 100% | 20 |
+| 1 | Fire Fang ★ | Fire | Physical | 65 | 95% | 15 |
+| 1 | Ice Fang ★ | Ice | Physical | 65 | 95% | 15 |
+| 1 | Thunder Fang ★ | Electric | Physical | 65 | 95% | 15 |
 | 7 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 13 | Lick | Ghost | Physical | 30 | 100% | 30 |
 | 19 | Headbutt ★ | Normal | Physical | 70 | 100% | 15 |
 | 25 | Roar | Normal | Status | — | 100% | 20 |
 | 37 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
+| 43 | Payback ★ | Dark | Physical | 50 | 100% | 10 |
 | 49 | Crunch | Dark | Physical | 80 | 100% | 15 |
 
 ### By TM/HM
@@ -142,10 +146,17 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
+| Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
+| Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 
@@ -163,6 +174,8 @@ Breed a Snubbull with a father that knows the move.
 | Heal Bell | Normal | Status | — | — | 5 |
 | Snore | Normal | Special | 50 | 100% | 15 |
 | Smelling Salt | Normal | Physical | 70 | 100% | 10 |
+| Close Combat | Fighting | Physical | 120 | 100% | 5 |
+| Fire Fang | Fire | Physical | 65 | 95% | 15 |
 
 ---
 

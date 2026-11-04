@@ -131,7 +131,11 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acid Spray | Poison | Special | 40 | 100% | 20 | 0 |
+| Hex | Ghost | Special | 65 | 100% | 10 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
@@ -152,6 +156,7 @@ Breed a Grimer with a father that knows the move.
 | Explosion | Normal | Physical | 250 | 100% | 5 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 |
 | Shadow Sneak | Ghost | Physical | 40 | 100% | 30 |
+| Acid Spray | Poison | Special | 40 | 100% | 20 |
 
 ---
 

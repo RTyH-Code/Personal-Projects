@@ -78,9 +78,11 @@ Height 1.4 m (4′07″) · Weight 61.5 kg (135.6 lbs)
 | 11 | Cotton Spore | Grass | Status | — | 100% | 40 |
 | 16 | Charge ★ | Electric | Status | — | — | 20 |
 | 20 | Take Down ★ | Normal | Physical | 90 | 85% | 20 |
+| 25 | Electro Ball ★ | Electric | Special | varies | 100% | 10 |
 | 29 | Confuse Ray ★ | Ghost | Status | — | 100% | 10 |
 | 35 | Power Gem ★ | Rock | Special | 80 | 100% | 20 |
 | 40 | Discharge ★ | Electric | Special | 80 | 100% | 15 |
+| 46 | Cotton Guard ★ | Grass | Status | — | — | 10 |
 | 51 | Dazzling Gleam ★ | Fairy | Special | 80 | 100% | 10 |
 | 57 | Light Screen | Psychic | Status | — | — | 30 |
 | 62 | Thunder | Electric | Special | 110 | 70% | 10 |
@@ -134,9 +136,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
 | Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Electro Ball | Electric | Special | varies | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Power Gem | Rock | Special | 80 | 100% | 20 | 3 |

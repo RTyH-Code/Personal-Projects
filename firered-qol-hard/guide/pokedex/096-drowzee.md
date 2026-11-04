@@ -81,6 +81,7 @@ Height 1 m (3′03″) · Weight 32.4 kg (71.4 lbs)
 | 33 | Swagger | Normal | Status | — | 85% | 15 |
 | 37 | Psychic | Psychic | Special | 90 | 100% | 10 |
 | 41 | Nasty Plot ★ | Dark | Status | — | — | 20 |
+| 45 | Psyshock ★ | Psychic | Special | 80 | 100% | 10 |
 | 49 | Future Sight | Psychic | Special | 120 | 100% | 10 |
 
 ### By TM/HM
@@ -140,11 +141,15 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 
 ### By breeding (egg moves)
 

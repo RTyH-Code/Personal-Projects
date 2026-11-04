@@ -88,9 +88,11 @@ Height 0.9 m (2′11″) · Weight 25 kg (55.1 lbs)
 | 15 | Baby-Doll Eyes ★ | Fairy | Status | — | 100% | 30 |
 | 20 | Smog | Poison | Special | 30 | 70% | 20 |
 | 25 | Bite | Dark | Physical | 60 | 100% | 25 |
+| 30 | Fire Fang ★ | Fire | Physical | 65 | 95% | 15 |
 | 35 | Fire Spin | Fire | Special | 35 | 85% | 15 |
 | 40 | Lava Plume ★ | Fire | Special | 80 | 100% | 15 |
 | 45 | Scary Face ★ | Normal | Status | — | 100% | 10 |
+| 50 | Flare Blitz ★ | Fire | Physical | 120 | 100% | 15 |
 
 ### By TM/HM
 
@@ -132,8 +134,14 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
+| Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Mystical Fire | Fire | Special | 75 | 100% | 10 | 3 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Flare Blitz | Fire | Physical | 120 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)
@@ -148,6 +156,7 @@ Breed a Eevee (passed down to Eevee, which then evolves) with a father that know
 | Curse | ??? | Status | — | — | 10 |
 | Tickle | Normal | Status | — | 100% | 20 |
 | Wish | Normal | Status | — | — | 10 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 |
 
 ---
 

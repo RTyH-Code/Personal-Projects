@@ -131,6 +131,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 

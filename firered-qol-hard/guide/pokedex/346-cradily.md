@@ -76,6 +76,7 @@ Height 1.5 m (4′11″) · Weight 60.4 kg (133.2 lbs)
 | 12 | Ingrain | Grass | Status | — | — | 20 |
 | 16 | Ancient Power | Rock | Special | 60 | 100% | 5 |
 | 20 | Mega Drain ★ | Grass | Special | 40 | 100% | 15 |
+| 24 | Brine ★ | Water | Special | 65 | 100% | 10 |
 | 28 | Amnesia | Psychic | Status | — | — | 20 |
 | 36 | Giga Drain ★ | Grass | Special | 75 | 100% | 10 |
 | 43 | Stockpile | Normal | Status | — | — | 20 |
@@ -125,6 +126,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |

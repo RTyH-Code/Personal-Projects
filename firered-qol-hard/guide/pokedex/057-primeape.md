@@ -79,6 +79,7 @@ Height 1 m (3′03″) · Weight 32 kg (70.5 lbs)
 | 17 | Swagger | Normal | Status | — | 85% | 15 |
 | 22 | Cross Chop | Fighting | Physical | 100 | 80% | 5 |
 | 30 | Thrash | Normal | Physical | 120 | 100% | 10 |
+| 39 | Close Combat ★ | Fighting | Physical | 120 | 100% | 5 |
 | 44 | Screech | Normal | Status | — | 85% | 40 |
 | 53 | Outrage ★ | Dragon | Physical | 120 | 100% | 10 |
 
@@ -136,15 +137,20 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Dual Chop | Dragon | Physical | 40 | 90% | 15 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
@@ -166,6 +172,7 @@ Breed a Mankey (passed down to Mankey, which then evolves) with a father that kn
 | Revenge | Fighting | Physical | 60 | 100% | 10 |
 | Smelling Salt | Normal | Physical | 70 | 100% | 10 |
 | Night Slash | Dark | Physical | 70 | 100% | 15 |
+| Close Combat | Fighting | Physical | 120 | 100% | 5 |
 
 ---
 

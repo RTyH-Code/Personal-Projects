@@ -125,6 +125,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
@@ -132,6 +133,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 | Draco Meteor | Dragon | Special | 130 | 90% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Hurricane | Flying | Special | 110 | 70% | 10 | 5 |
 
 ### By breeding (egg moves)
 

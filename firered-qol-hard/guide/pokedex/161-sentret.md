@@ -78,6 +78,7 @@ Height 0.8 m (2′07″) · Weight 6 kg (13.2 lbs)
 | 19 | Follow Me | Normal | Status | — | — | 20 |
 | 25 | Slam | Normal | Physical | 80 | 75% | 20 |
 | 28 | Rest | Psychic | Status | — | — | 5 |
+| 31 | Sucker Punch ★ | Dark | Physical | 70 | 100% | 5 |
 | 36 | Amnesia | Psychic | Status | — | — | 20 |
 | 39 | Baton Pass ★ | Normal | Status | — | — | 40 |
 | 42 | Double-Edge ★ | Normal | Physical | 120 | 100% | 15 |
@@ -129,10 +130,15 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 

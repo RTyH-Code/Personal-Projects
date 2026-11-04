@@ -74,13 +74,16 @@ Sudowoodo does not evolve.
 | 1 | Fake Tears ★ | Dark | Status | — | 100% | 20 |
 | 1 | Stone Edge ★ | Rock | Physical | 100 | 80% | 5 |
 | 1 | Wood Hammer ★ | Grass | Physical | 120 | 100% | 15 |
+| 1 | Hammer Arm ★ | Fighting | Physical | 100 | 90% | 10 |
 | 12 | Block | Normal | Status | — | 100% | 5 |
 | 16 | Mimic | Normal | Status | — | 100% | 10 |
 | 20 | Rock Tomb ★ | Rock | Physical | 60 | 95% | 15 |
+| 28 | Sucker Punch ★ | Dark | Physical | 70 | 100% | 5 |
 | 32 | Rock Slide | Rock | Physical | 75 | 90% | 10 |
 | 36 | Low Kick | Fighting | Physical | varies | 100% | 20 |
 | 40 | Counter ★ | Fighting | Physical | varies | 100% | 20 |
 | 44 | Double-Edge | Normal | Physical | 120 | 100% | 15 |
+| 48 | Head Smash ★ | Rock | Physical | 150 | 80% | 5 |
 
 ### By TM/HM
 
@@ -135,9 +138,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
 | Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 

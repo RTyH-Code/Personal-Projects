@@ -137,13 +137,16 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
 | Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
 | Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Mystical Fire | Fire | Special | 75 | 100% | 10 | 3 |
+| Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |

@@ -133,11 +133,14 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
 | Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |

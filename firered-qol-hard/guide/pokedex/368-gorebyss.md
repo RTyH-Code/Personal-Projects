@@ -78,6 +78,7 @@ Height 1.8 m (5′11″) · Weight 22.6 kg (49.8 lbs)
 | 29 | Baton Pass | Normal | Status | — | — | 40 |
 | 34 | Psychic | Psychic | Special | 90 | 100% | 10 |
 | 39 | Aqua Tail ★ | Water | Physical | 90 | 90% | 10 |
+| 45 | Coil ★ | Poison | Status | — | — | 20 |
 | 50 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 
 ### By TM/HM
@@ -122,6 +123,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
@@ -138,6 +140,7 @@ Breed a Clamperl (passed down to Clamperl, which then evolves) with a father tha
 | Supersonic | Normal | Status | — | 55% | 20 |
 | Barrier | Psychic | Status | — | — | 20 |
 | Confuse Ray | Ghost | Status | — | 100% | 10 |
+| Brine | Water | Special | 65 | 100% | 10 |
 
 ---
 

@@ -78,7 +78,9 @@ Height 0.7 m (2′04″) · Weight 16.8 kg (37.0 lbs)
 | 15 | Ice Shard ★ | Ice | Physical | 40 | 100% | 30 |
 | 20 | Protect | Normal | Status | — | — | 10 |
 | 25 | Icy Wind | Ice | Special | 55 | 95% | 15 |
+| 30 | Frost Breath ★ | Ice | Special | 60 | 90% | 10 |
 | 35 | Bite | Dark | Physical | 60 | 100% | 25 |
+| 40 | Ice Fang ★ | Ice | Physical | 65 | 95% | 15 |
 | 50 | Weather Ball ★ | Normal | Special | 50 | 100% | 10 |
 | 55 | Crunch | Dark | Physical | 80 | 100% | 15 |
 | 60 | Blizzard | Ice | Special | 110 | 70% | 5 |
@@ -123,6 +125,10 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Frost Breath | Ice | Special | 60 | 90% | 10 | 0 |
+| Hex | Ghost | Special | 65 | 100% | 10 | 0 |
+| Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 
 ### By breeding (egg moves)
 
@@ -134,6 +140,7 @@ Breed a Snorunt with a father that knows the move.
 | Spikes | Ground | Status | — | — | 20 |
 | Icicle Crash | Ice | Physical | 85 | 90% | 10 |
 | Avalanche | Ice | Physical | 60 | 100% | 10 |
+| Hex | Ghost | Special | 65 | 100% | 10 |
 
 ---
 

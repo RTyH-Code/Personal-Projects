@@ -82,6 +82,7 @@ Relicanth does not evolve.
 | 40 | Flail ★ | Normal | Physical | varies | 100% | 15 |
 | 45 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 | 50 | Double-Edge | Normal | Physical | 120 | 100% | 15 |
+| 55 | Head Smash ★ | Rock | Physical | 150 | 80% | 5 |
 
 ### By TM/HM
 
@@ -129,8 +130,10 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
@@ -153,6 +156,7 @@ Breed a Relicanth with a father that knows the move.
 | Rock Slide | Rock | Physical | 75 | 90% | 10 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 |
+| Brine | Water | Special | 65 | 100% | 10 |
 
 ---
 

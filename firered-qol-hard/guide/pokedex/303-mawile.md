@@ -78,6 +78,7 @@ Mawile does not evolve.
 | 16 | Stockpile | Normal | Status | — | — | 20 |
 | 16 | Spit Up | Normal | Special | varies | 100% | 10 |
 | 16 | Swallow | Normal | Status | — | — | 10 |
+| 20 | Sucker Punch ★ | Dark | Physical | 70 | 100% | 5 |
 | 24 | Iron Defense | Steel | Status | — | — | 15 |
 | 28 | Crunch | Dark | Physical | 80 | 100% | 15 |
 | 32 | Sweet Scent | Normal | Status | — | 100% | 20 |
@@ -138,14 +139,21 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
+| Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
@@ -163,6 +171,9 @@ Breed a Mawile with a father that knows the move.
 | Ancient Power | Rock | Special | 60 | 100% | 5 |
 | Tickle | Normal | Status | — | 100% | 20 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 |
+| Fire Fang | Fire | Physical | 65 | 95% | 15 |
+| Ice Fang | Ice | Physical | 65 | 95% | 15 |
+| Thunder Fang | Electric | Physical | 65 | 95% | 15 |
 
 ---
 

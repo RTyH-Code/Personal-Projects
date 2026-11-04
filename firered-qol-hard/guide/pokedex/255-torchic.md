@@ -72,6 +72,7 @@ Height 0.4 m (1′04″) · Weight 2.5 kg (5.5 lbs)
 | 1 | Growl | Normal | Status | — | 100% | 40 |
 | 3 | Ember | Fire | Special | 40 | 100% | 25 |
 | 6 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
+| 9 | Flame Charge ★ | Fire | Physical | 50 | 100% | 20 |
 | 12 | Detect ★ | Fighting | Status | — | — | 5 |
 | 15 | Sand Attack | Ground | Status | — | 100% | 15 |
 | 18 | Aerial Ace ★ | Flying | Physical | 60 | — | 20 |
@@ -81,6 +82,7 @@ Height 0.4 m (1′04″) · Weight 2.5 kg (5.5 lbs)
 | 30 | Flamethrower | Fire | Special | 90 | 100% | 15 |
 | 33 | Feather Dance ★ | Flying | Status | — | 100% | 15 |
 | 36 | Reversal ★ | Fighting | Physical | varies | 100% | 15 |
+| 39 | Flare Blitz ★ | Fire | Physical | 120 | 100% | 15 |
 
 ### By TM/HM
 
@@ -128,7 +130,11 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Flare Blitz | Fire | Physical | 120 | 100% | 15 | 5 |
 
 ### By breeding (egg moves)
 

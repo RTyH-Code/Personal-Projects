@@ -75,10 +75,13 @@ Height 1.4 m (4′07″) · Weight 48 kg (105.8 lbs)
 | 1 | Fake Out ★ | Normal | Physical | 40 | 100% | 10 |
 | 1 | Helping Hand ★ | Normal | Status | — | — | 20 |
 | 4 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
+| 8 | Gyro Ball ★ | Steel | Physical | varies | 100% | 5 |
 | 12 | Detect | Fighting | Status | — | — | 5 |
 | 16 | Rapid Spin | Normal | Physical | 50 | 100% | 40 |
+| 24 | Sucker Punch ★ | Dark | Physical | 70 | 100% | 5 |
 | 28 | Agility | Psychic | Status | — | — | 30 |
 | 32 | Dig ★ | Ground | Physical | 80 | 100% | 10 |
+| 36 | Close Combat ★ | Fighting | Physical | 120 | 100% | 5 |
 | 40 | Counter | Fighting | Physical | varies | 100% | 20 |
 | 44 | Endeavor | Normal | Physical | varies | 100% | 5 |
 
@@ -127,9 +130,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
+| Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |

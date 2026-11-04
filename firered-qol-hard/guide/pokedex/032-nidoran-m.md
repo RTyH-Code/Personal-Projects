@@ -132,10 +132,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
 | Smart Strike | Steel | Physical | 70 | — | 10 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
@@ -151,6 +154,8 @@ Breed a Nidoran♂ with a father that knows the move.
 | Amnesia | Psychic | Status | — | — | 20 |
 | Confusion | Psychic | Special | 50 | 100% | 25 |
 | Beat Up | Dark | Physical | 10 | 100% | 10 |
+| Head Smash | Rock | Physical | 150 | 80% | 5 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 |
 
 ---
 

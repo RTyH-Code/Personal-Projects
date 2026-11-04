@@ -75,8 +75,10 @@ Height 0.6 m (2′00″) · Weight 7.2 kg (15.9 lbs)
 | 20 | Rollout ★ | Rock | Physical | 30 | 90% | 20 |
 | 23 | Curse ★ | ??? | Status | — | — | 10 |
 | 28 | Spikes | Ground | Status | — | — | 20 |
+| 31 | Payback ★ | Dark | Physical | 50 | 100% | 10 |
 | 34 | Explosion | Normal | Physical | 250 | 100% | 5 |
 | 39 | Iron Defense ★ | Steel | Status | — | — | 15 |
+| 42 | Gyro Ball ★ | Steel | Physical | varies | 100% | 5 |
 | 45 | Double-Edge | Normal | Physical | 120 | 100% | 15 |
 
 ### By TM/HM
@@ -123,7 +125,10 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
 | Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |

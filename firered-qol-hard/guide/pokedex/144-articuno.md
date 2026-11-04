@@ -75,7 +75,9 @@ Articuno does not evolve.
 | 15 | Ice Shard ★ | Ice | Physical | 40 | 100% | 30 |
 | 20 | Agility | Psychic | Status | — | — | 30 |
 | 25 | Ancient Power ★ | Rock | Special | 60 | 100% | 5 |
+| 35 | Freeze Dry ★ | Ice | Special | 70 | 100% | 20 |
 | 45 | Ice Beam | Ice | Special | 90 | 100% | 10 |
+| 55 | Hurricane ★ | Flying | Special | 110 | 70% | 10 |
 | 60 | Haze ★ | Ice | Status | — | — | 30 |
 | 65 | Blizzard | Ice | Special | 110 | 70% | 5 |
 | 70 | Sheer Cold | Ice | Special | varies | 30% | 5 |
@@ -124,10 +126,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Frost Breath | Ice | Special | 60 | 90% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Hurricane | Flying | Special | 110 | 70% | 10 | 5 |
 
 ---
 

@@ -78,6 +78,7 @@ Height 1.3 m (4′03″) · Weight 40 kg (88.2 lbs)
 | 1 | Sweet Kiss ★ | Fairy | Status | — | 75% | 10 |
 | 1 | Disarming Voice ★ | Fairy | Special | 40 | — | 15 |
 | 1 | Moonblast ★ | Fairy | Special | 95 | 100% | 15 |
+| 1 | Stored Power ★ | Psychic | Special | 20 | 100% | 10 |
 | 11 | Encore ★ | Normal | Status | — | 100% | 5 |
 | 23 | Metronome | Normal | Status | — | — | 10 |
 | 28 | Moonlight ★ | Fairy | Status | — | — | 5 |
@@ -148,14 +149,18 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
 | Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
 | Mystical Fire | Fire | Special | 75 | 100% | 10 | 3 |
+| Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
@@ -175,6 +180,7 @@ Breed a Cleffa (passed down to Cleffa, which then evolves) with a father that kn
 | Mimic | Normal | Status | — | 100% | 10 |
 | Wish | Normal | Status | — | — | 10 |
 | Substitute | Normal | Status | — | — | 10 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 |
 
 ---
 

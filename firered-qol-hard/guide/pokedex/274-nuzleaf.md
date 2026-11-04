@@ -83,9 +83,11 @@ Height 1 m (3′03″) · Weight 28 kg (61.7 lbs)
 | 9 | Growth | Normal | Status | — | — | 20 |
 | 12 | Rollout ★ | Rock | Physical | 30 | 90% | 20 |
 | 18 | Mega Drain ★ | Grass | Special | 40 | 100% | 15 |
+| 24 | Payback ★ | Dark | Physical | 50 | 100% | 10 |
 | 30 | Synthesis ★ | Grass | Status | — | — | 5 |
 | 36 | Sunny Day ★ | Fire | Status | — | — | 5 |
 | 43 | Extrasensory | Psychic | Special | 80 | 100% | 20 |
+| 50 | Sucker Punch ★ | Dark | Physical | 70 | 100% | 5 |
 | 57 | Leaf Blade ★ | Grass | Physical | 90 | 100% | 15 |
 
 ### By TM/HM
@@ -138,12 +140,15 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)
@@ -160,6 +165,7 @@ Breed a Seedot (passed down to Seedot, which then evolves) with a father that kn
 | False Swipe | Normal | Physical | 40 | 100% | 40 |
 | Night Slash | Dark | Physical | 70 | 100% | 15 |
 | Nasty Plot | Dark | Status | — | — | 20 |
+| Foul Play | Dark | Physical | 95 | 100% | 15 |
 
 ---
 

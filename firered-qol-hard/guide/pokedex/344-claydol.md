@@ -132,12 +132,18 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
+| Hex | Ghost | Special | 65 | 100% | 10 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |

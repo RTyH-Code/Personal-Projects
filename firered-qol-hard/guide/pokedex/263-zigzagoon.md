@@ -128,7 +128,10 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
 

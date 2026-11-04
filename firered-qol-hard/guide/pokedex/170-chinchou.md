@@ -76,6 +76,7 @@ Height 0.5 m (1′08″) · Weight 12 kg (26.5 lbs)
 |--:|---|---|---|--:|--:|--:|
 | 1 | Supersonic | Normal | Status | — | 55% | 20 |
 | 1 | Water Gun | Water | Special | 40 | 100% | 25 |
+| 4 | Electro Ball ★ | Electric | Special | varies | 100% | 10 |
 | 8 | Thunder Wave | Electric | Status | — | 90% | 20 |
 | 12 | Bubble Beam ★ | Water | Special | 65 | 100% | 20 |
 | 16 | Confuse Ray | Ghost | Status | — | 100% | 10 |
@@ -128,11 +129,15 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
 | Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Electro Ball | Electric | Special | varies | 100% | 10 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 
 ### By breeding (egg moves)
@@ -144,6 +149,8 @@ Breed a Chinchou with a father that knows the move.
 | Flail | Normal | Physical | varies | 100% | 15 |
 | Screech | Normal | Status | — | 85% | 40 |
 | Amnesia | Psychic | Status | — | — | 20 |
+| Brine | Water | Special | 65 | 100% | 10 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 |
 
 ---
 

@@ -68,6 +68,7 @@ Registeel does not evolve.
 | Lv | Move | Type | Cat. | Power | Acc. | PP |
 |--:|---|---|---|--:|--:|--:|
 | 1 | Metal Claw | Steel | Physical | 50 | 95% | 35 |
+| 1 | Charge Beam ★ | Electric | Special | 50 | 90% | 10 |
 | 6 | Bulldoze ★ | Ground | Physical | 60 | 100% | 20 |
 | 12 | Ancient Power | Rock | Special | 60 | 100% | 5 |
 | 18 | Stomp ★ | Normal | Physical | 65 | 100% | 20 |
@@ -76,6 +77,8 @@ Registeel does not evolve.
 | 30 | Curse | ??? | Status | — | — | 10 |
 | 36 | Amnesia | Psychic | Status | — | — | 20 |
 | 36 | Iron Defense | Steel | Status | — | — | 15 |
+| 42 | Hammer Arm ★ | Fighting | Physical | 100 | 90% | 10 |
+| 48 | Heavy Slam ★ | Steel | Physical | varies | 100% | 10 |
 | 54 | Superpower | Fighting | Physical | 120 | 100% | 5 |
 | 60 | Lock-On | Normal | Status | — | 100% | 5 |
 | 66 | Zap Cannon | Electric | Special | 120 | 50% | 5 |
@@ -134,8 +137,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |

@@ -84,6 +84,7 @@ Height 1.4 m (4′07″) · Weight 50.2 kg (110.7 lbs)
 | 24 | Thunder Punch | Electric | Physical | 75 | 100% | 15 |
 | 28 | Agility | Psychic | Status | — | — | 30 |
 | 32 | Mega Punch | Normal | Physical | 80 | 85% | 20 |
+| 36 | Close Combat ★ | Fighting | Physical | 120 | 100% | 5 |
 | 40 | Counter | Fighting | Physical | varies | 100% | 20 |
 | 44 | Focus Punch ★ | Fighting | Physical | 150 | 100% | 20 |
 
@@ -136,10 +137,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |

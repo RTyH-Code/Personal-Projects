@@ -74,6 +74,7 @@ Height 1.2 m (3′11″) · Weight 31.6 kg (69.7 lbs)
 | 12 | Confusion | Psychic | Special | 50 | 100% | 25 |
 | 15 | Poison Powder ★ | Poison | Status | — | 75% | 35 |
 | 17 | Moonlight | Fairy | Status | — | — | 5 |
+| 20 | Venoshock ★ | Poison | Special | 65 | 100% | 10 |
 | 22 | Psybeam | Psychic | Special | 65 | 100% | 20 |
 | 25 | Silver Wind | Bug | Special | 60 | 100% | 5 |
 | 27 | Light Screen | Psychic | Status | — | — | 30 |
@@ -81,6 +82,7 @@ Height 1.2 m (3′11″) · Weight 31.6 kg (69.7 lbs)
 | 32 | Toxic | Poison | Status | — | 90% | 10 |
 | 35 | Bug Buzz ★ | Bug | Special | 90 | 100% | 10 |
 | 37 | Protect | Normal | Status | — | — | 10 |
+| 40 | Quiver Dance ★ | Bug | Status | — | — | 20 |
 
 ### By TM/HM
 
@@ -122,9 +124,11 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 

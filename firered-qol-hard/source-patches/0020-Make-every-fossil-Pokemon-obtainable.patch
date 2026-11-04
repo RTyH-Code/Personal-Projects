@@ -1,7 +1,7 @@
 From e838cec773c7ef37fb32be059918224d0e174fbc Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Sun, 1 Nov 2026 14:56:27 +0000
-Subject: [PATCH 20/33] Make every fossil Pokemon obtainable
+Subject: [PATCH 20/34] Make every fossil Pokemon obtainable
 
 - Mt. Moon: Miguel no longer takes the other fossil, so both can be picked up
 - Root and Claw Fossil item balls in Sevault Canyon

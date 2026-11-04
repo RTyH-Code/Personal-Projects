@@ -127,6 +127,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 

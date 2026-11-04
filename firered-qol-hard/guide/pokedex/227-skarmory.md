@@ -79,6 +79,7 @@ Skarmory does not evolve.
 | 20 | Wing Attack ★ | Flying | Physical | 60 | 100% | 35 |
 | 24 | Slash ★ | Normal | Physical | 70 | 100% | 20 |
 | 28 | Steel Wing | Steel | Physical | 70 | 90% | 25 |
+| 32 | Payback ★ | Dark | Physical | 50 | 100% | 10 |
 | 36 | Drill Peck ★ | Flying | Physical | 80 | 100% | 20 |
 | 40 | Metal Sound | Steel | Status | — | 85% | 40 |
 | 44 | Spikes | Ground | Status | — | — | 20 |
@@ -129,7 +130,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
@@ -137,6 +140,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Hurricane | Flying | Special | 110 | 70% | 10 | 5 |
 
 ### By breeding (egg moves)
 

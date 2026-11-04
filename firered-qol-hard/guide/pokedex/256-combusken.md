@@ -75,6 +75,7 @@ Height 0.9 m (2′11″) · Weight 19.5 kg (43.0 lbs)
 | 1 | Flamethrower ★ | Fire | Special | 90 | 100% | 15 |
 | 1 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
 | 1 | Feather Dance ★ | Flying | Status | — | 100% | 15 |
+| 9 | Flame Charge ★ | Fire | Physical | 50 | 100% | 20 |
 | 12 | Detect ★ | Fighting | Status | — | — | 5 |
 | 15 | Sand Attack | Ground | Status | — | 100% | 15 |
 | 20 | Aerial Ace ★ | Flying | Physical | 60 | — | 20 |
@@ -84,6 +85,7 @@ Height 0.9 m (2′11″) · Weight 19.5 kg (43.0 lbs)
 | 40 | Blaze Kick ★ | Fire | Physical | 85 | 90% | 10 |
 | 45 | Bulk Up | Fighting | Status | — | — | 20 |
 | 50 | Reversal ★ | Fighting | Physical | varies | 100% | 15 |
+| 55 | Flare Blitz ★ | Fire | Physical | 120 | 100% | 15 |
 
 ### By TM/HM
 
@@ -135,11 +137,16 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Dual Chop | Dragon | Physical | 40 | 90% | 15 | 0 |
+| Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
+| Flare Blitz | Fire | Physical | 120 | 100% | 15 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 
 ### By breeding (egg moves)

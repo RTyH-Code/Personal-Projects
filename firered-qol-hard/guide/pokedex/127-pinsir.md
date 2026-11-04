@@ -74,6 +74,7 @@ Pinsir does not evolve.
 | 4 | Focus Energy | Normal | Status | — | — | 30 |
 | 8 | Bind | Normal | Physical | 15 | 85% | 20 |
 | 12 | Seismic Toss | Fighting | Physical | varies | 100% | 20 |
+| 20 | Storm Throw ★ | Fighting | Physical | 60 | 100% | 10 |
 | 24 | Double Hit ★ | Normal | Physical | 35 | 90% | 10 |
 | 28 | Vital Throw ★ | Fighting | Physical | 70 | 100% | 10 |
 | 32 | X-Scissor ★ | Bug | Physical | 80 | 100% | 15 |
@@ -132,6 +133,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
 | X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
@@ -147,6 +149,7 @@ Breed a Pinsir with a father that knows the move.
 | Flail | Normal | Physical | varies | 100% | 15 |
 | False Swipe | Normal | Physical | 40 | 100% | 40 |
 | Faint Attack | Dark | Physical | 60 | — | 20 |
+| Close Combat | Fighting | Physical | 120 | 100% | 5 |
 
 ---
 

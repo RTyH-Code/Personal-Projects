@@ -125,6 +125,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 
 ### By breeding (egg moves)
@@ -139,6 +140,7 @@ Breed a Whismur with a father that knows the move.
 | Extrasensory | Psychic | Special | 80 | 100% | 20 |
 | Smelling Salt | Normal | Physical | 70 | 100% | 10 |
 | Disarming Voice | Fairy | Special | 40 | — | 15 |
+| Hammer Arm | Fighting | Physical | 100 | 90% | 10 |
 
 ---
 

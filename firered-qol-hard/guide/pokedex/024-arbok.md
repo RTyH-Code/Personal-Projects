@@ -76,14 +76,19 @@ Height 3.5 m (11′06″) · Weight 65 kg (143.3 lbs)
 | 1 | Leer | Normal | Status | — | 100% | 30 |
 | 1 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 1 | Crunch ★ | Dark | Physical | 80 | 100% | 15 |
+| 1 | Fire Fang ★ | Fire | Physical | 65 | 95% | 15 |
+| 1 | Ice Fang ★ | Ice | Physical | 65 | 95% | 15 |
+| 1 | Thunder Fang ★ | Electric | Physical | 65 | 95% | 15 |
 | 12 | Glare | Normal | Status | — | 100% | 30 |
 | 17 | Screech | Normal | Status | — | 85% | 40 |
 | 20 | Acid | Poison | Special | 40 | 100% | 30 |
 | 27 | Stockpile | Normal | Status | — | — | 20 |
 | 27 | Spit Up | Normal | Special | varies | 100% | 10 |
 | 27 | Swallow | Normal | Status | — | — | 10 |
+| 32 | Acid Spray ★ | Poison | Special | 40 | 100% | 20 |
 | 39 | Sludge Bomb ★ | Poison | Special | 90 | 100% | 10 |
 | 51 | Haze | Ice | Status | — | — | 30 |
+| 56 | Coil ★ | Poison | Status | — | — | 20 |
 | 63 | Gunk Shot ★ | Poison | Physical | 120 | 80% | 5 |
 
 ### By TM/HM
@@ -129,9 +134,16 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acid Spray | Poison | Special | 40 | 100% | 20 | 0 |
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
+| Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
@@ -151,6 +163,7 @@ Breed a Ekans (passed down to Ekans, which then evolves) with a father that know
 | Spite | Ghost | Status | — | 100% | 10 |
 | Beat Up | Dark | Physical | 10 | 100% | 10 |
 | Poison Fang | Poison | Physical | 50 | 100% | 15 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 |
 
 ---
 

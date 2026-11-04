@@ -71,6 +71,7 @@ Chimecho does not evolve.
 | 1 | Confusion | Psychic | Special | 50 | 100% | 25 |
 | 1 | Astonish | Ghost | Physical | 30 | 100% | 15 |
 | 13 | Yawn | Normal | Status | — | 100% | 10 |
+| 16 | Stored Power ★ | Psychic | Special | 20 | 100% | 10 |
 | 19 | Take Down | Normal | Physical | 90 | 85% | 20 |
 | 22 | Extrasensory ★ | Psychic | Special | 80 | 100% | 20 |
 | 27 | Heal Bell | Normal | Status | — | — | 5 |
@@ -122,11 +123,14 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
 | Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 
@@ -140,6 +144,7 @@ Breed a Chimecho with a father that knows the move.
 | Curse | ??? | Status | — | — | 10 |
 | Hypnosis | Psychic | Status | — | 60% | 20 |
 | Dream Eater | Psychic | Special | 100 | 100% | 15 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 |
 
 ---
 

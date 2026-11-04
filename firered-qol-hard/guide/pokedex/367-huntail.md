@@ -73,10 +73,14 @@ Height 1.7 m (5′07″) · Weight 27 kg (59.5 lbs)
 | 9 | Scary Face | Normal | Status | — | 100% | 10 |
 | 11 | Faint Attack ★ | Dark | Physical | 60 | — | 20 |
 | 14 | Water Pulse | Water | Special | 60 | 100% | 20 |
+| 16 | Ice Fang ★ | Ice | Physical | 65 | 95% | 15 |
+| 19 | Brine ★ | Water | Special | 65 | 100% | 10 |
+| 23 | Sucker Punch ★ | Dark | Physical | 70 | 100% | 5 |
 | 26 | Dive ★ | Water | Physical | 80 | 100% | 10 |
 | 29 | Baton Pass | Normal | Status | — | — | 40 |
 | 34 | Crunch | Dark | Physical | 80 | 100% | 15 |
 | 39 | Aqua Tail ★ | Water | Physical | 90 | 90% | 10 |
+| 45 | Coil ★ | Poison | Status | — | — | 20 |
 | 50 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 
 ### By TM/HM
@@ -120,7 +124,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
@@ -136,6 +142,7 @@ Breed a Clamperl (passed down to Clamperl, which then evolves) with a father tha
 | Supersonic | Normal | Status | — | 55% | 20 |
 | Barrier | Psychic | Status | — | — | 20 |
 | Confuse Ray | Ghost | Status | — | 100% | 10 |
+| Brine | Water | Special | 65 | 100% | 10 |
 
 ---
 

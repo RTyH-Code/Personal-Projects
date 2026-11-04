@@ -125,6 +125,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
@@ -142,6 +144,7 @@ Breed a Remoraid with a father that knows the move.
 | Screech | Normal | Status | — | 85% | 40 |
 | Thunder Wave | Electric | Status | — | 90% | 20 |
 | Rock Blast | Rock | Physical | 25 | 90% | 10 |
+| Acid Spray | Poison | Special | 40 | 100% | 20 |
 
 ---
 

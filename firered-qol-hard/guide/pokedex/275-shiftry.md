@@ -82,6 +82,9 @@ Height 1.3 m (4′03″) · Weight 59.6 kg (131.4 lbs)
 | 1 | Tackle ★ | Normal | Physical | 40 | 100% | 35 |
 | 1 | Torment ★ | Dark | Status | — | 100% | 15 |
 | 1 | Whirlwind ★ | Normal | Status | — | 100% | 20 |
+| 1 | Payback ★ | Dark | Physical | 50 | 100% | 10 |
+| 1 | Hurricane ★ | Flying | Special | 110 | 70% | 10 |
+| 1 | Sucker Punch ★ | Dark | Physical | 70 | 100% | 5 |
 | 12 | Growth | Normal | Status | — | — | 20 |
 | 15 | Rollout ★ | Rock | Physical | 30 | 90% | 20 |
 | 21 | Mega Drain ★ | Grass | Special | 40 | 100% | 15 |
@@ -140,19 +143,25 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Hex | Ghost | Special | 65 | 100% | 10 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Hurricane | Flying | Special | 110 | 70% | 10 | 5 |
 | Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
 | Petal Blizzard | Grass | Physical | 90 | 100% | 15 | 5 |
 
@@ -170,6 +179,7 @@ Breed a Seedot (passed down to Seedot, which then evolves) with a father that kn
 | False Swipe | Normal | Physical | 40 | 100% | 40 |
 | Night Slash | Dark | Physical | 70 | 100% | 15 |
 | Nasty Plot | Dark | Status | — | — | 20 |
+| Foul Play | Dark | Physical | 95 | 100% | 15 |
 
 ---
 

@@ -79,6 +79,7 @@ Lapras does not evolve.
 | 20 | Ice Shard ★ | Ice | Physical | 40 | 100% | 30 |
 | 25 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | 30 | Water Pulse ★ | Water | Special | 60 | 100% | 20 |
+| 35 | Brine ★ | Water | Special | 65 | 100% | 10 |
 | 40 | Body Slam | Normal | Physical | 85 | 100% | 15 |
 | 45 | Ice Beam | Ice | Special | 90 | 100% | 10 |
 | 50 | Rain Dance | Water | Status | — | — | 5 |
@@ -136,8 +137,11 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
+| Frost Breath | Ice | Special | 60 | 90% | 10 | 0 |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |

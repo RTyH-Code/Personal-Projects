@@ -71,6 +71,7 @@ Height 1.2 m (3′11″) · Weight 152 kg (335.1 lbs)
 | 1 | Leer | Normal | Status | — | 100% | 30 |
 | 1 | Rock Throw ★ | Rock | Physical | 50 | 90% | 15 |
 | 1 | Iron Defense ★ | Steel | Status | — | — | 15 |
+| 1 | Payback ★ | Dark | Physical | 50 | 100% | 10 |
 | 9 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 12 | Scary Face | Normal | Status | — | 100% | 10 |
 | 15 | Rock Slide | Rock | Physical | 75 | 90% | 10 |
@@ -124,6 +125,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |

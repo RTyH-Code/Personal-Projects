@@ -76,6 +76,7 @@ Castform does not evolve.
 | 35 | Hydro Pump ★ | Water | Special | 110 | 80% | 5 |
 | 35 | Blizzard ★ | Ice | Special | 110 | 70% | 5 |
 | 35 | Fire Blast ★ | Fire | Special | 110 | 85% | 5 |
+| 45 | Hurricane ★ | Flying | Special | 110 | 70% | 10 |
 
 ### By TM/HM
 
@@ -126,6 +127,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 
@@ -138,6 +140,7 @@ Breed a Castform with a father that knows the move.
 | Future Sight | Psychic | Special | 120 | 100% | 10 |
 | Psych Up | Normal | Status | — | — | 10 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 |
+| Hex | Ghost | Special | 65 | 100% | 10 |
 
 ---
 

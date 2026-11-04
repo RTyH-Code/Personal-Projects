@@ -71,6 +71,7 @@ Height 1.3 m (4′03″) · Weight 31.5 kg (69.4 lbs)
 | 1 | Thunder Punch | Electric | Physical | 75 | 100% | 15 |
 | 1 | Confusion | Psychic | Special | 50 | 100% | 25 |
 | 1 | Detect | Fighting | Status | — | — | 5 |
+| 1 | Work Up ★ | Normal | Status | — | — | 30 |
 | 12 | Endure ★ | Normal | Status | — | — | 10 |
 | 17 | Force Palm ★ | Fighting | Physical | 60 | 100% | 10 |
 | 20 | Psybeam ★ | Psychic | Special | 65 | 100% | 20 |
@@ -136,11 +137,16 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
