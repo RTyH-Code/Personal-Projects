@@ -11,6 +11,9 @@ Height 1.3 m (4′03″) · Weight 31.5 kg (69.4 lbs)
 ## Abilities
 
 - **Pure Power**: Raises Attack.
+- **Telepathy** *(hidden ability)*: Dodges allies' attacks.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

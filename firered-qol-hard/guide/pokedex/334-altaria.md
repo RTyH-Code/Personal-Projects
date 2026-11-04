@@ -11,6 +11,9 @@ Height 1.1 m (3′07″) · Weight 20.6 kg (45.4 lbs)
 ## Abilities
 
 - **Natural Cure**: Heals upon switching out.
+- **Cloud Nine** *(hidden ability)*: Negates weather effects.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

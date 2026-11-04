@@ -11,6 +11,10 @@ Height 0.8 m (2′07″) · Weight 8.5 kg (18.7 lbs)
 ## Abilities
 
 - **Chlorophyll**: Raises Speed in sunshine.
+- **Solar Power**: Ups Sp. Atk in sun, hurts.
+- **Early Bird** *(hidden ability)*: Awakens quickly from sleep.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

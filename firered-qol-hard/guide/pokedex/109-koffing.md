@@ -11,6 +11,9 @@ Height 0.6 m (2′00″) · Weight 1 kg (2.2 lbs)
 ## Abilities
 
 - **Levitate**: Not hit by Ground attacks.
+- **Stench** *(hidden ability)*: Helps repel wild Pokémon.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 
@@ -33,7 +36,7 @@ Height 0.6 m (2′00″) · Weight 1 kg (2.2 lbs)
 | 2× | Ground, Psychic |
 | ½× | Fighting, Poison, Bug, Grass, Fairy |
 
-*Its ability Levitate: immune to Ground moves.*
+*With Levitate: immune to Ground moves.*
 
 ## Training and breeding
 

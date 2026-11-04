@@ -11,6 +11,9 @@ Height 1.2 m (3′11″) · Weight 202.5 kg (446.4 lbs)
 ## Abilities
 
 - **Clear Body**: Prevents ability reduction.
+- **Light Metal** *(hidden ability)*: Halves its weight.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

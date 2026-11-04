@@ -11,6 +11,9 @@ Height 1.5 m (4′11″) · Weight 56 kg (123.5 lbs)
 ## Abilities
 
 - **Swarm**: Ups Bug moves in a pinch.
+- **Technician**: Powers up weak moves.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

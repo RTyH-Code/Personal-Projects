@@ -11,6 +11,10 @@ Height 0.3 m (1′00″) · Weight 3 kg (6.6 lbs)
 ## Abilities
 
 - **Cute Charm**: Infatuates on contact.
+- **Magic Guard**: Only hurt by attacks.
+- **Friend Guard** *(hidden ability)*: Reduces damage to allies.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

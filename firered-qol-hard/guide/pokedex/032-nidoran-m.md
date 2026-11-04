@@ -11,6 +11,10 @@ Height 0.5 m (1′08″) · Weight 9 kg (19.8 lbs)
 ## Abilities
 
 - **Poison Point**: Poisons foe on contact.
+- **Rivalry**: Strong vs. the same gender.
+- **Hustle** *(hidden ability)*: Trades accuracy for power.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

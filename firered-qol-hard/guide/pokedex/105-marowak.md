@@ -12,8 +12,9 @@ Height 1 m (3′03″) · Weight 45 kg (99.2 lbs)
 
 - **Rock Head**: Prevents recoil damage.
 - **Lightning Rod**: Draws electrical moves.
+- **Battle Armor** *(hidden ability)*: Blocks critical hits.
 
-*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

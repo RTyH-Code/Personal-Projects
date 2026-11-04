@@ -11,6 +11,10 @@ Height 1.4 m (4′07″) · Weight 50.2 kg (110.7 lbs)
 ## Abilities
 
 - **Keen Eye**: Prevents loss of accuracy.
+- **Iron Fist**: Powers up punches.
+- **Inner Focus** *(hidden ability)*: Prevents flinching.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

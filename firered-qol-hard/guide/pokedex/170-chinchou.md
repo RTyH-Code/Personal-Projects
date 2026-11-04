@@ -12,8 +12,9 @@ Height 0.5 m (1′08″) · Weight 12 kg (26.5 lbs)
 
 - **Volt Absorb**: Turns electricity into HP.
 - **Illuminate**: Encounter rate increases.
+- **Water Absorb** *(hidden ability)*: Changes water into HP.
 
-*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 
@@ -38,6 +39,8 @@ Height 0.5 m (1′08″) · Weight 12 kg (26.5 lbs)
 | ¼× | Steel |
 
 *With Volt Absorb: Electric moves heal it instead.*
+
+*With Water Absorb: Water moves heal it instead.*
 
 ## Training and breeding
 

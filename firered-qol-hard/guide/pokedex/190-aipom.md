@@ -12,8 +12,9 @@ Height 0.8 m (2′07″) · Weight 11.5 kg (25.4 lbs)
 
 - **Run Away**: Makes escaping easier.
 - **Pickup**: May pick up items.
+- **Skill Link** *(hidden ability)*: Multi-hit moves hit 5 times.
 
-*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

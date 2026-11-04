@@ -13,7 +13,7 @@ Height 0.7 m (2′04″) · Weight 17.7 kg (39.0 lbs)
 - **Illuminate**: Encounter rate increases.
 - **Swarm**: Ups Bug moves in a pinch.
 
-*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

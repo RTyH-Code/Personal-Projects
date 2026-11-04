@@ -11,6 +11,10 @@ Height 1.2 m (3′11″) · Weight 28 kg (61.7 lbs)
 ## Abilities
 
 - **Keen Eye**: Prevents loss of accuracy.
+- **Drizzle**: Summons rain in battle.
+- **Rain Dish** *(hidden ability)*: Slight HP recovery in rain.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

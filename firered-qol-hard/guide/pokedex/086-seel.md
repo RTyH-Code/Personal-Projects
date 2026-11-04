@@ -11,6 +11,10 @@ Height 1.1 m (3′07″) · Weight 90 kg (198.4 lbs)
 ## Abilities
 
 - **Thick Fat**: Heat-and-cold protection.
+- **Hydration**: Heals status in rain.
+- **Ice Body** *(hidden ability)*: Slight HP recovery in hail.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 
@@ -33,7 +37,7 @@ Height 1.1 m (3′07″) · Weight 90 kg (198.4 lbs)
 | 2× | Grass, Electric |
 | ½× | Steel, Fire, Water, Ice |
 
-*Its ability Thick Fat: Fire and Ice moves do half damage.*
+*With Thick Fat: Fire and Ice moves do half damage.*
 
 ## Training and breeding
 

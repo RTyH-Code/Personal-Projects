@@ -11,6 +11,9 @@ Height 1 m (3′03″) · Weight 32 kg (70.5 lbs)
 ## Abilities
 
 - **Limber**: Prevents paralysis.
+- **Technician**: Powers up weak moves.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

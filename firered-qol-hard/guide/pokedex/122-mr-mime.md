@@ -11,6 +11,10 @@ Height 1.3 m (4′03″) · Weight 54.5 kg (120.2 lbs)
 ## Abilities
 
 - **Soundproof**: Avoids sound-based moves.
+- **Filter**: Weakens super effective hits.
+- **Technician** *(hidden ability)*: Powers up weak moves.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 
@@ -34,6 +38,8 @@ Height 1.3 m (4′03″) · Weight 54.5 kg (120.2 lbs)
 | ½× | Psychic |
 | ¼× | Fighting |
 | 0× (immune) | Dragon |
+
+*With Filter: super-effective moves do 25% less.*
 
 ## Training and breeding
 

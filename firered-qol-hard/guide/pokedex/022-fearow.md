@@ -11,6 +11,9 @@ Height 1.2 m (3′11″) · Weight 38 kg (83.8 lbs)
 ## Abilities
 
 - **Keen Eye**: Prevents loss of accuracy.
+- **Sniper** *(hidden ability)*: Powers up critical hits.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

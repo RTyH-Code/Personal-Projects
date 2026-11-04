@@ -11,6 +11,10 @@ Height 0.3 m (1′00″) · Weight 1.8 kg (4.0 lbs)
 ## Abilities
 
 - **Keen Eye**: Prevents loss of accuracy.
+- **Tangled Feet**: Ups evasion if confused.
+- **Big Pecks** *(hidden ability)*: Prevents Defense loss.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

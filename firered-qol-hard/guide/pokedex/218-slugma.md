@@ -13,7 +13,7 @@ Height 0.7 m (2′04″) · Weight 35 kg (77.2 lbs)
 - **Magma Armor**: Prevents freezing.
 - **Flame Body**: Burns the foe on contact.
 
-*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

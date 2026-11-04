@@ -11,6 +11,10 @@ Height 1.1 m (3′07″) · Weight 32.6 kg (71.9 lbs)
 ## Abilities
 
 - **Cute Charm**: Infatuates on contact.
+- **Normalize**: All moves become Normal.
+- **Wonder Skin** *(hidden ability)*: Evades status moves.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

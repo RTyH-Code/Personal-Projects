@@ -11,6 +11,9 @@ Height 0.8 m (2′07″) · Weight 20.8 kg (45.9 lbs)
 ## Abilities
 
 - **Rough Skin**: Hurts to touch.
+- **Speed Boost** *(hidden ability)*: Gradually boosts Speed.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

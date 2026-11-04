@@ -11,6 +11,9 @@ Height 0.6 m (2′00″) · Weight 8.8 kg (19.4 lbs)
 ## Abilities
 
 - **Pickup**: May pick up items.
+- **Quick Feet**: Ups Speed if suffering.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

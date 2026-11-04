@@ -11,6 +11,9 @@ Height 4 m (13′01″) · Weight 16.5 kg (36.4 lbs)
 ## Abilities
 
 - **Shed Skin**: Heals the body by shedding.
+- **Marvel Scale** *(hidden ability)*: Ups Defense if suffering.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

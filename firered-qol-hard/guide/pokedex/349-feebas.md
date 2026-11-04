@@ -11,6 +11,10 @@ Height 0.6 m (2′00″) · Weight 7.4 kg (16.3 lbs)
 ## Abilities
 
 - **Swift Swim**: Raises Speed in rain.
+- **Oblivious**: Prevents attraction.
+- **Adaptability** *(hidden ability)*: Powers up same-type moves.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

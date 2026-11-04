@@ -11,6 +11,9 @@ Height 0.6 m (2′00″) · Weight 7.2 kg (15.9 lbs)
 ## Abilities
 
 - **Sturdy**: Negates 1-hit KO attacks.
+- **Overcoat** *(hidden ability)*: Blocks weather and powder.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

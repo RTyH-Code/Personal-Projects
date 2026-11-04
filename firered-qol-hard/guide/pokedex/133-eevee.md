@@ -11,6 +11,9 @@ Height 0.3 m (1′00″) · Weight 6.5 kg (14.3 lbs)
 ## Abilities
 
 - **Run Away**: Makes escaping easier.
+- **Adaptability**: Powers up same-type moves.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

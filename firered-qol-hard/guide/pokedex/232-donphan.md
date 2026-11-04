@@ -11,6 +11,9 @@ Height 1.1 m (3′07″) · Weight 120 kg (264.6 lbs)
 ## Abilities
 
 - **Sturdy**: Negates 1-hit KO attacks.
+- **Sand Veil** *(hidden ability)*: Ups evasion in a sandstorm.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

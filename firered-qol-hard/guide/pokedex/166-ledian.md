@@ -12,8 +12,9 @@ Height 1.4 m (4′07″) · Weight 35.6 kg (78.5 lbs)
 
 - **Swarm**: Ups Bug moves in a pinch.
 - **Early Bird**: Awakens quickly from sleep.
+- **Iron Fist** *(hidden ability)*: Powers up punches.
 
-*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

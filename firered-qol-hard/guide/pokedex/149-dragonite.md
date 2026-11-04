@@ -11,6 +11,9 @@ Height 2.2 m (7′03″) · Weight 210 kg (463.0 lbs)
 ## Abilities
 
 - **Inner Focus**: Prevents flinching.
+- **Multiscale** *(hidden ability)*: Halves damage at full HP.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 
@@ -35,6 +38,8 @@ Height 2.2 m (7′03″) · Weight 210 kg (463.0 lbs)
 | ½× | Fighting, Bug, Fire, Water |
 | ¼× | Grass |
 | 0× (immune) | Ground |
+
+*With Multiscale: takes half damage at full HP.*
 
 ## Training and breeding
 

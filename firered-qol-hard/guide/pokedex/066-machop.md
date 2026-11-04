@@ -11,6 +11,9 @@ Height 0.8 m (2′07″) · Weight 19.5 kg (43.0 lbs)
 ## Abilities
 
 - **Guts**: Ups Attack if suffering.
+- **No Guard**: All moves always hit.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

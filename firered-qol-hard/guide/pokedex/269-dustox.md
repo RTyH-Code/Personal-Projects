@@ -11,6 +11,9 @@ Height 1.2 m (3′11″) · Weight 31.6 kg (69.7 lbs)
 ## Abilities
 
 - **Shield Dust**: Prevents added effects.
+- **Compound Eyes** *(hidden ability)*: Raises accuracy.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

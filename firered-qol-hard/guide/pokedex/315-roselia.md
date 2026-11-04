@@ -13,7 +13,7 @@ Height 0.3 m (1′00″) · Weight 2 kg (4.4 lbs)
 - **Natural Cure**: Heals upon switching out.
 - **Poison Point**: Poisons foe on contact.
 
-*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

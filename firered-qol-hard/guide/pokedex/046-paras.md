@@ -11,6 +11,10 @@ Height 0.3 m (1′00″) · Weight 5.4 kg (11.9 lbs)
 ## Abilities
 
 - **Effect Spore**: Leaves spores on contact.
+- **Dry Skin**: Water heals, fire and sun hurt.
+- **Damp** *(hidden ability)*: Prevents self-destruction.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 
@@ -34,6 +38,8 @@ Height 0.3 m (1′00″) · Weight 5.4 kg (11.9 lbs)
 | 2× | Poison, Rock, Bug, Ice |
 | ½× | Fighting, Water, Electric |
 | ¼× | Ground, Grass |
+
+*With Dry Skin: Water moves heal it, Fire moves do 25% more.*
 
 ## Training and breeding
 

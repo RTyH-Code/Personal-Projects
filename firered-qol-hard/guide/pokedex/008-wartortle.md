@@ -11,6 +11,9 @@ Height 1 m (3′03″) · Weight 22.5 kg (49.6 lbs)
 ## Abilities
 
 - **Torrent**: Ups Water moves in a pinch.
+- **Rain Dish** *(hidden ability)*: Slight HP recovery in rain.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

@@ -13,7 +13,7 @@ Height 0.4 m (1′04″) · Weight 8.5 kg (18.7 lbs)
 - **Thick Fat**: Heat-and-cold protection.
 - **Huge Power**: Raises Attack.
 
-*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

@@ -11,6 +11,9 @@ Height 1.9 m (6′03″) · Weight 52 kg (114.6 lbs)
 ## Abilities
 
 - **Blaze**: Ups Fire moves in a pinch.
+- **Speed Boost** *(hidden ability)*: Gradually boosts Speed.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

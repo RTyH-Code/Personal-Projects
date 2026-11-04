@@ -12,8 +12,9 @@ Height 2.1 m (6′11″) · Weight 360 kg (793.7 lbs)
 
 - **Sturdy**: Negates 1-hit KO attacks.
 - **Rock Head**: Prevents recoil damage.
+- **Heavy Metal** *(hidden ability)*: Doubles its weight.
 
-*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

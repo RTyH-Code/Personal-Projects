@@ -12,8 +12,9 @@ Height 1.7 m (5′07″) · Weight 95 kg (209.4 lbs)
 
 - **Run Away**: Makes escaping easier.
 - **Flash Fire**: Powers up if hit by fire.
+- **Flame Body** *(hidden ability)*: Burns the foe on contact.
 
-*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

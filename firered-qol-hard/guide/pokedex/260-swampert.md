@@ -11,6 +11,9 @@ Height 1.5 m (4′11″) · Weight 81.9 kg (180.6 lbs)
 ## Abilities
 
 - **Torrent**: Ups Water moves in a pinch.
+- **Damp** *(hidden ability)*: Prevents self-destruction.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

@@ -11,6 +11,9 @@ Height 1.1 m (3′07″) · Weight 32 kg (70.5 lbs)
 ## Abilities
 
 - **Compound Eyes**: Raises accuracy.
+- **Tinted Lens** *(hidden ability)*: Ups not very effective hits.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

@@ -11,6 +11,9 @@ Height 0.6 m (2′00″) · Weight 7.8 kg (17.2 lbs)
 ## Abilities
 
 - **Static**: Paralyzes on contact.
+- **Plus** *(hidden ability)*: Powers up with Minus.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

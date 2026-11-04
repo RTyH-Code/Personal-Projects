@@ -12,8 +12,9 @@ Height 1.3 m (4′03″) · Weight 60 kg (132.3 lbs)
 
 - **Hyper Cutter**: Prevents Attack reduction.
 - **Shell Armor**: Blocks critical hits.
+- **Sheer Force** *(hidden ability)*: Drops added effects for power.
 
-*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

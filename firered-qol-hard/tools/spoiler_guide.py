@@ -922,15 +922,18 @@ def write_pokedex():
         out += [f"Height {h / 10:g} m ({inches // 12}′{inches % 12:02d}″) · Weight {w / 10:g} kg ({w * 0.220462:.1f} lbs)", ""]
 
         # abilities
-        abil = [a for a in re.findall(r"ABILITY_\w+", i["abilities"]) if a != "ABILITY_NONE"]
-        abil = list(dict.fromkeys(abil))
+        slots = re.findall(r"ABILITY_\w+", i["abilities"])
+        regular = list(dict.fromkeys(a for a in slots[:2] if a != "ABILITY_NONE"))
+        hidden = slots[2] if len(slots) > 2 and slots[2] != "ABILITY_NONE" and slots[2] not in regular else None
+        abil = regular + ([hidden] if hidden else [])
         out += ["## Abilities", ""]
         for a in abil:
-            out.append(f"- **{gametext(abil_names.get(a, a[8:]))}**: {gametext(abil_desc.get(a, ''))}")
-        if len(abil) == 2:
+            tag = " *(hidden ability)*" if a == hidden else ""
+            out.append(f"- **{gametext(abil_names.get(a, a[8:]))}**{tag}: {gametext(abil_desc.get(a, ''))}")
+        if len(abil) > 1:
             out.append("")
-            out.append("*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau "
-                       "Pokémon Center can swap it.*")
+            out.append("*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the "
+                       "Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*")
         out.append("")
 
         # stats
@@ -952,7 +955,11 @@ def write_pokedex():
         notes = {"ABILITY_LEVITATE": "immune to Ground moves", "ABILITY_FLASH_FIRE": "immune to Fire moves",
                  "ABILITY_VOLT_ABSORB": "Electric moves heal it instead", "ABILITY_WATER_ABSORB": "Water moves heal it instead",
                  "ABILITY_THICK_FAT": "Fire and Ice moves do half damage",
-                 "ABILITY_WONDER_GUARD": "only super-effective moves can hit it"}
+                 "ABILITY_WONDER_GUARD": "only super-effective moves can hit it",
+                 "ABILITY_DRY_SKIN": "Water moves heal it, Fire moves do 25% more",
+                 "ABILITY_FILTER": "super-effective moves do 25% less",
+                 "ABILITY_SOLID_ROCK": "super-effective moves do 25% less",
+                 "ABILITY_MULTISCALE": "takes half damage at full HP"}
         for a in abil:
             if a in notes:
                 who = "With" if len(abil) > 1 else "Its ability"

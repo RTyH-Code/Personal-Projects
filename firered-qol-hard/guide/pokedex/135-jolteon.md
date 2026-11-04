@@ -11,6 +11,9 @@ Height 0.8 m (2′07″) · Weight 24.5 kg (54.0 lbs)
 ## Abilities
 
 - **Volt Absorb**: Turns electricity into HP.
+- **Quick Feet** *(hidden ability)*: Ups Speed if suffering.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 
@@ -33,7 +36,7 @@ Height 0.8 m (2′07″) · Weight 24.5 kg (54.0 lbs)
 | 2× | Ground |
 | ½× | Flying, Steel, Electric |
 
-*Its ability Volt Absorb: Electric moves heal it instead.*
+*With Volt Absorb: Electric moves heal it instead.*
 
 ## Training and breeding
 

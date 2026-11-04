@@ -11,6 +11,9 @@ Height 0.7 m (2′04″) · Weight 19.8 kg (43.7 lbs)
 ## Abilities
 
 - **Guts**: Ups Attack if suffering.
+- **Scrappy** *(hidden ability)*: Hits Ghost-type Pokémon.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

@@ -11,6 +11,9 @@ Height 1.3 m (4′03″) · Weight 40.3 kg (88.8 lbs)
 ## Abilities
 
 - **Immunity**: Prevents poisoning.
+- **Toxic Boost** *(hidden ability)*: Ups Attack when poisoned.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

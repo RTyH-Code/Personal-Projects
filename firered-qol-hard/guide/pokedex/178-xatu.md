@@ -13,7 +13,7 @@ Height 1.5 m (4′11″) · Weight 15 kg (33.1 lbs)
 - **Synchronize**: Passes on status problems.
 - **Early Bird**: Awakens quickly from sleep.
 
-*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

@@ -11,6 +11,10 @@ Height 1.1 m (3′07″) · Weight 5 kg (11.0 lbs)
 ## Abilities
 
 - **Own Tempo**: Prevents confusion.
+- **Tangled Feet**: Ups evasion if confused.
+- **Contrary** *(hidden ability)*: Inverts stat changes.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

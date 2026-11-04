@@ -11,6 +11,9 @@ Height 1 m (3′03″) · Weight 37 kg (81.6 lbs)
 ## Abilities
 
 - **Intimidate**: Lowers the foe's Attack.
+- **Quick Feet**: Ups Speed if suffering.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

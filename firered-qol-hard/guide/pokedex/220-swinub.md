@@ -11,6 +11,10 @@ Height 0.4 m (1′04″) · Weight 6.5 kg (14.3 lbs)
 ## Abilities
 
 - **Oblivious**: Prevents attraction.
+- **Snow Cloak**: Ups evasion in hail.
+- **Thick Fat** *(hidden ability)*: Heat-and-cold protection.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 
@@ -33,6 +37,8 @@ Height 0.4 m (1′04″) · Weight 6.5 kg (14.3 lbs)
 | 2× | Fighting, Steel, Fire, Water, Grass |
 | ½× | Poison |
 | 0× (immune) | Electric |
+
+*With Thick Fat: Fire and Ice moves do half damage.*
 
 ## Training and breeding
 

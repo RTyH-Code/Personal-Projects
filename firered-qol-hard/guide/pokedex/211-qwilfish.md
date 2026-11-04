@@ -12,8 +12,9 @@ Height 0.5 m (1′08″) · Weight 3.9 kg (8.6 lbs)
 
 - **Poison Point**: Poisons foe on contact.
 - **Swift Swim**: Raises Speed in rain.
+- **Intimidate** *(hidden ability)*: Lowers the foe's Attack.
 
-*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

@@ -12,8 +12,9 @@ Height 2 m (6′07″) · Weight 130 kg (286.6 lbs)
 
 - **Water Veil**: Prevents burns.
 - **Oblivious**: Prevents attraction.
+- **Pressure** *(hidden ability)*: Raises foe's PP usage.
 
-*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

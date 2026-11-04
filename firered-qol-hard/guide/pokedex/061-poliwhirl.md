@@ -12,8 +12,9 @@ Height 1 m (3′03″) · Weight 20 kg (44.1 lbs)
 
 - **Water Absorb**: Changes water into HP.
 - **Damp**: Prevents self-destruction.
+- **Swift Swim** *(hidden ability)*: Raises Speed in rain.
 
-*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

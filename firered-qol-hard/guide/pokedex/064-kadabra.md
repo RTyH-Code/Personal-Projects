@@ -12,8 +12,9 @@ Height 1.3 m (4′03″) · Weight 56.5 kg (124.6 lbs)
 
 - **Synchronize**: Passes on status problems.
 - **Inner Focus**: Prevents flinching.
+- **Magic Guard** *(hidden ability)*: Only hurt by attacks.
 
-*Each individual has one of the two. After you become Champion, the coach in the Indigo Plateau Pokémon Center can swap it.*
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 
