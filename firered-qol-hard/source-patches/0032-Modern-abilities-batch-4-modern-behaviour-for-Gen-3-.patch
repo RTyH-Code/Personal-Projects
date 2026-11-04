@@ -1,0 +1,446 @@
+From 2541f9f58c90f58b0244ad3a50a6a552ef548942 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Wed, 4 Nov 2026 18:38:56 +0000
+Subject: [PATCH 32/32] Modern abilities, batch 4: modern behaviour for Gen 3
+ abilities
+
+Sturdy survives a KO from full HP; Lightning Rod absorbs Electric moves
+for +1 Sp. Atk; Drizzle/Drought/Sand Stream set 5-turn weather;
+Intimidate is blocked by Inner Focus, Own Tempo, Oblivious and Scrappy;
+Oblivious blocks Taunt; Keen Eye ignores evasion boosts; Rough Skin does
+1/8; Effect Spore spares Grass types and Overcoat; Plus/Minus work with
+either partner; Stench has a 10% flinch; Trace exclusions; Ghost types
+escape trapping; Shadow Tag doesn't trap Shadow Tag.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ HACK_NOTES.md                | 14 +++++++++++
+ data/battle_scripts_1.s      | 10 ++++++++
+ include/battle_scripts.h     |  1 +
+ src/battle_main.c            | 19 +++++++++++---
+ src/battle_script_commands.c | 30 ++++++++++++++++------
+ src/battle_util.c            | 49 ++++++++++++++++++++++++++----------
+ src/data/text/abilities.h    | 10 ++++----
+ src/pokemon.c                |  7 +++---
+ tools/hack/spoiler_guide.py  |  5 +++-
+ 9 files changed, 112 insertions(+), 33 deletions(-)
+
+diff --git a/HACK_NOTES.md b/HACK_NOTES.md
+index 8fe93c7..8fa94ea 100644
+--- a/HACK_NOTES.md
++++ b/HACK_NOTES.md
+@@ -113,6 +113,20 @@ and you can use her as often as you like.
+ - Critical hits still do double damage (Gen 3); Sniper makes them triple.
+ - Sun, rain and Flash Fire now boost physical Fire and Water moves too (with
+   the physical/special split, moves like Fire Punch had been missing out).
++- The original Gen 3 abilities now work the modern way:
++  - Sturdy: also survives any hit at 1 HP when at full HP.
++  - Lightning Rod: makes the holder immune to Electric moves and raises its Sp. Atk.
++  - Drizzle, Drought and Sand Stream: weather lasts 5 turns instead of forever.
++  - Intimidate: Inner Focus, Own Tempo, Oblivious and Scrappy block it.
++  - Oblivious: also blocks Taunt.
++  - Keen Eye: ignores the target's evasion boosts.
++  - Rough Skin: does 1/8 damage.
++  - Effect Spore: Grass types and Overcoat are immune.
++  - Plus and Minus: power up with a partner that has either ability.
++  - Stench: 10% chance to make the target flinch.
++  - Trace: can't copy Trace, Imposter, Neutralizing Gas or Forecast.
++  - Trapping: Ghost types can always run or switch out (except when rooted by
++    Ingrain). Shadow Tag doesn't trap another Shadow Tag.
+ 
+ ## Every Pokémon is obtainable
+ All 386 Pokémon can be caught, evolved or bred in a single FireRed save:
+diff --git a/data/battle_scripts_1.s b/data/battle_scripts_1.s
+index 228a6b5..a62845d 100644
+--- a/data/battle_scripts_1.s
++++ b/data/battle_scripts_1.s
+@@ -4127,6 +4127,10 @@ BattleScript_IntimidateActivationAnimLoop::
+ 	jumpifability BS_TARGET, ABILITY_CLEAR_BODY, BattleScript_IntimidateAbilityFail
+ 	jumpifability BS_TARGET, ABILITY_HYPER_CUTTER, BattleScript_IntimidateAbilityFail
+ 	jumpifability BS_TARGET, ABILITY_WHITE_SMOKE, BattleScript_IntimidateAbilityFail
++	jumpifability BS_TARGET, ABILITY_INNER_FOCUS, BattleScript_IntimidateAbilityFail
++	jumpifability BS_TARGET, ABILITY_OWN_TEMPO, BattleScript_IntimidateAbilityFail
++	jumpifability BS_TARGET, ABILITY_OBLIVIOUS, BattleScript_IntimidateAbilityFail
++	jumpifability BS_TARGET, ABILITY_SCRAPPY, BattleScript_IntimidateAbilityFail
+ 	statbuffchange STAT_CHANGE_ALLOW_PTR | STAT_CHANGE_NOT_PROTECT_AFFECTED, BattleScript_IntimidateFail
+ 	jumpifbyte CMP_GREATER_THAN, cMULTISTRING_CHOOSER, 1, BattleScript_IntimidateFail
+ 	setgraphicalstatchangevalues
+@@ -4237,6 +4241,12 @@ BattleScript_PSNPrevention::
+ 	waitmessage B_WAIT_TIME_LONG
+ 	return
+ 
++BattleScript_HackObliviousPreventsTaunt::
++	pause B_WAIT_TIME_SHORT
++	printstring STRINGID_ITDOESNTAFFECT
++	waitmessage B_WAIT_TIME_LONG
++	goto BattleScript_MoveEnd
++
+ BattleScript_ObliviousPreventsAttraction::
+ 	pause B_WAIT_TIME_SHORT
+ 	printstring STRINGID_PKMNPREVENTSROMANCEWITH
+diff --git a/include/battle_scripts.h b/include/battle_scripts.h
+index a296b6f..88c6ddd 100644
+--- a/include/battle_scripts.h
++++ b/include/battle_scripts.h
+@@ -182,6 +182,7 @@ extern const u8 BattleScript_BRNPrevention[];
+ extern const u8 BattleScript_PRLZPrevention[];
+ extern const u8 BattleScript_PSNPrevention[];
+ extern const u8 BattleScript_ObliviousPreventsAttraction[];
++extern const u8 BattleScript_HackObliviousPreventsTaunt[];
+ extern const u8 BattleScript_FlinchPrevention[];
+ extern const u8 BattleScript_OwnTempoPrevents[];
+ extern const u8 BattleScript_SoundproofProtected[];
+diff --git a/src/battle_main.c b/src/battle_main.c
+index 251bb77..ba9c1d6 100644
+--- a/src/battle_main.c
++++ b/src/battle_main.c
+@@ -3073,13 +3073,15 @@ u8 IsRunningFromBattleImpossible(void)
+     gPotentialItemEffectBattler = gActiveBattler;
+     if (holdEffect == HOLD_EFFECT_CAN_ALWAYS_RUN
+      || (gBattleTypeFlags & BATTLE_TYPE_LINK)
+-     || gBattleMons[gActiveBattler].ability == ABILITY_RUN_AWAY)
++     || gBattleMons[gActiveBattler].ability == ABILITY_RUN_AWAY
++     || IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_GHOST))
+         return BATTLE_RUN_SUCCESS;
+     side = GetBattlerSide(gActiveBattler);
+     for (i = 0; i < gBattlersCount; i++)
+     {
+         if (side != GetBattlerSide(i)
+-         && gBattleMons[i].ability == ABILITY_SHADOW_TAG)
++         && gBattleMons[i].ability == ABILITY_SHADOW_TAG
++         && gBattleMons[gActiveBattler].ability != ABILITY_SHADOW_TAG)
+         {
+             gBattleScripting.battler = i;
+             gLastUsedAbility = gBattleMons[i].ability;
+@@ -3256,11 +3258,20 @@ static void HandleTurnActionSelectionState(void)
+                     break;
+                 case B_ACTION_SWITCH:
+                     *(gBattleStruct->battlerPartyIndexes + gActiveBattler) = gBattlerPartyIndexes[gActiveBattler];
+-                    if (gBattleMons[gActiveBattler].status2 & (STATUS2_WRAPPED | STATUS2_ESCAPE_PREVENTION) || gStatuses3[gActiveBattler] & STATUS3_ROOTED)
++                    if (IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_GHOST) && !(gStatuses3[gActiveBattler] & STATUS3_ROOTED))
++                    {
++                        if (gActiveBattler == 2 && gChosenActionByBattler[0] == B_ACTION_SWITCH)
++                            BtlController_EmitChoosePokemon(BUFFER_A, PARTY_ACTION_CHOOSE_MON, *(gBattleStruct->monToSwitchIntoId + 0), ABILITY_NONE, gBattleStruct->battlerPartyOrders[gActiveBattler]);
++                        else if (gActiveBattler == 3 && gChosenActionByBattler[1] == B_ACTION_SWITCH)
++                            BtlController_EmitChoosePokemon(BUFFER_A, PARTY_ACTION_CHOOSE_MON, *(gBattleStruct->monToSwitchIntoId + 1), ABILITY_NONE, gBattleStruct->battlerPartyOrders[gActiveBattler]);
++                        else
++                            BtlController_EmitChoosePokemon(BUFFER_A, PARTY_ACTION_CHOOSE_MON, PARTY_SIZE, ABILITY_NONE, gBattleStruct->battlerPartyOrders[gActiveBattler]);
++                    }
++                    else if (gBattleMons[gActiveBattler].status2 & (STATUS2_WRAPPED | STATUS2_ESCAPE_PREVENTION) || gStatuses3[gActiveBattler] & STATUS3_ROOTED)
+                     {
+                         BtlController_EmitChoosePokemon(BUFFER_A, PARTY_ACTION_CANT_SWITCH, 6, ABILITY_NONE, gBattleStruct->battlerPartyOrders[gActiveBattler]);
+                     }
+-                    else if ((i = ABILITY_ON_OPPOSING_FIELD(gActiveBattler, ABILITY_SHADOW_TAG))
++                    else if (((i = ABILITY_ON_OPPOSING_FIELD(gActiveBattler, ABILITY_SHADOW_TAG)) && gBattleMons[gActiveBattler].ability != ABILITY_SHADOW_TAG)
+                           || ((i = ABILITY_ON_OPPOSING_FIELD(gActiveBattler, ABILITY_ARENA_TRAP))
+                               && !IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_FLYING)
+                               && gBattleMons[gActiveBattler].ability != ABILITY_LEVITATE)
+diff --git a/src/battle_script_commands.c b/src/battle_script_commands.c
+index 124c8ce..7435701 100644
+--- a/src/battle_script_commands.c
++++ b/src/battle_script_commands.c
+@@ -269,6 +269,7 @@ static void Cmd_cureifburnedparalysedorpoisoned(void);
+ static void Cmd_settorment(void);
+ static void Cmd_jumpifnodamage(void);
+ static void Cmd_settaunt(void);
++bool8 Hack_SturdyHolds(u8 battler);
+ static void Cmd_trysethelpinghand(void);
+ static void Cmd_tryswapitems(void);
+ static void Cmd_trycopyability(void);
+@@ -1085,6 +1086,8 @@ static void Cmd_accuracycheck(void)
+         {
+             u8 acc = gBattleMons[gBattlerAttacker].statStages[STAT_ACC];
+             buff = acc + DEFAULT_STAT_STAGE - gBattleMons[gBattlerTarget].statStages[STAT_EVASION];
++            if (gBattleMons[gBattlerAttacker].ability == ABILITY_KEEN_EYE && gBattleMons[gBattlerTarget].statStages[STAT_EVASION] > DEFAULT_STAT_STAGE)
++                buff = acc;
+         }
+         if (gBattleMons[gBattlerTarget].ability == ABILITY_UNAWARE)
+             buff += DEFAULT_STAT_STAGE - gBattleMons[gBattlerAttacker].statStages[STAT_ACC];
+@@ -1686,11 +1689,11 @@ static void Cmd_adjustnormaldamage(void)
+         gSpecialStatuses[gBattlerTarget].focusBanded = 1;
+     }
+     if (!(gBattleMons[gBattlerTarget].status2 & STATUS2_SUBSTITUTE)
+-     && (gBattleMoves[gCurrentMove].effect == EFFECT_FALSE_SWIPE || gProtectStructs[gBattlerTarget].endured || gSpecialStatuses[gBattlerTarget].focusBanded)
++     && (gBattleMoves[gCurrentMove].effect == EFFECT_FALSE_SWIPE || gProtectStructs[gBattlerTarget].endured || gSpecialStatuses[gBattlerTarget].focusBanded || Hack_SturdyHolds(gBattlerTarget))
+      && gBattleMons[gBattlerTarget].hp <= gBattleMoveDamage)
+     {
+         gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
+-        if (gProtectStructs[gBattlerTarget].endured)
++        if (gProtectStructs[gBattlerTarget].endured || Hack_SturdyHolds(gBattlerTarget))
+         {
+             gMoveResultFlags |= MOVE_RESULT_FOE_ENDURED;
+         }
+@@ -1729,11 +1732,11 @@ static void Cmd_adjustnormaldamage2(void)
+         gSpecialStatuses[gBattlerTarget].focusBanded = 1;
+     }
+     if (!(gBattleMons[gBattlerTarget].status2 & STATUS2_SUBSTITUTE)
+-     && (gProtectStructs[gBattlerTarget].endured || gSpecialStatuses[gBattlerTarget].focusBanded)
++     && (gProtectStructs[gBattlerTarget].endured || gSpecialStatuses[gBattlerTarget].focusBanded || Hack_SturdyHolds(gBattlerTarget))
+      && gBattleMons[gBattlerTarget].hp <= gBattleMoveDamage)
+     {
+         gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
+-        if (gProtectStructs[gBattlerTarget].endured)
++        if (gProtectStructs[gBattlerTarget].endured || Hack_SturdyHolds(gBattlerTarget))
+         {
+             gMoveResultFlags |= MOVE_RESULT_FOE_ENDURED;
+         }
+@@ -1746,6 +1749,13 @@ static void Cmd_adjustnormaldamage2(void)
+     gBattlescriptCurrInstr++;
+ }
+ 
++bool8 Hack_SturdyHolds(u8 battler)
++{
++    return gBattleMons[battler].ability == ABILITY_STURDY
++        && gBattleMons[battler].hp == gBattleMons[battler].maxHP
++        && gBattleMoves[gCurrentMove].effect != EFFECT_FALSE_SWIPE;
++}
++
+ static void Cmd_attackanimation(void)
+ {
+     if (gBattleControllerExecFlags)
+@@ -5734,11 +5744,11 @@ static void Cmd_adjustsetdamage(void)
+         gSpecialStatuses[gBattlerTarget].focusBanded = 1;
+     }
+     if (!(gBattleMons[gBattlerTarget].status2 & STATUS2_SUBSTITUTE)
+-     && (gBattleMoves[gCurrentMove].effect == EFFECT_FALSE_SWIPE || gProtectStructs[gBattlerTarget].endured || gSpecialStatuses[gBattlerTarget].focusBanded)
++     && (gBattleMoves[gCurrentMove].effect == EFFECT_FALSE_SWIPE || gProtectStructs[gBattlerTarget].endured || gSpecialStatuses[gBattlerTarget].focusBanded || Hack_SturdyHolds(gBattlerTarget))
+      && gBattleMons[gBattlerTarget].hp <= gBattleMoveDamage)
+     {
+         gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
+-        if (gProtectStructs[gBattlerTarget].endured)
++        if (gProtectStructs[gBattlerTarget].endured || Hack_SturdyHolds(gBattlerTarget))
+         {
+             gMoveResultFlags |= MOVE_RESULT_FOE_ENDURED;
+         }
+@@ -8908,7 +8918,13 @@ static void Cmd_jumpifnodamage(void)
+ 
+ static void Cmd_settaunt(void)
+ {
+-    if (gDisableStructs[gBattlerTarget].tauntTimer == 0)
++    if (gBattleMons[gBattlerTarget].ability == ABILITY_OBLIVIOUS)
++    {
++        gLastUsedAbility = ABILITY_OBLIVIOUS;
++        RecordAbilityBattle(gBattlerTarget, ABILITY_OBLIVIOUS);
++        gBattlescriptCurrInstr = BattleScript_HackObliviousPreventsTaunt;
++    }
++    else if (gDisableStructs[gBattlerTarget].tauntTimer == 0)
+     {
+         gDisableStructs[gBattlerTarget].tauntTimer = 2;
+         gDisableStructs[gBattlerTarget].tauntTimer2 = 2;
+diff --git a/src/battle_util.c b/src/battle_util.c
+index fd11784..065cc18 100644
+--- a/src/battle_util.c
++++ b/src/battle_util.c
+@@ -1686,6 +1686,12 @@ u8 CastformDataTypeChange(u8 battler)
+     return formChange;
+ }
+ 
++static bool8 Hack_IsTraceable(u16 ability)
++{
++    return ability != ABILITY_NONE && ability != ABILITY_TRACE && ability != ABILITY_IMPOSTER
++        && ability != ABILITY_NEUTRALIZING_GAS && ability != ABILITY_FORECAST;
++}
++
+ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveArg)
+ {
+     u8 effect = 0;
+@@ -1807,27 +1813,33 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
+                 }
+                 break;
+             case ABILITY_DRIZZLE:
+-                if (!(gBattleWeather & B_WEATHER_RAIN_PERMANENT))
++                if (!(gDisableStructs[battler].unk17 & 1) && !(gBattleWeather & B_WEATHER_RAIN_PERMANENT))
+                 {
+-                    gBattleWeather = (B_WEATHER_RAIN_PERMANENT | B_WEATHER_RAIN_TEMPORARY);
++                    gDisableStructs[battler].unk17 |= 1;
++                    gBattleWeather = B_WEATHER_RAIN_TEMPORARY;
++                    gWishFutureKnock.weatherDuration = 5;
+                     BattleScriptPushCursorAndCallback(BattleScript_DrizzleActivates);
+                     gBattleScripting.battler = battler;
+                     effect++;
+                 }
+                 break;
+             case ABILITY_SAND_STREAM:
+-                if (!(gBattleWeather & B_WEATHER_SANDSTORM_PERMANENT))
++                if (!(gDisableStructs[battler].unk17 & 1) && !(gBattleWeather & B_WEATHER_SANDSTORM_PERMANENT))
+                 {
+-                    gBattleWeather = B_WEATHER_SANDSTORM;
++                    gDisableStructs[battler].unk17 |= 1;
++                    gBattleWeather = B_WEATHER_SANDSTORM_TEMPORARY;
++                    gWishFutureKnock.weatherDuration = 5;
+                     BattleScriptPushCursorAndCallback(BattleScript_SandstreamActivates);
+                     gBattleScripting.battler = battler;
+                     effect++;
+                 }
+                 break;
+             case ABILITY_DROUGHT:
+-                if (!(gBattleWeather & B_WEATHER_SUN_PERMANENT))
++                if (!(gDisableStructs[battler].unk17 & 1) && !(gBattleWeather & B_WEATHER_SUN_PERMANENT))
+                 {
+-                    gBattleWeather = B_WEATHER_SUN;
++                    gDisableStructs[battler].unk17 |= 1;
++                    gBattleWeather = B_WEATHER_SUN_TEMPORARY;
++                    gWishFutureKnock.weatherDuration = 5;
+                     BattleScriptPushCursorAndCallback(BattleScript_DroughtActivates);
+                     gBattleScripting.battler = battler;
+                     effect++;
+@@ -2022,14 +2034,16 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
+                     }
+                     break;
+                 case ABILITY_SAP_SIPPER:
++                case ABILITY_LIGHTNING_ROD:
+                 case ABILITY_STORM_DRAIN:
+                 case ABILITY_WIND_RIDER:
+                     if (battler != gBattlerAttacker
+                      && ((gLastUsedAbility == ABILITY_SAP_SIPPER && moveType == TYPE_GRASS)
+                       || (gLastUsedAbility == ABILITY_STORM_DRAIN && moveType == TYPE_WATER)
++                      || (gLastUsedAbility == ABILITY_LIGHTNING_ROD && moveType == TYPE_ELECTRIC)
+                       || (gLastUsedAbility == ABILITY_WIND_RIDER && Hack_IsWindMove(move))))
+                     {
+-                        if (Hack_AbilityStatChange(battler, gLastUsedAbility == ABILITY_STORM_DRAIN ? STAT_SPATK : STAT_ATK, 1))
++                        if (Hack_AbilityStatChange(battler, (gLastUsedAbility == ABILITY_STORM_DRAIN || gLastUsedAbility == ABILITY_LIGHTNING_ROD) ? STAT_SPATK : STAT_ATK, 1))
+                             gBattlescriptCurrInstr = gProtectStructs[gBattlerAttacker].notFirstStrike ? BattleScript_HackAbsorbStatUp : BattleScript_HackAbsorbStatUp_PPLoss;
+                         else
+                             gBattlescriptCurrInstr = gProtectStructs[gBattlerAttacker].notFirstStrike ? BattleScript_MonMadeMoveUseless : BattleScript_MonMadeMoveUseless_PPLoss;
+@@ -2117,7 +2131,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
+                  && TARGET_TURN_DAMAGED
+                  && (gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
+                 {
+-                    gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 16;
++                    gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 8;
+                     if (gBattleMoveDamage == 0)
+                         gBattleMoveDamage = 1;
+                     BattleScriptPushCursor();
+@@ -2128,6 +2142,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
+             case ABILITY_EFFECT_SPORE:
+                 if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                  && gBattleMons[gBattlerAttacker].hp != 0
++                 && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GRASS)
++                 && gBattleMons[gBattlerAttacker].ability != ABILITY_OVERCOAT
+                  && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+                  && TARGET_TURN_DAMAGED
+                  && (gBattleMoves[move].flags & FLAG_MAKES_CONTACT)
+@@ -2370,22 +2386,22 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
+                     target2 = GetBattlerAtPosition(side + BIT_FLANK);
+                     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+                     {
+-                        if (gBattleMons[target1].ability != ABILITY_NONE && gBattleMons[target1].hp != 0
+-                         && gBattleMons[target2].ability != ABILITY_NONE && gBattleMons[target2].hp != 0)
++                        if (Hack_IsTraceable(gBattleMons[target1].ability) && gBattleMons[target1].hp != 0
++                         && Hack_IsTraceable(gBattleMons[target2].ability) && gBattleMons[target2].hp != 0)
+                         {
+                             gActiveBattler = GetBattlerAtPosition(((Random() & 1) * 2) | side);
+                             gBattleMons[i].ability = gBattleMons[gActiveBattler].ability;
+                             gLastUsedAbility = gBattleMons[gActiveBattler].ability;
+                             effect++;
+                         }
+-                        else if (gBattleMons[target1].ability != ABILITY_NONE && gBattleMons[target1].hp != 0)
++                        else if (Hack_IsTraceable(gBattleMons[target1].ability) && gBattleMons[target1].hp != 0)
+                         {
+                             gActiveBattler = target1;
+                             gBattleMons[i].ability = gBattleMons[gActiveBattler].ability;
+                             gLastUsedAbility = gBattleMons[gActiveBattler].ability;
+                             effect++;
+                         }
+-                        else if (gBattleMons[target2].ability != ABILITY_NONE && gBattleMons[target2].hp != 0)
++                        else if (Hack_IsTraceable(gBattleMons[target2].ability) && gBattleMons[target2].hp != 0)
+                         {
+                             gActiveBattler = target2;
+                             gBattleMons[i].ability = gBattleMons[gActiveBattler].ability;
+@@ -2396,7 +2412,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
+                     else
+                     {
+                         gActiveBattler = target1;
+-                        if (gBattleMons[target1].ability && gBattleMons[target1].hp)
++                        if (Hack_IsTraceable(gBattleMons[target1].ability) && gBattleMons[target1].hp)
+                         {
+                             gBattleMons[i].ability = gBattleMons[target1].ability;
+                             gLastUsedAbility = gBattleMons[target1].ability;
+@@ -3504,6 +3520,13 @@ bool8 Hack_MoveEndAbilities(void)
+             gBattlescriptCurrInstr = BattleScript_ApplySecondaryEffect;
+             return TRUE;
+         }
++        if (gBattleMons[gBattlerAttacker].ability == ABILITY_STENCH && gBattleMons[gBattlerAttacker].hp != 0
++         && gBattlerAttacker != gBattlerTarget && gBattleMons[gBattlerTarget].hp != 0 && TARGET_TURN_DAMAGED
++         && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) && gBattleMoves[gCurrentMove].power != 0
++         && !(gBattleMons[gBattlerTarget].status2 & STATUS2_SUBSTITUTE)
++         && gBattleMons[gBattlerTarget].ability != ABILITY_INNER_FOCUS
++         && (Random() % 10) == 0)
++            gBattleMons[gBattlerTarget].status2 |= STATUS2_FLINCHED;
+         // fall through
+     case 2:
+         for (i = 0; i < gBattlersCount; i++)
+diff --git a/src/data/text/abilities.h b/src/data/text/abilities.h
+index e4f128e..57ced3a 100644
+--- a/src/data/text/abilities.h
++++ b/src/data/text/abilities.h
+@@ -1,9 +1,9 @@
+ static const u8 sNoneDescription[] = _("No special ability.");
+-static const u8 sStenchDescription[] = _("Helps repel wild POKéMON.");
++static const u8 sStenchDescription[] = _("May make foes flinch.");
+ static const u8 sDrizzleDescription[] = _("Summons rain in battle.");
+ static const u8 sSpeedBoostDescription[] = _("Gradually boosts SPEED.");
+ static const u8 sBattleArmorDescription[] = _("Blocks critical hits.");
+-static const u8 sSturdyDescription[] = _("Negates 1-hit KO attacks.");
++static const u8 sSturdyDescription[] = _("Endures a KO at full HP.");
+ static const u8 sDampDescription[] = _("Prevents self-destruction.");
+ static const u8 sLimberDescription[] = _("Prevents paralysis.");
+ static const u8 sSandVeilDescription[] = _("Ups evasion in a sandstorm.");
+@@ -29,7 +29,7 @@ static const u8 sEffectSporeDescription[] = _("Leaves spores on contact.");
+ static const u8 sSynchronizeDescription[] = _("Passes on status problems.");
+ static const u8 sClearBodyDescription[] = _("Prevents ability reduction.");
+ static const u8 sNaturalCureDescription[] = _("Heals upon switching out.");
+-static const u8 sLightningRodDescription[] = _("Draws electrical moves.");
++static const u8 sLightningRodDescription[] = _("Absorbs ELECTRIC moves.");
+ static const u8 sSereneGraceDescription[] = _("Promotes added effects.");
+ static const u8 sSwiftSwimDescription[] = _("Raises SPEED in rain.");
+ static const u8 sChlorophyllDescription[] = _("Raises SPEED in sunshine.");
+@@ -55,8 +55,8 @@ static const u8 sPickupDescription[] = _("May pick up items.");
+ static const u8 sTruantDescription[] = _("Moves only every two turns.");
+ static const u8 sHustleDescription[] = _("Trades accuracy for power.");
+ static const u8 sCuteCharmDescription[] = _("Infatuates on contact.");
+-static const u8 sPlusDescription[] = _("Powers up with MINUS.");
+-static const u8 sMinusDescription[] = _("Powers up with PLUS.");
++static const u8 sPlusDescription[] = _("Powers up with PLUS/MINUS.");
++static const u8 sMinusDescription[] = _("Powers up with PLUS/MINUS.");
+ static const u8 sForecastDescription[] = _("Changes with the weather.");
+ static const u8 sStickyHoldDescription[] = _("Prevents item theft.");
+ static const u8 sShedSkinDescription[] = _("Heals the body by shedding.");
+diff --git a/src/pokemon.c b/src/pokemon.c
+index 79ca9eb..ec91a7b 100644
+--- a/src/pokemon.c
++++ b/src/pokemon.c
+@@ -2602,9 +2602,10 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
+     }
+     if (attacker->ability == ABILITY_HUSTLE)
+         attack = (150 * attack) / 100;
+-    if (attacker->ability == ABILITY_PLUS && ABILITY_ON_FIELD2(ABILITY_MINUS))
+-        spAttack = (150 * spAttack) / 100;
+-    if (attacker->ability == ABILITY_MINUS && ABILITY_ON_FIELD2(ABILITY_PLUS))
++    if ((attacker->ability == ABILITY_PLUS || attacker->ability == ABILITY_MINUS)
++     && (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
++     && gBattleMons[battlerIdAtk ^ BIT_FLANK].hp != 0
++     && (gBattleMons[battlerIdAtk ^ BIT_FLANK].ability == ABILITY_PLUS || gBattleMons[battlerIdAtk ^ BIT_FLANK].ability == ABILITY_MINUS))
+         spAttack = (150 * spAttack) / 100;
+     if (attacker->ability == ABILITY_GUTS && attacker->status1)
+         attack = (150 * attack) / 100;
+diff --git a/tools/hack/spoiler_guide.py b/tools/hack/spoiler_guide.py
+index 070fb3a..fc0ce47 100644
+--- a/tools/hack/spoiler_guide.py
++++ b/tools/hack/spoiler_guide.py
+@@ -959,7 +959,10 @@ def write_pokedex():
+                  "ABILITY_DRY_SKIN": "Water moves heal it, Fire moves do 25% more",
+                  "ABILITY_FILTER": "super-effective moves do 25% less",
+                  "ABILITY_SOLID_ROCK": "super-effective moves do 25% less",
+-                 "ABILITY_MULTISCALE": "takes half damage at full HP"}
++                 "ABILITY_MULTISCALE": "takes half damage at full HP",
++                 "ABILITY_LIGHTNING_ROD": "immune to Electric moves (they raise its Sp. Atk)",
++                 "ABILITY_STORM_DRAIN": "immune to Water moves (they raise its Sp. Atk)",
++                 "ABILITY_SAP_SIPPER": "immune to Grass moves (they raise its Attack)"}
+         for a in abil:
+             if a in notes:
+                 who = "With" if len(abil) > 1 else "Its ability"
+-- 
+2.43.0
+

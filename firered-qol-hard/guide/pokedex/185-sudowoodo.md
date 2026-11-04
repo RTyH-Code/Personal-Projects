@@ -10,7 +10,7 @@ Height 1.2 m (3′11″) · Weight 38 kg (83.8 lbs)
 
 ## Abilities
 
-- **Sturdy**: Negates 1-hit KO attacks.
+- **Sturdy**: Endures a KO at full HP.
 - **Rock Head**: Prevents recoil damage.
 - **Rattled** *(hidden ability)*: Bug, Ghost, Dark hits up Speed.
 

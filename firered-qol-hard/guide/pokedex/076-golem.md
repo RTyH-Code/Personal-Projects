@@ -11,7 +11,7 @@ Height 1.4 m (4′07″) · Weight 300 kg (661.4 lbs)
 ## Abilities
 
 - **Rock Head**: Prevents recoil damage.
-- **Sturdy**: Negates 1-hit KO attacks.
+- **Sturdy**: Endures a KO at full HP.
 - **Sand Veil** *(hidden ability)*: Ups evasion in a sandstorm.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*

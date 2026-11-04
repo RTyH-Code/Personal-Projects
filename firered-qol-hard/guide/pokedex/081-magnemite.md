@@ -11,7 +11,7 @@ Height 0.3 m (1′00″) · Weight 6 kg (13.2 lbs)
 ## Abilities
 
 - **Magnet Pull**: Traps Steel-type Pokémon.
-- **Sturdy**: Negates 1-hit KO attacks.
+- **Sturdy**: Endures a KO at full HP.
 - **Analytic** *(hidden ability)*: Ups power when moving last.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*

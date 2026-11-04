@@ -40,6 +40,8 @@ Height 0.8 m (2′07″) · Weight 28.5 kg (62.8 lbs)
 
 *With Thick Fat: Fire and Ice moves do half damage.*
 
+*With Sap Sipper: immune to Grass moves (they raise its Attack).*
+
 ## Training and breeding
 
 | | |

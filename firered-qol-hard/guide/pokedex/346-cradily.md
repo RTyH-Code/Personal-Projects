@@ -36,6 +36,8 @@ Height 1.5 m (4′11″) · Weight 60.4 kg (133.2 lbs)
 | 2× | Fighting, Bug, Steel, Ice |
 | ½× | Normal, Electric |
 
+*With Storm Drain: immune to Water moves (they raise its Sp. Atk).*
+
 ## Training and breeding
 
 | | |

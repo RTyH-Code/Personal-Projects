@@ -37,6 +37,8 @@ Height 1.4 m (4′07″) · Weight 71.2 kg (157.0 lbs)
 | 2× | Fighting |
 | 0× (immune) | Ghost |
 
+*With Sap Sipper: immune to Grass moves (they raise its Attack).*
+
 ## Training and breeding
 
 | | |

@@ -10,7 +10,7 @@ Height 1 m (3′03″) · Weight 97 kg (213.8 lbs)
 
 ## Abilities
 
-- **Sturdy**: Negates 1-hit KO attacks.
+- **Sturdy**: Endures a KO at full HP.
 - **Magnet Pull**: Traps Steel-type Pokémon.
 - **Sand Force** *(hidden ability)*: Powers up moves in sand.
 
