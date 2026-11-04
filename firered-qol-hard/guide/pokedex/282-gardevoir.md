@@ -142,6 +142,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
+| Trick Room | Psychic | Status | — | — | 5 | 0 |
+| Triple Axel | Ice | Physical | 20 | 90% | 10 | 0 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
 | Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |

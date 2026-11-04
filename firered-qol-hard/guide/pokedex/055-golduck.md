@@ -143,6 +143,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Brine | Water | Special | 65 | 100% | 10 | 0 |
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
+| Flip Turn | Water | Physical | 60 | 100% | 20 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |

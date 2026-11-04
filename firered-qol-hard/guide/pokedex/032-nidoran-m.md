@@ -78,6 +78,7 @@ Height 0.5 m (1′08″) · Weight 9 kg (19.8 lbs)
 | 5 | Peck | Flying | Physical | 35 | 100% | 35 |
 | 10 | Focus Energy | Normal | Status | — | — | 30 |
 | 15 | Fury Attack | Normal | Physical | 15 | 85% | 20 |
+| 20 | Toxic Spikes ★ | Poison | Status | — | — | 20 |
 | 25 | Double Kick | Fighting | Physical | 30 | 100% | 30 |
 | 30 | Horn Attack | Normal | Physical | 65 | 100% | 25 |
 | 35 | Helping Hand | Normal | Status | — | — | 20 |
@@ -133,6 +134,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Toxic Spikes | Poison | Status | — | — | 20 | 0 |
 | Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |

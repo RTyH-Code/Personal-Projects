@@ -128,11 +128,15 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Roost | Flying | Status | — | — | 5 | 0 |
 | Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
+| Trick Room | Psychic | Status | — | — | 5 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
 | Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
+| U-turn | Bug | Physical | 70 | 100% | 20 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 
 ### By breeding (egg moves)

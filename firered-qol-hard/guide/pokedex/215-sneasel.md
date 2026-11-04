@@ -143,6 +143,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Triple Axel | Ice | Physical | 20 | 90% | 10 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |

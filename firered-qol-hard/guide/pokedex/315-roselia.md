@@ -76,6 +76,7 @@ Roselia does not evolve.
 | 5 | Mega Drain | Grass | Special | 40 | 100% | 15 |
 | 10 | Leech Seed | Grass | Status | — | 90% | 10 |
 | 15 | Magical Leaf | Grass | Special | 60 | — | 20 |
+| 20 | Toxic Spikes ★ | Poison | Status | — | — | 20 |
 | 25 | Sweet Scent | Normal | Status | — | 100% | 20 |
 | 30 | Giga Drain | Grass | Special | 75 | 100% | 10 |
 | 35 | Synthesis | Grass | Status | — | — | 5 |
@@ -125,6 +126,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Toxic Spikes | Poison | Status | — | — | 20 | 0 |
 | Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |

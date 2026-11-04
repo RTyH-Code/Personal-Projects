@@ -82,6 +82,7 @@ Yanma does not evolve.
 | 38 | Hypnosis | Psychic | Status | — | 60% | 20 |
 | 43 | Wing Attack | Flying | Physical | 60 | 100% | 35 |
 | 46 | Screech | Normal | Status | — | 85% | 40 |
+| 49 | U-turn ★ | Bug | Physical | 70 | 100% | 20 |
 | 54 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
 | 57 | Bug Buzz ★ | Bug | Special | 90 | 100% | 10 |
 
@@ -124,10 +125,16 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Defog | Flying | Status | — | — | 15 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Pounce | Bug | Physical | 50 | 100% | 20 | 0 |
+| Roost | Flying | Status | — | — | 5 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
+| Skitter Smack | Bug | Physical | 70 | 90% | 10 | 3 |
+| U-turn | Bug | Physical | 70 | 100% | 20 | 3 |
 | Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
@@ -141,6 +148,7 @@ Breed a Yanma with a father that knows the move.
 | Leech Life | Bug | Physical | 80 | 100% | 10 |
 | Signal Beam | Bug | Special | 75 | 100% | 15 |
 | Silver Wind | Bug | Special | 60 | 100% | 5 |
+| Feint | Normal | Physical | 30 | 100% | 10 |
 
 ---
 

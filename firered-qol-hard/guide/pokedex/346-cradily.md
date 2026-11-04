@@ -130,11 +130,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Power Whip | Grass | Physical | 120 | 85% | 10 | 5 |
+| Sludge Wave | Poison | Special | 95 | 100% | 10 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)
@@ -147,6 +149,8 @@ Breed a Lileep (passed down to Lileep, which then evolves) with a father that kn
 | Recover | Normal | Status | — | — | 5 |
 | Mirror Coat | Psychic | Special | varies | 100% | 20 |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 |
+| Stealth Rock | Rock | Status | — | — | 20 |
+| Wring Out | Normal | Special | varies | 100% | 5 |
 
 ---
 

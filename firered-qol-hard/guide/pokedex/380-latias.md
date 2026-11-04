@@ -70,6 +70,7 @@ Latias does not evolve.
 | 5 | Helping Hand | Normal | Status | — | — | 20 |
 | 10 | Recover | Normal | Status | — | — | 5 |
 | 15 | Confusion ★ | Psychic | Special | 50 | 100% | 25 |
+| 20 | Tailwind ★ | Flying | Status | — | — | 15 |
 | 25 | Dragon Breath | Dragon | Special | 60 | 100% | 20 |
 | 30 | Wish | Normal | Status | — | — | 10 |
 | 35 | Mist Ball | Psychic | Special | 95 | 100% | 5 |
@@ -139,12 +140,16 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
+| Defog | Flying | Status | — | — | 15 | 0 |
 | Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
 | Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Roost | Flying | Status | — | — | 5 | 0 |
 | Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |

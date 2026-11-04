@@ -138,6 +138,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
+| Defog | Flying | Status | — | — | 15 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
@@ -166,6 +168,7 @@ Breed a Seedot (passed down to Seedot, which then evolves) with a father that kn
 | Night Slash | Dark | Physical | 70 | 100% | 15 |
 | Nasty Plot | Dark | Status | — | — | 20 |
 | Foul Play | Dark | Physical | 95 | 100% | 15 |
+| Defog | Flying | Status | — | — | 15 |
 
 ---
 

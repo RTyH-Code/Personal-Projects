@@ -130,6 +130,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
+| Trick Room | Psychic | Status | — | — | 5 | 0 |
 | Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |

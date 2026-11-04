@@ -142,8 +142,11 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
+| Trick Room | Psychic | Status | — | — | 5 | 0 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |

@@ -126,6 +126,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
@@ -141,6 +142,7 @@ Breed a Trapinch with a father that knows the move.
 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
 | Gust | Flying | Special | 40 | 100% | 35 |
 | Earth Power | Ground | Special | 90 | 100% | 10 |
+| Feint | Normal | Physical | 30 | 100% | 10 |
 
 ---
 

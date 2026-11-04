@@ -140,7 +140,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Brutal Swing | Dark | Physical | 60 | 100% | 20 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Dragon Tail | Dragon | Physical | 60 | 90% | 10 | 0 |
 | Dual Chop | Dragon | Physical | 40 | 90% | 15 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Hone Claws | Dark | Status | — | — | 15 | 0 |

@@ -135,10 +135,14 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Defog | Flying | Status | — | — | 15 | 0 |
 | Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Roost | Flying | Status | — | — | 5 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
@@ -160,6 +164,9 @@ Breed a Swablu (passed down to Swablu, which then evolves) with a father that kn
 | Rage | Normal | Physical | 20 | 100% | 20 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 |
 | Dragon Rush | Dragon | Physical | 100 | 75% | 10 |
+| Roost | Flying | Status | — | — | 5 |
+| Tailwind | Flying | Status | — | — | 15 |
+| Defog | Flying | Status | — | — | 15 |
 
 ---
 

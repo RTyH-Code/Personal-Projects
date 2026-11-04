@@ -124,6 +124,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Flip Turn | Water | Physical | 60 | 100% | 20 | 0 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |

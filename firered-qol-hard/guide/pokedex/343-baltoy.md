@@ -134,6 +134,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
 | Hex | Ghost | Special | 65 | 100% | 10 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
+| Trick Room | Psychic | Status | — | — | 5 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
 | Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |

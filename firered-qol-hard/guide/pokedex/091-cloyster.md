@@ -75,6 +75,7 @@ Height 1.5 m (4′11″) · Weight 132.5 kg (292.1 lbs)
 | 1 | Ice Shard ★ | Ice | Physical | 40 | 100% | 30 |
 | 1 | Icicle Crash ★ | Ice | Physical | 85 | 90% | 10 |
 | 1 | Shell Smash ★ | Normal | Status | — | — | 15 |
+| 1 | Toxic Spikes ★ | Poison | Status | — | — | 20 |
 | 5 | Razor Shell ★ | Water | Physical | 75 | 95% | 10 |
 | 7 | Withdraw | Water | Status | — | — | 40 |
 | 15 | Leer ★ | Normal | Status | — | 100% | 30 |
@@ -127,9 +128,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Brine | Water | Special | 65 | 100% | 10 | 0 |
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
 | Frost Breath | Ice | Special | 60 | 90% | 10 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
+| Toxic Spikes | Poison | Status | — | — | 20 | 0 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
+| Ice Spinner | Ice | Physical | 80 | 100% | 15 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Razor Shell | Water | Physical | 75 | 95% | 10 | 3 |

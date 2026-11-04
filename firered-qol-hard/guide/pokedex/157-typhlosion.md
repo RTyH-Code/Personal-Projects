@@ -83,6 +83,7 @@ Height 1.7 m (5′07″) · Weight 79.5 kg (175.3 lbs)
 | 35 | Flame Charge ★ | Fire | Physical | 50 | 100% | 20 |
 | 43 | Lava Plume ★ | Fire | Special | 80 | 100% | 15 |
 | 48 | Flamethrower | Fire | Special | 90 | 100% | 15 |
+| 56 | Inferno ★ | Fire | Special | 100 | 50% | 5 |
 | 61 | Rollout ★ | Rock | Physical | 30 | 90% | 20 |
 | 74 | Overheat ★ | Fire | Special | 130 | 90% | 5 |
 
@@ -139,6 +140,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
 | Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
 | Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Work Up | Normal | Status | — | — | 30 | 0 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |

@@ -138,6 +138,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
 | Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
@@ -170,6 +171,7 @@ Breed a Makuhita (passed down to Makuhita, which then evolves) with a father tha
 | Dynamic Punch | Fighting | Physical | 100 | 50% | 5 |
 | Counter | Fighting | Physical | varies | 100% | 20 |
 | Bullet Punch | Steel | Physical | 40 | 100% | 30 |
+| Feint | Normal | Physical | 30 | 100% | 10 |
 
 ---
 

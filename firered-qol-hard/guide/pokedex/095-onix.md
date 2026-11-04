@@ -86,6 +86,7 @@ Height 8.8 m (28′10″) · Weight 210 kg (463.0 lbs)
 | 20 | Rock Slide ★ | Rock | Physical | 75 | 90% | 10 |
 | 24 | Screech | Normal | Status | — | 85% | 40 |
 | 28 | Sand Tomb | Ground | Physical | 35 | 85% | 15 |
+| 32 | Stealth Rock ★ | Rock | Status | — | — | 20 |
 | 36 | Slam | Normal | Physical | 80 | 75% | 20 |
 | 40 | Sandstorm | Rock | Status | — | — | 10 |
 | 44 | Dig ★ | Ground | Physical | 80 | 100% | 10 |
@@ -137,11 +138,14 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Brutal Swing | Dark | Physical | 60 | 100% | 20 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Dragon Tail | Dragon | Physical | 60 | 90% | 10 | 0 |
 | Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
 | Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
@@ -149,6 +153,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| High Horsepower | Ground | Physical | 95 | 95% | 10 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
@@ -165,6 +170,8 @@ Breed a Onix with a father that knows the move.
 | Rock Climb | Normal | Physical | 90 | 85% | 20 |
 | Head Smash | Rock | Physical | 150 | 80% | 5 |
 | Heavy Slam | Steel | Physical | varies | 100% | 10 |
+| Stealth Rock | Rock | Status | — | — | 20 |
+| Dragon Tail | Dragon | Physical | 60 | 90% | 10 |
 
 ---
 

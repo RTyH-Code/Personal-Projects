@@ -81,6 +81,7 @@ Height 0.5 m (1′08″) · Weight 7.9 kg (17.4 lbs)
 | 31 | Swift | Normal | Special | 60 | — | 20 |
 | 37 | Lava Plume ★ | Fire | Special | 80 | 100% | 15 |
 | 40 | Flamethrower | Fire | Special | 90 | 100% | 15 |
+| 46 | Inferno ★ | Fire | Special | 100 | 50% | 5 |
 | 49 | Rollout ★ | Rock | Physical | 30 | 90% | 20 |
 | 55 | Double-Edge ★ | Normal | Physical | 120 | 100% | 15 |
 | 58 | Overheat ★ | Fire | Special | 130 | 90% | 5 |
@@ -125,6 +126,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
 | Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Work Up | Normal | Status | — | — | 30 | 0 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |

@@ -82,6 +82,7 @@ Height 0.9 m (2′11″) · Weight 30 kg (66.1 lbs)
 | 21 | Minimize | Normal | Status | — | — | 10 |
 | 26 | Toxic ★ | Poison | Status | — | 90% | 10 |
 | 29 | Sludge Bomb | Poison | Special | 90 | 100% | 10 |
+| 32 | Sludge Wave ★ | Poison | Special | 95 | 100% | 10 |
 | 37 | Screech | Normal | Status | — | 85% | 40 |
 | 40 | Gunk Shot ★ | Poison | Physical | 120 | 80% | 5 |
 | 43 | Acid Armor | Poison | Status | — | — | 20 |
@@ -133,6 +134,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Acid Spray | Poison | Special | 40 | 100% | 20 | 0 |
 | Hex | Ghost | Special | 65 | 100% | 10 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
@@ -140,6 +142,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+| Sludge Wave | Poison | Special | 95 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

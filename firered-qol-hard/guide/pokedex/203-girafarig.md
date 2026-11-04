@@ -139,6 +139,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Trick Room | Psychic | Status | — | — | 5 | 0 |
 | Work Up | Normal | Status | — | — | 30 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
@@ -149,6 +150,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 | Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| High Horsepower | Ground | Physical | 95 | 95% | 10 | 5 |
 
 ### By breeding (egg moves)
 

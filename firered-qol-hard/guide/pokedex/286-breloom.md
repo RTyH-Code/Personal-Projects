@@ -79,6 +79,7 @@ Height 1.2 m (3′11″) · Weight 39.2 kg (86.4 lbs)
 | 1 | Mach Punch | Fighting | Physical | 40 | 100% | 30 |
 | 12 | Mega Drain | Grass | Special | 40 | 100% | 15 |
 | 15 | Headbutt | Normal | Physical | 70 | 100% | 15 |
+| 19 | Feint ★ | Normal | Physical | 30 | 100% | 10 |
 | 22 | Counter | Fighting | Physical | varies | 100% | 20 |
 | 28 | Force Palm ★ | Fighting | Physical | 60 | 100% | 10 |
 | 39 | Brick Break ★ | Fighting | Physical | 75 | 100% | 15 |
@@ -140,6 +141,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Pounce | Bug | Physical | 50 | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
 | Venoshock | Poison | Special | 65 | 100% | 10 | 0 |

@@ -134,6 +134,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Work Up | Normal | Status | — | — | 30 | 0 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
@@ -151,6 +152,7 @@ Breed a Whismur (passed down to Whismur, which then evolves) with a father that 
 | Smelling Salt | Normal | Physical | 70 | 100% | 10 |
 | Disarming Voice | Fairy | Special | 40 | — | 15 |
 | Hammer Arm | Fighting | Physical | 100 | 90% | 10 |
+| Circle Throw | Fighting | Physical | 60 | 90% | 10 |
 
 ---
 

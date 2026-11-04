@@ -70,6 +70,7 @@ Rayquaza does not evolve.
 | 1 | Twister | Dragon | Special | 40 | 100% | 20 |
 | 1 | Ancient Power | Rock | Special | 60 | 100% | 5 |
 | 1 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
+| 1 | Dragon Ascent ★ | Flying | Physical | 120 | 100% | 5 |
 | 9 | Crunch | Dark | Physical | 80 | 100% | 15 |
 | 18 | Dragon Dance | Dragon | Status | — | — | 20 |
 | 27 | Extreme Speed | Normal | Physical | 80 | 100% | 5 |
@@ -141,15 +142,23 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Brutal Swing | Dark | Physical | 60 | 100% | 20 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Defog | Flying | Status | — | — | 15 | 0 |
+| Dragon Tail | Dragon | Physical | 60 | 90% | 10 | 0 |
 | Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| U-turn | Bug | Physical | 70 | 100% | 20 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
 | Draco Meteor | Dragon | Special | 130 | 90% | 5 | 5 |
+| Dragon Ascent | Flying | Physical | 120 | 100% | 5 | 5 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |

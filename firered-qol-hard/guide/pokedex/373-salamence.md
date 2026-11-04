@@ -77,6 +77,8 @@ Height 1.5 m (4′11″) · Weight 102.6 kg (226.2 lbs)
 | 1 | Protect | Normal | Status | — | — | 10 |
 | 1 | Dragon Breath | Dragon | Special | 60 | 100% | 20 |
 | 1 | Dual Wingbeat ★ | Flying | Physical | 40 | 90% | 10 |
+| 1 | Roost ★ | Flying | Status | — | — | 5 |
+| 1 | Dragon Tail ★ | Dragon | Physical | 60 | 90% | 10 |
 | 15 | Headbutt | Normal | Physical | 70 | 100% | 15 |
 | 20 | Scary Face | Normal | Status | — | 100% | 10 |
 | 25 | Crunch | Dark | Physical | 80 | 100% | 15 |
@@ -135,11 +137,17 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Brutal Swing | Dark | Physical | 60 | 100% | 20 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Defog | Flying | Status | — | — | 15 | 0 |
+| Dragon Tail | Dragon | Physical | 60 | 90% | 10 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Roost | Flying | Status | — | — | 5 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |

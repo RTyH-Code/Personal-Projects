@@ -76,6 +76,7 @@ Shuckle does not evolve.
 | 20 | Safeguard | Normal | Status | — | — | 25 |
 | 25 | Rest | Psychic | Status | — | — | 5 |
 | 40 | Rock Slide ★ | Rock | Physical | 75 | 90% | 10 |
+| 50 | Sticky Web ★ | Bug | Status | — | — | 20 |
 | 60 | Stone Edge ★ | Rock | Physical | 100 | 80% | 5 |
 | 65 | Shell Smash ★ | Normal | Status | — | — | 15 |
 
@@ -123,9 +124,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
 | Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
+| Skitter Smack | Bug | Physical | 70 | 90% | 10 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Sludge Wave | Poison | Special | 95 | 100% | 10 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)

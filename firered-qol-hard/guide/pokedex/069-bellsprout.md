@@ -124,6 +124,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Acid Spray | Poison | Special | 40 | 100% | 20 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Pounce | Bug | Physical | 50 | 100% | 20 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
@@ -132,6 +133,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 | Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
+| Sludge Wave | Poison | Special | 95 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

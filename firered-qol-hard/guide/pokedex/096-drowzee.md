@@ -143,6 +143,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Trick Room | Psychic | Status | — | — | 5 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |

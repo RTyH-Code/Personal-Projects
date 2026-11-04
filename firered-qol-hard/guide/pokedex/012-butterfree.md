@@ -84,6 +84,7 @@ Height 1.1 m (3′07″) · Weight 32 kg (70.5 lbs)
 | 24 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
 | 28 | Safeguard | Normal | Status | — | — | 25 |
 | 32 | Bug Buzz ★ | Bug | Special | 90 | 100% | 10 |
+| 36 | Tailwind ★ | Flying | Status | — | — | 15 |
 | 44 | Quiver Dance ★ | Bug | Status | — | — | 20 |
 
 ### By TM/HM
@@ -129,13 +130,17 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
+| Defog | Flying | Status | — | — | 15 | 0 |
 | Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Roost | Flying | Status | — | — | 5 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| U-turn | Bug | Physical | 70 | 100% | 20 | 3 |
 | Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |

@@ -79,6 +79,7 @@ Mantine does not evolve.
 | 1 | Water Gun ★ | Water | Special | 40 | 100% | 25 |
 | 1 | Psybeam ★ | Psychic | Special | 65 | 100% | 20 |
 | 1 | Bullet Seed ★ | Grass | Physical | 25 | 100% | 30 |
+| 1 | Roost ★ | Flying | Status | — | — | 5 |
 | 12 | Water Pulse | Water | Special | 60 | 100% | 20 |
 | 20 | Agility | Psychic | Status | — | — | 30 |
 | 24 | Bubble Beam | Water | Special | 65 | 100% | 20 |
@@ -131,7 +132,10 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Defog | Flying | Status | — | — | 15 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Roost | Flying | Status | — | — | 5 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
@@ -155,6 +159,7 @@ Breed a Mantine with a father that knows the move.
 | Slam | Normal | Physical | 80 | 75% | 20 |
 | Mud Sport | Ground | Status | — | — | 15 |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 |
+| Tailwind | Flying | Status | — | — | 15 |
 
 ---
 

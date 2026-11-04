@@ -136,9 +136,11 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Defog | Flying | Status | — | — | 15 | 0 |
 | Dual Chop | Dragon | Physical | 40 | 90% | 15 | 0 |
 | Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
@@ -162,6 +164,7 @@ Breed a Torchic (passed down to Torchic, which then evolves) with a father that 
 | Rock Slide | Rock | Physical | 75 | 90% | 10 |
 | Smelling Salt | Normal | Physical | 70 | 100% | 10 |
 | Night Slash | Dark | Physical | 70 | 100% | 15 |
+| Feint | Normal | Physical | 30 | 100% | 10 |
 
 ---
 

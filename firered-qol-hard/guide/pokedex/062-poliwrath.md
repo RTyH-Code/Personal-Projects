@@ -77,6 +77,7 @@ Height 1.3 m (4′03″) · Weight 54 kg (119.0 lbs)
 | 1 | Pound ★ | Normal | Physical | 40 | 100% | 35 |
 | 1 | Water Gun | Water | Special | 40 | 100% | 25 |
 | 1 | Earth Power ★ | Ground | Special | 90 | 100% | 10 |
+| 1 | Circle Throw ★ | Fighting | Physical | 60 | 90% | 10 |
 | 21 | Bubble Beam ★ | Water | Special | 65 | 100% | 20 |
 | 28 | Rain Dance ★ | Water | Status | — | — | 5 |
 | 37 | Body Slam ★ | Normal | Physical | 85 | 100% | 15 |
@@ -139,6 +140,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
 | Dual Chop | Dragon | Physical | 40 | 90% | 15 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
@@ -153,6 +155,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| High Horsepower | Ground | Physical | 95 | 95% | 10 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
 
 ### By breeding (egg moves)

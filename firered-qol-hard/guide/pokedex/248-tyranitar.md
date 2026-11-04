@@ -155,15 +155,20 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Brutal Swing | Dark | Physical | 60 | 100% | 20 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Dragon Tail | Dragon | Physical | 60 | 90% | 10 | 0 |
 | Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
+| Hard Press | Steel | Physical | varies | 100% | 10 | 0 |
 | Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
@@ -176,6 +181,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| High Horsepower | Ground | Physical | 95 | 95% | 10 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
@@ -193,6 +199,7 @@ Breed a Larvitar (passed down to Larvitar, which then evolves) with a father tha
 | Dragon Dance | Dragon | Status | — | — | 20 |
 | Curse | ??? | Status | — | — | 10 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 |
+| Stealth Rock | Rock | Status | — | — | 20 |
 
 ---
 

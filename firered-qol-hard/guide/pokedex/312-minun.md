@@ -134,6 +134,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Volt Switch | Electric | Special | 70 | 100% | 20 | 3 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 

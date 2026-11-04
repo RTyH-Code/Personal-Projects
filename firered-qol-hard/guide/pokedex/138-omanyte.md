@@ -131,6 +131,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
+| Toxic Spikes | Poison | Status | — | — | 20 | 0 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 
@@ -147,6 +149,8 @@ Breed a Omanyte with a father that knows the move.
 | Haze | Ice | Status | — | — | 30 |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 |
 | Spikes | Ground | Status | — | — | 20 |
+| Toxic Spikes | Poison | Status | — | — | 20 |
+| Wring Out | Normal | Special | varies | 100% | 5 |
 
 ---
 

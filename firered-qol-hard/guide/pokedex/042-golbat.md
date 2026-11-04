@@ -158,12 +158,16 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
+| Defog | Flying | Status | — | — | 15 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
+| Roost | Flying | Status | — | — | 5 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| U-turn | Bug | Physical | 70 | 100% | 20 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
@@ -183,6 +187,7 @@ Breed a Zubat (passed down to Zubat, which then evolves) with a father that know
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 |
 | Nasty Plot | Dark | Status | — | — | 20 |
+| Defog | Flying | Status | — | — | 15 |
 
 ---
 

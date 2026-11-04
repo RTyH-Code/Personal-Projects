@@ -143,10 +143,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Defog | Flying | Status | — | — | 15 | 0 |
 | Dual Chop | Dragon | Physical | 40 | 90% | 15 | 0 |
 | Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
 | Heat Crash | Fire | Physical | varies | 100% | 10 | 0 |
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
@@ -155,6 +157,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| U-turn | Bug | Physical | 70 | 100% | 20 | 3 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
 | Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
 | Flare Blitz | Fire | Physical | 120 | 100% | 15 | 5 |
@@ -176,6 +179,7 @@ Breed a Torchic (passed down to Torchic, which then evolves) with a father that 
 | Rock Slide | Rock | Physical | 75 | 90% | 10 |
 | Smelling Salt | Normal | Physical | 70 | 100% | 10 |
 | Night Slash | Dark | Physical | 70 | 100% | 15 |
+| Feint | Normal | Physical | 30 | 100% | 10 |
 
 ---
 

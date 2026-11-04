@@ -133,6 +133,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
 | Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
 | Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
+| Volt Switch | Electric | Special | 70 | 100% | 20 | 3 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 
 ### By breeding (egg moves)

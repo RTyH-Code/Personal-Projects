@@ -125,6 +125,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
@@ -139,6 +140,8 @@ Breed a Lileep with a father that knows the move.
 | Recover | Normal | Status | — | — | 5 |
 | Mirror Coat | Psychic | Special | varies | 100% | 20 |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 |
+| Stealth Rock | Rock | Status | — | — | 20 |
+| Wring Out | Normal | Special | varies | 100% | 5 |
 
 ---
 

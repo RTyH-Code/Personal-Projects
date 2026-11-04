@@ -75,6 +75,7 @@ Height 0.5 m (1′08″) · Weight 1.7 kg (3.7 lbs)
 | 25 | Mist | Ice | Status | — | — | 30 |
 | 25 | Haze | Ice | Status | — | — | 30 |
 | 35 | Baton Pass ★ | Normal | Status | — | — | 40 |
+| 38 | Sticky Web ★ | Bug | Status | — | — | 20 |
 
 ### By TM/HM
 
@@ -116,10 +117,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
+| Pounce | Bug | Physical | 50 | 100% | 20 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Skitter Smack | Bug | Physical | 70 | 90% | 10 | 3 |
 | Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
@@ -135,6 +139,7 @@ Breed a Surskit with a father that knows the move.
 | Mind Reader | Normal | Status | — | 100% | 5 |
 | Lunge | Bug | Physical | 80 | 100% | 15 |
 | Aqua Jet | Water | Physical | 40 | 100% | 20 |
+| Fell Stinger | Bug | Physical | 50 | 100% | 25 |
 
 ---
 

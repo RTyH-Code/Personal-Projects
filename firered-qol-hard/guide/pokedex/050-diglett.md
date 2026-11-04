@@ -125,6 +125,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Work Up | Normal | Status | — | — | 30 | 0 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |

@@ -82,6 +82,7 @@ Height 0.5 m (1′08″) · Weight 8.5 kg (18.7 lbs)
 | 36 | Psychic | Psychic | Special | 90 | 100% | 10 |
 | 40 | Poison Jab ★ | Poison | Physical | 80 | 100% | 20 |
 | 44 | Cross Poison ★ | Poison | Physical | 70 | 100% | 20 |
+| 47 | Sticky Web ★ | Bug | Status | — | — | 20 |
 
 ### By TM/HM
 
@@ -125,15 +126,19 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
 | Hex | Ghost | Special | 65 | 100% | 10 | 0 |
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Pounce | Bug | Physical | 50 | 100% | 20 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Toxic Spikes | Poison | Status | — | — | 20 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Skitter Smack | Bug | Physical | 70 | 90% | 10 | 3 |
 | Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
 | Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
 | Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
+| Sludge Wave | Poison | Special | 95 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

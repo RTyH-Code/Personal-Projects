@@ -130,6 +130,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
 | Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Work Up | Normal | Status | — | — | 30 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
@@ -147,6 +148,7 @@ Breed a Igglybuff with a father that knows the move.
 | Faint Attack | Dark | Physical | 60 | — | 20 |
 | Wish | Normal | Status | — | — | 10 |
 | Fake Tears | Dark | Status | — | 100% | 20 |
+| Punishment | Dark | Physical | varies | 100% | 5 |
 
 ---
 

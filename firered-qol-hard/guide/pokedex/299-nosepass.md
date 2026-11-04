@@ -132,11 +132,14 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
 | Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
+| Volt Switch | Electric | Special | 70 | 100% | 20 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| High Horsepower | Ground | Physical | 95 | 95% | 10 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)
@@ -149,6 +152,7 @@ Breed a Nosepass with a father that knows the move.
 | Rollout | Rock | Physical | 30 | 90% | 20 |
 | Explosion | Normal | Physical | 250 | 100% | 5 |
 | Head Smash | Rock | Physical | 150 | 80% | 5 |
+| Stealth Rock | Rock | Status | — | — | 20 |
 
 ---
 

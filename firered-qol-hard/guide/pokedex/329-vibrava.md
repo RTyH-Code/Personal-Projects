@@ -80,6 +80,7 @@ Height 1.1 m (3′07″) · Weight 15.3 kg (33.7 lbs)
 | 1 | Bulldoze ★ | Ground | Physical | 60 | 100% | 20 |
 | 12 | Mud-Slap ★ | Ground | Special | 20 | 100% | 10 |
 | 16 | Sand Tomb | Ground | Physical | 35 | 85% | 15 |
+| 20 | Dragon Tail ★ | Dragon | Physical | 60 | 90% | 10 |
 | 24 | Screech | Normal | Status | — | 85% | 40 |
 | 28 | Bug Buzz ★ | Bug | Special | 90 | 100% | 10 |
 | 32 | Sandstorm | Rock | Status | — | — | 10 |
@@ -133,12 +134,18 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Defog | Flying | Status | — | — | 15 | 0 |
+| Dragon Tail | Dragon | Physical | 60 | 90% | 10 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Roost | Flying | Status | — | — | 5 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| U-turn | Bug | Physical | 70 | 100% | 20 | 3 |
 | Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
 | Draco Meteor | Dragon | Special | 130 | 90% | 5 | 5 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
@@ -155,6 +162,7 @@ Breed a Trapinch (passed down to Trapinch, which then evolves) with a father tha
 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
 | Gust | Flying | Special | 40 | 100% | 35 |
 | Earth Power | Ground | Special | 90 | 100% | 10 |
+| Feint | Normal | Physical | 30 | 100% | 10 |
 
 ---
 

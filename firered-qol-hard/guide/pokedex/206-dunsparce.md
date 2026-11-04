@@ -77,6 +77,7 @@ Dunsparce does not evolve.
 | 20 | Ancient Power ★ | Rock | Special | 60 | 100% | 5 |
 | 24 | Drill Run ★ | Ground | Physical | 80 | 95% | 10 |
 | 28 | Yawn | Normal | Status | — | 100% | 10 |
+| 36 | Roost ★ | Flying | Status | — | — | 5 |
 | 40 | Dragon Rush ★ | Dragon | Physical | 100 | 75% | 10 |
 | 44 | Coil ★ | Poison | Status | — | — | 20 |
 | 48 | Double-Edge ★ | Normal | Physical | 120 | 100% | 15 |
@@ -139,14 +140,21 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
 | Hex | Ghost | Special | 65 | 100% | 10 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
+| Pounce | Bug | Physical | 50 | 100% | 20 | 0 |
+| Roost | Flying | Status | — | — | 5 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
+| Ice Spinner | Ice | Physical | 80 | 100% | 15 | 3 |
 | Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Skitter Smack | Bug | Physical | 70 | 90% | 10 | 3 |
 | Smart Strike | Steel | Physical | 70 | — | 10 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |

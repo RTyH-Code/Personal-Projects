@@ -130,12 +130,15 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Brutal Swing | Dark | Physical | 60 | 100% | 20 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
 | X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
 | Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| High Horsepower | Ground | Physical | 95 | 95% | 10 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
@@ -150,6 +153,7 @@ Breed a Pinsir with a father that knows the move.
 | False Swipe | Normal | Physical | 40 | 100% | 40 |
 | Faint Attack | Dark | Physical | 60 | — | 20 |
 | Close Combat | Fighting | Physical | 120 | 100% | 5 |
+| Feint | Normal | Physical | 30 | 100% | 10 |
 
 ---
 

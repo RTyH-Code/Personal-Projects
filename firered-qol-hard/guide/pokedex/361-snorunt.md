@@ -125,10 +125,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
 | Frost Breath | Ice | Special | 60 | 90% | 10 | 0 |
 | Hex | Ghost | Special | 65 | 100% | 10 | 0 |
 | Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Ice Spinner | Ice | Physical | 80 | 100% | 15 | 3 |
 
 ### By breeding (egg moves)
 

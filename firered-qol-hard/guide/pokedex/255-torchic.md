@@ -130,8 +130,10 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Defog | Flying | Status | — | — | 15 | 0 |
 | Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
 | Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Work Up | Normal | Status | — | — | 30 | 0 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
 | Flare Blitz | Fire | Physical | 120 | 100% | 15 | 5 |
@@ -149,6 +151,7 @@ Breed a Torchic with a father that knows the move.
 | Rock Slide | Rock | Physical | 75 | 90% | 10 |
 | Smelling Salt | Normal | Physical | 70 | 100% | 10 |
 | Night Slash | Dark | Physical | 70 | 100% | 15 |
+| Feint | Normal | Physical | 30 | 100% | 10 |
 
 ---
 

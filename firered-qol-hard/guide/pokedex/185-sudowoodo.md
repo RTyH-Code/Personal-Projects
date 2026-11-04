@@ -138,6 +138,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
@@ -146,6 +147,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| High Horsepower | Ground | Physical | 95 | 95% | 10 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)
@@ -156,6 +158,7 @@ Breed a Sudowoodo with a father that knows the move.
 |---|---|---|--:|--:|--:|
 | Self-Destruct | Normal | Physical | 200 | 100% | 5 |
 | Rock Polish | Rock | Status | — | — | 20 |
+| Stealth Rock | Rock | Status | — | — | 20 |
 
 ---
 

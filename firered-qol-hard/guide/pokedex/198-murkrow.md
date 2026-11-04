@@ -141,15 +141,19 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
+| Defog | Flying | Status | — | — | 15 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Hex | Ghost | Special | 65 | 100% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
+| Roost | Flying | Status | — | — | 5 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
 | Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
+| U-turn | Bug | Physical | 70 | 100% | 20 | 3 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
 | Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
@@ -170,6 +174,7 @@ Breed a Murkrow with a father that knows the move.
 | Feather Dance | Flying | Status | — | 100% | 15 |
 | Perish Song | Normal | Status | — | — | 5 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 |
+| Roost | Flying | Status | — | — | 5 |
 
 ---
 

@@ -127,9 +127,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
+| Pounce | Bug | Physical | 50 | 100% | 20 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Toxic Spikes | Poison | Status | — | — | 20 | 0 |
 | Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
+| Ice Spinner | Ice | Physical | 80 | 100% | 15 | 3 |
 | Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
@@ -147,6 +151,8 @@ Breed a Pineco with a father that knows the move.
 | Swift | Normal | Special | 60 | — | 20 |
 | Counter | Fighting | Physical | varies | 100% | 20 |
 | Sand Tomb | Ground | Physical | 35 | 85% | 15 |
+| Stealth Rock | Rock | Status | — | — | 20 |
+| Toxic Spikes | Poison | Status | — | — | 20 |
 
 ---
 

@@ -132,6 +132,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
@@ -152,6 +153,7 @@ Breed a Larvitar with a father that knows the move.
 | Dragon Dance | Dragon | Status | — | — | 20 |
 | Curse | ??? | Status | — | — | 10 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 |
+| Stealth Rock | Rock | Status | — | — | 20 |
 
 ---
 

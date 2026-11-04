@@ -73,6 +73,7 @@ Height 1.2 m (3′11″) · Weight 125.8 kg (277.3 lbs)
 | 1 | Protect | Normal | Status | — | — | 10 |
 | 1 | Zap Cannon | Electric | Special | 120 | 50% | 5 |
 | 1 | Heavy Slam ★ | Steel | Physical | varies | 100% | 10 |
+| 1 | Toxic Spikes ★ | Poison | Status | — | — | 20 |
 | 12 | Take Down | Normal | Physical | 90 | 85% | 20 |
 | 17 | Rapid Spin | Normal | Physical | 50 | 100% | 40 |
 | 20 | Rollout ★ | Rock | Physical | 30 | 90% | 20 |
@@ -130,19 +131,25 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
+| Hard Press | Steel | Physical | varies | 100% | 10 | 0 |
 | Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
+| Pounce | Bug | Physical | 50 | 100% | 20 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Toxic Spikes | Poison | Status | — | — | 20 | 0 |
 | Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
+| Ice Spinner | Ice | Physical | 80 | 100% | 15 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
 | Smart Strike | Steel | Physical | 70 | — | 10 | 3 |
+| Volt Switch | Electric | Special | 70 | 100% | 20 | 3 |
 | Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
@@ -160,6 +167,8 @@ Breed a Pineco (passed down to Pineco, which then evolves) with a father that kn
 | Swift | Normal | Special | 60 | — | 20 |
 | Counter | Fighting | Physical | varies | 100% | 20 |
 | Sand Tomb | Ground | Physical | 35 | 85% | 15 |
+| Stealth Rock | Rock | Status | — | — | 20 |
+| Toxic Spikes | Poison | Status | — | — | 20 |
 
 ---
 

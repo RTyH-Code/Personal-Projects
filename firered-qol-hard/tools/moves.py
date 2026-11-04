@@ -146,6 +146,41 @@ BATCHES = {
     ("HURRICANE", "HURRICANE", "CONFUSE_HIT", 30, "TWISTER", "A fierce wind that may confuse. Never misses in rain."),
     ("SUCKER_PUNCH", "SUCKER PUNCH", "HACK_SUCKER_PUNCH", 0, "PURSUIT", "Strikes first if the foe is readying an attack. Fails otherwise."),
 ],
+"3": [
+    ("U_TURN", "U-TURN", "HACK_UTURN", 0, "QUICK_ATTACK", "Attacks, then rushes back to switch places with a party POKéMON."),
+    ("VOLT_SWITCH", "VOLT SWITCH", "HACK_UTURN", 0, "SPARK", "Attacks, then rushes back to switch places with a party POKéMON."),
+    ("FLIP_TURN", "FLIP TURN", "HACK_UTURN", 0, "WATERFALL", "Attacks, then rushes back to switch places with a party POKéMON."),
+    ("ROOST", "ROOST", "RESTORE_HP", 0, "RECOVER", "Lands and rests its body. Restores half of its max HP."),
+    ("TAILWIND", "TAILWIND", "HACK_FIELD", 0, "WHIRLWIND", "A whirlwind doubles the SPEED of the user's side for four turns."),
+    ("TRICK_ROOM", "TRICK ROOM", "HACK_FIELD", 0, "PSYCHIC", "For five turns, slower POKéMON move first."),
+    ("STEALTH_ROCK", "STEALTH ROCK", "HACK_FIELD", 0, "ROCK_THROW", "Lays stones that hurt foes as they switch in, more if weak to ROCK."),
+    ("TOXIC_SPIKES", "TOXIC SPIKES", "HACK_FIELD", 0, "SPIKES", "Lays spikes that poison foes as they switch in. Stacks twice."),
+    ("STICKY_WEB", "STICKY WEB", "HACK_FIELD", 0, "SPIDER_WEB", "Weaves a web that lowers the SPEED of foes as they switch in."),
+    ("DEFOG", "DEFOG", "HACK_FIELD", 0, "HAZE", "Blows away hazards and the foe's barriers. Lowers the foe's evasion."),
+    ("DRAGON_TAIL", "DRAGON TAIL", "HACK_DRAG", 0, "SLAM", "Knocks the foe away. Against trainers, drags out another POKéMON."),
+    ("CIRCLE_THROW", "CIRCLE THROW", "HACK_DRAG", 0, "VITAL_THROW", "Throws the foe. Against trainers, it drags out another POKéMON."),
+    ("FEINT", "FEINT", "HIT", 0, "FAINT_ATTACK", "Hits even through PROTECT and DETECT, and ends them."),
+    ("POLTERGEIST", "POLTERGEIST", "HACK_SUCKER_PUNCH", 0, "ASTONISH", "Attacks with the foe's held item. Fails if it holds no item."),
+    ("FELL_STINGER", "FELL STINGER", "HIT", 0, "POISON_STING", "If it knocks out the foe, the user's ATTACK rises drastically."),
+    ("DRAGON_ASCENT", "DRAGONASCENT", "HIT", 0, "EXTREME_SPEED", "Soars up and dives at the foe. Lowers the user's DEF and SP. DEF."),
+    ("SPIN_OUT", "SPIN OUT", "HIT", 0, "RAPID_SPIN", "Spins furiously on strained legs. Harshly lowers the user's SPEED."),
+    ("WRING_OUT", "WRING OUT", "HIT", 0, "WRAP", "Wrings out the foe. The more HP it has left, the stronger."),
+    ("PUNISHMENT", "PUNISHMENT", "HIT", 0, "THIEF", "Stronger the more the foe has raised its stats."),
+    ("HARD_PRESS", "HARD PRESS", "HIT", 0, "VICE_GRIP", "Crushes the foe. The more HP it has left, the stronger."),
+    ("SLUDGE_WAVE", "SLUDGE WAVE", "POISON_HIT", 10, "SLUDGE", "Swamps everything around in a giant sludge wave. It may poison."),
+    ("INFERNO", "INFERNO", "BURN_HIT", 100, "FIRE_BLAST", "Engulfs the foe in an intense fire. It always leaves a burn."),
+    ("INCINERATE", "INCINERATE", "HIT", 0, "HEAT_WAVE", "Attacks the foes with a burst of fire."),
+    ("TRIPLE_AXEL", "TRIPLE AXEL", "TRIPLE_KICK", 0, "TRIPLE_KICK", "Kicks three times. Each kick is stronger than the last."),
+    ("ORIGIN_PULSE", "ORIGIN PULSE", "HIT", 0, "HYDRO_PUMP", "Blasts the foes with countless beams of glowing blue light."),
+    ("PRECIPICE_BLADES", "PRECIPICEBLD", "HIT", 0, "FISSURE", "Attacks the foes with the power of the land, in blades of stone."),
+    ("HIGH_HORSEPOWER", "HIGHHORSEPWR", "HIT", 0, "STOMP", "Fiercely attacks the foe using its entire body."),
+    ("BRUTAL_SWING", "BRUTAL SWING", "HIT", 0, "SLAM", "Swings its body violently, hitting everything around it."),
+    ("SKITTER_SMACK", "SKITTERSMACK", "SPECIAL_ATTACK_DOWN_HIT", 100, "SCRATCH", "Skitters behind the foe to attack. Lowers the foe's SP. ATK."),
+    ("POUNCE", "POUNCE", "SPEED_DOWN_HIT", 100, "TAKE_DOWN", "Pounces on the foe. Lowers its SPEED."),
+    ("CHILLING_WATER", "CHILLINGWATR", "ATTACK_DOWN_HIT", 100, "BUBBLE", "Showers the foe with ice-cold water. Lowers its ATTACK."),
+    ("ICE_SPINNER", "ICE SPINNER", "HIT", 0, "RAPID_SPIN", "Spins with icy feet to strike the foe."),
+    ("SUPERCELL_SLAM", "SUPERCELLSLM", "RECOIL_IF_MISS", 0, "VOLT_TACKLE", "Slams into the foe with electricity. Hurts the user if it misses."),
+],
 }
 
 TINT = {"DARK": "RGB(6, 3, 10)", "FIGHTING": "RGB(24, 8, 4)", "POISON": "RGB(20, 6, 24)", "GROUND": "RGB(22, 16, 6)",
@@ -354,7 +389,7 @@ for c, name, eff, chance, src, desc in NEW:
     tint = TINT[SDMOVES[norm(c)]["type"].upper()]
     body = anim_block(src)
     text = "\n".join(body)
-    labels = re.findall(r"^(\w+):$", text, re.M)
+    labels = re.findall(r"^(\w+)\s*::?\s*$", text, re.M)
     gotos = re.findall(r"^\t(?:goto|jumpif\w*|choosetwoturnanim|jumpargeq|jumprettrue)\b.*?(\w+)$", text, re.M)
     external = [g for g in gotos if g not in labels and g != f"Move_{src}"]
     if not tint or NO_TINT.search(text) or "\tend" not in text or external:

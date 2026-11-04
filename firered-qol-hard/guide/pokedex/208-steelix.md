@@ -84,6 +84,7 @@ Height 9.2 m (30′02″) · Weight 400 kg (881.8 lbs)
 | 20 | Rock Slide ★ | Rock | Physical | 75 | 90% | 10 |
 | 24 | Screech | Normal | Status | — | 85% | 40 |
 | 28 | Sand Tomb ★ | Ground | Physical | 35 | 85% | 15 |
+| 32 | Stealth Rock ★ | Rock | Status | — | — | 20 |
 | 36 | Slam | Normal | Physical | 80 | 75% | 20 |
 | 40 | Sandstorm | Rock | Status | — | — | 10 |
 | 44 | Dig ★ | Ground | Physical | 80 | 100% | 10 |
@@ -137,13 +138,16 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Brutal Swing | Dark | Physical | 60 | 100% | 20 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Dragon Tail | Dragon | Physical | 60 | 90% | 10 | 0 |
 | Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
 | Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
 | Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
 | Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
@@ -156,6 +160,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| High Horsepower | Ground | Physical | 95 | 95% | 10 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
@@ -172,6 +177,8 @@ Breed a Onix (passed down to Onix, which then evolves) with a father that knows 
 | Rock Climb | Normal | Physical | 90 | 85% | 20 |
 | Head Smash | Rock | Physical | 150 | 80% | 5 |
 | Heavy Slam | Steel | Physical | varies | 100% | 10 |
+| Stealth Rock | Rock | Status | — | — | 20 |
+| Dragon Tail | Dragon | Physical | 60 | 90% | 10 |
 
 ---
 

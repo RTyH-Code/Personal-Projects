@@ -76,6 +76,7 @@ Height 1.8 m (5′11″) · Weight 75 kg (165.3 lbs)
 | 1 | Mean Look | Normal | Status | — | 100% | 5 |
 | 1 | Astonish | Ghost | Physical | 30 | 100% | 15 |
 | 1 | Cross Poison ★ | Poison | Physical | 70 | 100% | 20 |
+| 1 | Tailwind ★ | Flying | Status | — | — | 15 |
 | 15 | Poison Fang | Poison | Physical | 50 | 100% | 15 |
 | 27 | Air Cutter | Flying | Special | 60 | 95% | 25 |
 | 34 | Bite | Dark | Physical | 60 | 100% | 25 |
@@ -128,15 +129,19 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
+| Defog | Flying | Status | — | — | 15 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Hex | Ghost | Special | 65 | 100% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
+| Roost | Flying | Status | — | — | 5 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Cross Poison | Poison | Physical | 70 | 100% | 20 | 3 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| U-turn | Bug | Physical | 70 | 100% | 20 | 3 |
 | X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
@@ -158,6 +163,7 @@ Breed a Zubat (passed down to Zubat, which then evolves) with a father that know
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 |
 | Nasty Plot | Dark | Status | — | — | 20 |
+| Defog | Flying | Status | — | — | 15 |
 
 ---
 

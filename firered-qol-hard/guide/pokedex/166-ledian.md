@@ -130,10 +130,14 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
+| Defog | Flying | Status | — | — | 15 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Roost | Flying | Status | — | — | 5 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| U-turn | Bug | Physical | 70 | 100% | 20 | 3 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
@@ -148,6 +152,7 @@ Breed a Ledyba (passed down to Ledyba, which then evolves) with a father that kn
 | Silver Wind | Bug | Special | 60 | 100% | 5 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 |
 | Bug Buzz | Bug | Special | 90 | 100% | 10 |
+| Tailwind | Flying | Status | — | — | 15 |
 
 ---
 

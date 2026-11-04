@@ -80,6 +80,7 @@ Height 1.8 m (5′11″) · Weight 125.8 kg (277.3 lbs)
 | 35 | Scary Face ★ | Normal | Status | — | 100% | 10 |
 | 41 | Rest | Psychic | Status | — | — | 5 |
 | 41 | Snore | Normal | Special | 50 | 100% | 15 |
+| 48 | High Horsepower ★ | Ground | Physical | 95 | 95% | 10 |
 | 56 | Thrash | Normal | Physical | 120 | 100% | 10 |
 | 64 | Hammer Arm ★ | Fighting | Physical | 100 | 90% | 10 |
 
@@ -150,6 +151,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+| High Horsepower | Ground | Physical | 95 | 95% | 10 | 5 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |

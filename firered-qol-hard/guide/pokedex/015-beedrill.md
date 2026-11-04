@@ -74,10 +74,12 @@ Height 1 m (3′03″) · Weight 29.5 kg (65.0 lbs)
 | 17 | Pursuit | Dark | Physical | 40 | 100% | 20 |
 | 20 | Focus Energy | Normal | Status | — | — | 30 |
 | 23 | Venoshock ★ | Poison | Special | 65 | 100% | 10 |
+| 29 | Toxic Spikes ★ | Poison | Status | — | — | 20 |
 | 32 | Pin Missile | Bug | Physical | 25 | 95% | 20 |
 | 35 | Poison Jab ★ | Poison | Physical | 80 | 100% | 20 |
 | 38 | Agility | Psychic | Status | — | — | 30 |
 | 41 | Endeavor | Normal | Physical | varies | 100% | 5 |
+| 44 | Fell Stinger ★ | Bug | Physical | 50 | 100% | 25 |
 
 ### By TM/HM
 
@@ -120,13 +122,18 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
+| Brutal Swing | Dark | Physical | 60 | 100% | 20 | 0 |
+| Defog | Flying | Status | — | — | 15 | 0 |
 | Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
 | Payback | Dark | Physical | 50 | 100% | 10 | 0 |
+| Roost | Flying | Status | — | — | 5 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| U-turn | Bug | Physical | 70 | 100% | 20 | 3 |
 | X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 

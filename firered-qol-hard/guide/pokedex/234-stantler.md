@@ -137,6 +137,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
 | Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Trick Room | Psychic | Status | — | — | 5 | 0 |
 | Work Up | Normal | Status | — | — | 30 | 0 |
 | Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
 | Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |

@@ -84,6 +84,8 @@ Height 1.1 m (3′07″) · Weight 30 kg (66.1 lbs)
 | 27 | Feather Dance | Flying | Status | — | 100% | 15 |
 | 32 | Agility | Psychic | Status | — | — | 30 |
 | 37 | Wing Attack | Flying | Physical | 60 | 100% | 35 |
+| 42 | Roost ★ | Flying | Status | — | — | 5 |
+| 47 | Tailwind ★ | Flying | Status | — | — | 15 |
 | 52 | Mirror Move | Flying | Status | — | — | 20 |
 | 57 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
 | 62 | Hurricane ★ | Flying | Special | 110 | 70% | 10 |
@@ -123,8 +125,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Defog | Flying | Status | — | — | 15 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Roost | Flying | Status | — | — | 5 | 0 |
+| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Work Up | Normal | Status | — | — | 30 | 0 |
+| U-turn | Bug | Physical | 70 | 100% | 20 | 3 |
 
 ### By breeding (egg moves)
 
@@ -139,6 +145,7 @@ Breed a Pidgey (passed down to Pidgey, which then evolves) with a father that kn
 | Air Cutter | Flying | Special | 60 | 95% | 25 |
 | Air Slash | Flying | Special | 75 | 95% | 15 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 |
+| Defog | Flying | Status | — | — | 15 |
 
 ---
 
