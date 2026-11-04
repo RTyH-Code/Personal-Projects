@@ -100,7 +100,7 @@ NEW = [
     ("Protean", "PROTEAN", "Changes type to its move."),
 ]
 
-# Abilities whose battle effects exist (batch 1).
+# Abilities whose battle effects exist.
 IMPLEMENTED = {
     "Adaptability", "Technician", "Iron Fist", "Reckless", "Sheer Force", "Toxic Boost", "Solar Power",
     "Rivalry", "Sand Force", "Analytic", "Normalize", "Heavy Metal", "Light Metal", "Unaware", "Multiscale",
@@ -108,6 +108,10 @@ IMPLEMENTED = {
     "Wonder Skin", "Tangled Feet", "Snow Cloak", "Sand Rush", "Quick Feet", "Stall", "Big Pecks", "Simple",
     "Contrary", "Overcoat", "Ice Body", "Hydration", "Poison Heal", "Dry Skin", "Magic Guard", "Gluttony",
     "Friend Guard", "Telepathy",
+    # batch 2
+    "Moxie", "Defiant", "Competitive", "Justified", "Rattled", "Steadfast", "Weak Armor", "Anger Point",
+    "Sap Sipper", "Storm Drain", "Wind Rider", "Cursed Body", "Poison Touch", "Aftermath", "Regenerator",
+    "Download", "Frisk", "Unnerve", "Moody", "Healer",
 }
 
 

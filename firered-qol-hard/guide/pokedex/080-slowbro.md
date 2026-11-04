@@ -12,6 +12,7 @@ Height 1.6 m (5′03″) · Weight 78.5 kg (173.1 lbs)
 
 - **Oblivious**: Prevents attraction.
 - **Own Tempo**: Prevents confusion.
+- **Regenerator** *(hidden ability)*: Heals when switched out.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 

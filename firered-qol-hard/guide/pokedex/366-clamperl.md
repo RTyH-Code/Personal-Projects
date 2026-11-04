@@ -11,6 +11,9 @@ Height 0.4 m (1′04″) · Weight 52.5 kg (115.7 lbs)
 ## Abilities
 
 - **Shell Armor**: Blocks critical hits.
+- **Rattled** *(hidden ability)*: Bug, Ghost, Dark hits up Speed.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

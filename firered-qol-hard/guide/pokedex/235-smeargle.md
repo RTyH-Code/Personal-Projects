@@ -12,6 +12,7 @@ Height 1.2 m (3′11″) · Weight 58 kg (127.9 lbs)
 
 - **Own Tempo**: Prevents confusion.
 - **Technician**: Powers up weak moves.
+- **Moody** *(hidden ability)*: Stats change every turn.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 

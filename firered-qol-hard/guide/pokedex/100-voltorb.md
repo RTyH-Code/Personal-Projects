@@ -12,6 +12,7 @@ Height 0.5 m (1′08″) · Weight 10.4 kg (22.9 lbs)
 
 - **Soundproof**: Avoids sound-based moves.
 - **Static**: Paralyzes on contact.
+- **Aftermath** *(hidden ability)*: Hurts the foe when fainting.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 

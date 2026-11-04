@@ -12,6 +12,7 @@ Height 1.2 m (3′11″) · Weight 47 kg (103.6 lbs)
 
 - **Pressure**: Raises foe's PP usage.
 - **Super Luck**: Ups critical-hit ratio.
+- **Justified** *(hidden ability)*: Dark hits raise Attack.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 

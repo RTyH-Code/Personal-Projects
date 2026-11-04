@@ -12,6 +12,7 @@ Height 0.5 m (1′08″) · Weight 13.6 kg (30.0 lbs)
 
 - **Run Away**: Makes escaping easier.
 - **Quick Feet**: Ups Speed if suffering.
+- **Rattled** *(hidden ability)*: Bug, Ghost, Dark hits up Speed.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 

@@ -12,6 +12,7 @@ Height 1.6 m (5′03″) · Weight 130 kg (286.6 lbs)
 
 - **Guts**: Ups Attack if suffering.
 - **No Guard**: All moves always hit.
+- **Steadfast** *(hidden ability)*: Flinching raises Speed.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 

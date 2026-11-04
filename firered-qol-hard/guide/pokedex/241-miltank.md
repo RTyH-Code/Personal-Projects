@@ -12,6 +12,7 @@ Height 1.2 m (3′11″) · Weight 75.5 kg (166.4 lbs)
 
 - **Thick Fat**: Heat-and-cold protection.
 - **Scrappy**: Hits Ghost-type Pokémon.
+- **Sap Sipper** *(hidden ability)*: Grass moves raise Attack.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 

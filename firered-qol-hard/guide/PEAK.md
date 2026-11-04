@@ -123,11 +123,11 @@ Carries 2× Full Restore.
 
 **Attacks with:** Poison ×4, Normal ×3, Ice ×2, Bug ×2, Fire ×2, Electric ×2, Water ×1, Psychic ×1, Ground ×1, Ghost ×1.
 
-**Hit them with:** Psychic (6 weak, 0 resist); Ground (4 weak, 1 resist).
+**Hit them with:** Psychic (6 weak, 0 resist); Ground (5 weak, 0 resist).
 
 **Avoid relying on:** Bug (6 resist or immune); Fairy (6 resist or immune); Fighting (6 resist or immune); Poison (6 resist or immune); Grass (4 resist or immune).
 
-**Suggested counters:** [Metagross](pokedex/376-metagross.md) (Steel / Psychic), [Swampert](pokedex/260-swampert.md) (Water / Ground), [Golem](pokedex/076-golem.md) (Rock / Ground), [Rhydon](pokedex/112-rhydon.md) (Ground / Rock), [Flygon](pokedex/330-flygon.md) (Ground / Dragon), [Grumpig](pokedex/326-grumpig.md) (Psychic with Thick Fat).
+**Suggested counters:** [Swampert](pokedex/260-swampert.md) (Water / Ground), [Golem](pokedex/076-golem.md) (Rock / Ground), [Rhydon](pokedex/112-rhydon.md) (Ground / Rock), [Metagross](pokedex/376-metagross.md) (Steel / Psychic), [Flygon](pokedex/330-flygon.md) (Ground / Dragon), [Steelix](pokedex/208-steelix.md) (Steel / Ground).
 
 ## Sabrina, Saffron City Gym
 
@@ -251,7 +251,7 @@ Carries 2× Full Restore.
 
 **Hit them with:** Ghost (4 weak, 0 resist); Dark (4 weak, 0 resist); Psychic (2 weak, 1 resist).
 
-**Avoid relying on:** Fighting (6 resist or immune); Poison (6 resist or immune); Bug (5 resist or immune); Normal (5 resist or immune); Ground (3 resist or immune).
+**Avoid relying on:** Fighting (6 resist or immune); Poison (6 resist or immune); Bug (5 resist or immune); Normal (5 resist or immune).
 
 **Suggested counters:** [Tyranitar](pokedex/248-tyranitar.md) (Rock / Dark), [Houndoom](pokedex/229-houndoom.md) (Dark / Fire), [Shiftry](pokedex/275-shiftry.md) (Grass / Dark), [Cacturne](pokedex/332-cacturne.md) (Grass / Dark), [Golem](pokedex/076-golem.md) (Rock / Ground), [Rhydon](pokedex/112-rhydon.md) (Ground / Rock).
 

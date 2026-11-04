@@ -1,7 +1,7 @@
 From c1190608cef9279de6fb39c4dd028c18e3b2e25c Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Wed, 4 Nov 2026 02:44:09 +0000
-Subject: [PATCH 28/29] Add the Fairy type
+Subject: [PATCH 28/30] Add the Fairy type
 
 - TYPE_FAIRY with Gen 6 matchups; Steel no longer resists Ghost or Dark
 - 18 Gen 1-3 Pokemon get their modern Fairy typing; Charm, Sweet Kiss and

@@ -12,6 +12,7 @@ Height 0.6 m (2′00″) · Weight 5 kg (11.0 lbs)
 
 - **Hustle**: Trades accuracy for power.
 - **Natural Cure**: Heals upon switching out.
+- **Regenerator** *(hidden ability)*: Heals when switched out.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 

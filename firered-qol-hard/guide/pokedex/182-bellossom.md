@@ -11,6 +11,9 @@ Height 0.4 m (1′04″) · Weight 5.8 kg (12.8 lbs)
 ## Abilities
 
 - **Chlorophyll**: Raises Speed in sunshine.
+- **Healer** *(hidden ability)*: May heal an ally's status.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

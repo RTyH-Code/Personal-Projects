@@ -11,6 +11,7 @@ Height 6.2 m (20′04″) · Weight 162 kg (357.1 lbs)
 ## Abilities
 
 - **Marvel Scale**: Ups Defense if suffering.
+- **Competitive**: Stat drops sharply up Sp. Atk.
 - **Cute Charm** *(hidden ability)*: Infatuates on contact.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*

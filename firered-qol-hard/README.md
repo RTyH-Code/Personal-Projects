@@ -108,13 +108,16 @@ and you can use her as often as you like.
 - Abilities come from the modern games. Abilities that were added after
   Gen 3 are being implemented in batches; until one is ready, that slot keeps
   the Pokémon's Gen 3 ability. Working so far:
-  Adaptability, Analytic, Big Pecks, Contrary, Dry Skin, Filter, Friend Guard,
-  Gluttony, Heavy Metal, Hydration, Ice Body, Iron Fist, Light Metal,
-  Magic Guard, Multiscale, No Guard, Normalize, Overcoat, Poison Heal,
-  Quick Feet, Reckless, Rivalry, Sand Force, Sand Rush, Scrappy, Sheer Force,
-  Simple, Skill Link, Sniper, Snow Cloak, Solar Power, Solid Rock, Stall,
-  Super Luck, Tangled Feet, Technician, Telepathy, Tinted Lens, Toxic Boost,
-  Unaware and Wonder Skin.
+  Adaptability, Aftermath, Analytic, Anger Point, Big Pecks, Competitive,
+  Contrary, Cursed Body, Defiant, Download, Dry Skin, Filter, Friend Guard,
+  Frisk, Gluttony, Healer, Heavy Metal, Hydration, Ice Body, Iron Fist,
+  Justified, Light Metal, Magic Guard, Moody, Moxie, Multiscale, No Guard,
+  Normalize, Overcoat, Poison Heal, Poison Touch, Quick Feet, Rattled,
+  Reckless, Regenerator, Rivalry, Sand Force, Sand Rush, Sap Sipper, Scrappy,
+  Sheer Force, Simple, Skill Link, Sniper, Snow Cloak, Solar Power, Solid Rock,
+  Stall, Steadfast, Storm Drain, Super Luck, Tangled Feet, Technician,
+  Telepathy, Tinted Lens, Toxic Boost, Unaware, Unnerve, Weak Armor,
+  Wind Rider and Wonder Skin.
 - Critical hits still do double damage (Gen 3); Sniper makes them triple.
 - Sun, rain and Flash Fire now boost physical Fire and Water moves too (with
   the physical/special split, moves like Fire Punch had been missing out).
@@ -226,7 +229,7 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `fc5ac3dcb2edc7bd603403b1cb46038980f9010b`
+Patched ROM SHA-1: `3396a57c91a3b8ef7fea1b951e32d80e5ab933b7`
 
 Start a new game. Saves from earlier versions of this hack aren't supported.
 

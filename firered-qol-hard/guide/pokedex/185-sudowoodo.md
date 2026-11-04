@@ -12,6 +12,7 @@ Height 1.2 m (3′11″) · Weight 38 kg (83.8 lbs)
 
 - **Sturdy**: Negates 1-hit KO attacks.
 - **Rock Head**: Prevents recoil damage.
+- **Rattled** *(hidden ability)*: Bug, Ghost, Dark hits up Speed.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
