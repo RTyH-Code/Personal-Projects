@@ -9,6 +9,11 @@ A quality-of-life, modernization and difficulty hack built on the pret/pokefirer
 - New games default to Fast text and the "Set" battle style.
 - TMs are reusable, like in later generations. They can't be sold or tossed.
 - HM moves can be forgotten at any time.
+- **HMs without teaching them:** with the HM in your bag and the badge that
+  allows it, Cut, Surf, Strength, Rock Smash and Waterfall work straight from
+  the overworld, even if no Pokémon knows the move. Fly and Flash show up in
+  the party menu on a Pokémon that could learn them (or your first Pokémon if
+  none can).
 - Trade evolutions without trading:
   - Kadabra, Machoke, Graveler and Haunter evolve at Lv. 37.
   - Use King's Rock on Poliwhirl or Slowpoke, Metal Coat on Onix or Scyther,
@@ -57,7 +62,8 @@ On a Pokémon's summary, go to the **POKéMON SKILLS** page and press **START**.
 | START | Save. Only allowed when the EV pool is 0 |
 | B | Cancel without saving |
 
-You can set IVs freely. EVs can only be moved between stats, so the total
+The memo line shows the **Hidden Power** type and power your IVs give, and
+updates as you change them. You can set IVs freely. EVs can only be moved between stats, so the total
 you earned never goes up. Each stat is capped at 255. The editor works for
 party and PC Pokémon, but not during battles, trades or link play.
 
@@ -124,6 +130,29 @@ All 386 Pokémon can be caught, evolved or bred in a single FireRed save:
   Catching it removes it.
 
 ## Difficulty
+### Optional level caps
+Talk to the scientist in the Viridian City Pokémon Center to turn level caps on
+or off at any time. While they're on, your Pokémon can't gain Exp. (or Rare
+Candy levels) above the highest level on the next Gym Leader's team you
+haven't beaten. Like a Lv. 100 Pokémon, a capped Pokémon also gains no EVs from
+battle. The caps are lifted once you become Champion.
+
+| Next opponent | Cap |
+|---|---|
+| Brock | 16 |
+| Misty | 23 |
+| Lt. Surge | 28 |
+| Erika | 35 |
+| Koga | 45 |
+| Sabrina | 47 |
+| Blaine | 51 |
+| Giovanni | 54 |
+| Elite Four and Champion | 72 |
+
+If you take gyms out of order, the cap is the lowest one among the gyms you
+haven't beaten. Day Care levels aren't capped.
+
+### Trainers
 - Every Gym Leader has a new, larger team with max IVs, better moves and a held item.
 - Every other trainer's levels are scaled by 1.15x.
 - Regular trainers have at least ~18 IVs. The Elite Four, Champion, Rival and Giovanni have max IVs.
@@ -167,7 +196,7 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `ce9374505b5eb890d6e624ad822ea3231aed7c51`
+Patched ROM SHA-1: `ba276c9cb5a9c9022def47ed09816eee4666dc04`
 
 Start a new game. Saves from earlier versions of this hack aren't supported.
 

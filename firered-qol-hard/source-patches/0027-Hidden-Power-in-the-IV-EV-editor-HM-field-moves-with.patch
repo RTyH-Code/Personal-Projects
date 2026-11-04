@@ -1,0 +1,525 @@
+From 75912e010e9ea0d8a6fc3fe73dda99a64b38232c Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Wed, 4 Nov 2026 02:16:05 +0000
+Subject: [PATCH 27/27] Hidden Power in the IV/EV editor, HM field moves
+ without teaching, optional level caps
+
+- The IV/EV editor shows the Hidden Power type and power for the IVs
+- With the HM and its badge, Cut, Surf, Strength, Rock Smash and Waterfall
+  work from the overworld; Fly and Flash appear in the party menu
+- A scientist in the Viridian City Pokemon Center toggles level caps at
+  the next unbeaten Gym Leader's highest level (League after 8 badges,
+  none after becoming Champion); capped Pokemon get no Exp. or Rare Candy
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ HACK_NOTES.md                                 | 31 +++++++-
+ .../ViridianCity_PokemonCenter_1F/map.json    | 14 ++++
+ .../ViridianCity_PokemonCenter_1F/scripts.inc | 33 ++++++++
+ .../ViridianCity_PokemonCenter_1F/text.inc    | 30 +++++++
+ data/specials.inc                             |  1 +
+ include/constants/flags.h                     |  1 +
+ include/party_menu.h                          |  2 +
+ include/pokemon.h                             |  1 +
+ src/battle_script_commands.c                  |  2 +-
+ src/field_player_avatar.c                     |  2 +
+ src/party_menu.c                              | 67 +++++++++++++++-
+ src/pokemon.c                                 | 79 +++++++++++++++++++
+ src/pokemon_summary_screen.c                  | 27 ++++++-
+ src/scrcmd.c                                  |  7 ++
+ 14 files changed, 291 insertions(+), 6 deletions(-)
+
+diff --git a/HACK_NOTES.md b/HACK_NOTES.md
+index 17a4b0a..9ac435e 100644
+--- a/HACK_NOTES.md
++++ b/HACK_NOTES.md
+@@ -7,6 +7,11 @@ A quality-of-life, modernization and difficulty hack built on the pret/pokefirer
+ - New games default to Fast text and the "Set" battle style.
+ - TMs are reusable, like in later generations. They can't be sold or tossed.
+ - HM moves can be forgotten at any time.
++- **HMs without teaching them:** with the HM in your bag and the badge that
++  allows it, Cut, Surf, Strength, Rock Smash and Waterfall work straight from
++  the overworld, even if no Pokémon knows the move. Fly and Flash show up in
++  the party menu on a Pokémon that could learn them (or your first Pokémon if
++  none can).
+ - Trade evolutions without trading:
+   - Kadabra, Machoke, Graveler and Haunter evolve at Lv. 37.
+   - Use King's Rock on Poliwhirl or Slowpoke, Metal Coat on Onix or Scyther,
+@@ -55,7 +60,8 @@ On a Pokémon's summary, go to the **POKéMON SKILLS** page and press **START**.
+ | START | Save. Only allowed when the EV pool is 0 |
+ | B | Cancel without saving |
+ 
+-You can set IVs freely. EVs can only be moved between stats, so the total
++The memo line shows the **Hidden Power** type and power your IVs give, and
++updates as you change them. You can set IVs freely. EVs can only be moved between stats, so the total
+ you earned never goes up. Each stat is capped at 255. The editor works for
+ party and PC Pokémon, but not during battles, trades or link play.
+ 
+@@ -122,6 +128,29 @@ All 386 Pokémon can be caught, evolved or bred in a single FireRed save:
+   Catching it removes it.
+ 
+ ## Difficulty
++### Optional level caps
++Talk to the scientist in the Viridian City Pokémon Center to turn level caps on
++or off at any time. While they're on, your Pokémon can't gain Exp. (or Rare
++Candy levels) above the highest level on the next Gym Leader's team you
++haven't beaten. Like a Lv. 100 Pokémon, a capped Pokémon also gains no EVs from
++battle. The caps are lifted once you become Champion.
++
++| Next opponent | Cap |
++|---|---|
++| Brock | 16 |
++| Misty | 23 |
++| Lt. Surge | 28 |
++| Erika | 35 |
++| Koga | 45 |
++| Sabrina | 47 |
++| Blaine | 51 |
++| Giovanni | 54 |
++| Elite Four and Champion | 72 |
++
++If you take gyms out of order, the cap is the lowest one among the gyms you
++haven't beaten. Day Care levels aren't capped.
++
++### Trainers
+ - Every Gym Leader has a new, larger team with max IVs, better moves and a held item.
+ - Every other trainer's levels are scaled by 1.15x.
+ - Regular trainers have at least ~18 IVs. The Elite Four, Champion, Rival and Giovanni have max IVs.
+diff --git a/data/maps/ViridianCity_PokemonCenter_1F/map.json b/data/maps/ViridianCity_PokemonCenter_1F/map.json
+index 3556932..9b25d1d 100644
+--- a/data/maps/ViridianCity_PokemonCenter_1F/map.json
++++ b/data/maps/ViridianCity_PokemonCenter_1F/map.json
+@@ -71,6 +71,20 @@
+       "trainer_sight_or_berry_tree_id": "0",
+       "script": "ViridianCity_PokemonCenter_1F_EventScript_Youngster",
+       "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_SCIENTIST",
++      "x": 13,
++      "y": 3,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "ViridianCity_PokemonCenter_1F_EventScript_LevelCap",
++      "flag": "0"
+     }
+   ],
+   "warp_events": [
+diff --git a/data/maps/ViridianCity_PokemonCenter_1F/scripts.inc b/data/maps/ViridianCity_PokemonCenter_1F/scripts.inc
+index 40d3d77..7e022f6 100644
+--- a/data/maps/ViridianCity_PokemonCenter_1F/scripts.inc
++++ b/data/maps/ViridianCity_PokemonCenter_1F/scripts.inc
+@@ -25,3 +25,36 @@ ViridianCity_PokemonCenter_1F_EventScript_Gentleman::
+ ViridianCity_PokemonCenter_1F_EventScript_Youngster::
+ 	msgbox ViridianCity_PokemonCenter_1F_Text_PokeCentersHealMons, MSGBOX_NPC
+ 	end
++
++@ FireRed QoL+Hard: turns the optional level caps on or off
++ViridianCity_PokemonCenter_1F_EventScript_LevelCap::
++	lock
++	faceplayer
++	goto_if_set FLAG_SYS_GAME_CLEAR, ViridianCity_PokemonCenter_1F_EventScript_LevelCapChampion
++	goto_if_set FLAG_HACK_LEVEL_CAP, ViridianCity_PokemonCenter_1F_EventScript_LevelCapIsOn
++	msgbox Hack_Text_LevelCapOffer, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, ViridianCity_PokemonCenter_1F_EventScript_LevelCapDone
++	setflag FLAG_HACK_LEVEL_CAP
++	special Hack_BufferLevelCap
++	msgbox Hack_Text_LevelCapNowOn
++	release
++	end
++
++ViridianCity_PokemonCenter_1F_EventScript_LevelCapIsOn::
++	special Hack_BufferLevelCap
++	msgbox Hack_Text_LevelCapIsOn, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, ViridianCity_PokemonCenter_1F_EventScript_LevelCapDone
++	clearflag FLAG_HACK_LEVEL_CAP
++	msgbox Hack_Text_LevelCapNowOff
++	release
++	end
++
++ViridianCity_PokemonCenter_1F_EventScript_LevelCapChampion::
++	msgbox Hack_Text_LevelCapChampion
++	release
++	end
++
++ViridianCity_PokemonCenter_1F_EventScript_LevelCapDone::
++	msgbox Hack_Text_LevelCapDone
++	release
++	end
+diff --git a/data/maps/ViridianCity_PokemonCenter_1F/text.inc b/data/maps/ViridianCity_PokemonCenter_1F/text.inc
+index c4726b3..506aae8 100644
+--- a/data/maps/ViridianCity_PokemonCenter_1F/text.inc
++++ b/data/maps/ViridianCity_PokemonCenter_1F/text.inc
+@@ -16,3 +16,33 @@ ViridianCity_PokemonCenter_1F_Text_PokeCentersHealMons::
+     .string "They make all POKéMON completely\n"
+     .string "healthy.$"
+ 
++
++@ FireRed QoL+Hard: level cap toggle
++Hack_Text_LevelCapOffer::
++    .string "I run the LEVEL CAP challenge!\p"
++    .string "Your POKéMON can't gain EXP. above\n"
++    .string "the strongest POKéMON of the next\l"
++    .string "GYM LEADER you haven't beaten.\p"
++    .string "RARE CANDIES stop working there\n"
++    .string "too. It ends when you become\l"
++    .string "CHAMPION. Turn level caps on?$"
++
++Hack_Text_LevelCapNowOn::
++    .string "Level caps are ON!\n"
++    .string "Your cap right now is Lv. {STR_VAR_1}.$"
++
++Hack_Text_LevelCapIsOn::
++    .string "Level caps are ON.\n"
++    .string "Your cap right now is Lv. {STR_VAR_1}.\p"
++    .string "Turn level caps off?$"
++
++Hack_Text_LevelCapNowOff::
++    .string "Level caps are OFF.\n"
++    .string "Come back if you want them again.$"
++
++Hack_Text_LevelCapChampion::
++    .string "You're the CHAMPION!\n"
++    .string "No level cap holds you back now.$"
++
++Hack_Text_LevelCapDone::
++    .string "Come back any time.$"
+diff --git a/data/specials.inc b/data/specials.inc
+index f008e75..66d5cf5 100644
+--- a/data/specials.inc
++++ b/data/specials.inc
+@@ -456,4 +456,5 @@ gSpecials::
+ 	def_special Hack_SetNature
+ 	def_special Hack_CanSwapAbility
+ 	def_special Hack_SwapAbility
++	def_special Hack_BufferLevelCap
+ gSpecialsEnd::
+diff --git a/include/constants/flags.h b/include/constants/flags.h
+index 5558d55..f5ef63a 100644
+--- a/include/constants/flags.h
++++ b/include/constants/flags.h
+@@ -1321,6 +1321,7 @@
+ 
+ // FireRed QoL+Hard: legendary encounter flags (see tools/hack/legendaries.py)
+ #define FLAG_HACK_PEAK_LEAGUE            (TRAINER_FLAGS_START + TRAINER_RS_COOLTRAINER_M)
++#define FLAG_HACK_LEVEL_CAP              (TRAINER_FLAGS_START + TRAINER_RS_BEAUTY) // optional level caps on
+ #define FLAG_HACK_TRUE_ENDGAME           (TRAINER_FLAGS_START + TRAINER_RS_COOLTRAINER_F) // beat the round 2 Champion
+ #define FLAG_HIDE_SEVAULT_CANYON_ROOT_FOSSIL (TRAINER_FLAGS_START + TRAINER_HEX_MANIAC)
+ #define FLAG_HIDE_SEVAULT_CANYON_CLAW_FOSSIL (TRAINER_FLAGS_START + TRAINER_RS_LADY)
+diff --git a/include/party_menu.h b/include/party_menu.h
+index e9060fa..5151928 100644
+--- a/include/party_menu.h
++++ b/include/party_menu.h
+@@ -56,6 +56,8 @@ void ItemUseCB_TryRestorePP(u8 taskId, TaskFunc func);
+ void ItemUseCB_PPUp(u8 taskId, TaskFunc func);
+ u16 ItemIdToBattleMoveId(u16 item);
+ u16 Hack_GetTutorMove(u8 tutor);
++bool8 Hack_HasHmFieldMove(u16 move);
++u8 Hack_HmFieldMoveMon(u16 move);
+ bool8 Hack_CanLearnTutorMove(u16 species, u8 tutor);
+ bool8 IsMoveHm(u16 move);
+ bool8 MonKnowsMove(struct Pokemon *mon, u16 move);
+diff --git a/include/pokemon.h b/include/pokemon.h
+index f80a006..785ba10 100644
+--- a/include/pokemon.h
++++ b/include/pokemon.h
+@@ -394,6 +394,7 @@ u32 CanMonLearnTMHM(struct Pokemon *mon, u8 tm);
+ #define MAX_RELEARNER_MOVES 160
+ u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves);
+ bool8 Hack_IsTrueEndgame(void);
++u8 Hack_GetLevelCap(void);
+ u8 GetLevelUpMovesBySpecies(u16 species, u16 *moves);
+ u8 GetNumberOfRelearnableMoves(struct Pokemon *mon);
+ u16 SpeciesToPokedexNum(u16 species);
+diff --git a/src/battle_script_commands.c b/src/battle_script_commands.c
+index 576ddd4..7fc9aff 100644
+--- a/src/battle_script_commands.c
++++ b/src/battle_script_commands.c
+@@ -3204,7 +3204,7 @@ static void Cmd_getexp(void)
+                 gBattleScripting.getexpState = 5;
+                 gBattleMoveDamage = 0; // used for exp
+             }
+-            else if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) == MAX_LEVEL)
++            else if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) >= Hack_GetLevelCap())
+             {
+                 *(&gBattleStruct->sentInPokes) >>= 1;
+                 gBattleScripting.getexpState = 5;
+diff --git a/src/field_player_avatar.c b/src/field_player_avatar.c
+index 0496d2b..2cca2a5 100644
+--- a/src/field_player_avatar.c
++++ b/src/field_player_avatar.c
+@@ -1194,6 +1194,8 @@ bool8 PartyHasMonWithSurf(void)
+             if (MonKnowsMove(&gPlayerParty[i], MOVE_SURF))
+                 return TRUE;
+         }
++        if (Hack_HasHmFieldMove(MOVE_SURF) && Hack_HmFieldMoveMon(MOVE_SURF) < PARTY_SIZE)
++            return TRUE;
+     }
+     return FALSE;
+ }
+diff --git a/src/party_menu.c b/src/party_menu.c
+index c8057a8..1e5e34e 100644
+--- a/src/party_menu.c
++++ b/src/party_menu.c
+@@ -3041,6 +3041,15 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
+             }
+         }
+     }
++    // FireRed QoL+Hard: Fly and Flash from the HM without knowing the move
++    // (the other HMs work straight from the overworld). At most 4 field moves.
++    for (i = 0; i < 2 && sPartyMenuInternal->numActions < 5; i++)
++    {
++        j = (i == 0) ? FIELD_MOVE_FLY : FIELD_MOVE_FLASH;
++        if (!MonKnowsMove(&mons[slotId], sFieldMoves[j]) && Hack_HasHmFieldMove(sFieldMoves[j])
++         && Hack_HmFieldMoveMon(sFieldMoves[j]) == slotId)
++            AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, j + CURSOR_OPTION_FIELD_MOVES);
++    }
+     if (GetMonData(&mons[1], MON_DATA_SPECIES) != SPECIES_NONE)
+         AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, CURSOR_OPTION_SWITCH);
+     if (ItemIsMail(GetMonData(&mons[slotId], MON_DATA_HELD_ITEM)))
+@@ -5088,7 +5097,7 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc func)
+ 
+     if (item == ITEM_SPECIAL_CANDY)
+         item = ITEM_RARE_CANDY; // same effect, never used up
+-    if (GetMonData(mon, MON_DATA_LEVEL) != MAX_LEVEL)
++    if (GetMonData(mon, MON_DATA_LEVEL) < Hack_GetLevelCap())
+         noEffect = PokemonItemUseNoEffect(mon, item, gPartyMenu.slotId, 0);
+     else
+         noEffect = TRUE;
+@@ -6409,3 +6418,59 @@ static void Task_PartyMenuWaitForFade(u8 taskId)
+         ScriptContext_Enable();
+     }
+ }
++
++// ---------------------------------------------------------------------------
++// FireRed QoL+Hard: HM field moves work without a Pokemon knowing them, as
++// long as you have the HM and the badge that allows it.
++// Index = FIELD_MOVE_* (Flash..Waterfall), which also matches the badge order.
++// ---------------------------------------------------------------------------
++static const u16 sHackHmItems[FIELD_MOVE_WATERFALL + 1] =
++{
++    [FIELD_MOVE_FLASH]      = ITEM_HM05,
++    [FIELD_MOVE_CUT]        = ITEM_HM01,
++    [FIELD_MOVE_FLY]        = ITEM_HM02,
++    [FIELD_MOVE_STRENGTH]   = ITEM_HM04,
++    [FIELD_MOVE_SURF]       = ITEM_HM03,
++    [FIELD_MOVE_ROCK_SMASH] = ITEM_HM06,
++    [FIELD_MOVE_WATERFALL]  = ITEM_HM07,
++};
++
++static s8 Hack_HmFieldMoveIndex(u16 move)
++{
++    u8 i;
++
++    for (i = 0; i <= FIELD_MOVE_WATERFALL; i++)
++        if (sFieldMoves[i] == move)
++            return i;
++    return -1;
++}
++
++bool8 Hack_HasHmFieldMove(u16 move)
++{
++    s8 idx = Hack_HmFieldMoveIndex(move);
++
++    if (idx < 0)
++        return FALSE;
++    return FlagGet(FLAG_BADGE01_GET + idx) && CheckBagHasItem(sHackHmItems[idx], 1);
++}
++
++// The party slot shown using the move: one that could learn it, else the
++// first Pokemon that isn't an Egg. PARTY_SIZE if there is none.
++u8 Hack_HmFieldMoveMon(u16 move)
++{
++    s8 idx = Hack_HmFieldMoveIndex(move);
++    u8 i, first = PARTY_SIZE;
++
++    for (i = 0; i < PARTY_SIZE; i++)
++    {
++        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) == SPECIES_NONE)
++            break;
++        if (GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
++            continue;
++        if (first == PARTY_SIZE)
++            first = i;
++        if (idx >= 0 && CanMonLearnTMHM(&gPlayerParty[i], sHackHmItems[idx] - ITEM_TM01))
++            return i;
++    }
++    return first;
++}
+diff --git a/src/pokemon.c b/src/pokemon.c
+index 1e87fa5..db18f03 100644
+--- a/src/pokemon.c
++++ b/src/pokemon.c
+@@ -40,6 +40,7 @@ bool8 Hack_IsTrueEndgame(void);
+ #include "constants/moves.h"
+ #include "constants/songs.h"
+ #include "constants/item_effects.h"
++#include "constants/opponents.h"
+ #include "constants/trainers.h"
+ #include "constants/hold_effects.h"
+ #include "constants/battle_move_effects.h"
+@@ -6695,3 +6696,81 @@ void Hack_SwapAbility(void)
+ 
+     SetMonData(mon, MON_DATA_ABILITY_NUM, &num);
+ }
++
++// ---------------------------------------------------------------------------
++// Optional level caps (toggled by an NPC in the Viridian City Pokemon Center).
++// The cap is the highest level on the next Gym Leader's team you haven't
++// beaten; with all 8 badges it's the Elite Four / Champion's. No cap once
++// you're Champion. Capped Pokemon get no Exp. and Rare Candies don't work.
++// ---------------------------------------------------------------------------
++static const u16 sHackCapLeaders[] = {
++    TRAINER_LEADER_BROCK, TRAINER_LEADER_MISTY, TRAINER_LEADER_LT_SURGE, TRAINER_LEADER_ERIKA,
++    TRAINER_LEADER_KOGA, TRAINER_LEADER_SABRINA, TRAINER_LEADER_BLAINE, TRAINER_LEADER_GIOVANNI,
++};
++static const u16 sHackCapLeague[] = {
++    TRAINER_ELITE_FOUR_LORELEI, TRAINER_ELITE_FOUR_BRUNO, TRAINER_ELITE_FOUR_AGATHA, TRAINER_ELITE_FOUR_LANCE,
++    TRAINER_CHAMPION_FIRST_SQUIRTLE, TRAINER_CHAMPION_FIRST_BULBASAUR, TRAINER_CHAMPION_FIRST_CHARMANDER,
++};
++
++static u8 Hack_TrainerMaxLevel(u16 trainerNum)
++{
++    const struct Trainer *t = &gTrainers[trainerNum];
++    u8 i, lvl, max = 0;
++
++    for (i = 0; i < t->partySize; i++)
++    {
++        switch (t->partyFlags & (F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM))
++        {
++        case 0:
++            lvl = t->party.NoItemDefaultMoves[i].lvl;
++            break;
++        case F_TRAINER_PARTY_CUSTOM_MOVESET:
++            lvl = t->party.NoItemCustomMoves[i].lvl;
++            break;
++        case F_TRAINER_PARTY_HELD_ITEM:
++            lvl = t->party.ItemDefaultMoves[i].lvl;
++            break;
++        default:
++            lvl = t->party.ItemCustomMoves[i].lvl;
++            break;
++        }
++        if (lvl > max)
++            max = lvl;
++    }
++    return max;
++}
++
++u8 Hack_GetLevelCap(void)
++{
++    u8 i, cap = MAX_LEVEL, lvl;
++
++    if (!FlagGet(FLAG_HACK_LEVEL_CAP) || FlagGet(FLAG_SYS_GAME_CLEAR))
++        return MAX_LEVEL;
++    for (i = 0; i < ARRAY_COUNT(sHackCapLeaders); i++)
++    {
++        if (!FlagGet(FLAG_BADGE01_GET + i))
++        {
++            lvl = Hack_TrainerMaxLevel(sHackCapLeaders[i]);
++            if (lvl < cap)
++                cap = lvl;
++        }
++    }
++    if (cap == MAX_LEVEL)
++    {
++        cap = 0;
++        for (i = 0; i < ARRAY_COUNT(sHackCapLeague); i++)
++        {
++            lvl = Hack_TrainerMaxLevel(sHackCapLeague[i]);
++            if (lvl > cap)
++                cap = lvl;
++        }
++    }
++    return cap;
++}
++
++// For the toggle NPC: VAR_RESULT = cap, STR_VAR_1 = cap as text.
++void Hack_BufferLevelCap(void)
++{
++    gSpecialVar_Result = Hack_GetLevelCap();
++    ConvertIntToDecimalStringN(gStringVar1, gSpecialVar_Result, STR_CONV_MODE_LEFT_ALIGN, 3);
++}
+diff --git a/src/pokemon_summary_screen.c b/src/pokemon_summary_screen.c
+index ac592df..f7cced1 100644
+--- a/src/pokemon_summary_screen.c
++++ b/src/pokemon_summary_screen.c
+@@ -910,8 +910,7 @@ static const struct WindowTemplate sWindowTemplates_Dummy[] =
+ 
+ static const u8 sText_IvEv_ControlsPageEdit[] = _("{DPAD_LEFTRIGHT}PAGE {START_BUTTON}IV/EV");
+ static const u8 sText_IvEv_Pool[] = _("EV POOL");
+-static const u8 sText_IvEv_EditingIv[] = _("EDITING IV");
+-static const u8 sText_IvEv_EditingEv[] = _("EDITING EV");
++static const u8 sText_IvEv_HiddenPower[] = _("H.POWER ");
+ static const u8 sText_IvEv_Help1[] = _("{A_BUTTON}IV/EV {START_BUTTON}Save");
+ static const u8 sText_IvEv_Help2[] = _("{DPAD_UPDOWN}Stat {DPAD_LEFTRIGHT}Change  {B_BUTTON}Cancel");
+ 
+@@ -5283,10 +5282,31 @@ static void IvEvEdit_PrintRightAligned(u8 windowId, const u8 *str, u8 right, u8
+     AddTextPrinterParameterized3(windowId, FONT_NORMAL, right - GetStringWidth(FONT_NORMAL, str, 0), y, colors, TEXT_SKIP_DRAW, str);
+ }
+ 
++// Hidden Power's type and power from the IVs being edited (same formula as
++// Cmd_hiddenpowercalc). Index order: HP, Atk, Def, SpAtk, SpDef, Speed.
++static void IvEvEdit_BufferHiddenPower(u8 *dest)
++{
++    const u8 *iv = sIvEvEdit.iv;
++    s32 typeBits = (iv[0] & 1) | ((iv[1] & 1) << 1) | ((iv[2] & 1) << 2)
++                 | ((iv[5] & 1) << 3) | ((iv[3] & 1) << 4) | ((iv[4] & 1) << 5);
++    s32 powerBits = ((iv[0] >> 1) & 1) | (((iv[1] >> 1) & 1) << 1) | (((iv[2] >> 1) & 1) << 2)
++                  | (((iv[5] >> 1) & 1) << 3) | (((iv[3] >> 1) & 1) << 4) | (((iv[4] >> 1) & 1) << 5);
++    u8 type = ((NUMBER_OF_MON_TYPES - 3) * typeBits) / 63 + 1;
++    u8 *end;
++
++    if (type >= TYPE_MYSTERY)
++        type++;
++    end = StringCopy(dest, sText_IvEv_HiddenPower);
++    end = StringCopy(end, gTypeNames[type]);
++    *end++ = CHAR_SPACE;
++    ConvertIntToDecimalStringN(end, (40 * powerBits) / 63 + 30, STR_CONV_MODE_LEFT_ALIGN, 2);
++}
++
+ static void IvEvEdit_Draw(void)
+ {
+     u8 i;
+     u8 str[8];
++    u8 hp[24];
+     u8 pane = sMonSummaryScreen->windowIds[POKESUM_WIN_RIGHT_PANE];
+     u8 memo = sMonSummaryScreen->windowIds[POKESUM_WIN_TRAINER_MEMO];
+     u8 help = sMonSummaryScreen->windowIds[5];
+@@ -5305,7 +5325,8 @@ static void IvEvEdit_Draw(void)
+ 
+     FillWindowPixelBuffer(memo, 0);
+     AddTextPrinterParameterized3(memo, FONT_NORMAL, 26, 7, sLevelNickTextColors[0], TEXT_SKIP_DRAW, sText_IvEv_Pool);
+-    AddTextPrinterParameterized3(memo, FONT_NORMAL, 26, 20, sLevelNickTextColors[0], TEXT_SKIP_DRAW, sIvEvEdit.column ? sText_IvEv_EditingEv : sText_IvEv_EditingIv);
++    IvEvEdit_BufferHiddenPower(hp);
++    AddTextPrinterParameterized3(memo, FONT_NORMAL, 2, 20, sLevelNickTextColors[0], TEXT_SKIP_DRAW, hp);
+ 
+     FillWindowPixelBuffer(help, 0);
+     AddTextPrinterParameterized3(help, FONT_NORMAL, 66, 1, sLevelNickTextColors[0], TEXT_SKIP_DRAW, sText_IvEv_Help1);
+diff --git a/src/scrcmd.c b/src/scrcmd.c
+index 97b695e..bfce45b 100644
+--- a/src/scrcmd.c
++++ b/src/scrcmd.c
+@@ -1792,6 +1792,13 @@ bool8 ScrCmd_checkpartymove(struct ScriptContext * ctx)
+             break;
+         }
+     }
++    // FireRed QoL+Hard: the HM and its badge are enough
++    if (gSpecialVar_Result == PARTY_SIZE && Hack_HasHmFieldMove(moveId))
++    {
++        gSpecialVar_Result = Hack_HmFieldMoveMon(moveId);
++        if (gSpecialVar_Result < PARTY_SIZE)
++            gSpecialVar_0x8004 = GetMonData(&gPlayerParty[gSpecialVar_Result], MON_DATA_SPECIES, NULL);
++    }
+     return FALSE;
+ }
+ 
+-- 
+2.43.0
+
