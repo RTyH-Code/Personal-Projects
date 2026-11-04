@@ -127,6 +127,7 @@ Breed a Whismur with a father that knows the move.
 | Swagger | Normal | Status | — | 85% | 15 |
 | Extrasensory | Psychic | Special | 80 | 100% | 20 |
 | Smelling Salt | Normal | Physical | 70 | 100% | 10 |
+| Disarming Voice | Fairy | Special | 40 | — | 15 |
 
 ---
 

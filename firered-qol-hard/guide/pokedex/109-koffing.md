@@ -31,7 +31,7 @@ Height 0.6 m (2′00″) · Weight 1 kg (2.2 lbs)
 | Damage taken | Types |
 |---|---|
 | 2× | Ground, Psychic |
-| ½× | Fighting, Poison, Bug, Grass |
+| ½× | Fighting, Poison, Bug, Grass, Fairy |
 
 *Its ability Levitate: immune to Ground moves.*
 

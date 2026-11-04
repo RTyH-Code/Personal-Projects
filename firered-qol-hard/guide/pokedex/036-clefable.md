@@ -2,7 +2,7 @@
 
 # #036 Clefable
 
-*The Fairy Pokémon* — **Normal**
+*The Fairy Pokémon* — **Fairy** *(originally Normal)*
 
 > It has an acute sense of hearing. It can easily hear a pin being dropped nearly 1,100 yards away.
 
@@ -30,8 +30,9 @@ Height 1.3 m (4′03″) · Weight 40 kg (88.2 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Fighting |
-| 0× (immune) | Ghost |
+| 2× | Poison, Steel |
+| ½× | Fighting, Bug, Dark |
+| 0× (immune) | Dragon |
 
 ## Training and breeding
 
@@ -64,16 +65,18 @@ Height 1.3 m (4′03″) · Weight 40 kg (88.2 lbs)
 
 | Lv | Move | Type | Cat. | Power | Acc. | PP |
 |--:|---|---|---|--:|--:|--:|
-| 1 | Charm ★ | Normal | Status | — | 100% | 20 |
+| 1 | Charm ★ | Fairy | Status | — | 100% | 20 |
 | 1 | Defense Curl ★ | Normal | Status | — | — | 40 |
 | 1 | Growl ★ | Normal | Status | — | 100% | 40 |
 | 1 | Pound ★ | Normal | Physical | 40 | 100% | 35 |
 | 1 | Sing | Normal | Status | — | 55% | 15 |
 | 1 | Splash ★ | Normal | Status | — | — | 40 |
-| 1 | Sweet Kiss ★ | Normal | Status | — | 75% | 10 |
+| 1 | Sweet Kiss ★ | Fairy | Status | — | 75% | 10 |
+| 1 | Disarming Voice ★ | Fairy | Special | 40 | — | 15 |
+| 1 | Moonblast ★ | Fairy | Special | 95 | 100% | 15 |
 | 11 | Encore ★ | Normal | Status | — | 100% | 5 |
 | 23 | Metronome | Normal | Status | — | — | 10 |
-| 28 | Moonlight ★ | Normal | Status | — | — | 5 |
+| 28 | Moonlight ★ | Fairy | Status | — | — | 5 |
 | 37 | Meteor Mash ★ | Steel | Physical | 90 | 90% | 10 |
 | 41 | Follow Me ★ | Normal | Status | — | — | 20 |
 | 46 | Cosmic Power ★ | Psychic | Status | — | — | 20 |

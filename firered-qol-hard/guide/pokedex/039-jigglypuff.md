@@ -2,7 +2,7 @@
 
 # #039 Jigglypuff
 
-*The Balloon Pokémon* — **Normal**
+*The Balloon Pokémon* — **Normal / Fairy** *(originally Normal)*
 
 > It captivates foes with its huge, round eyes, then lulls them to sleep by singing a soothing melody.
 
@@ -30,8 +30,9 @@ Height 0.5 m (1′08″) · Weight 5.5 kg (12.1 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Fighting |
-| 0× (immune) | Ghost |
+| 2× | Poison, Steel |
+| ½× | Bug, Dark |
+| 0× (immune) | Ghost, Dragon |
 
 ## Training and breeding
 
@@ -69,8 +70,9 @@ Height 0.5 m (1′08″) · Weight 5.5 kg (12.1 lbs)
 | 1 | Sing | Normal | Status | — | 55% | 15 |
 | 1 | Disable | Normal | Status | — | 100% | 20 |
 | 1 | Defense Curl | Normal | Status | — | — | 40 |
-| 1 | Sweet Kiss ★ | Normal | Status | — | 75% | 10 |
-| 1 | Charm ★ | Normal | Status | — | 100% | 20 |
+| 1 | Sweet Kiss ★ | Fairy | Status | — | 75% | 10 |
+| 1 | Charm ★ | Fairy | Status | — | 100% | 20 |
+| 1 | Disarming Voice ★ | Fairy | Special | 40 | — | 15 |
 | 8 | Covet ★ | Normal | Physical | 60 | 100% | 25 |
 | 12 | Stockpile ★ | Normal | Status | — | — | 20 |
 | 12 | Spit Up ★ | Normal | Special | varies | 100% | 10 |

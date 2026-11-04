@@ -71,10 +71,11 @@ Volbeat does not evolve.
 | 5 | Double Team | Normal | Status | — | — | 15 |
 | 8 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | 12 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
-| 19 | Moonlight | Normal | Status | — | — | 5 |
+| 19 | Moonlight | Fairy | Status | — | — | 5 |
 | 22 | Tail Glow | Bug | Status | — | — | 20 |
 | 26 | Protect | Normal | Status | — | — | 10 |
 | 33 | Helping Hand | Normal | Status | — | — | 20 |
+| 40 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
 | 43 | Double-Edge | Normal | Physical | 120 | 100% | 15 |
 
 ### By TM/HM

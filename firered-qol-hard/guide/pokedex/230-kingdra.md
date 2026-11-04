@@ -30,7 +30,7 @@ Height 1.8 m (5′11″) · Weight 152 kg (335.1 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Dragon |
+| 2× | Dragon, Fairy |
 | ½× | Steel |
 | ¼× | Fire, Water |
 

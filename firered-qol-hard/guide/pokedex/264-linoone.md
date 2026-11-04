@@ -127,7 +127,7 @@ Breed a Zigzagoon (passed down to Zigzagoon, which then evolves) with a father t
 
 | Move | Type | Cat. | Power | Acc. | PP |
 |---|---|---|--:|--:|--:|
-| Charm | Normal | Status | — | 100% | 20 |
+| Charm | Fairy | Status | — | 100% | 20 |
 | Pursuit | Dark | Physical | 40 | 100% | 20 |
 | Substitute | Normal | Status | — | — | 10 |
 | Tickle | Normal | Status | — | 100% | 20 |

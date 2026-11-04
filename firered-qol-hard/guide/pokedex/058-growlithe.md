@@ -34,7 +34,7 @@ Height 0.7 m (2′04″) · Weight 19 kg (41.9 lbs)
 | Damage taken | Types |
 |---|---|
 | 2× | Ground, Rock, Water |
-| ½× | Bug, Steel, Fire, Grass, Ice |
+| ½× | Bug, Steel, Fire, Grass, Ice, Fairy |
 
 *With Flash Fire: immune to Fire moves.*
 
@@ -85,6 +85,7 @@ Height 0.7 m (2′04″) · Weight 19 kg (41.9 lbs)
 | 36 | Take Down | Normal | Physical | 90 | 85% | 20 |
 | 40 | Flamethrower | Fire | Special | 90 | 100% | 15 |
 | 44 | Roar | Normal | Status | — | 100% | 20 |
+| 48 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
 | 52 | Reversal ★ | Fighting | Physical | varies | 100% | 15 |
 
 ### By TM/HM

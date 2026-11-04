@@ -66,14 +66,15 @@ Luvdisc does not evolve.
 | Lv | Move | Type | Cat. | Power | Acc. | PP |
 |--:|---|---|---|--:|--:|--:|
 | 1 | Tackle | Normal | Physical | 40 | 100% | 35 |
-| 1 | Charm | Normal | Status | — | 100% | 20 |
+| 1 | Charm | Fairy | Status | — | 100% | 20 |
 | 4 | Water Gun | Water | Special | 40 | 100% | 25 |
 | 7 | Agility | Psychic | Status | — | — | 30 |
 | 13 | Wish ★ | Normal | Status | — | — | 10 |
 | 17 | Water Pulse ★ | Water | Special | 60 | 100% | 20 |
 | 20 | Attract | Normal | Status | — | 100% | 15 |
+| 22 | Draining Kiss ★ | Fairy | Special | 50 | 100% | 10 |
 | 26 | Flail | Normal | Physical | varies | 100% | 15 |
-| 31 | Sweet Kiss | Normal | Status | — | 75% | 10 |
+| 31 | Sweet Kiss | Fairy | Status | — | 75% | 10 |
 | 34 | Take Down | Normal | Physical | 90 | 85% | 20 |
 | 46 | Hydro Pump ★ | Water | Special | 110 | 80% | 5 |
 | 49 | Safeguard | Normal | Status | — | — | 25 |

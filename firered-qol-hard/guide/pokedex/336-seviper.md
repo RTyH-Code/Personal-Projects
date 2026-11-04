@@ -31,7 +31,7 @@ Height 2.7 m (8′10″) · Weight 52.5 kg (115.7 lbs)
 | Damage taken | Types |
 |---|---|
 | 2× | Ground, Psychic |
-| ½× | Fighting, Poison, Bug, Grass |
+| ½× | Fighting, Poison, Bug, Grass, Fairy |
 
 ## Training and breeding
 

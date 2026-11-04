@@ -32,7 +32,7 @@ Height 3.8 m (12′06″) · Weight 199 kg (438.7 lbs)
 |---|---|
 | 4× | Rock |
 | 2× | Water, Electric |
-| ½× | Fighting, Steel, Fire |
+| ½× | Fighting, Steel, Fire, Fairy |
 | ¼× | Bug, Grass |
 | 0× (immune) | Ground |
 

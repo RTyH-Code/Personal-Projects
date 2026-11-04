@@ -30,7 +30,7 @@ Height 2 m (6′07″) · Weight 60 kg (132.3 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Bug, Ghost, Ice, Dragon, Dark |
+| 2× | Bug, Ghost, Ice, Dragon, Dark, Fairy |
 | ½× | Fighting, Fire, Water, Grass, Electric, Psychic |
 
 *Its ability Levitate: immune to Ground moves.*

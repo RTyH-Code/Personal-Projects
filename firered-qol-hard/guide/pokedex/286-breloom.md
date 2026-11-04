@@ -31,7 +31,7 @@ Height 1.2 m (3′11″) · Weight 39.2 kg (86.4 lbs)
 | Damage taken | Types |
 |---|---|
 | 4× | Flying |
-| 2× | Poison, Fire, Psychic, Ice |
+| 2× | Poison, Fire, Psychic, Ice, Fairy |
 | ½× | Ground, Rock, Water, Grass, Electric, Dark |
 
 ## Training and breeding
@@ -133,7 +133,7 @@ Breed a Shroomish (passed down to Shroomish, which then evolves) with a father t
 |---|---|---|--:|--:|--:|
 | Fake Tears | Dark | Status | — | 100% | 20 |
 | Swagger | Normal | Status | — | 85% | 15 |
-| Charm | Normal | Status | — | 100% | 20 |
+| Charm | Fairy | Status | — | 100% | 20 |
 | False Swipe | Normal | Physical | 40 | 100% | 40 |
 | Helping Hand | Normal | Status | — | — | 20 |
 

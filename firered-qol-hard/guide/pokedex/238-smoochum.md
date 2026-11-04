@@ -72,7 +72,7 @@ Height 0.4 m (1′04″) · Weight 6 kg (13.2 lbs)
 | 24 | Fake Tears | Dark | Status | — | 100% | 20 |
 | 28 | Ice Punch ★ | Ice | Physical | 75 | 100% | 15 |
 | 32 | Psychic | Psychic | Special | 90 | 100% | 10 |
-| 36 | Sweet Kiss | Normal | Status | — | 75% | 10 |
+| 36 | Sweet Kiss | Fairy | Status | — | 75% | 10 |
 | 40 | Mean Look | Normal | Status | — | 100% | 5 |
 | 44 | Perish Song | Normal | Status | — | — | 5 |
 | 48 | Blizzard | Ice | Special | 110 | 70% | 5 |

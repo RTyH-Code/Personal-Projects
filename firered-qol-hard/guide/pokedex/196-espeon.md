@@ -74,7 +74,7 @@ Height 0.9 m (2′11″) · Weight 26.5 kg (58.4 lbs)
 | 1 | Bite ★ | Dark | Physical | 60 | 100% | 25 |
 | 1 | Growl ★ | Normal | Status | — | 100% | 40 |
 | 1 | Confusion | Psychic | Special | 50 | 100% | 25 |
-| 1 | Charm ★ | Normal | Status | — | 100% | 20 |
+| 1 | Charm ★ | Fairy | Status | — | 100% | 20 |
 | 1 | Baton Pass ★ | Normal | Status | — | — | 40 |
 | 1 | Helping Hand | Normal | Status | — | — | 20 |
 | 1 | Covet ★ | Normal | Physical | 60 | 100% | 25 |
@@ -131,7 +131,7 @@ Breed a Eevee (passed down to Eevee, which then evolves) with a father that know
 
 | Move | Type | Cat. | Power | Acc. | PP |
 |---|---|---|--:|--:|--:|
-| Charm | Normal | Status | — | 100% | 20 |
+| Charm | Fairy | Status | — | 100% | 20 |
 | Flail | Normal | Physical | varies | 100% | 15 |
 | Endure | Normal | Status | — | — | 10 |
 | Curse | ??? | Status | — | — | 10 |

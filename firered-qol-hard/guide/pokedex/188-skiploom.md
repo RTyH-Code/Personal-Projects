@@ -72,6 +72,7 @@ Height 0.6 m (2′00″) · Weight 1 kg (2.2 lbs)
 | 1 | Splash | Normal | Status | — | — | 40 |
 | 1 | Synthesis | Grass | Status | — | — | 5 |
 | 8 | Tackle | Normal | Physical | 40 | 100% | 35 |
+| 10 | Fairy Wind ★ | Fairy | Special | 40 | 100% | 30 |
 | 12 | Poison Powder | Poison | Status | — | 75% | 35 |
 | 12 | Stun Spore | Grass | Status | — | 75% | 30 |
 | 12 | Sleep Powder | Grass | Status | — | 75% | 15 |

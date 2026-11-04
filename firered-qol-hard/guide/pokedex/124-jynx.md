@@ -67,7 +67,7 @@ Height 1.4 m (4′07″) · Weight 40.6 kg (89.5 lbs)
 | 1 | Pound | Normal | Physical | 40 | 100% | 35 |
 | 1 | Lick | Ghost | Physical | 30 | 100% | 30 |
 | 1 | Powder Snow | Ice | Special | 40 | 100% | 25 |
-| 1 | Sweet Kiss ★ | Normal | Status | — | 75% | 10 |
+| 1 | Sweet Kiss ★ | Fairy | Status | — | 75% | 10 |
 | 12 | Confusion ★ | Psychic | Special | 50 | 100% | 25 |
 | 16 | Covet ★ | Normal | Physical | 60 | 100% | 25 |
 | 20 | Sing ★ | Normal | Status | — | 55% | 15 |

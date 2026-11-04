@@ -69,7 +69,7 @@ Height 1.1 m (3′07″) · Weight 32.6 kg (71.9 lbs)
 | 13 | Attract | Normal | Status | — | 100% | 15 |
 | 19 | Double Slap | Normal | Physical | 15 | 85% | 10 |
 | 25 | Faint Attack ★ | Dark | Physical | 60 | — | 20 |
-| 29 | Charm ★ | Normal | Status | — | 100% | 20 |
+| 29 | Charm ★ | Fairy | Status | — | 100% | 20 |
 | 36 | Assist ★ | Normal | Status | — | 100% | 20 |
 | 39 | Covet ★ | Normal | Physical | 60 | 100% | 25 |
 | 43 | Heal Bell ★ | Normal | Status | — | — | 5 |

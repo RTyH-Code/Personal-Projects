@@ -77,6 +77,7 @@ Height 0.7 m (2′04″) · Weight 21.2 kg (46.7 lbs)
 | 21 | Extrasensory ★ | Psychic | Special | 80 | 100% | 20 |
 | 24 | Take Down | Normal | Physical | 90 | 85% | 20 |
 | 27 | Uproar ★ | Normal | Special | 90 | 100% | 10 |
+| 33 | Moonblast ★ | Fairy | Special | 95 | 100% | 15 |
 | 36 | Hypnosis | Psychic | Status | — | 60% | 20 |
 | 39 | Dream Eater | Psychic | Special | 100 | 100% | 15 |
 

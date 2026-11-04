@@ -2,7 +2,7 @@
 
 # #122 Mr. Mime
 
-*The Barrier Pokémon* — **Psychic**
+*The Barrier Pokémon* — **Psychic / Fairy** *(originally Psychic)*
 
 > It is adept at conning people. It is said to be able to create walls out of thin air by miming.
 
@@ -30,8 +30,10 @@ Height 1.3 m (4′03″) · Weight 54.5 kg (120.2 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Bug, Ghost, Dark |
-| ½× | Fighting, Psychic |
+| 2× | Poison, Ghost, Steel |
+| ½× | Psychic |
+| ¼× | Fighting |
+| 0× (immune) | Dragon |
 
 ## Training and breeding
 
@@ -76,6 +78,7 @@ Mr. Mime does not evolve.
 | 36 | Light Screen | Psychic | Status | — | — | 30 |
 | 36 | Reflect | Psychic | Status | — | — | 20 |
 | 36 | Safeguard | Normal | Status | — | — | 25 |
+| 44 | Dazzling Gleam ★ | Fairy | Special | 80 | 100% | 10 |
 | 48 | Psychic | Psychic | Special | 90 | 100% | 10 |
 | 52 | Teeter Dance ★ | Normal | Status | — | 100% | 20 |
 

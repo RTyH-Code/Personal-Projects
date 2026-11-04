@@ -32,7 +32,7 @@ Height 0.7 m (2′04″) · Weight 24 kg (52.9 lbs)
 |---|---|
 | 4× | Water |
 | 2× | Ground |
-| ½× | Poison, Bug, Steel, Fire |
+| ½× | Poison, Bug, Steel, Fire, Fairy |
 | 0× (immune) | Electric |
 
 ## Training and breeding

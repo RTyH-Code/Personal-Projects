@@ -30,7 +30,7 @@ Height 1 m (3′03″) · Weight 37 kg (81.6 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Fighting, Bug |
+| 2× | Fighting, Bug, Fairy |
 | ½× | Ghost, Dark |
 | 0× (immune) | Psychic |
 
@@ -77,6 +77,7 @@ Height 1 m (3′03″) · Weight 37 kg (81.6 lbs)
 | 36 | Taunt | Dark | Status | — | 100% | 20 |
 | 44 | Yawn ★ | Normal | Status | — | 100% | 10 |
 | 48 | Take Down | Normal | Physical | 90 | 85% | 20 |
+| 56 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
 
 ### By TM/HM
 
@@ -127,6 +128,7 @@ Breed a Poochyena (passed down to Poochyena, which then evolves) with a father t
 | Covet | Normal | Physical | 60 | 100% | 25 |
 | Leer | Normal | Status | — | 100% | 30 |
 | Yawn | Normal | Status | — | 100% | 10 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 |
 
 ---
 

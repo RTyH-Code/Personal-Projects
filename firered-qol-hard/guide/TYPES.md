@@ -1,6 +1,6 @@
 # Types and moves
 
-FireRed's type chart (Gen 3: no Fairy type; Steel resists Ghost and Dark) and every move in the game, with this hack's physical/special split and modern power, accuracy and PP.
+The type chart (modern: Fairy is included, and Steel no longer resists Ghost or Dark) and every move in the game, with this hack's physical/special split and modern power, accuracy and PP.
 
 - [Type chart](#type-chart)
 - [Type by type](#type-by-type)
@@ -11,47 +11,49 @@ FireRed's type chart (Gen 3: no Fairy type; Steel resists Ghost and Dark) and ev
 
 Rows are the **attacking** move's type, columns the **defending** Pokémon's type. **2** = super effective, ½ = not very effective, **0** = no effect, blank = normal damage. Against a dual type, multiply both columns (e.g. Ice vs Dragon/Flying = 2 × 2 = 4×).
 
-| Atk ↓ / Def → | Nor | Fig | Fly | Poi | Gro | Roc | Bug | Gho | Ste | Fir | Wat | Gra | Ele | Psy | Ice | Dra | Dar |
-|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| **Normal** |  |  |  |  |  | ½ |  | **0** | ½ |  |  |  |  |  |  |  |  |
-| **Fighting** | **2** |  | ½ | ½ |  | **2** | ½ | **0** | **2** |  |  |  |  | ½ | **2** |  | **2** |
-| **Flying** |  | **2** |  |  |  | ½ | **2** |  | ½ |  |  | **2** | ½ |  |  |  |  |
-| **Poison** |  |  |  | ½ | ½ | ½ |  | ½ | **0** |  |  | **2** |  |  |  |  |  |
-| **Ground** |  |  | **0** | **2** |  | **2** | ½ |  | **2** | **2** |  | ½ | **2** |  |  |  |  |
-| **Rock** |  | ½ | **2** |  | ½ |  | **2** |  | ½ | **2** |  |  |  |  | **2** |  |  |
-| **Bug** |  | ½ | ½ | ½ |  |  |  | ½ | ½ | ½ |  | **2** |  | **2** |  |  | **2** |
-| **Ghost** | **0** |  |  |  |  |  |  | **2** | ½ |  |  |  |  | **2** |  |  | ½ |
-| **Steel** |  |  |  |  |  | **2** |  |  | ½ | ½ | ½ |  | ½ |  | **2** |  |  |
-| **Fire** |  |  |  |  |  | ½ | **2** |  | **2** | ½ | ½ | **2** |  |  | **2** | ½ |  |
-| **Water** |  |  |  |  | **2** | **2** |  |  |  | **2** | ½ | ½ |  |  |  | ½ |  |
-| **Grass** |  |  | ½ | ½ | **2** | **2** | ½ |  | ½ | ½ | **2** | ½ |  |  |  | ½ |  |
-| **Electric** |  |  | **2** |  | **0** |  |  |  |  |  | **2** | ½ | ½ |  |  | ½ |  |
-| **Psychic** |  | **2** |  | **2** |  |  |  |  | ½ |  |  |  |  | ½ |  |  | **0** |
-| **Ice** |  |  | **2** |  | **2** |  |  |  | ½ | ½ | ½ | **2** |  |  | ½ | **2** |  |
-| **Dragon** |  |  |  |  |  |  |  |  | ½ |  |  |  |  |  |  | **2** |  |
-| **Dark** |  | ½ |  |  |  |  |  | **2** | ½ |  |  |  |  | **2** |  |  | ½ |
+| Atk ↓ / Def → | Nor | Fig | Fly | Poi | Gro | Roc | Bug | Gho | Ste | Fir | Wat | Gra | Ele | Psy | Ice | Dra | Dar | Fai |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| **Normal** |  |  |  |  |  | ½ |  | **0** | ½ |  |  |  |  |  |  |  |  |  |
+| **Fighting** | **2** |  | ½ | ½ |  | **2** | ½ | **0** | **2** |  |  |  |  | ½ | **2** |  | **2** | ½ |
+| **Flying** |  | **2** |  |  |  | ½ | **2** |  | ½ |  |  | **2** | ½ |  |  |  |  |  |
+| **Poison** |  |  |  | ½ | ½ | ½ |  | ½ | **0** |  |  | **2** |  |  |  |  |  | **2** |
+| **Ground** |  |  | **0** | **2** |  | **2** | ½ |  | **2** | **2** |  | ½ | **2** |  |  |  |  |  |
+| **Rock** |  | ½ | **2** |  | ½ |  | **2** |  | ½ | **2** |  |  |  |  | **2** |  |  |  |
+| **Bug** |  | ½ | ½ | ½ |  |  |  | ½ | ½ | ½ |  | **2** |  | **2** |  |  | **2** | ½ |
+| **Ghost** | **0** |  |  |  |  |  |  | **2** |  |  |  |  |  | **2** |  |  | ½ |  |
+| **Steel** |  |  |  |  |  | **2** |  |  | ½ | ½ | ½ |  | ½ |  | **2** |  |  | **2** |
+| **Fire** |  |  |  |  |  | ½ | **2** |  | **2** | ½ | ½ | **2** |  |  | **2** | ½ |  |  |
+| **Water** |  |  |  |  | **2** | **2** |  |  |  | **2** | ½ | ½ |  |  |  | ½ |  |  |
+| **Grass** |  |  | ½ | ½ | **2** | **2** | ½ |  | ½ | ½ | **2** | ½ |  |  |  | ½ |  |  |
+| **Electric** |  |  | **2** |  | **0** |  |  |  |  |  | **2** | ½ | ½ |  |  | ½ |  |  |
+| **Psychic** |  | **2** |  | **2** |  |  |  |  | ½ |  |  |  |  | ½ |  |  | **0** |  |
+| **Ice** |  |  | **2** |  | **2** |  |  |  | ½ | ½ | ½ | **2** |  |  | ½ | **2** |  |  |
+| **Dragon** |  |  |  |  |  |  |  |  | ½ |  |  |  |  |  |  | **2** |  | **0** |
+| **Dark** |  | ½ |  |  |  |  |  | **2** |  |  |  |  |  | **2** |  |  | ½ | ½ |
+| **Fairy** |  | **2** |  | ½ |  |  |  |  | ½ | ½ |  |  |  |  |  | **2** | **2** |  |
 
 ## Type by type
 
 | Type | Super effective against | Not very effective against | No effect on | Weak to | Resists | Immune to |
 |---|---|---|---|---|---|---|
 | **Normal** | — | Rock, Steel | Ghost | Fighting | — | Ghost |
-| **Fighting** | Normal, Rock, Steel, Ice, Dark | Flying, Poison, Bug, Psychic | Ghost | Flying, Psychic | Rock, Bug, Dark | — |
+| **Fighting** | Normal, Rock, Steel, Ice, Dark | Flying, Poison, Bug, Psychic, Fairy | Ghost | Flying, Psychic, Fairy | Rock, Bug, Dark | — |
 | **Flying** | Fighting, Bug, Grass | Rock, Steel, Electric | — | Rock, Electric, Ice | Fighting, Bug, Grass | Ground |
-| **Poison** | Grass | Poison, Ground, Rock, Ghost | Steel | Ground, Psychic | Fighting, Poison, Bug, Grass | — |
+| **Poison** | Grass, Fairy | Poison, Ground, Rock, Ghost | Steel | Ground, Psychic | Fighting, Poison, Bug, Grass, Fairy | — |
 | **Ground** | Poison, Rock, Steel, Fire, Electric | Bug, Grass | Flying | Water, Grass, Ice | Poison, Rock | Electric |
 | **Rock** | Flying, Bug, Fire, Ice | Fighting, Ground, Steel | — | Fighting, Ground, Steel, Water, Grass | Normal, Flying, Poison, Fire | — |
-| **Bug** | Grass, Psychic, Dark | Fighting, Flying, Poison, Ghost, Steel, Fire | — | Flying, Rock, Fire | Fighting, Ground, Grass | — |
-| **Ghost** | Ghost, Psychic | Steel, Dark | Normal | Ghost, Dark | Poison, Bug | Normal, Fighting |
-| **Steel** | Rock, Ice | Steel, Fire, Water, Electric | — | Fighting, Ground, Fire | Normal, Flying, Rock, Bug, Ghost, Steel, Grass, Psychic, Ice, Dragon, Dark | Poison |
-| **Fire** | Bug, Steel, Grass, Ice | Rock, Fire, Water, Dragon | — | Ground, Rock, Water | Bug, Steel, Fire, Grass, Ice | — |
+| **Bug** | Grass, Psychic, Dark | Fighting, Flying, Poison, Ghost, Steel, Fire, Fairy | — | Flying, Rock, Fire | Fighting, Ground, Grass | — |
+| **Ghost** | Ghost, Psychic | Dark | Normal | Ghost, Dark | Poison, Bug | Normal, Fighting |
+| **Steel** | Rock, Ice, Fairy | Steel, Fire, Water, Electric | — | Fighting, Ground, Fire | Normal, Flying, Rock, Bug, Steel, Grass, Psychic, Ice, Dragon, Fairy | Poison |
+| **Fire** | Bug, Steel, Grass, Ice | Rock, Fire, Water, Dragon | — | Ground, Rock, Water | Bug, Steel, Fire, Grass, Ice, Fairy | — |
 | **Water** | Ground, Rock, Fire | Water, Grass, Dragon | — | Grass, Electric | Steel, Fire, Water, Ice | — |
 | **Grass** | Ground, Rock, Water | Flying, Poison, Bug, Steel, Fire, Grass, Dragon | — | Flying, Poison, Bug, Fire, Ice | Ground, Water, Grass, Electric | — |
 | **Electric** | Flying, Water | Grass, Electric, Dragon | Ground | Ground | Flying, Steel, Electric | — |
 | **Psychic** | Fighting, Poison | Steel, Psychic | Dark | Bug, Ghost, Dark | Fighting, Psychic | — |
 | **Ice** | Flying, Ground, Grass, Dragon | Steel, Fire, Water, Ice | — | Fighting, Rock, Steel, Fire | Ice | — |
-| **Dragon** | Dragon | Steel | — | Ice, Dragon | Fire, Water, Grass, Electric | — |
-| **Dark** | Ghost, Psychic | Fighting, Steel, Dark | — | Fighting, Bug | Ghost, Dark | Psychic |
+| **Dragon** | Dragon | Steel | Fairy | Ice, Dragon, Fairy | Fire, Water, Grass, Electric | — |
+| **Dark** | Ghost, Psychic | Fighting, Dark, Fairy | — | Fighting, Bug, Fairy | Ghost, Dark | Psychic |
+| **Fairy** | Fighting, Dragon, Dark | Poison, Steel, Fire | — | Poison, Steel | Fighting, Bug, Dark | Dragon |
 
 ## Moves that changed category
 
@@ -141,7 +143,6 @@ Power "varies" means the game works it out in battle (e.g. Return, Low Kick, Sei
 | Block | Normal | Status | — | 100% | 5 | The user blocks the foe's way with arms spread wide to prevent escape. |
 | Body Slam | Normal | Physical | 85 | 100% | 15 | The user drops its full body on the foe. It may leave the foe paralyzed. |
 | Camouflage | Normal | Status | — | — | 20 | Alters the user's type depending on the location's terrain. |
-| Charm | Normal | Status | — | 100% | 20 | The foe is charmed by the user's cute appeals, sharply cutting its Attack. |
 | Comet Punch | Normal | Physical | 18 | 85% | 15 | The foe is hit with a flurry of punches that strike two to five times. |
 | Constrict | Normal | Physical | 10 | 100% | 35 | The foe is attacked with long tentacles or vines. It may lower Speed. |
 | Conversion | Normal | Status | — | — | 30 | The user changes its type to match the type of one of its moves. |
@@ -198,7 +199,6 @@ Power "varies" means the game works it out in battle (e.g. Return, Low Kick, Sei
 | Mimic | Normal | Status | — | 100% | 10 | The user copies the move last used by the foe for the rest of the battle. |
 | Mind Reader | Normal | Status | — | 100% | 5 | The user predicts the foe's action to ensure its next attack hits. |
 | Minimize | Normal | Status | — | — | 10 | The user compresses all the cells in its body to raise its evasiveness. |
-| Moonlight | Normal | Status | — | — | 5 | Restores the user's HP. The amount of HP regained varies with the weather. |
 | Morning Sun | Normal | Status | — | — | 5 | Restores the user's HP. The amount of HP regained varies with the weather. |
 | Nature Power | Normal | Status | — | — | 20 | An attack that changes type depending on the user's location. |
 | Odor Sleuth | Normal | Status | — | 100% | 40 | Completely negates the foe's efforts to heighten its ability to evade. |
@@ -249,7 +249,6 @@ Power "varies" means the game works it out in battle (e.g. Return, Low Kick, Sei
 | Supersonic | Normal | Status | — | 55% | 20 | The user generates odd sound waves. It may confuse the foe. |
 | Swagger | Normal | Status | — | 85% | 15 | A move that makes the foe confused, but also sharply raises its Attack. |
 | Swallow | Normal | Status | — | — | 10 | The energy it built using Stockpile is absorbed to restore HP. |
-| Sweet Kiss | Normal | Status | — | 75% | 10 | The user kisses the foe with sweet cuteness that causes confusion. |
 | Sweet Scent | Normal | Status | — | 100% | 20 | Allures the foe to reduce evasiveness. It also attracts wild Pokémon. |
 | Swift | Normal | Special | 60 | — | 20 | Star-shaped rays that never miss are fired at all foes in battle. |
 | Swords Dance | Normal | Status | — | — | 20 | A frenetic dance of fighting. It sharply raises the Attack stat. |
@@ -564,6 +563,20 @@ Power "varies" means the game works it out in battle (e.g. Return, Low Kick, Sei
 | Taunt | Dark | Status | — | 100% | 20 | The foe is taunted into a rage that allows it to use only attack moves. |
 | Thief | Dark | Physical | 60 | 100% | 25 | An attack that may take the foe's held item if the user isn't holding one. |
 | Torment | Dark | Status | — | 100% | 15 | It enrages the foe, making it incapable of using the same move successively. |
+
+### Fairy
+
+| Move | Type | Cat. | Power | Acc. | PP | Effect |
+|---|---|---|--:|--:|--:|---|
+| Charm | Fairy | Status | — | 100% | 20 | The foe is charmed by the user's cute appeals, sharply cutting its Attack. |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | A powerful flash of light that damages all foes. |
+| Disarming Voice | Fairy | Special | 40 | — | 15 | A charming cry that hurts all foes. It never misses. |
+| Draining Kiss | Fairy | Special | 50 | 100% | 10 | A kiss that drains HP. The user restores 3/4 of the damage dealt. |
+| Fairy Wind | Fairy | Special | 40 | 100% | 30 | The user stirs up a fairy wind and strikes the foe with it. |
+| Moonblast | Fairy | Special | 95 | 100% | 15 | The power of the moon attacks the foe. It may lower Sp. Atk. |
+| Moonlight | Fairy | Status | — | — | 5 | Restores the user's HP. The amount of HP regained varies with the weather. |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 | The user plays rough with the foe. It may lower the foe's Attack. |
+| Sweet Kiss | Fairy | Status | — | 75% | 10 | The user kisses the foe with sweet cuteness that causes confusion. |
 
 ### ???
 

@@ -79,7 +79,7 @@ Height 0.3 m (1′00″) · Weight 6.5 kg (14.3 lbs)
 | 25 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 35 | Baton Pass | Normal | Status | — | — | 40 |
 | 40 | Take Down | Normal | Physical | 90 | 85% | 20 |
-| 45 | Charm ★ | Normal | Status | — | 100% | 20 |
+| 45 | Charm ★ | Fairy | Status | — | 100% | 20 |
 | 50 | Double-Edge ★ | Normal | Physical | 120 | 100% | 15 |
 
 ### By TM/HM
@@ -117,7 +117,7 @@ Breed a Eevee with a father that knows the move.
 
 | Move | Type | Cat. | Power | Acc. | PP |
 |---|---|---|--:|--:|--:|
-| Charm | Normal | Status | — | 100% | 20 |
+| Charm | Fairy | Status | — | 100% | 20 |
 | Flail | Normal | Physical | varies | 100% | 15 |
 | Endure | Normal | Status | — | — | 10 |
 | Curse | ??? | Status | — | — | 10 |

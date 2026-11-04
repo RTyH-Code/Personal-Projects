@@ -68,6 +68,7 @@ Height 1.8 m (5′11″) · Weight 22.6 kg (49.8 lbs)
 | 1 | Whirlpool | Water | Special | 35 | 85% | 15 |
 | 5 | Water Sport ★ | Water | Status | — | — | 15 |
 | 9 | Agility | Psychic | Status | — | — | 30 |
+| 11 | Draining Kiss ★ | Fairy | Special | 50 | 100% | 10 |
 | 14 | Water Pulse | Water | Special | 60 | 100% | 20 |
 | 16 | Amnesia | Psychic | Status | — | — | 20 |
 | 26 | Dive ★ | Water | Physical | 80 | 100% | 10 |

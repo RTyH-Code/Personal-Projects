@@ -2,7 +2,7 @@
 
 # #298 Azurill
 
-*The Polka Dot Pokémon* — **Normal**
+*The Polka Dot Pokémon* — **Normal / Fairy** *(originally Normal)*
 
 > It battles by flinging around its tail, which is bigger than its body. The tail is a flotation device in water.
 
@@ -33,8 +33,9 @@ Height 0.2 m (0′08″) · Weight 2 kg (4.4 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Fighting |
-| 0× (immune) | Ghost |
+| 2× | Poison, Steel |
+| ½× | Bug, Dark |
+| 0× (immune) | Ghost, Dragon |
 
 *With Thick Fat: Fire and Ice moves do half damage.*
 
@@ -74,7 +75,7 @@ Height 0.2 m (0′08″) · Weight 2 kg (4.4 lbs)
 | 1 | Splash | Normal | Status | — | — | 40 |
 | 3 | Helping Hand ★ | Normal | Status | — | — | 20 |
 | 6 | Bubble Beam ★ | Water | Special | 65 | 100% | 20 |
-| 9 | Charm | Normal | Status | — | 100% | 20 |
+| 9 | Charm | Fairy | Status | — | 100% | 20 |
 | 12 | Slam | Normal | Physical | 80 | 75% | 20 |
 | 15 | Bounce ★ | Flying | Physical | 85 | 85% | 5 |
 

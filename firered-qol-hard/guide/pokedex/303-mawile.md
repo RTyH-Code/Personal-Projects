@@ -2,7 +2,7 @@
 
 # #303 Mawile
 
-*The Deceiver Pokémon* — **Steel**
+*The Deceiver Pokémon* — **Steel / Fairy** *(originally Steel)*
 
 > It uses its docile-looking face to lull foes into complacency, then bites with its huge, relentless jaws.
 
@@ -33,9 +33,10 @@ Height 0.6 m (2′00″) · Weight 11.5 kg (25.4 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Fighting, Ground, Fire |
-| ½× | Normal, Flying, Rock, Bug, Ghost, Steel, Grass, Psychic, Ice, Dragon, Dark |
-| 0× (immune) | Poison |
+| 2× | Ground, Fire |
+| ½× | Normal, Flying, Rock, Grass, Psychic, Ice, Dark, Fairy |
+| ¼× | Bug |
+| 0× (immune) | Poison, Dragon |
 
 ## Training and breeding
 
@@ -70,6 +71,7 @@ Mawile does not evolve.
 |--:|---|---|---|--:|--:|--:|
 | 1 | Growl ★ | Normal | Status | — | 100% | 40 |
 | 1 | Astonish | Ghost | Physical | 30 | 100% | 15 |
+| 4 | Fairy Wind ★ | Fairy | Special | 40 | 100% | 30 |
 | 8 | Baton Pass | Normal | Status | — | — | 40 |
 | 12 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 16 | Stockpile | Normal | Status | — | — | 20 |
@@ -80,6 +82,7 @@ Mawile does not evolve.
 | 32 | Sweet Scent | Normal | Status | — | 100% | 20 |
 | 40 | Taunt ★ | Dark | Status | — | 100% | 20 |
 | 44 | Fake Tears | Dark | Status | — | 100% | 20 |
+| 48 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
 
 ### By TM/HM
 

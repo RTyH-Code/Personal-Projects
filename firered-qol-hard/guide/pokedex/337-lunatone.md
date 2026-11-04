@@ -70,7 +70,8 @@ Lunatone does not evolve.
 | 1 | Rock Throw | Rock | Physical | 50 | 90% | 15 |
 | 1 | Confusion | Psychic | Special | 50 | 100% | 25 |
 | 1 | Harden | Normal | Status | — | — | 30 |
-| 1 | Moonlight ★ | Normal | Status | — | — | 5 |
+| 1 | Moonlight ★ | Fairy | Status | — | — | 5 |
+| 1 | Moonblast ★ | Fairy | Special | 95 | 100% | 15 |
 | 5 | Hypnosis | Psychic | Status | — | 60% | 20 |
 | 15 | Rock Slide ★ | Rock | Physical | 75 | 90% | 10 |
 | 25 | Cosmic Power | Psychic | Status | — | — | 20 |

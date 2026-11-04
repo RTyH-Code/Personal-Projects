@@ -76,7 +76,7 @@ Height 1.1 m (3′07″) · Weight 90 kg (198.4 lbs)
 |--:|---|---|---|--:|--:|--:|
 | 1 | Headbutt | Normal | Physical | 70 | 100% | 15 |
 | 3 | Growl | Normal | Status | — | 100% | 40 |
-| 7 | Charm ★ | Normal | Status | — | 100% | 20 |
+| 7 | Charm ★ | Fairy | Status | — | 100% | 20 |
 | 11 | Icy Wind | Ice | Special | 55 | 95% | 15 |
 | 13 | Encore ★ | Normal | Status | — | 100% | 5 |
 | 21 | Rest | Psychic | Status | — | — | 5 |

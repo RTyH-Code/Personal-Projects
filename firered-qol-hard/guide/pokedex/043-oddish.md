@@ -31,7 +31,7 @@ Height 0.5 m (1′08″) · Weight 5.4 kg (11.9 lbs)
 | Damage taken | Types |
 |---|---|
 | 2× | Flying, Fire, Psychic, Ice |
-| ½× | Fighting, Water, Electric |
+| ½× | Fighting, Water, Electric, Fairy |
 | ¼× | Grass |
 
 ## Training and breeding
@@ -93,7 +93,8 @@ Height 0.5 m (1′08″) · Weight 5.4 kg (11.9 lbs)
 | 18 | Sleep Powder | Grass | Status | — | 75% | 15 |
 | 20 | Giga Drain ★ | Grass | Special | 75 | 100% | 10 |
 | 24 | Toxic ★ | Poison | Status | — | 90% | 10 |
-| 36 | Moonlight | Normal | Status | — | — | 5 |
+| 28 | Moonblast ★ | Fairy | Special | 95 | 100% | 15 |
+| 36 | Moonlight | Fairy | Status | — | — | 5 |
 | 40 | Petal Dance | Grass | Special | 120 | 100% | 10 |
 
 ### By TM/HM
@@ -137,7 +138,7 @@ Breed a Oddish with a father that knows the move.
 | Razor Leaf | Grass | Physical | 55 | 95% | 25 |
 | Flail | Normal | Physical | varies | 100% | 15 |
 | Synthesis | Grass | Status | — | — | 5 |
-| Charm | Normal | Status | — | 100% | 20 |
+| Charm | Fairy | Status | — | 100% | 20 |
 | Ingrain | Grass | Status | — | — | 20 |
 
 ---

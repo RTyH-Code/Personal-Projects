@@ -2,7 +2,7 @@
 
 # #175 Togepi
 
-*The Spike Ball Pokémon* — **Normal**
+*The Spike Ball Pokémon* — **Fairy** *(originally Normal)*
 
 > A proverb claims that happiness will come to anyone who can make a sleeping Togepi stand up.
 
@@ -33,8 +33,9 @@ Height 0.3 m (1′00″) · Weight 1.5 kg (3.3 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Fighting |
-| 0× (immune) | Ghost |
+| 2× | Poison, Steel |
+| ½× | Fighting, Bug, Dark |
+| 0× (immune) | Dragon |
 
 ## Training and breeding
 
@@ -69,8 +70,8 @@ Height 0.3 m (1′00″) · Weight 1.5 kg (3.3 lbs)
 |--:|---|---|---|--:|--:|--:|
 | 1 | Pound ★ | Normal | Physical | 40 | 100% | 35 |
 | 1 | Growl | Normal | Status | — | 100% | 40 |
-| 4 | Sweet Kiss | Normal | Status | — | 75% | 10 |
-| 12 | Charm | Normal | Status | — | 100% | 20 |
+| 4 | Sweet Kiss | Fairy | Status | — | 75% | 10 |
+| 12 | Charm | Fairy | Status | — | 100% | 20 |
 | 16 | Ancient Power | Rock | Special | 60 | 100% | 5 |
 | 20 | Yawn | Normal | Status | — | 100% | 10 |
 | 24 | Metronome | Normal | Status | — | — | 10 |

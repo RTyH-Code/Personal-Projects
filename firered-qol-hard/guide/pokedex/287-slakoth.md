@@ -74,6 +74,7 @@ Height 0.8 m (2′07″) · Weight 24 kg (52.9 lbs)
 | 22 | Covet | Normal | Physical | 60 | 100% | 25 |
 | 30 | Counter | Fighting | Physical | varies | 100% | 20 |
 | 33 | Flail | Normal | Physical | varies | 100% | 15 |
+| 38 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
 
 ### By TM/HM
 

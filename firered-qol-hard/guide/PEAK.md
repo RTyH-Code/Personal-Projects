@@ -41,7 +41,7 @@ Carries 2× Full Restore.
 
 **Hit them with:** Ground (6 weak, 0 resist); Fighting (6 weak, 0 resist); Water (4 weak, 0 resist); Grass (4 weak, 0 resist); Steel (2 weak, 1 resist).
 
-**Avoid relying on:** Flying (6 resist or immune); Normal (6 resist or immune); Poison (6 resist or immune); Dark (3 resist or immune); Ghost (3 resist or immune).
+**Avoid relying on:** Flying (6 resist or immune); Normal (6 resist or immune); Poison (6 resist or immune); Psychic (3 resist or immune); Rock (3 resist or immune).
 
 **Suggested counters:** [Poliwrath](pokedex/062-poliwrath.md) (Water / Fighting with Water Absorb), [Swampert](pokedex/260-swampert.md) (Water / Ground), [Flygon](pokedex/330-flygon.md) (Ground / Dragon), [Ludicolo](pokedex/272-ludicolo.md) (Water / Grass), [Hariyama](pokedex/297-hariyama.md) (Fighting with Thick Fat), [Machamp](pokedex/068-machamp.md) (Fighting).
 
@@ -125,7 +125,7 @@ Carries 2× Full Restore.
 
 **Hit them with:** Psychic (6 weak, 0 resist); Ground (3 weak, 2 resist).
 
-**Avoid relying on:** Bug (6 resist or immune); Fighting (6 resist or immune); Poison (6 resist or immune); Grass (4 resist or immune).
+**Avoid relying on:** Bug (6 resist or immune); Fairy (6 resist or immune); Fighting (6 resist or immune); Poison (6 resist or immune); Grass (4 resist or immune).
 
 **Suggested counters:** [Metagross](pokedex/376-metagross.md) (Steel / Psychic), [Swampert](pokedex/260-swampert.md) (Water / Ground), [Grumpig](pokedex/326-grumpig.md) (Psychic with Thick Fat), [Golem](pokedex/076-golem.md) (Rock / Ground), [Rhydon](pokedex/112-rhydon.md) (Ground / Rock), [Starmie](pokedex/121-starmie.md) (Water / Psychic).
 
@@ -135,20 +135,20 @@ Carries 2× Full Restore.
 
 | Pokémon | Type | Item | Moves | Nature | HP | Atk | Def | SpA | SpD | Spe |
 |---|---|---|---|---|--:|--:|--:|--:|--:|--:|
-| [Mr. Mime](pokedex/122-mr-mime.md) | Psychic | Leftovers | Psychic *(Psy)*, Thunderbolt *(Ele)*, Calm Mind, Substitute | Timid | 222 | 113 | 166 | 299 | 276 | 306 |
+| [Mr. Mime](pokedex/122-mr-mime.md) | Psychic / Fairy | Leftovers | Psychic *(Psy)*, Thunderbolt *(Ele)*, Calm Mind, Substitute | Timid | 222 | 113 | 166 | 299 | 276 | 306 |
 | [Slowbro](pokedex/080-slowbro.md) | Water / Psychic | Leftovers | Surf *(Wat)*, Psychic *(Psy)*, Calm Mind, Rest | Modest | 394 | 167 | 256 | 328 | 197 | 96 |
-| [Gardevoir](pokedex/282-gardevoir.md) | Psychic | Leftovers | Psychic *(Psy)*, Thunderbolt *(Ele)*, Calm Mind, Hypnosis | Timid | 278 | 149 | 166 | 349 | 266 | 284 |
+| [Gardevoir](pokedex/282-gardevoir.md) | Psychic / Fairy | Leftovers | Psychic *(Psy)*, Thunderbolt *(Ele)*, Calm Mind, Hypnosis | Timid | 278 | 149 | 166 | 349 | 266 | 284 |
 | [Metagross](pokedex/376-metagross.md) | Steel / Psychic | Choice Band | Meteor Mash *(Ste)*, Earthquake *(Gro)*, Explosion *(Nor)*, Rock Slide *(Roc)* | Adamant | 302 | 405 | 296 | 203 | 216 | 239 |
 | [Espeon](pokedex/196-espeon.md) | Psychic | Leftovers | Psychic *(Psy)*, Shadow Ball *(Gho)*, Calm Mind, Morning Sun | Timid | 272 | 149 | 156 | 359 | 226 | 350 |
 | [Alakazam](pokedex/065-alakazam.md) | Psychic | Twisted Spoon | Psychic *(Psy)*, Shadow Ball *(Gho)*, Calm Mind, Recover | Timid | 252 | 122 | 126 | 369 | 226 | 372 |
 
 **Attacks with:** Psychic ×5, Electric ×2, Ghost ×2, Water ×1, Steel ×1, Ground ×1, Normal ×1, Rock ×1.
 
-**Hit them with:** Ghost (5 weak, 0 resist); Dark (5 weak, 0 resist); Bug (5 weak, 0 resist).
+**Hit them with:** Ghost (6 weak, 0 resist); Dark (4 weak, 0 resist); Bug (3 weak, 0 resist); Poison (2 weak, 1 resist).
 
-**Avoid relying on:** Psychic (6 resist or immune); Fighting (5 resist or immune).
+**Avoid relying on:** Psychic (6 resist or immune); Fighting (5 resist or immune); Dragon (3 resist or immune).
 
-**Suggested counters:** [Shiftry](pokedex/275-shiftry.md) (Grass / Dark), [Cacturne](pokedex/332-cacturne.md) (Grass / Dark), [Scizor](pokedex/212-scizor.md) (Bug / Steel), [Houndoom](pokedex/229-houndoom.md) (Dark / Fire), [Tyranitar](pokedex/248-tyranitar.md) (Rock / Dark), [Pinsir](pokedex/127-pinsir.md) (Bug).
+**Suggested counters:** [Shiftry](pokedex/275-shiftry.md) (Grass / Dark), [Cacturne](pokedex/332-cacturne.md) (Grass / Dark), [Scizor](pokedex/212-scizor.md) (Bug / Steel), [Steelix](pokedex/208-steelix.md) (Steel / Ground), [Tyranitar](pokedex/248-tyranitar.md) (Rock / Dark), [Houndoom](pokedex/229-houndoom.md) (Dark / Fire).
 
 ## Blaine, Cinnabar Island Gym
 
@@ -228,11 +228,11 @@ Carries 2× Full Restore.
 
 **Attacks with:** Fighting ×6, Ground ×5, Rock ×5, Normal ×2, Ice ×1, Electric ×1, Fire ×1, Bug ×1.
 
-**Hit them with:** Psychic (6 weak, 0 resist); Flying (6 weak, 0 resist).
+**Hit them with:** Psychic (6 weak, 0 resist); Flying (6 weak, 0 resist); Fairy (6 weak, 0 resist).
 
 **Avoid relying on:** Bug (6 resist or immune); Dark (6 resist or immune); Rock (5 resist or immune).
 
-**Suggested counters:** [Exeggutor](pokedex/103-exeggutor.md) (Grass / Psychic), [Grumpig](pokedex/326-grumpig.md) (Psychic with Thick Fat), [Espeon](pokedex/196-espeon.md) (Psychic), [Starmie](pokedex/121-starmie.md) (Water / Psychic), [Gardevoir](pokedex/282-gardevoir.md) (Psychic), [Alakazam](pokedex/065-alakazam.md) (Psychic).
+**Suggested counters:** [Clefable](pokedex/036-clefable.md) (Fairy), [Exeggutor](pokedex/103-exeggutor.md) (Grass / Psychic), [Gardevoir](pokedex/282-gardevoir.md) (Psychic / Fairy), [Grumpig](pokedex/326-grumpig.md) (Psychic with Thick Fat), [Espeon](pokedex/196-espeon.md) (Psychic), [Starmie](pokedex/121-starmie.md) (Water / Psychic).
 
 ## Agatha, Elite Four
 
@@ -253,7 +253,7 @@ Carries 2× Full Restore.
 
 **Avoid relying on:** Fighting (6 resist or immune); Poison (6 resist or immune); Bug (5 resist or immune); Normal (5 resist or immune); Ground (3 resist or immune).
 
-**Suggested counters:** [Tyranitar](pokedex/248-tyranitar.md) (Rock / Dark), [Houndoom](pokedex/229-houndoom.md) (Dark / Fire), [Shiftry](pokedex/275-shiftry.md) (Grass / Dark), [Cacturne](pokedex/332-cacturne.md) (Grass / Dark), [Aggron](pokedex/306-aggron.md) (Steel / Rock), [Steelix](pokedex/208-steelix.md) (Steel / Ground).
+**Suggested counters:** [Tyranitar](pokedex/248-tyranitar.md) (Rock / Dark), [Houndoom](pokedex/229-houndoom.md) (Dark / Fire), [Shiftry](pokedex/275-shiftry.md) (Grass / Dark), [Cacturne](pokedex/332-cacturne.md) (Grass / Dark), [Golem](pokedex/076-golem.md) (Rock / Ground), [Rhydon](pokedex/112-rhydon.md) (Ground / Rock).
 
 ## Lance, Elite Four
 
@@ -263,18 +263,18 @@ Carries 2× Full Restore.
 |---|---|---|---|---|--:|--:|--:|--:|--:|--:|
 | [Kingdra](pokedex/230-kingdra.md) | Water / Dragon | Mystic Water | Hydro Pump *(Wat)*, Ice Beam *(Ice)*, Dragon Breath *(Dra)*, Rain Dance | Timid | 292 | 203 | 226 | 289 | 226 | 295 |
 | [Aerodactyl](pokedex/142-aerodactyl.md) | Rock / Flying | Scope Lens | Rock Slide *(Roc)*, Earthquake *(Gro)*, Aerial Ace *(Fly)*, Double-Edge *(Nor)* | Jolly | 302 | 309 | 166 | 140 | 186 | 394 |
-| [Altaria](pokedex/334-altaria.md) | Dragon / Flying | Leftovers | Dragon Dance, Dragon Claw *(Dra)*, Earthquake *(Gro)*, Flamethrower *(Fir)* | Jolly | 292 | 239 | 216 | 158 | 246 | 284 |
+| [Altaria](pokedex/334-altaria.md) | Dragon / Flying | Leftovers | Dragon Dance, Dragon Claw *(Dra)*, Earthquake *(Gro)*, Iron Tail *(Ste)* | Jolly | 292 | 239 | 216 | 158 | 246 | 284 |
 | [Flygon](pokedex/330-flygon.md) | Ground / Dragon | Soft Sand | Earthquake *(Gro)*, Dragon Claw *(Dra)*, Rock Slide *(Roc)*, Fire Blast *(Fir)* | Jolly | 302 | 299 | 196 | 176 | 196 | 328 |
-| [Salamence](pokedex/373-salamence.md) | Dragon / Flying | Choice Band | Dragon Claw *(Dra)*, Earthquake *(Gro)*, Rock Slide *(Roc)*, Aerial Ace *(Fly)* | Jolly | 332 | 369 | 196 | 230 | 196 | 328 |
+| [Salamence](pokedex/373-salamence.md) | Dragon / Flying | Choice Band | Dragon Claw *(Dra)*, Earthquake *(Gro)*, Rock Slide *(Roc)*, Iron Tail *(Ste)* | Jolly | 332 | 369 | 196 | 230 | 196 | 328 |
 | [Dragonite](pokedex/149-dragonite.md) | Dragon / Flying | Leftovers | Dragon Dance, Dragon Claw *(Dra)*, Earthquake *(Gro)*, Fire Punch *(Fir)* | Jolly | 324 | 367 | 226 | 212 | 236 | 284 |
 
-**Attacks with:** Dragon ×5, Ground ×5, Rock ×3, Fire ×3, Flying ×2, Water ×1, Ice ×1, Normal ×1.
+**Attacks with:** Dragon ×5, Ground ×5, Rock ×3, Steel ×2, Fire ×2, Water ×1, Ice ×1, Flying ×1, Normal ×1.
 
-**Hit them with:** Ice (5 weak, 0 resist); Dragon (5 weak, 0 resist); Rock (4 weak, 1 resist).
+**Hit them with:** Ice (5 weak, 0 resist); Fairy (5 weak, 0 resist); Dragon (5 weak, 0 resist); Rock (4 weak, 1 resist).
 
 **Avoid relying on:** Fire (6 resist or immune); Ground (5 resist or immune); Bug (4 resist or immune); Fighting (3 resist or immune); Grass (3 resist or immune).
 
-**Suggested counters:** [Walrein](pokedex/365-walrein.md) (Ice / Water), [Flygon](pokedex/330-flygon.md) (Ground / Dragon), [Aerodactyl](pokedex/142-aerodactyl.md) (Rock / Flying), [Kingdra](pokedex/230-kingdra.md) (Water / Dragon), [Aggron](pokedex/306-aggron.md) (Steel / Rock), [Lapras](pokedex/131-lapras.md) (Water / Ice with Water Absorb).
+**Suggested counters:** [Gardevoir](pokedex/282-gardevoir.md) (Psychic / Fairy), [Clefable](pokedex/036-clefable.md) (Fairy), [Kingdra](pokedex/230-kingdra.md) (Water / Dragon), [Walrein](pokedex/365-walrein.md) (Ice / Water), [Flygon](pokedex/330-flygon.md) (Ground / Dragon), [Lapras](pokedex/131-lapras.md) (Water / Ice with Water Absorb).
 
 ## Rival, Champion (you chose Bulbasaur)
 
@@ -295,7 +295,7 @@ Carries 4× Full Restore.
 
 **Avoid relying on:** Psychic (3 resist or immune); Fighting (4 resist or immune); Ground (4 resist or immune); Fire (3 resist or immune); Grass (3 resist or immune).
 
-**Suggested counters:** [Scizor](pokedex/212-scizor.md) (Bug / Steel), [Aggron](pokedex/306-aggron.md) (Steel / Rock), [Armaldo](pokedex/348-armaldo.md) (Rock / Bug), [Aerodactyl](pokedex/142-aerodactyl.md) (Rock / Flying), [Cradily](pokedex/346-cradily.md) (Rock / Grass), [Shiftry](pokedex/275-shiftry.md) (Grass / Dark).
+**Suggested counters:** [Scizor](pokedex/212-scizor.md) (Bug / Steel), [Armaldo](pokedex/348-armaldo.md) (Rock / Bug), [Aggron](pokedex/306-aggron.md) (Steel / Rock), [Aerodactyl](pokedex/142-aerodactyl.md) (Rock / Flying), [Cradily](pokedex/346-cradily.md) (Rock / Grass), [Shiftry](pokedex/275-shiftry.md) (Grass / Dark).
 
 ## Rival, Champion (you chose Charmander)
 
@@ -316,7 +316,7 @@ Carries 4× Full Restore.
 
 **Avoid relying on:** Psychic (3 resist or immune); Fire (3 resist or immune); Grass (3 resist or immune).
 
-**Suggested counters:** [Scizor](pokedex/212-scizor.md) (Bug / Steel), [Aggron](pokedex/306-aggron.md) (Steel / Rock), [Shiftry](pokedex/275-shiftry.md) (Grass / Dark), [Cacturne](pokedex/332-cacturne.md) (Grass / Dark), [Tyranitar](pokedex/248-tyranitar.md) (Rock / Dark), [Armaldo](pokedex/348-armaldo.md) (Rock / Bug).
+**Suggested counters:** [Scizor](pokedex/212-scizor.md) (Bug / Steel), [Shiftry](pokedex/275-shiftry.md) (Grass / Dark), [Cacturne](pokedex/332-cacturne.md) (Grass / Dark), [Tyranitar](pokedex/248-tyranitar.md) (Rock / Dark), [Armaldo](pokedex/348-armaldo.md) (Rock / Bug), [Aggron](pokedex/306-aggron.md) (Steel / Rock).
 
 ## Rival, Champion (you chose Squirtle)
 
@@ -337,4 +337,4 @@ Carries 4× Full Restore.
 
 **Avoid relying on:** Fighting (3 resist or immune); Fire (3 resist or immune); Grass (3 resist or immune); Bug (3 resist or immune).
 
-**Suggested counters:** [Aggron](pokedex/306-aggron.md) (Steel / Rock), [Aerodactyl](pokedex/142-aerodactyl.md) (Rock / Flying), [Scizor](pokedex/212-scizor.md) (Bug / Steel), [Cradily](pokedex/346-cradily.md) (Rock / Grass), [Armaldo](pokedex/348-armaldo.md) (Rock / Bug), [Tyranitar](pokedex/248-tyranitar.md) (Rock / Dark).
+**Suggested counters:** [Aerodactyl](pokedex/142-aerodactyl.md) (Rock / Flying), [Aggron](pokedex/306-aggron.md) (Steel / Rock), [Cradily](pokedex/346-cradily.md) (Rock / Grass), [Armaldo](pokedex/348-armaldo.md) (Rock / Bug), [Tyranitar](pokedex/248-tyranitar.md) (Rock / Dark), [Omastar](pokedex/139-omastar.md) (Rock / Water).

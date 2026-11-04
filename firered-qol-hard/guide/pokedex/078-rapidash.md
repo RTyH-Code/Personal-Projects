@@ -34,7 +34,7 @@ Height 1.7 m (5′07″) · Weight 95 kg (209.4 lbs)
 | Damage taken | Types |
 |---|---|
 | 2× | Ground, Rock, Water |
-| ½× | Bug, Steel, Fire, Grass, Ice |
+| ½× | Bug, Steel, Fire, Grass, Ice, Fairy |
 
 *With Flash Fire: immune to Fire moves.*
 
@@ -125,7 +125,7 @@ Breed a Ponyta (passed down to Ponyta, which then evolves) with a father that kn
 | Thrash | Normal | Physical | 120 | 100% | 10 |
 | Double Kick | Fighting | Physical | 30 | 100% | 30 |
 | Hypnosis | Psychic | Status | — | 60% | 20 |
-| Charm | Normal | Status | — | 100% | 20 |
+| Charm | Fairy | Status | — | 100% | 20 |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 |
 
 ---

@@ -2,7 +2,7 @@
 
 # #040 Wigglytuff
 
-*The Balloon Pokémon* — **Normal**
+*The Balloon Pokémon* — **Normal / Fairy** *(originally Normal)*
 
 > Its fur is extremely fine, dense, and supple. The exquisitely pleasant fur conveys an image of luxury.
 
@@ -30,8 +30,9 @@ Height 1 m (3′03″) · Weight 12 kg (26.5 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Fighting |
-| 0× (immune) | Ghost |
+| 2× | Poison, Steel |
+| ½× | Bug, Dark |
+| 0× (immune) | Ghost, Dragon |
 
 ## Training and breeding
 
@@ -64,12 +65,14 @@ Height 1 m (3′03″) · Weight 12 kg (26.5 lbs)
 
 | Lv | Move | Type | Cat. | Power | Acc. | PP |
 |--:|---|---|---|--:|--:|--:|
-| 1 | Charm ★ | Normal | Status | — | 100% | 20 |
+| 1 | Charm ★ | Fairy | Status | — | 100% | 20 |
 | 1 | Defense Curl | Normal | Status | — | — | 40 |
 | 1 | Disable | Normal | Status | — | 100% | 20 |
 | 1 | Pound ★ | Normal | Physical | 40 | 100% | 35 |
 | 1 | Sing | Normal | Status | — | 55% | 15 |
-| 1 | Sweet Kiss ★ | Normal | Status | — | 75% | 10 |
+| 1 | Sweet Kiss ★ | Fairy | Status | — | 75% | 10 |
+| 1 | Disarming Voice ★ | Fairy | Special | 40 | — | 15 |
+| 5 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
 | 11 | Covet ★ | Normal | Physical | 60 | 100% | 25 |
 | 15 | Spit Up ★ | Normal | Special | varies | 100% | 10 |
 | 15 | Stockpile ★ | Normal | Status | — | — | 20 |

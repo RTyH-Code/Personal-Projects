@@ -30,7 +30,7 @@ Height 1.4 m (4′07″) · Weight 40 kg (88.2 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Bug, Ghost, Ice, Dragon, Dark |
+| 2× | Bug, Ghost, Ice, Dragon, Dark, Fairy |
 | ½× | Fighting, Fire, Water, Grass, Electric, Psychic |
 
 *Its ability Levitate: immune to Ground moves.*
@@ -65,7 +65,7 @@ Latias does not evolve.
 
 | Lv | Move | Type | Cat. | Power | Acc. | PP |
 |--:|---|---|---|--:|--:|--:|
-| 1 | Charm | Normal | Status | — | 100% | 20 |
+| 1 | Charm | Fairy | Status | — | 100% | 20 |
 | 5 | Helping Hand | Normal | Status | — | — | 20 |
 | 10 | Recover | Normal | Status | — | — | 5 |
 | 15 | Confusion ★ | Psychic | Special | 50 | 100% | 25 |

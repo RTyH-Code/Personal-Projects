@@ -124,7 +124,7 @@ Breed a Exeggcute (passed down to Exeggcute, which then evolves) with a father t
 | Move | Type | Cat. | Power | Acc. | PP |
 |---|---|---|--:|--:|--:|
 | Synthesis | Grass | Status | — | — | 5 |
-| Moonlight | Normal | Status | — | — | 5 |
+| Moonlight | Fairy | Status | — | — | 5 |
 | Reflect | Psychic | Status | — | — | 20 |
 | Ancient Power | Rock | Special | 60 | 100% | 5 |
 | Psych Up | Normal | Status | — | — | 10 |

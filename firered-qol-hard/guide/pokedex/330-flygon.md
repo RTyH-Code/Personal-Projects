@@ -31,7 +31,7 @@ Height 2 m (6′07″) · Weight 82 kg (180.8 lbs)
 | Damage taken | Types |
 |---|---|
 | 4× | Ice |
-| 2× | Dragon |
+| 2× | Dragon, Fairy |
 | ½× | Poison, Rock, Fire |
 | 0× (immune) | Electric |
 

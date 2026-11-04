@@ -64,10 +64,10 @@ Height 0.8 m (2′07″) · Weight 30 kg (66.1 lbs)
 
 | Lv | Move | Type | Cat. | Power | Acc. | PP |
 |--:|---|---|---|--:|--:|--:|
-| 1 | Charm ★ | Normal | Status | — | 100% | 20 |
+| 1 | Charm ★ | Fairy | Status | — | 100% | 20 |
 | 1 | Growl ★ | Normal | Status | — | 100% | 40 |
 | 1 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
-| 1 | Sweet Kiss ★ | Normal | Status | — | 75% | 10 |
+| 1 | Sweet Kiss ★ | Fairy | Status | — | 75% | 10 |
 | 1 | Tail Whip | Normal | Status | — | 100% | 30 |
 | 1 | Thunder Punch ★ | Electric | Physical | 75 | 100% | 15 |
 | 1 | Thunder Shock | Electric | Special | 40 | 100% | 30 |
@@ -136,6 +136,7 @@ Breed a Pichu (passed down to Pichu, which then evolves) with a father that know
 | Double Slap | Normal | Physical | 15 | 85% | 10 |
 | Wish | Normal | Status | — | — | 10 |
 | Charge | Electric | Status | — | — | 20 |
+| Disarming Voice | Fairy | Special | 40 | — | 15 |
 
 **Volt Tackle** (Electric, Physical, 120, 100%, 15 PP): a Pichu Egg knows it if either parent holds a **Light Ball**. The Move Maniac can't teach it.
 

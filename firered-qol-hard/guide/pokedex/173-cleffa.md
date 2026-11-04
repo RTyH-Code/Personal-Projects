@@ -2,7 +2,7 @@
 
 # #173 Cleffa
 
-*The Star Shape Pokémon* — **Normal**
+*The Star Shape Pokémon* — **Fairy** *(originally Normal)*
 
 > When numerous meteors illuminate the night sky, sightings of Cleffa strangely increase.
 
@@ -30,8 +30,9 @@ Height 0.3 m (1′00″) · Weight 3 kg (6.6 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Fighting |
-| 0× (immune) | Ghost |
+| 2× | Poison, Steel |
+| ½× | Fighting, Bug, Dark |
+| 0× (immune) | Dragon |
 
 ## Training and breeding
 
@@ -67,9 +68,10 @@ Height 0.3 m (1′00″) · Weight 3 kg (6.6 lbs)
 | 1 | Pound | Normal | Physical | 40 | 100% | 35 |
 | 1 | Splash ★ | Normal | Status | — | — | 40 |
 | 4 | Sing | Normal | Status | — | 55% | 15 |
-| 8 | Sweet Kiss | Normal | Status | — | 75% | 10 |
+| 8 | Sweet Kiss | Fairy | Status | — | 75% | 10 |
+| 12 | Disarming Voice ★ | Fairy | Special | 40 | — | 15 |
 | 16 | Encore | Normal | Status | — | 100% | 5 |
-| 20 | Charm | Normal | Status | — | 100% | 20 |
+| 20 | Charm | Fairy | Status | — | 100% | 20 |
 
 ### By TM/HM
 

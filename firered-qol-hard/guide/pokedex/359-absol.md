@@ -30,7 +30,7 @@ Height 1.2 m (3′11″) · Weight 47 kg (103.6 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Fighting, Bug |
+| 2× | Fighting, Bug, Fairy |
 | ½× | Ghost, Dark |
 | 0× (immune) | Psychic |
 
@@ -143,6 +143,7 @@ Breed a Absol with a father that knows the move.
 | Magic Coat | Psychic | Status | — | 100% | 15 |
 | Curse | ??? | Status | — | — | 10 |
 | Substitute | Normal | Status | — | — | 10 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 |
 
 ---
 

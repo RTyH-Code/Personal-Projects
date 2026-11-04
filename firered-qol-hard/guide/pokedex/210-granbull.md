@@ -2,7 +2,7 @@
 
 # #210 Granbull
 
-*The Fairy Pokémon* — **Normal**
+*The Fairy Pokémon* — **Fairy** *(originally Normal)*
 
 > Because its fangs are too heavy, it always keeps its head tilted down. However, its Bite is powerful.
 
@@ -30,8 +30,9 @@ Height 1.4 m (4′07″) · Weight 48.7 kg (107.4 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Fighting |
-| 0× (immune) | Ghost |
+| 2× | Poison, Steel |
+| ½× | Fighting, Bug, Dark |
+| 0× (immune) | Dragon |
 
 ## Training and breeding
 
@@ -68,11 +69,12 @@ Height 1.4 m (4′07″) · Weight 48.7 kg (107.4 lbs)
 | 1 | Growl ★ | Normal | Status | — | 100% | 40 |
 | 1 | Scary Face | Normal | Status | — | 100% | 10 |
 | 1 | Outrage ★ | Dragon | Physical | 120 | 100% | 10 |
-| 1 | Charm | Normal | Status | — | 100% | 20 |
+| 1 | Charm | Fairy | Status | — | 100% | 20 |
 | 7 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 13 | Lick | Ghost | Physical | 30 | 100% | 30 |
 | 19 | Headbutt ★ | Normal | Physical | 70 | 100% | 15 |
 | 27 | Roar | Normal | Status | — | 100% | 20 |
+| 43 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
 | 59 | Crunch | Dark | Physical | 80 | 100% | 15 |
 
 ### By TM/HM

@@ -31,7 +31,7 @@ Height 2.2 m (7′03″) · Weight 210 kg (463.0 lbs)
 | Damage taken | Types |
 |---|---|
 | 4× | Ice |
-| 2× | Rock, Dragon |
+| 2× | Rock, Dragon, Fairy |
 | ½× | Fighting, Bug, Fire, Water |
 | ¼× | Grass |
 | 0× (immune) | Ground |

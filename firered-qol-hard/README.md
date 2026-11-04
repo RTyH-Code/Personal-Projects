@@ -87,7 +87,18 @@ and you can use her as often as you like.
   is capped at 160 power, as in modern games. Move *effects* are still Gen 3.
 - **Modern level-up learnsets**, taken from the newest generation that has
   each Pokémon (Gen 9, then 8, then 7), limited to moves that exist in Gen 3.
-- Types are unchanged. There is no Fairy type.
+- **Fairy type (Gen 6).** Fairy hits Fighting, Dragon and Dark super
+  effectively and is resisted by Fire, Poison and Steel; Dragon moves don't
+  affect it, and Poison and Steel moves hit it hard. As in Gen 6, Steel no
+  longer resists Ghost or Dark.
+  - Clefairy, Jigglypuff, Togepi, Snubbull, Marill and Ralts (and their
+    families), Mr. Mime and Mawile have their modern Fairy typing.
+  - Charm, Sweet Kiss and Moonlight are Fairy-type.
+  - Six new Fairy attacks: Fairy Wind, Disarming Voice, Draining Kiss (heals
+    3/4 of the damage), Dazzling Gleam (hits both foes), Play Rough and
+    Moonblast. Pokémon learn them by level-up or as egg moves where modern
+    games teach them that way.
+  - Lance's Dragons carry Iron Tail so they aren't helpless against Fairies.
 
 ## Every Pokémon is obtainable
 All 386 Pokémon can be caught, evolved or bred in a single FireRed save:
@@ -196,7 +207,7 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `ba276c9cb5a9c9022def47ed09816eee4666dc04`
+Patched ROM SHA-1: `ae9876f1b85286e09e6d043707644814ec6748e0`
 
 Start a new game. Saves from earlier versions of this hack aren't supported.
 
@@ -220,6 +231,7 @@ unmodified pret data:
   learnsets. It reads Pokémon Showdown's data files as text and never runs them.
 - `encounters.py`: wild placements. It checks that all 386 Pokémon are obtainable.
 - `legendaries.py`: legendary events, flags and the Hall of Fame tickets.
+- `fairy.py <pokemon-showdown>/data`: the Fairy type, retyped Pokémon, Fairy moves and their learnsets.
 - `evo_moves.py`: later level-up moves for stone evolutions (run after `modernize.py`).
 - `peak_trainers.py`: peak teams, gym rematches and the Elite Four round 3.
 - `spoiler_guide.py <dir>`: regenerates the spoiler guide from the game data.

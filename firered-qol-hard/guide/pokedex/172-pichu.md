@@ -66,8 +66,8 @@ Height 0.3 m (1′00″) · Weight 2 kg (4.4 lbs)
 |--:|---|---|---|--:|--:|--:|
 | 1 | Tail Whip | Normal | Status | — | 100% | 30 |
 | 1 | Thunder Shock | Electric | Special | 40 | 100% | 30 |
-| 8 | Sweet Kiss | Normal | Status | — | 75% | 10 |
-| 20 | Charm | Normal | Status | — | 100% | 20 |
+| 8 | Sweet Kiss | Fairy | Status | — | 75% | 10 |
+| 20 | Charm | Fairy | Status | — | 100% | 20 |
 
 ### By TM/HM
 
@@ -118,6 +118,7 @@ Breed a Pichu with a father that knows the move.
 | Double Slap | Normal | Physical | 15 | 85% | 10 |
 | Wish | Normal | Status | — | — | 10 |
 | Charge | Electric | Status | — | — | 20 |
+| Disarming Voice | Fairy | Special | 40 | — | 15 |
 
 **Volt Tackle** (Electric, Physical, 120, 100%, 15 PP): a Pichu Egg knows it if either parent holds a **Light Ball**. The Move Maniac can't teach it.
 
