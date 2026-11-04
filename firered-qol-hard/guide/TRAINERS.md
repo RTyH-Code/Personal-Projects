@@ -120,10 +120,10 @@ Regular trainers use their normal level-up moves unless moves are listed. Peak t
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
 | Gyarados | 64 | — | Hyper Beam, Dragon Rage, Twister, Bite |
-| Dragonair | 62 | — | Hyper Beam, Safeguard, Dragon Rage, Outrage |
+| Dragonair | 62 | — | Hyper Beam, Iron Tail, Dragon Rage, Outrage |
 | Dragonair | 62 | — | Hyper Beam, Safeguard, Thunder Wave, Outrage |
 | Aerodactyl | 67 | — | Hyper Beam, Ancient Power, Wing Attack, Scary Face |
-| Dragonite | 69 | Sitrus Berry | Hyper Beam, Safeguard, Outrage, Wing Attack |
+| Dragonite | 69 | Sitrus Berry | Hyper Beam, Iron Tail, Outrage, Wing Attack |
 
 ### Champion, round 1 (you chose Bulbasaur)
 
@@ -193,7 +193,7 @@ Regular trainers use their normal level-up moves unless moves are listed. Peak t
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
 | Gyarados | 78 | — | Hyper Beam, Dragon Dance, Earthquake, Thunder Wave |
-| Dragonite | 76 | — | Hyper Beam, Earthquake, Dragon Claw, Flamethrower |
+| Dragonite | 76 | — | Iron Tail, Earthquake, Dragon Claw, Flamethrower |
 | Kingdra | 76 | — | Hyper Beam, Dragon Dance, Surf, Ice Beam |
 | Aerodactyl | 80 | — | Hyper Beam, Ancient Power, Aerial Ace, Earthquake |
 | Dragonite | 83 | Persim Berry | Hyper Beam, Outrage, Thunderbolt, Ice Beam |
@@ -362,9 +362,9 @@ Gym Leaders offer these rematches any number of times after you become Champion.
 |---|---|---|---|
 | Kingdra | 100 | Mystic Water | Hydro Pump, Ice Beam, Dragon Breath, Rain Dance |
 | Aerodactyl | 100 | Scope Lens | Rock Slide, Earthquake, Aerial Ace, Double-Edge |
-| Altaria | 100 | Leftovers | Dragon Dance, Dragon Claw, Earthquake, Flamethrower |
+| Altaria | 100 | Leftovers | Dragon Dance, Dragon Claw, Earthquake, Iron Tail |
 | Flygon | 100 | Soft Sand | Earthquake, Dragon Claw, Rock Slide, Fire Blast |
-| Salamence | 100 | Choice Band | Dragon Claw, Earthquake, Rock Slide, Aerial Ace |
+| Salamence | 100 | Choice Band | Dragon Claw, Earthquake, Rock Slide, Iron Tail |
 | Dragonite | 100 | Leftovers | Dragon Dance, Dragon Claw, Earthquake, Fire Punch |
 
 ### Champion, peak (you chose Charmander)

@@ -34,7 +34,7 @@ Height 0.7 m (2′04″) · Weight 35 kg (77.2 lbs)
 | Damage taken | Types |
 |---|---|
 | 2× | Ground, Rock, Water |
-| ½× | Bug, Steel, Fire, Grass, Ice |
+| ½× | Bug, Steel, Fire, Grass, Ice, Fairy |
 
 ## Training and breeding
 

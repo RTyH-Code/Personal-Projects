@@ -89,6 +89,7 @@ Height 0.4 m (1′04″) · Weight 4.2 kg (9.3 lbs)
 | 29 | Fury Swipes | Normal | Physical | 18 | 80% | 15 |
 | 32 | Screech | Normal | Status | — | 85% | 40 |
 | 36 | Slash | Normal | Physical | 70 | 100% | 20 |
+| 44 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
 
 ### By TM/HM
 
@@ -138,7 +139,7 @@ Breed a Meowth with a father that knows the move.
 | Move | Type | Cat. | Power | Acc. | PP |
 |---|---|---|--:|--:|--:|
 | Spite | Ghost | Status | — | 100% | 10 |
-| Charm | Normal | Status | — | 100% | 20 |
+| Charm | Fairy | Status | — | 100% | 20 |
 | Hypnosis | Psychic | Status | — | 60% | 20 |
 | Amnesia | Psychic | Status | — | — | 20 |
 | Psych Up | Normal | Status | — | — | 10 |

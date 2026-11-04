@@ -38,12 +38,12 @@ All 386 Pokémon in National Dex order, with this hack's stats. Click a name for
 | 032 | [Nidoran♂](pokedex/032-nidoran-m.md) | Poison | 46 | 57 | 40 | 40 | 40 | 50 | 273 |
 | 033 | [Nidorino](pokedex/033-nidorino.md) | Poison | 61 | 72 | 57 | 55 | 55 | 65 | 365 |
 | 034 | [Nidoking](pokedex/034-nidoking.md) | Poison / Ground | 81 | 102 | 77 | 85 | 75 | 85 | 505 |
-| 035 | [Clefairy](pokedex/035-clefairy.md) | Normal | 70 | 45 | 48 | 60 | 65 | 35 | 323 |
-| 036 | [Clefable](pokedex/036-clefable.md) | Normal | 95 | 70 | 73 | 95 | 90 | 60 | 483 |
+| 035 | [Clefairy](pokedex/035-clefairy.md) | Fairy | 70 | 45 | 48 | 60 | 65 | 35 | 323 |
+| 036 | [Clefable](pokedex/036-clefable.md) | Fairy | 95 | 70 | 73 | 95 | 90 | 60 | 483 |
 | 037 | [Vulpix](pokedex/037-vulpix.md) | Fire | 38 | 41 | 40 | 50 | 65 | 65 | 299 |
 | 038 | [Ninetales](pokedex/038-ninetales.md) | Fire | 73 | 76 | 75 | 81 | 100 | 100 | 505 |
-| 039 | [Jigglypuff](pokedex/039-jigglypuff.md) | Normal | 115 | 45 | 20 | 45 | 25 | 20 | 270 |
-| 040 | [Wigglytuff](pokedex/040-wigglytuff.md) | Normal | 140 | 70 | 45 | 85 | 50 | 45 | 435 |
+| 039 | [Jigglypuff](pokedex/039-jigglypuff.md) | Normal / Fairy | 115 | 45 | 20 | 45 | 25 | 20 | 270 |
+| 040 | [Wigglytuff](pokedex/040-wigglytuff.md) | Normal / Fairy | 140 | 70 | 45 | 85 | 50 | 45 | 435 |
 | 041 | [Zubat](pokedex/041-zubat.md) | Poison / Flying | 40 | 45 | 35 | 30 | 40 | 55 | 245 |
 | 042 | [Golbat](pokedex/042-golbat.md) | Poison / Flying | 75 | 80 | 70 | 65 | 75 | 90 | 455 |
 | 043 | [Oddish](pokedex/043-oddish.md) | Grass / Poison | 45 | 50 | 55 | 75 | 65 | 30 | 320 |
@@ -125,7 +125,7 @@ All 386 Pokémon in National Dex order, with this hack's stats. Click a name for
 | 119 | [Seaking](pokedex/119-seaking.md) | Water | 80 | 92 | 65 | 65 | 80 | 68 | 450 |
 | 120 | [Staryu](pokedex/120-staryu.md) | Water | 30 | 45 | 55 | 70 | 55 | 85 | 340 |
 | 121 | [Starmie](pokedex/121-starmie.md) | Water / Psychic | 60 | 75 | 85 | 100 | 85 | 115 | 520 |
-| 122 | [Mr. Mime](pokedex/122-mr-mime.md) | Psychic | 40 | 45 | 65 | 100 | 120 | 90 | 460 |
+| 122 | [Mr. Mime](pokedex/122-mr-mime.md) | Psychic / Fairy | 40 | 45 | 65 | 100 | 120 | 90 | 460 |
 | 123 | [Scyther](pokedex/123-scyther.md) | Bug / Flying | 70 | 110 | 80 | 55 | 80 | 105 | 500 |
 | 124 | [Jynx](pokedex/124-jynx.md) | Ice / Psychic | 65 | 50 | 35 | 115 | 95 | 95 | 455 |
 | 125 | [Electabuzz](pokedex/125-electabuzz.md) | Electric | 65 | 83 | 57 | 95 | 85 | 105 | 490 |
@@ -176,18 +176,18 @@ All 386 Pokémon in National Dex order, with this hack's stats. Click a name for
 | 170 | [Chinchou](pokedex/170-chinchou.md) | Water / Electric | 75 | 38 | 38 | 56 | 56 | 67 | 330 |
 | 171 | [Lanturn](pokedex/171-lanturn.md) | Water / Electric | 125 | 58 | 58 | 76 | 76 | 67 | 460 |
 | 172 | [Pichu](pokedex/172-pichu.md) | Electric | 20 | 40 | 15 | 35 | 35 | 60 | 205 |
-| 173 | [Cleffa](pokedex/173-cleffa.md) | Normal | 50 | 25 | 28 | 45 | 55 | 15 | 218 |
-| 174 | [Igglybuff](pokedex/174-igglybuff.md) | Normal | 90 | 30 | 15 | 40 | 20 | 15 | 210 |
-| 175 | [Togepi](pokedex/175-togepi.md) | Normal | 35 | 20 | 65 | 40 | 65 | 20 | 245 |
-| 176 | [Togetic](pokedex/176-togetic.md) | Normal / Flying | 55 | 40 | 85 | 80 | 105 | 40 | 405 |
+| 173 | [Cleffa](pokedex/173-cleffa.md) | Fairy | 50 | 25 | 28 | 45 | 55 | 15 | 218 |
+| 174 | [Igglybuff](pokedex/174-igglybuff.md) | Normal / Fairy | 90 | 30 | 15 | 40 | 20 | 15 | 210 |
+| 175 | [Togepi](pokedex/175-togepi.md) | Fairy | 35 | 20 | 65 | 40 | 65 | 20 | 245 |
+| 176 | [Togetic](pokedex/176-togetic.md) | Fairy / Flying | 55 | 40 | 85 | 80 | 105 | 40 | 405 |
 | 177 | [Natu](pokedex/177-natu.md) | Psychic / Flying | 40 | 50 | 45 | 70 | 45 | 70 | 320 |
 | 178 | [Xatu](pokedex/178-xatu.md) | Psychic / Flying | 65 | 75 | 70 | 95 | 70 | 95 | 470 |
 | 179 | [Mareep](pokedex/179-mareep.md) | Electric | 55 | 40 | 40 | 65 | 45 | 35 | 280 |
 | 180 | [Flaaffy](pokedex/180-flaaffy.md) | Electric | 70 | 55 | 55 | 80 | 60 | 45 | 365 |
 | 181 | [Ampharos](pokedex/181-ampharos.md) | Electric | 90 | 75 | 85 | 115 | 90 | 55 | 510 |
 | 182 | [Bellossom](pokedex/182-bellossom.md) | Grass | 75 | 80 | 95 | 90 | 100 | 50 | 490 |
-| 183 | [Marill](pokedex/183-marill.md) | Water | 70 | 20 | 50 | 20 | 50 | 40 | 250 |
-| 184 | [Azumarill](pokedex/184-azumarill.md) | Water | 100 | 50 | 80 | 60 | 80 | 50 | 420 |
+| 183 | [Marill](pokedex/183-marill.md) | Water / Fairy | 70 | 20 | 50 | 20 | 50 | 40 | 250 |
+| 184 | [Azumarill](pokedex/184-azumarill.md) | Water / Fairy | 100 | 50 | 80 | 60 | 80 | 50 | 420 |
 | 185 | [Sudowoodo](pokedex/185-sudowoodo.md) | Rock | 70 | 100 | 115 | 30 | 65 | 30 | 410 |
 | 186 | [Politoed](pokedex/186-politoed.md) | Water | 90 | 75 | 75 | 90 | 100 | 70 | 500 |
 | 187 | [Hoppip](pokedex/187-hoppip.md) | Grass / Flying | 35 | 35 | 40 | 35 | 55 | 50 | 250 |
@@ -212,8 +212,8 @@ All 386 Pokémon in National Dex order, with this hack's stats. Click a name for
 | 206 | [Dunsparce](pokedex/206-dunsparce.md) | Normal | 100 | 70 | 70 | 65 | 65 | 45 | 415 |
 | 207 | [Gligar](pokedex/207-gligar.md) | Ground / Flying | 65 | 75 | 105 | 35 | 65 | 85 | 430 |
 | 208 | [Steelix](pokedex/208-steelix.md) | Steel / Ground | 75 | 85 | 200 | 55 | 65 | 30 | 510 |
-| 209 | [Snubbull](pokedex/209-snubbull.md) | Normal | 60 | 80 | 50 | 40 | 40 | 30 | 300 |
-| 210 | [Granbull](pokedex/210-granbull.md) | Normal | 90 | 120 | 75 | 60 | 60 | 45 | 450 |
+| 209 | [Snubbull](pokedex/209-snubbull.md) | Fairy | 60 | 80 | 50 | 40 | 40 | 30 | 300 |
+| 210 | [Granbull](pokedex/210-granbull.md) | Fairy | 90 | 120 | 75 | 60 | 60 | 45 | 450 |
 | 211 | [Qwilfish](pokedex/211-qwilfish.md) | Water / Poison | 65 | 95 | 85 | 55 | 55 | 85 | 440 |
 | 212 | [Scizor](pokedex/212-scizor.md) | Bug / Steel | 70 | 130 | 100 | 55 | 80 | 65 | 500 |
 | 213 | [Shuckle](pokedex/213-shuckle.md) | Bug / Rock | 20 | 10 | 230 | 10 | 230 | 5 | 505 |
@@ -283,9 +283,9 @@ All 386 Pokémon in National Dex order, with this hack's stats. Click a name for
 | 277 | [Swellow](pokedex/277-swellow.md) | Normal / Flying | 60 | 85 | 60 | 75 | 50 | 125 | 455 |
 | 278 | [Wingull](pokedex/278-wingull.md) | Water / Flying | 40 | 30 | 30 | 55 | 30 | 85 | 270 |
 | 279 | [Pelipper](pokedex/279-pelipper.md) | Water / Flying | 60 | 50 | 100 | 95 | 70 | 65 | 440 |
-| 280 | [Ralts](pokedex/280-ralts.md) | Psychic | 28 | 25 | 25 | 45 | 35 | 40 | 198 |
-| 281 | [Kirlia](pokedex/281-kirlia.md) | Psychic | 38 | 35 | 35 | 65 | 55 | 50 | 278 |
-| 282 | [Gardevoir](pokedex/282-gardevoir.md) | Psychic | 68 | 65 | 65 | 125 | 115 | 80 | 518 |
+| 280 | [Ralts](pokedex/280-ralts.md) | Psychic / Fairy | 28 | 25 | 25 | 45 | 35 | 40 | 198 |
+| 281 | [Kirlia](pokedex/281-kirlia.md) | Psychic / Fairy | 38 | 35 | 35 | 65 | 55 | 50 | 278 |
+| 282 | [Gardevoir](pokedex/282-gardevoir.md) | Psychic / Fairy | 68 | 65 | 65 | 125 | 115 | 80 | 518 |
 | 283 | [Surskit](pokedex/283-surskit.md) | Bug / Water | 40 | 30 | 32 | 50 | 52 | 65 | 269 |
 | 284 | [Masquerain](pokedex/284-masquerain.md) | Bug / Flying | 70 | 60 | 62 | 100 | 82 | 80 | 454 |
 | 285 | [Shroomish](pokedex/285-shroomish.md) | Grass | 60 | 40 | 60 | 40 | 60 | 35 | 295 |
@@ -301,12 +301,12 @@ All 386 Pokémon in National Dex order, with this hack's stats. Click a name for
 | 295 | [Exploud](pokedex/295-exploud.md) | Normal | 104 | 91 | 63 | 91 | 73 | 68 | 490 |
 | 296 | [Makuhita](pokedex/296-makuhita.md) | Fighting | 72 | 60 | 30 | 20 | 30 | 25 | 237 |
 | 297 | [Hariyama](pokedex/297-hariyama.md) | Fighting | 144 | 120 | 60 | 40 | 60 | 50 | 474 |
-| 298 | [Azurill](pokedex/298-azurill.md) | Normal | 50 | 20 | 40 | 20 | 40 | 20 | 190 |
+| 298 | [Azurill](pokedex/298-azurill.md) | Normal / Fairy | 50 | 20 | 40 | 20 | 40 | 20 | 190 |
 | 299 | [Nosepass](pokedex/299-nosepass.md) | Rock | 30 | 45 | 135 | 45 | 90 | 30 | 375 |
 | 300 | [Skitty](pokedex/300-skitty.md) | Normal | 50 | 45 | 45 | 35 | 35 | 50 | 260 |
 | 301 | [Delcatty](pokedex/301-delcatty.md) | Normal | 70 | 65 | 65 | 55 | 55 | 90 | 400 |
 | 302 | [Sableye](pokedex/302-sableye.md) | Dark / Ghost | 50 | 75 | 75 | 65 | 65 | 50 | 380 |
-| 303 | [Mawile](pokedex/303-mawile.md) | Steel | 50 | 85 | 85 | 55 | 55 | 50 | 380 |
+| 303 | [Mawile](pokedex/303-mawile.md) | Steel / Fairy | 50 | 85 | 85 | 55 | 55 | 50 | 380 |
 | 304 | [Aron](pokedex/304-aron.md) | Steel / Rock | 50 | 70 | 100 | 40 | 40 | 30 | 330 |
 | 305 | [Lairon](pokedex/305-lairon.md) | Steel / Rock | 60 | 90 | 140 | 50 | 50 | 40 | 430 |
 | 306 | [Aggron](pokedex/306-aggron.md) | Steel / Rock | 70 | 110 | 180 | 60 | 60 | 50 | 530 |

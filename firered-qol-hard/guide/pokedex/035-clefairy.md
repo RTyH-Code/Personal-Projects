@@ -2,7 +2,7 @@
 
 # #035 Clefairy
 
-*The Fairy Pokémon* — **Normal**
+*The Fairy Pokémon* — **Fairy** *(originally Normal)*
 
 > Its adorable appearance makes it popular as a pet. However, it is rare and difficult to find.
 
@@ -30,8 +30,9 @@ Height 0.6 m (2′00″) · Weight 7.5 kg (16.5 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Fighting |
-| 0× (immune) | Ghost |
+| 2× | Poison, Steel |
+| ½× | Fighting, Bug, Dark |
+| 0× (immune) | Dragon |
 
 ## Training and breeding
 
@@ -72,14 +73,16 @@ Height 0.6 m (2′00″) · Weight 7.5 kg (16.5 lbs)
 | 1 | Sing | Normal | Status | — | 55% | 15 |
 | 1 | Defense Curl | Normal | Status | — | — | 40 |
 | 1 | Splash ★ | Normal | Status | — | — | 40 |
-| 1 | Sweet Kiss ★ | Normal | Status | — | 75% | 10 |
-| 1 | Charm ★ | Normal | Status | — | 100% | 20 |
+| 1 | Sweet Kiss ★ | Fairy | Status | — | 75% | 10 |
+| 1 | Charm ★ | Fairy | Status | — | 100% | 20 |
+| 1 | Disarming Voice ★ | Fairy | Special | 40 | — | 15 |
 | 8 | Encore | Normal | Status | — | 100% | 5 |
 | 20 | Metronome | Normal | Status | — | — | 10 |
-| 24 | Moonlight | Normal | Status | — | — | 5 |
+| 24 | Moonlight | Fairy | Status | — | — | 5 |
 | 32 | Meteor Mash | Steel | Physical | 90 | 90% | 10 |
 | 36 | Follow Me | Normal | Status | — | — | 20 |
 | 40 | Cosmic Power | Psychic | Status | — | — | 20 |
+| 44 | Moonblast ★ | Fairy | Special | 95 | 100% | 15 |
 
 ### By TM/HM
 

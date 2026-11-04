@@ -619,7 +619,7 @@ def write_pokemon():
 # ---------------------------------------------------------------- Pokédex
 
 TYPES = ["NORMAL", "FIGHTING", "FLYING", "POISON", "GROUND", "ROCK", "BUG", "GHOST", "STEEL",
-         "FIRE", "WATER", "GRASS", "ELECTRIC", "PSYCHIC", "ICE", "DRAGON", "DARK"]
+         "FIRE", "WATER", "GRASS", "ELECTRIC", "PSYCHIC", "ICE", "DRAGON", "DARK", "FAIRY"]
 GROWTH = {"GROWTH_MEDIUM_FAST": ("Medium Fast", 1000000), "GROWTH_ERRATIC": ("Erratic", 600000),
           "GROWTH_FLUCTUATING": ("Fluctuating", 1640000), "GROWTH_MEDIUM_SLOW": ("Medium Slow", 1059860),
           "GROWTH_FAST": ("Fast", 800000), "GROWTH_SLOW": ("Slow", 1250000)}
@@ -914,7 +914,8 @@ def write_pokedex():
         h, w = int(de.get("height", 0)), int(de.get("weight", 0))
         inches = round(h * 3.937)
         out = [" · ".join(nav), "", f"# #{n + 1:03d} {mon(sp)}", "",
-               f"*The {cat} Pokémon* — **{' / '.join(tname(t) for t in ts)}**", ""]
+               f"*The {cat} Pokémon* — **{' / '.join(tname(t) for t in ts)}**"
+               + (f" *(originally {' / '.join(tname(t) for t in old_ts)})*" if (old_ts := types_of(old_info[sp])) != ts else ""), ""]
         txt = dex_text.get(de.get("description", ""), "")
         if txt:
             out += [f"> {gametext(txt)}", ""]
@@ -1069,7 +1070,7 @@ def write_pokedex():
 GEN3_PHYSICAL = {"NORMAL", "FIGHTING", "FLYING", "POISON", "GROUND", "ROCK", "BUG", "GHOST", "STEEL"}
 TYPE_ABBR = {"NORMAL": "Nor", "FIGHTING": "Fig", "FLYING": "Fly", "POISON": "Poi", "GROUND": "Gro", "ROCK": "Roc",
              "BUG": "Bug", "GHOST": "Gho", "STEEL": "Ste", "FIRE": "Fir", "WATER": "Wat", "GRASS": "Gra",
-             "ELECTRIC": "Ele", "PSYCHIC": "Psy", "ICE": "Ice", "DRAGON": "Dra", "DARK": "Dar"}
+             "ELECTRIC": "Ele", "PSYCHIC": "Psy", "ICE": "Ice", "DRAGON": "Dra", "DARK": "Dar", "FAIRY": "Fai"}
 
 
 def write_types():
@@ -1077,7 +1078,7 @@ def write_types():
         return chart.get((a, d), 1)
     sym = {2: "**2**", 0.5: "½", 0: "**0**", 1: ""}
     out = ["# Types and moves", "",
-           "FireRed's type chart (Gen 3: no Fairy type; Steel resists Ghost and Dark) and every move in the game, "
+           "The type chart (modern: Fairy is included, and Steel no longer resists Ghost or Dark) and every move in the game, "
            "with this hack's physical/special split and modern power, accuracy and PP.", "",
            "- [Type chart](#type-chart)", "- [Type by type](#type-by-type)",
            "- [Moves that changed category](#moves-that-changed-category)", "- [All moves by type](#all-moves-by-type)", "",
@@ -1116,7 +1117,7 @@ def write_types():
     changed = {"Physical": [], "Special": []}
     for m, f in damaging.items():
         t = f["type"].replace("TYPE_", "")
-        if t == "MYSTERY":
+        if t in ("MYSTERY", "FAIRY"):  # Fairy moves are new; they never had a Gen 3 category
             continue
         old = "Physical" if t in GEN3_PHYSICAL else "Special"
         new = "Physical" if f["split"] == "SPLIT_PHYSICAL" else "Special"

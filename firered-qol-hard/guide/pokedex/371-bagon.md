@@ -30,7 +30,7 @@ Height 0.6 m (2′00″) · Weight 42.1 kg (92.8 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Ice, Dragon |
+| 2× | Ice, Dragon, Fairy |
 | ½× | Fire, Water, Grass, Electric |
 
 ## Training and breeding

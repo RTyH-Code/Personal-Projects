@@ -2,7 +2,7 @@
 
 # #209 Snubbull
 
-*The Fairy Pokémon* — **Normal**
+*The Fairy Pokémon* — **Fairy** *(originally Normal)*
 
 > It has an active, playful nature. Many women like to frolic with it because of its affectionate ways.
 
@@ -33,8 +33,9 @@ Height 0.6 m (2′00″) · Weight 7.8 kg (17.2 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Fighting |
-| 0× (immune) | Ghost |
+| 2× | Poison, Steel |
+| ½× | Fighting, Bug, Dark |
+| 0× (immune) | Dragon |
 
 ## Training and breeding
 
@@ -72,11 +73,12 @@ Height 0.6 m (2′00″) · Weight 7.8 kg (17.2 lbs)
 | 1 | Tail Whip | Normal | Status | — | 100% | 30 |
 | 1 | Growl ★ | Normal | Status | — | 100% | 40 |
 | 1 | Scary Face | Normal | Status | — | 100% | 10 |
-| 1 | Charm | Normal | Status | — | 100% | 20 |
+| 1 | Charm | Fairy | Status | — | 100% | 20 |
 | 7 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 13 | Lick | Ghost | Physical | 30 | 100% | 30 |
 | 19 | Headbutt ★ | Normal | Physical | 70 | 100% | 15 |
 | 25 | Roar | Normal | Status | — | 100% | 20 |
+| 37 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
 | 49 | Crunch | Dark | Physical | 80 | 100% | 15 |
 
 ### By TM/HM

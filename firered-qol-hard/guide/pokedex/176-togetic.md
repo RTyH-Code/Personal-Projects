@@ -2,7 +2,7 @@
 
 # #176 Togetic
 
-*The Happiness Pokémon* — **Normal / Flying**
+*The Happiness Pokémon* — **Fairy / Flying** *(originally Normal / Flying)*
 
 > It grows dispirited if it is not with kind people. It can float in midair without moving its wings.
 
@@ -33,9 +33,10 @@ Height 0.6 m (2′00″) · Weight 3.2 kg (7.1 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Rock, Electric, Ice |
-| ½× | Bug, Grass |
-| 0× (immune) | Ground, Ghost |
+| 2× | Poison, Rock, Steel, Electric, Ice |
+| ½× | Grass, Dark |
+| ¼× | Fighting, Bug |
+| 0× (immune) | Ground, Dragon |
 
 ## Training and breeding
 
@@ -69,8 +70,9 @@ Height 0.6 m (2′00″) · Weight 3.2 kg (7.1 lbs)
 |--:|---|---|---|--:|--:|--:|
 | 1 | Pound ★ | Normal | Physical | 40 | 100% | 35 |
 | 1 | Growl | Normal | Status | — | 100% | 40 |
-| 1 | Sweet Kiss | Normal | Status | — | 75% | 10 |
-| 12 | Charm | Normal | Status | — | 100% | 20 |
+| 1 | Sweet Kiss | Fairy | Status | — | 75% | 10 |
+| 1 | Fairy Wind ★ | Fairy | Special | 40 | 100% | 30 |
+| 12 | Charm | Fairy | Status | — | 100% | 20 |
 | 16 | Ancient Power | Rock | Special | 60 | 100% | 5 |
 | 20 | Yawn | Normal | Status | — | 100% | 10 |
 | 24 | Metronome | Normal | Status | — | — | 10 |

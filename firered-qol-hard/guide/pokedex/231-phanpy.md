@@ -74,7 +74,7 @@ Height 0.5 m (1′08″) · Weight 33.5 kg (73.9 lbs)
 | 19 | Endure | Normal | Status | — | — | 10 |
 | 24 | Slam ★ | Normal | Physical | 80 | 75% | 20 |
 | 28 | Take Down | Normal | Physical | 90 | 85% | 20 |
-| 33 | Charm ★ | Normal | Status | — | 100% | 20 |
+| 33 | Charm ★ | Fairy | Status | — | 100% | 20 |
 | 42 | Double-Edge | Normal | Physical | 120 | 100% | 15 |
 
 ### By TM/HM
@@ -122,6 +122,7 @@ Breed a Phanpy with a father that knows the move.
 | Snore | Normal | Special | 50 | 100% | 15 |
 | Counter | Fighting | Physical | varies | 100% | 20 |
 | Fissure | Ground | Physical | varies | 30% | 5 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 |
 
 ---
 

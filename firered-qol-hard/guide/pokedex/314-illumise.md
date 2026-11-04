@@ -66,13 +66,14 @@ Illumise does not evolve.
 |--:|---|---|---|--:|--:|--:|
 | 1 | Tackle | Normal | Physical | 40 | 100% | 35 |
 | 5 | Sweet Scent | Normal | Status | — | 100% | 20 |
-| 9 | Charm | Normal | Status | — | 100% | 20 |
+| 9 | Charm | Fairy | Status | — | 100% | 20 |
 | 12 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
-| 19 | Moonlight | Normal | Status | — | — | 5 |
+| 19 | Moonlight | Fairy | Status | — | — | 5 |
 | 22 | Wish | Normal | Status | — | — | 10 |
 | 26 | Encore | Normal | Status | — | 100% | 5 |
 | 29 | Flatter | Dark | Status | — | 100% | 15 |
 | 36 | Helping Hand | Normal | Status | — | — | 20 |
+| 43 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
 
 ### By TM/HM
 

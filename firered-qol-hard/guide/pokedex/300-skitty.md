@@ -71,13 +71,15 @@ Height 0.6 m (2′00″) · Weight 11 kg (24.3 lbs)
 | 4 | Foresight ★ | Normal | Status | — | 100% | 40 |
 | 7 | Sing | Normal | Status | — | 55% | 15 |
 | 10 | Attract | Normal | Status | — | 100% | 15 |
+| 13 | Disarming Voice ★ | Fairy | Special | 40 | — | 15 |
 | 16 | Double Slap | Normal | Physical | 15 | 85% | 10 |
 | 22 | Faint Attack | Dark | Physical | 60 | — | 20 |
-| 25 | Charm | Normal | Status | — | 100% | 20 |
+| 25 | Charm | Fairy | Status | — | 100% | 20 |
 | 31 | Assist | Normal | Status | — | 100% | 20 |
 | 34 | Covet | Normal | Physical | 60 | 100% | 25 |
 | 37 | Heal Bell | Normal | Status | — | — | 5 |
 | 40 | Double-Edge | Normal | Physical | 120 | 100% | 15 |
+| 46 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
 
 ### By TM/HM
 

@@ -71,6 +71,7 @@ Height 1.8 m (5′11″) · Weight 125.8 kg (277.3 lbs)
 | 8 | Fury Swipes | Normal | Physical | 18 | 80% | 15 |
 | 17 | Sweet Scent ★ | Normal | Status | — | 100% | 20 |
 | 22 | Slash | Normal | Physical | 70 | 100% | 20 |
+| 29 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
 | 35 | Scary Face ★ | Normal | Status | — | 100% | 10 |
 | 41 | Rest | Psychic | Status | — | — | 5 |
 | 41 | Snore | Normal | Special | 50 | 100% | 15 |
@@ -138,6 +139,7 @@ Breed a Teddiursa (passed down to Teddiursa, which then evolves) with a father t
 | Fake Tears | Dark | Status | — | 100% | 20 |
 | Yawn | Normal | Status | — | 100% | 10 |
 | Sleep Talk | Normal | Status | — | — | 10 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 |
 
 ---
 

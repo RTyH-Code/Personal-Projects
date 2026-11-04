@@ -31,7 +31,7 @@ Height 1.2 m (3′11″) · Weight 18.6 kg (41.0 lbs)
 | Damage taken | Types |
 |---|---|
 | 2× | Flying, Fire, Psychic, Ice |
-| ½× | Fighting, Water, Electric |
+| ½× | Fighting, Water, Electric, Fairy |
 | ¼× | Grass |
 
 ## Training and breeding
@@ -70,13 +70,14 @@ Height 1.2 m (3′11″) · Weight 18.6 kg (41.0 lbs)
 | 1 | Acid ★ | Poison | Special | 40 | 100% | 30 |
 | 1 | Growth ★ | Normal | Status | — | — | 20 |
 | 1 | Sweet Scent ★ | Normal | Status | — | 100% | 20 |
+| 1 | Moonblast ★ | Fairy | Special | 95 | 100% | 15 |
 | 15 | Mega Drain | Grass | Special | 40 | 100% | 15 |
 | 17 | Poison Powder ★ | Poison | Status | — | 75% | 35 |
 | 19 | Stun Spore | Grass | Status | — | 75% | 30 |
 | 21 | Sleep Powder ★ | Grass | Status | — | 75% | 15 |
 | 23 | Giga Drain ★ | Grass | Special | 75 | 100% | 10 |
 | 30 | Toxic ★ | Poison | Status | — | 90% | 10 |
-| 51 | Moonlight ★ | Normal | Status | — | — | 5 |
+| 51 | Moonlight ★ | Fairy | Status | — | — | 5 |
 | 58 | Petal Dance | Grass | Special | 120 | 100% | 10 |
 
 ### By TM/HM
@@ -122,7 +123,7 @@ Breed a Oddish (passed down to Oddish, which then evolves) with a father that kn
 | Razor Leaf | Grass | Physical | 55 | 95% | 25 |
 | Flail | Normal | Physical | varies | 100% | 15 |
 | Synthesis | Grass | Status | — | — | 5 |
-| Charm | Normal | Status | — | 100% | 20 |
+| Charm | Fairy | Status | — | 100% | 20 |
 | Ingrain | Grass | Status | — | — | 20 |
 
 ---

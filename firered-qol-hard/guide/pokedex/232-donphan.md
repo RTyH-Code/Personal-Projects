@@ -122,6 +122,7 @@ Breed a Phanpy (passed down to Phanpy, which then evolves) with a father that kn
 | Snore | Normal | Special | 50 | 100% | 15 |
 | Counter | Fighting | Physical | varies | 100% | 20 |
 | Fissure | Ground | Physical | varies | 30% | 5 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 |
 
 ---
 

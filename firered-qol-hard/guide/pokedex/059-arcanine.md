@@ -34,7 +34,7 @@ Height 1.9 m (6′03″) · Weight 155 kg (341.7 lbs)
 | Damage taken | Types |
 |---|---|
 | 2× | Ground, Rock, Water |
-| ½× | Bug, Steel, Fire, Grass, Ice |
+| ½× | Bug, Steel, Fire, Grass, Ice, Fairy |
 
 *With Flash Fire: immune to Fire moves.*
 
@@ -71,6 +71,7 @@ Height 1.9 m (6′03″) · Weight 155 kg (341.7 lbs)
 | 1 | Ember | Fire | Special | 40 | 100% | 25 |
 | 1 | Extreme Speed | Normal | Physical | 80 | 100% | 5 |
 | 1 | Leer ★ | Normal | Status | — | 100% | 30 |
+| 1 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
 | 5 | Flamethrower ★ | Fire | Special | 90 | 100% | 15 |
 | 7 | Howl ★ | Normal | Status | — | — | 40 |
 | 11 | Bite | Dark | Physical | 60 | 100% | 25 |

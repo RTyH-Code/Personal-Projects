@@ -117,7 +117,7 @@ Breed a Shroomish with a father that knows the move.
 |---|---|---|--:|--:|--:|
 | Fake Tears | Dark | Status | — | 100% | 20 |
 | Swagger | Normal | Status | — | 85% | 15 |
-| Charm | Normal | Status | — | 100% | 20 |
+| Charm | Fairy | Status | — | 100% | 20 |
 | False Swipe | Normal | Physical | 40 | 100% | 40 |
 | Helping Hand | Normal | Status | — | — | 20 |
 

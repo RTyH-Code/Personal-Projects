@@ -30,7 +30,7 @@ Height 0.7 m (2′04″) · Weight 21 kg (46.3 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Flying, Psychic |
+| 2× | Flying, Psychic, Fairy |
 | ½× | Rock, Bug, Dark |
 
 ## Training and breeding

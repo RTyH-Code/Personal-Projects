@@ -2,7 +2,7 @@
 
 # #174 Igglybuff
 
-*The Balloon Pokémon* — **Normal**
+*The Balloon Pokémon* — **Normal / Fairy** *(originally Normal)*
 
 > Its extremely flexible and elastic body makes it bounce continuously--anytime, anywhere.
 
@@ -30,8 +30,9 @@ Height 0.3 m (1′00″) · Weight 1 kg (2.2 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Fighting |
-| 0× (immune) | Ghost |
+| 2× | Poison, Steel |
+| ½× | Bug, Dark |
+| 0× (immune) | Ghost, Dragon |
 
 ## Training and breeding
 
@@ -67,9 +68,10 @@ Height 0.3 m (1′00″) · Weight 1 kg (2.2 lbs)
 | 1 | Pound | Normal | Physical | 40 | 100% | 35 |
 | 1 | Sing | Normal | Status | — | 55% | 15 |
 | 4 | Defense Curl | Normal | Status | — | — | 40 |
-| 8 | Sweet Kiss | Normal | Status | — | 75% | 10 |
+| 8 | Sweet Kiss | Fairy | Status | — | 75% | 10 |
+| 12 | Disarming Voice ★ | Fairy | Special | 40 | — | 15 |
 | 16 | Disable ★ | Normal | Status | — | 100% | 20 |
-| 20 | Charm | Normal | Status | — | 100% | 20 |
+| 20 | Charm | Fairy | Status | — | 100% | 20 |
 
 ### By TM/HM
 

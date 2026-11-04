@@ -75,7 +75,8 @@ Miltank does not evolve.
 | 25 | Headbutt ★ | Normal | Physical | 70 | 100% | 15 |
 | 35 | Milk Drink | Normal | Status | — | — | 5 |
 | 40 | Body Slam | Normal | Physical | 85 | 100% | 15 |
-| 50 | Charm ★ | Normal | Status | — | 100% | 20 |
+| 45 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
+| 50 | Charm ★ | Fairy | Status | — | 100% | 20 |
 
 ### By TM/HM
 

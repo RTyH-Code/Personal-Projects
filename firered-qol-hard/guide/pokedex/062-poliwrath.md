@@ -33,7 +33,7 @@ Height 1.3 m (4′03″) · Weight 54 kg (119.0 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Flying, Grass, Electric, Psychic |
+| 2× | Flying, Grass, Electric, Psychic, Fairy |
 | ½× | Rock, Bug, Steel, Fire, Water, Ice, Dark |
 
 *With Water Absorb: Water moves heal it instead.*

@@ -31,7 +31,7 @@ Height 1.2 m (3′11″) · Weight 31.6 kg (69.7 lbs)
 | Damage taken | Types |
 |---|---|
 | 2× | Flying, Rock, Fire, Psychic |
-| ½× | Poison, Bug |
+| ½× | Poison, Bug, Fairy |
 | ¼× | Fighting, Grass |
 
 ## Training and breeding
@@ -70,7 +70,7 @@ Height 1.2 m (3′11″) · Weight 31.6 kg (69.7 lbs)
 | 1 | Gust | Flying | Special | 40 | 100% | 35 |
 | 12 | Confusion | Psychic | Special | 50 | 100% | 25 |
 | 15 | Poison Powder ★ | Poison | Status | — | 75% | 35 |
-| 17 | Moonlight | Normal | Status | — | — | 5 |
+| 17 | Moonlight | Fairy | Status | — | — | 5 |
 | 22 | Psybeam | Psychic | Special | 65 | 100% | 20 |
 | 25 | Silver Wind | Bug | Special | 60 | 100% | 5 |
 | 27 | Light Screen | Psychic | Status | — | — | 30 |

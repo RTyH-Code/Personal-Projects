@@ -30,7 +30,7 @@ Height 1.3 m (4′03″) · Weight 31.5 kg (69.4 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Flying, Ghost |
+| 2× | Flying, Ghost, Fairy |
 | ½× | Fighting, Rock |
 
 ## Training and breeding

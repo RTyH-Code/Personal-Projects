@@ -2,7 +2,7 @@
 
 # #184 Azumarill
 
-*The Aqua Rabbit Pokémon* — **Water**
+*The Aqua Rabbit Pokémon* — **Water / Fairy** *(originally Water)*
 
 > When it plays in water, it rolls up its elongated ears to prevent their insides from getting wet.
 
@@ -33,8 +33,9 @@ Height 0.8 m (2′07″) · Weight 28.5 kg (62.8 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Grass, Electric |
-| ½× | Steel, Fire, Water, Ice |
+| 2× | Poison, Grass, Electric |
+| ½× | Fighting, Bug, Fire, Water, Ice, Dark |
+| 0× (immune) | Dragon |
 
 *With Thick Fat: Fire and Ice moves do half damage.*
 
@@ -76,9 +77,10 @@ Height 0.8 m (2′07″) · Weight 28.5 kg (62.8 lbs)
 | 1 | Rollout | Rock | Physical | 30 | 90% | 20 |
 | 1 | Helping Hand ★ | Normal | Status | — | — | 20 |
 | 6 | Bubble Beam | Water | Special | 65 | 100% | 20 |
-| 9 | Charm ★ | Normal | Status | — | 100% | 20 |
+| 9 | Charm ★ | Fairy | Status | — | 100% | 20 |
 | 12 | Slam ★ | Normal | Physical | 80 | 75% | 20 |
 | 15 | Bounce ★ | Flying | Physical | 85 | 85% | 5 |
+| 25 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
 | 35 | Rain Dance | Water | Status | — | — | 5 |
 | 40 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 | 45 | Double-Edge | Normal | Physical | 120 | 100% | 15 |

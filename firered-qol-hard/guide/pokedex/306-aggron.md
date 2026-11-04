@@ -35,7 +35,7 @@ Height 2.1 m (6′11″) · Weight 360 kg (793.7 lbs)
 |---|---|
 | 4× | Fighting, Ground |
 | 2× | Water |
-| ½× | Rock, Bug, Ghost, Psychic, Ice, Dragon, Dark |
+| ½× | Rock, Bug, Psychic, Ice, Dragon, Fairy |
 | ¼× | Normal, Flying |
 | 0× (immune) | Poison |
 

@@ -2,7 +2,7 @@
 
 # #282 Gardevoir
 
-*The Embrace Pokémon* — **Psychic**
+*The Embrace Pokémon* — **Psychic / Fairy** *(originally Psychic)*
 
 > It has the power to predict the future. Its power peaks when it is protecting its Trainer.
 
@@ -33,8 +33,10 @@ Height 1.6 m (5′03″) · Weight 48.4 kg (106.7 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Bug, Ghost, Dark |
-| ½× | Fighting, Psychic |
+| 2× | Poison, Ghost, Steel |
+| ½× | Psychic |
+| ¼× | Fighting |
+| 0× (immune) | Dragon |
 
 ## Training and breeding
 
@@ -70,13 +72,17 @@ Height 1.6 m (5′03″) · Weight 48.4 kg (106.7 lbs)
 | 1 | Growl | Normal | Status | — | 100% | 40 |
 | 1 | Confusion | Psychic | Special | 50 | 100% | 25 |
 | 1 | Double Team | Normal | Status | — | — | 15 |
-| 1 | Charm ★ | Normal | Status | — | 100% | 20 |
+| 1 | Charm ★ | Fairy | Status | — | 100% | 20 |
+| 1 | Disarming Voice ★ | Fairy | Special | 40 | — | 15 |
+| 1 | Dazzling Gleam ★ | Fairy | Special | 80 | 100% | 10 |
 | 9 | Hypnosis | Psychic | Status | — | 60% | 20 |
+| 12 | Draining Kiss ★ | Fairy | Special | 50 | 100% | 10 |
 | 15 | Teleport | Psychic | Status | — | — | 20 |
 | 18 | Psybeam ★ | Psychic | Special | 65 | 100% | 20 |
 | 28 | Wish ★ | Normal | Status | — | — | 10 |
 | 35 | Calm Mind | Psychic | Status | — | — | 20 |
 | 42 | Psychic | Psychic | Special | 90 | 100% | 10 |
+| 49 | Moonblast ★ | Fairy | Special | 95 | 100% | 15 |
 | 56 | Dream Eater | Psychic | Special | 100 | 100% | 15 |
 | 63 | Future Sight | Psychic | Special | 120 | 100% | 10 |
 

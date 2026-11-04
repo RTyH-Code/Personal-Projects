@@ -2,7 +2,7 @@
 
 # #183 Marill
 
-*The Aqua Mouse Pokémon* — **Water**
+*The Aqua Mouse Pokémon* — **Water / Fairy** *(originally Water)*
 
 > The end of its tail serves as a buoy that keeps it from drowning, even in a vicious current.
 
@@ -33,8 +33,9 @@ Height 0.4 m (1′04″) · Weight 8.5 kg (18.7 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Grass, Electric |
-| ½× | Steel, Fire, Water, Ice |
+| 2× | Poison, Grass, Electric |
+| ½× | Fighting, Bug, Fire, Water, Ice, Dark |
+| 0× (immune) | Dragon |
 
 *With Thick Fat: Fire and Ice moves do half damage.*
 
@@ -77,9 +78,10 @@ Height 0.4 m (1′04″) · Weight 8.5 kg (18.7 lbs)
 | 1 | Rollout | Rock | Physical | 30 | 90% | 20 |
 | 1 | Helping Hand ★ | Normal | Status | — | — | 20 |
 | 6 | Bubble Beam | Water | Special | 65 | 100% | 20 |
-| 9 | Charm ★ | Normal | Status | — | 100% | 20 |
+| 9 | Charm ★ | Fairy | Status | — | 100% | 20 |
 | 12 | Slam ★ | Normal | Physical | 80 | 75% | 20 |
 | 15 | Bounce ★ | Flying | Physical | 85 | 85% | 5 |
+| 21 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
 | 27 | Rain Dance | Water | Status | — | — | 5 |
 | 30 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 | 33 | Double-Edge | Normal | Physical | 120 | 100% | 15 |

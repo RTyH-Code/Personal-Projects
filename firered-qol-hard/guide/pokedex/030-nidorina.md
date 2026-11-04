@@ -31,7 +31,7 @@ Height 0.8 m (2′07″) · Weight 20 kg (44.1 lbs)
 | Damage taken | Types |
 |---|---|
 | 2× | Ground, Psychic |
-| ½× | Fighting, Poison, Bug, Grass |
+| ½× | Fighting, Poison, Bug, Grass, Fairy |
 
 ## Training and breeding
 
@@ -130,7 +130,7 @@ Breed a Nidoran♀ (passed down to Nidoran♀, which then evolves) with a father
 | Disable | Normal | Status | — | 100% | 20 |
 | Take Down | Normal | Physical | 90 | 85% | 20 |
 | Focus Energy | Normal | Status | — | — | 30 |
-| Charm | Normal | Status | — | 100% | 20 |
+| Charm | Fairy | Status | — | 100% | 20 |
 | Counter | Fighting | Physical | varies | 100% | 20 |
 | Beat Up | Dark | Physical | 10 | 100% | 10 |
 

@@ -30,7 +30,7 @@ Height 0.5 m (1′08″) · Weight 2.1 kg (4.6 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Rock, Electric, Ice |
+| 2× | Rock, Electric, Ice, Fairy |
 | ½× | Ghost, Grass, Dark |
 | 0× (immune) | Ground, Psychic |
 

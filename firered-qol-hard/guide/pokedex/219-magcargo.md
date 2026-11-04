@@ -35,7 +35,7 @@ Height 0.8 m (2′07″) · Weight 55 kg (121.3 lbs)
 |---|---|
 | 4× | Ground, Water |
 | 2× | Fighting, Rock |
-| ½× | Normal, Flying, Poison, Bug, Ice |
+| ½× | Normal, Flying, Poison, Bug, Ice, Fairy |
 | ¼× | Fire |
 
 ## Training and breeding

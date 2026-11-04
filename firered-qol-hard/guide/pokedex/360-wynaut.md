@@ -67,7 +67,7 @@ Height 0.6 m (2′00″) · Weight 14 kg (30.9 lbs)
 | 1 | Amnesia ★ | Psychic | Status | — | — | 20 |
 | 1 | Splash | Normal | Status | — | — | 40 |
 | 1 | Destiny Bond | Ghost | Status | — | — | 5 |
-| 1 | Charm | Normal | Status | — | 100% | 20 |
+| 1 | Charm | Fairy | Status | — | 100% | 20 |
 | 1 | Safeguard | Normal | Status | — | — | 25 |
 | 1 | Encore | Normal | Status | — | 100% | 5 |
 | 1 | Mirror Coat | Psychic | Special | varies | 100% | 20 |

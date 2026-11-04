@@ -149,7 +149,7 @@ Breed a Snorlax with a father that knows the move.
 | Move | Type | Cat. | Power | Acc. | PP |
 |---|---|---|--:|--:|--:|
 | Lick | Ghost | Physical | 30 | 100% | 30 |
-| Charm | Normal | Status | — | 100% | 20 |
+| Charm | Fairy | Status | — | 100% | 20 |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 |
 | Curse | ??? | Status | — | — | 10 |
 | Fissure | Ground | Physical | varies | 30% | 5 |

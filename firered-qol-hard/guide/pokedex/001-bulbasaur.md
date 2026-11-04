@@ -31,7 +31,7 @@ Height 0.7 m (2′04″) · Weight 6.9 kg (15.2 lbs)
 | Damage taken | Types |
 |---|---|
 | 2× | Flying, Fire, Psychic, Ice |
-| ½× | Fighting, Water, Electric |
+| ½× | Fighting, Water, Electric, Fairy |
 | ¼× | Grass |
 
 ## Training and breeding
@@ -122,7 +122,7 @@ Breed a Bulbasaur with a father that knows the move.
 | Light Screen | Psychic | Status | — | — | 30 |
 | Skull Bash | Normal | Physical | 130 | 100% | 10 |
 | Safeguard | Normal | Status | — | — | 25 |
-| Charm | Normal | Status | — | 100% | 20 |
+| Charm | Fairy | Status | — | 100% | 20 |
 | Petal Dance | Grass | Special | 120 | 100% | 10 |
 | Magical Leaf | Grass | Special | 60 | — | 20 |
 | Grass Whistle | Grass | Status | — | 55% | 15 |

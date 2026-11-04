@@ -69,6 +69,7 @@ Height 6.2 m (20′04″) · Weight 162 kg (357.1 lbs)
 | 1 | Splash ★ | Normal | Status | — | — | 40 |
 | 1 | Flail ★ | Normal | Physical | varies | 100% | 15 |
 | 1 | Water Pulse | Water | Special | 60 | 100% | 20 |
+| 4 | Disarming Voice ★ | Fairy | Special | 40 | — | 15 |
 | 8 | Twister | Dragon | Special | 40 | 100% | 20 |
 | 16 | Attract | Normal | Status | — | 100% | 15 |
 | 28 | Recover | Normal | Status | — | — | 5 |

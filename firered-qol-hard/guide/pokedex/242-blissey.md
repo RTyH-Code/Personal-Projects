@@ -68,9 +68,10 @@ Height 1.5 m (4′11″) · Weight 46.8 kg (103.2 lbs)
 |--:|---|---|---|--:|--:|--:|
 | 1 | Pound | Normal | Physical | 40 | 100% | 35 |
 | 1 | Defense Curl | Normal | Status | — | — | 40 |
-| 1 | Sweet Kiss ★ | Normal | Status | — | 75% | 10 |
-| 1 | Charm ★ | Normal | Status | — | 100% | 20 |
+| 1 | Sweet Kiss ★ | Fairy | Status | — | 75% | 10 |
+| 1 | Charm ★ | Fairy | Status | — | 100% | 20 |
 | 1 | Covet ★ | Normal | Physical | 60 | 100% | 25 |
+| 1 | Disarming Voice ★ | Fairy | Special | 40 | — | 15 |
 | 4 | Tail Whip | Normal | Status | — | 100% | 30 |
 | 16 | Sing | Normal | Status | — | 55% | 15 |
 | 24 | Take Down ★ | Normal | Physical | 90 | 85% | 20 |

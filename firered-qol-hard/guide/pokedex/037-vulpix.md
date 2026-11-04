@@ -31,7 +31,7 @@ Height 0.6 m (2′00″) · Weight 9.9 kg (21.8 lbs)
 | Damage taken | Types |
 |---|---|
 | 2× | Ground, Rock, Water |
-| ½× | Bug, Steel, Fire, Grass, Ice |
+| ½× | Bug, Steel, Fire, Grass, Ice, Fairy |
 
 *Its ability Flash Fire: immune to Fire moves.*
 

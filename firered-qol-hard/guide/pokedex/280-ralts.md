@@ -2,7 +2,7 @@
 
 # #280 Ralts
 
-*The Feeling Pokémon* — **Psychic**
+*The Feeling Pokémon* — **Psychic / Fairy** *(originally Psychic)*
 
 > It is highly attuned to the emotions of people and Pokémon. It hides if it senses hostility.
 
@@ -33,8 +33,10 @@ Height 0.4 m (1′04″) · Weight 6.6 kg (14.6 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Bug, Ghost, Dark |
-| ½× | Fighting, Psychic |
+| 2× | Poison, Ghost, Steel |
+| ½× | Psychic |
+| ¼× | Fighting |
+| 0× (immune) | Dragon |
 
 ## Training and breeding
 
@@ -69,12 +71,14 @@ Height 0.4 m (1′04″) · Weight 6.6 kg (14.6 lbs)
 | Lv | Move | Type | Cat. | Power | Acc. | PP |
 |--:|---|---|---|--:|--:|--:|
 | 1 | Growl | Normal | Status | — | 100% | 40 |
+| 1 | Disarming Voice ★ | Fairy | Special | 40 | — | 15 |
 | 3 | Double Team | Normal | Status | — | — | 15 |
 | 6 | Confusion | Psychic | Special | 50 | 100% | 25 |
 | 9 | Hypnosis | Psychic | Status | — | 60% | 20 |
+| 12 | Draining Kiss ★ | Fairy | Special | 50 | 100% | 10 |
 | 15 | Teleport | Psychic | Status | — | — | 20 |
 | 18 | Psybeam ★ | Psychic | Special | 65 | 100% | 20 |
-| 24 | Charm ★ | Normal | Status | — | 100% | 20 |
+| 24 | Charm ★ | Fairy | Status | — | 100% | 20 |
 | 27 | Calm Mind | Psychic | Status | — | — | 20 |
 | 30 | Psychic | Psychic | Special | 90 | 100% | 10 |
 | 36 | Dream Eater | Psychic | Special | 100 | 100% | 15 |

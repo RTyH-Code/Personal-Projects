@@ -31,7 +31,7 @@ Height 1.1 m (3′07″) · Weight 20.6 kg (45.4 lbs)
 | Damage taken | Types |
 |---|---|
 | 4× | Ice |
-| 2× | Rock, Dragon |
+| 2× | Rock, Dragon, Fairy |
 | ½× | Fighting, Bug, Fire, Water |
 | ¼× | Grass |
 | 0× (immune) | Ground |
@@ -69,11 +69,13 @@ Height 1.1 m (3′07″) · Weight 20.6 kg (45.4 lbs)
 | 1 | Growl | Normal | Status | — | 100% | 40 |
 | 1 | Mist | Ice | Status | — | — | 30 |
 | 1 | Peck | Flying | Physical | 35 | 100% | 35 |
+| 1 | Disarming Voice ★ | Fairy | Special | 40 | — | 15 |
 | 12 | Fury Attack | Normal | Physical | 15 | 85% | 20 |
 | 20 | Dragon Breath | Dragon | Special | 60 | 100% | 20 |
 | 24 | Safeguard | Normal | Status | — | — | 25 |
 | 28 | Sing | Normal | Status | — | 55% | 15 |
 | 38 | Take Down | Normal | Physical | 90 | 85% | 20 |
+| 44 | Moonblast ★ | Fairy | Special | 95 | 100% | 15 |
 | 50 | Perish Song | Normal | Status | — | — | 5 |
 | 56 | Sky Attack | Flying | Physical | 140 | 90% | 5 |
 
@@ -129,6 +131,7 @@ Breed a Swablu (passed down to Swablu, which then evolves) with a father that kn
 | Haze | Ice | Status | — | — | 30 |
 | Pursuit | Dark | Physical | 40 | 100% | 20 |
 | Rage | Normal | Physical | 20 | 100% | 20 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 |
 
 ---
 

@@ -30,6 +30,7 @@ Height 0.5 m (1′08″) · Weight 11 kg (24.3 lbs)
 
 | Damage taken | Types |
 |---|---|
+| 2× | Fairy |
 | ½× | Poison |
 | 0× (immune) | Normal, Fighting, Psychic |
 
@@ -134,7 +135,7 @@ Breed a Sableye with a father that knows the move.
 |---|---|---|--:|--:|--:|
 | Psych Up | Normal | Status | — | — | 10 |
 | Recover | Normal | Status | — | — | 5 |
-| Moonlight | Normal | Status | — | — | 5 |
+| Moonlight | Fairy | Status | — | — | 5 |
 
 ---
 

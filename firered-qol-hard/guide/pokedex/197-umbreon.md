@@ -30,7 +30,7 @@ Height 1 m (3′03″) · Weight 27 kg (59.5 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Fighting, Bug |
+| 2× | Fighting, Bug, Fairy |
 | ½× | Ghost, Dark |
 | 0× (immune) | Psychic |
 
@@ -75,14 +75,14 @@ Height 1 m (3′03″) · Weight 27 kg (59.5 lbs)
 | 1 | Bite ★ | Dark | Physical | 60 | 100% | 25 |
 | 1 | Growl ★ | Normal | Status | — | 100% | 40 |
 | 1 | Swift ★ | Normal | Special | 60 | — | 20 |
-| 1 | Charm ★ | Normal | Status | — | 100% | 20 |
+| 1 | Charm ★ | Fairy | Status | — | 100% | 20 |
 | 1 | Baton Pass ★ | Normal | Status | — | — | 40 |
 | 1 | Helping Hand | Normal | Status | — | — | 20 |
 | 1 | Covet ★ | Normal | Physical | 60 | 100% | 25 |
 | 5 | Sand Attack | Ground | Status | — | 100% | 15 |
 | 10 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
 | 20 | Confuse Ray | Ghost | Status | — | 100% | 10 |
-| 30 | Moonlight | Normal | Status | — | — | 5 |
+| 30 | Moonlight | Fairy | Status | — | — | 5 |
 | 45 | Screech | Normal | Status | — | 85% | 40 |
 | 50 | Mean Look | Normal | Status | — | 100% | 5 |
 
@@ -129,7 +129,7 @@ Breed a Eevee (passed down to Eevee, which then evolves) with a father that know
 
 | Move | Type | Cat. | Power | Acc. | PP |
 |---|---|---|--:|--:|--:|
-| Charm | Normal | Status | — | 100% | 20 |
+| Charm | Fairy | Status | — | 100% | 20 |
 | Flail | Normal | Physical | varies | 100% | 15 |
 | Endure | Normal | Status | — | — | 10 |
 | Curse | ??? | Status | — | — | 10 |

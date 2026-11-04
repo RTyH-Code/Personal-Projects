@@ -34,7 +34,7 @@ Height 9.2 m (30′02″) · Weight 400 kg (881.8 lbs)
 | Damage taken | Types |
 |---|---|
 | 2× | Fighting, Ground, Fire, Water |
-| ½× | Normal, Flying, Bug, Ghost, Steel, Psychic, Dragon, Dark |
+| ½× | Normal, Flying, Bug, Steel, Psychic, Dragon, Fairy |
 | ¼× | Rock |
 | 0× (immune) | Poison, Electric |
 

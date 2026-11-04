@@ -33,7 +33,7 @@ Height 1 m (3′03″) · Weight 86.4 kg (190.5 lbs)
 
 | Damage taken | Types |
 |---|---|
-| 2× | Flying, Psychic |
+| 2× | Flying, Psychic, Fairy |
 | ½× | Rock, Bug, Dark |
 
 *With Thick Fat: Fire and Ice moves do half damage.*

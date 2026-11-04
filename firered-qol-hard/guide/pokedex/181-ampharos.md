@@ -75,6 +75,7 @@ Height 1.4 m (4′07″) · Weight 61.5 kg (135.6 lbs)
 | 16 | Charge ★ | Electric | Status | — | — | 20 |
 | 20 | Take Down ★ | Normal | Physical | 90 | 85% | 20 |
 | 29 | Confuse Ray ★ | Ghost | Status | — | 100% | 10 |
+| 51 | Dazzling Gleam ★ | Fairy | Special | 80 | 100% | 10 |
 | 57 | Light Screen | Psychic | Status | — | — | 30 |
 | 62 | Thunder | Electric | Special | 110 | 70% | 10 |
 

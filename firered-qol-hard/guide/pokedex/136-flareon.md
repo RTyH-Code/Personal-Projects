@@ -31,7 +31,7 @@ Height 0.9 m (2′11″) · Weight 25 kg (55.1 lbs)
 | Damage taken | Types |
 |---|---|
 | 2× | Ground, Rock, Water |
-| ½× | Bug, Steel, Fire, Grass, Ice |
+| ½× | Bug, Steel, Fire, Grass, Ice, Fairy |
 
 *Its ability Flash Fire: immune to Fire moves.*
 
@@ -76,7 +76,7 @@ Height 0.9 m (2′11″) · Weight 25 kg (55.1 lbs)
 | 1 | Growl ★ | Normal | Status | — | 100% | 40 |
 | 1 | Ember | Fire | Special | 40 | 100% | 25 |
 | 1 | Swift ★ | Normal | Special | 60 | — | 20 |
-| 1 | Charm ★ | Normal | Status | — | 100% | 20 |
+| 1 | Charm ★ | Fairy | Status | — | 100% | 20 |
 | 1 | Baton Pass ★ | Normal | Status | — | — | 40 |
 | 1 | Helping Hand | Normal | Status | — | — | 20 |
 | 1 | Covet ★ | Normal | Physical | 60 | 100% | 25 |
@@ -127,7 +127,7 @@ Breed a Eevee (passed down to Eevee, which then evolves) with a father that know
 
 | Move | Type | Cat. | Power | Acc. | PP |
 |---|---|---|--:|--:|--:|
-| Charm | Normal | Status | — | 100% | 20 |
+| Charm | Fairy | Status | — | 100% | 20 |
 | Flail | Normal | Physical | varies | 100% | 15 |
 | Endure | Normal | Status | — | — | 10 |
 | Curse | ??? | Status | — | — | 10 |

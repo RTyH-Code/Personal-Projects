@@ -31,7 +31,7 @@ Height 1.2 m (3′11″) · Weight 125.8 kg (277.3 lbs)
 | Damage taken | Types |
 |---|---|
 | 4× | Fire |
-| ½× | Normal, Bug, Ghost, Steel, Psychic, Ice, Dragon, Dark |
+| ½× | Normal, Bug, Steel, Psychic, Ice, Dragon, Fairy |
 | ¼× | Grass |
 | 0× (immune) | Poison |
 
