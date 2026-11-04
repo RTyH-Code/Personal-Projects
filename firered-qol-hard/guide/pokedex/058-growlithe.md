@@ -12,6 +12,7 @@ Height 0.7 m (2′04″) · Weight 19 kg (41.9 lbs)
 
 - **Intimidate**: Lowers the foe's Attack.
 - **Flash Fire**: Powers up if hit by fire.
+- **Justified** *(hidden ability)*: Dark hits raise Attack.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 

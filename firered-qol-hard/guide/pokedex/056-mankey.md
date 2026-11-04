@@ -11,6 +11,10 @@ Height 0.5 m (1′08″) · Weight 28 kg (61.7 lbs)
 ## Abilities
 
 - **Vital Spirit**: Prevents sleep.
+- **Anger Point**: Critical hits max Attack.
+- **Defiant** *(hidden ability)*: Stat drops sharply up Attack.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

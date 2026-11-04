@@ -12,6 +12,7 @@ Height 1.8 m (5′11″) · Weight 59 kg (130.1 lbs)
 
 - **Rock Head**: Prevents recoil damage.
 - **Pressure**: Raises foe's PP usage.
+- **Unnerve** *(hidden ability)*: Foes can't eat Berries.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 

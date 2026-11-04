@@ -12,6 +12,7 @@ Height 0.9 m (2′11″) · Weight 28.5 kg (62.8 lbs)
 
 - **Suction Cups**: Firmly anchors the body.
 - **Sniper**: Powers up critical hits.
+- **Moody** *(hidden ability)*: Stats change every turn.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 

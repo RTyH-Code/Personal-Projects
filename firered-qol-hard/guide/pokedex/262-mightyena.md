@@ -12,6 +12,7 @@ Height 1 m (3′03″) · Weight 37 kg (81.6 lbs)
 
 - **Intimidate**: Lowers the foe's Attack.
 - **Quick Feet**: Ups Speed if suffering.
+- **Moxie** *(hidden ability)*: KOs raise Attack.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 

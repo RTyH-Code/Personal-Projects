@@ -11,6 +11,9 @@ Height 3.8 m (12′06″) · Weight 199 kg (438.7 lbs)
 ## Abilities
 
 - **Pressure**: Raises foe's PP usage.
+- **Regenerator** *(hidden ability)*: Heals when switched out.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

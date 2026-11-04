@@ -10,7 +10,7 @@ Height 1.5 m (4′11″) · Weight 40.5 kg (89.3 lbs)
 
 ## Abilities
 
-- **Levitate**: Not hit by Ground attacks.
+- **Cursed Body**: May disable a move.
 
 ## Base stats
 
@@ -34,8 +34,6 @@ Height 1.5 m (4′11″) · Weight 40.5 kg (89.3 lbs)
 | ½× | Grass, Fairy |
 | ¼× | Poison, Bug |
 | 0× (immune) | Normal, Fighting |
-
-*Its ability Levitate: immune to Ground moves.*
 
 ## Training and breeding
 

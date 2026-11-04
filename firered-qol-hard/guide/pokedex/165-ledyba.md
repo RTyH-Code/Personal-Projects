@@ -12,6 +12,7 @@ Height 1 m (3′03″) · Weight 10.8 kg (23.8 lbs)
 
 - **Swarm**: Ups Bug moves in a pinch.
 - **Early Bird**: Awakens quickly from sleep.
+- **Rattled** *(hidden ability)*: Bug, Ghost, Dark hits up Speed.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 

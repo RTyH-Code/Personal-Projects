@@ -11,6 +11,10 @@ Height 1.1 m (3′07″) · Weight 12.5 kg (27.6 lbs)
 ## Abilities
 
 - **Insomnia**: Prevents sleep.
+- **Frisk**: Checks the foe's item.
+- **Cursed Body** *(hidden ability)*: May disable a move.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

@@ -11,6 +11,9 @@ Height 1 m (3′03″) · Weight 23.8 kg (52.5 lbs)
 ## Abilities
 
 - **Suction Cups**: Firmly anchors the body.
+- **Storm Drain** *(hidden ability)*: Water moves raise Sp. Atk.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

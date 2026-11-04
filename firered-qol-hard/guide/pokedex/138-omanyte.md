@@ -12,6 +12,7 @@ Height 0.4 m (1′04″) · Weight 7.5 kg (16.5 lbs)
 
 - **Swift Swim**: Raises Speed in rain.
 - **Shell Armor**: Blocks critical hits.
+- **Weak Armor** *(hidden ability)*: Hits lower Def, raise Speed.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 

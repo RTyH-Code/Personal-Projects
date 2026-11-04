@@ -12,6 +12,7 @@ Height 1.1 m (3′07″) · Weight 34.6 kg (76.3 lbs)
 
 - **Natural Cure**: Heals upon switching out.
 - **Serene Grace**: Promotes added effects.
+- **Healer** *(hidden ability)*: May heal an ally's status.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
