@@ -76,6 +76,7 @@ Height 0.4 m (1′04″) · Weight 1.9 kg (4.2 lbs)
 | 6 | Snore | Normal | Special | 50 | 100% | 15 |
 | 12 | Water Pulse ★ | Water | Special | 60 | 100% | 20 |
 | 18 | Amnesia | Psychic | Status | — | — | 20 |
+| 24 | Aqua Tail ★ | Water | Physical | 90 | 90% | 10 |
 | 31 | Muddy Water ★ | Water | Special | 90 | 85% | 10 |
 | 36 | Earthquake | Ground | Physical | 100 | 100% | 10 |
 | 42 | Future Sight | Psychic | Special | 120 | 100% | 10 |
@@ -115,6 +116,20 @@ Height 0.4 m (1′04″) · Weight 1.9 kg (4.2 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Barboach with a father that knows the move.
@@ -124,6 +139,7 @@ Breed a Barboach with a father that knows the move.
 | Thrash | Normal | Physical | 120 | 100% | 10 |
 | Whirlpool | Water | Special | 35 | 85% | 15 |
 | Spark | Electric | Physical | 65 | 100% | 20 |
+| Earth Power | Ground | Special | 90 | 100% | 10 |
 
 ---
 

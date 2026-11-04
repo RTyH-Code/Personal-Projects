@@ -73,10 +73,12 @@ Tauros does not evolve.
 | 1 | Tail Whip | Normal | Status | — | 100% | 30 |
 | 20 | Horn Attack | Normal | Physical | 65 | 100% | 25 |
 | 25 | Scary Face | Normal | Status | — | 100% | 10 |
+| 30 | Zen Headbutt ★ | Psychic | Physical | 80 | 90% | 15 |
 | 40 | Rest | Psychic | Status | — | — | 5 |
 | 45 | Swagger | Normal | Status | — | 85% | 15 |
 | 50 | Thrash | Normal | Physical | 120 | 100% | 10 |
 | 55 | Double-Edge ★ | Normal | Physical | 120 | 100% | 15 |
+| 60 | Giga Impact ★ | Normal | Physical | 150 | 90% | 5 |
 
 ### By TM/HM
 
@@ -120,6 +122,21 @@ Tauros does not evolve.
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Smart Strike | Steel | Physical | 70 | — | 10 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+| Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 
 ---
 

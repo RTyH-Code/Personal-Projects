@@ -111,6 +111,22 @@ Delibird does not evolve.
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Delibird with a father that knows the move.
@@ -123,6 +139,7 @@ Breed a Delibird with a father that knows the move.
 | Splash | Normal | Status | — | — | 40 |
 | Rapid Spin | Normal | Physical | 50 | 100% | 40 |
 | Ice Ball | Ice | Physical | 30 | 90% | 20 |
+| Ice Shard | Ice | Physical | 40 | 100% | 30 |
 
 ---
 

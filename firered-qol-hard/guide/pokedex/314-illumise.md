@@ -72,11 +72,14 @@ Illumise does not evolve.
 | 5 | Sweet Scent | Normal | Status | — | 100% | 20 |
 | 9 | Charm | Fairy | Status | — | 100% | 20 |
 | 12 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
+| 15 | Struggle Bug ★ | Bug | Special | 50 | 100% | 20 |
 | 19 | Moonlight | Fairy | Status | — | — | 5 |
 | 22 | Wish | Normal | Status | — | — | 10 |
 | 26 | Encore | Normal | Status | — | 100% | 5 |
 | 29 | Flatter | Dark | Status | — | 100% | 15 |
+| 33 | Zen Headbutt ★ | Psychic | Physical | 80 | 90% | 15 |
 | 36 | Helping Hand | Normal | Status | — | — | 20 |
+| 40 | Bug Buzz ★ | Bug | Special | 90 | 100% | 10 |
 | 43 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
 
 ### By TM/HM
@@ -124,6 +127,23 @@ Illumise does not evolve.
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
+| Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Illumise with a father that knows the move.
@@ -133,6 +153,7 @@ Breed a Illumise with a father that knows the move.
 | Baton Pass | Normal | Status | — | — | 40 |
 | Silver Wind | Bug | Special | 60 | 100% | 5 |
 | Growth | Normal | Status | — | — | 20 |
+| Bug Buzz | Bug | Special | 90 | 100% | 10 |
 
 ---
 

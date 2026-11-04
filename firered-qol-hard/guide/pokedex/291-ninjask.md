@@ -88,6 +88,7 @@ Height 0.8 m (2′07″) · Weight 12 kg (26.5 lbs)
 | 43 | Mind Reader | Normal | Status | — | 100% | 5 |
 | 50 | Slash | Normal | Physical | 70 | 100% | 20 |
 | 57 | Swords Dance | Normal | Status | — | — | 20 |
+| 64 | X-Scissor ★ | Bug | Physical | 80 | 100% | 15 |
 
 ### By TM/HM
 
@@ -124,6 +125,20 @@ Height 0.8 m (2′07″) · Weight 12 kg (26.5 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Nincada (passed down to Nincada, which then evolves) with a father that knows the move.
@@ -134,6 +149,8 @@ Breed a Nincada (passed down to Nincada, which then evolves) with a father that 
 | Faint Attack | Dark | Physical | 60 | — | 20 |
 | Gust | Flying | Special | 40 | 100% | 35 |
 | Silver Wind | Bug | Special | 60 | 100% | 5 |
+| Night Slash | Dark | Physical | 70 | 100% | 15 |
+| Bug Buzz | Bug | Special | 90 | 100% | 10 |
 
 ---
 

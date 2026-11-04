@@ -67,6 +67,8 @@ Groudon does not evolve.
 | 1 | Scary Face | Normal | Status | — | 100% | 10 |
 | 1 | Ancient Power | Rock | Special | 60 | 100% | 5 |
 | 1 | Mud Shot | Ground | Special | 55 | 95% | 15 |
+| 1 | Lava Plume ★ | Fire | Special | 80 | 100% | 15 |
+| 9 | Earth Power ★ | Ground | Special | 90 | 100% | 10 |
 | 18 | Bulk Up | Fighting | Status | — | — | 20 |
 | 27 | Earthquake | Ground | Physical | 100 | 100% | 10 |
 | 45 | Fissure | Ground | Physical | varies | 30% | 5 |
@@ -127,6 +129,26 @@ Groudon does not evolve.
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
 ---
 

@@ -125,6 +125,23 @@ Suicune does not evolve.
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+
 ---
 
 ← #244 [Entei](244-entei.md) · [Index](../POKEDEX.md) · [Larvitar](246-larvitar.md) #246 →

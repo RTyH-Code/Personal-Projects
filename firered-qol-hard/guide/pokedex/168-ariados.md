@@ -75,10 +75,13 @@ Height 1.1 m (3′07″) · Weight 33.5 kg (73.9 lbs)
 | 1 | Focus Energy ★ | Normal | Status | — | — | 30 |
 | 12 | Scary Face | Normal | Status | — | 100% | 10 |
 | 15 | Night Shade | Ghost | Special | varies | 100% | 15 |
+| 19 | Shadow Sneak ★ | Ghost | Physical | 40 | 100% | 30 |
 | 23 | Fury Swipes | Normal | Physical | 18 | 80% | 15 |
 | 31 | Agility | Psychic | Status | — | — | 30 |
 | 35 | Pin Missile ★ | Bug | Physical | 25 | 95% | 20 |
 | 41 | Psychic | Psychic | Special | 90 | 100% | 10 |
+| 46 | Poison Jab ★ | Poison | Physical | 80 | 100% | 20 |
+| 50 | Cross Poison ★ | Poison | Physical | 70 | 100% | 20 |
 
 ### By TM/HM
 
@@ -113,6 +116,21 @@ Height 1.1 m (3′07″) · Weight 33.5 kg (73.9 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Smart Strike | Steel | Physical | 70 | — | 10 | 3 |
+| X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Spinarak (passed down to Spinarak, which then evolves) with a father that knows the move.
@@ -125,6 +143,10 @@ Breed a Spinarak (passed down to Spinarak, which then evolves) with a father tha
 | Baton Pass | Normal | Status | — | — | 40 |
 | Pursuit | Dark | Physical | 40 | 100% | 20 |
 | Signal Beam | Bug | Special | 75 | 100% | 15 |
+| Night Slash | Dark | Physical | 70 | 100% | 15 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 |
+| Lunge | Bug | Physical | 80 | 100% | 15 |
+| Electroweb | Electric | Special | 55 | 95% | 15 |
 
 ---
 

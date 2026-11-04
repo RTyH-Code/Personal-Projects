@@ -77,6 +77,7 @@ Kangaskhan does not evolve.
 | 16 | Stomp ★ | Normal | Physical | 65 | 100% | 20 |
 | 20 | Focus Energy ★ | Normal | Status | — | — | 30 |
 | 24 | Headbutt ★ | Normal | Physical | 70 | 100% | 15 |
+| 32 | Double Hit ★ | Normal | Physical | 35 | 90% | 10 |
 | 36 | Crunch ★ | Dark | Physical | 80 | 100% | 15 |
 | 40 | Endure | Normal | Status | — | — | 10 |
 | 44 | Reversal | Fighting | Physical | varies | 100% | 15 |
@@ -138,6 +139,22 @@ Kangaskhan does not evolve.
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
 
 ### By breeding (egg moves)
 

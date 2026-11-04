@@ -72,6 +72,8 @@ Height 0.3 m (1′00″) · Weight 2 kg (4.4 lbs)
 | 1 | Tail Whip | Normal | Status | — | 100% | 30 |
 | 1 | Thunder Shock | Electric | Special | 40 | 100% | 30 |
 | 8 | Sweet Kiss | Fairy | Status | — | 75% | 10 |
+| 12 | Nuzzle ★ | Electric | Physical | 20 | 100% | 20 |
+| 16 | Nasty Plot ★ | Dark | Status | — | — | 20 |
 | 20 | Charm | Fairy | Status | — | 100% | 20 |
 
 ### By TM/HM
@@ -109,6 +111,19 @@ Height 0.3 m (1′00″) · Weight 2 kg (4.4 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
+| Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
+| Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 
 ### By breeding (egg moves)
 

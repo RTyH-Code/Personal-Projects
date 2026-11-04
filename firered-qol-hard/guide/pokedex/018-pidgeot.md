@@ -79,6 +79,7 @@ Height 1.5 m (4′11″) · Weight 39.5 kg (87.1 lbs)
 | 32 | Agility | Psychic | Status | — | — | 30 |
 | 38 | Wing Attack | Flying | Physical | 60 | 100% | 35 |
 | 56 | Mirror Move | Flying | Status | — | — | 20 |
+| 62 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
 
 ### By TM/HM
 
@@ -110,6 +111,15 @@ Height 1.5 m (4′11″) · Weight 39.5 kg (87.1 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Pidgey (passed down to Pidgey, which then evolves) with a father that knows the move.
@@ -121,6 +131,8 @@ Breed a Pidgey (passed down to Pidgey, which then evolves) with a father that kn
 | Foresight | Normal | Status | — | 100% | 40 |
 | Steel Wing | Steel | Physical | 70 | 90% | 25 |
 | Air Cutter | Flying | Special | 60 | 95% | 25 |
+| Air Slash | Flying | Special | 75 | 95% | 15 |
+| Brave Bird | Flying | Physical | 120 | 100% | 15 |
 
 ---
 

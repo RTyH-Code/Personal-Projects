@@ -79,6 +79,7 @@ Height 0.8 m (2′07″) · Weight 34.5 kg (76.1 lbs)
 | 20 | Swift | Normal | Special | 60 | — | 20 |
 | 24 | Psybeam ★ | Psychic | Special | 65 | 100% | 20 |
 | 32 | Light Screen | Psychic | Status | — | — | 30 |
+| 36 | Power Gem ★ | Rock | Special | 80 | 100% | 20 |
 | 40 | Psychic ★ | Psychic | Special | 90 | 100% | 10 |
 | 44 | Surf ★ | Water | Special | 90 | 100% | 15 |
 | 48 | Recover | Normal | Status | — | — | 5 |
@@ -121,6 +122,17 @@ Height 0.8 m (2′07″) · Weight 34.5 kg (76.1 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
+| Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
 
 ---
 

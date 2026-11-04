@@ -75,10 +75,12 @@ Tropius does not evolve.
 | 1 | Leer | Normal | Status | — | 100% | 30 |
 | 1 | Growth | Normal | Status | — | — | 20 |
 | 1 | Razor Leaf | Grass | Physical | 55 | 95% | 25 |
+| 1 | Leaf Storm ★ | Grass | Special | 130 | 90% | 5 |
 | 6 | Sweet Scent | Normal | Status | — | 100% | 20 |
 | 10 | Stomp | Normal | Physical | 65 | 100% | 20 |
 | 16 | Magical Leaf | Grass | Special | 60 | — | 20 |
 | 21 | Whirlwind | Normal | Status | — | 100% | 20 |
+| 36 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
 | 41 | Body Slam | Normal | Physical | 85 | 100% | 15 |
 | 46 | Outrage ★ | Dragon | Physical | 120 | 100% | 10 |
 | 50 | Synthesis | Grass | Status | — | — | 5 |
@@ -124,6 +126,25 @@ Tropius does not evolve.
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
+| Petal Blizzard | Grass | Physical | 90 | 100% | 15 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Tropius with a father that knows the move.
@@ -135,6 +156,7 @@ Breed a Tropius with a father that knows the move.
 | Razor Wind | Normal | Special | 80 | 100% | 10 |
 | Leech Seed | Grass | Status | — | 90% | 10 |
 | Nature Power | Normal | Status | — | — | 20 |
+| Leaf Storm | Grass | Special | 130 | 90% | 5 |
 
 ---
 

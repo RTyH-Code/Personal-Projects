@@ -75,6 +75,7 @@ Torkoal does not evolve.
 | 12 | Smokescreen | Normal | Status | — | 100% | 20 |
 | 20 | Flame Wheel ★ | Fire | Physical | 60 | 100% | 25 |
 | 24 | Protect | Normal | Status | — | — | 10 |
+| 28 | Lava Plume ★ | Fire | Special | 80 | 100% | 15 |
 | 32 | Body Slam | Normal | Physical | 85 | 100% | 15 |
 | 36 | Iron Defense | Steel | Status | — | — | 15 |
 | 40 | Flamethrower | Fire | Special | 90 | 100% | 15 |
@@ -116,6 +117,19 @@ Torkoal does not evolve.
 | Explosion | Normal | Physical | 250 | 100% | 5 | Mt. Ember Exterior |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)
 

@@ -112,6 +112,7 @@ Height 0.8 m (2′07″) · Weight 7.5 kg (16.5 lbs)
 | 30 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 35 | Haze | Ice | Status | — | — | 30 |
 | 45 | Confuse Ray | Ghost | Status | — | 100% | 10 |
+| 50 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
 | 55 | Leech Life | Bug | Physical | 80 | 100% | 10 |
 
 ### By TM/HM
@@ -148,6 +149,19 @@ Height 0.8 m (2′07″) · Weight 7.5 kg (16.5 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Zubat with a father that knows the move.
@@ -160,6 +174,9 @@ Breed a Zubat with a father that knows the move.
 | Gust | Flying | Special | 40 | 100% | 35 |
 | Whirlwind | Normal | Status | — | 100% | 20 |
 | Curse | ??? | Status | — | — | 10 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 |
+| Brave Bird | Flying | Physical | 120 | 100% | 15 |
+| Nasty Plot | Dark | Status | — | — | 20 |
 
 ---
 

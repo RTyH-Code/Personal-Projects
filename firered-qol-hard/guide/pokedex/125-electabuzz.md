@@ -76,10 +76,12 @@ Height 1.1 m (3′07″) · Weight 30 kg (66.1 lbs)
 | 20 | Thunder Wave ★ | Electric | Status | — | 90% | 20 |
 | 24 | Screech | Normal | Status | — | 85% | 40 |
 | 28 | Thunder Punch | Electric | Physical | 75 | 100% | 15 |
+| 34 | Discharge ★ | Electric | Special | 80 | 100% | 15 |
 | 40 | Low Kick ★ | Fighting | Physical | varies | 100% | 20 |
 | 46 | Thunderbolt | Electric | Special | 90 | 100% | 15 |
 | 52 | Light Screen | Psychic | Status | — | — | 30 |
 | 58 | Thunder | Electric | Special | 110 | 70% | 10 |
+| 64 | Giga Impact ★ | Normal | Physical | 150 | 90% | 5 |
 
 ### By TM/HM
 
@@ -123,6 +125,22 @@ Height 1.1 m (3′07″) · Weight 30 kg (66.1 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Dual Chop | Dragon | Physical | 40 | 90% | 15 | 0 |
+| Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
+| Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+| Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 
 ### By breeding (egg moves)
 

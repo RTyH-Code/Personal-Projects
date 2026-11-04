@@ -77,11 +77,14 @@ Height 0.4 m (1′04″) · Weight 6 kg (13.2 lbs)
 | 1 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
 | 1 | Sweet Kiss ★ | Fairy | Status | — | 75% | 10 |
 | 1 | Charm ★ | Fairy | Status | — | 100% | 20 |
+| 1 | Nuzzle ★ | Electric | Physical | 20 | 100% | 20 |
+| 1 | Nasty Plot ★ | Dark | Status | — | — | 20 |
 | 4 | Thunder Wave | Electric | Status | — | 90% | 20 |
 | 8 | Double Team | Normal | Status | — | — | 15 |
 | 20 | Spark ★ | Electric | Physical | 65 | 100% | 20 |
 | 24 | Agility | Psychic | Status | — | — | 30 |
 | 28 | Iron Tail ★ | Steel | Physical | 100 | 75% | 15 |
+| 32 | Discharge ★ | Electric | Special | 80 | 100% | 15 |
 | 36 | Thunderbolt | Electric | Special | 90 | 100% | 15 |
 | 40 | Light Screen | Psychic | Status | — | — | 30 |
 | 44 | Thunder | Electric | Special | 110 | 70% | 10 |
@@ -126,6 +129,21 @@ Height 0.4 m (1′04″) · Weight 6 kg (13.2 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
+| Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
+| Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
+| Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
+| Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 
 ### By breeding (egg moves)
 

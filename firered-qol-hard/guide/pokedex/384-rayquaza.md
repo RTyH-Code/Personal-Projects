@@ -69,9 +69,11 @@ Rayquaza does not evolve.
 | 1 | Scary Face | Normal | Status | — | 100% | 10 |
 | 1 | Twister | Dragon | Special | 40 | 100% | 20 |
 | 1 | Ancient Power | Rock | Special | 60 | 100% | 5 |
+| 1 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
 | 9 | Crunch | Dark | Physical | 80 | 100% | 15 |
 | 18 | Dragon Dance | Dragon | Status | — | — | 20 |
 | 27 | Extreme Speed | Normal | Physical | 80 | 100% | 5 |
+| 36 | Dragon Pulse ★ | Dragon | Special | 85 | 100% | 10 |
 | 45 | Hyper Voice ★ | Normal | Special | 90 | 100% | 10 |
 | 54 | Rest | Psychic | Status | — | — | 5 |
 | 63 | Fly | Flying | Physical | 90 | 95% | 15 |
@@ -129,6 +131,28 @@ Rayquaza does not evolve.
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Draco Meteor | Dragon | Special | 130 | 90% | 5 | 5 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+| Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 
 ---
 

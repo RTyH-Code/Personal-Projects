@@ -73,13 +73,16 @@ Height 2 m (6′07″) · Weight 100 kg (220.5 lbs)
 | 1 | Growl | Normal | Status | — | 100% | 40 |
 | 1 | Growth | Normal | Status | — | — | 20 |
 | 1 | Petal Dance ★ | Grass | Special | 120 | 100% | 10 |
+| 1 | Petal Blizzard ★ | Grass | Physical | 90 | 100% | 15 |
 | 9 | Leech Seed | Grass | Status | — | 90% | 10 |
 | 12 | Razor Leaf | Grass | Physical | 55 | 95% | 25 |
 | 15 | Poison Powder | Poison | Status | — | 75% | 35 |
 | 15 | Sleep Powder | Grass | Status | — | 75% | 15 |
+| 20 | Seed Bomb ★ | Grass | Physical | 80 | 100% | 15 |
 | 25 | Take Down ★ | Normal | Physical | 90 | 85% | 20 |
 | 30 | Sweet Scent | Normal | Status | — | 100% | 20 |
 | 37 | Synthesis | Grass | Status | — | — | 5 |
+| 51 | Power Whip ★ | Grass | Physical | 120 | 85% | 10 |
 | 58 | Solar Beam | Grass | Special | 120 | 100% | 10 |
 
 ### By TM/HM
@@ -120,6 +123,24 @@ Height 2 m (6′07″) · Weight 100 kg (220.5 lbs)
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 | Frenzy Plant | Grass | Special | 150 | 90% | 5 | Two Island Cape Brink House |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
+| Petal Blizzard | Grass | Physical | 90 | 100% | 15 | 5 |
+| Power Whip | Grass | Physical | 120 | 85% | 10 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Bulbasaur (passed down to Bulbasaur, which then evolves) with a father that knows the move.
@@ -134,6 +155,8 @@ Breed a Bulbasaur (passed down to Bulbasaur, which then evolves) with a father t
 | Magical Leaf | Grass | Special | 60 | — | 20 |
 | Grass Whistle | Grass | Status | — | 55% | 15 |
 | Curse | ??? | Status | — | — | 10 |
+| Power Whip | Grass | Physical | 120 | 85% | 10 |
+| Leaf Storm | Grass | Special | 130 | 90% | 5 |
 
 ---
 

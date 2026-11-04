@@ -79,8 +79,10 @@ Girafarig does not evolve.
 | 14 | Stomp | Normal | Physical | 65 | 100% | 20 |
 | 19 | Psybeam | Psychic | Special | 65 | 100% | 20 |
 | 23 | Agility | Psychic | Status | — | — | 30 |
+| 28 | Double Hit ★ | Normal | Physical | 35 | 90% | 10 |
 | 37 | Crunch | Dark | Physical | 80 | 100% | 15 |
 | 41 | Baton Pass | Normal | Status | — | — | 40 |
+| 46 | Nasty Plot ★ | Dark | Status | — | — | 20 |
 | 50 | Psychic ★ | Psychic | Special | 90 | 100% | 10 |
 
 ### By TM/HM
@@ -126,6 +128,21 @@ Girafarig does not evolve.
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Girafarig with a father that knows the move.
@@ -140,6 +157,7 @@ Breed a Girafarig with a father that knows the move.
 | Psych Up | Normal | Status | — | — | 10 |
 | Wish | Normal | Status | — | — | 10 |
 | Magic Coat | Psychic | Status | — | 100% | 15 |
+| Psychic Fangs | Psychic | Physical | 85 | 100% | 10 |
 
 ---
 

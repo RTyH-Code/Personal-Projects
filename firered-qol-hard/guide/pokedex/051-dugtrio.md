@@ -75,10 +75,13 @@ Height 0.7 m (2′04″) · Weight 33.3 kg (73.4 lbs)
 | 1 | Tri Attack | Normal | Special | 80 | 100% | 10 |
 | 1 | Astonish ★ | Ghost | Physical | 30 | 100% | 15 |
 | 1 | Sand Tomb | Ground | Physical | 35 | 85% | 15 |
+| 1 | Night Slash ★ | Dark | Physical | 70 | 100% | 15 |
 | 12 | Mud-Slap | Ground | Special | 20 | 100% | 10 |
+| 16 | Bulldoze ★ | Ground | Physical | 60 | 100% | 20 |
 | 24 | Slash | Normal | Physical | 70 | 100% | 20 |
 | 30 | Sandstorm ★ | Rock | Status | — | — | 10 |
 | 36 | Dig | Ground | Physical | 80 | 100% | 10 |
+| 42 | Earth Power ★ | Ground | Special | 90 | 100% | 10 |
 | 48 | Earthquake | Ground | Physical | 100 | 100% | 10 |
 | 54 | Fissure | Ground | Physical | varies | 30% | 5 |
 
@@ -117,6 +120,19 @@ Height 0.7 m (2′04″) · Weight 33.3 kg (73.4 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Diglett (passed down to Diglett, which then evolves) with a father that knows the move.
@@ -130,6 +146,7 @@ Breed a Diglett (passed down to Diglett, which then evolves) with a father that 
 | Beat Up | Dark | Physical | 10 | 100% | 10 |
 | Uproar | Normal | Special | 90 | 100% | 10 |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 |
+| Mud Bomb | Ground | Special | 65 | 85% | 10 |
 
 ---
 

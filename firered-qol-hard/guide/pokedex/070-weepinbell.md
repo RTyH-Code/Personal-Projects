@@ -78,7 +78,9 @@ Height 1 m (3′03″) · Weight 6.4 kg (14.1 lbs)
 | 29 | Knock Off ★ | Dark | Physical | 65 | 100% | 20 |
 | 32 | Sweet Scent | Normal | Status | — | 100% | 20 |
 | 44 | Razor Leaf | Grass | Physical | 55 | 95% | 25 |
+| 47 | Poison Jab ★ | Poison | Physical | 80 | 100% | 20 |
 | 54 | Slam | Normal | Physical | 80 | 75% | 20 |
+| 58 | Power Whip ★ | Grass | Physical | 120 | 85% | 10 |
 
 ### By TM/HM
 
@@ -112,6 +114,19 @@ Height 1 m (3′03″) · Weight 6.4 kg (14.1 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Bellsprout (passed down to Bellsprout, which then evolves) with a father that knows the move.
@@ -125,6 +140,7 @@ Breed a Bellsprout (passed down to Bellsprout, which then evolves) with a father
 | Leech Life | Bug | Physical | 80 | 100% | 10 |
 | Ingrain | Grass | Status | — | — | 20 |
 | Magical Leaf | Grass | Special | 60 | — | 20 |
+| Power Whip | Grass | Physical | 120 | 85% | 10 |
 
 ---
 

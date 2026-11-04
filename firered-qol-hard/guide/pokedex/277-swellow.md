@@ -71,6 +71,8 @@ Height 0.7 m (2′04″) · Weight 19.8 kg (43.7 lbs)
 | 1 | Peck | Flying | Physical | 35 | 100% | 35 |
 | 1 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
 | 1 | Focus Energy | Normal | Status | — | — | 30 |
+| 1 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
+| 1 | Brave Bird ★ | Flying | Physical | 120 | 100% | 15 |
 | 13 | Wing Attack | Flying | Physical | 60 | 100% | 35 |
 | 17 | Double Team | Normal | Status | — | — | 15 |
 | 21 | Aerial Ace | Flying | Physical | 60 | — | 20 |
@@ -109,6 +111,15 @@ Height 0.7 m (2′04″) · Weight 19.8 kg (43.7 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Taillow (passed down to Taillow, which then evolves) with a father that knows the move.
@@ -121,6 +132,8 @@ Breed a Taillow (passed down to Taillow, which then evolves) with a father that 
 | Mirror Move | Flying | Status | — | — | 20 |
 | Rage | Normal | Physical | 20 | 100% | 20 |
 | Sky Attack | Flying | Physical | 140 | 90% | 5 |
+| Brave Bird | Flying | Physical | 120 | 100% | 15 |
+| Boomburst | Normal | Special | 140 | 100% | 10 |
 
 ---
 

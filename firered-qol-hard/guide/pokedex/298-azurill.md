@@ -114,6 +114,15 @@ Height 0.2 m (0′08″) · Weight 2 kg (4.4 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+
 ### By breeding (egg moves)
 
 Breed a Azurill with a father that knows the move.
@@ -125,6 +134,7 @@ Breed a Azurill with a father that knows the move.
 | Refresh | Normal | Status | — | — | 20 |
 | Slam | Normal | Physical | 80 | 75% | 20 |
 | Tickle | Normal | Status | — | 100% | 20 |
+| Aqua Jet | Water | Physical | 40 | 100% | 20 |
 
 ---
 

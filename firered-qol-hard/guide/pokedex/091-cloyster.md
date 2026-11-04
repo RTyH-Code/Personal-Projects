@@ -72,6 +72,9 @@ Height 1.5 m (4′11″) · Weight 132.5 kg (292.1 lbs)
 | 1 | Spikes | Ground | Status | — | — | 20 |
 | 1 | Tackle ★ | Normal | Physical | 40 | 100% | 35 |
 | 1 | Water Gun ★ | Water | Special | 40 | 100% | 25 |
+| 1 | Ice Shard ★ | Ice | Physical | 40 | 100% | 30 |
+| 1 | Icicle Crash ★ | Ice | Physical | 85 | 90% | 10 |
+| 5 | Razor Shell ★ | Water | Physical | 75 | 95% | 10 |
 | 7 | Withdraw | Water | Status | — | — | 40 |
 | 15 | Leer ★ | Normal | Status | — | 100% | 30 |
 | 19 | Whirlpool ★ | Water | Special | 35 | 85% | 15 |
@@ -115,6 +118,20 @@ Height 1.5 m (4′11″) · Weight 132.5 kg (292.1 lbs)
 | Explosion | Normal | Physical | 250 | 100% | 5 | Mt. Ember Exterior |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Razor Shell | Water | Physical | 75 | 95% | 10 | 3 |
+| Smart Strike | Steel | Physical | 70 | — | 10 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Shellder (passed down to Shellder, which then evolves) with a father that knows the move.
@@ -127,6 +144,7 @@ Breed a Shellder (passed down to Shellder, which then evolves) with a father tha
 | Rapid Spin | Normal | Physical | 50 | 100% | 40 |
 | Screech | Normal | Status | — | 85% | 40 |
 | Icicle Spear | Ice | Physical | 25 | 100% | 30 |
+| Avalanche | Ice | Physical | 60 | 100% | 10 |
 
 ---
 

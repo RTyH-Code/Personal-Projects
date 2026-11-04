@@ -76,8 +76,12 @@ Nosepass does not evolve.
 | 16 | Rest | Psychic | Status | — | — | 5 |
 | 19 | Spark ★ | Electric | Physical | 65 | 100% | 20 |
 | 22 | Rock Slide | Rock | Physical | 75 | 90% | 10 |
+| 25 | Power Gem ★ | Rock | Special | 80 | 100% | 20 |
 | 28 | Rock Blast ★ | Rock | Physical | 25 | 90% | 10 |
+| 31 | Discharge ★ | Electric | Special | 80 | 100% | 15 |
 | 34 | Sandstorm | Rock | Status | — | — | 10 |
+| 37 | Earth Power ★ | Ground | Special | 90 | 100% | 10 |
+| 40 | Stone Edge ★ | Rock | Physical | 100 | 80% | 5 |
 | 43 | Zap Cannon | Electric | Special | 120 | 50% | 5 |
 | 43 | Lock-On | Normal | Status | — | 100% | 5 |
 
@@ -118,6 +122,20 @@ Nosepass does not evolve.
 | Explosion | Normal | Physical | 250 | 100% | 5 | Mt. Ember Exterior |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
+| Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)
 

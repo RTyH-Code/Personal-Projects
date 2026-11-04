@@ -78,6 +78,7 @@ Lickitung does not evolve.
 | 36 | Knock Off | Dark | Physical | 65 | 100% | 20 |
 | 42 | Screech | Normal | Status | — | 85% | 40 |
 | 48 | Slam | Normal | Physical | 80 | 75% | 20 |
+| 54 | Power Whip ★ | Grass | Physical | 120 | 85% | 10 |
 | 60 | Belly Drum ★ | Normal | Status | — | — | 10 |
 
 ### By TM/HM
@@ -136,6 +137,20 @@ Lickitung does not evolve.
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Power Whip | Grass | Physical | 120 | 85% | 10 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Lickitung with a father that knows the move.
@@ -150,6 +165,7 @@ Breed a Lickitung with a father that knows the move.
 | Sleep Talk | Normal | Status | — | — | 10 |
 | Snore | Normal | Special | 50 | 100% | 15 |
 | Substitute | Normal | Status | — | — | 10 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 |
 
 ---
 

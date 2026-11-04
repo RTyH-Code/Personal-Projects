@@ -74,6 +74,14 @@ Height 0.3 m (1′00″) · Weight 3.6 kg (7.9 lbs)
 | 1 | String Shot | Bug | Status | — | 95% | 40 |
 | 5 | Poison Sting | Poison | Physical | 15 | 100% | 35 |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+
 ---
 
 ← #264 [Linoone](264-linoone.md) · [Index](../POKEDEX.md) · [Silcoon](266-silcoon.md) #266 →

@@ -72,6 +72,7 @@ Height 1.5 m (4′11″) · Weight 15 kg (33.1 lbs)
 | 1 | Leer | Normal | Status | — | 100% | 30 |
 | 1 | Peck | Flying | Physical | 35 | 100% | 35 |
 | 1 | Teleport | Psychic | Status | — | — | 20 |
+| 1 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
 | 15 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | 20 | Night Shade | Ghost | Special | varies | 100% | 15 |
 | 41 | Psychic | Psychic | Special | 90 | 100% | 10 |
@@ -119,6 +120,20 @@ Height 1.5 m (4′11″) · Weight 15 kg (33.1 lbs)
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Natu (passed down to Natu, which then evolves) with a father that knows the move.
@@ -133,6 +148,7 @@ Breed a Natu (passed down to Natu, which then evolves) with a father that knows 
 | Psych Up | Normal | Status | — | — | 10 |
 | Feather Dance | Flying | Status | — | 100% | 15 |
 | Refresh | Normal | Status | — | — | 20 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 |
 
 ---
 

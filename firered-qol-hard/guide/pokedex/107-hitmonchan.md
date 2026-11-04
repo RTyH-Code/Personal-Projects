@@ -74,8 +74,11 @@ Height 1.4 m (4′07″) · Weight 50.2 kg (110.7 lbs)
 | 1 | Focus Energy ★ | Normal | Status | — | — | 30 |
 | 1 | Fake Out ★ | Normal | Physical | 40 | 100% | 10 |
 | 1 | Helping Hand ★ | Normal | Status | — | — | 20 |
+| 1 | Drain Punch ★ | Fighting | Physical | 75 | 100% | 10 |
 | 4 | Mach Punch | Fighting | Physical | 40 | 100% | 30 |
+| 8 | Vacuum Wave ★ | Fighting | Special | 40 | 100% | 30 |
 | 12 | Detect | Fighting | Status | — | — | 5 |
+| 16 | Bullet Punch ★ | Steel | Physical | 40 | 100% | 30 |
 | 24 | Fire Punch | Fire | Physical | 75 | 100% | 15 |
 | 24 | Ice Punch | Ice | Physical | 75 | 100% | 15 |
 | 24 | Thunder Punch | Electric | Physical | 75 | 100% | 15 |
@@ -124,6 +127,24 @@ Height 1.4 m (4′07″) · Weight 50.2 kg (110.7 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
+| Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Tyrogue (passed down to Tyrogue, which then evolves) with a father that knows the move.
@@ -135,6 +156,8 @@ Breed a Tyrogue (passed down to Tyrogue, which then evolves) with a father that 
 | Mach Punch | Fighting | Physical | 40 | 100% | 30 |
 | Mind Reader | Normal | Status | — | 100% | 5 |
 | Helping Hand | Normal | Status | — | — | 20 |
+| Vacuum Wave | Fighting | Special | 40 | 100% | 30 |
+| Bullet Punch | Steel | Physical | 40 | 100% | 30 |
 
 ---
 

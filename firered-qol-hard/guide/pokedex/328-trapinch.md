@@ -75,9 +75,11 @@ Height 0.7 m (2′04″) · Weight 15 kg (33.1 lbs)
 | 8 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 12 | Mud-Slap ★ | Ground | Special | 20 | 100% | 10 |
 | 16 | Sand Tomb | Ground | Physical | 35 | 85% | 15 |
+| 20 | Bulldoze ★ | Ground | Physical | 60 | 100% | 20 |
 | 24 | Dig | Ground | Physical | 80 | 100% | 10 |
 | 28 | Crunch | Dark | Physical | 80 | 100% | 15 |
 | 32 | Sandstorm | Rock | Status | — | — | 10 |
+| 36 | Earth Power ★ | Ground | Special | 90 | 100% | 10 |
 | 40 | Earthquake ★ | Ground | Physical | 100 | 100% | 10 |
 | 44 | Superpower ★ | Fighting | Physical | 120 | 100% | 5 |
 | 48 | Fissure ★ | Ground | Physical | varies | 30% | 5 |
@@ -117,6 +119,18 @@ Height 0.7 m (2′04″) · Weight 15 kg (33.1 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Trapinch with a father that knows the move.
@@ -126,6 +140,7 @@ Breed a Trapinch with a father that knows the move.
 | Focus Energy | Normal | Status | — | — | 30 |
 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
 | Gust | Flying | Special | 40 | 100% | 35 |
+| Earth Power | Ground | Special | 90 | 100% | 10 |
 
 ---
 

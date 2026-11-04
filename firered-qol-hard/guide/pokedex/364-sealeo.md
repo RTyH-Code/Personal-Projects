@@ -126,6 +126,15 @@ Height 1.1 m (3′07″) · Weight 87.6 kg (193.1 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Spheal (passed down to Spheal, which then evolves) with a father that knows the move.

@@ -68,6 +68,7 @@ Jirachi does not evolve.
 | 1 | Confusion | Psychic | Special | 50 | 100% | 25 |
 | 1 | Wish | Normal | Status | — | — | 10 |
 | 7 | Swift | Normal | Special | 60 | — | 20 |
+| 28 | Zen Headbutt ★ | Psychic | Physical | 80 | 90% | 15 |
 | 42 | Psychic | Psychic | Special | 90 | 100% | 10 |
 | 49 | Meteor Mash ★ | Steel | Physical | 90 | 90% | 10 |
 | 63 | Rest | Psychic | Status | — | — | 5 |
@@ -118,6 +119,24 @@ Jirachi does not evolve.
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 
 ---
 

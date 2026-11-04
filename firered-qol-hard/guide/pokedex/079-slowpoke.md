@@ -79,6 +79,7 @@ Height 1.2 m (3′11″) · Weight 36 kg (79.4 lbs)
 | 15 | Disable | Normal | Status | — | 100% | 20 |
 | 18 | Water Pulse ★ | Water | Special | 60 | 100% | 20 |
 | 21 | Headbutt | Normal | Physical | 70 | 100% | 15 |
+| 24 | Zen Headbutt ★ | Psychic | Physical | 80 | 90% | 15 |
 | 27 | Amnesia | Psychic | Status | — | — | 20 |
 | 30 | Surf ★ | Water | Special | 90 | 100% | 15 |
 | 33 | Slack Off ★ | Normal | Status | — | — | 5 |
@@ -132,6 +133,20 @@ Height 1.2 m (3′11″) · Weight 36 kg (79.4 lbs)
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Slowpoke with a father that knows the move.
@@ -145,6 +160,7 @@ Breed a Slowpoke with a father that knows the move.
 | Mud Sport | Ground | Status | — | — | 15 |
 | Sleep Talk | Normal | Status | — | — | 10 |
 | Snore | Normal | Special | 50 | 100% | 15 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 |
 
 ---
 

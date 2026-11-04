@@ -79,6 +79,7 @@ Height 1.7 m (5′07″) · Weight 79.5 kg (175.3 lbs)
 | 20 | Flame Wheel | Fire | Physical | 60 | 100% | 25 |
 | 24 | Defense Curl ★ | Normal | Status | — | — | 40 |
 | 31 | Swift | Normal | Special | 60 | — | 20 |
+| 43 | Lava Plume ★ | Fire | Special | 80 | 100% | 15 |
 | 48 | Flamethrower | Fire | Special | 90 | 100% | 15 |
 | 61 | Rollout ★ | Rock | Physical | 30 | 90% | 20 |
 | 74 | Overheat ★ | Fire | Special | 130 | 90% | 5 |
@@ -125,6 +126,24 @@ Height 1.7 m (5′07″) · Weight 79.5 kg (175.3 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+| Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 
 ### By breeding (egg moves)
 

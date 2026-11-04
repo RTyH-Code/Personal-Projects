@@ -78,6 +78,8 @@ Aipom does not evolve.
 | 22 | Swift | Normal | Special | 60 | — | 20 |
 | 25 | Screech | Normal | Status | — | 85% | 40 |
 | 29 | Agility | Psychic | Status | — | — | 30 |
+| 32 | Double Hit ★ | Normal | Physical | 35 | 90% | 10 |
+| 39 | Nasty Plot ★ | Dark | Status | — | — | 20 |
 
 ### By TM/HM
 
@@ -128,6 +130,20 @@ Aipom does not evolve.
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)
 

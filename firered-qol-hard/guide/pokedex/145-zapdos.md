@@ -75,6 +75,7 @@ Zapdos does not evolve.
 | 25 | Ancient Power ★ | Rock | Special | 60 | 100% | 5 |
 | 30 | Charge | Electric | Status | — | — | 20 |
 | 35 | Drill Peck | Flying | Physical | 80 | 100% | 20 |
+| 45 | Discharge ★ | Electric | Special | 80 | 100% | 15 |
 | 50 | Rain Dance ★ | Water | Status | — | — | 5 |
 | 55 | Thunder | Electric | Special | 110 | 70% | 10 |
 | 60 | Detect | Fighting | Status | — | — | 5 |
@@ -116,6 +117,19 @@ Zapdos does not evolve.
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 
 ---
 

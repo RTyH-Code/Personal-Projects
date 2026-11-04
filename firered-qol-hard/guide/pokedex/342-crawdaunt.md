@@ -75,7 +75,10 @@ Height 1.1 m (3′07″) · Weight 32.8 kg (72.3 lbs)
 | 1 | Taunt | Dark | Status | — | 100% | 20 |
 | 12 | Bubble Beam | Water | Special | 65 | 100% | 20 |
 | 16 | Knock Off | Dark | Physical | 65 | 100% | 20 |
+| 20 | Double Hit ★ | Normal | Physical | 35 | 90% | 10 |
 | 24 | Protect | Normal | Status | — | — | 10 |
+| 28 | Night Slash ★ | Dark | Physical | 70 | 100% | 15 |
+| 34 | Razor Shell ★ | Water | Physical | 75 | 95% | 10 |
 | 40 | Swords Dance | Normal | Status | — | — | 20 |
 | 46 | Crunch | Dark | Physical | 80 | 100% | 15 |
 | 52 | Crabhammer | Water | Physical | 100 | 90% | 10 |
@@ -126,6 +129,22 @@ Height 1.1 m (3′07″) · Weight 32.8 kg (72.3 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Razor Shell | Water | Physical | 75 | 95% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Corphish (passed down to Corphish, which then evolves) with a father that knows the move.
@@ -136,6 +155,7 @@ Breed a Corphish (passed down to Corphish, which then evolves) with a father tha
 | Endeavor | Normal | Physical | varies | 100% | 5 |
 | Body Slam | Normal | Physical | 85 | 100% | 15 |
 | Ancient Power | Rock | Special | 60 | 100% | 5 |
+| Aqua Jet | Water | Physical | 40 | 100% | 20 |
 
 ---
 

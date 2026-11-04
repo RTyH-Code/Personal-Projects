@@ -134,6 +134,25 @@ Height 1.5 m (4′11″) · Weight 81.9 kg (180.6 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Mudkip (passed down to Mudkip, which then evolves) with a father that knows the move.
@@ -146,6 +165,8 @@ Breed a Mudkip (passed down to Mudkip, which then evolves) with a father that kn
 | Stomp | Normal | Physical | 65 | 100% | 20 |
 | Ice Ball | Ice | Physical | 30 | 90% | 20 |
 | Mirror Coat | Psychic | Special | varies | 100% | 20 |
+| Mud Bomb | Ground | Special | 65 | 85% | 10 |
+| Avalanche | Ice | Physical | 60 | 100% | 10 |
 
 ---
 

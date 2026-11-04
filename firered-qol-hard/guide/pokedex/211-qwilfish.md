@@ -82,10 +82,12 @@ Qwilfish does not evolve.
 | 8 | Water Gun | Water | Special | 40 | 100% | 25 |
 | 16 | Minimize | Normal | Status | — | — | 10 |
 | 20 | Spikes | Ground | Status | — | — | 20 |
+| 28 | Poison Jab ★ | Poison | Physical | 80 | 100% | 20 |
 | 32 | Pin Missile | Bug | Physical | 25 | 95% | 20 |
 | 40 | Stockpile ★ | Normal | Status | — | — | 20 |
 | 40 | Spit Up ★ | Normal | Special | varies | 100% | 10 |
 | 44 | Toxic ★ | Poison | Status | — | 90% | 10 |
+| 48 | Aqua Tail ★ | Water | Physical | 90 | 90% | 10 |
 | 56 | Destiny Bond | Ghost | Status | — | — | 5 |
 
 ### By TM/HM
@@ -124,6 +126,19 @@ Qwilfish does not evolve.
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Qwilfish with a father that knows the move.
@@ -135,6 +150,8 @@ Breed a Qwilfish with a father that knows the move.
 | Bubble Beam | Water | Special | 65 | 100% | 20 |
 | Supersonic | Normal | Status | — | 55% | 20 |
 | Astonish | Ghost | Physical | 30 | 100% | 15 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 |
+| Aqua Jet | Water | Physical | 40 | 100% | 20 |
 
 ---
 

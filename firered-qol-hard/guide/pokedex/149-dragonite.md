@@ -82,6 +82,8 @@ Height 2.2 m (7′03″) · Weight 210 kg (463.0 lbs)
 | 1 | Extreme Speed ★ | Normal | Physical | 80 | 100% | 5 |
 | 20 | Agility | Psychic | Status | — | — | 30 |
 | 25 | Slam | Normal | Physical | 80 | 75% | 20 |
+| 33 | Aqua Tail ★ | Water | Physical | 90 | 90% | 10 |
+| 39 | Dragon Rush ★ | Dragon | Physical | 100 | 75% | 10 |
 | 41 | Outrage | Dragon | Physical | 120 | 100% | 10 |
 | 46 | Safeguard | Normal | Status | — | — | 25 |
 | 53 | Rain Dance ★ | Water | Status | — | — | 5 |
@@ -143,6 +145,26 @@ Height 2.2 m (7′03″) · Weight 210 kg (463.0 lbs)
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Draco Meteor | Dragon | Special | 130 | 90% | 5 | 5 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Dratini (passed down to Dratini, which then evolves) with a father that knows the move.
@@ -155,6 +177,9 @@ Breed a Dratini (passed down to Dratini, which then evolves) with a father that 
 | Supersonic | Normal | Status | — | 55% | 20 |
 | Dragon Breath | Dragon | Special | 60 | 100% | 20 |
 | Dragon Dance | Dragon | Status | — | — | 20 |
+| Aqua Jet | Water | Physical | 40 | 100% | 20 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 |
+| Dragon Rush | Dragon | Physical | 100 | 75% | 10 |
 
 ---
 

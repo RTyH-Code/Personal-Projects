@@ -77,6 +77,7 @@ Height 1.2 m (3′11″) · Weight 152 kg (335.1 lbs)
 | 21 | Screech | Normal | Status | — | 85% | 40 |
 | 27 | Crunch | Dark | Physical | 80 | 100% | 15 |
 | 33 | Earthquake | Ground | Physical | 100 | 100% | 10 |
+| 37 | Stone Edge ★ | Rock | Physical | 100 | 80% | 5 |
 | 42 | Thrash | Normal | Physical | 120 | 100% | 10 |
 | 47 | Sandstorm | Rock | Status | — | — | 10 |
 | 52 | Hyper Beam | Normal | Special | 150 | 90% | 5 |
@@ -116,6 +117,22 @@ Height 1.2 m (3′11″) · Weight 152 kg (335.1 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Larvitar (passed down to Larvitar, which then evolves) with a father that knows the move.
@@ -129,6 +146,7 @@ Breed a Larvitar (passed down to Larvitar, which then evolves) with a father tha
 | Ancient Power | Rock | Special | 60 | 100% | 5 |
 | Dragon Dance | Dragon | Status | — | — | 20 |
 | Curse | ??? | Status | — | — | 10 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 |
 
 ---
 

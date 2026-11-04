@@ -79,6 +79,7 @@ Miltank does not evolve.
 | 15 | Stomp | Normal | Physical | 65 | 100% | 20 |
 | 20 | Heal Bell | Normal | Status | — | — | 5 |
 | 25 | Headbutt ★ | Normal | Physical | 70 | 100% | 15 |
+| 30 | Zen Headbutt ★ | Psychic | Physical | 80 | 90% | 15 |
 | 35 | Milk Drink | Normal | Status | — | — | 5 |
 | 40 | Body Slam | Normal | Physical | 85 | 100% | 15 |
 | 45 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
@@ -134,6 +135,20 @@ Miltank does not evolve.
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 
 ### By breeding (egg moves)
 

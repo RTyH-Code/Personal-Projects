@@ -79,6 +79,7 @@ Height 0.3 m (1′00″) · Weight 6.5 kg (14.3 lbs)
 | 1 | Covet ★ | Normal | Physical | 60 | 100% | 25 |
 | 5 | Sand Attack | Ground | Status | — | 100% | 15 |
 | 10 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
+| 15 | Baby-Doll Eyes ★ | Fairy | Status | — | 100% | 30 |
 | 20 | Swift ★ | Normal | Special | 60 | — | 20 |
 | 25 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 35 | Baton Pass | Normal | Status | — | — | 40 |

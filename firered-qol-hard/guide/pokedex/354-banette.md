@@ -73,6 +73,7 @@ Height 1.1 m (3′07″) · Weight 12.5 kg (27.6 lbs)
 | 1 | Spite | Ghost | Status | — | 100% | 10 |
 | 1 | Knock Off | Dark | Physical | 65 | 100% | 20 |
 | 16 | Will-O-Wisp | Fire | Status | — | 85% | 15 |
+| 19 | Shadow Sneak ★ | Ghost | Physical | 40 | 100% | 30 |
 | 26 | Curse | ??? | Status | — | — | 10 |
 | 30 | Shadow Ball | Ghost | Special | 80 | 100% | 15 |
 | 34 | Role Play ★ | Psychic | Status | — | 100% | 10 |
@@ -120,6 +121,20 @@ Height 1.1 m (3′07″) · Weight 12.5 kg (27.6 lbs)
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Shuppet (passed down to Shuppet, which then evolves) with a father that knows the move.
@@ -131,6 +146,9 @@ Breed a Shuppet (passed down to Shuppet, which then evolves) with a father that 
 | Foresight | Normal | Status | — | 100% | 40 |
 | Astonish | Ghost | Physical | 30 | 100% | 15 |
 | Imprison | Psychic | Status | — | — | 10 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 |
+| Shadow Sneak | Ghost | Physical | 40 | 100% | 30 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 |
 
 ---
 

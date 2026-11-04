@@ -75,6 +75,14 @@ Height 0.3 m (1′00″) · Weight 2.9 kg (6.4 lbs)
 | 1 | Tackle | Normal | Physical | 40 | 100% | 35 |
 | 1 | String Shot | Bug | Status | — | 95% | 40 |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+
 ---
 
 ← #009 [Blastoise](009-blastoise.md) · [Index](../POKEDEX.md) · [Metapod](011-metapod.md) #011 →

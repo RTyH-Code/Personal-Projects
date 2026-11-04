@@ -69,6 +69,7 @@ Height 1.1 m (3′07″) · Weight 80 kg (176.4 lbs)
 |--:|---|---|---|--:|--:|--:|
 | 1 | Harden ★ | Normal | Status | — | — | 30 |
 | 1 | Tackle ★ | Normal | Physical | 40 | 100% | 35 |
+| 1 | Power Gem ★ | Rock | Special | 80 | 100% | 20 |
 | 7 | Water Gun | Water | Special | 40 | 100% | 25 |
 | 11 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | 15 | Rapid Spin | Normal | Physical | 50 | 100% | 40 |
@@ -121,6 +122,21 @@ Height 1.1 m (3′07″) · Weight 80 kg (176.4 lbs)
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
+| Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
+| Psycho Cut | Psychic | Physical | 70 | 100% | 20 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ---
 

@@ -74,12 +74,15 @@ Height 1.9 m (6′03″) · Weight 120 kg (264.6 lbs)
 |--:|---|---|---|--:|--:|--:|
 | 1 | Tackle ★ | Normal | Physical | 40 | 100% | 35 |
 | 1 | Tail Whip | Normal | Status | — | 100% | 30 |
+| 1 | Bulldoze ★ | Ground | Physical | 60 | 100% | 20 |
 | 15 | Horn Attack | Normal | Physical | 65 | 100% | 25 |
 | 20 | Scary Face | Normal | Status | — | 100% | 10 |
 | 25 | Stomp | Normal | Physical | 65 | 100% | 20 |
 | 30 | Rock Blast | Rock | Physical | 25 | 90% | 10 |
+| 35 | Drill Run ★ | Ground | Physical | 80 | 95% | 10 |
 | 40 | Take Down | Normal | Physical | 90 | 85% | 20 |
 | 47 | Earthquake | Ground | Physical | 100 | 100% | 10 |
+| 54 | Stone Edge ★ | Rock | Physical | 100 | 80% | 5 |
 | 61 | Megahorn | Bug | Physical | 120 | 85% | 10 |
 | 68 | Horn Drill | Normal | Physical | varies | 30% | 5 |
 
@@ -136,6 +139,30 @@ Height 1.9 m (6′03″) · Weight 120 kg (264.6 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Smart Strike | Steel | Physical | 70 | — | 10 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Rhyhorn (passed down to Rhyhorn, which then evolves) with a father that knows the move.
@@ -150,6 +177,8 @@ Breed a Rhyhorn (passed down to Rhyhorn, which then evolves) with a father that 
 | Swords Dance | Normal | Status | — | — | 20 |
 | Curse | ??? | Status | — | — | 10 |
 | Crush Claw | Normal | Physical | 75 | 95% | 10 |
+| Rock Polish | Rock | Status | — | — | 20 |
+| Dragon Rush | Dragon | Physical | 100 | 75% | 10 |
 
 ---
 

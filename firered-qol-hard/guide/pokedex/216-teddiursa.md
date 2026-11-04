@@ -70,6 +70,7 @@ Height 0.6 m (2′00″) · Weight 8.8 kg (19.4 lbs)
 | 1 | Scratch | Normal | Physical | 40 | 100% | 35 |
 | 1 | Lick | Ghost | Physical | 30 | 100% | 30 |
 | 1 | Covet ★ | Normal | Physical | 60 | 100% | 25 |
+| 1 | Baby-Doll Eyes ★ | Fairy | Status | — | 100% | 30 |
 | 8 | Fury Swipes | Normal | Physical | 18 | 80% | 15 |
 | 17 | Sweet Scent ★ | Normal | Status | — | 100% | 20 |
 | 22 | Slash | Normal | Physical | 70 | 100% | 20 |
@@ -124,6 +125,20 @@ Height 0.6 m (2′00″) · Weight 8.8 kg (19.4 lbs)
 | Metronome | Normal | Status | — | — | 10 | Cinnabar Island Pokémon Lab Research Room |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Teddiursa with a father that knows the move.
@@ -139,6 +154,7 @@ Breed a Teddiursa with a father that knows the move.
 | Yawn | Normal | Status | — | 100% | 10 |
 | Sleep Talk | Normal | Status | — | — | 10 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 |
+| Night Slash | Dark | Physical | 70 | 100% | 15 |
 
 ---
 

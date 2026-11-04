@@ -76,6 +76,7 @@ Height 0.4 m (1′04″) · Weight 6.5 kg (14.3 lbs)
 | 1 | Mud-Slap ★ | Ground | Special | 20 | 100% | 10 |
 | 5 | Powder Snow | Ice | Special | 40 | 100% | 25 |
 | 10 | Flail ★ | Normal | Physical | varies | 100% | 15 |
+| 15 | Ice Shard ★ | Ice | Physical | 40 | 100% | 30 |
 | 20 | Mist | Ice | Status | — | — | 30 |
 | 25 | Endure | Normal | Status | — | — | 10 |
 | 30 | Icy Wind ★ | Ice | Special | 55 | 95% | 15 |
@@ -122,6 +123,17 @@ Height 0.4 m (1′04″) · Weight 6.5 kg (14.3 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Swinub with a father that knows the move.
@@ -136,6 +148,8 @@ Breed a Swinub with a father that knows the move.
 | Mud Shot | Ground | Special | 55 | 95% | 15 |
 | Icicle Spear | Ice | Physical | 25 | 100% | 30 |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 |
+| Icicle Crash | Ice | Physical | 85 | 90% | 10 |
+| Avalanche | Ice | Physical | 60 | 100% | 10 |
 
 ---
 

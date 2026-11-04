@@ -131,6 +131,17 @@ Height 0.7 m (2′04″) · Weight 18.5 kg (40.8 lbs)
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Rattata (passed down to Rattata, which then evolves) with a father that knows the move.

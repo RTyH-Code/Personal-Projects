@@ -140,6 +140,23 @@ Mr. Mime does not evolve.
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| Mystical Fire | Fire | Special | 75 | 100% | 10 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Mr. Mime with a father that knows the move.
@@ -152,6 +169,7 @@ Breed a Mr. Mime with a father that knows the move.
 | Psych Up | Normal | Status | — | — | 10 |
 | Fake Out | Normal | Physical | 40 | 100% | 10 |
 | Trick | Psychic | Status | — | 100% | 10 |
+| Nasty Plot | Dark | Status | — | — | 20 |
 
 ---
 

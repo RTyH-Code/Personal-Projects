@@ -79,6 +79,7 @@ Gligar does not evolve.
 | 19 | Poison Tail ★ | Poison | Physical | 50 | 100% | 25 |
 | 27 | Slash | Normal | Physical | 70 | 100% | 20 |
 | 35 | Screech | Normal | Status | — | 85% | 40 |
+| 40 | X-Scissor ★ | Bug | Physical | 80 | 100% | 15 |
 | 45 | Crabhammer ★ | Water | Physical | 100 | 90% | 10 |
 | 50 | Swords Dance ★ | Normal | Status | — | — | 20 |
 
@@ -123,6 +124,27 @@ Gligar does not evolve.
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
+| X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Gligar with a father that knows the move.
@@ -134,6 +156,9 @@ Breed a Gligar with a father that knows the move.
 | Razor Wind | Normal | Special | 80 | 100% | 10 |
 | Counter | Fighting | Physical | varies | 100% | 20 |
 | Sand Tomb | Ground | Physical | 35 | 85% | 15 |
+| Night Slash | Dark | Physical | 70 | 100% | 15 |
+| Cross Poison | Poison | Physical | 70 | 100% | 20 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 |
 
 ---
 

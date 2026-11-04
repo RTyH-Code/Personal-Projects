@@ -76,6 +76,7 @@ Lapras does not evolve.
 | 1 | Water Gun | Water | Special | 40 | 100% | 25 |
 | 5 | Sing | Normal | Status | — | 55% | 15 |
 | 10 | Mist | Ice | Status | — | — | 30 |
+| 20 | Ice Shard ★ | Ice | Physical | 40 | 100% | 30 |
 | 25 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | 30 | Water Pulse ★ | Water | Special | 60 | 100% | 20 |
 | 40 | Body Slam | Normal | Physical | 85 | 100% | 15 |
@@ -128,6 +129,24 @@ Lapras does not evolve.
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Smart Strike | Steel | Physical | 70 | — | 10 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Lapras with a father that knows the move.
@@ -142,6 +161,8 @@ Breed a Lapras with a father that knows the move.
 | Curse | ??? | Status | — | — | 10 |
 | Sleep Talk | Normal | Status | — | — | 10 |
 | Horn Drill | Normal | Physical | varies | 30% | 5 |
+| Avalanche | Ice | Physical | 60 | 100% | 10 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 |
 
 ---
 

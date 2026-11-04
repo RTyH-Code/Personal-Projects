@@ -134,6 +134,19 @@ Height 0.4 m (1′04″) · Weight 6.5 kg (14.3 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Cubone with a father that knows the move.
@@ -147,6 +160,7 @@ Breed a Cubone with a father that knows the move.
 | Skull Bash | Normal | Physical | 130 | 100% | 10 |
 | Perish Song | Normal | Status | — | — | 5 |
 | Swords Dance | Normal | Status | — | — | 20 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 |
 
 ---
 

@@ -76,8 +76,10 @@ Height 0.5 m (1′08″) · Weight 5 kg (11.0 lbs)
 | 21 | Giga Drain | Grass | Special | 75 | 100% | 10 |
 | 24 | Slam | Normal | Physical | 80 | 75% | 20 |
 | 27 | Double Team ★ | Normal | Status | — | — | 15 |
+| 30 | Energy Ball ★ | Grass | Special | 90 | 100% | 10 |
 | 33 | Screech | Normal | Status | — | 85% | 40 |
 | 36 | Endeavor ★ | Normal | Physical | varies | 100% | 5 |
+| 39 | Leaf Storm ★ | Grass | Special | 130 | 90% | 5 |
 
 ### By TM/HM
 
@@ -123,6 +125,20 @@ Height 0.5 m (1′08″) · Weight 5 kg (11.0 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Treecko with a father that knows the move.
@@ -135,6 +151,8 @@ Breed a Treecko with a father that knows the move.
 | Leech Seed | Grass | Status | — | 90% | 10 |
 | Dragon Breath | Dragon | Special | 60 | 100% | 20 |
 | Crush Claw | Normal | Physical | 75 | 95% | 10 |
+| Night Slash | Dark | Physical | 70 | 100% | 15 |
+| Leaf Storm | Grass | Special | 130 | 90% | 5 |
 
 ---
 

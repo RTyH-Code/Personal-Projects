@@ -72,14 +72,17 @@ Plusle does not evolve.
 | 1 | Growl | Normal | Status | — | 100% | 40 |
 | 1 | Thunder Wave | Electric | Status | — | 90% | 20 |
 | 1 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
+| 1 | Nuzzle ★ | Electric | Physical | 20 | 100% | 20 |
 | 4 | Helping Hand | Normal | Status | — | — | 20 |
 | 7 | Spark | Electric | Physical | 65 | 100% | 20 |
 | 10 | Encore | Normal | Status | — | 100% | 5 |
 | 16 | Swift ★ | Normal | Special | 60 | — | 20 |
 | 26 | Charge | Electric | Status | — | — | 20 |
+| 31 | Discharge ★ | Electric | Special | 80 | 100% | 15 |
 | 34 | Baton Pass | Normal | Status | — | — | 40 |
 | 37 | Agility | Psychic | Status | — | — | 30 |
 | 43 | Thunder | Electric | Special | 110 | 70% | 10 |
+| 46 | Nasty Plot ★ | Dark | Status | — | — | 20 |
 
 ### By TM/HM
 
@@ -118,6 +121,19 @@ Plusle does not evolve.
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
+| Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
+| Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Plusle with a father that knows the move.
@@ -126,6 +142,7 @@ Breed a Plusle with a father that knows the move.
 |---|---|---|--:|--:|--:|
 | Substitute | Normal | Status | — | — | 10 |
 | Wish | Normal | Status | — | — | 10 |
+| Discharge | Electric | Special | 80 | 100% | 15 |
 
 ---
 

@@ -74,6 +74,7 @@ Height 1.6 m (5′03″) · Weight 40.8 kg (89.9 lbs)
 | 1 | Sky Attack ★ | Flying | Physical | 140 | 90% | 5 |
 | 9 | Confusion | Psychic | Special | 50 | 100% | 25 |
 | 12 | Reflect | Psychic | Status | — | — | 20 |
+| 18 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
 | 23 | Extrasensory ★ | Psychic | Special | 80 | 100% | 20 |
 | 28 | Take Down | Normal | Physical | 90 | 85% | 20 |
 | 33 | Uproar ★ | Normal | Special | 90 | 100% | 10 |
@@ -115,6 +116,20 @@ Height 1.6 m (5′03″) · Weight 40.8 kg (89.9 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)
 

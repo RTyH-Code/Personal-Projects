@@ -67,6 +67,7 @@ Regice does not evolve.
 | Lv | Move | Type | Cat. | Power | Acc. | PP |
 |--:|---|---|---|--:|--:|--:|
 | 1 | Icy Wind | Ice | Special | 55 | 95% | 15 |
+| 6 | Bulldoze ★ | Ground | Physical | 60 | 100% | 20 |
 | 12 | Ancient Power | Rock | Special | 60 | 100% | 5 |
 | 18 | Stomp ★ | Normal | Physical | 65 | 100% | 20 |
 | 24 | Ice Beam ★ | Ice | Special | 90 | 100% | 10 |
@@ -122,6 +123,22 @@ Regice does not evolve.
 | Explosion | Normal | Physical | 250 | 100% | 5 | Mt. Ember Exterior |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
 
 ---
 

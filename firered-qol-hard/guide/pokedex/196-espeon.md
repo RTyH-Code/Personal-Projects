@@ -83,6 +83,7 @@ Height 0.9 m (2′11″) · Weight 26.5 kg (58.4 lbs)
 | 1 | Covet ★ | Normal | Physical | 60 | 100% | 25 |
 | 5 | Sand Attack | Ground | Status | — | 100% | 15 |
 | 10 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
+| 15 | Baby-Doll Eyes ★ | Fairy | Status | — | 100% | 30 |
 | 20 | Swift | Normal | Special | 60 | — | 20 |
 | 25 | Psybeam | Psychic | Special | 65 | 100% | 20 |
 | 30 | Morning Sun | Normal | Status | — | — | 5 |
@@ -127,6 +128,20 @@ Height 0.9 m (2′11″) · Weight 26.5 kg (58.4 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
+| Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)
 

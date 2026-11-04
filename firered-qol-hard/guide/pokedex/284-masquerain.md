@@ -77,7 +77,9 @@ Height 0.8 m (2′07″) · Weight 3.6 kg (7.9 lbs)
 | 22 | Scary Face | Normal | Status | — | 100% | 10 |
 | 22 | Air Cutter ★ | Flying | Special | 60 | 95% | 25 |
 | 26 | Stun Spore | Grass | Status | — | 75% | 30 |
+| 32 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
 | 38 | Giga Drain ★ | Grass | Special | 75 | 100% | 10 |
+| 44 | Bug Buzz ★ | Bug | Special | 90 | 100% | 10 |
 
 ### By TM/HM
 
@@ -114,6 +116,23 @@ Height 0.8 m (2′07″) · Weight 3.6 kg (7.9 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Surskit (passed down to Surskit, which then evolves) with a father that knows the move.
@@ -125,6 +144,8 @@ Breed a Surskit (passed down to Surskit, which then evolves) with a father that 
 | Psybeam | Psychic | Special | 65 | 100% | 20 |
 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 | Mind Reader | Normal | Status | — | 100% | 5 |
+| Lunge | Bug | Physical | 80 | 100% | 15 |
+| Aqua Jet | Water | Physical | 40 | 100% | 20 |
 
 ---
 

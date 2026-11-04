@@ -73,6 +73,7 @@ Height 1.8 m (5′11″) · Weight 85.2 kg (187.8 lbs)
 | 1 | Quick Attack ★ | Normal | Physical | 40 | 100% | 30 |
 | 1 | Tri Attack | Normal | Special | 80 | 100% | 10 |
 | 12 | Fury Attack | Normal | Physical | 15 | 85% | 20 |
+| 19 | Double Hit ★ | Normal | Physical | 35 | 90% | 10 |
 | 23 | Agility | Psychic | Status | — | — | 30 |
 | 26 | Uproar | Normal | Special | 90 | 100% | 10 |
 | 34 | Swords Dance ★ | Normal | Status | — | — | 20 |
@@ -112,6 +113,17 @@ Height 1.8 m (5′11″) · Weight 85.2 kg (187.8 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
+| Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
+| Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Doduo (passed down to Doduo, which then evolves) with a father that knows the move.
@@ -124,6 +136,7 @@ Breed a Doduo (passed down to Doduo, which then evolves) with a father that know
 | Faint Attack | Dark | Physical | 60 | — | 20 |
 | Flail | Normal | Physical | varies | 100% | 15 |
 | Endeavor | Normal | Physical | varies | 100% | 5 |
+| Brave Bird | Flying | Physical | 120 | 100% | 15 |
 
 ---
 

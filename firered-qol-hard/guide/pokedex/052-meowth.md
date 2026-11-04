@@ -93,6 +93,7 @@ Height 0.4 m (1′04″) · Weight 4.2 kg (9.3 lbs)
 | 29 | Fury Swipes | Normal | Physical | 18 | 80% | 15 |
 | 32 | Screech | Normal | Status | — | 85% | 40 |
 | 36 | Slash | Normal | Physical | 70 | 100% | 20 |
+| 40 | Nasty Plot ★ | Dark | Status | — | — | 20 |
 | 44 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
 
 ### By TM/HM
@@ -135,6 +136,21 @@ Height 0.4 m (1′04″) · Weight 4.2 kg (9.3 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 
 ### By breeding (egg moves)
 

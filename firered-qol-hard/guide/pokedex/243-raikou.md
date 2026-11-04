@@ -78,6 +78,7 @@ Raikou does not evolve.
 | 36 | Howl ★ | Normal | Status | — | — | 40 |
 | 42 | Crunch | Dark | Physical | 80 | 100% | 15 |
 | 48 | Extrasensory ★ | Psychic | Special | 80 | 100% | 20 |
+| 54 | Discharge ★ | Electric | Special | 80 | 100% | 15 |
 | 60 | Reflect | Psychic | Status | — | — | 20 |
 | 66 | Rain Dance ★ | Water | Status | — | — | 5 |
 | 72 | Thunder | Electric | Special | 110 | 70% | 10 |
@@ -122,6 +123,23 @@ Raikou does not evolve.
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
+| Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+| Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 
 ---
 

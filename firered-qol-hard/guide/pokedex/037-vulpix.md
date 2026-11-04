@@ -117,6 +117,20 @@ Height 0.6 m (2′00″) · Weight 9.9 kg (21.8 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Mystical Fire | Fire | Special | 75 | 100% | 10 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Vulpix with a father that knows the move.
@@ -131,6 +145,8 @@ Breed a Vulpix with a father that knows the move.
 | Howl | Normal | Status | — | — | 40 |
 | Psych Up | Normal | Status | — | — | 10 |
 | Heat Wave | Fire | Special | 95 | 90% | 10 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 |
+| Baby-Doll Eyes | Fairy | Status | — | 100% | 30 |
 
 ---
 

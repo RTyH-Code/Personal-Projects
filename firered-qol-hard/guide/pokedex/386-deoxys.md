@@ -116,6 +116,7 @@ Deoxys does not evolve.
 | 37 | Protect ★ | Normal | Status | — | — | 10 |
 | 37 | Superpower | Fighting | Physical | 120 | 100% | 5 |
 | 43 | Skill Swap ★ | Psychic | Status | — | 100% | 10 |
+| 49 | Zen Headbutt ★ | Psychic | Physical | 80 | 90% | 15 |
 | 55 | Agility ★ | Psychic | Status | — | — | 30 |
 | 55 | Amnesia ★ | Psychic | Status | — | — | 20 |
 | 55 | Cosmic Power | Psychic | Status | — | — | 20 |
@@ -186,6 +187,26 @@ All four formes share this learnset.
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ---
 

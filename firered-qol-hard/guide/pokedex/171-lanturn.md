@@ -78,10 +78,12 @@ Height 1.2 m (3′11″) · Weight 22.5 kg (49.6 lbs)
 | 1 | Stockpile ★ | Normal | Status | — | — | 20 |
 | 1 | Spit Up ★ | Normal | Special | varies | 100% | 10 |
 | 1 | Swallow ★ | Normal | Status | — | — | 10 |
+| 1 | Eerie Impulse ★ | Electric | Status | — | 100% | 15 |
 | 12 | Bubble Beam ★ | Water | Special | 65 | 100% | 20 |
 | 16 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | 20 | Spark | Electric | Physical | 65 | 100% | 20 |
 | 24 | Charge | Electric | Status | — | — | 20 |
+| 30 | Discharge ★ | Electric | Special | 80 | 100% | 15 |
 | 42 | Flail | Normal | Physical | varies | 100% | 15 |
 | 48 | Take Down | Normal | Physical | 90 | 85% | 20 |
 | 54 | Hydro Pump | Water | Special | 110 | 80% | 5 |
@@ -122,6 +124,21 @@ Height 1.2 m (3′11″) · Weight 22.5 kg (49.6 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
+| Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 
 ### By breeding (egg moves)
 

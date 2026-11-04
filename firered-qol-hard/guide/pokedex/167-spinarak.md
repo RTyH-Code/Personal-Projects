@@ -74,10 +74,13 @@ Height 0.5 m (1′08″) · Weight 8.5 kg (18.7 lbs)
 | 5 | Absorb ★ | Grass | Special | 20 | 100% | 25 |
 | 12 | Scary Face | Normal | Status | — | 100% | 10 |
 | 15 | Night Shade | Ghost | Special | varies | 100% | 15 |
+| 19 | Shadow Sneak ★ | Ghost | Physical | 40 | 100% | 30 |
 | 22 | Fury Swipes | Normal | Physical | 18 | 80% | 15 |
 | 29 | Agility | Psychic | Status | — | — | 30 |
 | 33 | Pin Missile ★ | Bug | Physical | 25 | 95% | 20 |
 | 36 | Psychic | Psychic | Special | 90 | 100% | 10 |
+| 40 | Poison Jab ★ | Poison | Physical | 80 | 100% | 20 |
+| 44 | Cross Poison ★ | Poison | Physical | 70 | 100% | 20 |
 
 ### By TM/HM
 
@@ -111,6 +114,19 @@ Height 0.5 m (1′08″) · Weight 8.5 kg (18.7 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Spinarak with a father that knows the move.
@@ -123,6 +139,10 @@ Breed a Spinarak with a father that knows the move.
 | Baton Pass | Normal | Status | — | — | 40 |
 | Pursuit | Dark | Physical | 40 | 100% | 20 |
 | Signal Beam | Bug | Special | 75 | 100% | 15 |
+| Night Slash | Dark | Physical | 70 | 100% | 15 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 |
+| Lunge | Bug | Physical | 80 | 100% | 15 |
+| Electroweb | Electric | Special | 55 | 95% | 15 |
 
 ---
 

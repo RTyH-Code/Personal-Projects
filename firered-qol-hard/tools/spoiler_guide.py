@@ -88,7 +88,8 @@ def move(const):
     c = const.replace("MOVE_", "")
     return {"SOFTBOILED": "Soft-Boiled", "WILL_O_WISP": "Will-O-Wisp", "U_TURN": "U-turn",
             "DOUBLE_EDGE": "Double-Edge", "SELF_DESTRUCT": "Self-Destruct", "X_SCISSOR": "X-Scissor",
-            "LOCK_ON": "Lock-On", "MUD_SLAP": "Mud-Slap", "SOFT_BOILED": "Soft-Boiled"}.get(c, c.replace("_", " ").title())
+            "LOCK_ON": "Lock-On", "MUD_SLAP": "Mud-Slap", "SOFT_BOILED": "Soft-Boiled",
+            "POWER_UP_PUNCH": "Power-Up Punch", "BABY_DOLL_EYES": "Baby-Doll Eyes"}.get(c, c.replace("_", " ").title())
 
 
 def map_name(const):
@@ -744,6 +745,16 @@ def write_pokedex():
         loc = label_location(lab)
         if t and loc:
             tutor_loc.setdefault("MOVE_" + t.group(1), loc)
+    modern = {}
+    if os.path.exists("src/data/pokemon/hack_tutor_learnsets.h"):
+        ht = read("src/data/pokemon/hack_tutor_learnsets.h")
+        ids = {int(n): m for m, n in re.findall(r"#define (MOVE_\w+) (\d+)\n", read("include/constants/moves.h"))}
+        first = {m: n for n, m in ids.items()}[re.search(r"#define HACK_TUTOR_FIRST_MOVE (MOVE_\w+)", ht).group(1)]
+        tiers = [int(t) for t in re.search(r"sHackTutorTier\[\] = \{(.*?)\}", ht).group(1).split(",")]
+        for sp, body in re.findall(r"\[(SPECIES_\w+)\] = \{(.*?)\}", ht):
+            bits = [int(b, 16) for b in body.split(",")]
+            modern[sp] = [(ids[first + i], (0, 3, 5)[tiers[i]]) for i in range(len(bits) * 8)
+                          if bits[i // 8] & (1 << (i % 8)) and first + i in ids]
     egg = {}
     for sp, body in re.findall(r"egg_moves\((\w+),(.*?)\)", read("src/data/pokemon/egg_moves.h"), re.S):
         egg["SPECIES_" + sp] = re.findall(r"MOVE_\w+", body)
@@ -1049,6 +1060,12 @@ def write_pokedex():
                 loc = tutor_loc.get(m)
                 out.append(f"| {move_cells(m)} | {map_name(loc) if loc else '?'} |")
             out.append("")
+        mt = modern.get(sp, [])
+        if mt:
+            out += ["### From the modern tutor", "",
+                    "The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.", "",
+                    "| Move | Type | Cat. | Power | Acc. | PP | Badges |", "|---|---|---|--:|--:|--:|--:|"]
+            out += [f"| {move_cells(m)} | {b} |" for m, b in sorted(mt, key=lambda e: (e[1], e[0]))] + [""]
         eb = root(sp)
         em = egg.get(eb, [])
         if em:
@@ -1125,9 +1142,10 @@ def write_types():
 
     damaging = {m: f for m, f in mv.items() if m != "MOVE_NONE" and f.get("split") in ("SPLIT_PHYSICAL", "SPLIT_SPECIAL")}
     changed = {"Physical": [], "Special": []}
+    move_ids = {m: int(n) for m, n in re.findall(r"#define (MOVE_\w+) (\d+)\n", read("include/constants/moves.h"))}
     for m, f in damaging.items():
         t = f["type"].replace("TYPE_", "")
-        if t in ("MYSTERY", "FAIRY"):  # Fairy moves are new; they never had a Gen 3 category
+        if t == "MYSTERY" or move_ids.get(m, 0) > move_ids["MOVE_PSYCHO_BOOST"]:  # new moves never had a Gen 3 category
             continue
         old = "Physical" if t in GEN3_PHYSICAL else "Special"
         new = "Physical" if f["split"] == "SPLIT_PHYSICAL" else "Special"
@@ -1146,7 +1164,7 @@ def write_types():
             "In this hack it is always special.*", ""]
 
     out += ["## All moves by type", "", "Power \"varies\" means the game works it out in battle (e.g. Return, "
-            "Low Kick, Seismic Toss). Effects are Gen 3's; only power, accuracy, PP and category were modernized.", ""]
+            "Low Kick, Seismic Toss). Effects of the original moves are Gen 3's; only power, accuracy, PP and category were modernized.", ""]
     for t in TYPES + ["MYSTERY"]:
         ms = sorted((m for m, f in mv.items() if m != "MOVE_NONE" and f.get("type") == "TYPE_" + t), key=move)
         if not ms:

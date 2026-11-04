@@ -74,12 +74,14 @@ Kecleon does not evolve.
 | 1 | Thief | Dark | Physical | 60 | 100% | 25 |
 | 1 | Astonish | Ghost | Physical | 30 | 100% | 15 |
 | 4 | Bind | Normal | Physical | 15 | 85% | 20 |
+| 7 | Shadow Sneak ★ | Ghost | Physical | 40 | 100% | 30 |
 | 13 | Fury Swipes | Normal | Physical | 18 | 80% | 15 |
 | 16 | Faint Attack | Dark | Physical | 60 | — | 20 |
 | 18 | Psybeam | Psychic | Special | 65 | 100% | 20 |
 | 21 | Ancient Power | Rock | Special | 60 | 100% | 5 |
 | 25 | Slash | Normal | Physical | 70 | 100% | 20 |
 | 30 | Camouflage ★ | Normal | Status | — | — | 20 |
+| 33 | Shadow Claw ★ | Ghost | Physical | 70 | 100% | 15 |
 | 38 | Screech | Normal | Status | — | 85% | 40 |
 | 42 | Substitute | Normal | Status | — | — | 10 |
 
@@ -139,6 +141,18 @@ Kecleon does not evolve.
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Kecleon with a father that knows the move.
@@ -148,6 +162,8 @@ Breed a Kecleon with a father that knows the move.
 | Disable | Normal | Status | — | 100% | 20 |
 | Magic Coat | Psychic | Status | — | 100% | 15 |
 | Trick | Psychic | Status | — | 100% | 10 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 |
+| Nasty Plot | Dark | Status | — | — | 20 |
 
 ---
 

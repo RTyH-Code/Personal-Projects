@@ -83,6 +83,7 @@ Skarmory does not evolve.
 | 40 | Metal Sound | Steel | Status | — | 85% | 40 |
 | 44 | Spikes | Ground | Status | — | — | 20 |
 | 48 | Iron Defense ★ | Steel | Status | — | — | 15 |
+| 52 | Brave Bird ★ | Flying | Physical | 120 | 100% | 15 |
 
 ### By TM/HM
 
@@ -120,6 +121,23 @@ Skarmory does not evolve.
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
+| Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Skarmory with a father that knows the move.
@@ -131,6 +149,8 @@ Breed a Skarmory with a father that knows the move.
 | Whirlwind | Normal | Status | — | 100% | 20 |
 | Sky Attack | Flying | Physical | 140 | 90% | 5 |
 | Curse | ??? | Status | — | — | 10 |
+| Night Slash | Dark | Physical | 70 | 100% | 15 |
+| Brave Bird | Flying | Physical | 120 | 100% | 15 |
 
 ---
 

@@ -73,13 +73,17 @@ Sableye does not evolve.
 | 1 | Scratch | Normal | Physical | 40 | 100% | 35 |
 | 1 | Leer | Normal | Status | — | 100% | 30 |
 | 3 | Astonish | Ghost | Physical | 30 | 100% | 15 |
+| 9 | Shadow Sneak ★ | Ghost | Physical | 40 | 100% | 30 |
 | 12 | Fake Out | Normal | Physical | 40 | 100% | 10 |
 | 15 | Disable ★ | Normal | Status | — | 100% | 20 |
 | 18 | Detect | Fighting | Status | — | — | 5 |
 | 21 | Night Shade | Ghost | Special | varies | 100% | 15 |
 | 24 | Fury Swipes | Normal | Physical | 18 | 80% | 15 |
 | 27 | Knock Off | Dark | Physical | 65 | 100% | 20 |
+| 33 | Shadow Claw ★ | Ghost | Physical | 70 | 100% | 15 |
 | 36 | Mean Look | Normal | Status | — | 100% | 5 |
+| 39 | Power Gem ★ | Rock | Special | 80 | 100% | 20 |
+| 42 | Zen Headbutt ★ | Psychic | Physical | 80 | 90% | 15 |
 | 45 | Shadow Ball | Ghost | Special | 80 | 100% | 15 |
 
 ### By TM/HM
@@ -131,6 +135,28 @@ Sableye does not evolve.
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Sableye with a father that knows the move.
@@ -140,6 +166,7 @@ Breed a Sableye with a father that knows the move.
 | Psych Up | Normal | Status | — | — | 10 |
 | Recover | Normal | Status | — | — | 5 |
 | Moonlight | Fairy | Status | — | — | 5 |
+| Nasty Plot | Dark | Status | — | — | 20 |
 
 ---
 

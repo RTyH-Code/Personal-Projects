@@ -71,11 +71,13 @@ Height 1.6 m (5′03″) · Weight 85.5 kg (188.5 lbs)
 | 1 | Tail Whip | Normal | Status | — | 100% | 30 |
 | 1 | Water Gun | Water | Special | 40 | 100% | 25 |
 | 1 | Withdraw | Water | Status | — | — | 40 |
+| 1 | Flash Cannon ★ | Steel | Special | 80 | 100% | 10 |
 | 9 | Rapid Spin | Normal | Physical | 50 | 100% | 40 |
 | 12 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 15 | Water Pulse ★ | Water | Special | 60 | 100% | 20 |
 | 20 | Protect | Normal | Status | — | — | 10 |
 | 25 | Rain Dance | Water | Status | — | — | 5 |
+| 30 | Aqua Tail ★ | Water | Physical | 90 | 90% | 10 |
 | 42 | Iron Defense ★ | Steel | Status | — | — | 15 |
 | 49 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 
@@ -125,6 +127,27 @@ Height 1.6 m (5′03″) · Weight 85.5 kg (188.5 lbs)
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 | Hydro Cannon | Water | Special | 150 | 90% | 5 | Two Island Cape Brink House |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Squirtle (passed down to Squirtle, which then evolves) with a father that knows the move.
@@ -139,6 +162,8 @@ Breed a Squirtle (passed down to Squirtle, which then evolves) with a father tha
 | Refresh | Normal | Status | — | — | 20 |
 | Mud Sport | Ground | Status | — | — | 15 |
 | Yawn | Normal | Status | — | 100% | 10 |
+| Aura Sphere | Fighting | Special | 80 | — | 20 |
+| Aqua Jet | Water | Physical | 40 | 100% | 20 |
 
 ---
 

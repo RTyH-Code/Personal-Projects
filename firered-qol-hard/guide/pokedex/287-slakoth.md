@@ -124,6 +124,21 @@ Height 0.8 m (2′07″) · Weight 24 kg (52.9 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Slakoth with a father that knows the move.
@@ -137,6 +152,7 @@ Breed a Slakoth with a father that knows the move.
 | Crush Claw | Normal | Physical | 75 | 95% | 10 |
 | Curse | ??? | Status | — | — | 10 |
 | Sleep Talk | Normal | Status | — | — | 10 |
+| Night Slash | Dark | Physical | 70 | 100% | 15 |
 
 ---
 

@@ -74,12 +74,16 @@ Height 1.3 m (4′03″) · Weight 40.5 kg (89.3 lbs)
 | 1 | Absorb | Grass | Special | 20 | 100% | 25 |
 | 1 | Harden | Normal | Status | — | — | 30 |
 | 1 | Slash | Normal | Physical | 70 | 100% | 20 |
+| 1 | Night Slash ★ | Dark | Physical | 70 | 100% | 15 |
+| 15 | Aqua Jet ★ | Water | Physical | 40 | 100% | 20 |
 | 20 | Leer | Normal | Status | — | 100% | 30 |
 | 25 | Mud Shot | Ground | Special | 55 | 95% | 15 |
 | 30 | Ancient Power | Rock | Special | 60 | 100% | 5 |
 | 43 | Protect ★ | Normal | Status | — | — | 10 |
 | 49 | Leech Life ★ | Bug | Physical | 80 | 100% | 10 |
+| 56 | Liquidation ★ | Water | Physical | 85 | 100% | 10 |
 | 63 | Metal Sound | Steel | Status | — | 85% | 40 |
+| 70 | Stone Edge ★ | Rock | Physical | 100 | 80% | 5 |
 
 ### By TM/HM
 
@@ -126,6 +130,25 @@ Height 1.3 m (4′03″) · Weight 40.5 kg (89.3 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Cross Poison | Poison | Physical | 70 | 100% | 20 | 3 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Psycho Cut | Psychic | Physical | 70 | 100% | 20 | 3 |
+| Razor Shell | Water | Physical | 75 | 95% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)
 

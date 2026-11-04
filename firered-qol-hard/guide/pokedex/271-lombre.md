@@ -83,6 +83,8 @@ Height 1.2 m (3′11″) · Weight 32.5 kg (71.7 lbs)
 | 24 | Bubble Beam ★ | Water | Special | 65 | 100% | 20 |
 | 30 | Leech Seed ★ | Grass | Status | — | 90% | 10 |
 | 36 | Giga Drain ★ | Grass | Special | 75 | 100% | 10 |
+| 50 | Zen Headbutt ★ | Psychic | Physical | 80 | 90% | 15 |
+| 57 | Energy Ball ★ | Grass | Special | 90 | 100% | 10 |
 | 64 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 
 ### By TM/HM
@@ -126,6 +128,21 @@ Height 1.2 m (3′11″) · Weight 32.5 kg (71.7 lbs)
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

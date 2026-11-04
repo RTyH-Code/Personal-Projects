@@ -76,6 +76,8 @@ Zangoose does not evolve.
 | 1 | Curse ★ | ??? | Status | — | — | 10 |
 | 1 | Flail ★ | Normal | Physical | varies | 100% | 15 |
 | 1 | Belly Drum ★ | Normal | Status | — | — | 10 |
+| 1 | Night Slash ★ | Dark | Physical | 70 | 100% | 15 |
+| 1 | Double Hit ★ | Normal | Physical | 35 | 90% | 10 |
 | 5 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
 | 8 | Fury Cutter | Bug | Physical | 40 | 95% | 20 |
 | 12 | Metal Claw ★ | Steel | Physical | 50 | 95% | 35 |
@@ -83,6 +85,7 @@ Zangoose does not evolve.
 | 26 | Crush Claw | Normal | Physical | 75 | 95% | 10 |
 | 29 | False Swipe | Normal | Physical | 40 | 100% | 40 |
 | 36 | Detect | Fighting | Status | — | — | 5 |
+| 40 | X-Scissor ★ | Bug | Physical | 80 | 100% | 15 |
 | 43 | Taunt | Dark | Status | — | 100% | 20 |
 | 47 | Swords Dance | Normal | Status | — | — | 20 |
 
@@ -140,6 +143,26 @@ Zangoose does not evolve.
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Zangoose with a father that knows the move.
@@ -152,6 +175,8 @@ Breed a Zangoose with a father that knows the move.
 | Counter | Fighting | Physical | varies | 100% | 20 |
 | Roar | Normal | Status | — | 100% | 20 |
 | Curse | ??? | Status | — | — | 10 |
+| Night Slash | Dark | Physical | 70 | 100% | 15 |
+| Double Hit | Normal | Physical | 35 | 90% | 10 |
 
 ---
 

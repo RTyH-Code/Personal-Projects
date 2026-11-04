@@ -118,6 +118,19 @@ Height 0.2 m (0′08″) · Weight 2 kg (4.4 lbs)
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+
 ### By breeding (egg moves)
 
 Breed a Natu with a father that knows the move.
@@ -132,6 +145,7 @@ Breed a Natu with a father that knows the move.
 | Psych Up | Normal | Status | — | — | 10 |
 | Feather Dance | Flying | Status | — | 100% | 15 |
 | Refresh | Normal | Status | — | — | 20 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 |
 
 ---
 

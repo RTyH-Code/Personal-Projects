@@ -77,11 +77,13 @@ Height 0.3 m (1′00″) · Weight 4 kg (8.8 lbs)
 | 1 | Tackle | Normal | Physical | 40 | 100% | 35 |
 | 1 | Water Gun ★ | Water | Special | 40 | 100% | 25 |
 | 4 | Withdraw | Water | Status | — | — | 40 |
+| 8 | Ice Shard ★ | Ice | Physical | 40 | 100% | 30 |
 | 12 | Leer | Normal | Status | — | 100% | 30 |
 | 16 | Whirlpool ★ | Water | Special | 35 | 85% | 15 |
 | 20 | Supersonic | Normal | Status | — | 55% | 20 |
 | 24 | Aurora Beam | Ice | Special | 65 | 100% | 20 |
 | 28 | Protect | Normal | Status | — | — | 10 |
+| 32 | Razor Shell ★ | Water | Physical | 75 | 95% | 10 |
 | 36 | Iron Defense ★ | Steel | Status | — | — | 15 |
 | 40 | Ice Beam | Ice | Special | 90 | 100% | 10 |
 | 48 | Hydro Pump ★ | Water | Special | 110 | 80% | 5 |
@@ -117,6 +119,16 @@ Height 0.3 m (1′00″) · Weight 4 kg (8.8 lbs)
 | Explosion | Normal | Physical | 250 | 100% | 5 | Mt. Ember Exterior |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Razor Shell | Water | Physical | 75 | 95% | 10 | 3 |
+
 ### By breeding (egg moves)
 
 Breed a Shellder with a father that knows the move.
@@ -129,6 +141,7 @@ Breed a Shellder with a father that knows the move.
 | Rapid Spin | Normal | Physical | 50 | 100% | 40 |
 | Screech | Normal | Status | — | 85% | 40 |
 | Icicle Spear | Ice | Physical | 25 | 100% | 30 |
+| Avalanche | Ice | Physical | 60 | 100% | 10 |
 
 ---
 

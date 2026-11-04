@@ -81,6 +81,7 @@ Height 0.6 m (2′00″) · Weight 10.8 kg (23.8 lbs)
 | 32 | Torment ★ | Dark | Status | — | 100% | 15 |
 | 44 | Flamethrower | Fire | Special | 90 | 100% | 15 |
 | 49 | Crunch | Dark | Physical | 80 | 100% | 15 |
+| 52 | Nasty Plot ★ | Dark | Status | — | — | 20 |
 
 ### By TM/HM
 
@@ -122,6 +123,17 @@ Height 0.6 m (2′00″) · Weight 10.8 kg (23.8 lbs)
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
+
 ### By breeding (egg moves)
 
 Breed a Houndour with a father that knows the move.
@@ -136,6 +148,7 @@ Breed a Houndour with a father that knows the move.
 | Reversal | Fighting | Physical | varies | 100% | 15 |
 | Beat Up | Dark | Physical | 10 | 100% | 10 |
 | Will-O-Wisp | Fire | Status | — | 85% | 15 |
+| Nasty Plot | Dark | Status | — | — | 20 |
 
 ---
 

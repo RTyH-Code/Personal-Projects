@@ -121,6 +121,19 @@ Height 0.3 m (1′00″) · Weight 1 kg (2.2 lbs)
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
+| Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
+| Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Igglybuff with a father that knows the move.

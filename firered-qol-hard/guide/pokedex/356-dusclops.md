@@ -75,6 +75,7 @@ Height 1.6 m (5′03″) · Weight 30.6 kg (67.5 lbs)
 | 1 | Disable | Normal | Status | — | 100% | 20 |
 | 1 | Astonish | Ghost | Physical | 30 | 100% | 15 |
 | 1 | Shadow Punch | Ghost | Physical | 60 | — | 20 |
+| 1 | Shadow Sneak ★ | Ghost | Physical | 40 | 100% | 30 |
 | 12 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | 16 | Night Shade | Ghost | Special | varies | 100% | 15 |
 | 24 | Will-O-Wisp | Fire | Status | — | 85% | 15 |
@@ -133,6 +134,18 @@ Height 1.6 m (5′03″) · Weight 30.6 kg (67.5 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Duskull (passed down to Duskull, which then evolves) with a father that knows the move.
@@ -145,6 +158,8 @@ Breed a Duskull (passed down to Duskull, which then evolves) with a father that 
 | Grudge | Ghost | Status | — | — | 5 |
 | Memento | Dark | Status | — | 100% | 10 |
 | Faint Attack | Dark | Physical | 60 | — | 20 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 |
 
 ---
 

@@ -106,6 +106,14 @@ Height 0.4 m (1′04″) · Weight 52.5 kg (115.7 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+
 ### By breeding (egg moves)
 
 Breed a Clamperl with a father that knows the move.

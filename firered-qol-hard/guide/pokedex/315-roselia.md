@@ -80,6 +80,7 @@ Roselia does not evolve.
 | 30 | Giga Drain | Grass | Special | 75 | 100% | 10 |
 | 35 | Synthesis | Grass | Status | — | — | 5 |
 | 40 | Toxic | Poison | Status | — | 90% | 10 |
+| 45 | Petal Blizzard ★ | Grass | Physical | 90 | 100% | 15 |
 | 50 | Aromatherapy | Grass | Status | — | — | 5 |
 | 55 | Ingrain | Grass | Status | — | — | 20 |
 | 60 | Petal Dance | Grass | Special | 120 | 100% | 10 |
@@ -117,6 +118,20 @@ Roselia does not evolve.
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
+| Power Whip | Grass | Physical | 120 | 85% | 10 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Roselia with a father that knows the move.
@@ -127,6 +142,9 @@ Breed a Roselia with a father that knows the move.
 | Synthesis | Grass | Status | — | — | 5 |
 | Pin Missile | Bug | Physical | 25 | 95% | 20 |
 | Cotton Spore | Grass | Status | — | 100% | 40 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 |
+| Power Whip | Grass | Physical | 120 | 85% | 10 |
+| Leaf Storm | Grass | Special | 130 | 90% | 5 |
 
 ---
 

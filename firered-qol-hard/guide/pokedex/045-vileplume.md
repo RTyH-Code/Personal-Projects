@@ -74,6 +74,7 @@ Height 1.2 m (3′11″) · Weight 18.6 kg (41.0 lbs)
 | 1 | Growth ★ | Normal | Status | — | — | 20 |
 | 1 | Sweet Scent ★ | Normal | Status | — | 100% | 20 |
 | 1 | Moonblast ★ | Fairy | Special | 95 | 100% | 15 |
+| 1 | Petal Blizzard ★ | Grass | Physical | 90 | 100% | 15 |
 | 15 | Mega Drain | Grass | Special | 40 | 100% | 15 |
 | 17 | Poison Powder ★ | Poison | Status | — | 75% | 35 |
 | 19 | Stun Spore | Grass | Status | — | 75% | 30 |
@@ -115,6 +116,21 @@ Height 1.2 m (3′11″) · Weight 18.6 kg (41.0 lbs)
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
+| Petal Blizzard | Grass | Physical | 90 | 100% | 15 | 5 |
 
 ### By breeding (egg moves)
 

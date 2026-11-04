@@ -80,6 +80,7 @@ Height 1.5 m (4′11″) · Weight 84 kg (185.2 lbs)
 | 45 | Uproar | Normal | Special | 90 | 100% | 10 |
 | 54 | Screech | Normal | Status | — | 85% | 40 |
 | 63 | Hyper Voice | Normal | Special | 90 | 100% | 10 |
+| 72 | Boomburst ★ | Normal | Special | 140 | 100% | 10 |
 | 81 | Hyper Beam | Normal | Special | 150 | 90% | 5 |
 
 ### By TM/HM
@@ -129,6 +130,20 @@ Height 1.5 m (4′11″) · Weight 84 kg (185.2 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
 
 ### By breeding (egg moves)
 

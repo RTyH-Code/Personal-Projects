@@ -123,6 +123,19 @@ Height 0.4 m (1′04″) · Weight 0.5 kg (1.1 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Hoppip with a father that knows the move.
@@ -136,6 +149,7 @@ Breed a Hoppip with a father that knows the move.
 | Amnesia | Psychic | Status | — | — | 20 |
 | Helping Hand | Normal | Status | — | — | 20 |
 | Psych Up | Normal | Status | — | — | 10 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 |
 
 ---
 

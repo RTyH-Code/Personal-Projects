@@ -86,9 +86,11 @@ Height 0.8 m (2′07″) · Weight 24.5 kg (54.0 lbs)
 | 1 | Covet ★ | Normal | Physical | 60 | 100% | 25 |
 | 5 | Sand Attack | Ground | Status | — | 100% | 15 |
 | 10 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
+| 15 | Baby-Doll Eyes ★ | Fairy | Status | — | 100% | 30 |
 | 20 | Thunder Wave | Electric | Status | — | 90% | 20 |
 | 25 | Double Kick | Fighting | Physical | 30 | 100% | 30 |
 | 35 | Pin Missile | Bug | Physical | 25 | 95% | 20 |
+| 40 | Discharge ★ | Electric | Special | 80 | 100% | 15 |
 | 45 | Agility | Psychic | Status | — | — | 30 |
 | 50 | Thunder | Electric | Special | 110 | 70% | 10 |
 
@@ -127,6 +129,17 @@ Height 0.8 m (2′07″) · Weight 24.5 kg (54.0 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
+| Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 
 ### By breeding (egg moves)
 

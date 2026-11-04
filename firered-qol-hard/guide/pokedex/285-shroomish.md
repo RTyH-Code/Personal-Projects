@@ -78,6 +78,7 @@ Height 0.4 m (1′04″) · Weight 4.5 kg (9.9 lbs)
 | 26 | Giga Drain | Grass | Special | 75 | 100% | 10 |
 | 29 | Growth | Normal | Status | — | — | 20 |
 | 33 | Toxic ★ | Poison | Status | — | 90% | 10 |
+| 36 | Seed Bomb ★ | Grass | Physical | 80 | 100% | 15 |
 | 40 | Spore | Grass | Status | — | 100% | 15 |
 
 ### By TM/HM
@@ -113,6 +114,19 @@ Height 0.4 m (1′04″) · Weight 4.5 kg (9.9 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Shroomish with a father that knows the move.
@@ -124,6 +138,8 @@ Breed a Shroomish with a father that knows the move.
 | Charm | Fairy | Status | — | 100% | 20 |
 | False Swipe | Normal | Physical | 40 | 100% | 40 |
 | Helping Hand | Normal | Status | — | — | 20 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 |
 
 ---
 

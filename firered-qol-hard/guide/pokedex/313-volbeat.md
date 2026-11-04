@@ -72,10 +72,13 @@ Volbeat does not evolve.
 | 5 | Double Team | Normal | Status | — | — | 15 |
 | 8 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | 12 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
+| 15 | Struggle Bug ★ | Bug | Special | 50 | 100% | 20 |
 | 19 | Moonlight | Fairy | Status | — | — | 5 |
 | 22 | Tail Glow | Bug | Status | — | — | 20 |
 | 26 | Protect | Normal | Status | — | — | 10 |
+| 29 | Zen Headbutt ★ | Psychic | Physical | 80 | 90% | 15 |
 | 33 | Helping Hand | Normal | Status | — | — | 20 |
+| 36 | Bug Buzz ★ | Bug | Special | 90 | 100% | 10 |
 | 40 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
 | 43 | Double-Edge | Normal | Physical | 120 | 100% | 15 |
 
@@ -124,6 +127,22 @@ Volbeat does not evolve.
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Volbeat with a father that knows the move.
@@ -133,6 +152,8 @@ Breed a Volbeat with a father that knows the move.
 | Baton Pass | Normal | Status | — | — | 40 |
 | Silver Wind | Bug | Special | 60 | 100% | 5 |
 | Trick | Psychic | Status | — | 100% | 10 |
+| Bug Buzz | Bug | Special | 90 | 100% | 10 |
+| Lunge | Bug | Physical | 80 | 100% | 15 |
 
 ---
 

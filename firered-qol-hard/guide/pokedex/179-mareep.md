@@ -76,6 +76,8 @@ Height 0.6 m (2′00″) · Weight 7.8 kg (17.2 lbs)
 | 15 | Charge ★ | Electric | Status | — | — | 20 |
 | 18 | Take Down ★ | Normal | Physical | 90 | 85% | 20 |
 | 25 | Confuse Ray ★ | Ghost | Status | — | 100% | 10 |
+| 29 | Power Gem ★ | Rock | Special | 80 | 100% | 20 |
+| 32 | Discharge ★ | Electric | Special | 80 | 100% | 15 |
 | 39 | Dazzling Gleam ★ | Fairy | Special | 80 | 100% | 10 |
 | 43 | Light Screen | Psychic | Status | — | — | 30 |
 | 46 | Thunder | Electric | Special | 110 | 70% | 10 |
@@ -112,6 +114,18 @@ Height 0.6 m (2′00″) · Weight 7.8 kg (17.2 lbs)
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
+| Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
+| Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Mareep with a father that knows the move.
@@ -125,6 +139,8 @@ Breed a Mareep with a father that knows the move.
 | Reflect | Psychic | Status | — | — | 20 |
 | Odor Sleuth | Normal | Status | — | 100% | 40 |
 | Charge | Electric | Status | — | — | 20 |
+| Electroweb | Electric | Special | 55 | 95% | 15 |
+| Eerie Impulse | Electric | Status | — | 100% | 15 |
 
 ---
 

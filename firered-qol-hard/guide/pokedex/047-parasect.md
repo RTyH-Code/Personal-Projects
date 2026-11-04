@@ -80,12 +80,14 @@ Height 1 m (3′03″) · Weight 29.5 kg (65.0 lbs)
 | 1 | Absorb ★ | Grass | Special | 20 | 100% | 25 |
 | 1 | Poison Powder | Poison | Status | — | 75% | 35 |
 | 1 | Stun Spore | Grass | Status | — | 75% | 30 |
+| 1 | Cross Poison ★ | Poison | Physical | 70 | 100% | 20 |
 | 17 | Fury Cutter ★ | Bug | Physical | 40 | 95% | 20 |
 | 22 | Spore | Grass | Status | — | 100% | 15 |
 | 29 | Slash | Normal | Physical | 70 | 100% | 20 |
 | 37 | Growth | Normal | Status | — | — | 20 |
 | 44 | Giga Drain | Grass | Special | 75 | 100% | 10 |
 | 51 | Aromatherapy | Grass | Status | — | — | 5 |
+| 66 | X-Scissor ★ | Bug | Physical | 80 | 100% | 15 |
 
 ### By TM/HM
 
@@ -125,6 +127,19 @@ Height 1 m (3′03″) · Weight 29.5 kg (65.0 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Paras (passed down to Paras, which then evolves) with a father that knows the move.
@@ -139,6 +154,7 @@ Breed a Paras (passed down to Paras, which then evolves) with a father that know
 | Sweet Scent | Normal | Status | — | 100% | 20 |
 | Light Screen | Psychic | Status | — | — | 30 |
 | Pursuit | Dark | Physical | 40 | 100% | 20 |
+| Cross Poison | Poison | Physical | 70 | 100% | 20 |
 
 ---
 

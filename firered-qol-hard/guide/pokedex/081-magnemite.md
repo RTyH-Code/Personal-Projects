@@ -77,6 +77,8 @@ Height 0.3 m (1′00″) · Weight 6 kg (13.2 lbs)
 | 8 | Thunder Wave | Electric | Status | — | 90% | 20 |
 | 20 | Spark | Electric | Physical | 65 | 100% | 20 |
 | 24 | Screech | Normal | Status | — | 85% | 40 |
+| 32 | Flash Cannon ★ | Steel | Special | 80 | 100% | 10 |
+| 36 | Discharge ★ | Electric | Special | 80 | 100% | 15 |
 | 40 | Metal Sound | Steel | Status | — | 85% | 40 |
 | 44 | Light Screen ★ | Psychic | Status | — | — | 30 |
 | 48 | Lock-On | Normal | Status | — | 100% | 5 |
@@ -111,6 +113,18 @@ Height 0.3 m (1′00″) · Weight 6 kg (13.2 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
+| Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 
 ---
 

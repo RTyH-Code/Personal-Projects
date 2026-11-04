@@ -77,9 +77,11 @@ Height 0.7 m (2′04″) · Weight 6.9 kg (15.2 lbs)
 | 12 | Razor Leaf | Grass | Physical | 55 | 95% | 25 |
 | 15 | Poison Powder | Poison | Status | — | 75% | 35 |
 | 15 | Sleep Powder | Grass | Status | — | 75% | 15 |
+| 18 | Seed Bomb ★ | Grass | Physical | 80 | 100% | 15 |
 | 21 | Take Down ★ | Normal | Physical | 90 | 85% | 20 |
 | 24 | Sweet Scent | Normal | Status | — | 100% | 20 |
 | 27 | Synthesis | Grass | Status | — | — | 5 |
+| 33 | Power Whip ★ | Grass | Physical | 120 | 85% | 10 |
 | 36 | Solar Beam | Grass | Special | 120 | 100% | 10 |
 
 ### By TM/HM
@@ -116,6 +118,18 @@ Height 0.7 m (2′04″) · Weight 6.9 kg (15.2 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
+| Power Whip | Grass | Physical | 120 | 85% | 10 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Bulbasaur with a father that knows the move.
@@ -130,6 +144,8 @@ Breed a Bulbasaur with a father that knows the move.
 | Magical Leaf | Grass | Special | 60 | — | 20 |
 | Grass Whistle | Grass | Status | — | 55% | 15 |
 | Curse | ??? | Status | — | — | 10 |
+| Power Whip | Grass | Physical | 120 | 85% | 10 |
+| Leaf Storm | Grass | Special | 130 | 90% | 5 |
 
 ---
 

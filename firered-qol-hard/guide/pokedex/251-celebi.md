@@ -72,6 +72,7 @@ Celebi does not evolve.
 | 50 | Leech Seed | Grass | Status | — | 90% | 10 |
 | 60 | Recover | Normal | Status | — | — | 5 |
 | 70 | Future Sight | Psychic | Special | 120 | 100% | 10 |
+| 90 | Leaf Storm ★ | Grass | Special | 130 | 90% | 5 |
 | 100 | Perish Song | Normal | Status | — | — | 5 |
 
 ### By TM/HM
@@ -116,6 +117,25 @@ Celebi does not evolve.
 | Metronome | Normal | Status | — | — | 10 | Cinnabar Island Pokémon Lab Research Room |
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Psycho Cut | Psychic | Physical | 70 | 100% | 20 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
 
 ---
 

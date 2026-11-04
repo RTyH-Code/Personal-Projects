@@ -75,6 +75,7 @@ Height 0.6 m (2′00″) · Weight 2.3 kg (5.1 lbs)
 | 7 | Night Shade | Ghost | Special | varies | 100% | 15 |
 | 10 | Spite | Ghost | Status | — | 100% | 10 |
 | 16 | Will-O-Wisp | Fire | Status | — | 85% | 15 |
+| 19 | Shadow Sneak ★ | Ghost | Physical | 40 | 100% | 30 |
 | 26 | Curse | ??? | Status | — | — | 10 |
 | 30 | Shadow Ball | Ghost | Special | 80 | 100% | 15 |
 | 34 | Role Play ★ | Psychic | Status | — | 100% | 10 |
@@ -120,6 +121,18 @@ Height 0.6 m (2′00″) · Weight 2.3 kg (5.1 lbs)
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Shuppet with a father that knows the move.
@@ -131,6 +144,9 @@ Breed a Shuppet with a father that knows the move.
 | Foresight | Normal | Status | — | 100% | 40 |
 | Astonish | Ghost | Physical | 30 | 100% | 15 |
 | Imprison | Psychic | Status | — | — | 10 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 |
+| Shadow Sneak | Ghost | Physical | 40 | 100% | 30 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 |
 
 ---
 

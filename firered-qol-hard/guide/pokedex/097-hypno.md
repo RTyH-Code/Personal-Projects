@@ -77,8 +77,10 @@ Height 1.6 m (5′03″) · Weight 75.6 kg (166.7 lbs)
 | 17 | Poison Gas | Poison | Status | — | 90% | 40 |
 | 21 | Psybeam ★ | Psychic | Special | 65 | 100% | 20 |
 | 25 | Psych Up | Normal | Status | — | — | 10 |
+| 32 | Zen Headbutt ★ | Psychic | Physical | 80 | 90% | 15 |
 | 37 | Swagger | Normal | Status | — | 85% | 15 |
 | 42 | Psychic | Psychic | Special | 90 | 100% | 10 |
+| 47 | Nasty Plot ★ | Dark | Status | — | — | 20 |
 | 56 | Future Sight | Psychic | Special | 120 | 100% | 10 |
 
 ### By TM/HM
@@ -129,6 +131,23 @@ Height 1.6 m (5′03″) · Weight 75.6 kg (166.7 lbs)
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Drowzee (passed down to Drowzee, which then evolves) with a father that knows the move.
@@ -141,6 +160,8 @@ Breed a Drowzee (passed down to Drowzee, which then evolves) with a father that 
 | Fire Punch | Fire | Physical | 75 | 100% | 15 |
 | Thunder Punch | Electric | Physical | 75 | 100% | 15 |
 | Ice Punch | Ice | Physical | 75 | 100% | 15 |
+| Psycho Cut | Psychic | Physical | 70 | 100% | 20 |
+| Nasty Plot | Dark | Status | — | — | 20 |
 
 ---
 

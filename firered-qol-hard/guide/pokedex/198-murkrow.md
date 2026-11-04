@@ -132,6 +132,21 @@ Murkrow does not evolve.
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Murkrow with a father that knows the move.
@@ -146,6 +161,7 @@ Breed a Murkrow with a father that knows the move.
 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | Feather Dance | Flying | Status | — | 100% | 15 |
 | Perish Song | Normal | Status | — | — | 5 |
+| Brave Bird | Flying | Physical | 120 | 100% | 15 |
 
 ---
 

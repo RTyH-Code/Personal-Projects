@@ -74,6 +74,7 @@ Height 1 m (3′03″) · Weight 29.5 kg (65.0 lbs)
 | 17 | Pursuit | Dark | Physical | 40 | 100% | 20 |
 | 20 | Focus Energy | Normal | Status | — | — | 30 |
 | 32 | Pin Missile | Bug | Physical | 25 | 95% | 20 |
+| 35 | Poison Jab ★ | Poison | Physical | 80 | 100% | 20 |
 | 38 | Agility | Psychic | Status | — | — | 30 |
 | 41 | Endeavor | Normal | Physical | varies | 100% | 5 |
 
@@ -110,6 +111,20 @@ Height 1 m (3′03″) · Weight 29.5 kg (65.0 lbs)
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ---
 

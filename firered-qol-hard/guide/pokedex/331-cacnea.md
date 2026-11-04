@@ -79,6 +79,7 @@ Height 0.4 m (1′04″) · Weight 51.3 kg (113.1 lbs)
 | 22 | Ingrain | Grass | Status | — | — | 20 |
 | 30 | Spikes | Ground | Status | — | — | 20 |
 | 38 | Pin Missile | Bug | Physical | 25 | 95% | 20 |
+| 42 | Energy Ball ★ | Grass | Special | 90 | 100% | 10 |
 | 46 | Cotton Spore | Grass | Status | — | 100% | 40 |
 | 50 | Sandstorm | Rock | Status | — | — | 10 |
 | 54 | Destiny Bond | Ghost | Status | — | — | 5 |
@@ -119,6 +120,23 @@ Height 0.4 m (1′04″) · Weight 51.3 kg (113.1 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Cacnea with a father that knows the move.
@@ -130,6 +148,9 @@ Breed a Cacnea with a father that knows the move.
 | Teeter Dance | Normal | Status | — | 100% | 20 |
 | Dynamic Punch | Fighting | Physical | 100 | 50% | 5 |
 | Counter | Fighting | Physical | varies | 100% | 20 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 |
+| Nasty Plot | Dark | Status | — | — | 20 |
 
 ---
 

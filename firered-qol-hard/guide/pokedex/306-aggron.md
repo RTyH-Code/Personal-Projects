@@ -79,8 +79,10 @@ Height 2.1 m (6′11″) · Weight 360 kg (793.7 lbs)
 | 16 | Headbutt | Normal | Physical | 70 | 100% | 15 |
 | 20 | Protect | Normal | Status | — | — | 10 |
 | 24 | Rock Slide ★ | Rock | Physical | 75 | 90% | 10 |
+| 28 | Iron Head ★ | Steel | Physical | 80 | 100% | 15 |
 | 35 | Metal Sound | Steel | Status | — | 85% | 40 |
 | 40 | Take Down | Normal | Physical | 90 | 85% | 20 |
+| 48 | Autotomize ★ | Steel | Status | — | — | 15 |
 | 56 | Iron Tail | Steel | Physical | 100 | 75% | 15 |
 | 64 | Iron Defense | Steel | Status | — | — | 15 |
 | 80 | Double-Edge | Normal | Physical | 120 | 100% | 15 |
@@ -142,6 +144,29 @@ Height 2.1 m (6′11″) · Weight 360 kg (793.7 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Smart Strike | Steel | Physical | 70 | — | 10 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Aron (passed down to Aron, which then evolves) with a father that knows the move.
@@ -152,6 +177,8 @@ Breed a Aron (passed down to Aron, which then evolves) with a father that knows 
 | Body Slam | Normal | Physical | 85 | 100% | 15 |
 | Stomp | Normal | Physical | 65 | 100% | 20 |
 | Smelling Salt | Normal | Physical | 70 | 100% | 10 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 |
+| Dragon Rush | Dragon | Physical | 100 | 75% | 10 |
 
 ---
 

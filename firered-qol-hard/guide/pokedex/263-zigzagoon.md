@@ -74,6 +74,7 @@ Height 0.4 m (1′04″) · Weight 17.5 kg (38.6 lbs)
 | 6 | Tail Whip | Normal | Status | — | 100% | 30 |
 | 9 | Covet | Normal | Physical | 60 | 100% | 25 |
 | 12 | Headbutt | Normal | Physical | 70 | 100% | 15 |
+| 15 | Baby-Doll Eyes ★ | Fairy | Status | — | 100% | 30 |
 | 18 | Pin Missile | Bug | Physical | 25 | 95% | 20 |
 | 21 | Rest | Psychic | Status | — | — | 5 |
 | 24 | Take Down ★ | Normal | Physical | 90 | 85% | 20 |
@@ -121,6 +122,16 @@ Height 0.4 m (1′04″) · Weight 17.5 kg (38.6 lbs)
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Zigzagoon with a father that knows the move.
@@ -132,6 +143,7 @@ Breed a Zigzagoon with a father that knows the move.
 | Substitute | Normal | Status | — | — | 10 |
 | Tickle | Normal | Status | — | 100% | 20 |
 | Trick | Psychic | Status | — | 100% | 10 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 |
 
 ---
 

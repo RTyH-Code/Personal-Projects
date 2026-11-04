@@ -77,6 +77,7 @@ Relicanth does not evolve.
 | 15 | Yawn | Normal | Status | — | 100% | 10 |
 | 20 | Dive ★ | Water | Physical | 80 | 100% | 10 |
 | 25 | Take Down | Normal | Physical | 90 | 85% | 20 |
+| 30 | Aqua Tail ★ | Water | Physical | 90 | 90% | 10 |
 | 35 | Rest | Psychic | Status | — | — | 5 |
 | 40 | Flail ★ | Normal | Physical | varies | 100% | 15 |
 | 45 | Hydro Pump | Water | Special | 110 | 80% | 5 |
@@ -122,6 +123,22 @@ Relicanth does not evolve.
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Relicanth with a father that knows the move.
@@ -134,6 +151,8 @@ Breed a Relicanth with a father that knows the move.
 | Amnesia | Psychic | Status | — | — | 20 |
 | Sleep Talk | Normal | Status | — | — | 10 |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 |
 
 ---
 

@@ -75,6 +75,7 @@ Seviper does not evolve.
 | 14 | Screech | Normal | Status | — | 85% | 40 |
 | 19 | Glare | Normal | Status | — | 100% | 30 |
 | 21 | Poison Fang | Poison | Physical | 50 | 100% | 15 |
+| 31 | Poison Jab ★ | Poison | Physical | 80 | 100% | 20 |
 | 34 | Haze | Ice | Status | — | — | 30 |
 | 39 | Crunch | Dark | Physical | 80 | 100% | 15 |
 | 46 | Sludge Bomb ★ | Poison | Special | 90 | 100% | 10 |
@@ -116,6 +117,26 @@ Seviper does not evolve.
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Seviper with a father that knows the move.
@@ -126,6 +147,7 @@ Breed a Seviper with a father that knows the move.
 | Swallow | Normal | Status | — | — | 10 |
 | Spit Up | Normal | Special | varies | 100% | 10 |
 | Body Slam | Normal | Physical | 85 | 100% | 15 |
+| Night Slash | Dark | Physical | 70 | 100% | 15 |
 
 ---
 

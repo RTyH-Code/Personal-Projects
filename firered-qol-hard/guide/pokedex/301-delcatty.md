@@ -123,6 +123,17 @@ Height 1.1 m (3′07″) · Weight 32.6 kg (71.9 lbs)
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Skitty (passed down to Skitty, which then evolves) with a father that knows the move.
@@ -137,6 +148,8 @@ Breed a Skitty (passed down to Skitty, which then evolves) with a father that kn
 | Baton Pass | Normal | Status | — | — | 40 |
 | Substitute | Normal | Status | — | — | 10 |
 | Tickle | Normal | Status | — | 100% | 20 |
+| Mud Bomb | Ground | Special | 65 | 85% | 10 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 |
 
 ---
 

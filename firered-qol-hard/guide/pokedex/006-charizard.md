@@ -76,6 +76,7 @@ Height 1.7 m (5′07″) · Weight 90.5 kg (199.5 lbs)
 | 1 | Smokescreen | Normal | Status | — | 100% | 20 |
 | 1 | Heat Wave | Fire | Special | 95 | 90% | 10 |
 | 1 | Dragon Claw ★ | Dragon | Physical | 80 | 100% | 15 |
+| 1 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
 | 12 | Dragon Breath ★ | Dragon | Special | 60 | 100% | 20 |
 | 24 | Slash | Normal | Physical | 70 | 100% | 20 |
 | 30 | Flamethrower | Fire | Special | 90 | 100% | 15 |
@@ -131,6 +132,25 @@ Height 1.7 m (5′07″) · Weight 90.5 kg (199.5 lbs)
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 | Blast Burn | Fire | Special | 150 | 90% | 5 | Two Island Cape Brink House |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Mystical Fire | Fire | Special | 75 | 100% | 10 | 3 |
+| Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Charmander (passed down to Charmander, which then evolves) with a father that knows the move.
@@ -145,6 +165,8 @@ Breed a Charmander (passed down to Charmander, which then evolves) with a father
 | Beat Up | Dark | Physical | 10 | 100% | 10 |
 | Swords Dance | Normal | Status | — | — | 20 |
 | Dragon Dance | Dragon | Status | — | — | 20 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 |
+| Dragon Rush | Dragon | Physical | 100 | 75% | 10 |
 
 ---
 

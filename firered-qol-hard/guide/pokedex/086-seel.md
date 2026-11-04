@@ -83,10 +83,13 @@ Height 1.1 m (3′07″) · Weight 90 kg (198.4 lbs)
 | 7 | Charm ★ | Fairy | Status | — | 100% | 20 |
 | 11 | Icy Wind | Ice | Special | 55 | 95% | 15 |
 | 13 | Encore ★ | Normal | Status | — | 100% | 5 |
+| 17 | Ice Shard ★ | Ice | Physical | 40 | 100% | 30 |
 | 21 | Rest | Psychic | Status | — | — | 5 |
 | 27 | Aurora Beam | Ice | Special | 65 | 100% | 20 |
+| 31 | Aqua Jet ★ | Water | Physical | 40 | 100% | 20 |
 | 37 | Take Down | Normal | Physical | 90 | 85% | 20 |
 | 41 | Dive ★ | Water | Physical | 80 | 100% | 10 |
+| 43 | Aqua Tail ★ | Water | Physical | 90 | 90% | 10 |
 | 47 | Ice Beam | Ice | Special | 90 | 100% | 10 |
 | 51 | Safeguard | Normal | Status | — | — | 25 |
 
@@ -123,6 +126,17 @@ Height 1.1 m (3′07″) · Weight 90 kg (198.4 lbs)
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
+| Smart Strike | Steel | Physical | 70 | — | 10 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
 
 ### By breeding (egg moves)
 

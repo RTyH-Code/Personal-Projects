@@ -40,7 +40,8 @@ A quality-of-life, modernization and difficulty hack built on the pret/pokefirer
 The Move Maniac on Two Island works as usual (for mushrooms) until you
 become Champion. After that he's free and can teach any move the Pokémon can
 learn: level-up moves at any level, egg moves, every compatible TM/HM, and
-move tutor moves (including Frenzy Plant, Blast Burn and Hydro Cannon).
+move tutor moves (including Frenzy Plant, Blast Burn and Hydro Cannon), and
+every move the modern tutor can teach it.
 
 ## Deoxys formes
 - Deoxys has all four formes: Normal, Attack, Defense and Speed. Each has its
@@ -99,6 +100,26 @@ and you can use her as often as you like.
     Moonblast. Pokémon learn them by level-up or as egg moves where modern
     games teach them that way.
   - Lance's Dragons carry Iron Tail so they aren't helpless against Fairies.
+
+## Later moves
+- 74 moves from Gen 4 onward, such as Night Slash, Dark Pulse, Drain Punch,
+  Aura Sphere, Focus Blast, Bullet Punch, Poison Jab, Gunk Shot, Earth Power,
+  Stone Edge, X-Scissor, Bug Buzz, Shadow Claw, Shadow Sneak, Flash Cannon,
+  Iron Head, Zen Headbutt, Psychic Fangs, Aqua Jet, Scald, Liquidation,
+  Energy Ball, Leaf Storm, Wood Hammer, Discharge, Wild Charge, Ice Shard,
+  Icicle Crash, Dragon Pulse, Draco Meteor, Air Slash, Brave Bird, Boomburst,
+  Nasty Plot and Rock Polish.
+  - Their power, accuracy, PP, priority and category are modern.
+  - Animations are reused from existing moves, tinted in the move's type
+    colour.
+- Pokémon learn them by level-up and as egg moves wherever modern games
+  teach them that way.
+- **Modern tutor:** the old man in the Viridian City Pokémon Center teaches,
+  for free, any of these moves (and the Fairy moves) that the Pokémon could
+  learn by TM or tutor in Gen 4–9.
+  - Moves with 70+ power, and Nasty Plot, need 3 badges.
+  - Moves with 90+ power need 5 badges.
+- The Pokédex guide lists every Pokémon's modern tutor moves.
 
 ## Modern abilities
 - Every Pokémon can have up to three abilities, as in modern games: two
@@ -237,7 +258,7 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `1addf8d50db8d95e3a0294f8ed80c745fff8b60e`
+Patched ROM SHA-1: `63eb730c86b293690613bece102412d4b95f19e4`
 
 Start a new game. Saves from earlier versions of this hack aren't supported.
 

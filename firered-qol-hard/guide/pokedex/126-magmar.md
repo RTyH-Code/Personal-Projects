@@ -76,6 +76,7 @@ Height 1.3 m (4′03″) · Weight 44.5 kg (98.1 lbs)
 | 20 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | 24 | Scary Face ★ | Normal | Status | — | 100% | 10 |
 | 28 | Fire Punch | Fire | Physical | 75 | 100% | 15 |
+| 34 | Lava Plume ★ | Fire | Special | 80 | 100% | 15 |
 | 40 | Low Kick ★ | Fighting | Physical | varies | 100% | 20 |
 | 46 | Flamethrower | Fire | Special | 90 | 100% | 15 |
 | 52 | Sunny Day | Fire | Status | — | — | 5 |
@@ -120,6 +121,21 @@ Height 1.3 m (4′03″) · Weight 44.5 kg (98.1 lbs)
 | Seismic Toss | Fighting | Physical | varies | 100% | 20 | Pewter City Museum 1F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Dual Chop | Dragon | Physical | 40 | 90% | 15 | 0 |
+| Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
 
 ### By breeding (egg moves)
 
