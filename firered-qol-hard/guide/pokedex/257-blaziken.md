@@ -85,6 +85,7 @@ Height 1.9 m (6′03″) · Weight 52 kg (114.6 lbs)
 | 35 | Focus Energy | Normal | Status | — | — | 30 |
 | 42 | Bulk Up | Fighting | Status | — | — | 20 |
 | 49 | Reversal ★ | Fighting | Physical | varies | 100% | 15 |
+| 63 | Brave Bird ★ | Flying | Physical | 120 | 100% | 15 |
 
 ### By TM/HM
 
@@ -132,6 +133,27 @@ Height 1.9 m (6′03″) · Weight 52 kg (114.6 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Dual Chop | Dragon | Physical | 40 | 90% | 15 | 0 |
+| Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
+| Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Torchic (passed down to Torchic, which then evolves) with a father that knows the move.
@@ -144,6 +166,7 @@ Breed a Torchic (passed down to Torchic, which then evolves) with a father that 
 | Swagger | Normal | Status | — | 85% | 15 |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 |
 | Smelling Salt | Normal | Physical | 70 | 100% | 10 |
+| Night Slash | Dark | Physical | 70 | 100% | 15 |
 
 ---
 

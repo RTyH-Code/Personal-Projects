@@ -114,6 +114,20 @@ Height 0.4 m (1′04″) · Weight 1.2 kg (2.6 lbs)
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Swablu with a father that knows the move.
@@ -125,6 +139,7 @@ Breed a Swablu with a father that knows the move.
 | Pursuit | Dark | Physical | 40 | 100% | 20 |
 | Rage | Normal | Physical | 20 | 100% | 20 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 |
+| Dragon Rush | Dragon | Physical | 100 | 75% | 10 |
 
 ---
 

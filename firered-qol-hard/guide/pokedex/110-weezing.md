@@ -78,6 +78,7 @@ Height 1.2 m (3′11″) · Weight 9.5 kg (20.9 lbs)
 | 1 | Smog | Poison | Special | 30 | 70% | 20 |
 | 1 | Poison Gas | Poison | Status | — | 90% | 40 |
 | 1 | Heat Wave ★ | Fire | Special | 95 | 90% | 10 |
+| 1 | Double Hit ★ | Normal | Physical | 35 | 90% | 10 |
 | 20 | Sludge | Poison | Special | 65 | 100% | 20 |
 | 24 | Haze | Ice | Status | — | — | 30 |
 | 28 | Self-Destruct | Normal | Physical | 200 | 100% | 5 |
@@ -123,6 +124,16 @@ Height 1.2 m (3′11″) · Weight 9.5 kg (20.9 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Explosion | Normal | Physical | 250 | 100% | 5 | Mt. Ember Exterior |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)
 

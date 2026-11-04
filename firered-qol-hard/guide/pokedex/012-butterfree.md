@@ -81,7 +81,9 @@ Height 1.1 m (3′07″) · Weight 32 kg (70.5 lbs)
 | 12 | Sleep Powder | Grass | Status | — | 75% | 15 |
 | 16 | Psybeam | Psychic | Special | 65 | 100% | 20 |
 | 20 | Whirlwind | Normal | Status | — | 100% | 20 |
+| 24 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
 | 28 | Safeguard | Normal | Status | — | — | 25 |
+| 32 | Bug Buzz ★ | Bug | Special | 90 | 100% | 10 |
 
 ### By TM/HM
 
@@ -118,6 +120,22 @@ Height 1.1 m (3′07″) · Weight 32 kg (70.5 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ---
 

@@ -111,6 +111,16 @@ Height 0.5 m (1′08″) · Weight 5.5 kg (12.1 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Nincada with a father that knows the move.
@@ -121,6 +131,8 @@ Breed a Nincada with a father that knows the move.
 | Faint Attack | Dark | Physical | 60 | — | 20 |
 | Gust | Flying | Special | 40 | 100% | 35 |
 | Silver Wind | Bug | Special | 60 | 100% | 5 |
+| Night Slash | Dark | Physical | 70 | 100% | 15 |
+| Bug Buzz | Bug | Special | 90 | 100% | 10 |
 
 ---
 

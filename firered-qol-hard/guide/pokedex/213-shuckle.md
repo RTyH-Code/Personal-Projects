@@ -71,10 +71,12 @@ Shuckle does not evolve.
 | 1 | Wrap | Normal | Physical | 15 | 90% | 20 |
 | 1 | Withdraw | Water | Status | — | — | 40 |
 | 5 | Rollout ★ | Rock | Physical | 30 | 90% | 20 |
+| 10 | Struggle Bug ★ | Bug | Special | 50 | 100% | 20 |
 | 15 | Rock Throw ★ | Rock | Physical | 50 | 90% | 15 |
 | 20 | Safeguard | Normal | Status | — | — | 25 |
 | 25 | Rest | Psychic | Status | — | — | 5 |
 | 40 | Rock Slide ★ | Rock | Physical | 75 | 90% | 10 |
+| 60 | Stone Edge ★ | Rock | Physical | 100 | 80% | 5 |
 
 ### By TM/HM
 
@@ -110,6 +112,18 @@ Shuckle does not evolve.
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)
 

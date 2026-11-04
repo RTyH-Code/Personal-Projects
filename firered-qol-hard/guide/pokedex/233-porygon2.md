@@ -76,6 +76,7 @@ Height 0.6 m (2′00″) · Weight 32.5 kg (71.7 lbs)
 | 25 | Conversion 2 | Normal | Status | — | — | 30 |
 | 30 | Agility | Psychic | Status | — | — | 30 |
 | 35 | Recover | Normal | Status | — | — | 5 |
+| 40 | Discharge ★ | Electric | Special | 80 | 100% | 15 |
 | 45 | Tri Attack | Normal | Special | 80 | 100% | 10 |
 | 50 | Lock-On | Normal | Status | — | 100% | 5 |
 | 55 | Zap Cannon | Electric | Special | 120 | 50% | 5 |
@@ -119,6 +120,17 @@ Height 0.6 m (2′00″) · Weight 32.5 kg (71.7 lbs)
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
+| Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ---
 

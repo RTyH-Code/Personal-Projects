@@ -72,6 +72,7 @@ Articuno does not evolve.
 | 1 | Mist | Ice | Status | — | — | 30 |
 | 5 | Powder Snow | Ice | Special | 40 | 100% | 25 |
 | 10 | Reflect | Psychic | Status | — | — | 20 |
+| 15 | Ice Shard ★ | Ice | Physical | 40 | 100% | 30 |
 | 20 | Agility | Psychic | Status | — | — | 30 |
 | 25 | Ancient Power ★ | Rock | Special | 60 | 100% | 5 |
 | 45 | Ice Beam | Ice | Special | 90 | 100% | 10 |
@@ -114,6 +115,19 @@ Articuno does not evolve.
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ---
 

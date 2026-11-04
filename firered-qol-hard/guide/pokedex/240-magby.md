@@ -74,6 +74,7 @@ Height 0.7 m (2′04″) · Weight 21.4 kg (47.2 lbs)
 | 20 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | 24 | Scary Face ★ | Normal | Status | — | 100% | 10 |
 | 28 | Fire Punch | Fire | Physical | 75 | 100% | 15 |
+| 32 | Lava Plume ★ | Fire | Special | 80 | 100% | 15 |
 | 36 | Low Kick ★ | Fighting | Physical | varies | 100% | 20 |
 | 40 | Flamethrower | Fire | Special | 90 | 100% | 15 |
 | 44 | Sunny Day | Fire | Status | — | — | 5 |
@@ -115,6 +116,16 @@ Height 0.7 m (2′04″) · Weight 21.4 kg (47.2 lbs)
 | Seismic Toss | Fighting | Physical | varies | 100% | 20 | Pewter City Museum 1F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Dual Chop | Dragon | Physical | 40 | 90% | 15 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 
 ### By breeding (egg moves)
 

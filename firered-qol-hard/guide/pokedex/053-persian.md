@@ -79,12 +79,14 @@ Height 1 m (3′03″) · Weight 32 kg (70.5 lbs)
 | 1 | Scratch | Normal | Physical | 40 | 100% | 35 |
 | 1 | Growl | Normal | Status | — | 100% | 40 |
 | 1 | Fake Out | Normal | Physical | 40 | 100% | 10 |
+| 1 | Power Gem ★ | Rock | Special | 80 | 100% | 20 |
 | 12 | Pay Day | Normal | Physical | 40 | 100% | 20 |
 | 16 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 20 | Taunt ★ | Dark | Status | — | 100% | 20 |
 | 31 | Fury Swipes | Normal | Physical | 18 | 80% | 15 |
 | 36 | Screech | Normal | Status | — | 85% | 40 |
 | 42 | Slash | Normal | Physical | 70 | 100% | 20 |
+| 48 | Nasty Plot ★ | Dark | Status | — | — | 20 |
 | 54 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
 
 ### By TM/HM
@@ -129,6 +131,22 @@ Height 1 m (3′03″) · Weight 32 kg (70.5 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 
 ### By breeding (egg moves)
 

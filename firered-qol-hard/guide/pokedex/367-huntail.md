@@ -76,6 +76,7 @@ Height 1.7 m (5′07″) · Weight 27 kg (59.5 lbs)
 | 26 | Dive ★ | Water | Physical | 80 | 100% | 10 |
 | 29 | Baton Pass | Normal | Status | — | — | 40 |
 | 34 | Crunch | Dark | Physical | 80 | 100% | 15 |
+| 39 | Aqua Tail ★ | Water | Physical | 90 | 90% | 10 |
 | 50 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 
 ### By TM/HM
@@ -112,6 +113,16 @@ Height 1.7 m (5′07″) · Weight 27 kg (59.5 lbs)
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)
 

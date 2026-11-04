@@ -110,6 +110,7 @@ Height 0.9 m (2′11″) · Weight 45.5 kg (100.3 lbs)
 | 20 | Screech | Normal | Status | — | 85% | 40 |
 | 24 | Bubble Beam | Water | Special | 65 | 100% | 20 |
 | 32 | Acid Armor ★ | Poison | Status | — | — | 20 |
+| 36 | Poison Jab ★ | Poison | Physical | 80 | 100% | 20 |
 | 40 | Surf ★ | Water | Special | 90 | 100% | 15 |
 | 48 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 
@@ -148,6 +149,19 @@ Height 0.9 m (2′11″) · Weight 45.5 kg (100.3 lbs)
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Cross Poison | Poison | Physical | 70 | 100% | 20 | 3 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)
 

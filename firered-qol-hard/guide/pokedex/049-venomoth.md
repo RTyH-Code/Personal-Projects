@@ -74,12 +74,15 @@ Height 1.5 m (4′11″) · Weight 12.5 kg (27.6 lbs)
 | 1 | Tackle | Normal | Physical | 40 | 100% | 35 |
 | 1 | Supersonic | Normal | Status | — | 55% | 20 |
 | 1 | Disable | Normal | Status | — | 100% | 20 |
+| 1 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
 | 11 | Confusion | Psychic | Special | 50 | 100% | 25 |
 | 13 | Poison Powder | Poison | Status | — | 75% | 35 |
 | 17 | Psybeam | Psychic | Special | 65 | 100% | 20 |
 | 23 | Stun Spore | Grass | Status | — | 75% | 30 |
+| 25 | Bug Buzz ★ | Bug | Special | 90 | 100% | 10 |
 | 29 | Sleep Powder | Grass | Status | — | 75% | 15 |
 | 37 | Leech Life | Bug | Physical | 80 | 100% | 10 |
+| 41 | Zen Headbutt ★ | Psychic | Physical | 80 | 90% | 15 |
 | 47 | Poison Fang ★ | Poison | Physical | 50 | 100% | 15 |
 | 55 | Psychic | Psychic | Special | 90 | 100% | 10 |
 
@@ -115,6 +118,21 @@ Height 1.5 m (4′11″) · Weight 12.5 kg (27.6 lbs)
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)
 

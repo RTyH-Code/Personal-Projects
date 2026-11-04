@@ -102,6 +102,7 @@ Height 1.2 m (3′11″) · Weight 25 kg (55.1 lbs)
 | 25 | Bubble Beam ★ | Water | Special | 65 | 100% | 20 |
 | 30 | Agility | Psychic | Status | — | — | 30 |
 | 37 | Water Pulse ★ | Water | Special | 60 | 100% | 20 |
+| 44 | Dragon Pulse ★ | Dragon | Special | 85 | 100% | 10 |
 | 51 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 | 58 | Dragon Dance | Dragon | Status | — | — | 20 |
 | 65 | Rain Dance ★ | Water | Status | — | — | 5 |
@@ -137,6 +138,18 @@ Height 1.2 m (3′11″) · Weight 25 kg (55.1 lbs)
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)
 

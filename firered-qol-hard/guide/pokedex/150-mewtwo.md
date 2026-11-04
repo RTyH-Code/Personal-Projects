@@ -70,8 +70,10 @@ Mewtwo does not evolve.
 | 1 | Confusion | Psychic | Special | 50 | 100% | 25 |
 | 1 | Swift | Normal | Special | 60 | — | 20 |
 | 8 | Ancient Power ★ | Rock | Special | 60 | 100% | 5 |
+| 16 | Psycho Cut ★ | Psychic | Physical | 70 | 100% | 20 |
 | 24 | Safeguard | Normal | Status | — | — | 25 |
 | 32 | Amnesia | Psychic | Status | — | — | 20 |
+| 40 | Aura Sphere ★ | Fighting | Special | 80 | — | 20 |
 | 48 | Psychic | Psychic | Special | 90 | 100% | 10 |
 | 64 | Mist | Ice | Status | — | — | 30 |
 | 80 | Recover | Normal | Status | — | — | 5 |
@@ -140,6 +142,33 @@ Mewtwo does not evolve.
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
+| Psycho Cut | Psychic | Physical | 70 | 100% | 20 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
 ---
 

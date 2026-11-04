@@ -80,8 +80,10 @@ Farfetch'd does not evolve.
 | 35 | False Swipe | Normal | Physical | 40 | 100% | 40 |
 | 40 | Slash | Normal | Physical | 70 | 100% | 20 |
 | 45 | Swords Dance | Normal | Status | — | — | 20 |
+| 50 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
 | 55 | Leaf Blade ★ | Grass | Physical | 90 | 100% | 15 |
 | 60 | Agility | Psychic | Status | — | — | 30 |
+| 65 | Brave Bird ★ | Flying | Physical | 120 | 100% | 15 |
 
 ### By TM/HM
 
@@ -115,6 +117,18 @@ Farfetch'd does not evolve.
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Farfetch'd with a father that knows the move.
@@ -129,6 +143,7 @@ Breed a Farfetch'd with a father that knows the move.
 | Flail | Normal | Physical | varies | 100% | 15 |
 | Feather Dance | Flying | Status | — | 100% | 15 |
 | Curse | ??? | Status | — | — | 10 |
+| Night Slash | Dark | Physical | 70 | 100% | 15 |
 
 ---
 

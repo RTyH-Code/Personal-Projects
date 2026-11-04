@@ -81,6 +81,7 @@ Height 1.3 m (4′03″) · Weight 77.4 kg (170.6 lbs)
 | 22 | Ingrain | Grass | Status | — | — | 20 |
 | 30 | Spikes | Ground | Status | — | — | 20 |
 | 38 | Pin Missile | Bug | Physical | 25 | 95% | 20 |
+| 44 | Energy Ball ★ | Grass | Special | 90 | 100% | 10 |
 | 49 | Cotton Spore | Grass | Status | — | 100% | 40 |
 | 54 | Sandstorm | Rock | Status | — | — | 10 |
 
@@ -123,6 +124,27 @@ Height 1.3 m (4′03″) · Weight 77.4 kg (170.6 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Cacnea (passed down to Cacnea, which then evolves) with a father that knows the move.
@@ -134,6 +156,9 @@ Breed a Cacnea (passed down to Cacnea, which then evolves) with a father that kn
 | Teeter Dance | Normal | Status | — | 100% | 20 |
 | Dynamic Punch | Fighting | Physical | 100 | 50% | 5 |
 | Counter | Fighting | Physical | varies | 100% | 20 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 |
+| Nasty Plot | Dark | Status | — | — | 20 |
 
 ---
 

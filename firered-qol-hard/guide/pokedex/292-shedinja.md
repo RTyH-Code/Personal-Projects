@@ -75,8 +75,10 @@ Height 0.8 m (2′07″) · Weight 1.2 kg (2.6 lbs)
 | 1 | False Swipe ★ | Normal | Physical | 40 | 100% | 40 |
 | 1 | Metal Claw ★ | Steel | Physical | 50 | 95% | 35 |
 | 1 | Grudge | Ghost | Status | — | — | 5 |
+| 1 | Shadow Claw ★ | Ghost | Physical | 70 | 100% | 15 |
 | 15 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | 23 | Absorb ★ | Grass | Special | 20 | 100% | 25 |
+| 29 | Shadow Sneak ★ | Ghost | Physical | 40 | 100% | 30 |
 | 36 | Fury Swipes | Normal | Physical | 18 | 80% | 15 |
 | 43 | Mind Reader | Normal | Status | — | 100% | 5 |
 | 50 | Shadow Ball | Ghost | Special | 80 | 100% | 15 |
@@ -116,6 +118,18 @@ Height 0.8 m (2′07″) · Weight 1.2 kg (2.6 lbs)
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Nincada (passed down to Nincada, which then evolves) with a father that knows the move.
@@ -126,6 +140,8 @@ Breed a Nincada (passed down to Nincada, which then evolves) with a father that 
 | Faint Attack | Dark | Physical | 60 | — | 20 |
 | Gust | Flying | Special | 40 | 100% | 35 |
 | Silver Wind | Bug | Special | 60 | 100% | 5 |
+| Night Slash | Dark | Physical | 70 | 100% | 15 |
+| Bug Buzz | Bug | Special | 90 | 100% | 10 |
 
 ---
 

@@ -76,6 +76,7 @@ Height 0.6 m (2′00″) · Weight 42.1 kg (92.8 lbs)
 | 20 | Scary Face | Normal | Status | — | 100% | 10 |
 | 25 | Crunch | Dark | Physical | 80 | 100% | 15 |
 | 31 | Dragon Claw | Dragon | Physical | 80 | 100% | 15 |
+| 35 | Zen Headbutt ★ | Psychic | Physical | 80 | 90% | 15 |
 | 40 | Focus Energy | Normal | Status | — | — | 30 |
 | 45 | Flamethrower ★ | Fire | Special | 90 | 100% | 15 |
 | 50 | Outrage ★ | Dragon | Physical | 120 | 100% | 10 |
@@ -118,6 +119,18 @@ Height 0.6 m (2′00″) · Weight 42.1 kg (92.8 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Draco Meteor | Dragon | Special | 130 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Bagon with a father that knows the move.
@@ -129,6 +142,9 @@ Breed a Bagon with a father that knows the move.
 | Dragon Rage | Dragon | Special | varies | 100% | 10 |
 | Twister | Dragon | Special | 40 | 100% | 20 |
 | Dragon Dance | Dragon | Status | — | — | 20 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 |
+| Dragon Rush | Dragon | Physical | 100 | 75% | 10 |
 
 ---
 

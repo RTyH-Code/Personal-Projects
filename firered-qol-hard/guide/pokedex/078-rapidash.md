@@ -77,6 +77,8 @@ Height 1.7 m (5′07″) · Weight 95 kg (209.4 lbs)
 | 1 | Ember | Fire | Special | 40 | 100% | 25 |
 | 1 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
 | 1 | Megahorn ★ | Bug | Physical | 120 | 85% | 10 |
+| 1 | Poison Jab ★ | Poison | Physical | 80 | 100% | 20 |
+| 1 | Smart Strike ★ | Steel | Physical | 70 | — | 10 |
 | 20 | Agility | Psychic | Status | — | — | 30 |
 | 25 | Flame Wheel ★ | Fire | Physical | 60 | 100% | 25 |
 | 30 | Stomp | Normal | Physical | 65 | 100% | 20 |
@@ -115,6 +117,21 @@ Height 1.7 m (5′07″) · Weight 95 kg (209.4 lbs)
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
+| Mystical Fire | Fire | Special | 75 | 100% | 10 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Smart Strike | Steel | Physical | 70 | — | 10 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
+| Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 
 ### By breeding (egg moves)
 

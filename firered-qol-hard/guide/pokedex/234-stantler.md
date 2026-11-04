@@ -80,6 +80,7 @@ Stantler does not evolve.
 | 23 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | 27 | Calm Mind | Psychic | Status | — | — | 20 |
 | 32 | Role Play | Psychic | Status | — | 100% | 10 |
+| 37 | Zen Headbutt ★ | Psychic | Physical | 80 | 90% | 15 |
 | 49 | Imprison ★ | Psychic | Status | — | — | 10 |
 | 55 | Double-Edge ★ | Normal | Physical | 120 | 100% | 15 |
 
@@ -126,6 +127,20 @@ Stantler does not evolve.
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Stantler with a father that knows the move.
@@ -138,6 +153,7 @@ Breed a Stantler with a father that knows the move.
 | Swagger | Normal | Status | — | 85% | 15 |
 | Psych Up | Normal | Status | — | — | 10 |
 | Extrasensory | Psychic | Special | 80 | 100% | 20 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 |
 
 ---
 

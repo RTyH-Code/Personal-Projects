@@ -79,10 +79,13 @@ Height 1.7 m (5′07″) · Weight 76.6 kg (168.9 lbs)
 | 1 | Tail Whip | Normal | Status | — | 100% | 30 |
 | 1 | Water Gun ★ | Water | Special | 40 | 100% | 25 |
 | 1 | Confusion | Psychic | Special | 50 | 100% | 25 |
+| 1 | Aqua Jet ★ | Water | Physical | 40 | 100% | 20 |
 | 9 | Fury Swipes | Normal | Physical | 18 | 80% | 15 |
 | 12 | Water Pulse ★ | Water | Special | 60 | 100% | 20 |
 | 15 | Disable | Normal | Status | — | 100% | 20 |
+| 18 | Zen Headbutt ★ | Psychic | Physical | 80 | 90% | 15 |
 | 21 | Screech | Normal | Status | — | 85% | 40 |
+| 24 | Aqua Tail ★ | Water | Physical | 90 | 90% | 10 |
 | 30 | Psych Up | Normal | Status | — | — | 10 |
 | 36 | Amnesia ★ | Psychic | Status | — | — | 20 |
 | 40 | Hydro Pump | Water | Special | 110 | 80% | 5 |
@@ -133,6 +136,27 @@ Height 1.7 m (5′07″) · Weight 76.6 kg (168.9 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Psyduck (passed down to Psyduck, which then evolves) with a father that knows the move.
@@ -147,6 +171,7 @@ Breed a Psyduck (passed down to Psyduck, which then evolves) with a father that 
 | Psychic | Psychic | Special | 90 | 100% | 10 |
 | Cross Chop | Fighting | Physical | 100 | 80% | 5 |
 | Refresh | Normal | Status | — | — | 20 |
+| Mud Bomb | Ground | Special | 65 | 85% | 10 |
 
 ---
 

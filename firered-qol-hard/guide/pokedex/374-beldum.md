@@ -72,6 +72,15 @@ Height 0.6 m (2′00″) · Weight 95.2 kg (209.9 lbs)
 |--:|---|---|---|--:|--:|--:|
 | 1 | Tackle ★ | Normal | Physical | 40 | 100% | 35 |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+
 ---
 
 ← #373 [Salamence](373-salamence.md) · [Index](../POKEDEX.md) · [Metang](375-metang.md) #375 →

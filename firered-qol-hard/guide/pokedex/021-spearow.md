@@ -128,6 +128,15 @@ Height 0.3 m (1′00″) · Weight 2 kg (4.4 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
+
 ### By breeding (egg moves)
 
 Breed a Spearow with a father that knows the move.

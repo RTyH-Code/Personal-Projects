@@ -133,6 +133,29 @@ Height 1.3 m (4′03″) · Weight 59.6 kg (131.4 lbs)
 | Explosion | Normal | Physical | 250 | 100% | 5 | Mt. Ember Exterior |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
+| Petal Blizzard | Grass | Physical | 90 | 100% | 15 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Seedot (passed down to Seedot, which then evolves) with a father that knows the move.
@@ -145,6 +168,8 @@ Breed a Seedot (passed down to Seedot, which then evolves) with a father that kn
 | Razor Wind | Normal | Special | 80 | 100% | 10 |
 | Take Down | Normal | Physical | 90 | 85% | 20 |
 | False Swipe | Normal | Physical | 40 | 100% | 40 |
+| Night Slash | Dark | Physical | 70 | 100% | 15 |
+| Nasty Plot | Dark | Status | — | — | 20 |
 
 ---
 

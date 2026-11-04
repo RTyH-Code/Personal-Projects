@@ -72,6 +72,8 @@ Latias does not evolve.
 | 25 | Dragon Breath | Dragon | Special | 60 | 100% | 20 |
 | 30 | Wish | Normal | Status | — | — | 10 |
 | 35 | Mist Ball | Psychic | Special | 95 | 100% | 5 |
+| 40 | Zen Headbutt ★ | Psychic | Physical | 80 | 90% | 15 |
+| 45 | Dragon Pulse ★ | Dragon | Special | 85 | 100% | 10 |
 | 60 | Psychic | Psychic | Special | 90 | 100% | 10 |
 
 ### By TM/HM
@@ -126,6 +128,30 @@ Latias does not evolve.
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
+| Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Mystical Fire | Fire | Special | 75 | 100% | 10 | 3 |
+| Psycho Cut | Psychic | Physical | 70 | 100% | 20 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Draco Meteor | Dragon | Special | 130 | 90% | 5 | 5 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ---
 

@@ -77,6 +77,7 @@ Height 1.4 m (4′07″) · Weight 39.2 kg (86.4 lbs)
 | 1 | Peck | Flying | Physical | 35 | 100% | 35 |
 | 5 | Quick Attack ★ | Normal | Physical | 40 | 100% | 30 |
 | 9 | Fury Attack | Normal | Physical | 15 | 85% | 20 |
+| 19 | Double Hit ★ | Normal | Physical | 35 | 90% | 10 |
 | 23 | Agility | Psychic | Status | — | — | 30 |
 | 27 | Uproar | Normal | Special | 90 | 100% | 10 |
 | 33 | Swords Dance ★ | Normal | Status | — | — | 20 |
@@ -113,6 +114,15 @@ Height 1.4 m (4′07″) · Weight 39.2 kg (86.4 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
+| Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Doduo with a father that knows the move.
@@ -125,6 +135,7 @@ Breed a Doduo with a father that knows the move.
 | Faint Attack | Dark | Physical | 60 | — | 20 |
 | Flail | Normal | Physical | varies | 100% | 15 |
 | Endeavor | Normal | Physical | varies | 100% | 5 |
+| Brave Bird | Flying | Physical | 120 | 100% | 15 |
 
 ---
 

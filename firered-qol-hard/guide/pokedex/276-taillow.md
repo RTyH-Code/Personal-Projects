@@ -76,7 +76,9 @@ Height 0.3 m (1′00″) · Weight 2.3 kg (5.1 lbs)
 | 17 | Double Team | Normal | Status | — | — | 15 |
 | 21 | Aerial Ace | Flying | Physical | 60 | — | 20 |
 | 29 | Agility | Psychic | Status | — | — | 30 |
+| 33 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
 | 37 | Endeavor | Normal | Physical | varies | 100% | 5 |
+| 41 | Brave Bird ★ | Flying | Physical | 120 | 100% | 15 |
 | 45 | Reversal ★ | Fighting | Physical | varies | 100% | 15 |
 
 ### By TM/HM
@@ -109,6 +111,14 @@ Height 0.3 m (1′00″) · Weight 2.3 kg (5.1 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+
 ### By breeding (egg moves)
 
 Breed a Taillow with a father that knows the move.
@@ -121,6 +131,8 @@ Breed a Taillow with a father that knows the move.
 | Mirror Move | Flying | Status | — | — | 20 |
 | Rage | Normal | Physical | 20 | 100% | 20 |
 | Sky Attack | Flying | Physical | 140 | 90% | 5 |
+| Brave Bird | Flying | Physical | 120 | 100% | 15 |
+| Boomburst | Normal | Special | 140 | 100% | 10 |
 
 ---
 

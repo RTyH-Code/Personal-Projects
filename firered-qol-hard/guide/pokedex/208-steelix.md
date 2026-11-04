@@ -74,6 +74,8 @@ Height 9.2 m (30′02″) · Weight 400 kg (881.8 lbs)
 | 1 | Rock Throw | Rock | Physical | 50 | 90% | 15 |
 | 1 | Harden | Normal | Status | — | — | 30 |
 | 1 | Crunch | Dark | Physical | 80 | 100% | 15 |
+| 1 | Rock Polish ★ | Rock | Status | — | — | 20 |
+| 8 | Autotomize ★ | Steel | Status | — | — | 15 |
 | 12 | Dragon Breath | Dragon | Special | 60 | 100% | 20 |
 | 16 | Curse ★ | ??? | Status | — | — | 10 |
 | 20 | Rock Slide ★ | Rock | Physical | 75 | 90% | 10 |
@@ -83,6 +85,7 @@ Height 9.2 m (30′02″) · Weight 400 kg (881.8 lbs)
 | 40 | Sandstorm | Rock | Status | — | — | 10 |
 | 44 | Dig ★ | Ground | Physical | 80 | 100% | 10 |
 | 48 | Iron Tail | Steel | Physical | 100 | 75% | 15 |
+| 52 | Stone Edge ★ | Rock | Physical | 100 | 80% | 5 |
 | 56 | Double-Edge | Normal | Physical | 120 | 100% | 15 |
 
 ### By TM/HM
@@ -124,6 +127,28 @@ Height 9.2 m (30′02″) · Weight 400 kg (881.8 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
+| Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
+| Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Onix (passed down to Onix, which then evolves) with a father that knows the move.
@@ -134,6 +159,7 @@ Breed a Onix (passed down to Onix, which then evolves) with a father that knows 
 | Flail | Normal | Physical | varies | 100% | 15 |
 | Explosion | Normal | Physical | 250 | 100% | 5 |
 | Block | Normal | Status | — | 100% | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 |
 
 ---
 

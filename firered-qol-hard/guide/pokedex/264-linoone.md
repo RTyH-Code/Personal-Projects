@@ -73,6 +73,7 @@ Height 0.5 m (1′08″) · Weight 32.5 kg (71.7 lbs)
 | 1 | Pin Missile ★ | Bug | Physical | 25 | 95% | 20 |
 | 1 | Growl | Normal | Status | — | 100% | 40 |
 | 1 | Slash | Normal | Physical | 70 | 100% | 20 |
+| 1 | Baby-Doll Eyes ★ | Fairy | Status | — | 100% | 30 |
 | 9 | Covet | Normal | Physical | 60 | 100% | 25 |
 | 12 | Headbutt | Normal | Physical | 70 | 100% | 15 |
 | 18 | Fury Swipes | Normal | Physical | 18 | 80% | 15 |
@@ -125,6 +126,19 @@ Height 0.5 m (1′08″) · Weight 32.5 kg (71.7 lbs)
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Zigzagoon (passed down to Zigzagoon, which then evolves) with a father that knows the move.
@@ -136,6 +150,7 @@ Breed a Zigzagoon (passed down to Zigzagoon, which then evolves) with a father t
 | Substitute | Normal | Status | — | — | 10 |
 | Tickle | Normal | Status | — | 100% | 20 |
 | Trick | Psychic | Status | — | 100% | 10 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 |
 
 ---
 

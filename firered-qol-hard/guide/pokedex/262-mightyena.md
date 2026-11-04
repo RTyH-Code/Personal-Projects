@@ -73,6 +73,7 @@ Height 1 m (3′03″) · Weight 37 kg (81.6 lbs)
 | 1 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 1 | Thief | Dark | Physical | 60 | 100% | 25 |
 | 1 | Crunch | Dark | Physical | 80 | 100% | 15 |
+| 1 | Snarl ★ | Dark | Special | 55 | 95% | 15 |
 | 13 | Leer ★ | Normal | Status | — | 100% | 30 |
 | 13 | Howl | Normal | Status | — | — | 40 |
 | 16 | Roar | Normal | Status | — | 100% | 20 |
@@ -120,6 +121,19 @@ Height 1 m (3′03″) · Weight 37 kg (81.6 lbs)
 | Counter | Fighting | Physical | varies | 100% | 20 | Celadon City Department Store 3F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 
 ### By breeding (egg moves)
 

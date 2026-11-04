@@ -71,6 +71,14 @@ Height 0.6 m (2′00″) · Weight 10 kg (22.0 lbs)
 |--:|---|---|---|--:|--:|--:|
 | 1 | Harden | Normal | Status | — | — | 30 |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+
 ---
 
 ← #013 [Weedle](013-weedle.md) · [Index](../POKEDEX.md) · [Beedrill](015-beedrill.md) #015 →

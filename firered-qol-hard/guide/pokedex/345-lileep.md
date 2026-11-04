@@ -82,6 +82,7 @@ Height 1 m (3′03″) · Weight 23.8 kg (52.5 lbs)
 | 41 | Stockpile | Normal | Status | — | — | 20 |
 | 41 | Spit Up | Normal | Special | varies | 100% | 10 |
 | 41 | Swallow | Normal | Status | — | — | 10 |
+| 44 | Energy Ball ★ | Grass | Special | 90 | 100% | 10 |
 
 ### By TM/HM
 
@@ -113,6 +114,18 @@ Height 1 m (3′03″) · Weight 23.8 kg (52.5 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

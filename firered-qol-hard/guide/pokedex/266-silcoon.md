@@ -68,6 +68,14 @@ Height 0.6 m (2′00″) · Weight 10 kg (22.0 lbs)
 |--:|---|---|---|--:|--:|--:|
 | 1 | Harden | Normal | Status | — | — | 30 |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+
 ---
 
 ← #265 [Wurmple](265-wurmple.md) · [Index](../POKEDEX.md) · [Beautifly](267-beautifly.md) #267 →

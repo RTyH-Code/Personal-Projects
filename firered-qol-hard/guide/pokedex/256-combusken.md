@@ -128,6 +128,20 @@ Height 0.9 m (2′11″) · Weight 19.5 kg (43.0 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Dual Chop | Dragon | Physical | 40 | 90% | 15 | 0 |
+| Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Torchic (passed down to Torchic, which then evolves) with a father that knows the move.
@@ -140,6 +154,7 @@ Breed a Torchic (passed down to Torchic, which then evolves) with a father that 
 | Swagger | Normal | Status | — | 85% | 15 |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 |
 | Smelling Salt | Normal | Physical | 70 | 100% | 10 |
+| Night Slash | Dark | Physical | 70 | 100% | 15 |
 
 ---
 

@@ -110,6 +110,16 @@ Height 0.7 m (2′04″) · Weight 21 kg (46.3 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
+
 ### By breeding (egg moves)
 
 Breed a Tyrogue with a father that knows the move.
@@ -121,6 +131,8 @@ Breed a Tyrogue with a father that knows the move.
 | Mach Punch | Fighting | Physical | 40 | 100% | 30 |
 | Mind Reader | Normal | Status | — | 100% | 5 |
 | Helping Hand | Normal | Status | — | — | 20 |
+| Vacuum Wave | Fighting | Special | 40 | 100% | 30 |
+| Bullet Punch | Steel | Physical | 40 | 100% | 30 |
 
 ---
 

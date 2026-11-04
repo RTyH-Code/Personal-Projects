@@ -76,6 +76,7 @@ Height 1.3 m (4′03″) · Weight 60 kg (132.3 lbs)
 | 20 | Bubble Beam ★ | Water | Special | 65 | 100% | 20 |
 | 24 | Stomp | Normal | Physical | 65 | 100% | 20 |
 | 31 | Flail | Normal | Physical | varies | 100% | 15 |
+| 36 | Razor Shell ★ | Water | Physical | 75 | 95% | 10 |
 | 42 | Slam ★ | Normal | Physical | 80 | 75% | 20 |
 | 48 | Swords Dance ★ | Normal | Status | — | — | 20 |
 | 54 | Crabhammer | Water | Physical | 100 | 90% | 10 |
@@ -120,6 +121,18 @@ Height 1.3 m (4′03″) · Weight 60 kg (132.3 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Razor Shell | Water | Physical | 75 | 95% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Krabby (passed down to Krabby, which then evolves) with a father that knows the move.
@@ -133,6 +146,7 @@ Breed a Krabby (passed down to Krabby, which then evolves) with a father that kn
 | Slam | Normal | Physical | 80 | 75% | 20 |
 | Knock Off | Dark | Physical | 65 | 100% | 20 |
 | Swords Dance | Normal | Status | — | — | 20 |
+| Night Slash | Dark | Physical | 70 | 100% | 15 |
 
 ---
 

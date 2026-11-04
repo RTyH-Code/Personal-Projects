@@ -79,6 +79,7 @@ Luvdisc does not evolve.
 | 26 | Flail | Normal | Physical | varies | 100% | 15 |
 | 31 | Sweet Kiss | Fairy | Status | — | 75% | 10 |
 | 34 | Take Down | Normal | Physical | 90 | 85% | 20 |
+| 37 | Baby-Doll Eyes ★ | Fairy | Status | — | 100% | 30 |
 | 46 | Hydro Pump ★ | Water | Special | 110 | 80% | 5 |
 | 49 | Safeguard | Normal | Status | — | — | 25 |
 
@@ -114,6 +115,16 @@ Luvdisc does not evolve.
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+
 ### By breeding (egg moves)
 
 Breed a Luvdisc with a father that knows the move.
@@ -124,6 +135,7 @@ Breed a Luvdisc with a father that knows the move.
 | Supersonic | Normal | Status | — | 55% | 20 |
 | Water Sport | Water | Status | — | — | 15 |
 | Mud Sport | Ground | Status | — | — | 15 |
+| Aqua Jet | Water | Physical | 40 | 100% | 20 |
 
 ---
 

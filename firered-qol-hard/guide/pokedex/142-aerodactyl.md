@@ -77,9 +77,12 @@ Aerodactyl does not evolve.
 | 20 | Rock Slide ★ | Rock | Physical | 75 | 90% | 10 |
 | 25 | Roar ★ | Normal | Status | — | 100% | 20 |
 | 30 | Crunch ★ | Dark | Physical | 80 | 100% | 15 |
+| 35 | Iron Head ★ | Steel | Physical | 80 | 100% | 15 |
 | 40 | Take Down | Normal | Physical | 90 | 85% | 20 |
+| 45 | Stone Edge ★ | Rock | Physical | 100 | 80% | 5 |
 | 50 | Agility | Psychic | Status | — | — | 30 |
 | 55 | Hyper Beam | Normal | Special | 150 | 90% | 5 |
+| 60 | Giga Impact ★ | Normal | Physical | 150 | 90% | 5 |
 
 ### By TM/HM
 
@@ -123,6 +126,24 @@ Aerodactyl does not evolve.
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)
 

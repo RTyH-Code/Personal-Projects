@@ -77,6 +77,7 @@ Height 6.2 m (20′04″) · Weight 162 kg (357.1 lbs)
 | 8 | Twister | Dragon | Special | 40 | 100% | 20 |
 | 16 | Attract | Normal | Status | — | 100% | 15 |
 | 28 | Recover | Normal | Status | — | — | 5 |
+| 32 | Aqua Tail ★ | Water | Physical | 90 | 90% | 10 |
 | 36 | Safeguard | Normal | Status | — | — | 25 |
 | 40 | Surf ★ | Water | Special | 90 | 100% | 15 |
 | 44 | Rain Dance | Water | Status | — | — | 5 |
@@ -117,6 +118,23 @@ Height 6.2 m (20′04″) · Weight 162 kg (357.1 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
+| Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Feebas (passed down to Feebas, which then evolves) with a father that knows the move.
@@ -129,6 +147,7 @@ Breed a Feebas (passed down to Feebas, which then evolves) with a father that kn
 | Hypnosis | Psychic | Status | — | 60% | 20 |
 | Light Screen | Psychic | Status | — | — | 30 |
 | Confuse Ray | Ghost | Status | — | 100% | 10 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 |
 
 ---
 

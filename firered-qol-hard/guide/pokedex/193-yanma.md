@@ -82,6 +82,8 @@ Yanma does not evolve.
 | 38 | Hypnosis | Psychic | Status | — | 60% | 20 |
 | 43 | Wing Attack | Flying | Physical | 60 | 100% | 35 |
 | 46 | Screech | Normal | Status | — | 85% | 40 |
+| 54 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
+| 57 | Bug Buzz ★ | Bug | Special | 90 | 100% | 10 |
 
 ### By TM/HM
 
@@ -115,6 +117,18 @@ Yanma does not evolve.
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
+| Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

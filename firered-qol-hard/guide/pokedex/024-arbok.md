@@ -84,6 +84,7 @@ Height 3.5 m (11′06″) · Weight 65 kg (143.3 lbs)
 | 27 | Swallow | Normal | Status | — | — | 10 |
 | 39 | Sludge Bomb ★ | Poison | Special | 90 | 100% | 10 |
 | 51 | Haze | Ice | Status | — | — | 30 |
+| 63 | Gunk Shot ★ | Poison | Physical | 120 | 80% | 5 |
 
 ### By TM/HM
 
@@ -121,6 +122,23 @@ Height 3.5 m (11′06″) · Weight 65 kg (143.3 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)
 

@@ -124,6 +124,23 @@ Heracross does not evolve.
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
+| Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Smart Strike | Steel | Physical | 70 | — | 10 | 3 |
+| Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Heracross with a father that knows the move.
@@ -134,6 +151,7 @@ Breed a Heracross with a father that knows the move.
 | Bide | Normal | Physical | varies | — | 10 |
 | Flail | Normal | Physical | varies | 100% | 15 |
 | False Swipe | Normal | Physical | 40 | 100% | 40 |
+| Night Slash | Dark | Physical | 70 | 100% | 15 |
 
 ---
 

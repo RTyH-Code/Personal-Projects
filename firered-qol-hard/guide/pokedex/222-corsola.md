@@ -78,6 +78,8 @@ Corsola does not evolve.
 | 20 | Ancient Power | Rock | Special | 60 | 100% | 5 |
 | 25 | Bubble Beam | Water | Special | 65 | 100% | 20 |
 | 30 | Flail ★ | Normal | Physical | varies | 100% | 15 |
+| 40 | Power Gem ★ | Rock | Special | 80 | 100% | 20 |
+| 45 | Earth Power ★ | Ground | Special | 90 | 100% | 10 |
 | 50 | Recover | Normal | Status | — | — | 5 |
 | 55 | Mirror Coat | Psychic | Special | varies | 100% | 20 |
 
@@ -126,6 +128,20 @@ Corsola does not evolve.
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Corsola with a father that knows the move.
@@ -140,6 +156,7 @@ Breed a Corsola with a father that knows the move.
 | Ingrain | Grass | Status | — | — | 20 |
 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | Icicle Spear | Ice | Physical | 25 | 100% | 30 |
+| Liquidation | Water | Physical | 85 | 100% | 10 |
 
 ---
 

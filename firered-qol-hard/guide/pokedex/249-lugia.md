@@ -74,6 +74,7 @@ Lugia does not evolve.
 | 1 | Whirlwind | Normal | Status | — | 100% | 20 |
 | 1 | Ancient Power | Rock | Special | 60 | 100% | 5 |
 | 1 | Weather Ball ★ | Normal | Special | 50 | 100% | 10 |
+| 1 | Dragon Rush ★ | Dragon | Physical | 100 | 75% | 10 |
 | 9 | Mist ★ | Ice | Status | — | — | 30 |
 | 18 | Safeguard | Normal | Status | — | — | 25 |
 | 27 | Calm Mind ★ | Psychic | Status | — | — | 20 |
@@ -139,6 +140,26 @@ Lugia does not evolve.
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ---
 

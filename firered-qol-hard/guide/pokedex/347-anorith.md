@@ -77,6 +77,7 @@ Height 0.7 m (2′04″) · Weight 12.5 kg (27.6 lbs)
 | 32 | Crush Claw ★ | Normal | Physical | 75 | 95% | 10 |
 | 36 | Rock Blast | Rock | Physical | 25 | 90% | 10 |
 | 41 | Protect | Normal | Status | — | — | 10 |
+| 44 | X-Scissor ★ | Bug | Physical | 80 | 100% | 15 |
 
 ### By TM/HM
 
@@ -113,6 +114,18 @@ Height 0.7 m (2′04″) · Weight 12.5 kg (27.6 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Cross Poison | Poison | Physical | 70 | 100% | 20 | 3 |
+| X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Anorith with a father that knows the move.
@@ -123,6 +136,8 @@ Breed a Anorith with a father that knows the move.
 | Knock Off | Dark | Physical | 65 | 100% | 20 |
 | Swords Dance | Normal | Status | — | — | 20 |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 |
+| Cross Poison | Poison | Physical | 70 | 100% | 20 |
+| Aqua Jet | Water | Physical | 40 | 100% | 20 |
 
 ---
 

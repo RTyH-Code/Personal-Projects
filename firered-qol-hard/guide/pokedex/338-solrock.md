@@ -72,9 +72,12 @@ Solrock does not evolve.
 | 1 | Harden | Normal | Status | — | — | 30 |
 | 1 | Morning Sun ★ | Normal | Status | — | — | 5 |
 | 5 | Hypnosis ★ | Psychic | Status | — | 60% | 20 |
+| 10 | Rock Polish ★ | Rock | Status | — | — | 20 |
 | 15 | Rock Slide | Rock | Physical | 75 | 90% | 10 |
+| 20 | Zen Headbutt ★ | Psychic | Physical | 80 | 90% | 15 |
 | 25 | Cosmic Power | Psychic | Status | — | — | 20 |
 | 30 | Psychic ★ | Psychic | Special | 90 | 100% | 10 |
+| 35 | Stone Edge ★ | Rock | Physical | 100 | 80% | 5 |
 | 40 | Solar Beam | Grass | Special | 120 | 100% | 10 |
 | 50 | Explosion | Normal | Physical | 250 | 100% | 5 |
 
@@ -120,6 +123,21 @@ Solrock does not evolve.
 | Explosion | Normal | Physical | 250 | 100% | 5 | Mt. Ember Exterior |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
 ---
 

@@ -72,6 +72,7 @@ Height 1.7 m (5′07″) · Weight 80 kg (176.4 lbs)
 | 1 | Sludge | Poison | Special | 65 | 100% | 20 |
 | 1 | Poison Gas | Poison | Status | — | 90% | 40 |
 | 1 | Yawn | Normal | Status | — | 100% | 10 |
+| 1 | Gunk Shot ★ | Poison | Physical | 120 | 80% | 5 |
 | 12 | Amnesia | Psychic | Status | — | — | 20 |
 | 20 | Encore | Normal | Status | — | 100% | 5 |
 | 25 | Toxic | Poison | Status | — | 90% | 10 |
@@ -121,6 +122,20 @@ Height 1.7 m (5′07″) · Weight 80 kg (176.4 lbs)
 | Explosion | Normal | Physical | 250 | 100% | 5 | Mt. Ember Exterior |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Gulpin (passed down to Gulpin, which then evolves) with a father that knows the move.
@@ -131,6 +146,7 @@ Breed a Gulpin (passed down to Gulpin, which then evolves) with a father that kn
 | Acid Armor | Poison | Status | — | — | 20 |
 | Smog | Poison | Special | 30 | 70% | 20 |
 | Pain Split | Normal | Status | — | 100% | 20 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 |
 
 ---
 

@@ -82,10 +82,13 @@ Height 1 m (3′03″) · Weight 27 kg (59.5 lbs)
 | 1 | Baton Pass ★ | Normal | Status | — | — | 40 |
 | 1 | Helping Hand | Normal | Status | — | — | 20 |
 | 1 | Covet ★ | Normal | Physical | 60 | 100% | 25 |
+| 1 | Snarl ★ | Dark | Special | 55 | 95% | 15 |
 | 5 | Sand Attack | Ground | Status | — | 100% | 15 |
 | 10 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
+| 15 | Baby-Doll Eyes ★ | Fairy | Status | — | 100% | 30 |
 | 20 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | 30 | Moonlight | Fairy | Status | — | — | 5 |
+| 40 | Dark Pulse ★ | Dark | Special | 80 | 100% | 15 |
 | 45 | Screech | Normal | Status | — | 85% | 40 |
 | 50 | Mean Look | Normal | Status | — | 100% | 5 |
 
@@ -125,6 +128,16 @@ Height 1 m (3′03″) · Weight 27 kg (59.5 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)
 

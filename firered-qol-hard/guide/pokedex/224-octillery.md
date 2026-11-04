@@ -74,6 +74,7 @@ Height 0.9 m (2′11″) · Weight 28.5 kg (62.8 lbs)
 | 1 | Helping Hand ★ | Normal | Status | — | — | 20 |
 | 1 | Rock Blast ★ | Rock | Physical | 25 | 90% | 10 |
 | 1 | Water Pulse ★ | Water | Special | 60 | 100% | 20 |
+| 1 | Gunk Shot ★ | Poison | Physical | 120 | 80% | 5 |
 | 12 | Psybeam | Psychic | Special | 65 | 100% | 20 |
 | 16 | Aurora Beam | Ice | Special | 65 | 100% | 20 |
 | 20 | Bubble Beam | Water | Special | 65 | 100% | 20 |
@@ -122,6 +123,20 @@ Height 0.9 m (2′11″) · Weight 28.5 kg (62.8 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)
 

@@ -85,9 +85,11 @@ Height 0.9 m (2′11″) · Weight 25 kg (55.1 lbs)
 | 1 | Covet ★ | Normal | Physical | 60 | 100% | 25 |
 | 5 | Sand Attack | Ground | Status | — | 100% | 15 |
 | 10 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
+| 15 | Baby-Doll Eyes ★ | Fairy | Status | — | 100% | 30 |
 | 20 | Smog | Poison | Special | 30 | 70% | 20 |
 | 25 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 35 | Fire Spin | Fire | Special | 35 | 85% | 15 |
+| 40 | Lava Plume ★ | Fire | Special | 80 | 100% | 15 |
 | 45 | Scary Face ★ | Normal | Status | — | 100% | 10 |
 
 ### By TM/HM
@@ -123,6 +125,16 @@ Height 0.9 m (2′11″) · Weight 25 kg (55.1 lbs)
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Mystical Fire | Fire | Special | 75 | 100% | 10 | 3 |
+| Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)
 

@@ -128,6 +128,7 @@ Height 6.5 m (21′04″) · Weight 235 kg (518.1 lbs)
 | 21 | Waterfall ★ | Water | Physical | 80 | 100% | 15 |
 | 24 | Crunch ★ | Dark | Physical | 80 | 100% | 15 |
 | 28 | Rain Dance | Water | Status | — | — | 5 |
+| 32 | Aqua Tail ★ | Water | Physical | 90 | 90% | 10 |
 | 36 | Dragon Dance | Dragon | Status | — | — | 20 |
 | 40 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 | 48 | Thrash | Normal | Physical | 120 | 100% | 10 |
@@ -177,6 +178,23 @@ Height 6.5 m (21′04″) · Weight 235 kg (518.1 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Power Whip | Grass | Physical | 120 | 85% | 10 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
 ---
 

@@ -77,6 +77,7 @@ Misdreavus does not evolve.
 | 32 | Pain Split | Normal | Status | — | 100% | 20 |
 | 41 | Shadow Ball ★ | Ghost | Special | 80 | 100% | 15 |
 | 46 | Perish Song | Normal | Status | — | — | 5 |
+| 50 | Power Gem ★ | Rock | Special | 80 | 100% | 20 |
 
 ### By TM/HM
 
@@ -118,6 +119,22 @@ Misdreavus does not evolve.
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Misdreavus with a father that knows the move.
@@ -128,6 +145,9 @@ Breed a Misdreavus with a father that knows the move.
 | Destiny Bond | Ghost | Status | — | — | 5 |
 | Psych Up | Normal | Status | — | — | 10 |
 | Imprison | Psychic | Status | — | — | 10 |
+| Shadow Sneak | Ghost | Physical | 40 | 100% | 30 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 |
+| Nasty Plot | Dark | Status | — | — | 20 |
 
 ---
 

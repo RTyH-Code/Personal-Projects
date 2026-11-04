@@ -77,6 +77,7 @@ Height 0.5 m (1′08″) · Weight 21.5 kg (47.4 lbs)
 | 21 | Imprison ★ | Psychic | Status | — | — | 10 |
 | 24 | Cosmic Power | Psychic | Status | — | — | 20 |
 | 27 | Extrasensory ★ | Psychic | Special | 80 | 100% | 20 |
+| 30 | Earth Power ★ | Ground | Special | 90 | 100% | 10 |
 | 33 | Self-Destruct | Normal | Physical | 200 | 100% | 5 |
 | 39 | Sandstorm | Rock | Status | — | — | 10 |
 | 42 | Explosion | Normal | Physical | 250 | 100% | 5 |
@@ -119,6 +120,22 @@ Height 0.5 m (1′08″) · Weight 21.5 kg (47.4 lbs)
 | Explosion | Normal | Physical | 250 | 100% | 5 | Mt. Ember Exterior |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
+| Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 
 ---
 

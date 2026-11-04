@@ -74,10 +74,13 @@ Height 1.4 m (4′07″) · Weight 61.5 kg (135.6 lbs)
 | 1 | Thunder Shock | Electric | Special | 40 | 100% | 30 |
 | 1 | Thunder Wave | Electric | Status | — | 90% | 20 |
 | 1 | Zap Cannon ★ | Electric | Special | 120 | 50% | 5 |
+| 1 | Dragon Pulse ★ | Dragon | Special | 85 | 100% | 10 |
 | 11 | Cotton Spore | Grass | Status | — | 100% | 40 |
 | 16 | Charge ★ | Electric | Status | — | — | 20 |
 | 20 | Take Down ★ | Normal | Physical | 90 | 85% | 20 |
 | 29 | Confuse Ray ★ | Ghost | Status | — | 100% | 10 |
+| 35 | Power Gem ★ | Rock | Special | 80 | 100% | 20 |
+| 40 | Discharge ★ | Electric | Special | 80 | 100% | 15 |
 | 51 | Dazzling Gleam ★ | Fairy | Special | 80 | 100% | 10 |
 | 57 | Light Screen | Psychic | Status | — | — | 30 |
 | 62 | Thunder | Electric | Special | 110 | 70% | 10 |
@@ -123,6 +126,25 @@ Height 1.4 m (4′07″) · Weight 61.5 kg (135.6 lbs)
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
+| Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+| Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Mareep (passed down to Mareep, which then evolves) with a father that knows the move.
@@ -136,6 +158,8 @@ Breed a Mareep (passed down to Mareep, which then evolves) with a father that kn
 | Reflect | Psychic | Status | — | — | 20 |
 | Odor Sleuth | Normal | Status | — | 100% | 40 |
 | Charge | Electric | Status | — | — | 20 |
+| Electroweb | Electric | Special | 55 | 95% | 15 |
+| Eerie Impulse | Electric | Status | — | 100% | 15 |
 
 ---
 

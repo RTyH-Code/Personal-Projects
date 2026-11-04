@@ -72,6 +72,8 @@ Height 0.9 m (2′11″) · Weight 21.6 kg (47.6 lbs)
 | 1 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
 | 1 | False Swipe | Normal | Physical | 40 | 100% | 40 |
 | 1 | Fury Cutter | Bug | Physical | 40 | 95% | 20 |
+| 1 | X-Scissor ★ | Bug | Physical | 80 | 100% | 15 |
+| 1 | Energy Ball ★ | Grass | Special | 90 | 100% | 10 |
 | 9 | Mega Drain ★ | Grass | Special | 40 | 100% | 15 |
 | 12 | Detect | Fighting | Status | — | — | 5 |
 | 25 | Giga Drain ★ | Grass | Special | 75 | 100% | 10 |
@@ -80,6 +82,7 @@ Height 0.9 m (2′11″) · Weight 21.6 kg (47.6 lbs)
 | 40 | Leaf Blade | Grass | Physical | 90 | 100% | 15 |
 | 45 | Screech | Normal | Status | — | 85% | 40 |
 | 50 | Endeavor ★ | Normal | Physical | varies | 100% | 5 |
+| 55 | Leaf Storm ★ | Grass | Special | 130 | 90% | 5 |
 
 ### By TM/HM
 
@@ -125,6 +128,23 @@ Height 0.9 m (2′11″) · Weight 21.6 kg (47.6 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Treecko (passed down to Treecko, which then evolves) with a father that knows the move.
@@ -137,6 +157,8 @@ Breed a Treecko (passed down to Treecko, which then evolves) with a father that 
 | Leech Seed | Grass | Status | — | 90% | 10 |
 | Dragon Breath | Dragon | Special | 60 | 100% | 20 |
 | Crush Claw | Normal | Physical | 75 | 95% | 10 |
+| Night Slash | Dark | Physical | 70 | 100% | 15 |
+| Leaf Storm | Grass | Special | 130 | 90% | 5 |
 
 ---
 

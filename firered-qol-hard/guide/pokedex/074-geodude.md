@@ -98,13 +98,16 @@ Height 0.4 m (1′04″) · Weight 20 kg (44.1 lbs)
 |--:|---|---|---|--:|--:|--:|
 | 1 | Tackle | Normal | Physical | 40 | 100% | 35 |
 | 1 | Defense Curl | Normal | Status | — | — | 40 |
+| 6 | Rock Polish ★ | Rock | Status | — | — | 20 |
 | 10 | Rollout | Rock | Physical | 30 | 90% | 20 |
+| 12 | Bulldoze ★ | Ground | Physical | 60 | 100% | 20 |
 | 16 | Rock Throw | Rock | Physical | 50 | 90% | 15 |
 | 24 | Self-Destruct | Normal | Physical | 200 | 100% | 5 |
 | 30 | Rock Blast | Rock | Physical | 25 | 90% | 10 |
 | 34 | Earthquake | Ground | Physical | 100 | 100% | 10 |
 | 36 | Explosion | Normal | Physical | 250 | 100% | 5 |
 | 40 | Double-Edge | Normal | Physical | 120 | 100% | 15 |
+| 42 | Stone Edge ★ | Rock | Physical | 100 | 80% | 5 |
 
 ### By TM/HM
 
@@ -147,6 +150,19 @@ Height 0.4 m (1′04″) · Weight 20 kg (44.1 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Geodude with a father that knows the move.
@@ -156,6 +172,8 @@ Breed a Geodude with a father that knows the move.
 | Mega Punch | Normal | Physical | 80 | 85% | 20 |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 |
 | Block | Normal | Status | — | 100% | 5 |
+| Autotomize | Steel | Status | — | — | 15 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 |
 
 ---
 

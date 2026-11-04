@@ -83,8 +83,10 @@ Height 1 m (3′03″) · Weight 30 kg (66.1 lbs)
 | 13 | Poison Powder | Poison | Status | — | 75% | 35 |
 | 17 | Psybeam | Psychic | Special | 65 | 100% | 20 |
 | 23 | Stun Spore | Grass | Status | — | 75% | 30 |
+| 25 | Bug Buzz ★ | Bug | Special | 90 | 100% | 10 |
 | 29 | Sleep Powder | Grass | Status | — | 75% | 15 |
 | 35 | Leech Life | Bug | Physical | 80 | 100% | 10 |
+| 37 | Zen Headbutt ★ | Psychic | Physical | 80 | 90% | 15 |
 | 41 | Poison Fang ★ | Poison | Physical | 50 | 100% | 15 |
 | 47 | Psychic | Psychic | Special | 90 | 100% | 10 |
 
@@ -118,6 +120,18 @@ Height 1 m (3′03″) · Weight 30 kg (66.1 lbs)
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

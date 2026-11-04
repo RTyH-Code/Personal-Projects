@@ -82,6 +82,8 @@ Height 1 m (3′03″) · Weight 10.8 kg (23.8 lbs)
 | 22 | Comet Punch | Normal | Physical | 18 | 85% | 15 |
 | 26 | Baton Pass | Normal | Status | — | — | 40 |
 | 29 | Agility | Psychic | Status | — | — | 30 |
+| 33 | Bug Buzz ★ | Bug | Special | 90 | 100% | 10 |
+| 36 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
 | 40 | Double-Edge | Normal | Physical | 120 | 100% | 15 |
 
 ### By TM/HM
@@ -121,6 +123,17 @@ Height 1 m (3′03″) · Weight 10.8 kg (23.8 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+
 ### By breeding (egg moves)
 
 Breed a Ledyba with a father that knows the move.
@@ -130,6 +143,8 @@ Breed a Ledyba with a father that knows the move.
 | Psybeam | Psychic | Special | 65 | 100% | 20 |
 | Bide | Normal | Physical | varies | — | 10 |
 | Silver Wind | Bug | Special | 60 | 100% | 5 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 |
+| Bug Buzz | Bug | Special | 90 | 100% | 10 |
 
 ---
 

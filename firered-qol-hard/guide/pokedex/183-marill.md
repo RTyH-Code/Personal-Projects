@@ -84,6 +84,7 @@ Height 0.4 m (1′04″) · Weight 8.5 kg (18.7 lbs)
 | 9 | Charm ★ | Fairy | Status | — | 100% | 20 |
 | 12 | Slam ★ | Normal | Physical | 80 | 75% | 20 |
 | 15 | Bounce ★ | Flying | Physical | 85 | 85% | 5 |
+| 19 | Aqua Tail ★ | Water | Physical | 90 | 90% | 10 |
 | 21 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
 | 27 | Rain Dance | Water | Status | — | — | 5 |
 | 30 | Hydro Pump | Water | Special | 110 | 80% | 5 |
@@ -131,6 +132,22 @@ Height 0.4 m (1′04″) · Weight 8.5 kg (18.7 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
+| Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Azurill (passed down to Azurill, which then evolves) with a father that knows the move.
@@ -142,6 +159,7 @@ Breed a Azurill (passed down to Azurill, which then evolves) with a father that 
 | Refresh | Normal | Status | — | — | 20 |
 | Slam | Normal | Physical | 80 | 75% | 20 |
 | Tickle | Normal | Status | — | 100% | 20 |
+| Aqua Jet | Water | Physical | 40 | 100% | 20 |
 
 ---
 

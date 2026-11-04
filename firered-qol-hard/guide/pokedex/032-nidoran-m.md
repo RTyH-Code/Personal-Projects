@@ -83,6 +83,8 @@ Height 0.5 m (1′08″) · Weight 9 kg (19.8 lbs)
 | 35 | Helping Hand | Normal | Status | — | — | 20 |
 | 40 | Toxic ★ | Poison | Status | — | 90% | 10 |
 | 45 | Flatter | Dark | Status | — | 100% | 15 |
+| 50 | Poison Jab ★ | Poison | Physical | 80 | 100% | 20 |
+| 55 | Earth Power ★ | Ground | Special | 90 | 100% | 10 |
 
 ### By TM/HM
 
@@ -123,6 +125,18 @@ Height 0.5 m (1′08″) · Weight 9 kg (19.8 lbs)
 | Counter | Fighting | Physical | varies | 100% | 20 | Celadon City Department Store 3F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Smart Strike | Steel | Physical | 70 | — | 10 | 3 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

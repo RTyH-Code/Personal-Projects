@@ -75,6 +75,7 @@ Height 1.2 m (3′11″) · Weight 28 kg (61.7 lbs)
 | 1 | Agility ★ | Psychic | Status | — | — | 30 |
 | 1 | Quick Attack ★ | Normal | Physical | 40 | 100% | 30 |
 | 1 | Protect | Normal | Status | — | — | 10 |
+| 1 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
 | 15 | Wing Attack | Flying | Physical | 60 | 100% | 35 |
 | 20 | Water Pulse ★ | Water | Special | 60 | 100% | 20 |
 | 28 | Stockpile | Normal | Status | — | — | 20 |
@@ -117,6 +118,22 @@ Height 1.2 m (3′11″) · Weight 28 kg (61.7 lbs)
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)
 

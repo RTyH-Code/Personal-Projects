@@ -118,6 +118,19 @@ Height 1.3 m (4′03″) · Weight 39 kg (86.0 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Smart Strike | Steel | Physical | 70 | — | 10 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Goldeen (passed down to Goldeen, which then evolves) with a father that knows the move.
@@ -129,6 +142,7 @@ Breed a Goldeen (passed down to Goldeen, which then evolves) with a father that 
 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 | Sleep Talk | Normal | Status | — | — | 10 |
 | Mud Sport | Ground | Status | — | — | 15 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 |
 
 ---
 

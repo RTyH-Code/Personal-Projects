@@ -80,6 +80,7 @@ Height 0.3 m (1′00″) · Weight 1.8 kg (4.0 lbs)
 | 31 | Solar Beam ★ | Grass | Special | 120 | 100% | 10 |
 | 34 | Double-Edge ★ | Normal | Physical | 120 | 100% | 15 |
 | 36 | Sunny Day | Fire | Status | — | — | 5 |
+| 39 | Seed Bomb ★ | Grass | Physical | 80 | 100% | 15 |
 
 ### By TM/HM
 
@@ -113,6 +114,18 @@ Height 0.3 m (1′00″) · Weight 1.8 kg (4.0 lbs)
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)
 

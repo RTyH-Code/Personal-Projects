@@ -81,6 +81,7 @@ Height 0.4 m (1′04″) · Weight 8.5 kg (18.7 lbs)
 | 12 | Haze | Ice | Status | — | — | 30 |
 | 16 | Slam | Normal | Physical | 80 | 75% | 20 |
 | 21 | Yawn | Normal | Status | — | 100% | 10 |
+| 24 | Aqua Tail ★ | Water | Physical | 90 | 90% | 10 |
 | 28 | Muddy Water ★ | Water | Special | 90 | 85% | 10 |
 | 32 | Amnesia | Psychic | Status | — | — | 20 |
 | 36 | Toxic ★ | Poison | Status | — | 90% | 10 |
@@ -125,6 +126,21 @@ Height 0.4 m (1′04″) · Weight 8.5 kg (18.7 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Wooper with a father that knows the move.
@@ -139,6 +155,8 @@ Breed a Wooper with a father that knows the move.
 | Stockpile | Normal | Status | — | — | 20 |
 | Swallow | Normal | Status | — | — | 10 |
 | Spit Up | Normal | Special | varies | 100% | 10 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 |
+| Eerie Impulse | Electric | Status | — | 100% | 15 |
 
 ---
 

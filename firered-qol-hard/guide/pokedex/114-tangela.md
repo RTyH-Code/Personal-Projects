@@ -84,6 +84,7 @@ Tangela does not evolve.
 | 36 | Sleep Powder | Grass | Status | — | 75% | 15 |
 | 40 | Slam | Normal | Physical | 80 | 75% | 20 |
 | 44 | Tickle | Normal | Status | — | 100% | 20 |
+| 48 | Power Whip ★ | Grass | Physical | 120 | 85% | 10 |
 | 52 | Ingrain | Grass | Status | — | — | 20 |
 
 ### By TM/HM
@@ -121,6 +122,19 @@ Tangela does not evolve.
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
+| Power Whip | Grass | Physical | 120 | 85% | 10 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Tangela with a father that knows the move.
@@ -134,6 +148,7 @@ Breed a Tangela with a father that knows the move.
 | Amnesia | Psychic | Status | — | — | 20 |
 | Leech Seed | Grass | Status | — | 90% | 10 |
 | Nature Power | Normal | Status | — | — | 20 |
+| Leaf Storm | Grass | Special | 130 | 90% | 5 |
 
 ---
 

@@ -78,6 +78,7 @@ Height 2.3 m (7′07″) · Weight 88.8 kg (195.8 lbs)
 | 37 | Slash | Normal | Physical | 70 | 100% | 20 |
 | 44 | Screech | Normal | Status | — | 85% | 40 |
 | 51 | Thrash ★ | Normal | Physical | 120 | 100% | 10 |
+| 59 | Aqua Tail ★ | Water | Physical | 90 | 90% | 10 |
 | 65 | Superpower ★ | Fighting | Physical | 120 | 100% | 5 |
 | 70 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 
@@ -131,6 +132,27 @@ Height 2.3 m (7′07″) · Weight 88.8 kg (195.8 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Totodile (passed down to Totodile, which then evolves) with a father that knows the move.
@@ -145,6 +167,7 @@ Breed a Totodile (passed down to Totodile, which then evolves) with a father tha
 | Mud Sport | Ground | Status | — | — | 15 |
 | Water Sport | Water | Status | — | — | 15 |
 | Dragon Claw | Dragon | Physical | 80 | 100% | 15 |
+| Aqua Jet | Water | Physical | 40 | 100% | 20 |
 
 ---
 

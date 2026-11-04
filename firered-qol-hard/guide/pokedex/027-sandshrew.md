@@ -76,6 +76,7 @@ Height 0.6 m (2′00″) · Weight 12 kg (26.5 lbs)
 | 9 | Rollout ★ | Rock | Physical | 30 | 90% | 20 |
 | 12 | Fury Cutter ★ | Bug | Physical | 40 | 95% | 20 |
 | 15 | Rapid Spin ★ | Normal | Physical | 50 | 100% | 40 |
+| 18 | Bulldoze ★ | Ground | Physical | 60 | 100% | 20 |
 | 21 | Swift | Normal | Special | 60 | — | 20 |
 | 24 | Fury Swipes | Normal | Physical | 18 | 80% | 15 |
 | 27 | Agility ★ | Psychic | Status | — | — | 30 |
@@ -126,6 +127,21 @@ Height 0.6 m (2′00″) · Weight 12 kg (26.5 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Sandshrew with a father that knows the move.
@@ -140,6 +156,8 @@ Breed a Sandshrew with a father that knows the move.
 | Metal Claw | Steel | Physical | 50 | 95% | 35 |
 | Swords Dance | Normal | Status | — | — | 20 |
 | Crush Claw | Normal | Physical | 75 | 95% | 10 |
+| Night Slash | Dark | Physical | 70 | 100% | 15 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 |
 
 ---
 

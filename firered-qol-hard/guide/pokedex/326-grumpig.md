@@ -75,6 +75,8 @@ Height 0.9 m (2′11″) · Weight 71.5 kg (157.6 lbs)
 | 1 | Teeter Dance ★ | Normal | Status | — | 100% | 20 |
 | 18 | Psych Up | Normal | Status | — | — | 10 |
 | 22 | Confuse Ray | Ghost | Status | — | 100% | 10 |
+| 26 | Zen Headbutt ★ | Psychic | Physical | 80 | 90% | 15 |
+| 29 | Power Gem ★ | Rock | Special | 80 | 100% | 20 |
 | 35 | Rest | Psychic | Status | — | — | 5 |
 | 35 | Snore | Normal | Special | 50 | 100% | 15 |
 | 52 | Psychic | Psychic | Special | 90 | 100% | 10 |
@@ -126,6 +128,30 @@ Height 0.9 m (2′11″) · Weight 71.5 kg (157.6 lbs)
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
+| Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Spoink (passed down to Spoink, which then evolves) with a father that knows the move.
@@ -136,6 +162,7 @@ Breed a Spoink (passed down to Spoink, which then evolves) with a father that kn
 | Extrasensory | Psychic | Special | 80 | 100% | 20 |
 | Substitute | Normal | Status | — | — | 10 |
 | Trick | Psychic | Status | — | 100% | 10 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 |
 
 ---
 

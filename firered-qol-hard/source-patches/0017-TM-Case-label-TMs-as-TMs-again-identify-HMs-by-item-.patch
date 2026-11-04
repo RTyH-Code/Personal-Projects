@@ -1,7 +1,7 @@
 From 2eadfb156fbe120e8f499f8d2a991996ce74bb4d Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Sun, 1 Nov 2026 00:43:57 +0000
-Subject: [PATCH 17/32] TM Case: label TMs as TMs again (identify HMs by item
+Subject: [PATCH 17/33] TM Case: label TMs as TMs again (identify HMs by item
  ID)
 
 TMs are marked important so they can't be sold or tossed, which made the

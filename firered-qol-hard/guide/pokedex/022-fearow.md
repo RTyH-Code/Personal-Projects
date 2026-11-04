@@ -82,6 +82,7 @@ Height 1.2 m (3′11″) · Weight 38 kg (83.8 lbs)
 | 1 | Growl | Normal | Status | — | 100% | 40 |
 | 1 | Peck | Flying | Physical | 35 | 100% | 35 |
 | 1 | Pursuit | Dark | Physical | 40 | 100% | 20 |
+| 1 | Drill Run ★ | Ground | Physical | 80 | 95% | 10 |
 | 11 | Fury Attack | Normal | Physical | 15 | 85% | 20 |
 | 15 | Aerial Ace ★ | Flying | Physical | 60 | — | 20 |
 | 18 | Mirror Move | Flying | Status | — | — | 20 |
@@ -118,6 +119,16 @@ Height 1.2 m (3′11″) · Weight 38 kg (83.8 lbs)
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)
 

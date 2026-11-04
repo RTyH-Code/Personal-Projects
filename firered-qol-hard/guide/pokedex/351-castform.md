@@ -118,6 +118,17 @@ Castform does not evolve.
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Castform with a father that knows the move.
@@ -126,6 +137,7 @@ Breed a Castform with a father that knows the move.
 |---|---|---|--:|--:|--:|
 | Future Sight | Psychic | Special | 120 | 100% | 10 |
 | Psych Up | Normal | Status | — | — | 10 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 |
 
 ---
 

@@ -72,10 +72,12 @@ Height 1.6 m (5′03″) · Weight 130 kg (286.6 lbs)
 | 1 | Low Kick | Fighting | Physical | varies | 100% | 20 |
 | 1 | Focus Energy | Normal | Status | — | — | 30 |
 | 1 | Revenge | Fighting | Physical | 60 | 100% | 10 |
+| 12 | Low Sweep ★ | Fighting | Physical | 65 | 100% | 20 |
 | 16 | Knock Off ★ | Dark | Physical | 65 | 100% | 20 |
 | 20 | Scary Face | Normal | Status | — | 100% | 10 |
 | 24 | Vital Throw | Fighting | Physical | 70 | 100% | 10 |
 | 31 | Strength ★ | Normal | Physical | 80 | 100% | 15 |
+| 36 | Dual Chop ★ | Dragon | Physical | 40 | 90% | 15 |
 | 42 | Bulk Up ★ | Fighting | Status | — | — | 20 |
 | 48 | Seismic Toss | Fighting | Physical | varies | 100% | 20 |
 | 54 | Dynamic Punch | Fighting | Physical | 100 | 50% | 5 |
@@ -126,6 +128,24 @@ Height 1.6 m (5′03″) · Weight 130 kg (286.6 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Dual Chop | Dragon | Physical | 40 | 90% | 15 | 0 |
+| Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
+| Cross Poison | Poison | Physical | 70 | 100% | 20 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Machop (passed down to Machop, which then evolves) with a father that knows the move.
@@ -139,6 +159,7 @@ Breed a Machop (passed down to Machop, which then evolves) with a father that kn
 | Smelling Salt | Normal | Physical | 70 | 100% | 10 |
 | Counter | Fighting | Physical | varies | 100% | 20 |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 |
+| Bullet Punch | Steel | Physical | 40 | 100% | 30 |
 
 ---
 

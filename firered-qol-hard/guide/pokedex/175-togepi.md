@@ -128,6 +128,20 @@ Height 0.3 m (1′00″) · Weight 1.5 kg (3.3 lbs)
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Mystical Fire | Fire | Special | 75 | 100% | 10 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Togepi with a father that knows the move.
@@ -141,6 +155,7 @@ Breed a Togepi with a father that knows the move.
 | Future Sight | Psychic | Special | 120 | 100% | 10 |
 | Substitute | Normal | Status | — | — | 10 |
 | Psych Up | Normal | Status | — | — | 10 |
+| Nasty Plot | Dark | Status | — | — | 20 |
 
 ---
 

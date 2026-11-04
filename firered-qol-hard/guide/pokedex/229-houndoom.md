@@ -74,6 +74,7 @@ Height 1.4 m (4′07″) · Weight 35 kg (77.2 lbs)
 | 1 | Ember | Fire | Special | 40 | 100% | 25 |
 | 1 | Smog | Poison | Special | 30 | 70% | 20 |
 | 1 | Howl | Normal | Status | — | — | 40 |
+| 1 | Nasty Plot ★ | Dark | Status | — | — | 20 |
 | 13 | Roar | Normal | Status | — | 100% | 20 |
 | 16 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 26 | Beat Up ★ | Dark | Physical | 10 | 100% | 10 |
@@ -123,6 +124,18 @@ Height 1.4 m (4′07″) · Weight 35 kg (77.2 lbs)
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Houndour (passed down to Houndour, which then evolves) with a father that knows the move.
@@ -137,6 +150,7 @@ Breed a Houndour (passed down to Houndour, which then evolves) with a father tha
 | Reversal | Fighting | Physical | varies | 100% | 15 |
 | Beat Up | Dark | Physical | 10 | 100% | 10 |
 | Will-O-Wisp | Fire | Status | — | 85% | 15 |
+| Nasty Plot | Dark | Status | — | — | 20 |
 
 ---
 

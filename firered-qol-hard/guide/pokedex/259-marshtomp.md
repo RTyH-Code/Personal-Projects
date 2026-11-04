@@ -128,6 +128,20 @@ Height 0.7 m (2′04″) · Weight 28 kg (61.7 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Mudkip (passed down to Mudkip, which then evolves) with a father that knows the move.
@@ -140,6 +154,8 @@ Breed a Mudkip (passed down to Mudkip, which then evolves) with a father that kn
 | Stomp | Normal | Physical | 65 | 100% | 20 |
 | Ice Ball | Ice | Physical | 30 | 90% | 20 |
 | Mirror Coat | Psychic | Special | varies | 100% | 20 |
+| Mud Bomb | Ground | Special | 65 | 85% | 10 |
+| Avalanche | Ice | Physical | 60 | 100% | 10 |
 
 ---
 

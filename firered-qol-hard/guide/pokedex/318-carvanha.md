@@ -69,6 +69,7 @@ Height 0.8 m (2′07″) · Weight 20.8 kg (45.9 lbs)
 | Lv | Move | Type | Cat. | Power | Acc. | PP |
 |--:|---|---|---|--:|--:|--:|
 | 1 | Leer | Normal | Status | — | 100% | 30 |
+| 1 | Aqua Jet ★ | Water | Physical | 40 | 100% | 20 |
 | 4 | Poison Fang ★ | Poison | Physical | 50 | 100% | 15 |
 | 8 | Focus Energy | Normal | Status | — | — | 30 |
 | 12 | Scary Face | Normal | Status | — | 100% | 10 |
@@ -77,6 +78,7 @@ Height 0.8 m (2′07″) · Weight 20.8 kg (45.9 lbs)
 | 28 | Swagger | Normal | Status | — | 85% | 15 |
 | 32 | Crunch | Dark | Physical | 80 | 100% | 15 |
 | 36 | Agility | Psychic | Status | — | — | 30 |
+| 40 | Liquidation ★ | Water | Physical | 85 | 100% | 10 |
 | 44 | Take Down | Normal | Physical | 90 | 85% | 20 |
 
 ### By TM/HM
@@ -113,6 +115,19 @@ Height 0.8 m (2′07″) · Weight 20.8 kg (45.9 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+
 ### By breeding (egg moves)
 
 Breed a Carvanha with a father that knows the move.
@@ -122,6 +137,7 @@ Breed a Carvanha with a father that knows the move.
 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 | Double-Edge | Normal | Physical | 120 | 100% | 15 |
 | Thrash | Normal | Physical | 120 | 100% | 10 |
+| Psychic Fangs | Psychic | Physical | 85 | 100% | 10 |
 
 ---
 

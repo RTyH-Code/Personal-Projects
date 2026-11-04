@@ -75,12 +75,14 @@ Height 1.2 m (3′11″) · Weight 66.6 kg (146.8 lbs)
 | 1 | Tackle | Normal | Physical | 40 | 100% | 35 |
 | 1 | Thunder Shock ★ | Electric | Special | 40 | 100% | 30 |
 | 1 | Charge | Electric | Status | — | — | 20 |
+| 1 | Eerie Impulse ★ | Electric | Status | — | 100% | 15 |
 | 9 | Spark | Electric | Physical | 65 | 100% | 20 |
 | 11 | Rollout | Rock | Physical | 30 | 90% | 20 |
 | 13 | Screech | Normal | Status | — | 85% | 40 |
 | 20 | Swift | Normal | Special | 60 | — | 20 |
 | 26 | Self-Destruct | Normal | Physical | 200 | 100% | 5 |
 | 29 | Light Screen | Psychic | Status | — | — | 30 |
+| 41 | Discharge ★ | Electric | Special | 80 | 100% | 15 |
 | 47 | Explosion | Normal | Physical | 250 | 100% | 5 |
 | 58 | Mirror Coat | Psychic | Special | varies | 100% | 20 |
 
@@ -116,6 +118,17 @@ Height 1.2 m (3′11″) · Weight 66.6 kg (146.8 lbs)
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Explosion | Normal | Physical | 250 | 100% | 5 | Mt. Ember Exterior |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
+| Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 
 ---
 

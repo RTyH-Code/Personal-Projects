@@ -72,6 +72,9 @@ Height 1.2 m (3′11″) · Weight 202.5 kg (446.4 lbs)
 | 1 | Tackle ★ | Normal | Physical | 40 | 100% | 35 |
 | 1 | Confusion | Psychic | Special | 50 | 100% | 25 |
 | 1 | Metal Claw | Steel | Physical | 50 | 95% | 35 |
+| 1 | Bullet Punch ★ | Steel | Physical | 40 | 100% | 30 |
+| 6 | Zen Headbutt ★ | Psychic | Physical | 80 | 90% | 15 |
+| 18 | Flash Cannon ★ | Steel | Special | 80 | 100% | 10 |
 | 26 | Take Down | Normal | Physical | 90 | 85% | 20 |
 | 34 | Psychic | Psychic | Special | 90 | 100% | 10 |
 | 42 | Scary Face | Normal | Status | — | 100% | 10 |
@@ -121,6 +124,22 @@ Height 1.2 m (3′11″) · Weight 202.5 kg (446.4 lbs)
 | Explosion | Normal | Physical | 250 | 100% | 5 | Mt. Ember Exterior |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Psycho Cut | Psychic | Physical | 70 | 100% | 20 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ---
 

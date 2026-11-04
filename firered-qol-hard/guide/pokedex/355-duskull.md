@@ -75,6 +75,7 @@ Height 0.8 m (2′07″) · Weight 15 kg (33.1 lbs)
 | 1 | Leer | Normal | Status | — | 100% | 30 |
 | 1 | Astonish | Ghost | Physical | 30 | 100% | 15 |
 | 4 | Disable | Normal | Status | — | 100% | 20 |
+| 8 | Shadow Sneak ★ | Ghost | Physical | 40 | 100% | 30 |
 | 12 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | 16 | Night Shade | Ghost | Special | varies | 100% | 15 |
 | 24 | Will-O-Wisp | Fire | Status | — | 85% | 15 |
@@ -121,6 +122,15 @@ Height 0.8 m (2′07″) · Weight 15 kg (33.1 lbs)
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+
 ### By breeding (egg moves)
 
 Breed a Duskull with a father that knows the move.
@@ -133,6 +143,8 @@ Breed a Duskull with a father that knows the move.
 | Grudge | Ghost | Status | — | — | 5 |
 | Memento | Dark | Status | — | 100% | 10 |
 | Faint Attack | Dark | Physical | 60 | — | 20 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 |
 
 ---
 

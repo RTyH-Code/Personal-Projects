@@ -72,8 +72,10 @@ Height 1.3 m (4′03″) · Weight 31.5 kg (69.4 lbs)
 | 1 | Confusion | Psychic | Special | 50 | 100% | 25 |
 | 1 | Detect | Fighting | Status | — | — | 5 |
 | 12 | Endure ★ | Normal | Status | — | — | 10 |
+| 17 | Force Palm ★ | Fighting | Physical | 60 | 100% | 10 |
 | 20 | Psybeam ★ | Psychic | Special | 65 | 100% | 20 |
 | 23 | Calm Mind | Psychic | Status | — | — | 20 |
+| 25 | Zen Headbutt ★ | Psychic | Physical | 80 | 90% | 15 |
 | 28 | Hi Jump Kick | Fighting | Physical | 130 | 90% | 10 |
 | 31 | Psych Up | Normal | Status | — | — | 10 |
 | 47 | Recover | Normal | Status | — | — | 5 |
@@ -125,6 +127,24 @@ Height 1.3 m (4′03″) · Weight 31.5 kg (69.4 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
+| Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Meditite (passed down to Meditite, which then evolves) with a father that knows the move.
@@ -138,6 +158,9 @@ Breed a Meditite (passed down to Meditite, which then evolves) with a father tha
 | Fake Out | Normal | Physical | 40 | 100% | 10 |
 | Baton Pass | Normal | Status | — | — | 40 |
 | Dynamic Punch | Fighting | Physical | 100 | 50% | 5 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 |
+| Bullet Punch | Steel | Physical | 40 | 100% | 30 |
+| Psycho Cut | Psychic | Physical | 70 | 100% | 20 |
 
 ---
 

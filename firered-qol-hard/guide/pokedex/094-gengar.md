@@ -75,6 +75,7 @@ Height 1.5 m (4′11″) · Weight 40.5 kg (89.3 lbs)
 | 16 | Spite | Ghost | Status | — | 100% | 10 |
 | 20 | Curse | ??? | Status | — | — | 10 |
 | 30 | Night Shade | Ghost | Special | varies | 100% | 15 |
+| 42 | Dark Pulse ★ | Dark | Special | 80 | 100% | 15 |
 | 48 | Shadow Ball | Ghost | Special | 80 | 100% | 15 |
 | 54 | Destiny Bond | Ghost | Status | — | — | 5 |
 | 60 | Dream Eater | Psychic | Special | 100 | 100% | 15 |
@@ -127,6 +128,25 @@ Height 1.5 m (4′11″) · Weight 40.5 kg (89.3 lbs)
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
 | Explosion | Normal | Physical | 250 | 100% | 5 | Mt. Ember Exterior |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)
 

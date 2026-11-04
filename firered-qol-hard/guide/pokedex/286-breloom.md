@@ -80,7 +80,9 @@ Height 1.2 m (3′11″) · Weight 39.2 kg (86.4 lbs)
 | 12 | Mega Drain | Grass | Special | 40 | 100% | 15 |
 | 15 | Headbutt | Normal | Physical | 70 | 100% | 15 |
 | 22 | Counter | Fighting | Physical | varies | 100% | 20 |
+| 28 | Force Palm ★ | Fighting | Physical | 60 | 100% | 10 |
 | 39 | Brick Break ★ | Fighting | Physical | 75 | 100% | 15 |
+| 44 | Seed Bomb ★ | Grass | Physical | 80 | 100% | 15 |
 | 50 | Dynamic Punch | Fighting | Physical | 100 | 50% | 5 |
 | 55 | Focus Punch ★ | Fighting | Physical | 150 | 100% | 20 |
 
@@ -129,6 +131,28 @@ Height 1.2 m (3′11″) · Weight 39.2 kg (86.4 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+| Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Shroomish (passed down to Shroomish, which then evolves) with a father that knows the move.
@@ -140,6 +164,8 @@ Breed a Shroomish (passed down to Shroomish, which then evolves) with a father t
 | Charm | Fairy | Status | — | 100% | 20 |
 | False Swipe | Normal | Physical | 40 | 100% | 40 |
 | Helping Hand | Normal | Status | — | — | 20 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 |
 
 ---
 

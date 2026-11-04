@@ -76,6 +76,7 @@ Height 1.3 m (4′03″) · Weight 56.5 kg (124.6 lbs)
 | 1 | Kinesis | Psychic | Status | — | 80% | 15 |
 | 5 | Psybeam | Psychic | Special | 65 | 100% | 20 |
 | 10 | Reflect | Psychic | Status | — | — | 20 |
+| 20 | Psycho Cut ★ | Psychic | Physical | 70 | 100% | 20 |
 | 25 | Recover | Normal | Status | — | — | 5 |
 | 35 | Psychic | Psychic | Special | 90 | 100% | 10 |
 | 40 | Role Play | Psychic | Status | — | 100% | 10 |
@@ -129,6 +130,19 @@ Height 1.3 m (4′03″) · Weight 56.5 kg (124.6 lbs)
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| Psycho Cut | Psychic | Physical | 70 | 100% | 20 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

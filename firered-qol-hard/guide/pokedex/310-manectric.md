@@ -77,7 +77,9 @@ Height 1.5 m (4′11″) · Weight 40.2 kg (88.6 lbs)
 | 16 | Shock Wave ★ | Electric | Special | 60 | — | 20 |
 | 20 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 30 | Roar | Normal | Status | — | 100% | 20 |
+| 36 | Discharge ★ | Electric | Special | 80 | 100% | 15 |
 | 42 | Charge | Electric | Status | — | — | 20 |
+| 48 | Wild Charge ★ | Electric | Physical | 90 | 100% | 15 |
 | 54 | Thunder | Electric | Special | 110 | 70% | 10 |
 
 ### By TM/HM
@@ -115,6 +117,18 @@ Height 1.5 m (4′11″) · Weight 40.2 kg (88.6 lbs)
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
+| Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Electrike (passed down to Electrike, which then evolves) with a father that knows the move.
@@ -126,6 +140,8 @@ Breed a Electrike (passed down to Electrike, which then evolves) with a father t
 | Uproar | Normal | Special | 90 | 100% | 10 |
 | Curse | ??? | Status | — | — | 10 |
 | Swift | Normal | Special | 60 | — | 20 |
+| Discharge | Electric | Special | 80 | 100% | 15 |
+| Eerie Impulse | Electric | Status | — | 100% | 15 |
 
 ---
 

@@ -82,6 +82,8 @@ Height 0.5 m (1′08″) · Weight 2.6 kg (5.7 lbs)
 | 24 | Leech Seed ★ | Grass | Status | — | 90% | 10 |
 | 28 | Giga Drain ★ | Grass | Special | 75 | 100% | 10 |
 | 33 | Rain Dance | Water | Status | — | — | 5 |
+| 38 | Zen Headbutt ★ | Psychic | Physical | 80 | 90% | 15 |
+| 43 | Energy Ball ★ | Grass | Special | 90 | 100% | 10 |
 
 ### By TM/HM
 
@@ -119,6 +121,19 @@ Height 0.5 m (1′08″) · Weight 2.6 kg (5.7 lbs)
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

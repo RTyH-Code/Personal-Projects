@@ -75,6 +75,7 @@ Height 0.7 m (2′04″) · Weight 16.8 kg (37.0 lbs)
 | 1 | Astonish ★ | Ghost | Physical | 30 | 100% | 15 |
 | 5 | Leer | Normal | Status | — | 100% | 30 |
 | 10 | Double Team | Normal | Status | — | — | 15 |
+| 15 | Ice Shard ★ | Ice | Physical | 40 | 100% | 30 |
 | 20 | Protect | Normal | Status | — | — | 10 |
 | 25 | Icy Wind | Ice | Special | 55 | 95% | 15 |
 | 35 | Bite | Dark | Physical | 60 | 100% | 25 |
@@ -115,6 +116,14 @@ Height 0.7 m (2′04″) · Weight 16.8 kg (37.0 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+
 ### By breeding (egg moves)
 
 Breed a Snorunt with a father that knows the move.
@@ -123,6 +132,8 @@ Breed a Snorunt with a father that knows the move.
 |---|---|---|--:|--:|--:|
 | Block | Normal | Status | — | 100% | 5 |
 | Spikes | Ground | Status | — | — | 20 |
+| Icicle Crash | Ice | Physical | 85 | 90% | 10 |
+| Avalanche | Ice | Physical | 60 | 100% | 10 |
 
 ---
 

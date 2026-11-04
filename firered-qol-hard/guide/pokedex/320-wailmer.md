@@ -121,6 +121,17 @@ Height 2 m (6′07″) · Weight 130 kg (286.6 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+
 ### By breeding (egg moves)
 
 Breed a Wailmer with a father that knows the move.
@@ -135,6 +146,7 @@ Breed a Wailmer with a father that knows the move.
 | Curse | ??? | Status | — | — | 10 |
 | Fissure | Ground | Physical | varies | 30% | 5 |
 | Tickle | Normal | Status | — | 100% | 20 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 |
 
 ---
 

@@ -74,6 +74,8 @@ Height 2 m (6′07″) · Weight 79.5 kg (175.3 lbs)
 | 1 | Curse | ??? | Status | — | — | 10 |
 | 1 | Swagger | Normal | Status | — | 85% | 15 |
 | 1 | Future Sight ★ | Psychic | Special | 120 | 100% | 10 |
+| 1 | Power Gem ★ | Rock | Special | 80 | 100% | 20 |
+| 1 | Nasty Plot ★ | Dark | Status | — | — | 20 |
 | 9 | Yawn | Normal | Status | — | 100% | 10 |
 | 12 | Confusion | Psychic | Special | 50 | 100% | 25 |
 | 15 | Disable | Normal | Status | — | 100% | 20 |
@@ -140,6 +142,27 @@ Height 2 m (6′07″) · Weight 79.5 kg (175.3 lbs)
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
+| Razor Shell | Water | Physical | 75 | 95% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Slowpoke (passed down to Slowpoke, which then evolves) with a father that knows the move.
@@ -153,6 +176,7 @@ Breed a Slowpoke (passed down to Slowpoke, which then evolves) with a father tha
 | Mud Sport | Ground | Status | — | — | 15 |
 | Sleep Talk | Normal | Status | — | — | 10 |
 | Snore | Normal | Special | 50 | 100% | 15 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 |
 
 ---
 

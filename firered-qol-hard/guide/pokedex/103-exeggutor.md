@@ -71,6 +71,9 @@ Height 2 m (6′07″) · Weight 120 kg (264.6 lbs)
 | 1 | Growth ★ | Normal | Status | — | — | 20 |
 | 1 | Hypnosis | Psychic | Status | — | 60% | 20 |
 | 1 | Stomp | Normal | Physical | 65 | 100% | 20 |
+| 1 | Seed Bomb ★ | Grass | Physical | 80 | 100% | 15 |
+| 1 | Wood Hammer ★ | Grass | Physical | 120 | 100% | 15 |
+| 1 | Leaf Storm ★ | Grass | Special | 130 | 90% | 5 |
 | 8 | Reflect ★ | Psychic | Status | — | — | 20 |
 | 13 | Leech Seed ★ | Grass | Status | — | 90% | 10 |
 | 18 | Mega Drain ★ | Grass | Special | 40 | 100% | 15 |
@@ -120,6 +123,21 @@ Height 2 m (6′07″) · Weight 120 kg (264.6 lbs)
 | Explosion | Normal | Physical | 250 | 100% | 5 | Mt. Ember Exterior |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Psycho Cut | Psychic | Physical | 70 | 100% | 20 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Exeggcute (passed down to Exeggcute, which then evolves) with a father that knows the move.
@@ -133,6 +151,7 @@ Breed a Exeggcute (passed down to Exeggcute, which then evolves) with a father t
 | Psych Up | Normal | Status | — | — | 10 |
 | Ingrain | Grass | Status | — | — | 20 |
 | Curse | ??? | Status | — | — | 10 |
+| Leaf Storm | Grass | Special | 130 | 90% | 5 |
 
 ---
 

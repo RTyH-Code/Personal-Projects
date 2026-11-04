@@ -79,12 +79,17 @@ Height 2 m (6′07″) · Weight 82 kg (180.8 lbs)
 | 1 | Astonish ★ | Ghost | Physical | 30 | 100% | 15 |
 | 1 | Dragon Claw ★ | Dragon | Physical | 80 | 100% | 15 |
 | 1 | Dragon Dance ★ | Dragon | Status | — | — | 20 |
+| 1 | Bulldoze ★ | Ground | Physical | 60 | 100% | 20 |
 | 12 | Mud-Slap ★ | Ground | Special | 20 | 100% | 10 |
 | 16 | Sand Tomb | Ground | Physical | 35 | 85% | 15 |
 | 24 | Screech | Normal | Status | — | 85% | 40 |
+| 28 | Bug Buzz ★ | Bug | Special | 90 | 100% | 10 |
 | 32 | Sandstorm | Rock | Status | — | — | 10 |
+| 38 | Earth Power ★ | Ground | Special | 90 | 100% | 10 |
 | 44 | Earthquake ★ | Ground | Physical | 100 | 100% | 10 |
 | 52 | Uproar ★ | Normal | Special | 90 | 100% | 10 |
+| 60 | Dragon Rush ★ | Dragon | Physical | 100 | 75% | 10 |
+| 68 | Boomburst ★ | Normal | Special | 140 | 100% | 10 |
 
 ### By TM/HM
 
@@ -127,6 +132,28 @@ Height 2 m (6′07″) · Weight 82 kg (180.8 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
+| Draco Meteor | Dragon | Special | 130 | 90% | 5 | 5 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Trapinch (passed down to Trapinch, which then evolves) with a father that knows the move.
@@ -136,6 +163,7 @@ Breed a Trapinch (passed down to Trapinch, which then evolves) with a father tha
 | Focus Energy | Normal | Status | — | — | 30 |
 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
 | Gust | Flying | Special | 40 | 100% | 35 |
+| Earth Power | Ground | Special | 90 | 100% | 10 |
 
 ---
 

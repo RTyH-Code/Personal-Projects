@@ -81,6 +81,7 @@ Height 0.5 m (1′08″) · Weight 12 kg (26.5 lbs)
 | 16 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | 20 | Spark | Electric | Physical | 65 | 100% | 20 |
 | 24 | Charge | Electric | Status | — | — | 20 |
+| 28 | Discharge ★ | Electric | Special | 80 | 100% | 15 |
 | 36 | Flail | Normal | Physical | varies | 100% | 15 |
 | 40 | Take Down | Normal | Physical | 90 | 85% | 20 |
 | 44 | Hydro Pump | Water | Special | 110 | 80% | 5 |
@@ -120,6 +121,19 @@ Height 0.5 m (1′08″) · Weight 12 kg (26.5 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Thunder Wave | Electric | Status | — | 90% | 20 | Silph Co. 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
+| Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 
 ### By breeding (egg moves)
 

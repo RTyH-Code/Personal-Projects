@@ -119,6 +119,18 @@ Height 1.1 m (3′07″) · Weight 19 kg (41.9 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Charmander (passed down to Charmander, which then evolves) with a father that knows the move.
@@ -133,6 +145,8 @@ Breed a Charmander (passed down to Charmander, which then evolves) with a father
 | Beat Up | Dark | Physical | 10 | 100% | 10 |
 | Swords Dance | Normal | Status | — | — | 20 |
 | Dragon Dance | Dragon | Status | — | — | 20 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 |
+| Dragon Rush | Dragon | Physical | 100 | 75% | 10 |
 
 ---
 

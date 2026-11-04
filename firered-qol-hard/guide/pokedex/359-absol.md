@@ -76,6 +76,7 @@ Absol does not evolve.
 | 15 | Detect ★ | Fighting | Status | — | — | 5 |
 | 20 | Taunt | Dark | Status | — | 100% | 20 |
 | 25 | Slash | Normal | Physical | 70 | 100% | 20 |
+| 30 | Night Slash ★ | Dark | Physical | 70 | 100% | 15 |
 | 35 | Focus Energy ★ | Normal | Status | — | — | 30 |
 | 45 | Swords Dance | Normal | Status | — | — | 20 |
 | 50 | Future Sight | Psychic | Special | 120 | 100% | 10 |
@@ -135,6 +136,23 @@ Absol does not evolve.
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Psycho Cut | Psychic | Physical | 70 | 100% | 20 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Absol with a father that knows the move.
@@ -148,6 +166,7 @@ Breed a Absol with a father that knows the move.
 | Curse | ??? | Status | — | — | 10 |
 | Substitute | Normal | Status | — | — | 10 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 |
 
 ---
 

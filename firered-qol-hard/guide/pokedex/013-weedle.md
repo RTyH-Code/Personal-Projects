@@ -76,6 +76,14 @@ Height 0.3 m (1′00″) · Weight 3.2 kg (7.1 lbs)
 | 1 | Poison Sting | Poison | Physical | 15 | 100% | 35 |
 | 1 | String Shot | Bug | Status | — | 95% | 40 |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+
 ---
 
 ← #012 [Butterfree](012-butterfree.md) · [Index](../POKEDEX.md) · [Kakuna](014-kakuna.md) #014 →

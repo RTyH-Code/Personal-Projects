@@ -70,6 +70,14 @@ Height 0.7 m (2′04″) · Weight 9.9 kg (21.8 lbs)
 |--:|---|---|---|--:|--:|--:|
 | 1 | Harden | Normal | Status | — | — | 30 |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+
 ---
 
 ← #010 [Caterpie](010-caterpie.md) · [Index](../POKEDEX.md) · [Butterfree](012-butterfree.md) #012 →

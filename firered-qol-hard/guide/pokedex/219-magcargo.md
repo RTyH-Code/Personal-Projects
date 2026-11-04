@@ -74,9 +74,11 @@ Height 0.8 m (2′07″) · Weight 55 kg (121.3 lbs)
 | 1 | Rock Throw | Rock | Physical | 50 | 90% | 15 |
 | 1 | Smog | Poison | Special | 30 | 70% | 20 |
 | 1 | Yawn | Normal | Status | — | 100% | 10 |
+| 1 | Earth Power ★ | Ground | Special | 90 | 100% | 10 |
 | 13 | Harden | Normal | Status | — | — | 30 |
 | 22 | Ancient Power ★ | Rock | Special | 60 | 100% | 5 |
 | 29 | Rock Slide | Rock | Physical | 75 | 90% | 10 |
+| 34 | Lava Plume ★ | Fire | Special | 80 | 100% | 15 |
 | 36 | Amnesia | Psychic | Status | — | — | 20 |
 | 43 | Body Slam | Normal | Physical | 85 | 100% | 15 |
 | 47 | Recover ★ | Normal | Status | — | — | 5 |
@@ -119,6 +121,20 @@ Height 0.8 m (2′07″) · Weight 55 kg (121.3 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
+| Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Slugma (passed down to Slugma, which then evolves) with a father that knows the move.
@@ -127,6 +143,7 @@ Breed a Slugma (passed down to Slugma, which then evolves) with a father that kn
 |---|---|---|--:|--:|--:|
 | Acid Armor | Poison | Status | — | — | 20 |
 | Heat Wave | Fire | Special | 95 | 90% | 10 |
+| Earth Power | Ground | Special | 90 | 100% | 10 |
 
 ---
 

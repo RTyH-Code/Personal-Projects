@@ -79,6 +79,7 @@ Entei does not evolve.
 | 36 | Scary Face ★ | Normal | Status | — | 100% | 10 |
 | 42 | Crunch ★ | Dark | Physical | 80 | 100% | 15 |
 | 48 | Extrasensory ★ | Psychic | Special | 80 | 100% | 20 |
+| 54 | Lava Plume ★ | Fire | Special | 80 | 100% | 15 |
 | 60 | Swagger | Normal | Status | — | 85% | 15 |
 | 66 | Sunny Day ★ | Fire | Status | — | — | 5 |
 | 72 | Fire Blast | Fire | Special | 110 | 85% | 5 |
@@ -122,6 +123,20 @@ Entei does not evolve.
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
 ---
 

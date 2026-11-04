@@ -76,6 +76,7 @@ Height 1 m (3′03″) · Weight 22.5 kg (49.6 lbs)
 | 15 | Water Pulse ★ | Water | Special | 60 | 100% | 20 |
 | 20 | Protect | Normal | Status | — | — | 10 |
 | 25 | Rain Dance | Water | Status | — | — | 5 |
+| 30 | Aqua Tail ★ | Water | Physical | 90 | 90% | 10 |
 | 40 | Iron Defense ★ | Steel | Status | — | — | 15 |
 | 45 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 
@@ -121,6 +122,20 @@ Height 1 m (3′03″) · Weight 22.5 kg (49.6 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Squirtle (passed down to Squirtle, which then evolves) with a father that knows the move.
@@ -135,6 +150,8 @@ Breed a Squirtle (passed down to Squirtle, which then evolves) with a father tha
 | Refresh | Normal | Status | — | — | 20 |
 | Mud Sport | Ground | Status | — | — | 15 |
 | Yawn | Normal | Status | — | 100% | 10 |
+| Aura Sphere | Fighting | Special | 80 | — | 20 |
+| Aqua Jet | Water | Physical | 40 | 100% | 20 |
 
 ---
 

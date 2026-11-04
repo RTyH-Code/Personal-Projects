@@ -78,6 +78,7 @@ Height 0.5 m (1′08″) · Weight 7.9 kg (17.4 lbs)
 | 19 | Flame Wheel | Fire | Physical | 60 | 100% | 25 |
 | 22 | Defense Curl ★ | Normal | Status | — | — | 40 |
 | 31 | Swift | Normal | Special | 60 | — | 20 |
+| 37 | Lava Plume ★ | Fire | Special | 80 | 100% | 15 |
 | 40 | Flamethrower | Fire | Special | 90 | 100% | 15 |
 | 49 | Rollout ★ | Rock | Physical | 30 | 90% | 20 |
 | 55 | Double-Edge ★ | Normal | Physical | 120 | 100% | 15 |
@@ -114,6 +115,17 @@ Height 0.5 m (1′08″) · Weight 7.9 kg (17.4 lbs)
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
+| Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 
 ### By breeding (egg moves)
 

@@ -76,6 +76,7 @@ Height 1.3 m (4′03″) · Weight 54 kg (119.0 lbs)
 | 1 | Mud Shot ★ | Ground | Special | 55 | 95% | 15 |
 | 1 | Pound ★ | Normal | Physical | 40 | 100% | 35 |
 | 1 | Water Gun | Water | Special | 40 | 100% | 25 |
+| 1 | Earth Power ★ | Ground | Special | 90 | 100% | 10 |
 | 21 | Bubble Beam ★ | Water | Special | 65 | 100% | 20 |
 | 28 | Rain Dance ★ | Water | Status | — | — | 5 |
 | 37 | Body Slam ★ | Normal | Physical | 85 | 100% | 15 |
@@ -130,6 +131,26 @@ Height 1.3 m (4′03″) · Weight 54 kg (119.0 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Metronome | Normal | Status | — | — | 10 | Cinnabar Island Pokémon Lab Research Room |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Dual Chop | Dragon | Physical | 40 | 90% | 15 | 0 |
+| Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
 
 ### By breeding (egg moves)
 

@@ -78,6 +78,7 @@ Height 0.6 m (2′00″) · Weight 9.5 kg (20.9 lbs)
 | 30 | Slash | Normal | Physical | 70 | 100% | 20 |
 | 33 | Screech | Normal | Status | — | 85% | 40 |
 | 37 | Thrash ★ | Normal | Physical | 120 | 100% | 10 |
+| 41 | Aqua Tail ★ | Water | Physical | 90 | 90% | 10 |
 | 45 | Superpower ★ | Fighting | Physical | 120 | 100% | 5 |
 | 50 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 
@@ -125,6 +126,19 @@ Height 0.6 m (2′00″) · Weight 9.5 kg (20.9 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Totodile with a father that knows the move.
@@ -139,6 +153,7 @@ Breed a Totodile with a father that knows the move.
 | Mud Sport | Ground | Status | — | — | 15 |
 | Water Sport | Water | Status | — | — | 15 |
 | Dragon Claw | Dragon | Physical | 80 | 100% | 15 |
+| Aqua Jet | Water | Physical | 40 | 100% | 20 |
 
 ---
 

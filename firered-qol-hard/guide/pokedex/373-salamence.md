@@ -76,10 +76,12 @@ Height 1.5 m (4′11″) · Weight 102.6 kg (226.2 lbs)
 | 1 | Ember | Fire | Special | 40 | 100% | 25 |
 | 1 | Protect | Normal | Status | — | — | 10 |
 | 1 | Dragon Breath | Dragon | Special | 60 | 100% | 20 |
+| 1 | Dual Wingbeat ★ | Flying | Physical | 40 | 90% | 10 |
 | 15 | Headbutt | Normal | Physical | 70 | 100% | 15 |
 | 20 | Scary Face | Normal | Status | — | 100% | 10 |
 | 25 | Crunch | Dark | Physical | 80 | 100% | 15 |
 | 33 | Dragon Claw | Dragon | Physical | 80 | 100% | 15 |
+| 39 | Zen Headbutt ★ | Psychic | Physical | 80 | 90% | 15 |
 | 46 | Focus Energy | Normal | Status | — | — | 30 |
 | 55 | Flamethrower ★ | Fire | Special | 90 | 100% | 15 |
 | 73 | Double-Edge | Normal | Physical | 120 | 100% | 15 |
@@ -126,6 +128,27 @@ Height 1.5 m (4′11″) · Weight 102.6 kg (226.2 lbs)
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Draco Meteor | Dragon | Special | 130 | 90% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Bagon (passed down to Bagon, which then evolves) with a father that knows the move.
@@ -137,6 +160,9 @@ Breed a Bagon (passed down to Bagon, which then evolves) with a father that know
 | Dragon Rage | Dragon | Special | varies | 100% | 10 |
 | Twister | Dragon | Special | 40 | 100% | 20 |
 | Dragon Dance | Dragon | Status | — | — | 20 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 |
+| Dragon Pulse | Dragon | Special | 85 | 100% | 10 |
+| Dragon Rush | Dragon | Physical | 100 | 75% | 10 |
 
 ---
 

@@ -81,6 +81,7 @@ Height 1.5 m (4′11″) · Weight 60.4 kg (133.2 lbs)
 | 43 | Stockpile | Normal | Status | — | — | 20 |
 | 43 | Spit Up | Normal | Special | varies | 100% | 10 |
 | 43 | Swallow | Normal | Status | — | — | 10 |
+| 48 | Energy Ball ★ | Grass | Special | 90 | 100% | 10 |
 
 ### By TM/HM
 
@@ -117,6 +118,22 @@ Height 1.5 m (4′11″) · Weight 60.4 kg (133.2 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 | Rock Tunnel B1F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Power Whip | Grass | Physical | 120 | 85% | 10 | 5 |
+| Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)
 

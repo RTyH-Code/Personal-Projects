@@ -83,6 +83,7 @@ Height 0.9 m (2′11″) · Weight 30 kg (66.1 lbs)
 | 26 | Toxic ★ | Poison | Status | — | 90% | 10 |
 | 29 | Sludge Bomb | Poison | Special | 90 | 100% | 10 |
 | 37 | Screech | Normal | Status | — | 85% | 40 |
+| 40 | Gunk Shot ★ | Poison | Physical | 120 | 80% | 5 |
 | 43 | Acid Armor | Poison | Status | — | — | 20 |
 | 48 | Memento | Dark | Status | — | 100% | 10 |
 
@@ -124,6 +125,18 @@ Height 0.9 m (2′11″) · Weight 30 kg (66.1 lbs)
 | Explosion | Normal | Physical | 250 | 100% | 5 | Mt. Ember Exterior |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Grimer with a father that knows the move.
@@ -137,6 +150,8 @@ Breed a Grimer with a father that knows the move.
 | Curse | ??? | Status | — | — | 10 |
 | Shadow Punch | Ghost | Physical | 60 | — | 20 |
 | Explosion | Normal | Physical | 250 | 100% | 5 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 |
+| Shadow Sneak | Ghost | Physical | 40 | 100% | 30 |
 
 ---
 

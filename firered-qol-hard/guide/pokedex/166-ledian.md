@@ -81,6 +81,8 @@ Height 1.4 m (4′07″) · Weight 35.6 kg (78.5 lbs)
 | 24 | Comet Punch | Normal | Physical | 18 | 85% | 15 |
 | 29 | Baton Pass | Normal | Status | — | — | 40 |
 | 33 | Agility | Psychic | Status | — | — | 30 |
+| 38 | Bug Buzz ★ | Bug | Special | 90 | 100% | 10 |
+| 42 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
 | 47 | Double-Edge | Normal | Physical | 120 | 100% | 15 |
 
 ### By TM/HM
@@ -121,6 +123,19 @@ Height 1.4 m (4′07″) · Weight 35.6 kg (78.5 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Ledyba (passed down to Ledyba, which then evolves) with a father that knows the move.
@@ -130,6 +145,8 @@ Breed a Ledyba (passed down to Ledyba, which then evolves) with a father that kn
 | Psybeam | Psychic | Special | 65 | 100% | 20 |
 | Bide | Normal | Physical | varies | — | 10 |
 | Silver Wind | Bug | Special | 60 | 100% | 5 |
+| Drain Punch | Fighting | Physical | 75 | 100% | 10 |
+| Bug Buzz | Bug | Special | 90 | 100% | 10 |
 
 ---
 

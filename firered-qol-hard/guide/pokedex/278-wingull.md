@@ -79,6 +79,7 @@ Height 0.6 m (2′00″) · Weight 9.5 kg (20.9 lbs)
 | 15 | Wing Attack | Flying | Physical | 60 | 100% | 35 |
 | 20 | Water Pulse ★ | Water | Special | 60 | 100% | 20 |
 | 26 | Agility | Psychic | Status | — | — | 30 |
+| 30 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
 | 35 | Mist | Ice | Status | — | — | 30 |
 
 ### By TM/HM
@@ -113,6 +114,19 @@ Height 0.6 m (2′00″) · Weight 9.5 kg (20.9 lbs)
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
 
 ### By breeding (egg moves)
 

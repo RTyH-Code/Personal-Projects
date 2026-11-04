@@ -129,6 +129,24 @@ Sneasel does not evolve.
 | Dream Eater | Psychic | Special | 100 | 100% | 15 | Viridian City |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Psycho Cut | Psychic | Physical | 70 | 100% | 20 | 3 |
+| Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Sneasel with a father that knows the move.
@@ -142,6 +160,9 @@ Breed a Sneasel with a father that knows the move.
 | Bite | Dark | Physical | 60 | 100% | 25 |
 | Crush Claw | Normal | Physical | 75 | 95% | 10 |
 | Fake Out | Normal | Physical | 40 | 100% | 10 |
+| Ice Shard | Ice | Physical | 40 | 100% | 30 |
+| Icicle Crash | Ice | Physical | 85 | 90% | 10 |
+| Avalanche | Ice | Physical | 60 | 100% | 10 |
 
 ---
 

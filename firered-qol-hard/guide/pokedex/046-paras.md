@@ -86,6 +86,7 @@ Height 0.3 m (1′00″) · Weight 5.4 kg (11.9 lbs)
 | 33 | Growth | Normal | Status | — | — | 20 |
 | 38 | Giga Drain | Grass | Special | 75 | 100% | 10 |
 | 43 | Aromatherapy | Grass | Status | — | — | 5 |
+| 54 | X-Scissor ★ | Bug | Physical | 80 | 100% | 15 |
 
 ### By TM/HM
 
@@ -124,6 +125,18 @@ Height 0.3 m (1′00″) · Weight 5.4 kg (11.9 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Paras with a father that knows the move.
@@ -138,6 +151,7 @@ Breed a Paras with a father that knows the move.
 | Sweet Scent | Normal | Status | — | 100% | 20 |
 | Light Screen | Psychic | Status | — | — | 30 |
 | Pursuit | Dark | Physical | 40 | 100% | 20 |
+| Cross Poison | Poison | Physical | 70 | 100% | 20 |
 
 ---
 

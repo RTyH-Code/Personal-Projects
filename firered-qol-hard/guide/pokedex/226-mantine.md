@@ -83,6 +83,7 @@ Mantine does not evolve.
 | 20 | Agility | Psychic | Status | — | — | 30 |
 | 24 | Bubble Beam | Water | Special | 65 | 100% | 20 |
 | 28 | Headbutt ★ | Normal | Physical | 70 | 100% | 15 |
+| 32 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
 | 40 | Bounce ★ | Flying | Physical | 85 | 85% | 5 |
 | 44 | Take Down | Normal | Physical | 90 | 85% | 20 |
 | 48 | Hydro Pump ★ | Water | Special | 110 | 80% | 5 |
@@ -120,6 +121,23 @@ Mantine does not evolve.
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)
 

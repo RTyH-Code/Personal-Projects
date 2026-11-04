@@ -74,7 +74,10 @@ Height 0.6 m (2′00″) · Weight 11.5 kg (25.4 lbs)
 | 8 | Taunt | Dark | Status | — | 100% | 20 |
 | 12 | Bubble Beam | Water | Special | 65 | 100% | 20 |
 | 16 | Knock Off | Dark | Physical | 65 | 100% | 20 |
+| 20 | Double Hit ★ | Normal | Physical | 35 | 90% | 10 |
 | 24 | Protect | Normal | Status | — | — | 10 |
+| 28 | Night Slash ★ | Dark | Physical | 70 | 100% | 15 |
+| 32 | Razor Shell ★ | Water | Physical | 75 | 95% | 10 |
 | 36 | Swords Dance | Normal | Status | — | — | 20 |
 | 40 | Crunch | Dark | Physical | 80 | 100% | 15 |
 | 44 | Crabhammer | Water | Physical | 100 | 90% | 10 |
@@ -123,6 +126,17 @@ Height 0.6 m (2′00″) · Weight 11.5 kg (25.4 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Razor Shell | Water | Physical | 75 | 95% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+
 ### By breeding (egg moves)
 
 Breed a Corphish with a father that knows the move.
@@ -133,6 +147,7 @@ Breed a Corphish with a father that knows the move.
 | Endeavor | Normal | Physical | varies | 100% | 5 |
 | Body Slam | Normal | Physical | 85 | 100% | 15 |
 | Ancient Power | Rock | Special | 60 | 100% | 5 |
+| Aqua Jet | Water | Physical | 40 | 100% | 20 |
 
 ---
 

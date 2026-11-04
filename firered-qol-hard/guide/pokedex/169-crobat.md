@@ -75,11 +75,13 @@ Height 1.8 m (5′11″) · Weight 75 kg (165.3 lbs)
 | 1 | Screech | Normal | Status | — | 85% | 40 |
 | 1 | Mean Look | Normal | Status | — | 100% | 5 |
 | 1 | Astonish | Ghost | Physical | 30 | 100% | 15 |
+| 1 | Cross Poison ★ | Poison | Physical | 70 | 100% | 20 |
 | 15 | Poison Fang | Poison | Physical | 50 | 100% | 15 |
 | 27 | Air Cutter | Flying | Special | 60 | 95% | 25 |
 | 34 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 41 | Haze | Ice | Status | — | — | 30 |
 | 55 | Confuse Ray | Ghost | Status | — | 100% | 10 |
+| 62 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
 | 69 | Leech Life | Bug | Physical | 80 | 100% | 10 |
 
 ### By TM/HM
@@ -118,6 +120,23 @@ Height 1.8 m (5′11″) · Weight 75 kg (165.3 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Cross Poison | Poison | Physical | 70 | 100% | 20 | 3 |
+| Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Zubat (passed down to Zubat, which then evolves) with a father that knows the move.
@@ -130,6 +149,9 @@ Breed a Zubat (passed down to Zubat, which then evolves) with a father that know
 | Gust | Flying | Special | 40 | 100% | 35 |
 | Whirlwind | Normal | Status | — | 100% | 20 |
 | Curse | ??? | Status | — | — | 10 |
+| Zen Headbutt | Psychic | Physical | 80 | 90% | 15 |
+| Brave Bird | Flying | Physical | 120 | 100% | 15 |
+| Nasty Plot | Dark | Status | — | — | 20 |
 
 ---
 

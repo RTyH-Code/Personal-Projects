@@ -79,9 +79,12 @@ Height 1.5 m (4′11″) · Weight 56 kg (123.5 lbs)
 | 8 | False Swipe | Normal | Physical | 40 | 100% | 40 |
 | 12 | Wing Attack | Flying | Physical | 60 | 100% | 35 |
 | 16 | Double Team | Normal | Status | — | — | 15 |
+| 20 | Double Hit ★ | Normal | Physical | 35 | 90% | 10 |
 | 24 | Slash | Normal | Physical | 70 | 100% | 20 |
 | 28 | Focus Energy | Normal | Status | — | — | 30 |
 | 32 | Agility | Psychic | Status | — | — | 30 |
+| 36 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
+| 40 | X-Scissor ★ | Bug | Physical | 80 | 100% | 15 |
 | 44 | Swords Dance | Normal | Status | — | — | 20 |
 
 ### By TM/HM
@@ -117,6 +120,24 @@ Height 1.5 m (4′11″) · Weight 56 kg (123.5 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
 
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
+| Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Cross Poison | Poison | Physical | 70 | 100% | 20 | 3 |
+| Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
+| Psycho Cut | Psychic | Physical | 70 | 100% | 20 | 3 |
+| X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+
 ### By breeding (egg moves)
 
 Breed a Scyther with a father that knows the move.
@@ -131,6 +152,8 @@ Breed a Scyther with a father that knows the move.
 | Light Screen | Psychic | Status | — | — | 30 |
 | Endure | Normal | Status | — | — | 10 |
 | Silver Wind | Bug | Special | 60 | 100% | 5 |
+| Night Slash | Dark | Physical | 70 | 100% | 15 |
+| Bug Buzz | Bug | Special | 90 | 100% | 10 |
 
 ---
 

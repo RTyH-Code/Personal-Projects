@@ -79,6 +79,7 @@ Height 1.2 m (3′11″) · Weight 31.6 kg (69.7 lbs)
 | 27 | Light Screen | Psychic | Status | — | — | 30 |
 | 30 | Whirlwind | Normal | Status | — | 100% | 20 |
 | 32 | Toxic | Poison | Status | — | 90% | 10 |
+| 35 | Bug Buzz ★ | Bug | Special | 90 | 100% | 10 |
 | 37 | Protect | Normal | Status | — | — | 10 |
 
 ### By TM/HM
@@ -114,6 +115,18 @@ Height 1.2 m (3′11″) · Weight 31.6 kg (69.7 lbs)
 | Double-Edge | Normal | Physical | 120 | 100% | 15 | Victory Road 2F |
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ---
 

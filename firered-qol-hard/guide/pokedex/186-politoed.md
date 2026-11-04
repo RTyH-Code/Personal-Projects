@@ -79,6 +79,7 @@ Height 1.1 m (3′07″) · Weight 33.9 kg (74.7 lbs)
 | 1 | Pound ★ | Normal | Physical | 40 | 100% | 35 |
 | 1 | Swagger | Normal | Status | — | 85% | 15 |
 | 1 | Water Gun | Water | Special | 40 | 100% | 25 |
+| 1 | Earth Power ★ | Ground | Special | 90 | 100% | 10 |
 | 21 | Bubble Beam ★ | Water | Special | 65 | 100% | 20 |
 | 28 | Rain Dance ★ | Water | Status | — | — | 5 |
 | 37 | Body Slam ★ | Normal | Physical | 85 | 100% | 15 |
@@ -131,6 +132,21 @@ Height 1.1 m (3′07″) · Weight 33.9 kg (74.7 lbs)
 | Mimic | Normal | Status | — | 100% | 10 | Saffron City Copycats House 2F |
 | Metronome | Normal | Status | — | — | 10 | Cinnabar Island Pokémon Lab Research Room |
 | Substitute | Normal | Status | — | — | 10 | Fuchsia City |
+
+### From the modern tutor
+
+The old man in the Viridian City Pokémon Center teaches these for free once you have enough badges.
+
+| Move | Type | Cat. | Power | Acc. | PP | Badges |
+|---|---|---|--:|--:|--:|--:|
+| Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)
 
