@@ -115,6 +115,20 @@ and you can use her as often as you like.
 - Critical hits still do double damage (Gen 3); Sniper makes them triple.
 - Sun, rain and Flash Fire now boost physical Fire and Water moves too (with
   the physical/special split, moves like Fire Punch had been missing out).
+- The original Gen 3 abilities now work the modern way:
+  - Sturdy: also survives any hit at 1 HP when at full HP.
+  - Lightning Rod: makes the holder immune to Electric moves and raises its Sp. Atk.
+  - Drizzle, Drought and Sand Stream: weather lasts 5 turns instead of forever.
+  - Intimidate: Inner Focus, Own Tempo, Oblivious and Scrappy block it.
+  - Oblivious: also blocks Taunt.
+  - Keen Eye: ignores the target's evasion boosts.
+  - Rough Skin: does 1/8 damage.
+  - Effect Spore: Grass types and Overcoat are immune.
+  - Plus and Minus: power up with a partner that has either ability.
+  - Stench: 10% chance to make the target flinch.
+  - Trace: can't copy Trace, Imposter, Neutralizing Gas or Forecast.
+  - Trapping: Ghost types can always run or switch out (except when rooted by
+    Ingrain). Shadow Tag doesn't trap another Shadow Tag.
 
 ## Every Pokémon is obtainable
 All 386 Pokémon can be caught, evolved or bred in a single FireRed save:
@@ -223,7 +237,7 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `5c9246b1504fa9615dc54f787a33b5d9c0c19638`
+Patched ROM SHA-1: `1addf8d50db8d95e3a0294f8ed80c745fff8b60e`
 
 Start a new game. Saves from earlier versions of this hack aren't supported.
 

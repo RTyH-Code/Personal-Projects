@@ -10,7 +10,7 @@ Height 1 m (3′03″) · Weight 115 kg (253.5 lbs)
 
 ## Abilities
 
-- **Lightning Rod**: Draws electrical moves.
+- **Lightning Rod**: Absorbs Electric moves.
 - **Rock Head**: Prevents recoil damage.
 - **Reckless** *(hidden ability)*: Powers up recoil moves.
 
@@ -39,6 +39,8 @@ Height 1 m (3′03″) · Weight 115 kg (253.5 lbs)
 | ½× | Normal, Flying, Rock, Fire |
 | ¼× | Poison |
 | 0× (immune) | Electric |
+
+*With Lightning Rod: immune to Electric moves (they raise its Sp. Atk).*
 
 ## Training and breeding
 

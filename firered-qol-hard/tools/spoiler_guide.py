@@ -959,7 +959,10 @@ def write_pokedex():
                  "ABILITY_DRY_SKIN": "Water moves heal it, Fire moves do 25% more",
                  "ABILITY_FILTER": "super-effective moves do 25% less",
                  "ABILITY_SOLID_ROCK": "super-effective moves do 25% less",
-                 "ABILITY_MULTISCALE": "takes half damage at full HP"}
+                 "ABILITY_MULTISCALE": "takes half damage at full HP",
+                 "ABILITY_LIGHTNING_ROD": "immune to Electric moves (they raise its Sp. Atk)",
+                 "ABILITY_STORM_DRAIN": "immune to Water moves (they raise its Sp. Atk)",
+                 "ABILITY_SAP_SIPPER": "immune to Grass moves (they raise its Attack)"}
         for a in abil:
             if a in notes:
                 who = "With" if len(abil) > 1 else "Its ability"

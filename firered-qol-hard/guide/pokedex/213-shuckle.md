@@ -10,7 +10,7 @@ Height 0.6 m (2′00″) · Weight 20.5 kg (45.2 lbs)
 
 ## Abilities
 
-- **Sturdy**: Negates 1-hit KO attacks.
+- **Sturdy**: Endures a KO at full HP.
 - **Gluttony**: Eats pinch Berries early.
 - **Contrary** *(hidden ability)*: Inverts stat changes.
 

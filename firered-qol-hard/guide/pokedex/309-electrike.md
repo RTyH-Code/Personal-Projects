@@ -11,8 +11,8 @@ Height 0.6 m (2′00″) · Weight 15.2 kg (33.5 lbs)
 ## Abilities
 
 - **Static**: Paralyzes on contact.
-- **Lightning Rod**: Draws electrical moves.
-- **Minus** *(hidden ability)*: Powers up with Plus.
+- **Lightning Rod**: Absorbs Electric moves.
+- **Minus** *(hidden ability)*: Powers up with Plus/Minus.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
@@ -36,6 +36,8 @@ Height 0.6 m (2′00″) · Weight 15.2 kg (33.5 lbs)
 |---|---|
 | 2× | Ground |
 | ½× | Flying, Steel, Electric |
+
+*With Lightning Rod: immune to Electric moves (they raise its Sp. Atk).*
 
 ## Training and breeding
 

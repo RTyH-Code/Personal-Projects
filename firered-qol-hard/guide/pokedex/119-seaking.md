@@ -12,7 +12,7 @@ Height 1.3 m (4′03″) · Weight 39 kg (86.0 lbs)
 
 - **Swift Swim**: Raises Speed in rain.
 - **Water Veil**: Prevents burns.
-- **Lightning Rod** *(hidden ability)*: Draws electrical moves.
+- **Lightning Rod** *(hidden ability)*: Absorbs Electric moves.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
@@ -36,6 +36,8 @@ Height 1.3 m (4′03″) · Weight 39 kg (86.0 lbs)
 |---|---|
 | 2× | Grass, Electric |
 | ½× | Steel, Fire, Water, Ice |
+
+*With Lightning Rod: immune to Electric moves (they raise its Sp. Atk).*
 
 ## Training and breeding
 

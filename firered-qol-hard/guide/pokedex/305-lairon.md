@@ -10,7 +10,7 @@ Height 0.9 m (2′11″) · Weight 120 kg (264.6 lbs)
 
 ## Abilities
 
-- **Sturdy**: Negates 1-hit KO attacks.
+- **Sturdy**: Endures a KO at full HP.
 - **Rock Head**: Prevents recoil damage.
 - **Heavy Metal** *(hidden ability)*: Doubles its weight.
 
