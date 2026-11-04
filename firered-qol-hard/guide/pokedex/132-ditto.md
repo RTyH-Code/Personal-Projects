@@ -11,6 +11,9 @@ Height 0.3 m (1′00″) · Weight 4 kg (8.8 lbs)
 ## Abilities
 
 - **Limber**: Prevents paralysis.
+- **Imposter** *(hidden ability)*: Transforms into the foe.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

@@ -12,6 +12,7 @@ Height 0.5 m (1′08″) · Weight 4 kg (8.8 lbs)
 
 - **Chlorophyll**: Raises Speed in sunshine.
 - **Early Bird**: Awakens quickly from sleep.
+- **Pickpocket** *(hidden ability)*: Steals items on contact.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 

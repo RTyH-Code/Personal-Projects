@@ -11,6 +11,7 @@ Height 1.4 m (4′07″) · Weight 40.6 kg (89.5 lbs)
 ## Abilities
 
 - **Oblivious**: Prevents attraction.
+- **Forewarn**: Senses the foe's best move.
 - **Dry Skin** *(hidden ability)*: Water heals, fire and sun hurt.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*

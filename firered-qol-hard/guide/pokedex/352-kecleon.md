@@ -11,6 +11,9 @@ Height 1 m (3′03″) · Weight 22 kg (48.5 lbs)
 ## Abilities
 
 - **Color Change**: Changes type to foe's move.
+- **Protean** *(hidden ability)*: Changes type to its move.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 

@@ -1,0 +1,1214 @@
+From 397b6c6c00813a609c558a38d96d1e61a70c31b7 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Wed, 4 Nov 2026 15:54:50 +0000
+Subject: [PATCH 31/31] Modern abilities, batch 3: the remaining complex
+ abilities
+
+- Prankster (+1 priority to status moves; Dark types immune), Magic
+  Bounce, Infiltrator (screens, Mist, Safeguard, Substitute), Mold Breaker,
+  Unburden, Pickpocket (battle-only steal), Harvest, Forewarn,
+  Anticipation, Imposter, Neutralizing Gas, Protean (once per switch-in),
+  Leaf Guard
+- Every new ability except Honey Gather is now in use
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ HACK_NOTES.md                         |  22 +-
+ data/battle_scripts_1.s               |  58 ++++++
+ include/battle_scripts.h              |   9 +
+ include/battle_util.h                 |   9 +
+ include/constants/battle_string_ids.h |  12 +-
+ src/battle_main.c                     |  22 +-
+ src/battle_message.c                  |  16 ++
+ src/battle_script_commands.c          |  60 +++++-
+ src/battle_util.c                     | 278 ++++++++++++++++++++++++++
+ src/data/pokemon/species_info.h       |  86 ++++----
+ tools/hack/abilities.py               |   3 +
+ 11 files changed, 508 insertions(+), 67 deletions(-)
+
+diff --git a/HACK_NOTES.md b/HACK_NOTES.md
+index 6e54797..8fe93c7 100644
+--- a/HACK_NOTES.md
++++ b/HACK_NOTES.md
+@@ -98,24 +98,18 @@ and you can use her as often as you like.
+     games teach them that way.
+   - Lance's Dragons carry Iron Tail so they aren't helpless against Fairies.
+ 
+-## Modern abilities (in progress)
++## Modern abilities
+ - Every Pokémon can have up to three abilities, as in modern games: two
+   regular ones and a hidden ability. Wild Pokémon get one of the regular ones;
+   the coach in the Indigo Plateau Pokémon Center (after you become Champion)
+   can switch a Pokémon to any of them, including the hidden one.
+-- Abilities come from the modern games. Abilities that were added after
+-  Gen 3 are being implemented in batches; until one is ready, that slot keeps
+-  the Pokémon's Gen 3 ability. Working so far:
+-  Adaptability, Aftermath, Analytic, Anger Point, Big Pecks, Competitive,
+-  Contrary, Cursed Body, Defiant, Download, Dry Skin, Filter, Friend Guard,
+-  Frisk, Gluttony, Healer, Heavy Metal, Hydration, Ice Body, Iron Fist,
+-  Justified, Light Metal, Magic Guard, Moody, Moxie, Multiscale, No Guard,
+-  Normalize, Overcoat, Poison Heal, Poison Touch, Quick Feet, Rattled,
+-  Reckless, Regenerator, Rivalry, Sand Force, Sand Rush, Sap Sipper, Scrappy,
+-  Sheer Force, Simple, Skill Link, Sniper, Snow Cloak, Solar Power, Solid Rock,
+-  Stall, Steadfast, Storm Drain, Super Luck, Tangled Feet, Technician,
+-  Telepathy, Tinted Lens, Toxic Boost, Unaware, Unnerve, Weak Armor,
+-  Wind Rider and Wonder Skin.
++- All 74 abilities that later games gave Gen 1–3 Pokémon work, from
++  Adaptability to Wonder Skin, including Mold Breaker, Magic Bounce, Imposter,
++  Protean (once per switch-in, as in Gen 9), Neutralizing Gas, Prankster
++  (Dark types are immune to its boosted moves) and Infiltrator.
++- Honey Gather is the one exception (FireRed has no Honey), so Teddiursa keeps
++  its other abilities.
++- Pickpocket steals for the rest of the battle only; items go back afterwards.
+ - Critical hits still do double damage (Gen 3); Sniper makes them triple.
+ - Sun, rain and Flash Fire now boost physical Fire and Water moves too (with
+   the physical/special split, moves like Fire Punch had been missing out).
+diff --git a/data/battle_scripts_1.s b/data/battle_scripts_1.s
+index 710a988..228a6b5 100644
+--- a/data/battle_scripts_1.s
++++ b/data/battle_scripts_1.s
+@@ -4021,6 +4021,64 @@ BattleScript_HackHealer::
+ 	updatestatusicon BS_SCRIPTING
+ 	end3
+ 
++BattleScript_HackMagicBounce::
++	attackstring
++	ppreduce
++	pause B_WAIT_TIME_SHORT
++	printstring STRINGID_HACKMOVEBOUNCED
++	waitmessage B_WAIT_TIME_LONG
++	orword gHitMarker, HITMARKER_ATTACKSTRING_PRINTED | HITMARKER_NO_PPDEDUCT | HITMARKER_ALLOW_NO_PP
++	setmagiccoattarget BS_ATTACKER
++	return
++
++BattleScript_HackProtean::
++	printstring STRINGID_HACKPROTEAN
++	waitmessage B_WAIT_TIME_LONG
++	return
++
++BattleScript_HackPickpocket::
++	printstring STRINGID_HACKPICKPOCKET
++	waitmessage B_WAIT_TIME_LONG
++	return
++
++BattleScript_HackHarvest::
++	printstring STRINGID_HACKHARVEST
++	waitmessage B_WAIT_TIME_LONG
++	end3
++
++BattleScript_HackMoldBreaker::
++	pause B_WAIT_TIME_SHORT
++	printstring STRINGID_HACKMOLDBREAKER
++	waitmessage B_WAIT_TIME_LONG
++	end3
++
++BattleScript_HackNeutralizingGas::
++	pause B_WAIT_TIME_SHORT
++	printstring STRINGID_HACKNEUTRALIZINGGAS
++	waitmessage B_WAIT_TIME_LONG
++	end3
++
++BattleScript_HackForewarn::
++	pause B_WAIT_TIME_SHORT
++	printstring STRINGID_HACKFOREWARN
++	waitmessage B_WAIT_TIME_LONG
++	end3
++
++BattleScript_HackAnticipation::
++	pause B_WAIT_TIME_SHORT
++	printstring STRINGID_HACKANTICIPATION
++	waitmessage B_WAIT_TIME_LONG
++	end3
++
++BattleScript_HackImposter::
++	transformdataexecution
++	attackanimation
++	waitanimation
++	printfromtable gTransformUsedStringIds
++	waitmessage B_WAIT_TIME_LONG
++	callnative Hack_BS_ImposterEnd
++	end3
++
+ BattleScript_HackPoisonHeal::
+ 	printstring STRINGID_PKMNSXRESTOREDHPALITTLE2
+ 	waitmessage B_WAIT_TIME_LONG
+diff --git a/include/battle_scripts.h b/include/battle_scripts.h
+index 190775a..a296b6f 100644
+--- a/include/battle_scripts.h
++++ b/include/battle_scripts.h
+@@ -155,6 +155,15 @@ extern const u8 BattleScript_HackFrisk[];
+ extern const u8 BattleScript_HackUnnerve[];
+ extern const u8 BattleScript_HackMoody[];
+ extern const u8 BattleScript_HackHealer[];
++extern const u8 BattleScript_HackMagicBounce[];
++extern const u8 BattleScript_HackProtean[];
++extern const u8 BattleScript_HackPickpocket[];
++extern const u8 BattleScript_HackHarvest[];
++extern const u8 BattleScript_HackMoldBreaker[];
++extern const u8 BattleScript_HackNeutralizingGas[];
++extern const u8 BattleScript_HackForewarn[];
++extern const u8 BattleScript_HackAnticipation[];
++extern const u8 BattleScript_HackImposter[];
+ extern const u8 BattleScript_WeatherFormChanges[];
+ extern const u8 BattleScript_WeatherFormChangesLoop[];
+ extern const u8 BattleScript_CastformChange[];
+diff --git a/include/battle_util.h b/include/battle_util.h
+index d4a4499..d3eed9b 100644
+--- a/include/battle_util.h
++++ b/include/battle_util.h
+@@ -49,6 +49,15 @@ void Hack_BS_WeakArmorSpeed(void);
+ u8 Hack_OnDamageAbility(u8 battler, u8 ability, u16 move, u8 moveType);
+ u8 Hack_SwitchInAbility(u8 battler, u8 ability);
+ u8 Hack_EndTurnAbility(u8 battler, u8 ability);
++void Hack_NoteItemLost(u8 battler);
++u8 Hack_Forewarn(u8 battler);
++u8 Hack_Anticipation(u8 battler);
++u8 Hack_Imposter(u8 battler);
++void Hack_BS_ImposterEnd(void);
++void Hack_MoldBreakerBegin(void);
++void Hack_MoldBreakerEnd(void);
++void Hack_UpdateNeutralizingGas(void);
++void Hack_ResetAbilityState(void);
+ 
+ #define ABILITY_ON_FIELD(abilityId)(AbilityBattleEffects(ABILITYEFFECT_CHECK_ON_FIELD, 0, abilityId, 0, 0))
+ #define ABILITY_ON_FIELD2(abilityId)(AbilityBattleEffects(ABILITYEFFECT_FIELD_SPORT, 0, abilityId, 0, 0))
+diff --git a/include/constants/battle_string_ids.h b/include/constants/battle_string_ids.h
+index ba4cf30..999fdca 100644
+--- a/include/constants/battle_string_ids.h
++++ b/include/constants/battle_string_ids.h
+@@ -393,8 +393,16 @@
+ #define STRINGID_HACKUNNERVE         391
+ #define STRINGID_HACKMOODY           392
+ #define STRINGID_HACKHEALER          393
+-
+-#define BATTLESTRINGS_COUNT     394
++#define STRINGID_HACKMOVEBOUNCED     394
++#define STRINGID_HACKPROTEAN         395
++#define STRINGID_HACKPICKPOCKET      396
++#define STRINGID_HACKHARVEST         397
++#define STRINGID_HACKMOLDBREAKER     398
++#define STRINGID_HACKNEUTRALIZINGGAS 399
++#define STRINGID_HACKFOREWARN        400
++#define STRINGID_HACKANTICIPATION    401
++
++#define BATTLESTRINGS_COUNT     402
+ 
+ // This is the string id that gBattleStringsTable starts with.
+ // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,
+diff --git a/src/battle_main.c b/src/battle_main.c
+index 2acef04..251bb77 100644
+--- a/src/battle_main.c
++++ b/src/battle_main.c
+@@ -2352,6 +2352,7 @@ static void BattleStartClearSetData(void)
+     {
+         *((u8 *)gBattleStruct->lastTakenMove + i) = MOVE_NONE;
+         *((u8 *)gBattleStruct->usedHeldItems + i) = ITEM_NONE;
++    Hack_ResetAbilityState();
+         *((u8 *)gBattleStruct->choicedMove + i) = MOVE_NONE;
+         *((u8 *)gBattleStruct->changedItems + i) = ITEM_NONE;
+         *(i + 0 * 8 + (u8 *)(gBattleStruct->lastTakenMoveFrom) + 0) = 0;
+@@ -3465,6 +3466,7 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
+     u8 holdEffect = 0;
+     u8 holdEffectParam = 0;
+     u16 moveBattler1 = 0, moveBattler2 = 0;
++    s8 priority1, priority2;
+ 
+     if (WEATHER_HAS_EFFECT)
+     {
+@@ -3516,6 +3518,8 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
+         speedBattler1 = UINT_MAX;
+     else if (gBattleMons[battler1].ability == ABILITY_STALL)
+         speedBattler1 = 0;
++    else if (gBattleMons[battler1].ability == ABILITY_UNBURDEN && (gDisableStructs[battler1].unk17 & 2) && gBattleMons[battler1].item == ITEM_NONE)
++        speedBattler1 *= 2;
+     // check second battlerId's speed
+     speedBattler2 = (gBattleMons[battler2].speed * speedMultiplierBattler2)
+                     * (gStatStageRatios[gBattleMons[battler2].statStages[STAT_SPEED]][0])
+@@ -3547,6 +3551,8 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
+         speedBattler2 = UINT_MAX;
+     else if (gBattleMons[battler2].ability == ABILITY_STALL)
+         speedBattler2 = 0;
++    else if (gBattleMons[battler2].ability == ABILITY_UNBURDEN && (gDisableStructs[battler2].unk17 & 2) && gBattleMons[battler2].item == ITEM_NONE)
++        speedBattler2 *= 2;
+     if (ignoreChosenMoves)
+     {
+         moveBattler1 = MOVE_NONE;
+@@ -3573,11 +3579,18 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
+         else
+             moveBattler2 = MOVE_NONE;
+     }
++    // FireRed QoL+Hard: Prankster gives status moves +1 priority
++    priority1 = gBattleMoves[moveBattler1].priority;
++    priority2 = gBattleMoves[moveBattler2].priority;
++    if (moveBattler1 != MOVE_NONE && gBattleMons[battler1].ability == ABILITY_PRANKSTER && gBattleMoves[moveBattler1].power == 0)
++        priority1++;
++    if (moveBattler2 != MOVE_NONE && gBattleMons[battler2].ability == ABILITY_PRANKSTER && gBattleMoves[moveBattler2].power == 0)
++        priority2++;
+     // both move priorities are different than 0
+-    if (gBattleMoves[moveBattler1].priority != 0 || gBattleMoves[moveBattler2].priority != 0)
++    if (priority1 != 0 || priority2 != 0)
+     {
+         // both priorities are the same
+-        if (gBattleMoves[moveBattler1].priority == gBattleMoves[moveBattler2].priority)
++        if (priority1 == priority2)
+         {
+             if (speedBattler1 == speedBattler2 && Random() & 1)
+                 strikesFirst = 2; // same speeds, same priorities
+@@ -3585,7 +3598,7 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
+                 strikesFirst = 1; // battler2 has more speed
+             // else battler1 has more speed
+         }
+-        else if (gBattleMoves[moveBattler1].priority < gBattleMoves[moveBattler2].priority)
++        else if (priority1 < priority2)
+             strikesFirst = 1; // battler2's move has greater priority
+         // else battler1's move has greater priority
+     }
+@@ -4200,6 +4213,7 @@ static void HandleAction_UseMove(void)
+             }
+         }
+     }
++    Hack_MoldBreakerBegin();
+     gBattlescriptCurrInstr = gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect];
+     gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
+ }
+@@ -4524,6 +4538,8 @@ static void HandleAction_NothingIsFainted(void)
+ 
+ static void HandleAction_ActionFinished(void)
+ {
++    Hack_MoldBreakerEnd();
++    Hack_UpdateNeutralizingGas();
+     ++gCurrentTurnActionNumber;
+     gCurrentActionFuncId = gActionsByTurnOrder[gCurrentTurnActionNumber];
+     SpecialStatusesClear();
+diff --git a/src/battle_message.c b/src/battle_message.c
+index 45d1d2c..561fcc7 100644
+--- a/src/battle_message.c
++++ b/src/battle_message.c
+@@ -282,6 +282,14 @@ static const u8 sText_HackFrisk[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} frisked i
+ static const u8 sText_HackUnnerve[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} is making its foes\ntoo nervous to eat BERRIES!");
+ static const u8 sText_HackMoody[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nsharply raised its {B_BUFF1}!\pIt lowered its {B_BUFF2}!");
+ static const u8 sText_HackHealer[] = _("{B_ATK_NAME_WITH_PREFIX}'s {B_ATK_ABILITY}\ncured its ally's {B_BUFF1} problem!");
++static const u8 sText_HackMoveBounced[] = _("{B_ATK_NAME_WITH_PREFIX}'s {B_CURRENT_MOVE}\nwas bounced back by {B_DEF_ABILITY}!");
++static const u8 sText_HackProtean[] = _("{B_ATK_NAME_WITH_PREFIX}'s {B_ATK_ABILITY}\nmade it the {B_BUFF1} type!");
++static const u8 sText_HackPickpocket[] = _("{B_DEF_NAME_WITH_PREFIX} stole\n{B_ATK_NAME_WITH_PREFIX}'s {B_LAST_ITEM}!");
++static const u8 sText_HackHarvest[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} harvested\nits {B_LAST_ITEM}!");
++static const u8 sText_HackMoldBreaker[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}\nbreaks the mold!");
++static const u8 sText_HackNeutralizingGas[] = _("NEUTRALIZING GAS filled\nthe area!");
++static const u8 sText_HackForewarn[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s FOREWARN\nalerted it to {B_BUFF1}!");
++static const u8 sText_HackAnticipation[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} shuddered!");
+ static const u8 sText_HackAbilityHurtSelf[] = _("{B_ATK_NAME_WITH_PREFIX} was hurt by\nits {B_ATK_ABILITY}!");
+ static const u8 sText_PkmnHurtsWith[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_DEF_ABILITY}\nhurt {B_ATK_NAME_WITH_PREFIX}!");
+ static const u8 sText_PkmnTraced[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} TRACED\n{B_BUFF1}'s {B_BUFF2}!");
+@@ -727,6 +735,14 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT - BATTLESTRINGS_TABLE_ST
+     [STRINGID_HACKUNNERVE - BATTLESTRINGS_TABLE_START]                   = sText_HackUnnerve,
+     [STRINGID_HACKMOODY - BATTLESTRINGS_TABLE_START]                     = sText_HackMoody,
+     [STRINGID_HACKHEALER - BATTLESTRINGS_TABLE_START]                    = sText_HackHealer,
++    [STRINGID_HACKMOVEBOUNCED - BATTLESTRINGS_TABLE_START]               = sText_HackMoveBounced,
++    [STRINGID_HACKPROTEAN - BATTLESTRINGS_TABLE_START]                   = sText_HackProtean,
++    [STRINGID_HACKPICKPOCKET - BATTLESTRINGS_TABLE_START]                = sText_HackPickpocket,
++    [STRINGID_HACKHARVEST - BATTLESTRINGS_TABLE_START]                   = sText_HackHarvest,
++    [STRINGID_HACKMOLDBREAKER - BATTLESTRINGS_TABLE_START]               = sText_HackMoldBreaker,
++    [STRINGID_HACKNEUTRALIZINGGAS - BATTLESTRINGS_TABLE_START]           = sText_HackNeutralizingGas,
++    [STRINGID_HACKFOREWARN - BATTLESTRINGS_TABLE_START]                  = sText_HackForewarn,
++    [STRINGID_HACKANTICIPATION - BATTLESTRINGS_TABLE_START]              = sText_HackAnticipation,
+     [STRINGID_PKMNTRACED - BATTLESTRINGS_TABLE_START]                    = sText_PkmnTraced,
+     [STRINGID_STATSHARPLY - BATTLESTRINGS_TABLE_START]                   = sText_StatSharply,
+     [STRINGID_STATROSE - BATTLESTRINGS_TABLE_START]                      = gBattleText_Rose,
+diff --git a/src/battle_script_commands.c b/src/battle_script_commands.c
+index 7db813b..124c8ce 100644
+--- a/src/battle_script_commands.c
++++ b/src/battle_script_commands.c
+@@ -865,6 +865,14 @@ static void Cmd_attackcanceler(void)
+ 
+     gHitMarker |= HITMARKER_OBEYS;
+ 
++    if (gBattleMons[gBattlerTarget].ability == ABILITY_MAGIC_BOUNCE && gBattlerTarget != gBattlerAttacker
++     && (gBattleMoves[gCurrentMove].flags & FLAG_MAGIC_COAT_AFFECTED) && !(gHitMarker & HITMARKER_ATTACKSTRING_PRINTED))
++    {
++        RecordAbilityBattle(gBattlerTarget, ABILITY_MAGIC_BOUNCE);
++        BattleScriptPushCursor();
++        gBattlescriptCurrInstr = BattleScript_HackMagicBounce;
++        return;
++    }
+     if (gProtectStructs[gBattlerTarget].bounceMove && gBattleMoves[gCurrentMove].flags & FLAG_MAGIC_COAT_AFFECTED)
+     {
+         PressurePPLose(gBattlerAttacker, gBattlerTarget, MOVE_MAGIC_COAT);
+@@ -1041,6 +1049,15 @@ static void Cmd_accuracycheck(void)
+ 
+         if (JumpIfMoveAffectedByProtect(move))
+             return;
++        // Prankster-boosted status moves don't affect Dark-type foes
++        if (gBattleMons[gBattlerAttacker].ability == ABILITY_PRANKSTER && gBattleMoves[move].power == 0
++         && gBattlerTarget != gBattlerAttacker && GetBattlerSide(gBattlerTarget) != GetBattlerSide(gBattlerAttacker)
++         && IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_DARK))
++        {
++            gMoveResultFlags |= MOVE_RESULT_DOESNT_AFFECT_FOE;
++            JumpIfMoveFailed(7, move);
++            return;
++        }
+         // Telepathy dodges allies' attacks
+         if (gBattleMons[gBattlerTarget].ability == ABILITY_TELEPATHY && gBattlerTarget != gBattlerAttacker
+          && GetBattlerSide(gBattlerTarget) == GetBattlerSide(gBattlerAttacker) && gBattleMoves[move].power != 0)
+@@ -1135,6 +1152,25 @@ static void Cmd_attackstring(void)
+     if (gBattleControllerExecFlags)
+         return;
+ 
++    // FireRed QoL+Hard: Protean changes the user's type before the move is announced (once per switch-in)
++    if (!(gHitMarker & (HITMARKER_NO_ATTACKSTRING | HITMARKER_ATTACKSTRING_PRINTED))
++     && gBattleMons[gBattlerAttacker].ability == ABILITY_PROTEAN && !(gDisableStructs[gBattlerAttacker].unk17 & 4)
++     && gCurrentMove != MOVE_STRUGGLE && gCurrentMove != MOVE_NONE)
++    {
++        u8 moveType;
++
++        GET_MOVE_TYPE(gCurrentMove, moveType);
++        if (moveType != TYPE_MYSTERY && (gBattleMons[gBattlerAttacker].type1 != moveType || gBattleMons[gBattlerAttacker].type2 != moveType))
++        {
++            gDisableStructs[gBattlerAttacker].unk17 |= 4;
++            SET_BATTLER_TYPE(gBattlerAttacker, moveType);
++            PREPARE_TYPE_BUFFER(gBattleTextBuff1, moveType);
++            BattleScriptPush(gBattlescriptCurrInstr); // run attackstring again afterwards
++            gBattlescriptCurrInstr = BattleScript_HackProtean;
++            return;
++        }
++    }
++
+     if (!(gHitMarker & (HITMARKER_NO_ATTACKSTRING | HITMARKER_ATTACKSTRING_PRINTED)))
+     {
+         PrepareStringBattle(STRINGID_USEDMOVE, gBattlerAttacker);
+@@ -1235,6 +1271,8 @@ static void Cmd_critcalc(void)
+ static void Cmd_damagecalc(void)
+ {
+     u16 sideStatus = gSideStatuses[GET_BATTLER_SIDE(gBattlerTarget)];
++    if (gBattleMons[gBattlerAttacker].ability == ABILITY_INFILTRATOR)
++        sideStatus &= ~(SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN);
+     gBattleMoveDamage = CalculateBaseDamage(&gBattleMons[gBattlerAttacker], &gBattleMons[gBattlerTarget], gCurrentMove,
+                                             sideStatus, gDynamicBasePower,
+                                             gBattleStruct->dynamicMoveType, gBattlerAttacker, gBattlerTarget);
+@@ -1763,7 +1801,8 @@ static void Cmd_healthbarupdate(void)
+     {
+         gActiveBattler = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
+ 
+-        if (gBattleMons[gActiveBattler].status2 & STATUS2_SUBSTITUTE && gDisableStructs[gActiveBattler].substituteHP && !(gHitMarker & HITMARKER_IGNORE_SUBSTITUTE))
++        if (gBattleMons[gActiveBattler].status2 & STATUS2_SUBSTITUTE && gDisableStructs[gActiveBattler].substituteHP && !(gHitMarker & HITMARKER_IGNORE_SUBSTITUTE)
++         && !(gActiveBattler != gBattlerAttacker && gBattleMons[gBattlerAttacker].ability == ABILITY_INFILTRATOR))
+         {
+             PrepareStringBattle(STRINGID_SUBSTITUTEDAMAGED, gActiveBattler);
+         }
+@@ -1807,7 +1846,8 @@ static void Cmd_datahpupdate(void)
+     if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
+     {
+         gActiveBattler = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
+-        if (gBattleMons[gActiveBattler].status2 & STATUS2_SUBSTITUTE && gDisableStructs[gActiveBattler].substituteHP && !(gHitMarker & HITMARKER_IGNORE_SUBSTITUTE))
++        if (gBattleMons[gActiveBattler].status2 & STATUS2_SUBSTITUTE && gDisableStructs[gActiveBattler].substituteHP && !(gHitMarker & HITMARKER_IGNORE_SUBSTITUTE)
++         && !(gActiveBattler != gBattlerAttacker && gBattleMons[gBattlerAttacker].ability == ABILITY_INFILTRATOR))
+         {
+             if (gDisableStructs[gActiveBattler].substituteHP >= gBattleMoveDamage)
+             {
+@@ -2183,7 +2223,13 @@ void SetMoveEffect(bool8 primary, u8 certain)
+         INCREMENT_RETURN
+ 
+     if (gSideStatuses[GET_BATTLER_SIDE(gEffectBattler)] & SIDE_STATUS_SAFEGUARD && !(gHitMarker & HITMARKER_STATUS_ABILITY_EFFECT)
+-        && !primary && gBattleCommunication[MOVE_EFFECT_BYTE] <= 7)
++        && !primary && gBattleCommunication[MOVE_EFFECT_BYTE] <= 7 && gBattleMons[gBattlerAttacker].ability != ABILITY_INFILTRATOR)
++        INCREMENT_RETURN
++
++    // Leaf Guard: no status conditions in sunshine
++    if (gBattleMons[gEffectBattler].ability == ABILITY_LEAF_GUARD && WEATHER_HAS_EFFECT && (gBattleWeather & B_WEATHER_SUN)
++        && !(gHitMarker & HITMARKER_STATUS_ABILITY_EFFECT) && gBattleCommunication[MOVE_EFFECT_BYTE] >= MOVE_EFFECT_SLEEP
++        && gBattleCommunication[MOVE_EFFECT_BYTE] <= MOVE_EFFECT_TOXIC)
+         INCREMENT_RETURN
+ 
+     if (gBattleMons[gEffectBattler].hp == 0
+@@ -2191,7 +2237,8 @@ void SetMoveEffect(bool8 primary, u8 certain)
+         && gBattleCommunication[MOVE_EFFECT_BYTE] != MOVE_EFFECT_STEAL_ITEM)
+         INCREMENT_RETURN
+ 
+-    if (gBattleMons[gEffectBattler].status2 & STATUS2_SUBSTITUTE && affectsUser != MOVE_EFFECT_AFFECTS_USER)
++    if (gBattleMons[gEffectBattler].status2 & STATUS2_SUBSTITUTE && affectsUser != MOVE_EFFECT_AFFECTS_USER
++        && gBattleMons[gBattlerAttacker].ability != ABILITY_INFILTRATOR)
+         INCREMENT_RETURN
+ 
+     if (gBattleCommunication[MOVE_EFFECT_BYTE] <= PRIMARY_STATUS_MOVE_EFFECT)
+@@ -2702,6 +2749,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
+                         u16 *changedItem = &gBattleStruct->changedItems[gBattlerAttacker];
+                         gLastUsedItem = *changedItem = gBattleMons[gBattlerTarget].item;
+                         gBattleMons[gBattlerTarget].item = ITEM_NONE;
++                        Hack_NoteItemLost(gBattlerTarget);
+ 
+                         gActiveBattler = gBattlerAttacker;
+                         BtlController_EmitSetMonData(BUFFER_A, REQUEST_HELDITEM_BATTLE, 0, sizeof(gLastUsedItem), &gLastUsedItem);
+@@ -2798,6 +2846,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
+ 
+                     gLastUsedItem = gBattleMons[gEffectBattler].item;
+                     gBattleMons[gEffectBattler].item = ITEM_NONE;
++                    Hack_NoteItemLost(gEffectBattler);
+                     gWishFutureKnock.knockedOffMons[side] |= gBitTable[gBattlerPartyIndexes[gEffectBattler]];
+ 
+                     BattleScriptPush(gBattlescriptCurrInstr + 1);
+@@ -5711,6 +5760,7 @@ static void Cmd_removeitem(void)
+     usedHeldItem = &gBattleStruct->usedHeldItems[gActiveBattler];
+     *usedHeldItem = gBattleMons[gActiveBattler].item;
+     gBattleMons[gActiveBattler].item = ITEM_NONE;
++    Hack_NoteItemLost(gActiveBattler);
+ 
+     BtlController_EmitSetMonData(BUFFER_A, REQUEST_HELDITEM_BATTLE, 0, sizeof(gBattleMons[gActiveBattler].item), &gBattleMons[gActiveBattler].item);
+     MarkBattlerForControllerExec(gActiveBattler);
+@@ -6755,7 +6805,7 @@ static u8 ChangeStatBuffs(s8 statValue, u8 statId, u8 flags, const u8 *BS_ptr)
+     if (statValue <= -1) // Stat decrease.
+     {
+         if (gSideTimers[GET_BATTLER_SIDE(gActiveBattler)].mistTimer
+-            && !certain && gCurrentMove != MOVE_CURSE)
++            && !certain && gCurrentMove != MOVE_CURSE && gBattleMons[gBattlerAttacker].ability != ABILITY_INFILTRATOR)
+         {
+             if (flags == STAT_CHANGE_ALLOW_PTR)
+             {
+diff --git a/src/battle_util.c b/src/battle_util.c
+index 36f9996..fd11784 100644
+--- a/src/battle_util.c
++++ b/src/battle_util.c
+@@ -1,5 +1,6 @@
+ #include "global.h"
+ #include "item.h"
++#include "mail.h"
+ #include "text.h"
+ #include "util.h"
+ #include "link.h"
+@@ -1699,6 +1700,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
+         gBattlerAttacker = battler;
+     if (caseID == ABILITYEFFECT_ON_SWITCHIN && !(gDisableStructs[battler].unk17 & 1))
+         Hack_ClearStatDropped(battler);
++    if (caseID == ABILITYEFFECT_ON_SWITCHIN)
++        Hack_UpdateNeutralizingGas();
+ 
+     if (GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER)
+         pokeAtk = &gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]];
+@@ -1753,6 +1756,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
+             case ABILITY_DOWNLOAD:
+             case ABILITY_FRISK:
+             case ABILITY_UNNERVE:
++            case ABILITY_FOREWARN:
++            case ABILITY_ANTICIPATION:
++            case ABILITY_MOLD_BREAKER:
++            case ABILITY_NEUTRALIZING_GAS:
++            case ABILITY_IMPOSTER:
+                 if (!(gDisableStructs[battler].unk17 & 1))
+                 {
+                     gDisableStructs[battler].unk17 |= 1;
+@@ -1948,6 +1956,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
+                     break;
+                 case ABILITY_MOODY:
+                 case ABILITY_HEALER:
++                case ABILITY_HARVEST:
+                     effect = Hack_EndTurnAbility(battler, gLastUsedAbility);
+                     break;
+                 case ABILITY_SPEED_BOOST:
+@@ -2097,6 +2106,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
+             case ABILITY_ANGER_POINT:
+             case ABILITY_CURSED_BODY:
+             case ABILITY_AFTERMATH:
++            case ABILITY_PICKPOCKET:
+                 effect = Hack_OnDamageAbility(battler, gLastUsedAbility, move, moveType);
+                 break;
+             case ABILITY_ROUGH_SKIN:
+@@ -3592,6 +3602,17 @@ u8 Hack_OnDamageAbility(u8 battler, u8 ability, u16 move, u8 moveType)
+         if (Hack_AbilityStatChange(battler, STAT_SPEED, 2))
+             break;
+         return 0;
++    case ABILITY_PICKPOCKET:
++        if (gBattleMons[battler].item != ITEM_NONE || gBattleMons[gBattlerAttacker].item == ITEM_NONE
++         || !(gBattleMoves[move].flags & FLAG_MAKES_CONTACT) || gBattleMons[gBattlerAttacker].ability == ABILITY_STICKY_HOLD
++         || gBattleMons[gBattlerAttacker].item == ITEM_ENIGMA_BERRY || IS_ITEM_MAIL(gBattleMons[gBattlerAttacker].item))
++            return 0;
++        gLastUsedItem = gBattleMons[battler].item = gBattleMons[gBattlerAttacker].item;
++        gBattleMons[gBattlerAttacker].item = ITEM_NONE;
++        Hack_NoteItemLost(gBattlerAttacker);
++        BattleScriptPushCursor();
++        gBattlescriptCurrInstr = BattleScript_HackPickpocket;
++        return 1;
+     case ABILITY_CURSED_BODY:
+         if (gBattleMons[gBattlerAttacker].hp == 0 || move == MOVE_STRUGGLE || gDisableStructs[gBattlerAttacker].disabledMove != MOVE_NONE
+          || (Random() % 10) >= 3)
+@@ -3652,6 +3673,17 @@ u8 Hack_SwitchInAbility(u8 battler, u8 ability)
+         gBattleScripting.battler = battler;
+         BattleScriptPushCursorAndCallback(BattleScript_HackUnnerve);
+         return 1;
++    case ABILITY_MOLD_BREAKER:
++    case ABILITY_NEUTRALIZING_GAS:
++        gBattleScripting.battler = battler;
++        BattleScriptPushCursorAndCallback(ability == ABILITY_MOLD_BREAKER ? BattleScript_HackMoldBreaker : BattleScript_HackNeutralizingGas);
++        return 1;
++    case ABILITY_FOREWARN:
++        return Hack_Forewarn(battler);
++    case ABILITY_ANTICIPATION:
++        return Hack_Anticipation(battler);
++    case ABILITY_IMPOSTER:
++        return Hack_Imposter(battler);
+     }
+     return 0;
+ }
+@@ -3694,6 +3726,22 @@ u8 Hack_EndTurnAbility(u8 battler, u8 ability)
+         BattleScriptPushCursorAndCallback(BattleScript_HackMoody);
+         return 1;
+     }
++    if (ability == ABILITY_HARVEST)
++    {
++        u16 berry = gBattleStruct->usedHeldItems[battler];
++
++        if (gBattleMons[battler].item != ITEM_NONE || berry == ITEM_NONE || ItemId_GetPocket(berry) != POCKET_BERRY_POUCH)
++            return 0;
++        if (!(WEATHER_HAS_EFFECT && (gBattleWeather & B_WEATHER_SUN)) && (Random() & 1))
++            return 0;
++        gLastUsedItem = gBattleMons[battler].item = berry;
++        gBattleStruct->usedHeldItems[battler] = ITEM_NONE;
++        gBattleScripting.battler = gActiveBattler = battler;
++        BattleScriptPushCursorAndCallback(BattleScript_HackHarvest);
++        BtlController_EmitSetMonData(BUFFER_A, REQUEST_HELDITEM_BATTLE, 0, sizeof(gBattleMons[battler].item), &gBattleMons[battler].item);
++        MarkBattlerForControllerExec(battler);
++        return 1;
++    }
+     // Healer: 30% chance to cure the ally's status in a double battle
+     if (!(gBattleTypeFlags & BATTLE_TYPE_DOUBLE))
+         return 0;
+@@ -3718,3 +3766,233 @@ u8 Hack_EndTurnAbility(u8 battler, u8 ability)
+     MarkBattlerForControllerExec(gActiveBattler);
+     return 1;
+ }
++
++// ---------------------------------------------------------------------------
++// FireRed QoL+Hard: modern abilities, batch 3
++// ---------------------------------------------------------------------------
++void Hack_NoteItemLost(u8 battler)
++{
++    gDisableStructs[battler].unk17 |= 2; // Unburden
++}
++
++static u8 Hack_FoeAcross(u8 battler)
++{
++    u8 foe = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
++
++    if (foe >= gBattlersCount || gBattleMons[foe].hp == 0)
++        foe = GetBattlerAtPosition(BATTLE_PARTNER(BATTLE_OPPOSITE(GetBattlerPosition(battler))));
++    if (foe >= gBattlersCount || gBattleMons[foe].hp == 0)
++        return MAX_BATTLERS_COUNT;
++    return foe;
++}
++
++static u8 Hack_ForewarnPower(u16 move)
++{
++    switch (gBattleMoves[move].effect)
++    {
++    case EFFECT_OHKO:
++        return 150;
++    case EFFECT_COUNTER: case EFFECT_MIRROR_COAT:
++        return 120;
++    }
++    if (gBattleMoves[move].power == 1)
++        return 80;
++    return gBattleMoves[move].power;
++}
++
++u8 Hack_Forewarn(u8 battler)
++{
++    u8 i, j, best = 0, power;
++    u16 move = MOVE_NONE;
++
++    for (i = 0; i < gBattlersCount; i++)
++    {
++        if (GetBattlerSide(i) == GetBattlerSide(battler) || gBattleMons[i].hp == 0)
++            continue;
++        for (j = 0; j < MAX_MON_MOVES; j++)
++        {
++            if (gBattleMons[i].moves[j] == MOVE_NONE)
++                continue;
++            power = Hack_ForewarnPower(gBattleMons[i].moves[j]);
++            if (move == MOVE_NONE || power > best || (power == best && (Random() & 1)))
++            {
++                best = power;
++                move = gBattleMons[i].moves[j];
++            }
++        }
++    }
++    if (move == MOVE_NONE)
++        return 0;
++    PREPARE_MOVE_BUFFER(gBattleTextBuff1, move);
++    gBattleScripting.battler = battler;
++    BattleScriptPushCursorAndCallback(BattleScript_HackForewarn);
++    return 1;
++}
++
++u8 Hack_Anticipation(u8 battler)
++{
++    u8 i, j;
++    s32 savedDamage = gBattleMoveDamage;
++    u16 move;
++
++    for (i = 0; i < gBattlersCount; i++)
++    {
++        if (GetBattlerSide(i) == GetBattlerSide(battler) || gBattleMons[i].hp == 0)
++            continue;
++        for (j = 0; j < MAX_MON_MOVES; j++)
++        {
++            move = gBattleMons[i].moves[j];
++            if (move == MOVE_NONE || gBattleMoves[move].power == 0)
++                continue;
++            if (gBattleMoves[move].effect == EFFECT_OHKO || (TypeCalc(move, i, battler) & MOVE_RESULT_SUPER_EFFECTIVE))
++            {
++                gBattleMoveDamage = savedDamage;
++                gBattleScripting.battler = battler;
++                BattleScriptPushCursorAndCallback(BattleScript_HackAnticipation);
++                return 1;
++            }
++        }
++    }
++    gBattleMoveDamage = savedDamage;
++    return 0;
++}
++
++// Imposter: transform into the foe across when switching in.
++static EWRAM_DATA u16 sHackImposterSavedMove = 0;
++static EWRAM_DATA u8 sHackImposterSavedAttacker = 0;
++static EWRAM_DATA u8 sHackImposterSavedTarget = 0;
++static EWRAM_DATA u8 sHackImposterSavedFlags = 0;
++
++u8 Hack_Imposter(u8 battler)
++{
++    u8 foe = Hack_FoeAcross(battler);
++
++    if (foe == MAX_BATTLERS_COUNT || (gBattleMons[foe].status2 & (STATUS2_TRANSFORMED | STATUS2_SUBSTITUTE))
++     || (gStatuses3[foe] & STATUS3_SEMI_INVULNERABLE) || (gBattleMons[battler].status2 & STATUS2_TRANSFORMED))
++        return 0;
++    sHackImposterSavedMove = gCurrentMove;
++    sHackImposterSavedAttacker = gBattlerAttacker;
++    sHackImposterSavedTarget = gBattlerTarget;
++    sHackImposterSavedFlags = gMoveResultFlags;
++    gBattlerAttacker = battler;
++    gBattlerTarget = foe;
++    gCurrentMove = MOVE_TRANSFORM;
++    gMoveResultFlags = 0;
++    gBattleScripting.battler = battler;
++    BattleScriptPushCursorAndCallback(BattleScript_HackImposter);
++    return 1;
++}
++
++void Hack_BS_ImposterEnd(void)
++{
++    gCurrentMove = sHackImposterSavedMove;
++    gBattlerAttacker = sHackImposterSavedAttacker;
++    gBattlerTarget = sHackImposterSavedTarget;
++    gMoveResultFlags = sHackImposterSavedFlags;
++    gBattlescriptCurrInstr += 5;
++}
++
++// Abilities Mold Breaker ignores (modern "breakable" abilities).
++static bool8 Hack_IsBreakable(u8 ability)
++{
++    switch (ability)
++    {
++    case ABILITY_BATTLE_ARMOR: case ABILITY_BIG_PECKS: case ABILITY_CLEAR_BODY: case ABILITY_CONTRARY:
++    case ABILITY_DAMP: case ABILITY_DRY_SKIN: case ABILITY_FILTER: case ABILITY_FLASH_FIRE:
++    case ABILITY_FRIEND_GUARD: case ABILITY_HEAVY_METAL: case ABILITY_HYPER_CUTTER: case ABILITY_IMMUNITY:
++    case ABILITY_INNER_FOCUS: case ABILITY_INSOMNIA: case ABILITY_KEEN_EYE: case ABILITY_LEAF_GUARD:
++    case ABILITY_LEVITATE: case ABILITY_LIGHT_METAL: case ABILITY_LIGHTNING_ROD: case ABILITY_LIMBER:
++    case ABILITY_MAGIC_BOUNCE: case ABILITY_MAGMA_ARMOR: case ABILITY_MARVEL_SCALE: case ABILITY_MULTISCALE:
++    case ABILITY_OBLIVIOUS: case ABILITY_OVERCOAT: case ABILITY_OWN_TEMPO: case ABILITY_SAND_VEIL:
++    case ABILITY_SAP_SIPPER: case ABILITY_SHELL_ARMOR: case ABILITY_SHIELD_DUST: case ABILITY_SIMPLE:
++    case ABILITY_SNOW_CLOAK: case ABILITY_SOLID_ROCK: case ABILITY_SOUNDPROOF: case ABILITY_STICKY_HOLD:
++    case ABILITY_STORM_DRAIN: case ABILITY_STURDY: case ABILITY_SUCTION_CUPS: case ABILITY_TANGLED_FEET:
++    case ABILITY_TELEPATHY: case ABILITY_THICK_FAT: case ABILITY_UNAWARE: case ABILITY_VITAL_SPIRIT:
++    case ABILITY_VOLT_ABSORB: case ABILITY_WATER_ABSORB: case ABILITY_WATER_VEIL: case ABILITY_WHITE_SMOKE:
++    case ABILITY_WONDER_GUARD: case ABILITY_WONDER_SKIN: case ABILITY_WIND_RIDER:
++        return TRUE;
++    }
++    return FALSE;
++}
++
++// Mold Breaker: other battlers' breakable abilities are switched off for the move.
++static EWRAM_DATA u8 sHackMoldMask = 0;
++static EWRAM_DATA u8 sHackMoldSaved[MAX_BATTLERS_COUNT] = {0};
++static EWRAM_DATA u32 sHackMoldPersonality[MAX_BATTLERS_COUNT] = {0};
++
++void Hack_MoldBreakerBegin(void)
++{
++    u8 i, effect = gBattleMoves[gCurrentMove].effect;
++
++    sHackMoldMask = 0;
++    if (gBattleMons[gBattlerAttacker].ability != ABILITY_MOLD_BREAKER
++     || effect == EFFECT_ROLE_PLAY || effect == EFFECT_SKILL_SWAP || effect == EFFECT_TRANSFORM)
++        return;
++    for (i = 0; i < gBattlersCount; i++)
++    {
++        if (i == gBattlerAttacker || !Hack_IsBreakable(gBattleMons[i].ability))
++            continue;
++        sHackMoldSaved[i] = gBattleMons[i].ability;
++        sHackMoldPersonality[i] = gBattleMons[i].personality;
++        gBattleMons[i].ability = ABILITY_NONE;
++        sHackMoldMask |= gBitTable[i];
++    }
++}
++
++void Hack_MoldBreakerEnd(void)
++{
++    u8 i;
++
++    for (i = 0; i < gBattlersCount; i++)
++    {
++        if ((sHackMoldMask & gBitTable[i]) && gBattleMons[i].ability == ABILITY_NONE
++         && gBattleMons[i].personality == sHackMoldPersonality[i])
++            gBattleMons[i].ability = sHackMoldSaved[i];
++    }
++    sHackMoldMask = 0;
++}
++
++// Neutralizing Gas: while its user is in battle, every other ability is switched off.
++static EWRAM_DATA u8 sHackGasMask = 0;
++static EWRAM_DATA u8 sHackGasSaved[MAX_BATTLERS_COUNT] = {0};
++static EWRAM_DATA u32 sHackGasPersonality[MAX_BATTLERS_COUNT] = {0};
++
++void Hack_UpdateNeutralizingGas(void)
++{
++    u8 i;
++    bool8 active = FALSE;
++
++    if (gBattlersCount == 0)
++        return;
++    // Forget entries for battlers that switched out
++    for (i = 0; i < gBattlersCount; i++)
++        if ((sHackGasMask & gBitTable[i]) && gBattleMons[i].personality != sHackGasPersonality[i])
++            sHackGasMask &= ~gBitTable[i];
++    for (i = 0; i < gBattlersCount; i++)
++        if (gBattleMons[i].hp != 0 && gBattleMons[i].ability == ABILITY_NEUTRALIZING_GAS && !(gAbsentBattlerFlags & gBitTable[i]))
++            active = TRUE;
++    for (i = 0; i < gBattlersCount; i++)
++    {
++        if (active && !(sHackGasMask & gBitTable[i]) && gBattleMons[i].ability != ABILITY_NONE
++         && gBattleMons[i].ability != ABILITY_NEUTRALIZING_GAS && gBattleMons[i].hp != 0)
++        {
++            sHackGasSaved[i] = gBattleMons[i].ability;
++            sHackGasPersonality[i] = gBattleMons[i].personality;
++            gBattleMons[i].ability = ABILITY_NONE;
++            sHackGasMask |= gBitTable[i];
++        }
++        else if (!active && (sHackGasMask & gBitTable[i]))
++        {
++            if (gBattleMons[i].ability == ABILITY_NONE)
++                gBattleMons[i].ability = sHackGasSaved[i];
++            sHackGasMask &= ~gBitTable[i];
++        }
++    }
++}
++
++void Hack_ResetAbilityState(void)
++{
++    sHackGasMask = 0;
++    sHackMoldMask = 0;
++    sHackStatDropped = 0;
++}
+diff --git a/src/data/pokemon/species_info.h b/src/data/pokemon/species_info.h
+index d8a2553..4d5428e 100644
+--- a/src/data/pokemon/species_info.h
++++ b/src/data/pokemon/species_info.h
+@@ -1219,7 +1219,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_FAST,
+         .eggGroups = {EGG_GROUP_FLYING, EGG_GROUP_FLYING},
+-        .abilities = {ABILITY_INNER_FOCUS, ABILITY_NONE, ABILITY_NONE},
++        .abilities = {ABILITY_INNER_FOCUS, ABILITY_NONE, ABILITY_INFILTRATOR},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_PURPLE,
+         .noFlip = FALSE,
+@@ -1248,7 +1248,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_FAST,
+         .eggGroups = {EGG_GROUP_FLYING, EGG_GROUP_FLYING},
+-        .abilities = {ABILITY_INNER_FOCUS, ABILITY_NONE, ABILITY_NONE},
++        .abilities = {ABILITY_INNER_FOCUS, ABILITY_NONE, ABILITY_INFILTRATOR},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_PURPLE,
+         .noFlip = FALSE,
+@@ -2814,7 +2814,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_FAST,
+         .eggGroups = {EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE},
+-        .abilities = {ABILITY_INSOMNIA, ABILITY_NONE, ABILITY_INNER_FOCUS},
++        .abilities = {ABILITY_INSOMNIA, ABILITY_FOREWARN, ABILITY_INNER_FOCUS},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_YELLOW,
+         .noFlip = FALSE,
+@@ -2843,7 +2843,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_FAST,
+         .eggGroups = {EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE},
+-        .abilities = {ABILITY_INSOMNIA, ABILITY_NONE, ABILITY_INNER_FOCUS},
++        .abilities = {ABILITY_INSOMNIA, ABILITY_FOREWARN, ABILITY_INNER_FOCUS},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_YELLOW,
+         .noFlip = FALSE,
+@@ -2988,7 +2988,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_SLOW,
+         .eggGroups = {EGG_GROUP_GRASS, EGG_GROUP_GRASS},
+-        .abilities = {ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_NONE},
++        .abilities = {ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_HARVEST},
+         .safariZoneFleeRate = 75,
+         .bodyColor = BODY_COLOR_PINK,
+         .noFlip = FALSE,
+@@ -3017,7 +3017,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_SLOW,
+         .eggGroups = {EGG_GROUP_GRASS, EGG_GROUP_GRASS},
+-        .abilities = {ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_NONE},
++        .abilities = {ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_HARVEST},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_YELLOW,
+         .noFlip = FALSE,
+@@ -3104,7 +3104,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_FAST,
+         .eggGroups = {EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE},
+-        .abilities = {ABILITY_LIMBER, ABILITY_RECKLESS, ABILITY_NONE},
++        .abilities = {ABILITY_LIMBER, ABILITY_RECKLESS, ABILITY_UNBURDEN},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_BROWN,
+         .noFlip = FALSE,
+@@ -3191,7 +3191,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_FAST,
+         .eggGroups = {EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS},
+-        .abilities = {ABILITY_LEVITATE, ABILITY_NONE, ABILITY_STENCH},
++        .abilities = {ABILITY_LEVITATE, ABILITY_NEUTRALIZING_GAS, ABILITY_STENCH},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_PURPLE,
+         .noFlip = FALSE,
+@@ -3220,7 +3220,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_FAST,
+         .eggGroups = {EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS},
+-        .abilities = {ABILITY_LEVITATE, ABILITY_NONE, ABILITY_STENCH},
++        .abilities = {ABILITY_LEVITATE, ABILITY_NEUTRALIZING_GAS, ABILITY_STENCH},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_PURPLE,
+         .noFlip = FALSE,
+@@ -3336,7 +3336,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_FAST,
+         .eggGroups = {EGG_GROUP_GRASS, EGG_GROUP_GRASS},
+-        .abilities = {ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_REGENERATOR},
++        .abilities = {ABILITY_CHLOROPHYLL, ABILITY_LEAF_GUARD, ABILITY_REGENERATOR},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_BLUE,
+         .noFlip = FALSE,
+@@ -3626,7 +3626,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_FAST,
+         .eggGroups = {EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE},
+-        .abilities = {ABILITY_OBLIVIOUS, ABILITY_NONE, ABILITY_DRY_SKIN},
++        .abilities = {ABILITY_OBLIVIOUS, ABILITY_FOREWARN, ABILITY_DRY_SKIN},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_RED,
+         .noFlip = FALSE,
+@@ -3713,7 +3713,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_SLOW,
+         .eggGroups = {EGG_GROUP_BUG, EGG_GROUP_BUG},
+-        .abilities = {ABILITY_HYPER_CUTTER, ABILITY_NONE, ABILITY_MOXIE},
++        .abilities = {ABILITY_HYPER_CUTTER, ABILITY_MOLD_BREAKER, ABILITY_MOXIE},
+         .safariZoneFleeRate = 125,
+         .bodyColor = BODY_COLOR_BROWN,
+         .noFlip = FALSE,
+@@ -3858,7 +3858,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_FAST,
+         .eggGroups = {EGG_GROUP_DITTO, EGG_GROUP_DITTO},
+-        .abilities = {ABILITY_LIMBER, ABILITY_NONE, ABILITY_NONE},
++        .abilities = {ABILITY_LIMBER, ABILITY_NONE, ABILITY_IMPOSTER},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_PURPLE,
+         .noFlip = FALSE,
+@@ -3887,7 +3887,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_FAST,
+         .eggGroups = {EGG_GROUP_FIELD, EGG_GROUP_FIELD},
+-        .abilities = {ABILITY_RUN_AWAY, ABILITY_ADAPTABILITY, ABILITY_NONE},
++        .abilities = {ABILITY_RUN_AWAY, ABILITY_ADAPTABILITY, ABILITY_ANTICIPATION},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_BROWN,
+         .noFlip = FALSE,
+@@ -4438,7 +4438,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_SLOW,
+         .eggGroups = {EGG_GROUP_MONSTER, EGG_GROUP_GRASS},
+-        .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_NONE},
++        .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_LEAF_GUARD},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_GREEN,
+         .noFlip = FALSE,
+@@ -4467,7 +4467,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_SLOW,
+         .eggGroups = {EGG_GROUP_MONSTER, EGG_GROUP_GRASS},
+-        .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_NONE},
++        .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_LEAF_GUARD},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_GREEN,
+         .noFlip = FALSE,
+@@ -4496,7 +4496,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_SLOW,
+         .eggGroups = {EGG_GROUP_MONSTER, EGG_GROUP_GRASS},
+-        .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_NONE},
++        .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_LEAF_GUARD},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_GREEN,
+         .noFlip = FALSE,
+@@ -4931,7 +4931,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_FAST,
+         .eggGroups = {EGG_GROUP_FLYING, EGG_GROUP_FLYING},
+-        .abilities = {ABILITY_INNER_FOCUS, ABILITY_NONE, ABILITY_NONE},
++        .abilities = {ABILITY_INNER_FOCUS, ABILITY_NONE, ABILITY_INFILTRATOR},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_PURPLE,
+         .noFlip = FALSE,
+@@ -5163,7 +5163,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_FAST,
+         .eggGroups = {EGG_GROUP_FLYING, EGG_GROUP_FLYING},
+-        .abilities = {ABILITY_SYNCHRONIZE, ABILITY_EARLY_BIRD, ABILITY_NONE},
++        .abilities = {ABILITY_SYNCHRONIZE, ABILITY_EARLY_BIRD, ABILITY_MAGIC_BOUNCE},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_GREEN,
+         .noFlip = FALSE,
+@@ -5192,7 +5192,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_FAST,
+         .eggGroups = {EGG_GROUP_FLYING, EGG_GROUP_FLYING},
+-        .abilities = {ABILITY_SYNCHRONIZE, ABILITY_EARLY_BIRD, ABILITY_NONE},
++        .abilities = {ABILITY_SYNCHRONIZE, ABILITY_EARLY_BIRD, ABILITY_MAGIC_BOUNCE},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_GREEN,
+         .noFlip = FALSE,
+@@ -5453,7 +5453,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_SLOW,
+         .eggGroups = {EGG_GROUP_FAIRY, EGG_GROUP_GRASS},
+-        .abilities = {ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_NONE},
++        .abilities = {ABILITY_CHLOROPHYLL, ABILITY_LEAF_GUARD, ABILITY_INFILTRATOR},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_PINK,
+         .noFlip = FALSE,
+@@ -5482,7 +5482,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_SLOW,
+         .eggGroups = {EGG_GROUP_FAIRY, EGG_GROUP_GRASS},
+-        .abilities = {ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_NONE},
++        .abilities = {ABILITY_CHLOROPHYLL, ABILITY_LEAF_GUARD, ABILITY_INFILTRATOR},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_GREEN,
+         .noFlip = FALSE,
+@@ -5511,7 +5511,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_SLOW,
+         .eggGroups = {EGG_GROUP_FAIRY, EGG_GROUP_GRASS},
+-        .abilities = {ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_NONE},
++        .abilities = {ABILITY_CHLOROPHYLL, ABILITY_LEAF_GUARD, ABILITY_INFILTRATOR},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_BLUE,
+         .noFlip = FALSE,
+@@ -5714,7 +5714,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_FAST,
+         .eggGroups = {EGG_GROUP_FIELD, EGG_GROUP_FIELD},
+-        .abilities = {ABILITY_SYNCHRONIZE, ABILITY_NONE, ABILITY_NONE},
++        .abilities = {ABILITY_SYNCHRONIZE, ABILITY_NONE, ABILITY_MAGIC_BOUNCE},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_PURPLE,
+         .noFlip = FALSE,
+@@ -5772,7 +5772,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 35,
+         .growthRate = GROWTH_MEDIUM_SLOW,
+         .eggGroups = {EGG_GROUP_FLYING, EGG_GROUP_FLYING},
+-        .abilities = {ABILITY_INSOMNIA, ABILITY_SUPER_LUCK, ABILITY_NONE},
++        .abilities = {ABILITY_INSOMNIA, ABILITY_SUPER_LUCK, ABILITY_PRANKSTER},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_BLACK,
+         .noFlip = FALSE,
+@@ -6265,7 +6265,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 35,
+         .growthRate = GROWTH_MEDIUM_SLOW,
+         .eggGroups = {EGG_GROUP_FIELD, EGG_GROUP_FIELD},
+-        .abilities = {ABILITY_INNER_FOCUS, ABILITY_KEEN_EYE, ABILITY_NONE},
++        .abilities = {ABILITY_INNER_FOCUS, ABILITY_KEEN_EYE, ABILITY_PICKPOCKET},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_BLACK,
+         .noFlip = TRUE,
+@@ -6932,7 +6932,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_FAST,
+         .eggGroups = {EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED},
+-        .abilities = {ABILITY_OBLIVIOUS, ABILITY_NONE, ABILITY_HYDRATION},
++        .abilities = {ABILITY_OBLIVIOUS, ABILITY_FOREWARN, ABILITY_HYDRATION},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_PINK,
+         .noFlip = FALSE,
+@@ -7447,7 +7447,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_SLOW,
+         .eggGroups = {EGG_GROUP_MONSTER, EGG_GROUP_DRAGON},
+-        .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_NONE},
++        .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_UNBURDEN},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_GREEN,
+         .noFlip = FALSE,
+@@ -7476,7 +7476,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_SLOW,
+         .eggGroups = {EGG_GROUP_MONSTER, EGG_GROUP_DRAGON},
+-        .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_NONE},
++        .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_UNBURDEN},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_GREEN,
+         .noFlip = FALSE,
+@@ -7505,7 +7505,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_SLOW,
+         .eggGroups = {EGG_GROUP_MONSTER, EGG_GROUP_DRAGON},
+-        .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_NONE},
++        .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_UNBURDEN},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_GREEN,
+         .noFlip = FALSE,
+@@ -8056,7 +8056,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_SLOW,
+         .eggGroups = {EGG_GROUP_FIELD, EGG_GROUP_GRASS},
+-        .abilities = {ABILITY_CHLOROPHYLL, ABILITY_EARLY_BIRD, ABILITY_NONE},
++        .abilities = {ABILITY_CHLOROPHYLL, ABILITY_EARLY_BIRD, ABILITY_PICKPOCKET},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_BROWN,
+         .noFlip = FALSE,
+@@ -8085,7 +8085,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_SLOW,
+         .eggGroups = {EGG_GROUP_FIELD, EGG_GROUP_GRASS},
+-        .abilities = {ABILITY_CHLOROPHYLL, ABILITY_EARLY_BIRD, ABILITY_NONE},
++        .abilities = {ABILITY_CHLOROPHYLL, ABILITY_EARLY_BIRD, ABILITY_PICKPOCKET},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_BROWN,
+         .noFlip = FALSE,
+@@ -8114,7 +8114,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_SLOW,
+         .eggGroups = {EGG_GROUP_FIELD, EGG_GROUP_GRASS},
+-        .abilities = {ABILITY_CHLOROPHYLL, ABILITY_WIND_RIDER, ABILITY_NONE},
++        .abilities = {ABILITY_CHLOROPHYLL, ABILITY_WIND_RIDER, ABILITY_PICKPOCKET},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_BROWN,
+         .noFlip = FALSE,
+@@ -8172,7 +8172,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_ERRATIC,
+         .eggGroups = {EGG_GROUP_BUG, EGG_GROUP_BUG},
+-        .abilities = {ABILITY_SPEED_BOOST, ABILITY_NONE, ABILITY_NONE},
++        .abilities = {ABILITY_SPEED_BOOST, ABILITY_NONE, ABILITY_INFILTRATOR},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_YELLOW,
+         .noFlip = FALSE,
+@@ -8607,7 +8607,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_SLOW,
+         .eggGroups = {EGG_GROUP_FIELD, EGG_GROUP_FIELD},
+-        .abilities = {ABILITY_COLOR_CHANGE, ABILITY_NONE, ABILITY_NONE},
++        .abilities = {ABILITY_COLOR_CHANGE, ABILITY_NONE, ABILITY_PROTEAN},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_GREEN,
+         .noFlip = FALSE,
+@@ -8752,7 +8752,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 35,
+         .growthRate = GROWTH_MEDIUM_SLOW,
+         .eggGroups = {EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE},
+-        .abilities = {ABILITY_KEEN_EYE, ABILITY_STALL, ABILITY_NONE},
++        .abilities = {ABILITY_KEEN_EYE, ABILITY_STALL, ABILITY_PRANKSTER},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_PURPLE,
+         .noFlip = FALSE,
+@@ -8781,7 +8781,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_FAST,
+         .eggGroups = {EGG_GROUP_WATER_2, EGG_GROUP_WATER_2},
+-        .abilities = {ABILITY_OBLIVIOUS, ABILITY_NONE, ABILITY_HYDRATION},
++        .abilities = {ABILITY_OBLIVIOUS, ABILITY_ANTICIPATION, ABILITY_HYDRATION},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_GRAY,
+         .noFlip = FALSE,
+@@ -8810,7 +8810,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_FAST,
+         .eggGroups = {EGG_GROUP_WATER_2, EGG_GROUP_WATER_2},
+-        .abilities = {ABILITY_OBLIVIOUS, ABILITY_NONE, ABILITY_HYDRATION},
++        .abilities = {ABILITY_OBLIVIOUS, ABILITY_ANTICIPATION, ABILITY_HYDRATION},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_BLUE,
+         .noFlip = FALSE,
+@@ -9941,7 +9941,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_SLOW,
+         .eggGroups = {EGG_GROUP_FAIRY, EGG_GROUP_GRASS},
+-        .abilities = {ABILITY_NATURAL_CURE, ABILITY_POISON_POINT, ABILITY_NONE},
++        .abilities = {ABILITY_NATURAL_CURE, ABILITY_POISON_POINT, ABILITY_LEAF_GUARD},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_GREEN,
+         .noFlip = TRUE,
+@@ -10115,7 +10115,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_SLOW,
+         .eggGroups = {EGG_GROUP_MONSTER, EGG_GROUP_GRASS},
+-        .abilities = {ABILITY_CHLOROPHYLL, ABILITY_SOLAR_POWER, ABILITY_NONE},
++        .abilities = {ABILITY_CHLOROPHYLL, ABILITY_SOLAR_POWER, ABILITY_HARVEST},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_GREEN,
+         .noFlip = FALSE,
+@@ -10405,7 +10405,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_FLUCTUATING,
+         .eggGroups = {EGG_GROUP_FIELD, EGG_GROUP_DRAGON},
+-        .abilities = {ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_NONE},
++        .abilities = {ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_INFILTRATOR},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_BLACK,
+         .noFlip = TRUE,
+@@ -10608,7 +10608,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_ERRATIC,
+         .eggGroups = {EGG_GROUP_BUG, EGG_GROUP_HUMAN_LIKE},
+-        .abilities = {ABILITY_ILLUMINATE, ABILITY_SWARM, ABILITY_NONE},
++        .abilities = {ABILITY_ILLUMINATE, ABILITY_SWARM, ABILITY_PRANKSTER},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_GRAY,
+         .noFlip = FALSE,
+@@ -10637,7 +10637,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_FLUCTUATING,
+         .eggGroups = {EGG_GROUP_BUG, EGG_GROUP_HUMAN_LIKE},
+-        .abilities = {ABILITY_OBLIVIOUS, ABILITY_TINTED_LENS, ABILITY_NONE},
++        .abilities = {ABILITY_OBLIVIOUS, ABILITY_TINTED_LENS, ABILITY_PRANKSTER},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_PURPLE,
+         .noFlip = FALSE,
+diff --git a/tools/hack/abilities.py b/tools/hack/abilities.py
+index 5d5c5a0..61e46d0 100644
+--- a/tools/hack/abilities.py
++++ b/tools/hack/abilities.py
+@@ -112,6 +112,9 @@ IMPLEMENTED = {
+     "Moxie", "Defiant", "Competitive", "Justified", "Rattled", "Steadfast", "Weak Armor", "Anger Point",
+     "Sap Sipper", "Storm Drain", "Wind Rider", "Cursed Body", "Poison Touch", "Aftermath", "Regenerator",
+     "Download", "Frisk", "Unnerve", "Moody", "Healer",
++    # batch 3
++    "Prankster", "Magic Bounce", "Infiltrator", "Mold Breaker", "Unburden", "Pickpocket", "Harvest",
++    "Forewarn", "Anticipation", "Imposter", "Neutralizing Gas", "Protean", "Leaf Guard",
+ }
+ 
+ 
+-- 
+2.43.0
+

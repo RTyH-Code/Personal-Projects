@@ -11,6 +11,7 @@ Height 0.9 m (2′11″) · Weight 23.6 kg (52.0 lbs)
 ## Abilities
 
 - **Oblivious**: Prevents attraction.
+- **Anticipation**: Senses dangerous moves.
 - **Hydration** *(hidden ability)*: Heals status in rain.
 
 *Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
