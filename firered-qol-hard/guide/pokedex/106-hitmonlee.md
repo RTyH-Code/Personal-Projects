@@ -79,8 +79,10 @@ Height 1.5 m (4′11″) · Weight 49.8 kg (109.8 lbs)
 | 4 | Double Kick | Fighting | Physical | 30 | 100% | 30 |
 | 8 | Low Kick ★ | Fighting | Physical | varies | 100% | 20 |
 | 12 | Endure | Normal | Status | — | — | 10 |
+| 16 | Sucker Punch ★ | Dark | Physical | 70 | 100% | 5 |
 | 24 | Blaze Kick ★ | Fire | Physical | 85 | 90% | 10 |
 | 32 | Mega Kick | Normal | Physical | 120 | 75% | 5 |
+| 36 | Close Combat ★ | Fighting | Physical | 120 | 100% | 5 |
 | 40 | Reversal | Fighting | Physical | varies | 100% | 15 |
 | 44 | Hi Jump Kick | Fighting | Physical | 130 | 90% | 10 |
 
@@ -134,9 +136,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
 | Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
+| Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |

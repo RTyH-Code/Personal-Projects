@@ -95,9 +95,12 @@ Height 1.3 m (4′03″) · Weight 0.1 kg (0.2 lbs)
 | 1 | Lick | Ghost | Physical | 30 | 100% | 30 |
 | 4 | Hypnosis | Psychic | Status | — | 60% | 20 |
 | 8 | Mean Look | Normal | Status | — | 100% | 5 |
+| 12 | Payback ★ | Dark | Physical | 50 | 100% | 10 |
 | 16 | Spite | Ghost | Status | — | 100% | 10 |
 | 20 | Curse | ??? | Status | — | — | 10 |
+| 24 | Hex ★ | Ghost | Special | 65 | 100% | 10 |
 | 28 | Night Shade | Ghost | Special | varies | 100% | 15 |
+| 32 | Sucker Punch ★ | Dark | Physical | 70 | 100% | 5 |
 | 36 | Dark Pulse ★ | Dark | Special | 80 | 100% | 15 |
 | 40 | Shadow Ball | Ghost | Special | 80 | 100% | 15 |
 | 44 | Destiny Bond | Ghost | Status | — | — | 5 |
@@ -145,12 +148,18 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acid Spray | Poison | Special | 40 | 100% | 20 | 0 |
+| Hex | Ghost | Special | 65 | 100% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)

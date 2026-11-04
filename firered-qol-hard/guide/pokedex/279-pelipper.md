@@ -82,6 +82,7 @@ Height 1.2 m (3′11″) · Weight 28 kg (61.7 lbs)
 | 28 | Spit Up | Normal | Special | varies | 100% | 10 |
 | 28 | Swallow | Normal | Status | — | — | 10 |
 | 41 | Mist | Ice | Status | — | — | 30 |
+| 55 | Hurricane ★ | Flying | Special | 110 | 70% | 10 |
 | 62 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 
 ### By TM/HM
@@ -125,8 +126,11 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
@@ -134,6 +138,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+| Hurricane | Flying | Special | 110 | 70% | 10 | 5 |
 
 ### By breeding (egg moves)
 
@@ -146,6 +151,7 @@ Breed a Wingull (passed down to Wingull, which then evolves) with a father that 
 | Agility | Psychic | Status | — | — | 30 |
 | Gust | Flying | Special | 40 | 100% | 35 |
 | Water Sport | Water | Status | — | — | 15 |
+| Brine | Water | Special | 65 | 100% | 10 |
 
 ---
 

@@ -79,6 +79,7 @@ Height 1.2 m (3′11″) · Weight 22.5 kg (49.6 lbs)
 | 1 | Spit Up ★ | Normal | Special | varies | 100% | 10 |
 | 1 | Swallow ★ | Normal | Status | — | — | 10 |
 | 1 | Eerie Impulse ★ | Electric | Status | — | 100% | 15 |
+| 1 | Electro Ball ★ | Electric | Special | varies | 100% | 10 |
 | 12 | Bubble Beam ★ | Water | Special | 65 | 100% | 20 |
 | 16 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | 20 | Spark | Electric | Physical | 65 | 100% | 20 |
@@ -131,11 +132,15 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
 | Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Electro Ball | Electric | Special | varies | 100% | 10 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
@@ -149,6 +154,8 @@ Breed a Chinchou (passed down to Chinchou, which then evolves) with a father tha
 | Flail | Normal | Physical | varies | 100% | 15 |
 | Screech | Normal | Status | — | 85% | 40 |
 | Amnesia | Psychic | Status | — | — | 20 |
+| Brine | Water | Special | 65 | 100% | 10 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 |
 
 ---
 

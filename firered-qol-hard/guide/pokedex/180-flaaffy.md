@@ -74,9 +74,11 @@ Height 0.8 m (2′07″) · Weight 13.3 kg (29.3 lbs)
 | 11 | Cotton Spore | Grass | Status | — | 100% | 40 |
 | 16 | Charge ★ | Electric | Status | — | — | 20 |
 | 20 | Take Down ★ | Normal | Physical | 90 | 85% | 20 |
+| 25 | Electro Ball ★ | Electric | Special | varies | 100% | 10 |
 | 29 | Confuse Ray ★ | Ghost | Status | — | 100% | 10 |
 | 34 | Power Gem ★ | Rock | Special | 80 | 100% | 20 |
 | 38 | Discharge ★ | Electric | Special | 80 | 100% | 15 |
+| 43 | Cotton Guard ★ | Grass | Status | — | — | 10 |
 | 47 | Dazzling Gleam ★ | Fairy | Special | 80 | 100% | 10 |
 | 52 | Light Screen | Psychic | Status | — | — | 30 |
 | 56 | Thunder | Electric | Special | 110 | 70% | 10 |
@@ -127,9 +129,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
 | Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Electro Ball | Electric | Special | varies | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |

@@ -133,7 +133,10 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
 | Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
+| Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 
@@ -151,6 +154,7 @@ Breed a Cleffa with a father that knows the move.
 | Mimic | Normal | Status | — | 100% | 10 |
 | Wish | Normal | Status | — | — | 10 |
 | Substitute | Normal | Status | — | — | 10 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 |
 
 ---
 

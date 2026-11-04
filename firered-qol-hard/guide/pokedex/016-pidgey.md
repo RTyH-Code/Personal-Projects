@@ -100,6 +100,7 @@ Height 0.3 m (1′00″) · Weight 1.8 kg (4.0 lbs)
 | 33 | Wing Attack | Flying | Physical | 60 | 100% | 35 |
 | 45 | Mirror Move | Flying | Status | — | — | 20 |
 | 49 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
+| 53 | Hurricane ★ | Flying | Special | 110 | 70% | 10 |
 
 ### By TM/HM
 
@@ -137,6 +138,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 
 ### By breeding (egg moves)
 

@@ -75,6 +75,8 @@ Height 2 m (6′07″) · Weight 130 kg (286.6 lbs)
 | 12 | Water Gun | Water | Special | 40 | 100% | 25 |
 | 15 | Mist | Ice | Status | — | — | 30 |
 | 18 | Water Pulse | Water | Special | 60 | 100% | 20 |
+| 21 | Heavy Slam ★ | Steel | Physical | varies | 100% | 10 |
+| 24 | Brine ★ | Water | Special | 65 | 100% | 10 |
 | 27 | Whirlpool | Water | Special | 35 | 85% | 15 |
 | 30 | Dive ★ | Water | Physical | 80 | 100% | 10 |
 | 33 | Bounce ★ | Flying | Physical | 85 | 85% | 5 |
@@ -128,7 +130,10 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 

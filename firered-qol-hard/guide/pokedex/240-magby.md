@@ -123,9 +123,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acid Spray | Poison | Special | 40 | 100% | 20 | 0 |
 | Dual Chop | Dragon | Physical | 40 | 90% | 15 | 0 |
+| Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Flare Blitz | Fire | Physical | 120 | 100% | 15 | 5 |
 
 ### By breeding (egg moves)
 
@@ -139,6 +142,7 @@ Breed a Magby with a father that knows the move.
 | Screech | Normal | Status | — | 85% | 40 |
 | Cross Chop | Fighting | Physical | 100 | 80% | 5 |
 | Thunder Punch | Electric | Physical | 75 | 100% | 15 |
+| Flare Blitz | Fire | Physical | 120 | 100% | 15 |
 
 ---
 

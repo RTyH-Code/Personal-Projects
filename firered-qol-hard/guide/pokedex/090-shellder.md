@@ -86,6 +86,7 @@ Height 0.3 m (1′00″) · Weight 4 kg (8.8 lbs)
 | 32 | Razor Shell ★ | Water | Physical | 75 | 95% | 10 |
 | 36 | Iron Defense ★ | Steel | Status | — | — | 15 |
 | 40 | Ice Beam | Ice | Special | 90 | 100% | 10 |
+| 44 | Shell Smash ★ | Normal | Status | — | — | 15 |
 | 48 | Hydro Pump ★ | Water | Special | 110 | 80% | 5 |
 
 ### By TM/HM
@@ -126,6 +127,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Razor Shell | Water | Physical | 75 | 95% | 10 | 3 |
 

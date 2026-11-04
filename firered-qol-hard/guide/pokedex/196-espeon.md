@@ -137,9 +137,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
 | Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
+| Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
@@ -155,6 +159,7 @@ Breed a Eevee (passed down to Eevee, which then evolves) with a father that know
 | Curse | ??? | Status | — | — | 10 |
 | Tickle | Normal | Status | — | 100% | 20 |
 | Wish | Normal | Status | — | — | 10 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 |
 
 ---
 

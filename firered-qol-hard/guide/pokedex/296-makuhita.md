@@ -84,7 +84,9 @@ Height 1 m (3′03″) · Weight 86.4 kg (190.5 lbs)
 | 31 | Seismic Toss | Fighting | Physical | varies | 100% | 20 |
 | 34 | Focus Punch ★ | Fighting | Physical | 150 | 100% | 20 |
 | 37 | Endure | Normal | Status | — | — | 10 |
+| 40 | Close Combat ★ | Fighting | Physical | 120 | 100% | 5 |
 | 43 | Reversal | Fighting | Physical | varies | 100% | 15 |
+| 46 | Heavy Slam ★ | Steel | Physical | varies | 100% | 10 |
 
 ### By TM/HM
 
@@ -134,12 +136,16 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |

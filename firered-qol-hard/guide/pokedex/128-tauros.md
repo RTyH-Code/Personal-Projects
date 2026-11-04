@@ -71,6 +71,8 @@ Tauros does not evolve.
 |--:|---|---|---|--:|--:|--:|
 | 1 | Tackle | Normal | Physical | 40 | 100% | 35 |
 | 1 | Tail Whip | Normal | Status | — | 100% | 30 |
+| 5 | Work Up ★ | Normal | Status | — | — | 30 |
+| 10 | Payback ★ | Dark | Physical | 50 | 100% | 10 |
 | 20 | Horn Attack | Normal | Physical | 65 | 100% | 25 |
 | 25 | Scary Face | Normal | Status | — | 100% | 10 |
 | 30 | Zen Headbutt ★ | Psychic | Physical | 80 | 90% | 15 |
@@ -130,9 +132,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Smart Strike | Steel | Physical | 70 | — | 10 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |

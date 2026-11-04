@@ -66,6 +66,7 @@ Latias does not evolve.
 | Lv | Move | Type | Cat. | Power | Acc. | PP |
 |--:|---|---|---|--:|--:|--:|
 | 1 | Charm | Fairy | Status | — | 100% | 20 |
+| 1 | Stored Power ★ | Psychic | Special | 20 | 100% | 10 |
 | 5 | Helping Hand | Normal | Status | — | — | 20 |
 | 10 | Recover | Normal | Status | — | — | 5 |
 | 15 | Confusion ★ | Psychic | Special | 50 | 100% | 25 |
@@ -137,17 +138,22 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
 | Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Mystical Fire | Fire | Special | 75 | 100% | 10 | 3 |
 | Psycho Cut | Psychic | Physical | 70 | 100% | 20 | 3 |
+| Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Draco Meteor | Dragon | Special | 130 | 90% | 5 | 5 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |

@@ -75,10 +75,13 @@ Height 1.4 m (4′07″) · Weight 35 kg (77.2 lbs)
 | 1 | Smog | Poison | Special | 30 | 70% | 20 |
 | 1 | Howl | Normal | Status | — | — | 40 |
 | 1 | Nasty Plot ★ | Dark | Status | — | — | 20 |
+| 1 | Thunder Fang ★ | Electric | Physical | 65 | 95% | 15 |
 | 13 | Roar | Normal | Status | — | 100% | 20 |
 | 16 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 26 | Beat Up ★ | Dark | Physical | 10 | 100% | 10 |
+| 30 | Fire Fang ★ | Fire | Physical | 65 | 95% | 15 |
 | 35 | Torment ★ | Dark | Status | — | 100% | 15 |
+| 45 | Foul Play ★ | Dark | Physical | 95 | 100% | 15 |
 | 50 | Flamethrower | Fire | Special | 90 | 100% | 15 |
 | 56 | Crunch | Dark | Physical | 80 | 100% | 15 |
 
@@ -130,10 +133,18 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
+| Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
 | Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
+| Flare Blitz | Fire | Physical | 120 | 100% | 15 | 5 |
+| Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)
@@ -151,6 +162,7 @@ Breed a Houndour (passed down to Houndour, which then evolves) with a father tha
 | Beat Up | Dark | Physical | 10 | 100% | 10 |
 | Will-O-Wisp | Fire | Status | — | 85% | 15 |
 | Nasty Plot | Dark | Status | — | — | 20 |
+| Fire Fang | Fire | Physical | 65 | 95% | 15 |
 
 ---
 

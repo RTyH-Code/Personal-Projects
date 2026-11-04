@@ -81,6 +81,7 @@ Height 0.4 m (1′04″) · Weight 6 kg (13.2 lbs)
 | 1 | Nasty Plot ★ | Dark | Status | — | — | 20 |
 | 4 | Thunder Wave | Electric | Status | — | 90% | 20 |
 | 8 | Double Team | Normal | Status | — | — | 15 |
+| 12 | Electro Ball ★ | Electric | Special | varies | 100% | 10 |
 | 20 | Spark ★ | Electric | Physical | 65 | 100% | 20 |
 | 24 | Agility | Psychic | Status | — | — | 30 |
 | 28 | Iron Tail ★ | Steel | Physical | 100 | 75% | 15 |
@@ -136,11 +137,14 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
 | Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
 | Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
 | Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Electro Ball | Electric | Special | varies | 100% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |

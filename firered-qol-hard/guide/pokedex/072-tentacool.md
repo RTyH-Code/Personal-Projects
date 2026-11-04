@@ -109,6 +109,7 @@ Height 0.9 m (2′11″) · Weight 45.5 kg (100.3 lbs)
 | 16 | Water Pulse ★ | Water | Special | 60 | 100% | 20 |
 | 20 | Screech | Normal | Status | — | 85% | 40 |
 | 24 | Bubble Beam | Water | Special | 65 | 100% | 20 |
+| 28 | Hex ★ | Ghost | Special | 65 | 100% | 10 |
 | 32 | Acid Armor ★ | Poison | Status | — | — | 20 |
 | 36 | Poison Jab ★ | Poison | Physical | 80 | 100% | 20 |
 | 40 | Surf ★ | Water | Special | 90 | 100% | 15 |
@@ -156,6 +157,11 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acid Spray | Poison | Special | 40 | 100% | 20 | 0 |
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
+| Hex | Ghost | Special | 65 | 100% | 10 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Cross Poison | Poison | Physical | 70 | 100% | 20 | 3 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |

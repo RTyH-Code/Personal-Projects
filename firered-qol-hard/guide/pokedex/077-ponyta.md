@@ -75,12 +75,14 @@ Height 1 m (3′03″) · Weight 30 kg (66.1 lbs)
 | 1 | Growl | Normal | Status | — | 100% | 40 |
 | 5 | Tail Whip | Normal | Status | — | 100% | 30 |
 | 10 | Ember | Fire | Special | 40 | 100% | 25 |
+| 15 | Flame Charge ★ | Fire | Physical | 50 | 100% | 20 |
 | 20 | Agility | Psychic | Status | — | — | 30 |
 | 25 | Flame Wheel ★ | Fire | Physical | 60 | 100% | 25 |
 | 30 | Stomp | Normal | Physical | 65 | 100% | 20 |
 | 35 | Fire Spin | Fire | Special | 35 | 85% | 15 |
 | 41 | Take Down | Normal | Physical | 90 | 85% | 20 |
 | 50 | Fire Blast | Fire | Special | 110 | 85% | 5 |
+| 55 | Flare Blitz ★ | Fire | Physical | 120 | 100% | 15 |
 
 ### By TM/HM
 
@@ -119,7 +121,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
 | Mystical Fire | Fire | Special | 75 | 100% | 10 | 3 |
+| Flare Blitz | Fire | Physical | 120 | 100% | 15 | 5 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 

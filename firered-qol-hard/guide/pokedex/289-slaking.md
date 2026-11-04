@@ -69,11 +69,13 @@ Height 2 m (6′07″) · Weight 130.5 kg (287.7 lbs)
 | 1 | Encore | Normal | Status | — | 100% | 5 |
 | 1 | Yawn | Normal | Status | — | 100% | 10 |
 | 1 | Slack Off | Normal | Status | — | — | 5 |
+| 1 | Sucker Punch ★ | Dark | Physical | 70 | 100% | 5 |
 | 17 | Amnesia | Psychic | Status | — | — | 20 |
 | 23 | Covet | Normal | Physical | 60 | 100% | 25 |
 | 33 | Counter | Fighting | Physical | varies | 100% | 20 |
 | 39 | Flail | Normal | Physical | varies | 100% | 15 |
 | 52 | Mega Kick ★ | Normal | Physical | 120 | 75% | 5 |
+| 63 | Hammer Arm ★ | Fighting | Physical | 100 | 90% | 10 |
 
 ### By TM/HM
 
@@ -134,12 +136,18 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
@@ -163,6 +171,7 @@ Breed a Slakoth (passed down to Slakoth, which then evolves) with a father that 
 | Curse | ??? | Status | — | — | 10 |
 | Sleep Talk | Normal | Status | — | — | 10 |
 | Night Slash | Dark | Physical | 70 | 100% | 15 |
+| Hammer Arm | Fighting | Physical | 100 | 90% | 10 |
 
 ---
 

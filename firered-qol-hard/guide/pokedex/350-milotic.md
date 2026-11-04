@@ -81,6 +81,7 @@ Height 6.2 m (20′04″) · Weight 162 kg (357.1 lbs)
 | 36 | Safeguard | Normal | Status | — | — | 25 |
 | 40 | Surf ★ | Water | Special | 90 | 100% | 15 |
 | 44 | Rain Dance | Water | Status | — | — | 5 |
+| 48 | Coil ★ | Poison | Status | — | — | 20 |
 | 52 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 
 ### By TM/HM
@@ -126,6 +127,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
 | Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
@@ -148,6 +150,7 @@ Breed a Feebas (passed down to Feebas, which then evolves) with a father that kn
 | Light Screen | Psychic | Status | — | — | 30 |
 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 |
+| Brine | Water | Special | 65 | 100% | 10 |
 
 ---
 

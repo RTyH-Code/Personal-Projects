@@ -73,8 +73,10 @@ Misdreavus does not evolve.
 | 10 | Astonish | Ghost | Physical | 30 | 100% | 15 |
 | 14 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | 19 | Mean Look | Normal | Status | — | 100% | 5 |
+| 23 | Hex ★ | Ghost | Special | 65 | 100% | 10 |
 | 28 | Psybeam | Psychic | Special | 65 | 100% | 20 |
 | 32 | Pain Split | Normal | Status | — | 100% | 20 |
+| 37 | Payback ★ | Dark | Physical | 50 | 100% | 10 |
 | 41 | Shadow Ball ★ | Ghost | Special | 80 | 100% | 15 |
 | 46 | Perish Song | Normal | Status | — | — | 5 |
 | 50 | Power Gem ★ | Rock | Special | 80 | 100% | 20 |
@@ -125,14 +127,21 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Hex | Ghost | Special | 65 | 100% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
 | Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
+| Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)
@@ -148,6 +157,7 @@ Breed a Misdreavus with a father that knows the move.
 | Shadow Sneak | Ghost | Physical | 40 | 100% | 30 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 |
 | Nasty Plot | Dark | Status | — | — | 20 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 |
 
 ---
 

@@ -127,11 +127,17 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
+| Heat Crash | Fire | Physical | varies | 100% | 10 | 0 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Flare Blitz | Fire | Physical | 120 | 100% | 15 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)
@@ -148,6 +154,7 @@ Breed a Numel with a father that knows the move.
 | Stomp | Normal | Physical | 65 | 100% | 20 |
 | Mud Bomb | Ground | Special | 65 | 85% | 10 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 |
 
 ---
 

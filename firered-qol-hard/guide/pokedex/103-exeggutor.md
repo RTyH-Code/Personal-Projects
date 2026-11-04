@@ -74,6 +74,7 @@ Height 2 m (6′07″) · Weight 120 kg (264.6 lbs)
 | 1 | Seed Bomb ★ | Grass | Physical | 80 | 100% | 15 |
 | 1 | Wood Hammer ★ | Grass | Physical | 120 | 100% | 15 |
 | 1 | Leaf Storm ★ | Grass | Special | 130 | 90% | 5 |
+| 1 | Psyshock ★ | Psychic | Special | 80 | 100% | 10 |
 | 8 | Reflect ★ | Psychic | Status | — | — | 20 |
 | 13 | Leech Seed ★ | Grass | Status | — | 90% | 10 |
 | 18 | Mega Drain ★ | Grass | Special | 40 | 100% | 15 |
@@ -131,7 +132,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
 | Psycho Cut | Psychic | Physical | 70 | 100% | 20 | 3 |
+| Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |

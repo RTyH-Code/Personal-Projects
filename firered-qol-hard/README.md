@@ -102,22 +102,40 @@ and you can use her as often as you like.
   - Lance's Dragons carry Iron Tail so they aren't helpless against Fairies.
 
 ## Later moves
-- 74 moves from Gen 4 onward, such as Night Slash, Dark Pulse, Drain Punch,
-  Aura Sphere, Focus Blast, Bullet Punch, Poison Jab, Gunk Shot, Earth Power,
-  Stone Edge, X-Scissor, Bug Buzz, Shadow Claw, Shadow Sneak, Flash Cannon,
-  Iron Head, Zen Headbutt, Psychic Fangs, Aqua Jet, Scald, Liquidation,
-  Energy Ball, Leaf Storm, Wood Hammer, Discharge, Wild Charge, Ice Shard,
-  Icicle Crash, Dragon Pulse, Draco Meteor, Air Slash, Brave Bird, Boomburst,
-  Nasty Plot and Rock Polish.
+- 111 moves from Gen 4 onward. 74 of them reuse Gen 3 effects, such as
+  Night Slash, Dark Pulse, Drain Punch, Aura Sphere, Focus Blast, Bullet
+  Punch, Poison Jab, Gunk Shot, Earth Power, Stone Edge, X-Scissor, Bug Buzz,
+  Shadow Claw, Shadow Sneak, Flash Cannon, Iron Head, Zen Headbutt, Psychic
+  Fangs, Aqua Jet, Scald, Liquidation, Energy Ball, Leaf Storm, Wood Hammer,
+  Discharge, Wild Charge, Ice Shard, Icicle Crash, Dragon Pulse, Draco Meteor,
+  Air Slash, Brave Bird, Boomburst, Nasty Plot and Rock Polish.
   - Their power, accuracy, PP, priority and category are modern.
   - Animations are reused from existing moves, tinted in the move's type
     colour.
+- 37 more moves with new effects:
+  - Set-up: Quiver Dance, Shell Smash, Coil, Hone Claws, Work Up, Cotton Guard.
+  - Self stat changes after the hit: Close Combat, Hammer Arm, Flame Charge,
+    Charge Beam, Trailblaze.
+  - Recoil and extra effects: Head Smash (1/2 recoil), Flare Blitz (recoil
+    and 10% burn), Fire/Ice/Thunder Fang (10% status and 10% flinch), Acid
+    Spray (sharply lowers Sp. Def).
+  - Power that depends on the battle: Hex, Venoshock, Brine, Acrobatics,
+    Stored Power, Power Trip, Gyro Ball, Electro Ball, Heavy Slam, Heat
+    Crash, Payback.
+  - Other stats: Psyshock and Psystrike hit Defense, Foul Play uses the
+    target's Attack, Body Press uses the user's Defense.
+  - Freeze-Dry is super effective on Water types.
+  - Frost Breath and Storm Throw always land a critical hit.
+  - Hurricane never misses in rain (50% in sun) and may confuse.
+  - Sucker Punch strikes first but fails unless the target is about to
+    attack.
 - Pokémon learn them by level-up and as egg moves wherever modern games
   teach them that way.
 - **Modern tutor:** the old man in the Viridian City Pokémon Center teaches,
   for free, any of these moves (and the Fairy moves) that the Pokémon could
   learn by TM or tutor in Gen 4–9.
-  - Moves with 70+ power, and Nasty Plot, need 3 badges.
+  - Moves with 70+ power, and the strongest set-up moves (Nasty Plot, Quiver
+    Dance, Shell Smash, Coil, Cotton Guard), need 3 badges.
   - Moves with 90+ power need 5 badges.
 - The Pokédex guide lists every Pokémon's modern tutor moves.
 
@@ -258,7 +276,7 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `63eb730c86b293690613bece102412d4b95f19e4`
+Patched ROM SHA-1: `18101201f476f0a7cebfcd2d66b45ac51ff3bc51`
 
 Start a new game. Saves from earlier versions of this hack aren't supported.
 

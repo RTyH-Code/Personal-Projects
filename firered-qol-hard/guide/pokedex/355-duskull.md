@@ -78,8 +78,10 @@ Height 0.8 m (2′07″) · Weight 15 kg (33.1 lbs)
 | 8 | Shadow Sneak ★ | Ghost | Physical | 40 | 100% | 30 |
 | 12 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | 16 | Night Shade | Ghost | Special | varies | 100% | 15 |
+| 20 | Payback ★ | Dark | Physical | 50 | 100% | 10 |
 | 24 | Will-O-Wisp | Fire | Status | — | 85% | 15 |
 | 28 | Mean Look | Normal | Status | — | 100% | 5 |
+| 32 | Hex ★ | Ghost | Special | 65 | 100% | 10 |
 | 36 | Curse | ??? | Status | — | — | 10 |
 | 40 | Shadow Ball ★ | Ghost | Special | 80 | 100% | 15 |
 | 44 | Future Sight | Psychic | Special | 120 | 100% | 10 |
@@ -128,8 +130,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
+| Hex | Ghost | Special | 65 | 100% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 
 ### By breeding (egg moves)
 

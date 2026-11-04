@@ -75,6 +75,7 @@ Height 1.5 m (4′11″) · Weight 81.9 kg (180.6 lbs)
 | 1 | Earthquake | Ground | Physical | 100 | 100% | 10 |
 | 1 | Rock Smash ★ | Fighting | Physical | 40 | 100% | 15 |
 | 1 | Mud Shot | Ground | Special | 55 | 95% | 15 |
+| 1 | Hammer Arm ★ | Fighting | Physical | 100 | 90% | 10 |
 | 9 | Rock Throw ★ | Rock | Physical | 50 | 90% | 15 |
 | 12 | Protect | Normal | Status | — | — | 10 |
 | 15 | Supersonic ★ | Normal | Status | — | 55% | 20 |
@@ -143,6 +144,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |

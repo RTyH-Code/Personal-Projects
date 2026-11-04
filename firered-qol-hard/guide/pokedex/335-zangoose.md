@@ -81,13 +81,16 @@ Zangoose does not evolve.
 | 5 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
 | 8 | Fury Cutter | Bug | Physical | 40 | 95% | 20 |
 | 12 | Metal Claw ★ | Steel | Physical | 50 | 95% | 35 |
+| 15 | Hone Claws ★ | Dark | Status | — | — | 15 |
 | 19 | Slash | Normal | Physical | 70 | 100% | 20 |
+| 22 | Power Trip ★ | Dark | Physical | 20 | 100% | 10 |
 | 26 | Crush Claw | Normal | Physical | 75 | 95% | 10 |
 | 29 | False Swipe | Normal | Physical | 40 | 100% | 40 |
 | 36 | Detect | Fighting | Status | — | — | 5 |
 | 40 | X-Scissor ★ | Bug | Physical | 80 | 100% | 15 |
 | 43 | Taunt | Dark | Status | — | 100% | 20 |
 | 47 | Swords Dance | Normal | Status | — | — | 20 |
+| 50 | Close Combat ★ | Fighting | Physical | 120 | 100% | 5 |
 
 ### By TM/HM
 
@@ -150,14 +153,18 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
 | X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |

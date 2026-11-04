@@ -77,6 +77,7 @@ Height 0.9 m (2′11″) · Weight 19 kg (41.9 lbs)
 | 20 | Flame Wheel | Fire | Physical | 60 | 100% | 25 |
 | 24 | Defense Curl ★ | Normal | Status | — | — | 40 |
 | 31 | Swift | Normal | Special | 60 | — | 20 |
+| 35 | Flame Charge ★ | Fire | Physical | 50 | 100% | 20 |
 | 42 | Lava Plume ★ | Fire | Special | 80 | 100% | 15 |
 | 46 | Flamethrower | Fire | Special | 90 | 100% | 15 |
 | 57 | Rollout ★ | Rock | Physical | 30 | 90% | 20 |
@@ -126,8 +127,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
+| Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Flare Blitz | Fire | Physical | 120 | 100% | 15 | 5 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 
@@ -145,6 +150,7 @@ Breed a Cyndaquil (passed down to Cyndaquil, which then evolves) with a father t
 | Covet | Normal | Physical | 60 | 100% | 25 |
 | Howl | Normal | Status | — | — | 40 |
 | Crush Claw | Normal | Physical | 75 | 95% | 10 |
+| Flare Blitz | Fire | Physical | 120 | 100% | 15 |
 
 ---
 

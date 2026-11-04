@@ -136,6 +136,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
@@ -143,6 +145,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Razor Shell | Water | Physical | 75 | 95% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 | X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)

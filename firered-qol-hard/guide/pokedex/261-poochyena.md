@@ -81,6 +81,7 @@ Height 0.5 m (1′08″) · Weight 13.6 kg (30.0 lbs)
 | 31 | Crunch | Dark | Physical | 80 | 100% | 15 |
 | 34 | Yawn ★ | Normal | Status | — | 100% | 10 |
 | 36 | Take Down | Normal | Physical | 90 | 85% | 20 |
+| 40 | Sucker Punch ★ | Dark | Physical | 70 | 100% | 5 |
 | 44 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
 
 ### By TM/HM
@@ -125,10 +126,17 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
+| Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
 | Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
+| Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 
 ### By breeding (egg moves)
@@ -143,6 +151,10 @@ Breed a Poochyena with a father that knows the move.
 | Leer | Normal | Status | — | 100% | 30 |
 | Yawn | Normal | Status | — | 100% | 10 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 |
+| Fire Fang | Fire | Physical | 65 | 95% | 15 |
+| Ice Fang | Ice | Physical | 65 | 95% | 15 |
+| Thunder Fang | Electric | Physical | 65 | 95% | 15 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 |
 
 ---
 

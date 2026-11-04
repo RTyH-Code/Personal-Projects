@@ -79,6 +79,7 @@ Height 1.3 m (4′03″) · Weight 40.5 kg (89.3 lbs)
 | 20 | Leer | Normal | Status | — | 100% | 30 |
 | 25 | Mud Shot | Ground | Special | 55 | 95% | 15 |
 | 30 | Ancient Power | Rock | Special | 60 | 100% | 5 |
+| 35 | Brine ★ | Water | Special | 65 | 100% | 10 |
 | 43 | Protect ★ | Normal | Status | — | — | 10 |
 | 49 | Leech Life ★ | Bug | Physical | 80 | 100% | 10 |
 | 56 | Liquidation ★ | Water | Physical | 85 | 100% | 10 |
@@ -137,6 +138,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
 | Cross Poison | Poison | Physical | 70 | 100% | 20 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |

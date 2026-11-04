@@ -125,6 +125,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
@@ -145,6 +148,7 @@ Breed a Bagon (passed down to Bagon, which then evolves) with a father that know
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 |
 | Dragon Rush | Dragon | Physical | 100 | 75% | 10 |
+| Fire Fang | Fire | Physical | 65 | 95% | 15 |
 
 ---
 

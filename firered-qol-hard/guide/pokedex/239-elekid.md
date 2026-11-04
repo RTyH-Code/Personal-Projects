@@ -127,10 +127,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Dual Chop | Dragon | Physical | 40 | 90% | 15 | 0 |
 | Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
 | Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Electro Ball | Electric | Special | varies | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 
@@ -147,6 +150,7 @@ Breed a Elekid with a father that knows the move.
 | Cross Chop | Fighting | Physical | 100 | 80% | 5 |
 | Fire Punch | Fire | Physical | 75 | 100% | 15 |
 | Ice Punch | Ice | Physical | 75 | 100% | 15 |
+| Hammer Arm | Fighting | Physical | 100 | 90% | 10 |
 
 ---
 

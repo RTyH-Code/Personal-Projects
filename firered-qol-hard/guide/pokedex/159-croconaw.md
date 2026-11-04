@@ -72,6 +72,7 @@ Height 1.1 m (3′07″) · Weight 25 kg (55.1 lbs)
 | 1 | Water Gun | Water | Special | 40 | 100% | 25 |
 | 13 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 15 | Scary Face | Normal | Status | — | 100% | 10 |
+| 21 | Ice Fang ★ | Ice | Physical | 65 | 95% | 15 |
 | 24 | Flail ★ | Normal | Physical | varies | 100% | 15 |
 | 30 | Crunch ★ | Dark | Physical | 80 | 100% | 15 |
 | 34 | Slash | Normal | Physical | 70 | 100% | 20 |
@@ -135,7 +136,11 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |

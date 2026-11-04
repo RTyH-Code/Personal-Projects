@@ -74,6 +74,9 @@ Height 1 m (3′03″) · Weight 37 kg (81.6 lbs)
 | 1 | Thief | Dark | Physical | 60 | 100% | 25 |
 | 1 | Crunch | Dark | Physical | 80 | 100% | 15 |
 | 1 | Snarl ★ | Dark | Special | 55 | 95% | 15 |
+| 1 | Fire Fang ★ | Fire | Physical | 65 | 95% | 15 |
+| 1 | Ice Fang ★ | Ice | Physical | 65 | 95% | 15 |
+| 1 | Thunder Fang ★ | Electric | Physical | 65 | 95% | 15 |
 | 13 | Leer ★ | Normal | Status | — | 100% | 30 |
 | 13 | Howl | Normal | Status | — | — | 40 |
 | 16 | Roar | Normal | Status | — | 100% | 20 |
@@ -82,6 +85,7 @@ Height 1 m (3′03″) · Weight 37 kg (81.6 lbs)
 | 36 | Taunt | Dark | Status | — | 100% | 20 |
 | 44 | Yawn ★ | Normal | Status | — | 100% | 10 |
 | 48 | Take Down | Normal | Physical | 90 | 85% | 20 |
+| 52 | Sucker Punch ★ | Dark | Physical | 70 | 100% | 5 |
 | 56 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
 
 ### By TM/HM
@@ -128,10 +132,17 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
+| Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
 | Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
+| Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 
@@ -147,6 +158,10 @@ Breed a Poochyena (passed down to Poochyena, which then evolves) with a father t
 | Leer | Normal | Status | — | 100% | 30 |
 | Yawn | Normal | Status | — | 100% | 10 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 |
+| Fire Fang | Fire | Physical | 65 | 95% | 15 |
+| Ice Fang | Ice | Physical | 65 | 95% | 15 |
+| Thunder Fang | Electric | Physical | 65 | 95% | 15 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 |
 
 ---
 

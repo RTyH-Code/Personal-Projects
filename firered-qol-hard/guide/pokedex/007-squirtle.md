@@ -78,6 +78,7 @@ Height 0.5 m (1′08″) · Weight 9 kg (19.8 lbs)
 | 18 | Protect | Normal | Status | — | — | 10 |
 | 21 | Rain Dance | Water | Status | — | — | 5 |
 | 24 | Aqua Tail ★ | Water | Physical | 90 | 90% | 10 |
+| 27 | Shell Smash ★ | Normal | Status | — | — | 15 |
 | 30 | Iron Defense ★ | Steel | Status | — | — | 15 |
 | 33 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 
@@ -129,7 +130,10 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |

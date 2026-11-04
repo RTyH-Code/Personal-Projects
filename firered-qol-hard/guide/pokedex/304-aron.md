@@ -87,6 +87,7 @@ Height 0.4 m (1′04″) · Weight 60 kg (132.3 lbs)
 | 40 | Autotomize ★ | Steel | Status | — | — | 15 |
 | 44 | Iron Tail | Steel | Physical | 100 | 75% | 15 |
 | 48 | Iron Defense | Steel | Status | — | — | 15 |
+| 52 | Heavy Slam ★ | Steel | Physical | varies | 100% | 10 |
 | 56 | Double-Edge | Normal | Physical | 120 | 100% | 15 |
 
 ### By TM/HM
@@ -135,7 +136,10 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
@@ -152,6 +156,7 @@ Breed a Aron with a father that knows the move.
 | Smelling Salt | Normal | Physical | 70 | 100% | 10 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 |
 | Dragon Rush | Dragon | Physical | 100 | 75% | 10 |
+| Head Smash | Rock | Physical | 150 | 80% | 5 |
 
 ---
 

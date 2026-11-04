@@ -72,6 +72,8 @@ Height 1.1 m (3′07″) · Weight 120 kg (264.6 lbs)
 | 1 | Growl | Normal | Status | — | 100% | 40 |
 | 1 | Defense Curl | Normal | Status | — | — | 40 |
 | 1 | Bulldoze ★ | Ground | Physical | 60 | 100% | 20 |
+| 1 | Fire Fang ★ | Fire | Physical | 65 | 95% | 15 |
+| 1 | Thunder Fang ★ | Electric | Physical | 65 | 95% | 15 |
 | 6 | Rapid Spin | Normal | Physical | 50 | 100% | 40 |
 | 10 | Rollout | Rock | Physical | 30 | 90% | 20 |
 | 19 | Knock Off ★ | Dark | Physical | 65 | 100% | 20 |
@@ -122,7 +124,14 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
+| Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
@@ -147,6 +156,8 @@ Breed a Phanpy (passed down to Phanpy, which then evolves) with a father that kn
 | Fissure | Ground | Physical | varies | 30% | 5 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 |
 | Ice Shard | Ice | Physical | 40 | 100% | 30 |
+| Head Smash | Rock | Physical | 150 | 80% | 5 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 |
 
 ---
 

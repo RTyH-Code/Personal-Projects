@@ -74,6 +74,10 @@ Height 2 m (6′07″) · Weight 202 kg (445.3 lbs)
 | 1 | Rock Throw ★ | Rock | Physical | 50 | 90% | 15 |
 | 1 | Iron Defense ★ | Steel | Status | — | — | 15 |
 | 1 | Dark Pulse ★ | Dark | Special | 80 | 100% | 15 |
+| 1 | Fire Fang ★ | Fire | Physical | 65 | 95% | 15 |
+| 1 | Ice Fang ★ | Ice | Physical | 65 | 95% | 15 |
+| 1 | Thunder Fang ★ | Electric | Physical | 65 | 95% | 15 |
+| 1 | Payback ★ | Dark | Physical | 50 | 100% | 10 |
 | 9 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 12 | Scary Face | Normal | Status | — | 100% | 10 |
 | 15 | Rock Slide | Rock | Physical | 75 | 90% | 10 |
@@ -152,9 +156,16 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
@@ -163,6 +174,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
+| Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |

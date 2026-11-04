@@ -123,12 +123,16 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
+| Hurricane | Flying | Special | 110 | 70% | 10 | 5 |
 
 ### By breeding (egg moves)
 
@@ -143,6 +147,7 @@ Breed a Hoothoot with a father that knows the move.
 | Whirlwind | Normal | Status | — | 100% | 20 |
 | Sky Attack | Flying | Physical | 140 | 90% | 5 |
 | Feather Dance | Flying | Status | — | 100% | 15 |
+| Hurricane | Flying | Special | 110 | 70% | 10 |
 
 ---
 

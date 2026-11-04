@@ -77,6 +77,7 @@ Height 1.9 m (6′03″) · Weight 52 kg (114.6 lbs)
 | 1 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
 | 1 | Feather Dance ★ | Flying | Status | — | 100% | 15 |
 | 1 | Blaze Kick | Fire | Physical | 85 | 90% | 10 |
+| 9 | Flame Charge ★ | Fire | Physical | 50 | 100% | 20 |
 | 12 | Detect ★ | Fighting | Status | — | — | 5 |
 | 15 | Sand Attack | Ground | Status | — | 100% | 15 |
 | 20 | Aerial Ace ★ | Flying | Physical | 60 | — | 20 |
@@ -85,6 +86,7 @@ Height 1.9 m (6′03″) · Weight 52 kg (114.6 lbs)
 | 35 | Focus Energy | Normal | Status | — | — | 30 |
 | 42 | Bulk Up | Fighting | Status | — | — | 20 |
 | 49 | Reversal ★ | Fighting | Physical | varies | 100% | 15 |
+| 56 | Flare Blitz ★ | Fire | Physical | 120 | 100% | 15 |
 | 63 | Brave Bird ★ | Flying | Physical | 120 | 100% | 15 |
 
 ### By TM/HM
@@ -139,16 +141,23 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Dual Chop | Dragon | Physical | 40 | 90% | 15 | 0 |
+| Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
+| Heat Crash | Fire | Physical | varies | 100% | 10 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
+| Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
+| Flare Blitz | Fire | Physical | 120 | 100% | 15 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |

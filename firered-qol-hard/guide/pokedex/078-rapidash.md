@@ -79,12 +79,14 @@ Height 1.7 m (5′07″) · Weight 95 kg (209.4 lbs)
 | 1 | Megahorn ★ | Bug | Physical | 120 | 85% | 10 |
 | 1 | Poison Jab ★ | Poison | Physical | 80 | 100% | 20 |
 | 1 | Smart Strike ★ | Steel | Physical | 70 | — | 10 |
+| 15 | Flame Charge ★ | Fire | Physical | 50 | 100% | 20 |
 | 20 | Agility | Psychic | Status | — | — | 30 |
 | 25 | Flame Wheel ★ | Fire | Physical | 60 | 100% | 25 |
 | 30 | Stomp | Normal | Physical | 65 | 100% | 20 |
 | 35 | Fire Spin | Fire | Special | 35 | 85% | 15 |
 | 43 | Take Down | Normal | Physical | 90 | 85% | 20 |
 | 56 | Fire Blast | Fire | Special | 110 | 85% | 5 |
+| 63 | Flare Blitz ★ | Fire | Physical | 120 | 100% | 15 |
 
 ### By TM/HM
 
@@ -124,11 +126,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
 | Mystical Fire | Fire | Special | 75 | 100% | 10 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
 | Smart Strike | Steel | Physical | 70 | — | 10 | 3 |
+| Flare Blitz | Fire | Physical | 120 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |

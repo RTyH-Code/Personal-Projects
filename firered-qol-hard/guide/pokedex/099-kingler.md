@@ -71,6 +71,7 @@ Height 1.3 m (4′03″) · Weight 60 kg (132.3 lbs)
 | 1 | Water Gun ★ | Water | Special | 40 | 100% | 25 |
 | 1 | Harden | Normal | Status | — | — | 30 |
 | 1 | Metal Claw | Steel | Physical | 50 | 95% | 35 |
+| 1 | Hammer Arm ★ | Fighting | Physical | 100 | 90% | 10 |
 | 12 | Mud Shot | Ground | Special | 55 | 95% | 15 |
 | 16 | Protect | Normal | Status | — | — | 10 |
 | 20 | Bubble Beam ★ | Water | Special | 65 | 100% | 20 |
@@ -127,6 +128,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Razor Shell | Water | Physical | 75 | 95% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
@@ -147,6 +150,7 @@ Breed a Krabby (passed down to Krabby, which then evolves) with a father that kn
 | Knock Off | Dark | Physical | 65 | 100% | 20 |
 | Swords Dance | Normal | Status | — | — | 20 |
 | Night Slash | Dark | Physical | 70 | 100% | 15 |
+| Hammer Arm | Fighting | Physical | 100 | 90% | 10 |
 
 ---
 

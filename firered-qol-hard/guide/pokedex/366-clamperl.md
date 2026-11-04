@@ -73,6 +73,7 @@ Height 0.4 m (1′04″) · Weight 52.5 kg (115.7 lbs)
 | 1 | Clamp | Water | Physical | 35 | 85% | 15 |
 | 1 | Whirlpool | Water | Special | 35 | 85% | 15 |
 | 1 | Iron Defense | Steel | Status | — | — | 15 |
+| 50 | Shell Smash ★ | Normal | Status | — | — | 15 |
 
 ### By TM/HM
 
@@ -112,6 +113,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 
 ### By breeding (egg moves)
@@ -126,6 +128,7 @@ Breed a Clamperl with a father that knows the move.
 | Supersonic | Normal | Status | — | 55% | 20 |
 | Barrier | Psychic | Status | — | — | 20 |
 | Confuse Ray | Ghost | Status | — | 100% | 10 |
+| Brine | Water | Special | 65 | 100% | 10 |
 
 ---
 

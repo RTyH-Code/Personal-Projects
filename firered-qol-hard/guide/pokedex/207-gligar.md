@@ -77,6 +77,7 @@ Gligar does not evolve.
 | 13 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
 | 16 | Fury Cutter ★ | Bug | Physical | 40 | 95% | 20 |
 | 19 | Poison Tail ★ | Poison | Physical | 50 | 100% | 25 |
+| 22 | Acrobatics ★ | Flying | Physical | 55 | 100% | 15 |
 | 27 | Slash | Normal | Physical | 70 | 100% | 20 |
 | 35 | Screech | Normal | Status | — | 85% | 40 |
 | 40 | X-Scissor ★ | Bug | Physical | 80 | 100% | 15 |
@@ -130,11 +131,18 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |

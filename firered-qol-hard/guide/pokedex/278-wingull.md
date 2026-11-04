@@ -81,6 +81,7 @@ Height 0.6 m (2′00″) · Weight 9.5 kg (20.9 lbs)
 | 26 | Agility | Psychic | Status | — | — | 30 |
 | 30 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
 | 35 | Mist | Ice | Status | — | — | 30 |
+| 45 | Hurricane ★ | Flying | Special | 110 | 70% | 10 |
 
 ### By TM/HM
 
@@ -121,12 +122,15 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
+| Hurricane | Flying | Special | 110 | 70% | 10 | 5 |
 
 ### By breeding (egg moves)
 
@@ -139,6 +143,7 @@ Breed a Wingull with a father that knows the move.
 | Agility | Psychic | Status | — | — | 30 |
 | Gust | Flying | Special | 40 | 100% | 35 |
 | Water Sport | Water | Status | — | — | 15 |
+| Brine | Water | Special | 65 | 100% | 10 |
 
 ---
 

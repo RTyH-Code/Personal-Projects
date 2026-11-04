@@ -73,6 +73,7 @@ Height 1.2 m (3′11″) · Weight 202.5 kg (446.4 lbs)
 | 1 | Confusion | Psychic | Special | 50 | 100% | 25 |
 | 1 | Metal Claw | Steel | Physical | 50 | 95% | 35 |
 | 1 | Bullet Punch ★ | Steel | Physical | 40 | 100% | 30 |
+| 1 | Hone Claws ★ | Dark | Status | — | — | 15 |
 | 6 | Zen Headbutt ★ | Psychic | Physical | 80 | 90% | 15 |
 | 18 | Flash Cannon ★ | Steel | Special | 80 | 100% | 10 |
 | 26 | Take Down | Normal | Physical | 90 | 85% | 20 |
@@ -133,11 +134,16 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Psycho Cut | Psychic | Physical | 70 | 100% | 20 | 3 |
+| Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 

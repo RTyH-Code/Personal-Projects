@@ -78,7 +78,9 @@ Height 0.6 m (2′00″) · Weight 10.8 kg (23.8 lbs)
 | 13 | Roar | Normal | Status | — | 100% | 20 |
 | 16 | Bite | Dark | Physical | 60 | 100% | 25 |
 | 25 | Beat Up ★ | Dark | Physical | 10 | 100% | 10 |
+| 28 | Fire Fang ★ | Fire | Physical | 65 | 95% | 15 |
 | 32 | Torment ★ | Dark | Status | — | 100% | 15 |
+| 40 | Foul Play ★ | Dark | Physical | 95 | 100% | 15 |
 | 44 | Flamethrower | Fire | Special | 90 | 100% | 15 |
 | 49 | Crunch | Dark | Physical | 80 | 100% | 15 |
 | 52 | Nasty Plot ★ | Dark | Status | — | — | 20 |
@@ -129,10 +131,18 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
+| Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
 | Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
+| Flare Blitz | Fire | Physical | 120 | 100% | 15 | 5 |
+| Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 
 ### By breeding (egg moves)
 
@@ -149,6 +159,7 @@ Breed a Houndour with a father that knows the move.
 | Beat Up | Dark | Physical | 10 | 100% | 10 |
 | Will-O-Wisp | Fire | Status | — | 85% | 15 |
 | Nasty Plot | Dark | Status | — | — | 20 |
+| Fire Fang | Fire | Physical | 65 | 95% | 15 |
 
 ---
 

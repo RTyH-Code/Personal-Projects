@@ -75,6 +75,7 @@ Height 1.9 m (6′03″) · Weight 120 kg (264.6 lbs)
 | 1 | Tackle ★ | Normal | Physical | 40 | 100% | 35 |
 | 1 | Tail Whip | Normal | Status | — | 100% | 30 |
 | 1 | Bulldoze ★ | Ground | Physical | 60 | 100% | 20 |
+| 1 | Hammer Arm ★ | Fighting | Physical | 100 | 90% | 10 |
 | 15 | Horn Attack | Normal | Physical | 65 | 100% | 25 |
 | 20 | Scary Face | Normal | Status | — | 100% | 10 |
 | 25 | Stomp | Normal | Physical | 65 | 100% | 20 |
@@ -148,8 +149,15 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
+| Heat Crash | Fire | Physical | varies | 100% | 10 | 0 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
+| Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |

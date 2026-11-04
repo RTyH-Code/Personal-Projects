@@ -77,9 +77,11 @@ Height 1.4 m (4′07″) · Weight 150.6 kg (332.0 lbs)
 | 1 | Rollout ★ | Rock | Physical | 30 | 90% | 20 |
 | 1 | Swagger ★ | Normal | Status | — | 85% | 15 |
 | 1 | Crunch ★ | Dark | Physical | 80 | 100% | 15 |
+| 1 | Ice Fang ★ | Ice | Physical | 65 | 95% | 15 |
 | 12 | Powder Snow | Ice | Special | 40 | 100% | 25 |
 | 16 | Rest | Psychic | Status | — | — | 5 |
 | 20 | Snore | Normal | Special | 50 | 100% | 15 |
+| 24 | Brine ★ | Water | Special | 65 | 100% | 10 |
 | 28 | Aurora Beam | Ice | Special | 65 | 100% | 20 |
 | 35 | Encore | Normal | Status | — | 100% | 5 |
 | 40 | Body Slam | Normal | Physical | 85 | 100% | 15 |
@@ -135,7 +137,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Frost Breath | Ice | Special | 60 | 90% | 10 | 0 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
+| Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |

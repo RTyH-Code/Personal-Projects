@@ -145,10 +145,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
 | Mystical Fire | Fire | Special | 75 | 100% | 10 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
 | Smart Strike | Steel | Physical | 70 | — | 10 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
@@ -168,6 +171,7 @@ Breed a Togepi (passed down to Togepi, which then evolves) with a father that kn
 | Substitute | Normal | Status | — | — | 10 |
 | Psych Up | Normal | Status | — | — | 10 |
 | Nasty Plot | Dark | Status | — | — | 20 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 |
 
 ---
 

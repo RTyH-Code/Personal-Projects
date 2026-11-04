@@ -75,6 +75,7 @@ Height 1.5 m (4′11″) · Weight 12.5 kg (27.6 lbs)
 | 1 | Supersonic | Normal | Status | — | 55% | 20 |
 | 1 | Disable | Normal | Status | — | 100% | 20 |
 | 1 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
+| 1 | Quiver Dance ★ | Bug | Status | — | — | 20 |
 | 11 | Confusion | Psychic | Special | 50 | 100% | 25 |
 | 13 | Poison Powder | Poison | Status | — | 75% | 35 |
 | 17 | Psybeam | Psychic | Special | 65 | 100% | 20 |
@@ -125,8 +126,11 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acid Spray | Poison | Special | 40 | 100% | 20 | 0 |
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
@@ -144,6 +148,7 @@ Breed a Venonat (passed down to Venonat, which then evolves) with a father that 
 | Screech | Normal | Status | — | 85% | 40 |
 | Giga Drain | Grass | Special | 75 | 100% | 10 |
 | Signal Beam | Bug | Special | 75 | 100% | 15 |
+| Venoshock | Poison | Special | 65 | 100% | 10 |
 
 ---
 

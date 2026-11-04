@@ -78,6 +78,7 @@ Height 0.7 m (2′04″) · Weight 33.3 kg (73.4 lbs)
 | 1 | Night Slash ★ | Dark | Physical | 70 | 100% | 15 |
 | 12 | Mud-Slap | Ground | Special | 20 | 100% | 10 |
 | 16 | Bulldoze ★ | Ground | Physical | 60 | 100% | 20 |
+| 20 | Sucker Punch ★ | Dark | Physical | 70 | 100% | 5 |
 | 24 | Slash | Normal | Physical | 70 | 100% | 20 |
 | 30 | Sandstorm ★ | Rock | Status | — | — | 10 |
 | 36 | Dig | Ground | Physical | 80 | 100% | 10 |
@@ -127,9 +128,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
@@ -147,6 +152,7 @@ Breed a Diglett (passed down to Diglett, which then evolves) with a father that 
 | Uproar | Normal | Special | 90 | 100% | 10 |
 | Rock Slide | Rock | Physical | 75 | 90% | 10 |
 | Mud Bomb | Ground | Special | 65 | 85% | 10 |
+| Hone Claws | Dark | Status | — | — | 15 |
 
 ---
 

@@ -130,6 +130,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
@@ -151,6 +154,7 @@ Breed a Remoraid (passed down to Remoraid, which then evolves) with a father tha
 | Screech | Normal | Status | — | 85% | 40 |
 | Thunder Wave | Electric | Status | — | 90% | 20 |
 | Rock Blast | Rock | Physical | 25 | 90% | 10 |
+| Acid Spray | Poison | Special | 40 | 100% | 20 |
 
 ---
 

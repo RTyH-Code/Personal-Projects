@@ -72,13 +72,16 @@ Height 1.2 m (3′11″) · Weight 125.8 kg (277.3 lbs)
 | 1 | Self-Destruct | Normal | Physical | 200 | 100% | 5 |
 | 1 | Protect | Normal | Status | — | — | 10 |
 | 1 | Zap Cannon | Electric | Special | 120 | 50% | 5 |
+| 1 | Heavy Slam ★ | Steel | Physical | varies | 100% | 10 |
 | 12 | Take Down | Normal | Physical | 90 | 85% | 20 |
 | 17 | Rapid Spin | Normal | Physical | 50 | 100% | 40 |
 | 20 | Rollout ★ | Rock | Physical | 30 | 90% | 20 |
 | 23 | Curse ★ | ??? | Status | — | — | 10 |
 | 28 | Spikes | Ground | Status | — | — | 20 |
+| 32 | Payback ★ | Dark | Physical | 50 | 100% | 10 |
 | 36 | Explosion | Normal | Physical | 250 | 100% | 5 |
 | 42 | Iron Defense ★ | Steel | Status | — | — | 15 |
+| 46 | Gyro Ball ★ | Steel | Physical | varies | 100% | 5 |
 | 50 | Double-Edge | Normal | Physical | 120 | 100% | 15 |
 
 ### By TM/HM
@@ -126,8 +129,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |

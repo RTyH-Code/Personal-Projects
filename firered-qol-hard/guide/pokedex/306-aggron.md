@@ -85,6 +85,7 @@ Height 2.1 m (6′11″) · Weight 360 kg (793.7 lbs)
 | 48 | Autotomize ★ | Steel | Status | — | — | 15 |
 | 56 | Iron Tail | Steel | Physical | 100 | 75% | 15 |
 | 64 | Iron Defense | Steel | Status | — | — | 15 |
+| 72 | Heavy Slam ★ | Steel | Physical | varies | 100% | 10 |
 | 80 | Double-Edge | Normal | Physical | 120 | 100% | 15 |
 
 ### By TM/HM
@@ -152,8 +153,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
@@ -179,6 +184,7 @@ Breed a Aron (passed down to Aron, which then evolves) with a father that knows 
 | Smelling Salt | Normal | Physical | 70 | 100% | 10 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 |
 | Dragon Rush | Dragon | Physical | 100 | 75% | 10 |
+| Head Smash | Rock | Physical | 150 | 80% | 5 |
 
 ---
 

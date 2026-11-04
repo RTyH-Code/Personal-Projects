@@ -73,6 +73,8 @@ Height 1.9 m (6′03″) · Weight 155 kg (341.7 lbs)
 | 1 | Extreme Speed | Normal | Physical | 80 | 100% | 5 |
 | 1 | Leer ★ | Normal | Status | — | 100% | 30 |
 | 1 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
+| 1 | Flare Blitz ★ | Fire | Physical | 120 | 100% | 15 |
+| 1 | Fire Fang ★ | Fire | Physical | 65 | 95% | 15 |
 | 5 | Flamethrower ★ | Fire | Special | 90 | 100% | 15 |
 | 7 | Howl ★ | Normal | Status | — | — | 40 |
 | 11 | Bite | Dark | Physical | 60 | 100% | 25 |
@@ -127,11 +129,17 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
+| Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
+| Heat Crash | Fire | Physical | varies | 100% | 10 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
+| Flare Blitz | Fire | Physical | 120 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
@@ -150,6 +158,8 @@ Breed a Growlithe (passed down to Growlithe, which then evolves) with a father t
 | Fire Spin | Fire | Special | 35 | 85% | 15 |
 | Howl | Normal | Status | — | — | 40 |
 | Heat Wave | Fire | Special | 95 | 90% | 10 |
+| Close Combat | Fighting | Physical | 120 | 100% | 5 |
+| Flare Blitz | Fire | Physical | 120 | 100% | 15 |
 
 ---
 

@@ -73,6 +73,7 @@ Height 1.5 m (4′11″) · Weight 39.5 kg (87.1 lbs)
 | 1 | Sand Attack | Ground | Status | — | 100% | 15 |
 | 1 | Tackle | Normal | Physical | 40 | 100% | 35 |
 | 1 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
+| 1 | Hurricane ★ | Flying | Special | 110 | 70% | 10 |
 | 17 | Whirlwind | Normal | Status | — | 100% | 20 |
 | 22 | Twister ★ | Dragon | Special | 40 | 100% | 20 |
 | 27 | Feather Dance | Flying | Status | — | 100% | 15 |
@@ -118,6 +119,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)

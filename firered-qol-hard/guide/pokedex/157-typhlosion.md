@@ -75,10 +75,12 @@ Height 1.7 m (5′07″) · Weight 79.5 kg (175.3 lbs)
 | 1 | Ember | Fire | Special | 40 | 100% | 25 |
 | 1 | Smokescreen | Normal | Status | — | 100% | 20 |
 | 1 | Eruption ★ | Fire | Special | 150 | 100% | 5 |
+| 1 | Gyro Ball ★ | Steel | Physical | varies | 100% | 5 |
 | 13 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
 | 20 | Flame Wheel | Fire | Physical | 60 | 100% | 25 |
 | 24 | Defense Curl ★ | Normal | Status | — | — | 40 |
 | 31 | Swift | Normal | Special | 60 | — | 20 |
+| 35 | Flame Charge ★ | Fire | Physical | 50 | 100% | 20 |
 | 43 | Lava Plume ★ | Fire | Special | 80 | 100% | 15 |
 | 48 | Flamethrower | Fire | Special | 90 | 100% | 15 |
 | 61 | Rollout ★ | Rock | Physical | 30 | 90% | 20 |
@@ -134,11 +136,16 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
+| Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Flare Blitz | Fire | Physical | 120 | 100% | 15 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
@@ -159,6 +166,7 @@ Breed a Cyndaquil (passed down to Cyndaquil, which then evolves) with a father t
 | Covet | Normal | Physical | 60 | 100% | 25 |
 | Howl | Normal | Status | — | — | 40 |
 | Crush Claw | Normal | Physical | 75 | 95% | 10 |
+| Flare Blitz | Fire | Physical | 120 | 100% | 15 |
 
 ---
 

@@ -138,6 +138,10 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
@@ -155,6 +159,7 @@ Breed a Eevee (passed down to Eevee, which then evolves) with a father that know
 | Curse | ??? | Status | — | — | 10 |
 | Tickle | Normal | Status | — | 100% | 20 |
 | Wish | Normal | Status | — | — | 10 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 |
 
 ---
 

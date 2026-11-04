@@ -80,6 +80,7 @@ Height 0.8 m (2′07″) · Weight 39.5 kg (87.1 lbs)
 | 12 | Powder Snow | Ice | Special | 40 | 100% | 25 |
 | 16 | Rest | Psychic | Status | — | — | 5 |
 | 20 | Snore | Normal | Special | 50 | 100% | 15 |
+| 24 | Brine ★ | Water | Special | 65 | 100% | 10 |
 | 28 | Aurora Beam | Ice | Special | 65 | 100% | 20 |
 | 33 | Encore | Normal | Status | — | 100% | 5 |
 | 36 | Body Slam | Normal | Physical | 85 | 100% | 15 |
@@ -132,7 +133,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Frost Breath | Ice | Special | 60 | 90% | 10 | 0 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
 
 ### By breeding (egg moves)

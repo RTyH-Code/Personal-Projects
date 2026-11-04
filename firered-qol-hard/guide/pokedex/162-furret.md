@@ -71,11 +71,13 @@ Height 1.8 m (5′11″) · Weight 32.5 kg (71.7 lbs)
 | 1 | Agility ★ | Psychic | Status | — | — | 30 |
 | 1 | Quick Attack | Normal | Physical | 40 | 100% | 30 |
 | 1 | Defense Curl | Normal | Status | — | — | 40 |
+| 1 | Coil ★ | Poison | Status | — | — | 20 |
 | 13 | Fury Swipes | Normal | Physical | 18 | 80% | 15 |
 | 17 | Helping Hand | Normal | Status | — | — | 20 |
 | 21 | Follow Me | Normal | Status | — | — | 20 |
 | 28 | Slam | Normal | Physical | 80 | 75% | 20 |
 | 32 | Rest | Psychic | Status | — | — | 5 |
+| 36 | Sucker Punch ★ | Dark | Physical | 70 | 100% | 5 |
 | 42 | Amnesia | Psychic | Status | — | — | 20 |
 | 46 | Baton Pass ★ | Normal | Status | — | — | 40 |
 | 50 | Double-Edge ★ | Normal | Physical | 120 | 100% | 15 |
@@ -132,10 +134,15 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |

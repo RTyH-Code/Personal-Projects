@@ -118,6 +118,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 
 ### By breeding (egg moves)
 
@@ -133,6 +134,7 @@ Breed a Taillow with a father that knows the move.
 | Sky Attack | Flying | Physical | 140 | 90% | 5 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 |
 | Boomburst | Normal | Special | 140 | 100% | 10 |
+| Hurricane | Flying | Special | 110 | 70% | 10 |
 
 ---
 

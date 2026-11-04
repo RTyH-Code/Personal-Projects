@@ -127,7 +127,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acid Spray | Poison | Special | 40 | 100% | 20 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
@@ -143,6 +145,7 @@ Breed a Venonat with a father that knows the move.
 | Screech | Normal | Status | — | 85% | 40 |
 | Giga Drain | Grass | Special | 75 | 100% | 10 |
 | Signal Beam | Bug | Special | 75 | 100% | 15 |
+| Venoshock | Poison | Special | 65 | 100% | 10 |
 
 ---
 

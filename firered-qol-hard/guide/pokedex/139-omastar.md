@@ -78,9 +78,11 @@ Height 1 m (3′03″) · Weight 35 kg (77.2 lbs)
 | 20 | Leer | Normal | Status | — | 100% | 30 |
 | 25 | Mud Shot | Ground | Special | 55 | 95% | 15 |
 | 30 | Ancient Power | Rock | Special | 60 | 100% | 5 |
+| 35 | Brine ★ | Water | Special | 65 | 100% | 10 |
 | 43 | Protect | Normal | Status | — | — | 10 |
 | 49 | Rock Blast ★ | Rock | Physical | 25 | 90% | 10 |
 | 56 | Surf ★ | Water | Special | 90 | 100% | 15 |
+| 63 | Shell Smash ★ | Normal | Status | — | — | 15 |
 | 70 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 
 ### By TM/HM
@@ -128,6 +130,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |

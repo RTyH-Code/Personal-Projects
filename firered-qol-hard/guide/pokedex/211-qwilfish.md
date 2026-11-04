@@ -82,6 +82,7 @@ Qwilfish does not evolve.
 | 8 | Water Gun | Water | Special | 40 | 100% | 25 |
 | 16 | Minimize | Normal | Status | — | — | 10 |
 | 20 | Spikes | Ground | Status | — | — | 20 |
+| 24 | Brine ★ | Water | Special | 65 | 100% | 10 |
 | 28 | Poison Jab ★ | Poison | Physical | 80 | 100% | 20 |
 | 32 | Pin Missile | Bug | Physical | 25 | 95% | 20 |
 | 40 | Stockpile ★ | Normal | Status | — | — | 20 |
@@ -132,6 +133,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acid Spray | Poison | Special | 40 | 100% | 20 | 0 |
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
+| Hex | Ghost | Special | 65 | 100% | 10 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
@@ -152,6 +159,8 @@ Breed a Qwilfish with a father that knows the move.
 | Astonish | Ghost | Physical | 30 | 100% | 15 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 |
 | Aqua Jet | Water | Physical | 40 | 100% | 20 |
+| Acid Spray | Poison | Special | 40 | 100% | 20 |
+| Brine | Water | Special | 65 | 100% | 10 |
 
 ---
 

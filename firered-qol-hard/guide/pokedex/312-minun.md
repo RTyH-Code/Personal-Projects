@@ -77,6 +77,7 @@ Minun does not evolve.
 | 7 | Spark | Electric | Physical | 65 | 100% | 20 |
 | 10 | Encore | Normal | Status | — | 100% | 5 |
 | 16 | Swift ★ | Normal | Special | 60 | — | 20 |
+| 19 | Electro Ball ★ | Electric | Special | varies | 100% | 10 |
 | 26 | Charge | Electric | Status | — | — | 20 |
 | 31 | Discharge ★ | Electric | Special | 80 | 100% | 15 |
 | 34 | Baton Pass | Normal | Status | — | — | 40 |
@@ -127,8 +128,11 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Electro Ball | Electric | Special | varies | 100% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |

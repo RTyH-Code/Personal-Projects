@@ -81,6 +81,7 @@ Height 1 m (3′03″) · Weight 29.5 kg (65.0 lbs)
 | 31 | Sand Tomb | Ground | Physical | 35 | 85% | 15 |
 | 36 | Slash | Normal | Physical | 70 | 100% | 20 |
 | 41 | Dig ★ | Ground | Physical | 80 | 100% | 10 |
+| 46 | Gyro Ball ★ | Steel | Physical | varies | 100% | 5 |
 | 51 | Swords Dance ★ | Normal | Status | — | — | 20 |
 | 56 | Sandstorm | Rock | Status | — | — | 10 |
 | 61 | Earthquake ★ | Ground | Physical | 100 | 100% | 10 |
@@ -134,6 +135,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |

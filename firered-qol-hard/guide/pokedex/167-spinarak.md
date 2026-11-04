@@ -76,6 +76,7 @@ Height 0.5 m (1′08″) · Weight 8.5 kg (18.7 lbs)
 | 15 | Night Shade | Ghost | Special | varies | 100% | 15 |
 | 19 | Shadow Sneak ★ | Ghost | Physical | 40 | 100% | 30 |
 | 22 | Fury Swipes | Normal | Physical | 18 | 80% | 15 |
+| 26 | Sucker Punch ★ | Dark | Physical | 70 | 100% | 5 |
 | 29 | Agility | Psychic | Status | — | — | 30 |
 | 33 | Pin Missile ★ | Bug | Physical | 25 | 95% | 20 |
 | 36 | Psychic | Psychic | Special | 90 | 100% | 10 |
@@ -120,12 +121,19 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acid Spray | Poison | Special | 40 | 100% | 20 | 0 |
 | Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Hex | Ghost | Special | 65 | 100% | 10 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
 | Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
+| Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 
 ### By breeding (egg moves)
 

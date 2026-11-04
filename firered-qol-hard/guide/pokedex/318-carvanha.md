@@ -74,6 +74,7 @@ Height 0.8 m (2′07″) · Weight 20.8 kg (45.9 lbs)
 | 8 | Focus Energy | Normal | Status | — | — | 30 |
 | 12 | Scary Face | Normal | Status | — | 100% | 10 |
 | 16 | Bite | Dark | Physical | 60 | 100% | 25 |
+| 20 | Ice Fang ★ | Ice | Physical | 65 | 95% | 15 |
 | 24 | Screech | Normal | Status | — | 85% | 40 |
 | 28 | Swagger | Normal | Status | — | 85% | 15 |
 | 32 | Crunch | Dark | Physical | 80 | 100% | 15 |
@@ -121,6 +122,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
+| Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
@@ -138,6 +142,7 @@ Breed a Carvanha with a father that knows the move.
 | Double-Edge | Normal | Physical | 120 | 100% | 15 |
 | Thrash | Normal | Physical | 120 | 100% | 10 |
 | Psychic Fangs | Psychic | Physical | 85 | 100% | 10 |
+| Brine | Water | Special | 65 | 100% | 10 |
 
 ---
 

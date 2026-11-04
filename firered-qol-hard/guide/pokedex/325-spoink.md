@@ -79,6 +79,8 @@ Height 0.7 m (2′04″) · Weight 30.6 kg (67.5 lbs)
 | 29 | Rest | Psychic | Status | — | — | 5 |
 | 29 | Power Gem ★ | Rock | Special | 80 | 100% | 20 |
 | 33 | Snore | Normal | Special | 50 | 100% | 15 |
+| 38 | Psyshock ★ | Psychic | Special | 80 | 100% | 10 |
+| 40 | Payback ★ | Dark | Physical | 50 | 100% | 10 |
 | 44 | Psychic | Psychic | Special | 90 | 100% | 10 |
 | 50 | Bounce | Flying | Physical | 85 | 85% | 5 |
 
@@ -128,12 +130,17 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
 | Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
 | Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
+| Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 
 ### By breeding (egg moves)

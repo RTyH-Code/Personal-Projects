@@ -73,6 +73,7 @@ Height 2.3 m (7′07″) · Weight 253.8 kg (559.5 lbs)
 | 1 | Tackle | Normal | Physical | 40 | 100% | 35 |
 | 1 | Focus Energy | Normal | Status | — | — | 30 |
 | 1 | Arm Thrust | Fighting | Physical | 15 | 100% | 20 |
+| 1 | Brine ★ | Water | Special | 65 | 100% | 10 |
 | 10 | Fake Out | Normal | Physical | 40 | 100% | 10 |
 | 13 | Force Palm ★ | Fighting | Physical | 60 | 100% | 10 |
 | 16 | Whirlwind | Normal | Status | — | 100% | 20 |
@@ -83,7 +84,9 @@ Height 2.3 m (7′07″) · Weight 253.8 kg (559.5 lbs)
 | 34 | Seismic Toss | Fighting | Physical | varies | 100% | 20 |
 | 38 | Focus Punch ★ | Fighting | Physical | 150 | 100% | 20 |
 | 42 | Endure | Normal | Status | — | — | 10 |
+| 46 | Close Combat ★ | Fighting | Physical | 120 | 100% | 5 |
 | 50 | Reversal | Fighting | Physical | varies | 100% | 15 |
+| 54 | Heavy Slam ★ | Steel | Physical | varies | 100% | 10 |
 
 ### By TM/HM
 
@@ -133,14 +136,20 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |

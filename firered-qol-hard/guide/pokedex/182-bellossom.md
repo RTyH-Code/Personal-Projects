@@ -74,6 +74,7 @@ Height 0.4 m (1′04″) · Weight 5.8 kg (12.8 lbs)
 | 1 | Sweet Scent | Normal | Status | — | 100% | 20 |
 | 1 | Moonblast ★ | Fairy | Special | 95 | 100% | 15 |
 | 1 | Petal Blizzard ★ | Grass | Physical | 90 | 100% | 15 |
+| 1 | Quiver Dance ★ | Bug | Status | — | — | 20 |
 | 15 | Mega Drain ★ | Grass | Special | 40 | 100% | 15 |
 | 17 | Poison Powder ★ | Poison | Status | — | 75% | 35 |
 | 19 | Stun Spore | Grass | Status | — | 75% | 30 |
@@ -122,7 +123,10 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acid Spray | Poison | Special | 40 | 100% | 20 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |

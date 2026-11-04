@@ -78,6 +78,7 @@ Height 1.1 m (3′07″) · Weight 20.6 kg (45.4 lbs)
 | 20 | Dragon Breath | Dragon | Special | 60 | 100% | 20 |
 | 24 | Safeguard | Normal | Status | — | — | 25 |
 | 28 | Sing | Normal | Status | — | 55% | 15 |
+| 32 | Cotton Guard ★ | Grass | Status | — | — | 10 |
 | 38 | Take Down | Normal | Physical | 90 | 85% | 20 |
 | 44 | Moonblast ★ | Fairy | Special | 95 | 100% | 15 |
 | 50 | Perish Song | Normal | Status | — | — | 5 |
@@ -131,16 +132,20 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
 | Draco Meteor | Dragon | Special | 130 | 90% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Hurricane | Flying | Special | 110 | 70% | 10 | 5 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 
 ### By breeding (egg moves)

@@ -80,6 +80,7 @@ Height 0.8 m (2′07″) · Weight 3.6 kg (7.9 lbs)
 | 32 | Air Slash ★ | Flying | Special | 75 | 95% | 15 |
 | 38 | Giga Drain ★ | Grass | Special | 75 | 100% | 10 |
 | 44 | Bug Buzz ★ | Bug | Special | 90 | 100% | 10 |
+| 52 | Quiver Dance ★ | Bug | Status | — | — | 20 |
 
 ### By TM/HM
 
@@ -122,6 +123,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
@@ -131,7 +133,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 | Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Hurricane | Flying | Special | 110 | 70% | 10 | 5 |
 
 ### By breeding (egg moves)
 

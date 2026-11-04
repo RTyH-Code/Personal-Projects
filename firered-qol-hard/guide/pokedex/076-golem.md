@@ -74,6 +74,7 @@ Height 1.4 m (4′07″) · Weight 300 kg (661.4 lbs)
 | 1 | Tackle | Normal | Physical | 40 | 100% | 35 |
 | 1 | Defense Curl | Normal | Status | — | — | 40 |
 | 1 | Rock Polish ★ | Rock | Status | — | — | 20 |
+| 1 | Heavy Slam ★ | Steel | Physical | varies | 100% | 10 |
 | 16 | Rock Throw | Rock | Physical | 50 | 90% | 15 |
 | 22 | Bulldoze ★ | Ground | Physical | 60 | 100% | 20 |
 | 24 | Self-Destruct | Normal | Physical | 200 | 100% | 5 |
@@ -134,9 +135,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
@@ -154,6 +159,7 @@ Breed a Geodude (passed down to Geodude, which then evolves) with a father that 
 | Block | Normal | Status | — | 100% | 5 |
 | Autotomize | Steel | Status | — | — | 15 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 |
+| Hammer Arm | Fighting | Physical | 100 | 90% | 10 |
 
 ---
 

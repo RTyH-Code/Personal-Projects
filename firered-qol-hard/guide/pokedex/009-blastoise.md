@@ -78,6 +78,7 @@ Height 1.6 m (5′03″) · Weight 85.5 kg (188.5 lbs)
 | 20 | Protect | Normal | Status | — | — | 10 |
 | 25 | Rain Dance | Water | Status | — | — | 5 |
 | 30 | Aqua Tail ★ | Water | Physical | 90 | 90% | 10 |
+| 35 | Shell Smash ★ | Normal | Status | — | — | 15 |
 | 42 | Iron Defense ★ | Steel | Status | — | — | 15 |
 | 49 | Hydro Pump | Water | Special | 110 | 80% | 5 |
 
@@ -134,9 +135,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |

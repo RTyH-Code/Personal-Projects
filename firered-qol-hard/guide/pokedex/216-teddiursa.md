@@ -72,6 +72,7 @@ Height 0.6 m (2′00″) · Weight 8.8 kg (19.4 lbs)
 | 1 | Covet ★ | Normal | Physical | 60 | 100% | 25 |
 | 1 | Baby-Doll Eyes ★ | Fairy | Status | — | 100% | 30 |
 | 8 | Fury Swipes | Normal | Physical | 18 | 80% | 15 |
+| 13 | Payback ★ | Dark | Physical | 50 | 100% | 10 |
 | 17 | Sweet Scent ★ | Normal | Status | — | 100% | 20 |
 | 22 | Slash | Normal | Physical | 70 | 100% | 20 |
 | 29 | Play Rough ★ | Fairy | Physical | 90 | 90% | 10 |
@@ -133,9 +134,14 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 0 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 

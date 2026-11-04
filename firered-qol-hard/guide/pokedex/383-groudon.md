@@ -71,6 +71,7 @@ Groudon does not evolve.
 | 9 | Earth Power ★ | Ground | Special | 90 | 100% | 10 |
 | 18 | Bulk Up | Fighting | Status | — | — | 20 |
 | 27 | Earthquake | Ground | Physical | 100 | 100% | 10 |
+| 36 | Hammer Arm ★ | Fighting | Physical | 100 | 90% | 10 |
 | 45 | Fissure | Ground | Physical | varies | 30% | 5 |
 | 54 | Rest | Psychic | Status | — | — | 5 |
 | 72 | Fire Blast | Fire | Special | 110 | 85% | 5 |
@@ -137,8 +138,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
+| Heat Crash | Fire | Physical | varies | 100% | 10 | 0 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
+| Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |

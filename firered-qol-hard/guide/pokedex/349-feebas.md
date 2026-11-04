@@ -110,6 +110,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 
@@ -126,6 +127,7 @@ Breed a Feebas with a father that knows the move.
 | Light Screen | Psychic | Status | — | — | 30 |
 | Confuse Ray | Ghost | Status | — | 100% | 10 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 |
+| Brine | Water | Special | 65 | 100% | 10 |
 
 ---
 

@@ -71,6 +71,7 @@ Height 1.5 m (4′11″) · Weight 68.2 kg (150.4 lbs)
 | 1 | Fury Cutter | Bug | Physical | 40 | 95% | 20 |
 | 12 | Metal Claw | Steel | Physical | 50 | 95% | 35 |
 | 16 | Ancient Power | Rock | Special | 60 | 100% | 5 |
+| 24 | Brine ★ | Water | Special | 65 | 100% | 10 |
 | 28 | Slash | Normal | Physical | 70 | 100% | 20 |
 | 32 | Crush Claw ★ | Normal | Physical | 75 | 95% | 10 |
 | 36 | Rock Blast | Rock | Physical | 25 | 90% | 10 |
@@ -123,7 +124,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
 | Cross Poison | Poison | Physical | 70 | 100% | 20 | 3 |

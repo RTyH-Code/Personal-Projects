@@ -79,6 +79,7 @@ Height 0.8 m (2′07″) · Weight 30 kg (66.1 lbs)
 | 1 | Discharge ★ | Electric | Special | 80 | 100% | 15 |
 | 1 | Nuzzle ★ | Electric | Physical | 20 | 100% | 20 |
 | 1 | Nasty Plot ★ | Dark | Status | — | — | 20 |
+| 1 | Electro Ball ★ | Electric | Special | varies | 100% | 10 |
 | 5 | Thunderbolt | Electric | Special | 90 | 100% | 15 |
 | 7 | Thunder Wave ★ | Electric | Status | — | 90% | 20 |
 | 11 | Double Team ★ | Normal | Status | — | — | 15 |
@@ -137,11 +138,14 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
+| Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
 | Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
 | Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
 | Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
+| Electro Ball | Electric | Special | varies | 100% | 10 | 0 |
 | Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |

@@ -124,6 +124,8 @@ Height 6.5 m (21′04″) · Weight 235 kg (518.1 lbs)
 | 1 | Flail ★ | Normal | Physical | varies | 100% | 15 |
 | 1 | Twister | Dragon | Special | 40 | 100% | 20 |
 | 4 | Whirlpool ★ | Water | Special | 35 | 85% | 15 |
+| 8 | Ice Fang ★ | Ice | Physical | 65 | 95% | 15 |
+| 12 | Brine ★ | Water | Special | 65 | 100% | 10 |
 | 16 | Scary Face ★ | Normal | Status | — | 100% | 10 |
 | 21 | Waterfall ★ | Water | Physical | 80 | 100% | 15 |
 | 24 | Crunch ★ | Dark | Physical | 80 | 100% | 15 |
@@ -131,6 +133,7 @@ Height 6.5 m (21′04″) · Weight 235 kg (518.1 lbs)
 | 32 | Aqua Tail ★ | Water | Physical | 90 | 90% | 10 |
 | 36 | Dragon Dance | Dragon | Status | — | — | 20 |
 | 40 | Hydro Pump | Water | Special | 110 | 80% | 5 |
+| 44 | Hurricane ★ | Flying | Special | 110 | 70% | 10 |
 | 48 | Thrash | Normal | Physical | 120 | 100% | 10 |
 | 52 | Hyper Beam | Normal | Special | 150 | 90% | 5 |
 
@@ -186,13 +189,17 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
+| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
+| Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Hurricane | Flying | Special | 110 | 70% | 10 | 5 |
 | Power Whip | Grass | Physical | 120 | 85% | 10 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
