@@ -130,12 +130,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
-| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
-| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
-| Toxic Spikes | Poison | Status | — | — | 20 | 0 |
-| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
-| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
@@ -143,9 +138,14 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
 | Skitter Smack | Bug | Physical | 70 | 90% | 10 | 3 |
 | Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
+| Toxic Spikes | Poison | Status | — | — | 20 | 3 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 3 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 | Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 5 |
 | Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 5 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

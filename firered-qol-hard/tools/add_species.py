@@ -662,6 +662,7 @@ for item, I in EVO_ITEMS.items():
     I.setdefault("param", 0)
     I.setdefault("shop", "CeladonCity_DepartmentStore_4F")
     I.setdefault("after", "ITEM_UP_GRADE")
+# (tools/hack/balance.py later moves the held evolution items to the 5-badge list)
 for item, I in EVO_ITEMS.items():
     if f"ITEM_{item}" in S["evo"] and f"#define ITEM_{item} " not in read("include/constants/items.h"):
         T = item.title().replace("_", "")

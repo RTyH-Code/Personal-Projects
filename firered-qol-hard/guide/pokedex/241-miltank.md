@@ -144,16 +144,16 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
-| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
-| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
-| Stealth Rock | Rock | Status | — | — | 20 | 0 |
-| Work Up | Normal | Status | — | — | 30 | 0 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Stealth Rock | Rock | Status | — | — | 20 | 3 |
+| Work Up | Normal | Status | — | — | 30 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 5 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 5 |
 | High Horsepower | Ground | Physical | 95 | 95% | 10 | 5 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 

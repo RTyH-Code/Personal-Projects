@@ -128,17 +128,17 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
-| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
 | Dragon Tail | Dragon | Physical | 60 | 90% | 10 | 0 |
 | Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
-| Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
-| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
-| Work Up | Normal | Status | — | — | 30 | 0 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Flame Charge | Fire | Physical | 50 | 100% | 20 | 3 |
+| Hone Claws | Dark | Status | — | — | 15 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Work Up | Normal | Status | — | — | 30 | 3 |
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 5 |
 | Flare Blitz | Fire | Physical | 120 | 100% | 15 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 

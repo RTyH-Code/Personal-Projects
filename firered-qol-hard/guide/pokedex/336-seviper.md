@@ -133,12 +133,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Dragon Tail | Dragon | Physical | 60 | 90% | 10 | 0 |
 | Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
 | Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
-| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Pounce | Bug | Physical | 50 | 100% | 20 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
 | Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
-| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
-| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
@@ -146,12 +143,15 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
 | Skitter Smack | Bug | Physical | 70 | 90% | 10 | 3 |
 | Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 3 |
 | X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 5 |
 | Sludge Wave | Poison | Special | 95 | 100% | 10 | 5 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

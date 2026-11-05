@@ -129,18 +129,18 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
-| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
 | Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
 | Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
-| Electro Ball | Electric | Special | varies | 100% | 10 | 0 |
 | Flip Turn | Water | Physical | 60 | 100% | 20 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 | Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | Volt Switch | Electric | Special | 70 | 100% | 20 | 3 |
+| Brine | Water | Special | 65 | 100% | 10 | 5 |
+| Electro Ball | Electric | Special | varies | 100% | 10 | 5 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 
 ### By breeding (egg moves)

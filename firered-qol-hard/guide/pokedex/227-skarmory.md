@@ -131,20 +131,20 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Defog | Flying | Status | — | — | 15 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
-| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
-| Roost | Flying | Status | — | — | 5 | 0 |
-| Stealth Rock | Rock | Status | — | — | 20 | 0 |
-| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Roost | Flying | Status | — | — | 5 | 3 |
+| Stealth Rock | Rock | Status | — | — | 20 | 3 |
+| Tailwind | Flying | Status | — | — | 15 | 3 |
 | X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Hurricane | Flying | Special | 110 | 70% | 10 | 5 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

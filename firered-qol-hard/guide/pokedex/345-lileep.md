@@ -122,13 +122,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
-| Brine | Water | Special | 65 | 100% | 10 | 0 |
-| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
-| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Stealth Rock | Rock | Status | — | — | 20 | 3 |
+| Brine | Water | Special | 65 | 100% | 10 | 5 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 5 |
 
 ### By breeding (egg moves)
 

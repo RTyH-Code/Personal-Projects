@@ -146,18 +146,18 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Defog | Flying | Status | — | — | 15 | 0 |
 | Dragon Tail | Dragon | Physical | 60 | 90% | 10 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
-| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
-| Roost | Flying | Status | — | — | 5 | 0 |
-| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
-| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Hone Claws | Dark | Status | — | — | 15 | 3 |
+| Roost | Flying | Status | — | — | 5 | 3 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Stealth Rock | Rock | Status | — | — | 20 | 3 |
+| Tailwind | Flying | Status | — | — | 15 | 3 |
 | U-turn | Bug | Physical | 70 | 100% | 20 | 3 |
 | Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
 | Draco Meteor | Dragon | Special | 130 | 90% | 5 | 5 |

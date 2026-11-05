@@ -138,19 +138,19 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
-| Hard Press | Steel | Physical | varies | 100% | 10 | 0 |
-| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
-| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
-| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
+| Hone Claws | Dark | Status | — | — | 15 | 3 |
 | Ice Spinner | Ice | Physical | 80 | 100% | 15 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Stealth Rock | Rock | Status | — | — | 20 | 3 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Hard Press | Steel | Physical | varies | 100% | 10 | 5 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
 
 ---

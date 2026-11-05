@@ -148,16 +148,11 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
-| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
-| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
 | Dragon Tail | Dragon | Physical | 60 | 90% | 10 | 0 |
-| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
-| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
-| Trick Room | Psychic | Status | — | — | 5 | 0 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
@@ -165,11 +160,16 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
 | Razor Shell | Water | Physical | 75 | 95% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 3 |
+| Trick Room | Psychic | Status | — | — | 5 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 5 |
+| Brine | Water | Special | 65 | 100% | 10 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 5 |
 
 ### By breeding (egg moves)
 

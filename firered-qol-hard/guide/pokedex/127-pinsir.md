@@ -132,8 +132,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Brutal Swing | Dark | Physical | 60 | 100% | 20 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
-| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Stealth Rock | Rock | Status | — | — | 20 | 3 |
 | X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
 | Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |

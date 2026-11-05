@@ -122,16 +122,16 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
-| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Flip Turn | Water | Physical | 60 | 100% | 20 | 0 |
 | Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
-| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Brine | Water | Special | 65 | 100% | 10 | 5 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

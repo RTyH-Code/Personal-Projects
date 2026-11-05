@@ -135,14 +135,14 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Brutal Swing | Dark | Physical | 60 | 100% | 20 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
-| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
-| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 5 |
 | Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 5 |
 | Power Whip | Grass | Physical | 120 | 85% | 10 | 5 |
 
 ### By breeding (egg moves)

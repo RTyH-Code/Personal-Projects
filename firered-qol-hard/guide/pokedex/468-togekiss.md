@@ -150,13 +150,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Defog | Flying | Status | — | — | 15 | 0 |
 | Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
-| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
-| Roost | Flying | Status | — | — | 5 | 0 |
-| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
-| Tailwind | Flying | Status | — | — | 15 | 0 |
-| Work Up | Normal | Status | — | — | 30 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
@@ -164,9 +159,14 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Mystical Fire | Fire | Special | 75 | 100% | 10 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
 | Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
+| Roost | Flying | Status | — | — | 5 | 3 |
 | Smart Strike | Steel | Physical | 70 | — | 10 | 3 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 3 |
+| Tailwind | Flying | Status | — | — | 15 | 3 |
+| Work Up | Normal | Status | — | — | 30 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 5 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 
 ### By breeding (egg moves)

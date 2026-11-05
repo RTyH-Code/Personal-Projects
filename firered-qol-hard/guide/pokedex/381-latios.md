@@ -144,23 +144,23 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Defog | Flying | Status | — | — | 15 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Flip Turn | Water | Physical | 60 | 100% | 20 | 0 |
-| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
-| Hone Claws | Dark | Status | — | — | 15 | 0 |
-| Roost | Flying | Status | — | — | 5 | 0 |
-| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
-| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Hone Claws | Dark | Status | — | — | 15 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Mystical Fire | Fire | Special | 75 | 100% | 10 | 3 |
 | Psycho Cut | Psychic | Physical | 70 | 100% | 20 | 3 |
 | Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
+| Roost | Flying | Status | — | — | 5 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 3 |
+| Tailwind | Flying | Status | — | — | 15 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Draco Meteor | Dragon | Special | 130 | 90% | 5 | 5 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 5 |
 
 ---
 

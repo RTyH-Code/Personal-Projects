@@ -139,13 +139,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Acid Spray | Poison | Special | 40 | 100% | 20 | 0 |
-| Hex | Ghost | Special | 65 | 100% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
-| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
-| Toxic Spikes | Poison | Status | — | — | 20 | 0 |
-| Trick Room | Psychic | Status | — | — | 5 | 0 |
-| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
@@ -154,13 +149,18 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
 | Skitter Smack | Bug | Physical | 70 | 90% | 10 | 3 |
 | Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
+| Toxic Spikes | Poison | Status | — | — | 20 | 3 |
+| Trick Room | Psychic | Status | — | — | 5 | 3 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+| Hex | Ghost | Special | 65 | 100% | 10 | 5 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 5 |
 | Poltergeist | Ghost | Physical | 110 | 90% | 5 | 5 |
 | Sludge Wave | Poison | Special | 95 | 100% | 10 | 5 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

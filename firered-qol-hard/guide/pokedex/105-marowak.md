@@ -144,9 +144,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
-| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Stealth Rock | Rock | Status | — | — | 20 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |

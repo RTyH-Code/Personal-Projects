@@ -237,6 +237,9 @@ icon, cry, Pokédex entry, modern stats, abilities and learnsets.
 - Honey Gather is the one exception (FireRed has no Honey), so Teddiursa keeps
   its other abilities.
 - Pickpocket steals for the rest of the battle only; items go back afterwards.
+- Two newer abilities for the later evolutions: Motor Drive (Electivire:
+  Electric moves raise its Speed instead of hurting it) and Armor Tail
+  (Farigiraf: foes' priority moves fail against its side).
 - Critical hits still do double damage (Gen 3); Sniper makes them triple.
 - Sun, rain and Flash Fire now boost physical Fire and Water moves too (with
   the physical/special split, moves like Fire Punch had been missing out).
@@ -323,12 +326,38 @@ haven't beaten. Day Care levels aren't capped.
 - Every other trainer's levels are scaled by 1.15x.
 - Regular trainers have at least ~18 IVs. The Elite Four, Champion, Rival and Giovanni have max IVs.
 - Every trainer uses the smart battle AI.
+- From Lt. Surge on, the Gym Leaders, Elite Four and Champion use some of
+  the newer moves, so their teams keep up with what you can now learn.
+  - Examples: Nuzzle, Volt Switch, Venoshock, Dazzling Gleam, Hex, Flare
+    Blitz, Stone Edge, Shell Smash, Close Combat, Stealth Rock, Hurricane.
+  - Brock and Misty are unchanged, and no levels changed.
+- The AI won't waste turns on later moves that would do nothing, such as
+  hazards that are already up, Tailwind or Trick Room while they're active,
+  or set-up moves at +2.
+
+### Balance of the newer content
+- **Modern tutor tiers:**
+  - Moves whose power depends on the battle are tiered by how hard they
+    really hit. Hex, Venoshock, Brine, Acrobatics, Gyro Ball, Electro Ball,
+    Heavy Slam, Heat Crash, Grass Knot, Payback, Avalanche, Wring Out, Hard
+    Press and Triple Axel need 5 badges.
+  - Strong utility moves need 3 badges: Nuzzle, Stealth Rock, Toxic Spikes,
+    Sticky Web, Trick Room, Tailwind, Roost, Sucker Punch, Foul Play, Body
+    Press, Psyshock, Flame Charge, Trailblaze, Hone Claws, Work Up, Stored
+    Power, Power Trip, Punishment and Fell Stinger.
+- **Evolution items:**
+  - The stones (including Dusk, Shiny, Dawn and Ice) are sold at the
+    Celadon Dept. Store 4F from the start.
+  - The newer held evolution items (Razor Claw, Razor Fang, Protector,
+    Electirizer, Magmarizer, Dubious Disc, Reaper Cloth, Peat Block and
+    Black Augurite) appear there once you have 5 badges.
 
 ## Post-game peak trainers
 - **Gym Leader rematches:** once you're Champion, talk to any Gym Leader
   for a rematch, as many times as you like. Each one fields six Lv. 100
-  Pokémon from Gen 1–3 that fit their type, e.g. Brock: Golem, Omastar,
-  Kabutops, Aggron, Steelix and Tyranitar.
+  Pokémon that fit their type, with modern moves and some of the later
+  evolutions, e.g. Brock: Golem, Omastar, Kabutops, Probopass, Rhyperior
+  and Tyranitar.
 - **Elite Four round 3:** a League official (gentleman) in the Indigo Plateau
   Pokémon Center switches the "peak" challenge on or off. When it's on,
   the Elite Four and Champion each use six Lv. 100 Pokémon.
@@ -362,7 +391,7 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `bf5cef0af44267d82b33710175f2c81404f7a464`
+Patched ROM SHA-1: `39511d0bd97b5c458a617107ee90ed23ac515865`
 
 Start a new game. Saves from earlier versions of this hack aren't supported.
 

@@ -138,23 +138,23 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Defog | Flying | Status | — | — | 15 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
-| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
 | Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
-| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
-| Roost | Flying | Status | — | — | 5 | 0 |
-| Stealth Rock | Rock | Status | — | — | 20 | 0 |
-| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
+| Hone Claws | Dark | Status | — | — | 15 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
+| Roost | Flying | Status | — | — | 5 | 3 |
+| Stealth Rock | Rock | Status | — | — | 20 | 3 |
+| Tailwind | Flying | Status | — | — | 15 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Hurricane | Flying | Special | 110 | 70% | 10 | 5 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)

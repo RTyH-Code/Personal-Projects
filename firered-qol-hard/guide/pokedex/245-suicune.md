@@ -133,19 +133,19 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
-| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
-| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
 | Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
-| Tailwind | Flying | Status | — | — | 15 | 0 |
-| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Tailwind | Flying | Status | — | — | 15 | 3 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 3 |
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 5 |
+| Brine | Water | Special | 65 | 100% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
 

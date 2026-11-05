@@ -136,22 +136,22 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
-| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
-| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
-| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
-| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
-| Triple Axel | Ice | Physical | 20 | 90% | 10 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
+| Hone Claws | Dark | Status | — | — | 15 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Psycho Cut | Psychic | Physical | 70 | 100% | 20 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 3 |
 | X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 5 |
 | Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 5 |
+| Triple Axel | Ice | Physical | 20 | 90% | 10 | 5 |
 
 ### By breeding (egg moves)
 

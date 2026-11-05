@@ -124,12 +124,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
-| Hone Claws | Dark | Status | — | — | 15 | 0 |
-| Stealth Rock | Rock | Status | — | — | 20 | 0 |
-| Work Up | Normal | Status | — | — | 30 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 3 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Stealth Rock | Rock | Status | — | — | 20 | 3 |
 | Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
+| Work Up | Normal | Status | — | — | 30 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |

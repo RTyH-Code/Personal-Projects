@@ -10,7 +10,10 @@ Height 1.8 m (5′11″) · Weight 138.6 kg (305.6 lbs)
 
 ## Abilities
 
+- **Motor Drive**: Electric moves raise Speed.
 - **Vital Spirit** *(hidden ability)*: Prevents sleep.
+
+*Wild Pokémon have one of the regular abilities. After you become Champion, the coach in the Indigo Plateau Pokémon Center can switch it to any ability listed here, including the hidden one.*
 
 ## Base stats
 
@@ -144,11 +147,11 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Dual Chop | Dragon | Physical | 40 | 90% | 15 | 0 |
 | Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
 | Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
-| Electro Ball | Electric | Special | varies | 100% | 10 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
-| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 3 |
 | Volt Switch | Electric | Special | 70 | 100% | 20 | 3 |
+| Electro Ball | Electric | Special | varies | 100% | 10 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |

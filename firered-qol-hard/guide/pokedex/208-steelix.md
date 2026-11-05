@@ -142,12 +142,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Dragon Tail | Dragon | Physical | 60 | 90% | 10 | 0 |
 | Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
-| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
-| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
 | Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
-| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
-| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
@@ -157,10 +153,14 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Stealth Rock | Rock | Status | — | — | 20 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 5 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 5 |
 | High Horsepower | Ground | Physical | 95 | 95% | 10 | 5 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 

@@ -113,8 +113,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
-| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Brine | Water | Special | 65 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

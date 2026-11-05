@@ -130,16 +130,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
-| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
-| Hard Press | Steel | Physical | varies | 100% | 10 | 0 |
-| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
-| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Pounce | Bug | Physical | 50 | 100% | 20 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
-| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
-| Toxic Spikes | Poison | Status | — | — | 20 | 0 |
-| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
@@ -149,11 +142,18 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
 | Smart Strike | Steel | Physical | 70 | — | 10 | 3 |
+| Stealth Rock | Rock | Status | — | — | 20 | 3 |
+| Toxic Spikes | Poison | Status | — | — | 20 | 3 |
 | Volt Switch | Electric | Special | 70 | 100% | 20 | 3 |
 | Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 5 |
+| Hard Press | Steel | Physical | varies | 100% | 10 | 5 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 5 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

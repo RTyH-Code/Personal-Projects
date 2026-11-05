@@ -127,24 +127,24 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Acid Spray | Poison | Special | 40 | 100% | 20 | 0 |
-| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Defog | Flying | Status | — | — | 15 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
 | Pounce | Bug | Physical | 50 | 100% | 20 | 0 |
-| Roost | Flying | Status | — | — | 5 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
-| Tailwind | Flying | Status | — | — | 15 | 0 |
-| Toxic Spikes | Poison | Status | — | — | 20 | 0 |
-| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
+| Roost | Flying | Status | — | — | 5 | 3 |
 | Skitter Smack | Bug | Physical | 70 | 90% | 10 | 3 |
+| Tailwind | Flying | Status | — | — | 15 | 3 |
+| Toxic Spikes | Poison | Status | — | — | 20 | 3 |
 | U-turn | Bug | Physical | 70 | 100% | 20 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 5 |
 | Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Sludge Wave | Poison | Special | 95 | 100% | 10 | 5 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

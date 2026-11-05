@@ -124,19 +124,19 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
-| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Pounce | Bug | Physical | 50 | 100% | 20 | 0 |
-| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
-| Tailwind | Flying | Status | — | — | 15 | 0 |
-| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
 | Skitter Smack | Bug | Physical | 70 | 90% | 10 | 3 |
+| Stealth Rock | Rock | Status | — | — | 20 | 3 |
+| Tailwind | Flying | Status | — | — | 15 | 3 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 3 |
 | U-turn | Bug | Physical | 70 | 100% | 20 | 3 |
 | X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 5 |
 | Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
 | Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |

@@ -133,15 +133,15 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Acid Spray | Poison | Special | 40 | 100% | 20 | 0 |
-| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
 | Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
-| Stealth Rock | Rock | Status | — | — | 20 | 0 |
-| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Stealth Rock | Rock | Status | — | — | 20 | 3 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 5 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Sludge Wave | Poison | Special | 95 | 100% | 10 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |

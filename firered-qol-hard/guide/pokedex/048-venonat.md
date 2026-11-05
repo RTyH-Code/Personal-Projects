@@ -130,13 +130,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Acid Spray | Poison | Special | 40 | 100% | 20 | 0 |
 | Pounce | Bug | Physical | 50 | 100% | 20 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
-| Toxic Spikes | Poison | Status | — | — | 20 | 0 |
-| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
 | Skitter Smack | Bug | Physical | 70 | 90% | 10 | 3 |
+| Toxic Spikes | Poison | Status | — | — | 20 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 
