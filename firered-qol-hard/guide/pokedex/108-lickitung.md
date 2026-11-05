@@ -53,12 +53,12 @@ Height 1.2 m (3′11″) · Weight 65.5 kg (144.4 lbs)
 
 ## Evolution
 
-Lickitung does not evolve.
+- **Lickitung** → [Lickilicky](463-lickilicky.md): Level up knowing Rollout *(new in this hack)*
 
 ## Where to find it
 
 - **Route 18 East Entrance 2F**: in-game trade for Golduck ("MARC")
-- Breeding: hatches from an Egg left by a Lickitung at the Four Island Day Care
+- Breeding: hatches from an Egg left by a Lickitung or Lickilicky at the Four Island Day Care
 
 ## Moves
 

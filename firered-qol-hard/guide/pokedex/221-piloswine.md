@@ -57,6 +57,7 @@ Height 1.1 m (3′07″) · Weight 55.8 kg (123.0 lbs)
 ## Evolution
 
 - [Swinub](220-swinub.md) → **Piloswine**: Level 33
+  - **Piloswine** → [Mamoswine](473-mamoswine.md): Level up knowing Ancient Power *(new in this hack)*
 
 ## Where to find it
 

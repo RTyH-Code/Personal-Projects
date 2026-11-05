@@ -64,7 +64,7 @@ Carries 2× Full Restore.
 
 **Avoid relying on:** Water (6 resist or immune); Fire (5 resist or immune); Ice (5 resist or immune); Steel (5 resist or immune).
 
-**Suggested counters:** [Ludicolo](pokedex/272-ludicolo.md) (Water / Grass), [Exeggutor](pokedex/103-exeggutor.md) (Grass / Psychic), [Jolteon](pokedex/135-jolteon.md) (Electric with Volt Absorb), [Ampharos](pokedex/181-ampharos.md) (Electric), [Electrode](pokedex/101-electrode.md) (Electric), [Electabuzz](pokedex/125-electabuzz.md) (Electric).
+**Suggested counters:** [Magnezone](pokedex/462-magnezone.md) (Electric / Steel), [Ludicolo](pokedex/272-ludicolo.md) (Water / Grass), [Electivire](pokedex/466-electivire.md) (Electric), [Exeggutor](pokedex/103-exeggutor.md) (Grass / Psychic), [Jolteon](pokedex/135-jolteon.md) (Electric with Volt Absorb), [Ampharos](pokedex/181-ampharos.md) (Electric).
 
 ## Lt. Surge, Vermilion City Gym
 
@@ -85,7 +85,7 @@ Carries 2× Full Restore.
 
 **Avoid relying on:** Electric (6 resist or immune); Flying (6 resist or immune); Steel (6 resist or immune).
 
-**Suggested counters:** [Swampert](pokedex/260-swampert.md) (Water / Ground), [Flygon](pokedex/330-flygon.md) (Ground / Dragon), [Nidoqueen](pokedex/031-nidoqueen.md) (Poison / Ground), [Nidoking](pokedex/034-nidoking.md) (Poison / Ground), [Golem](pokedex/076-golem.md) (Rock / Ground), [Rhydon](pokedex/112-rhydon.md) (Ground / Rock).
+**Suggested counters:** [Swampert](pokedex/260-swampert.md) (Water / Ground), [Flygon](pokedex/330-flygon.md) (Ground / Dragon), [Rhyperior](pokedex/464-rhyperior.md) (Ground / Rock), [Gliscor](pokedex/472-gliscor.md) (Ground / Flying), [Nidoqueen](pokedex/031-nidoqueen.md) (Poison / Ground), [Nidoking](pokedex/034-nidoking.md) (Poison / Ground).
 
 ## Erika, Celadon City Gym
 
@@ -106,7 +106,7 @@ Carries 2× Full Restore.
 
 **Avoid relying on:** Water (6 resist or immune); Electric (5 resist or immune); Grass (5 resist or immune); Ground (4 resist or immune); Fighting (3 resist or immune).
 
-**Suggested counters:** [Xatu](pokedex/178-xatu.md) (Psychic / Flying), [Crobat](pokedex/169-crobat.md) (Poison / Flying), [Charizard](pokedex/006-charizard.md) (Fire / Flying), [Salamence](pokedex/373-salamence.md) (Dragon / Flying), [Dragonite](pokedex/149-dragonite.md) (Dragon / Flying), [Gyarados](pokedex/130-gyarados.md) (Water / Flying).
+**Suggested counters:** [Xatu](pokedex/178-xatu.md) (Psychic / Flying), [Crobat](pokedex/169-crobat.md) (Poison / Flying), [Charizard](pokedex/006-charizard.md) (Fire / Flying), [Yanmega](pokedex/469-yanmega.md) (Bug / Flying), [Salamence](pokedex/373-salamence.md) (Dragon / Flying), [Dragonite](pokedex/149-dragonite.md) (Dragon / Flying).
 
 ## Koga, Fuchsia City Gym
 
@@ -127,7 +127,7 @@ Carries 2× Full Restore.
 
 **Avoid relying on:** Bug (6 resist or immune); Fairy (6 resist or immune); Fighting (6 resist or immune); Poison (6 resist or immune); Grass (4 resist or immune).
 
-**Suggested counters:** [Swampert](pokedex/260-swampert.md) (Water / Ground), [Golem](pokedex/076-golem.md) (Rock / Ground), [Rhydon](pokedex/112-rhydon.md) (Ground / Rock), [Metagross](pokedex/376-metagross.md) (Steel / Psychic), [Flygon](pokedex/330-flygon.md) (Ground / Dragon), [Steelix](pokedex/208-steelix.md) (Steel / Ground).
+**Suggested counters:** [Swampert](pokedex/260-swampert.md) (Water / Ground), [Rhyperior](pokedex/464-rhyperior.md) (Ground / Rock), [Mamoswine](pokedex/473-mamoswine.md) (Ice / Ground with Thick Fat), [Gliscor](pokedex/472-gliscor.md) (Ground / Flying), [Golem](pokedex/076-golem.md) (Rock / Ground), [Metagross](pokedex/376-metagross.md) (Steel / Psychic).
 
 ## Sabrina, Saffron City Gym
 
@@ -148,7 +148,7 @@ Carries 2× Full Restore.
 
 **Avoid relying on:** Psychic (6 resist or immune); Fighting (5 resist or immune); Dragon (3 resist or immune).
 
-**Suggested counters:** [Shiftry](pokedex/275-shiftry.md) (Grass / Dark), [Cacturne](pokedex/332-cacturne.md) (Grass / Dark), [Scizor](pokedex/212-scizor.md) (Bug / Steel), [Weavile](pokedex/461-weavile.md) (Dark / Ice), [Steelix](pokedex/208-steelix.md) (Steel / Ground), [Tyranitar](pokedex/248-tyranitar.md) (Rock / Dark).
+**Suggested counters:** [Shiftry](pokedex/275-shiftry.md) (Grass / Dark), [Cacturne](pokedex/332-cacturne.md) (Grass / Dark), [Scizor](pokedex/212-scizor.md) (Bug / Steel), [Magnezone](pokedex/462-magnezone.md) (Electric / Steel), [Mismagius](pokedex/429-mismagius.md) (Ghost), [Dusknoir](pokedex/477-dusknoir.md) (Ghost).
 
 ## Blaine, Cinnabar Island Gym
 
@@ -169,7 +169,7 @@ Carries 2× Full Restore.
 
 **Avoid relying on:** Fire (6 resist or immune); Grass (6 resist or immune); Ice (6 resist or immune); Steel (6 resist or immune); Bug (5 resist or immune).
 
-**Suggested counters:** [Golem](pokedex/076-golem.md) (Rock / Ground), [Rhydon](pokedex/112-rhydon.md) (Ground / Rock), [Tyranitar](pokedex/248-tyranitar.md) (Rock / Dark), [Swampert](pokedex/260-swampert.md) (Water / Ground), [Flygon](pokedex/330-flygon.md) (Ground / Dragon), [Kingdra](pokedex/230-kingdra.md) (Water / Dragon).
+**Suggested counters:** [Rhyperior](pokedex/464-rhyperior.md) (Ground / Rock), [Golem](pokedex/076-golem.md) (Rock / Ground), [Tyranitar](pokedex/248-tyranitar.md) (Rock / Dark), [Swampert](pokedex/260-swampert.md) (Water / Ground), [Flygon](pokedex/330-flygon.md) (Ground / Dragon), [Kingdra](pokedex/230-kingdra.md) (Water / Dragon).
 
 ## Giovanni, Viridian City Gym
 
@@ -190,7 +190,7 @@ Carries 2× Full Restore.
 
 **Avoid relying on:** Electric (6 resist or immune); Poison (6 resist or immune); Rock (6 resist or immune).
 
-**Suggested counters:** [Swampert](pokedex/260-swampert.md) (Water / Ground), [Poliwrath](pokedex/062-poliwrath.md) (Water / Fighting with Water Absorb), [Kingdra](pokedex/230-kingdra.md) (Water / Dragon), [Ludicolo](pokedex/272-ludicolo.md) (Water / Grass), [Exeggutor](pokedex/103-exeggutor.md) (Grass / Psychic), [Flygon](pokedex/330-flygon.md) (Ground / Dragon).
+**Suggested counters:** [Swampert](pokedex/260-swampert.md) (Water / Ground), [Mamoswine](pokedex/473-mamoswine.md) (Ice / Ground with Thick Fat), [Poliwrath](pokedex/062-poliwrath.md) (Water / Fighting with Water Absorb), [Kingdra](pokedex/230-kingdra.md) (Water / Dragon), [Ludicolo](pokedex/272-ludicolo.md) (Water / Grass), [Exeggutor](pokedex/103-exeggutor.md) (Grass / Psychic).
 
 ## Lorelei, Elite Four
 
@@ -211,7 +211,7 @@ Carries 2× Full Restore.
 
 **Avoid relying on:** Ice (6 resist or immune); Water (4 resist or immune).
 
-**Suggested counters:** [Omastar](pokedex/139-omastar.md) (Rock / Water), [Kabutops](pokedex/141-kabutops.md) (Rock / Water), [Relicanth](pokedex/369-relicanth.md) (Water / Rock), [Aggron](pokedex/306-aggron.md) (Steel / Rock), [Poliwrath](pokedex/062-poliwrath.md) (Water / Fighting with Water Absorb), [Hariyama](pokedex/297-hariyama.md) (Fighting with Thick Fat).
+**Suggested counters:** [Magnezone](pokedex/462-magnezone.md) (Electric / Steel), [Omastar](pokedex/139-omastar.md) (Rock / Water), [Kabutops](pokedex/141-kabutops.md) (Rock / Water), [Relicanth](pokedex/369-relicanth.md) (Water / Rock), [Aggron](pokedex/306-aggron.md) (Steel / Rock), [Poliwrath](pokedex/062-poliwrath.md) (Water / Fighting with Water Absorb).
 
 ## Bruno, Elite Four
 
@@ -232,7 +232,7 @@ Carries 2× Full Restore.
 
 **Avoid relying on:** Bug (6 resist or immune); Dark (6 resist or immune); Rock (5 resist or immune).
 
-**Suggested counters:** [Clefable](pokedex/036-clefable.md) (Fairy), [Exeggutor](pokedex/103-exeggutor.md) (Grass / Psychic), [Gardevoir](pokedex/282-gardevoir.md) (Psychic / Fairy), [Grumpig](pokedex/326-grumpig.md) (Psychic with Thick Fat), [Espeon](pokedex/196-espeon.md) (Psychic), [Starmie](pokedex/121-starmie.md) (Water / Psychic).
+**Suggested counters:** [Gliscor](pokedex/472-gliscor.md) (Ground / Flying), [Clefable](pokedex/036-clefable.md) (Fairy), [Exeggutor](pokedex/103-exeggutor.md) (Grass / Psychic), [Gardevoir](pokedex/282-gardevoir.md) (Psychic / Fairy), [Grumpig](pokedex/326-grumpig.md) (Psychic with Thick Fat), [Espeon](pokedex/196-espeon.md) (Psychic).
 
 ## Agatha, Elite Four
 
@@ -253,7 +253,7 @@ Carries 2× Full Restore.
 
 **Avoid relying on:** Fighting (6 resist or immune); Poison (6 resist or immune); Bug (5 resist or immune); Normal (5 resist or immune).
 
-**Suggested counters:** [Tyranitar](pokedex/248-tyranitar.md) (Rock / Dark), [Weavile](pokedex/461-weavile.md) (Dark / Ice), [Houndoom](pokedex/229-houndoom.md) (Dark / Fire), [Shiftry](pokedex/275-shiftry.md) (Grass / Dark), [Cacturne](pokedex/332-cacturne.md) (Grass / Dark), [Golem](pokedex/076-golem.md) (Rock / Ground).
+**Suggested counters:** [Tyranitar](pokedex/248-tyranitar.md) (Rock / Dark), [Weavile](pokedex/461-weavile.md) (Dark / Ice), [Houndoom](pokedex/229-houndoom.md) (Dark / Fire), [Shiftry](pokedex/275-shiftry.md) (Grass / Dark), [Cacturne](pokedex/332-cacturne.md) (Grass / Dark), [Honchkrow](pokedex/430-honchkrow.md) (Dark / Flying).
 
 ## Lance, Elite Four
 
@@ -274,7 +274,7 @@ Carries 2× Full Restore.
 
 **Avoid relying on:** Fire (6 resist or immune); Ground (5 resist or immune); Bug (4 resist or immune); Fighting (3 resist or immune); Grass (3 resist or immune).
 
-**Suggested counters:** [Gardevoir](pokedex/282-gardevoir.md) (Psychic / Fairy), [Clefable](pokedex/036-clefable.md) (Fairy), [Kingdra](pokedex/230-kingdra.md) (Water / Dragon), [Walrein](pokedex/365-walrein.md) (Ice / Water with Thick Fat), [Flygon](pokedex/330-flygon.md) (Ground / Dragon), [Lapras](pokedex/131-lapras.md) (Water / Ice with Water Absorb).
+**Suggested counters:** [Gardevoir](pokedex/282-gardevoir.md) (Psychic / Fairy), [Clefable](pokedex/036-clefable.md) (Fairy), [Togekiss](pokedex/468-togekiss.md) (Fairy / Flying), [Kingdra](pokedex/230-kingdra.md) (Water / Dragon), [Walrein](pokedex/365-walrein.md) (Ice / Water with Thick Fat), [Flygon](pokedex/330-flygon.md) (Ground / Dragon).
 
 ## Rival, Champion (you chose Bulbasaur)
 
@@ -295,7 +295,7 @@ Carries 4× Full Restore.
 
 **Avoid relying on:** Psychic (3 resist or immune); Fighting (4 resist or immune); Ground (4 resist or immune); Fire (3 resist or immune); Grass (3 resist or immune).
 
-**Suggested counters:** [Scizor](pokedex/212-scizor.md) (Bug / Steel), [Armaldo](pokedex/348-armaldo.md) (Rock / Bug), [Aggron](pokedex/306-aggron.md) (Steel / Rock), [Aerodactyl](pokedex/142-aerodactyl.md) (Rock / Flying), [Cradily](pokedex/346-cradily.md) (Rock / Grass), [Shiftry](pokedex/275-shiftry.md) (Grass / Dark).
+**Suggested counters:** [Magnezone](pokedex/462-magnezone.md) (Electric / Steel), [Scizor](pokedex/212-scizor.md) (Bug / Steel), [Armaldo](pokedex/348-armaldo.md) (Rock / Bug), [Aggron](pokedex/306-aggron.md) (Steel / Rock), [Aerodactyl](pokedex/142-aerodactyl.md) (Rock / Flying), [Cradily](pokedex/346-cradily.md) (Rock / Grass).
 
 ## Rival, Champion (you chose Charmander)
 
@@ -316,7 +316,7 @@ Carries 4× Full Restore.
 
 **Avoid relying on:** Psychic (3 resist or immune); Fire (3 resist or immune); Grass (3 resist or immune).
 
-**Suggested counters:** [Scizor](pokedex/212-scizor.md) (Bug / Steel), [Shiftry](pokedex/275-shiftry.md) (Grass / Dark), [Cacturne](pokedex/332-cacturne.md) (Grass / Dark), [Tyranitar](pokedex/248-tyranitar.md) (Rock / Dark), [Armaldo](pokedex/348-armaldo.md) (Rock / Bug), [Aggron](pokedex/306-aggron.md) (Steel / Rock).
+**Suggested counters:** [Scizor](pokedex/212-scizor.md) (Bug / Steel), [Magnezone](pokedex/462-magnezone.md) (Electric / Steel), [Shiftry](pokedex/275-shiftry.md) (Grass / Dark), [Cacturne](pokedex/332-cacturne.md) (Grass / Dark), [Tyranitar](pokedex/248-tyranitar.md) (Rock / Dark), [Armaldo](pokedex/348-armaldo.md) (Rock / Bug).
 
 ## Rival, Champion (you chose Squirtle)
 
@@ -337,4 +337,4 @@ Carries 4× Full Restore.
 
 **Avoid relying on:** Fighting (3 resist or immune); Fire (3 resist or immune); Grass (3 resist or immune); Bug (3 resist or immune).
 
-**Suggested counters:** [Aerodactyl](pokedex/142-aerodactyl.md) (Rock / Flying), [Aggron](pokedex/306-aggron.md) (Steel / Rock), [Cradily](pokedex/346-cradily.md) (Rock / Grass), [Armaldo](pokedex/348-armaldo.md) (Rock / Bug), [Tyranitar](pokedex/248-tyranitar.md) (Rock / Dark), [Omastar](pokedex/139-omastar.md) (Rock / Water).
+**Suggested counters:** [Aerodactyl](pokedex/142-aerodactyl.md) (Rock / Flying), [Aggron](pokedex/306-aggron.md) (Steel / Rock), [Cradily](pokedex/346-cradily.md) (Rock / Grass), [Armaldo](pokedex/348-armaldo.md) (Rock / Bug), [Tyranitar](pokedex/248-tyranitar.md) (Rock / Dark), [Magnezone](pokedex/462-magnezone.md) (Electric / Steel).

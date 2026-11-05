@@ -1,4 +1,4 @@
-← #385 [Jirachi](385-jirachi.md) · [Index](../POKEDEX.md) · [Weavile](461-weavile.md) #461 →
+← #385 [Jirachi](385-jirachi.md) · [Index](../POKEDEX.md) · [Roserade](407-roserade.md) #407 →
 
 # #386 Deoxys
 
@@ -217,4 +217,4 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 ---
 
-← #385 [Jirachi](385-jirachi.md) · [Index](../POKEDEX.md) · [Weavile](461-weavile.md) #461 →
+← #385 [Jirachi](385-jirachi.md) · [Index](../POKEDEX.md) · [Roserade](407-roserade.md) #407 →

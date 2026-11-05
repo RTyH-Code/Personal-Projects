@@ -54,6 +54,7 @@ Height 0.6 m (2′00″) · Weight 32.5 kg (71.7 lbs)
 ## Evolution
 
 - [Porygon](137-porygon.md) → **Porygon2**: Use an Up-Grade *(originally: Trade holding Up-Grade)*
+  - **Porygon2** → [Porygon-Z](474-porygon-z.md): Use a Dubious Disc *(new in this hack)*
 
 ## Where to find it
 

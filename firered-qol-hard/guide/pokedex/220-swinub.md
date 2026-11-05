@@ -57,12 +57,13 @@ Height 0.4 m (1′04″) · Weight 6.5 kg (14.3 lbs)
 ## Evolution
 
 - **Swinub** → [Piloswine](221-piloswine.md): Level 33
+  - [Piloswine](221-piloswine.md) → [Mamoswine](473-mamoswine.md): Level up knowing Ancient Power *(new in this hack)*
 
 ## Where to find it
 
 - **Four Island Icefall Cave 1F**: Grass / cave Lv 23–29 (41%)
 - **Four Island Icefall Cave B1F**: Grass / cave Lv 23–29 (41%)
-- Breeding: hatches from an Egg left by a Swinub or Piloswine at the Four Island Day Care
+- Breeding: hatches from an Egg left by a Swinub or Mamoswine or Piloswine at the Four Island Day Care
 
 ## Moves
 

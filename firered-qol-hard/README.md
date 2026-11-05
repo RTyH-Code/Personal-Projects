@@ -166,16 +166,46 @@ and you can use her as often as you like.
 - The Pokédex guide lists every Pokémon's modern tutor moves.
 
 ## Later evolutions
-- **Weavile** (Dark/Ice, #461) is in the game as a real Pokémon with its own
-  sprites, icon, cry, Pokédex entry (Forest habitat), stats, abilities
-  (Pressure / Pickpocket) and modern learnset.
-- Sneasel evolves into it with a **Razor Claw**, used like an evolution
-  stone (FireRed has no day/night cycle).
-  - Razor Claw: Celadon Dept. Store 4F, 2100.
-  - Held, it raises the critical-hit ratio like a Scope Lens.
-- New Pokémon fill unused species slots, so the save layout is unchanged.
-  The Pokédex shows their real National Dex numbers.
-- Sprites, icon and cry come from the community-made Gen 3-style graphics in
+19 evolutions from Gen 4 onward are real Pokémon. Each has its own sprites,
+icon, cry, Pokédex entry, modern stats, abilities and learnsets.
+
+| Pokémon | Evolves from | How |
+|---|---|---|
+| Roserade | Roselia | Shiny Stone |
+| Ambipom | Aipom | level up knowing Double Hit |
+| Mismagius | Misdreavus | Dusk Stone |
+| Honchkrow | Murkrow | Dusk Stone |
+| Weavile | Sneasel | Razor Claw |
+| Magnezone | Magneton | Thunder Stone |
+| Lickilicky | Lickitung | level up knowing Rollout |
+| Rhyperior | Rhydon | Protector |
+| Tangrowth | Tangela | level up knowing Ancient Power |
+| Electivire | Electabuzz | Electirizer |
+| Magmortar | Magmar | Magmarizer |
+| Togekiss | Togetic | Shiny Stone |
+| Yanmega | Yanma | level up knowing Ancient Power |
+| Gliscor | Gligar | Razor Fang |
+| Mamoswine | Piloswine | level up knowing Ancient Power |
+| Porygon-Z | Porygon2 | Dubious Disc |
+| Dusknoir | Dusclops | Reaper Cloth |
+| Farigiraf | Girafarig | level 32 |
+| Dudunsparce | Dunsparce | level 32 |
+
+- **Evolution items** are used like evolution stones, since FireRed has no
+  day/night cycle and the hack already replaces trading.
+  - All eight are sold at the Celadon Dept. Store 4F for 2100: Razor Claw,
+    Razor Fang, Dusk Stone, Shiny Stone, Protector, Electirizer, Magmarizer,
+    Dubious Disc and Reaper Cloth.
+  - Held, the Razor Claw raises the critical-hit ratio. The Razor Fang may
+    make the target flinch.
+- Farigiraf and Dudunsparce evolve at level 32. That's where their
+  pre-evolutions learn Twin Beam and Hyper Drill, which aren't in the game.
+- **Pokédex:**
+  - New Pokémon show their real National Dex numbers and are listed in
+    order in the National list.
+  - Each one is on a habitat page next to its pre-evolution.
+  - New Pokémon fill unused species slots, so the save layout is unchanged.
+- Sprites, icons and cries are the community-made Gen 3-style graphics from
   [pokeemerald-expansion](https://github.com/rh-hideout/pokeemerald-expansion)
   (see its credits).
 
@@ -316,7 +346,7 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `bf5938933b937e4a1ada59cb8f25b0c17875d86d`
+Patched ROM SHA-1: `264fa02131185ce4422bdadfe7f764c725e6f4f3`
 
 Start a new game. Saves from earlier versions of this hack aren't supported.
 
@@ -347,5 +377,5 @@ unmodified pret data:
 - `spoiler_guide.py <dir>`: regenerates the spoiler guide from the game data.
 
 ## Credits
-- Weavile's sprites, icon, footprint and cry, and the Razor Claw icon, are community-made Gen 3-style graphics from [pokeemerald-expansion](https://github.com/rh-hideout/pokeemerald-expansion); see its [credits](https://github.com/rh-hideout/pokeemerald-expansion/blob/master/CREDITS.md).
+- The later evolutions' sprites, icons, footprints and cries, and the new evolution items' icons, are community-made Gen 3-style graphics from [pokeemerald-expansion](https://github.com/rh-hideout/pokeemerald-expansion); see its [credits](https://github.com/rh-hideout/pokeemerald-expansion/blob/master/CREDITS.md).
 - Move, stat and learnset data comes from [Pokémon Showdown](https://github.com/smogon/pokemon-showdown).

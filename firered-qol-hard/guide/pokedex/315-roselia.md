@@ -54,12 +54,12 @@ Height 0.3 m (1′00″) · Weight 2 kg (4.4 lbs)
 
 ## Evolution
 
-Roselia does not evolve.
+- **Roselia** → [Roserade](407-roserade.md): Use a Shiny Stone *(new in this hack)*
 
 ## Where to find it
 
 - **Route 14**: Grass / cave Lv 26 (5%)
-- Breeding: hatches from an Egg left by a Roselia at the Four Island Day Care
+- Breeding: hatches from an Egg left by a Roselia or Roserade at the Four Island Day Care
 
 ## Moves
 

@@ -57,6 +57,7 @@ Height 1 m (3′03″) · Weight 60 kg (132.3 lbs)
 ## Evolution
 
 - [Magnemite](081-magnemite.md) → **Magneton**: Level 30
+  - **Magneton** → [Magnezone](462-magnezone.md): Use a Thunder Stone *(new in this hack)*
 
 ## Where to find it
 

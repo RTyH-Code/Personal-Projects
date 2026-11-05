@@ -55,12 +55,12 @@ Height 1.1 m (3′07″) · Weight 64.8 kg (142.9 lbs)
 
 ## Evolution
 
-Gligar does not evolve.
+- **Gligar** → [Gliscor](472-gliscor.md): Use a Razor Fang *(new in this hack)*
 
 ## Where to find it
 
 - **Route 23**: Grass / cave Lv 42 (4%)
-- Breeding: hatches from an Egg left by a Gligar at the Four Island Day Care
+- Breeding: hatches from an Egg left by a Gligar or Gliscor at the Four Island Day Care
 
 ## Moves
 

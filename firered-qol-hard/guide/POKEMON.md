@@ -69,22 +69,40 @@ Legendaries added by this hack appear after your first Hall of Fame entry (see t
 
 | Evolution | Original | Now |
 |---|---|---|
+| Aipom → Ambipom | — | level up knowing Double Hit |
 | Clamperl → Huntail | trade holding Deep Sea Tooth | use Deep Sea Tooth |
 | Clamperl → Gorebyss | trade holding Deep Sea Scale | use Deep Sea Scale |
+| Dunsparce → Dudunsparce | — | level 32 |
+| Dusclops → Dusknoir | — | use Reaper Cloth |
 | Eevee → Espeon | friendship day | use Sun Stone |
 | Eevee → Umbreon | friendship night | use Moon Stone |
+| Electabuzz → Electivire | — | use Electirizer |
 | Feebas → Milotic | beauty | use Deep Sea Scale |
+| Girafarig → Farigiraf | — | level 32 |
+| Gligar → Gliscor | — | use Razor Fang |
 | Graveler → Golem | trade | level 37 |
 | Haunter → Gengar | trade | level 37 |
 | Kadabra → Alakazam | trade | level 37 |
+| Lickitung → Lickilicky | — | level up knowing Rollout |
 | Machoke → Machamp | trade | level 37 |
+| Magmar → Magmortar | — | use Magmarizer |
+| Magneton → Magnezone | — | use Thunder Stone |
+| Misdreavus → Mismagius | — | use Dusk Stone |
+| Murkrow → Honchkrow | — | use Dusk Stone |
 | Onix → Steelix | trade holding Metal Coat | use Metal Coat |
+| Piloswine → Mamoswine | — | level up knowing Ancient Power |
 | Poliwhirl → Politoed | trade holding King's Rock | use King's Rock |
 | Porygon → Porygon2 | trade holding Up-Grade | use Up-Grade |
+| Porygon2 → Porygon-Z | — | use Dubious Disc |
+| Rhydon → Rhyperior | — | use Protector |
+| Roselia → Roserade | — | use Shiny Stone |
 | Scyther → Scizor | trade holding Metal Coat | use Metal Coat |
 | Seadra → Kingdra | trade holding Dragon Scale | use Dragon Scale |
 | Slowpoke → Slowking | trade holding King's Rock | use King's Rock |
 | Sneasel → Weavile | — | use Razor Claw |
+| Tangela → Tangrowth | — | level up knowing Ancient Power |
+| Togetic → Togekiss | — | use Shiny Stone |
+| Yanma → Yanmega | — | level up knowing Ancient Power |
 
 Deoxys changes Forme with the **Meteorite** (key item, given when you catch it on Birth Island).
 

@@ -59,12 +59,13 @@ Height 1 m (3′03″) · Weight 115 kg (253.5 lbs)
 ## Evolution
 
 - **Rhyhorn** → [Rhydon](112-rhydon.md): Level 42
+  - [Rhydon](112-rhydon.md) → [Rhyperior](464-rhyperior.md): Use a Protector *(new in this hack)*
 
 ## Where to find it
 
 - **Safari Zone Center**: Grass / cave Lv 25 (20%)
 - **Safari Zone North**: Grass / cave Lv 26 (20%)
-- Breeding: hatches from an Egg left by a Rhyhorn or Rhydon at the Four Island Day Care
+- Breeding: hatches from an Egg left by a Rhyhorn or Rhyperior or Rhydon at the Four Island Day Care
 
 ## Moves
 

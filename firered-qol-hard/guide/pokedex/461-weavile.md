@@ -1,4 +1,4 @@
-← #386 [Deoxys](386-deoxys.md) · [Index](../POKEDEX.md)
+← #430 [Honchkrow](430-honchkrow.md) · [Index](../POKEDEX.md) · [Magnezone](462-magnezone.md) #462 →
 
 # #461 Weavile
 
@@ -182,4 +182,4 @@ Breed a Sneasel (passed down to Sneasel, which then evolves) with a father that 
 
 ---
 
-← #386 [Deoxys](386-deoxys.md) · [Index](../POKEDEX.md)
+← #430 [Honchkrow](430-honchkrow.md) · [Index](../POKEDEX.md) · [Magnezone](462-magnezone.md) #462 →

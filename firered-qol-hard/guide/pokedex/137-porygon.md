@@ -54,11 +54,12 @@ Height 0.8 m (2′07″) · Weight 36.5 kg (80.5 lbs)
 ## Evolution
 
 - **Porygon** → [Porygon2](233-porygon2.md): Use an Up-Grade *(originally: Trade holding Up-Grade)*
+  - [Porygon2](233-porygon2.md) → [Porygon-Z](474-porygon-z.md): Use a Dubious Disc *(new in this hack)*
 
 ## Where to find it
 
 - **Celadon City Game Corner Prize Room**: Game Corner prize (9999 coins), Lv 26
-- Breeding: hatches from an Egg left by a Porygon or Porygon2 at the Four Island Day Care
+- Breeding: hatches from an Egg left by a Porygon or Porygon-Z or Porygon2 at the Four Island Day Care
 
 ## Moves
 

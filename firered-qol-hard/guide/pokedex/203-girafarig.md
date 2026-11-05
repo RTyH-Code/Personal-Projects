@@ -56,13 +56,13 @@ Height 1.5 m (4′11″) · Weight 41.5 kg (91.5 lbs)
 
 ## Evolution
 
-Girafarig does not evolve.
+- **Girafarig** → [Farigiraf](981-farigiraf.md): Level 32 *(new in this hack)*
 
 ## Where to find it
 
 - **Safari Zone East**: Grass / cave Lv 22 (4%)
 - **Safari Zone North**: Grass / cave Lv 25 (10%)
-- Breeding: hatches from an Egg left by a Girafarig at the Four Island Day Care
+- Breeding: hatches from an Egg left by a Girafarig or Farigiraf at the Four Island Day Care
 
 ## Moves
 

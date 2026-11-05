@@ -56,6 +56,7 @@ Height 0.6 m (2′00″) · Weight 3.2 kg (7.1 lbs)
 ## Evolution
 
 - [Togepi](175-togepi.md) → **Togetic**: Level up with high friendship (220+)
+  - **Togetic** → [Togekiss](468-togekiss.md): Use a Shiny Stone *(new in this hack)*
 
 ## Where to find it
 

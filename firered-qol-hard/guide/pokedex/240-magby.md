@@ -53,6 +53,7 @@ Height 0.7 m (2′04″) · Weight 21.4 kg (47.2 lbs)
 ## Evolution
 
 - **Magby** → [Magmar](126-magmar.md): Level 30
+  - [Magmar](126-magmar.md) → [Magmortar](467-magmortar.md): Use a Magmarizer *(new in this hack)*
 
 ## Where to find it
 
