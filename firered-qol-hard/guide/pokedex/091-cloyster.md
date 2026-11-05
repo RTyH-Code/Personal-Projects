@@ -126,19 +126,19 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
-| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
-| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
 | Frost Breath | Ice | Special | 60 | 90% | 10 | 0 |
-| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
-| Toxic Spikes | Poison | Status | — | — | 20 | 0 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
 | Ice Spinner | Ice | Physical | 80 | 100% | 15 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Razor Shell | Water | Physical | 75 | 95% | 10 | 3 |
 | Smart Strike | Steel | Physical | 70 | — | 10 | 3 |
+| Toxic Spikes | Poison | Status | — | — | 20 | 3 |
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 5 |
+| Brine | Water | Special | 65 | 100% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

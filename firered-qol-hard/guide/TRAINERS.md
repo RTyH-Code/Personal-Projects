@@ -29,59 +29,59 @@ Regular trainers use their normal level-up moves unless moves are listed. Peak t
 |---|---|---|---|
 | Voltorb | 24 | — | Sonic Boom, Spark, Screech, Self-Destruct |
 | Magnemite | 24 | — | Shock Wave, Sonic Boom, Thunder Wave, Supersonic |
-| Pikachu | 25 | — | Shock Wave, Quick Attack, Double Team, Thunder Wave |
-| Raichu | 28 | Magnet | Shock Wave, Quick Attack, Thunder Wave, Double Kick |
+| Pikachu | 25 | — | Shock Wave, Quick Attack, Double Team, Nuzzle |
+| Raichu | 28 | Magnet | Shock Wave, Volt Switch, Thunder Wave, Double Kick |
 
 ### Erika
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Tangela | 31 | — | Mega Drain, Stun Spore, Bind, Poison Powder |
+| Tangela | 31 | — | Giga Drain, Stun Spore, Bind, Poison Powder |
 | Weepinbell | 31 | — | Razor Leaf, Acid, Sleep Powder, Wrap |
 | Exeggcute | 32 | — | Hypnosis, Stun Spore, Confusion, Leech Seed |
 | Victreebel | 33 | — | Razor Leaf, Acid, Sleep Powder, Wrap |
-| Vileplume | 35 | Miracle Seed | Giga Drain, Acid, Sleep Powder, Petal Dance |
+| Vileplume | 35 | Miracle Seed | Giga Drain, Sludge Bomb, Sleep Powder, Petal Dance |
 
 ### Koga
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
 | Koffing | 40 | — | Sludge, Smokescreen, Self-Destruct, Toxic |
-| Muk | 40 | — | Sludge, Minimize, Toxic, Acid Armor |
-| Venomoth | 41 | — | Psybeam, Stun Spore, Leech Life, Supersonic |
+| Muk | 40 | — | Venoshock, Minimize, Toxic, Acid Armor |
+| Venomoth | 41 | — | Psybeam, Stun Spore, Bug Buzz, Supersonic |
 | Golbat | 41 | — | Wing Attack, Confuse Ray, Bite, Leech Life |
-| Weezing | 45 | Poison Barb | Sludge, Toxic, Smokescreen, Self-Destruct |
+| Weezing | 45 | Poison Barb | Venoshock, Toxic, Smokescreen, Self-Destruct |
 
 ### Sabrina
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
 | Kadabra | 42 | — | Psybeam, Recover, Reflect, Future Sight |
-| Mr. Mime | 42 | — | Psybeam, Barrier, Light Screen, Reflect |
+| Mr. Mime | 42 | — | Psybeam, Dazzling Gleam, Light Screen, Reflect |
 | Hypno | 43 | — | Psychic, Hypnosis, Headbutt, Poison Gas |
-| Espeon | 43 | — | Psychic, Quick Attack, Bite, Swift |
-| Alakazam | 47 | Twisted Spoon | Psychic, Recover, Calm Mind, Future Sight |
+| Espeon | 43 | — | Psychic, Quick Attack, Shadow Ball, Dazzling Gleam |
+| Alakazam | 47 | Twisted Spoon | Psychic, Recover, Calm Mind, Dazzling Gleam |
 
 ### Blaine
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Ninetales | 46 | — | Flamethrower, Confuse Ray, Will-O-Wisp, Quick Attack |
-| Rapidash | 46 | — | Fire Blast, Stomp, Agility, Bounce |
+| Ninetales | 46 | — | Flamethrower, Confuse Ray, Will-O-Wisp, Hex |
+| Rapidash | 46 | — | Flare Blitz, Stomp, Agility, Bounce |
 | Magmar | 47 | — | Fire Punch, Thunder Punch, Confuse Ray, Smokescreen |
-| Houndoom | 47 | — | Flamethrower, Crunch, Roar, Smog |
-| Arcanine | 51 | Charcoal | Flamethrower, Extreme Speed, Bite, Roar |
+| Houndoom | 47 | — | Flamethrower, Dark Pulse, Will-O-Wisp, Sucker Punch |
+| Arcanine | 51 | Charcoal | Flamethrower, Extreme Speed, Crunch, Wild Charge |
 
 ### Giovanni
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Sandslash | 49 | — | Earthquake, Slash, Sand Tomb, Swift |
-| Dugtrio | 49 | — | Earthquake, Slash, Sand Attack, Fury Swipes |
+| Sandslash | 49 | — | Earthquake, Slash, Sand Tomb, X-Scissor |
+| Dugtrio | 49 | — | Earthquake, Sucker Punch, Sand Attack, Stone Edge |
 | Nidoqueen | 50 | — | Earthquake, Body Slam, Superpower, Crunch |
 | Nidoking | 50 | — | Earthquake, Megahorn, Ice Beam, Thunderbolt |
 | Marowak | 51 | Thick Club | Bonemerang, Rock Slide, Focus Energy, Headbutt |
-| Rhydon | 54 | Soft Sand | Earthquake, Rock Slide, Megahorn, Scary Face |
+| Rhydon | 54 | Soft Sand | Earthquake, Stone Edge, Megahorn, Scary Face |
 
 ## Elite Four and Champion
 
@@ -89,74 +89,74 @@ Regular trainers use their normal level-up moves unless moves are listed. Peak t
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Dewgong | 60 | — | Ice Beam, Surf, Hail, Safeguard |
-| Cloyster | 59 | — | Spikes, Protect, Hail, Dive |
-| Slowbro | 60 | — | Ice Beam, Surf, Amnesia, Yawn |
-| Jynx | 62 | — | Ice Punch, Double Slap, Lovely Kiss, Attract |
-| Lapras | 62 | Sitrus Berry | Confuse Ray, Ice Beam, Surf, Body Slam |
+| Dewgong | 60 | — | Ice Beam, Surf, Aqua Jet, Safeguard |
+| Cloyster | 59 | — | Shell Smash, Icicle Spear, Liquidation, Ice Shard |
+| Slowbro | 60 | — | Scald, Psychic, Amnesia, Yawn |
+| Jynx | 62 | — | Ice Beam, Psyshock, Lovely Kiss, Nasty Plot |
+| Lapras | 62 | Sitrus Berry | Ice Beam, Surf, Thunderbolt, Confuse Ray |
 
 ### Bruno, round 1
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Onix | 59 | — | Earthquake, Rock Tomb, Iron Tail, Roar |
-| Hitmonchan | 61 | — | Sky Uppercut, Mach Punch, Rock Tomb, Counter |
-| Hitmonlee | 61 | — | Mega Kick, Foresight, Brick Break, Facade |
-| Onix | 62 | — | Double-Edge, Earthquake, Iron Tail, Sand Tomb |
-| Machamp | 64 | Sitrus Berry | Cross Chop, Bulk Up, Scary Face, Rock Tomb |
+| Onix | 59 | — | Earthquake, Stone Edge, Iron Tail, Stealth Rock |
+| Hitmonchan | 61 | — | Drain Punch, Mach Punch, Ice Punch, Bullet Punch |
+| Hitmonlee | 61 | — | Hi Jump Kick, Rock Slide, Blaze Kick, Fake Out |
+| Onix | 62 | — | Rock Polish, Earthquake, Stone Edge, Iron Tail |
+| Machamp | 64 | Sitrus Berry | Close Combat, Bulk Up, Knock Off, Stone Edge |
 
 ### Agatha, round 1
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Gengar | 62 | — | Shadow Punch, Confuse Ray, Toxic, Double Team |
-| Golbat | 62 | — | Confuse Ray, Poison Fang, Air Cutter, Bite |
-| Haunter | 61 | — | Hypnosis, Dream Eater, Curse, Mean Look |
-| Arbok | 64 | — | Sludge Bomb, Screech, Iron Tail, Bite |
-| Gengar | 67 | Sitrus Berry | Shadow Ball, Sludge Bomb, Hypnosis, Nightmare |
+| Gengar | 62 | — | Hex, Will-O-Wisp, Confuse Ray, Sludge Bomb |
+| Golbat | 62 | — | Poison Fang, Air Slash, Confuse Ray, Bite |
+| Haunter | 61 | — | Hypnosis, Dream Eater, Hex, Mean Look |
+| Arbok | 64 | — | Gunk Shot, Glare, Sucker Punch, Iron Tail |
+| Gengar | 67 | Sitrus Berry | Shadow Ball, Sludge Bomb, Hypnosis, Nasty Plot |
 
 ### Lance, round 1
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Gyarados | 64 | — | Hyper Beam, Dragon Rage, Twister, Bite |
-| Dragonair | 62 | — | Hyper Beam, Iron Tail, Dragon Rage, Outrage |
-| Dragonair | 62 | — | Hyper Beam, Safeguard, Thunder Wave, Outrage |
-| Aerodactyl | 67 | — | Hyper Beam, Ancient Power, Wing Attack, Scary Face |
-| Dragonite | 69 | Sitrus Berry | Hyper Beam, Iron Tail, Outrage, Wing Attack |
+| Gyarados | 64 | — | Waterfall, Crunch, Dragon Dance, Iron Tail |
+| Dragonair | 62 | — | Dragon Pulse, Iron Tail, Thunder Wave, Outrage |
+| Dragonair | 62 | — | Aqua Tail, Safeguard, Thunder Wave, Outrage |
+| Aerodactyl | 67 | — | Stone Edge, Aerial Ace, Ice Fang, Crunch |
+| Dragonite | 69 | Sitrus Berry | Dragon Dance, Outrage, Extreme Speed, Iron Tail |
 
 ### Champion, round 1 (you chose Bulbasaur)
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Pidgeot | 68 | — | Aerial Ace, Feather Dance, Sand Attack, Whirlwind |
-| Alakazam | 66 | — | Psychic, Future Sight, Recover, Reflect |
-| Rhydon | 68 | — | Take Down, Earthquake, Rock Tomb, Scary Face |
-| Exeggutor | 68 | — | Giga Drain, Egg Bomb, Sleep Powder, Light Screen |
-| Gyarados | 70 | — | Hydro Pump, Dragon Rage, Bite, Thrash |
-| Charizard | 72 | Sitrus Berry | Fire Blast, Aerial Ace, Slash, Fire Spin |
+| Pidgeot | 68 | — | Hurricane, Steel Wing, Roost, Quick Attack |
+| Alakazam | 66 | — | Psychic, Dazzling Gleam, Calm Mind, Recover |
+| Rhydon | 68 | — | Earthquake, Stone Edge, Megahorn, Stealth Rock |
+| Exeggutor | 68 | — | Energy Ball, Psychic, Sleep Powder, Leech Seed |
+| Gyarados | 70 | — | Waterfall, Crunch, Dragon Dance, Earthquake |
+| Charizard | 72 | Sitrus Berry | Flamethrower, Air Slash, Dragon Pulse, Focus Blast |
 
 ### Champion, round 1 (you chose Charmander)
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Pidgeot | 68 | — | Aerial Ace, Feather Dance, Sand Attack, Whirlwind |
-| Alakazam | 66 | — | Psychic, Future Sight, Recover, Reflect |
-| Rhydon | 68 | — | Take Down, Earthquake, Rock Tomb, Scary Face |
-| Arcanine | 68 | — | Extreme Speed, Flamethrower, Roar, Bite |
-| Exeggutor | 70 | — | Giga Drain, Egg Bomb, Sleep Powder, Light Screen |
-| Blastoise | 72 | Sitrus Berry | Hydro Pump, Rain Dance, Skull Bash, Bite |
+| Pidgeot | 68 | — | Hurricane, Steel Wing, Roost, Quick Attack |
+| Alakazam | 66 | — | Psychic, Dazzling Gleam, Calm Mind, Recover |
+| Rhydon | 68 | — | Earthquake, Stone Edge, Megahorn, Stealth Rock |
+| Arcanine | 68 | — | Flare Blitz, Extreme Speed, Crunch, Wild Charge |
+| Exeggutor | 70 | — | Energy Ball, Psychic, Sleep Powder, Leech Seed |
+| Blastoise | 72 | Sitrus Berry | Hydro Pump, Ice Beam, Flash Cannon, Rapid Spin |
 
 ### Champion, round 1 (you chose Squirtle)
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Pidgeot | 68 | — | Aerial Ace, Feather Dance, Sand Attack, Whirlwind |
-| Alakazam | 66 | — | Psychic, Future Sight, Recover, Reflect |
-| Rhydon | 68 | — | Take Down, Earthquake, Rock Tomb, Scary Face |
-| Gyarados | 68 | — | Hydro Pump, Dragon Rage, Bite, Thrash |
-| Arcanine | 70 | — | Extreme Speed, Flamethrower, Roar, Bite |
-| Venusaur | 72 | Sitrus Berry | Solar Beam, Synthesis, Sunny Day, Growth |
+| Pidgeot | 68 | — | Hurricane, Steel Wing, Roost, Quick Attack |
+| Alakazam | 66 | — | Psychic, Dazzling Gleam, Calm Mind, Recover |
+| Rhydon | 68 | — | Earthquake, Stone Edge, Megahorn, Stealth Rock |
+| Gyarados | 68 | — | Waterfall, Crunch, Dragon Dance, Earthquake |
+| Arcanine | 70 | — | Flare Blitz, Extreme Speed, Crunch, Wild Charge |
+| Venusaur | 72 | Sitrus Berry | Giga Drain, Sludge Bomb, Sleep Powder, Earth Power |
 
 ### Lorelei, round 2 (after the Sevii Islands story)
 
@@ -239,166 +239,166 @@ Gym Leaders offer these rematches any number of times after you become Champion.
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Golem | 100 | Choice Band | Earthquake, Rock Slide, Explosion, Double-Edge |
-| Omastar | 100 | Mystic Water | Hydro Pump, Ice Beam, Ancient Power, Spikes |
-| Kabutops | 100 | Scope Lens | Rock Slide, Waterfall, Brick Break, Swords Dance |
-| Aggron | 100 | Leftovers | Iron Tail, Rock Slide, Earthquake, Thunder Wave |
-| Steelix | 100 | Quick Claw | Earthquake, Iron Tail, Rock Slide, Explosion |
-| Tyranitar | 100 | Leftovers | Dragon Dance, Rock Slide, Earthquake, Crunch |
+| Golem | 100 | Choice Band | Earthquake, Stone Edge, Explosion, Double-Edge |
+| Omastar | 100 | Mystic Water | Shell Smash, Hydro Pump, Ice Beam, Earth Power |
+| Kabutops | 100 | Scope Lens | Stone Edge, Waterfall, X-Scissor, Swords Dance |
+| Probopass | 100 | Leftovers | Power Gem, Earth Power, Flash Cannon, Stealth Rock |
+| Rhyperior | 100 | Quick Claw | Earthquake, Stone Edge, Megahorn, Rock Polish |
+| Tyranitar | 100 | Leftovers | Dragon Dance, Stone Edge, Earthquake, Crunch |
 
 ### Peak Misty
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Golduck | 100 | Mystic Water | Hydro Pump, Ice Beam, Psychic, Calm Mind |
+| Golduck | 100 | Mystic Water | Hydro Pump, Ice Beam, Psyshock, Calm Mind |
 | Lapras | 100 | Leftovers | Ice Beam, Surf, Thunderbolt, Confuse Ray |
-| Vaporeon | 100 | Leftovers | Surf, Ice Beam, Wish, Protect |
-| Milotic | 100 | Leftovers | Surf, Ice Beam, Recover, Toxic |
-| Gyarados | 100 | Lum Berry | Dragon Dance, Waterfall, Earthquake, Double-Edge |
-| Starmie | 100 | Leftovers | Surf, Psychic, Thunderbolt, Recover |
+| Vaporeon | 100 | Leftovers | Scald, Ice Beam, Wish, Protect |
+| Milotic | 100 | Leftovers | Scald, Ice Beam, Recover, Toxic |
+| Gyarados | 100 | Lum Berry | Dragon Dance, Waterfall, Earthquake, Crunch |
+| Starmie | 100 | Leftovers | Scald, Psyshock, Thunderbolt, Recover |
 
 ### Peak Lt Surge
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Electrode | 100 | Magnet | Thunderbolt, Explosion, Thunder Wave, Taunt |
-| Magneton | 100 | Leftovers | Thunderbolt, Thunder Wave, Substitute, Toxic |
-| Ampharos | 100 | Leftovers | Thunderbolt, Fire Punch, Thunder Wave, Light Screen |
-| Manectric | 100 | Magnet | Thunderbolt, Flamethrower, Crunch, Thunder Wave |
-| Jolteon | 100 | Magnet | Thunderbolt, Shadow Ball, Thunder Wave, Agility |
-| Raichu | 100 | Leftovers | Thunderbolt, Surf, Brick Break, Thunder Wave |
+| Electrode | 100 | Magnet | Thunderbolt, Volt Switch, Explosion, Taunt |
+| Magnezone | 100 | Leftovers | Thunderbolt, Flash Cannon, Volt Switch, Thunder Wave |
+| Ampharos | 100 | Leftovers | Thunderbolt, Dragon Pulse, Focus Blast, Thunder Wave |
+| Electivire | 100 | Magnet | Wild Charge, Ice Punch, Cross Chop, Earthquake |
+| Jolteon | 100 | Magnet | Thunderbolt, Shadow Ball, Volt Switch, Agility |
+| Raichu | 100 | Leftovers | Thunderbolt, Surf, Focus Blast, Nasty Plot |
 
 ### Peak Erika
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Breloom | 100 | Quick Claw | Spore, Sky Uppercut, Mach Punch, Leech Seed |
-| Victreebel | 100 | Miracle Seed | Razor Leaf, Sludge Bomb, Sleep Powder, Swords Dance |
+| Breloom | 100 | Quick Claw | Spore, Seed Bomb, Mach Punch, Drain Punch |
+| Victreebel | 100 | Miracle Seed | Power Whip, Sludge Bomb, Sleep Powder, Swords Dance |
 | Exeggutor | 100 | Leftovers | Giga Drain, Psychic, Sleep Powder, Explosion |
-| Ludicolo | 100 | Leftovers | Surf, Giga Drain, Ice Beam, Rain Dance |
+| Tangrowth | 100 | Leftovers | Power Whip, Earthquake, Sleep Powder, Knock Off |
 | Sceptile | 100 | Miracle Seed | Leaf Blade, Earthquake, Dragon Claw, Swords Dance |
-| Vileplume | 100 | Leftovers | Giga Drain, Sludge Bomb, Sleep Powder, Leech Seed |
+| Roserade | 100 | Leftovers | Leaf Storm, Sludge Bomb, Spikes, Shadow Ball |
 
 ### Peak Koga
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Tentacruel | 100 | Leftovers | Surf, Sludge Bomb, Ice Beam, Rapid Spin |
-| Venomoth | 100 | Silver Powder | Sludge Bomb, Psychic, Silver Wind, Sleep Powder |
-| Muk | 100 | Leftovers | Sludge Bomb, Fire Punch, Explosion, Curse |
-| Nidoking | 100 | Leftovers | Earthquake, Megahorn, Ice Beam, Thunderbolt |
-| Gengar | 100 | Leftovers | Shadow Ball, Thunderbolt, Hypnosis, Destiny Bond |
-| Weezing | 100 | Leftovers | Sludge Bomb, Fire Blast, Will-O-Wisp, Explosion |
+| Tentacruel | 100 | Leftovers | Scald, Sludge Bomb, Toxic Spikes, Rapid Spin |
+| Venomoth | 100 | Silver Powder | Quiver Dance, Bug Buzz, Sludge Bomb, Sleep Powder |
+| Muk | 100 | Leftovers | Gunk Shot, Shadow Sneak, Drain Punch, Curse |
+| Nidoking | 100 | Leftovers | Earth Power, Sludge Wave, Ice Beam, Thunderbolt |
+| Gengar | 100 | Leftovers | Shadow Ball, Sludge Bomb, Focus Blast, Destiny Bond |
+| Weezing | 100 | Leftovers | Sludge Bomb, Fire Blast, Will-O-Wisp, Toxic Spikes |
 
 ### Peak Sabrina
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Mr. Mime | 100 | Leftovers | Psychic, Thunderbolt, Calm Mind, Substitute |
-| Slowbro | 100 | Leftovers | Surf, Psychic, Calm Mind, Rest |
-| Gardevoir | 100 | Leftovers | Psychic, Thunderbolt, Calm Mind, Hypnosis |
-| Metagross | 100 | Choice Band | Meteor Mash, Earthquake, Explosion, Rock Slide |
-| Espeon | 100 | Leftovers | Psychic, Shadow Ball, Calm Mind, Morning Sun |
-| Alakazam | 100 | Twisted Spoon | Psychic, Shadow Ball, Calm Mind, Recover |
+| Mr. Mime | 100 | Leftovers | Psychic, Dazzling Gleam, Calm Mind, Substitute |
+| Gallade | 100 | Scope Lens | Close Combat, Psycho Cut, Night Slash, Swords Dance |
+| Gardevoir | 100 | Leftovers | Moonblast, Psychic, Calm Mind, Hypnosis |
+| Metagross | 100 | Choice Band | Meteor Mash, Earthquake, Zen Headbutt, Bullet Punch |
+| Espeon | 100 | Leftovers | Psychic, Dazzling Gleam, Calm Mind, Morning Sun |
+| Alakazam | 100 | Twisted Spoon | Psychic, Shadow Ball, Focus Blast, Calm Mind |
 
 ### Peak Blaine
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Rapidash | 100 | Leftovers | Fire Blast, Bounce, Double-Edge, Hypnosis |
-| Ninetales | 100 | Leftovers | Flamethrower, Extrasensory, Will-O-Wisp, Confuse Ray |
-| Magmar | 100 | Charcoal | Fire Blast, Thunderbolt, Psychic, Confuse Ray |
-| Houndoom | 100 | Black Glasses | Flamethrower, Crunch, Sludge Bomb, Roar |
-| Blaziken | 100 | Charcoal | Sky Uppercut, Blaze Kick, Rock Slide, Swords Dance |
-| Arcanine | 100 | Leftovers | Fire Blast, Extreme Speed, Crunch, Roar |
+| Rapidash | 100 | Leftovers | Flare Blitz, Wild Charge, Drill Run, Agility |
+| Ninetales | 100 | Leftovers | Flamethrower, Extrasensory, Nasty Plot, Will-O-Wisp |
+| Magmortar | 100 | Charcoal | Flamethrower, Thunderbolt, Focus Blast, Psychic |
+| Houndoom | 100 | Black Glasses | Flamethrower, Dark Pulse, Nasty Plot, Sludge Bomb |
+| Blaziken | 100 | Charcoal | Close Combat, Flare Blitz, Stone Edge, Swords Dance |
+| Arcanine | 100 | Leftovers | Flare Blitz, Extreme Speed, Crunch, Wild Charge |
 
 ### Peak Giovanni
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Dugtrio | 100 | Choice Band | Earthquake, Rock Slide, Aerial Ace, Slash |
-| Sandslash | 100 | Quick Claw | Earthquake, Rock Slide, Swords Dance, Slash |
-| Marowak | 100 | Thick Club | Earthquake, Rock Slide, Double-Edge, Swords Dance |
-| Nidoqueen | 100 | Leftovers | Earthquake, Ice Beam, Thunderbolt, Superpower |
-| Nidoking | 100 | Leftovers | Earthquake, Megahorn, Ice Beam, Thunderbolt |
-| Rhydon | 100 | Quick Claw | Earthquake, Rock Slide, Megahorn, Swords Dance |
+| Dugtrio | 100 | Choice Band | Earthquake, Stone Edge, Sucker Punch, Aerial Ace |
+| Sandslash | 100 | Quick Claw | Earthquake, Stone Edge, Swords Dance, X-Scissor |
+| Marowak | 100 | Thick Club | Earthquake, Stone Edge, Double-Edge, Swords Dance |
+| Nidoqueen | 100 | Leftovers | Earth Power, Ice Beam, Sludge Wave, Stealth Rock |
+| Nidoking | 100 | Leftovers | Earth Power, Sludge Wave, Ice Beam, Thunderbolt |
+| Rhyperior | 100 | Quick Claw | Earthquake, Stone Edge, Megahorn, Swords Dance |
 
 ### Peak Lorelei
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Dewgong | 100 | Leftovers | Ice Beam, Surf, Rest, Sleep Talk |
-| Cloyster | 100 | Never-Melt Ice | Icicle Spear, Spikes, Explosion, Rapid Spin |
-| Jynx | 100 | Never-Melt Ice | Ice Beam, Psychic, Lovely Kiss, Calm Mind |
+| Mamoswine | 100 | Never-Melt Ice | Earthquake, Icicle Crash, Ice Shard, Stone Edge |
+| Cloyster | 100 | Never-Melt Ice | Shell Smash, Icicle Spear, Liquidation, Ice Shard |
+| Jynx | 100 | Never-Melt Ice | Ice Beam, Psychic, Lovely Kiss, Nasty Plot |
 | Walrein | 100 | Leftovers | Ice Beam, Surf, Body Slam, Rest |
-| Glalie | 100 | Quick Claw | Earthquake, Explosion, Crunch, Ice Beam |
+| Froslass | 100 | Quick Claw | Ice Beam, Shadow Ball, Will-O-Wisp, Spikes |
 | Lapras | 100 | Leftovers | Ice Beam, Surf, Thunderbolt, Confuse Ray |
 
 ### Peak Bruno
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Hitmontop | 100 | Leftovers | Hi Jump Kick, Rapid Spin, Earthquake, Rock Slide |
-| Hitmonchan | 100 | Black Belt | Sky Uppercut, Ice Punch, Thunder Punch, Fire Punch |
-| Hitmonlee | 100 | Scope Lens | Hi Jump Kick, Rock Slide, Earthquake, Bulk Up |
-| Hariyama | 100 | Leftovers | Cross Chop, Earthquake, Rock Slide, Fake Out |
-| Heracross | 100 | Choice Band | Megahorn, Brick Break, Rock Slide, Earthquake |
-| Machamp | 100 | Leftovers | Cross Chop, Rock Slide, Earthquake, Bulk Up |
+| Hitmontop | 100 | Leftovers | Close Combat, Rapid Spin, Sucker Punch, Stone Edge |
+| Hitmonchan | 100 | Black Belt | Drain Punch, Ice Punch, Thunder Punch, Bullet Punch |
+| Hitmonlee | 100 | Scope Lens | Hi Jump Kick, Blaze Kick, Stone Edge, Bulk Up |
+| Annihilape | 100 | Leftovers | Close Combat, Shadow Claw, Bulk Up, U-turn |
+| Heracross | 100 | Choice Band | Megahorn, Close Combat, Stone Edge, Earthquake |
+| Machamp | 100 | Leftovers | Close Combat, Knock Off, Stone Edge, Bullet Punch |
 
 ### Peak Agatha
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Sableye | 100 | Leftovers | Shadow Ball, Knock Off, Toxic, Protect |
-| Misdreavus | 100 | Leftovers | Shadow Ball, Thunderbolt, Calm Mind, Pain Split |
-| Dusclops | 100 | Leftovers | Shadow Punch, Will-O-Wisp, Curse, Rest |
-| Banette | 100 | Spell Tag | Knock Off, Faint Attack, Will-O-Wisp, Shadow Ball |
-| Crobat | 100 | Sharp Beak | Aerial Ace, Sludge Bomb, Confuse Ray, Toxic |
-| Gengar | 100 | Leftovers | Shadow Ball, Thunderbolt, Psychic, Hypnosis |
+| Sableye | 100 | Leftovers | Knock Off, Shadow Claw, Foul Play, Recover |
+| Mismagius | 100 | Leftovers | Shadow Ball, Dazzling Gleam, Nasty Plot, Thunderbolt |
+| Dusknoir | 100 | Leftovers | Shadow Sneak, Ice Punch, Earthquake, Will-O-Wisp |
+| Banette | 100 | Spell Tag | Knock Off, Shadow Claw, Will-O-Wisp, Shadow Sneak |
+| Crobat | 100 | Sharp Beak | Brave Bird, Cross Poison, U-turn, Roost |
+| Gengar | 100 | Leftovers | Shadow Ball, Sludge Bomb, Focus Blast, Nasty Plot |
 
 ### Peak Lance
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Kingdra | 100 | Mystic Water | Hydro Pump, Ice Beam, Dragon Breath, Rain Dance |
-| Aerodactyl | 100 | Scope Lens | Rock Slide, Earthquake, Aerial Ace, Double-Edge |
-| Altaria | 100 | Leftovers | Dragon Dance, Dragon Claw, Earthquake, Iron Tail |
-| Flygon | 100 | Soft Sand | Earthquake, Dragon Claw, Rock Slide, Fire Blast |
-| Salamence | 100 | Choice Band | Dragon Claw, Earthquake, Rock Slide, Iron Tail |
-| Dragonite | 100 | Leftovers | Dragon Dance, Dragon Claw, Earthquake, Fire Punch |
+| Kingdra | 100 | Mystic Water | Hydro Pump, Draco Meteor, Ice Beam, Rain Dance |
+| Aerodactyl | 100 | Scope Lens | Stone Edge, Earthquake, Ice Fang, Double-Edge |
+| Altaria | 100 | Leftovers | Dragon Dance, Dragon Claw, Earthquake, Roost |
+| Flygon | 100 | Soft Sand | Earthquake, Dragon Claw, U-turn, Fire Blast |
+| Salamence | 100 | Choice Band | Outrage, Earthquake, Fire Fang, Aerial Ace |
+| Dragonite | 100 | Leftovers | Dragon Dance, Outrage, Extreme Speed, Earthquake |
 
 ### Champion, peak (you chose Charmander)
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Pidgeot | 100 | Sharp Beak | Double-Edge, Aerial Ace, Steel Wing, Quick Attack |
-| Alakazam | 100 | Twisted Spoon | Psychic, Shadow Ball, Calm Mind, Recover |
-| Tyranitar | 100 | Leftovers | Dragon Dance, Rock Slide, Earthquake, Crunch |
-| Exeggutor | 100 | Leftovers | Giga Drain, Psychic, Sleep Powder, Explosion |
-| Arcanine | 100 | Charcoal | Fire Blast, Extreme Speed, Crunch, Roar |
-| Blastoise | 100 | Leftovers | Hydro Pump, Ice Beam, Earthquake, Rapid Spin |
+| Pidgeot | 100 | Sharp Beak | Brave Bird, U-turn, Roost, Quick Attack |
+| Alakazam | 100 | Twisted Spoon | Psychic, Shadow Ball, Focus Blast, Calm Mind |
+| Tyranitar | 100 | Leftovers | Dragon Dance, Stone Edge, Earthquake, Crunch |
+| Exeggutor | 100 | Leftovers | Energy Ball, Psychic, Sleep Powder, Explosion |
+| Arcanine | 100 | Charcoal | Flare Blitz, Extreme Speed, Crunch, Wild Charge |
+| Blastoise | 100 | Leftovers | Shell Smash, Hydro Pump, Ice Beam, Dark Pulse |
 
 ### Champion, peak (you chose Squirtle)
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Pidgeot | 100 | Sharp Beak | Double-Edge, Aerial Ace, Steel Wing, Quick Attack |
-| Alakazam | 100 | Twisted Spoon | Psychic, Shadow Ball, Calm Mind, Recover |
-| Tyranitar | 100 | Leftovers | Dragon Dance, Rock Slide, Earthquake, Crunch |
-| Gyarados | 100 | Leftovers | Dragon Dance, Waterfall, Earthquake, Double-Edge |
-| Arcanine | 100 | Charcoal | Fire Blast, Extreme Speed, Crunch, Roar |
-| Venusaur | 100 | Leftovers | Giga Drain, Sludge Bomb, Sleep Powder, Leech Seed |
+| Pidgeot | 100 | Sharp Beak | Brave Bird, U-turn, Roost, Quick Attack |
+| Alakazam | 100 | Twisted Spoon | Psychic, Shadow Ball, Focus Blast, Calm Mind |
+| Tyranitar | 100 | Leftovers | Dragon Dance, Stone Edge, Earthquake, Crunch |
+| Gyarados | 100 | Leftovers | Dragon Dance, Waterfall, Earthquake, Crunch |
+| Arcanine | 100 | Charcoal | Flare Blitz, Extreme Speed, Crunch, Wild Charge |
+| Venusaur | 100 | Leftovers | Giga Drain, Sludge Bomb, Sleep Powder, Earth Power |
 
 ### Champion, peak (you chose Bulbasaur)
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Pidgeot | 100 | Sharp Beak | Double-Edge, Aerial Ace, Steel Wing, Quick Attack |
-| Alakazam | 100 | Twisted Spoon | Psychic, Shadow Ball, Calm Mind, Recover |
-| Tyranitar | 100 | Leftovers | Dragon Dance, Rock Slide, Earthquake, Crunch |
-| Exeggutor | 100 | Leftovers | Giga Drain, Psychic, Sleep Powder, Explosion |
-| Gyarados | 100 | Leftovers | Dragon Dance, Waterfall, Earthquake, Double-Edge |
-| Charizard | 100 | Charcoal | Fire Blast, Dragon Breath, Solar Beam, Sunny Day |
+| Pidgeot | 100 | Sharp Beak | Brave Bird, U-turn, Roost, Quick Attack |
+| Alakazam | 100 | Twisted Spoon | Psychic, Shadow Ball, Focus Blast, Calm Mind |
+| Tyranitar | 100 | Leftovers | Dragon Dance, Stone Edge, Earthquake, Crunch |
+| Exeggutor | 100 | Leftovers | Energy Ball, Psychic, Sleep Powder, Explosion |
+| Gyarados | 100 | Leftovers | Dragon Dance, Waterfall, Earthquake, Crunch |
+| Charizard | 100 | Charcoal | Flamethrower, Air Slash, Dragon Pulse, Focus Blast |
 
 ## All other trainers, by location
 

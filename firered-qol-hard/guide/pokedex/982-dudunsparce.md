@@ -145,13 +145,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
 | Dragon Tail | Dragon | Physical | 60 | 90% | 10 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
-| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
-| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
-| Hex | Ghost | Special | 65 | 100% | 10 | 0 |
 | Pounce | Bug | Physical | 50 | 100% | 20 | 0 |
-| Stealth Rock | Rock | Status | — | — | 20 | 0 |
-| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
-| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
@@ -160,9 +154,15 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Skitter Smack | Bug | Physical | 70 | 90% | 10 | 3 |
 | Smart Strike | Steel | Physical | 70 | — | 10 | 3 |
+| Stealth Rock | Rock | Status | — | — | 20 | 3 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 3 |
+| Tailwind | Flying | Status | — | — | 15 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 5 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 5 |
+| Hex | Ghost | Special | 65 | 100% | 10 | 5 |
 | Hurricane | Flying | Special | 110 | 70% | 10 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |

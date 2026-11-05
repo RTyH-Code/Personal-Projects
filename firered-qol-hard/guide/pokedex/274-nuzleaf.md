@@ -140,18 +140,18 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
 | Defog | Flying | Status | — | — | 15 | 0 |
-| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
-| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
-| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 3 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 | Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 5 |
 | Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

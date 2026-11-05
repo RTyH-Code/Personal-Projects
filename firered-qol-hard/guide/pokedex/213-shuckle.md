@@ -122,15 +122,15 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
-| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
-| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
-| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Skitter Smack | Bug | Physical | 70 | 90% | 10 | 3 |
+| Stealth Rock | Rock | Status | — | — | 20 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 5 |
 | Sludge Wave | Poison | Special | 95 | 100% | 10 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

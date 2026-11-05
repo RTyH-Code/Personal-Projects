@@ -120,11 +120,11 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
-| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
-| Roost | Flying | Status | — | — | 5 | 0 |
-| Tailwind | Flying | Status | — | — | 15 | 0 |
-| Work Up | Normal | Status | — | — | 30 | 0 |
 | Lunge | Bug | Physical | 80 | 100% | 15 | 3 |
+| Roost | Flying | Status | — | — | 5 | 3 |
+| Tailwind | Flying | Status | — | — | 15 | 3 |
+| Work Up | Normal | Status | — | — | 30 | 3 |
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 5 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
 
 ### By breeding (egg moves)

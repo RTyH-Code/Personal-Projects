@@ -136,21 +136,21 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Acid Spray | Poison | Special | 40 | 100% | 20 | 0 |
-| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
 | Flip Turn | Water | Physical | 60 | 100% | 20 | 0 |
-| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
-| Hex | Ghost | Special | 65 | 100% | 10 | 0 |
-| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
-| Toxic Spikes | Poison | Status | — | — | 20 | 0 |
-| Venoshock | Poison | Special | 65 | 100% | 10 | 0 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Toxic Spikes | Poison | Status | — | — | 20 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Brine | Water | Special | 65 | 100% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 5 |
+| Hex | Ghost | Special | 65 | 100% | 10 | 5 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 5 |
 | Sludge Wave | Poison | Special | 95 | 100% | 10 | 5 |
+| Venoshock | Poison | Special | 65 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

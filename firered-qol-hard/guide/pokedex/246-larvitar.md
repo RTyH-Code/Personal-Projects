@@ -128,15 +128,15 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
-| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
-| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Stealth Rock | Rock | Status | — | — | 20 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)

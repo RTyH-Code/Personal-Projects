@@ -107,7 +107,7 @@ IMPLEMENTED = {
     "Filter", "Solid Rock", "Tinted Lens", "Scrappy", "Sniper", "Super Luck", "Skill Link", "No Guard",
     "Wonder Skin", "Tangled Feet", "Snow Cloak", "Sand Rush", "Quick Feet", "Stall", "Big Pecks", "Simple",
     "Contrary", "Overcoat", "Ice Body", "Hydration", "Poison Heal", "Dry Skin", "Magic Guard", "Gluttony",
-    "Friend Guard", "Telepathy",
+    "Friend Guard", "Telepathy", "Motor Drive", "Armor Tail",
     # batch 2
     "Moxie", "Defiant", "Competitive", "Justified", "Rattled", "Steadfast", "Weak Armor", "Anger Point",
     "Sap Sipper", "Storm Drain", "Wind Rider", "Cursed Body", "Poison Touch", "Aftermath", "Regenerator",

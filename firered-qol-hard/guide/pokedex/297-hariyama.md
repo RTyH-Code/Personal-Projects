@@ -136,23 +136,23 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
-| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
-| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
-| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
-| Work Up | Normal | Status | — | — | 30 | 0 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
+| Work Up | Normal | Status | — | — | 30 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Brine | Water | Special | 65 | 100% | 10 | 5 |
 | Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 5 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 

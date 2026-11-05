@@ -127,18 +127,18 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
-| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Defog | Flying | Status | — | — | 15 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
-| Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
 | Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
-| Roost | Flying | Status | — | — | 5 | 0 |
-| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
+| Flame Charge | Fire | Physical | 50 | 100% | 20 | 3 |
 | Mystical Fire | Fire | Special | 75 | 100% | 10 | 3 |
+| Roost | Flying | Status | — | — | 5 | 3 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Tailwind | Flying | Status | — | — | 15 | 3 |
 | U-turn | Bug | Physical | 70 | 100% | 20 | 3 |
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 5 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
 | Flare Blitz | Fire | Physical | 120 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |

@@ -137,12 +137,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
 | Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
-| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
-| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
-| Trick Room | Psychic | Status | — | — | 5 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 3 |
+| Trick Room | Psychic | Status | — | — | 5 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 5 |
 
 ### By breeding (egg moves)
 

@@ -149,15 +149,15 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
 | Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
 | Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
-| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
 | Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
-| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
-| Work Up | Normal | Status | — | — | 30 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 3 |
+| Work Up | Normal | Status | — | — | 30 | 3 |
 | Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 5 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 

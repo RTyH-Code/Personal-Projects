@@ -130,12 +130,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
 | Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
-| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
-| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 5 |
 
 ### By breeding (egg moves)
 

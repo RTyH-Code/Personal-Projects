@@ -130,19 +130,19 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
-| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
-| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Flip Turn | Water | Physical | 60 | 100% | 20 | 0 |
-| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
-| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
-| Trick Room | Psychic | Status | — | — | 5 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
 | Power Gem | Rock | Special | 80 | 100% | 20 | 3 |
 | Psycho Cut | Psychic | Physical | 70 | 100% | 20 | 3 |
 | Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Trick Room | Psychic | Status | — | — | 5 | 3 |
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 5 |
+| Brine | Water | Special | 65 | 100% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 5 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 5 |
 
 ---
 

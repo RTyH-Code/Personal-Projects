@@ -147,17 +147,17 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
-| Hard Press | Steel | Physical | varies | 100% | 10 | 0 |
-| Hex | Ghost | Special | 65 | 100% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
-| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
-| Trick Room | Psychic | Status | — | — | 5 | 0 |
 | Dark Pulse | Dark | Special | 80 | 100% | 15 | 3 |
 | Skitter Smack | Bug | Physical | 70 | 90% | 10 | 3 |
 | Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
+| Trick Room | Psychic | Status | — | — | 5 | 3 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Hard Press | Steel | Physical | varies | 100% | 10 | 5 |
+| Hex | Ghost | Special | 65 | 100% | 10 | 5 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 5 |
 | Poltergeist | Ghost | Physical | 110 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)

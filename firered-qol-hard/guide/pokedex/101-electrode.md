@@ -131,12 +131,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
 | Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
-| Electro Ball | Electric | Special | varies | 100% | 10 | 0 |
-| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
 | Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | Volt Switch | Electric | Special | 70 | 100% | 20 | 3 |
+| Electro Ball | Electric | Special | varies | 100% | 10 | 5 |
 | Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 5 |
 | Supercell Slam | Electric | Physical | 100 | 95% | 15 | 5 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |
 

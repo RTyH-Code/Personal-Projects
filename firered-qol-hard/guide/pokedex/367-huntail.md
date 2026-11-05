@@ -124,10 +124,10 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
-| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 | Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Brine | Water | Special | 65 | 100% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)

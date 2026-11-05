@@ -135,14 +135,14 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
 | Electroweb | Electric | Special | 55 | 95% | 15 | 0 |
-| Electro Ball | Electric | Special | varies | 100% | 10 | 0 |
 | Snarl | Dark | Special | 55 | 95% | 15 | 0 |
 | Thunder Fang | Electric | Physical | 65 | 95% | 15 | 0 |
-| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 3 |
 | Volt Switch | Electric | Special | 70 | 100% | 20 | 3 |
+| Electro Ball | Electric | Special | varies | 100% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
 | Supercell Slam | Electric | Physical | 100 | 95% | 15 | 5 |

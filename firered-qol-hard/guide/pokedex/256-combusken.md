@@ -138,15 +138,15 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Defog | Flying | Status | — | — | 15 | 0 |
 | Dual Chop | Dragon | Physical | 40 | 90% | 15 | 0 |
-| Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
-| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
-| Work Up | Normal | Status | — | — | 30 | 0 |
+| Flame Charge | Fire | Physical | 50 | 100% | 20 | 3 |
+| Hone Claws | Dark | Status | — | — | 15 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Work Up | Normal | Status | — | — | 30 | 3 |
 | Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
 | Flare Blitz | Fire | Physical | 120 | 100% | 15 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |

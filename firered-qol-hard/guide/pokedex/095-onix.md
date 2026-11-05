@@ -141,19 +141,19 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Brutal Swing | Dark | Physical | 60 | 100% | 20 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Dragon Tail | Dragon | Physical | 60 | 90% | 10 | 0 |
-| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
-| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
-| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
 | Rock Polish | Rock | Status | — | — | 20 | 0 |
-| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Dragon Pulse | Dragon | Special | 85 | 100% | 10 | 3 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Stealth Rock | Rock | Status | — | — | 20 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 5 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 5 |
 | High Horsepower | Ground | Physical | 95 | 95% | 10 | 5 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 

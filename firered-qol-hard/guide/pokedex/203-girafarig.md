@@ -136,20 +136,20 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
-| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
-| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
-| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
-| Trick Room | Psychic | Status | — | — | 5 | 0 |
-| Work Up | Normal | Status | — | — | 30 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
 | Psychic Fangs | Psychic | Physical | 85 | 100% | 10 | 3 |
 | Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 3 |
 | Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 3 |
+| Trick Room | Psychic | Status | — | — | 5 | 3 |
+| Work Up | Normal | Status | — | — | 30 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 | Foul Play | Dark | Physical | 95 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 5 |
 | High Horsepower | Ground | Physical | 95 | 95% | 10 | 5 |
 
 ### By breeding (egg moves)

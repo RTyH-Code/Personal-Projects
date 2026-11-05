@@ -138,13 +138,13 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
-| Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
 | Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
-| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
-| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
-| Work Up | Normal | Status | — | — | 30 | 0 |
+| Flame Charge | Fire | Physical | 50 | 100% | 20 | 3 |
 | Mystical Fire | Fire | Special | 75 | 100% | 10 | 3 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 3 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 3 |
+| Work Up | Normal | Status | — | — | 30 | 3 |
 | Flare Blitz | Fire | Physical | 120 | 100% | 15 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 

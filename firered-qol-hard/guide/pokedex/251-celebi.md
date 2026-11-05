@@ -126,20 +126,20 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
-| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
-| Stealth Rock | Rock | Status | — | — | 20 | 0 |
-| Trick Room | Psychic | Status | — | — | 5 | 0 |
 | Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
 | Psycho Cut | Psychic | Physical | 70 | 100% | 20 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Stealth Rock | Rock | Status | — | — | 20 | 3 |
 | Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
+| Trick Room | Psychic | Status | — | — | 5 | 3 |
 | U-turn | Bug | Physical | 70 | 100% | 20 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 5 |
 | Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
 
 ---

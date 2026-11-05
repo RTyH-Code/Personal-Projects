@@ -141,28 +141,28 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
-| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Defog | Flying | Status | — | — | 15 | 0 |
 | Dual Chop | Dragon | Physical | 40 | 90% | 15 | 0 |
-| Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
-| Heat Crash | Fire | Physical | varies | 100% | 10 | 0 |
-| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
-| Work Up | Normal | Status | — | — | 30 | 0 |
 | Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
+| Flame Charge | Fire | Physical | 50 | 100% | 20 | 3 |
+| Hone Claws | Dark | Status | — | — | 15 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
 | U-turn | Bug | Physical | 70 | 100% | 20 | 3 |
+| Work Up | Normal | Status | — | — | 30 | 3 |
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 5 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
 | Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
 | Flare Blitz | Fire | Physical | 120 | 100% | 15 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Heat Crash | Fire | Physical | varies | 100% | 10 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 

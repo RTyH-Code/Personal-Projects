@@ -129,9 +129,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
-| Stealth Rock | Rock | Status | — | — | 20 | 0 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Stealth Rock | Rock | Status | — | — | 20 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |

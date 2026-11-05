@@ -122,8 +122,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Brutal Swing | Dark | Physical | 60 | 100% | 20 | 0 |
 | Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
-| Work Up | Normal | Status | — | — | 30 | 0 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Work Up | Normal | Status | — | — | 30 | 3 |
 
 ### By breeding (egg moves)
 

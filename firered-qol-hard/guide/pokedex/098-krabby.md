@@ -147,12 +147,12 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
-| Brine | Water | Special | 65 | 100% | 10 | 0 |
-| Hone Claws | Dark | Status | — | — | 15 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Razor Shell | Water | Physical | 75 | 95% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 | X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
+| Brine | Water | Special | 65 | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

@@ -193,6 +193,19 @@ TARGETS = {"normal": "MOVE_TARGET_SELECTED", "any": "MOVE_TARGET_SELECTED", "adj
            "randomNormal": "MOVE_TARGET_RANDOM", "foeSide": "MOVE_TARGET_OPPONENTS_FIELD", "allySide": "MOVE_TARGET_USER",
            "all": "MOVE_TARGET_USER", "adjacentAllyOrSelf": "MOVE_TARGET_USER", "allies": "MOVE_TARGET_USER"}
 STRONG_SETUP = {"NASTY_PLOT", "SHELL_SMASH", "QUIVER_DANCE", "SHIFT_GEAR", "COIL", "COTTON_GUARD", "TAIL_GLOW"}
+# tutor badge tiers use the power these moves really hit with, not their listed base power
+EFFECTIVE_POWER = {"HEX": 130, "VENOSHOCK": 130, "BRINE": 130, "ACROBATICS": 110, "PAYBACK": 100, "AVALANCHE": 120,
+                   "GYRO_BALL": 150, "ELECTRO_BALL": 150, "HEAVY_SLAM": 120, "HEAT_CRASH": 120, "GRASS_KNOT": 120,
+                   "WRING_OUT": 120, "HARD_PRESS": 100, "STORED_POWER": 80, "POWER_TRIP": 80, "PUNISHMENT": 80,
+                   "FELL_STINGER": 80, "TRIPLE_AXEL": 120}
+# strong utility moves: 3 badges
+STRONG_UTILITY = {"NUZZLE", "STEALTH_ROCK", "TOXIC_SPIKES", "STICKY_WEB", "TRICK_ROOM", "TAILWIND", "ROOST",
+                  "SUCKER_PUNCH", "FOUL_PLAY", "BODY_PRESS", "PSYSHOCK", "FLAME_CHARGE", "TRAILBLAZE", "HONE_CLAWS", "WORK_UP"}
+
+
+def tutor_tier(mv, power):
+    power = EFFECTIVE_POWER.get(mv, power)
+    return 2 if power >= 90 else 1 if power >= 70 or mv in STRONG_SETUP or mv in STRONG_UTILITY else 0
 TUTOR_FIRST = "MOVE_FAIRY_WIND"
 
 
@@ -480,7 +493,7 @@ tiers = []
 for n, mv in tutor_moves:
     blk = re.search(r"\[%s\] =\s*\{(.*?)\}," % mv, bm, re.S).group(1)
     power = int(re.search(r"\.power = (\d+)", blk).group(1))
-    tiers.append(2 if power >= 90 else 1 if power >= 70 or mv[5:] in STRONG_SETUP else 0)
+    tiers.append(tutor_tier(mv[5:], power))
 rows = []
 for sp in SPECIES:
     ls = sd_species(sp)
@@ -637,8 +650,9 @@ Hack_Text_ModernTutorIntro::
     .string "I'll teach them to your POKéMON for\\n"
     .string "free! Show me more GYM BADGES and\\l"
     .string "I'll teach stronger moves.\\p"
-    .string "3 BADGES for moves with 70 power or\\n"
-    .string "more, 5 BADGES for 90 or more.\\p"
+    .string "Moves with 70 power or more, and\\n"
+    .string "tricky ones, need 3 BADGES. The\\l"
+    .string "strongest need 5 BADGES.\\p"
     .string "Shall I teach your POKéMON?$"
 
 Hack_Text_ModernTutorWhichMon::

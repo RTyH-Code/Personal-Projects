@@ -125,10 +125,10 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
-| Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
 | Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
-| Work Up | Normal | Status | — | — | 30 | 0 |
+| Flame Charge | Fire | Physical | 50 | 100% | 20 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
+| Work Up | Normal | Status | — | — | 30 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Flare Blitz | Fire | Physical | 120 | 100% | 15 | 5 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |

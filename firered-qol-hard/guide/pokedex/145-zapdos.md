@@ -125,18 +125,18 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
-| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Defog | Flying | Status | — | — | 15 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Eerie Impulse | Electric | Status | — | 100% | 15 | 0 |
-| Electro Ball | Electric | Special | varies | 100% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
-| Roost | Flying | Status | — | — | 5 | 0 |
-| Tailwind | Flying | Status | — | — | 15 | 0 |
+| Roost | Flying | Status | — | — | 5 | 3 |
+| Tailwind | Flying | Status | — | — | 15 | 3 |
 | U-turn | Bug | Physical | 70 | 100% | 20 | 3 |
 | Volt Switch | Electric | Special | 70 | 100% | 20 | 3 |
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 5 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
+| Electro Ball | Electric | Special | varies | 100% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Hurricane | Flying | Special | 110 | 70% | 10 | 5 |
 | Supercell Slam | Electric | Physical | 100 | 95% | 15 | 5 |

@@ -131,14 +131,14 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
-| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
-| Work Up | Normal | Status | — | — | 30 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
 | Sucker Punch | Dark | Physical | 70 | 100% | 5 | 3 |
+| Work Up | Normal | Status | — | — | 30 | 3 |
 | X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |

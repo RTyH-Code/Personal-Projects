@@ -119,7 +119,7 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Low Sweep | Fighting | Physical | 65 | 100% | 20 | 0 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
-| Work Up | Normal | Status | — | — | 30 | 0 |
+| Work Up | Normal | Status | — | — | 30 | 3 |
 
 ### By breeding (egg moves)
 

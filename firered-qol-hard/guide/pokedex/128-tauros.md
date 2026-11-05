@@ -133,15 +133,15 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
-| Payback | Dark | Physical | 50 | 100% | 10 | 0 |
-| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
-| Work Up | Normal | Status | — | — | 30 | 0 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Smart Strike | Steel | Physical | 70 | — | 10 | 3 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 3 |
+| Work Up | Normal | Status | — | — | 30 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Close Combat | Fighting | Physical | 120 | 100% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | High Horsepower | Ground | Physical | 95 | 95% | 10 | 5 |
+| Payback | Dark | Physical | 50 | 100% | 10 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |

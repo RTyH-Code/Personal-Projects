@@ -154,19 +154,19 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
 | Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
-| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
-| Stealth Rock | Rock | Status | — | — | 20 | 0 |
-| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
-| Work Up | Normal | Status | — | — | 30 | 0 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
 | Mystical Fire | Fire | Special | 75 | 100% | 10 | 3 |
 | Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
+| Stealth Rock | Rock | Status | — | — | 20 | 3 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 3 |
+| Work Up | Normal | Status | — | — | 30 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 5 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 
 ### By breeding (egg moves)

@@ -136,17 +136,17 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
-| Avalanche | Ice | Physical | 60 | 100% | 10 | 0 |
-| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Frost Breath | Ice | Special | 60 | 90% | 10 | 0 |
-| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
 | Ice Fang | Ice | Physical | 65 | 95% | 15 | 0 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Avalanche | Ice | Physical | 60 | 100% | 10 | 5 |
+| Brine | Water | Special | 65 | 100% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 5 |
 
 ### By breeding (egg moves)
 

@@ -129,20 +129,20 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
-| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
-| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Defog | Flying | Status | — | — | 15 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
-| Roost | Flying | Status | — | — | 5 | 0 |
-| Tailwind | Flying | Status | — | — | 15 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
+| Roost | Flying | Status | — | — | 5 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Tailwind | Flying | Status | — | — | 15 | 3 |
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 5 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Brine | Water | Special | 65 | 100% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
 | Hurricane | Flying | Special | 110 | 70% | 10 | 5 |

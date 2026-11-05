@@ -1,0 +1,2304 @@
+From 7039405ebda5c1eb129f884a17f92fdf6422f79c Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Thu, 5 Nov 2026 02:00:08 +0000
+Subject: [PATCH 39/39] Audit and balance pass after the modernization
+
+Audit:
+- tools/hack/validate.py checks every move, species, learnset, egg move,
+  evolution, Pokedex list, item, trainer party, wild encounter and battle
+  string for missing or inconsistent data.
+- Fix: the Pokedex A-Z and type lists read past their end after the
+  species limit was raised (now one entry per Pokedex number).
+- Fix: Electivire and Farigiraf had an empty first ability slot; Motor
+  Drive and Armor Tail are implemented for them.
+- The AI no longer picks later moves that would do nothing (hazards
+  already up, active Tailwind/Trick Room, set-up moves at +2, ...).
+
+Balance (tools/hack/balance.py):
+- Gym Leaders from Lt. Surge on, the Elite Four and the Champion use some
+  newer moves; levels unchanged.
+- Peak teams get modern sets and some later evolutions.
+- Modern tutor tiers use effective power and gate strong utility moves.
+- The newer held evolution items are sold from the 5th badge.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ HACK_NOTES.md                                 |  35 +-
+ .../scripts.inc                               |  54 ++-
+ .../ViridianCity_PokemonCenter_1F/text.inc    |   5 +-
+ include/battle_util.h                         |   1 +
+ include/constants/abilities.h                 |   4 +-
+ src/battle_ai_script_commands.c               |   8 +
+ src/battle_script_commands.c                  |  13 +
+ src/battle_util.c                             |  45 ++-
+ src/data/pokemon/hack_tutor_learnsets.h       |   2 +-
+ src/data/pokemon/pokedex_orders.h             |   3 -
+ src/data/pokemon/species_info.h               |   4 +-
+ src/data/text/abilities.h                     |   6 +
+ src/data/trainer_parties.h                    | 312 ++++++++---------
+ src/pokedex_screen.c                          |   4 +-
+ tools/hack/abilities.py                       |   2 +-
+ tools/hack/add_species.py                     |   1 +
+ tools/hack/balance.py                         | 255 ++++++++++++++
+ tools/hack/moves.py                           |  20 +-
+ tools/hack/validate.py                        | 319 ++++++++++++++++++
+ 19 files changed, 908 insertions(+), 185 deletions(-)
+ create mode 100644 tools/hack/balance.py
+ create mode 100644 tools/hack/validate.py
+
+diff --git a/HACK_NOTES.md b/HACK_NOTES.md
+index a368377..d0d96f1 100644
+--- a/HACK_NOTES.md
++++ b/HACK_NOTES.md
+@@ -235,6 +235,9 @@ icon, cry, Pokédex entry, modern stats, abilities and learnsets.
+ - Honey Gather is the one exception (FireRed has no Honey), so Teddiursa keeps
+   its other abilities.
+ - Pickpocket steals for the rest of the battle only; items go back afterwards.
++- Two newer abilities for the later evolutions: Motor Drive (Electivire:
++  Electric moves raise its Speed instead of hurting it) and Armor Tail
++  (Farigiraf: foes' priority moves fail against its side).
+ - Critical hits still do double damage (Gen 3); Sniper makes them triple.
+ - Sun, rain and Flash Fire now boost physical Fire and Water moves too (with
+   the physical/special split, moves like Fire Punch had been missing out).
+@@ -321,12 +324,38 @@ haven't beaten. Day Care levels aren't capped.
+ - Every other trainer's levels are scaled by 1.15x.
+ - Regular trainers have at least ~18 IVs. The Elite Four, Champion, Rival and Giovanni have max IVs.
+ - Every trainer uses the smart battle AI.
++- From Lt. Surge on, the Gym Leaders, Elite Four and Champion use some of
++  the newer moves, so their teams keep up with what you can now learn.
++  - Examples: Nuzzle, Volt Switch, Venoshock, Dazzling Gleam, Hex, Flare
++    Blitz, Stone Edge, Shell Smash, Close Combat, Stealth Rock, Hurricane.
++  - Brock and Misty are unchanged, and no levels changed.
++- The AI won't waste turns on later moves that would do nothing, such as
++  hazards that are already up, Tailwind or Trick Room while they're active,
++  or set-up moves at +2.
++
++### Balance of the newer content
++- **Modern tutor tiers:**
++  - Moves whose power depends on the battle are tiered by how hard they
++    really hit. Hex, Venoshock, Brine, Acrobatics, Gyro Ball, Electro Ball,
++    Heavy Slam, Heat Crash, Grass Knot, Payback, Avalanche, Wring Out, Hard
++    Press and Triple Axel need 5 badges.
++  - Strong utility moves need 3 badges: Nuzzle, Stealth Rock, Toxic Spikes,
++    Sticky Web, Trick Room, Tailwind, Roost, Sucker Punch, Foul Play, Body
++    Press, Psyshock, Flame Charge, Trailblaze, Hone Claws, Work Up, Stored
++    Power, Power Trip, Punishment and Fell Stinger.
++- **Evolution items:**
++  - The stones (including Dusk, Shiny, Dawn and Ice) are sold at the
++    Celadon Dept. Store 4F from the start.
++  - The newer held evolution items (Razor Claw, Razor Fang, Protector,
++    Electirizer, Magmarizer, Dubious Disc, Reaper Cloth, Peat Block and
++    Black Augurite) appear there once you have 5 badges.
+ 
+ ## Post-game peak trainers
+ - **Gym Leader rematches:** once you're Champion, talk to any Gym Leader
+   for a rematch, as many times as you like. Each one fields six Lv. 100
+-  Pokémon from Gen 1–3 that fit their type, e.g. Brock: Golem, Omastar,
+-  Kabutops, Aggron, Steelix and Tyranitar.
++  Pokémon that fit their type, with modern moves and some of the later
++  evolutions, e.g. Brock: Golem, Omastar, Kabutops, Probopass, Rhyperior
++  and Tyranitar.
+ - **Elite Four round 3:** a League official (gentleman) in the Indigo Plateau
+   Pokémon Center switches the "peak" challenge on or off. When it's on,
+   the Elite Four and Champion each use six Lv. 100 Pokémon.
+@@ -357,6 +386,8 @@ Each script runs once against the original pret data:
+ - `peak_trainers.py`: peak teams, gym rematches and the Elite Four round 3.
+ - `add_species.py <showdown>/data <expansion> NAME`: adds a later Pokémon in
+   an unused species slot, with its graphics, cry, Pokédex entry and evolution item.
++- `balance.py`: modern boss movesets, peak teams with the later evolutions.
++- `validate.py`: checks the game data for missing or inconsistent entries.
+ - `moves.py <showdown>/data <batch>`: later moves, the modern tutor and its data;
+   `moves_engine_b2.py` and `moves_engine_b3.py` add the battle effects
+   batches 2 and 3 need.
+diff --git a/data/maps/CeladonCity_DepartmentStore_4F/scripts.inc b/data/maps/CeladonCity_DepartmentStore_4F/scripts.inc
+index 3e7a382..01daec0 100644
+--- a/data/maps/CeladonCity_DepartmentStore_4F/scripts.inc
++++ b/data/maps/CeladonCity_DepartmentStore_4F/scripts.inc
+@@ -19,11 +19,19 @@ CeladonCity_DepartmentStore_4F_EventScript_Clerk::
+ 	faceplayer
+ 	message Text_MayIHelpYou
+ 	waitmessage
++	@ FireRed QoL+Hard: the newer evolution items are sold from the 5th badge on
++	goto_if_set FLAG_BADGE05_GET, CeladonCity_DepartmentStore_4F_EventScript_ClerkAll
+ 	pokemart CeladonCity_DepartmentStore_4F_Items
+ 	msgbox Text_PleaseComeAgain
+ 	release
+ 	end
+ 
++CeladonCity_DepartmentStore_4F_EventScript_ClerkAll::
++	pokemart CeladonCity_DepartmentStore_4F_ItemsAll
++	msgbox Text_PleaseComeAgain
++	release
++	end
++
+ 	.align 2
+ CeladonCity_DepartmentStore_4F_Items::
+ 	.2byte ITEM_POKE_DOLL
+@@ -34,25 +42,49 @@ CeladonCity_DepartmentStore_4F_Items::
+ 	.2byte ITEM_LEAF_STONE
+ 	.2byte ITEM_MOON_STONE
+ 	.2byte ITEM_SUN_STONE
++	.2byte ITEM_DUSK_STONE
++	.2byte ITEM_SHINY_STONE
++	.2byte ITEM_DAWN_STONE
++	.2byte ITEM_ICE_STONE
+ 	.2byte ITEM_KINGS_ROCK
+ 	.2byte ITEM_METAL_COAT
+ 	.2byte ITEM_DRAGON_SCALE
+ 	.2byte ITEM_UP_GRADE
+-	.2byte ITEM_BLACK_AUGURITE
+-	.2byte ITEM_ICE_STONE
+-	.2byte ITEM_DAWN_STONE
+-	.2byte ITEM_PEAT_BLOCK
++	.2byte ITEM_DEEP_SEA_TOOTH
++	.2byte ITEM_DEEP_SEA_SCALE
++	.2byte ITEM_NONE
++	release
++	end
++
++	.align 2
++CeladonCity_DepartmentStore_4F_ItemsAll::
++	.2byte ITEM_POKE_DOLL
++	.2byte ITEM_RETRO_MAIL
++	.2byte ITEM_FIRE_STONE
++	.2byte ITEM_THUNDER_STONE
++	.2byte ITEM_WATER_STONE
++	.2byte ITEM_LEAF_STONE
++	.2byte ITEM_MOON_STONE
++	.2byte ITEM_SUN_STONE
+ 	.2byte ITEM_DUSK_STONE
+-	.2byte ITEM_REAPER_CLOTH
+-	.2byte ITEM_DUBIOUS_DISC
+-	.2byte ITEM_RAZOR_FANG
+ 	.2byte ITEM_SHINY_STONE
+-	.2byte ITEM_MAGMARIZER
+-	.2byte ITEM_ELECTIRIZER
+-	.2byte ITEM_PROTECTOR
+-	.2byte ITEM_RAZOR_CLAW
++	.2byte ITEM_DAWN_STONE
++	.2byte ITEM_ICE_STONE
++	.2byte ITEM_KINGS_ROCK
++	.2byte ITEM_METAL_COAT
++	.2byte ITEM_DRAGON_SCALE
++	.2byte ITEM_UP_GRADE
+ 	.2byte ITEM_DEEP_SEA_TOOTH
+ 	.2byte ITEM_DEEP_SEA_SCALE
++	.2byte ITEM_RAZOR_CLAW
++	.2byte ITEM_RAZOR_FANG
++	.2byte ITEM_PROTECTOR
++	.2byte ITEM_ELECTIRIZER
++	.2byte ITEM_MAGMARIZER
++	.2byte ITEM_DUBIOUS_DISC
++	.2byte ITEM_REAPER_CLOTH
++	.2byte ITEM_PEAT_BLOCK
++	.2byte ITEM_BLACK_AUGURITE
+ 	.2byte ITEM_NONE
+ 	release
+ 	end
+diff --git a/data/maps/ViridianCity_PokemonCenter_1F/text.inc b/data/maps/ViridianCity_PokemonCenter_1F/text.inc
+index f0d08ed..6ffb615 100644
+--- a/data/maps/ViridianCity_PokemonCenter_1F/text.inc
++++ b/data/maps/ViridianCity_PokemonCenter_1F/text.inc
+@@ -53,8 +53,9 @@ Hack_Text_ModernTutorIntro::
+     .string "I'll teach them to your POKéMON for\n"
+     .string "free! Show me more GYM BADGES and\l"
+     .string "I'll teach stronger moves.\p"
+-    .string "3 BADGES for moves with 70 power or\n"
+-    .string "more, 5 BADGES for 90 or more.\p"
++    .string "Moves with 70 power or more, and\n"
++    .string "tricky ones, need 3 BADGES. The\l"
++    .string "strongest need 5 BADGES.\p"
+     .string "Shall I teach your POKéMON?$"
+ 
+ Hack_Text_ModernTutorWhichMon::
+diff --git a/include/battle_util.h b/include/battle_util.h
+index 8318183..f41a74b 100644
+--- a/include/battle_util.h
++++ b/include/battle_util.h
+@@ -44,6 +44,7 @@ bool8 Hack_IsWindMove(u16 move);
+ bool8 Hack_FoeHasUnnerve(u8 battler);
+ bool8 Hack_AbilityStatChange(u8 battler, u8 stat, s8 amount);
+ bool8 Hack_MoveEndAbilities(void);
++bool8 Hack_AIMoveIsPointless(u16 move);
+ 
+ // FireRed QoL+Hard: field effects from later moves (reset at the start of each battle)
+ struct HackField
+diff --git a/include/constants/abilities.h b/include/constants/abilities.h
+index 7bd459f..21ee846 100644
+--- a/include/constants/abilities.h
++++ b/include/constants/abilities.h
+@@ -156,7 +156,9 @@
+ #define ABILITY_SOLID_ROCK         150
+ #define ABILITY_TOXIC_BOOST        151
+ #define ABILITY_PROTEAN            152
++#define ABILITY_MOTOR_DRIVE        153
++#define ABILITY_ARMOR_TAIL         154
+ 
+-#define ABILITIES_COUNT 153
++#define ABILITIES_COUNT 155
+ 
+ #endif  // GUARD_CONSTANTS_ABILITIES_H
+diff --git a/src/battle_ai_script_commands.c b/src/battle_ai_script_commands.c
+index 74a3077..34c519f 100644
+--- a/src/battle_ai_script_commands.c
++++ b/src/battle_ai_script_commands.c
+@@ -445,6 +445,14 @@ static void BattleAI_DoAIProcessing(void)
+             }
+             if (AI_THINKING_STRUCT->aiAction & AI_ACTION_DONE)
+             {
++                // FireRed QoL+Hard: don't pick later moves that would do nothing
++                if (AI_THINKING_STRUCT->moveConsidered != MOVE_NONE && Hack_AIMoveIsPointless(AI_THINKING_STRUCT->moveConsidered))
++                {
++                    if (AI_THINKING_STRUCT->score[AI_THINKING_STRUCT->movesetIndex] > 10)
++                        AI_THINKING_STRUCT->score[AI_THINKING_STRUCT->movesetIndex] -= 10;
++                    else
++                        AI_THINKING_STRUCT->score[AI_THINKING_STRUCT->movesetIndex] = 0;
++                }
+                 AI_THINKING_STRUCT->movesetIndex++;
+ 
+                 if (AI_THINKING_STRUCT->movesetIndex < MAX_MON_MOVES && (AI_THINKING_STRUCT->aiAction & AI_ACTION_DO_NOT_ATTACK) == 0)
+diff --git a/src/battle_script_commands.c b/src/battle_script_commands.c
+index c4dc4d6..ac82a55 100644
+--- a/src/battle_script_commands.c
++++ b/src/battle_script_commands.c
+@@ -1065,6 +1065,19 @@ static void Cmd_accuracycheck(void)
+             JumpIfMoveFailed(7, move);
+             return;
+         }
++        // Armor Tail: the foe's side can't be hit by priority moves
++        if (gBattlerTarget != gBattlerAttacker && GetBattlerSide(gBattlerTarget) != GetBattlerSide(gBattlerAttacker)
++         && gBattleMoves[move].priority + (gBattleMons[gBattlerAttacker].ability == ABILITY_PRANKSTER && gBattleMoves[move].power == 0) > 0)
++        {
++            u8 partner = gBattlerTarget ^ BIT_FLANK;
++            if (gBattleMons[gBattlerTarget].ability == ABILITY_ARMOR_TAIL
++             || ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE) && gBattleMons[partner].hp != 0 && gBattleMons[partner].ability == ABILITY_ARMOR_TAIL))
++            {
++                gMoveResultFlags |= MOVE_RESULT_DOESNT_AFFECT_FOE;
++                JumpIfMoveFailed(7, move);
++                return;
++            }
++        }
+         // Telepathy dodges allies' attacks
+         if (gBattleMons[gBattlerTarget].ability == ABILITY_TELEPATHY && gBattlerTarget != gBattlerAttacker
+          && GetBattlerSide(gBattlerTarget) == GetBattlerSide(gBattlerAttacker) && gBattleMoves[move].power != 0)
+diff --git a/src/battle_util.c b/src/battle_util.c
+index 720836a..68bb90d 100644
+--- a/src/battle_util.c
++++ b/src/battle_util.c
+@@ -2038,15 +2038,17 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
+                     break;
+                 case ABILITY_SAP_SIPPER:
+                 case ABILITY_LIGHTNING_ROD:
++                case ABILITY_MOTOR_DRIVE:
+                 case ABILITY_STORM_DRAIN:
+                 case ABILITY_WIND_RIDER:
+                     if (battler != gBattlerAttacker
+                      && ((gLastUsedAbility == ABILITY_SAP_SIPPER && moveType == TYPE_GRASS)
+                       || (gLastUsedAbility == ABILITY_STORM_DRAIN && moveType == TYPE_WATER)
+                       || (gLastUsedAbility == ABILITY_LIGHTNING_ROD && moveType == TYPE_ELECTRIC)
++                      || (gLastUsedAbility == ABILITY_MOTOR_DRIVE && moveType == TYPE_ELECTRIC)
+                       || (gLastUsedAbility == ABILITY_WIND_RIDER && Hack_IsWindMove(move))))
+                     {
+-                        if (Hack_AbilityStatChange(battler, (gLastUsedAbility == ABILITY_STORM_DRAIN || gLastUsedAbility == ABILITY_LIGHTNING_ROD) ? STAT_SPATK : STAT_ATK, 1))
++                        if (Hack_AbilityStatChange(battler, (gLastUsedAbility == ABILITY_STORM_DRAIN || gLastUsedAbility == ABILITY_LIGHTNING_ROD) ? STAT_SPATK : gLastUsedAbility == ABILITY_MOTOR_DRIVE ? STAT_SPEED : STAT_ATK, 1))
+                             gBattlescriptCurrInstr = gProtectStructs[gBattlerAttacker].notFirstStrike ? BattleScript_HackAbsorbStatUp : BattleScript_HackAbsorbStatUp_PPLoss;
+                         else
+                             gBattlescriptCurrInstr = gProtectStructs[gBattlerAttacker].notFirstStrike ? BattleScript_MonMadeMoveUseless : BattleScript_MonMadeMoveUseless_PPLoss;
+@@ -3754,6 +3756,46 @@ void Hack_BS_UTurnCheck(void)
+         gBattlescriptCurrInstr = BattleScript_HackUTurnEnd;
+ }
+ 
++// The AI doesn't know the later moves' conditions: tell it when one would do nothing
++bool8 Hack_AIMoveIsPointless(u16 move)
++{
++    u8 side = GetBattlerSide(gBattlerAttacker);
++    u8 foe = side ^ BIT_SIDE;
++    u8 i;
++    bool8 any = FALSE;
++
++    switch (move)
++    {
++    case MOVE_STEALTH_ROCK:
++        return gHackField.stealthRock[foe];
++    case MOVE_STICKY_WEB:
++        return gHackField.stickyWeb[foe];
++    case MOVE_TOXIC_SPIKES:
++        return gHackField.toxicSpikes[foe] >= 2;
++    case MOVE_TAILWIND:
++        return Hack_TailwindActive(side);
++    case MOVE_TRICK_ROOM:
++        return Hack_TrickRoomActive();
++    case MOVE_POLTERGEIST:
++        return gBattleMons[gBattlerTarget].item == ITEM_NONE;
++    case MOVE_DEFOG:
++        return !Hack_SideHasHazards(side) && !(gSideStatuses[side] & SIDE_STATUS_SPIKES)
++            && !(gSideStatuses[foe] & (SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN));
++    }
++    if (gBattleMoves[move].effect != EFFECT_HACK_STAT_SET)
++        return FALSE;
++    // set-up moves: pointless once every stat they raise is already at +2 or more
++    for (i = 0; i < ARRAY_COUNT(sHackMoveStatChanges); i++)
++    {
++        if (sHackMoveStatChanges[i].move != move || sHackMoveStatChanges[i].amount < 0)
++            continue;
++        any = TRUE;
++        if (gBattleMons[gBattlerAttacker].statStages[sHackMoveStatChanges[i].stat] < DEFAULT_STAT_STAGE + 2)
++            return FALSE;
++    }
++    return any;
++}
++
+ bool8 Hack_MoveEndAbilities(void)
+ {
+     u8 i;
+@@ -4226,6 +4268,7 @@ static bool8 Hack_IsBreakable(u8 ability)
+     case ABILITY_OBLIVIOUS: case ABILITY_OVERCOAT: case ABILITY_OWN_TEMPO: case ABILITY_SAND_VEIL:
+     case ABILITY_SAP_SIPPER: case ABILITY_SHELL_ARMOR: case ABILITY_SHIELD_DUST: case ABILITY_SIMPLE:
+     case ABILITY_SNOW_CLOAK: case ABILITY_SOLID_ROCK: case ABILITY_SOUNDPROOF: case ABILITY_STICKY_HOLD:
++    case ABILITY_MOTOR_DRIVE: case ABILITY_ARMOR_TAIL:
+     case ABILITY_STORM_DRAIN: case ABILITY_STURDY: case ABILITY_SUCTION_CUPS: case ABILITY_TANGLED_FEET:
+     case ABILITY_TELEPATHY: case ABILITY_THICK_FAT: case ABILITY_UNAWARE: case ABILITY_VITAL_SPIRIT:
+     case ABILITY_VOLT_ABSORB: case ABILITY_WATER_ABSORB: case ABILITY_WATER_VEIL: case ABILITY_WHITE_SMOKE:
+diff --git a/src/data/pokemon/hack_tutor_learnsets.h b/src/data/pokemon/hack_tutor_learnsets.h
+index ff7ce07..1538ca4 100644
+--- a/src/data/pokemon/hack_tutor_learnsets.h
++++ b/src/data/pokemon/hack_tutor_learnsets.h
+@@ -7,7 +7,7 @@
+ #define HACK_TUTOR_BYTES 19
+ 
+ // 0 = always, 1 = needs 3 badges, 2 = needs 5 badges
+-static const u8 sHackTutorTier[] = {0, 0, 0, 1, 2, 2, 1, 1, 0, 1, 1, 2, 0, 0, 0, 0, 0, 1, 2, 1, 2, 0, 0, 1, 2, 1, 0, 1, 2, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1, 2, 0, 1, 1, 1, 2, 1, 2, 2, 2, 0, 2, 1, 1, 1, 1, 0, 0, 2, 0, 0, 1, 0, 1, 2, 2, 0, 0, 1, 2, 0, 2, 2, 0, 2, 1, 0, 1, 1, 1, 0, 0, 1, 2, 2, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 1, 1, 0, 0, 2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 2, 2, 0, 0, 2, 2, 2, 0, 1, 0, 0, 1, 2};
++static const u8 sHackTutorTier[] = {0, 0, 0, 1, 2, 2, 1, 1, 0, 1, 1, 2, 0, 0, 0, 0, 0, 1, 2, 1, 2, 0, 0, 1, 2, 1, 0, 1, 2, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1, 2, 0, 1, 1, 1, 2, 1, 2, 2, 2, 2, 2, 1, 1, 1, 1, 0, 1, 2, 0, 0, 1, 2, 1, 2, 2, 0, 0, 1, 2, 0, 2, 2, 0, 2, 1, 0, 1, 1, 1, 1, 1, 1, 2, 2, 1, 0, 1, 0, 2, 2, 0, 0, 0, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 1, 2, 2, 1, 1, 0, 0, 2, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 2, 1, 2, 2, 1, 2, 2, 2, 0, 2, 2, 2, 2, 0, 1, 0, 0, 1, 2};
+ 
+ static const u8 sHackTutorLearnsets[NUM_SPECIES][HACK_TUTOR_BYTES] =
+ {
+diff --git a/src/data/pokemon/pokedex_orders.h b/src/data/pokemon/pokedex_orders.h
+index 5acd76c..7057090 100644
+--- a/src/data/pokemon/pokedex_orders.h
++++ b/src/data/pokemon/pokedex_orders.h
+@@ -1314,9 +1314,6 @@ const u16 gPokedexOrder_Type[] =
+     SPECIES_ZANGOOSE,
+     SPECIES_CASTFORM,
+     SPECIES_KECLEON,
+-    SPECIES_OLD_UNOWN_B,
+-    SPECIES_OLD_UNOWN_C,
+-    SPECIES_OLD_UNOWN_D,
+     SPECIES_PIDGEY,
+     SPECIES_PIDGEOTTO,
+     SPECIES_PIDGEOT,
+diff --git a/src/data/pokemon/species_info.h b/src/data/pokemon/species_info.h
+index 748a08e..2ae004c 100644
+--- a/src/data/pokemon/species_info.h
++++ b/src/data/pokemon/species_info.h
+@@ -7570,7 +7570,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_FAST,
+         .eggGroups = {EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE},
+-        .abilities = {ABILITY_NONE, ABILITY_NONE, ABILITY_VITAL_SPIRIT},
++        .abilities = {ABILITY_MOTOR_DRIVE, ABILITY_NONE, ABILITY_VITAL_SPIRIT},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_YELLOW,
+         .noFlip = FALSE,
+@@ -7918,7 +7918,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
+         .friendship = 70,
+         .growthRate = GROWTH_MEDIUM_FAST,
+         .eggGroups = {EGG_GROUP_FIELD, EGG_GROUP_FIELD},
+-        .abilities = {ABILITY_NONE, ABILITY_NONE, ABILITY_SAP_SIPPER},
++        .abilities = {ABILITY_ARMOR_TAIL, ABILITY_NONE, ABILITY_SAP_SIPPER},
+         .safariZoneFleeRate = 0,
+         .bodyColor = BODY_COLOR_BROWN,
+         .noFlip = FALSE,
+diff --git a/src/data/text/abilities.h b/src/data/text/abilities.h
+index 57ced3a..eaa54a8 100644
+--- a/src/data/text/abilities.h
++++ b/src/data/text/abilities.h
+@@ -147,6 +147,8 @@ static const u8 sHackMoldBreakerDescription[] = _("Ignores the foe's ability.");
+ static const u8 sHackImposterDescription[] = _("Transforms into the foe.");
+ static const u8 sHackHoneyGatherDescription[] = _("May gather HONEY.");
+ static const u8 sHackWindRiderDescription[] = _("Wind moves raise ATTACK.");
++static const u8 sHackMotorDriveDescription[] = _("ELECTRIC moves raise SPEED.");
++static const u8 sHackArmorTailDescription[] = _("Blocks priority moves.");
+ static const u8 sHackStallDescription[] = _("Moves after the foe.");
+ static const u8 sHackSimpleDescription[] = _("Doubles stat changes.");
+ static const u8 sHackSolidRockDescription[] = _("Weakens super effective hits.");
+@@ -308,6 +310,8 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
+     [ABILITY_SOLID_ROCK] = sHackSolidRockDescription,
+     [ABILITY_TOXIC_BOOST] = sHackToxicBoostDescription,
+     [ABILITY_PROTEAN] = sHackProteanDescription,
++    [ABILITY_MOTOR_DRIVE] = sHackMotorDriveDescription,
++    [ABILITY_ARMOR_TAIL] = sHackArmorTailDescription,
+ };
+ 
+ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
+@@ -465,4 +469,6 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
+     [ABILITY_SOLID_ROCK] = _("SOLID ROCK"),
+     [ABILITY_TOXIC_BOOST] = _("TOXIC BOOST"),
+     [ABILITY_PROTEAN] = _("PROTEAN"),
++    [ABILITY_MOTOR_DRIVE] = _("MOTOR DRIVE"),
++    [ABILITY_ARMOR_TAIL] = _("ARMOR TAIL"),
+ };
+diff --git a/src/data/trainer_parties.h b/src/data/trainer_parties.h
+index a60d1fc..e6cfe5b 100644
+--- a/src/data/trainer_parties.h
++++ b/src/data/trainer_parties.h
+@@ -4146,14 +4146,14 @@ static const struct TrainerMonItemCustomMoves sParty_LeaderGiovanni[] = {
+         .lvl = 49,
+         .species = SPECIES_SANDSLASH,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_EARTHQUAKE, MOVE_SLASH, MOVE_SAND_TOMB, MOVE_SWIFT},
++        .moves = {MOVE_EARTHQUAKE, MOVE_SLASH, MOVE_SAND_TOMB, MOVE_X_SCISSOR},
+     },
+     {
+         .iv = 255,
+         .lvl = 49,
+         .species = SPECIES_DUGTRIO,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_EARTHQUAKE, MOVE_SLASH, MOVE_SAND_ATTACK, MOVE_FURY_SWIPES},
++        .moves = {MOVE_EARTHQUAKE, MOVE_SUCKER_PUNCH, MOVE_SAND_ATTACK, MOVE_STONE_EDGE},
+     },
+     {
+         .iv = 255,
+@@ -4181,7 +4181,7 @@ static const struct TrainerMonItemCustomMoves sParty_LeaderGiovanni[] = {
+         .lvl = 54,
+         .species = SPECIES_RHYDON,
+         .heldItem = ITEM_SOFT_SAND,
+-        .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_MEGAHORN, MOVE_SCARY_FACE},
++        .moves = {MOVE_EARTHQUAKE, MOVE_STONE_EDGE, MOVE_MEGAHORN, MOVE_SCARY_FACE},
+     },
+ };
+ 
+@@ -5467,35 +5467,35 @@ static const struct TrainerMonItemCustomMoves sParty_EliteFourLorelei[] = {
+         .lvl = 60,
+         .species = SPECIES_DEWGONG,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_ICE_BEAM, MOVE_SURF, MOVE_HAIL, MOVE_SAFEGUARD},
++        .moves = {MOVE_ICE_BEAM, MOVE_SURF, MOVE_AQUA_JET, MOVE_SAFEGUARD},
+     },
+     {
+         .iv = 255,
+         .lvl = 59,
+         .species = SPECIES_CLOYSTER,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_SPIKES, MOVE_PROTECT, MOVE_HAIL, MOVE_DIVE},
++        .moves = {MOVE_SHELL_SMASH, MOVE_ICICLE_SPEAR, MOVE_LIQUIDATION, MOVE_ICE_SHARD},
+     },
+     {
+         .iv = 255,
+         .lvl = 60,
+         .species = SPECIES_SLOWBRO,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_ICE_BEAM, MOVE_SURF, MOVE_AMNESIA, MOVE_YAWN},
++        .moves = {MOVE_SCALD, MOVE_PSYCHIC, MOVE_AMNESIA, MOVE_YAWN},
+     },
+     {
+         .iv = 255,
+         .lvl = 62,
+         .species = SPECIES_JYNX,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_ICE_PUNCH, MOVE_DOUBLE_SLAP, MOVE_LOVELY_KISS, MOVE_ATTRACT},
++        .moves = {MOVE_ICE_BEAM, MOVE_PSYSHOCK, MOVE_LOVELY_KISS, MOVE_NASTY_PLOT},
+     },
+     {
+         .iv = 255,
+         .lvl = 62,
+         .species = SPECIES_LAPRAS,
+         .heldItem = ITEM_SITRUS_BERRY,
+-        .moves = {MOVE_CONFUSE_RAY, MOVE_ICE_BEAM, MOVE_SURF, MOVE_BODY_SLAM},
++        .moves = {MOVE_ICE_BEAM, MOVE_SURF, MOVE_THUNDERBOLT, MOVE_CONFUSE_RAY},
+     },
+ };
+ 
+@@ -5505,35 +5505,35 @@ static const struct TrainerMonItemCustomMoves sParty_EliteFourBruno[] = {
+         .lvl = 59,
+         .species = SPECIES_ONIX,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_TOMB, MOVE_IRON_TAIL, MOVE_ROAR},
++        .moves = {MOVE_EARTHQUAKE, MOVE_STONE_EDGE, MOVE_IRON_TAIL, MOVE_STEALTH_ROCK},
+     },
+     {
+         .iv = 255,
+         .lvl = 61,
+         .species = SPECIES_HITMONCHAN,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_SKY_UPPERCUT, MOVE_MACH_PUNCH, MOVE_ROCK_TOMB, MOVE_COUNTER},
++        .moves = {MOVE_DRAIN_PUNCH, MOVE_MACH_PUNCH, MOVE_ICE_PUNCH, MOVE_BULLET_PUNCH},
+     },
+     {
+         .iv = 255,
+         .lvl = 61,
+         .species = SPECIES_HITMONLEE,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_MEGA_KICK, MOVE_FORESIGHT, MOVE_BRICK_BREAK, MOVE_FACADE},
++        .moves = {MOVE_HI_JUMP_KICK, MOVE_ROCK_SLIDE, MOVE_BLAZE_KICK, MOVE_FAKE_OUT},
+     },
+     {
+         .iv = 255,
+         .lvl = 62,
+         .species = SPECIES_ONIX,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_DOUBLE_EDGE, MOVE_EARTHQUAKE, MOVE_IRON_TAIL, MOVE_SAND_TOMB},
++        .moves = {MOVE_ROCK_POLISH, MOVE_EARTHQUAKE, MOVE_STONE_EDGE, MOVE_IRON_TAIL},
+     },
+     {
+         .iv = 255,
+         .lvl = 64,
+         .species = SPECIES_MACHAMP,
+         .heldItem = ITEM_SITRUS_BERRY,
+-        .moves = {MOVE_CROSS_CHOP, MOVE_BULK_UP, MOVE_SCARY_FACE, MOVE_ROCK_TOMB},
++        .moves = {MOVE_CLOSE_COMBAT, MOVE_BULK_UP, MOVE_KNOCK_OFF, MOVE_STONE_EDGE},
+     },
+ };
+ 
+@@ -5543,35 +5543,35 @@ static const struct TrainerMonItemCustomMoves sParty_EliteFourAgatha[] = {
+         .lvl = 62,
+         .species = SPECIES_GENGAR,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_SHADOW_PUNCH, MOVE_CONFUSE_RAY, MOVE_TOXIC, MOVE_DOUBLE_TEAM},
++        .moves = {MOVE_HEX, MOVE_WILL_O_WISP, MOVE_CONFUSE_RAY, MOVE_SLUDGE_BOMB},
+     },
+     {
+         .iv = 255,
+         .lvl = 62,
+         .species = SPECIES_GOLBAT,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_CONFUSE_RAY, MOVE_POISON_FANG, MOVE_AIR_CUTTER, MOVE_BITE},
++        .moves = {MOVE_POISON_FANG, MOVE_AIR_SLASH, MOVE_CONFUSE_RAY, MOVE_BITE},
+     },
+     {
+         .iv = 255,
+         .lvl = 61,
+         .species = SPECIES_HAUNTER,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_HYPNOSIS, MOVE_DREAM_EATER, MOVE_CURSE, MOVE_MEAN_LOOK},
++        .moves = {MOVE_HYPNOSIS, MOVE_DREAM_EATER, MOVE_HEX, MOVE_MEAN_LOOK},
+     },
+     {
+         .iv = 255,
+         .lvl = 64,
+         .species = SPECIES_ARBOK,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_SLUDGE_BOMB, MOVE_SCREECH, MOVE_IRON_TAIL, MOVE_BITE},
++        .moves = {MOVE_GUNK_SHOT, MOVE_GLARE, MOVE_SUCKER_PUNCH, MOVE_IRON_TAIL},
+     },
+     {
+         .iv = 255,
+         .lvl = 67,
+         .species = SPECIES_GENGAR,
+         .heldItem = ITEM_SITRUS_BERRY,
+-        .moves = {MOVE_SHADOW_BALL, MOVE_SLUDGE_BOMB, MOVE_HYPNOSIS, MOVE_NIGHTMARE},
++        .moves = {MOVE_SHADOW_BALL, MOVE_SLUDGE_BOMB, MOVE_HYPNOSIS, MOVE_NASTY_PLOT},
+     },
+ };
+ 
+@@ -5581,35 +5581,35 @@ static const struct TrainerMonItemCustomMoves sParty_EliteFourLance[] = {
+         .lvl = 64,
+         .species = SPECIES_GYARADOS,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_HYPER_BEAM, MOVE_DRAGON_RAGE, MOVE_TWISTER, MOVE_BITE},
++        .moves = {MOVE_WATERFALL, MOVE_CRUNCH, MOVE_DRAGON_DANCE, MOVE_IRON_TAIL},
+     },
+     {
+         .iv = 255,
+         .lvl = 62,
+         .species = SPECIES_DRAGONAIR,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_HYPER_BEAM, MOVE_IRON_TAIL, MOVE_DRAGON_RAGE, MOVE_OUTRAGE},
++        .moves = {MOVE_DRAGON_PULSE, MOVE_IRON_TAIL, MOVE_THUNDER_WAVE, MOVE_OUTRAGE},
+     },
+     {
+         .iv = 255,
+         .lvl = 62,
+         .species = SPECIES_DRAGONAIR,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_HYPER_BEAM, MOVE_SAFEGUARD, MOVE_THUNDER_WAVE, MOVE_OUTRAGE},
++        .moves = {MOVE_AQUA_TAIL, MOVE_SAFEGUARD, MOVE_THUNDER_WAVE, MOVE_OUTRAGE},
+     },
+     {
+         .iv = 255,
+         .lvl = 67,
+         .species = SPECIES_AERODACTYL,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_HYPER_BEAM, MOVE_ANCIENT_POWER, MOVE_WING_ATTACK, MOVE_SCARY_FACE},
++        .moves = {MOVE_STONE_EDGE, MOVE_AERIAL_ACE, MOVE_ICE_FANG, MOVE_CRUNCH},
+     },
+     {
+         .iv = 255,
+         .lvl = 69,
+         .species = SPECIES_DRAGONITE,
+         .heldItem = ITEM_SITRUS_BERRY,
+-        .moves = {MOVE_HYPER_BEAM, MOVE_IRON_TAIL, MOVE_OUTRAGE, MOVE_WING_ATTACK},
++        .moves = {MOVE_DRAGON_DANCE, MOVE_OUTRAGE, MOVE_EXTREME_SPEED, MOVE_IRON_TAIL},
+     },
+ };
+ 
+@@ -5688,14 +5688,14 @@ static const struct TrainerMonItemCustomMoves sParty_LeaderLtSurge[] = {
+         .lvl = 25,
+         .species = SPECIES_PIKACHU,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_SHOCK_WAVE, MOVE_QUICK_ATTACK, MOVE_DOUBLE_TEAM, MOVE_THUNDER_WAVE},
++        .moves = {MOVE_SHOCK_WAVE, MOVE_QUICK_ATTACK, MOVE_DOUBLE_TEAM, MOVE_NUZZLE},
+     },
+     {
+         .iv = 255,
+         .lvl = 28,
+         .species = SPECIES_RAICHU,
+         .heldItem = ITEM_MAGNET,
+-        .moves = {MOVE_SHOCK_WAVE, MOVE_QUICK_ATTACK, MOVE_THUNDER_WAVE, MOVE_DOUBLE_KICK},
++        .moves = {MOVE_SHOCK_WAVE, MOVE_VOLT_SWITCH, MOVE_THUNDER_WAVE, MOVE_DOUBLE_KICK},
+     },
+ };
+ 
+@@ -5705,7 +5705,7 @@ static const struct TrainerMonItemCustomMoves sParty_LeaderErika[] = {
+         .lvl = 31,
+         .species = SPECIES_TANGELA,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_MEGA_DRAIN, MOVE_STUN_SPORE, MOVE_BIND, MOVE_POISON_POWDER},
++        .moves = {MOVE_GIGA_DRAIN, MOVE_STUN_SPORE, MOVE_BIND, MOVE_POISON_POWDER},
+     },
+     {
+         .iv = 255,
+@@ -5733,7 +5733,7 @@ static const struct TrainerMonItemCustomMoves sParty_LeaderErika[] = {
+         .lvl = 35,
+         .species = SPECIES_VILEPLUME,
+         .heldItem = ITEM_MIRACLE_SEED,
+-        .moves = {MOVE_GIGA_DRAIN, MOVE_ACID, MOVE_SLEEP_POWDER, MOVE_PETAL_DANCE},
++        .moves = {MOVE_GIGA_DRAIN, MOVE_SLUDGE_BOMB, MOVE_SLEEP_POWDER, MOVE_PETAL_DANCE},
+     },
+ };
+ 
+@@ -5750,14 +5750,14 @@ static const struct TrainerMonItemCustomMoves sParty_LeaderKoga[] = {
+         .lvl = 40,
+         .species = SPECIES_MUK,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_SLUDGE, MOVE_MINIMIZE, MOVE_TOXIC, MOVE_ACID_ARMOR},
++        .moves = {MOVE_VENOSHOCK, MOVE_MINIMIZE, MOVE_TOXIC, MOVE_ACID_ARMOR},
+     },
+     {
+         .iv = 255,
+         .lvl = 41,
+         .species = SPECIES_VENOMOTH,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_PSYBEAM, MOVE_STUN_SPORE, MOVE_LEECH_LIFE, MOVE_SUPERSONIC},
++        .moves = {MOVE_PSYBEAM, MOVE_STUN_SPORE, MOVE_BUG_BUZZ, MOVE_SUPERSONIC},
+     },
+     {
+         .iv = 255,
+@@ -5771,7 +5771,7 @@ static const struct TrainerMonItemCustomMoves sParty_LeaderKoga[] = {
+         .lvl = 45,
+         .species = SPECIES_WEEZING,
+         .heldItem = ITEM_POISON_BARB,
+-        .moves = {MOVE_SLUDGE, MOVE_TOXIC, MOVE_SMOKESCREEN, MOVE_SELF_DESTRUCT},
++        .moves = {MOVE_VENOSHOCK, MOVE_TOXIC, MOVE_SMOKESCREEN, MOVE_SELF_DESTRUCT},
+     },
+ };
+ 
+@@ -5781,14 +5781,14 @@ static const struct TrainerMonItemCustomMoves sParty_LeaderBlaine[] = {
+         .lvl = 46,
+         .species = SPECIES_NINETALES,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_FLAMETHROWER, MOVE_CONFUSE_RAY, MOVE_WILL_O_WISP, MOVE_QUICK_ATTACK},
++        .moves = {MOVE_FLAMETHROWER, MOVE_CONFUSE_RAY, MOVE_WILL_O_WISP, MOVE_HEX},
+     },
+     {
+         .iv = 255,
+         .lvl = 46,
+         .species = SPECIES_RAPIDASH,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_FIRE_BLAST, MOVE_STOMP, MOVE_AGILITY, MOVE_BOUNCE},
++        .moves = {MOVE_FLARE_BLITZ, MOVE_STOMP, MOVE_AGILITY, MOVE_BOUNCE},
+     },
+     {
+         .iv = 255,
+@@ -5802,14 +5802,14 @@ static const struct TrainerMonItemCustomMoves sParty_LeaderBlaine[] = {
+         .lvl = 47,
+         .species = SPECIES_HOUNDOOM,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_FLAMETHROWER, MOVE_CRUNCH, MOVE_ROAR, MOVE_SMOG},
++        .moves = {MOVE_FLAMETHROWER, MOVE_DARK_PULSE, MOVE_WILL_O_WISP, MOVE_SUCKER_PUNCH},
+     },
+     {
+         .iv = 255,
+         .lvl = 51,
+         .species = SPECIES_ARCANINE,
+         .heldItem = ITEM_CHARCOAL,
+-        .moves = {MOVE_FLAMETHROWER, MOVE_EXTREME_SPEED, MOVE_BITE, MOVE_ROAR},
++        .moves = {MOVE_FLAMETHROWER, MOVE_EXTREME_SPEED, MOVE_CRUNCH, MOVE_WILD_CHARGE},
+     },
+ };
+ 
+@@ -5826,7 +5826,7 @@ static const struct TrainerMonItemCustomMoves sParty_LeaderSabrina[] = {
+         .lvl = 42,
+         .species = SPECIES_MR_MIME,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_PSYBEAM, MOVE_BARRIER, MOVE_LIGHT_SCREEN, MOVE_REFLECT},
++        .moves = {MOVE_PSYBEAM, MOVE_DAZZLING_GLEAM, MOVE_LIGHT_SCREEN, MOVE_REFLECT},
+     },
+     {
+         .iv = 255,
+@@ -5840,14 +5840,14 @@ static const struct TrainerMonItemCustomMoves sParty_LeaderSabrina[] = {
+         .lvl = 43,
+         .species = SPECIES_ESPEON,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_PSYCHIC, MOVE_QUICK_ATTACK, MOVE_BITE, MOVE_SWIFT},
++        .moves = {MOVE_PSYCHIC, MOVE_QUICK_ATTACK, MOVE_SHADOW_BALL, MOVE_DAZZLING_GLEAM},
+     },
+     {
+         .iv = 255,
+         .lvl = 47,
+         .species = SPECIES_ALAKAZAM,
+         .heldItem = ITEM_TWISTED_SPOON,
+-        .moves = {MOVE_PSYCHIC, MOVE_RECOVER, MOVE_CALM_MIND, MOVE_FUTURE_SIGHT},
++        .moves = {MOVE_PSYCHIC, MOVE_RECOVER, MOVE_CALM_MIND, MOVE_DAZZLING_GLEAM},
+     },
+ };
+ 
+@@ -6266,42 +6266,42 @@ static const struct TrainerMonItemCustomMoves sParty_ChampionFirstSquirtle[] = {
+         .lvl = 68,
+         .species = SPECIES_PIDGEOT,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_AERIAL_ACE, MOVE_FEATHER_DANCE, MOVE_SAND_ATTACK, MOVE_WHIRLWIND},
++        .moves = {MOVE_HURRICANE, MOVE_STEEL_WING, MOVE_ROOST, MOVE_QUICK_ATTACK},
+     },
+     {
+         .iv = 255,
+         .lvl = 66,
+         .species = SPECIES_ALAKAZAM,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_PSYCHIC, MOVE_FUTURE_SIGHT, MOVE_RECOVER, MOVE_REFLECT},
++        .moves = {MOVE_PSYCHIC, MOVE_DAZZLING_GLEAM, MOVE_CALM_MIND, MOVE_RECOVER},
+     },
+     {
+         .iv = 255,
+         .lvl = 68,
+         .species = SPECIES_RHYDON,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_TAKE_DOWN, MOVE_EARTHQUAKE, MOVE_ROCK_TOMB, MOVE_SCARY_FACE},
++        .moves = {MOVE_EARTHQUAKE, MOVE_STONE_EDGE, MOVE_MEGAHORN, MOVE_STEALTH_ROCK},
+     },
+     {
+         .iv = 255,
+         .lvl = 68,
+         .species = SPECIES_ARCANINE,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_EXTREME_SPEED, MOVE_FLAMETHROWER, MOVE_ROAR, MOVE_BITE},
++        .moves = {MOVE_FLARE_BLITZ, MOVE_EXTREME_SPEED, MOVE_CRUNCH, MOVE_WILD_CHARGE},
+     },
+     {
+         .iv = 255,
+         .lvl = 70,
+         .species = SPECIES_EXEGGUTOR,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_GIGA_DRAIN, MOVE_EGG_BOMB, MOVE_SLEEP_POWDER, MOVE_LIGHT_SCREEN},
++        .moves = {MOVE_ENERGY_BALL, MOVE_PSYCHIC, MOVE_SLEEP_POWDER, MOVE_LEECH_SEED},
+     },
+     {
+         .iv = 255,
+         .lvl = 72,
+         .species = SPECIES_BLASTOISE,
+         .heldItem = ITEM_SITRUS_BERRY,
+-        .moves = {MOVE_HYDRO_PUMP, MOVE_RAIN_DANCE, MOVE_SKULL_BASH, MOVE_BITE},
++        .moves = {MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_FLASH_CANNON, MOVE_RAPID_SPIN},
+     },
+ };
+ 
+@@ -6311,42 +6311,42 @@ static const struct TrainerMonItemCustomMoves sParty_ChampionFirstBulbasaur[] =
+         .lvl = 68,
+         .species = SPECIES_PIDGEOT,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_AERIAL_ACE, MOVE_FEATHER_DANCE, MOVE_SAND_ATTACK, MOVE_WHIRLWIND},
++        .moves = {MOVE_HURRICANE, MOVE_STEEL_WING, MOVE_ROOST, MOVE_QUICK_ATTACK},
+     },
+     {
+         .iv = 255,
+         .lvl = 66,
+         .species = SPECIES_ALAKAZAM,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_PSYCHIC, MOVE_FUTURE_SIGHT, MOVE_RECOVER, MOVE_REFLECT},
++        .moves = {MOVE_PSYCHIC, MOVE_DAZZLING_GLEAM, MOVE_CALM_MIND, MOVE_RECOVER},
+     },
+     {
+         .iv = 255,
+         .lvl = 68,
+         .species = SPECIES_RHYDON,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_TAKE_DOWN, MOVE_EARTHQUAKE, MOVE_ROCK_TOMB, MOVE_SCARY_FACE},
++        .moves = {MOVE_EARTHQUAKE, MOVE_STONE_EDGE, MOVE_MEGAHORN, MOVE_STEALTH_ROCK},
+     },
+     {
+         .iv = 255,
+         .lvl = 68,
+         .species = SPECIES_GYARADOS,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_HYDRO_PUMP, MOVE_DRAGON_RAGE, MOVE_BITE, MOVE_THRASH},
++        .moves = {MOVE_WATERFALL, MOVE_CRUNCH, MOVE_DRAGON_DANCE, MOVE_EARTHQUAKE},
+     },
+     {
+         .iv = 255,
+         .lvl = 70,
+         .species = SPECIES_ARCANINE,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_EXTREME_SPEED, MOVE_FLAMETHROWER, MOVE_ROAR, MOVE_BITE},
++        .moves = {MOVE_FLARE_BLITZ, MOVE_EXTREME_SPEED, MOVE_CRUNCH, MOVE_WILD_CHARGE},
+     },
+     {
+         .iv = 255,
+         .lvl = 72,
+         .species = SPECIES_VENUSAUR,
+         .heldItem = ITEM_SITRUS_BERRY,
+-        .moves = {MOVE_SOLAR_BEAM, MOVE_SYNTHESIS, MOVE_SUNNY_DAY, MOVE_GROWTH},
++        .moves = {MOVE_GIGA_DRAIN, MOVE_SLUDGE_BOMB, MOVE_SLEEP_POWDER, MOVE_EARTH_POWER},
+     },
+ };
+ 
+@@ -6356,42 +6356,42 @@ static const struct TrainerMonItemCustomMoves sParty_ChampionFirstCharmander[] =
+         .lvl = 68,
+         .species = SPECIES_PIDGEOT,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_AERIAL_ACE, MOVE_FEATHER_DANCE, MOVE_SAND_ATTACK, MOVE_WHIRLWIND},
++        .moves = {MOVE_HURRICANE, MOVE_STEEL_WING, MOVE_ROOST, MOVE_QUICK_ATTACK},
+     },
+     {
+         .iv = 255,
+         .lvl = 66,
+         .species = SPECIES_ALAKAZAM,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_PSYCHIC, MOVE_FUTURE_SIGHT, MOVE_RECOVER, MOVE_REFLECT},
++        .moves = {MOVE_PSYCHIC, MOVE_DAZZLING_GLEAM, MOVE_CALM_MIND, MOVE_RECOVER},
+     },
+     {
+         .iv = 255,
+         .lvl = 68,
+         .species = SPECIES_RHYDON,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_TAKE_DOWN, MOVE_EARTHQUAKE, MOVE_ROCK_TOMB, MOVE_SCARY_FACE},
++        .moves = {MOVE_EARTHQUAKE, MOVE_STONE_EDGE, MOVE_MEGAHORN, MOVE_STEALTH_ROCK},
+     },
+     {
+         .iv = 255,
+         .lvl = 68,
+         .species = SPECIES_EXEGGUTOR,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_GIGA_DRAIN, MOVE_EGG_BOMB, MOVE_SLEEP_POWDER, MOVE_LIGHT_SCREEN},
++        .moves = {MOVE_ENERGY_BALL, MOVE_PSYCHIC, MOVE_SLEEP_POWDER, MOVE_LEECH_SEED},
+     },
+     {
+         .iv = 255,
+         .lvl = 70,
+         .species = SPECIES_GYARADOS,
+         .heldItem = ITEM_NONE,
+-        .moves = {MOVE_HYDRO_PUMP, MOVE_DRAGON_RAGE, MOVE_BITE, MOVE_THRASH},
++        .moves = {MOVE_WATERFALL, MOVE_CRUNCH, MOVE_DRAGON_DANCE, MOVE_EARTHQUAKE},
+     },
+     {
+         .iv = 255,
+         .lvl = 72,
+         .species = SPECIES_CHARIZARD,
+         .heldItem = ITEM_SITRUS_BERRY,
+-        .moves = {MOVE_FIRE_BLAST, MOVE_AERIAL_ACE, MOVE_SLASH, MOVE_FIRE_SPIN},
++        .moves = {MOVE_FLAMETHROWER, MOVE_AIR_SLASH, MOVE_DRAGON_PULSE, MOVE_FOCUS_BLAST},
+     },
+ };
+ 
+@@ -10965,42 +10965,42 @@ static const struct TrainerMonItemCustomMoves sParty_PeakBrock[] = {
+         .lvl = 100,
+         .species = SPECIES_GOLEM,
+         .heldItem = ITEM_CHOICE_BAND,
+-        .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_EXPLOSION, MOVE_DOUBLE_EDGE},
++        .moves = {MOVE_EARTHQUAKE, MOVE_STONE_EDGE, MOVE_EXPLOSION, MOVE_DOUBLE_EDGE},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_OMASTAR,
+         .heldItem = ITEM_MYSTIC_WATER,
+-        .moves = {MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_ANCIENT_POWER, MOVE_SPIKES},
++        .moves = {MOVE_SHELL_SMASH, MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_EARTH_POWER},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_KABUTOPS,
+         .heldItem = ITEM_SCOPE_LENS,
+-        .moves = {MOVE_ROCK_SLIDE, MOVE_WATERFALL, MOVE_BRICK_BREAK, MOVE_SWORDS_DANCE},
++        .moves = {MOVE_STONE_EDGE, MOVE_WATERFALL, MOVE_X_SCISSOR, MOVE_SWORDS_DANCE},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+-        .species = SPECIES_AGGRON,
++        .species = SPECIES_PROBOPASS,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_IRON_TAIL, MOVE_ROCK_SLIDE, MOVE_EARTHQUAKE, MOVE_THUNDER_WAVE},
++        .moves = {MOVE_POWER_GEM, MOVE_EARTH_POWER, MOVE_FLASH_CANNON, MOVE_STEALTH_ROCK},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+-        .species = SPECIES_STEELIX,
++        .species = SPECIES_RHYPERIOR,
+         .heldItem = ITEM_QUICK_CLAW,
+-        .moves = {MOVE_EARTHQUAKE, MOVE_IRON_TAIL, MOVE_ROCK_SLIDE, MOVE_EXPLOSION},
++        .moves = {MOVE_EARTHQUAKE, MOVE_STONE_EDGE, MOVE_MEGAHORN, MOVE_ROCK_POLISH},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_TYRANITAR,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_DRAGON_DANCE, MOVE_ROCK_SLIDE, MOVE_EARTHQUAKE, MOVE_CRUNCH},
++        .moves = {MOVE_DRAGON_DANCE, MOVE_STONE_EDGE, MOVE_EARTHQUAKE, MOVE_CRUNCH},
+     },
+ };
+ static const struct TrainerMonItemCustomMoves sParty_PeakMisty[] = {
+@@ -11009,7 +11009,7 @@ static const struct TrainerMonItemCustomMoves sParty_PeakMisty[] = {
+         .lvl = 100,
+         .species = SPECIES_GOLDUCK,
+         .heldItem = ITEM_MYSTIC_WATER,
+-        .moves = {MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_PSYCHIC, MOVE_CALM_MIND},
++        .moves = {MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_PSYSHOCK, MOVE_CALM_MIND},
+     },
+     {
+         .iv = 255,
+@@ -11023,28 +11023,28 @@ static const struct TrainerMonItemCustomMoves sParty_PeakMisty[] = {
+         .lvl = 100,
+         .species = SPECIES_VAPOREON,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_SURF, MOVE_ICE_BEAM, MOVE_WISH, MOVE_PROTECT},
++        .moves = {MOVE_SCALD, MOVE_ICE_BEAM, MOVE_WISH, MOVE_PROTECT},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_MILOTIC,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_SURF, MOVE_ICE_BEAM, MOVE_RECOVER, MOVE_TOXIC},
++        .moves = {MOVE_SCALD, MOVE_ICE_BEAM, MOVE_RECOVER, MOVE_TOXIC},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_GYARADOS,
+         .heldItem = ITEM_LUM_BERRY,
+-        .moves = {MOVE_DRAGON_DANCE, MOVE_WATERFALL, MOVE_EARTHQUAKE, MOVE_DOUBLE_EDGE},
++        .moves = {MOVE_DRAGON_DANCE, MOVE_WATERFALL, MOVE_EARTHQUAKE, MOVE_CRUNCH},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_STARMIE,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_SURF, MOVE_PSYCHIC, MOVE_THUNDERBOLT, MOVE_RECOVER},
++        .moves = {MOVE_SCALD, MOVE_PSYSHOCK, MOVE_THUNDERBOLT, MOVE_RECOVER},
+     },
+ };
+ static const struct TrainerMonItemCustomMoves sParty_PeakLtSurge[] = {
+@@ -11053,42 +11053,42 @@ static const struct TrainerMonItemCustomMoves sParty_PeakLtSurge[] = {
+         .lvl = 100,
+         .species = SPECIES_ELECTRODE,
+         .heldItem = ITEM_MAGNET,
+-        .moves = {MOVE_THUNDERBOLT, MOVE_EXPLOSION, MOVE_THUNDER_WAVE, MOVE_TAUNT},
++        .moves = {MOVE_THUNDERBOLT, MOVE_VOLT_SWITCH, MOVE_EXPLOSION, MOVE_TAUNT},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+-        .species = SPECIES_MAGNETON,
++        .species = SPECIES_MAGNEZONE,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_THUNDERBOLT, MOVE_THUNDER_WAVE, MOVE_SUBSTITUTE, MOVE_TOXIC},
++        .moves = {MOVE_THUNDERBOLT, MOVE_FLASH_CANNON, MOVE_VOLT_SWITCH, MOVE_THUNDER_WAVE},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_AMPHAROS,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_THUNDERBOLT, MOVE_FIRE_PUNCH, MOVE_THUNDER_WAVE, MOVE_LIGHT_SCREEN},
++        .moves = {MOVE_THUNDERBOLT, MOVE_DRAGON_PULSE, MOVE_FOCUS_BLAST, MOVE_THUNDER_WAVE},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+-        .species = SPECIES_MANECTRIC,
++        .species = SPECIES_ELECTIVIRE,
+         .heldItem = ITEM_MAGNET,
+-        .moves = {MOVE_THUNDERBOLT, MOVE_FLAMETHROWER, MOVE_CRUNCH, MOVE_THUNDER_WAVE},
++        .moves = {MOVE_WILD_CHARGE, MOVE_ICE_PUNCH, MOVE_CROSS_CHOP, MOVE_EARTHQUAKE},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_JOLTEON,
+         .heldItem = ITEM_MAGNET,
+-        .moves = {MOVE_THUNDERBOLT, MOVE_SHADOW_BALL, MOVE_THUNDER_WAVE, MOVE_AGILITY},
++        .moves = {MOVE_THUNDERBOLT, MOVE_SHADOW_BALL, MOVE_VOLT_SWITCH, MOVE_AGILITY},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_RAICHU,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_THUNDERBOLT, MOVE_SURF, MOVE_BRICK_BREAK, MOVE_THUNDER_WAVE},
++        .moves = {MOVE_THUNDERBOLT, MOVE_SURF, MOVE_FOCUS_BLAST, MOVE_NASTY_PLOT},
+     },
+ };
+ static const struct TrainerMonItemCustomMoves sParty_PeakErika[] = {
+@@ -11097,14 +11097,14 @@ static const struct TrainerMonItemCustomMoves sParty_PeakErika[] = {
+         .lvl = 100,
+         .species = SPECIES_BRELOOM,
+         .heldItem = ITEM_QUICK_CLAW,
+-        .moves = {MOVE_SPORE, MOVE_SKY_UPPERCUT, MOVE_MACH_PUNCH, MOVE_LEECH_SEED},
++        .moves = {MOVE_SPORE, MOVE_SEED_BOMB, MOVE_MACH_PUNCH, MOVE_DRAIN_PUNCH},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_VICTREEBEL,
+         .heldItem = ITEM_MIRACLE_SEED,
+-        .moves = {MOVE_RAZOR_LEAF, MOVE_SLUDGE_BOMB, MOVE_SLEEP_POWDER, MOVE_SWORDS_DANCE},
++        .moves = {MOVE_POWER_WHIP, MOVE_SLUDGE_BOMB, MOVE_SLEEP_POWDER, MOVE_SWORDS_DANCE},
+     },
+     {
+         .iv = 255,
+@@ -11116,9 +11116,9 @@ static const struct TrainerMonItemCustomMoves sParty_PeakErika[] = {
+     {
+         .iv = 255,
+         .lvl = 100,
+-        .species = SPECIES_LUDICOLO,
++        .species = SPECIES_TANGROWTH,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_SURF, MOVE_GIGA_DRAIN, MOVE_ICE_BEAM, MOVE_RAIN_DANCE},
++        .moves = {MOVE_POWER_WHIP, MOVE_EARTHQUAKE, MOVE_SLEEP_POWDER, MOVE_KNOCK_OFF},
+     },
+     {
+         .iv = 255,
+@@ -11130,9 +11130,9 @@ static const struct TrainerMonItemCustomMoves sParty_PeakErika[] = {
+     {
+         .iv = 255,
+         .lvl = 100,
+-        .species = SPECIES_VILEPLUME,
++        .species = SPECIES_ROSERADE,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_GIGA_DRAIN, MOVE_SLUDGE_BOMB, MOVE_SLEEP_POWDER, MOVE_LEECH_SEED},
++        .moves = {MOVE_LEAF_STORM, MOVE_SLUDGE_BOMB, MOVE_SPIKES, MOVE_SHADOW_BALL},
+     },
+ };
+ static const struct TrainerMonItemCustomMoves sParty_PeakKoga[] = {
+@@ -11141,42 +11141,42 @@ static const struct TrainerMonItemCustomMoves sParty_PeakKoga[] = {
+         .lvl = 100,
+         .species = SPECIES_TENTACRUEL,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_SURF, MOVE_SLUDGE_BOMB, MOVE_ICE_BEAM, MOVE_RAPID_SPIN},
++        .moves = {MOVE_SCALD, MOVE_SLUDGE_BOMB, MOVE_TOXIC_SPIKES, MOVE_RAPID_SPIN},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_VENOMOTH,
+         .heldItem = ITEM_SILVER_POWDER,
+-        .moves = {MOVE_SLUDGE_BOMB, MOVE_PSYCHIC, MOVE_SILVER_WIND, MOVE_SLEEP_POWDER},
++        .moves = {MOVE_QUIVER_DANCE, MOVE_BUG_BUZZ, MOVE_SLUDGE_BOMB, MOVE_SLEEP_POWDER},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_MUK,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_SLUDGE_BOMB, MOVE_FIRE_PUNCH, MOVE_EXPLOSION, MOVE_CURSE},
++        .moves = {MOVE_GUNK_SHOT, MOVE_SHADOW_SNEAK, MOVE_DRAIN_PUNCH, MOVE_CURSE},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_NIDOKING,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_EARTHQUAKE, MOVE_MEGAHORN, MOVE_ICE_BEAM, MOVE_THUNDERBOLT},
++        .moves = {MOVE_EARTH_POWER, MOVE_SLUDGE_WAVE, MOVE_ICE_BEAM, MOVE_THUNDERBOLT},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_GENGAR,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_SHADOW_BALL, MOVE_THUNDERBOLT, MOVE_HYPNOSIS, MOVE_DESTINY_BOND},
++        .moves = {MOVE_SHADOW_BALL, MOVE_SLUDGE_BOMB, MOVE_FOCUS_BLAST, MOVE_DESTINY_BOND},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_WEEZING,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_SLUDGE_BOMB, MOVE_FIRE_BLAST, MOVE_WILL_O_WISP, MOVE_EXPLOSION},
++        .moves = {MOVE_SLUDGE_BOMB, MOVE_FIRE_BLAST, MOVE_WILL_O_WISP, MOVE_TOXIC_SPIKES},
+     },
+ };
+ static const struct TrainerMonItemCustomMoves sParty_PeakSabrina[] = {
+@@ -11185,42 +11185,42 @@ static const struct TrainerMonItemCustomMoves sParty_PeakSabrina[] = {
+         .lvl = 100,
+         .species = SPECIES_MR_MIME,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_PSYCHIC, MOVE_THUNDERBOLT, MOVE_CALM_MIND, MOVE_SUBSTITUTE},
++        .moves = {MOVE_PSYCHIC, MOVE_DAZZLING_GLEAM, MOVE_CALM_MIND, MOVE_SUBSTITUTE},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+-        .species = SPECIES_SLOWBRO,
+-        .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_SURF, MOVE_PSYCHIC, MOVE_CALM_MIND, MOVE_REST},
++        .species = SPECIES_GALLADE,
++        .heldItem = ITEM_SCOPE_LENS,
++        .moves = {MOVE_CLOSE_COMBAT, MOVE_PSYCHO_CUT, MOVE_NIGHT_SLASH, MOVE_SWORDS_DANCE},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_GARDEVOIR,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_PSYCHIC, MOVE_THUNDERBOLT, MOVE_CALM_MIND, MOVE_HYPNOSIS},
++        .moves = {MOVE_MOONBLAST, MOVE_PSYCHIC, MOVE_CALM_MIND, MOVE_HYPNOSIS},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_METAGROSS,
+         .heldItem = ITEM_CHOICE_BAND,
+-        .moves = {MOVE_METEOR_MASH, MOVE_EARTHQUAKE, MOVE_EXPLOSION, MOVE_ROCK_SLIDE},
++        .moves = {MOVE_METEOR_MASH, MOVE_EARTHQUAKE, MOVE_ZEN_HEADBUTT, MOVE_BULLET_PUNCH},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_ESPEON,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_PSYCHIC, MOVE_SHADOW_BALL, MOVE_CALM_MIND, MOVE_MORNING_SUN},
++        .moves = {MOVE_PSYCHIC, MOVE_DAZZLING_GLEAM, MOVE_CALM_MIND, MOVE_MORNING_SUN},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_ALAKAZAM,
+         .heldItem = ITEM_TWISTED_SPOON,
+-        .moves = {MOVE_PSYCHIC, MOVE_SHADOW_BALL, MOVE_CALM_MIND, MOVE_RECOVER},
++        .moves = {MOVE_PSYCHIC, MOVE_SHADOW_BALL, MOVE_FOCUS_BLAST, MOVE_CALM_MIND},
+     },
+ };
+ static const struct TrainerMonItemCustomMoves sParty_PeakBlaine[] = {
+@@ -11229,42 +11229,42 @@ static const struct TrainerMonItemCustomMoves sParty_PeakBlaine[] = {
+         .lvl = 100,
+         .species = SPECIES_RAPIDASH,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_FIRE_BLAST, MOVE_BOUNCE, MOVE_DOUBLE_EDGE, MOVE_HYPNOSIS},
++        .moves = {MOVE_FLARE_BLITZ, MOVE_WILD_CHARGE, MOVE_DRILL_RUN, MOVE_AGILITY},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_NINETALES,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_FLAMETHROWER, MOVE_EXTRASENSORY, MOVE_WILL_O_WISP, MOVE_CONFUSE_RAY},
++        .moves = {MOVE_FLAMETHROWER, MOVE_EXTRASENSORY, MOVE_NASTY_PLOT, MOVE_WILL_O_WISP},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+-        .species = SPECIES_MAGMAR,
++        .species = SPECIES_MAGMORTAR,
+         .heldItem = ITEM_CHARCOAL,
+-        .moves = {MOVE_FIRE_BLAST, MOVE_THUNDERBOLT, MOVE_PSYCHIC, MOVE_CONFUSE_RAY},
++        .moves = {MOVE_FLAMETHROWER, MOVE_THUNDERBOLT, MOVE_FOCUS_BLAST, MOVE_PSYCHIC},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_HOUNDOOM,
+         .heldItem = ITEM_BLACK_GLASSES,
+-        .moves = {MOVE_FLAMETHROWER, MOVE_CRUNCH, MOVE_SLUDGE_BOMB, MOVE_ROAR},
++        .moves = {MOVE_FLAMETHROWER, MOVE_DARK_PULSE, MOVE_NASTY_PLOT, MOVE_SLUDGE_BOMB},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_BLAZIKEN,
+         .heldItem = ITEM_CHARCOAL,
+-        .moves = {MOVE_SKY_UPPERCUT, MOVE_BLAZE_KICK, MOVE_ROCK_SLIDE, MOVE_SWORDS_DANCE},
++        .moves = {MOVE_CLOSE_COMBAT, MOVE_FLARE_BLITZ, MOVE_STONE_EDGE, MOVE_SWORDS_DANCE},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_ARCANINE,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_FIRE_BLAST, MOVE_EXTREME_SPEED, MOVE_CRUNCH, MOVE_ROAR},
++        .moves = {MOVE_FLARE_BLITZ, MOVE_EXTREME_SPEED, MOVE_CRUNCH, MOVE_WILD_CHARGE},
+     },
+ };
+ static const struct TrainerMonItemCustomMoves sParty_PeakGiovanni[] = {
+@@ -11273,65 +11273,65 @@ static const struct TrainerMonItemCustomMoves sParty_PeakGiovanni[] = {
+         .lvl = 100,
+         .species = SPECIES_DUGTRIO,
+         .heldItem = ITEM_CHOICE_BAND,
+-        .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_AERIAL_ACE, MOVE_SLASH},
++        .moves = {MOVE_EARTHQUAKE, MOVE_STONE_EDGE, MOVE_SUCKER_PUNCH, MOVE_AERIAL_ACE},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_SANDSLASH,
+         .heldItem = ITEM_QUICK_CLAW,
+-        .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_SWORDS_DANCE, MOVE_SLASH},
++        .moves = {MOVE_EARTHQUAKE, MOVE_STONE_EDGE, MOVE_SWORDS_DANCE, MOVE_X_SCISSOR},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_MAROWAK,
+         .heldItem = ITEM_THICK_CLUB,
+-        .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_DOUBLE_EDGE, MOVE_SWORDS_DANCE},
++        .moves = {MOVE_EARTHQUAKE, MOVE_STONE_EDGE, MOVE_DOUBLE_EDGE, MOVE_SWORDS_DANCE},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_NIDOQUEEN,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_EARTHQUAKE, MOVE_ICE_BEAM, MOVE_THUNDERBOLT, MOVE_SUPERPOWER},
++        .moves = {MOVE_EARTH_POWER, MOVE_ICE_BEAM, MOVE_SLUDGE_WAVE, MOVE_STEALTH_ROCK},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_NIDOKING,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_EARTHQUAKE, MOVE_MEGAHORN, MOVE_ICE_BEAM, MOVE_THUNDERBOLT},
++        .moves = {MOVE_EARTH_POWER, MOVE_SLUDGE_WAVE, MOVE_ICE_BEAM, MOVE_THUNDERBOLT},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+-        .species = SPECIES_RHYDON,
++        .species = SPECIES_RHYPERIOR,
+         .heldItem = ITEM_QUICK_CLAW,
+-        .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_MEGAHORN, MOVE_SWORDS_DANCE},
++        .moves = {MOVE_EARTHQUAKE, MOVE_STONE_EDGE, MOVE_MEGAHORN, MOVE_SWORDS_DANCE},
+     },
+ };
+ static const struct TrainerMonItemCustomMoves sParty_PeakLorelei[] = {
+     {
+         .iv = 255,
+         .lvl = 100,
+-        .species = SPECIES_DEWGONG,
+-        .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_ICE_BEAM, MOVE_SURF, MOVE_REST, MOVE_SLEEP_TALK},
++        .species = SPECIES_MAMOSWINE,
++        .heldItem = ITEM_NEVER_MELT_ICE,
++        .moves = {MOVE_EARTHQUAKE, MOVE_ICICLE_CRASH, MOVE_ICE_SHARD, MOVE_STONE_EDGE},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_CLOYSTER,
+         .heldItem = ITEM_NEVER_MELT_ICE,
+-        .moves = {MOVE_ICICLE_SPEAR, MOVE_SPIKES, MOVE_EXPLOSION, MOVE_RAPID_SPIN},
++        .moves = {MOVE_SHELL_SMASH, MOVE_ICICLE_SPEAR, MOVE_LIQUIDATION, MOVE_ICE_SHARD},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_JYNX,
+         .heldItem = ITEM_NEVER_MELT_ICE,
+-        .moves = {MOVE_ICE_BEAM, MOVE_PSYCHIC, MOVE_LOVELY_KISS, MOVE_CALM_MIND},
++        .moves = {MOVE_ICE_BEAM, MOVE_PSYCHIC, MOVE_LOVELY_KISS, MOVE_NASTY_PLOT},
+     },
+     {
+         .iv = 255,
+@@ -11343,9 +11343,9 @@ static const struct TrainerMonItemCustomMoves sParty_PeakLorelei[] = {
+     {
+         .iv = 255,
+         .lvl = 100,
+-        .species = SPECIES_GLALIE,
++        .species = SPECIES_FROSLASS,
+         .heldItem = ITEM_QUICK_CLAW,
+-        .moves = {MOVE_EARTHQUAKE, MOVE_EXPLOSION, MOVE_CRUNCH, MOVE_ICE_BEAM},
++        .moves = {MOVE_ICE_BEAM, MOVE_SHADOW_BALL, MOVE_WILL_O_WISP, MOVE_SPIKES},
+     },
+     {
+         .iv = 255,
+@@ -11361,42 +11361,42 @@ static const struct TrainerMonItemCustomMoves sParty_PeakBruno[] = {
+         .lvl = 100,
+         .species = SPECIES_HITMONTOP,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_HI_JUMP_KICK, MOVE_RAPID_SPIN, MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE},
++        .moves = {MOVE_CLOSE_COMBAT, MOVE_RAPID_SPIN, MOVE_SUCKER_PUNCH, MOVE_STONE_EDGE},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_HITMONCHAN,
+         .heldItem = ITEM_BLACK_BELT,
+-        .moves = {MOVE_SKY_UPPERCUT, MOVE_ICE_PUNCH, MOVE_THUNDER_PUNCH, MOVE_FIRE_PUNCH},
++        .moves = {MOVE_DRAIN_PUNCH, MOVE_ICE_PUNCH, MOVE_THUNDER_PUNCH, MOVE_BULLET_PUNCH},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_HITMONLEE,
+         .heldItem = ITEM_SCOPE_LENS,
+-        .moves = {MOVE_HI_JUMP_KICK, MOVE_ROCK_SLIDE, MOVE_EARTHQUAKE, MOVE_BULK_UP},
++        .moves = {MOVE_HI_JUMP_KICK, MOVE_BLAZE_KICK, MOVE_STONE_EDGE, MOVE_BULK_UP},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+-        .species = SPECIES_HARIYAMA,
++        .species = SPECIES_ANNIHILAPE,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_CROSS_CHOP, MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_FAKE_OUT},
++        .moves = {MOVE_CLOSE_COMBAT, MOVE_SHADOW_CLAW, MOVE_BULK_UP, MOVE_U_TURN},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_HERACROSS,
+         .heldItem = ITEM_CHOICE_BAND,
+-        .moves = {MOVE_MEGAHORN, MOVE_BRICK_BREAK, MOVE_ROCK_SLIDE, MOVE_EARTHQUAKE},
++        .moves = {MOVE_MEGAHORN, MOVE_CLOSE_COMBAT, MOVE_STONE_EDGE, MOVE_EARTHQUAKE},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_MACHAMP,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_CROSS_CHOP, MOVE_ROCK_SLIDE, MOVE_EARTHQUAKE, MOVE_BULK_UP},
++        .moves = {MOVE_CLOSE_COMBAT, MOVE_KNOCK_OFF, MOVE_STONE_EDGE, MOVE_BULLET_PUNCH},
+     },
+ };
+ static const struct TrainerMonItemCustomMoves sParty_PeakAgatha[] = {
+@@ -11405,42 +11405,42 @@ static const struct TrainerMonItemCustomMoves sParty_PeakAgatha[] = {
+         .lvl = 100,
+         .species = SPECIES_SABLEYE,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_SHADOW_BALL, MOVE_KNOCK_OFF, MOVE_TOXIC, MOVE_PROTECT},
++        .moves = {MOVE_KNOCK_OFF, MOVE_SHADOW_CLAW, MOVE_FOUL_PLAY, MOVE_RECOVER},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+-        .species = SPECIES_MISDREAVUS,
++        .species = SPECIES_MISMAGIUS,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_SHADOW_BALL, MOVE_THUNDERBOLT, MOVE_CALM_MIND, MOVE_PAIN_SPLIT},
++        .moves = {MOVE_SHADOW_BALL, MOVE_DAZZLING_GLEAM, MOVE_NASTY_PLOT, MOVE_THUNDERBOLT},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+-        .species = SPECIES_DUSCLOPS,
++        .species = SPECIES_DUSKNOIR,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_SHADOW_PUNCH, MOVE_WILL_O_WISP, MOVE_CURSE, MOVE_REST},
++        .moves = {MOVE_SHADOW_SNEAK, MOVE_ICE_PUNCH, MOVE_EARTHQUAKE, MOVE_WILL_O_WISP},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_BANETTE,
+         .heldItem = ITEM_SPELL_TAG,
+-        .moves = {MOVE_KNOCK_OFF, MOVE_FAINT_ATTACK, MOVE_WILL_O_WISP, MOVE_SHADOW_BALL},
++        .moves = {MOVE_KNOCK_OFF, MOVE_SHADOW_CLAW, MOVE_WILL_O_WISP, MOVE_SHADOW_SNEAK},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_CROBAT,
+         .heldItem = ITEM_SHARP_BEAK,
+-        .moves = {MOVE_AERIAL_ACE, MOVE_SLUDGE_BOMB, MOVE_CONFUSE_RAY, MOVE_TOXIC},
++        .moves = {MOVE_BRAVE_BIRD, MOVE_CROSS_POISON, MOVE_U_TURN, MOVE_ROOST},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_GENGAR,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_SHADOW_BALL, MOVE_THUNDERBOLT, MOVE_PSYCHIC, MOVE_HYPNOSIS},
++        .moves = {MOVE_SHADOW_BALL, MOVE_SLUDGE_BOMB, MOVE_FOCUS_BLAST, MOVE_NASTY_PLOT},
+     },
+ };
+ static const struct TrainerMonItemCustomMoves sParty_PeakLance[] = {
+@@ -11449,42 +11449,42 @@ static const struct TrainerMonItemCustomMoves sParty_PeakLance[] = {
+         .lvl = 100,
+         .species = SPECIES_KINGDRA,
+         .heldItem = ITEM_MYSTIC_WATER,
+-        .moves = {MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_DRAGON_BREATH, MOVE_RAIN_DANCE},
++        .moves = {MOVE_HYDRO_PUMP, MOVE_DRACO_METEOR, MOVE_ICE_BEAM, MOVE_RAIN_DANCE},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_AERODACTYL,
+         .heldItem = ITEM_SCOPE_LENS,
+-        .moves = {MOVE_ROCK_SLIDE, MOVE_EARTHQUAKE, MOVE_AERIAL_ACE, MOVE_DOUBLE_EDGE},
++        .moves = {MOVE_STONE_EDGE, MOVE_EARTHQUAKE, MOVE_ICE_FANG, MOVE_DOUBLE_EDGE},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_ALTARIA,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_DRAGON_DANCE, MOVE_DRAGON_CLAW, MOVE_EARTHQUAKE, MOVE_IRON_TAIL},
++        .moves = {MOVE_DRAGON_DANCE, MOVE_DRAGON_CLAW, MOVE_EARTHQUAKE, MOVE_ROOST},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_FLYGON,
+         .heldItem = ITEM_SOFT_SAND,
+-        .moves = {MOVE_EARTHQUAKE, MOVE_DRAGON_CLAW, MOVE_ROCK_SLIDE, MOVE_FIRE_BLAST},
++        .moves = {MOVE_EARTHQUAKE, MOVE_DRAGON_CLAW, MOVE_U_TURN, MOVE_FIRE_BLAST},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_SALAMENCE,
+         .heldItem = ITEM_CHOICE_BAND,
+-        .moves = {MOVE_DRAGON_CLAW, MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_IRON_TAIL},
++        .moves = {MOVE_OUTRAGE, MOVE_EARTHQUAKE, MOVE_FIRE_FANG, MOVE_AERIAL_ACE},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_DRAGONITE,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_DRAGON_DANCE, MOVE_DRAGON_CLAW, MOVE_EARTHQUAKE, MOVE_FIRE_PUNCH},
++        .moves = {MOVE_DRAGON_DANCE, MOVE_OUTRAGE, MOVE_EXTREME_SPEED, MOVE_EARTHQUAKE},
+     },
+ };
+ static const struct TrainerMonItemCustomMoves sParty_PeakChampionSquirtle[] = {
+@@ -11493,42 +11493,42 @@ static const struct TrainerMonItemCustomMoves sParty_PeakChampionSquirtle[] = {
+         .lvl = 100,
+         .species = SPECIES_PIDGEOT,
+         .heldItem = ITEM_SHARP_BEAK,
+-        .moves = {MOVE_DOUBLE_EDGE, MOVE_AERIAL_ACE, MOVE_STEEL_WING, MOVE_QUICK_ATTACK},
++        .moves = {MOVE_BRAVE_BIRD, MOVE_U_TURN, MOVE_ROOST, MOVE_QUICK_ATTACK},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_ALAKAZAM,
+         .heldItem = ITEM_TWISTED_SPOON,
+-        .moves = {MOVE_PSYCHIC, MOVE_SHADOW_BALL, MOVE_CALM_MIND, MOVE_RECOVER},
++        .moves = {MOVE_PSYCHIC, MOVE_SHADOW_BALL, MOVE_FOCUS_BLAST, MOVE_CALM_MIND},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_TYRANITAR,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_DRAGON_DANCE, MOVE_ROCK_SLIDE, MOVE_EARTHQUAKE, MOVE_CRUNCH},
++        .moves = {MOVE_DRAGON_DANCE, MOVE_STONE_EDGE, MOVE_EARTHQUAKE, MOVE_CRUNCH},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_EXEGGUTOR,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_GIGA_DRAIN, MOVE_PSYCHIC, MOVE_SLEEP_POWDER, MOVE_EXPLOSION},
++        .moves = {MOVE_ENERGY_BALL, MOVE_PSYCHIC, MOVE_SLEEP_POWDER, MOVE_EXPLOSION},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_ARCANINE,
+         .heldItem = ITEM_CHARCOAL,
+-        .moves = {MOVE_FIRE_BLAST, MOVE_EXTREME_SPEED, MOVE_CRUNCH, MOVE_ROAR},
++        .moves = {MOVE_FLARE_BLITZ, MOVE_EXTREME_SPEED, MOVE_CRUNCH, MOVE_WILD_CHARGE},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_BLASTOISE,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_EARTHQUAKE, MOVE_RAPID_SPIN},
++        .moves = {MOVE_SHELL_SMASH, MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_DARK_PULSE},
+     },
+ };
+ static const struct TrainerMonItemCustomMoves sParty_PeakChampionBulbasaur[] = {
+@@ -11537,42 +11537,42 @@ static const struct TrainerMonItemCustomMoves sParty_PeakChampionBulbasaur[] = {
+         .lvl = 100,
+         .species = SPECIES_PIDGEOT,
+         .heldItem = ITEM_SHARP_BEAK,
+-        .moves = {MOVE_DOUBLE_EDGE, MOVE_AERIAL_ACE, MOVE_STEEL_WING, MOVE_QUICK_ATTACK},
++        .moves = {MOVE_BRAVE_BIRD, MOVE_U_TURN, MOVE_ROOST, MOVE_QUICK_ATTACK},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_ALAKAZAM,
+         .heldItem = ITEM_TWISTED_SPOON,
+-        .moves = {MOVE_PSYCHIC, MOVE_SHADOW_BALL, MOVE_CALM_MIND, MOVE_RECOVER},
++        .moves = {MOVE_PSYCHIC, MOVE_SHADOW_BALL, MOVE_FOCUS_BLAST, MOVE_CALM_MIND},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_TYRANITAR,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_DRAGON_DANCE, MOVE_ROCK_SLIDE, MOVE_EARTHQUAKE, MOVE_CRUNCH},
++        .moves = {MOVE_DRAGON_DANCE, MOVE_STONE_EDGE, MOVE_EARTHQUAKE, MOVE_CRUNCH},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_GYARADOS,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_DRAGON_DANCE, MOVE_WATERFALL, MOVE_EARTHQUAKE, MOVE_DOUBLE_EDGE},
++        .moves = {MOVE_DRAGON_DANCE, MOVE_WATERFALL, MOVE_EARTHQUAKE, MOVE_CRUNCH},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_ARCANINE,
+         .heldItem = ITEM_CHARCOAL,
+-        .moves = {MOVE_FIRE_BLAST, MOVE_EXTREME_SPEED, MOVE_CRUNCH, MOVE_ROAR},
++        .moves = {MOVE_FLARE_BLITZ, MOVE_EXTREME_SPEED, MOVE_CRUNCH, MOVE_WILD_CHARGE},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_VENUSAUR,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_GIGA_DRAIN, MOVE_SLUDGE_BOMB, MOVE_SLEEP_POWDER, MOVE_LEECH_SEED},
++        .moves = {MOVE_GIGA_DRAIN, MOVE_SLUDGE_BOMB, MOVE_SLEEP_POWDER, MOVE_EARTH_POWER},
+     },
+ };
+ static const struct TrainerMonItemCustomMoves sParty_PeakChampionCharmander[] = {
+@@ -11581,41 +11581,41 @@ static const struct TrainerMonItemCustomMoves sParty_PeakChampionCharmander[] =
+         .lvl = 100,
+         .species = SPECIES_PIDGEOT,
+         .heldItem = ITEM_SHARP_BEAK,
+-        .moves = {MOVE_DOUBLE_EDGE, MOVE_AERIAL_ACE, MOVE_STEEL_WING, MOVE_QUICK_ATTACK},
++        .moves = {MOVE_BRAVE_BIRD, MOVE_U_TURN, MOVE_ROOST, MOVE_QUICK_ATTACK},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_ALAKAZAM,
+         .heldItem = ITEM_TWISTED_SPOON,
+-        .moves = {MOVE_PSYCHIC, MOVE_SHADOW_BALL, MOVE_CALM_MIND, MOVE_RECOVER},
++        .moves = {MOVE_PSYCHIC, MOVE_SHADOW_BALL, MOVE_FOCUS_BLAST, MOVE_CALM_MIND},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_TYRANITAR,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_DRAGON_DANCE, MOVE_ROCK_SLIDE, MOVE_EARTHQUAKE, MOVE_CRUNCH},
++        .moves = {MOVE_DRAGON_DANCE, MOVE_STONE_EDGE, MOVE_EARTHQUAKE, MOVE_CRUNCH},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_EXEGGUTOR,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_GIGA_DRAIN, MOVE_PSYCHIC, MOVE_SLEEP_POWDER, MOVE_EXPLOSION},
++        .moves = {MOVE_ENERGY_BALL, MOVE_PSYCHIC, MOVE_SLEEP_POWDER, MOVE_EXPLOSION},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_GYARADOS,
+         .heldItem = ITEM_LEFTOVERS,
+-        .moves = {MOVE_DRAGON_DANCE, MOVE_WATERFALL, MOVE_EARTHQUAKE, MOVE_DOUBLE_EDGE},
++        .moves = {MOVE_DRAGON_DANCE, MOVE_WATERFALL, MOVE_EARTHQUAKE, MOVE_CRUNCH},
+     },
+     {
+         .iv = 255,
+         .lvl = 100,
+         .species = SPECIES_CHARIZARD,
+         .heldItem = ITEM_CHARCOAL,
+-        .moves = {MOVE_FIRE_BLAST, MOVE_DRAGON_BREATH, MOVE_SOLAR_BEAM, MOVE_SUNNY_DAY},
++        .moves = {MOVE_FLAMETHROWER, MOVE_AIR_SLASH, MOVE_DRAGON_PULSE, MOVE_FOCUS_BLAST},
+     },
+ };
+diff --git a/src/pokedex_screen.c b/src/pokedex_screen.c
+index 88149ca..810fd76 100644
+--- a/src/pokedex_screen.c
++++ b/src/pokedex_screen.c
+@@ -1399,7 +1399,7 @@ static u16 DexScreen_CountMonsInOrderedList(u8 orderIdx)
+         }
+         break;
+     case DEX_ORDER_ATOZ:
+-        for (i = 0; i < NUM_SPECIES - 1; i++)
++        for (i = 0; i < NATIONAL_DEX_COUNT; i++)
+         {
+             ndex_num = gPokedexOrder_Alphabetical[i];
+             if (ndex_num <= max_n)
+@@ -1416,7 +1416,7 @@ static u16 DexScreen_CountMonsInOrderedList(u8 orderIdx)
+         }
+         break;
+     case DEX_ORDER_TYPE:
+-        for (i = 0; i < NUM_SPECIES - 1; i++)
++        for (i = 0; i < NATIONAL_DEX_COUNT; i++)
+         {
+             ndex_num = SpeciesToNationalPokedexNum(gPokedexOrder_Type[i]);
+             if (ndex_num <= max_n)
+diff --git a/tools/hack/abilities.py b/tools/hack/abilities.py
+index 61e46d0..6eeb9ac 100644
+--- a/tools/hack/abilities.py
++++ b/tools/hack/abilities.py
+@@ -107,7 +107,7 @@ IMPLEMENTED = {
+     "Filter", "Solid Rock", "Tinted Lens", "Scrappy", "Sniper", "Super Luck", "Skill Link", "No Guard",
+     "Wonder Skin", "Tangled Feet", "Snow Cloak", "Sand Rush", "Quick Feet", "Stall", "Big Pecks", "Simple",
+     "Contrary", "Overcoat", "Ice Body", "Hydration", "Poison Heal", "Dry Skin", "Magic Guard", "Gluttony",
+-    "Friend Guard", "Telepathy",
++    "Friend Guard", "Telepathy", "Motor Drive", "Armor Tail",
+     # batch 2
+     "Moxie", "Defiant", "Competitive", "Justified", "Rattled", "Steadfast", "Weak Armor", "Anger Point",
+     "Sap Sipper", "Storm Drain", "Wind Rider", "Cursed Body", "Poison Touch", "Aftermath", "Regenerator",
+diff --git a/tools/hack/add_species.py b/tools/hack/add_species.py
+index 7ad08e4..f9457cc 100644
+--- a/tools/hack/add_species.py
++++ b/tools/hack/add_species.py
+@@ -662,6 +662,7 @@ for item, I in EVO_ITEMS.items():
+     I.setdefault("param", 0)
+     I.setdefault("shop", "CeladonCity_DepartmentStore_4F")
+     I.setdefault("after", "ITEM_UP_GRADE")
++# (tools/hack/balance.py later moves the held evolution items to the 5-badge list)
+ for item, I in EVO_ITEMS.items():
+     if f"ITEM_{item}" in S["evo"] and f"#define ITEM_{item} " not in read("include/constants/items.h"):
+         T = item.title().replace("_", "")
+diff --git a/tools/hack/balance.py b/tools/hack/balance.py
+new file mode 100644
+index 0000000..dc41f14
+--- /dev/null
++++ b/tools/hack/balance.py
+@@ -0,0 +1,255 @@
++#!/usr/bin/env python3
++"""Balance pass after the modernization (run from the repo root, after the
++other tools/hack scripts):
++
++    python3 tools/hack/balance.py
++
++1. Boss movesets: the gym leaders, Elite Four and Champion get modern moves
++   (the player can now learn them too). Early gyms are only lightly touched;
++   levels and held items don't change.
++2. Peak (post-game) teams get modern sets, and the later evolutions where
++   they fit a leader's theme.
++3. Every move given is checked against what that species can learn in this
++   hack (level-up, TM/HM, tutor, egg or the modern tutor); problems are printed.
++"""
++import re
++import sys
++
++# party label: {species: [moves] or [[moves], [moves]] for repeated species}
++#   or for peak teams: [(species, item, [moves]), ...] replacing the whole team
++STORY = {
++    "sParty_LeaderLtSurge": {"PIKACHU": ["SHOCK_WAVE", "QUICK_ATTACK", "DOUBLE_TEAM", "NUZZLE"],
++                             "RAICHU": ["SHOCK_WAVE", "VOLT_SWITCH", "THUNDER_WAVE", "DOUBLE_KICK"]},
++    "sParty_LeaderErika": {"TANGELA": ["GIGA_DRAIN", "STUN_SPORE", "BIND", "POISON_POWDER"],
++                           "VILEPLUME": ["GIGA_DRAIN", "SLUDGE_BOMB", "SLEEP_POWDER", "PETAL_DANCE"]},
++    "sParty_LeaderKoga": {"MUK": ["VENOSHOCK", "MINIMIZE", "TOXIC", "ACID_ARMOR"],
++                          "VENOMOTH": ["PSYBEAM", "STUN_SPORE", "BUG_BUZZ", "SUPERSONIC"],
++                          "WEEZING": ["VENOSHOCK", "TOXIC", "SMOKESCREEN", "SELF_DESTRUCT"]},
++    "sParty_LeaderSabrina": {"MR_MIME": ["PSYBEAM", "DAZZLING_GLEAM", "LIGHT_SCREEN", "REFLECT"],
++                             "ESPEON": ["PSYCHIC", "QUICK_ATTACK", "SHADOW_BALL", "DAZZLING_GLEAM"],
++                             "ALAKAZAM": ["PSYCHIC", "RECOVER", "CALM_MIND", "DAZZLING_GLEAM"]},
++    "sParty_LeaderBlaine": {"NINETALES": ["FLAMETHROWER", "CONFUSE_RAY", "WILL_O_WISP", "HEX"],
++                            "RAPIDASH": ["FLARE_BLITZ", "STOMP", "AGILITY", "BOUNCE"],
++                            "HOUNDOOM": ["FLAMETHROWER", "DARK_PULSE", "WILL_O_WISP", "SUCKER_PUNCH"],
++                            "ARCANINE": ["FLAMETHROWER", "EXTREME_SPEED", "CRUNCH", "WILD_CHARGE"]},
++    "sParty_LeaderGiovanni": {"SANDSLASH": ["EARTHQUAKE", "SLASH", "SAND_TOMB", "X_SCISSOR"],
++                              "DUGTRIO": ["EARTHQUAKE", "SUCKER_PUNCH", "SAND_ATTACK", "STONE_EDGE"],
++                              "RHYDON": ["EARTHQUAKE", "STONE_EDGE", "MEGAHORN", "SCARY_FACE"]},
++    "sParty_EliteFourLorelei": {"DEWGONG": ["ICE_BEAM", "SURF", "AQUA_JET", "SAFEGUARD"],
++                                "CLOYSTER": ["SHELL_SMASH", "ICICLE_SPEAR", "LIQUIDATION", "ICE_SHARD"],
++                                "SLOWBRO": ["SCALD", "PSYCHIC", "AMNESIA", "YAWN"],
++                                "JYNX": ["ICE_BEAM", "PSYSHOCK", "LOVELY_KISS", "NASTY_PLOT"],
++                                "LAPRAS": ["ICE_BEAM", "SURF", "THUNDERBOLT", "CONFUSE_RAY"]},
++    "sParty_EliteFourBruno": {"ONIX": [["EARTHQUAKE", "STONE_EDGE", "IRON_TAIL", "STEALTH_ROCK"],
++                                       ["ROCK_POLISH", "EARTHQUAKE", "STONE_EDGE", "IRON_TAIL"]],
++                              "HITMONCHAN": ["DRAIN_PUNCH", "MACH_PUNCH", "ICE_PUNCH", "BULLET_PUNCH"],
++                              "HITMONLEE": ["HI_JUMP_KICK", "ROCK_SLIDE", "BLAZE_KICK", "FAKE_OUT"],
++                              "MACHAMP": ["CLOSE_COMBAT", "BULK_UP", "KNOCK_OFF", "STONE_EDGE"]},
++    "sParty_EliteFourAgatha": {"GENGAR": [["HEX", "WILL_O_WISP", "CONFUSE_RAY", "SLUDGE_BOMB"],
++                                          ["SHADOW_BALL", "SLUDGE_BOMB", "HYPNOSIS", "NASTY_PLOT"]],
++                               "GOLBAT": ["POISON_FANG", "AIR_SLASH", "CONFUSE_RAY", "BITE"],
++                               "HAUNTER": ["HYPNOSIS", "DREAM_EATER", "HEX", "MEAN_LOOK"],
++                               "ARBOK": ["GUNK_SHOT", "GLARE", "SUCKER_PUNCH", "IRON_TAIL"]},
++    "sParty_EliteFourLance": {"GYARADOS": ["WATERFALL", "CRUNCH", "DRAGON_DANCE", "IRON_TAIL"],
++                              "DRAGONAIR": [["DRAGON_PULSE", "IRON_TAIL", "THUNDER_WAVE", "OUTRAGE"],
++                                            ["AQUA_TAIL", "SAFEGUARD", "THUNDER_WAVE", "OUTRAGE"]],
++                              "AERODACTYL": ["STONE_EDGE", "AERIAL_ACE", "ICE_FANG", "CRUNCH"],
++                              "DRAGONITE": ["DRAGON_DANCE", "OUTRAGE", "EXTREME_SPEED", "IRON_TAIL"]},
++}
++CHAMPION = {"PIDGEOT": ["HURRICANE", "STEEL_WING", "ROOST", "QUICK_ATTACK"],
++            "ALAKAZAM": ["PSYCHIC", "DAZZLING_GLEAM", "CALM_MIND", "RECOVER"],
++            "RHYDON": ["EARTHQUAKE", "STONE_EDGE", "MEGAHORN", "STEALTH_ROCK"],
++            "ARCANINE": ["FLARE_BLITZ", "EXTREME_SPEED", "CRUNCH", "WILD_CHARGE"],
++            "EXEGGUTOR": ["ENERGY_BALL", "PSYCHIC", "SLEEP_POWDER", "LEECH_SEED"],
++            "GYARADOS": ["WATERFALL", "CRUNCH", "DRAGON_DANCE", "EARTHQUAKE"],
++            "BLASTOISE": ["HYDRO_PUMP", "ICE_BEAM", "FLASH_CANNON", "RAPID_SPIN"],
++            "CHARIZARD": ["FLAMETHROWER", "AIR_SLASH", "DRAGON_PULSE", "FOCUS_BLAST"],
++            "VENUSAUR": ["GIGA_DRAIN", "SLUDGE_BOMB", "SLEEP_POWDER", "EARTH_POWER"]}
++for starter in ("Squirtle", "Bulbasaur", "Charmander"):
++    STORY["sParty_ChampionFirst" + starter] = CHAMPION
++
++RIVAL_CORE = [("PIDGEOT", "SHARP_BEAK", ["BRAVE_BIRD", "U_TURN", "ROOST", "QUICK_ATTACK"]),
++              ("ALAKAZAM", "TWISTED_SPOON", ["PSYCHIC", "SHADOW_BALL", "FOCUS_BLAST", "CALM_MIND"]),
++              ("TYRANITAR", "LEFTOVERS", ["DRAGON_DANCE", "STONE_EDGE", "EARTHQUAKE", "CRUNCH"])]
++EXEGGUTOR = ("EXEGGUTOR", "LEFTOVERS", ["ENERGY_BALL", "PSYCHIC", "SLEEP_POWDER", "EXPLOSION"])
++ARCANINE = ("ARCANINE", "CHARCOAL", ["FLARE_BLITZ", "EXTREME_SPEED", "CRUNCH", "WILD_CHARGE"])
++GYARADOS = ("GYARADOS", "LEFTOVERS", ["DRAGON_DANCE", "WATERFALL", "EARTHQUAKE", "CRUNCH"])
++PEAK = {
++    "sParty_PeakBrock": [
++        ("GOLEM", "CHOICE_BAND", ["EARTHQUAKE", "STONE_EDGE", "EXPLOSION", "DOUBLE_EDGE"]),
++        ("OMASTAR", "MYSTIC_WATER", ["SHELL_SMASH", "HYDRO_PUMP", "ICE_BEAM", "EARTH_POWER"]),
++        ("KABUTOPS", "SCOPE_LENS", ["STONE_EDGE", "WATERFALL", "X_SCISSOR", "SWORDS_DANCE"]),
++        ("PROBOPASS", "LEFTOVERS", ["POWER_GEM", "EARTH_POWER", "FLASH_CANNON", "STEALTH_ROCK"]),
++        ("RHYPERIOR", "QUICK_CLAW", ["EARTHQUAKE", "STONE_EDGE", "MEGAHORN", "ROCK_POLISH"]),
++        ("TYRANITAR", "LEFTOVERS", ["DRAGON_DANCE", "STONE_EDGE", "EARTHQUAKE", "CRUNCH"])],
++    "sParty_PeakMisty": [
++        ("GOLDUCK", "MYSTIC_WATER", ["HYDRO_PUMP", "ICE_BEAM", "PSYSHOCK", "CALM_MIND"]),
++        ("LAPRAS", "LEFTOVERS", ["ICE_BEAM", "SURF", "THUNDERBOLT", "CONFUSE_RAY"]),
++        ("VAPOREON", "LEFTOVERS", ["SCALD", "ICE_BEAM", "WISH", "PROTECT"]),
++        ("MILOTIC", "LEFTOVERS", ["SCALD", "ICE_BEAM", "RECOVER", "TOXIC"]),
++        ("GYARADOS", "LUM_BERRY", ["DRAGON_DANCE", "WATERFALL", "EARTHQUAKE", "CRUNCH"]),
++        ("STARMIE", "LEFTOVERS", ["SCALD", "PSYSHOCK", "THUNDERBOLT", "RECOVER"])],
++    "sParty_PeakLtSurge": [
++        ("ELECTRODE", "MAGNET", ["THUNDERBOLT", "VOLT_SWITCH", "EXPLOSION", "TAUNT"]),
++        ("MAGNEZONE", "LEFTOVERS", ["THUNDERBOLT", "FLASH_CANNON", "VOLT_SWITCH", "THUNDER_WAVE"]),
++        ("AMPHAROS", "LEFTOVERS", ["THUNDERBOLT", "DRAGON_PULSE", "FOCUS_BLAST", "THUNDER_WAVE"]),
++        ("ELECTIVIRE", "MAGNET", ["WILD_CHARGE", "ICE_PUNCH", "CROSS_CHOP", "EARTHQUAKE"]),
++        ("JOLTEON", "MAGNET", ["THUNDERBOLT", "SHADOW_BALL", "VOLT_SWITCH", "AGILITY"]),
++        ("RAICHU", "LEFTOVERS", ["THUNDERBOLT", "SURF", "FOCUS_BLAST", "NASTY_PLOT"])],
++    "sParty_PeakErika": [
++        ("BRELOOM", "QUICK_CLAW", ["SPORE", "SEED_BOMB", "MACH_PUNCH", "DRAIN_PUNCH"]),
++        ("VICTREEBEL", "MIRACLE_SEED", ["POWER_WHIP", "SLUDGE_BOMB", "SLEEP_POWDER", "SWORDS_DANCE"]),
++        ("EXEGGUTOR", "LEFTOVERS", ["GIGA_DRAIN", "PSYCHIC", "SLEEP_POWDER", "EXPLOSION"]),
++        ("TANGROWTH", "LEFTOVERS", ["POWER_WHIP", "EARTHQUAKE", "SLEEP_POWDER", "KNOCK_OFF"]),
++        ("SCEPTILE", "MIRACLE_SEED", ["LEAF_BLADE", "EARTHQUAKE", "DRAGON_CLAW", "SWORDS_DANCE"]),
++        ("ROSERADE", "LEFTOVERS", ["LEAF_STORM", "SLUDGE_BOMB", "SPIKES", "SHADOW_BALL"])],
++    "sParty_PeakKoga": [
++        ("TENTACRUEL", "LEFTOVERS", ["SCALD", "SLUDGE_BOMB", "TOXIC_SPIKES", "RAPID_SPIN"]),
++        ("VENOMOTH", "SILVER_POWDER", ["QUIVER_DANCE", "BUG_BUZZ", "SLUDGE_BOMB", "SLEEP_POWDER"]),
++        ("MUK", "LEFTOVERS", ["GUNK_SHOT", "SHADOW_SNEAK", "DRAIN_PUNCH", "CURSE"]),
++        ("NIDOKING", "LEFTOVERS", ["EARTH_POWER", "SLUDGE_WAVE", "ICE_BEAM", "THUNDERBOLT"]),
++        ("GENGAR", "LEFTOVERS", ["SHADOW_BALL", "SLUDGE_BOMB", "FOCUS_BLAST", "DESTINY_BOND"]),
++        ("WEEZING", "LEFTOVERS", ["SLUDGE_BOMB", "FIRE_BLAST", "WILL_O_WISP", "TOXIC_SPIKES"])],
++    "sParty_PeakSabrina": [
++        ("MR_MIME", "LEFTOVERS", ["PSYCHIC", "DAZZLING_GLEAM", "CALM_MIND", "SUBSTITUTE"]),
++        ("GALLADE", "SCOPE_LENS", ["CLOSE_COMBAT", "PSYCHO_CUT", "NIGHT_SLASH", "SWORDS_DANCE"]),
++        ("GARDEVOIR", "LEFTOVERS", ["MOONBLAST", "PSYCHIC", "CALM_MIND", "HYPNOSIS"]),
++        ("METAGROSS", "CHOICE_BAND", ["METEOR_MASH", "EARTHQUAKE", "ZEN_HEADBUTT", "BULLET_PUNCH"]),
++        ("ESPEON", "LEFTOVERS", ["PSYCHIC", "DAZZLING_GLEAM", "CALM_MIND", "MORNING_SUN"]),
++        ("ALAKAZAM", "TWISTED_SPOON", ["PSYCHIC", "SHADOW_BALL", "FOCUS_BLAST", "CALM_MIND"])],
++    "sParty_PeakBlaine": [
++        ("RAPIDASH", "LEFTOVERS", ["FLARE_BLITZ", "WILD_CHARGE", "DRILL_RUN", "AGILITY"]),
++        ("NINETALES", "LEFTOVERS", ["FLAMETHROWER", "EXTRASENSORY", "NASTY_PLOT", "WILL_O_WISP"]),
++        ("MAGMORTAR", "CHARCOAL", ["FLAMETHROWER", "THUNDERBOLT", "FOCUS_BLAST", "PSYCHIC"]),
++        ("HOUNDOOM", "BLACK_GLASSES", ["FLAMETHROWER", "DARK_PULSE", "NASTY_PLOT", "SLUDGE_BOMB"]),
++        ("BLAZIKEN", "CHARCOAL", ["CLOSE_COMBAT", "FLARE_BLITZ", "STONE_EDGE", "SWORDS_DANCE"]),
++        ("ARCANINE", "LEFTOVERS", ["FLARE_BLITZ", "EXTREME_SPEED", "CRUNCH", "WILD_CHARGE"])],
++    "sParty_PeakGiovanni": [
++        ("DUGTRIO", "CHOICE_BAND", ["EARTHQUAKE", "STONE_EDGE", "SUCKER_PUNCH", "AERIAL_ACE"]),
++        ("SANDSLASH", "QUICK_CLAW", ["EARTHQUAKE", "STONE_EDGE", "SWORDS_DANCE", "X_SCISSOR"]),
++        ("MAROWAK", "THICK_CLUB", ["EARTHQUAKE", "STONE_EDGE", "DOUBLE_EDGE", "SWORDS_DANCE"]),
++        ("NIDOQUEEN", "LEFTOVERS", ["EARTH_POWER", "ICE_BEAM", "SLUDGE_WAVE", "STEALTH_ROCK"]),
++        ("NIDOKING", "LEFTOVERS", ["EARTH_POWER", "SLUDGE_WAVE", "ICE_BEAM", "THUNDERBOLT"]),
++        ("RHYPERIOR", "QUICK_CLAW", ["EARTHQUAKE", "STONE_EDGE", "MEGAHORN", "SWORDS_DANCE"])],
++    "sParty_PeakLorelei": [
++        ("MAMOSWINE", "NEVER_MELT_ICE", ["EARTHQUAKE", "ICICLE_CRASH", "ICE_SHARD", "STONE_EDGE"]),
++        ("CLOYSTER", "NEVER_MELT_ICE", ["SHELL_SMASH", "ICICLE_SPEAR", "LIQUIDATION", "ICE_SHARD"]),
++        ("JYNX", "NEVER_MELT_ICE", ["ICE_BEAM", "PSYCHIC", "LOVELY_KISS", "NASTY_PLOT"]),
++        ("WALREIN", "LEFTOVERS", ["ICE_BEAM", "SURF", "BODY_SLAM", "REST"]),
++        ("FROSLASS", "QUICK_CLAW", ["ICE_BEAM", "SHADOW_BALL", "WILL_O_WISP", "SPIKES"]),
++        ("LAPRAS", "LEFTOVERS", ["ICE_BEAM", "SURF", "THUNDERBOLT", "CONFUSE_RAY"])],
++    "sParty_PeakBruno": [
++        ("HITMONTOP", "LEFTOVERS", ["CLOSE_COMBAT", "RAPID_SPIN", "SUCKER_PUNCH", "STONE_EDGE"]),
++        ("HITMONCHAN", "BLACK_BELT", ["DRAIN_PUNCH", "ICE_PUNCH", "THUNDER_PUNCH", "BULLET_PUNCH"]),
++        ("HITMONLEE", "SCOPE_LENS", ["HI_JUMP_KICK", "BLAZE_KICK", "STONE_EDGE", "BULK_UP"]),
++        ("ANNIHILAPE", "LEFTOVERS", ["CLOSE_COMBAT", "SHADOW_CLAW", "BULK_UP", "U_TURN"]),
++        ("HERACROSS", "CHOICE_BAND", ["MEGAHORN", "CLOSE_COMBAT", "STONE_EDGE", "EARTHQUAKE"]),
++        ("MACHAMP", "LEFTOVERS", ["CLOSE_COMBAT", "KNOCK_OFF", "STONE_EDGE", "BULLET_PUNCH"])],
++    "sParty_PeakAgatha": [
++        ("SABLEYE", "LEFTOVERS", ["KNOCK_OFF", "SHADOW_CLAW", "FOUL_PLAY", "RECOVER"]),
++        ("MISMAGIUS", "LEFTOVERS", ["SHADOW_BALL", "DAZZLING_GLEAM", "NASTY_PLOT", "THUNDERBOLT"]),
++        ("DUSKNOIR", "LEFTOVERS", ["SHADOW_SNEAK", "ICE_PUNCH", "EARTHQUAKE", "WILL_O_WISP"]),
++        ("BANETTE", "SPELL_TAG", ["KNOCK_OFF", "SHADOW_CLAW", "WILL_O_WISP", "SHADOW_SNEAK"]),
++        ("CROBAT", "SHARP_BEAK", ["BRAVE_BIRD", "CROSS_POISON", "U_TURN", "ROOST"]),
++        ("GENGAR", "LEFTOVERS", ["SHADOW_BALL", "SLUDGE_BOMB", "FOCUS_BLAST", "NASTY_PLOT"])],
++    "sParty_PeakLance": [
++        ("KINGDRA", "MYSTIC_WATER", ["HYDRO_PUMP", "DRACO_METEOR", "ICE_BEAM", "RAIN_DANCE"]),
++        ("AERODACTYL", "SCOPE_LENS", ["STONE_EDGE", "EARTHQUAKE", "ICE_FANG", "DOUBLE_EDGE"]),
++        ("ALTARIA", "LEFTOVERS", ["DRAGON_DANCE", "DRAGON_CLAW", "EARTHQUAKE", "ROOST"]),
++        ("FLYGON", "SOFT_SAND", ["EARTHQUAKE", "DRAGON_CLAW", "U_TURN", "FIRE_BLAST"]),
++        ("SALAMENCE", "CHOICE_BAND", ["OUTRAGE", "EARTHQUAKE", "FIRE_FANG", "AERIAL_ACE"]),
++        ("DRAGONITE", "LEFTOVERS", ["DRAGON_DANCE", "OUTRAGE", "EXTREME_SPEED", "EARTHQUAKE"])],
++    "sParty_PeakChampionSquirtle": RIVAL_CORE + [EXEGGUTOR, ARCANINE,
++        ("BLASTOISE", "LEFTOVERS", ["SHELL_SMASH", "HYDRO_PUMP", "ICE_BEAM", "DARK_PULSE"])],
++    "sParty_PeakChampionBulbasaur": RIVAL_CORE + [GYARADOS, ARCANINE,
++        ("VENUSAUR", "LEFTOVERS", ["GIGA_DRAIN", "SLUDGE_BOMB", "SLEEP_POWDER", "EARTH_POWER"])],
++    "sParty_PeakChampionCharmander": RIVAL_CORE + [EXEGGUTOR, GYARADOS,
++        ("CHARIZARD", "CHARCOAL", ["FLAMETHROWER", "AIR_SLASH", "DRAGON_PULSE", "FOCUS_BLAST"])],
++}
++
++
++def read(p):
++    return open(p, encoding="utf-8").read()
++
++
++# ---------------------------------------------------------------- what each species can learn in this hack
++lu_ptr = dict(re.findall(r"\[(SPECIES_\w+)\] = (s\w+LevelUpLearnset)", read("src/data/pokemon/level_up_learnset_pointers.h")))
++lu = {n: set(re.findall(r"MOVE_\w+", b)) for n, b in re.findall(r"static const u16 (s\w+LevelUpLearnset)\[\] = \{(.*?)\};", read("src/data/pokemon/level_up_learnsets.h"), re.S)}
++tm_moves = {}
++for name in re.findall(r"#define ITEM_((?:TM|HM)\d\d_\w+)", read("include/constants/items.h")):
++    tm_moves[name] = "MOVE_" + name.split("_", 1)[1]
++tmhm = {sp: {tm_moves.get(t, "MOVE_" + t.split("_", 1)[1]) for t in re.findall(r"TMHM\(((?:TM|HM)\d\d_\w+)\)", b)}
++        for sp, b in re.findall(r"\[(SPECIES_\w+)\]\s*= TMHM_LEARNSET\((.*?)\),\n", read("src/data/pokemon/tmhm_learnsets.h"), re.S)}
++tutor = {sp: set(re.findall(r"TUTOR\((MOVE_\w+)\)", b)) for sp, b in re.findall(r"\[(SPECIES_\w+)\] = (TUTOR.*?),\n\n", read("src/data/pokemon/tutor_learnsets.h"), re.S)}
++egg = {"SPECIES_" + sp: set(re.findall(r"MOVE_\w+", b)) for sp, b in re.findall(r"egg_moves\((\w+),(.*?)\)", read("src/data/pokemon/egg_moves.h"), re.S)}
++move_ids = {m: int(n) for m, n in re.findall(r"#define (MOVE_\w+) (\d+)\n", read("include/constants/moves.h"))}
++by_id = {v: k for k, v in move_ids.items()}
++ht = read("src/data/pokemon/hack_tutor_learnsets.h")
++first = move_ids[re.search(r"#define HACK_TUTOR_FIRST_MOVE (MOVE_\w+)", ht).group(1)]
++modern = {}
++for sp, body in re.findall(r"\[(SPECIES_\w+)\] = \{(.*?)\}", ht):
++    bits = [int(b, 16) for b in body.split(",")]
++    modern[sp] = {by_id[first + i] for i in range(len(bits) * 8) if bits[i // 8] & (1 << (i % 8)) and first + i in by_id}
++evo = read("src/data/pokemon/evolution.h")
++prevo = {}
++for a, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", evo, re.S):
++    for t in re.findall(r"(SPECIES_\w+)\}", body + "}"):
++        prevo[t] = a
++
++
++def learnable(sp):
++    out, s = set(), sp
++    while s:
++        out |= lu.get(lu_ptr.get(s), set()) | tmhm.get(s, set()) | tutor.get(s, set()) | egg.get(s, set()) | modern.get(s, set())
++        s = prevo.get(s)
++    return out
++
++
++warnings = []
++
++
++def check(party, sp, moves):
++    can = learnable("SPECIES_" + sp)
++    for m in moves:
++        if "MOVE_" + m not in move_ids:
++            sys.exit(f"{party} {sp}: unknown move {m}")
++        if "MOVE_" + m not in can:
++            warnings.append(f"{party} {sp}: can't normally learn {m}")
++
++
++# ---------------------------------------------------------------- apply
++p = "src/data/trainer_parties.h"
++s = read(p)
++for party, sets in STORY.items():
++    m = re.search(r"(%s\[\] = \{)(.*?)(\n\};)" % party, s, re.S)
++    assert m, party
++    seen = {}
++    def mon(mm):
++        sp = re.search(r"\.species = SPECIES_(\w+)", mm.group(0)).group(1)
++        if sp not in sets:
++            return mm.group(0)
++        mv = sets[sp]
++        if isinstance(mv[0], list):
++            mv = mv[min(seen.get(sp, 0), len(mv) - 1)]
++        seen[sp] = seen.get(sp, 0) + 1
++        check(party, sp, mv)
++        return re.sub(r"\.moves = \{[^}]*\}", ".moves = {%s}" % ", ".join("MOVE_" + x for x in mv), mm.group(0))
++    body = re.sub(r"    \{\n.*?\n    \}", mon, m.group(2), flags=re.S)
++    s = s[:m.start(2)] + body + s[m.end(2):]
++for party, team in PEAK.items():
++    m = re.search(r"(%s\[\] = \{)(.*?)(\n\};)" % party, s, re.S)
++    assert m, party
++    mons = re.findall(r"    \{\n.*?\n    \}", m.group(2), re.S)
++    assert len(mons) == len(team), party
++    new = []
++    for old, (sp, item, mv) in zip(mons, team):
++        check(party, sp, mv)
++        o = re.sub(r"\.species = SPECIES_\w+", f".species = SPECIES_{sp}", old)
++        o = re.sub(r"\.heldItem = ITEM_\w+", f".heldItem = ITEM_{item}", o)
++        o = re.sub(r"\.moves = \{[^}]*\}", ".moves = {%s}" % ", ".join("MOVE_" + x for x in mv), o)
++        new.append(o)
++    s = s[:m.start(2)] + "\n" + ",\n".join(new) + "," + s[m.end(2):]
++open(p, "w", encoding="utf-8").write(s)
++for w in warnings:
++    print("warning:", w)
++print(f"{len(STORY)} story parties and {len(PEAK)} peak teams updated, {len(warnings)} warnings")
+diff --git a/tools/hack/moves.py b/tools/hack/moves.py
+index bcca55d..9037358 100644
+--- a/tools/hack/moves.py
++++ b/tools/hack/moves.py
+@@ -193,6 +193,19 @@ TARGETS = {"normal": "MOVE_TARGET_SELECTED", "any": "MOVE_TARGET_SELECTED", "adj
+            "randomNormal": "MOVE_TARGET_RANDOM", "foeSide": "MOVE_TARGET_OPPONENTS_FIELD", "allySide": "MOVE_TARGET_USER",
+            "all": "MOVE_TARGET_USER", "adjacentAllyOrSelf": "MOVE_TARGET_USER", "allies": "MOVE_TARGET_USER"}
+ STRONG_SETUP = {"NASTY_PLOT", "SHELL_SMASH", "QUIVER_DANCE", "SHIFT_GEAR", "COIL", "COTTON_GUARD", "TAIL_GLOW"}
++# tutor badge tiers use the power these moves really hit with, not their listed base power
++EFFECTIVE_POWER = {"HEX": 130, "VENOSHOCK": 130, "BRINE": 130, "ACROBATICS": 110, "PAYBACK": 100, "AVALANCHE": 120,
++                   "GYRO_BALL": 150, "ELECTRO_BALL": 150, "HEAVY_SLAM": 120, "HEAT_CRASH": 120, "GRASS_KNOT": 120,
++                   "WRING_OUT": 120, "HARD_PRESS": 100, "STORED_POWER": 80, "POWER_TRIP": 80, "PUNISHMENT": 80,
++                   "FELL_STINGER": 80, "TRIPLE_AXEL": 120}
++# strong utility moves: 3 badges
++STRONG_UTILITY = {"NUZZLE", "STEALTH_ROCK", "TOXIC_SPIKES", "STICKY_WEB", "TRICK_ROOM", "TAILWIND", "ROOST",
++                  "SUCKER_PUNCH", "FOUL_PLAY", "BODY_PRESS", "PSYSHOCK", "FLAME_CHARGE", "TRAILBLAZE", "HONE_CLAWS", "WORK_UP"}
++
++
++def tutor_tier(mv, power):
++    power = EFFECTIVE_POWER.get(mv, power)
++    return 2 if power >= 90 else 1 if power >= 70 or mv in STRONG_SETUP or mv in STRONG_UTILITY else 0
+ TUTOR_FIRST = "MOVE_FAIRY_WIND"
+ 
+ 
+@@ -480,7 +493,7 @@ tiers = []
+ for n, mv in tutor_moves:
+     blk = re.search(r"\[%s\] =\s*\{(.*?)\}," % mv, bm, re.S).group(1)
+     power = int(re.search(r"\.power = (\d+)", blk).group(1))
+-    tiers.append(2 if power >= 90 else 1 if power >= 70 or mv[5:] in STRONG_SETUP else 0)
++    tiers.append(tutor_tier(mv[5:], power))
+ rows = []
+ for sp in SPECIES:
+     ls = sd_species(sp)
+@@ -637,8 +650,9 @@ Hack_Text_ModernTutorIntro::
+     .string "I'll teach them to your POKéMON for\\n"
+     .string "free! Show me more GYM BADGES and\\l"
+     .string "I'll teach stronger moves.\\p"
+-    .string "3 BADGES for moves with 70 power or\\n"
+-    .string "more, 5 BADGES for 90 or more.\\p"
++    .string "Moves with 70 power or more, and\\n"
++    .string "tricky ones, need 3 BADGES. The\\l"
++    .string "strongest need 5 BADGES.\\p"
+     .string "Shall I teach your POKéMON?$"
+ 
+ Hack_Text_ModernTutorWhichMon::
+diff --git a/tools/hack/validate.py b/tools/hack/validate.py
+new file mode 100644
+index 0000000..e366d92
+--- /dev/null
++++ b/tools/hack/validate.py
+@@ -0,0 +1,319 @@
++#!/usr/bin/env python3
++"""Consistency checks for FireRed QoL+Hard's data. Run from the repo root:
++
++    python3 tools/hack/validate.py
++
++Prints every problem found (and exits 1 if there are any). It checks that each
++move has data, a name, a description and an animation; that each species has
++stats, graphics, learnsets and a Pokedex entry; that learnsets, egg moves,
++evolutions, trainer parties and wild encounters only use things that exist;
++and that text fits the boxes it is shown in.
++"""
++import json
++import re
++import sys
++
++problems = []
++
++
++def bad(msg):
++    problems.append(msg)
++
++
++def read(p):
++    return open(p, encoding="utf-8").read()
++
++
++def defines(path, prefix):
++    out = {}
++    for name, val in re.findall(r"#define (%s\w+)\s+(\w+)" % prefix, read(path)):
++        out[name] = val
++    res = {}
++    for name in out:
++        v, seen = out[name], set()
++        while not v.isdigit() and v in out and v not in seen:
++            seen.add(v)
++            v = out[v]
++        if v.isdigit():
++            res[name] = int(v)
++    return res
++
++
++def block_of(text, label):
++    i = text.index(label)
++    a = text.index("{", i)
++    depth, j = 0, a
++    while True:
++        if text[j] == "{":
++            depth += 1
++        elif text[j] == "}":
++            depth -= 1
++            if depth == 0:
++                return text[a + 1:j]
++        j += 1
++
++
++# ---------------------------------------------------------------- moves
++moves = defines("include/constants/moves.h", "MOVE_")
++MOVES_COUNT = int(re.search(r"#define MOVES_COUNT (\d+)", read("include/constants/moves.h")).group(1))
++move_by_id = {v: k for k, v in moves.items() if k != "MOVE_NONE"}
++bm = read("src/data/battle_moves.h")
++move_data = dict(re.findall(r"\[(MOVE_\w+)\] =\s*\{(.*?)\n    \},", bm, re.S))
++names = dict(re.findall(r'\[(MOVE_\w+)\]\s*= _\("([^"]*)"\)', read("src/data/text/move_names.h")))
++md = read("src/move_descriptions.c")
++desc_ptr = dict(re.findall(r"\[(MOVE_\w+)\s*- 1\] = (gMoveDescription_\w+)", md))
++desc_txt = {n: "".join(re.findall(r'"(.*?)"', b)) for n, b in re.findall(r"const u8 (gMoveDescription_\w+)\[\] = _\((.*?)\);", md, re.S)}
++anim_s = read("data/battle_anim_scripts.s")
++anim_table = re.findall(r"\t\.4byte (Move_\w+)", anim_s.split("gBattleAnims_Moves::")[1].split("gBattleAnims_StatusConditions")[0])
++anim_labels = set(re.findall(r"^(Move_\w+):", anim_s, re.M))
++effects = defines("include/constants/battle_move_effects.h", "EFFECT_")
++eff_table = re.findall(r"\t\.4byte (BattleScript_\w+)\s+@ (EFFECT_\w+)", read("data/battle_scripts_1.s"))
++if len(eff_table) != max(effects.values()) + 1:
++    bad(f"battle effect script table has {len(eff_table)} entries for {max(effects.values()) + 1} effects")
++for i, (_, e) in enumerate(eff_table):
++    if effects.get(e) != i:
++        bad(f"battle effect table entry {i} is labelled {e}")
++if len(anim_table) < MOVES_COUNT:
++    bad(f"move animation table has {len(anim_table)} entries for {MOVES_COUNT} moves")
++for i in range(1, MOVES_COUNT):
++    m = move_by_id.get(i)
++    if not m:
++        bad(f"move id {i} has no constant")
++        continue
++    if m not in move_data:
++        bad(f"{m}: no battle data")
++    else:
++        e = re.search(r"\.effect = (EFFECT_\w+)", move_data[m]).group(1)
++        if e not in effects:
++            bad(f"{m}: unknown effect {e}")
++        pw = int(re.search(r"\.power = (\d+)", move_data[m]).group(1))
++        if pw > 255:
++            bad(f"{m}: power {pw} > 255")
++    if m not in names:
++        bad(f"{m}: no name")
++    elif len(names[m]) > 12:
++        bad(f"{m}: name '{names[m]}' is over 12 characters")
++    if m not in desc_ptr:
++        bad(f"{m}: no description")
++    else:
++        lines = desc_txt[desc_ptr[m]].split("\\n")
++        if len(lines) > 4 or max(len(l) for l in lines) > 21:
++            bad(f"{m}: description doesn't fit ({lines})")
++    if i < len(anim_table) and anim_table[i] not in anim_labels:
++        bad(f"{m}: animation {anim_table[i]} is not defined")
++
++# ---------------------------------------------------------------- species
++spec = defines("include/constants/species.h", "SPECIES_")
++NUM_SPECIES = spec["SPECIES_EGG"]
++placeholder = {v for k, v in spec.items() if k.startswith("SPECIES_OLD_UNOWN_")}
++used_slots = {v for k, v in spec.items() if not k.startswith("SPECIES_OLD_UNOWN_") and v in placeholder}
++real = {}
++for k, v in spec.items():
++    if 0 < v < NUM_SPECIES and k not in ("SPECIES_EGG",) and not k.startswith("SPECIES_UNOWN_"):
++        if k.startswith("SPECIES_OLD_UNOWN_") and v not in used_slots:
++            continue
++        if not k.startswith("SPECIES_OLD_UNOWN_"):
++            real[v] = k
++species_names = set(real.values())
++sinfo = read("src/data/pokemon/species_info.h")
++info = dict(re.findall(r"\n    \[(SPECIES_\w+)\] =\s*\n    \{(.*?)\n    \}", sinfo, re.S))
++snames = dict(re.findall(r'\[(SPECIES_\w+)\]\s*= _\("([^"]*)"\)', read("src/data/text/species_names.h")))
++abil = defines("include/constants/abilities.h", "ABILITY_")
++impl_src = read("tools/hack/abilities.py")
++impl = {re.sub(r"[^A-Z0-9]+", "_", a.upper()).strip("_") for a in re.findall(r'"([^"]+)"', block_of(impl_src, "IMPLEMENTED ="))}
++g = "src/data/pokemon_graphics/"
++gfx = {}
++for f, pat in (("front_pic_table.h", r"SPECIES_SPRITE\((\w+), (\w+)\)"), ("back_pic_table.h", r"SPECIES_SPRITE\((\w+), (\w+)\)"),
++               ("palette_table.h", r"SPECIES_PAL\((\w+), (\w+)\)"), ("shiny_palette_table.h", r"SPECIES_SHINY_PAL\((\w+), (\w+)\)")):
++    gfx[f] = {"SPECIES_" + a: b for a, b in re.findall(pat, read(g + f))}
++gfx["footprint"] = dict(re.findall(r"\[(SPECIES_\w+)\] = (gMonFootprint_\w+)", read(g + "footprint_table.h")))
++icons = dict(re.findall(r"\[(SPECIES_\w+)\]\s*= (gMonIcon_\w+)", read("src/pokemon_icon.c")))
++coords_f = set(re.findall(r"\[(SPECIES_\w+)\] =", read(g + "front_pic_coordinates.h")))
++coords_b = set(re.findall(r"\[(SPECIES_\w+)\] =", read(g + "back_pic_coordinates.h")))
++lu_ptr = dict(re.findall(r"\[(SPECIES_\w+)\] = (s\w+LevelUpLearnset)", read("src/data/pokemon/level_up_learnset_pointers.h")))
++lu_txt = read("src/data/pokemon/level_up_learnsets.h")
++lu = {n: re.findall(r"LEVEL_UP_MOVE\(\s*(\d+),\s*(MOVE_\w+)\)", b)
++      for n, b in re.findall(r"static const u16 (s\w+LevelUpLearnset)\[\] = \{(.*?)\};", lu_txt, re.S)}
++tm_entries = set(re.findall(r"\[(SPECIES_\w+)\]\s*= TMHM_LEARNSET", read("src/data/pokemon/tmhm_learnsets.h")))
++for sid, sp in sorted(real.items()):
++    if sp not in info:
++        bad(f"{sp}: no species info")
++        continue
++    i = info[sp]
++    if sp not in snames or snames[sp] in ("?", ""):
++        bad(f"{sp}: no name")
++    elif len(snames[sp]) > 10:
++        bad(f"{sp}: name over 10 letters")
++    for a in re.findall(r"ABILITY_\w+", re.search(r"\.abilities = \{(.*?)\}", i).group(1)):
++        if a not in abil:
++            bad(f"{sp}: unknown ability {a}")
++        elif abil[a] > 77 and a[8:] not in impl:
++            bad(f"{sp}: ability {a} has no effect in this hack")
++    first = re.search(r"\.abilities = \{(\w+)", i).group(1)
++    if first == "ABILITY_NONE":
++        bad(f"{sp}: first ability slot is empty")
++    for f, tab in gfx.items():
++        if sp not in tab or "QuestionMark" in tab[sp]:
++            bad(f"{sp}: no {f} graphic")
++    if sp not in icons or "QuestionMark" in icons[sp]:
++        bad(f"{sp}: no icon")
++    if sp not in coords_f or sp not in coords_b:
++        bad(f"{sp}: no sprite coordinates")
++    if sp not in tm_entries:
++        bad(f"{sp}: no TM/HM learnset entry")
++    arr = lu_ptr.get(sp)
++    if not arr or arr not in lu:
++        bad(f"{sp}: no level-up learnset")
++        continue
++    seen = set()
++    prev = 0
++    for lv, mv in lu[arr]:
++        lv = int(lv)
++        if mv not in moves:
++            bad(f"{sp}: learnset has unknown {mv}")
++        if not 1 <= lv <= 100:
++            bad(f"{sp}: learns {mv} at level {lv}")
++        if lv < prev:
++            bad(f"{sp}: learnset not in level order at {mv}")
++        prev = lv
++        if mv in seen:
++            bad(f"{sp}: learns {mv} twice")
++        seen.add(mv)
++    if len(lu[arr]) > 32:
++        bad(f"{sp}: {len(lu[arr])} level-up moves (the relearner reads 32)")
++
++# egg moves
++for sp, body in re.findall(r"egg_moves\((\w+),(.*?)\)", read("src/data/pokemon/egg_moves.h"), re.S):
++    ms = re.findall(r"MOVE_\w+", body)
++    if len(ms) > 10:
++        bad(f"egg moves of {sp}: {len(ms)} (the Day Care holds 10)")
++    for m in ms:
++        if m not in moves:
++            bad(f"egg moves of {sp}: unknown {m}")
++
++# evolutions
++items = defines("include/constants/items.h", "ITEM_")
++item_eff = set(re.findall(r"\[(ITEM_\w+) - ITEM_POTION\]", read("src/data/pokemon/item_effects.h")))
++evo_txt = read("src/data/pokemon/evolution.h")
++for a, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", evo_txt, re.S):
++    evs = re.findall(r"\{(EVO_\w+), ([^,]+), (SPECIES_\w+)", body)
++    if len(evs) > 8:
++        bad(f"{a}: {len(evs)} evolutions (limit 8)")
++    for meth, param, t in evs:
++        param = param.strip()
++        if t not in species_names:
++            bad(f"{a} evolves into unknown {t}")
++        if meth in ("EVO_ITEM", "EVO_ITEM_MALE", "EVO_ITEM_FEMALE", "EVO_TRADE_ITEM"):
++            if param not in items:
++                bad(f"{a} -> {t}: unknown item {param}")
++            elif meth != "EVO_TRADE_ITEM" and param not in item_eff:
++                bad(f"{a} -> {t}: {param} has no item effect, so it can't be used")
++        if meth == "EVO_MOVE" and param not in moves:
++            bad(f"{a} -> {t}: unknown move {param}")
++
++# Pokedex
++dex = read("include/constants/pokedex.h")
++nat_vals = defines("include/constants/pokedex.h", "NATIONAL_DEX_")
++enum = re.findall(r"(NATIONAL_DEX_\w+),", dex.split("HOENN_DEX_NONE")[0])
++for n, nm in enumerate(enum):
++    nat_vals.setdefault(nm, n)
++for nm, rhs in re.findall(r"#define (NATIONAL_DEX_\w+)\s+(NATIONAL_DEX_\w+)", dex):
++    if rhs in nat_vals:
++        nat_vals[nm] = nat_vals[rhs]
++COUNT = nat_vals["NATIONAL_DEX_COUNT"] if "NATIONAL_DEX_COUNT" in nat_vals else None
++entries = read("src/data/pokemon/pokedex_entries.h")
++have_entry = set(re.findall(r"\[(NATIONAL_DEX_\w+)\] =", entries))
++have_num = {nat_vals[e] for e in have_entry if e in nat_vals}
++for n in range(1, COUNT + 1):
++    if n not in have_num:
++        bad(f"National Dex #{n} (internal) has no Pokedex entry")
++texts = read("src/data/pokemon/pokedex_text_fr.h")
++for name, body in re.findall(r"const u8 (g\w+PokedexText)\[\] = _\((.*?)\);", texts, re.S):
++    lines = "".join(re.findall(r'"(.*?)"', body)).split("\\n")
++    if (max(len(l) for l in lines) > 43 or len(lines) > 4) and "REVISION" not in body:
++        bad(f"{name}: Pokedex text may not fit ({max(len(l) for l in lines)} chars, {len(lines)} lines)")
++orders = read("src/data/pokemon/pokedex_orders.h")
++for label, need, kind in (("gPokedexOrder_Alphabetical", COUNT, "NATIONAL_DEX"), ("gPokedexOrder_Type", COUNT, "SPECIES"),
++                          ("gPokedexOrder_Weight", COUNT, "NATIONAL_DEX"), ("gPokedexOrder_Height", COUNT, "NATIONAL_DEX")):
++    lst = re.findall(r"(%s_\w+)" % kind, block_of(orders, label))
++    if len(lst) != need:
++        bad(f"{label}: {len(lst)} entries, the game reads {need}")
++    if len(set(lst)) != len(lst):
++        dup = sorted({x for x in lst if lst.count(x) > 1})
++        bad(f"{label}: duplicates {dup}")
++
++# positional species tables in pokemon.c
++pc = read("src/pokemon.c")
++for table in ("sSpeciesToHoennPokedexNum", "sSpeciesToNationalPokedexNum"):
++    body = block_of(pc, f"static const u16 {table}[NUM_SPECIES - 1] =")
++    n = len([x for x in body.split(",") if x.strip() and not x.strip().startswith("//")])
++    n = len(re.findall(r"^\s*(?:SPECIES_TO_\w+\(\w+\)|HOENN_DEX_\w+|NATIONAL_DEX_\w+|0)\s*,", body, re.M))
++    if n != NUM_SPECIES - 1:
++        bad(f"{table}: {n} entries for {NUM_SPECIES - 1} species")
++
++# ---------------------------------------------------------------- items
++ij = json.load(open("src/data/items.json", encoding="utf-8"))["items"]
++ITEMS_COUNT = int(re.search(r"#define ITEMS_COUNT (\d+)", read("include/constants/items.h")).group(1)) if re.search(r"#define ITEMS_COUNT (\d+)", read("include/constants/items.h")) else len(ij)
++if len(ij) != ITEMS_COUNT:
++    bad(f"items.json has {len(ij)} items, ITEMS_COUNT is {ITEMS_COUNT}")
++icon_tab = dict(re.findall(r"\[(ITEM_\w+)\]\s*= \{(gItemIcon_\w+)", read("src/data/item_icon_table.h")))
++for n, it in enumerate(ij):
++    if it["english"] == "????????" or it["itemId"] == "ITEM_NONE":
++        continue
++    if len(it["english"]) > 13 and it["itemId"] != "ITEM_POKEBLOCK_CASE":
++        bad(f"{it['itemId']}: name over 13 characters")
++    for l in it["description_english"].split("\\n"):
++        if len(l) > 37:
++            bad(f"{it['itemId']}: description line too long: {l!r}")
++    if len(it["english"]) > 13 and it["itemId"] == "ITEM_POKEBLOCK_CASE":
++        pass  # vanilla
++    if items.get(it["itemId"]) != n:
++        bad(f"{it['itemId']} is at position {n} in items.json but its constant is {items.get(it['itemId'])}")
++    if icon_tab.get(it["itemId"], "gItemIcon_QuestionMark") == "gItemIcon_QuestionMark" and not it["itemId"].startswith(("ITEM_TM", "ITEM_HM")):
++        if it["pocket"] != "POCKET_KEY_ITEMS":
++            bad(f"{it['itemId']}: no icon")
++
++# ---------------------------------------------------------------- trainers and wild Pokemon
++tp = read("src/data/trainer_parties.h")
++for party, body in re.findall(r"static const struct \w+ (sParty_\w+)\[\] = \{(.*?)\n\};", tp, re.S):
++    for mon in re.findall(r"\{(.*?)\n    \}", body, re.S):
++        sp = re.search(r"\.species = (SPECIES_\w+)", mon)
++        if not sp or sp.group(1) not in species_names:
++            bad(f"{party}: unknown species {sp.group(1) if sp else '?'}")
++        lvl = re.search(r"\.lvl = (\d+)", mon)
++        if lvl and not 1 <= int(lvl.group(1)) <= 100:
++            bad(f"{party}: level {lvl.group(1)}")
++        for m in re.findall(r"MOVE_\w+", mon):
++            if m not in moves:
++                bad(f"{party}: unknown move {m}")
++        it = re.search(r"\.heldItem = (ITEM_\w+)", mon)
++        if it and it.group(1) not in items:
++            bad(f"{party}: unknown item {it.group(1)}")
++we = json.load(open("src/data/wild_encounters.json"))
++for grp in we["wild_encounter_groups"]:
++    for enc in grp["encounters"]:
++        for kind in ("land_mons", "water_mons", "rock_smash_mons", "fishing_mons"):
++            for m in enc.get(kind, {}).get("mons", []):
++                if m["species"] not in species_names:
++                    bad(f"{enc.get('base_label')}: unknown wild {m['species']}")
++                if not 1 <= m["min_level"] <= m["max_level"] <= 100:
++                    bad(f"{enc.get('base_label')}: levels {m['min_level']}-{m['max_level']}")
++
++# ---------------------------------------------------------------- battle strings
++ids = defines("include/constants/battle_string_ids.h", "STRINGID_")
++ids["BATTLESTRINGS_COUNT"] = int(re.search(r"#define BATTLESTRINGS_COUNT\s+(\d+)", read("include/constants/battle_string_ids.h")).group(1))
++m = re.search(r"#define BATTLESTRINGS_TABLE_START\s+(\d+)", read("include/constants/battle_string_ids.h"))
++if m:
++    ids["BATTLESTRINGS_TABLE_START"] = int(m.group(1))
++bmsg = read("src/battle_message.c")
++table_ids = set(re.findall(r"\[(STRINGID_\w+) - BATTLESTRINGS_TABLE_START\]", bmsg))
++start = ids.get("BATTLESTRINGS_TABLE_START", 12)
++for name, v in ids.items():
++    if start <= v < ids["BATTLESTRINGS_COUNT"] and name not in table_ids and name not in ("BATTLESTRINGS_TABLE_START",):
++        if not any(ids.get(t) == v for t in table_ids):
++            bad(f"{name}: no battle string")
++
++for p in problems:
++    print(p)
++print(f"{len(problems)} problem(s)")
++sys.exit(1 if problems else 0)
+-- 
+2.43.0
+

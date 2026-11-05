@@ -141,19 +141,19 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Disarming Voice | Fairy | Special | 40 | — | 15 | 0 |
 | Draining Kiss | Fairy | Special | 50 | 100% | 10 | 0 |
-| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
-| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
-| Trick Room | Psychic | Status | — | — | 5 | 0 |
-| Triple Axel | Ice | Physical | 20 | 90% | 10 | 0 |
 | Vacuum Wave | Fighting | Special | 40 | 100% | 30 | 0 |
 | Aura Sphere | Fighting | Special | 80 | — | 20 | 3 |
 | Dazzling Gleam | Fairy | Special | 80 | 100% | 10 | 3 |
 | Mystical Fire | Fire | Special | 75 | 100% | 10 | 3 |
 | Psyshock | Psychic | Special | 80 | 100% | 10 | 3 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 3 |
+| Trick Room | Psychic | Status | — | — | 5 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 5 |
+| Triple Axel | Ice | Physical | 20 | 90% | 10 | 5 |
 
 ### By breeding (egg moves)
 

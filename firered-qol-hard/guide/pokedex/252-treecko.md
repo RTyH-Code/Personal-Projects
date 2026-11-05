@@ -131,16 +131,16 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
-| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Breaking Swipe | Dragon | Physical | 60 | 100% | 15 | 0 |
 | Dragon Tail | Dragon | Physical | 60 | 90% | 10 | 0 |
-| Grass Knot | Grass | Special | varies | 100% | 20 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
-| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
-| Work Up | Normal | Status | — | — | 30 | 0 |
 | Drain Punch | Fighting | Physical | 75 | 100% | 10 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 3 |
+| Work Up | Normal | Status | — | — | 30 | 3 |
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 5 |
 | Energy Ball | Grass | Special | 90 | 100% | 10 | 5 |
+| Grass Knot | Grass | Special | varies | 100% | 20 | 5 |
 | Leaf Storm | Grass | Special | 130 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)

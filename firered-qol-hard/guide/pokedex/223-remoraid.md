@@ -125,11 +125,11 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
-| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Charge Beam | Electric | Special | 50 | 90% | 10 | 0 |
 | Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
 | Seed Bomb | Grass | Physical | 80 | 100% | 15 | 3 |
+| Brine | Water | Special | 65 | 100% | 10 | 5 |
 | Gunk Shot | Poison | Physical | 120 | 80% | 5 | 5 |
 
 ### By breeding (egg moves)

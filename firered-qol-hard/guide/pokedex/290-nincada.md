@@ -117,8 +117,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
-| Hone Claws | Dark | Status | — | — | 15 | 0 |
 | Struggle Bug | Bug | Special | 50 | 100% | 20 | 0 |
+| Hone Claws | Dark | Status | — | — | 15 | 3 |
 | Skitter Smack | Bug | Physical | 70 | 90% | 10 | 3 |
 | X-Scissor | Bug | Physical | 80 | 100% | 15 | 3 |
 | Bug Buzz | Bug | Special | 90 | 100% | 10 | 5 |

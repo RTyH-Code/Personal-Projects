@@ -128,19 +128,19 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
-| Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
-| Heat Crash | Fire | Physical | varies | 100% | 10 | 0 |
-| Heavy Slam | Steel | Physical | varies | 100% | 10 | 0 |
 | Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
-| Stealth Rock | Rock | Status | — | — | 20 | 0 |
-| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
+| Flame Charge | Fire | Physical | 50 | 100% | 20 | 3 |
 | Flash Cannon | Steel | Special | 80 | 100% | 10 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
+| Stealth Rock | Rock | Status | — | — | 20 | 3 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Earth Power | Ground | Special | 90 | 100% | 10 | 5 |
 | Flare Blitz | Fire | Physical | 120 | 100% | 15 | 5 |
+| Heat Crash | Fire | Physical | varies | 100% | 10 | 5 |
+| Heavy Slam | Steel | Physical | varies | 100% | 10 | 5 |
 | High Horsepower | Ground | Physical | 95 | 95% | 10 | 5 |
 | Stone Edge | Rock | Physical | 100 | 80% | 5 | 5 |
 

@@ -138,18 +138,18 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 |---|---|---|--:|--:|--:|--:|
 | Bulldoze | Ground | Physical | 60 | 100% | 20 | 0 |
 | Fire Fang | Fire | Physical | 65 | 95% | 15 | 0 |
-| Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
-| Gyro Ball | Steel | Physical | varies | 100% | 5 | 0 |
 | Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
-| Work Up | Normal | Status | — | — | 30 | 0 |
+| Flame Charge | Fire | Physical | 50 | 100% | 20 | 3 |
 | Iron Head | Steel | Physical | 80 | 100% | 15 | 3 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |
 | Shadow Claw | Ghost | Physical | 70 | 100% | 15 | 3 |
+| Work Up | Normal | Status | — | — | 30 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Flare Blitz | Fire | Physical | 120 | 100% | 15 | 5 |
 | Focus Blast | Fighting | Special | 120 | 70% | 5 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
+| Gyro Ball | Steel | Physical | varies | 100% | 5 | 5 |
 | Play Rough | Fairy | Physical | 90 | 90% | 10 | 5 |
 | Rock Climb | Normal | Physical | 90 | 85% | 20 | 5 |
 | Wild Charge | Electric | Physical | 90 | 100% | 15 | 5 |

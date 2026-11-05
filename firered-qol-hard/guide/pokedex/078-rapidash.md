@@ -127,9 +127,9 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
-| Flame Charge | Fire | Physical | 50 | 100% | 20 | 0 |
 | Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Drill Run | Ground | Physical | 80 | 95% | 10 | 3 |
+| Flame Charge | Fire | Physical | 50 | 100% | 20 | 3 |
 | Mystical Fire | Fire | Special | 75 | 100% | 10 | 3 |
 | Poison Jab | Poison | Physical | 80 | 100% | 20 | 3 |
 | Scorching Sands | Ground | Special | 70 | 100% | 10 | 3 |

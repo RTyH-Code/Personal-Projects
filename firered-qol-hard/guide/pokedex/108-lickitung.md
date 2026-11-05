@@ -148,8 +148,8 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 | Dragon Tail | Dragon | Physical | 60 | 90% | 10 | 0 |
 | Incinerate | Fire | Special | 60 | 100% | 15 | 0 |
 | Power-Up Punch | Fighting | Physical | 40 | 100% | 20 | 0 |
-| Work Up | Normal | Status | — | — | 30 | 0 |
 | Body Press | Fighting | Physical | 80 | 100% | 10 | 3 |
+| Work Up | Normal | Status | — | — | 30 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |

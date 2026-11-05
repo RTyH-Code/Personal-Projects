@@ -125,17 +125,17 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
-| Acrobatics | Flying | Physical | 55 | 100% | 15 | 0 |
 | Defog | Flying | Status | — | — | 15 | 0 |
 | Dual Wingbeat | Flying | Physical | 40 | 90% | 10 | 0 |
 | Ominous Wind | Ghost | Special | 60 | 100% | 5 | 0 |
-| Roost | Flying | Status | — | — | 5 | 0 |
-| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
-| Tailwind | Flying | Status | — | — | 15 | 0 |
-| Work Up | Normal | Status | — | — | 30 | 0 |
 | Air Slash | Flying | Special | 75 | 95% | 15 | 3 |
 | Nasty Plot | Dark | Status | — | — | 20 | 3 |
+| Roost | Flying | Status | — | — | 5 | 3 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 3 |
+| Tailwind | Flying | Status | — | — | 15 | 3 |
+| Work Up | Normal | Status | — | — | 30 | 3 |
 | Zen Headbutt | Psychic | Physical | 80 | 90% | 15 | 3 |
+| Acrobatics | Flying | Physical | 55 | 100% | 15 | 5 |
 | Brave Bird | Flying | Physical | 120 | 100% | 15 | 5 |
 | Hurricane | Flying | Special | 110 | 70% | 10 | 5 |
 

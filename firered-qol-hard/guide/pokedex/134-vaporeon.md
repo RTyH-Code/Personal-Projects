@@ -141,15 +141,15 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 | Move | Type | Cat. | Power | Acc. | PP | Badges |
 |---|---|---|--:|--:|--:|--:|
-| Brine | Water | Special | 65 | 100% | 10 | 0 |
 | Chilling Water | Water | Special | 50 | 100% | 20 | 0 |
 | Flip Turn | Water | Physical | 60 | 100% | 20 | 0 |
-| Stored Power | Psychic | Special | 20 | 100% | 10 | 0 |
-| Trailblaze | Grass | Physical | 50 | 100% | 20 | 0 |
-| Work Up | Normal | Status | — | — | 30 | 0 |
 | Liquidation | Water | Physical | 85 | 100% | 10 | 3 |
 | Scald | Water | Special | 80 | 100% | 15 | 3 |
+| Stored Power | Psychic | Special | 20 | 100% | 10 | 3 |
+| Trailblaze | Grass | Physical | 50 | 100% | 20 | 3 |
+| Work Up | Normal | Status | — | — | 30 | 3 |
 | Aqua Tail | Water | Physical | 90 | 90% | 10 | 5 |
+| Brine | Water | Special | 65 | 100% | 10 | 5 |
 | Giga Impact | Normal | Physical | 150 | 90% | 5 | 5 |
 
 ### By breeding (egg moves)
