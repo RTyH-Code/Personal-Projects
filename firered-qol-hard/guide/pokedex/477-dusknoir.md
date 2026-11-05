@@ -1,4 +1,4 @@
-← #474 [Porygon-Z](474-porygon-z.md) · [Index](../POKEDEX.md) · [Farigiraf](981-farigiraf.md) #981 →
+← #476 [Probopass](476-probopass.md) · [Index](../POKEDEX.md) · [Froslass](478-froslass.md) #478 →
 
 # #477 Dusknoir
 
@@ -177,4 +177,4 @@ Breed a Duskull (passed down to Duskull, which then evolves) with a father that 
 
 ---
 
-← #474 [Porygon-Z](474-porygon-z.md) · [Index](../POKEDEX.md) · [Farigiraf](981-farigiraf.md) #981 →
+← #476 [Probopass](476-probopass.md) · [Index](../POKEDEX.md) · [Froslass](478-froslass.md) #478 →

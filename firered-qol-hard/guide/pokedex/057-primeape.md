@@ -54,6 +54,7 @@ Height 1 m (3′03″) · Weight 32 kg (70.5 lbs)
 ## Evolution
 
 - [Mankey](056-mankey.md) → **Primeape**: Level 28
+  - **Primeape** → [Annihilape](979-annihilape.md): Level 35 *(new in this hack)*
 
 ## Where to find it
 

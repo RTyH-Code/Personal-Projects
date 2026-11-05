@@ -54,13 +54,14 @@ Height 0.7 m (2′04″) · Weight 16.8 kg (37.0 lbs)
 ## Evolution
 
 - **Snorunt** → [Glalie](362-glalie.md): Level 42
+- **Snorunt** → [Froslass](478-froslass.md): Use a Dawn Stone on a female *(new in this hack)*
 
 ## Where to find it
 
 - **Seafoam Islands B1F**: Grass / cave Lv 26 (4%)
 - **Seafoam Islands B2F**: Grass / cave Lv 22 (10%)
 - **Four Island Icefall Cave 1F**: Grass / cave Lv 23 (4%)
-- Breeding: hatches from an Egg left by a Snorunt or Glalie at the Four Island Day Care
+- Breeding: hatches from an Egg left by a Snorunt or Glalie or Froslass at the Four Island Day Care
 
 ## Moves
 

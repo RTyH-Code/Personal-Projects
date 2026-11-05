@@ -57,13 +57,14 @@ Height 1.5 m (4′11″) · Weight 56 kg (123.5 lbs)
 ## Evolution
 
 - **Scyther** → [Scizor](212-scizor.md): Use a Metal Coat *(originally: Trade holding Metal Coat)*
+- **Scyther** → [Kleavor](900-kleavor.md): Use a Black Augurite *(new in this hack)*
 
 ## Where to find it
 
 - **Safari Zone Center**: Grass / cave Lv 23 (4%)
 - **Safari Zone East**: Grass / cave Lv 28 (1%)
 - **Celadon City Game Corner Prize Room**: Game Corner prize (5500 coins), Lv 25
-- Breeding: hatches from an Egg left by a Scyther or Scizor at the Four Island Day Care
+- Breeding: hatches from an Egg left by a Scyther or Scizor or Kleavor at the Four Island Day Care
 
 ## Moves
 

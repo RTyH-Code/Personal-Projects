@@ -54,6 +54,7 @@ Height 1.8 m (5′11″) · Weight 125.8 kg (277.3 lbs)
 ## Evolution
 
 - [Teddiursa](216-teddiursa.md) → **Ursaring**: Level 30
+  - **Ursaring** → [Ursaluna](901-ursaluna.md): Use a Peat Block *(new in this hack)*
 
 ## Where to find it
 

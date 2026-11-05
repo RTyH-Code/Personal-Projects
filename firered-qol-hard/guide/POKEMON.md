@@ -76,6 +76,9 @@ Legendaries added by this hack appear after your first Hall of Fame entry (see t
 | Dusclops → Dusknoir | — | use Reaper Cloth |
 | Eevee → Espeon | friendship day | use Sun Stone |
 | Eevee → Umbreon | friendship night | use Moon Stone |
+| Eevee → Leafeon | — | use Leaf Stone |
+| Eevee → Glaceon | — | use Ice Stone |
+| Eevee → Sylveon | — | level up with high friendship knowing a Fairy-type move |
 | Electabuzz → Electivire | — | use Electirizer |
 | Feebas → Milotic | beauty | use Deep Sea Scale |
 | Girafarig → Farigiraf | — | level 32 |
@@ -83,25 +86,32 @@ Legendaries added by this hack appear after your first Hall of Fame entry (see t
 | Graveler → Golem | trade | level 37 |
 | Haunter → Gengar | trade | level 37 |
 | Kadabra → Alakazam | trade | level 37 |
+| Kirlia → Gallade | — | use Dawn Stone (male) |
 | Lickitung → Lickilicky | — | level up knowing Rollout |
 | Machoke → Machamp | trade | level 37 |
 | Magmar → Magmortar | — | use Magmarizer |
 | Magneton → Magnezone | — | use Thunder Stone |
 | Misdreavus → Mismagius | — | use Dusk Stone |
 | Murkrow → Honchkrow | — | use Dusk Stone |
+| Nosepass → Probopass | — | use Thunder Stone |
 | Onix → Steelix | trade holding Metal Coat | use Metal Coat |
 | Piloswine → Mamoswine | — | level up knowing Ancient Power |
 | Poliwhirl → Politoed | trade holding King's Rock | use King's Rock |
 | Porygon → Porygon2 | trade holding Up-Grade | use Up-Grade |
 | Porygon2 → Porygon-Z | — | use Dubious Disc |
+| Primeape → Annihilape | — | level 35 |
 | Rhydon → Rhyperior | — | use Protector |
 | Roselia → Roserade | — | use Shiny Stone |
 | Scyther → Scizor | trade holding Metal Coat | use Metal Coat |
+| Scyther → Kleavor | — | use Black Augurite |
 | Seadra → Kingdra | trade holding Dragon Scale | use Dragon Scale |
 | Slowpoke → Slowking | trade holding King's Rock | use King's Rock |
 | Sneasel → Weavile | — | use Razor Claw |
+| Snorunt → Froslass | — | use Dawn Stone (female) |
+| Stantler → Wyrdeer | — | level up knowing Zen Headbutt |
 | Tangela → Tangrowth | — | level up knowing Ancient Power |
 | Togetic → Togekiss | — | use Shiny Stone |
+| Ursaring → Ursaluna | — | use Peat Block |
 | Yanma → Yanmega | — | level up knowing Ancient Power |
 
 Deoxys changes Forme with the **Meteorite** (key item, given when you catch it on Birth Island).

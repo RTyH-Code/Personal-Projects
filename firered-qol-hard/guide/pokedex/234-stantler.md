@@ -55,12 +55,12 @@ Height 1.4 m (4′07″) · Weight 71.2 kg (157.0 lbs)
 
 ## Evolution
 
-Stantler does not evolve.
+- **Stantler** → [Wyrdeer](899-wyrdeer.md): Level up knowing Zen Headbutt *(new in this hack)*
 
 ## Where to find it
 
 - **Six Island Altering Cave**: Grass / cave Lv 20–24 (4%)
-- Breeding: hatches from an Egg left by a Stantler at the Four Island Day Care
+- Breeding: hatches from an Egg left by a Stantler or Wyrdeer at the Four Island Day Care
 
 ## Moves
 

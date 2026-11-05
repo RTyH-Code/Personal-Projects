@@ -49,6 +49,28 @@ NEW_SPECIES = {
     # Twin Beam and Hyper Drill aren't in the game: level 32, where they learn them
     "FARIGIRAF": dict(prevo="GIRAFARIG", evo="EVO_LEVEL, 32", realnum=981, text="Now that the brain waves from its head\nand tail are in sync, its psychic\npower is ten times stronger."),
     "DUDUNSPARCE": dict(prevo="DUNSPARCE", evo="EVO_LEVEL, 32", realnum=982, name="DUDUNSPRCE", exp="DUDUNSPARCE_TWO_SEGMENT", text="It uses its hard tail to make its nest\nby boring holes into bedrock deep\nunderground."),
+    # typing changes
+    "PROBOPASS": dict(prevo="NOSEPASS", evo="EVO_ITEM, ITEM_THUNDER_STONE", realnum=476,
+                      text="It freely controls three small units\ncalled MINI-NOSES using magnetic force.\nIt is surrounded by a strong field."),
+    "WYRDEER": dict(prevo="STANTLER", evo="EVO_MOVE, MOVE_ZEN_HEADBUTT", realnum=899,
+                    text="The black orbs on its antlers shine with\nan eerie light. It creates a barrier\nwith psychic power."),
+    "URSALUNA": dict(prevo="URSARING", evo="EVO_ITEM, ITEM_PEAT_BLOCK", realnum=901,
+                     text="Swampy terrain gave it its brawn. It can\nsense the earth and dig up peat with\nits bare forelegs."),
+    "ANNIHILAPE": dict(prevo="PRIMEAPE", evo="EVO_LEVEL, 35", realnum=979,
+                       text="When its anger rose beyond a critical\npoint, it gained power unfettered by\nits physical body."),
+    # branch evolutions
+    "GALLADE": dict(prevo="KIRLIA", evo="EVO_ITEM_MALE, ITEM_DAWN_STONE", realnum=475,
+                    text="A master of courtesy and swordsmanship,\nit fights using extending swords on its\nelbows."),
+    "FROSLASS": dict(prevo="SNORUNT", evo="EVO_ITEM_FEMALE, ITEM_DAWN_STONE", realnum=478,
+                     text="It freezes foes with an icy breath\nnearly -60 degrees F. What seems to be\nits body is actually hollow."),
+    "LEAFEON": dict(prevo="EEVEE", evo="EVO_ITEM, ITEM_LEAF_STONE", realnum=470,
+                    text="Just like a plant, it uses\nphotosynthesis. As a result, it is\nalways enveloped in clear air."),
+    "GLACEON": dict(prevo="EEVEE", evo="EVO_ITEM, ITEM_ICE_STONE", realnum=471,
+                    text="As a protective technique, it can\ncompletely freeze its fur to make its\nhairs stand up like needles."),
+    "SYLVEON": dict(prevo="EEVEE", evo="EVO_MOVE_TYPE, TYPE_FAIRY", realnum=700,
+                    text="It sends a soothing aura from its\nribbonlike feelers to calm fights."),
+    "KLEAVOR": dict(prevo="SCYTHER", evo="EVO_ITEM, ITEM_BLACK_AUGURITE", realnum=900,
+                    text="Its axes are made of stone. It hews\nlarge trees with them and is said to\nbe a wild, aggressive POKéMON."),
 }
 S = dict(NEW_SPECIES[NAME])
 sdkey = NAME.lower().replace("_", "")
@@ -93,9 +115,20 @@ if f"#define SPECIES_{NAME} " in read("include/constants/species.h"):
 # free slots: species slots E..Z and internal National Dex numbers after Deoxys
 spec_h, dex_h = read("include/constants/species.h"), read("include/constants/pokedex.h")
 used = set(re.findall(r"SPECIES_(OLD_UNOWN_[A-Z]+)\b", spec_h.split("#define SPECIES_OLD_UNOWN_Z")[1]))
-S["slot"] = next(f"OLD_UNOWN_{c}" for c in "EFGHIJKLMNOPQRSTUVWXYZ" if f"OLD_UNOWN_{c}" not in used)
+S["slot"] = next((f"OLD_UNOWN_{c}" for c in "EFGHIJKLMNOPQRSTUVWXYZ" if f"OLD_UNOWN_{c}" not in used), None)
+# once the placeholder slots are used up, new species go after Chimecho and the Egg (= NUM_SPECIES) moves up
+APPEND = S["slot"] is None
+if APPEND:
+    S["id"] = int(re.search(r"#define SPECIES_EGG (\d+)", spec_h).group(1))
 dused = set(re.findall(r"#define NATIONAL_DEX_\w+ NATIONAL_DEX_(OLD_UNOWN_[A-Z])", dex_h))
-S["dexslot"] = next(f"OLD_UNOWN_{c}" for c in "BCDEFGHIJKLMNOPQRSTUVWXYZ" if f"OLD_UNOWN_{c}" not in dused)
+S["dexslot"] = next((f"OLD_UNOWN_{c}" for c in "BCDEFGHIJKLMNOPQRSTUVWXYZ" if f"OLD_UNOWN_{c}" not in dused), None)
+# internal National Dex numbers: 387-411 (old Unown placeholders), then 412 on
+def dexvalue(rhs):
+    m = re.match(r"NATIONAL_DEX_OLD_UNOWN_([A-Z])$", rhs)
+    return 387 + "BCDEFGHIJKLMNOPQRSTUVWXYZ".index(m.group(1)) if m else int(rhs)
+dex_aliases = re.findall(r"#define NATIONAL_DEX_(\w+) (NATIONAL_DEX_OLD_UNOWN_[A-Z]|\d+)\n", dex_h)
+if S["dexslot"] is None:
+    S["dexslot"] = str(max(dexvalue(v) for _, v in dex_aliases) + 1)
 
 # the expansion's species entry: Pokedex data, sprite positions, breeding data
 import glob
@@ -151,18 +184,31 @@ prevo = S["prevo"]
 SP = "SPECIES_" + NAME
 
 # ---------------------------------------------------------------- constants
-edit("include/constants/species.h", "#define IS_DEOXYS_FORME(species)",
-     f"#define {SP} SPECIES_{S['slot']} // FireRed QoL+Hard: new species (tools/hack/add_species.py)\n#define IS_DEOXYS_FORME(species)")
+if APPEND:
+    edit("include/constants/species.h", f"#define SPECIES_EGG {S['id']}",
+         f"#define {SP} {S['id']} // FireRed QoL+Hard: new species (tools/hack/add_species.py)\n#define SPECIES_EGG {S['id'] + 1}")
+else:
+    edit("include/constants/species.h", "#define IS_DEOXYS_FORME(species)",
+         f"#define {SP} SPECIES_{S['slot']} // FireRed QoL+Hard: new species (tools/hack/add_species.py)\n#define IS_DEOXYS_FORME(species)")
+DEXRHS = f"NATIONAL_DEX_{S['dexslot']}" if not S["dexslot"].isdigit() else S["dexslot"]
 edit("include/constants/pokedex.h", "#define NATIONAL_DEX_COUNT  ",
-     f"#define NATIONAL_DEX_{NAME} NATIONAL_DEX_{S['dexslot']}\n#define NATIONAL_DEX_COUNT  ")
+     f"#define NATIONAL_DEX_{NAME} {DEXRHS}\n#define NATIONAL_DEX_COUNT  ")
 s = read("include/constants/pokedex.h")
-letters = "BCDEFGHIJKLMNOPQRSTUVWXYZ"
-top = max(re.findall(r"#define NATIONAL_DEX_\w+ NATIONAL_DEX_OLD_UNOWN_([A-Z])", s), key=letters.index)
-top_name = re.search(r"#define NATIONAL_DEX_(\w+) NATIONAL_DEX_OLD_UNOWN_%s\n" % top, s).group(1)
+aliases = re.findall(r"#define NATIONAL_DEX_(\w+) (NATIONAL_DEX_OLD_UNOWN_[A-Z]|\d+)\n", s)
+top_name = max(aliases, key=lambda a: dexvalue(a[1]))[0]
 s = re.sub(r"#define NATIONAL_DEX_COUNT  NATIONAL_DEX_\w+", f"#define NATIONAL_DEX_COUNT  NATIONAL_DEX_{top_name}", s)
 write("include/constants/pokedex.h", s)
-edit("src/pokemon.c", f"    SPECIES_TO_HOENN({S['slot']}),", f"    HOENN_DEX_{S['dexslot']}, // {NAME}")
-edit("src/pokemon.c", f"    SPECIES_TO_NATIONAL({S['slot']}),", f"    NATIONAL_DEX_{S['dexslot']}, // {NAME}")
+if APPEND:
+    # positional species -> Hoenn / National tables: append after the last entry (no Hoenn number)
+    t = read("src/pokemon.c")
+    for table, val in (("sSpeciesToHoennPokedexNum", "0"), ("sSpeciesToNationalPokedexNum", f"NATIONAL_DEX_{NAME}")):
+        a = t.index(f"static const u16 {table}[NUM_SPECIES - 1] =")
+        b = t.index("};", a)
+        t = t[:b] + f"    {val}, // {NAME}\n" + t[b:]
+    write("src/pokemon.c", t)
+else:
+    edit("src/pokemon.c", f"    SPECIES_TO_HOENN({S['slot']}),", f"    HOENN_DEX_{S['dexslot']}, // {NAME}")
+    edit("src/pokemon.c", f"    SPECIES_TO_NATIONAL({S['slot']}),", f"    NATIONAL_DEX_{S['dexslot']}, // {NAME}")
 
 # ---------------------------------------------------------------- species info and name
 p = "src/data/pokemon/species_info.h"
@@ -201,10 +247,22 @@ pre = re.search(r"\[SPECIES_%s\] =\s*\{(.*?)\n    \}" % prevo, s, re.S).group(1)
 for field in ("genderRatio", "eggCycles", "friendship", "growthRate", "eggGroups"):
     v = re.search(r"\.%s = (.*?),\n" % field, pre).group(1)
     info = re.sub(r"\.%s = .*?,\n" % field, f".{field} = {v},\n", info)
-s = s.replace(f"[SPECIES_{S['slot']}] = OLD_UNOWN_SPECIES_INFO", info, 1)
+# single-gender evolutions (Gallade, Froslass) keep their own gender ratio
+if xf("genderRatio") in ("MON_MALE", "MON_FEMALE", "MON_GENDERLESS"):
+    info = re.sub(r"\.genderRatio = .*?,\n", f".genderRatio = {xf('genderRatio')},\n", info)
+if APPEND:
+    k = s.rstrip().rindex("};")
+    s = s[:k].rstrip() + "\n\n    " + info + ",\n" + s[k:]
+else:
+    s = s.replace(f"[SPECIES_{S['slot']}] = OLD_UNOWN_SPECIES_INFO", info, 1)
 assert f"[{SP}] =" in s
 write(p, s)
-edit("src/data/text/species_names.h", f'    [SPECIES_{S["slot"]}] = _("?"),', f'    [{SP}] = _("{S.get("name", NAME)}"),')
+if APPEND:
+    t = read("src/data/text/species_names.h")
+    k = t.rstrip().rindex("};")
+    write("src/data/text/species_names.h", t[:k].rstrip() + f'\n    [{SP}] = _("{S.get("name", NAME)}"),\n' + t[k:])
+else:
+    edit("src/data/text/species_names.h", f'    [SPECIES_{S["slot"]}] = _("?"),', f'    [{SP}] = _("{S.get("name", NAME)}"),')
 
 # ---------------------------------------------------------------- graphics
 src = os.path.join(EXP, "graphics/pokemon", NAME.lower())
@@ -230,22 +288,37 @@ edit("include/graphics.h", "extern const u32 gMonFrontPic_DeoxysAttack[];",
      f"extern const u32 gMonShinyPalette_{Title}[];\nextern const u8 gMonIcon_{Title}[];\nextern const u8 gMonFootprint_{Title}[];\n"
      "extern const u32 gMonFrontPic_DeoxysAttack[];")
 g = "src/data/pokemon_graphics/"
-edit(g + "front_pic_table.h", f"SPECIES_SPRITE({S['slot']}, gMonFrontPic_DoubleQuestionMark)", f"SPECIES_SPRITE({NAME}, gMonFrontPic_{Title})")
-edit(g + "back_pic_table.h", f"SPECIES_SPRITE({S['slot']}, gMonBackPic_DoubleQuestionMark)", f"SPECIES_SPRITE({NAME}, gMonBackPic_{Title})")
-edit(g + "palette_table.h", f"SPECIES_PAL({S['slot']}, gMonPalette_DoubleQuestionMark)", f"SPECIES_PAL({NAME}, gMonPalette_{Title})")
-edit(g + "shiny_palette_table.h", f"SPECIES_SHINY_PAL({S['slot']}, gMonShinyPalette_DoubleQuestionMark)", f"SPECIES_SHINY_PAL({NAME}, gMonShinyPalette_{Title})")
-edit(g + "footprint_table.h", f"[SPECIES_{S['slot']}] = gMonFootprint_QuestionMark", f"[{SP}] = gMonFootprint_{Title}")
+def gfx(f, placeholder, line, egg_anchor):
+    if APPEND:
+        edit(g + f, egg_anchor, line + egg_anchor)
+    else:
+        edit(g + f, placeholder, line.strip().rstrip(","))
+gfx("front_pic_table.h", f"SPECIES_SPRITE({S['slot']}, gMonFrontPic_DoubleQuestionMark)", f"SPECIES_SPRITE({NAME}, gMonFrontPic_{Title}),\n    ", "SPECIES_SPRITE(EGG,")
+gfx("back_pic_table.h", f"SPECIES_SPRITE({S['slot']}, gMonBackPic_DoubleQuestionMark)", f"SPECIES_SPRITE({NAME}, gMonBackPic_{Title}),\n    ", "SPECIES_SPRITE(EGG,")
+gfx("palette_table.h", f"SPECIES_PAL({S['slot']}, gMonPalette_DoubleQuestionMark)", f"SPECIES_PAL({NAME}, gMonPalette_{Title}),\n    ", "SPECIES_PAL(EGG,")
+gfx("shiny_palette_table.h", f"SPECIES_SHINY_PAL({S['slot']}, gMonShinyPalette_DoubleQuestionMark)", f"SPECIES_SHINY_PAL({NAME}, gMonShinyPalette_{Title}),\n    ", "SPECIES_SHINY_PAL(EGG,")
+gfx("footprint_table.h", f"[SPECIES_{S['slot']}] = gMonFootprint_QuestionMark", f"[{SP}] = gMonFootprint_{Title},\n    ", "[SPECIES_EGG] = gMonFootprint")
 for f, (w, h, y) in (("front_pic_coordinates.h", S["front"]), ("back_pic_coordinates.h", S["back"])):
     s = read(g + f)
-    s, n = re.subn(r"\[SPECIES_%s\] =\n    \{\n        \.size = MON_COORDS_SIZE\(\d+, \d+\),\n        \.y_offset = \d+," % S["slot"],
-                   f"[{SP}] =\n    {{\n        .size = MON_COORDS_SIZE({w}, {h}),\n        .y_offset = {y},", s)
+    if APPEND:
+        s, n = s.replace("    [SPECIES_EGG] =\n", f"    [{SP}] =\n    {{\n        .size = MON_COORDS_SIZE({w}, {h}),\n        .y_offset = {y},\n    }},\n    [SPECIES_EGG] =\n", 1), 1
+    else:
+        s, n = re.subn(r"\[SPECIES_%s\] =\n    \{\n        \.size = MON_COORDS_SIZE\(\d+, \d+\),\n        \.y_offset = \d+," % S["slot"],
+                       f"[{SP}] =\n    {{\n        .size = MON_COORDS_SIZE({w}, {h}),\n        .y_offset = {y},", s)
     assert n == 1, f
     write(g + f, s)
-edit("src/pokemon_icon.c", f"    [SPECIES_{S['slot']}] = gMonIcon_QuestionMark,", f"    [{SP}] = gMonIcon_{Title},")
-edit("src/pokemon_icon.c", f"    [SPECIES_{S['slot']}] = 0,", f"    [{SP}] = {S['iconpal']},")
+if APPEND:
+    edit("src/pokemon_icon.c", "    [SPECIES_EGG]         = gMonIcon_Egg,", f"    [{SP}] = gMonIcon_{Title},\n    [SPECIES_EGG]         = gMonIcon_Egg,")
+    edit("src/pokemon_icon.c", "    [SPECIES_EGG]         = 1,", f"    [{SP}] = {S['iconpal']},\n    [SPECIES_EGG]         = 1,")
+else:
+    edit("src/pokemon_icon.c", f"    [SPECIES_{S['slot']}] = gMonIcon_QuestionMark,", f"    [{SP}] = gMonIcon_{Title},")
+    edit("src/pokemon_icon.c", f"    [SPECIES_{S['slot']}] = 0,", f"    [{SP}] = {S['iconpal']},")
 row = re.search(r"\[SPECIES_%s\s*- 1\] = (\{[^}]*\})," % prevo, read("src/menu2.c")).group(1)
 s = read("src/menu2.c")
-s, n = re.subn(r"\[SPECIES_%s\s*- 1\] = \{[^}]*\}," % S["slot"], f"[{SP} - 1] = {row},", s)
+if APPEND:
+    s, n = re.subn(r"(    \[SPECIES_CHIMECHO\s*- 1\] = \{[^}]*\},\n)", lambda m: m.group(1) + f"    [{SP} - 1] = {row},\n", s)
+else:
+    s, n = re.subn(r"\[SPECIES_%s\s*- 1\] = \{[^}]*\}," % S["slot"], f"[{SP} - 1] = {row},", s)
 assert n == 1
 write("src/menu2.c", s)
 
@@ -267,7 +340,12 @@ lines.insert(rev_last + 1, f"\tcry_reverse Cry_{Title}")
 write("sound/cry_tables.inc", "\n".join(lines))
 write("sound/direct_sound_data.inc", read("sound/direct_sound_data.inc").rstrip("\n") +
       f'\n\n\t.align 2\nCry_{Title}::\n\t.incbin "sound/direct_sound_samples/cries/{NAME.lower()}.bin"\n')
-edit("src/pokemon.c", "    if (species < SPECIES_OLD_UNOWN_B - 1)\n        return species;",
+if APPEND:
+    t = read("src/data/pokemon/cry_ids.h")
+    k = t.rstrip().rindex("};")
+    write("src/data/pokemon/cry_ids.h", t[:k].rstrip() + f"\n    [{SP} - HOENN_MON_SPECIES_START] = CRY_{NAME},\n" + t[k:])
+else:
+  edit("src/pokemon.c", "    if (species < SPECIES_OLD_UNOWN_B - 1)\n        return species;",
      f"    if (species == {SP} - 1)\n        return CRY_{NAME};\n    if (species < SPECIES_OLD_UNOWN_B - 1)\n        return species;")
 
 # ---------------------------------------------------------------- learnsets
@@ -282,13 +360,21 @@ for lv, mv in lu:
 lu2 = lu2[:32]
 p = "src/data/pokemon/level_up_learnsets.h"
 s = read(p)
-slotnum = re.search(r"#define SPECIES_%s (\d+)" % S["slot"], read("include/constants/species.h")).group(1)
-old = re.search(r"static const u16 sSpecies%sLevelUpLearnset\[\] = \{.*?\};" % slotnum, s, re.S).group(0)
-s = s.replace(old, f"static const u16 s{Title}LevelUpLearnset[] = {{\n" +
-              "".join(f"    LEVEL_UP_MOVE({lv:2d}, {mv}),\n" for lv, mv in lu2) + "    LEVEL_UP_END\n};")
-write(p, s)
-edit("src/data/pokemon/level_up_learnset_pointers.h", f"[SPECIES_{S['slot']}] = sSpecies{slotnum}LevelUpLearnset",
-     f"[{SP}] = s{Title}LevelUpLearnset")
+newarr = (f"static const u16 s{Title}LevelUpLearnset[] = {{\n" +
+          "".join(f"    LEVEL_UP_MOVE({lv:2d}, {mv}),\n" for lv, mv in lu2) + "    LEVEL_UP_END\n};")
+if APPEND:
+    s = s.rstrip("\n") + "\n\n" + newarr + "\n"
+    write(p, s)
+    t = read("src/data/pokemon/level_up_learnset_pointers.h")
+    k = t.rstrip().rindex("};")
+    write("src/data/pokemon/level_up_learnset_pointers.h", t[:k].rstrip() + f"\n    [{SP}] = s{Title}LevelUpLearnset,\n" + t[k:])
+else:
+    slotnum = re.search(r"#define SPECIES_%s (\d+)" % S["slot"], read("include/constants/species.h")).group(1)
+    old = re.search(r"static const u16 sSpecies%sLevelUpLearnset\[\] = \{.*?\};" % slotnum, s, re.S).group(0)
+    s = s.replace(old, newarr)
+    write(p, s)
+    edit("src/data/pokemon/level_up_learnset_pointers.h", f"[SPECIES_{S['slot']}] = sSpecies{slotnum}LevelUpLearnset",
+         f"[{SP}] = s{Title}LevelUpLearnset")
 
 
 def learns(key):
@@ -302,7 +388,11 @@ pre_tm = re.findall(r"TMHM\(((?:TM|HM)\d\d_\w+)\)", re.search(r"\[SPECIES_%s\]\s
 all_tm = sorted(set(re.findall(r"TMHM\(((?:TM|HM)\d\d_\w+)\)", s)), key=lambda t: (t[:2] == "HM", t))
 tms = [t for t in all_tm if t in pre_tm or learns(norm(t.split("_", 1)[1]))]
 body = "\n".join(f"{'' if i == 0 else ' ' * 40 + '| '}TMHM({t})" for i, t in enumerate(tms))
-s = s.replace(f"[SPECIES_{S['slot']}] = TMHM_LEARNSET(0)", f"[{SP}] = TMHM_LEARNSET({body})", 1)
+if APPEND:
+    k = s.rstrip().rindex("};")
+    s = s[:k].rstrip() + f"\n\n    [{SP}] = TMHM_LEARNSET({body}),\n" + s[k:]
+else:
+    s = s.replace(f"[SPECIES_{S['slot']}] = TMHM_LEARNSET(0)", f"[{SP}] = TMHM_LEARNSET({body})", 1)
 assert f"[{SP}] = TMHM_LEARNSET(" in s
 write(p, s)
 p = "src/data/pokemon/tutor_learnsets.h"
@@ -337,9 +427,9 @@ write(p, s)
 # evolution
 p = "src/data/pokemon/evolution.h"
 s = read(p)
-m = re.search(r"    \[SPECIES_%s\]\s*= \{(.*?)\},\n" % prevo, s)
+m = re.search(r"    \[SPECIES_%s\]\s*= \{\{.*?\}\},\n" % prevo, s, re.S)
 if m:
-    s = s.replace(m.group(0), m.group(0).replace("}},\n", "}, " + S["evo"] + "},\n"))
+    s = s.replace(m.group(0), m.group(0)[:-4] + "}, " + S["evo"] + "},\n")
 else:
     s = s.replace("    [SPECIES_GOLBAT]", f"    [SPECIES_{prevo}] = {{{S['evo']}}},\n    [SPECIES_GOLBAT]", 1)
 write(p, s)
@@ -391,7 +481,8 @@ def list_body(label):
 
 a, b = list_body("gPokedexOrder_Alphabetical")
 items = [x.strip() for x in s[a:b].split(",") if x.strip()]
-items.remove(f"NATIONAL_DEX_{S['dexslot']}")
+if not S["dexslot"].isdigit():
+    items.remove(f"NATIONAL_DEX_{S['dexslot']}")
 pos = next(i for i, x in enumerate(items) if x in names and names[x] > S.get("name", NAME) and not x.startswith("NATIONAL_DEX_OLD"))
 items.insert(pos, nat)
 s = s[:a] + "\n" + ",\n".join("    " + x for x in items) + "\n" + s[b:]
@@ -404,7 +495,8 @@ for label, idx in (("gPokedexOrder_Weight", 1), ("gPokedexOrder_Height", 0)):
     s = s[:a] + "\n" + ",\n".join("    " + x for x in items) + "\n" + s[b:]
 a, b = list_body("gPokedexOrder_Type")
 items = [x.strip() for x in s[a:b].split(",") if x.strip()]
-items.remove(f"SPECIES_{S['slot']}")
+if not APPEND:
+    items.remove(f"SPECIES_{S['slot']}")
 items.insert(items.index(f"SPECIES_{prevo}") + 1, SP)
 s = s[:a] + "\n" + ",\n".join("    " + x for x in items) + "\n" + s[b:]
 write(p, s)
@@ -486,6 +578,34 @@ if "EVO_MOVE" not in read("include/constants/pokemon.h"):
                 }
                 break;
             }""")
+# Gender-specific item evolutions (Gallade, Froslass), Fairy-move evolutions (Sylveon), 8 evolutions per Pokemon (Eevee)
+if "EVO_ITEM_MALE" not in read("include/constants/pokemon.h"):
+    edit("include/constants/pokemon.h", "#define EVO_MOVE             16 // FireRed QoL+Hard: Pokémon levels up knowing the specified move\n",
+         "#define EVO_MOVE             16 // FireRed QoL+Hard: Pokémon levels up knowing the specified move\n"
+         "#define EVO_ITEM_MALE        17 // FireRed QoL+Hard: specified item is used on a male Pokémon\n"
+         "#define EVO_ITEM_FEMALE      18 // FireRed QoL+Hard: specified item is used on a female Pokémon\n"
+         "#define EVO_MOVE_TYPE        19 // FireRed QoL+Hard: levels up with friendship ≥ 220 knowing a move of the specified type\n")
+    edit("include/constants/pokemon.h", "#define EVOS_PER_MON 5", "#define EVOS_PER_MON 8")
+    edit("src/pokemon.c", """            case EVO_MOVE:
+                {""", """            case EVO_MOVE_TYPE:
+                {
+                    u8 j;
+                    if (friendship >= 220)
+                        for (j = 0; j < MAX_MON_MOVES; j++)
+                            if (gBattleMoves[GetMonData(mon, MON_DATA_MOVE1 + j, NULL)].type == gEvolutionTable[species][i].param
+                             && GetMonData(mon, MON_DATA_MOVE1 + j, NULL) != MOVE_NONE)
+                                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                }
+                break;
+            case EVO_MOVE:
+                {""")
+    edit("src/pokemon.c", """            if (gEvolutionTable[species][i].method == EVO_ITEM
+             && gEvolutionTable[species][i].param == evolutionItem)
+            {""", """            if (gEvolutionTable[species][i].param == evolutionItem
+             && (gEvolutionTable[species][i].method == EVO_ITEM
+              || (gEvolutionTable[species][i].method == EVO_ITEM_MALE && GetMonGender(mon) == MON_MALE)
+              || (gEvolutionTable[species][i].method == EVO_ITEM_FEMALE && GetMonGender(mon) == MON_FEMALE)))
+            {""")
 # The National Dex list shows Pokemon added after Deoxys in real-number order
 if "Hack_NationalOrder" not in read("src/pokemon.c"):
     edit("src/pokemon.c", "u16 SpeciesToPokedexNum(u16 species)\n{", """// i-th row of the National Dex list (0-based) -> internal National Dex number
@@ -518,7 +638,7 @@ u16 SpeciesToPokedexNum(u16 species)
     write("src/pokedex_screen.c", s[:i] + blk + s[j:])
 
 # ---------------------------------------------------------------- evolution items
-STONE_DESC = "A peculiar stone that makes\\\\ncertain species of POKéMON\\\\nevolve. {}"
+STONE_DESC = "A peculiar stone that makes certain\\\\nspecies of POKéMON evolve.\\\\n{}"
 EVO_ITEMS = {
     "RAZOR_CLAW": dict(slot="ITEM_035", name="RAZOR CLAW", hold="HOLD_EFFECT_SCOPE_LENS",
                        desc="A sharply hooked claw that boosts\\\\nthe holder's critical-hit ratio.\\\\nIt can make SNEASEL evolve."),
@@ -531,6 +651,10 @@ EVO_ITEMS = {
     "MAGMARIZER": dict(slot="ITEM_03B", name="MAGMARIZER", desc="A box packed with a tremendous\\\\namount of magma energy.\\\\nIt can make MAGMAR evolve."),
     "DUBIOUS_DISC": dict(slot="ITEM_03C", name="DUBIOUS DISC", desc="A transparent device overflowing\\\\nwith dubious data.\\\\nIt can make PORYGON2 evolve."),
     "REAPER_CLOTH": dict(slot="ITEM_03D", name="REAPER CLOTH", desc="A cloth imbued with horrifyingly\\\\nstrong spiritual energy.\\\\nIt can make DUSCLOPS evolve."),
+    "DAWN_STONE": dict(slot="ITEM_03E", name="DAWN STONE", desc=STONE_DESC.format("It sparkles like a glittering eye.")),
+    "ICE_STONE": dict(slot="ITEM_048", name="ICE STONE", desc=STONE_DESC.format("It has an unmistakable snowflake.")),
+    "PEAT_BLOCK": dict(slot="ITEM_052", name="PEAT BLOCK", desc="A block of muddy material. It\\\\ncan make URSARING evolve when\\\\nused on it."),
+    "BLACK_AUGURITE": dict(slot="ITEM_057", name="BLK AUGURITE", desc="A glassy black stone that\\\\nsplits apart when struck.\\\\nIt can make SCYTHER evolve."),
 }
 for item, I in EVO_ITEMS.items():
     I.setdefault("price", 2100)

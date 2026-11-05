@@ -1,6 +1,6 @@
 # Pokédex
 
-All 405 Pokémon in National Dex order, with this hack's stats. Click a name for its full page: stat ranges, abilities, type defenses, evolution, where to find it and every learnset.
+All 415 Pokémon in National Dex order, with this hack's stats. Click a name for its full page: stat ranges, abilities, type defenses, evolution, where to find it and every learnset.
 
 | # | Pokémon | Type | HP | Atk | Def | SpA | SpD | Spe | Total |
 |--:|---|---|--:|--:|--:|--:|--:|--:|--:|
@@ -403,9 +403,19 @@ All 405 Pokémon in National Dex order, with this hack's stats. Click a name for
 | 467 | [Magmortar](pokedex/467-magmortar.md) | Fire | 75 | 95 | 67 | 125 | 95 | 83 | 540 |
 | 468 | [Togekiss](pokedex/468-togekiss.md) | Fairy / Flying | 85 | 50 | 95 | 120 | 115 | 80 | 545 |
 | 469 | [Yanmega](pokedex/469-yanmega.md) | Bug / Flying | 86 | 76 | 86 | 116 | 56 | 95 | 515 |
+| 470 | [Leafeon](pokedex/470-leafeon.md) | Grass | 65 | 110 | 130 | 60 | 65 | 95 | 525 |
+| 471 | [Glaceon](pokedex/471-glaceon.md) | Ice | 65 | 60 | 110 | 130 | 95 | 65 | 525 |
 | 472 | [Gliscor](pokedex/472-gliscor.md) | Ground / Flying | 75 | 95 | 125 | 45 | 75 | 95 | 510 |
 | 473 | [Mamoswine](pokedex/473-mamoswine.md) | Ice / Ground | 110 | 130 | 80 | 70 | 60 | 80 | 530 |
 | 474 | [Porygon-Z](pokedex/474-porygon-z.md) | Normal | 85 | 80 | 70 | 135 | 75 | 90 | 535 |
+| 475 | [Gallade](pokedex/475-gallade.md) | Psychic / Fighting | 68 | 125 | 65 | 65 | 115 | 80 | 518 |
+| 476 | [Probopass](pokedex/476-probopass.md) | Rock / Steel | 60 | 55 | 145 | 75 | 150 | 40 | 525 |
 | 477 | [Dusknoir](pokedex/477-dusknoir.md) | Ghost | 45 | 100 | 135 | 65 | 135 | 45 | 525 |
+| 478 | [Froslass](pokedex/478-froslass.md) | Ice / Ghost | 70 | 80 | 70 | 80 | 70 | 110 | 480 |
+| 700 | [Sylveon](pokedex/700-sylveon.md) | Fairy | 95 | 65 | 65 | 110 | 130 | 60 | 525 |
+| 899 | [Wyrdeer](pokedex/899-wyrdeer.md) | Normal / Psychic | 103 | 105 | 72 | 105 | 75 | 65 | 525 |
+| 900 | [Kleavor](pokedex/900-kleavor.md) | Bug / Rock | 70 | 135 | 95 | 45 | 70 | 85 | 500 |
+| 901 | [Ursaluna](pokedex/901-ursaluna.md) | Ground / Normal | 130 | 140 | 105 | 45 | 80 | 50 | 550 |
+| 979 | [Annihilape](pokedex/979-annihilape.md) | Fighting / Ghost | 110 | 115 | 80 | 50 | 90 | 90 | 535 |
 | 981 | [Farigiraf](pokedex/981-farigiraf.md) | Normal / Psychic | 120 | 90 | 70 | 110 | 70 | 60 | 520 |
 | 982 | [Dudunsparce](pokedex/982-dudunsparce.md) | Normal | 125 | 100 | 80 | 85 | 75 | 55 | 520 |
