@@ -165,6 +165,20 @@ and you can use her as often as you like.
   - Moves with 90+ power need 5 badges.
 - The Pokédex guide lists every Pokémon's modern tutor moves.
 
+## Later evolutions
+- **Weavile** (Dark/Ice, #461) is in the game as a real Pokémon with its own
+  sprites, icon, cry, Pokédex entry (Forest habitat), stats, abilities
+  (Pressure / Pickpocket) and modern learnset.
+- Sneasel evolves into it with a **Razor Claw**, used like an evolution
+  stone (FireRed has no day/night cycle).
+  - Razor Claw: Celadon Dept. Store 4F, 2100.
+  - Held, it raises the critical-hit ratio like a Scope Lens.
+- New Pokémon fill unused species slots, so the save layout is unchanged.
+  The Pokédex shows their real National Dex numbers.
+- Sprites, icon and cry come from the community-made Gen 3-style graphics in
+  [pokeemerald-expansion](https://github.com/rh-hideout/pokeemerald-expansion)
+  (see its credits).
+
 ## Modern abilities
 - Every Pokémon can have up to three abilities, as in modern games: two
   regular ones and a hidden ability. Wild Pokémon get one of the regular ones;
@@ -302,7 +316,7 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `dc75db8994d89b27ebf2f62335ce297ffc3a5147`
+Patched ROM SHA-1: `bf5938933b937e4a1ada59cb8f25b0c17875d86d`
 
 Start a new game. Saves from earlier versions of this hack aren't supported.
 
@@ -331,3 +345,7 @@ unmodified pret data:
 - `evo_moves.py`: later level-up moves for stone evolutions (run after `modernize.py`).
 - `peak_trainers.py`: peak teams, gym rematches and the Elite Four round 3.
 - `spoiler_guide.py <dir>`: regenerates the spoiler guide from the game data.
+
+## Credits
+- Weavile's sprites, icon, footprint and cry, and the Razor Claw icon, are community-made Gen 3-style graphics from [pokeemerald-expansion](https://github.com/rh-hideout/pokeemerald-expansion); see its [credits](https://github.com/rh-hideout/pokeemerald-expansion/blob/master/CREDITS.md).
+- Move, stat and learnset data comes from [Pokémon Showdown](https://github.com/smogon/pokemon-showdown).

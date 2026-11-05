@@ -133,7 +133,7 @@ Shop: TM05 Roar (₽1000), TM15 Hyper Beam (₽7500), TM28 Dig (₽2000), TM31 B
 
 ## Celadon City Department Store 4F
 
-Shop: Poké Doll (₽1000), Retro Mail (₽50), Fire Stone (₽2100), Thunder Stone (₽2100), Water Stone (₽2100), Leaf Stone (₽2100), Moon Stone (₽2100), Sun Stone (₽2100), King's Rock (₽3000), Metal Coat (₽3000), Dragon Scale (₽3000), Up-Grade (₽3000), Deep Sea Tooth (₽3000), Deep Sea Scale (₽3000)
+Shop: Poké Doll (₽1000), Retro Mail (₽50), Fire Stone (₽2100), Thunder Stone (₽2100), Water Stone (₽2100), Leaf Stone (₽2100), Moon Stone (₽2100), Sun Stone (₽2100), King's Rock (₽3000), Metal Coat (₽3000), Dragon Scale (₽3000), Up-Grade (₽3000), Razor Claw (₽2100), Deep Sea Tooth (₽3000), Deep Sea Scale (₽3000)
 
 ## Celadon City Department Store 5F
 
