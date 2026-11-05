@@ -84,6 +84,7 @@ Legendaries added by this hack appear after your first Hall of Fame entry (see t
 | Scyther → Scizor | trade holding Metal Coat | use Metal Coat |
 | Seadra → Kingdra | trade holding Dragon Scale | use Dragon Scale |
 | Slowpoke → Slowking | trade holding King's Rock | use King's Rock |
+| Sneasel → Weavile | — | use Razor Claw |
 
 Deoxys changes Forme with the **Meteorite** (key item, given when you catch it on Birth Island).
 

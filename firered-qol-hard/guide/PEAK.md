@@ -148,7 +148,7 @@ Carries 2× Full Restore.
 
 **Avoid relying on:** Psychic (6 resist or immune); Fighting (5 resist or immune); Dragon (3 resist or immune).
 
-**Suggested counters:** [Shiftry](pokedex/275-shiftry.md) (Grass / Dark), [Cacturne](pokedex/332-cacturne.md) (Grass / Dark), [Scizor](pokedex/212-scizor.md) (Bug / Steel), [Steelix](pokedex/208-steelix.md) (Steel / Ground), [Tyranitar](pokedex/248-tyranitar.md) (Rock / Dark), [Houndoom](pokedex/229-houndoom.md) (Dark / Fire).
+**Suggested counters:** [Shiftry](pokedex/275-shiftry.md) (Grass / Dark), [Cacturne](pokedex/332-cacturne.md) (Grass / Dark), [Scizor](pokedex/212-scizor.md) (Bug / Steel), [Weavile](pokedex/461-weavile.md) (Dark / Ice), [Steelix](pokedex/208-steelix.md) (Steel / Ground), [Tyranitar](pokedex/248-tyranitar.md) (Rock / Dark).
 
 ## Blaine, Cinnabar Island Gym
 
@@ -253,7 +253,7 @@ Carries 2× Full Restore.
 
 **Avoid relying on:** Fighting (6 resist or immune); Poison (6 resist or immune); Bug (5 resist or immune); Normal (5 resist or immune).
 
-**Suggested counters:** [Tyranitar](pokedex/248-tyranitar.md) (Rock / Dark), [Houndoom](pokedex/229-houndoom.md) (Dark / Fire), [Shiftry](pokedex/275-shiftry.md) (Grass / Dark), [Cacturne](pokedex/332-cacturne.md) (Grass / Dark), [Golem](pokedex/076-golem.md) (Rock / Ground), [Rhydon](pokedex/112-rhydon.md) (Ground / Rock).
+**Suggested counters:** [Tyranitar](pokedex/248-tyranitar.md) (Rock / Dark), [Weavile](pokedex/461-weavile.md) (Dark / Ice), [Houndoom](pokedex/229-houndoom.md) (Dark / Fire), [Shiftry](pokedex/275-shiftry.md) (Grass / Dark), [Cacturne](pokedex/332-cacturne.md) (Grass / Dark), [Golem](pokedex/076-golem.md) (Rock / Ground).
 
 ## Lance, Elite Four
 

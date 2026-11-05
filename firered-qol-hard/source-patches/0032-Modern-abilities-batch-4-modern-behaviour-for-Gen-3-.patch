@@ -1,7 +1,7 @@
 From 2541f9f58c90f58b0244ad3a50a6a552ef548942 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Wed, 4 Nov 2026 18:38:56 +0000
-Subject: [PATCH 32/35] Modern abilities, batch 4: modern behaviour for Gen 3
+Subject: [PATCH 32/36] Modern abilities, batch 4: modern behaviour for Gen 3
  abilities
 
 Sturdy survives a KO from full HP; Lightning Rod absorbs Electric moves

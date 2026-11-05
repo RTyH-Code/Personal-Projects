@@ -710,6 +710,13 @@ for a, d, mul in re.findall(r"TYPE_(\w+), TYPE_(\w+), TYPE_MUL_(\w+)", read("src
     chart[(a, d)] = {"NO_EFFECT": 0, "NOT_EFFECTIVE": 0.5, "SUPER_EFFECTIVE": 2, "NORMAL": 1}[mul]
 
 
+def new_species():
+    """Pokemon added after Deoxys (tools/hack/add_species.py): [(SPECIES_X, real dex number)]."""
+    dex = read("include/constants/pokedex.h")
+    real = dict(re.findall(r"\[NATIONAL_DEX_(\w+) - NATIONAL_DEX_DEOXYS - 1\] = (\d+)", read("src/pokemon.c")))
+    return [("SPECIES_" + n, int(real[n])) for n in re.findall(r"#define NATIONAL_DEX_(\w+) NATIONAL_DEX_OLD_UNOWN_\w+", dex) if n in real]
+
+
 def write_pokedex():
     info = species_info(read("src/data/pokemon/species_info.h"))
     old_info = species_info(vanilla("src/data/pokemon/species_info.h"))
@@ -718,6 +725,9 @@ def write_pokedex():
     dex_order = dex_order[:dex_order.index("DEOXYS") + 1]
     species = ["SPECIES_" + d for d in dex_order]
     dexno = {sp: i + 1 for i, sp in enumerate(species)}
+    for sp, num in new_species():
+        species.append(sp)
+        dexno[sp] = num
     for f, _ in DEOXYS_FORMES:
         dexno.setdefault(f, dexno["SPECIES_DEOXYS"])
 
@@ -916,17 +926,17 @@ def write_pokedex():
         ts = types_of(i)
         nav = []
         if n > 0:
-            nav.append(f"← #{n:03d} {link(species[n - 1])}")
+            nav.append(f"← #{dexno[species[n - 1]]:03d} {link(species[n - 1])}")
         nav.append("[Index](../POKEDEX.md)")
         if n + 1 < len(species):
-            nav.append(f"{link(species[n + 1])} #{n + 2:03d} →")
+            nav.append(f"{link(species[n + 1])} #{dexno[species[n + 1]]:03d} →")
         de = fields(dex_entries.get("NATIONAL_DEX_" + sp[8:], ""))
         cat = gametext(re.sub(r'_\("(.*)"\)', r"\1", de.get("categoryName", '_("?")')))
         h, w = int(de.get("height", 0)), int(de.get("weight", 0))
         inches = round(h * 3.937)
-        out = [" · ".join(nav), "", f"# #{n + 1:03d} {mon(sp)}", "",
+        out = [" · ".join(nav), "", f"# #{dexno[sp]:03d} {mon(sp)}", "",
                f"*The {cat} Pokémon* — **{' / '.join(tname(t) for t in ts)}**"
-               + (f" *(originally {' / '.join(tname(t) for t in old_ts)})*" if (old_ts := types_of(old_info[sp])) != ts else ""), ""]
+               + (f" *(originally {' / '.join(tname(t) for t in old_ts)})*" if (old_ts := types_of(old_info.get(sp, info[sp]))) != ts else ""), ""]
         txt = dex_text.get(de.get("description", ""), "")
         if txt:
             out += [f"> {gametext(txt)}", ""]
@@ -959,7 +969,7 @@ def write_pokedex():
             out += sec
         out += ["*Ranges: the minimum uses 0 IVs, 0 EVs and a hindering nature; the maximum uses 31 IVs, "
                 "252 EVs and a helpful nature. HP is not affected by nature.*", ""]
-        index_rows.append((n + 1, sp, ts, [int(i[f]) for _, f in STATS], total))
+        index_rows.append((dexno[sp], sp, ts, [int(i[f]) for _, f in STATS], total))
 
         # type defenses
         out += ["## Type defenses", ""] + type_defense(ts) + [""]
@@ -1081,7 +1091,7 @@ def write_pokedex():
         out += ["---", "", " · ".join(nav), ""]
         open(os.path.join(OUT, "pokedex", slug(sp) + ".md"), "w").write("\n".join(out))
 
-    idx = ["# Pokédex", "", "All 386 Pokémon in National Dex order, with this hack's stats. Click a name for its full "
+    idx = ["# Pokédex", "", f"All {len(species)} Pokémon in National Dex order, with this hack's stats. Click a name for its full "
            "page: stat ranges, abilities, type defenses, evolution, where to find it and every learnset.", "",
            "| # | Pokémon | Type | HP | Atk | Def | SpA | SpD | Spe | Total |",
            "|--:|---|---|--:|--:|--:|--:|--:|--:|--:|"]
@@ -1198,6 +1208,7 @@ def write_peak():
     dex_order = [d for d in re.findall(r"NATIONAL_DEX_(\w+),", read("include/constants/pokedex.h").split("HOENN_DEX_NONE")[0]) if d != "NONE"]
     dex_order = dex_order[:dex_order.index("DEOXYS") + 1]
     dexno = {"SPECIES_" + d: i + 1 for i, d in enumerate(dex_order)}
+    dexno.update(dict(new_species()))
     def link(sp):
         return f"[{mon(sp)}](pokedex/{dexno[sp]:03d}-" + sp[8:].lower().replace("_", "-") + ".md)"
     def types_of(sp):
@@ -1354,7 +1365,7 @@ def write_index():
 - [Wild encounters](ENCOUNTERS.md): every map's grass, cave, surf, Rock Smash and fishing tables, with rates and levels. ★ marks additions.
 - [Items](ITEMS.md): item balls, hidden items, NPC gifts and shop stock, by location.
 - [Trainers](TRAINERS.md): Gym Leaders, Elite Four and Champion (rounds 1–2 and peak) in full, then every other trainer by location.
-- [Pokédex](POKEDEX.md): all 386 Pokémon with stat ranges, abilities, type defenses, evolutions, locations and full learnsets.
+- [Pokédex](POKEDEX.md): every Pokémon (all 386, plus later evolutions added by the hack) with stat ranges, abilities, type defenses, evolutions, locations and full learnsets.
 - [Peak trainer prep](PEAK.md): every Lv. 100 peak team with real stats, what they attack with, what they're weak to, and suggested counters.
 - [Types and moves](TYPES.md): the type chart, moves whose physical/special category changed, and every move with its power, accuracy, PP and effect.
 - [Pokémon](POKEMON.md): gift, static and legendary Pokémon, in-game trades, changed evolutions, base stat and move changes.

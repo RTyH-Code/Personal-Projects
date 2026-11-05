@@ -55,13 +55,13 @@ Height 0.9 m (2′11″) · Weight 28 kg (61.7 lbs)
 
 ## Evolution
 
-Sneasel does not evolve.
+- **Sneasel** → [Weavile](461-weavile.md): Use a Razor Claw *(new in this hack)*
 
 ## Where to find it
 
 - **Four Island Icefall Cave 1F**: Grass / cave Lv 31 (5%)
 - **Four Island Icefall Cave B1F**: Grass / cave Lv 23 (4%)
-- Breeding: hatches from an Egg left by a Sneasel at the Four Island Day Care
+- Breeding: hatches from an Egg left by a Sneasel or Weavile at the Four Island Day Care
 
 ## Moves
 

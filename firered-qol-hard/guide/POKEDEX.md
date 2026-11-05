@@ -1,6 +1,6 @@
 # Pokédex
 
-All 386 Pokémon in National Dex order, with this hack's stats. Click a name for its full page: stat ranges, abilities, type defenses, evolution, where to find it and every learnset.
+All 387 Pokémon in National Dex order, with this hack's stats. Click a name for its full page: stat ranges, abilities, type defenses, evolution, where to find it and every learnset.
 
 | # | Pokémon | Type | HP | Atk | Def | SpA | SpD | Spe | Total |
 |--:|---|---|--:|--:|--:|--:|--:|--:|--:|
@@ -390,3 +390,4 @@ All 386 Pokémon in National Dex order, with this hack's stats. Click a name for
 | 384 | [Rayquaza](pokedex/384-rayquaza.md) | Dragon / Flying | 105 | 150 | 90 | 150 | 90 | 95 | 680 |
 | 385 | [Jirachi](pokedex/385-jirachi.md) | Steel / Psychic | 100 | 100 | 100 | 100 | 100 | 100 | 600 |
 | 386 | [Deoxys](pokedex/386-deoxys.md) | Psychic | 50 | 150 | 50 | 150 | 50 | 150 | 600 |
+| 461 | [Weavile](pokedex/461-weavile.md) | Dark / Ice | 70 | 120 | 65 | 45 | 85 | 125 | 510 |

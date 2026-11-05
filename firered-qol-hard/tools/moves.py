@@ -259,6 +259,8 @@ ptrs = dict(re.findall(r"\[(SPECIES_\w+)\] = (s\w+LevelUpLearnset)",
 SPECIES = [sp for sp in re.findall(r"#define (SPECIES_\w+) \d+", read("include/constants/species.h"))
            if sp not in ("SPECIES_NONE", "SPECIES_EGG") and not sp.startswith("SPECIES_OLD_UNOWN")
            and not sp.startswith("SPECIES_UNOWN_")]
+# Pokemon added in old Unown slots by tools/hack/add_species.py
+SPECIES += [sp for sp in re.findall(r"#define (SPECIES_\w+) SPECIES_OLD_UNOWN_\w+ //", read("include/constants/species.h"))]
 
 
 def sd_species(sp):
