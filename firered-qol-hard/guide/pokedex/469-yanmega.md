@@ -149,7 +149,6 @@ Breed a Yanma (passed down to Yanma, which then evolves) with a father that know
 |---|---|---|--:|--:|--:|
 | Whirlwind | Normal | Status | — | 100% | 20 |
 | Reversal | Fighting | Physical | varies | 100% | 15 |
-| Leech Life | Bug | Physical | 80 | 100% | 10 |
 | Signal Beam | Bug | Special | 75 | 100% | 15 |
 | Silver Wind | Bug | Special | 60 | 100% | 5 |
 | Feint | Normal | Physical | 30 | 100% | 10 |

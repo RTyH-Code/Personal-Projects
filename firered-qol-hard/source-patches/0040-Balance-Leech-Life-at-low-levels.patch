@@ -1,0 +1,104 @@
+From 4e0b3f67db91482c893fd6b3fd5c9be52ea5799d Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Thu, 5 Nov 2026 21:49:42 +0000
+Subject: [PATCH 40/40] Balance: Leech Life at low levels
+
+Leech Life is 80 power now: a Rocket Grunt's Lv. 20 Zubat use Absorb
+instead of their FireRed custom Leech Life, and (as in Gen 9) it's no
+longer a Bellsprout/Yanma egg move. Level-up learnsets already follow
+modern games (Absorb early, Leech Life later).
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ HACK_NOTES.md                |  5 +++++
+ src/data/pokemon/egg_moves.h |  2 --
+ src/data/trainer_parties.h   |  4 ++--
+ tools/hack/balance.py        | 12 ++++++++++++
+ 4 files changed, 19 insertions(+), 4 deletions(-)
+
+diff --git a/HACK_NOTES.md b/HACK_NOTES.md
+index d0d96f1..4cf3f03 100644
+--- a/HACK_NOTES.md
++++ b/HACK_NOTES.md
+@@ -334,6 +334,11 @@ haven't beaten. Day Care levels aren't capped.
+   or set-up moves at +2.
+ 
+ ### Balance of the newer content
++- **Leech Life** is 80 power now (it was 20), so Pokémon learn it as in modern
++  games: Absorb early, Leech Life later (e.g. Zubat at 55, Venonat at 35). As
++  in Gen 9, it's no longer an egg move. A Team Rocket Grunt's Lv. 20 Zubat
++  use Absorb instead. Other moves that got stronger (Fury Cutter, Rapid Spin,
++  Knock Off, Thrash, Petal Dance...) are learned at their modern levels.
+ - **Modern tutor tiers:**
+   - Moves whose power depends on the battle are tiered by how hard they
+     really hit. Hex, Venoshock, Brine, Acrobatics, Gyro Ball, Electro Ball,
+diff --git a/src/data/pokemon/egg_moves.h b/src/data/pokemon/egg_moves.h
+index e9c2189..fa493dd 100644
+--- a/src/data/pokemon/egg_moves.h
++++ b/src/data/pokemon/egg_moves.h
+@@ -249,7 +249,6 @@ const u16 gEggMoves[] = {
+               MOVE_ENCORE,
+               MOVE_REFLECT,
+               MOVE_SYNTHESIS,
+-              MOVE_LEECH_LIFE,
+               MOVE_INGRAIN,
+               MOVE_MAGICAL_LEAF,
+               MOVE_POWER_WHIP,
+@@ -778,7 +777,6 @@ const u16 gEggMoves[] = {
+     egg_moves(YANMA,
+               MOVE_WHIRLWIND,
+               MOVE_REVERSAL,
+-              MOVE_LEECH_LIFE,
+               MOVE_SIGNAL_BEAM,
+               MOVE_SILVER_WIND,
+               MOVE_FEINT),
+diff --git a/src/data/trainer_parties.h b/src/data/trainer_parties.h
+index e6cfe5b..157b6d8 100644
+--- a/src/data/trainer_parties.h
++++ b/src/data/trainer_parties.h
+@@ -4371,7 +4371,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_TeamRocketGrunt13[] = {
+         .iv = 150,
+         .lvl = 20,
+         .species = SPECIES_ZUBAT,
+-        .moves = {MOVE_BITE, MOVE_ASTONISH, MOVE_SUPERSONIC, MOVE_LEECH_LIFE},
++        .moves = {MOVE_BITE, MOVE_ASTONISH, MOVE_SUPERSONIC, MOVE_ABSORB},
+     },
+     {
+         .iv = 150,
+@@ -4389,7 +4389,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_TeamRocketGrunt13[] = {
+         .iv = 150,
+         .lvl = 20,
+         .species = SPECIES_ZUBAT,
+-        .moves = {MOVE_BITE, MOVE_ASTONISH, MOVE_SUPERSONIC, MOVE_LEECH_LIFE},
++        .moves = {MOVE_BITE, MOVE_ASTONISH, MOVE_SUPERSONIC, MOVE_ABSORB},
+     },
+     {
+         .iv = 150,
+diff --git a/tools/hack/balance.py b/tools/hack/balance.py
+index dc41f14..e22c23e 100644
+--- a/tools/hack/balance.py
++++ b/tools/hack/balance.py
+@@ -249,7 +249,19 @@ for party, team in PEAK.items():
+         o = re.sub(r"\.moves = \{[^}]*\}", ".moves = {%s}" % ", ".join("MOVE_" + x for x in mv), o)
+         new.append(o)
+     s = s[:m.start(2)] + "\n" + ",\n".join(new) + "," + s[m.end(2):]
++# Leech Life went from 20 to 80 power: a Rocket Grunt's Lv. 20 Zubat get Absorb (as a modern
++# Zubat would know at that level) instead of the custom Leech Life they had in FireRed.
++m = re.search(r"(sParty_TeamRocketGrunt13\[\] = \{)(.*?)(\n\};)", s, re.S)
++s = s[:m.start(2)] + m.group(2).replace("MOVE_LEECH_LIFE", "MOVE_ABSORB") + s[m.end(2):]
+ open(p, "w", encoding="utf-8").write(s)
++
++# ...and, as in Gen 9, it is no longer an egg move (Bellsprout and Yanma would hatch with it at Lv. 5)
++e = read("src/data/pokemon/egg_moves.h")
++for sp in ("BELLSPROUT", "YANMA"):
++    m = re.search(r"egg_moves\(%s,(.*?)\)" % sp, e, re.S)
++    body = re.sub(r"\s*MOVE_LEECH_LIFE,?", "", m.group(1)).rstrip().rstrip(",")
++    e = e[:m.start(1)] + body + e[m.end(1):]
++open("src/data/pokemon/egg_moves.h", "w", encoding="utf-8").write(e)
+ for w in warnings:
+     print("warning:", w)
+ print(f"{len(STORY)} story parties and {len(PEAK)} peak teams updated, {len(warnings)} warnings")
+-- 
+2.43.0
+

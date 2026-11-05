@@ -336,6 +336,11 @@ haven't beaten. Day Care levels aren't capped.
   or set-up moves at +2.
 
 ### Balance of the newer content
+- **Leech Life** is 80 power now (it was 20), so Pokémon learn it as in modern
+  games: Absorb early, Leech Life later (e.g. Zubat at 55, Venonat at 35). As
+  in Gen 9, it's no longer an egg move. A Team Rocket Grunt's Lv. 20 Zubat
+  use Absorb instead. Other moves that got stronger (Fury Cutter, Rapid Spin,
+  Knock Off, Thrash, Petal Dance...) are learned at their modern levels.
 - **Modern tutor tiers:**
   - Moves whose power depends on the battle are tiered by how hard they
     really hit. Hex, Venoshock, Brine, Acrobatics, Gyro Ball, Electro Ball,
@@ -391,7 +396,7 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `39511d0bd97b5c458a617107ee90ed23ac515865`
+Patched ROM SHA-1: `51a2381a277c4d2dfc7e3279a4f02161015a8dce`
 
 Start a new game. Saves from earlier versions of this hack aren't supported.
 
