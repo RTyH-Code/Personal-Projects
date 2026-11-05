@@ -1,7 +1,7 @@
 From 397b6c6c00813a609c558a38d96d1e61a70c31b7 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Wed, 4 Nov 2026 15:54:50 +0000
-Subject: [PATCH 31/39] Modern abilities, batch 3: the remaining complex
+Subject: [PATCH 31/40] Modern abilities, batch 3: the remaining complex
  abilities
 
 - Prankster (+1 priority to status moves; Dark types immune), Magic

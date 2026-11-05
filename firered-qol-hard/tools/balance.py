@@ -249,7 +249,19 @@ for party, team in PEAK.items():
         o = re.sub(r"\.moves = \{[^}]*\}", ".moves = {%s}" % ", ".join("MOVE_" + x for x in mv), o)
         new.append(o)
     s = s[:m.start(2)] + "\n" + ",\n".join(new) + "," + s[m.end(2):]
+# Leech Life went from 20 to 80 power: a Rocket Grunt's Lv. 20 Zubat get Absorb (as a modern
+# Zubat would know at that level) instead of the custom Leech Life they had in FireRed.
+m = re.search(r"(sParty_TeamRocketGrunt13\[\] = \{)(.*?)(\n\};)", s, re.S)
+s = s[:m.start(2)] + m.group(2).replace("MOVE_LEECH_LIFE", "MOVE_ABSORB") + s[m.end(2):]
 open(p, "w", encoding="utf-8").write(s)
+
+# ...and, as in Gen 9, it is no longer an egg move (Bellsprout and Yanma would hatch with it at Lv. 5)
+e = read("src/data/pokemon/egg_moves.h")
+for sp in ("BELLSPROUT", "YANMA"):
+    m = re.search(r"egg_moves\(%s,(.*?)\)" % sp, e, re.S)
+    body = re.sub(r"\s*MOVE_LEECH_LIFE,?", "", m.group(1)).rstrip().rstrip(",")
+    e = e[:m.start(1)] + body + e[m.end(1):]
+open("src/data/pokemon/egg_moves.h", "w", encoding="utf-8").write(e)
 for w in warnings:
     print("warning:", w)
 print(f"{len(STORY)} story parties and {len(PEAK)} peak teams updated, {len(warnings)} warnings")

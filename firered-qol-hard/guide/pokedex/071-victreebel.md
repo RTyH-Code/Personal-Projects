@@ -148,7 +148,6 @@ Breed a Bellsprout (passed down to Bellsprout, which then evolves) with a father
 | Encore | Normal | Status | — | 100% | 5 |
 | Reflect | Psychic | Status | — | — | 20 |
 | Synthesis | Grass | Status | — | — | 5 |
-| Leech Life | Bug | Physical | 80 | 100% | 10 |
 | Ingrain | Grass | Status | — | — | 20 |
 | Magical Leaf | Grass | Special | 60 | — | 20 |
 | Power Whip | Grass | Physical | 120 | 85% | 10 |

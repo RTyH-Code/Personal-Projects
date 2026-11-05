@@ -1,7 +1,7 @@
 From c8fe28f30e1e9e09d36cd9a733913bfc78a68cff Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Sat, 31 Oct 2026 23:26:33 +0000
-Subject: [PATCH 04/39] Add IV/EV editor to the summary skills page
+Subject: [PATCH 04/40] Add IV/EV editor to the summary skills page
 
 START on the skills page opens it. Set IVs 0-31 freely; move EVs between
 stats in steps of 4 through a pool, so the total can't increase.
