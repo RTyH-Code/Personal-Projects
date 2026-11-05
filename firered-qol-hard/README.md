@@ -35,6 +35,12 @@ A quality-of-life, modernization and difficulty hack built on the pret/pokefirer
   them level-1 moves, so the 18 affected Pokémon now learn their
   pre-evolution's later moves a few levels later instead, e.g. Ninetales
   learns Flamethrower at 37 (Vulpix: 32) and Fire Blast at 60 (Vulpix: 52).
+- **Repel prompt:** when a Repel wears off and you have another of the same
+  kind, the game asks whether to use it.
+- **Modern shiny odds:** shiny Pokémon appear at 1 in 4,096 (up from
+  1 in 8,192). After you become Champion, Prof. Oak's aide (by the lab door)
+  gives you the **Shiny Charm**. While it's in your bag, each new wild, gift or
+  one-time Pokémon gets two extra chances to be shiny (about 1 in 1,365).
 
 ## Move relearner
 The Move Maniac on Two Island works as usual (for mushrooms) until you
@@ -299,6 +305,37 @@ All 386 Pokémon can be caught, evolved or bred in a single FireRed save:
   Catching it removes it.
 
 ## Difficulty
+### Challenge settings and Nuzlocke mode
+When you wake up in your room at the start of a new game, a menu lets you
+switch on any of these rules. Pick a rule to turn it ON or OFF, then choose
+START ADVENTURE:
+
+| Rule | What it does |
+|---|---|
+| Nuzlocke mode | The core Nuzlocke rules below. |
+| Level caps | The level caps described in the next section. |
+| No items in battle | You can't use items from the Bag in battle. Poké Balls still work. |
+| Set battle style | No free switch after you knock out a foe. The battle style option is locked to Set. |
+
+The rules are chosen once, for the whole run. Level caps are the exception:
+the Viridian City scientist can still switch them on or off.
+
+**Nuzlocke mode** starts once Prof. Oak gives you your Poké Balls:
+- **First encounter only:** you can only catch the first wild Pokémon you meet
+  in each area. That includes grass, caves, water, fishing and the Safari Zone.
+  Once an area is used, Poké Balls won't work there. The game tells you and
+  the ball isn't used up (a Safari Ball still is).
+- **Dupes clause:** if that first Pokémon is in an evolution family you
+  already own, it doesn't count, so the area stays open until you find a
+  new one.
+- **Shiny clause:** a shiny Pokémon can always be caught.
+- **One-time Pokémon** like Snorlax and the legendaries can always be caught
+  and don't use up the area.
+- **Fainting is permanent:** a Pokémon that faints can't be healed or revived
+  by Pokémon Centers, items or anything else, even after a trip to the PC.
+- **Blacking out ends the run:** the Nuzlocke rules are lifted and the game
+  carries on as a normal playthrough.
+
 ### Optional level caps
 Talk to the scientist in the Viridian City Pokémon Center to turn level caps on
 or off at any time. While they're on, your Pokémon can't gain Exp. (or Rare
@@ -408,9 +445,10 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `fb115ab3546cd92930c06b5297f0a1f6da015b8e`
+Patched ROM SHA-1: `631e91826557fb8be07b36c77cdade990ccdee79`
 
-Start a new game. Saves from earlier versions of this hack aren't supported.
+Current release: **9**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
+Saves made on release 7 or later carry over to this release. Older saves need a new game.
 
 ## Building from source
 
@@ -437,6 +475,8 @@ unmodified pret data:
 - `evo_moves.py`: later level-up moves for stone evolutions (run after `modernize.py`).
 - `peak_trainers.py`: peak teams, gym rematches and the Elite Four round 3.
 - `spoiler_guide.py <dir>`: regenerates the spoiler guide from the game data.
+- `exp_budget.py`: how much trainer Exp. each stretch of the game gives, against the level caps.
+- `save_check.py REF`: checks whether saves from an older release (a git ref) still load.
 
 ## Credits
 - The later evolutions' sprites, icons, footprints and cries, and the new evolution items' icons, are community-made Gen 3-style graphics from [pokeemerald-expansion](https://github.com/rh-hideout/pokeemerald-expansion); see its [credits](https://github.com/rh-hideout/pokeemerald-expansion/blob/master/CREDITS.md).
