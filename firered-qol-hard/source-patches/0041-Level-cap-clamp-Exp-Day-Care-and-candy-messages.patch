@@ -1,0 +1,194 @@
+From 37204831dc2bda495b557769b3d0bc655cb3a0b8 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Thu, 5 Nov 2026 22:18:14 +0000
+Subject: [PATCH 41/41] Level cap: clamp Exp, Day Care and candy messages
+
+Battle Exp is clamped so a Pokemon below the cap can't overshoot it in
+one award, the Day Cares stop at the cap, and Rare/Special Candy at the
+cap says so instead of 'It won't have any effect'.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ HACK_NOTES.md                | 14 +++++++++++++-
+ include/pokemon.h            |  1 +
+ include/strings.h            |  1 +
+ src/battle_script_commands.c |  3 +++
+ src/daycare.c                |  7 +++++--
+ src/party_menu.c             | 21 ++++++++++++++++-----
+ src/pokemon.c                | 18 ++++++++++++++++++
+ src/strings.c                |  1 +
+ 8 files changed, 58 insertions(+), 8 deletions(-)
+
+diff --git a/HACK_NOTES.md b/HACK_NOTES.md
+index 4cf3f03..a8651f9 100644
+--- a/HACK_NOTES.md
++++ b/HACK_NOTES.md
+@@ -317,7 +317,19 @@ battle. The caps are lifted once you become Champion.
+ | Elite Four and Champion | 72 |
+ 
+ If you take gyms out of order, the cap is the lowest one among the gyms you
+-haven't beaten. Day Care levels aren't capped.
++haven't beaten.
++
++How the cap works with each way of gaining levels:
++- **Battle Exp.:** a Pokémon below the cap gains only enough Exp. to reach it,
++  even from one big award (Exp. Share and Lucky Egg included). It doesn't
++  overshoot. A Pokémon already at or above the cap gains nothing.
++- **Rare Candy and Special Candy:** these won't work on a Pokémon at the cap.
++  The game tells you the current cap, and the candy isn't used up.
++- **Day Care:** both Day Cares stop raising a Pokémon at the cap. The fee is
++  based on the levels it actually gained.
++- **Evolution:** this still happens on any level-up up to the cap. If you
++  cancel an evolution at the cap, it's offered again on the Pokémon's next
++  level-up once the cap rises.
+ 
+ ### Trainers
+ - Every Gym Leader has a new, larger team with max IVs, better moves and a held item.
+diff --git a/include/pokemon.h b/include/pokemon.h
+index 25610f0..637bf61 100644
+--- a/include/pokemon.h
++++ b/include/pokemon.h
+@@ -397,6 +397,7 @@ u32 CanMonLearnTMHM(struct Pokemon *mon, u8 tm);
+ u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves);
+ bool8 Hack_IsTrueEndgame(void);
+ u8 Hack_GetLevelCap(void);
++u32 Hack_CapExpGain(u16 species, u32 exp, u32 gain);
+ u8 GetLevelUpMovesBySpecies(u16 species, u16 *moves);
+ u8 GetNumberOfRelearnableMoves(struct Pokemon *mon);
+ u16 SpeciesToPokedexNum(u16 species);
+diff --git a/include/strings.h b/include/strings.h
+index 57066f7..6ca26a6 100644
+--- a/include/strings.h
++++ b/include/strings.h
+@@ -179,6 +179,7 @@ extern const u8 gText_PlayedPokeFluteCatchy[];
+ extern const u8 gText_PlayedPokeFlute[];
+ extern const u8 gText_PokeFluteAwakenedMon[];
+ extern const u8 gText_WontHaveEffect[];
++extern const u8 gText_HackAtLevelCap[];
+ extern const u8 gText_YesNo[];
+ extern const u8 gText_Berry[];
+ extern const u8 gText_Ghost[];
+diff --git a/src/battle_script_commands.c b/src/battle_script_commands.c
+index ac82a55..eddd50d 100644
+--- a/src/battle_script_commands.c
++++ b/src/battle_script_commands.c
+@@ -3381,6 +3381,9 @@ static void Cmd_getexp(void)
+                     {
+                         i = STRINGID_EMPTYSTRING4;
+                     }
++                    gBattleMoveDamage = Hack_CapExpGain(GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_SPECIES),
++                                                        GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_EXP),
++                                                        gBattleMoveDamage);
+ 
+                     // get exp getter battlerId
+                     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+diff --git a/src/daycare.c b/src/daycare.c
+index efa5a95..d8fd488 100644
+--- a/src/daycare.c
++++ b/src/daycare.c
+@@ -517,7 +517,8 @@ static u16 TakeSelectedPokemonFromDaycare(struct DaycareMon *daycareMon)
+ 
+     if (GetMonData(&pokemon, MON_DATA_LEVEL) != MAX_LEVEL)
+     {
+-        experience = GetMonData(&pokemon, MON_DATA_EXP) + daycareMon->steps;
++        experience = GetMonData(&pokemon, MON_DATA_EXP);
++        experience += Hack_CapExpGain(species, experience, daycareMon->steps);
+         SetMonData(&pokemon, MON_DATA_EXP, &experience);
+         ApplyDaycareExperience(&pokemon);
+     }
+@@ -552,7 +553,9 @@ static u8 GetLevelAfterDaycareSteps(struct BoxPokemon *mon, u32 steps)
+ {
+     struct BoxPokemon tempMon = *mon;
+ 
+-    u32 experience = GetBoxMonData(mon, MON_DATA_EXP) + steps;
++    u32 experience = GetBoxMonData(mon, MON_DATA_EXP);
++
++    experience += Hack_CapExpGain(GetBoxMonData(mon, MON_DATA_SPECIES), experience, steps);
+     SetBoxMonData(&tempMon, MON_DATA_EXP,  &experience);
+     return GetLevelFromBoxMonExp(&tempMon);
+ }
+diff --git a/src/party_menu.c b/src/party_menu.c
+index 1e5e34e..ca206b9 100644
+--- a/src/party_menu.c
++++ b/src/party_menu.c
+@@ -5093,19 +5093,30 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc func)
+ {
+     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+     u16 item = gSpecialVar_ItemId;
+-    bool8 noEffect;
++    bool8 noEffect, atCap = FALSE;
++    u8 level = GetMonData(mon, MON_DATA_LEVEL), cap = Hack_GetLevelCap();
+ 
+     if (item == ITEM_SPECIAL_CANDY)
+         item = ITEM_RARE_CANDY; // same effect, never used up
+-    if (GetMonData(mon, MON_DATA_LEVEL) < Hack_GetLevelCap())
+-        noEffect = PokemonItemUseNoEffect(mon, item, gPartyMenu.slotId, 0);
+-    else
++    if (level >= MAX_LEVEL)
+         noEffect = TRUE;
++    else if (level >= cap)
++        noEffect = atCap = TRUE;
++    else
++        noEffect = PokemonItemUseNoEffect(mon, item, gPartyMenu.slotId, 0);
+     PlaySE(SE_SELECT);
+     if (noEffect)
+     {
+         gPartyMenuUseExitCallback = FALSE;
+-        DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
++        if (atCap)
++        {
++            GetMonNickname(mon, gStringVar1);
++            ConvertIntToDecimalStringN(gStringVar2, cap, STR_CONV_MODE_LEFT_ALIGN, 3);
++            StringExpandPlaceholders(gStringVar4, gText_HackAtLevelCap);
++            DisplayPartyMenuMessage(gStringVar4, TRUE);
++        }
++        else
++            DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
+         ScheduleBgCopyTilemapToVram(2);
+         gTasks[taskId].func = func;
+     }
+diff --git a/src/pokemon.c b/src/pokemon.c
+index 2356dff..fd3848c 100644
+--- a/src/pokemon.c
++++ b/src/pokemon.c
+@@ -7230,6 +7230,24 @@ u8 Hack_GetLevelCap(void)
+ }
+ 
+ // For the toggle NPC: VAR_RESULT = cap, STR_VAR_1 = cap as text.
++// Clamp an Exp gain so it can't carry a Pokemon past the level cap.
++// A Pokemon already over the cap (traded, caught, or deposited before
++// the cap applied) keeps its Exp but gains no more.
++u32 Hack_CapExpGain(u16 species, u32 exp, u32 gain)
++{
++    u8 cap = Hack_GetLevelCap();
++    u32 capExp;
++
++    if (cap >= MAX_LEVEL)
++        return gain;
++    capExp = gExperienceTables[gSpeciesInfo[species].growthRate][cap];
++    if (exp >= capExp)
++        return 0;
++    if (gain > capExp - exp)
++        return capExp - exp;
++    return gain;
++}
++
+ void Hack_BufferLevelCap(void)
+ {
+     gSpecialVar_Result = Hack_GetLevelCap();
+diff --git a/src/strings.c b/src/strings.c
+index c099555..f94b12c 100644
+--- a/src/strings.c
++++ b/src/strings.c
+@@ -251,6 +251,7 @@ const u8 gText_ItemEffect_SpDef[] = _("SP. DEF");
+ const u8 gText_PartyMenu_OK[] = _("OK");
+ const u8 gText_Empty[] = _("");
+ const u8 gText_PauseUntilPress[] = _("{PAUSE_UNTIL_PRESS}");
++const u8 gText_HackAtLevelCap[] = _("{STR_VAR_1} has hit the level\ncap (Lv. {STR_VAR_2}) for now.{PAUSE_UNTIL_PRESS}");
+ const u8 gText_WontHaveEffect[] = _("It won't have any effect.{PAUSE_UNTIL_PRESS}");
+ const u8 gText_CantBeUsedOnPkmn[] = _("This can't be used on\nthat POKéMON.{PAUSE_UNTIL_PRESS}");
+ const u8 gText_PkmnCantSwitchOut[] = _("{STR_VAR_1} can't be switched\nout!{PAUSE_UNTIL_PRESS}");
+-- 
+2.43.0
+
