@@ -319,7 +319,19 @@ battle. The caps are lifted once you become Champion.
 | Elite Four and Champion | 72 |
 
 If you take gyms out of order, the cap is the lowest one among the gyms you
-haven't beaten. Day Care levels aren't capped.
+haven't beaten.
+
+How the cap works with each way of gaining levels:
+- **Battle Exp.:** a Pokémon below the cap gains only enough Exp. to reach it,
+  even from one big award (Exp. Share and Lucky Egg included). It doesn't
+  overshoot. A Pokémon already at or above the cap gains nothing.
+- **Rare Candy and Special Candy:** these won't work on a Pokémon at the cap.
+  The game tells you the current cap, and the candy isn't used up.
+- **Day Care:** both Day Cares stop raising a Pokémon at the cap. The fee is
+  based on the levels it actually gained.
+- **Evolution:** this still happens on any level-up up to the cap. If you
+  cancel an evolution at the cap, it's offered again on the Pokémon's next
+  level-up once the cap rises.
 
 ### Trainers
 - Every Gym Leader has a new, larger team with max IVs, better moves and a held item.
@@ -396,7 +408,7 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `51a2381a277c4d2dfc7e3279a4f02161015a8dce`
+Patched ROM SHA-1: `fb115ab3546cd92930c06b5297f0a1f6da015b8e`
 
 Start a new game. Saves from earlier versions of this hack aren't supported.
 
