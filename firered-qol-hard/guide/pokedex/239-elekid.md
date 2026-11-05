@@ -53,6 +53,7 @@ Height 0.6 m (2′00″) · Weight 23.5 kg (51.8 lbs)
 ## Evolution
 
 - **Elekid** → [Electabuzz](125-electabuzz.md): Level 30
+  - [Electabuzz](125-electabuzz.md) → [Electivire](466-electivire.md): Use an Electirizer *(new in this hack)*
 
 ## Where to find it
 

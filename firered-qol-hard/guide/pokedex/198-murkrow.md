@@ -54,7 +54,7 @@ Height 0.5 m (1′08″) · Weight 2.1 kg (4.6 lbs)
 
 ## Evolution
 
-Murkrow does not evolve.
+- **Murkrow** → [Honchkrow](430-honchkrow.md): Use a Dusk Stone *(new in this hack)*
 
 ## Where to find it
 
@@ -74,7 +74,7 @@ Murkrow does not evolve.
 - **Five Island Lost Cave Room 7**: Grass / cave Lv 22 (5%)
 - **Five Island Lost Cave Room 8**: Grass / cave Lv 22 (5%)
 - **Five Island Lost Cave Room 9**: Grass / cave Lv 22 (5%)
-- Breeding: hatches from an Egg left by a Murkrow at the Four Island Day Care
+- Breeding: hatches from an Egg left by a Murkrow or Honchkrow at the Four Island Day Care
 
 </details>
 

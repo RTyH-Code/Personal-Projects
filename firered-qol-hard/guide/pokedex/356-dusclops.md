@@ -54,6 +54,7 @@ Height 1.6 m (5′03″) · Weight 30.6 kg (67.5 lbs)
 ## Evolution
 
 - [Duskull](355-duskull.md) → **Dusclops**: Level 37
+  - **Dusclops** → [Dusknoir](477-dusknoir.md): Use a Reaper Cloth *(new in this hack)*
 
 ## Where to find it
 

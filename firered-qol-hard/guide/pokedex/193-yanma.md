@@ -56,12 +56,12 @@ Height 1.2 m (3′11″) · Weight 38 kg (83.8 lbs)
 
 ## Evolution
 
-Yanma does not evolve.
+- **Yanma** → [Yanmega](469-yanmega.md): Level up knowing Ancient Power *(new in this hack)*
 
 ## Where to find it
 
 - **Six Island Ruin Valley**: Grass / cave Lv 18 (10%)
-- Breeding: hatches from an Egg left by a Yanma at the Four Island Day Care
+- Breeding: hatches from an Egg left by a Yanma or Yanmega at the Four Island Day Care
 
 ## Moves
 

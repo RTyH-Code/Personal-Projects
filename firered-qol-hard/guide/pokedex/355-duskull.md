@@ -56,13 +56,14 @@ Height 0.8 m (2′07″) · Weight 15 kg (33.1 lbs)
 ## Evolution
 
 - **Duskull** → [Dusclops](356-dusclops.md): Level 37
+  - [Dusclops](356-dusclops.md) → [Dusknoir](477-dusknoir.md): Use a Reaper Cloth *(new in this hack)*
 
 ## Where to find it
 
 - **Pokémon Tower 4F**: Grass / cave Lv 17 (4%)
 - **Pokémon Tower 6F**: Grass / cave Lv 15 (10%)
 - **Five Island Lost Cave Room 10**: Grass / cave Lv 48 (5%)
-- Breeding: hatches from an Egg left by a Duskull or Dusclops at the Four Island Day Care
+- Breeding: hatches from an Egg left by a Duskull or Dusknoir or Dusclops at the Four Island Day Care
 
 ## Moves
 

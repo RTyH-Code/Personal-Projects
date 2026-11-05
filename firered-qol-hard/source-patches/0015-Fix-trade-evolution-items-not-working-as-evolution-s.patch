@@ -1,7 +1,7 @@
 From 7d863d285bca61c3b95972603e531c5db00eb9b5 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Sun, 1 Nov 2026 00:41:41 +0000
-Subject: [PATCH 15/36] Fix trade-evolution items not working as evolution
+Subject: [PATCH 15/37] Fix trade-evolution items not working as evolution
  stones
 
 King's Rock, Metal Coat, Dragon Scale, Up-Grade and Deep Sea Tooth/Scale

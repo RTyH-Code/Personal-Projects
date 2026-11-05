@@ -1,6 +1,6 @@
 # Pokédex
 
-All 387 Pokémon in National Dex order, with this hack's stats. Click a name for its full page: stat ranges, abilities, type defenses, evolution, where to find it and every learnset.
+All 405 Pokémon in National Dex order, with this hack's stats. Click a name for its full page: stat ranges, abilities, type defenses, evolution, where to find it and every learnset.
 
 | # | Pokémon | Type | HP | Atk | Def | SpA | SpD | Spe | Total |
 |--:|---|---|--:|--:|--:|--:|--:|--:|--:|
@@ -390,4 +390,22 @@ All 387 Pokémon in National Dex order, with this hack's stats. Click a name for
 | 384 | [Rayquaza](pokedex/384-rayquaza.md) | Dragon / Flying | 105 | 150 | 90 | 150 | 90 | 95 | 680 |
 | 385 | [Jirachi](pokedex/385-jirachi.md) | Steel / Psychic | 100 | 100 | 100 | 100 | 100 | 100 | 600 |
 | 386 | [Deoxys](pokedex/386-deoxys.md) | Psychic | 50 | 150 | 50 | 150 | 50 | 150 | 600 |
+| 407 | [Roserade](pokedex/407-roserade.md) | Grass / Poison | 60 | 70 | 65 | 125 | 105 | 90 | 515 |
+| 424 | [Ambipom](pokedex/424-ambipom.md) | Normal | 75 | 100 | 66 | 60 | 66 | 115 | 482 |
+| 429 | [Mismagius](pokedex/429-mismagius.md) | Ghost | 60 | 60 | 60 | 105 | 105 | 105 | 495 |
+| 430 | [Honchkrow](pokedex/430-honchkrow.md) | Dark / Flying | 100 | 125 | 52 | 105 | 52 | 71 | 505 |
 | 461 | [Weavile](pokedex/461-weavile.md) | Dark / Ice | 70 | 120 | 65 | 45 | 85 | 125 | 510 |
+| 462 | [Magnezone](pokedex/462-magnezone.md) | Electric / Steel | 70 | 70 | 115 | 130 | 90 | 60 | 535 |
+| 463 | [Lickilicky](pokedex/463-lickilicky.md) | Normal | 110 | 85 | 95 | 80 | 95 | 50 | 515 |
+| 464 | [Rhyperior](pokedex/464-rhyperior.md) | Ground / Rock | 115 | 140 | 130 | 55 | 55 | 40 | 535 |
+| 465 | [Tangrowth](pokedex/465-tangrowth.md) | Grass | 100 | 100 | 125 | 110 | 50 | 50 | 535 |
+| 466 | [Electivire](pokedex/466-electivire.md) | Electric | 75 | 123 | 67 | 95 | 85 | 95 | 540 |
+| 467 | [Magmortar](pokedex/467-magmortar.md) | Fire | 75 | 95 | 67 | 125 | 95 | 83 | 540 |
+| 468 | [Togekiss](pokedex/468-togekiss.md) | Fairy / Flying | 85 | 50 | 95 | 120 | 115 | 80 | 545 |
+| 469 | [Yanmega](pokedex/469-yanmega.md) | Bug / Flying | 86 | 76 | 86 | 116 | 56 | 95 | 515 |
+| 472 | [Gliscor](pokedex/472-gliscor.md) | Ground / Flying | 75 | 95 | 125 | 45 | 75 | 95 | 510 |
+| 473 | [Mamoswine](pokedex/473-mamoswine.md) | Ice / Ground | 110 | 130 | 80 | 70 | 60 | 80 | 530 |
+| 474 | [Porygon-Z](pokedex/474-porygon-z.md) | Normal | 85 | 80 | 70 | 135 | 75 | 90 | 535 |
+| 477 | [Dusknoir](pokedex/477-dusknoir.md) | Ghost | 45 | 100 | 135 | 65 | 135 | 45 | 525 |
+| 981 | [Farigiraf](pokedex/981-farigiraf.md) | Normal / Psychic | 120 | 90 | 70 | 110 | 70 | 60 | 520 |
+| 982 | [Dudunsparce](pokedex/982-dudunsparce.md) | Normal | 125 | 100 | 80 | 85 | 75 | 55 | 520 |

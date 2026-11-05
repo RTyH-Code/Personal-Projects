@@ -59,6 +59,7 @@ Height 1.9 m (6′03″) · Weight 120 kg (264.6 lbs)
 ## Evolution
 
 - [Rhyhorn](111-rhyhorn.md) → **Rhydon**: Level 42
+  - **Rhydon** → [Rhyperior](464-rhyperior.md): Use a Protector *(new in this hack)*
 
 ## Where to find it
 

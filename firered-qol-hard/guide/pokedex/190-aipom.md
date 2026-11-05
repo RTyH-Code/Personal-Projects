@@ -53,12 +53,12 @@ Height 0.8 m (2′07″) · Weight 11.5 kg (25.4 lbs)
 
 ## Evolution
 
-Aipom does not evolve.
+- **Aipom** → [Ambipom](424-ambipom.md): Level up knowing Double Hit *(new in this hack)*
 
 ## Where to find it
 
 - **Six Island Altering Cave**: Grass / cave Lv 20–24 (5%)
-- Breeding: hatches from an Egg left by a Aipom at the Four Island Day Care
+- Breeding: hatches from an Egg left by a Aipom or Ambipom at the Four Island Day Care
 
 ## Moves
 

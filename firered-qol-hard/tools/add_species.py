@@ -27,20 +27,33 @@ from PIL import Image
 
 SD, EXP, NAME = sys.argv[1], sys.argv[2], sys.argv[3]
 
+# prevo, evolution, real National Dex number, and an in-game name if the real one is over 10 letters
 NEW_SPECIES = {
-    "WEAVILE": dict(
-        slot="OLD_UNOWN_E", dexslot="OLD_UNOWN_B", realnum=461, prevo="SNEASEL",
-        evo="{EVO_ITEM, ITEM_RAZOR_CLAW, SPECIES_WEAVILE}",
-        habitat=("sDexCategory_ForestPkmn_Page18", "SPECIES_SNEASEL"),
-        category="SHARP CLAW", height=11, weight=340, expyield=199,
-        text="They live in snowy regions, in groups of\nfour or five, leaving marks on trees and\nrocks. They hunt as a team.",
-        scale=(320, 7, 256, 0), front=(56, 56, 4), back=(64, 64, 6), iconpal=0,
-        bodycolor="BODY_COLOR_BLACK", itemrare="ITEM_QUICK_CLAW",
-    ),
+    "WEAVILE": dict(prevo="SNEASEL", evo="EVO_ITEM, ITEM_RAZOR_CLAW", realnum=461),
+    "MAGNEZONE": dict(prevo="MAGNETON", evo="EVO_ITEM, ITEM_THUNDER_STONE", realnum=462, text="Exposure to a special magnetic field\nchanged MAGNETON's molecular structure,\nturning it into MAGNEZONE."),
+    "LICKILICKY": dict(prevo="LICKITUNG", evo="EVO_MOVE, MOVE_ROLLOUT", realnum=463, text="Its strange tongue seems to be made of\nunknown materials. Its saliva can\ndissolve anything."),
+    "RHYPERIOR": dict(prevo="RHYDON", evo="EVO_ITEM, ITEM_PROTECTOR", realnum=464, text="It puts rocks in holes in its palms and\nuses its muscles to shoot them. GEODUDE\nare sometimes shot by mistake."),
+    "TANGROWTH": dict(prevo="TANGELA", evo="EVO_MOVE, MOVE_ANCIENT_POWER", realnum=465, text="It ensnares prey by extending arms made\nof vines. Losing arms to predators\ndoes not trouble it."),
+    "ELECTIVIRE": dict(prevo="ELECTABUZZ", evo="EVO_ITEM, ITEM_ELECTIRIZER", realnum=466, text="It pushes the tips of its two tails\nagainst a foe, then lets loose with\nover 20,000 volts of power."),
+    "MAGMORTAR": dict(prevo="MAGMAR", evo="EVO_ITEM, ITEM_MAGMARIZER", realnum=467, text="It blasts fireballs of over 3,600\ndegrees from the ends of its arms.\nIt lives in volcanic craters."),
+    "TOGEKISS": dict(prevo="TOGETIC", evo="EVO_ITEM, ITEM_SHINY_STONE", realnum=468, text="It shares many blessings with people\nwho respect one another's rights and\navoid needless strife."),
+    "YANMEGA": dict(prevo="YANMA", evo="EVO_MOVE, MOVE_ANCIENT_POWER", realnum=469, text="This six-legged POKéMON is easily\ncapable of carrying an adult in flight.\nIts wings beat at high speed."),
+    "GLISCOR": dict(prevo="GLIGAR", evo="EVO_ITEM, ITEM_RAZOR_FANG", realnum=472, text="It observes prey while hanging upside\ndown from branches. When the chance\npresents itself, it swoops!"),
+    "MAMOSWINE": dict(prevo="PILOSWINE", evo="EVO_MOVE, MOVE_ANCIENT_POWER", realnum=473, text="A frozen MAMOSWINE was dug from ice\ndating back 10,000 years. This POKéMON\nhas been around a long, long time."),
+    "PORYGON_Z": dict(prevo="PORYGON2", evo="EVO_ITEM, ITEM_DUBIOUS_DISC", realnum=474, name="PORYGON-Z", text="Additional software was installed to\nmake it a better POKéMON. It began\nacting oddly, however."),
+    "DUSKNOIR": dict(prevo="DUSCLOPS", evo="EVO_ITEM, ITEM_REAPER_CLOTH", realnum=477, text="The antenna on its head captures radio\nwaves from the spirit world that tell\nit to take people there."),
+    "HONCHKROW": dict(prevo="MURKROW", evo="EVO_ITEM, ITEM_DUSK_STONE", realnum=430, text="Becoming active at night, it is known\nto swarm with numerous MURKROW in tow.\nIt never forgives a mistake."),
+    "MISMAGIUS": dict(prevo="MISDREAVUS", evo="EVO_ITEM, ITEM_DUSK_STONE", realnum=429, text="Its cries sound like incantations.\nThose hearing it are tormented by\nheadaches and hallucinations."),
+    "AMBIPOM": dict(prevo="AIPOM", evo="EVO_MOVE, MOVE_DOUBLE_HIT", realnum=424, text="Its split tails are so adept at handling\nthings that AMBIPOM now rarely uses\nits hands."),
+    "ROSERADE": dict(prevo="ROSELIA", evo="EVO_ITEM, ITEM_SHINY_STONE", realnum=407, text="With the movements of a dancer, it\nstrikes with whips that are densely\nlined with poison thorns."),
+    # Twin Beam and Hyper Drill aren't in the game: level 32, where they learn them
+    "FARIGIRAF": dict(prevo="GIRAFARIG", evo="EVO_LEVEL, 32", realnum=981, text="Now that the brain waves from its head\nand tail are in sync, its psychic\npower is ten times stronger."),
+    "DUDUNSPARCE": dict(prevo="DUNSPARCE", evo="EVO_LEVEL, 32", realnum=982, name="DUDUNSPRCE", exp="DUDUNSPARCE_TWO_SEGMENT", text="It uses its hard tail to make its nest\nby boring holes into bedrock deep\nunderground."),
 }
-S = NEW_SPECIES[NAME]
+S = dict(NEW_SPECIES[NAME])
 sdkey = NAME.lower().replace("_", "")
 Title = NAME.title().replace("_", "")
+S["evo"] = "{%s, SPECIES_%s}" % (S["evo"], NAME)
 
 
 def read(p):
@@ -74,12 +87,55 @@ def ts_entry(path, key):
     return "\n".join(lines)
 
 
+if f"#define SPECIES_{NAME} " in read("include/constants/species.h"):
+    sys.exit(f"{NAME} is already in the game")
+
+# free slots: species slots E..Z and internal National Dex numbers after Deoxys
+spec_h, dex_h = read("include/constants/species.h"), read("include/constants/pokedex.h")
+used = set(re.findall(r"SPECIES_(OLD_UNOWN_[A-Z]+)\b", spec_h.split("#define SPECIES_OLD_UNOWN_Z")[1]))
+S["slot"] = next(f"OLD_UNOWN_{c}" for c in "EFGHIJKLMNOPQRSTUVWXYZ" if f"OLD_UNOWN_{c}" not in used)
+dused = set(re.findall(r"#define NATIONAL_DEX_\w+ NATIONAL_DEX_(OLD_UNOWN_[A-Z])", dex_h))
+S["dexslot"] = next(f"OLD_UNOWN_{c}" for c in "BCDEFGHIJKLMNOPQRSTUVWXYZ" if f"OLD_UNOWN_{c}" not in dused)
+
+# the expansion's species entry: Pokedex data, sprite positions, breeding data
+import glob
+xsrc = "".join(read(f) for f in sorted(glob.glob(os.path.join(EXP, "src/data/pokemon/species_info/gen_*_families.h"))))
+xb = re.search(r"\[SPECIES_%s\] =\n    \{(.*?)\n    \}," % S.get("exp", NAME), xsrc, re.S).group(1)
+def xf(k, default=None):
+    m = re.search(r"\.%s\s*=\s*(.*?),\n" % k, xb)
+    return m.group(1).strip() if m else default
+def coords(k):
+    w, h = re.search(r"MON_COORDS_SIZE\((\d+), (\d+)\)", xf(k)).groups()
+    return int(w), int(h)
+desc = " ".join(re.findall(r'"(.*?)"', re.search(r"\.description = COMPOUND_STRING\((.*?)\),\n", xb, re.S).group(1)))
+desc = re.sub(r"\\n", " ", desc)
+sentences = re.findall(r"[^.!?]+[.!?]", desc)
+while len(textwrap.wrap(" ".join(sentences), 40)) > 3 and len(sentences) > 1:
+    sentences.pop()
+S.setdefault("text", "\n".join(textwrap.wrap(" ".join(sentences).strip(), 40)[:3]))
+S["category"] = re.sub(r'_\("(.*)"\)', r"\1", xf("categoryName")).upper()
+S["height"], S["weight"] = int(xf("height")), int(xf("weight"))
+S["scale"] = tuple(int(xf(k)) for k in ("pokemonScale", "pokemonOffset", "trainerScale", "trainerOffset"))
+S["front"] = coords("frontPicSize") + (int(xf("frontPicYOffset")),)
+S["back"] = coords("backPicSize") + (int(xf("backPicYOffset")),)
+S["iconpal"] = int(xf("iconPalIndex"))
+assert S["iconpal"] <= 2, "FireRed has three icon palettes"
+S["bodycolor"] = xf("bodyColor")
+S["expyield"] = min(255, int(re.findall(r"\d+", xf("expYield"))[-1]))
+S["catchrate"] = int(xf("catchRate"))
+items_h = read("include/constants/items.h")
+fr_item = lambda it: it if it and re.search(r"#define %s " % it, items_h) else "ITEM_NONE"
+S["itemcommon"], S["itemrare"] = fr_item(xf("itemCommon")), fr_item(xf("itemRare"))
+S["evs"] = {k: int(xf("evYield_" + k, "0")) for k in ("HP", "Attack", "Defense", "Speed", "SpAttack", "SpDefense")}
+
 dex = ts_entry(SD + "/pokedex.ts", sdkey)
 stats = dict(re.findall(r"(hp|atk|def|spa|spd|spe): (\d+)", re.search(r"baseStats: \{(.*?)\}", dex).group(1)))
 types = ["TYPE_" + t.upper() for t in re.findall(r'"(\w+)"', re.search(r"types: \[(.*?)\]", dex).group(1))]
 types = (types * 2)[:2]
 abil = dict(re.findall(r'(\w): "([^"]+)"', re.search(r"abilities: \{(.*?)\}", dex).group(1)))
 const = lambda a: "ABILITY_" + re.sub(r"[^A-Z0-9]+", "_", a.upper()).strip("_")
+abil_h = read("include/constants/abilities.h")
+const = lambda a: (lambda c: c if re.search(r"#define %s " % c, abil_h) else "ABILITY_NONE")("ABILITY_" + re.sub(r"[^A-Z0-9]+", "_", a.upper()).strip("_"))
 abilities = [const(abil["0"]), const(abil["1"]) if "1" in abil else "ABILITY_NONE", const(abil["H"]) if "H" in abil else "ABILITY_NONE"]
 learn = {}
 in_ls = False
@@ -97,10 +153,13 @@ SP = "SPECIES_" + NAME
 # ---------------------------------------------------------------- constants
 edit("include/constants/species.h", "#define IS_DEOXYS_FORME(species)",
      f"#define {SP} SPECIES_{S['slot']} // FireRed QoL+Hard: new species (tools/hack/add_species.py)\n#define IS_DEOXYS_FORME(species)")
-edit("include/constants/pokedex.h", "#define NATIONAL_DEX_COUNT  NATIONAL_DEX_DEOXYS",
-     f"#define NATIONAL_DEX_{NAME} NATIONAL_DEX_{S['dexslot']}\n#define NATIONAL_DEX_COUNT  NATIONAL_DEX_DEOXYS")
+edit("include/constants/pokedex.h", "#define NATIONAL_DEX_COUNT  ",
+     f"#define NATIONAL_DEX_{NAME} NATIONAL_DEX_{S['dexslot']}\n#define NATIONAL_DEX_COUNT  ")
 s = read("include/constants/pokedex.h")
-s = re.sub(r"#define NATIONAL_DEX_COUNT  NATIONAL_DEX_\w+", f"#define NATIONAL_DEX_COUNT  NATIONAL_DEX_{NAME}", s)
+letters = "BCDEFGHIJKLMNOPQRSTUVWXYZ"
+top = max(re.findall(r"#define NATIONAL_DEX_\w+ NATIONAL_DEX_OLD_UNOWN_([A-Z])", s), key=letters.index)
+top_name = re.search(r"#define NATIONAL_DEX_(\w+) NATIONAL_DEX_OLD_UNOWN_%s\n" % top, s).group(1)
+s = re.sub(r"#define NATIONAL_DEX_COUNT  NATIONAL_DEX_\w+", f"#define NATIONAL_DEX_COUNT  NATIONAL_DEX_{top_name}", s)
 write("include/constants/pokedex.h", s)
 edit("src/pokemon.c", f"    SPECIES_TO_HOENN({S['slot']}),", f"    HOENN_DEX_{S['dexslot']}, // {NAME}")
 edit("src/pokemon.c", f"    SPECIES_TO_NATIONAL({S['slot']}),", f"    NATIONAL_DEX_{S['dexslot']}, // {NAME}")
@@ -117,15 +176,15 @@ info = f"""[{SP}] =
         .baseSpAttack = {stats['spa']},
         .baseSpDefense = {stats['spd']},
         .types = {{{types[0]}, {types[1]}}},
-        .catchRate = 45,
+        .catchRate = {S['catchrate']},
         .expYield = {S['expyield']},
-        .evYield_HP = 0,
-        .evYield_Attack = 1,
-        .evYield_Defense = 0,
-        .evYield_Speed = 1,
-        .evYield_SpAttack = 0,
-        .evYield_SpDefense = 0,
-        .itemCommon = ITEM_NONE,
+        .evYield_HP = {S['evs']['HP']},
+        .evYield_Attack = {S['evs']['Attack']},
+        .evYield_Defense = {S['evs']['Defense']},
+        .evYield_Speed = {S['evs']['Speed']},
+        .evYield_SpAttack = {S['evs']['SpAttack']},
+        .evYield_SpDefense = {S['evs']['SpDefense']},
+        .itemCommon = {S['itemcommon']},
         .itemRare = {S['itemrare']},
         .genderRatio = PERCENT_FEMALE(50),
         .eggCycles = 20,
@@ -145,13 +204,13 @@ for field in ("genderRatio", "eggCycles", "friendship", "growthRate", "eggGroups
 s = s.replace(f"[SPECIES_{S['slot']}] = OLD_UNOWN_SPECIES_INFO", info, 1)
 assert f"[{SP}] =" in s
 write(p, s)
-edit("src/data/text/species_names.h", f'    [SPECIES_{S["slot"]}] = _("?"),', f'    [{SP}] = _("{NAME}"),')
+edit("src/data/text/species_names.h", f'    [SPECIES_{S["slot"]}] = _("?"),', f'    [{SP}] = _("{S.get("name", NAME)}"),')
 
 # ---------------------------------------------------------------- graphics
 src = os.path.join(EXP, "graphics/pokemon", NAME.lower())
 dst = os.path.join("graphics/pokemon", NAME.lower())
 os.makedirs(dst, exist_ok=True)
-front = Image.open(os.path.join(src, "anim_front.png"))
+front = Image.open(os.path.join(src, "anim_front.png") if os.path.exists(os.path.join(src, "anim_front.png")) else os.path.join(src, "front.png"))
 front.crop((0, 0, 64, 64)).save(os.path.join(dst, "front.png"))  # FireRed shows one frame
 for f in ("back.png", "icon.png", "footprint.png", "normal.pal", "shiny.pal"):
     shutil.copy(os.path.join(src, f), os.path.join(dst, f))
@@ -320,7 +379,7 @@ ents = re.findall(r"\[(NATIONAL_DEX_\w+)\] =\s*\{\s*\.categoryName = _\(\"[^\"]*
                   read("src/data/pokemon/pokedex_entries.h"))
 hw = {n: (int(h), int(w)) for n, h, w in ents}
 names = {f"NATIONAL_DEX_{m}": n for m, n in re.findall(r'\[SPECIES_(\w+)\] = _\("([^"]*)"\)', read("src/data/text/species_names.h"))}
-names[nat] = NAME
+names[nat] = S.get("name", NAME)
 
 
 def list_body(label):
@@ -333,7 +392,7 @@ def list_body(label):
 a, b = list_body("gPokedexOrder_Alphabetical")
 items = [x.strip() for x in s[a:b].split(",") if x.strip()]
 items.remove(f"NATIONAL_DEX_{S['dexslot']}")
-pos = next(i for i, x in enumerate(items) if x in names and names[x] > NAME and not x.startswith("NATIONAL_DEX_OLD"))
+pos = next(i for i, x in enumerate(items) if x in names and names[x] > S.get("name", NAME) and not x.startswith("NATIONAL_DEX_OLD"))
 items.insert(pos, nat)
 s = s[:a] + "\n" + ",\n".join("    " + x for x in items) + "\n" + s[b:]
 for label, idx in (("gPokedexOrder_Weight", 1), ("gPokedexOrder_Height", 0)):
@@ -350,14 +409,29 @@ items.insert(items.index(f"SPECIES_{prevo}") + 1, SP)
 s = s[:a] + "\n" + ",\n".join("    " + x for x in items) + "\n" + s[b:]
 write(p, s)
 
-page, after = S["habitat"]
-edit("src/data/pokemon/pokedex_categories.h", f"static const u16 {page}[] = {{", f"static const u16 {page}[] = {{")
+# habitat: next to the pre-evolution, or on a new page right after a full one
 s = read("src/data/pokemon/pokedex_categories.h")
-i = s.index(f"static const u16 {page}[] = {{")
-j = s.index("};", i)
-blk = s[i:j]
-assert blk.count("SPECIES_") < 4, "habitat page is full"
-s = s[:i] + blk.replace(f"    {after},\n", f"    {after},\n    {SP},\n") + s[j:]
+pages = re.findall(r"static const u16 (sDexCategory_\w+)\[\] = \{(.*?)\};", s, re.S)
+page = next(n for n, b in pages if f"SPECIES_{prevo}," in b)
+cands = [n for n, b in pages if n == page or n.startswith(page + "_Hack")]
+dest = next((n for n in cands if dict(pages)[n].count("SPECIES_") < 4), None)
+if dest is None:
+    dest = f"{page}_Hack{len(cands)}"
+    prev = cands[-1]
+    i = s.index(f"static const u16 {prev}[] = {{")
+    i = s.index("};\n", i) + 3
+    s = s[:i] + f"\nstatic const u16 {dest}[] = {{\n    {SP},\n}};\n" + s[i:]
+    short = prev.replace("sDexCategory_", "")
+    s = s.replace(f"    DEX_CATEGORY({short}),\n", f"    DEX_CATEGORY({short}),\n    DEX_CATEGORY({dest.replace('sDexCategory_', '')}),\n", 1)
+else:
+    i = s.index(f"static const u16 {dest}[] = {{")
+    j = s.index("};", i)
+    blk = s[i:j]
+    if f"    SPECIES_{prevo},\n" in blk:
+        blk = blk.replace(f"    SPECIES_{prevo},\n", f"    SPECIES_{prevo},\n    {SP},\n")
+    else:
+        blk = blk.rstrip() + f"\n    {SP},\n"
+    s = s[:i] + blk + s[j:]
 write("src/data/pokemon/pokedex_categories.h", s)
 
 # real National Dex number for display
@@ -389,12 +463,81 @@ if "Hack_DisplayDexNum" not in read("include/pokemon.h"):
     edit("src/pokemon_summary_screen.c", "    dexNum = SpeciesToPokedexNum(GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPECIES));",
          "    dexNum = SpeciesToPokedexNum(GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPECIES));\n    if (dexNum != 0xFFFF)\n        dexNum = Hack_DisplayDexNum(dexNum);")
 
-# ---------------------------------------------------------------- evolution items
-EVO_ITEMS = {
-    "RAZOR_CLAW": dict(slot="ITEM_035", name="RAZOR CLAW", price=2100, hold="HOLD_EFFECT_SCOPE_LENS",
-                       desc="A sharply hooked claw that boosts\\\\nthe holder's critical-hit ratio.\\\\nIt can make SNEASEL evolve.",
-                       shop="CeladonCity_DepartmentStore_4F", after="ITEM_UP_GRADE"),
+# ---------------------------------------------------------------- engine support (first run only)
+# "Level up knowing a move" evolutions (Mamoswine, Ambipom...)
+if "EVO_MOVE" not in read("include/constants/pokemon.h"):
+    edit("include/constants/pokemon.h", "#define EVO_BEAUTY           15 // Pokémon levels up with beauty ≥ specified value\n",
+         "#define EVO_BEAUTY           15 // Pokémon levels up with beauty ≥ specified value\n"
+         "#define EVO_MOVE             16 // FireRed QoL+Hard: Pokémon levels up knowing the specified move\n")
+    edit("src/pokemon.c", """            case EVO_BEAUTY:
+                if (gEvolutionTable[species][i].param <= beauty)
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
+            }""", """            case EVO_BEAUTY:
+                if (gEvolutionTable[species][i].param <= beauty)
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
+            case EVO_MOVE:
+                {
+                    u8 j;
+                    for (j = 0; j < MAX_MON_MOVES; j++)
+                        if (GetMonData(mon, MON_DATA_MOVE1 + j, NULL) == gEvolutionTable[species][i].param)
+                            targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                }
+                break;
+            }""")
+# The National Dex list shows Pokemon added after Deoxys in real-number order
+if "Hack_NationalOrder" not in read("src/pokemon.c"):
+    edit("src/pokemon.c", "u16 SpeciesToPokedexNum(u16 species)\n{", """// i-th row of the National Dex list (0-based) -> internal National Dex number
+u16 Hack_NationalOrder(u16 i)
+{
+    u16 j, k, rank;
+
+    if (i < NATIONAL_DEX_DEOXYS)
+        return i + 1;
+    i -= NATIONAL_DEX_DEOXYS;
+    for (j = 0; j < ARRAY_COUNT(sHackRealDexNums); j++)
+    {
+        rank = 0;
+        for (k = 0; k < ARRAY_COUNT(sHackRealDexNums); k++)
+            if (sHackRealDexNums[k] < sHackRealDexNums[j])
+                rank++;
+        if (rank == i)
+            return NATIONAL_DEX_DEOXYS + 1 + j;
+    }
+    return NATIONAL_DEX_DEOXYS + 1 + i;
 }
+
+u16 SpeciesToPokedexNum(u16 species)
+{""")
+    edit("include/pokemon.h", "u16 Hack_DisplayDexNum(u16 dexNum);", "u16 Hack_DisplayDexNum(u16 dexNum);\nu16 Hack_NationalOrder(u16 i);")
+    s = read("src/pokedex_screen.c")
+    i = s.index("    case DEX_ORDER_NUMERICAL_NATIONAL:\n        for (i = 0; i < NATIONAL_DEX_COUNT; i++)")
+    j = s.index("break;", i)
+    blk = s[i:j].replace("            ndex_num = i + 1;", "            ndex_num = Hack_NationalOrder(i);").replace("                ret = ndex_num;", "                ret = i + 1;")
+    write("src/pokedex_screen.c", s[:i] + blk + s[j:])
+
+# ---------------------------------------------------------------- evolution items
+STONE_DESC = "A peculiar stone that makes\\\\ncertain species of POKéMON\\\\nevolve. {}"
+EVO_ITEMS = {
+    "RAZOR_CLAW": dict(slot="ITEM_035", name="RAZOR CLAW", hold="HOLD_EFFECT_SCOPE_LENS",
+                       desc="A sharply hooked claw that boosts\\\\nthe holder's critical-hit ratio.\\\\nIt can make SNEASEL evolve."),
+    "RAZOR_FANG": dict(slot="ITEM_036", name="RAZOR FANG", hold="HOLD_EFFECT_FLINCH", param=10,
+                       desc="A sharp fang that may make the foe\\\\nflinch when the holder attacks.\\\\nIt can make GLIGAR evolve."),
+    "DUSK_STONE": dict(slot="ITEM_037", name="DUSK STONE", desc=STONE_DESC.format("It is as dark as dark can be.")),
+    "SHINY_STONE": dict(slot="ITEM_038", name="SHINY STONE", desc=STONE_DESC.format("It shines with a dazzling light.")),
+    "PROTECTOR": dict(slot="ITEM_039", name="PROTECTOR", desc="A protective item of some sort.\\\\nIt is extremely stiff and heavy.\\\\nIt can make RHYDON evolve."),
+    "ELECTIRIZER": dict(slot="ITEM_03A", name="ELECTIRIZER", desc="A box packed with a tremendous\\\\namount of electric energy.\\\\nIt can make ELECTABUZZ evolve."),
+    "MAGMARIZER": dict(slot="ITEM_03B", name="MAGMARIZER", desc="A box packed with a tremendous\\\\namount of magma energy.\\\\nIt can make MAGMAR evolve."),
+    "DUBIOUS_DISC": dict(slot="ITEM_03C", name="DUBIOUS DISC", desc="A transparent device overflowing\\\\nwith dubious data.\\\\nIt can make PORYGON2 evolve."),
+    "REAPER_CLOTH": dict(slot="ITEM_03D", name="REAPER CLOTH", desc="A cloth imbued with horrifyingly\\\\nstrong spiritual energy.\\\\nIt can make DUSCLOPS evolve."),
+}
+for item, I in EVO_ITEMS.items():
+    I.setdefault("price", 2100)
+    I.setdefault("hold", "HOLD_EFFECT_NONE")
+    I.setdefault("param", 0)
+    I.setdefault("shop", "CeladonCity_DepartmentStore_4F")
+    I.setdefault("after", "ITEM_UP_GRADE")
 for item, I in EVO_ITEMS.items():
     if f"ITEM_{item}" in S["evo"] and f"#define ITEM_{item} " not in read("include/constants/items.h"):
         T = item.title().replace("_", "")
@@ -407,7 +550,7 @@ for item, I in EVO_ITEMS.items():
         assert '"????????"' in blk.group(0), blk.group(0)[:80]
         new = blk.group(0)
         for k, v in (("english", f'"{I["name"]}"'), ("itemId", f'"ITEM_{item}"'), ("price", str(I["price"])),
-                     ("holdEffect", f'"{I["hold"]}"'), ("description_english", f'"{I["desc"]}"'),
+                     ("holdEffect", f'"{I["hold"]}"'), ("holdEffectParam", str(I["param"])), ("description_english", f'"{I["desc"]}"'),
                      ("pocket", '"POCKET_ITEMS"'), ("type", '"ITEM_TYPE_PARTY_MENU"'), ("fieldUseFunc", '"FieldUseFunc_EvoItem"')):
             new, n = re.subn(r'("%s": )[^,\n]*' % k, lambda m: m.group(1) + v, new, count=1)
             assert n == 1, k
@@ -420,8 +563,11 @@ for item, I in EVO_ITEMS.items():
              f'const u32 gItemIconPalette_{T}[] = INCBIN_U32("graphics/items/icon_palettes/{low}.gbapal.lz");\n\nconst u32 gItemIcon_UpGrade[]')
         edit("include/graphics.h", "extern const u32 gItemIcon_UpGrade[];",
              f"extern const u32 gItemIcon_{T}[];\nextern const u32 gItemIconPalette_{T}[];\nextern const u32 gItemIcon_UpGrade[];")
-        edit("src/data/item_icon_table.h", f"    [{I['slot']}]            = {{gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}},",
-             f"    [ITEM_{item}]     = {{gItemIcon_{T}, gItemIconPalette_{T}}},")
+        t = read("src/data/item_icon_table.h")
+        t, n = re.subn(r"    \[%s\]\s*= \{gItemIcon_QuestionMark, gItemIconPalette_QuestionMark\}," % I["slot"],
+                       f"    [ITEM_{item}] = {{gItemIcon_{T}, gItemIconPalette_{T}}},", t)
+        assert n == 1, item
+        write("src/data/item_icon_table.h", t)
         edit("src/data/pokemon/item_effects.h", "    [ITEM_UP_GRADE - ITEM_POTION]       = sItemEffect_FireStone, // same effect as every stone\n",
              "    [ITEM_UP_GRADE - ITEM_POTION]       = sItemEffect_FireStone, // same effect as every stone\n"
              f"    [ITEM_{item} - ITEM_POTION]    = sItemEffect_FireStone, // same effect as every stone\n")

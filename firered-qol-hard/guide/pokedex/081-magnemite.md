@@ -57,11 +57,12 @@ Height 0.3 m (1′00″) · Weight 6 kg (13.2 lbs)
 ## Evolution
 
 - **Magnemite** → [Magneton](082-magneton.md): Level 30
+  - [Magneton](082-magneton.md) → [Magnezone](462-magnezone.md): Use a Thunder Stone *(new in this hack)*
 
 ## Where to find it
 
 - **Power Plant**: Grass / cave Lv 22 (20%)
-- Breeding: hatches from an Egg left by a Magnemite or Magneton at the Four Island Day Care
+- Breeding: hatches from an Egg left by a Magnemite or Magnezone or Magneton at the Four Island Day Care
 
 ## Moves
 

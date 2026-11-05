@@ -76,7 +76,7 @@ def firered_only(text):
 SPECIAL_NAMES = {"NIDORAN_F": "Nidoran♀", "NIDORAN_M": "Nidoran♂", "MR_MIME": "Mr. Mime",
                  "FARFETCHD": "Farfetch'd", "HO_OH": "Ho-Oh", "PORYGON2": "Porygon2",
                  "DEOXYS_ATTACK": "Deoxys (Attack)", "DEOXYS_DEFENSE": "Deoxys (Defense)",
-                 "DEOXYS_SPEED": "Deoxys (Speed)"}
+                 "DEOXYS_SPEED": "Deoxys (Speed)", "PORYGON_Z": "Porygon-Z"}
 
 
 def mon(const):
@@ -571,6 +571,8 @@ def evo_text(meth, param):
         return "trade"
     if meth == "EVO_TRADE_ITEM":
         return f"trade holding {item(param)}"
+    if meth == "EVO_MOVE":
+        return f"level up knowing {move(param)}"
     return meth.replace("EVO_", "").replace("_", " ").lower()
 
 
@@ -714,7 +716,8 @@ def new_species():
     """Pokemon added after Deoxys (tools/hack/add_species.py): [(SPECIES_X, real dex number)]."""
     dex = read("include/constants/pokedex.h")
     real = dict(re.findall(r"\[NATIONAL_DEX_(\w+) - NATIONAL_DEX_DEOXYS - 1\] = (\d+)", read("src/pokemon.c")))
-    return [("SPECIES_" + n, int(real[n])) for n in re.findall(r"#define NATIONAL_DEX_(\w+) NATIONAL_DEX_OLD_UNOWN_\w+", dex) if n in real]
+    return sorted([("SPECIES_" + n, int(real[n])) for n in re.findall(r"#define NATIONAL_DEX_(\w+) NATIONAL_DEX_OLD_UNOWN_\w+", dex) if n in real],
+                  key=lambda e: e[1])
 
 
 def write_pokedex():
@@ -795,6 +798,7 @@ def write_pokedex():
             "EVO_LEVEL_NINJASK": f"Level {lv}",
             "EVO_LEVEL_SHEDINJA": f"Level {lv} as Nincada evolves, with an empty party slot and a spare Poké Ball",
             "EVO_BEAUTY": "Level up with high Beauty",
+            "EVO_MOVE": f"Level up knowing {move(param)}",
         }.get(meth, meth)
 
     # text data
