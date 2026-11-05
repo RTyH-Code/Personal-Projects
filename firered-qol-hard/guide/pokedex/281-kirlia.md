@@ -57,6 +57,7 @@ Height 0.8 m (2′07″) · Weight 20.2 kg (44.5 lbs)
 
 - [Ralts](280-ralts.md) → **Kirlia**: Level 20
   - **Kirlia** → [Gardevoir](282-gardevoir.md): Level 30
+  - **Kirlia** → [Gallade](475-gallade.md): Use a Dawn Stone on a male *(new in this hack)*
 
 ## Where to find it
 

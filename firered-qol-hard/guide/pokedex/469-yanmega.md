@@ -1,4 +1,4 @@
-← #468 [Togekiss](468-togekiss.md) · [Index](../POKEDEX.md) · [Gliscor](472-gliscor.md) #472 →
+← #468 [Togekiss](468-togekiss.md) · [Index](../POKEDEX.md) · [Leafeon](470-leafeon.md) #470 →
 
 # #469 Yanmega
 
@@ -156,4 +156,4 @@ Breed a Yanma (passed down to Yanma, which then evolves) with a father that know
 
 ---
 
-← #468 [Togekiss](468-togekiss.md) · [Index](../POKEDEX.md) · [Gliscor](472-gliscor.md) #472 →
+← #468 [Togekiss](468-togekiss.md) · [Index](../POKEDEX.md) · [Leafeon](470-leafeon.md) #470 →

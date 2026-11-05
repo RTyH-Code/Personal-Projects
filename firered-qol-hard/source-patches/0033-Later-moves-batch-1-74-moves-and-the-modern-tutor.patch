@@ -1,7 +1,7 @@
 From 9acb47809cecec8425e59015f63d00ac52b9d324 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Wed, 4 Nov 2026 22:46:00 +0000
-Subject: [PATCH 33/37] Later moves, batch 1: 74 moves and the modern tutor
+Subject: [PATCH 33/38] Later moves, batch 1: 74 moves and the modern tutor
 
 74 Gen 4+ moves that reuse Gen 3 battle effects, with modern data from
 Showdown, tinted copies of existing animations, level-up and egg

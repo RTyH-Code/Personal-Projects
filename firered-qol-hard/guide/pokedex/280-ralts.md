@@ -57,11 +57,12 @@ Height 0.4 m (1′04″) · Weight 6.6 kg (14.6 lbs)
 
 - **Ralts** → [Kirlia](281-kirlia.md): Level 20
   - [Kirlia](281-kirlia.md) → [Gardevoir](282-gardevoir.md): Level 30
+  - [Kirlia](281-kirlia.md) → [Gallade](475-gallade.md): Use a Dawn Stone on a male *(new in this hack)*
 
 ## Where to find it
 
 - **Route 2**: Grass / cave Lv 5 (5%)
-- Breeding: hatches from an Egg left by a Ralts or Kirlia or Gardevoir at the Four Island Day Care
+- Breeding: hatches from an Egg left by a Ralts or Kirlia or Gardevoir or Gallade at the Four Island Day Care
 
 ## Moves
 

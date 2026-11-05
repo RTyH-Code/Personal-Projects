@@ -57,6 +57,9 @@ Height 0.9 m (2′11″) · Weight 26.5 kg (58.4 lbs)
 - [Eevee](133-eevee.md) → [Flareon](136-flareon.md): Use a Fire Stone
 - [Eevee](133-eevee.md) → **Espeon**: Use a Sun Stone *(originally: Level up with high friendship during the day)*
 - [Eevee](133-eevee.md) → [Umbreon](197-umbreon.md): Use a Moon Stone *(originally: Level up with high friendship at night)*
+- [Eevee](133-eevee.md) → [Leafeon](470-leafeon.md): Use a Leaf Stone *(new in this hack)*
+- [Eevee](133-eevee.md) → [Glaceon](471-glaceon.md): Use an Ice Stone *(new in this hack)*
+- [Eevee](133-eevee.md) → [Sylveon](700-sylveon.md): Level up with high friendship (220+) knowing a Fairy-type move *(new in this hack)*
 
 ## Where to find it
 

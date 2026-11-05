@@ -166,7 +166,7 @@ and you can use her as often as you like.
 - The Pokédex guide lists every Pokémon's modern tutor moves.
 
 ## Later evolutions
-19 evolutions from Gen 4 onward are real Pokémon. Each has its own sprites,
+29 evolutions from Gen 4 onward are real Pokémon. Each has its own sprites,
 icon, cry, Pokédex entry, modern stats, abilities and learnsets.
 
 | Pokémon | Evolves from | How |
@@ -190,21 +190,37 @@ icon, cry, Pokédex entry, modern stats, abilities and learnsets.
 | Dusknoir | Dusclops | Reaper Cloth |
 | Farigiraf | Girafarig | level 32 |
 | Dudunsparce | Dunsparce | level 32 |
+| Leafeon | Eevee | Leaf Stone |
+| Glaceon | Eevee | Ice Stone |
+| Sylveon | Eevee | level up with high friendship knowing a Fairy-type move |
+| Gallade | Kirlia (male) | Dawn Stone |
+| Froslass | Snorunt (female) | Dawn Stone |
+| Probopass | Nosepass | Thunder Stone |
+| Wyrdeer | Stantler | level up knowing Zen Headbutt |
+| Ursaluna | Ursaring | Peat Block |
+| Annihilape | Primeape | level 35 |
+| Kleavor | Scyther | Black Augurite |
 
 - **Evolution items** are used like evolution stones, since FireRed has no
   day/night cycle and the hack already replaces trading.
-  - All eight are sold at the Celadon Dept. Store 4F for 2100: Razor Claw,
-    Razor Fang, Dusk Stone, Shiny Stone, Protector, Electirizer, Magmarizer,
-    Dubious Disc and Reaper Cloth.
+  - All 13 are sold at the Celadon Dept. Store 4F for 2100: Razor Claw,
+    Razor Fang, Dusk Stone, Shiny Stone, Dawn Stone, Ice Stone, Protector,
+    Electirizer, Magmarizer, Dubious Disc, Reaper Cloth, Peat Block and
+    Black Augurite.
   - Held, the Razor Claw raises the critical-hit ratio. The Razor Fang may
     make the target flinch.
+- Wyrdeer and Annihilape use stand-ins for moves that aren't in the game
+  (Psyshield Bash, Rage Fist): Zen Headbutt, and level 35, where Primeape
+  learns Rage Fist.
 - Farigiraf and Dudunsparce evolve at level 32. That's where their
   pre-evolutions learn Twin Beam and Hyper Drill, which aren't in the game.
 - **Pokédex:**
   - New Pokémon show their real National Dex numbers and are listed in
     order in the National list.
   - Each one is on a habitat page next to its pre-evolution.
-  - New Pokémon fill unused species slots, so the save layout is unchanged.
+  - The game's species limit has been raised: the first 22 new Pokémon fill
+    unused placeholder slots and the rest come after Chimecho. Saves from
+    older versions of the hack don't carry over (as with every version).
 - Sprites, icons and cries are the community-made Gen 3-style graphics from
   [pokeemerald-expansion](https://github.com/rh-hideout/pokeemerald-expansion)
   (see its credits).
@@ -346,7 +362,7 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `264fa02131185ce4422bdadfe7f764c725e6f4f3`
+Patched ROM SHA-1: `bf5cef0af44267d82b33710175f2c81404f7a464`
 
 Start a new game. Saves from earlier versions of this hack aren't supported.
 

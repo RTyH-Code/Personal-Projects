@@ -1,4 +1,4 @@
-← #469 [Yanmega](469-yanmega.md) · [Index](../POKEDEX.md) · [Mamoswine](473-mamoswine.md) #473 →
+← #471 [Glaceon](471-glaceon.md) · [Index](../POKEDEX.md) · [Mamoswine](473-mamoswine.md) #473 →
 
 # #472 Gliscor
 
@@ -187,4 +187,4 @@ Breed a Gligar (passed down to Gligar, which then evolves) with a father that kn
 
 ---
 
-← #469 [Yanmega](469-yanmega.md) · [Index](../POKEDEX.md) · [Mamoswine](473-mamoswine.md) #473 →
+← #471 [Glaceon](471-glaceon.md) · [Index](../POKEDEX.md) · [Mamoswine](473-mamoswine.md) #473 →

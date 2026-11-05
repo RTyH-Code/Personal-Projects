@@ -56,6 +56,7 @@ Height 1.8 m (5′11″) · Weight 118 kg (260.1 lbs)
 ## Evolution
 
 - [Scyther](123-scyther.md) → **Scizor**: Use a Metal Coat *(originally: Trade holding Metal Coat)*
+- [Scyther](123-scyther.md) → [Kleavor](900-kleavor.md): Use a Black Augurite *(new in this hack)*
 
 ## Where to find it
 

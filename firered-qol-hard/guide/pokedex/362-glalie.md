@@ -54,6 +54,7 @@ Height 1.5 m (4′11″) · Weight 256.5 kg (565.5 lbs)
 ## Evolution
 
 - [Snorunt](361-snorunt.md) → **Glalie**: Level 42
+- [Snorunt](361-snorunt.md) → [Froslass](478-froslass.md): Use a Dawn Stone on a female *(new in this hack)*
 
 ## Where to find it
 

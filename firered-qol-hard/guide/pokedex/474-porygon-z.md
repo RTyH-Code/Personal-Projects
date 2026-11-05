@@ -1,4 +1,4 @@
-← #473 [Mamoswine](473-mamoswine.md) · [Index](../POKEDEX.md) · [Dusknoir](477-dusknoir.md) #477 →
+← #473 [Mamoswine](473-mamoswine.md) · [Index](../POKEDEX.md) · [Gallade](475-gallade.md) #475 →
 
 # #474 Porygon-Z
 
@@ -144,4 +144,4 @@ The old man in the Viridian City Pokémon Center teaches these for free once you
 
 ---
 
-← #473 [Mamoswine](473-mamoswine.md) · [Index](../POKEDEX.md) · [Dusknoir](477-dusknoir.md) #477 →
+← #473 [Mamoswine](473-mamoswine.md) · [Index](../POKEDEX.md) · [Gallade](475-gallade.md) #475 →

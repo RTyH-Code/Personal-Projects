@@ -161,7 +161,7 @@ for name, base in re.findall(r"#define (ITEM_(?:TM|HM)\d\d_\w+)\s+(ITEM_(?:TM|HM
     tm_moves[base] = name[len(base) + 1:]
 
 
-ITEM_WORDS = {"DEEPSEATOOTH": "Deep Sea Tooth", "DEEPSEASCALE": "Deep Sea Scale", "NEVERMELTICE": "Never-Melt Ice",
+ITEM_WORDS = {"BLK": "Black", "AUGURITE": "Augurite", "DEEPSEATOOTH": "Deep Sea Tooth", "DEEPSEASCALE": "Deep Sea Scale", "NEVERMELTICE": "Never-Melt Ice",
               "TWISTEDSPOON": "Twisted Spoon", "TINYMUSHROOM": "Tiny Mushroom", "SILVERPOWDER": "Silver Powder", "BLACKGLASSES": "Black Glasses",
               "BRIGHTPOWDER": "Bright Powder", "MYSTICTICKET": "Mystic Ticket", "AURORATICKET": "Aurora Ticket",
               "BLACKBELT": "Black Belt", "SILKSCARF": "Silk Scarf", "SHARPBEAK": "Sharp Beak",
@@ -573,6 +573,12 @@ def evo_text(meth, param):
         return f"trade holding {item(param)}"
     if meth == "EVO_MOVE":
         return f"level up knowing {move(param)}"
+    if meth == "EVO_ITEM_MALE":
+        return f"use {item(param)} (male)"
+    if meth == "EVO_ITEM_FEMALE":
+        return f"use {item(param)} (female)"
+    if meth == "EVO_MOVE_TYPE":
+        return f"level up with high friendship knowing a {tname(param)}-type move"
     return meth.replace("EVO_", "").replace("_", " ").lower()
 
 
@@ -716,7 +722,7 @@ def new_species():
     """Pokemon added after Deoxys (tools/hack/add_species.py): [(SPECIES_X, real dex number)]."""
     dex = read("include/constants/pokedex.h")
     real = dict(re.findall(r"\[NATIONAL_DEX_(\w+) - NATIONAL_DEX_DEOXYS - 1\] = (\d+)", read("src/pokemon.c")))
-    return sorted([("SPECIES_" + n, int(real[n])) for n in re.findall(r"#define NATIONAL_DEX_(\w+) NATIONAL_DEX_OLD_UNOWN_\w+", dex) if n in real],
+    return sorted([("SPECIES_" + n, int(real[n])) for n in re.findall(r"#define NATIONAL_DEX_(\w+) (?:NATIONAL_DEX_OLD_UNOWN_\w+|\d+)\n", dex) if n in real],
                   key=lambda e: e[1])
 
 
@@ -799,6 +805,9 @@ def write_pokedex():
             "EVO_LEVEL_SHEDINJA": f"Level {lv} as Nincada evolves, with an empty party slot and a spare Poké Ball",
             "EVO_BEAUTY": "Level up with high Beauty",
             "EVO_MOVE": f"Level up knowing {move(param)}",
+            "EVO_ITEM_MALE": f"Use {'an' if item(param)[0] in 'AEIOU' else 'a'} {item(param)} on a male",
+            "EVO_ITEM_FEMALE": f"Use {'an' if item(param)[0] in 'AEIOU' else 'a'} {item(param)} on a female",
+            "EVO_MOVE_TYPE": f"Level up with high friendship (220+) knowing a {tname(param)}-type move",
         }.get(meth, meth)
 
     # text data

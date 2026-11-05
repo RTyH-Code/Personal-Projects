@@ -54,6 +54,7 @@ Height 0.5 m (1′08″) · Weight 28 kg (61.7 lbs)
 ## Evolution
 
 - **Mankey** → [Primeape](057-primeape.md): Level 28
+  - [Primeape](057-primeape.md) → [Annihilape](979-annihilape.md): Level 35 *(new in this hack)*
 
 ## Where to find it
 
@@ -63,7 +64,7 @@ Height 0.5 m (1′08″) · Weight 28 kg (61.7 lbs)
 - **Route 23**: Grass / cave Lv 32–34 (30%)
 - **Rock Tunnel 1F**: Grass / cave Lv 16–17 (15%)
 - **Rock Tunnel B1F**: Grass / cave Lv 16–17 (15%)
-- Breeding: hatches from an Egg left by a Mankey or Primeape at the Four Island Day Care
+- Breeding: hatches from an Egg left by a Mankey or Annihilape or Primeape at the Four Island Day Care
 
 ## Moves
 

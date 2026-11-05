@@ -58,11 +58,14 @@ Height 0.3 m (1′00″) · Weight 6.5 kg (14.3 lbs)
 - **Eevee** → [Flareon](136-flareon.md): Use a Fire Stone
 - **Eevee** → [Espeon](196-espeon.md): Use a Sun Stone *(originally: Level up with high friendship during the day)*
 - **Eevee** → [Umbreon](197-umbreon.md): Use a Moon Stone *(originally: Level up with high friendship at night)*
+- **Eevee** → [Leafeon](470-leafeon.md): Use a Leaf Stone *(new in this hack)*
+- **Eevee** → [Glaceon](471-glaceon.md): Use an Ice Stone *(new in this hack)*
+- **Eevee** → [Sylveon](700-sylveon.md): Level up with high friendship (220+) knowing a Fairy-type move *(new in this hack)*
 
 ## Where to find it
 
 - **Celadon City Condominiums Roof Room**: Gift, Lv 25
-- Breeding: hatches from an Egg left by a Eevee or Jolteon or Vaporeon or Flareon or Espeon or Umbreon at the Four Island Day Care
+- Breeding: hatches from an Egg left by a Eevee or Jolteon or Vaporeon or Flareon or Espeon or Umbreon or Leafeon or Glaceon or Sylveon at the Four Island Day Care
 
 ## Moves
 

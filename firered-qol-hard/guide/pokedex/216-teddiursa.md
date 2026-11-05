@@ -53,11 +53,12 @@ Height 0.6 m (2′00″) · Weight 8.8 kg (19.4 lbs)
 ## Evolution
 
 - **Teddiursa** → [Ursaring](217-ursaring.md): Level 30
+  - [Ursaring](217-ursaring.md) → [Ursaluna](901-ursaluna.md): Use a Peat Block *(new in this hack)*
 
 ## Where to find it
 
 - **Six Island Altering Cave**: Grass / cave Lv 20–24 (10%)
-- Breeding: hatches from an Egg left by a Teddiursa or Ursaring at the Four Island Day Care
+- Breeding: hatches from an Egg left by a Teddiursa or Ursaluna or Ursaring at the Four Island Day Care
 
 ## Moves
 

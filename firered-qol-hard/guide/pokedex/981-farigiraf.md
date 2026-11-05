@@ -1,4 +1,4 @@
-← #477 [Dusknoir](477-dusknoir.md) · [Index](../POKEDEX.md) · [Dudunsparce](982-dudunsparce.md) #982 →
+← #979 [Annihilape](979-annihilape.md) · [Index](../POKEDEX.md) · [Dudunsparce](982-dudunsparce.md) #982 →
 
 # #981 Farigiraf
 
@@ -165,4 +165,4 @@ Breed a Girafarig (passed down to Girafarig, which then evolves) with a father t
 
 ---
 
-← #477 [Dusknoir](477-dusknoir.md) · [Index](../POKEDEX.md) · [Dudunsparce](982-dudunsparce.md) #982 →
+← #979 [Annihilape](979-annihilape.md) · [Index](../POKEDEX.md) · [Dudunsparce](982-dudunsparce.md) #982 →
