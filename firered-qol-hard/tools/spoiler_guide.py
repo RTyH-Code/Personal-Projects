@@ -454,7 +454,7 @@ def write_trainers():
         return out + party_detail(parties[t["party"]]) + [""]
 
     out = ["# Trainers", "",
-           "Gym Leaders, the Elite Four, the Champion and post-game peak trainers are listed in full first. "
+           "Gym Leaders, the Elite Four, the Champion, post-game peak trainers and the Victory Road rematches are listed in full first. "
            "Then every other trainer, by location.", "",
            "Regular trainers use their normal level-up moves unless moves are listed. "
            "Peak trainers' Pokémon have perfect IVs, a nature that boosts their main attacking stat, "
@@ -486,7 +486,17 @@ def write_trainers():
             chose = {"Charmander": "Bulbasaur", "Squirtle": "Charmander", "Bulbasaur": "Squirtle"}[rival]
             title = f"Champion, peak (you chose {chose})"
         out += block(f"Peak {title}" if not n.startswith("CHAMPION_") else title, slot)
-    shown = {"TRAINER_" + t for _, t in gyms} | {f"TRAINER_{t}{s}" for _, t in e4 for s in ("", "_2")} | set(aliases.values())
+    vr = re.findall(r"#define TRAINER_HACK_VR_(\w+)\s+(TRAINER_\w+)", read("include/constants/opponents.h"))
+    if vr:
+        out += ["## Victory Road rematches (VS Seeker)", "",
+                "Use the VS Seeker in Victory Road and these trainers want a rematch. Their teams are 8 levels "
+                "higher, evolved where the new level allows. You can fight them again every time the VS Seeker "
+                "recharges (100 steps), so they're the place to train for the Elite Four.", ""]
+        for orig, slot in vr:
+            locs = sorted(resolved.get("TRAINER_" + orig, []), key=map_order)
+            floor = f" ({', '.join(map_name(l) for l in locs)})" if locs else ""
+            out += block(f"{trainer_title(trainers['TRAINER_' + orig])}{floor}", slot)
+    shown = {"TRAINER_" + t for _, t in gyms} | {f"TRAINER_{t}{s}" for _, t in e4 for s in ("", "_2")} | set(aliases.values()) | {sl for _, sl in vr}
     shown |= {f"TRAINER_CHAMPION_{k}_{r}" for k in ("FIRST", "REMATCH") for r in ("SQUIRTLE", "BULBASAUR", "CHARMANDER")}
     by_map = {}
     for tid, locs in resolved.items():
