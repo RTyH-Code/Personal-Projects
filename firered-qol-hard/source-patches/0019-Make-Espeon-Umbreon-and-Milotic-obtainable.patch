@@ -1,7 +1,7 @@
 From 0ebdcb4aa5f8f71e7ded68346a286b041c3386f9 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Sun, 1 Nov 2026 14:48:42 +0000
-Subject: [PATCH 19/44] Make Espeon, Umbreon and Milotic obtainable
+Subject: [PATCH 19/45] Make Espeon, Umbreon and Milotic obtainable
 
 FireRed has no clock or Pokeblocks, so day/night friendship and beauty
 evolutions never trigger. Sun Stone -> Espeon, Moon Stone -> Umbreon and

@@ -1,6 +1,6 @@
 # Trainers
 
-Gym Leaders, the Elite Four, the Champion and post-game peak trainers are listed in full first. Then every other trainer, by location.
+Gym Leaders, the Elite Four, the Champion, post-game peak trainers and the Victory Road rematches are listed in full first. Then every other trainer, by location.
 
 Regular trainers use their normal level-up moves unless moves are listed. Peak trainers' Pokémon have perfect IVs, a nature that boosts their main attacking stat, and 252/252 EVs (attack stat and Speed, or HP for slow Pokémon).
 
@@ -399,6 +399,117 @@ Gym Leaders offer these rematches any number of times after you become Champion.
 | Exeggutor | 100 | Leftovers | Energy Ball, Psychic, Sleep Powder, Explosion |
 | Gyarados | 100 | Leftovers | Dragon Dance, Waterfall, Earthquake, Crunch |
 | Charizard | 100 | Charcoal | Flamethrower, Air Slash, Dragon Pulse, Focus Blast |
+
+## Victory Road rematches (VS Seeker)
+
+Use the VS Seeker in Victory Road and these trainers want a rematch. Their teams are 8 levels higher, evolved where the new level allows. You can fight them again every time the VS Seeker recharges (100 steps), so they're the place to train for the Elite Four.
+
+### Cool Trainer Naomi (Victory Road 1F)
+
+| Pokémon | Lv | Item | Moves |
+|---|---|---|---|
+| Persian | 56 | — | Fury Swipes, Screech, Faint Attack, Pay Day |
+| Ponyta | 56 | — | Agility, Take Down, Fire Spin, Stomp |
+| Rapidash | 56 | — | Fury Attack, Fire Spin, Stomp, Growl |
+| Vulpix | 56 | — | Flamethrower, Confuse Ray, Quick Attack, Imprison |
+| Ninetales | 56 | — | Safeguard, Will-O-Wisp, Confuse Ray, Fire Spin |
+
+### Cool Trainer Rolando (Victory Road 1F)
+
+| Pokémon | Lv | Item | Moves |
+|---|---|---|---|
+| Raticate | 56 | — | Super Fang, Pursuit, Scary Face, Quick Attack |
+| Venusaur | 56 | — | Razor Leaf, Sleep Powder, Sweet Scent, Synthesis |
+| Blastoise | 56 | — | Water Gun, Bite, Rapid Spin, Tail Whip |
+| Charmeleon | 56 | — | Flamethrower, Slash, Smokescreen, Scary Face |
+| Charizard | 56 | — | Flamethrower, Wing Attack, Smokescreen, Scary Face |
+
+### Pokemaniac Dawson (Victory Road 2F)
+
+| Pokémon | Lv | Item | Moves |
+|---|---|---|---|
+| Charizard | 54 | — | level-up moves |
+| Lapras | 54 | — | level-up moves |
+| Lickitung | 54 | — | level-up moves |
+
+### Black Belt Daisuke (Victory Road 2F)
+
+| Pokémon | Lv | Item | Moves |
+|---|---|---|---|
+| Machamp | 57 | Black Belt | level-up moves |
+| Machop | 57 | Black Belt | level-up moves |
+| Machoke | 57 | Black Belt | level-up moves |
+
+### Juggler Nelson (Victory Road 2F)
+
+| Pokémon | Lv | Item | Moves |
+|---|---|---|---|
+| Drowzee | 55 | — | level-up moves |
+| Hypno | 55 | — | level-up moves |
+| Alakazam | 55 | — | level-up moves |
+| Kadabra | 55 | — | level-up moves |
+
+### Juggler Gregory (Victory Road 2F)
+
+| Pokémon | Lv | Item | Moves |
+|---|---|---|---|
+| Mr. Mime | 63 | — | Psychic, Role Play, Double Slap, Encore |
+
+### Tamer Vincent (Victory Road 2F)
+
+| Pokémon | Lv | Item | Moves |
+|---|---|---|---|
+| Persian | 59 | — | level-up moves |
+| Golduck | 59 | — | level-up moves |
+
+### Cool Trainer George (Victory Road 3F)
+
+| Pokémon | Lv | Item | Moves |
+|---|---|---|---|
+| Exeggutor | 56 | — | Egg Bomb, Confusion, Stun Spore, Sleep Powder |
+| Sandslash | 56 | — | Fury Swipes, Swift, Poison Sting, Sand Attack |
+| Cloyster | 56 | — | Spike Cannon, Spikes, Aurora Beam, Supersonic |
+| Electrode | 56 | — | Spark, Sonic Boom, Screech, Light Screen |
+| Arcanine | 56 | — | Flame Wheel, Roar, Bite, Take Down |
+
+### Cool Trainer Colby (Victory Road 3F)
+
+| Pokémon | Lv | Item | Moves |
+|---|---|---|---|
+| Kingler | 55 | — | Guillotine, Stomp, Mud Shot, Bubble |
+| Poliwrath | 56 | — | Body Slam, Double Slap, Water Gun, Hypnosis |
+| Tentacruel | 56 | — | Barrier, Wrap, Bubble Beam, Acid |
+| Seadra | 56 | — | Water Gun, Smokescreen, Twister, Leer |
+| Blastoise | 57 | — | Water Gun, Bite, Rapid Spin, Rain Dance |
+
+### Cool Trainer Caroline (Victory Road 3F)
+
+| Pokémon | Lv | Item | Moves |
+|---|---|---|---|
+| Bellsprout | 56 | — | Razor Leaf, Acid, Stun Spore, Poison Powder |
+| Weepinbell | 56 | — | Razor Leaf, Acid, Sleep Powder, Poison Powder |
+| Victreebel | 56 | — | Razor Leaf, Acid, Stun Spore, Sleep Powder |
+| Paras | 56 | — | Growth, Slash, Leech Life, Stun Spore |
+| Parasect | 56 | — | Spore, Slash, Leech Life, Poison Powder |
+
+### Cool Trainer Alexa (Victory Road 3F)
+
+| Pokémon | Lv | Item | Moves |
+|---|---|---|---|
+| Clefable | 56 | — | Light Screen, Cosmic Power, Double Slap, Encore |
+| Wigglytuff | 56 | — | Sing, Body Slam, Rollout, Disable |
+| Persian | 56 | — | Pay Day, Faint Attack, Bite, Screech |
+| Dewgong | 56 | — | Sheer Cold, Take Down, Rest, Aurora Beam |
+| Chansey | 56 | — | Sing, Egg Bomb, Soft-Boiled, Minimize |
+
+### Cool Couple Ray & Tyra (Victory Road 3F)
+
+*Double battle.*
+
+| Pokémon | Lv | Item | Moves |
+|---|---|---|---|
+| Nidoqueen | 60 | — | Superpower, Body Slam, Double Kick, Poison Sting |
+| Nidoking | 60 | — | Megahorn, Thrash, Double Kick, Poison Sting |
 
 ## All other trainers, by location
 
