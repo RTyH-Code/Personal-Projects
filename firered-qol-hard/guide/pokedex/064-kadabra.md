@@ -58,8 +58,8 @@ Height 1.3 m (4′03″) · Weight 56.5 kg (124.6 lbs)
 
 ## Where to find it
 
-- **Cerulean Cave 2F**: Grass / cave Lv 55–64 (11%)
-- **Cerulean Cave B1F**: Grass / cave Lv 58–67 (25%)
+- **Cerulean Cave 2F**: Grass / cave Lv 63–74 (11%)
+- **Cerulean Cave B1F**: Grass / cave Lv 67–77 (25%)
 - Evolve [Abra](063-abra.md)
 
 ## Moves

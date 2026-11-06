@@ -56,7 +56,7 @@ Height 0.6 m (2′00″) · Weight 11.2 kg (24.7 lbs)
 
 ## Where to find it
 
-- **Victory Road 1F**: Grass / cave Lv 46 (10%)
+- **Victory Road 1F**: Grass / cave Lv 53 (10%)
 - Breeding: hatches from an Egg left by a Meditite or Medicham at the Four Island Day Care
 
 ## Moves

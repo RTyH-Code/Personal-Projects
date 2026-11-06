@@ -57,10 +57,10 @@ Height 3.5 m (11′06″) · Weight 65 kg (143.3 lbs)
 
 ## Where to find it
 
-- **Route 23**: Grass / cave Lv 44 (5%)
-- **Victory Road 1F**: Grass / cave Lv 44 (5%)
-- **Victory Road 2F**: Grass / cave Lv 46 (5%)
-- **Victory Road 3F**: Grass / cave Lv 44 (5%)
+- **Route 23**: Grass / cave Lv 51 (5%)
+- **Victory Road 1F**: Grass / cave Lv 51 (5%)
+- **Victory Road 2F**: Grass / cave Lv 53 (5%)
+- **Victory Road 3F**: Grass / cave Lv 51 (5%)
 - Evolve [Ekans](023-ekans.md)
 
 ## Moves

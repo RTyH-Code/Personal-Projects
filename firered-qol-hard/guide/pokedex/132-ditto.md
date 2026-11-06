@@ -59,9 +59,9 @@ Ditto does not evolve.
 - **Route 13**: Grass / cave Lv 25 (5%)
 - **Route 14**: Grass / cave Lv 23 (15%)
 - **Route 15**: Grass / cave Lv 25 (5%)
-- **Cerulean Cave 1F**: Grass / cave Lv 52–61 (11%)
-- **Cerulean Cave 2F**: Grass / cave Lv 55–64 (11%)
-- **Cerulean Cave B1F**: Grass / cave Lv 58–67 (25%)
+- **Cerulean Cave 1F**: Grass / cave Lv 60–70 (11%)
+- **Cerulean Cave 2F**: Grass / cave Lv 63–74 (11%)
+- **Cerulean Cave B1F**: Grass / cave Lv 67–77 (25%)
 - **Pokémon Mansion B1F**: Grass / cave Lv 30 (10%)
 
 ## Moves

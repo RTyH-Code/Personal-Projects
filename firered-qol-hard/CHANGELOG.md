@@ -8,6 +8,16 @@ made it, so you can see exactly what changed.
 previous release keeps working. In short, saves made on **release 7 or later**
 carry over to the current release. Older saves need a new game.
 
+## Release 10 (2026-11-06)
+Pull requests: [#26](https://github.com/RTyH-Code/Personal-Projects/pull/26)
+
+- **Modern Exp. formula (Gen 5+):** Exp. scales with the level gap. Beating
+  stronger foes gives more Exp., so an under-levelled team catches up faster.
+  A same-level foe gives 1.4x the old Exp.
+- **Late-game wild levels:** Route 23, Victory Road and Cerulean Cave are
+  1.15x higher, in line with the trainers.
+- **Saves:** release 9 saves carry over.
+
 ## Release 9 (2026-11-05)
 Pull requests: [#25](https://github.com/RTyH-Code/Personal-Projects/pull/25)
 

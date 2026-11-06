@@ -57,7 +57,7 @@ Height 0.6 m (2′00″) · Weight 42.1 kg (92.8 lbs)
 
 ## Where to find it
 
-- **Victory Road 2F**: Grass / cave Lv 25–29 (10%)
+- **Victory Road 2F**: Grass / cave Lv 29–33 (10%)
 - Breeding: hatches from an Egg left by a Bagon or Shelgon or Salamence at the Four Island Day Care
 
 ## Moves

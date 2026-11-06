@@ -61,9 +61,9 @@ Height 1 m (3′03″) · Weight 60 kg (132.3 lbs)
 
 ## Where to find it
 
-- **Cerulean Cave 1F**: Grass / cave Lv 49 (20%)
-- **Cerulean Cave 2F**: Grass / cave Lv 52 (10%)
-- **Cerulean Cave B1F**: Grass / cave Lv 55 (10%)
+- **Cerulean Cave 1F**: Grass / cave Lv 56 (20%)
+- **Cerulean Cave 2F**: Grass / cave Lv 60 (10%)
+- **Cerulean Cave B1F**: Grass / cave Lv 63 (10%)
 - **Power Plant**: Grass / cave Lv 31–34 (10%)
 - Evolve [Magnemite](081-magnemite.md)
 

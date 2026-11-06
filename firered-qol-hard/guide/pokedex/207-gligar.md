@@ -59,7 +59,7 @@ Height 1.1 m (3′07″) · Weight 64.8 kg (142.9 lbs)
 
 ## Where to find it
 
-- **Route 23**: Grass / cave Lv 42 (4%)
+- **Route 23**: Grass / cave Lv 48 (4%)
 - Breeding: hatches from an Egg left by a Gligar or Gliscor at the Four Island Day Care
 
 ## Moves

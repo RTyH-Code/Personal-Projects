@@ -65,9 +65,9 @@ Height 0.8 m (2′07″) · Weight 19.5 kg (43.0 lbs)
 - **Mt. Ember Summit Path 3F**: Grass / cave Lv 31–39 (50%)
 - **Rock Tunnel 1F**: Grass / cave Lv 16–17 (15%)
 - **Rock Tunnel B1F**: Grass / cave Lv 17 (10%)
-- **Victory Road 1F**: Grass / cave Lv 32 (20%)
-- **Victory Road 2F**: Grass / cave Lv 34 (20%)
-- **Victory Road 3F**: Grass / cave Lv 32 (20%)
+- **Victory Road 1F**: Grass / cave Lv 37 (20%)
+- **Victory Road 2F**: Grass / cave Lv 39 (20%)
+- **Victory Road 3F**: Grass / cave Lv 37 (20%)
 - Breeding: hatches from an Egg left by a Machop or Machoke or Machamp at the Four Island Day Care
 
 ## Moves

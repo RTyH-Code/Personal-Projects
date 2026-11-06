@@ -57,9 +57,9 @@ Height 1.2 m (3′11″) · Weight 66.6 kg (146.8 lbs)
 
 ## Where to find it
 
-- **Cerulean Cave 1F**: Grass / cave Lv 58 (5%)
-- **Cerulean Cave 2F**: Grass / cave Lv 61 (4%)
-- **Cerulean Cave B1F**: Grass / cave Lv 64 (4%)
+- **Cerulean Cave 1F**: Grass / cave Lv 67 (5%)
+- **Cerulean Cave 2F**: Grass / cave Lv 70 (4%)
+- **Cerulean Cave B1F**: Grass / cave Lv 74 (4%)
 - **Power Plant**: one-time encounter, Lv 34
 - **Cinnabar Island Pokémon Lab Lounge**: in-game trade for Raichu ("ESPHERE")
 - Evolve [Voltorb](100-voltorb.md)

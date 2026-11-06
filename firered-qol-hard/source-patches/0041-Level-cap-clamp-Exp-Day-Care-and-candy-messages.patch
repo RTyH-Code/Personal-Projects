@@ -1,7 +1,7 @@
 From 37204831dc2bda495b557769b3d0bc655cb3a0b8 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Thu, 5 Nov 2026 22:18:14 +0000
-Subject: [PATCH 41/42] Level cap: clamp Exp, Day Care and candy messages
+Subject: [PATCH 41/43] Level cap: clamp Exp, Day Care and candy messages
 
 Battle Exp is clamped so a Pokemon below the cap can't overshoot it in
 one award, the Day Cares stop at the cap, and Rare/Special Candy at the

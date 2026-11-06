@@ -63,9 +63,9 @@ Height 1 m (3′03″) · Weight 105 kg (231.5 lbs)
 
 <details><summary>14 places (click to expand)</summary>
 
-- **Cerulean Cave 1F**: Rock Smash Lv 40–55 (35%)
-- **Cerulean Cave 2F**: Rock Smash Lv 45–60 (35%)
-- **Cerulean Cave B1F**: Rock Smash Lv 50–65 (35%)
+- **Cerulean Cave 1F**: Rock Smash Lv 46–63 (35%)
+- **Cerulean Cave 2F**: Rock Smash Lv 52–69 (35%)
+- **Cerulean Cave B1F**: Rock Smash Lv 57–75 (35%)
 - **Mt. Ember Exterior**: Rock Smash Lv 25–40 (5%)
 - **Mt. Ember Ruby Path 1F**: Rock Smash Lv 30–50 (35%)
 - **Mt. Ember Ruby Path B1F**: Rock Smash Lv 30–50 (35%)

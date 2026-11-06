@@ -92,6 +92,14 @@ and you can use her as often as you like.
 - **Modern move power, accuracy and PP.** For example, Flamethrower and
   Thunderbolt are 90 power, Leech Life is 80 and Knock Off is 65. Fury Cutter
   is capped at 160 power, as in modern games. Move *effects* are still Gen 3.
+- **Modern Exp. formula (Gen 5+).** Exp. depends on the level gap: beating a
+  foe above your Pokémon's level gives more Exp. and beating one below gives
+  less, so a team that falls behind catches up faster and over-levelling is
+  slower. Compared with Gen 3:
+  - A foe at the same level gives 1.4x the Exp.
+  - A foe 10 levels higher gives about 1.7x to 2x.
+  - A much weaker foe gives less. A Lv. 14 Pokémon gets 23 Exp. for a wild
+    Lv. 5 Rattata (it was 40).
 - **Modern level-up learnsets**, taken from the newest generation that has
   each Pokémon (Gen 9, then 8, then 7), limited to moves that exist in Gen 3.
 - **Fairy type (Gen 6).** Fairy hits Fighting, Dragon and Dark super
@@ -373,6 +381,9 @@ How the cap works with each way of gaining levels:
 ### Trainers
 - Every Gym Leader has a new, larger team with max IVs, better moves and a held item.
 - Every other trainer's levels are scaled by 1.15x.
+- Wild Pokémon on Route 23, in Victory Road and in Cerulean Cave are also
+  1.15x higher (Victory Road now reaches Lv. 55), so there's somewhere worth
+  training before the Elite Four.
 - Regular trainers have at least ~18 IVs. The Elite Four, Champion, Rival and Giovanni have max IVs.
 - Every trainer uses the smart battle AI.
 - From Lt. Surge on, the Gym Leaders, Elite Four and Champion use some of
@@ -445,9 +456,9 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `631e91826557fb8be07b36c77cdade990ccdee79`
+Patched ROM SHA-1: `968a3c7dcbeca369d312640bd30b89b3982a7b50`
 
-Current release: **9**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
+Current release: **10**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
 Saves made on release 7 or later carry over to this release. Older saves need a new game.
 
 ## Building from source
