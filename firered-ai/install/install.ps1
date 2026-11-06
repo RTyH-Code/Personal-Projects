@@ -37,11 +37,12 @@ function Test-Admin {
     return (New-Object Security.Principal.WindowsPrincipal($id)).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 }
 function Get-UbuntuName {
-    # "wsl -l -q" prints UTF-16, which shows up here with NUL characters between letters.
-    $out = & wsl.exe -l -q 2>$null
-    if ($LASTEXITCODE -ne 0 -or -not $out) { return $null }
-    foreach ($line in $out) {
-        $name = ($line -replace "`0", '').Trim()
+    # Windows keeps the installed WSL systems in the registry. Reading it is safer than
+    # asking wsl.exe: when WSL isn't installed, wsl.exe waits for a key press to install it.
+    $key = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Lxss'
+    if (-not (Test-Path $key)) { return $null }
+    foreach ($k in (Get-ChildItem $key -ErrorAction SilentlyContinue)) {
+        $name = (Get-ItemProperty $k.PSPath -ErrorAction SilentlyContinue).DistributionName
         if ($name -like 'Ubuntu*') { return $name }
     }
     return $null
@@ -51,6 +52,11 @@ $log = Join-Path $env:TEMP 'FireRedPlaytester-install.log'
 Start-Transcript -Path $log -Append | Out-Null
 Write-Host '=== FireRed Playtester setup ===' -ForegroundColor Green
 Write-Host "Installing from: $source"
+if (-not (Test-Path (Join-Path $source 'playtest.py'))) {
+    Fail ("The install folder has been moved out of the firered-ai folder. It needs to stay inside it, " +
+          "because the installer copies the playtester from the folder around it. Extract the whole ZIP, " +
+          "then run Install.bat from firered-ai\install inside the extracted folder.")
+}
 
 # --- 1. WSL and Ubuntu ------------------------------------------------------------
 $distro = Get-UbuntuName

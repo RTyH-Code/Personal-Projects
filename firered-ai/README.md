@@ -56,7 +56,9 @@ The playtester runs inside WSL, the Linux system built into Windows 10 and
    choose **Extract All...**, and extract it somewhere easy, like your
    Documents folder.
 2. **Run the installer.** In the extracted folder, open `firered-ai`, then
-   `install`, and double-click **`Install.bat`**.
+   `install`, and double-click **`Install.bat`**. Run it from there: don't
+   move the `install` folder elsewhere, because it copies the playtester
+   from the folder around it.
    - If Windows says "Windows protected your PC", click **More info**, then
      **Run anyway**. It's a script you downloaded yourself, so Windows is
      being careful.
