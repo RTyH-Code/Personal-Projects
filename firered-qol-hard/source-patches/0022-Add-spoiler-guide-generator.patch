@@ -1,7 +1,7 @@
 From 2ee588a56cc5f2dbdeec5a5f222feab67f8fc64f Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Sun, 1 Nov 2026 21:27:26 +0000
-Subject: [PATCH 22/45] Add spoiler guide generator
+Subject: [PATCH 22/46] Add spoiler guide generator
 
 tools/hack/spoiler_guide.py writes Markdown pages for wild encounters, items,
 trainers and Pokemon (gifts, trades, evolution/stat/move changes) straight

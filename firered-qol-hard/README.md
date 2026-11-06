@@ -35,6 +35,11 @@ A quality-of-life, modernization and difficulty hack built on the pret/pokefirer
   them level-1 moves, so the 18 affected Pokémon now learn their
   pre-evolution's later moves a few levels later instead, e.g. Ninetales
   learns Flamethrower at 37 (Vulpix: 32) and Fire Blast at 60 (Vulpix: 52).
+- **Battle speed:** Options > BATTLE SPEED. FAST, the default, drains HP and
+  fills Exp. bars faster and halves the pause after each battle message.
+  Choose NORMAL for vanilla speed.
+- **Release number:** the Options screen shows which release you're playing
+  (for example, "QoL+HARD R12"). It's handy when reporting a bug.
 - **Repel prompt:** when a Repel wears off and you have another of the same
   kind, the game asks whether to use it.
 - **Modern shiny odds:** shiny Pokémon appear at 1 in 4,096 (up from
@@ -341,6 +346,10 @@ the Viridian City scientist can still switch them on or off.
   and don't use up the area.
 - **Fainting is permanent:** a Pokémon that faints can't be healed or revived
   by Pokémon Centers, items or anything else, even after a trip to the PC.
+- **Tracker:** while Nuzlocke mode is on, the Start menu has a NUZLOCKE entry.
+  It lists every area you've used, with what you caught there and whether it's
+  in your party, in the PC, fainted or missed (ran away, fainted or failed to
+  catch).
 - **Blacking out ends the run:** the Nuzlocke rules are lifted and the game
   carries on as a normal playthrough.
 
@@ -460,9 +469,9 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `619abda87cd7bde2f51ccc7e4a2a32d997e868eb`
+Patched ROM SHA-1: `229bcb00465d787e42db01e0053241241212ac7d`
 
-Current release: **11**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
+Current release: **12**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
 Saves made on release 7 or later carry over to this release. Older saves need a new game.
 
 ## Building from source
