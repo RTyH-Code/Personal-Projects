@@ -84,15 +84,6 @@ While a run goes on, leave its window open. Closing it stops the run. Your
 PC stays awake until the run ends (the screen can still turn off), and the
 report opens by itself at the end.
 
-**Watching it play:** a live view opens in your browser a few moments after
-a run starts. It shows every emulator's screen and what each is doing (map,
-party, problems so far). They play much faster than normal, so their
-pictures update about once a second and jump ahead each time. If you answer
-**y** to "Have one game play at normal speed?", one emulator plays at the
-game's real speed with a smooth picture, so you can follow along. The others
-keep testing at full speed. You can reopen the live view any time: it's
-`live.html` in the run's folder.
-
 **Updating:** download the ZIP again and double-click `Install.bat`. It
 updates the playtester and keeps your past runs.
 
@@ -161,8 +152,6 @@ report is written either way.
 
 Open `report.html` in the run folder. On WSL, `explorer.exe runs` opens the
 folder in Windows. It refreshes every 5 minutes while the run goes on.
-`live.html` in the same folder shows the emulators as they play (add
-`--watch` to have one play at normal speed).
 
 - **Problems found:** the worst first, with how often each happened and a
   screenshot. Click it for a clip of the ~40 seconds before.
@@ -249,7 +238,6 @@ tiny hand-assembled GBA ROM run on the real mGBA core.
 | `firered_ai/explorer.py` | What to press |
 | `firered_ai/runner.py` | Workers, start points, the shared pool |
 | `firered_ai/report.py` | `report.html` and `summary.json` |
-| `firered_ai/live.py` | `live.html`, the live view |
 | `firered_ai/game.py` | Recognising the ROM; what's known about it |
 | `firered_ai/ram.py` | Reading the game's memory, including encrypted Pokémon data |
 | `firered_ai/bootstrap.py` | Getting through the intro, challenge menu, or a save's title screen |

@@ -10,7 +10,6 @@ import traceback
 from pathlib import Path
 
 from .game import Game, detect
-from .live import write_live_page
 from .ram import load_addresses
 from .states import load_state_file
 from .tester import Start, Tester
@@ -73,10 +72,8 @@ def worker_main(config: dict, worker: int, stop) -> None:
     try:
         game = Game.load(config["game"])
         emu = Emulator(config["rom"])
-        watch = bool(config.get("watch")) and worker == 0  # worker 0 plays at normal speed
         tester = Tester(emu, game, out, worker, seed=config["seed"] + worker,
-                        addresses=load_addresses(config.get("addresses")), log=log, stop=stop,
-                        live=True, realtime=watch)
+                        addresses=load_addresses(config.get("addresses")), log=log, stop=stop)
         starts = user_starts(config)
         rng = random.Random(config["seed"] * 1000 + worker)
         while not stop.is_set():
@@ -151,8 +148,6 @@ def prepare(args, log=print) -> dict:
     log(f"ROM: {note}")
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
-    live = write_live_page(out, args.workers)
-    log(f"Watch it live: {live}")
     addresses = load_addresses(args.addresses)
     states = [str(Path(p)) for p in args.states]
     saves = [str(Path(p)) for p in args.saves]
@@ -184,7 +179,6 @@ def prepare(args, log=print) -> dict:
         "started": time.time(),
         "hours": args.hours,
         "workers": args.workers,
-        "watch": bool(getattr(args, "watch", False)),
     }
     (out / "config.json").write_text(json.dumps(config, indent=1))
     return config
