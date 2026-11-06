@@ -1,0 +1,7 @@
+# The optional learning agent (train.py, play.py), on top of requirements.txt
+-r requirements.txt
+gymnasium>=1.0
+stable-baselines3>=2.3
+torch>=2.2
+tensorboard
+imageio[ffmpeg]

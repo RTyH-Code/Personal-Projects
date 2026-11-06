@@ -1,0 +1,9703 @@
+{
+ "name": "firered_qol_hard",
+ "release": {
+  "release": "R14",
+  "signature": [
+   203,
+   227,
+   198,
+   46,
+   194,
+   187,
+   204,
+   190,
+   0
+  ],
+  "release_chars": [
+   204,
+   161,
+   162,
+   163,
+   164,
+   165,
+   166,
+   167,
+   168,
+   169,
+   170
+  ]
+ },
+ "layout": {
+  "dex_flag_bytes": 53,
+  "sb2_dex_owned": 40,
+  "sb2_dex_seen": 93,
+  "sb2_encryption_key": 3876,
+  "sb1_bag_pockets": {
+   "items": [
+    784,
+    42
+   ],
+   "key_items": [
+    952,
+    30
+   ],
+   "poke_balls": [
+    1072,
+    13
+   ],
+   "tm_hm": [
+    1124,
+    58
+   ],
+   "berries": [
+    1356,
+    43
+   ]
+  },
+  "sb1_nuzlocke_areas": [
+   15652,
+   16
+  ]
+ },
+ "num_species": 419,
+ "dex_count": 415,
+ "species": {
+  "1": "BULBASAUR",
+  "2": "IVYSAUR",
+  "3": "VENUSAUR",
+  "4": "CHARMANDER",
+  "5": "CHARMELEON",
+  "6": "CHARIZARD",
+  "7": "SQUIRTLE",
+  "8": "WARTORTLE",
+  "9": "BLASTOISE",
+  "10": "CATERPIE",
+  "11": "METAPOD",
+  "12": "BUTTERFREE",
+  "13": "WEEDLE",
+  "14": "KAKUNA",
+  "15": "BEEDRILL",
+  "16": "PIDGEY",
+  "17": "PIDGEOTTO",
+  "18": "PIDGEOT",
+  "19": "RATTATA",
+  "20": "RATICATE",
+  "21": "SPEAROW",
+  "22": "FEAROW",
+  "23": "EKANS",
+  "24": "ARBOK",
+  "25": "PIKACHU",
+  "26": "RAICHU",
+  "27": "SANDSHREW",
+  "28": "SANDSLASH",
+  "29": "NIDORAN_F",
+  "30": "NIDORINA",
+  "31": "NIDOQUEEN",
+  "32": "NIDORAN_M",
+  "33": "NIDORINO",
+  "34": "NIDOKING",
+  "35": "CLEFAIRY",
+  "36": "CLEFABLE",
+  "37": "VULPIX",
+  "38": "NINETALES",
+  "39": "JIGGLYPUFF",
+  "40": "WIGGLYTUFF",
+  "41": "ZUBAT",
+  "42": "GOLBAT",
+  "43": "ODDISH",
+  "44": "GLOOM",
+  "45": "VILEPLUME",
+  "46": "PARAS",
+  "47": "PARASECT",
+  "48": "VENONAT",
+  "49": "VENOMOTH",
+  "50": "DIGLETT",
+  "51": "DUGTRIO",
+  "52": "MEOWTH",
+  "53": "PERSIAN",
+  "54": "PSYDUCK",
+  "55": "GOLDUCK",
+  "56": "MANKEY",
+  "57": "PRIMEAPE",
+  "58": "GROWLITHE",
+  "59": "ARCANINE",
+  "60": "POLIWAG",
+  "61": "POLIWHIRL",
+  "62": "POLIWRATH",
+  "63": "ABRA",
+  "64": "KADABRA",
+  "65": "ALAKAZAM",
+  "66": "MACHOP",
+  "67": "MACHOKE",
+  "68": "MACHAMP",
+  "69": "BELLSPROUT",
+  "70": "WEEPINBELL",
+  "71": "VICTREEBEL",
+  "72": "TENTACOOL",
+  "73": "TENTACRUEL",
+  "74": "GEODUDE",
+  "75": "GRAVELER",
+  "76": "GOLEM",
+  "77": "PONYTA",
+  "78": "RAPIDASH",
+  "79": "SLOWPOKE",
+  "80": "SLOWBRO",
+  "81": "MAGNEMITE",
+  "82": "MAGNETON",
+  "83": "FARFETCHD",
+  "84": "DODUO",
+  "85": "DODRIO",
+  "86": "SEEL",
+  "87": "DEWGONG",
+  "88": "GRIMER",
+  "89": "MUK",
+  "90": "SHELLDER",
+  "91": "CLOYSTER",
+  "92": "GASTLY",
+  "93": "HAUNTER",
+  "94": "GENGAR",
+  "95": "ONIX",
+  "96": "DROWZEE",
+  "97": "HYPNO",
+  "98": "KRABBY",
+  "99": "KINGLER",
+  "100": "VOLTORB",
+  "101": "ELECTRODE",
+  "102": "EXEGGCUTE",
+  "103": "EXEGGUTOR",
+  "104": "CUBONE",
+  "105": "MAROWAK",
+  "106": "HITMONLEE",
+  "107": "HITMONCHAN",
+  "108": "LICKITUNG",
+  "109": "KOFFING",
+  "110": "WEEZING",
+  "111": "RHYHORN",
+  "112": "RHYDON",
+  "113": "CHANSEY",
+  "114": "TANGELA",
+  "115": "KANGASKHAN",
+  "116": "HORSEA",
+  "117": "SEADRA",
+  "118": "GOLDEEN",
+  "119": "SEAKING",
+  "120": "STARYU",
+  "121": "STARMIE",
+  "122": "MR_MIME",
+  "123": "SCYTHER",
+  "124": "JYNX",
+  "125": "ELECTABUZZ",
+  "126": "MAGMAR",
+  "127": "PINSIR",
+  "128": "TAUROS",
+  "129": "MAGIKARP",
+  "130": "GYARADOS",
+  "131": "LAPRAS",
+  "132": "DITTO",
+  "133": "EEVEE",
+  "134": "VAPOREON",
+  "135": "JOLTEON",
+  "136": "FLAREON",
+  "137": "PORYGON",
+  "138": "OMANYTE",
+  "139": "OMASTAR",
+  "140": "KABUTO",
+  "141": "KABUTOPS",
+  "142": "AERODACTYL",
+  "143": "SNORLAX",
+  "144": "ARTICUNO",
+  "145": "ZAPDOS",
+  "146": "MOLTRES",
+  "147": "DRATINI",
+  "148": "DRAGONAIR",
+  "149": "DRAGONITE",
+  "150": "MEWTWO",
+  "151": "MEW",
+  "152": "CHIKORITA",
+  "153": "BAYLEEF",
+  "154": "MEGANIUM",
+  "155": "CYNDAQUIL",
+  "156": "QUILAVA",
+  "157": "TYPHLOSION",
+  "158": "TOTODILE",
+  "159": "CROCONAW",
+  "160": "FERALIGATR",
+  "161": "SENTRET",
+  "162": "FURRET",
+  "163": "HOOTHOOT",
+  "164": "NOCTOWL",
+  "165": "LEDYBA",
+  "166": "LEDIAN",
+  "167": "SPINARAK",
+  "168": "ARIADOS",
+  "169": "CROBAT",
+  "170": "CHINCHOU",
+  "171": "LANTURN",
+  "172": "PICHU",
+  "173": "CLEFFA",
+  "174": "IGGLYBUFF",
+  "175": "TOGEPI",
+  "176": "TOGETIC",
+  "177": "NATU",
+  "178": "XATU",
+  "179": "MAREEP",
+  "180": "FLAAFFY",
+  "181": "AMPHAROS",
+  "182": "BELLOSSOM",
+  "183": "MARILL",
+  "184": "AZUMARILL",
+  "185": "SUDOWOODO",
+  "186": "POLITOED",
+  "187": "HOPPIP",
+  "188": "SKIPLOOM",
+  "189": "JUMPLUFF",
+  "190": "AIPOM",
+  "191": "SUNKERN",
+  "192": "SUNFLORA",
+  "193": "YANMA",
+  "194": "WOOPER",
+  "195": "QUAGSIRE",
+  "196": "ESPEON",
+  "197": "UMBREON",
+  "198": "MURKROW",
+  "199": "SLOWKING",
+  "200": "MISDREAVUS",
+  "201": "UNOWN",
+  "202": "WOBBUFFET",
+  "203": "GIRAFARIG",
+  "204": "PINECO",
+  "205": "FORRETRESS",
+  "206": "DUNSPARCE",
+  "207": "GLIGAR",
+  "208": "STEELIX",
+  "209": "SNUBBULL",
+  "210": "GRANBULL",
+  "211": "QWILFISH",
+  "212": "SCIZOR",
+  "213": "SHUCKLE",
+  "214": "HERACROSS",
+  "215": "SNEASEL",
+  "216": "TEDDIURSA",
+  "217": "URSARING",
+  "218": "SLUGMA",
+  "219": "MAGCARGO",
+  "220": "SWINUB",
+  "221": "PILOSWINE",
+  "222": "CORSOLA",
+  "223": "REMORAID",
+  "224": "OCTILLERY",
+  "225": "DELIBIRD",
+  "226": "MANTINE",
+  "227": "SKARMORY",
+  "228": "HOUNDOUR",
+  "229": "HOUNDOOM",
+  "230": "KINGDRA",
+  "231": "PHANPY",
+  "232": "DONPHAN",
+  "233": "PORYGON2",
+  "234": "STANTLER",
+  "235": "SMEARGLE",
+  "236": "TYROGUE",
+  "237": "HITMONTOP",
+  "238": "SMOOCHUM",
+  "239": "ELEKID",
+  "240": "MAGBY",
+  "241": "MILTANK",
+  "242": "BLISSEY",
+  "243": "RAIKOU",
+  "244": "ENTEI",
+  "245": "SUICUNE",
+  "246": "LARVITAR",
+  "247": "PUPITAR",
+  "248": "TYRANITAR",
+  "249": "LUGIA",
+  "250": "HO_OH",
+  "251": "CELEBI",
+  "252": "DEOXYS_ATTACK",
+  "253": "DEOXYS_DEFENSE",
+  "254": "DEOXYS_SPEED",
+  "255": "WEAVILE",
+  "256": "MAGNEZONE",
+  "257": "LICKILICKY",
+  "258": "RHYPERIOR",
+  "259": "TANGROWTH",
+  "260": "ELECTIVIRE",
+  "261": "MAGMORTAR",
+  "262": "TOGEKISS",
+  "263": "YANMEGA",
+  "264": "GLISCOR",
+  "265": "MAMOSWINE",
+  "266": "PORYGON_Z",
+  "267": "DUSKNOIR",
+  "268": "HONCHKROW",
+  "269": "MISMAGIUS",
+  "270": "AMBIPOM",
+  "271": "ROSERADE",
+  "272": "FARIGIRAF",
+  "273": "DUDUNSPARCE",
+  "274": "PROBOPASS",
+  "275": "WYRDEER",
+  "276": "URSALUNA",
+  "277": "TREECKO",
+  "278": "GROVYLE",
+  "279": "SCEPTILE",
+  "280": "TORCHIC",
+  "281": "COMBUSKEN",
+  "282": "BLAZIKEN",
+  "283": "MUDKIP",
+  "284": "MARSHTOMP",
+  "285": "SWAMPERT",
+  "286": "POOCHYENA",
+  "287": "MIGHTYENA",
+  "288": "ZIGZAGOON",
+  "289": "LINOONE",
+  "290": "WURMPLE",
+  "291": "SILCOON",
+  "292": "BEAUTIFLY",
+  "293": "CASCOON",
+  "294": "DUSTOX",
+  "295": "LOTAD",
+  "296": "LOMBRE",
+  "297": "LUDICOLO",
+  "298": "SEEDOT",
+  "299": "NUZLEAF",
+  "300": "SHIFTRY",
+  "301": "NINCADA",
+  "302": "NINJASK",
+  "303": "SHEDINJA",
+  "304": "TAILLOW",
+  "305": "SWELLOW",
+  "306": "SHROOMISH",
+  "307": "BRELOOM",
+  "308": "SPINDA",
+  "309": "WINGULL",
+  "310": "PELIPPER",
+  "311": "SURSKIT",
+  "312": "MASQUERAIN",
+  "313": "WAILMER",
+  "314": "WAILORD",
+  "315": "SKITTY",
+  "316": "DELCATTY",
+  "317": "KECLEON",
+  "318": "BALTOY",
+  "319": "CLAYDOL",
+  "320": "NOSEPASS",
+  "321": "TORKOAL",
+  "322": "SABLEYE",
+  "323": "BARBOACH",
+  "324": "WHISCASH",
+  "325": "LUVDISC",
+  "326": "CORPHISH",
+  "327": "CRAWDAUNT",
+  "328": "FEEBAS",
+  "329": "MILOTIC",
+  "330": "CARVANHA",
+  "331": "SHARPEDO",
+  "332": "TRAPINCH",
+  "333": "VIBRAVA",
+  "334": "FLYGON",
+  "335": "MAKUHITA",
+  "336": "HARIYAMA",
+  "337": "ELECTRIKE",
+  "338": "MANECTRIC",
+  "339": "NUMEL",
+  "340": "CAMERUPT",
+  "341": "SPHEAL",
+  "342": "SEALEO",
+  "343": "WALREIN",
+  "344": "CACNEA",
+  "345": "CACTURNE",
+  "346": "SNORUNT",
+  "347": "GLALIE",
+  "348": "LUNATONE",
+  "349": "SOLROCK",
+  "350": "AZURILL",
+  "351": "SPOINK",
+  "352": "GRUMPIG",
+  "353": "PLUSLE",
+  "354": "MINUN",
+  "355": "MAWILE",
+  "356": "MEDITITE",
+  "357": "MEDICHAM",
+  "358": "SWABLU",
+  "359": "ALTARIA",
+  "360": "WYNAUT",
+  "361": "DUSKULL",
+  "362": "DUSCLOPS",
+  "363": "ROSELIA",
+  "364": "SLAKOTH",
+  "365": "VIGOROTH",
+  "366": "SLAKING",
+  "367": "GULPIN",
+  "368": "SWALOT",
+  "369": "TROPIUS",
+  "370": "WHISMUR",
+  "371": "LOUDRED",
+  "372": "EXPLOUD",
+  "373": "CLAMPERL",
+  "374": "HUNTAIL",
+  "375": "GOREBYSS",
+  "376": "ABSOL",
+  "377": "SHUPPET",
+  "378": "BANETTE",
+  "379": "SEVIPER",
+  "380": "ZANGOOSE",
+  "381": "RELICANTH",
+  "382": "ARON",
+  "383": "LAIRON",
+  "384": "AGGRON",
+  "385": "CASTFORM",
+  "386": "VOLBEAT",
+  "387": "ILLUMISE",
+  "388": "LILEEP",
+  "389": "CRADILY",
+  "390": "ANORITH",
+  "391": "ARMALDO",
+  "392": "RALTS",
+  "393": "KIRLIA",
+  "394": "GARDEVOIR",
+  "395": "BAGON",
+  "396": "SHELGON",
+  "397": "SALAMENCE",
+  "398": "BELDUM",
+  "399": "METANG",
+  "400": "METAGROSS",
+  "401": "REGIROCK",
+  "402": "REGICE",
+  "403": "REGISTEEL",
+  "404": "KYOGRE",
+  "405": "GROUDON",
+  "406": "RAYQUAZA",
+  "407": "LATIAS",
+  "408": "LATIOS",
+  "409": "JIRACHI",
+  "410": "DEOXYS",
+  "411": "CHIMECHO",
+  "412": "ANNIHILAPE",
+  "413": "GALLADE",
+  "414": "FROSLASS",
+  "415": "LEAFEON",
+  "416": "GLACEON",
+  "417": "SYLVEON",
+  "418": "KLEAVOR"
+ },
+ "species_dex": {
+  "1": 1,
+  "2": 2,
+  "3": 3,
+  "4": 4,
+  "5": 5,
+  "6": 6,
+  "7": 7,
+  "8": 8,
+  "9": 9,
+  "10": 10,
+  "11": 11,
+  "12": 12,
+  "13": 13,
+  "14": 14,
+  "15": 15,
+  "16": 16,
+  "17": 17,
+  "18": 18,
+  "19": 19,
+  "20": 20,
+  "21": 21,
+  "22": 22,
+  "23": 23,
+  "24": 24,
+  "25": 25,
+  "26": 26,
+  "27": 27,
+  "28": 28,
+  "29": 29,
+  "30": 30,
+  "31": 31,
+  "32": 32,
+  "33": 33,
+  "34": 34,
+  "35": 35,
+  "36": 36,
+  "37": 37,
+  "38": 38,
+  "39": 39,
+  "40": 40,
+  "41": 41,
+  "42": 42,
+  "43": 43,
+  "44": 44,
+  "45": 45,
+  "46": 46,
+  "47": 47,
+  "48": 48,
+  "49": 49,
+  "50": 50,
+  "51": 51,
+  "52": 52,
+  "53": 53,
+  "54": 54,
+  "55": 55,
+  "56": 56,
+  "57": 57,
+  "58": 58,
+  "59": 59,
+  "60": 60,
+  "61": 61,
+  "62": 62,
+  "63": 63,
+  "64": 64,
+  "65": 65,
+  "66": 66,
+  "67": 67,
+  "68": 68,
+  "69": 69,
+  "70": 70,
+  "71": 71,
+  "72": 72,
+  "73": 73,
+  "74": 74,
+  "75": 75,
+  "76": 76,
+  "77": 77,
+  "78": 78,
+  "79": 79,
+  "80": 80,
+  "81": 81,
+  "82": 82,
+  "83": 83,
+  "84": 84,
+  "85": 85,
+  "86": 86,
+  "87": 87,
+  "88": 88,
+  "89": 89,
+  "90": 90,
+  "91": 91,
+  "92": 92,
+  "93": 93,
+  "94": 94,
+  "95": 95,
+  "96": 96,
+  "97": 97,
+  "98": 98,
+  "99": 99,
+  "100": 100,
+  "101": 101,
+  "102": 102,
+  "103": 103,
+  "104": 104,
+  "105": 105,
+  "106": 106,
+  "107": 107,
+  "108": 108,
+  "109": 109,
+  "110": 110,
+  "111": 111,
+  "112": 112,
+  "113": 113,
+  "114": 114,
+  "115": 115,
+  "116": 116,
+  "117": 117,
+  "118": 118,
+  "119": 119,
+  "120": 120,
+  "121": 121,
+  "122": 122,
+  "123": 123,
+  "124": 124,
+  "125": 125,
+  "126": 126,
+  "127": 127,
+  "128": 128,
+  "129": 129,
+  "130": 130,
+  "131": 131,
+  "132": 132,
+  "133": 133,
+  "134": 134,
+  "135": 135,
+  "136": 136,
+  "137": 137,
+  "138": 138,
+  "139": 139,
+  "140": 140,
+  "141": 141,
+  "142": 142,
+  "143": 143,
+  "144": 144,
+  "145": 145,
+  "146": 146,
+  "147": 147,
+  "148": 148,
+  "149": 149,
+  "150": 150,
+  "151": 151,
+  "152": 152,
+  "153": 153,
+  "154": 154,
+  "155": 155,
+  "156": 156,
+  "157": 157,
+  "158": 158,
+  "159": 159,
+  "160": 160,
+  "161": 161,
+  "162": 162,
+  "163": 163,
+  "164": 164,
+  "165": 165,
+  "166": 166,
+  "167": 167,
+  "168": 168,
+  "169": 169,
+  "170": 170,
+  "171": 171,
+  "172": 172,
+  "173": 173,
+  "174": 174,
+  "175": 175,
+  "176": 176,
+  "177": 177,
+  "178": 178,
+  "179": 179,
+  "180": 180,
+  "181": 181,
+  "182": 182,
+  "183": 183,
+  "184": 184,
+  "185": 185,
+  "186": 186,
+  "187": 187,
+  "188": 188,
+  "189": 189,
+  "190": 190,
+  "191": 191,
+  "192": 192,
+  "193": 193,
+  "194": 194,
+  "195": 195,
+  "196": 196,
+  "197": 197,
+  "198": 198,
+  "199": 199,
+  "200": 200,
+  "201": 201,
+  "202": 202,
+  "203": 203,
+  "204": 204,
+  "205": 205,
+  "206": 206,
+  "207": 207,
+  "208": 208,
+  "209": 209,
+  "210": 210,
+  "211": 211,
+  "212": 212,
+  "213": 213,
+  "214": 214,
+  "215": 215,
+  "216": 216,
+  "217": 217,
+  "218": 218,
+  "219": 219,
+  "220": 220,
+  "221": 221,
+  "222": 222,
+  "223": 223,
+  "224": 224,
+  "225": 225,
+  "226": 226,
+  "227": 227,
+  "228": 228,
+  "229": 229,
+  "230": 230,
+  "231": 231,
+  "232": 232,
+  "233": 233,
+  "234": 234,
+  "235": 235,
+  "236": 236,
+  "237": 237,
+  "238": 238,
+  "239": 239,
+  "240": 240,
+  "241": 241,
+  "242": 242,
+  "243": 243,
+  "244": 244,
+  "245": 245,
+  "246": 246,
+  "247": 247,
+  "248": 248,
+  "249": 249,
+  "250": 250,
+  "251": 251,
+  "252": 386,
+  "253": 386,
+  "254": 386,
+  "255": 387,
+  "256": 388,
+  "257": 389,
+  "258": 390,
+  "259": 391,
+  "260": 392,
+  "261": 393,
+  "262": 394,
+  "263": 395,
+  "264": 396,
+  "265": 397,
+  "266": 398,
+  "267": 399,
+  "268": 400,
+  "269": 401,
+  "270": 402,
+  "271": 403,
+  "272": 404,
+  "273": 405,
+  "274": 406,
+  "275": 407,
+  "276": 408,
+  "277": 252,
+  "278": 253,
+  "279": 254,
+  "280": 255,
+  "281": 256,
+  "282": 257,
+  "283": 258,
+  "284": 259,
+  "285": 260,
+  "286": 261,
+  "287": 262,
+  "288": 263,
+  "289": 264,
+  "290": 265,
+  "291": 266,
+  "292": 267,
+  "293": 268,
+  "294": 269,
+  "295": 270,
+  "296": 271,
+  "297": 272,
+  "298": 273,
+  "299": 274,
+  "300": 275,
+  "301": 290,
+  "302": 291,
+  "303": 292,
+  "304": 276,
+  "305": 277,
+  "306": 285,
+  "307": 286,
+  "308": 327,
+  "309": 278,
+  "310": 279,
+  "311": 283,
+  "312": 284,
+  "313": 320,
+  "314": 321,
+  "315": 300,
+  "316": 301,
+  "317": 352,
+  "318": 343,
+  "319": 344,
+  "320": 299,
+  "321": 324,
+  "322": 302,
+  "323": 339,
+  "324": 340,
+  "325": 370,
+  "326": 341,
+  "327": 342,
+  "328": 349,
+  "329": 350,
+  "330": 318,
+  "331": 319,
+  "332": 328,
+  "333": 329,
+  "334": 330,
+  "335": 296,
+  "336": 297,
+  "337": 309,
+  "338": 310,
+  "339": 322,
+  "340": 323,
+  "341": 363,
+  "342": 364,
+  "343": 365,
+  "344": 331,
+  "345": 332,
+  "346": 361,
+  "347": 362,
+  "348": 337,
+  "349": 338,
+  "350": 298,
+  "351": 325,
+  "352": 326,
+  "353": 311,
+  "354": 312,
+  "355": 303,
+  "356": 307,
+  "357": 308,
+  "358": 333,
+  "359": 334,
+  "360": 360,
+  "361": 355,
+  "362": 356,
+  "363": 315,
+  "364": 287,
+  "365": 288,
+  "366": 289,
+  "367": 316,
+  "368": 317,
+  "369": 357,
+  "370": 293,
+  "371": 294,
+  "372": 295,
+  "373": 366,
+  "374": 367,
+  "375": 368,
+  "376": 359,
+  "377": 353,
+  "378": 354,
+  "379": 336,
+  "380": 335,
+  "381": 369,
+  "382": 304,
+  "383": 305,
+  "384": 306,
+  "385": 351,
+  "386": 313,
+  "387": 314,
+  "388": 345,
+  "389": 346,
+  "390": 347,
+  "391": 348,
+  "392": 280,
+  "393": 281,
+  "394": 282,
+  "395": 371,
+  "396": 372,
+  "397": 373,
+  "398": 374,
+  "399": 375,
+  "400": 376,
+  "401": 377,
+  "402": 378,
+  "403": 379,
+  "404": 382,
+  "405": 383,
+  "406": 384,
+  "407": 380,
+  "408": 381,
+  "409": 385,
+  "410": 386,
+  "411": 358,
+  "412": 409,
+  "413": 410,
+  "414": 411,
+  "415": 412,
+  "416": 413,
+  "417": 414,
+  "418": 415
+ },
+ "maps": [
+  {
+   "group": 0,
+   "num": 0,
+   "name": "BattleColosseum_2P",
+   "section": "MAPSEC_SPECIAL_AREA",
+   "section_index": 196
+  },
+  {
+   "group": 0,
+   "num": 1,
+   "name": "TradeCenter",
+   "section": "MAPSEC_SPECIAL_AREA",
+   "section_index": 196
+  },
+  {
+   "group": 0,
+   "num": 2,
+   "name": "RecordCorner",
+   "section": "MAPSEC_SPECIAL_AREA",
+   "section_index": 196
+  },
+  {
+   "group": 0,
+   "num": 3,
+   "name": "BattleColosseum_4P",
+   "section": "MAPSEC_SPECIAL_AREA",
+   "section_index": 196
+  },
+  {
+   "group": 0,
+   "num": 4,
+   "name": "UnionRoom",
+   "section": "MAPSEC_SPECIAL_AREA",
+   "section_index": 196
+  },
+  {
+   "group": 1,
+   "num": 0,
+   "name": "ViridianForest",
+   "section": "MAPSEC_VIRIDIAN_FOREST",
+   "section_index": 126
+  },
+  {
+   "group": 1,
+   "num": 1,
+   "name": "MtMoon_1F",
+   "section": "MAPSEC_MT_MOON",
+   "section_index": 127
+  },
+  {
+   "group": 1,
+   "num": 2,
+   "name": "MtMoon_B1F",
+   "section": "MAPSEC_MT_MOON",
+   "section_index": 127
+  },
+  {
+   "group": 1,
+   "num": 3,
+   "name": "MtMoon_B2F",
+   "section": "MAPSEC_MT_MOON",
+   "section_index": 127
+  },
+  {
+   "group": 1,
+   "num": 4,
+   "name": "SSAnne_Exterior",
+   "section": "MAPSEC_S_S_ANNE",
+   "section_index": 128
+  },
+  {
+   "group": 1,
+   "num": 5,
+   "name": "SSAnne_1F_Corridor",
+   "section": "MAPSEC_S_S_ANNE",
+   "section_index": 128
+  },
+  {
+   "group": 1,
+   "num": 6,
+   "name": "SSAnne_2F_Corridor",
+   "section": "MAPSEC_S_S_ANNE",
+   "section_index": 128
+  },
+  {
+   "group": 1,
+   "num": 7,
+   "name": "SSAnne_3F_Corridor",
+   "section": "MAPSEC_S_S_ANNE",
+   "section_index": 128
+  },
+  {
+   "group": 1,
+   "num": 8,
+   "name": "SSAnne_B1F_Corridor",
+   "section": "MAPSEC_S_S_ANNE",
+   "section_index": 128
+  },
+  {
+   "group": 1,
+   "num": 9,
+   "name": "SSAnne_Deck",
+   "section": "MAPSEC_S_S_ANNE",
+   "section_index": 128
+  },
+  {
+   "group": 1,
+   "num": 10,
+   "name": "SSAnne_Kitchen",
+   "section": "MAPSEC_S_S_ANNE",
+   "section_index": 128
+  },
+  {
+   "group": 1,
+   "num": 11,
+   "name": "SSAnne_CaptainsOffice",
+   "section": "MAPSEC_S_S_ANNE",
+   "section_index": 128
+  },
+  {
+   "group": 1,
+   "num": 12,
+   "name": "SSAnne_1F_Room1",
+   "section": "MAPSEC_S_S_ANNE",
+   "section_index": 128
+  },
+  {
+   "group": 1,
+   "num": 13,
+   "name": "SSAnne_1F_Room2",
+   "section": "MAPSEC_S_S_ANNE",
+   "section_index": 128
+  },
+  {
+   "group": 1,
+   "num": 14,
+   "name": "SSAnne_1F_Room3",
+   "section": "MAPSEC_S_S_ANNE",
+   "section_index": 128
+  },
+  {
+   "group": 1,
+   "num": 15,
+   "name": "SSAnne_1F_Room4",
+   "section": "MAPSEC_S_S_ANNE",
+   "section_index": 128
+  },
+  {
+   "group": 1,
+   "num": 16,
+   "name": "SSAnne_1F_Room5",
+   "section": "MAPSEC_S_S_ANNE",
+   "section_index": 128
+  },
+  {
+   "group": 1,
+   "num": 17,
+   "name": "SSAnne_1F_Room7",
+   "section": "MAPSEC_S_S_ANNE",
+   "section_index": 128
+  },
+  {
+   "group": 1,
+   "num": 18,
+   "name": "SSAnne_2F_Room1",
+   "section": "MAPSEC_S_S_ANNE",
+   "section_index": 128
+  },
+  {
+   "group": 1,
+   "num": 19,
+   "name": "SSAnne_2F_Room2",
+   "section": "MAPSEC_S_S_ANNE",
+   "section_index": 128
+  },
+  {
+   "group": 1,
+   "num": 20,
+   "name": "SSAnne_2F_Room3",
+   "section": "MAPSEC_S_S_ANNE",
+   "section_index": 128
+  },
+  {
+   "group": 1,
+   "num": 21,
+   "name": "SSAnne_2F_Room4",
+   "section": "MAPSEC_S_S_ANNE",
+   "section_index": 128
+  },
+  {
+   "group": 1,
+   "num": 22,
+   "name": "SSAnne_2F_Room5",
+   "section": "MAPSEC_S_S_ANNE",
+   "section_index": 128
+  },
+  {
+   "group": 1,
+   "num": 23,
+   "name": "SSAnne_2F_Room6",
+   "section": "MAPSEC_S_S_ANNE",
+   "section_index": 128
+  },
+  {
+   "group": 1,
+   "num": 24,
+   "name": "SSAnne_B1F_Room1",
+   "section": "MAPSEC_S_S_ANNE",
+   "section_index": 128
+  },
+  {
+   "group": 1,
+   "num": 25,
+   "name": "SSAnne_B1F_Room2",
+   "section": "MAPSEC_S_S_ANNE",
+   "section_index": 128
+  },
+  {
+   "group": 1,
+   "num": 26,
+   "name": "SSAnne_B1F_Room3",
+   "section": "MAPSEC_S_S_ANNE",
+   "section_index": 128
+  },
+  {
+   "group": 1,
+   "num": 27,
+   "name": "SSAnne_B1F_Room4",
+   "section": "MAPSEC_S_S_ANNE",
+   "section_index": 128
+  },
+  {
+   "group": 1,
+   "num": 28,
+   "name": "SSAnne_B1F_Room5",
+   "section": "MAPSEC_S_S_ANNE",
+   "section_index": 128
+  },
+  {
+   "group": 1,
+   "num": 29,
+   "name": "SSAnne_1F_Room6",
+   "section": "MAPSEC_S_S_ANNE",
+   "section_index": 128
+  },
+  {
+   "group": 1,
+   "num": 30,
+   "name": "UndergroundPath_NorthEntrance",
+   "section": "MAPSEC_UNDERGROUND_PATH",
+   "section_index": 129
+  },
+  {
+   "group": 1,
+   "num": 31,
+   "name": "UndergroundPath_NorthSouthTunnel",
+   "section": "MAPSEC_UNDERGROUND_PATH",
+   "section_index": 129
+  },
+  {
+   "group": 1,
+   "num": 32,
+   "name": "UndergroundPath_SouthEntrance",
+   "section": "MAPSEC_UNDERGROUND_PATH",
+   "section_index": 129
+  },
+  {
+   "group": 1,
+   "num": 33,
+   "name": "UndergroundPath_WestEntrance",
+   "section": "MAPSEC_UNDERGROUND_PATH_2",
+   "section_index": 130
+  },
+  {
+   "group": 1,
+   "num": 34,
+   "name": "UndergroundPath_EastWestTunnel",
+   "section": "MAPSEC_UNDERGROUND_PATH_2",
+   "section_index": 130
+  },
+  {
+   "group": 1,
+   "num": 35,
+   "name": "UndergroundPath_EastEntrance",
+   "section": "MAPSEC_UNDERGROUND_PATH_2",
+   "section_index": 130
+  },
+  {
+   "group": 1,
+   "num": 36,
+   "name": "DiglettsCave_NorthEntrance",
+   "section": "MAPSEC_DIGLETTS_CAVE",
+   "section_index": 131
+  },
+  {
+   "group": 1,
+   "num": 37,
+   "name": "DiglettsCave_B1F",
+   "section": "MAPSEC_DIGLETTS_CAVE",
+   "section_index": 131
+  },
+  {
+   "group": 1,
+   "num": 38,
+   "name": "DiglettsCave_SouthEntrance",
+   "section": "MAPSEC_DIGLETTS_CAVE",
+   "section_index": 131
+  },
+  {
+   "group": 1,
+   "num": 39,
+   "name": "VictoryRoad_1F",
+   "section": "MAPSEC_KANTO_VICTORY_ROAD",
+   "section_index": 132
+  },
+  {
+   "group": 1,
+   "num": 40,
+   "name": "VictoryRoad_2F",
+   "section": "MAPSEC_KANTO_VICTORY_ROAD",
+   "section_index": 132
+  },
+  {
+   "group": 1,
+   "num": 41,
+   "name": "VictoryRoad_3F",
+   "section": "MAPSEC_KANTO_VICTORY_ROAD",
+   "section_index": 132
+  },
+  {
+   "group": 1,
+   "num": 42,
+   "name": "RocketHideout_B1F",
+   "section": "MAPSEC_ROCKET_HIDEOUT",
+   "section_index": 133
+  },
+  {
+   "group": 1,
+   "num": 43,
+   "name": "RocketHideout_B2F",
+   "section": "MAPSEC_ROCKET_HIDEOUT",
+   "section_index": 133
+  },
+  {
+   "group": 1,
+   "num": 44,
+   "name": "RocketHideout_B3F",
+   "section": "MAPSEC_ROCKET_HIDEOUT",
+   "section_index": 133
+  },
+  {
+   "group": 1,
+   "num": 45,
+   "name": "RocketHideout_B4F",
+   "section": "MAPSEC_ROCKET_HIDEOUT",
+   "section_index": 133
+  },
+  {
+   "group": 1,
+   "num": 46,
+   "name": "RocketHideout_Elevator",
+   "section": "MAPSEC_ROCKET_HIDEOUT",
+   "section_index": 133
+  },
+  {
+   "group": 1,
+   "num": 47,
+   "name": "SilphCo_1F",
+   "section": "MAPSEC_SILPH_CO",
+   "section_index": 134
+  },
+  {
+   "group": 1,
+   "num": 48,
+   "name": "SilphCo_2F",
+   "section": "MAPSEC_SILPH_CO",
+   "section_index": 134
+  },
+  {
+   "group": 1,
+   "num": 49,
+   "name": "SilphCo_3F",
+   "section": "MAPSEC_SILPH_CO",
+   "section_index": 134
+  },
+  {
+   "group": 1,
+   "num": 50,
+   "name": "SilphCo_4F",
+   "section": "MAPSEC_SILPH_CO",
+   "section_index": 134
+  },
+  {
+   "group": 1,
+   "num": 51,
+   "name": "SilphCo_5F",
+   "section": "MAPSEC_SILPH_CO",
+   "section_index": 134
+  },
+  {
+   "group": 1,
+   "num": 52,
+   "name": "SilphCo_6F",
+   "section": "MAPSEC_SILPH_CO",
+   "section_index": 134
+  },
+  {
+   "group": 1,
+   "num": 53,
+   "name": "SilphCo_7F",
+   "section": "MAPSEC_SILPH_CO",
+   "section_index": 134
+  },
+  {
+   "group": 1,
+   "num": 54,
+   "name": "SilphCo_8F",
+   "section": "MAPSEC_SILPH_CO",
+   "section_index": 134
+  },
+  {
+   "group": 1,
+   "num": 55,
+   "name": "SilphCo_9F",
+   "section": "MAPSEC_SILPH_CO",
+   "section_index": 134
+  },
+  {
+   "group": 1,
+   "num": 56,
+   "name": "SilphCo_10F",
+   "section": "MAPSEC_SILPH_CO",
+   "section_index": 134
+  },
+  {
+   "group": 1,
+   "num": 57,
+   "name": "SilphCo_11F",
+   "section": "MAPSEC_SILPH_CO",
+   "section_index": 134
+  },
+  {
+   "group": 1,
+   "num": 58,
+   "name": "SilphCo_Elevator",
+   "section": "MAPSEC_SILPH_CO",
+   "section_index": 134
+  },
+  {
+   "group": 1,
+   "num": 59,
+   "name": "PokemonMansion_1F",
+   "section": "MAPSEC_POKEMON_MANSION",
+   "section_index": 135
+  },
+  {
+   "group": 1,
+   "num": 60,
+   "name": "PokemonMansion_2F",
+   "section": "MAPSEC_POKEMON_MANSION",
+   "section_index": 135
+  },
+  {
+   "group": 1,
+   "num": 61,
+   "name": "PokemonMansion_3F",
+   "section": "MAPSEC_POKEMON_MANSION",
+   "section_index": 135
+  },
+  {
+   "group": 1,
+   "num": 62,
+   "name": "PokemonMansion_B1F",
+   "section": "MAPSEC_POKEMON_MANSION",
+   "section_index": 135
+  },
+  {
+   "group": 1,
+   "num": 63,
+   "name": "SafariZone_Center",
+   "section": "MAPSEC_KANTO_SAFARI_ZONE",
+   "section_index": 136
+  },
+  {
+   "group": 1,
+   "num": 64,
+   "name": "SafariZone_East",
+   "section": "MAPSEC_KANTO_SAFARI_ZONE",
+   "section_index": 136
+  },
+  {
+   "group": 1,
+   "num": 65,
+   "name": "SafariZone_North",
+   "section": "MAPSEC_KANTO_SAFARI_ZONE",
+   "section_index": 136
+  },
+  {
+   "group": 1,
+   "num": 66,
+   "name": "SafariZone_West",
+   "section": "MAPSEC_KANTO_SAFARI_ZONE",
+   "section_index": 136
+  },
+  {
+   "group": 1,
+   "num": 67,
+   "name": "SafariZone_Center_RestHouse",
+   "section": "MAPSEC_KANTO_SAFARI_ZONE",
+   "section_index": 136
+  },
+  {
+   "group": 1,
+   "num": 68,
+   "name": "SafariZone_East_RestHouse",
+   "section": "MAPSEC_KANTO_SAFARI_ZONE",
+   "section_index": 136
+  },
+  {
+   "group": 1,
+   "num": 69,
+   "name": "SafariZone_North_RestHouse",
+   "section": "MAPSEC_KANTO_SAFARI_ZONE",
+   "section_index": 136
+  },
+  {
+   "group": 1,
+   "num": 70,
+   "name": "SafariZone_West_RestHouse",
+   "section": "MAPSEC_KANTO_SAFARI_ZONE",
+   "section_index": 136
+  },
+  {
+   "group": 1,
+   "num": 71,
+   "name": "SafariZone_SecretHouse",
+   "section": "MAPSEC_KANTO_SAFARI_ZONE",
+   "section_index": 136
+  },
+  {
+   "group": 1,
+   "num": 72,
+   "name": "CeruleanCave_1F",
+   "section": "MAPSEC_CERULEAN_CAVE",
+   "section_index": 141
+  },
+  {
+   "group": 1,
+   "num": 73,
+   "name": "CeruleanCave_2F",
+   "section": "MAPSEC_CERULEAN_CAVE",
+   "section_index": 141
+  },
+  {
+   "group": 1,
+   "num": 74,
+   "name": "CeruleanCave_B1F",
+   "section": "MAPSEC_CERULEAN_CAVE",
+   "section_index": 141
+  },
+  {
+   "group": 1,
+   "num": 75,
+   "name": "PokemonLeague_LoreleisRoom",
+   "section": "MAPSEC_POKEMON_LEAGUE",
+   "section_index": 137
+  },
+  {
+   "group": 1,
+   "num": 76,
+   "name": "PokemonLeague_BrunosRoom",
+   "section": "MAPSEC_POKEMON_LEAGUE",
+   "section_index": 137
+  },
+  {
+   "group": 1,
+   "num": 77,
+   "name": "PokemonLeague_AgathasRoom",
+   "section": "MAPSEC_POKEMON_LEAGUE",
+   "section_index": 137
+  },
+  {
+   "group": 1,
+   "num": 78,
+   "name": "PokemonLeague_LancesRoom",
+   "section": "MAPSEC_POKEMON_LEAGUE",
+   "section_index": 137
+  },
+  {
+   "group": 1,
+   "num": 79,
+   "name": "PokemonLeague_ChampionsRoom",
+   "section": "MAPSEC_POKEMON_LEAGUE",
+   "section_index": 137
+  },
+  {
+   "group": 1,
+   "num": 80,
+   "name": "PokemonLeague_HallOfFame",
+   "section": "MAPSEC_POKEMON_LEAGUE",
+   "section_index": 137
+  },
+  {
+   "group": 1,
+   "num": 81,
+   "name": "RockTunnel_1F",
+   "section": "MAPSEC_ROCK_TUNNEL",
+   "section_index": 138
+  },
+  {
+   "group": 1,
+   "num": 82,
+   "name": "RockTunnel_B1F",
+   "section": "MAPSEC_ROCK_TUNNEL",
+   "section_index": 138
+  },
+  {
+   "group": 1,
+   "num": 83,
+   "name": "SeafoamIslands_1F",
+   "section": "MAPSEC_SEAFOAM_ISLANDS",
+   "section_index": 139
+  },
+  {
+   "group": 1,
+   "num": 84,
+   "name": "SeafoamIslands_B1F",
+   "section": "MAPSEC_SEAFOAM_ISLANDS",
+   "section_index": 139
+  },
+  {
+   "group": 1,
+   "num": 85,
+   "name": "SeafoamIslands_B2F",
+   "section": "MAPSEC_SEAFOAM_ISLANDS",
+   "section_index": 139
+  },
+  {
+   "group": 1,
+   "num": 86,
+   "name": "SeafoamIslands_B3F",
+   "section": "MAPSEC_SEAFOAM_ISLANDS",
+   "section_index": 139
+  },
+  {
+   "group": 1,
+   "num": 87,
+   "name": "SeafoamIslands_B4F",
+   "section": "MAPSEC_SEAFOAM_ISLANDS",
+   "section_index": 139
+  },
+  {
+   "group": 1,
+   "num": 88,
+   "name": "PokemonTower_1F",
+   "section": "MAPSEC_POKEMON_TOWER",
+   "section_index": 140
+  },
+  {
+   "group": 1,
+   "num": 89,
+   "name": "PokemonTower_2F",
+   "section": "MAPSEC_POKEMON_TOWER",
+   "section_index": 140
+  },
+  {
+   "group": 1,
+   "num": 90,
+   "name": "PokemonTower_3F",
+   "section": "MAPSEC_POKEMON_TOWER",
+   "section_index": 140
+  },
+  {
+   "group": 1,
+   "num": 91,
+   "name": "PokemonTower_4F",
+   "section": "MAPSEC_POKEMON_TOWER",
+   "section_index": 140
+  },
+  {
+   "group": 1,
+   "num": 92,
+   "name": "PokemonTower_5F",
+   "section": "MAPSEC_POKEMON_TOWER",
+   "section_index": 140
+  },
+  {
+   "group": 1,
+   "num": 93,
+   "name": "PokemonTower_6F",
+   "section": "MAPSEC_POKEMON_TOWER",
+   "section_index": 140
+  },
+  {
+   "group": 1,
+   "num": 94,
+   "name": "PokemonTower_7F",
+   "section": "MAPSEC_POKEMON_TOWER",
+   "section_index": 140
+  },
+  {
+   "group": 1,
+   "num": 95,
+   "name": "PowerPlant",
+   "section": "MAPSEC_POWER_PLANT",
+   "section_index": 142
+  },
+  {
+   "group": 1,
+   "num": 96,
+   "name": "MtEmber_RubyPath_B4F",
+   "section": "MAPSEC_MT_EMBER",
+   "section_index": 175
+  },
+  {
+   "group": 1,
+   "num": 97,
+   "name": "MtEmber_Exterior",
+   "section": "MAPSEC_MT_EMBER",
+   "section_index": 175
+  },
+  {
+   "group": 1,
+   "num": 98,
+   "name": "MtEmber_SummitPath_1F",
+   "section": "MAPSEC_MT_EMBER",
+   "section_index": 175
+  },
+  {
+   "group": 1,
+   "num": 99,
+   "name": "MtEmber_SummitPath_2F",
+   "section": "MAPSEC_MT_EMBER",
+   "section_index": 175
+  },
+  {
+   "group": 1,
+   "num": 100,
+   "name": "MtEmber_SummitPath_3F",
+   "section": "MAPSEC_MT_EMBER",
+   "section_index": 175
+  },
+  {
+   "group": 1,
+   "num": 101,
+   "name": "MtEmber_Summit",
+   "section": "MAPSEC_MT_EMBER",
+   "section_index": 175
+  },
+  {
+   "group": 1,
+   "num": 102,
+   "name": "MtEmber_RubyPath_B5F",
+   "section": "MAPSEC_MT_EMBER",
+   "section_index": 175
+  },
+  {
+   "group": 1,
+   "num": 103,
+   "name": "MtEmber_RubyPath_1F",
+   "section": "MAPSEC_MT_EMBER",
+   "section_index": 175
+  },
+  {
+   "group": 1,
+   "num": 104,
+   "name": "MtEmber_RubyPath_B1F",
+   "section": "MAPSEC_MT_EMBER",
+   "section_index": 175
+  },
+  {
+   "group": 1,
+   "num": 105,
+   "name": "MtEmber_RubyPath_B2F",
+   "section": "MAPSEC_MT_EMBER",
+   "section_index": 175
+  },
+  {
+   "group": 1,
+   "num": 106,
+   "name": "MtEmber_RubyPath_B3F",
+   "section": "MAPSEC_MT_EMBER",
+   "section_index": 175
+  },
+  {
+   "group": 1,
+   "num": 107,
+   "name": "MtEmber_RubyPath_B1F_Stairs",
+   "section": "MAPSEC_MT_EMBER",
+   "section_index": 175
+  },
+  {
+   "group": 1,
+   "num": 108,
+   "name": "MtEmber_RubyPath_B2F_Stairs",
+   "section": "MAPSEC_MT_EMBER",
+   "section_index": 175
+  },
+  {
+   "group": 1,
+   "num": 109,
+   "name": "ThreeIsland_BerryForest",
+   "section": "MAPSEC_BERRY_FOREST",
+   "section_index": 176
+  },
+  {
+   "group": 1,
+   "num": 110,
+   "name": "FourIsland_IcefallCave_Entrance",
+   "section": "MAPSEC_ICEFALL_CAVE",
+   "section_index": 177
+  },
+  {
+   "group": 1,
+   "num": 111,
+   "name": "FourIsland_IcefallCave_1F",
+   "section": "MAPSEC_ICEFALL_CAVE",
+   "section_index": 177
+  },
+  {
+   "group": 1,
+   "num": 112,
+   "name": "FourIsland_IcefallCave_B1F",
+   "section": "MAPSEC_ICEFALL_CAVE",
+   "section_index": 177
+  },
+  {
+   "group": 1,
+   "num": 113,
+   "name": "FourIsland_IcefallCave_Back",
+   "section": "MAPSEC_ICEFALL_CAVE",
+   "section_index": 177
+  },
+  {
+   "group": 1,
+   "num": 114,
+   "name": "FiveIsland_RocketWarehouse",
+   "section": "MAPSEC_ROCKET_WAREHOUSE",
+   "section_index": 178
+  },
+  {
+   "group": 1,
+   "num": 115,
+   "name": "SixIsland_DottedHole_1F",
+   "section": "MAPSEC_DOTTED_HOLE",
+   "section_index": 180
+  },
+  {
+   "group": 1,
+   "num": 116,
+   "name": "SixIsland_DottedHole_B1F",
+   "section": "MAPSEC_DOTTED_HOLE",
+   "section_index": 180
+  },
+  {
+   "group": 1,
+   "num": 117,
+   "name": "SixIsland_DottedHole_B2F",
+   "section": "MAPSEC_DOTTED_HOLE",
+   "section_index": 180
+  },
+  {
+   "group": 1,
+   "num": 118,
+   "name": "SixIsland_DottedHole_B3F",
+   "section": "MAPSEC_DOTTED_HOLE",
+   "section_index": 180
+  },
+  {
+   "group": 1,
+   "num": 119,
+   "name": "SixIsland_DottedHole_B4F",
+   "section": "MAPSEC_DOTTED_HOLE",
+   "section_index": 180
+  },
+  {
+   "group": 1,
+   "num": 120,
+   "name": "SixIsland_DottedHole_SapphireRoom",
+   "section": "MAPSEC_DOTTED_HOLE",
+   "section_index": 180
+  },
+  {
+   "group": 1,
+   "num": 121,
+   "name": "SixIsland_PatternBush",
+   "section": "MAPSEC_PATTERN_BUSH",
+   "section_index": 182
+  },
+  {
+   "group": 1,
+   "num": 122,
+   "name": "SixIsland_AlteringCave",
+   "section": "MAPSEC_ALTERING_CAVE",
+   "section_index": 183
+  },
+  {
+   "group": 2,
+   "num": 0,
+   "name": "NavelRock_Exterior",
+   "section": "MAPSEC_NAVEL_ROCK",
+   "section_index": 174
+  },
+  {
+   "group": 2,
+   "num": 1,
+   "name": "TrainerTower_1F",
+   "section": "MAPSEC_TRAINER_TOWER_2",
+   "section_index": 179
+  },
+  {
+   "group": 2,
+   "num": 2,
+   "name": "TrainerTower_2F",
+   "section": "MAPSEC_TRAINER_TOWER_2",
+   "section_index": 179
+  },
+  {
+   "group": 2,
+   "num": 3,
+   "name": "TrainerTower_3F",
+   "section": "MAPSEC_TRAINER_TOWER_2",
+   "section_index": 179
+  },
+  {
+   "group": 2,
+   "num": 4,
+   "name": "TrainerTower_4F",
+   "section": "MAPSEC_TRAINER_TOWER_2",
+   "section_index": 179
+  },
+  {
+   "group": 2,
+   "num": 5,
+   "name": "TrainerTower_5F",
+   "section": "MAPSEC_TRAINER_TOWER_2",
+   "section_index": 179
+  },
+  {
+   "group": 2,
+   "num": 6,
+   "name": "TrainerTower_6F",
+   "section": "MAPSEC_TRAINER_TOWER_2",
+   "section_index": 179
+  },
+  {
+   "group": 2,
+   "num": 7,
+   "name": "TrainerTower_7F",
+   "section": "MAPSEC_TRAINER_TOWER_2",
+   "section_index": 179
+  },
+  {
+   "group": 2,
+   "num": 8,
+   "name": "TrainerTower_8F",
+   "section": "MAPSEC_TRAINER_TOWER_2",
+   "section_index": 179
+  },
+  {
+   "group": 2,
+   "num": 9,
+   "name": "TrainerTower_Roof",
+   "section": "MAPSEC_TRAINER_TOWER_2",
+   "section_index": 179
+  },
+  {
+   "group": 2,
+   "num": 10,
+   "name": "TrainerTower_Lobby",
+   "section": "MAPSEC_TRAINER_TOWER_2",
+   "section_index": 179
+  },
+  {
+   "group": 2,
+   "num": 11,
+   "name": "TrainerTower_Elevator",
+   "section": "MAPSEC_TRAINER_TOWER_2",
+   "section_index": 179
+  },
+  {
+   "group": 2,
+   "num": 12,
+   "name": "FiveIsland_LostCave_Entrance",
+   "section": "MAPSEC_LOST_CAVE",
+   "section_index": 181
+  },
+  {
+   "group": 2,
+   "num": 13,
+   "name": "FiveIsland_LostCave_Room1",
+   "section": "MAPSEC_LOST_CAVE",
+   "section_index": 181
+  },
+  {
+   "group": 2,
+   "num": 14,
+   "name": "FiveIsland_LostCave_Room2",
+   "section": "MAPSEC_LOST_CAVE",
+   "section_index": 181
+  },
+  {
+   "group": 2,
+   "num": 15,
+   "name": "FiveIsland_LostCave_Room3",
+   "section": "MAPSEC_LOST_CAVE",
+   "section_index": 181
+  },
+  {
+   "group": 2,
+   "num": 16,
+   "name": "FiveIsland_LostCave_Room4",
+   "section": "MAPSEC_LOST_CAVE",
+   "section_index": 181
+  },
+  {
+   "group": 2,
+   "num": 17,
+   "name": "FiveIsland_LostCave_Room5",
+   "section": "MAPSEC_LOST_CAVE",
+   "section_index": 181
+  },
+  {
+   "group": 2,
+   "num": 18,
+   "name": "FiveIsland_LostCave_Room6",
+   "section": "MAPSEC_LOST_CAVE",
+   "section_index": 181
+  },
+  {
+   "group": 2,
+   "num": 19,
+   "name": "FiveIsland_LostCave_Room7",
+   "section": "MAPSEC_LOST_CAVE",
+   "section_index": 181
+  },
+  {
+   "group": 2,
+   "num": 20,
+   "name": "FiveIsland_LostCave_Room8",
+   "section": "MAPSEC_LOST_CAVE",
+   "section_index": 181
+  },
+  {
+   "group": 2,
+   "num": 21,
+   "name": "FiveIsland_LostCave_Room9",
+   "section": "MAPSEC_LOST_CAVE",
+   "section_index": 181
+  },
+  {
+   "group": 2,
+   "num": 22,
+   "name": "FiveIsland_LostCave_Room10",
+   "section": "MAPSEC_LOST_CAVE",
+   "section_index": 181
+  },
+  {
+   "group": 2,
+   "num": 23,
+   "name": "FiveIsland_LostCave_Room11",
+   "section": "MAPSEC_LOST_CAVE",
+   "section_index": 181
+  },
+  {
+   "group": 2,
+   "num": 24,
+   "name": "FiveIsland_LostCave_Room12",
+   "section": "MAPSEC_LOST_CAVE",
+   "section_index": 181
+  },
+  {
+   "group": 2,
+   "num": 25,
+   "name": "FiveIsland_LostCave_Room13",
+   "section": "MAPSEC_LOST_CAVE",
+   "section_index": 181
+  },
+  {
+   "group": 2,
+   "num": 26,
+   "name": "FiveIsland_LostCave_Room14",
+   "section": "MAPSEC_LOST_CAVE",
+   "section_index": 181
+  },
+  {
+   "group": 2,
+   "num": 27,
+   "name": "SevenIsland_TanobyRuins_MoneanChamber",
+   "section": "MAPSEC_MONEAN_CHAMBER",
+   "section_index": 188
+  },
+  {
+   "group": 2,
+   "num": 28,
+   "name": "SevenIsland_TanobyRuins_LiptooChamber",
+   "section": "MAPSEC_LIPTOO_CHAMBER",
+   "section_index": 189
+  },
+  {
+   "group": 2,
+   "num": 29,
+   "name": "SevenIsland_TanobyRuins_WeepthChamber",
+   "section": "MAPSEC_WEEPTH_CHAMBER",
+   "section_index": 190
+  },
+  {
+   "group": 2,
+   "num": 30,
+   "name": "SevenIsland_TanobyRuins_DilfordChamber",
+   "section": "MAPSEC_DILFORD_CHAMBER",
+   "section_index": 191
+  },
+  {
+   "group": 2,
+   "num": 31,
+   "name": "SevenIsland_TanobyRuins_ScufibChamber",
+   "section": "MAPSEC_SCUFIB_CHAMBER",
+   "section_index": 192
+  },
+  {
+   "group": 2,
+   "num": 32,
+   "name": "SevenIsland_TanobyRuins_RixyChamber",
+   "section": "MAPSEC_RIXY_CHAMBER",
+   "section_index": 193
+  },
+  {
+   "group": 2,
+   "num": 33,
+   "name": "SevenIsland_TanobyRuins_ViapoisChamber",
+   "section": "MAPSEC_VIAPOIS_CHAMBER",
+   "section_index": 194
+  },
+  {
+   "group": 2,
+   "num": 34,
+   "name": "ThreeIsland_DunsparceTunnel",
+   "section": "MAPSEC_THREE_ISLE_PATH",
+   "section_index": 185
+  },
+  {
+   "group": 2,
+   "num": 35,
+   "name": "SevenIsland_SevaultCanyon_TanobyKey",
+   "section": "MAPSEC_TANOBY_KEY",
+   "section_index": 186
+  },
+  {
+   "group": 2,
+   "num": 36,
+   "name": "NavelRock_1F",
+   "section": "MAPSEC_NAVEL_ROCK",
+   "section_index": 174
+  },
+  {
+   "group": 2,
+   "num": 37,
+   "name": "NavelRock_Summit",
+   "section": "MAPSEC_NAVEL_ROCK",
+   "section_index": 174
+  },
+  {
+   "group": 2,
+   "num": 38,
+   "name": "NavelRock_Base",
+   "section": "MAPSEC_NAVEL_ROCK",
+   "section_index": 174
+  },
+  {
+   "group": 2,
+   "num": 39,
+   "name": "NavelRock_SummitPath_2F",
+   "section": "MAPSEC_NAVEL_ROCK",
+   "section_index": 174
+  },
+  {
+   "group": 2,
+   "num": 40,
+   "name": "NavelRock_SummitPath_3F",
+   "section": "MAPSEC_NAVEL_ROCK",
+   "section_index": 174
+  },
+  {
+   "group": 2,
+   "num": 41,
+   "name": "NavelRock_SummitPath_4F",
+   "section": "MAPSEC_NAVEL_ROCK",
+   "section_index": 174
+  },
+  {
+   "group": 2,
+   "num": 42,
+   "name": "NavelRock_SummitPath_5F",
+   "section": "MAPSEC_NAVEL_ROCK",
+   "section_index": 174
+  },
+  {
+   "group": 2,
+   "num": 43,
+   "name": "NavelRock_BasePath_B1F",
+   "section": "MAPSEC_NAVEL_ROCK",
+   "section_index": 174
+  },
+  {
+   "group": 2,
+   "num": 44,
+   "name": "NavelRock_BasePath_B2F",
+   "section": "MAPSEC_NAVEL_ROCK",
+   "section_index": 174
+  },
+  {
+   "group": 2,
+   "num": 45,
+   "name": "NavelRock_BasePath_B3F",
+   "section": "MAPSEC_NAVEL_ROCK",
+   "section_index": 174
+  },
+  {
+   "group": 2,
+   "num": 46,
+   "name": "NavelRock_BasePath_B4F",
+   "section": "MAPSEC_NAVEL_ROCK",
+   "section_index": 174
+  },
+  {
+   "group": 2,
+   "num": 47,
+   "name": "NavelRock_BasePath_B5F",
+   "section": "MAPSEC_NAVEL_ROCK",
+   "section_index": 174
+  },
+  {
+   "group": 2,
+   "num": 48,
+   "name": "NavelRock_BasePath_B6F",
+   "section": "MAPSEC_NAVEL_ROCK",
+   "section_index": 174
+  },
+  {
+   "group": 2,
+   "num": 49,
+   "name": "NavelRock_BasePath_B7F",
+   "section": "MAPSEC_NAVEL_ROCK",
+   "section_index": 174
+  },
+  {
+   "group": 2,
+   "num": 50,
+   "name": "NavelRock_BasePath_B8F",
+   "section": "MAPSEC_NAVEL_ROCK",
+   "section_index": 174
+  },
+  {
+   "group": 2,
+   "num": 51,
+   "name": "NavelRock_BasePath_B9F",
+   "section": "MAPSEC_NAVEL_ROCK",
+   "section_index": 174
+  },
+  {
+   "group": 2,
+   "num": 52,
+   "name": "NavelRock_BasePath_B10F",
+   "section": "MAPSEC_NAVEL_ROCK",
+   "section_index": 174
+  },
+  {
+   "group": 2,
+   "num": 53,
+   "name": "NavelRock_BasePath_B11F",
+   "section": "MAPSEC_NAVEL_ROCK",
+   "section_index": 174
+  },
+  {
+   "group": 2,
+   "num": 54,
+   "name": "NavelRock_B1F",
+   "section": "MAPSEC_NAVEL_ROCK",
+   "section_index": 174
+  },
+  {
+   "group": 2,
+   "num": 55,
+   "name": "NavelRock_Fork",
+   "section": "MAPSEC_NAVEL_ROCK",
+   "section_index": 174
+  },
+  {
+   "group": 2,
+   "num": 56,
+   "name": "BirthIsland_Exterior",
+   "section": "MAPSEC_BIRTH_ISLAND",
+   "section_index": 187
+  },
+  {
+   "group": 2,
+   "num": 57,
+   "name": "OneIsland_KindleRoad_EmberSpa",
+   "section": "MAPSEC_EMBER_SPA",
+   "section_index": 195
+  },
+  {
+   "group": 2,
+   "num": 58,
+   "name": "BirthIsland_Harbor",
+   "section": "MAPSEC_BIRTH_ISLAND",
+   "section_index": 187
+  },
+  {
+   "group": 2,
+   "num": 59,
+   "name": "NavelRock_Harbor",
+   "section": "MAPSEC_NAVEL_ROCK",
+   "section_index": 174
+  },
+  {
+   "group": 3,
+   "num": 0,
+   "name": "PalletTown",
+   "section": "MAPSEC_PALLET_TOWN",
+   "section_index": 88
+  },
+  {
+   "group": 3,
+   "num": 1,
+   "name": "ViridianCity",
+   "section": "MAPSEC_VIRIDIAN_CITY",
+   "section_index": 89
+  },
+  {
+   "group": 3,
+   "num": 2,
+   "name": "PewterCity",
+   "section": "MAPSEC_PEWTER_CITY",
+   "section_index": 90
+  },
+  {
+   "group": 3,
+   "num": 3,
+   "name": "CeruleanCity",
+   "section": "MAPSEC_CERULEAN_CITY",
+   "section_index": 91
+  },
+  {
+   "group": 3,
+   "num": 4,
+   "name": "LavenderTown",
+   "section": "MAPSEC_LAVENDER_TOWN",
+   "section_index": 92
+  },
+  {
+   "group": 3,
+   "num": 5,
+   "name": "VermilionCity",
+   "section": "MAPSEC_VERMILION_CITY",
+   "section_index": 93
+  },
+  {
+   "group": 3,
+   "num": 6,
+   "name": "CeladonCity",
+   "section": "MAPSEC_CELADON_CITY",
+   "section_index": 94
+  },
+  {
+   "group": 3,
+   "num": 7,
+   "name": "FuchsiaCity",
+   "section": "MAPSEC_FUCHSIA_CITY",
+   "section_index": 95
+  },
+  {
+   "group": 3,
+   "num": 8,
+   "name": "CinnabarIsland",
+   "section": "MAPSEC_CINNABAR_ISLAND",
+   "section_index": 96
+  },
+  {
+   "group": 3,
+   "num": 9,
+   "name": "IndigoPlateau_Exterior",
+   "section": "MAPSEC_INDIGO_PLATEAU",
+   "section_index": 97
+  },
+  {
+   "group": 3,
+   "num": 10,
+   "name": "SaffronCity",
+   "section": "MAPSEC_SAFFRON_CITY",
+   "section_index": 98
+  },
+  {
+   "group": 3,
+   "num": 11,
+   "name": "SaffronCity_Connection",
+   "section": "MAPSEC_SAFFRON_CITY",
+   "section_index": 98
+  },
+  {
+   "group": 3,
+   "num": 12,
+   "name": "OneIsland",
+   "section": "MAPSEC_ONE_ISLAND",
+   "section_index": 143
+  },
+  {
+   "group": 3,
+   "num": 13,
+   "name": "TwoIsland",
+   "section": "MAPSEC_TWO_ISLAND",
+   "section_index": 144
+  },
+  {
+   "group": 3,
+   "num": 14,
+   "name": "ThreeIsland",
+   "section": "MAPSEC_THREE_ISLAND",
+   "section_index": 145
+  },
+  {
+   "group": 3,
+   "num": 15,
+   "name": "FourIsland",
+   "section": "MAPSEC_FOUR_ISLAND",
+   "section_index": 146
+  },
+  {
+   "group": 3,
+   "num": 16,
+   "name": "FiveIsland",
+   "section": "MAPSEC_FIVE_ISLAND",
+   "section_index": 147
+  },
+  {
+   "group": 3,
+   "num": 17,
+   "name": "SevenIsland",
+   "section": "MAPSEC_SEVEN_ISLAND",
+   "section_index": 148
+  },
+  {
+   "group": 3,
+   "num": 18,
+   "name": "SixIsland",
+   "section": "MAPSEC_SIX_ISLAND",
+   "section_index": 149
+  },
+  {
+   "group": 3,
+   "num": 19,
+   "name": "Route1",
+   "section": "MAPSEC_ROUTE_1",
+   "section_index": 101
+  },
+  {
+   "group": 3,
+   "num": 20,
+   "name": "Route2",
+   "section": "MAPSEC_ROUTE_2",
+   "section_index": 102
+  },
+  {
+   "group": 3,
+   "num": 21,
+   "name": "Route3",
+   "section": "MAPSEC_ROUTE_3",
+   "section_index": 103
+  },
+  {
+   "group": 3,
+   "num": 22,
+   "name": "Route4",
+   "section": "MAPSEC_ROUTE_4",
+   "section_index": 104
+  },
+  {
+   "group": 3,
+   "num": 23,
+   "name": "Route5",
+   "section": "MAPSEC_ROUTE_5",
+   "section_index": 105
+  },
+  {
+   "group": 3,
+   "num": 24,
+   "name": "Route6",
+   "section": "MAPSEC_ROUTE_6",
+   "section_index": 106
+  },
+  {
+   "group": 3,
+   "num": 25,
+   "name": "Route7",
+   "section": "MAPSEC_ROUTE_7",
+   "section_index": 107
+  },
+  {
+   "group": 3,
+   "num": 26,
+   "name": "Route8",
+   "section": "MAPSEC_ROUTE_8",
+   "section_index": 108
+  },
+  {
+   "group": 3,
+   "num": 27,
+   "name": "Route9",
+   "section": "MAPSEC_ROUTE_9",
+   "section_index": 109
+  },
+  {
+   "group": 3,
+   "num": 28,
+   "name": "Route10",
+   "section": "MAPSEC_ROUTE_10",
+   "section_index": 110
+  },
+  {
+   "group": 3,
+   "num": 29,
+   "name": "Route11",
+   "section": "MAPSEC_ROUTE_11",
+   "section_index": 111
+  },
+  {
+   "group": 3,
+   "num": 30,
+   "name": "Route12",
+   "section": "MAPSEC_ROUTE_12",
+   "section_index": 112
+  },
+  {
+   "group": 3,
+   "num": 31,
+   "name": "Route13",
+   "section": "MAPSEC_ROUTE_13",
+   "section_index": 113
+  },
+  {
+   "group": 3,
+   "num": 32,
+   "name": "Route14",
+   "section": "MAPSEC_ROUTE_14",
+   "section_index": 114
+  },
+  {
+   "group": 3,
+   "num": 33,
+   "name": "Route15",
+   "section": "MAPSEC_ROUTE_15",
+   "section_index": 115
+  },
+  {
+   "group": 3,
+   "num": 34,
+   "name": "Route16",
+   "section": "MAPSEC_ROUTE_16",
+   "section_index": 116
+  },
+  {
+   "group": 3,
+   "num": 35,
+   "name": "Route17",
+   "section": "MAPSEC_ROUTE_17",
+   "section_index": 117
+  },
+  {
+   "group": 3,
+   "num": 36,
+   "name": "Route18",
+   "section": "MAPSEC_ROUTE_18",
+   "section_index": 118
+  },
+  {
+   "group": 3,
+   "num": 37,
+   "name": "Route19",
+   "section": "MAPSEC_ROUTE_19",
+   "section_index": 119
+  },
+  {
+   "group": 3,
+   "num": 38,
+   "name": "Route20",
+   "section": "MAPSEC_ROUTE_20",
+   "section_index": 120
+  },
+  {
+   "group": 3,
+   "num": 39,
+   "name": "Route21_North",
+   "section": "MAPSEC_ROUTE_21",
+   "section_index": 121
+  },
+  {
+   "group": 3,
+   "num": 40,
+   "name": "Route21_South",
+   "section": "MAPSEC_ROUTE_21",
+   "section_index": 121
+  },
+  {
+   "group": 3,
+   "num": 41,
+   "name": "Route22",
+   "section": "MAPSEC_ROUTE_22",
+   "section_index": 122
+  },
+  {
+   "group": 3,
+   "num": 42,
+   "name": "Route23",
+   "section": "MAPSEC_ROUTE_23",
+   "section_index": 123
+  },
+  {
+   "group": 3,
+   "num": 43,
+   "name": "Route24",
+   "section": "MAPSEC_ROUTE_24",
+   "section_index": 124
+  },
+  {
+   "group": 3,
+   "num": 44,
+   "name": "Route25",
+   "section": "MAPSEC_ROUTE_25",
+   "section_index": 125
+  },
+  {
+   "group": 3,
+   "num": 45,
+   "name": "OneIsland_KindleRoad",
+   "section": "MAPSEC_KINDLE_ROAD",
+   "section_index": 150
+  },
+  {
+   "group": 3,
+   "num": 46,
+   "name": "OneIsland_TreasureBeach",
+   "section": "MAPSEC_TREASURE_BEACH",
+   "section_index": 151
+  },
+  {
+   "group": 3,
+   "num": 47,
+   "name": "TwoIsland_CapeBrink",
+   "section": "MAPSEC_CAPE_BRINK",
+   "section_index": 152
+  },
+  {
+   "group": 3,
+   "num": 48,
+   "name": "ThreeIsland_BondBridge",
+   "section": "MAPSEC_BOND_BRIDGE",
+   "section_index": 153
+  },
+  {
+   "group": 3,
+   "num": 49,
+   "name": "ThreeIsland_Port",
+   "section": "MAPSEC_THREE_ISLE_PORT",
+   "section_index": 154
+  },
+  {
+   "group": 3,
+   "num": 50,
+   "name": "Prototype_SeviiIsle_6",
+   "section": "MAPSEC_SEVII_ISLE_6",
+   "section_index": 155
+  },
+  {
+   "group": 3,
+   "num": 51,
+   "name": "Prototype_SeviiIsle_7",
+   "section": "MAPSEC_SEVII_ISLE_7",
+   "section_index": 156
+  },
+  {
+   "group": 3,
+   "num": 52,
+   "name": "Prototype_SeviiIsle_8",
+   "section": "MAPSEC_SEVII_ISLE_8",
+   "section_index": 157
+  },
+  {
+   "group": 3,
+   "num": 53,
+   "name": "Prototype_SeviiIsle_9",
+   "section": "MAPSEC_SEVII_ISLE_9",
+   "section_index": 158
+  },
+  {
+   "group": 3,
+   "num": 54,
+   "name": "FiveIsland_ResortGorgeous",
+   "section": "MAPSEC_RESORT_GORGEOUS",
+   "section_index": 159
+  },
+  {
+   "group": 3,
+   "num": 55,
+   "name": "FiveIsland_WaterLabyrinth",
+   "section": "MAPSEC_WATER_LABYRINTH",
+   "section_index": 160
+  },
+  {
+   "group": 3,
+   "num": 56,
+   "name": "FiveIsland_Meadow",
+   "section": "MAPSEC_FIVE_ISLE_MEADOW",
+   "section_index": 161
+  },
+  {
+   "group": 3,
+   "num": 57,
+   "name": "FiveIsland_MemorialPillar",
+   "section": "MAPSEC_MEMORIAL_PILLAR",
+   "section_index": 162
+  },
+  {
+   "group": 3,
+   "num": 58,
+   "name": "SixIsland_OutcastIsland",
+   "section": "MAPSEC_OUTCAST_ISLAND",
+   "section_index": 163
+  },
+  {
+   "group": 3,
+   "num": 59,
+   "name": "SixIsland_GreenPath",
+   "section": "MAPSEC_GREEN_PATH",
+   "section_index": 164
+  },
+  {
+   "group": 3,
+   "num": 60,
+   "name": "SixIsland_WaterPath",
+   "section": "MAPSEC_WATER_PATH",
+   "section_index": 165
+  },
+  {
+   "group": 3,
+   "num": 61,
+   "name": "SixIsland_RuinValley",
+   "section": "MAPSEC_RUIN_VALLEY",
+   "section_index": 166
+  },
+  {
+   "group": 3,
+   "num": 62,
+   "name": "SevenIsland_TrainerTower",
+   "section": "MAPSEC_TRAINER_TOWER",
+   "section_index": 167
+  },
+  {
+   "group": 3,
+   "num": 63,
+   "name": "SevenIsland_SevaultCanyon_Entrance",
+   "section": "MAPSEC_CANYON_ENTRANCE",
+   "section_index": 168
+  },
+  {
+   "group": 3,
+   "num": 64,
+   "name": "SevenIsland_SevaultCanyon",
+   "section": "MAPSEC_SEVAULT_CANYON",
+   "section_index": 169
+  },
+  {
+   "group": 3,
+   "num": 65,
+   "name": "SevenIsland_TanobyRuins",
+   "section": "MAPSEC_TANOBY_RUINS",
+   "section_index": 170
+  },
+  {
+   "group": 4,
+   "num": 0,
+   "name": "PalletTown_PlayersHouse_1F",
+   "section": "MAPSEC_PALLET_TOWN",
+   "section_index": 88
+  },
+  {
+   "group": 4,
+   "num": 1,
+   "name": "PalletTown_PlayersHouse_2F",
+   "section": "MAPSEC_PALLET_TOWN",
+   "section_index": 88
+  },
+  {
+   "group": 4,
+   "num": 2,
+   "name": "PalletTown_RivalsHouse",
+   "section": "MAPSEC_PALLET_TOWN",
+   "section_index": 88
+  },
+  {
+   "group": 4,
+   "num": 3,
+   "name": "PalletTown_ProfessorOaksLab",
+   "section": "MAPSEC_PALLET_TOWN",
+   "section_index": 88
+  },
+  {
+   "group": 5,
+   "num": 0,
+   "name": "ViridianCity_House",
+   "section": "MAPSEC_VIRIDIAN_CITY",
+   "section_index": 89
+  },
+  {
+   "group": 5,
+   "num": 1,
+   "name": "ViridianCity_Gym",
+   "section": "MAPSEC_VIRIDIAN_CITY",
+   "section_index": 89
+  },
+  {
+   "group": 5,
+   "num": 2,
+   "name": "ViridianCity_School",
+   "section": "MAPSEC_VIRIDIAN_CITY",
+   "section_index": 89
+  },
+  {
+   "group": 5,
+   "num": 3,
+   "name": "ViridianCity_Mart",
+   "section": "MAPSEC_VIRIDIAN_CITY",
+   "section_index": 89
+  },
+  {
+   "group": 5,
+   "num": 4,
+   "name": "ViridianCity_PokemonCenter_1F",
+   "section": "MAPSEC_VIRIDIAN_CITY",
+   "section_index": 89
+  },
+  {
+   "group": 5,
+   "num": 5,
+   "name": "ViridianCity_PokemonCenter_2F",
+   "section": "MAPSEC_VIRIDIAN_CITY",
+   "section_index": 89
+  },
+  {
+   "group": 6,
+   "num": 0,
+   "name": "PewterCity_Museum_1F",
+   "section": "MAPSEC_PEWTER_CITY",
+   "section_index": 90
+  },
+  {
+   "group": 6,
+   "num": 1,
+   "name": "PewterCity_Museum_2F",
+   "section": "MAPSEC_PEWTER_CITY",
+   "section_index": 90
+  },
+  {
+   "group": 6,
+   "num": 2,
+   "name": "PewterCity_Gym",
+   "section": "MAPSEC_PEWTER_CITY",
+   "section_index": 90
+  },
+  {
+   "group": 6,
+   "num": 3,
+   "name": "PewterCity_Mart",
+   "section": "MAPSEC_PEWTER_CITY",
+   "section_index": 90
+  },
+  {
+   "group": 6,
+   "num": 4,
+   "name": "PewterCity_House1",
+   "section": "MAPSEC_PEWTER_CITY",
+   "section_index": 90
+  },
+  {
+   "group": 6,
+   "num": 5,
+   "name": "PewterCity_PokemonCenter_1F",
+   "section": "MAPSEC_PEWTER_CITY",
+   "section_index": 90
+  },
+  {
+   "group": 6,
+   "num": 6,
+   "name": "PewterCity_PokemonCenter_2F",
+   "section": "MAPSEC_PEWTER_CITY",
+   "section_index": 90
+  },
+  {
+   "group": 6,
+   "num": 7,
+   "name": "PewterCity_House2",
+   "section": "MAPSEC_PEWTER_CITY",
+   "section_index": 90
+  },
+  {
+   "group": 7,
+   "num": 0,
+   "name": "CeruleanCity_House1",
+   "section": "MAPSEC_CERULEAN_CITY",
+   "section_index": 91
+  },
+  {
+   "group": 7,
+   "num": 1,
+   "name": "CeruleanCity_House2",
+   "section": "MAPSEC_CERULEAN_CITY",
+   "section_index": 91
+  },
+  {
+   "group": 7,
+   "num": 2,
+   "name": "CeruleanCity_House3",
+   "section": "MAPSEC_CERULEAN_CITY",
+   "section_index": 91
+  },
+  {
+   "group": 7,
+   "num": 3,
+   "name": "CeruleanCity_PokemonCenter_1F",
+   "section": "MAPSEC_CERULEAN_CITY",
+   "section_index": 91
+  },
+  {
+   "group": 7,
+   "num": 4,
+   "name": "CeruleanCity_PokemonCenter_2F",
+   "section": "MAPSEC_CERULEAN_CITY",
+   "section_index": 91
+  },
+  {
+   "group": 7,
+   "num": 5,
+   "name": "CeruleanCity_Gym",
+   "section": "MAPSEC_CERULEAN_CITY",
+   "section_index": 91
+  },
+  {
+   "group": 7,
+   "num": 6,
+   "name": "CeruleanCity_BikeShop",
+   "section": "MAPSEC_CERULEAN_CITY",
+   "section_index": 91
+  },
+  {
+   "group": 7,
+   "num": 7,
+   "name": "CeruleanCity_Mart",
+   "section": "MAPSEC_CERULEAN_CITY",
+   "section_index": 91
+  },
+  {
+   "group": 7,
+   "num": 8,
+   "name": "CeruleanCity_House4",
+   "section": "MAPSEC_CERULEAN_CITY",
+   "section_index": 91
+  },
+  {
+   "group": 7,
+   "num": 9,
+   "name": "CeruleanCity_House5",
+   "section": "MAPSEC_CERULEAN_CITY",
+   "section_index": 91
+  },
+  {
+   "group": 8,
+   "num": 0,
+   "name": "LavenderTown_PokemonCenter_1F",
+   "section": "MAPSEC_LAVENDER_TOWN",
+   "section_index": 92
+  },
+  {
+   "group": 8,
+   "num": 1,
+   "name": "LavenderTown_PokemonCenter_2F",
+   "section": "MAPSEC_LAVENDER_TOWN",
+   "section_index": 92
+  },
+  {
+   "group": 8,
+   "num": 2,
+   "name": "LavenderTown_VolunteerPokemonHouse",
+   "section": "MAPSEC_LAVENDER_TOWN",
+   "section_index": 92
+  },
+  {
+   "group": 8,
+   "num": 3,
+   "name": "LavenderTown_House1",
+   "section": "MAPSEC_LAVENDER_TOWN",
+   "section_index": 92
+  },
+  {
+   "group": 8,
+   "num": 4,
+   "name": "LavenderTown_House2",
+   "section": "MAPSEC_LAVENDER_TOWN",
+   "section_index": 92
+  },
+  {
+   "group": 8,
+   "num": 5,
+   "name": "LavenderTown_Mart",
+   "section": "MAPSEC_LAVENDER_TOWN",
+   "section_index": 92
+  },
+  {
+   "group": 9,
+   "num": 0,
+   "name": "VermilionCity_House1",
+   "section": "MAPSEC_VERMILION_CITY",
+   "section_index": 93
+  },
+  {
+   "group": 9,
+   "num": 1,
+   "name": "VermilionCity_PokemonCenter_1F",
+   "section": "MAPSEC_VERMILION_CITY",
+   "section_index": 93
+  },
+  {
+   "group": 9,
+   "num": 2,
+   "name": "VermilionCity_PokemonCenter_2F",
+   "section": "MAPSEC_VERMILION_CITY",
+   "section_index": 93
+  },
+  {
+   "group": 9,
+   "num": 3,
+   "name": "VermilionCity_PokemonFanClub",
+   "section": "MAPSEC_VERMILION_CITY",
+   "section_index": 93
+  },
+  {
+   "group": 9,
+   "num": 4,
+   "name": "VermilionCity_House2",
+   "section": "MAPSEC_VERMILION_CITY",
+   "section_index": 93
+  },
+  {
+   "group": 9,
+   "num": 5,
+   "name": "VermilionCity_Mart",
+   "section": "MAPSEC_VERMILION_CITY",
+   "section_index": 93
+  },
+  {
+   "group": 9,
+   "num": 6,
+   "name": "VermilionCity_Gym",
+   "section": "MAPSEC_VERMILION_CITY",
+   "section_index": 93
+  },
+  {
+   "group": 9,
+   "num": 7,
+   "name": "VermilionCity_House3",
+   "section": "MAPSEC_VERMILION_CITY",
+   "section_index": 93
+  },
+  {
+   "group": 10,
+   "num": 0,
+   "name": "CeladonCity_DepartmentStore_1F",
+   "section": "MAPSEC_CELADON_CITY",
+   "section_index": 94
+  },
+  {
+   "group": 10,
+   "num": 1,
+   "name": "CeladonCity_DepartmentStore_2F",
+   "section": "MAPSEC_CELADON_CITY",
+   "section_index": 94
+  },
+  {
+   "group": 10,
+   "num": 2,
+   "name": "CeladonCity_DepartmentStore_3F",
+   "section": "MAPSEC_CELADON_CITY",
+   "section_index": 94
+  },
+  {
+   "group": 10,
+   "num": 3,
+   "name": "CeladonCity_DepartmentStore_4F",
+   "section": "MAPSEC_CELADON_CITY",
+   "section_index": 94
+  },
+  {
+   "group": 10,
+   "num": 4,
+   "name": "CeladonCity_DepartmentStore_5F",
+   "section": "MAPSEC_CELADON_CITY",
+   "section_index": 94
+  },
+  {
+   "group": 10,
+   "num": 5,
+   "name": "CeladonCity_DepartmentStore_Roof",
+   "section": "MAPSEC_CELADON_CITY",
+   "section_index": 94
+  },
+  {
+   "group": 10,
+   "num": 6,
+   "name": "CeladonCity_DepartmentStore_Elevator",
+   "section": "MAPSEC_CELADON_CITY",
+   "section_index": 94
+  },
+  {
+   "group": 10,
+   "num": 7,
+   "name": "CeladonCity_Condominiums_1F",
+   "section": "MAPSEC_CELADON_CITY",
+   "section_index": 94
+  },
+  {
+   "group": 10,
+   "num": 8,
+   "name": "CeladonCity_Condominiums_2F",
+   "section": "MAPSEC_CELADON_CITY",
+   "section_index": 94
+  },
+  {
+   "group": 10,
+   "num": 9,
+   "name": "CeladonCity_Condominiums_3F",
+   "section": "MAPSEC_CELADON_CITY",
+   "section_index": 94
+  },
+  {
+   "group": 10,
+   "num": 10,
+   "name": "CeladonCity_Condominiums_Roof",
+   "section": "MAPSEC_CELADON_CITY",
+   "section_index": 94
+  },
+  {
+   "group": 10,
+   "num": 11,
+   "name": "CeladonCity_Condominiums_RoofRoom",
+   "section": "MAPSEC_CELADON_CITY",
+   "section_index": 94
+  },
+  {
+   "group": 10,
+   "num": 12,
+   "name": "CeladonCity_PokemonCenter_1F",
+   "section": "MAPSEC_CELADON_CITY",
+   "section_index": 94
+  },
+  {
+   "group": 10,
+   "num": 13,
+   "name": "CeladonCity_PokemonCenter_2F",
+   "section": "MAPSEC_CELADON_CITY",
+   "section_index": 94
+  },
+  {
+   "group": 10,
+   "num": 14,
+   "name": "CeladonCity_GameCorner",
+   "section": "MAPSEC_CELADON_CITY",
+   "section_index": 94
+  },
+  {
+   "group": 10,
+   "num": 15,
+   "name": "CeladonCity_GameCorner_PrizeRoom",
+   "section": "MAPSEC_CELADON_CITY",
+   "section_index": 94
+  },
+  {
+   "group": 10,
+   "num": 16,
+   "name": "CeladonCity_Gym",
+   "section": "MAPSEC_CELADON_CITY",
+   "section_index": 94
+  },
+  {
+   "group": 10,
+   "num": 17,
+   "name": "CeladonCity_Restaurant",
+   "section": "MAPSEC_CELADON_CITY",
+   "section_index": 94
+  },
+  {
+   "group": 10,
+   "num": 18,
+   "name": "CeladonCity_House1",
+   "section": "MAPSEC_CELADON_CITY",
+   "section_index": 94
+  },
+  {
+   "group": 10,
+   "num": 19,
+   "name": "CeladonCity_Hotel",
+   "section": "MAPSEC_CELADON_CITY",
+   "section_index": 94
+  },
+  {
+   "group": 11,
+   "num": 0,
+   "name": "FuchsiaCity_SafariZone_Entrance",
+   "section": "MAPSEC_FUCHSIA_CITY",
+   "section_index": 95
+  },
+  {
+   "group": 11,
+   "num": 1,
+   "name": "FuchsiaCity_Mart",
+   "section": "MAPSEC_FUCHSIA_CITY",
+   "section_index": 95
+  },
+  {
+   "group": 11,
+   "num": 2,
+   "name": "FuchsiaCity_SafariZone_Office",
+   "section": "MAPSEC_FUCHSIA_CITY",
+   "section_index": 95
+  },
+  {
+   "group": 11,
+   "num": 3,
+   "name": "FuchsiaCity_Gym",
+   "section": "MAPSEC_FUCHSIA_CITY",
+   "section_index": 95
+  },
+  {
+   "group": 11,
+   "num": 4,
+   "name": "FuchsiaCity_House1",
+   "section": "MAPSEC_FUCHSIA_CITY",
+   "section_index": 95
+  },
+  {
+   "group": 11,
+   "num": 5,
+   "name": "FuchsiaCity_PokemonCenter_1F",
+   "section": "MAPSEC_FUCHSIA_CITY",
+   "section_index": 95
+  },
+  {
+   "group": 11,
+   "num": 6,
+   "name": "FuchsiaCity_PokemonCenter_2F",
+   "section": "MAPSEC_FUCHSIA_CITY",
+   "section_index": 95
+  },
+  {
+   "group": 11,
+   "num": 7,
+   "name": "FuchsiaCity_WardensHouse",
+   "section": "MAPSEC_FUCHSIA_CITY",
+   "section_index": 95
+  },
+  {
+   "group": 11,
+   "num": 8,
+   "name": "FuchsiaCity_House2",
+   "section": "MAPSEC_FUCHSIA_CITY",
+   "section_index": 95
+  },
+  {
+   "group": 11,
+   "num": 9,
+   "name": "FuchsiaCity_House3",
+   "section": "MAPSEC_FUCHSIA_CITY",
+   "section_index": 95
+  },
+  {
+   "group": 12,
+   "num": 0,
+   "name": "CinnabarIsland_Gym",
+   "section": "MAPSEC_CINNABAR_ISLAND",
+   "section_index": 96
+  },
+  {
+   "group": 12,
+   "num": 1,
+   "name": "CinnabarIsland_PokemonLab_Entrance",
+   "section": "MAPSEC_CINNABAR_ISLAND",
+   "section_index": 96
+  },
+  {
+   "group": 12,
+   "num": 2,
+   "name": "CinnabarIsland_PokemonLab_Lounge",
+   "section": "MAPSEC_CINNABAR_ISLAND",
+   "section_index": 96
+  },
+  {
+   "group": 12,
+   "num": 3,
+   "name": "CinnabarIsland_PokemonLab_ResearchRoom",
+   "section": "MAPSEC_CINNABAR_ISLAND",
+   "section_index": 96
+  },
+  {
+   "group": 12,
+   "num": 4,
+   "name": "CinnabarIsland_PokemonLab_ExperimentRoom",
+   "section": "MAPSEC_CINNABAR_ISLAND",
+   "section_index": 96
+  },
+  {
+   "group": 12,
+   "num": 5,
+   "name": "CinnabarIsland_PokemonCenter_1F",
+   "section": "MAPSEC_CINNABAR_ISLAND",
+   "section_index": 96
+  },
+  {
+   "group": 12,
+   "num": 6,
+   "name": "CinnabarIsland_PokemonCenter_2F",
+   "section": "MAPSEC_CINNABAR_ISLAND",
+   "section_index": 96
+  },
+  {
+   "group": 12,
+   "num": 7,
+   "name": "CinnabarIsland_Mart",
+   "section": "MAPSEC_CINNABAR_ISLAND",
+   "section_index": 96
+  },
+  {
+   "group": 13,
+   "num": 0,
+   "name": "IndigoPlateau_PokemonCenter_1F",
+   "section": "MAPSEC_INDIGO_PLATEAU",
+   "section_index": 97
+  },
+  {
+   "group": 13,
+   "num": 1,
+   "name": "IndigoPlateau_PokemonCenter_2F",
+   "section": "MAPSEC_INDIGO_PLATEAU",
+   "section_index": 97
+  },
+  {
+   "group": 14,
+   "num": 0,
+   "name": "SaffronCity_CopycatsHouse_1F",
+   "section": "MAPSEC_SAFFRON_CITY",
+   "section_index": 98
+  },
+  {
+   "group": 14,
+   "num": 1,
+   "name": "SaffronCity_CopycatsHouse_2F",
+   "section": "MAPSEC_SAFFRON_CITY",
+   "section_index": 98
+  },
+  {
+   "group": 14,
+   "num": 2,
+   "name": "SaffronCity_Dojo",
+   "section": "MAPSEC_SAFFRON_CITY",
+   "section_index": 98
+  },
+  {
+   "group": 14,
+   "num": 3,
+   "name": "SaffronCity_Gym",
+   "section": "MAPSEC_SAFFRON_CITY",
+   "section_index": 98
+  },
+  {
+   "group": 14,
+   "num": 4,
+   "name": "SaffronCity_House",
+   "section": "MAPSEC_SAFFRON_CITY",
+   "section_index": 98
+  },
+  {
+   "group": 14,
+   "num": 5,
+   "name": "SaffronCity_Mart",
+   "section": "MAPSEC_SAFFRON_CITY",
+   "section_index": 98
+  },
+  {
+   "group": 14,
+   "num": 6,
+   "name": "SaffronCity_PokemonCenter_1F",
+   "section": "MAPSEC_SAFFRON_CITY",
+   "section_index": 98
+  },
+  {
+   "group": 14,
+   "num": 7,
+   "name": "SaffronCity_PokemonCenter_2F",
+   "section": "MAPSEC_SAFFRON_CITY",
+   "section_index": 98
+  },
+  {
+   "group": 14,
+   "num": 8,
+   "name": "SaffronCity_MrPsychicsHouse",
+   "section": "MAPSEC_SAFFRON_CITY",
+   "section_index": 98
+  },
+  {
+   "group": 14,
+   "num": 9,
+   "name": "SaffronCity_PokemonTrainerFanClub",
+   "section": "MAPSEC_SAFFRON_CITY",
+   "section_index": 98
+  },
+  {
+   "group": 15,
+   "num": 0,
+   "name": "Route2_ViridianForest_SouthEntrance",
+   "section": "MAPSEC_ROUTE_2",
+   "section_index": 102
+  },
+  {
+   "group": 15,
+   "num": 1,
+   "name": "Route2_House",
+   "section": "MAPSEC_ROUTE_2",
+   "section_index": 102
+  },
+  {
+   "group": 15,
+   "num": 2,
+   "name": "Route2_EastBuilding",
+   "section": "MAPSEC_ROUTE_2",
+   "section_index": 102
+  },
+  {
+   "group": 15,
+   "num": 3,
+   "name": "Route2_ViridianForest_NorthEntrance",
+   "section": "MAPSEC_ROUTE_2",
+   "section_index": 102
+  },
+  {
+   "group": 16,
+   "num": 0,
+   "name": "Route4_PokemonCenter_1F",
+   "section": "MAPSEC_ROUTE_4",
+   "section_index": 104
+  },
+  {
+   "group": 16,
+   "num": 1,
+   "name": "Route4_PokemonCenter_2F",
+   "section": "MAPSEC_ROUTE_4",
+   "section_index": 104
+  },
+  {
+   "group": 17,
+   "num": 0,
+   "name": "Route5_PokemonDayCare",
+   "section": "MAPSEC_ROUTE_5",
+   "section_index": 105
+  },
+  {
+   "group": 17,
+   "num": 1,
+   "name": "Route5_SouthEntrance",
+   "section": "MAPSEC_ROUTE_5",
+   "section_index": 105
+  },
+  {
+   "group": 18,
+   "num": 0,
+   "name": "Route6_NorthEntrance",
+   "section": "MAPSEC_ROUTE_6",
+   "section_index": 106
+  },
+  {
+   "group": 18,
+   "num": 1,
+   "name": "Route6_UnusedHouse",
+   "section": "MAPSEC_ROUTE_6",
+   "section_index": 106
+  },
+  {
+   "group": 19,
+   "num": 0,
+   "name": "Route7_EastEntrance",
+   "section": "MAPSEC_ROUTE_7",
+   "section_index": 107
+  },
+  {
+   "group": 20,
+   "num": 0,
+   "name": "Route8_WestEntrance",
+   "section": "MAPSEC_ROUTE_8",
+   "section_index": 108
+  },
+  {
+   "group": 21,
+   "num": 0,
+   "name": "Route10_PokemonCenter_1F",
+   "section": "MAPSEC_ROUTE_10",
+   "section_index": 110
+  },
+  {
+   "group": 21,
+   "num": 1,
+   "name": "Route10_PokemonCenter_2F",
+   "section": "MAPSEC_ROUTE_10",
+   "section_index": 110
+  },
+  {
+   "group": 22,
+   "num": 0,
+   "name": "Route11_EastEntrance_1F",
+   "section": "MAPSEC_ROUTE_11",
+   "section_index": 111
+  },
+  {
+   "group": 22,
+   "num": 1,
+   "name": "Route11_EastEntrance_2F",
+   "section": "MAPSEC_ROUTE_11",
+   "section_index": 111
+  },
+  {
+   "group": 23,
+   "num": 0,
+   "name": "Route12_NorthEntrance_1F",
+   "section": "MAPSEC_ROUTE_12",
+   "section_index": 112
+  },
+  {
+   "group": 23,
+   "num": 1,
+   "name": "Route12_NorthEntrance_2F",
+   "section": "MAPSEC_ROUTE_12",
+   "section_index": 112
+  },
+  {
+   "group": 23,
+   "num": 2,
+   "name": "Route12_FishingHouse",
+   "section": "MAPSEC_ROUTE_12",
+   "section_index": 112
+  },
+  {
+   "group": 24,
+   "num": 0,
+   "name": "Route15_WestEntrance_1F",
+   "section": "MAPSEC_ROUTE_15",
+   "section_index": 115
+  },
+  {
+   "group": 24,
+   "num": 1,
+   "name": "Route15_WestEntrance_2F",
+   "section": "MAPSEC_ROUTE_15",
+   "section_index": 115
+  },
+  {
+   "group": 25,
+   "num": 0,
+   "name": "Route16_House",
+   "section": "MAPSEC_ROUTE_16",
+   "section_index": 116
+  },
+  {
+   "group": 25,
+   "num": 1,
+   "name": "Route16_NorthEntrance_1F",
+   "section": "MAPSEC_ROUTE_16",
+   "section_index": 116
+  },
+  {
+   "group": 25,
+   "num": 2,
+   "name": "Route16_NorthEntrance_2F",
+   "section": "MAPSEC_ROUTE_16",
+   "section_index": 116
+  },
+  {
+   "group": 26,
+   "num": 0,
+   "name": "Route18_EastEntrance_1F",
+   "section": "MAPSEC_ROUTE_18",
+   "section_index": 118
+  },
+  {
+   "group": 26,
+   "num": 1,
+   "name": "Route18_EastEntrance_2F",
+   "section": "MAPSEC_ROUTE_18",
+   "section_index": 118
+  },
+  {
+   "group": 27,
+   "num": 0,
+   "name": "Route19_UnusedHouse",
+   "section": "MAPSEC_ROUTE_19",
+   "section_index": 119
+  },
+  {
+   "group": 28,
+   "num": 0,
+   "name": "Route22_NorthEntrance",
+   "section": "MAPSEC_ROUTE_22",
+   "section_index": 122
+  },
+  {
+   "group": 29,
+   "num": 0,
+   "name": "Route23_UnusedHouse",
+   "section": "MAPSEC_ROUTE_23",
+   "section_index": 123
+  },
+  {
+   "group": 30,
+   "num": 0,
+   "name": "Route25_SeaCottage",
+   "section": "MAPSEC_ROUTE_25",
+   "section_index": 125
+  },
+  {
+   "group": 31,
+   "num": 0,
+   "name": "SevenIsland_House_Room1",
+   "section": "MAPSEC_SEVEN_ISLAND",
+   "section_index": 148
+  },
+  {
+   "group": 31,
+   "num": 1,
+   "name": "SevenIsland_House_Room2",
+   "section": "MAPSEC_SEVEN_ISLAND",
+   "section_index": 148
+  },
+  {
+   "group": 31,
+   "num": 2,
+   "name": "SevenIsland_Mart",
+   "section": "MAPSEC_SEVEN_ISLAND",
+   "section_index": 148
+  },
+  {
+   "group": 31,
+   "num": 3,
+   "name": "SevenIsland_PokemonCenter_1F",
+   "section": "MAPSEC_SEVEN_ISLAND",
+   "section_index": 148
+  },
+  {
+   "group": 31,
+   "num": 4,
+   "name": "SevenIsland_PokemonCenter_2F",
+   "section": "MAPSEC_SEVEN_ISLAND",
+   "section_index": 148
+  },
+  {
+   "group": 31,
+   "num": 5,
+   "name": "SevenIsland_UnusedHouse",
+   "section": "MAPSEC_SEVEN_ISLAND",
+   "section_index": 148
+  },
+  {
+   "group": 31,
+   "num": 6,
+   "name": "SevenIsland_Harbor",
+   "section": "MAPSEC_SEVEN_ISLAND",
+   "section_index": 148
+  },
+  {
+   "group": 32,
+   "num": 0,
+   "name": "OneIsland_PokemonCenter_1F",
+   "section": "MAPSEC_ONE_ISLAND",
+   "section_index": 143
+  },
+  {
+   "group": 32,
+   "num": 1,
+   "name": "OneIsland_PokemonCenter_2F",
+   "section": "MAPSEC_ONE_ISLAND",
+   "section_index": 143
+  },
+  {
+   "group": 32,
+   "num": 2,
+   "name": "OneIsland_House1",
+   "section": "MAPSEC_ONE_ISLAND",
+   "section_index": 143
+  },
+  {
+   "group": 32,
+   "num": 3,
+   "name": "OneIsland_House2",
+   "section": "MAPSEC_ONE_ISLAND",
+   "section_index": 143
+  },
+  {
+   "group": 32,
+   "num": 4,
+   "name": "OneIsland_Harbor",
+   "section": "MAPSEC_ONE_ISLAND",
+   "section_index": 143
+  },
+  {
+   "group": 33,
+   "num": 0,
+   "name": "TwoIsland_JoyfulGameCorner",
+   "section": "MAPSEC_TWO_ISLAND",
+   "section_index": 144
+  },
+  {
+   "group": 33,
+   "num": 1,
+   "name": "TwoIsland_House",
+   "section": "MAPSEC_TWO_ISLAND",
+   "section_index": 144
+  },
+  {
+   "group": 33,
+   "num": 2,
+   "name": "TwoIsland_PokemonCenter_1F",
+   "section": "MAPSEC_TWO_ISLAND",
+   "section_index": 144
+  },
+  {
+   "group": 33,
+   "num": 3,
+   "name": "TwoIsland_PokemonCenter_2F",
+   "section": "MAPSEC_TWO_ISLAND",
+   "section_index": 144
+  },
+  {
+   "group": 33,
+   "num": 4,
+   "name": "TwoIsland_Harbor",
+   "section": "MAPSEC_TWO_ISLAND",
+   "section_index": 144
+  },
+  {
+   "group": 34,
+   "num": 0,
+   "name": "ThreeIsland_House1",
+   "section": "MAPSEC_THREE_ISLAND",
+   "section_index": 145
+  },
+  {
+   "group": 34,
+   "num": 1,
+   "name": "ThreeIsland_PokemonCenter_1F",
+   "section": "MAPSEC_THREE_ISLAND",
+   "section_index": 145
+  },
+  {
+   "group": 34,
+   "num": 2,
+   "name": "ThreeIsland_PokemonCenter_2F",
+   "section": "MAPSEC_THREE_ISLAND",
+   "section_index": 145
+  },
+  {
+   "group": 34,
+   "num": 3,
+   "name": "ThreeIsland_Mart",
+   "section": "MAPSEC_THREE_ISLAND",
+   "section_index": 145
+  },
+  {
+   "group": 34,
+   "num": 4,
+   "name": "ThreeIsland_House2",
+   "section": "MAPSEC_THREE_ISLAND",
+   "section_index": 145
+  },
+  {
+   "group": 34,
+   "num": 5,
+   "name": "ThreeIsland_House3",
+   "section": "MAPSEC_THREE_ISLAND",
+   "section_index": 145
+  },
+  {
+   "group": 34,
+   "num": 6,
+   "name": "ThreeIsland_House4",
+   "section": "MAPSEC_THREE_ISLAND",
+   "section_index": 145
+  },
+  {
+   "group": 34,
+   "num": 7,
+   "name": "ThreeIsland_House5",
+   "section": "MAPSEC_THREE_ISLAND",
+   "section_index": 145
+  },
+  {
+   "group": 35,
+   "num": 0,
+   "name": "FourIsland_PokemonDayCare",
+   "section": "MAPSEC_FOUR_ISLAND",
+   "section_index": 146
+  },
+  {
+   "group": 35,
+   "num": 1,
+   "name": "FourIsland_PokemonCenter_1F",
+   "section": "MAPSEC_FOUR_ISLAND",
+   "section_index": 146
+  },
+  {
+   "group": 35,
+   "num": 2,
+   "name": "FourIsland_PokemonCenter_2F",
+   "section": "MAPSEC_FOUR_ISLAND",
+   "section_index": 146
+  },
+  {
+   "group": 35,
+   "num": 3,
+   "name": "FourIsland_House1",
+   "section": "MAPSEC_FOUR_ISLAND",
+   "section_index": 146
+  },
+  {
+   "group": 35,
+   "num": 4,
+   "name": "FourIsland_LoreleisHouse",
+   "section": "MAPSEC_FOUR_ISLAND",
+   "section_index": 146
+  },
+  {
+   "group": 35,
+   "num": 5,
+   "name": "FourIsland_Harbor",
+   "section": "MAPSEC_FOUR_ISLAND",
+   "section_index": 146
+  },
+  {
+   "group": 35,
+   "num": 6,
+   "name": "FourIsland_House2",
+   "section": "MAPSEC_FOUR_ISLAND",
+   "section_index": 146
+  },
+  {
+   "group": 35,
+   "num": 7,
+   "name": "FourIsland_Mart",
+   "section": "MAPSEC_FOUR_ISLAND",
+   "section_index": 146
+  },
+  {
+   "group": 36,
+   "num": 0,
+   "name": "FiveIsland_PokemonCenter_1F",
+   "section": "MAPSEC_FIVE_ISLAND",
+   "section_index": 147
+  },
+  {
+   "group": 36,
+   "num": 1,
+   "name": "FiveIsland_PokemonCenter_2F",
+   "section": "MAPSEC_FIVE_ISLAND",
+   "section_index": 147
+  },
+  {
+   "group": 36,
+   "num": 2,
+   "name": "FiveIsland_Harbor",
+   "section": "MAPSEC_FIVE_ISLAND",
+   "section_index": 147
+  },
+  {
+   "group": 36,
+   "num": 3,
+   "name": "FiveIsland_House1",
+   "section": "MAPSEC_FIVE_ISLAND",
+   "section_index": 147
+  },
+  {
+   "group": 36,
+   "num": 4,
+   "name": "FiveIsland_House2",
+   "section": "MAPSEC_FIVE_ISLAND",
+   "section_index": 147
+  },
+  {
+   "group": 37,
+   "num": 0,
+   "name": "SixIsland_PokemonCenter_1F",
+   "section": "MAPSEC_SIX_ISLAND",
+   "section_index": 149
+  },
+  {
+   "group": 37,
+   "num": 1,
+   "name": "SixIsland_PokemonCenter_2F",
+   "section": "MAPSEC_SIX_ISLAND",
+   "section_index": 149
+  },
+  {
+   "group": 37,
+   "num": 2,
+   "name": "SixIsland_Harbor",
+   "section": "MAPSEC_SIX_ISLAND",
+   "section_index": 149
+  },
+  {
+   "group": 37,
+   "num": 3,
+   "name": "SixIsland_House",
+   "section": "MAPSEC_SIX_ISLAND",
+   "section_index": 149
+  },
+  {
+   "group": 37,
+   "num": 4,
+   "name": "SixIsland_Mart",
+   "section": "MAPSEC_SIX_ISLAND",
+   "section_index": 149
+  },
+  {
+   "group": 38,
+   "num": 0,
+   "name": "ThreeIsland_Harbor",
+   "section": "MAPSEC_THREE_ISLE_PORT",
+   "section_index": 154
+  },
+  {
+   "group": 39,
+   "num": 0,
+   "name": "FiveIsland_ResortGorgeous_House",
+   "section": "MAPSEC_RESORT_GORGEOUS",
+   "section_index": 159
+  },
+  {
+   "group": 40,
+   "num": 0,
+   "name": "TwoIsland_CapeBrink_House",
+   "section": "MAPSEC_CAPE_BRINK",
+   "section_index": 152
+  },
+  {
+   "group": 41,
+   "num": 0,
+   "name": "SixIsland_WaterPath_House1",
+   "section": "MAPSEC_WATER_PATH",
+   "section_index": 165
+  },
+  {
+   "group": 41,
+   "num": 1,
+   "name": "SixIsland_WaterPath_House2",
+   "section": "MAPSEC_WATER_PATH",
+   "section_index": 165
+  },
+  {
+   "group": 42,
+   "num": 0,
+   "name": "SevenIsland_SevaultCanyon_House",
+   "section": "MAPSEC_SEVAULT_CANYON",
+   "section_index": 169
+  }
+ ],
+ "trainer_flags_start": 1280,
+ "trainers": {
+  "0": {
+   "id": "NONE",
+   "name": "",
+   "class": "",
+   "max_level": 0,
+   "maps": []
+  },
+  "1": {
+   "id": "AQUA_LEADER",
+   "name": "",
+   "class": "AQUA_LEADER",
+   "max_level": 11,
+   "maps": []
+  },
+  "2": {
+   "id": "AQUA_GRUNT_M",
+   "name": "",
+   "class": "TEAM_AQUA",
+   "max_level": 0,
+   "maps": []
+  },
+  "3": {
+   "id": "AQUA_GRUNT_F",
+   "name": "",
+   "class": "TEAM_AQUA",
+   "max_level": 0,
+   "maps": []
+  },
+  "4": {
+   "id": "RS_AROMA_LADY",
+   "name": "",
+   "class": "RS_AROMA_LADY",
+   "max_level": 0,
+   "maps": []
+  },
+  "5": {
+   "id": "RS_RUIN_MANIAC",
+   "name": "",
+   "class": "RS_RUIN_MANIAC",
+   "max_level": 0,
+   "maps": []
+  },
+  "6": {
+   "id": "INTERVIEWER",
+   "name": "",
+   "class": "INTERVIEWER",
+   "max_level": 0,
+   "maps": []
+  },
+  "7": {
+   "id": "RS_TUBER_F",
+   "name": "NAOMI",
+   "class": "COOLTRAINER",
+   "max_level": 56,
+   "maps": []
+  },
+  "8": {
+   "id": "RS_TUBER_M",
+   "name": "ROLANDO",
+   "class": "COOLTRAINER",
+   "max_level": 56,
+   "maps": []
+  },
+  "9": {
+   "id": "RS_COOLTRAINER_M",
+   "name": "",
+   "class": "RS_COOLTRAINER",
+   "max_level": 0,
+   "maps": []
+  },
+  "10": {
+   "id": "RS_COOLTRAINER_F",
+   "name": "",
+   "class": "RS_COOLTRAINER",
+   "max_level": 0,
+   "maps": []
+  },
+  "11": {
+   "id": "HEX_MANIAC",
+   "name": "",
+   "class": "HEX_MANIAC",
+   "max_level": 0,
+   "maps": []
+  },
+  "12": {
+   "id": "RS_LADY",
+   "name": "",
+   "class": "RS_LADY",
+   "max_level": 0,
+   "maps": []
+  },
+  "13": {
+   "id": "RS_BEAUTY",
+   "name": "",
+   "class": "RS_BEAUTY",
+   "max_level": 0,
+   "maps": []
+  },
+  "14": {
+   "id": "RICH_BOY",
+   "name": "",
+   "class": "RICH_BOY",
+   "max_level": 0,
+   "maps": []
+  },
+  "15": {
+   "id": "RS_POKEMANIAC",
+   "name": "",
+   "class": "RS_POKEMANIAC",
+   "max_level": 0,
+   "maps": []
+  },
+  "16": {
+   "id": "RS_SWIMMER_M",
+   "name": "",
+   "class": "RS_SWIMMER_M",
+   "max_level": 0,
+   "maps": []
+  },
+  "17": {
+   "id": "RS_BLACK_BELT",
+   "name": "",
+   "class": "RS_BLACK_BELT",
+   "max_level": 0,
+   "maps": []
+  },
+  "18": {
+   "id": "GUITARIST",
+   "name": "",
+   "class": "GUITARIST",
+   "max_level": 0,
+   "maps": []
+  },
+  "19": {
+   "id": "KINDLER",
+   "name": "DAWSON",
+   "class": "POKEMANIAC",
+   "max_level": 54,
+   "maps": []
+  },
+  "20": {
+   "id": "RS_CAMPER",
+   "name": "DAISUKE",
+   "class": "BLACK_BELT",
+   "max_level": 57,
+   "maps": []
+  },
+  "21": {
+   "id": "BUG_MANIAC",
+   "name": "NELSON",
+   "class": "JUGGLER",
+   "max_level": 55,
+   "maps": []
+  },
+  "22": {
+   "id": "RS_PSYCHIC_M",
+   "name": "GREGORY",
+   "class": "JUGGLER",
+   "max_level": 63,
+   "maps": []
+  },
+  "23": {
+   "id": "RS_PSYCHIC_F",
+   "name": "VINCENT",
+   "class": "TAMER",
+   "max_level": 59,
+   "maps": []
+  },
+  "24": {
+   "id": "RS_GENTLEMAN",
+   "name": "GEORGE",
+   "class": "COOLTRAINER",
+   "max_level": 56,
+   "maps": []
+  },
+  "25": {
+   "id": "ELITE_FOUR_SIDNEY",
+   "name": "LORELEI",
+   "class": "ELITE_FOUR",
+   "max_level": 100,
+   "maps": []
+  },
+  "26": {
+   "id": "ELITE_FOUR_PHOEBE",
+   "name": "BRUNO",
+   "class": "ELITE_FOUR",
+   "max_level": 100,
+   "maps": []
+  },
+  "27": {
+   "id": "LEADER_ROXANNE",
+   "name": "BROCK",
+   "class": "LEADER",
+   "max_level": 100,
+   "maps": []
+  },
+  "28": {
+   "id": "LEADER_BRAWLY",
+   "name": "MISTY",
+   "class": "LEADER",
+   "max_level": 100,
+   "maps": []
+  },
+  "29": {
+   "id": "LEADER_TATE_LIZA",
+   "name": "ERIKA",
+   "class": "LEADER",
+   "max_level": 100,
+   "maps": []
+  },
+  "30": {
+   "id": "SCHOOL_KID_M",
+   "name": "COLBY",
+   "class": "COOLTRAINER",
+   "max_level": 57,
+   "maps": []
+  },
+  "31": {
+   "id": "SCHOOL_KID_F",
+   "name": "CAROLINE",
+   "class": "COOLTRAINER",
+   "max_level": 56,
+   "maps": []
+  },
+  "32": {
+   "id": "SR_AND_JR",
+   "name": "ALEXA",
+   "class": "COOLTRAINER",
+   "max_level": 56,
+   "maps": []
+  },
+  "33": {
+   "id": "POKEFAN_M",
+   "name": "RAY & TYRA",
+   "class": "COOL_COUPLE",
+   "max_level": 60,
+   "maps": []
+  },
+  "34": {
+   "id": "POKEFAN_F",
+   "name": "",
+   "class": "POKEFAN",
+   "max_level": 0,
+   "maps": []
+  },
+  "35": {
+   "id": "EXPERT_M",
+   "name": "",
+   "class": "EXPERT",
+   "max_level": 0,
+   "maps": []
+  },
+  "36": {
+   "id": "EXPERT_F",
+   "name": "",
+   "class": "EXPERT",
+   "max_level": 0,
+   "maps": []
+  },
+  "37": {
+   "id": "RS_YOUNGSTER",
+   "name": "",
+   "class": "RS_YOUNGSTER",
+   "max_level": 0,
+   "maps": []
+  },
+  "38": {
+   "id": "RS_CHAMPION",
+   "name": "TERRY",
+   "class": "CHAMPION",
+   "max_level": 100,
+   "maps": []
+  },
+  "39": {
+   "id": "RS_FISHERMAN",
+   "name": "",
+   "class": "RS_FISHERMAN",
+   "max_level": 0,
+   "maps": []
+  },
+  "40": {
+   "id": "CYCLING_TRIATHLETE_M",
+   "name": "",
+   "class": "TRIATHLETE",
+   "max_level": 0,
+   "maps": []
+  },
+  "41": {
+   "id": "CYCLING_TRIATHLETE_F",
+   "name": "",
+   "class": "TRIATHLETE",
+   "max_level": 0,
+   "maps": []
+  },
+  "42": {
+   "id": "RUNNING_TRIATHLETE_M",
+   "name": "",
+   "class": "TRIATHLETE",
+   "max_level": 0,
+   "maps": []
+  },
+  "43": {
+   "id": "RUNNING_TRIATHLETE_F",
+   "name": "",
+   "class": "TRIATHLETE",
+   "max_level": 0,
+   "maps": []
+  },
+  "44": {
+   "id": "SWIMMING_TRIATHLETE_M",
+   "name": "",
+   "class": "TRIATHLETE",
+   "max_level": 0,
+   "maps": []
+  },
+  "45": {
+   "id": "SWIMMING_TRIATHLETE_F",
+   "name": "",
+   "class": "TRIATHLETE",
+   "max_level": 0,
+   "maps": []
+  },
+  "46": {
+   "id": "DRAGON_TAMER",
+   "name": "",
+   "class": "DRAGON_TAMER",
+   "max_level": 0,
+   "maps": []
+  },
+  "47": {
+   "id": "RS_BIRD_KEEPER",
+   "name": "",
+   "class": "RS_BIRD_KEEPER",
+   "max_level": 0,
+   "maps": []
+  },
+  "48": {
+   "id": "NINJA_BOY",
+   "name": "",
+   "class": "NINJA_BOY",
+   "max_level": 0,
+   "maps": []
+  },
+  "49": {
+   "id": "BATTLE_GIRL",
+   "name": "",
+   "class": "BATTLE_GIRL",
+   "max_level": 0,
+   "maps": []
+  },
+  "50": {
+   "id": "PARASOL_LADY",
+   "name": "",
+   "class": "PARASOL_LADY",
+   "max_level": 0,
+   "maps": []
+  },
+  "51": {
+   "id": "RS_SWIMMER_F",
+   "name": "",
+   "class": "RS_SWIMMER_F",
+   "max_level": 0,
+   "maps": []
+  },
+  "52": {
+   "id": "RS_PICNICKER",
+   "name": "",
+   "class": "RS_PICNICKER",
+   "max_level": 0,
+   "maps": []
+  },
+  "53": {
+   "id": "RS_TWINS",
+   "name": "",
+   "class": "RS_TWINS",
+   "max_level": 0,
+   "maps": []
+  },
+  "54": {
+   "id": "RS_SAILOR",
+   "name": "",
+   "class": "RS_SAILOR",
+   "max_level": 0,
+   "maps": []
+  },
+  "55": {
+   "id": "BOARDER_M",
+   "name": "",
+   "class": "BOARDER",
+   "max_level": 0,
+   "maps": []
+  },
+  "56": {
+   "id": "BOARDER_F",
+   "name": "",
+   "class": "BOARDER",
+   "max_level": 0,
+   "maps": []
+  },
+  "57": {
+   "id": "COLLECTOR",
+   "name": "",
+   "class": "COLLECTOR",
+   "max_level": 0,
+   "maps": []
+  },
+  "58": {
+   "id": "WALLY",
+   "name": "TERRY",
+   "class": "CHAMPION",
+   "max_level": 100,
+   "maps": []
+  },
+  "59": {
+   "id": "BRENDAN",
+   "name": "TERRY",
+   "class": "CHAMPION",
+   "max_level": 100,
+   "maps": []
+  },
+  "60": {
+   "id": "BRENDAN_2",
+   "name": "",
+   "class": "PKMN_TRAINER",
+   "max_level": 0,
+   "maps": []
+  },
+  "61": {
+   "id": "BRENDAN_3",
+   "name": "",
+   "class": "PKMN_TRAINER",
+   "max_level": 0,
+   "maps": []
+  },
+  "62": {
+   "id": "MAY",
+   "name": "",
+   "class": "PKMN_TRAINER",
+   "max_level": 0,
+   "maps": []
+  },
+  "63": {
+   "id": "MAY_2",
+   "name": "",
+   "class": "PKMN_TRAINER",
+   "max_level": 0,
+   "maps": []
+  },
+  "64": {
+   "id": "MAY_3",
+   "name": "",
+   "class": "PKMN_TRAINER",
+   "max_level": 0,
+   "maps": []
+  },
+  "65": {
+   "id": "RS_PKMN_BREEDER_M",
+   "name": "",
+   "class": "RS_PKMN_BREEDER",
+   "max_level": 0,
+   "maps": []
+  },
+  "66": {
+   "id": "RS_PKMN_BREEDER_F",
+   "name": "",
+   "class": "RS_PKMN_BREEDER",
+   "max_level": 0,
+   "maps": []
+  },
+  "67": {
+   "id": "RS_PKMN_RANGER_M",
+   "name": "",
+   "class": "RS_PKMN_RANGER",
+   "max_level": 0,
+   "maps": []
+  },
+  "68": {
+   "id": "RS_PKMN_RANGER_F",
+   "name": "",
+   "class": "RS_PKMN_RANGER",
+   "max_level": 0,
+   "maps": []
+  },
+  "69": {
+   "id": "MAGMA_LEADER",
+   "name": "",
+   "class": "MAGMA_LEADER",
+   "max_level": 0,
+   "maps": []
+  },
+  "70": {
+   "id": "MAGMA_GRUNT_M",
+   "name": "",
+   "class": "TEAM_MAGMA",
+   "max_level": 0,
+   "maps": []
+  },
+  "71": {
+   "id": "MAMGA_GRUNT_F",
+   "name": "",
+   "class": "TEAM_MAGMA",
+   "max_level": 0,
+   "maps": []
+  },
+  "72": {
+   "id": "RS_LASS",
+   "name": "",
+   "class": "RS_LASS",
+   "max_level": 0,
+   "maps": []
+  },
+  "73": {
+   "id": "RS_BUG_CATCHER",
+   "name": "",
+   "class": "RS_BUG_CATCHER",
+   "max_level": 0,
+   "maps": []
+  },
+  "74": {
+   "id": "RS_HIKER",
+   "name": "",
+   "class": "RS_HIKER",
+   "max_level": 0,
+   "maps": []
+  },
+  "75": {
+   "id": "RS_YOUNG_COUPLE",
+   "name": "",
+   "class": "RS_YOUNG_COUPLE",
+   "max_level": 0,
+   "maps": []
+  },
+  "76": {
+   "id": "OLD_COUPLE",
+   "name": "",
+   "class": "OLD_COUPLE",
+   "max_level": 0,
+   "maps": []
+  },
+  "77": {
+   "id": "RS_SIS_AND_BRO",
+   "name": "",
+   "class": "RS_SIS_AND_BRO",
+   "max_level": 0,
+   "maps": []
+  },
+  "78": {
+   "id": "AQUA_ADMIN_MATT",
+   "name": "MATT",
+   "class": "AQUA_ADMIN",
+   "max_level": 0,
+   "maps": []
+  },
+  "79": {
+   "id": "AQUA_ADMIN_SHELLY",
+   "name": "SHELLY",
+   "class": "AQUA_ADMIN",
+   "max_level": 0,
+   "maps": []
+  },
+  "80": {
+   "id": "MAGMA_ADMIN_TABITHA",
+   "name": "TABITHA",
+   "class": "MAGMA_ADMIN",
+   "max_level": 0,
+   "maps": []
+  },
+  "81": {
+   "id": "MAGMA_ADMIN_COURTNEY",
+   "name": "COURTNEY",
+   "class": "MAGMA_ADMIN",
+   "max_level": 0,
+   "maps": []
+  },
+  "82": {
+   "id": "LEADER_WATTSON",
+   "name": "LT. SURGE",
+   "class": "LEADER",
+   "max_level": 100,
+   "maps": []
+  },
+  "83": {
+   "id": "LEADER_FLANNERY",
+   "name": "KOGA",
+   "class": "LEADER",
+   "max_level": 100,
+   "maps": []
+  },
+  "84": {
+   "id": "LEADER_NORMAN",
+   "name": "SABRINA",
+   "class": "LEADER",
+   "max_level": 100,
+   "maps": []
+  },
+  "85": {
+   "id": "LEADER_WINONA",
+   "name": "BLAINE",
+   "class": "LEADER",
+   "max_level": 100,
+   "maps": []
+  },
+  "86": {
+   "id": "LEADER_WALLACE",
+   "name": "GIOVANNI",
+   "class": "LEADER",
+   "max_level": 100,
+   "maps": []
+  },
+  "87": {
+   "id": "ELITE_FOUR_GLACIA",
+   "name": "AGATHA",
+   "class": "ELITE_FOUR",
+   "max_level": 100,
+   "maps": []
+  },
+  "88": {
+   "id": "ELITE_FOUR_DRAKE",
+   "name": "LANCE",
+   "class": "ELITE_FOUR",
+   "max_level": 100,
+   "maps": []
+  },
+  "89": {
+   "id": "YOUNGSTER_BEN",
+   "name": "BEN",
+   "class": "YOUNGSTER",
+   "max_level": 0,
+   "maps": []
+  },
+  "90": {
+   "id": "YOUNGSTER_CALVIN",
+   "name": "CALVIN",
+   "class": "YOUNGSTER",
+   "max_level": 16,
+   "maps": []
+  },
+  "91": {
+   "id": "YOUNGSTER_JOSH",
+   "name": "JOSH",
+   "class": "YOUNGSTER",
+   "max_level": 12,
+   "maps": [
+    "MtMoon_1F"
+   ]
+  },
+  "92": {
+   "id": "YOUNGSTER_TIMMY",
+   "name": "TIMMY",
+   "class": "YOUNGSTER",
+   "max_level": 16,
+   "maps": []
+  },
+  "93": {
+   "id": "YOUNGSTER_JOEY",
+   "name": "JOEY",
+   "class": "YOUNGSTER",
+   "max_level": 17,
+   "maps": []
+  },
+  "94": {
+   "id": "YOUNGSTER_DAN",
+   "name": "DAN",
+   "class": "YOUNGSTER",
+   "max_level": 20,
+   "maps": []
+  },
+  "95": {
+   "id": "YOUNGSTER_CHAD",
+   "name": "CHAD",
+   "class": "YOUNGSTER",
+   "max_level": 16,
+   "maps": []
+  },
+  "96": {
+   "id": "YOUNGSTER_TYLER",
+   "name": "TYLER",
+   "class": "YOUNGSTER",
+   "max_level": 24,
+   "maps": [
+    "SSAnne_1F_Room2"
+   ]
+  },
+  "97": {
+   "id": "YOUNGSTER_EDDIE",
+   "name": "EDDIE",
+   "class": "YOUNGSTER",
+   "max_level": 24,
+   "maps": []
+  },
+  "98": {
+   "id": "YOUNGSTER_DILLON",
+   "name": "DILLON",
+   "class": "YOUNGSTER",
+   "max_level": 22,
+   "maps": []
+  },
+  "99": {
+   "id": "YOUNGSTER_YASU",
+   "name": "YASU",
+   "class": "YOUNGSTER",
+   "max_level": 20,
+   "maps": []
+  },
+  "100": {
+   "id": "YOUNGSTER_DAVE",
+   "name": "DAVE",
+   "class": "YOUNGSTER",
+   "max_level": 21,
+   "maps": []
+  },
+  "101": {
+   "id": "YOUNGSTER_BEN_2",
+   "name": "BEN",
+   "class": "YOUNGSTER",
+   "max_level": 20,
+   "maps": []
+  },
+  "102": {
+   "id": "BUG_CATCHER_RICK",
+   "name": "RICK",
+   "class": "BUG_CATCHER",
+   "max_level": 7,
+   "maps": [
+    "ViridianForest"
+   ]
+  },
+  "103": {
+   "id": "BUG_CATCHER_DOUG",
+   "name": "DOUG",
+   "class": "BUG_CATCHER",
+   "max_level": 8,
+   "maps": [
+    "ViridianForest"
+   ]
+  },
+  "104": {
+   "id": "BUG_CATCHER_SAMMY",
+   "name": "SAMMY",
+   "class": "BUG_CATCHER",
+   "max_level": 10,
+   "maps": [
+    "ViridianForest"
+   ]
+  },
+  "105": {
+   "id": "BUG_CATCHER_COLTON",
+   "name": "COLTON",
+   "class": "BUG_CATCHER",
+   "max_level": 12,
+   "maps": []
+  },
+  "106": {
+   "id": "BUG_CATCHER_GREG",
+   "name": "GREG",
+   "class": "BUG_CATCHER",
+   "max_level": 10,
+   "maps": []
+  },
+  "107": {
+   "id": "BUG_CATCHER_JAMES",
+   "name": "JAMES",
+   "class": "BUG_CATCHER",
+   "max_level": 13,
+   "maps": []
+  },
+  "108": {
+   "id": "BUG_CATCHER_KENT",
+   "name": "KENT",
+   "class": "BUG_CATCHER",
+   "max_level": 13,
+   "maps": [
+    "MtMoon_1F"
+   ]
+  },
+  "109": {
+   "id": "BUG_CATCHER_ROBBY",
+   "name": "ROBBY",
+   "class": "BUG_CATCHER",
+   "max_level": 12,
+   "maps": [
+    "MtMoon_1F"
+   ]
+  },
+  "110": {
+   "id": "BUG_CATCHER_CALE",
+   "name": "CALE",
+   "class": "BUG_CATCHER",
+   "max_level": 12,
+   "maps": []
+  },
+  "111": {
+   "id": "BUG_CATCHER_KEIGO",
+   "name": "KEIGO",
+   "class": "BUG_CATCHER",
+   "max_level": 18,
+   "maps": []
+  },
+  "112": {
+   "id": "BUG_CATCHER_ELIJAH",
+   "name": "ELIJAH",
+   "class": "BUG_CATCHER",
+   "max_level": 23,
+   "maps": []
+  },
+  "113": {
+   "id": "BUG_CATCHER_2",
+   "name": "",
+   "class": "BUG_CATCHER",
+   "max_level": 21,
+   "maps": []
+  },
+  "114": {
+   "id": "BUG_CATCHER_BRENT",
+   "name": "BRENT",
+   "class": "BUG_CATCHER",
+   "max_level": 22,
+   "maps": []
+  },
+  "115": {
+   "id": "BUG_CATCHER_CONNER",
+   "name": "CONNER",
+   "class": "BUG_CATCHER",
+   "max_level": 23,
+   "maps": []
+  },
+  "116": {
+   "id": "LASS_JANICE",
+   "name": "JANICE",
+   "class": "LASS",
+   "max_level": 10,
+   "maps": []
+  },
+  "117": {
+   "id": "LASS_SALLY",
+   "name": "SALLY",
+   "class": "LASS",
+   "max_level": 12,
+   "maps": []
+  },
+  "118": {
+   "id": "LASS_ROBIN",
+   "name": "ROBIN",
+   "class": "LASS",
+   "max_level": 16,
+   "maps": []
+  },
+  "119": {
+   "id": "LASS_CRISSY",
+   "name": "CRISSY",
+   "class": "LASS",
+   "max_level": 36,
+   "maps": []
+  },
+  "120": {
+   "id": "LASS_MIRIAM",
+   "name": "MIRIAM",
+   "class": "LASS",
+   "max_level": 13,
+   "maps": [
+    "MtMoon_1F"
+   ]
+  },
+  "121": {
+   "id": "LASS_IRIS",
+   "name": "IRIS",
+   "class": "LASS",
+   "max_level": 16,
+   "maps": [
+    "MtMoon_1F"
+   ]
+  },
+  "122": {
+   "id": "LASS_RELI",
+   "name": "RELI",
+   "class": "LASS",
+   "max_level": 18,
+   "maps": []
+  },
+  "123": {
+   "id": "LASS_ALI",
+   "name": "ALI",
+   "class": "LASS",
+   "max_level": 14,
+   "maps": []
+  },
+  "124": {
+   "id": "LASS_2",
+   "name": "",
+   "class": "LASS",
+   "max_level": 17,
+   "maps": []
+  },
+  "125": {
+   "id": "LASS_HALEY",
+   "name": "HALEY",
+   "class": "LASS",
+   "max_level": 15,
+   "maps": []
+  },
+  "126": {
+   "id": "LASS_ANN",
+   "name": "ANN",
+   "class": "LASS",
+   "max_level": 21,
+   "maps": [
+    "SSAnne_1F_Room2"
+   ]
+  },
+  "127": {
+   "id": "LASS_DAWN",
+   "name": "DAWN",
+   "class": "LASS",
+   "max_level": 21,
+   "maps": [
+    "SSAnne_2F_Room4"
+   ]
+  },
+  "128": {
+   "id": "LASS_PAIGE",
+   "name": "PAIGE",
+   "class": "LASS",
+   "max_level": 26,
+   "maps": []
+  },
+  "129": {
+   "id": "LASS_ANDREA",
+   "name": "ANDREA",
+   "class": "LASS",
+   "max_level": 28,
+   "maps": []
+  },
+  "130": {
+   "id": "LASS_MEGAN",
+   "name": "MEGAN",
+   "class": "LASS",
+   "max_level": 22,
+   "maps": []
+  },
+  "131": {
+   "id": "LASS_JULIA",
+   "name": "JULIA",
+   "class": "LASS",
+   "max_level": 25,
+   "maps": []
+  },
+  "132": {
+   "id": "LASS_KAY",
+   "name": "KAY",
+   "class": "LASS",
+   "max_level": 26,
+   "maps": [
+    "CeladonCity_Gym"
+   ]
+  },
+  "133": {
+   "id": "LASS_LISA",
+   "name": "LISA",
+   "class": "LASS",
+   "max_level": 26,
+   "maps": [
+    "CeladonCity_Gym"
+   ]
+  },
+  "134": {
+   "id": "SAILOR_EDMOND",
+   "name": "EDMOND",
+   "class": "SAILOR",
+   "max_level": 21,
+   "maps": [
+    "SSAnne_Deck"
+   ]
+  },
+  "135": {
+   "id": "SAILOR_TREVOR",
+   "name": "TREVOR",
+   "class": "SAILOR",
+   "max_level": 20,
+   "maps": [
+    "SSAnne_Deck"
+   ]
+  },
+  "136": {
+   "id": "SAILOR_LEONARD",
+   "name": "LEONARD",
+   "class": "SAILOR",
+   "max_level": 24,
+   "maps": [
+    "SSAnne_B1F_Room4"
+   ]
+  },
+  "137": {
+   "id": "SAILOR_DUNCAN",
+   "name": "DUNCAN",
+   "class": "SAILOR",
+   "max_level": 20,
+   "maps": [
+    "SSAnne_B1F_Room4"
+   ]
+  },
+  "138": {
+   "id": "SAILOR_HUEY",
+   "name": "HUEY",
+   "class": "SAILOR",
+   "max_level": 21,
+   "maps": [
+    "SSAnne_B1F_Room2"
+   ]
+  },
+  "139": {
+   "id": "SAILOR_DYLAN",
+   "name": "DYLAN",
+   "class": "SAILOR",
+   "max_level": 20,
+   "maps": [
+    "SSAnne_B1F_Room3"
+   ]
+  },
+  "140": {
+   "id": "SAILOR_PHILLIP",
+   "name": "PHILLIP",
+   "class": "SAILOR",
+   "max_level": 23,
+   "maps": [
+    "SSAnne_B1F_Room1"
+   ]
+  },
+  "141": {
+   "id": "SAILOR_DWAYNE",
+   "name": "DWAYNE",
+   "class": "SAILOR",
+   "max_level": 24,
+   "maps": [
+    "VermilionCity_Gym"
+   ]
+  },
+  "142": {
+   "id": "CAMPER_LIAM",
+   "name": "LIAM",
+   "class": "CAMPER",
+   "max_level": 13,
+   "maps": [
+    "PewterCity_Gym"
+   ]
+  },
+  "143": {
+   "id": "CAMPER_SHANE",
+   "name": "SHANE",
+   "class": "CAMPER",
+   "max_level": 16,
+   "maps": []
+  },
+  "144": {
+   "id": "CAMPER_ETHAN",
+   "name": "ETHAN",
+   "class": "CAMPER",
+   "max_level": 21,
+   "maps": []
+  },
+  "145": {
+   "id": "CAMPER_RICKY",
+   "name": "RICKY",
+   "class": "CAMPER",
+   "max_level": 23,
+   "maps": []
+  },
+  "146": {
+   "id": "CAMPER_JEFF",
+   "name": "JEFF",
+   "class": "CAMPER",
+   "max_level": 18,
+   "maps": []
+  },
+  "147": {
+   "id": "CAMPER_2",
+   "name": "",
+   "class": "CAMPER",
+   "max_level": 21,
+   "maps": []
+  },
+  "148": {
+   "id": "CAMPER_CHRIS",
+   "name": "CHRIS",
+   "class": "CAMPER",
+   "max_level": 0,
+   "maps": []
+  },
+  "149": {
+   "id": "CAMPER_DREW",
+   "name": "DREW",
+   "class": "CAMPER",
+   "max_level": 22,
+   "maps": []
+  },
+  "150": {
+   "id": "PICNICKER_DIANA",
+   "name": "DIANA",
+   "class": "PICNICKER",
+   "max_level": 22,
+   "maps": [
+    "CeruleanCity_Gym"
+   ]
+  },
+  "151": {
+   "id": "PICNICKER_NANCY",
+   "name": "NANCY",
+   "class": "PICNICKER",
+   "max_level": 18,
+   "maps": []
+  },
+  "152": {
+   "id": "PICNICKER_ISABELLE",
+   "name": "ISABELLE",
+   "class": "PICNICKER",
+   "max_level": 18,
+   "maps": []
+  },
+  "153": {
+   "id": "PICNICKER_KELSEY",
+   "name": "KELSEY",
+   "class": "PICNICKER",
+   "max_level": 17,
+   "maps": []
+  },
+  "154": {
+   "id": "PICNICKER_ALICIA",
+   "name": "ALICIA",
+   "class": "PICNICKER",
+   "max_level": 21,
+   "maps": []
+  },
+  "155": {
+   "id": "PICNICKER_CAITLIN",
+   "name": "CAITLIN",
+   "class": "PICNICKER",
+   "max_level": 26,
+   "maps": []
+  },
+  "156": {
+   "id": "PICNICKER_HEIDI",
+   "name": "HEIDI",
+   "class": "PICNICKER",
+   "max_level": 23,
+   "maps": []
+  },
+  "157": {
+   "id": "PICNICKER_CAROL",
+   "name": "CAROL",
+   "class": "PICNICKER",
+   "max_level": 24,
+   "maps": []
+  },
+  "158": {
+   "id": "PICNICKER_SOFIA",
+   "name": "SOFIA",
+   "class": "PICNICKER",
+   "max_level": 24,
+   "maps": [
+    "RockTunnel_B1F"
+   ]
+  },
+  "159": {
+   "id": "PICNICKER_MARTHA",
+   "name": "MARTHA",
+   "class": "PICNICKER",
+   "max_level": 25,
+   "maps": [
+    "RockTunnel_B1F"
+   ]
+  },
+  "160": {
+   "id": "PICNICKER_TINA",
+   "name": "TINA",
+   "class": "PICNICKER",
+   "max_level": 28,
+   "maps": [
+    "CeladonCity_Gym"
+   ]
+  },
+  "161": {
+   "id": "PICNICKER_HANNAH",
+   "name": "HANNAH",
+   "class": "PICNICKER",
+   "max_level": 28,
+   "maps": []
+  },
+  "162": {
+   "id": "POKEMANIAC_MARK",
+   "name": "MARK",
+   "class": "POKEMANIAC",
+   "max_level": 33,
+   "maps": []
+  },
+  "163": {
+   "id": "POKEMANIAC_HERMAN",
+   "name": "HERMAN",
+   "class": "POKEMANIAC",
+   "max_level": 23,
+   "maps": []
+  },
+  "164": {
+   "id": "POKEMANIAC_COOPER",
+   "name": "COOPER",
+   "class": "POKEMANIAC",
+   "max_level": 23,
+   "maps": [
+    "RockTunnel_B1F"
+   ]
+  },
+  "165": {
+   "id": "POKEMANIAC_STEVE",
+   "name": "STEVE",
+   "class": "POKEMANIAC",
+   "max_level": 25,
+   "maps": [
+    "RockTunnel_B1F"
+   ]
+  },
+  "166": {
+   "id": "POKEMANIAC_WINSTON",
+   "name": "WINSTON",
+   "class": "POKEMANIAC",
+   "max_level": 29,
+   "maps": [
+    "RockTunnel_B1F"
+   ]
+  },
+  "167": {
+   "id": "POKEMANIAC_DAWSON",
+   "name": "DAWSON",
+   "class": "POKEMANIAC",
+   "max_level": 46,
+   "maps": [
+    "VictoryRoad_2F"
+   ]
+  },
+  "168": {
+   "id": "POKEMANIAC_ASHTON",
+   "name": "ASHTON",
+   "class": "POKEMANIAC",
+   "max_level": 26,
+   "maps": [
+    "RockTunnel_1F"
+   ]
+  },
+  "169": {
+   "id": "SUPER_NERD_JOVAN",
+   "name": "JOVAN",
+   "class": "SUPER_NERD",
+   "max_level": 13,
+   "maps": [
+    "MtMoon_1F"
+   ]
+  },
+  "170": {
+   "id": "SUPER_NERD_MIGUEL",
+   "name": "MIGUEL",
+   "class": "SUPER_NERD",
+   "max_level": 14,
+   "maps": [
+    "MtMoon_B2F"
+   ]
+  },
+  "171": {
+   "id": "SUPER_NERD_AIDAN",
+   "name": "AIDAN",
+   "class": "SUPER_NERD",
+   "max_level": 23,
+   "maps": []
+  },
+  "172": {
+   "id": "SUPER_NERD_GLENN",
+   "name": "GLENN",
+   "class": "SUPER_NERD",
+   "max_level": 25,
+   "maps": []
+  },
+  "173": {
+   "id": "SUPER_NERD_LESLIE",
+   "name": "LESLIE",
+   "class": "SUPER_NERD",
+   "max_level": 30,
+   "maps": []
+  },
+  "174": {
+   "id": "SUPER_NERD_1",
+   "name": "",
+   "class": "SUPER_NERD",
+   "max_level": 25,
+   "maps": []
+  },
+  "175": {
+   "id": "SUPER_NERD_2",
+   "name": "",
+   "class": "SUPER_NERD",
+   "max_level": 23,
+   "maps": []
+  },
+  "176": {
+   "id": "SUPER_NERD_3",
+   "name": "",
+   "class": "SUPER_NERD",
+   "max_level": 28,
+   "maps": []
+  },
+  "177": {
+   "id": "SUPER_NERD_ERIK",
+   "name": "ERIK",
+   "class": "SUPER_NERD",
+   "max_level": 41,
+   "maps": [
+    "CinnabarIsland_Gym"
+   ]
+  },
+  "178": {
+   "id": "SUPER_NERD_AVERY",
+   "name": "AVERY",
+   "class": "SUPER_NERD",
+   "max_level": 39,
+   "maps": [
+    "CinnabarIsland_Gym"
+   ]
+  },
+  "179": {
+   "id": "SUPER_NERD_DEREK",
+   "name": "DEREK",
+   "class": "SUPER_NERD",
+   "max_level": 47,
+   "maps": [
+    "CinnabarIsland_Gym"
+   ]
+  },
+  "180": {
+   "id": "SUPER_NERD_ZAC",
+   "name": "ZAC",
+   "class": "SUPER_NERD",
+   "max_level": 43,
+   "maps": [
+    "CinnabarIsland_Gym"
+   ]
+  },
+  "181": {
+   "id": "HIKER_MARCOS",
+   "name": "MARCOS",
+   "class": "HIKER",
+   "max_level": 12,
+   "maps": [
+    "MtMoon_1F"
+   ]
+  },
+  "182": {
+   "id": "HIKER_FRANKLIN",
+   "name": "FRANKLIN",
+   "class": "HIKER",
+   "max_level": 17,
+   "maps": []
+  },
+  "183": {
+   "id": "HIKER_NOB",
+   "name": "NOB",
+   "class": "HIKER",
+   "max_level": 15,
+   "maps": []
+  },
+  "184": {
+   "id": "HIKER_WAYNE",
+   "name": "WAYNE",
+   "class": "HIKER",
+   "max_level": 20,
+   "maps": []
+  },
+  "185": {
+   "id": "HIKER_ALAN",
+   "name": "ALAN",
+   "class": "HIKER",
+   "max_level": 24,
+   "maps": []
+  },
+  "186": {
+   "id": "HIKER_BRICE",
+   "name": "BRICE",
+   "class": "HIKER",
+   "max_level": 23,
+   "maps": []
+  },
+  "187": {
+   "id": "HIKER_CLARK",
+   "name": "CLARK",
+   "class": "HIKER",
+   "max_level": 24,
+   "maps": []
+  },
+  "188": {
+   "id": "HIKER_TRENT",
+   "name": "TRENT",
+   "class": "HIKER",
+   "max_level": 22,
+   "maps": []
+  },
+  "189": {
+   "id": "HIKER_DUDLEY",
+   "name": "DUDLEY",
+   "class": "HIKER",
+   "max_level": 24,
+   "maps": [
+    "RockTunnel_B1F"
+   ]
+  },
+  "190": {
+   "id": "HIKER_ALLEN",
+   "name": "ALLEN",
+   "class": "HIKER",
+   "max_level": 29,
+   "maps": [
+    "RockTunnel_B1F"
+   ]
+  },
+  "191": {
+   "id": "HIKER_ERIC",
+   "name": "ERIC",
+   "class": "HIKER",
+   "max_level": 23,
+   "maps": [
+    "RockTunnel_B1F"
+   ]
+  },
+  "192": {
+   "id": "HIKER_LENNY",
+   "name": "LENNY",
+   "class": "HIKER",
+   "max_level": 22,
+   "maps": [
+    "RockTunnel_1F"
+   ]
+  },
+  "193": {
+   "id": "HIKER_OLIVER",
+   "name": "OLIVER",
+   "class": "HIKER",
+   "max_level": 23,
+   "maps": [
+    "RockTunnel_1F"
+   ]
+  },
+  "194": {
+   "id": "HIKER_LUCAS",
+   "name": "LUCAS",
+   "class": "HIKER",
+   "max_level": 24,
+   "maps": [
+    "RockTunnel_1F"
+   ]
+  },
+  "195": {
+   "id": "BIKER_JARED",
+   "name": "JARED",
+   "class": "BIKER",
+   "max_level": 32,
+   "maps": []
+  },
+  "196": {
+   "id": "BIKER_MALIK",
+   "name": "MALIK",
+   "class": "BIKER",
+   "max_level": 33,
+   "maps": []
+  },
+  "197": {
+   "id": "BIKER_ERNEST",
+   "name": "ERNEST",
+   "class": "BIKER",
+   "max_level": 29,
+   "maps": []
+  },
+  "198": {
+   "id": "BIKER_ALEX",
+   "name": "ALEX",
+   "class": "BIKER",
+   "max_level": 32,
+   "maps": []
+  },
+  "199": {
+   "id": "BIKER_LAO",
+   "name": "LAO",
+   "class": "BIKER",
+   "max_level": 33,
+   "maps": []
+  },
+  "200": {
+   "id": "BIKER_1",
+   "name": "",
+   "class": "BIKER",
+   "max_level": 33,
+   "maps": []
+  },
+  "201": {
+   "id": "BIKER_HIDEO",
+   "name": "HIDEO",
+   "class": "BIKER",
+   "max_level": 0,
+   "maps": []
+  },
+  "202": {
+   "id": "BIKER_RUBEN",
+   "name": "RUBEN",
+   "class": "BIKER",
+   "max_level": 32,
+   "maps": []
+  },
+  "203": {
+   "id": "BIKER_BILLY",
+   "name": "BILLY",
+   "class": "BIKER",
+   "max_level": 38,
+   "maps": []
+  },
+  "204": {
+   "id": "BIKER_NIKOLAS",
+   "name": "NIKOLAS",
+   "class": "BIKER",
+   "max_level": 33,
+   "maps": []
+  },
+  "205": {
+   "id": "BIKER_JAXON",
+   "name": "JAXON",
+   "class": "BIKER",
+   "max_level": 33,
+   "maps": []
+  },
+  "206": {
+   "id": "BIKER_WILLIAM",
+   "name": "WILLIAM",
+   "class": "BIKER",
+   "max_level": 29,
+   "maps": []
+  },
+  "207": {
+   "id": "BIKER_LUKAS",
+   "name": "LUKAS",
+   "class": "BIKER",
+   "max_level": 30,
+   "maps": []
+  },
+  "208": {
+   "id": "BIKER_ISAAC",
+   "name": "ISAAC",
+   "class": "BIKER",
+   "max_level": 32,
+   "maps": []
+  },
+  "209": {
+   "id": "BIKER_GERALD",
+   "name": "GERALD",
+   "class": "BIKER",
+   "max_level": 33,
+   "maps": []
+  },
+  "210": {
+   "id": "BURGLAR_1",
+   "name": "",
+   "class": "BURGLAR",
+   "max_level": 33,
+   "maps": []
+  },
+  "211": {
+   "id": "BURGLAR_2",
+   "name": "",
+   "class": "BURGLAR",
+   "max_level": 38,
+   "maps": []
+  },
+  "212": {
+   "id": "BURGLAR_3",
+   "name": "",
+   "class": "BURGLAR",
+   "max_level": 32,
+   "maps": []
+  },
+  "213": {
+   "id": "BURGLAR_QUINN",
+   "name": "QUINN",
+   "class": "BURGLAR",
+   "max_level": 41,
+   "maps": [
+    "CinnabarIsland_Gym"
+   ]
+  },
+  "214": {
+   "id": "BURGLAR_RAMON",
+   "name": "RAMON",
+   "class": "BURGLAR",
+   "max_level": 47,
+   "maps": [
+    "CinnabarIsland_Gym"
+   ]
+  },
+  "215": {
+   "id": "BURGLAR_DUSTY",
+   "name": "DUSTY",
+   "class": "BURGLAR",
+   "max_level": 43,
+   "maps": [
+    "CinnabarIsland_Gym"
+   ]
+  },
+  "216": {
+   "id": "BURGLAR_ARNIE",
+   "name": "ARNIE",
+   "class": "BURGLAR",
+   "max_level": 39,
+   "maps": [
+    "PokemonMansion_2F"
+   ]
+  },
+  "217": {
+   "id": "BURGLAR_4",
+   "name": "",
+   "class": "BURGLAR",
+   "max_level": 39,
+   "maps": []
+  },
+  "218": {
+   "id": "BURGLAR_SIMON",
+   "name": "SIMON",
+   "class": "BURGLAR",
+   "max_level": 44,
+   "maps": [
+    "PokemonMansion_3F"
+   ]
+  },
+  "219": {
+   "id": "BURGLAR_LEWIS",
+   "name": "LEWIS",
+   "class": "BURGLAR",
+   "max_level": 39,
+   "maps": [
+    "PokemonMansion_B1F"
+   ]
+  },
+  "220": {
+   "id": "ENGINEER_BAILY",
+   "name": "BAILY",
+   "class": "ENGINEER",
+   "max_level": 24,
+   "maps": [
+    "VermilionCity_Gym"
+   ]
+  },
+  "221": {
+   "id": "ENGINEER_BRAXTON",
+   "name": "BRAXTON",
+   "class": "ENGINEER",
+   "max_level": 24,
+   "maps": []
+  },
+  "222": {
+   "id": "ENGINEER_BERNIE",
+   "name": "BERNIE",
+   "class": "ENGINEER",
+   "max_level": 21,
+   "maps": []
+  },
+  "223": {
+   "id": "FISHERMAN_DALE",
+   "name": "DALE",
+   "class": "FISHERMAN",
+   "max_level": 20,
+   "maps": [
+    "SSAnne_2F_Room2"
+   ]
+  },
+  "224": {
+   "id": "FISHERMAN_BARNY",
+   "name": "BARNY",
+   "class": "FISHERMAN",
+   "max_level": 20,
+   "maps": [
+    "SSAnne_B1F_Room1"
+   ]
+  },
+  "225": {
+   "id": "FISHERMAN_NED",
+   "name": "NED",
+   "class": "FISHERMAN",
+   "max_level": 25,
+   "maps": []
+  },
+  "226": {
+   "id": "FISHERMAN_CHIP",
+   "name": "CHIP",
+   "class": "FISHERMAN",
+   "max_level": 28,
+   "maps": []
+  },
+  "227": {
+   "id": "FISHERMAN_HANK",
+   "name": "HANK",
+   "class": "FISHERMAN",
+   "max_level": 31,
+   "maps": []
+  },
+  "228": {
+   "id": "FISHERMAN_ELLIOT",
+   "name": "ELLIOT",
+   "class": "FISHERMAN",
+   "max_level": 24,
+   "maps": []
+  },
+  "229": {
+   "id": "FISHERMAN_RONALD",
+   "name": "RONALD",
+   "class": "FISHERMAN",
+   "max_level": 32,
+   "maps": []
+  },
+  "230": {
+   "id": "FISHERMAN_CLAUDE",
+   "name": "CLAUDE",
+   "class": "FISHERMAN",
+   "max_level": 36,
+   "maps": []
+  },
+  "231": {
+   "id": "FISHERMAN_WADE",
+   "name": "WADE",
+   "class": "FISHERMAN",
+   "max_level": 31,
+   "maps": []
+  },
+  "232": {
+   "id": "FISHERMAN_NOLAN",
+   "name": "NOLAN",
+   "class": "FISHERMAN",
+   "max_level": 38,
+   "maps": []
+  },
+  "233": {
+   "id": "FISHERMAN_ANDREW",
+   "name": "ANDREW",
+   "class": "FISHERMAN",
+   "max_level": 28,
+   "maps": []
+  },
+  "234": {
+   "id": "SWIMMER_MALE_LUIS",
+   "name": "LUIS",
+   "class": "SWIMMER_M",
+   "max_level": 18,
+   "maps": [
+    "CeruleanCity_Gym"
+   ]
+  },
+  "235": {
+   "id": "SWIMMER_MALE_RICHARD",
+   "name": "RICHARD",
+   "class": "SWIMMER_M",
+   "max_level": 34,
+   "maps": []
+  },
+  "236": {
+   "id": "SWIMMER_MALE_REECE",
+   "name": "REECE",
+   "class": "SWIMMER_M",
+   "max_level": 33,
+   "maps": []
+  },
+  "237": {
+   "id": "SWIMMER_MALE_MATTHEW",
+   "name": "MATTHEW",
+   "class": "SWIMMER_M",
+   "max_level": 34,
+   "maps": []
+  },
+  "238": {
+   "id": "SWIMMER_MALE_DOUGLAS",
+   "name": "DOUGLAS",
+   "class": "SWIMMER_M",
+   "max_level": 31,
+   "maps": []
+  },
+  "239": {
+   "id": "SWIMMER_MALE_DAVID",
+   "name": "DAVID",
+   "class": "SWIMMER_M",
+   "max_level": 33,
+   "maps": []
+  },
+  "240": {
+   "id": "SWIMMER_MALE_TONY",
+   "name": "TONY",
+   "class": "SWIMMER_M",
+   "max_level": 34,
+   "maps": []
+  },
+  "241": {
+   "id": "SWIMMER_MALE_AXLE",
+   "name": "AXLE",
+   "class": "SWIMMER_M",
+   "max_level": 31,
+   "maps": []
+  },
+  "242": {
+   "id": "SWIMMER_MALE_BARRY",
+   "name": "BARRY",
+   "class": "SWIMMER_M",
+   "max_level": 36,
+   "maps": []
+  },
+  "243": {
+   "id": "SWIMMER_MALE_DEAN",
+   "name": "DEAN",
+   "class": "SWIMMER_M",
+   "max_level": 40,
+   "maps": []
+  },
+  "244": {
+   "id": "SWIMMER_MALE_DARRIN",
+   "name": "DARRIN",
+   "class": "SWIMMER_M",
+   "max_level": 32,
+   "maps": []
+  },
+  "245": {
+   "id": "SWIMMER_MALE_SPENCER",
+   "name": "SPENCER",
+   "class": "SWIMMER_M",
+   "max_level": 38,
+   "maps": []
+  },
+  "246": {
+   "id": "SWIMMER_MALE_JACK",
+   "name": "JACK",
+   "class": "SWIMMER_M",
+   "max_level": 43,
+   "maps": []
+  },
+  "247": {
+   "id": "SWIMMER_MALE_JEROME",
+   "name": "JEROME",
+   "class": "SWIMMER_M",
+   "max_level": 38,
+   "maps": []
+  },
+  "248": {
+   "id": "SWIMMER_MALE_ROLAND",
+   "name": "ROLAND",
+   "class": "SWIMMER_M",
+   "max_level": 37,
+   "maps": []
+  },
+  "249": {
+   "id": "CUE_BALL_KOJI",
+   "name": "KOJI",
+   "class": "CUE_BALL",
+   "max_level": 32,
+   "maps": []
+  },
+  "250": {
+   "id": "CUE_BALL_LUKE",
+   "name": "LUKE",
+   "class": "CUE_BALL",
+   "max_level": 33,
+   "maps": []
+  },
+  "251": {
+   "id": "CUE_BALL_CAMRON",
+   "name": "CAMRON",
+   "class": "CUE_BALL",
+   "max_level": 33,
+   "maps": []
+  },
+  "252": {
+   "id": "CUE_BALL_RAUL",
+   "name": "RAUL",
+   "class": "CUE_BALL",
+   "max_level": 33,
+   "maps": []
+  },
+  "253": {
+   "id": "CUE_BALL_ISAIAH",
+   "name": "ISAIAH",
+   "class": "CUE_BALL",
+   "max_level": 33,
+   "maps": []
+  },
+  "254": {
+   "id": "CUE_BALL_ZEEK",
+   "name": "ZEEK",
+   "class": "CUE_BALL",
+   "max_level": 38,
+   "maps": []
+  },
+  "255": {
+   "id": "CUE_BALL_JAMAL",
+   "name": "JAMAL",
+   "class": "CUE_BALL",
+   "max_level": 30,
+   "maps": []
+  },
+  "256": {
+   "id": "CUE_BALL_COREY",
+   "name": "COREY",
+   "class": "CUE_BALL",
+   "max_level": 33,
+   "maps": []
+  },
+  "257": {
+   "id": "CUE_BALL_CHASE",
+   "name": "CHASE",
+   "class": "CUE_BALL",
+   "max_level": 36,
+   "maps": []
+  },
+  "258": {
+   "id": "GAMER_HUGO",
+   "name": "HUGO",
+   "class": "GAMER",
+   "max_level": 21,
+   "maps": []
+  },
+  "259": {
+   "id": "GAMER_JASPER",
+   "name": "JASPER",
+   "class": "GAMER",
+   "max_level": 21,
+   "maps": []
+  },
+  "260": {
+   "id": "GAMER_DIRK",
+   "name": "DIRK",
+   "class": "GAMER",
+   "max_level": 21,
+   "maps": []
+  },
+  "261": {
+   "id": "GAMER_DARIAN",
+   "name": "DARIAN",
+   "class": "GAMER",
+   "max_level": 21,
+   "maps": []
+  },
+  "262": {
+   "id": "GAMER_STAN",
+   "name": "STAN",
+   "class": "GAMER",
+   "max_level": 25,
+   "maps": []
+  },
+  "263": {
+   "id": "GAMER_1",
+   "name": "",
+   "class": "GAMER",
+   "max_level": 24,
+   "maps": []
+  },
+  "264": {
+   "id": "GAMER_RICH",
+   "name": "RICH",
+   "class": "GAMER",
+   "max_level": 0,
+   "maps": []
+  },
+  "265": {
+   "id": "BEAUTY_BRIDGET",
+   "name": "BRIDGET",
+   "class": "BEAUTY",
+   "max_level": 25,
+   "maps": [
+    "CeladonCity_Gym"
+   ]
+  },
+  "266": {
+   "id": "BEAUTY_TAMIA",
+   "name": "TAMIA",
+   "class": "BEAUTY",
+   "max_level": 28,
+   "maps": [
+    "CeladonCity_Gym"
+   ]
+  },
+  "267": {
+   "id": "BEAUTY_LORI",
+   "name": "LORI",
+   "class": "BEAUTY",
+   "max_level": 28,
+   "maps": [
+    "CeladonCity_Gym"
+   ]
+  },
+  "268": {
+   "id": "BEAUTY_LOLA",
+   "name": "LOLA",
+   "class": "BEAUTY",
+   "max_level": 31,
+   "maps": []
+  },
+  "269": {
+   "id": "BEAUTY_SHEILA",
+   "name": "SHEILA",
+   "class": "BEAUTY",
+   "max_level": 33,
+   "maps": []
+  },
+  "270": {
+   "id": "SWIMMER_FEMALE_TIFFANY",
+   "name": "TIFFANY",
+   "class": "SWIMMER_F",
+   "max_level": 40,
+   "maps": []
+  },
+  "271": {
+   "id": "SWIMMER_FEMALE_NORA",
+   "name": "NORA",
+   "class": "SWIMMER_F",
+   "max_level": 34,
+   "maps": []
+  },
+  "272": {
+   "id": "SWIMMER_FEMALE_MELISSA",
+   "name": "MELISSA",
+   "class": "SWIMMER_F",
+   "max_level": 36,
+   "maps": []
+  },
+  "273": {
+   "id": "BEAUTY_GRACE",
+   "name": "GRACE",
+   "class": "BEAUTY",
+   "max_level": 33,
+   "maps": []
+  },
+  "274": {
+   "id": "BEAUTY_OLIVIA",
+   "name": "OLIVIA",
+   "class": "BEAUTY",
+   "max_level": 33,
+   "maps": []
+  },
+  "275": {
+   "id": "BEAUTY_LAUREN",
+   "name": "LAUREN",
+   "class": "BEAUTY",
+   "max_level": 38,
+   "maps": []
+  },
+  "276": {
+   "id": "SWIMMER_FEMALE_ANYA",
+   "name": "ANYA",
+   "class": "SWIMMER_F",
+   "max_level": 31,
+   "maps": []
+  },
+  "277": {
+   "id": "SWIMMER_FEMALE_ALICE",
+   "name": "ALICE",
+   "class": "SWIMMER_F",
+   "max_level": 34,
+   "maps": []
+  },
+  "278": {
+   "id": "SWIMMER_FEMALE_CONNIE",
+   "name": "CONNIE",
+   "class": "SWIMMER_F",
+   "max_level": 33,
+   "maps": []
+  },
+  "279": {
+   "id": "SWIMMER_FEMALE_SHIRLEY",
+   "name": "SHIRLEY",
+   "class": "SWIMMER_F",
+   "max_level": 34,
+   "maps": []
+  },
+  "280": {
+   "id": "PSYCHIC_JOHAN",
+   "name": "JOHAN",
+   "class": "PSYCHIC",
+   "max_level": 36,
+   "maps": [
+    "SaffronCity_Gym"
+   ]
+  },
+  "281": {
+   "id": "PSYCHIC_TYRON",
+   "name": "TYRON",
+   "class": "PSYCHIC",
+   "max_level": 39,
+   "maps": [
+    "SaffronCity_Gym"
+   ]
+  },
+  "282": {
+   "id": "PSYCHIC_CAMERON",
+   "name": "CAMERON",
+   "class": "PSYCHIC",
+   "max_level": 38,
+   "maps": [
+    "SaffronCity_Gym"
+   ]
+  },
+  "283": {
+   "id": "PSYCHIC_PRESTON",
+   "name": "PRESTON",
+   "class": "PSYCHIC",
+   "max_level": 44,
+   "maps": [
+    "SaffronCity_Gym"
+   ]
+  },
+  "284": {
+   "id": "ROCKER_RANDALL",
+   "name": "RANDALL",
+   "class": "ROCKER",
+   "max_level": 23,
+   "maps": []
+  },
+  "285": {
+   "id": "ROCKER_LUCA",
+   "name": "LUCA",
+   "class": "ROCKER",
+   "max_level": 33,
+   "maps": []
+  },
+  "286": {
+   "id": "JUGGLER_DALTON",
+   "name": "DALTON",
+   "class": "JUGGLER",
+   "max_level": 33,
+   "maps": [
+    "SilphCo_5F"
+   ]
+  },
+  "287": {
+   "id": "JUGGLER_NELSON",
+   "name": "NELSON",
+   "class": "JUGGLER",
+   "max_level": 47,
+   "maps": [
+    "VictoryRoad_2F"
+   ]
+  },
+  "288": {
+   "id": "JUGGLER_KIRK",
+   "name": "KIRK",
+   "class": "JUGGLER",
+   "max_level": 36,
+   "maps": [
+    "FuchsiaCity_Gym"
+   ]
+  },
+  "289": {
+   "id": "JUGGLER_SHAWN",
+   "name": "SHAWN",
+   "class": "JUGGLER",
+   "max_level": 39,
+   "maps": [
+    "FuchsiaCity_Gym"
+   ]
+  },
+  "290": {
+   "id": "JUGGLER_GREGORY",
+   "name": "GREGORY",
+   "class": "JUGGLER",
+   "max_level": 55,
+   "maps": [
+    "VictoryRoad_2F"
+   ]
+  },
+  "291": {
+   "id": "JUGGLER_EDWARD",
+   "name": "EDWARD",
+   "class": "JUGGLER",
+   "max_level": 55,
+   "maps": []
+  },
+  "292": {
+   "id": "JUGGLER_KAYDEN",
+   "name": "KAYDEN",
+   "class": "JUGGLER",
+   "max_level": 44,
+   "maps": [
+    "FuchsiaCity_Gym"
+   ]
+  },
+  "293": {
+   "id": "JUGGLER_NATE",
+   "name": "NATE",
+   "class": "JUGGLER",
+   "max_level": 39,
+   "maps": [
+    "FuchsiaCity_Gym"
+   ]
+  },
+  "294": {
+   "id": "TAMER_PHIL",
+   "name": "PHIL",
+   "class": "TAMER",
+   "max_level": 39,
+   "maps": [
+    "FuchsiaCity_Gym"
+   ]
+  },
+  "295": {
+   "id": "TAMER_EDGAR",
+   "name": "EDGAR",
+   "class": "TAMER",
+   "max_level": 38,
+   "maps": [
+    "FuchsiaCity_Gym"
+   ]
+  },
+  "296": {
+   "id": "TAMER_JASON",
+   "name": "JASON",
+   "class": "TAMER",
+   "max_level": 49,
+   "maps": [
+    "ViridianCity_Gym"
+   ]
+  },
+  "297": {
+   "id": "TAMER_COLE",
+   "name": "COLE",
+   "class": "TAMER",
+   "max_level": 45,
+   "maps": [
+    "ViridianCity_Gym"
+   ]
+  },
+  "298": {
+   "id": "TAMER_VINCENT",
+   "name": "VINCENT",
+   "class": "TAMER",
+   "max_level": 51,
+   "maps": [
+    "VictoryRoad_2F"
+   ]
+  },
+  "299": {
+   "id": "TAMER_JOHN",
+   "name": "JOHN",
+   "class": "TAMER",
+   "max_level": 48,
+   "maps": []
+  },
+  "300": {
+   "id": "BIRD_KEEPER_SEBASTIAN",
+   "name": "SEBASTIAN",
+   "class": "BIRD_KEEPER",
+   "max_level": 33,
+   "maps": []
+  },
+  "301": {
+   "id": "BIRD_KEEPER_PERRY",
+   "name": "PERRY",
+   "class": "BIRD_KEEPER",
+   "max_level": 29,
+   "maps": []
+  },
+  "302": {
+   "id": "BIRD_KEEPER_ROBERT",
+   "name": "ROBERT",
+   "class": "BIRD_KEEPER",
+   "max_level": 30,
+   "maps": []
+  },
+  "303": {
+   "id": "BIRD_KEEPER_DONALD",
+   "name": "DONALD",
+   "class": "BIRD_KEEPER",
+   "max_level": 38,
+   "maps": []
+  },
+  "304": {
+   "id": "BIRD_KEEPER_BENNY",
+   "name": "BENNY",
+   "class": "BIRD_KEEPER",
+   "max_level": 33,
+   "maps": []
+  },
+  "305": {
+   "id": "BIRD_KEEPER_EDWIN",
+   "name": "EDWIN",
+   "class": "BIRD_KEEPER",
+   "max_level": 30,
+   "maps": []
+  },
+  "306": {
+   "id": "BIRD_KEEPER_CHESTER",
+   "name": "CHESTER",
+   "class": "BIRD_KEEPER",
+   "max_level": 32,
+   "maps": []
+  },
+  "307": {
+   "id": "BIRD_KEEPER_WILTON",
+   "name": "WILTON",
+   "class": "BIRD_KEEPER",
+   "max_level": 33,
+   "maps": []
+  },
+  "308": {
+   "id": "BIRD_KEEPER_RAMIRO",
+   "name": "RAMIRO",
+   "class": "BIRD_KEEPER",
+   "max_level": 39,
+   "maps": []
+  },
+  "309": {
+   "id": "BIRD_KEEPER_JACOB",
+   "name": "JACOB",
+   "class": "BIRD_KEEPER",
+   "max_level": 30,
+   "maps": []
+  },
+  "310": {
+   "id": "BIRD_KEEPER_ROGER",
+   "name": "ROGER",
+   "class": "BIRD_KEEPER",
+   "max_level": 34,
+   "maps": []
+  },
+  "311": {
+   "id": "BIRD_KEEPER_REED",
+   "name": "REED",
+   "class": "BIRD_KEEPER",
+   "max_level": 45,
+   "maps": []
+  },
+  "312": {
+   "id": "BIRD_KEEPER_KEITH",
+   "name": "KEITH",
+   "class": "BIRD_KEEPER",
+   "max_level": 45,
+   "maps": []
+  },
+  "313": {
+   "id": "BIRD_KEEPER_CARTER",
+   "name": "CARTER",
+   "class": "BIRD_KEEPER",
+   "max_level": 32,
+   "maps": []
+  },
+  "314": {
+   "id": "BIRD_KEEPER_MITCH",
+   "name": "MITCH",
+   "class": "BIRD_KEEPER",
+   "max_level": 30,
+   "maps": []
+  },
+  "315": {
+   "id": "BIRD_KEEPER_BECK",
+   "name": "BECK",
+   "class": "BIRD_KEEPER",
+   "max_level": 33,
+   "maps": []
+  },
+  "316": {
+   "id": "BIRD_KEEPER_MARLON",
+   "name": "MARLON",
+   "class": "BIRD_KEEPER",
+   "max_level": 32,
+   "maps": []
+  },
+  "317": {
+   "id": "BLACK_BELT_KOICHI",
+   "name": "KOICHI",
+   "class": "BLACK_BELT",
+   "max_level": 43,
+   "maps": [
+    "SaffronCity_Dojo"
+   ]
+  },
+  "318": {
+   "id": "BLACK_BELT_MIKE",
+   "name": "MIKE",
+   "class": "BLACK_BELT",
+   "max_level": 36,
+   "maps": [
+    "SaffronCity_Dojo"
+   ]
+  },
+  "319": {
+   "id": "BLACK_BELT_HIDEKI",
+   "name": "HIDEKI",
+   "class": "BLACK_BELT",
+   "max_level": 37,
+   "maps": [
+    "SaffronCity_Dojo"
+   ]
+  },
+  "320": {
+   "id": "BLACK_BELT_AARON",
+   "name": "AARON",
+   "class": "BLACK_BELT",
+   "max_level": 41,
+   "maps": [
+    "SaffronCity_Dojo"
+   ]
+  },
+  "321": {
+   "id": "BLACK_BELT_HITOSHI",
+   "name": "HITOSHI",
+   "class": "BLACK_BELT",
+   "max_level": 36,
+   "maps": [
+    "SaffronCity_Dojo"
+   ]
+  },
+  "322": {
+   "id": "BLACK_BELT_ATSUSHI",
+   "name": "ATSUSHI",
+   "class": "BLACK_BELT",
+   "max_level": 46,
+   "maps": [
+    "ViridianCity_Gym"
+   ]
+  },
+  "323": {
+   "id": "BLACK_BELT_KIYO",
+   "name": "KIYO",
+   "class": "BLACK_BELT",
+   "max_level": 49,
+   "maps": [
+    "ViridianCity_Gym"
+   ]
+  },
+  "324": {
+   "id": "BLACK_BELT_TAKASHI",
+   "name": "TAKASHI",
+   "class": "BLACK_BELT",
+   "max_level": 44,
+   "maps": [
+    "ViridianCity_Gym"
+   ]
+  },
+  "325": {
+   "id": "BLACK_BELT_DAISUKE",
+   "name": "DAISUKE",
+   "class": "BLACK_BELT",
+   "max_level": 49,
+   "maps": [
+    "VictoryRoad_2F"
+   ]
+  },
+  "326": {
+   "id": "RIVAL_OAKS_LAB_SQUIRTLE",
+   "name": "TERRY",
+   "class": "RIVAL_EARLY",
+   "max_level": 6,
+   "maps": [
+    "PalletTown_ProfessorOaksLab"
+   ]
+  },
+  "327": {
+   "id": "RIVAL_OAKS_LAB_BULBASAUR",
+   "name": "TERRY",
+   "class": "RIVAL_EARLY",
+   "max_level": 6,
+   "maps": [
+    "PalletTown_ProfessorOaksLab"
+   ]
+  },
+  "328": {
+   "id": "RIVAL_OAKS_LAB_CHARMANDER",
+   "name": "TERRY",
+   "class": "RIVAL_EARLY",
+   "max_level": 6,
+   "maps": [
+    "PalletTown_ProfessorOaksLab"
+   ]
+  },
+  "329": {
+   "id": "RIVAL_ROUTE22_EARLY_SQUIRTLE",
+   "name": "TERRY",
+   "class": "RIVAL_EARLY",
+   "max_level": 10,
+   "maps": [
+    "Route22"
+   ]
+  },
+  "330": {
+   "id": "RIVAL_ROUTE22_EARLY_BULBASAUR",
+   "name": "TERRY",
+   "class": "RIVAL_EARLY",
+   "max_level": 10,
+   "maps": [
+    "Route22"
+   ]
+  },
+  "331": {
+   "id": "RIVAL_ROUTE22_EARLY_CHARMANDER",
+   "name": "TERRY",
+   "class": "RIVAL_EARLY",
+   "max_level": 10,
+   "maps": [
+    "Route22"
+   ]
+  },
+  "332": {
+   "id": "RIVAL_CERULEAN_SQUIRTLE",
+   "name": "TERRY",
+   "class": "RIVAL_EARLY",
+   "max_level": 21,
+   "maps": [
+    "CeruleanCity"
+   ]
+  },
+  "333": {
+   "id": "RIVAL_CERULEAN_BULBASAUR",
+   "name": "TERRY",
+   "class": "RIVAL_EARLY",
+   "max_level": 21,
+   "maps": [
+    "CeruleanCity"
+   ]
+  },
+  "334": {
+   "id": "RIVAL_CERULEAN_CHARMANDER",
+   "name": "TERRY",
+   "class": "RIVAL_EARLY",
+   "max_level": 21,
+   "maps": [
+    "CeruleanCity"
+   ]
+  },
+  "335": {
+   "id": "SCIENTIST_TED",
+   "name": "TED",
+   "class": "SCIENTIST",
+   "max_level": 33,
+   "maps": [
+    "PokemonMansion_1F"
+   ]
+  },
+  "336": {
+   "id": "SCIENTIST_CONNOR",
+   "name": "CONNOR",
+   "class": "SCIENTIST",
+   "max_level": 30,
+   "maps": [
+    "SilphCo_2F"
+   ]
+  },
+  "337": {
+   "id": "SCIENTIST_JERRY",
+   "name": "JERRY",
+   "class": "SCIENTIST",
+   "max_level": 32,
+   "maps": [
+    "SilphCo_2F"
+   ]
+  },
+  "338": {
+   "id": "SCIENTIST_JOSE",
+   "name": "JOSE",
+   "class": "SCIENTIST",
+   "max_level": 33,
+   "maps": [
+    "SilphCo_3F"
+   ]
+  },
+  "339": {
+   "id": "SCIENTIST_RODNEY",
+   "name": "RODNEY",
+   "class": "SCIENTIST",
+   "max_level": 38,
+   "maps": [
+    "SilphCo_4F"
+   ]
+  },
+  "340": {
+   "id": "SCIENTIST_BEAU",
+   "name": "BEAU",
+   "class": "SCIENTIST",
+   "max_level": 30,
+   "maps": [
+    "SilphCo_5F"
+   ]
+  },
+  "341": {
+   "id": "SCIENTIST_TAYLOR",
+   "name": "TAYLOR",
+   "class": "SCIENTIST",
+   "max_level": 29,
+   "maps": [
+    "SilphCo_6F"
+   ]
+  },
+  "342": {
+   "id": "SCIENTIST_JOSHUA",
+   "name": "JOSHUA",
+   "class": "SCIENTIST",
+   "max_level": 33,
+   "maps": [
+    "SilphCo_7F"
+   ]
+  },
+  "343": {
+   "id": "SCIENTIST_PARKER",
+   "name": "PARKER",
+   "class": "SCIENTIST",
+   "max_level": 33,
+   "maps": [
+    "SilphCo_8F"
+   ]
+  },
+  "344": {
+   "id": "SCIENTIST_ED",
+   "name": "ED",
+   "class": "SCIENTIST",
+   "max_level": 32,
+   "maps": [
+    "SilphCo_9F"
+   ]
+  },
+  "345": {
+   "id": "SCIENTIST_TRAVIS",
+   "name": "TRAVIS",
+   "class": "SCIENTIST",
+   "max_level": 33,
+   "maps": [
+    "SilphCo_10F"
+   ]
+  },
+  "346": {
+   "id": "SCIENTIST_BRAYDON",
+   "name": "BRAYDON",
+   "class": "SCIENTIST",
+   "max_level": 38,
+   "maps": [
+    "PokemonMansion_3F"
+   ]
+  },
+  "347": {
+   "id": "SCIENTIST_IVAN",
+   "name": "IVAN",
+   "class": "SCIENTIST",
+   "max_level": 39,
+   "maps": [
+    "PokemonMansion_B1F"
+   ]
+  },
+  "348": {
+   "id": "BOSS_GIOVANNI",
+   "name": "GIOVANNI",
+   "class": "BOSS",
+   "max_level": 33,
+   "maps": [
+    "RocketHideout_B4F"
+   ]
+  },
+  "349": {
+   "id": "BOSS_GIOVANNI_2",
+   "name": "GIOVANNI",
+   "class": "BOSS",
+   "max_level": 47,
+   "maps": [
+    "SilphCo_11F"
+   ]
+  },
+  "350": {
+   "id": "LEADER_GIOVANNI",
+   "name": "GIOVANNI",
+   "class": "LEADER",
+   "max_level": 54,
+   "maps": [
+    "ViridianCity_Gym"
+   ]
+  },
+  "351": {
+   "id": "TEAM_ROCKET_GRUNT",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 15,
+   "maps": [
+    "MtMoon_B2F"
+   ]
+  },
+  "352": {
+   "id": "TEAM_ROCKET_GRUNT_2",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 13,
+   "maps": [
+    "MtMoon_B2F"
+   ]
+  },
+  "353": {
+   "id": "TEAM_ROCKET_GRUNT_3",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 13,
+   "maps": [
+    "MtMoon_B2F"
+   ]
+  },
+  "354": {
+   "id": "TEAM_ROCKET_GRUNT_4",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 15,
+   "maps": [
+    "MtMoon_B2F"
+   ]
+  },
+  "355": {
+   "id": "TEAM_ROCKET_GRUNT_5",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 20,
+   "maps": [
+    "CeruleanCity"
+   ]
+  },
+  "356": {
+   "id": "TEAM_ROCKET_GRUNT_6",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 17,
+   "maps": [
+    "Route24"
+   ]
+  },
+  "357": {
+   "id": "TEAM_ROCKET_GRUNT_7",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 23,
+   "maps": [
+    "CeladonCity_GameCorner"
+   ]
+  },
+  "358": {
+   "id": "TEAM_ROCKET_GRUNT_8",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 24,
+   "maps": [
+    "RocketHideout_B1F"
+   ]
+  },
+  "359": {
+   "id": "TEAM_ROCKET_GRUNT_9",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 24,
+   "maps": [
+    "RocketHideout_B1F"
+   ]
+  },
+  "360": {
+   "id": "TEAM_ROCKET_GRUNT_10",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 23,
+   "maps": [
+    "RocketHideout_B1F"
+   ]
+  },
+  "361": {
+   "id": "TEAM_ROCKET_GRUNT_11",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 22,
+   "maps": [
+    "RocketHideout_B1F"
+   ]
+  },
+  "362": {
+   "id": "TEAM_ROCKET_GRUNT_12",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 25,
+   "maps": [
+    "RocketHideout_B1F"
+   ]
+  },
+  "363": {
+   "id": "TEAM_ROCKET_GRUNT_13",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 20,
+   "maps": [
+    "RocketHideout_B2F"
+   ]
+  },
+  "364": {
+   "id": "TEAM_ROCKET_GRUNT_14",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 23,
+   "maps": [
+    "RocketHideout_B3F"
+   ]
+  },
+  "365": {
+   "id": "TEAM_ROCKET_GRUNT_15",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 24,
+   "maps": [
+    "RocketHideout_B3F"
+   ]
+  },
+  "366": {
+   "id": "TEAM_ROCKET_GRUNT_16",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 26,
+   "maps": [
+    "RocketHideout_B4F"
+   ]
+  },
+  "367": {
+   "id": "TEAM_ROCKET_GRUNT_17",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 26,
+   "maps": [
+    "RocketHideout_B4F"
+   ]
+  },
+  "368": {
+   "id": "TEAM_ROCKET_GRUNT_18",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 24,
+   "maps": [
+    "RocketHideout_B4F"
+   ]
+  },
+  "369": {
+   "id": "TEAM_ROCKET_GRUNT_19",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 29,
+   "maps": [
+    "PokemonTower_7F"
+   ]
+  },
+  "370": {
+   "id": "TEAM_ROCKET_GRUNT_20",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 30,
+   "maps": [
+    "PokemonTower_7F"
+   ]
+  },
+  "371": {
+   "id": "TEAM_ROCKET_GRUNT_21",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 26,
+   "maps": [
+    "PokemonTower_7F"
+   ]
+  },
+  "372": {
+   "id": "TEAM_ROCKET_GRUNT_22",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 30,
+   "maps": []
+  },
+  "373": {
+   "id": "TEAM_ROCKET_GRUNT_23",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 33,
+   "maps": [
+    "SilphCo_2F"
+   ]
+  },
+  "374": {
+   "id": "TEAM_ROCKET_GRUNT_24",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 29,
+   "maps": [
+    "SilphCo_2F"
+   ]
+  },
+  "375": {
+   "id": "TEAM_ROCKET_GRUNT_25",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 32,
+   "maps": [
+    "SilphCo_3F"
+   ]
+  },
+  "376": {
+   "id": "TEAM_ROCKET_GRUNT_26",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 33,
+   "maps": [
+    "SilphCo_4F"
+   ]
+  },
+  "377": {
+   "id": "TEAM_ROCKET_GRUNT_27",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 32,
+   "maps": [
+    "SilphCo_4F"
+   ]
+  },
+  "378": {
+   "id": "TEAM_ROCKET_GRUNT_28",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 38,
+   "maps": [
+    "SilphCo_5F"
+   ]
+  },
+  "379": {
+   "id": "TEAM_ROCKET_GRUNT_29",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 38,
+   "maps": [
+    "SilphCo_5F"
+   ]
+  },
+  "380": {
+   "id": "TEAM_ROCKET_GRUNT_30",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 33,
+   "maps": [
+    "SilphCo_6F"
+   ]
+  },
+  "381": {
+   "id": "TEAM_ROCKET_GRUNT_31",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 32,
+   "maps": [
+    "SilphCo_6F"
+   ]
+  },
+  "382": {
+   "id": "TEAM_ROCKET_GRUNT_32",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 30,
+   "maps": [
+    "SilphCo_8F"
+   ]
+  },
+  "383": {
+   "id": "TEAM_ROCKET_GRUNT_33",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 33,
+   "maps": [
+    "SilphCo_7F"
+   ]
+  },
+  "384": {
+   "id": "TEAM_ROCKET_GRUNT_34",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 33,
+   "maps": [
+    "SilphCo_7F"
+   ]
+  },
+  "385": {
+   "id": "TEAM_ROCKET_GRUNT_35",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 30,
+   "maps": [
+    "SilphCo_7F"
+   ]
+  },
+  "386": {
+   "id": "TEAM_ROCKET_GRUNT_36",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 32,
+   "maps": [
+    "SilphCo_8F"
+   ]
+  },
+  "387": {
+   "id": "TEAM_ROCKET_GRUNT_37",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 32,
+   "maps": [
+    "SilphCo_9F"
+   ]
+  },
+  "388": {
+   "id": "TEAM_ROCKET_GRUNT_38",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 32,
+   "maps": [
+    "SilphCo_9F"
+   ]
+  },
+  "389": {
+   "id": "TEAM_ROCKET_GRUNT_39",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 38,
+   "maps": [
+    "SilphCo_10F"
+   ]
+  },
+  "390": {
+   "id": "TEAM_ROCKET_GRUNT_40",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 29,
+   "maps": [
+    "SilphCo_11F"
+   ]
+  },
+  "391": {
+   "id": "TEAM_ROCKET_GRUNT_41",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 37,
+   "maps": [
+    "SilphCo_11F"
+   ]
+  },
+  "392": {
+   "id": "COOLTRAINER_SAMUEL",
+   "name": "SAMUEL",
+   "class": "COOLTRAINER",
+   "max_level": 45,
+   "maps": [
+    "ViridianCity_Gym"
+   ]
+  },
+  "393": {
+   "id": "COOLTRAINER_GEORGE",
+   "name": "GEORGE",
+   "class": "COOLTRAINER",
+   "max_level": 48,
+   "maps": [
+    "VictoryRoad_3F"
+   ]
+  },
+  "394": {
+   "id": "COOLTRAINER_COLBY",
+   "name": "COLBY",
+   "class": "COOLTRAINER",
+   "max_level": 49,
+   "maps": [
+    "VictoryRoad_3F"
+   ]
+  },
+  "395": {
+   "id": "COOLTRAINER_PAUL",
+   "name": "PAUL",
+   "class": "COOLTRAINER",
+   "max_level": 48,
+   "maps": []
+  },
+  "396": {
+   "id": "COOLTRAINER_ROLANDO",
+   "name": "ROLANDO",
+   "class": "COOLTRAINER",
+   "max_level": 48,
+   "maps": [
+    "VictoryRoad_1F"
+   ]
+  },
+  "397": {
+   "id": "COOLTRAINER_GILBERT",
+   "name": "GILBERT",
+   "class": "COOLTRAINER",
+   "max_level": 48,
+   "maps": []
+  },
+  "398": {
+   "id": "COOLTRAINER_OWEN",
+   "name": "OWEN",
+   "class": "COOLTRAINER",
+   "max_level": 48,
+   "maps": []
+  },
+  "399": {
+   "id": "COOLTRAINER_BERKE",
+   "name": "BERKE",
+   "class": "COOLTRAINER",
+   "max_level": 48,
+   "maps": []
+  },
+  "400": {
+   "id": "COOLTRAINER_YUJI",
+   "name": "YUJI",
+   "class": "COOLTRAINER",
+   "max_level": 44,
+   "maps": [
+    "ViridianCity_Gym"
+   ]
+  },
+  "401": {
+   "id": "COOLTRAINER_WARREN",
+   "name": "WARREN",
+   "class": "COOLTRAINER",
+   "max_level": 45,
+   "maps": [
+    "ViridianCity_Gym"
+   ]
+  },
+  "402": {
+   "id": "COOLTRAINER_MARY",
+   "name": "MARY",
+   "class": "COOLTRAINER",
+   "max_level": 25,
+   "maps": [
+    "CeladonCity_Gym"
+   ]
+  },
+  "403": {
+   "id": "COOLTRAINER_CAROLINE",
+   "name": "CAROLINE",
+   "class": "COOLTRAINER",
+   "max_level": 48,
+   "maps": [
+    "VictoryRoad_3F"
+   ]
+  },
+  "404": {
+   "id": "COOLTRAINER_ALEXA",
+   "name": "ALEXA",
+   "class": "COOLTRAINER",
+   "max_level": 48,
+   "maps": [
+    "VictoryRoad_3F"
+   ]
+  },
+  "405": {
+   "id": "COOLTRAINER_SHANNON",
+   "name": "SHANNON",
+   "class": "COOLTRAINER",
+   "max_level": 48,
+   "maps": []
+  },
+  "406": {
+   "id": "COOLTRAINER_NAOMI",
+   "name": "NAOMI",
+   "class": "COOLTRAINER",
+   "max_level": 48,
+   "maps": [
+    "VictoryRoad_1F"
+   ]
+  },
+  "407": {
+   "id": "COOLTRAINER_BROOKE",
+   "name": "BROOKE",
+   "class": "COOLTRAINER",
+   "max_level": 48,
+   "maps": []
+  },
+  "408": {
+   "id": "COOLTRAINER_AUSTINA",
+   "name": "AUSTINA",
+   "class": "COOLTRAINER",
+   "max_level": 48,
+   "maps": []
+  },
+  "409": {
+   "id": "COOLTRAINER_JULIE",
+   "name": "JULIE",
+   "class": "COOLTRAINER",
+   "max_level": 48,
+   "maps": []
+  },
+  "410": {
+   "id": "ELITE_FOUR_LORELEI",
+   "name": "LORELEI",
+   "class": "ELITE_FOUR",
+   "max_level": 62,
+   "maps": [
+    "PokemonLeague_LoreleisRoom"
+   ]
+  },
+  "411": {
+   "id": "ELITE_FOUR_BRUNO",
+   "name": "BRUNO",
+   "class": "ELITE_FOUR",
+   "max_level": 64,
+   "maps": [
+    "PokemonLeague_BrunosRoom"
+   ]
+  },
+  "412": {
+   "id": "ELITE_FOUR_AGATHA",
+   "name": "AGATHA",
+   "class": "ELITE_FOUR",
+   "max_level": 67,
+   "maps": [
+    "PokemonLeague_AgathasRoom"
+   ]
+  },
+  "413": {
+   "id": "ELITE_FOUR_LANCE",
+   "name": "LANCE",
+   "class": "ELITE_FOUR",
+   "max_level": 69,
+   "maps": [
+    "PokemonLeague_LancesRoom"
+   ]
+  },
+  "414": {
+   "id": "LEADER_BROCK",
+   "name": "BROCK",
+   "class": "LEADER",
+   "max_level": 16,
+   "maps": [
+    "PewterCity_Gym"
+   ]
+  },
+  "415": {
+   "id": "LEADER_MISTY",
+   "name": "MISTY",
+   "class": "LEADER",
+   "max_level": 23,
+   "maps": [
+    "CeruleanCity_Gym"
+   ]
+  },
+  "416": {
+   "id": "LEADER_LT_SURGE",
+   "name": "LT. SURGE",
+   "class": "LEADER",
+   "max_level": 28,
+   "maps": [
+    "VermilionCity_Gym"
+   ]
+  },
+  "417": {
+   "id": "LEADER_ERIKA",
+   "name": "ERIKA",
+   "class": "LEADER",
+   "max_level": 35,
+   "maps": [
+    "CeladonCity_Gym"
+   ]
+  },
+  "418": {
+   "id": "LEADER_KOGA",
+   "name": "KOGA",
+   "class": "LEADER",
+   "max_level": 45,
+   "maps": [
+    "FuchsiaCity_Gym"
+   ]
+  },
+  "419": {
+   "id": "LEADER_BLAINE",
+   "name": "BLAINE",
+   "class": "LEADER",
+   "max_level": 51,
+   "maps": [
+    "CinnabarIsland_Gym"
+   ]
+  },
+  "420": {
+   "id": "LEADER_SABRINA",
+   "name": "SABRINA",
+   "class": "LEADER",
+   "max_level": 47,
+   "maps": [
+    "SaffronCity_Gym"
+   ]
+  },
+  "421": {
+   "id": "GENTLEMAN_THOMAS",
+   "name": "THOMAS",
+   "class": "GENTLEMAN",
+   "max_level": 21,
+   "maps": [
+    "SSAnne_1F_Room7"
+   ]
+  },
+  "422": {
+   "id": "GENTLEMAN_ARTHUR",
+   "name": "ARTHUR",
+   "class": "GENTLEMAN",
+   "max_level": 22,
+   "maps": [
+    "SSAnne_1F_Room5"
+   ]
+  },
+  "423": {
+   "id": "GENTLEMAN_TUCKER",
+   "name": "TUCKER",
+   "class": "GENTLEMAN",
+   "max_level": 26,
+   "maps": [
+    "VermilionCity_Gym"
+   ]
+  },
+  "424": {
+   "id": "GENTLEMAN_NORTON",
+   "name": "NORTON",
+   "class": "GENTLEMAN",
+   "max_level": 55,
+   "maps": []
+  },
+  "425": {
+   "id": "GENTLEMAN_WALTER",
+   "name": "WALTER",
+   "class": "GENTLEMAN",
+   "max_level": 20,
+   "maps": []
+  },
+  "426": {
+   "id": "RIVAL_SS_ANNE_SQUIRTLE",
+   "name": "TERRY",
+   "class": "RIVAL_LATE",
+   "max_level": 23,
+   "maps": [
+    "SSAnne_2F_Corridor"
+   ]
+  },
+  "427": {
+   "id": "RIVAL_SS_ANNE_BULBASAUR",
+   "name": "TERRY",
+   "class": "RIVAL_LATE",
+   "max_level": 23,
+   "maps": [
+    "SSAnne_2F_Corridor"
+   ]
+  },
+  "428": {
+   "id": "RIVAL_SS_ANNE_CHARMANDER",
+   "name": "TERRY",
+   "class": "RIVAL_LATE",
+   "max_level": 23,
+   "maps": [
+    "SSAnne_2F_Corridor"
+   ]
+  },
+  "429": {
+   "id": "RIVAL_POKEMON_TOWER_SQUIRTLE",
+   "name": "TERRY",
+   "class": "RIVAL_LATE",
+   "max_level": 29,
+   "maps": [
+    "PokemonTower_2F"
+   ]
+  },
+  "430": {
+   "id": "RIVAL_POKEMON_TOWER_BULBASAUR",
+   "name": "TERRY",
+   "class": "RIVAL_LATE",
+   "max_level": 29,
+   "maps": [
+    "PokemonTower_2F"
+   ]
+  },
+  "431": {
+   "id": "RIVAL_POKEMON_TOWER_CHARMANDER",
+   "name": "TERRY",
+   "class": "RIVAL_LATE",
+   "max_level": 29,
+   "maps": [
+    "PokemonTower_2F"
+   ]
+  },
+  "432": {
+   "id": "RIVAL_SILPH_SQUIRTLE",
+   "name": "TERRY",
+   "class": "RIVAL_LATE",
+   "max_level": 46,
+   "maps": [
+    "SilphCo_7F"
+   ]
+  },
+  "433": {
+   "id": "RIVAL_SILPH_BULBASAUR",
+   "name": "TERRY",
+   "class": "RIVAL_LATE",
+   "max_level": 46,
+   "maps": [
+    "SilphCo_7F"
+   ]
+  },
+  "434": {
+   "id": "RIVAL_SILPH_CHARMANDER",
+   "name": "TERRY",
+   "class": "RIVAL_LATE",
+   "max_level": 46,
+   "maps": [
+    "SilphCo_7F"
+   ]
+  },
+  "435": {
+   "id": "RIVAL_ROUTE22_LATE_SQUIRTLE",
+   "name": "TERRY",
+   "class": "RIVAL_LATE",
+   "max_level": 61,
+   "maps": [
+    "Route22"
+   ]
+  },
+  "436": {
+   "id": "RIVAL_ROUTE22_LATE_BULBASAUR",
+   "name": "TERRY",
+   "class": "RIVAL_LATE",
+   "max_level": 61,
+   "maps": [
+    "Route22"
+   ]
+  },
+  "437": {
+   "id": "RIVAL_ROUTE22_LATE_CHARMANDER",
+   "name": "TERRY",
+   "class": "RIVAL_LATE",
+   "max_level": 61,
+   "maps": [
+    "Route22"
+   ]
+  },
+  "438": {
+   "id": "CHAMPION_FIRST_SQUIRTLE",
+   "name": "TERRY",
+   "class": "CHAMPION",
+   "max_level": 72,
+   "maps": [
+    "PokemonLeague_ChampionsRoom"
+   ]
+  },
+  "439": {
+   "id": "CHAMPION_FIRST_BULBASAUR",
+   "name": "TERRY",
+   "class": "CHAMPION",
+   "max_level": 72,
+   "maps": [
+    "PokemonLeague_ChampionsRoom"
+   ]
+  },
+  "440": {
+   "id": "CHAMPION_FIRST_CHARMANDER",
+   "name": "TERRY",
+   "class": "CHAMPION",
+   "max_level": 72,
+   "maps": [
+    "PokemonLeague_ChampionsRoom"
+   ]
+  },
+  "441": {
+   "id": "CHANNELER_PATRICIA",
+   "name": "PATRICIA",
+   "class": "CHANNELER",
+   "max_level": 25,
+   "maps": [
+    "PokemonTower_3F"
+   ]
+  },
+  "442": {
+   "id": "CHANNELER_CARLY",
+   "name": "CARLY",
+   "class": "CHANNELER",
+   "max_level": 28,
+   "maps": [
+    "PokemonTower_3F"
+   ]
+  },
+  "443": {
+   "id": "CHANNELER_HOPE",
+   "name": "HOPE",
+   "class": "CHANNELER",
+   "max_level": 26,
+   "maps": [
+    "PokemonTower_3F"
+   ]
+  },
+  "444": {
+   "id": "CHANNELER_PAULA",
+   "name": "PAULA",
+   "class": "CHANNELER",
+   "max_level": 28,
+   "maps": [
+    "PokemonTower_4F"
+   ]
+  },
+  "445": {
+   "id": "CHANNELER_LAUREL",
+   "name": "LAUREL",
+   "class": "CHANNELER",
+   "max_level": 26,
+   "maps": [
+    "PokemonTower_4F"
+   ]
+  },
+  "446": {
+   "id": "CHANNELER_JODY",
+   "name": "JODY",
+   "class": "CHANNELER",
+   "max_level": 25,
+   "maps": [
+    "PokemonTower_4F"
+   ]
+  },
+  "447": {
+   "id": "CHANNELER_TAMMY",
+   "name": "TAMMY",
+   "class": "CHANNELER",
+   "max_level": 26,
+   "maps": [
+    "PokemonTower_5F"
+   ]
+  },
+  "448": {
+   "id": "CHANNELER_RUTH",
+   "name": "RUTH",
+   "class": "CHANNELER",
+   "max_level": 25,
+   "maps": [
+    "PokemonTower_5F"
+   ]
+  },
+  "449": {
+   "id": "CHANNELER_KARINA",
+   "name": "KARINA",
+   "class": "CHANNELER",
+   "max_level": 28,
+   "maps": [
+    "PokemonTower_5F"
+   ]
+  },
+  "450": {
+   "id": "CHANNELER_JANAE",
+   "name": "JANAE",
+   "class": "CHANNELER",
+   "max_level": 25,
+   "maps": [
+    "PokemonTower_5F"
+   ]
+  },
+  "451": {
+   "id": "CHANNELER_ANGELICA",
+   "name": "ANGELICA",
+   "class": "CHANNELER",
+   "max_level": 25,
+   "maps": [
+    "PokemonTower_6F"
+   ]
+  },
+  "452": {
+   "id": "CHANNELER_EMILIA",
+   "name": "EMILIA",
+   "class": "CHANNELER",
+   "max_level": 28,
+   "maps": [
+    "PokemonTower_6F"
+   ]
+  },
+  "453": {
+   "id": "CHANNELER_JENNIFER",
+   "name": "JENNIFER",
+   "class": "CHANNELER",
+   "max_level": 28,
+   "maps": [
+    "PokemonTower_6F"
+   ]
+  },
+  "454": {
+   "id": "CHANNELER_1",
+   "name": "",
+   "class": "CHANNELER",
+   "max_level": 26,
+   "maps": []
+  },
+  "455": {
+   "id": "CHANNELER_2",
+   "name": "",
+   "class": "CHANNELER",
+   "max_level": 28,
+   "maps": []
+  },
+  "456": {
+   "id": "CHANNELER_3",
+   "name": "",
+   "class": "CHANNELER",
+   "max_level": 25,
+   "maps": []
+  },
+  "457": {
+   "id": "CHANNELER_4",
+   "name": "",
+   "class": "CHANNELER",
+   "max_level": 28,
+   "maps": []
+  },
+  "458": {
+   "id": "CHANNELER_5",
+   "name": "",
+   "class": "CHANNELER",
+   "max_level": 25,
+   "maps": []
+  },
+  "459": {
+   "id": "CHANNELER_6",
+   "name": "",
+   "class": "CHANNELER",
+   "max_level": 25,
+   "maps": []
+  },
+  "460": {
+   "id": "CHANNELER_7",
+   "name": "",
+   "class": "CHANNELER",
+   "max_level": 28,
+   "maps": []
+  },
+  "461": {
+   "id": "CHANNELER_8",
+   "name": "",
+   "class": "CHANNELER",
+   "max_level": 28,
+   "maps": []
+  },
+  "462": {
+   "id": "CHANNELER_AMANDA",
+   "name": "AMANDA",
+   "class": "CHANNELER",
+   "max_level": 39,
+   "maps": [
+    "SaffronCity_Gym"
+   ]
+  },
+  "463": {
+   "id": "CHANNELER_STACY",
+   "name": "STACY",
+   "class": "CHANNELER",
+   "max_level": 44,
+   "maps": [
+    "SaffronCity_Gym"
+   ]
+  },
+  "464": {
+   "id": "CHANNELER_TASHA",
+   "name": "TASHA",
+   "class": "CHANNELER",
+   "max_level": 38,
+   "maps": [
+    "SaffronCity_Gym"
+   ]
+  },
+  "465": {
+   "id": "HIKER_JEREMY",
+   "name": "JEREMY",
+   "class": "HIKER",
+   "max_level": 23,
+   "maps": []
+  },
+  "466": {
+   "id": "PICNICKER_ALMA",
+   "name": "ALMA",
+   "class": "PICNICKER",
+   "max_level": 32,
+   "maps": []
+  },
+  "467": {
+   "id": "PICNICKER_SUSIE",
+   "name": "SUSIE",
+   "class": "PICNICKER",
+   "max_level": 28,
+   "maps": []
+  },
+  "468": {
+   "id": "PICNICKER_VALERIE",
+   "name": "VALERIE",
+   "class": "PICNICKER",
+   "max_level": 34,
+   "maps": []
+  },
+  "469": {
+   "id": "PICNICKER_GWEN",
+   "name": "GWEN",
+   "class": "PICNICKER",
+   "max_level": 31,
+   "maps": []
+  },
+  "470": {
+   "id": "BIKER_VIRGIL",
+   "name": "VIRGIL",
+   "class": "BIKER",
+   "max_level": 32,
+   "maps": []
+  },
+  "471": {
+   "id": "CAMPER_FLINT",
+   "name": "FLINT",
+   "class": "CAMPER",
+   "max_level": 16,
+   "maps": []
+  },
+  "472": {
+   "id": "PICNICKER_MISSY",
+   "name": "MISSY",
+   "class": "PICNICKER",
+   "max_level": 36,
+   "maps": []
+  },
+  "473": {
+   "id": "PICNICKER_IRENE",
+   "name": "IRENE",
+   "class": "PICNICKER",
+   "max_level": 34,
+   "maps": []
+  },
+  "474": {
+   "id": "PICNICKER_DANA",
+   "name": "DANA",
+   "class": "PICNICKER",
+   "max_level": 23,
+   "maps": [
+    "RockTunnel_1F"
+   ]
+  },
+  "475": {
+   "id": "PICNICKER_ARIANA",
+   "name": "ARIANA",
+   "class": "PICNICKER",
+   "max_level": 22,
+   "maps": [
+    "RockTunnel_1F"
+   ]
+  },
+  "476": {
+   "id": "PICNICKER_LEAH",
+   "name": "LEAH",
+   "class": "PICNICKER",
+   "max_level": 25,
+   "maps": [
+    "RockTunnel_1F"
+   ]
+  },
+  "477": {
+   "id": "CAMPER_JUSTIN",
+   "name": "JUSTIN",
+   "class": "CAMPER",
+   "max_level": 33,
+   "maps": []
+  },
+  "478": {
+   "id": "PICNICKER_YAZMIN",
+   "name": "YAZMIN",
+   "class": "PICNICKER",
+   "max_level": 33,
+   "maps": []
+  },
+  "479": {
+   "id": "PICNICKER_KINDRA",
+   "name": "KINDRA",
+   "class": "PICNICKER",
+   "max_level": 32,
+   "maps": []
+  },
+  "480": {
+   "id": "PICNICKER_BECKY",
+   "name": "BECKY",
+   "class": "PICNICKER",
+   "max_level": 33,
+   "maps": []
+  },
+  "481": {
+   "id": "PICNICKER_CELIA",
+   "name": "CELIA",
+   "class": "PICNICKER",
+   "max_level": 38,
+   "maps": []
+  },
+  "482": {
+   "id": "GENTLEMAN_BROOKS",
+   "name": "BROOKS",
+   "class": "GENTLEMAN",
+   "max_level": 26,
+   "maps": [
+    "SSAnne_2F_Room2"
+   ]
+  },
+  "483": {
+   "id": "GENTLEMAN_LAMAR",
+   "name": "LAMAR",
+   "class": "GENTLEMAN",
+   "max_level": 20,
+   "maps": [
+    "SSAnne_2F_Room4"
+   ]
+  },
+  "484": {
+   "id": "TWINS_ELI_ANNE",
+   "name": "ELI & ANNE",
+   "class": "TWINS",
+   "max_level": 25,
+   "maps": []
+  },
+  "485": {
+   "id": "COOL_COUPLE_RAY_TYRA",
+   "name": "RAY & TYRA",
+   "class": "COOL_COUPLE",
+   "max_level": 52,
+   "maps": [
+    "VictoryRoad_3F"
+   ]
+  },
+  "486": {
+   "id": "YOUNG_COUPLE_GIA_JES",
+   "name": "GIA & JES",
+   "class": "YOUNG_COUPLE",
+   "max_level": 28,
+   "maps": []
+  },
+  "487": {
+   "id": "TWINS_KIRI_JAN",
+   "name": "KIRI & JAN",
+   "class": "TWINS",
+   "max_level": 33,
+   "maps": []
+  },
+  "488": {
+   "id": "CRUSH_KIN_RON_MYA",
+   "name": "RON & MYA",
+   "class": "CRUSH_KIN",
+   "max_level": 33,
+   "maps": []
+  },
+  "489": {
+   "id": "YOUNG_COUPLE_LEA_JED",
+   "name": "LEA & JED",
+   "class": "YOUNG_COUPLE",
+   "max_level": 33,
+   "maps": []
+  },
+  "490": {
+   "id": "SIS_AND_BRO_LIA_LUC",
+   "name": "LIA & LUC",
+   "class": "SIS_AND_BRO",
+   "max_level": 34,
+   "maps": []
+  },
+  "491": {
+   "id": "SIS_AND_BRO_LIL_IAN",
+   "name": "LIL & IAN",
+   "class": "SIS_AND_BRO",
+   "max_level": 38,
+   "maps": []
+  },
+  "492": {
+   "id": "BUG_CATCHER_3",
+   "name": "",
+   "class": "BUG_CATCHER",
+   "max_level": 28,
+   "maps": []
+  },
+  "493": {
+   "id": "BUG_CATCHER_4",
+   "name": "",
+   "class": "BUG_CATCHER",
+   "max_level": 0,
+   "maps": []
+  },
+  "494": {
+   "id": "BUG_CATCHER_5",
+   "name": "",
+   "class": "BUG_CATCHER",
+   "max_level": 0,
+   "maps": []
+  },
+  "495": {
+   "id": "BUG_CATCHER_6",
+   "name": "",
+   "class": "BUG_CATCHER",
+   "max_level": 0,
+   "maps": []
+  },
+  "496": {
+   "id": "BUG_CATCHER_7",
+   "name": "",
+   "class": "BUG_CATCHER",
+   "max_level": 0,
+   "maps": []
+  },
+  "497": {
+   "id": "BUG_CATCHER_8",
+   "name": "",
+   "class": "BUG_CATCHER",
+   "max_level": 0,
+   "maps": []
+  },
+  "498": {
+   "id": "YOUNGSTER_BEN_3",
+   "name": "BEN",
+   "class": "YOUNGSTER",
+   "max_level": 0,
+   "maps": []
+  },
+  "499": {
+   "id": "YOUNGSTER_BEN_4",
+   "name": "BEN",
+   "class": "YOUNGSTER",
+   "max_level": 55,
+   "maps": []
+  },
+  "500": {
+   "id": "YOUNGSTER_CHAD_2",
+   "name": "CHAD",
+   "class": "YOUNGSTER",
+   "max_level": 23,
+   "maps": []
+  },
+  "501": {
+   "id": "LASS_RELI_2",
+   "name": "RELI",
+   "class": "LASS",
+   "max_level": 23,
+   "maps": []
+  },
+  "502": {
+   "id": "LASS_RELI_3",
+   "name": "RELI",
+   "class": "LASS",
+   "max_level": 32,
+   "maps": []
+  },
+  "503": {
+   "id": "YOUNGSTER_TIMMY_2",
+   "name": "TIMMY",
+   "class": "YOUNGSTER",
+   "max_level": 22,
+   "maps": []
+  },
+  "504": {
+   "id": "YOUNGSTER_TIMMY_3",
+   "name": "TIMMY",
+   "class": "YOUNGSTER",
+   "max_level": 31,
+   "maps": []
+  },
+  "505": {
+   "id": "YOUNGSTER_TIMMY_4",
+   "name": "TIMMY",
+   "class": "YOUNGSTER",
+   "max_level": 60,
+   "maps": []
+  },
+  "506": {
+   "id": "YOUNGSTER_CHAD_3",
+   "name": "CHAD",
+   "class": "YOUNGSTER",
+   "max_level": 32,
+   "maps": []
+  },
+  "507": {
+   "id": "LASS_JANICE_2",
+   "name": "JANICE",
+   "class": "LASS",
+   "max_level": 23,
+   "maps": []
+  },
+  "508": {
+   "id": "LASS_JANICE_3",
+   "name": "JANICE",
+   "class": "LASS",
+   "max_level": 32,
+   "maps": []
+  },
+  "509": {
+   "id": "YOUNGSTER_CHAD_4",
+   "name": "CHAD",
+   "class": "YOUNGSTER",
+   "max_level": 55,
+   "maps": []
+  },
+  "510": {
+   "id": "HIKER_FRANKLIN_2",
+   "name": "FRANKLIN",
+   "class": "HIKER",
+   "max_level": 29,
+   "maps": []
+  },
+  "511": {
+   "id": "PKMN_PROF_PROF_OAK",
+   "name": "PROF. OAK",
+   "class": "PKMN_PROF",
+   "max_level": 49,
+   "maps": []
+  },
+  "512": {
+   "id": "PLAYER_BRENDAN",
+   "name": "BRENDAN",
+   "class": "PLAYER",
+   "max_level": 0,
+   "maps": []
+  },
+  "513": {
+   "id": "PLAYER_MAY",
+   "name": "MAY",
+   "class": "PLAYER",
+   "max_level": 0,
+   "maps": []
+  },
+  "514": {
+   "id": "PLAYER_RED",
+   "name": "RED",
+   "class": "PLAYER",
+   "max_level": 0,
+   "maps": []
+  },
+  "515": {
+   "id": "PLAYER_LEAF",
+   "name": "LEAF",
+   "class": "PLAYER",
+   "max_level": 0,
+   "maps": []
+  },
+  "516": {
+   "id": "TEAM_ROCKET_GRUNT_42",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 0,
+   "maps": [
+    "FiveIsland_RocketWarehouse"
+   ]
+  },
+  "517": {
+   "id": "PSYCHIC_JACLYN",
+   "name": "JACLYN",
+   "class": "PSYCHIC",
+   "max_level": 56,
+   "maps": []
+  },
+  "518": {
+   "id": "CRUSH_GIRL_SHARON",
+   "name": "SHARON",
+   "class": "CRUSH_GIRL",
+   "max_level": 43,
+   "maps": []
+  },
+  "519": {
+   "id": "TUBER_AMIRA",
+   "name": "AMIRA",
+   "class": "TUBER",
+   "max_level": 40,
+   "maps": []
+  },
+  "520": {
+   "id": "PKMN_BREEDER_ALIZE",
+   "name": "ALIZE",
+   "class": "PKMN_BREEDER",
+   "max_level": 55,
+   "maps": []
+  },
+  "521": {
+   "id": "PKMN_RANGER_NICOLAS",
+   "name": "NICOLAS",
+   "class": "PKMN_RANGER",
+   "max_level": 59,
+   "maps": []
+  },
+  "522": {
+   "id": "PKMN_RANGER_MADELINE",
+   "name": "MADELINE",
+   "class": "PKMN_RANGER",
+   "max_level": 59,
+   "maps": []
+  },
+  "523": {
+   "id": "AROMA_LADY_NIKKI",
+   "name": "NIKKI",
+   "class": "AROMA_LADY",
+   "max_level": 43,
+   "maps": []
+  },
+  "524": {
+   "id": "RUIN_MANIAC_STANLY",
+   "name": "STANLY",
+   "class": "RUIN_MANIAC",
+   "max_level": 55,
+   "maps": []
+  },
+  "525": {
+   "id": "LADY_JACKI",
+   "name": "JACKI",
+   "class": "LADY",
+   "max_level": 57,
+   "maps": []
+  },
+  "526": {
+   "id": "PAINTER_DAISY",
+   "name": "DAISY",
+   "class": "PAINTER",
+   "max_level": 57,
+   "maps": []
+  },
+  "527": {
+   "id": "BIKER_GOON",
+   "name": "GOON",
+   "class": "BIKER",
+   "max_level": 43,
+   "maps": [
+    "ThreeIsland"
+   ]
+  },
+  "528": {
+   "id": "BIKER_GOON_2",
+   "name": "GOON",
+   "class": "BIKER",
+   "max_level": 44,
+   "maps": [
+    "ThreeIsland"
+   ]
+  },
+  "529": {
+   "id": "BIKER_GOON_3",
+   "name": "GOON",
+   "class": "BIKER",
+   "max_level": 44,
+   "maps": [
+    "ThreeIsland"
+   ]
+  },
+  "530": {
+   "id": "BIKER_2",
+   "name": "",
+   "class": "BIKER",
+   "max_level": 8,
+   "maps": []
+  },
+  "531": {
+   "id": "BUG_CATCHER_ANTHONY",
+   "name": "ANTHONY",
+   "class": "BUG_CATCHER",
+   "max_level": 0,
+   "maps": [
+    "ViridianForest"
+   ]
+  },
+  "532": {
+   "id": "BUG_CATCHER_CHARLIE",
+   "name": "CHARLIE",
+   "class": "BUG_CATCHER",
+   "max_level": 8,
+   "maps": [
+    "ViridianForest"
+   ]
+  },
+  "533": {
+   "id": "TWINS_ELI_ANNE_2",
+   "name": "ELI & ANNE",
+   "class": "TWINS",
+   "max_level": 32,
+   "maps": []
+  },
+  "534": {
+   "id": "YOUNGSTER_JOHNSON",
+   "name": "JOHNSON",
+   "class": "YOUNGSTER",
+   "max_level": 39,
+   "maps": [
+    "PokemonMansion_1F"
+   ]
+  },
+  "535": {
+   "id": "BIKER_RICARDO",
+   "name": "RICARDO",
+   "class": "BIKER",
+   "max_level": 26,
+   "maps": []
+  },
+  "536": {
+   "id": "BIKER_JAREN",
+   "name": "JAREN",
+   "class": "BIKER",
+   "max_level": 28,
+   "maps": []
+  },
+  "537": {
+   "id": "TEAM_ROCKET_GRUNT_43",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 43,
+   "maps": [
+    "MtEmber_Exterior"
+   ]
+  },
+  "538": {
+   "id": "TEAM_ROCKET_GRUNT_44",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 40,
+   "maps": [
+    "MtEmber_Exterior"
+   ]
+  },
+  "539": {
+   "id": "TEAM_ROCKET_GRUNT_45",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 44,
+   "maps": [
+    "FourIsland_IcefallCave_Back"
+   ]
+  },
+  "540": {
+   "id": "TEAM_ROCKET_GRUNT_46",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 55,
+   "maps": [
+    "SixIsland_OutcastIsland"
+   ]
+  },
+  "541": {
+   "id": "TEAM_ROCKET_GRUNT_47",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 55,
+   "maps": [
+    "FiveIsland_RocketWarehouse"
+   ]
+  },
+  "542": {
+   "id": "TEAM_ROCKET_GRUNT_48",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 56,
+   "maps": [
+    "FiveIsland_RocketWarehouse"
+   ]
+  },
+  "543": {
+   "id": "TEAM_ROCKET_ADMIN",
+   "name": "ADMIN",
+   "class": "TEAM_ROCKET",
+   "max_level": 62,
+   "maps": [
+    "FiveIsland_RocketWarehouse"
+   ]
+  },
+  "544": {
+   "id": "TEAM_ROCKET_ADMIN_2",
+   "name": "ADMIN",
+   "class": "TEAM_ROCKET",
+   "max_level": 63,
+   "maps": [
+    "FiveIsland_RocketWarehouse"
+   ]
+  },
+  "545": {
+   "id": "SCIENTIST_GIDEON",
+   "name": "GIDEON",
+   "class": "SCIENTIST",
+   "max_level": 53,
+   "maps": [
+    "FiveIsland_RocketWarehouse"
+   ]
+  },
+  "546": {
+   "id": "SWIMMER_FEMALE_AMARA",
+   "name": "AMARA",
+   "class": "SWIMMER_F",
+   "max_level": 41,
+   "maps": []
+  },
+  "547": {
+   "id": "SWIMMER_FEMALE_MARIA",
+   "name": "MARIA",
+   "class": "SWIMMER_F",
+   "max_level": 43,
+   "maps": []
+  },
+  "548": {
+   "id": "SWIMMER_FEMALE_ABIGAIL",
+   "name": "ABIGAIL",
+   "class": "SWIMMER_F",
+   "max_level": 43,
+   "maps": []
+  },
+  "549": {
+   "id": "SWIMMER_MALE_FINN",
+   "name": "FINN",
+   "class": "SWIMMER_M",
+   "max_level": 44,
+   "maps": []
+  },
+  "550": {
+   "id": "SWIMMER_MALE_GARRETT",
+   "name": "GARRETT",
+   "class": "SWIMMER_M",
+   "max_level": 44,
+   "maps": []
+  },
+  "551": {
+   "id": "FISHERMAN_TOMMY",
+   "name": "TOMMY",
+   "class": "FISHERMAN",
+   "max_level": 40,
+   "maps": []
+  },
+  "552": {
+   "id": "CRUSH_GIRL_TANYA",
+   "name": "TANYA",
+   "class": "CRUSH_GIRL",
+   "max_level": 44,
+   "maps": []
+  },
+  "553": {
+   "id": "BLACK_BELT_SHEA",
+   "name": "SHEA",
+   "class": "BLACK_BELT",
+   "max_level": 44,
+   "maps": []
+  },
+  "554": {
+   "id": "BLACK_BELT_HUGH",
+   "name": "HUGH",
+   "class": "BLACK_BELT",
+   "max_level": 43,
+   "maps": []
+  },
+  "555": {
+   "id": "CAMPER_BRYCE",
+   "name": "BRYCE",
+   "class": "CAMPER",
+   "max_level": 41,
+   "maps": []
+  },
+  "556": {
+   "id": "PICNICKER_CLAIRE",
+   "name": "CLAIRE",
+   "class": "PICNICKER",
+   "max_level": 40,
+   "maps": []
+  },
+  "557": {
+   "id": "CRUSH_KIN_MIK_KIA",
+   "name": "MIK & KIA",
+   "class": "CRUSH_KIN",
+   "max_level": 45,
+   "maps": []
+  },
+  "558": {
+   "id": "AROMA_LADY_VIOLET",
+   "name": "VIOLET",
+   "class": "AROMA_LADY",
+   "max_level": 41,
+   "maps": []
+  },
+  "559": {
+   "id": "TUBER_ALEXIS",
+   "name": "ALEXIS",
+   "class": "TUBER",
+   "max_level": 39,
+   "maps": []
+  },
+  "560": {
+   "id": "TWINS_JOY_MEG",
+   "name": "JOY & MEG",
+   "class": "TWINS",
+   "max_level": 43,
+   "maps": []
+  },
+  "561": {
+   "id": "SWIMMER_FEMALE_TISHA",
+   "name": "TISHA",
+   "class": "SWIMMER_F",
+   "max_level": 44,
+   "maps": []
+  },
+  "562": {
+   "id": "PAINTER_CELINA",
+   "name": "CELINA",
+   "class": "PAINTER",
+   "max_level": 57,
+   "maps": []
+  },
+  "563": {
+   "id": "PAINTER_RAYNA",
+   "name": "RAYNA",
+   "class": "PAINTER",
+   "max_level": 57,
+   "maps": []
+  },
+  "564": {
+   "id": "LADY_GILLIAN",
+   "name": "GILLIAN",
+   "class": "LADY",
+   "max_level": 56,
+   "maps": []
+  },
+  "565": {
+   "id": "YOUNGSTER_DESTIN",
+   "name": "DESTIN",
+   "class": "YOUNGSTER",
+   "max_level": 55,
+   "maps": []
+  },
+  "566": {
+   "id": "SWIMMER_MALE_TOBY",
+   "name": "TOBY",
+   "class": "SWIMMER_M",
+   "max_level": 55,
+   "maps": []
+  },
+  "567": {
+   "id": "TEAM_ROCKET_GRUNT_49",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 55,
+   "maps": [
+    "FiveIsland_Meadow"
+   ]
+  },
+  "568": {
+   "id": "TEAM_ROCKET_GRUNT_50",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 56,
+   "maps": [
+    "FiveIsland_Meadow"
+   ]
+  },
+  "569": {
+   "id": "TEAM_ROCKET_GRUNT_51",
+   "name": "GRUNT",
+   "class": "TEAM_ROCKET",
+   "max_level": 55,
+   "maps": [
+    "FiveIsland_Meadow"
+   ]
+  },
+  "570": {
+   "id": "BIRD_KEEPER_MILO",
+   "name": "MILO",
+   "class": "BIRD_KEEPER",
+   "max_level": 56,
+   "maps": []
+  },
+  "571": {
+   "id": "BIRD_KEEPER_CHAZ",
+   "name": "CHAZ",
+   "class": "BIRD_KEEPER",
+   "max_level": 56,
+   "maps": []
+  },
+  "572": {
+   "id": "BIRD_KEEPER_HAROLD",
+   "name": "HAROLD",
+   "class": "BIRD_KEEPER",
+   "max_level": 56,
+   "maps": []
+  },
+  "573": {
+   "id": "FISHERMAN_TYLOR",
+   "name": "TYLOR",
+   "class": "FISHERMAN",
+   "max_level": 56,
+   "maps": []
+  },
+  "574": {
+   "id": "SWIMMER_MALE_MYMO",
+   "name": "MYMO",
+   "class": "SWIMMER_M",
+   "max_level": 56,
+   "maps": []
+  },
+  "575": {
+   "id": "SWIMMER_FEMALE_NICOLE",
+   "name": "NICOLE",
+   "class": "SWIMMER_F",
+   "max_level": 57,
+   "maps": []
+  },
+  "576": {
+   "id": "SIS_AND_BRO_AVA_GEB",
+   "name": "AVA & GEB",
+   "class": "SIS_AND_BRO",
+   "max_level": 57,
+   "maps": []
+  },
+  "577": {
+   "id": "AROMA_LADY_ROSE",
+   "name": "ROSE",
+   "class": "AROMA_LADY",
+   "max_level": 56,
+   "maps": []
+  },
+  "578": {
+   "id": "SWIMMER_MALE_SAMIR",
+   "name": "SAMIR",
+   "class": "SWIMMER_M",
+   "max_level": 57,
+   "maps": []
+  },
+  "579": {
+   "id": "SWIMMER_FEMALE_DENISE",
+   "name": "DENISE",
+   "class": "SWIMMER_F",
+   "max_level": 56,
+   "maps": []
+  },
+  "580": {
+   "id": "TWINS_MIU_MIA",
+   "name": "MIU & MIA",
+   "class": "TWINS",
+   "max_level": 57,
+   "maps": []
+  },
+  "581": {
+   "id": "HIKER_EARL",
+   "name": "EARL",
+   "class": "HIKER",
+   "max_level": 56,
+   "maps": []
+  },
+  "582": {
+   "id": "RUIN_MANIAC_FOSTER",
+   "name": "FOSTER",
+   "class": "RUIN_MANIAC",
+   "max_level": 57,
+   "maps": []
+  },
+  "583": {
+   "id": "RUIN_MANIAC_LARRY",
+   "name": "LARRY",
+   "class": "RUIN_MANIAC",
+   "max_level": 56,
+   "maps": []
+  },
+  "584": {
+   "id": "HIKER_DARYL",
+   "name": "DARYL",
+   "class": "HIKER",
+   "max_level": 57,
+   "maps": []
+  },
+  "585": {
+   "id": "POKEMANIAC_HECTOR",
+   "name": "HECTOR",
+   "class": "POKEMANIAC",
+   "max_level": 56,
+   "maps": []
+  },
+  "586": {
+   "id": "PSYCHIC_DARIO",
+   "name": "DARIO",
+   "class": "PSYCHIC",
+   "max_level": 60,
+   "maps": []
+  },
+  "587": {
+   "id": "PSYCHIC_RODETTE",
+   "name": "RODETTE",
+   "class": "PSYCHIC",
+   "max_level": 57,
+   "maps": []
+  },
+  "588": {
+   "id": "AROMA_LADY_MIAH",
+   "name": "MIAH",
+   "class": "AROMA_LADY",
+   "max_level": 57,
+   "maps": []
+  },
+  "589": {
+   "id": "YOUNG_COUPLE_EVE_JON",
+   "name": "EVE & JON",
+   "class": "YOUNG_COUPLE",
+   "max_level": 57,
+   "maps": []
+  },
+  "590": {
+   "id": "JUGGLER_MASON",
+   "name": "MASON",
+   "class": "JUGGLER",
+   "max_level": 54,
+   "maps": []
+  },
+  "591": {
+   "id": "CRUSH_GIRL_CYNDY",
+   "name": "CYNDY",
+   "class": "CRUSH_GIRL",
+   "max_level": 55,
+   "maps": []
+  },
+  "592": {
+   "id": "CRUSH_GIRL_JOCELYN",
+   "name": "JOCELYN",
+   "class": "CRUSH_GIRL",
+   "max_level": 44,
+   "maps": [
+    "MtEmber_Exterior"
+   ]
+  },
+  "593": {
+   "id": "TAMER_EVAN",
+   "name": "EVAN",
+   "class": "TAMER",
+   "max_level": 56,
+   "maps": []
+  },
+  "594": {
+   "id": "POKEMANIAC_MARK_2",
+   "name": "MARK",
+   "class": "POKEMANIAC",
+   "max_level": 38,
+   "maps": []
+  },
+  "595": {
+   "id": "PKMN_RANGER_LOGAN",
+   "name": "LOGAN",
+   "class": "PKMN_RANGER",
+   "max_level": 46,
+   "maps": [
+    "MtEmber_Exterior"
+   ]
+  },
+  "596": {
+   "id": "PKMN_RANGER_JACKSON",
+   "name": "JACKSON",
+   "class": "PKMN_RANGER",
+   "max_level": 56,
+   "maps": []
+  },
+  "597": {
+   "id": "PKMN_RANGER_BETH",
+   "name": "BETH",
+   "class": "PKMN_RANGER",
+   "max_level": 44,
+   "maps": [
+    "MtEmber_Exterior"
+   ]
+  },
+  "598": {
+   "id": "PKMN_RANGER_KATELYN",
+   "name": "KATELYN",
+   "class": "PKMN_RANGER",
+   "max_level": 60,
+   "maps": []
+  },
+  "599": {
+   "id": "COOLTRAINER_LEROY",
+   "name": "LEROY",
+   "class": "COOLTRAINER",
+   "max_level": 57,
+   "maps": []
+  },
+  "600": {
+   "id": "COOLTRAINER_MICHELLE",
+   "name": "MICHELLE",
+   "class": "COOLTRAINER",
+   "max_level": 57,
+   "maps": []
+  },
+  "601": {
+   "id": "COOL_COUPLE_LEX_NYA",
+   "name": "LEX & NYA",
+   "class": "COOL_COUPLE",
+   "max_level": 60,
+   "maps": []
+  },
+  "602": {
+   "id": "RUIN_MANIAC_BRANDON",
+   "name": "BRANDON",
+   "class": "RUIN_MANIAC",
+   "max_level": 57,
+   "maps": []
+  },
+  "603": {
+   "id": "RUIN_MANIAC_BENJAMIN",
+   "name": "BENJAMIN",
+   "class": "RUIN_MANIAC",
+   "max_level": 55,
+   "maps": []
+  },
+  "604": {
+   "id": "PAINTER_EDNA",
+   "name": "EDNA",
+   "class": "PAINTER",
+   "max_level": 57,
+   "maps": []
+  },
+  "605": {
+   "id": "GENTLEMAN_CLIFFORD",
+   "name": "CLIFFORD",
+   "class": "GENTLEMAN",
+   "max_level": 56,
+   "maps": []
+  },
+  "606": {
+   "id": "LADY_SELPHY",
+   "name": "SELPHY",
+   "class": "LADY",
+   "max_level": 56,
+   "maps": [
+    "FiveIsland_LostCave_Room10"
+   ]
+  },
+  "607": {
+   "id": "RUIN_MANIAC_LAWSON",
+   "name": "LAWSON",
+   "class": "RUIN_MANIAC",
+   "max_level": 56,
+   "maps": [
+    "FiveIsland_LostCave_Room1"
+   ]
+  },
+  "608": {
+   "id": "PSYCHIC_LAURA",
+   "name": "LAURA",
+   "class": "PSYCHIC",
+   "max_level": 56,
+   "maps": [
+    "FiveIsland_LostCave_Room4"
+   ]
+  },
+  "609": {
+   "id": "PKMN_BREEDER_BETHANY",
+   "name": "BETHANY",
+   "class": "PKMN_BREEDER",
+   "max_level": 57,
+   "maps": [
+    "SixIsland_PatternBush"
+   ]
+  },
+  "610": {
+   "id": "PKMN_BREEDER_ALLISON",
+   "name": "ALLISON",
+   "class": "PKMN_BREEDER",
+   "max_level": 55,
+   "maps": [
+    "SixIsland_PatternBush"
+   ]
+  },
+  "611": {
+   "id": "BUG_CATCHER_GARRET",
+   "name": "GARRET",
+   "class": "BUG_CATCHER",
+   "max_level": 56,
+   "maps": [
+    "SixIsland_PatternBush"
+   ]
+  },
+  "612": {
+   "id": "BUG_CATCHER_JONAH",
+   "name": "JONAH",
+   "class": "BUG_CATCHER",
+   "max_level": 54,
+   "maps": [
+    "SixIsland_PatternBush"
+   ]
+  },
+  "613": {
+   "id": "BUG_CATCHER_VANCE",
+   "name": "VANCE",
+   "class": "BUG_CATCHER",
+   "max_level": 55,
+   "maps": [
+    "SixIsland_PatternBush"
+   ]
+  },
+  "614": {
+   "id": "YOUNGSTER_NASH",
+   "name": "NASH",
+   "class": "YOUNGSTER",
+   "max_level": 56,
+   "maps": [
+    "SixIsland_PatternBush"
+   ]
+  },
+  "615": {
+   "id": "YOUNGSTER_CORDELL",
+   "name": "CORDELL",
+   "class": "YOUNGSTER",
+   "max_level": 55,
+   "maps": [
+    "SixIsland_PatternBush"
+   ]
+  },
+  "616": {
+   "id": "LASS_DALIA",
+   "name": "DALIA",
+   "class": "LASS",
+   "max_level": 55,
+   "maps": [
+    "SixIsland_PatternBush"
+   ]
+  },
+  "617": {
+   "id": "LASS_JOANA",
+   "name": "JOANA",
+   "class": "LASS",
+   "max_level": 56,
+   "maps": [
+    "SixIsland_PatternBush"
+   ]
+  },
+  "618": {
+   "id": "CAMPER_RILEY",
+   "name": "RILEY",
+   "class": "CAMPER",
+   "max_level": 57,
+   "maps": [
+    "SixIsland_PatternBush"
+   ]
+  },
+  "619": {
+   "id": "PICNICKER_MARCY",
+   "name": "MARCY",
+   "class": "PICNICKER",
+   "max_level": 56,
+   "maps": [
+    "SixIsland_PatternBush"
+   ]
+  },
+  "620": {
+   "id": "RUIN_MANIAC_LAYTON",
+   "name": "LAYTON",
+   "class": "RUIN_MANIAC",
+   "max_level": 55,
+   "maps": [
+    "SixIsland_PatternBush"
+   ]
+  },
+  "621": {
+   "id": "PICNICKER_KELSEY_2",
+   "name": "KELSEY",
+   "class": "PICNICKER",
+   "max_level": 24,
+   "maps": []
+  },
+  "622": {
+   "id": "PICNICKER_KELSEY_3",
+   "name": "KELSEY",
+   "class": "PICNICKER",
+   "max_level": 33,
+   "maps": []
+  },
+  "623": {
+   "id": "PICNICKER_KELSEY_4",
+   "name": "KELSEY",
+   "class": "PICNICKER",
+   "max_level": 56,
+   "maps": []
+  },
+  "624": {
+   "id": "CAMPER_RICKY_2",
+   "name": "RICKY",
+   "class": "CAMPER",
+   "max_level": 25,
+   "maps": []
+  },
+  "625": {
+   "id": "CAMPER_RICKY_3",
+   "name": "RICKY",
+   "class": "CAMPER",
+   "max_level": 34,
+   "maps": []
+  },
+  "626": {
+   "id": "CAMPER_RICKY_4",
+   "name": "RICKY",
+   "class": "CAMPER",
+   "max_level": 63,
+   "maps": []
+  },
+  "627": {
+   "id": "CAMPER_JEFF_2",
+   "name": "JEFF",
+   "class": "CAMPER",
+   "max_level": 24,
+   "maps": []
+  },
+  "628": {
+   "id": "CAMPER_JEFF_3",
+   "name": "JEFF",
+   "class": "CAMPER",
+   "max_level": 33,
+   "maps": []
+  },
+  "629": {
+   "id": "CAMPER_JEFF_4",
+   "name": "JEFF",
+   "class": "CAMPER",
+   "max_level": 62,
+   "maps": []
+  },
+  "630": {
+   "id": "PICNICKER_ISABELLE_2",
+   "name": "ISABELLE",
+   "class": "PICNICKER",
+   "max_level": 24,
+   "maps": []
+  },
+  "631": {
+   "id": "PICNICKER_ISABELLE_3",
+   "name": "ISABELLE",
+   "class": "PICNICKER",
+   "max_level": 33,
+   "maps": []
+  },
+  "632": {
+   "id": "PICNICKER_ISABELLE_4",
+   "name": "ISABELLE",
+   "class": "PICNICKER",
+   "max_level": 57,
+   "maps": []
+  },
+  "633": {
+   "id": "YOUNGSTER_YASU_2",
+   "name": "YASU",
+   "class": "YOUNGSTER",
+   "max_level": 25,
+   "maps": []
+  },
+  "634": {
+   "id": "YOUNGSTER_YASU_3",
+   "name": "YASU",
+   "class": "YOUNGSTER",
+   "max_level": 54,
+   "maps": []
+  },
+  "635": {
+   "id": "ENGINEER_BERNIE_2",
+   "name": "BERNIE",
+   "class": "ENGINEER",
+   "max_level": 32,
+   "maps": []
+  },
+  "636": {
+   "id": "GAMER_DARIAN_2",
+   "name": "DARIAN",
+   "class": "GAMER",
+   "max_level": 33,
+   "maps": []
+  },
+  "637": {
+   "id": "CAMPER_CHRIS_2",
+   "name": "CHRIS",
+   "class": "CAMPER",
+   "max_level": 28,
+   "maps": []
+  },
+  "638": {
+   "id": "CAMPER_CHRIS_3",
+   "name": "CHRIS",
+   "class": "CAMPER",
+   "max_level": 33,
+   "maps": []
+  },
+  "639": {
+   "id": "CAMPER_CHRIS_4",
+   "name": "CHRIS",
+   "class": "CAMPER",
+   "max_level": 62,
+   "maps": []
+  },
+  "640": {
+   "id": "PICNICKER_ALICIA_2",
+   "name": "ALICIA",
+   "class": "PICNICKER",
+   "max_level": 29,
+   "maps": []
+  },
+  "641": {
+   "id": "PICNICKER_ALICIA_3",
+   "name": "ALICIA",
+   "class": "PICNICKER",
+   "max_level": 34,
+   "maps": []
+  },
+  "642": {
+   "id": "PICNICKER_ALICIA_4",
+   "name": "ALICIA",
+   "class": "PICNICKER",
+   "max_level": 63,
+   "maps": []
+  },
+  "643": {
+   "id": "HIKER_JEREMY_2",
+   "name": "JEREMY",
+   "class": "HIKER",
+   "max_level": 34,
+   "maps": []
+  },
+  "644": {
+   "id": "POKEMANIAC_MARK_3",
+   "name": "MARK",
+   "class": "POKEMANIAC",
+   "max_level": 62,
+   "maps": []
+  },
+  "645": {
+   "id": "POKEMANIAC_HERMAN_2",
+   "name": "HERMAN",
+   "class": "POKEMANIAC",
+   "max_level": 33,
+   "maps": []
+  },
+  "646": {
+   "id": "POKEMANIAC_HERMAN_3",
+   "name": "HERMAN",
+   "class": "POKEMANIAC",
+   "max_level": 62,
+   "maps": []
+  },
+  "647": {
+   "id": "HIKER_TRENT_2",
+   "name": "TRENT",
+   "class": "HIKER",
+   "max_level": 36,
+   "maps": []
+  },
+  "648": {
+   "id": "LASS_MEGAN_2",
+   "name": "MEGAN",
+   "class": "LASS",
+   "max_level": 26,
+   "maps": []
+  },
+  "649": {
+   "id": "LASS_MEGAN_3",
+   "name": "MEGAN",
+   "class": "LASS",
+   "max_level": 55,
+   "maps": []
+  },
+  "650": {
+   "id": "SUPER_NERD_GLENN_2",
+   "name": "GLENN",
+   "class": "SUPER_NERD",
+   "max_level": 32,
+   "maps": []
+  },
+  "651": {
+   "id": "GAMER_RICH_2",
+   "name": "RICH",
+   "class": "GAMER",
+   "max_level": 34,
+   "maps": []
+  },
+  "652": {
+   "id": "BIKER_JAREN_2",
+   "name": "JAREN",
+   "class": "BIKER",
+   "max_level": 34,
+   "maps": []
+  },
+  "653": {
+   "id": "FISHERMAN_ELLIOT_2",
+   "name": "ELLIOT",
+   "class": "FISHERMAN",
+   "max_level": 32,
+   "maps": []
+  },
+  "654": {
+   "id": "ROCKER_LUCA_2",
+   "name": "LUCA",
+   "class": "ROCKER",
+   "max_level": 38,
+   "maps": []
+  },
+  "655": {
+   "id": "BEAUTY_SHEILA_2",
+   "name": "SHEILA",
+   "class": "BEAUTY",
+   "max_level": 56,
+   "maps": []
+  },
+  "656": {
+   "id": "BIRD_KEEPER_ROBERT_2",
+   "name": "ROBERT",
+   "class": "BIRD_KEEPER",
+   "max_level": 32,
+   "maps": []
+  },
+  "657": {
+   "id": "BIRD_KEEPER_ROBERT_3",
+   "name": "ROBERT",
+   "class": "BIRD_KEEPER",
+   "max_level": 54,
+   "maps": []
+  },
+  "658": {
+   "id": "PICNICKER_SUSIE_2",
+   "name": "SUSIE",
+   "class": "PICNICKER",
+   "max_level": 31,
+   "maps": []
+  },
+  "659": {
+   "id": "PICNICKER_SUSIE_3",
+   "name": "SUSIE",
+   "class": "PICNICKER",
+   "max_level": 54,
+   "maps": []
+  },
+  "660": {
+   "id": "PICNICKER_SUSIE_4",
+   "name": "SUSIE",
+   "class": "PICNICKER",
+   "max_level": 60,
+   "maps": []
+  },
+  "661": {
+   "id": "BIKER_LUKAS_2",
+   "name": "LUKAS",
+   "class": "BIKER",
+   "max_level": 54,
+   "maps": []
+  },
+  "662": {
+   "id": "BIRD_KEEPER_BENNY_2",
+   "name": "BENNY",
+   "class": "BIRD_KEEPER",
+   "max_level": 37,
+   "maps": []
+  },
+  "663": {
+   "id": "BIRD_KEEPER_BENNY_3",
+   "name": "BENNY",
+   "class": "BIRD_KEEPER",
+   "max_level": 56,
+   "maps": []
+  },
+  "664": {
+   "id": "BIRD_KEEPER_MARLON_2",
+   "name": "MARLON",
+   "class": "BIRD_KEEPER",
+   "max_level": 34,
+   "maps": []
+  },
+  "665": {
+   "id": "BIRD_KEEPER_MARLON_3",
+   "name": "MARLON",
+   "class": "BIRD_KEEPER",
+   "max_level": 55,
+   "maps": []
+  },
+  "666": {
+   "id": "BEAUTY_GRACE_2",
+   "name": "GRACE",
+   "class": "BEAUTY",
+   "max_level": 56,
+   "maps": []
+  },
+  "667": {
+   "id": "BIRD_KEEPER_CHESTER_2",
+   "name": "CHESTER",
+   "class": "BIRD_KEEPER",
+   "max_level": 34,
+   "maps": []
+  },
+  "668": {
+   "id": "BIRD_KEEPER_CHESTER_3",
+   "name": "CHESTER",
+   "class": "BIRD_KEEPER",
+   "max_level": 55,
+   "maps": []
+  },
+  "669": {
+   "id": "PICNICKER_BECKY_2",
+   "name": "BECKY",
+   "class": "PICNICKER",
+   "max_level": 37,
+   "maps": []
+  },
+  "670": {
+   "id": "PICNICKER_BECKY_3",
+   "name": "BECKY",
+   "class": "PICNICKER",
+   "max_level": 56,
+   "maps": []
+  },
+  "671": {
+   "id": "PICNICKER_BECKY_4",
+   "name": "BECKY",
+   "class": "PICNICKER",
+   "max_level": 62,
+   "maps": []
+  },
+  "672": {
+   "id": "CRUSH_KIN_RON_MYA_2",
+   "name": "RON & MYA",
+   "class": "CRUSH_KIN",
+   "max_level": 38,
+   "maps": []
+  },
+  "673": {
+   "id": "CRUSH_KIN_RON_MYA_3",
+   "name": "RON & MYA",
+   "class": "CRUSH_KIN",
+   "max_level": 59,
+   "maps": []
+  },
+  "674": {
+   "id": "CRUSH_KIN_RON_MYA_4",
+   "name": "RON & MYA",
+   "class": "CRUSH_KIN",
+   "max_level": 64,
+   "maps": []
+  },
+  "675": {
+   "id": "BIKER_RUBEN_2",
+   "name": "RUBEN",
+   "class": "BIKER",
+   "max_level": 55,
+   "maps": []
+  },
+  "676": {
+   "id": "CUE_BALL_CAMRON_2",
+   "name": "CAMRON",
+   "class": "CUE_BALL",
+   "max_level": 56,
+   "maps": []
+  },
+  "677": {
+   "id": "BIKER_JAXON_2",
+   "name": "JAXON",
+   "class": "BIKER",
+   "max_level": 56,
+   "maps": []
+  },
+  "678": {
+   "id": "CUE_BALL_ISAIAH_2",
+   "name": "ISAIAH",
+   "class": "CUE_BALL",
+   "max_level": 56,
+   "maps": []
+  },
+  "679": {
+   "id": "CUE_BALL_COREY_2",
+   "name": "COREY",
+   "class": "CUE_BALL",
+   "max_level": 56,
+   "maps": []
+  },
+  "680": {
+   "id": "BIRD_KEEPER_JACOB_2",
+   "name": "JACOB",
+   "class": "BIRD_KEEPER",
+   "max_level": 32,
+   "maps": []
+  },
+  "681": {
+   "id": "BIRD_KEEPER_JACOB_3",
+   "name": "JACOB",
+   "class": "BIRD_KEEPER",
+   "max_level": 54,
+   "maps": []
+  },
+  "682": {
+   "id": "SWIMMER_FEMALE_ALICE_2",
+   "name": "ALICE",
+   "class": "SWIMMER_F",
+   "max_level": 56,
+   "maps": []
+  },
+  "683": {
+   "id": "SWIMMER_MALE_DARRIN_2",
+   "name": "DARRIN",
+   "class": "SWIMMER_M",
+   "max_level": 60,
+   "maps": []
+  },
+  "684": {
+   "id": "PICNICKER_MISSY_2",
+   "name": "MISSY",
+   "class": "PICNICKER",
+   "max_level": 56,
+   "maps": []
+  },
+  "685": {
+   "id": "PICNICKER_MISSY_3",
+   "name": "MISSY",
+   "class": "PICNICKER",
+   "max_level": 62,
+   "maps": []
+  },
+  "686": {
+   "id": "FISHERMAN_WADE_2",
+   "name": "WADE",
+   "class": "FISHERMAN",
+   "max_level": 54,
+   "maps": []
+  },
+  "687": {
+   "id": "SWIMMER_MALE_JACK_2",
+   "name": "JACK",
+   "class": "SWIMMER_M",
+   "max_level": 57,
+   "maps": []
+  },
+  "688": {
+   "id": "SIS_AND_BRO_LIL_IAN_2",
+   "name": "LIL & IAN",
+   "class": "SIS_AND_BRO",
+   "max_level": 57,
+   "maps": []
+  },
+  "689": {
+   "id": "SIS_AND_BRO_LIL_IAN_3",
+   "name": "LIL & IAN",
+   "class": "SIS_AND_BRO",
+   "max_level": 63,
+   "maps": []
+  },
+  "690": {
+   "id": "SWIMMER_MALE_FINN_2",
+   "name": "FINN",
+   "class": "SWIMMER_M",
+   "max_level": 57,
+   "maps": []
+  },
+  "691": {
+   "id": "CRUSH_GIRL_SHARON_2",
+   "name": "SHARON",
+   "class": "CRUSH_GIRL",
+   "max_level": 57,
+   "maps": []
+  },
+  "692": {
+   "id": "CRUSH_GIRL_SHARON_3",
+   "name": "SHARON",
+   "class": "CRUSH_GIRL",
+   "max_level": 63,
+   "maps": []
+  },
+  "693": {
+   "id": "CRUSH_GIRL_TANYA_2",
+   "name": "TANYA",
+   "class": "CRUSH_GIRL",
+   "max_level": 57,
+   "maps": []
+  },
+  "694": {
+   "id": "CRUSH_GIRL_TANYA_3",
+   "name": "TANYA",
+   "class": "CRUSH_GIRL",
+   "max_level": 63,
+   "maps": []
+  },
+  "695": {
+   "id": "BLACK_BELT_SHEA_2",
+   "name": "SHEA",
+   "class": "BLACK_BELT",
+   "max_level": 57,
+   "maps": []
+  },
+  "696": {
+   "id": "BLACK_BELT_SHEA_3",
+   "name": "SHEA",
+   "class": "BLACK_BELT",
+   "max_level": 63,
+   "maps": []
+  },
+  "697": {
+   "id": "BLACK_BELT_HUGH_2",
+   "name": "HUGH",
+   "class": "BLACK_BELT",
+   "max_level": 57,
+   "maps": []
+  },
+  "698": {
+   "id": "BLACK_BELT_HUGH_3",
+   "name": "HUGH",
+   "class": "BLACK_BELT",
+   "max_level": 63,
+   "maps": []
+  },
+  "699": {
+   "id": "CRUSH_KIN_MIK_KIA_2",
+   "name": "MIK & KIA",
+   "class": "CRUSH_KIN",
+   "max_level": 59,
+   "maps": []
+  },
+  "700": {
+   "id": "CRUSH_KIN_MIK_KIA_3",
+   "name": "MIK & KIA",
+   "class": "CRUSH_KIN",
+   "max_level": 64,
+   "maps": []
+  },
+  "701": {
+   "id": "TUBER_AMIRA_2",
+   "name": "AMIRA",
+   "class": "TUBER",
+   "max_level": 54,
+   "maps": []
+  },
+  "702": {
+   "id": "TWINS_JOY_MEG_2",
+   "name": "JOY & MEG",
+   "class": "TWINS",
+   "max_level": 56,
+   "maps": []
+  },
+  "703": {
+   "id": "PAINTER_RAYNA_2",
+   "name": "RAYNA",
+   "class": "PAINTER",
+   "max_level": 62,
+   "maps": []
+  },
+  "704": {
+   "id": "YOUNGSTER_DESTIN_2",
+   "name": "DESTIN",
+   "class": "YOUNGSTER",
+   "max_level": 61,
+   "maps": []
+  },
+  "705": {
+   "id": "PKMN_BREEDER_ALIZE_2",
+   "name": "ALIZE",
+   "class": "PKMN_BREEDER",
+   "max_level": 61,
+   "maps": []
+  },
+  "706": {
+   "id": "YOUNG_COUPLE_GIA_JES_2",
+   "name": "GIA & JES",
+   "class": "YOUNG_COUPLE",
+   "max_level": 34,
+   "maps": []
+  },
+  "707": {
+   "id": "YOUNG_COUPLE_GIA_JES_3",
+   "name": "GIA & JES",
+   "class": "YOUNG_COUPLE",
+   "max_level": 63,
+   "maps": []
+  },
+  "708": {
+   "id": "BIRD_KEEPER_MILO_2",
+   "name": "MILO",
+   "class": "BIRD_KEEPER",
+   "max_level": 63,
+   "maps": []
+  },
+  "709": {
+   "id": "BIRD_KEEPER_CHAZ_2",
+   "name": "CHAZ",
+   "class": "BIRD_KEEPER",
+   "max_level": 63,
+   "maps": []
+  },
+  "710": {
+   "id": "BIRD_KEEPER_HAROLD_2",
+   "name": "HAROLD",
+   "class": "BIRD_KEEPER",
+   "max_level": 63,
+   "maps": []
+  },
+  "711": {
+   "id": "SWIMMER_FEMALE_NICOLE_2",
+   "name": "NICOLE",
+   "class": "SWIMMER_F",
+   "max_level": 62,
+   "maps": []
+  },
+  "712": {
+   "id": "PSYCHIC_JACLYN_2",
+   "name": "JACLYN",
+   "class": "PSYCHIC",
+   "max_level": 62,
+   "maps": []
+  },
+  "713": {
+   "id": "SWIMMER_MALE_SAMIR_2",
+   "name": "SAMIR",
+   "class": "SWIMMER_M",
+   "max_level": 63,
+   "maps": []
+  },
+  "714": {
+   "id": "HIKER_EARL_2",
+   "name": "EARL",
+   "class": "HIKER",
+   "max_level": 62,
+   "maps": []
+  },
+  "715": {
+   "id": "RUIN_MANIAC_LARRY_2",
+   "name": "LARRY",
+   "class": "RUIN_MANIAC",
+   "max_level": 62,
+   "maps": []
+  },
+  "716": {
+   "id": "POKEMANIAC_HECTOR_2",
+   "name": "HECTOR",
+   "class": "POKEMANIAC",
+   "max_level": 63,
+   "maps": []
+  },
+  "717": {
+   "id": "PSYCHIC_DARIO_2",
+   "name": "DARIO",
+   "class": "PSYCHIC",
+   "max_level": 64,
+   "maps": []
+  },
+  "718": {
+   "id": "PSYCHIC_RODETTE_2",
+   "name": "RODETTE",
+   "class": "PSYCHIC",
+   "max_level": 61,
+   "maps": []
+  },
+  "719": {
+   "id": "JUGGLER_MASON_2",
+   "name": "MASON",
+   "class": "JUGGLER",
+   "max_level": 60,
+   "maps": []
+  },
+  "720": {
+   "id": "PKMN_RANGER_NICOLAS_2",
+   "name": "NICOLAS",
+   "class": "PKMN_RANGER",
+   "max_level": 63,
+   "maps": []
+  },
+  "721": {
+   "id": "PKMN_RANGER_MADELINE_2",
+   "name": "MADELINE",
+   "class": "PKMN_RANGER",
+   "max_level": 63,
+   "maps": []
+  },
+  "722": {
+   "id": "CRUSH_GIRL_CYNDY_2",
+   "name": "CYNDY",
+   "class": "CRUSH_GIRL",
+   "max_level": 62,
+   "maps": []
+  },
+  "723": {
+   "id": "TAMER_EVAN_2",
+   "name": "EVAN",
+   "class": "TAMER",
+   "max_level": 63,
+   "maps": []
+  },
+  "724": {
+   "id": "PKMN_RANGER_JACKSON_2",
+   "name": "JACKSON",
+   "class": "PKMN_RANGER",
+   "max_level": 63,
+   "maps": []
+  },
+  "725": {
+   "id": "PKMN_RANGER_KATELYN_2",
+   "name": "KATELYN",
+   "class": "PKMN_RANGER",
+   "max_level": 64,
+   "maps": []
+  },
+  "726": {
+   "id": "COOLTRAINER_LEROY_2",
+   "name": "LEROY",
+   "class": "COOLTRAINER",
+   "max_level": 63,
+   "maps": []
+  },
+  "727": {
+   "id": "COOLTRAINER_MICHELLE_2",
+   "name": "MICHELLE",
+   "class": "COOLTRAINER",
+   "max_level": 64,
+   "maps": []
+  },
+  "728": {
+   "id": "COOL_COUPLE_LEX_NYA_2",
+   "name": "LEX & NYA",
+   "class": "COOL_COUPLE",
+   "max_level": 66,
+   "maps": []
+  },
+  "729": {
+   "id": "BUG_CATCHER_COLTON_2",
+   "name": "COLTON",
+   "class": "BUG_CATCHER",
+   "max_level": 22,
+   "maps": []
+  },
+  "730": {
+   "id": "BUG_CATCHER_COLTON_3",
+   "name": "COLTON",
+   "class": "BUG_CATCHER",
+   "max_level": 31,
+   "maps": []
+  },
+  "731": {
+   "id": "BUG_CATCHER_COLTON_4",
+   "name": "COLTON",
+   "class": "BUG_CATCHER",
+   "max_level": 62,
+   "maps": []
+  },
+  "732": {
+   "id": "SWIMMER_MALE_MATTHEW_2",
+   "name": "MATTHEW",
+   "class": "SWIMMER_M",
+   "max_level": 56,
+   "maps": []
+  },
+  "733": {
+   "id": "SWIMMER_MALE_TONY_2",
+   "name": "TONY",
+   "class": "SWIMMER_M",
+   "max_level": 56,
+   "maps": []
+  },
+  "734": {
+   "id": "SWIMMER_FEMALE_MELISSA_2",
+   "name": "MELISSA",
+   "class": "SWIMMER_F",
+   "max_level": 56,
+   "maps": []
+  },
+  "735": {
+   "id": "ELITE_FOUR_LORELEI_2",
+   "name": "LORELEI",
+   "class": "ELITE_FOUR",
+   "max_level": 76,
+   "maps": [
+    "PokemonLeague_LoreleisRoom"
+   ]
+  },
+  "736": {
+   "id": "ELITE_FOUR_BRUNO_2",
+   "name": "BRUNO",
+   "class": "ELITE_FOUR",
+   "max_level": 78,
+   "maps": [
+    "PokemonLeague_BrunosRoom"
+   ]
+  },
+  "737": {
+   "id": "ELITE_FOUR_AGATHA_2",
+   "name": "AGATHA",
+   "class": "ELITE_FOUR",
+   "max_level": 80,
+   "maps": [
+    "PokemonLeague_AgathasRoom"
+   ]
+  },
+  "738": {
+   "id": "ELITE_FOUR_LANCE_2",
+   "name": "LANCE",
+   "class": "ELITE_FOUR",
+   "max_level": 83,
+   "maps": [
+    "PokemonLeague_LancesRoom"
+   ]
+  },
+  "739": {
+   "id": "CHAMPION_REMATCH_SQUIRTLE",
+   "name": "TERRY",
+   "class": "CHAMPION",
+   "max_level": 86,
+   "maps": [
+    "PokemonLeague_ChampionsRoom"
+   ]
+  },
+  "740": {
+   "id": "CHAMPION_REMATCH_BULBASAUR",
+   "name": "TERRY",
+   "class": "CHAMPION",
+   "max_level": 86,
+   "maps": [
+    "PokemonLeague_ChampionsRoom"
+   ]
+  },
+  "741": {
+   "id": "CHAMPION_REMATCH_CHARMANDER",
+   "name": "TERRY",
+   "class": "CHAMPION",
+   "max_level": 86,
+   "maps": [
+    "PokemonLeague_ChampionsRoom"
+   ]
+  },
+  "742": {
+   "id": "CUE_BALL_PAXTON",
+   "name": "PAXTON",
+   "class": "CUE_BALL",
+   "max_level": 45,
+   "maps": [
+    "ThreeIsland"
+   ]
+  }
+ },
+ "level_caps": {
+  "leaders": [
+   16,
+   23,
+   28,
+   35,
+   45,
+   47,
+   51,
+   54
+  ],
+  "league": 72
+ },
+ "flags": {
+  "HACK_LEGENDS_RELEASED": 1191,
+  "HACK_CAUGHT_MEW": 1192,
+  "HACK_CAUGHT_CELEBI": 1193,
+  "HACK_CAUGHT_RAIKOU": 1194,
+  "HACK_CAUGHT_ENTEI": 1195,
+  "HACK_CAUGHT_SUICUNE": 1196,
+  "HACK_CAUGHT_REGIROCK": 1197,
+  "HACK_CAUGHT_REGICE": 1198,
+  "HACK_CAUGHT_REGISTEEL": 1199,
+  "HACK_CAUGHT_KYOGRE": 1281,
+  "HACK_CAUGHT_GROUDON": 1282,
+  "HACK_CAUGHT_RAYQUAZA": 1283,
+  "HACK_CAUGHT_LATIAS": 1284,
+  "HACK_CAUGHT_LATIOS": 1285,
+  "HACK_CAUGHT_JIRACHI": 1286,
+  "HACK_PEAK_LEAGUE": 1289,
+  "HACK_TRUE_ENDGAME": 1290,
+  "HACK_LEVEL_CAP": 1293,
+  "HACK_NUZLOCKE": 1294,
+  "HACK_NO_BATTLE_ITEMS": 1295,
+  "HACK_SET_ONLY": 1296,
+  "HACK_NUZLOCKE_OVER": 1297,
+  "HACK_GOT_SHINY_CHARM": 1298,
+  "HACK_NORMAL_BATTLE_SPEED": 1315,
+  "HACK_PARTY_EXP_SHARE": 1316,
+  "HACK_GOT_LUCKY_EGG": 1319,
+  "SYS_SAFARI_MODE": 2048,
+  "SYS_VS_SEEKER_CHARGING": 2049,
+  "SYS_CRUISE_MODE": 2050,
+  "SYS_WHITE_FLUTE_ACTIVE": 2051,
+  "SYS_BLACK_FLUTE_ACTIVE": 2052,
+  "SYS_USE_STRENGTH": 2053,
+  "SYS_FLASH_ACTIVE": 2054,
+  "SYS_SPECIAL_WILD_BATTLE": 2055,
+  "SYS_QL_DEPARTED": 2056,
+  "BADGE01_GET": 2080,
+  "BADGE02_GET": 2081,
+  "BADGE03_GET": 2082,
+  "BADGE04_GET": 2083,
+  "BADGE05_GET": 2084,
+  "BADGE06_GET": 2085,
+  "BADGE07_GET": 2086,
+  "BADGE08_GET": 2087,
+  "SYS_POKEMON_GET": 2088,
+  "SYS_POKEDEX_GET": 2089,
+  "SYS_GAME_CLEAR": 2092,
+  "SYS_SET_TRAINER_CARD_PROFILE": 2093,
+  "SYS_B_DASH": 2095,
+  "SYS_ON_CYCLING_ROAD": 2096,
+  "SYS_NOT_SOMEONES_PC": 2100,
+  "SYS_RESET_RTC_ENABLE": 2103,
+  "SYS_MYSTERY_GIFT_ENABLED": 2105,
+  "SYS_RIBBON_GET": 2107,
+  "SYS_SAW_HELP_SYSTEM_INTRO": 2108,
+  "SYS_NATIONAL_DEX": 2112,
+  "SYS_PC_STORAGE_DISABLED": 2113,
+  "SYS_INFORMED_OF_LOCAL_WIRELESS_PLAYER": 2114,
+  "SYS_CAN_LINK_WITH_RS": 2116,
+  "SYS_SEVII_MAP_123": 2117,
+  "SYS_SEVII_MAP_4567": 2118,
+  "SYS_GOT_BERRY_POUCH": 2119,
+  "SYS_DEOXYS_AWAKENED": 2120,
+  "SYS_UNLOCKED_TANOBY_RUINS": 2121
+ },
+ "vars": {
+  "MAP_SCENE_PALLET_TOWN_PLAYERS_HOUSE_2F": 16470
+ },
+ "items_count": 375,
+ "poke_balls": [
+  1,
+  12
+ ],
+ "max_level": 100,
+ "kanto_mapsec_start": 88,
+ "battle_types": {
+  "DOUBLE": 1,
+  "LINK": 2,
+  "IS_MASTER": 4,
+  "TRAINER": 8,
+  "FIRST_BATTLE": 16,
+  "LINK_IN_BATTLE": 32,
+  "MULTI": 64,
+  "SAFARI": 128,
+  "BATTLE_TOWER": 256,
+  "OLD_MAN_TUTORIAL": 512,
+  "ROAMER": 1024,
+  "EREADER_TRAINER": 2048,
+  "KYOGRE_GROUDON": 4096,
+  "LEGENDARY": 8192,
+  "GHOST_UNVEILED": 8192,
+  "REGI": 16384,
+  "GHOST": 32768,
+  "POKEDUDE": 65536,
+  "WILD_SCRIPTED": 131072,
+  "LEGENDARY_FRLG": 262144,
+  "TRAINER_TOWER": 524288
+ },
+ "shiny_odds": 16
+}

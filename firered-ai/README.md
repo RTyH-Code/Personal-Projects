@@ -1,113 +1,110 @@
-# FireRed AI
+# FireRed Playtester
 
-An AI that teaches itself to play Pokémon FireRed by trial and error.
+An unattended playtester for [FireRed QoL + Hard](../firered-qol-hard/README.md)
+(and vanilla Pokémon FireRed). Leave it running overnight: it plays the real
+patched ROM in several emulators at once, goes everywhere it can, and
+writes a report of anything that went wrong, with a save state and a video
+for each problem.
 
-It doesn't know anything about Pokémon at the start. It presses buttons,
-watches the screen, and gets small rewards when something good happens:
-walking somewhere new, leveling up, catching a Pokémon or winning a badge.
-Over millions of button presses it learns which actions lead to rewards.
-This is **reinforcement learning**, using the PPO algorithm.
+It's a bug hunter, not a second you. It can't tell you whether something is
+fun, read text for typos, or know that a change was intended. It battles
+with simple rules, so it wins easy fights and loses hard ones. That makes
+its blackout numbers a pointer to difficulty spikes, not a verdict.
 
-It works with vanilla FireRed (US, v1.0 or v1.1) and with the
-[FireRed QoL + Hard](../firered-qol-hard/README.md) hack in this repo,
-patched from either revision. You need your own ROM; none is included.
+There's also an optional [learning agent](LEARNING.md) that teaches itself
+to play with reinforcement learning. The playtester doesn't need it.
 
-## How it works
+## What it checks
 
-```
-             ┌──────────── observation ────────────┐
-             │ • last 3 screens (grayscale, ½ size) │
- mGBA  ───▶  │ • map of tiles already explored     │  ───▶  neural net  ───▶  button
- (emulator)  │ • party HP/levels, badges, Pokédex  │        (PPO policy)
-             └──────────────────────────────────────┘
-      ▲                                                                       │
-      └─────────────────────── press for 8 frames, wait 16 ───────────────────┘
-```
+After every button press it reads the game's memory and checks:
 
-- **Emulator.** [stable-retro](https://github.com/Farama-Foundation/stable-retro)'s
-  built-in mGBA core. Several copies run in parallel, much faster than real time.
-- **Game state.** `firered_ai/ram.py` reads the map, position, party, badges,
-  Pokédex and money straight from RAM. The addresses come from the
-  [pret/pokefirered](https://github.com/pret/pokefirered) decompilation.
-- **Rewards.** `firered_ai/rewards.py`:
+| Kind | What it catches |
+|---|---|
+| **Crash** | The game stops reading the buttons (its main loop died or hung). |
+| **Softlock** | The screen doesn't change at all for ~6 minutes of pressing everything, or the player can't move from one spot for ~25 minutes. |
+| **Corrupt data** | Bad Eggs (a Pokémon's encrypted data doesn't match its checksum), impossible species, levels, HP or stats, Exp. overflow, a level or Exp. going down, money over 999,999, broken bag slots, being on a map that doesn't exist, more than 6 in the party. |
+| **Rule broken** | A Pokémon levels past the level cap. With Nuzlocke on: a fainted Pokémon gets HP back, or a second catch happens in a used area. With "no items in battle" on: a bag item gets used in battle. |
 
-  | Event | Reward |
-  |---|---|
-  | Step on a new tile | 0.02 |
-  | Enter a new map | 0.5 |
-  | Party gains a level (beyond its best so far) | 1 |
-  | Get the starter / the Pokédex | 5 each |
-  | Catch a new species (one on the Pokédex goal) | 2 |
-  | Earn a badge | 20 |
-  | Become Champion | 100 |
-  | Meet every goal (ends the run) | 200 |
-  | Heal the party (full heal) | 1 |
-  | Party blacks out | −2 |
+Data that could be read halfway through the game writing it has to stay
+wrong for two presses in a row before it counts.
 
-  Rewards only count *new* progress, so the agent can't farm them by
-  repeating something.
-- **Learning.** [Stable-Baselines3](https://stable-baselines3.readthedocs.io/)
-  PPO with a CNN for the images and a small MLP for the stats.
+It also keeps **coverage** (maps visited, trainers beaten, species seen
+and caught) and **difficulty** numbers (battles and blackouts per map).
 
-## The goal
+## How it plays
 
-By default the agent works towards three things:
+- **Exploring:** it heads for ground it hasn't stood on, finds its way back
+  to unfinished spots, and leaves maps through exits toward the places
+  visited least. When a step doesn't move it, it presses B (in case text is
+  open) and tries again. Then it presses A at the obstacle, which talks to
+  people, reads signs, picks up items and uses HM obstacles.
+- **Menus:** now and then it opens the START menu and pokes around (bag,
+  party, the Nuzlocke tracker, options, saving...).
+- **Battles:** mostly FIGHT, with random menu moves so the bag, switching
+  and RUN get used too. In wild battles it sometimes throws a Poké Ball.
+- **Covering the whole game:** while it plays it keeps a few save states on
+  every map it reaches. Later sessions start from those, favouring the
+  least-visited maps. Give it your own saves to reach later content sooner.
 
-1. **All 8 badges.**
-2. **Become Champion** (enter the Hall of Fame).
-3. **A complete Pokédex** for the game you're playing.
+## Install on Windows (one click)
 
-How it gets there, and in what order, is up to the agent. When all of them
-are met, the episode ends with a big bonus. Choose a subset with
-`--goals`, e.g. `--goals badges,champion`, or `--goals none` for open-ended
-play.
+The playtester runs inside WSL, the Linux system built into Windows 10 and
+11. The installer sets all of that up for you.
 
-### What "complete Pokédex" means
+1. **Get the files.** On this repository's GitHub page, click the green
+   **Code** button, then **Download ZIP**. Right-click the downloaded file,
+   choose **Extract All...**, and extract it somewhere easy, like your
+   Documents folder.
+2. **Run the installer.** In the extracted folder, open `firered-ai`, then
+   `install`, and double-click **`Install.bat`**.
+   - If Windows says "Windows protected your PC", click **More info**, then
+     **Run anyway**. It's a script you downloaded yourself, so Windows is
+     being careful.
+   - **The first time only:** it needs administrator permission (click
+     **Yes**) to install WSL and Ubuntu. That downloads about 1 GB. Restart
+     if Windows asks. An **Ubuntu** window then asks you to choose a
+     username and password. They're only for Ubuntu, so pick anything you'll
+     remember. Nothing appears while you type the password; that's normal.
+     When it shows a line ending in `$`, close that window and
+     **double-click `Install.bat` again**.
+   - It then installs Python and the playtester and runs its self-check,
+     which takes a few minutes. When it says **All set!**, you're done.
+3. **Two shortcuts appear on your desktop:**
+   - **FireRed Playtest** starts a run. Double-click it and pick your
+     patched ROM, or drag the `.gba` file onto it. It asks how many hours to
+     play (just press Enter for 8). It also asks for an optional folder of
+     your `.sav` files, so it can test later parts of the game: drag the
+     folder into the window and press Enter.
+   - **FireRed Playtest Reports** opens the folder of past runs. Open
+     `report.html` in a run's folder to see the results.
 
-Only Pokémon one save can actually own count: no trading, no Mystery Gift.
-`tools/pokedex_targets.py` worked these out from the game's source (the pret
-decompilation, with your hack's patches applied). It follows wild
-encounters, gifts, legendary encounters, in-game trades, the roaming
-legendary, evolution (only by methods that work in this game) and Day Care
-breeding.
+While a run goes on, leave its window open. Closing it stops the run. Your
+PC stays awake until the run ends (the screen can still turn off), and the
+report opens by itself at the end.
 
-| Game | Species for a complete Pokédex | Not obtainable in one save |
-|---|---|---|
-| FireRed (US v1.0 or v1.1) | 170 | LeafGreen exclusives, trade evolutions (Alakazam, Machamp, Golem, Gengar), Mew and the other event Pokémon, Espeon and Umbreon (FRLG has no clock), most of Johto and Hoenn |
-| FireRed QoL + Hard | 386 | none |
+**Updating:** download the ZIP again and double-click `Install.bat`. It
+updates the playtester and keeps your past runs.
 
-In vanilla, some choices lock others out for the rest of the save. Each
-counts as one either/or: the starter, which also decides the roaming
-legendary (Bulbasaur → Entei, Charmander → Suicune, Squirtle → Raikou),
-and the Mt. Moon fossil (Omanyte or Kabuto). The QoL + Hard hack has no
-such choices. The lists are in `firered_ai/data/`.
-The right one is picked from the ROM's checksum. Override it with
-`--pokedex firered`, `--pokedex firered-qol-hard` or a JSON file.
+## Install on Linux or a Mac
 
-To make a list for another hack, run the generator on its source:
-
-```bash
-python tools/pokedex_targets.py path/to/pokefirered my-hack > my-hack.json
-```
-
-### Building on progress
-
-A full playthrough is hundreds of thousands of button presses, far longer
-than one episode. So each time an agent gets further than before (new
-ground, a new map, levels, a new species, a badge), its save state goes
-into a **progress pool** (`runs/<name>/progress/`). 80% of episodes start
-from one of the 8 best states in the pool, and the rest start from the
-bedroom. Explored tiles carry over, so the agent isn't paid twice for the
-same ground. Turn it off with `--no-progress-pool`, or change the mix with
-`--progress-prob`.
-
-## Setup
-
-Python 3.10 or newer.
+On Linux or an Apple Silicon Mac, `bash install/setup.sh` does the same
+setup in `~/firered-playtester`. Then start a run with:
 
 ```bash
-cd firered-ai
-python -m venv .venv
+bash ~/firered-playtester/install/run.sh path/to/rom.gba 8
+```
+
+## Manual setup
+
+If you'd rather set it up by hand: in Ubuntu (WSL) on Windows, or a terminal
+on Linux or an Apple Silicon Mac, with Python 3.10 or newer:
+
+```bash
+cd ~/Personal-Projects/firered-ai
+```
+
+```bash
+python3 -m venv .venv
 ```
 
 ```bash
@@ -118,105 +115,98 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-On Windows, use `.venv\Scripts\activate`. stable-retro has prebuilt
-packages for Linux and macOS; on Windows, use WSL.
+That installs only the emulator, numpy and Pillow. PyTorch is only needed
+for the learning agent.
 
-## 1. Make a start state
-
-Skip the title screen and Oak's intro once, so training starts in the
-player's bedroom:
+## Run it
 
 ```bash
-python make_start_state.py path/to/firered.gba states/start.state --screenshot start.png
+python playtest.py ~/roms/FireRed-QoL-Hard.gba --hours 8
 ```
 
-This mashes through the intro with a script. It names the player and rival
-"A"-something; that doesn't matter to the AI. Check `start.png` to see where
-it ended up.
+By default it starts three new games, one per set of challenge rules:
+none; Nuzlocke + level caps; and no items + Set style + party Exp. Share.
+It gets through the intro and the challenge menu itself. It uses all CPU
+cores but one, and writes everything to `runs/playtest-<date>/`.
 
-## 2. Train
+**Start from your own saves** to test later parts of the game. mGBA keeps a
+game's battery save next to the ROM as a `.sav` file:
 
 ```bash
-python train.py path/to/firered.gba --state states/start.state
+python playtest.py ~/roms/FireRed-QoL-Hard.gba --hours 8 --saves ~/saves/*.sav
 ```
 
-- `--envs N` runs N emulators at once (default: one per CPU core).
-- `--timesteps` is the total number of button presses (default 10 million).
-- `--episode-steps` is how long each attempt lasts before it restarts from
-  the start state (default 8192 presses, about 50 minutes of game time).
-- Ctrl+C stops and saves `runs/firered/latest.zip`. Continue with
-  `--resume runs/firered/latest.zip`.
-- Checkpoints go to `runs/firered/checkpoints/`. Whenever an agent wins a
-  new badge, its save state is kept in `runs/firered/milestones/`.
+The playtester boots each save and picks CONTINUE. Saves from all through
+the game work best: one before each gym, the Elite Four, the Sevii Islands
+and so on. You can also pass save states with `--states`, or choose the
+new games with `--new-games plain nuzlocke,level_caps`. The rules are
+`nuzlocke`, `level_caps`, `no_items`, `set_style` and `exp_share`.
 
-Watch progress with TensorBoard:
+Other options: `--workers N`, `--session-steps` (presses before it jumps to
+a new start point, default 2500), `--out DIR`. Stop early with Ctrl+C; the
+report is written either way.
+
+## Read the report
+
+Open `report.html` in the run folder. On WSL, `explorer.exe runs` opens the
+folder in Windows. It refreshes every 5 minutes while the run goes on.
+
+- **Problems found:** the worst first, with how often each happened and a
+  screenshot. Click it for a clip of the ~40 seconds before.
+  "Reproduced: yes" means the playtester re-ran the same presses from a
+  save state shortly before, and the problem happened again.
+- **Possible difficulty spikes:** maps where it blacked out at least 3 times,
+  in a quarter or more of its battles there.
+- **Coverage:** the maps it hasn't reached yet, and where sessions started.
+
+Each problem's folder in `findings/` holds:
+
+| File | |
+|---|---|
+| `finding.json` | What happened, where, and whether it reproduced |
+| `before.state` | A save state from 50–150 presses before. It's mGBA's own format, so try mGBA's *File → Load State File* |
+| `inputs.json` | Every press from `before.state` to the problem |
+| `screenshot.png`, `clip.gif` | What it looked like |
+
+To watch it happen again and get a full-speed GIF:
 
 ```bash
-tensorboard --logdir runs
+python replay.py ~/roms/FireRed-QoL-Hard.gba runs/playtest-.../findings/<folder> --out replay.gif
 ```
 
-`game/goal_progress` (0 to 1) and `goal/badges`, `goal/champion` and
-`goal/pokedex` show progress towards the goal. `game/start_score` and
-`game/score` show how far into the game episodes start and end up. `game/maps_explored`,
-`game/level_sum` and `game/badges` show how far agents get per episode.
-`rollout/ep_rew_mean` is the average reward.
+## Speed
 
-## 3. Watch it play
+Each worker runs one emulator flat out, much faster than real time. The
+report's header shows how many presses and hours of play a run managed. On
+the small test ROM each worker did about 115 presses a second; FireRed
+itself will be slower.
+
+## New hack releases
+
+The playtester recognises the hack by the "QoL+HARD R14" text its Options
+screen shows, so new releases still work. Some of what it knows comes from
+the hack's source: maps, trainers, level caps, the flags for the challenge
+rules, and the save layout. If a release changes those, it warns at the
+start. To update it, apply the patches to pret/pokefirered and regenerate:
 
 ```bash
-python play.py path/to/firered.gba runs/firered/latest.zip --out play.mp4
+git clone https://github.com/pret/pokefirered && cd pokefirered && git checkout ce6406d
 ```
-
-Leave out the model to see random button presses for comparison. At the
-end it lists which Pokémon are still missing from the Pokédex goal. Start
-from a pool state with `--state runs/firered/progress/<file>.state` to
-watch the furthest an agent has got.
-Use `--out play.gif` if you don't have ffmpeg.
-
-## What to expect
-
-Pokémon is a hard game for this kind of AI: rewards are far apart and
-there's a lot of text to click through. As a rough guide, based on similar
-projects for Pokémon Red:
-
-- **First ~100k presses:** wandering, mostly in the house.
-- **~1M:** leaves the house, picks a starter in Oak's lab, explores
-  Pallet Town and Route 1.
-- **~10M+:** reaches Viridian, levels up in the tall grass, Pewter.
-- Badges take tens of millions of presses and some reward tuning.
-- Becoming Champion, let alone completing the Pokédex, is beyond anything
-  this kind of AI has done so far. The goal gives it a direction and a way
-  to measure how far it gets.
-
-Each emulator does about 60 presses per second (each press is 24 frames),
-so speed scales with CPU cores: on 4 cores, 10M presses takes roughly
-12 hours. A GPU helps a little with the learning updates.
-
-## Tuning
-
-- **Reward weights.** Put overrides in a JSON file and pass `--rewards`:
-
-  ```json
-  {"explore": 0.05, "level": 0.5, "heal": 0}
-  ```
-- **Later starting points.** Any save state can be a start state. Take one
-  from `runs/*/milestones/`, or one from just past a part where the agent
-  gets stuck, and pass it with `--state`.
-- **START button.** It's off by default because the agent tends to sit in
-  menus. Turn it on with `--allow-start` once it needs items.
-
-## Other hacks
-
-If a hack moves things around in RAM, build it with pret's tools and pull
-the addresses from the linker map:
 
 ```bash
-python tools/symbols_from_map.py pokefirered.map > addresses.json
+git am ../Personal-Projects/firered-qol-hard/source-patches/*.patch && cd -
 ```
 
-Then pass `--addresses addresses.json` to every script. The QoL + Hard
-hack doesn't need this: its only new RAM comes after everything the AI
-reads.
+```bash
+python tools/game_data.py ../pokefirered firered_qol_hard > firered_ai/data/games/firered_qol_hard.json
+```
+
+```bash
+python tools/pokedex_targets.py ../pokefirered firered-qol-hard > firered_ai/data/pokedex_firered_qol_hard.json
+```
+
+A test, `test_profiles_match_the_hack_in_this_repo`, fails when the hack's
+`.bps` patches are a newer release than this data, as a reminder.
 
 ## Tests
 
@@ -228,24 +218,29 @@ pip install pytest
 python -m pytest tests
 ```
 
-The tests don't need a ROM. `tests/test_emulator.py` builds a tiny GBA ROM
-that fakes FireRed's RAM and runs it on the real mGBA core.
+The tests need no ROM. They use a fake emulator that models FireRed's
+memory (including encrypted Pokémon data and the challenge menu), plus a
+tiny hand-assembled GBA ROM run on the real mGBA core.
 
 ## Files
 
 | File | What it does |
 |---|---|
-| `firered_ai/emulator.py` | Runs the ROM in mGBA via stable-retro |
-| `firered_ai/ram.py` | Reads the game state from RAM |
-| `firered_ai/rewards.py` | Reward shaping |
-| `firered_ai/goals.py` | The end goal: badges, Champion, Pokédex; ROM detection |
-| `firered_ai/progress.py` | Progress pool: start episodes from the best states so far |
-| `firered_ai/data/` | Pokédex lists for FireRed and FireRed QoL + Hard |
-| `firered_ai/env.py` | The Gymnasium environment the agent plays in |
-| `firered_ai/bootstrap.py` | Scripted intro skip |
-| `firered_ai/maps.py` | Map names (from pret/pokefirered) |
-| `train.py` | Training |
-| `play.py` | Watch an agent and record video |
-| `make_start_state.py` | Create the start save state |
-| `tools/symbols_from_map.py` | RAM addresses for other hacks |
+| `install/Install.bat` | One-click Windows installer (`install.ps1`, which runs `setup.sh` inside Ubuntu) |
+| `install/Playtest.bat` | Windows launcher behind the desktop shortcut (`playtest.ps1`, which runs `run.sh`) |
+| `playtest.py` | Run the playtester |
+| `replay.py` | Replay a finding |
+| `make_start_state.py` | Make a new-game save state, with challenge rules |
+| `firered_ai/tester.py` | One worker: sessions, captures, replays |
+| `firered_ai/detectors.py` | The bug checks |
+| `firered_ai/explorer.py` | What to press |
+| `firered_ai/runner.py` | Workers, start points, the shared pool |
+| `firered_ai/report.py` | `report.html` and `summary.json` |
+| `firered_ai/game.py` | Recognising the ROM; what's known about it |
+| `firered_ai/ram.py` | Reading the game's memory, including encrypted Pokémon data |
+| `firered_ai/bootstrap.py` | Getting through the intro, challenge menu, or a save's title screen |
+| `firered_ai/emulator.py` | mGBA via stable-retro, including loading battery saves |
+| `firered_ai/data/games/` | Game profiles for FireRed and FireRed QoL + Hard |
+| `tools/game_data.py` | Make a game profile from pret source |
 | `tools/pokedex_targets.py` | Work out which Pokémon a game lets you own |
+| `tools/symbols_from_map.py` | RAM addresses for hacks that move things around |

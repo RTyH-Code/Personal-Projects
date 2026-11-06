@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import gzip
 import os
 import random
 from pathlib import Path
@@ -11,11 +10,12 @@ import gymnasium as gym
 import numpy as np
 from gymnasium import spaces
 
+from .game import Game, detect
 from .goals import Goals
-from .maps import map_name
 from .progress import MIN_GAIN, ProgressPool, progress_score
 from .ram import DEFAULT_ADDRESSES, GameState, read_state
 from .rewards import RewardTracker
+from .states import load_state_file, save_state_file  # noqa: F401  (re-exported)
 
 ACTIONS = [("A",), ("B",), ("UP",), ("DOWN",), ("LEFT",), ("RIGHT",), ("START",)]
 ACTION_NAMES = ["A", "B", "UP", "DOWN", "LEFT", "RIGHT", "START"]
@@ -24,16 +24,6 @@ SCREEN_SHAPE = (80, 120)  # GBA screen (160x240) at half size
 FRAME_STACK = 3
 EXPLORE_SIZE = 48  # tiles shown around the player in the exploration map
 N_RECENT_ACTIONS = 3
-
-
-def load_state_file(path: str | os.PathLike) -> bytes:
-    data = Path(path).read_bytes()
-    return gzip.decompress(data) if data[:2] == b"\x1f\x8b" else data
-
-
-def save_state_file(path: str | os.PathLike, state: bytes) -> None:
-    Path(path).parent.mkdir(parents=True, exist_ok=True)
-    Path(path).write_bytes(gzip.compress(state))
 
 
 class FireRedEnv(gym.Env):
@@ -62,6 +52,7 @@ class FireRedEnv(gym.Env):
         progress_prob: float = 0.8,
         render_mode: str | None = None,
         emulator=None,
+        game: Game | None = None,
     ):
         super().__init__()
         if emulator is None:
@@ -71,6 +62,9 @@ class FireRedEnv(gym.Env):
                 raise ValueError("rom_path is required")
             emulator = Emulator(rom_path)
         self.emu = emulator
+        if game is None:
+            game = detect(rom_path)[0] if rom_path else Game.load("firered")
+        self.game = game
         self.start_state = load_state_file(start_state) if start_state else self.emu.save_state()
         self.max_steps = max_steps
         self.press_frames = press_frames
@@ -145,7 +139,7 @@ class FireRedEnv(gym.Env):
     # --- helpers -----------------------------------------------------------
 
     def _read(self) -> GameState:
-        return read_state(self.emu.read, self.addresses)
+        return read_state(self.emu.read, self.addresses, self.game.layout)
 
     def _push_frame(self) -> None:
         gray = self.emu.screen()[::2, ::2].astype(np.uint16).sum(axis=2) // 3
@@ -201,7 +195,7 @@ class FireRedEnv(gym.Env):
         info = {
             "steps": self.steps,
             "valid": s.valid,
-            "map": map_name(*s.map_id),
+            "map": self.game.map_name(*s.map_id),
             "x": s.x,
             "y": s.y,
             "badges": s.badge_count,
@@ -241,7 +235,7 @@ class FireRedEnv(gym.Env):
             return
         self.best_score = score
         if self.pool.worth_saving(score):
-            info = {"map": map_name(*s.map_id), "badges": s.badge_count, "level_sum": s.level_sum,
+            info = {"map": self.game.map_name(*s.map_id), "badges": s.badge_count, "level_sum": s.level_sum,
                     "dex_owned": s.dex_owned, "champion": s.champion}
             self.pool.add(score, self.emu.save_state(), self.rewards.tile_list(), info)
 
@@ -251,5 +245,5 @@ class FireRedEnv(gym.Env):
             return
         if self.state.badge_count > self.best_badges:
             self.best_badges = self.state.badge_count
-            name = f"badge{self.best_badges}_{map_name(*self.state.map_id)}_{os.getpid()}.state"
+            name = f"badge{self.best_badges}_{self.game.map_name(*self.state.map_id)}_{os.getpid()}.state"
             save_state_file(self.milestone_dir / name, self.emu.save_state())

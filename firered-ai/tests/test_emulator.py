@@ -1,9 +1,11 @@
 """End-to-end tests on the real mGBA core, using a tiny generated GBA ROM.
 
 The ROM (hand-assembled ARM below) copies a FireRed-shaped RAM image into
-EWRAM/IWRAM, then loops forever ORing the held buttons into the player's
-y coordinate. That checks memory reads, button presses and save states
-without needing a copy of FireRed.
+EWRAM/IWRAM, then loops forever: it stores the held buttons in
+gMain.heldKeysRaw (as FireRed's ReadKeys does), ORs them into the player's
+y coordinate, and copies the save chip's first byte into RAM. That checks
+memory reads, button presses, save states and battery saves without needing
+a copy of FireRed.
 """
 
 import os
@@ -27,6 +29,7 @@ ROM_BASE = 0x08000000
 CODE = 0xC0
 KEYINPUT = 0x04000130
 KEY_RIGHT = 1 << 4
+FLASH_COPY = 0x0203FF00  # where the test ROM copies the save chip's first byte
 
 
 def _branch(cond, at, target):
@@ -48,9 +51,9 @@ def build_rom(fake: FakeEmulator) -> bytes:
             else:
                 i += 1
 
-    code = [None] * 22
-    lit = CODE + 4 * len(code)  # literal pool: table, KEYINPUT, &y
-    table = lit + 12
+    code = [None] * 28
+    lit = CODE + 4 * len(code)  # literal pool: table, KEYINPUT, &y, &gMain.heldKeysRaw, FLASH_COPY
+    table = lit + 20
     blob = table + 12 * len(runs) + 4
     entries, data = b"", b""
     for dest, chunk in runs:
@@ -78,15 +81,21 @@ def build_rom(fake: FakeEmulator) -> bytes:
     # done:
     code[11] = ldr_pc(11, 5, lit + 4)  # r5 = KEYINPUT
     code[12] = ldr_pc(12, 6, lit + 8)  # r6 = &y
-    loop = CODE + 4 * 13
-    code[13] = 0xE1D530B0  # ldrh r3, [r5]
-    code[14] = 0xE1E03003  # mvn r3, r3          (keys are active low)
-    code[15] = 0xE20330FF  # and r3, r3, #0xff
-    code[16] = 0xE1D670B0  # ldrh r7, [r6]
-    code[17] = 0xE1877003  # orr r7, r7, r3
-    code[18] = 0xE1C670B0  # strh r7, [r6]
-    code[19] = _branch(0xE, CODE + 76, loop)  # b loop
-    code[20] = code[21] = 0xE1A00000  # nop
+    code[13] = ldr_pc(13, 9, lit + 12)  # r9 = &gMain.heldKeysRaw
+    code[14] = 0xE3A0A40E  # mov r10, #0x0E000000 (flash)
+    code[15] = ldr_pc(15, 11, lit + 16)  # r11 = FLASH_COPY
+    loop = CODE + 4 * 16
+    code[16] = 0xE1D530B0  # ldrh r3, [r5]
+    code[17] = 0xE1E03003  # mvn r3, r3          (keys are active low)
+    code[18] = 0xE20330FF  # and r3, r3, #0xff
+    code[19] = 0xE1C930B0  # strh r3, [r9]       (like the game's ReadKeys)
+    code[20] = 0xE1D670B0  # ldrh r7, [r6]
+    code[21] = 0xE1877003  # orr r7, r7, r3
+    code[22] = 0xE1C670B0  # strh r7, [r6]
+    code[23] = 0xE5DA2000  # ldrb r2, [r10]      (first byte of the save chip)
+    code[24] = 0xE5CB2000  # strb r2, [r11]
+    code[25] = _branch(0xE, CODE + 100, loop)  # b loop
+    code[26] = code[27] = 0xE1A00000  # nop
 
     rom = bytearray(blob + len(data))
     struct.pack_into("<I", rom, 0, _branch(0xE, 0, CODE))
@@ -95,7 +104,8 @@ def build_rom(fake: FakeEmulator) -> bytes:
     rom[0xBD] = (-sum(rom[0xA0:0xBD]) - 0x19) & 0xFF
     for i, c in enumerate(code):
         struct.pack_into("<I", rom, CODE + 4 * i, c)
-    struct.pack_into("<III", rom, lit, ROM_BASE + table, KEYINPUT, SB1 + ram.SB1_POS + 2)
+    struct.pack_into("<IIIII", rom, lit, ROM_BASE + table, KEYINPUT, SB1 + ram.SB1_POS + 2,
+                     ram.DEFAULT_ADDRESSES["gMain"] + ram.MAIN_HELD_KEYS_RAW, FLASH_COPY)
     rom[table : table + len(entries)] = entries
     rom[blob:] = data
     return bytes(rom)
@@ -146,3 +156,34 @@ def test_env_on_real_emulator(emu):
         obs, r, term, trunc, info = env.step(a)
         assert env.observation_space.contains(obs)
     assert trunc
+
+
+def test_held_keys_reach_gmain(emu):
+    emu.press(("B",), 4)
+    assert ram.read_state(emu.read).held_keys == 1 << 1
+    emu.press((), 4)
+    assert ram.read_state(emu.read).held_keys == 0
+
+
+def test_boot_with_save(emu):
+    sav = bytes([0x5A]) + bytes(range(256)) * 511
+    emu.boot_with_save(sav)
+    emu.press((), 10)
+    assert emu.read(FLASH_COPY, 1) == b"\x5a"
+    assert emu.read(0x0E000000, 4) == sav[:4]
+    emu.boot_with_save(b"\x77")
+    emu.press((), 10)
+    assert emu.read(FLASH_COPY, 1) == b"\x77"
+
+
+def test_playtest_session_on_real_emulator(emu, tmp_path):
+    """A healthy game must not raise false alarms, and a session must run end to end."""
+    from firered_ai.game import Game
+    from firered_ai.tester import Start, Tester
+
+    emu.boot_with_save(b"")
+    start = Start("state", "tiny", emu.save_state())
+    t = Tester(emu, Game.load("firered"), tmp_path, seed=5, log=None)
+    found = t.session(start, 300)
+    assert found == [], [(f.check, f.title) for f in found]
+    assert t.stats.steps == 300
