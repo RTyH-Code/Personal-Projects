@@ -58,9 +58,9 @@ Height 1 m (3′03″) · Weight 32 kg (70.5 lbs)
 
 ## Where to find it
 
-- **Route 23**: Grass / cave Lv 42 (5%)
-- **Cerulean Cave 1F**: Grass / cave Lv 52–61 (11%)
-- **Victory Road 2F**: Grass / cave Lv 42 (10%)
+- **Route 23**: Grass / cave Lv 48 (5%)
+- **Cerulean Cave 1F**: Grass / cave Lv 60–70 (11%)
+- **Victory Road 2F**: Grass / cave Lv 48 (10%)
 - Evolve [Mankey](056-mankey.md)
 
 ## Moves

@@ -1,7 +1,7 @@
 From 7039405ebda5c1eb129f884a17f92fdf6422f79c Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Thu, 5 Nov 2026 02:00:08 +0000
-Subject: [PATCH 39/42] Audit and balance pass after the modernization
+Subject: [PATCH 39/43] Audit and balance pass after the modernization
 
 Audit:
 - tools/hack/validate.py checks every move, species, learnset, egg move,

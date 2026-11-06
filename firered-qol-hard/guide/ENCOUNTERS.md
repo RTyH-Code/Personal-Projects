@@ -563,22 +563,22 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Mankey | 32–34 | 30% |
-|  | Fearow | 40–44 | 21% |
-|  | Ekans | 32–34 | 20% |
-|  | Spearow | 32–34 | 15% |
-|  | Primeape | 42 | 5% |
-|  | Arbok | 44 | 5% |
-|  | Gligar ★ | 42 | 4% |
-| Surfing | Psyduck | 20–40 | 100% |
-| Old Rod | Magikarp | 5 | 100% |
-| Good Rod | Poliwag | 5–15 | 60% |
-|  | Magikarp | 5–15 | 20% |
-|  | Goldeen | 5–15 | 20% |
-| Super Rod | Poliwag | 15–25 | 40% |
-|  | Poliwhirl | 20–30 | 40% |
-|  | Gyarados | 15–25 | 15% |
-|  | Psyduck | 15–35 | 5% |
+| Grass / cave | Mankey | 37–39 | 30% |
+|  | Fearow | 46–51 | 21% |
+|  | Ekans | 37–39 | 20% |
+|  | Spearow | 37–39 | 15% |
+|  | Primeape | 48 | 5% |
+|  | Arbok | 51 | 5% |
+|  | Gligar ★ | 48 | 4% |
+| Surfing | Psyduck | 23–46 | 100% |
+| Old Rod | Magikarp | 6 | 100% |
+| Good Rod | Poliwag | 6–17 | 60% |
+|  | Magikarp | 6–17 | 20% |
+|  | Goldeen | 6–17 | 20% |
+| Super Rod | Poliwag | 17–29 | 40% |
+|  | Poliwhirl | 23–34 | 40% |
+|  | Gyarados | 17–29 | 15% |
+|  | Psyduck | 17–40 | 5% |
 
 ## Route 24
 
@@ -630,66 +630,66 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Parasect | 49–58 | 25% |
-|  | Magneton | 49 | 20% |
-|  | Golbat | 46–55 | 14% |
-|  | Primeape | 52–61 | 11% |
-|  | Ditto | 52–61 | 11% |
-|  | Machoke | 46 | 10% |
-|  | Electrode | 58 | 5% |
-|  | Wobbuffet | 55 | 4% |
-| Surfing | Psyduck | 30–50 | 65% |
-|  | Golduck | 40–55 | 35% |
-| Rock Smash | Geodude | 30–50 | 65% |
-|  | Graveler | 40–55 | 35% |
-| Old Rod | Magikarp | 5 | 100% |
-| Good Rod | Poliwag | 5–15 | 60% |
-|  | Magikarp | 5–15 | 20% |
-|  | Goldeen | 5–15 | 20% |
-| Super Rod | Poliwag | 15–25 | 40% |
-|  | Poliwhirl | 20–30 | 40% |
-|  | Gyarados | 15–25 | 15% |
-|  | Psyduck | 15–35 | 5% |
+| Grass / cave | Parasect | 56–67 | 25% |
+|  | Magneton | 56 | 20% |
+|  | Golbat | 53–63 | 14% |
+|  | Primeape | 60–70 | 11% |
+|  | Ditto | 60–70 | 11% |
+|  | Machoke | 53 | 10% |
+|  | Electrode | 67 | 5% |
+|  | Wobbuffet | 63 | 4% |
+| Surfing | Psyduck | 34–57 | 65% |
+|  | Golduck | 46–63 | 35% |
+| Rock Smash | Geodude | 34–57 | 65% |
+|  | Graveler | 46–63 | 35% |
+| Old Rod | Magikarp | 6 | 100% |
+| Good Rod | Poliwag | 6–17 | 60% |
+|  | Magikarp | 6–17 | 20% |
+|  | Goldeen | 6–17 | 20% |
+| Super Rod | Poliwag | 17–29 | 40% |
+|  | Poliwhirl | 23–34 | 40% |
+|  | Gyarados | 17–29 | 15% |
+|  | Psyduck | 17–40 | 5% |
 
 ## Cerulean Cave 2F
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Golbat | 49–58 | 25% |
-|  | Machoke | 49 | 20% |
-|  | Parasect | 52–61 | 14% |
-|  | Kadabra | 55–64 | 11% |
-|  | Ditto | 55–64 | 11% |
-|  | Magneton | 52 | 10% |
-|  | Wobbuffet | 58 | 5% |
-|  | Electrode | 61 | 4% |
-| Rock Smash | Geodude | 35–55 | 65% |
-|  | Graveler | 45–60 | 35% |
+| Grass / cave | Golbat | 56–67 | 25% |
+|  | Machoke | 56 | 20% |
+|  | Parasect | 60–70 | 14% |
+|  | Kadabra | 63–74 | 11% |
+|  | Ditto | 63–74 | 11% |
+|  | Magneton | 60 | 10% |
+|  | Wobbuffet | 67 | 5% |
+|  | Electrode | 70 | 4% |
+| Rock Smash | Geodude | 40–63 | 65% |
+|  | Graveler | 52–69 | 35% |
 
 ## Cerulean Cave B1F
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Kadabra | 58–67 | 25% |
-|  | Ditto | 58–67 | 25% |
-|  | Parasect | 55–64 | 14% |
-|  | Golbat | 52–61 | 11% |
-|  | Magneton | 55 | 10% |
-|  | Machoke | 52 | 10% |
-|  | Electrode | 64 | 4% |
-|  | Wobbuffet | 61 | 1% |
-| Surfing | Psyduck | 40–60 | 65% |
-|  | Golduck | 50–65 | 35% |
-| Rock Smash | Geodude | 40–60 | 65% |
-|  | Graveler | 50–65 | 35% |
-| Old Rod | Magikarp | 5 | 100% |
-| Good Rod | Poliwag | 5–15 | 60% |
-|  | Magikarp | 5–15 | 20% |
-|  | Goldeen | 5–15 | 20% |
-| Super Rod | Poliwag | 15–25 | 40% |
-|  | Poliwhirl | 20–30 | 40% |
-|  | Gyarados | 15–35 | 16% |
-|  | Psyduck | 15–25 | 4% |
+| Grass / cave | Kadabra | 67–77 | 25% |
+|  | Ditto | 67–77 | 25% |
+|  | Parasect | 63–74 | 14% |
+|  | Golbat | 60–70 | 11% |
+|  | Magneton | 63 | 10% |
+|  | Machoke | 60 | 10% |
+|  | Electrode | 74 | 4% |
+|  | Wobbuffet | 70 | 1% |
+| Surfing | Psyduck | 46–69 | 65% |
+|  | Golduck | 57–75 | 35% |
+| Rock Smash | Geodude | 46–69 | 65% |
+|  | Graveler | 57–75 | 35% |
+| Old Rod | Magikarp | 6 | 100% |
+| Good Rod | Poliwag | 6–17 | 60% |
+|  | Magikarp | 6–17 | 20% |
+|  | Goldeen | 6–17 | 20% |
+| Super Rod | Poliwag | 17–29 | 40% |
+|  | Poliwhirl | 23–34 | 40% |
+|  | Gyarados | 17–40 | 16% |
+|  | Psyduck | 17–29 | 4% |
 
 ## Diglett's Cave B1F
 
@@ -1151,44 +1151,44 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Machop | 32 | 20% |
-|  | Geodude | 32 | 20% |
-|  | Onix | 40–43 | 20% |
-|  | Meditite ★ | 46 | 10% |
-|  | Zubat | 32 | 10% |
-|  | Arbok | 44 | 5% |
-|  | Golbat | 44 | 5% |
-|  | Marowak | 44–46 | 5% |
-|  | Machoke | 44–46 | 5% |
+| Grass / cave | Machop | 37 | 20% |
+|  | Geodude | 37 | 20% |
+|  | Onix | 46–49 | 20% |
+|  | Meditite ★ | 53 | 10% |
+|  | Zubat | 37 | 10% |
+|  | Arbok | 51 | 5% |
+|  | Golbat | 51 | 5% |
+|  | Marowak | 51–53 | 5% |
+|  | Machoke | 51–53 | 5% |
 
 ## Victory Road 2F
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Machop | 34 | 20% |
-|  | Geodude | 34 | 20% |
-|  | Primeape | 42 | 10% |
-|  | Onix | 45 | 10% |
-|  | Bagon ★ | 25–29 | 10% |
-|  | Zubat | 34 | 10% |
-|  | Arbok | 46 | 5% |
-|  | Golbat | 46 | 5% |
-|  | Marowak | 46–48 | 5% |
-|  | Machoke | 46–48 | 5% |
+| Grass / cave | Machop | 39 | 20% |
+|  | Geodude | 39 | 20% |
+|  | Primeape | 48 | 10% |
+|  | Onix | 52 | 10% |
+|  | Bagon ★ | 29–33 | 10% |
+|  | Zubat | 39 | 10% |
+|  | Arbok | 53 | 5% |
+|  | Golbat | 53 | 5% |
+|  | Marowak | 53–55 | 5% |
+|  | Machoke | 53–55 | 5% |
 
 ## Victory Road 3F
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Machop | 32 | 20% |
-|  | Geodude | 32 | 20% |
-|  | Onix | 40–43 | 20% |
-|  | Beldum ★ | 25–29 | 10% |
-|  | Zubat | 32 | 10% |
-|  | Arbok | 44 | 5% |
-|  | Golbat | 44 | 5% |
-|  | Marowak | 44–46 | 5% |
-|  | Machoke | 44–46 | 5% |
+| Grass / cave | Machop | 37 | 20% |
+|  | Geodude | 37 | 20% |
+|  | Onix | 46–49 | 20% |
+|  | Beldum ★ | 29–33 | 10% |
+|  | Zubat | 37 | 10% |
+|  | Arbok | 51 | 5% |
+|  | Golbat | 51 | 5% |
+|  | Marowak | 51–53 | 5% |
+|  | Machoke | 51–53 | 5% |
 
 ## Viridian Forest
 

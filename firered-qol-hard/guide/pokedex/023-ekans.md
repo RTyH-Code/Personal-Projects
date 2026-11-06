@@ -62,7 +62,7 @@ Height 2 m (6′07″) · Weight 6.9 kg (15.2 lbs)
 - **Route 9**: Grass / cave Lv 11–17 (25%)
 - **Route 10**: Grass / cave Lv 11–17 (25%)
 - **Route 11**: Grass / cave Lv 12–14 (35%)
-- **Route 23**: Grass / cave Lv 32–34 (20%)
+- **Route 23**: Grass / cave Lv 37–39 (20%)
 - Breeding: hatches from an Egg left by a Ekans or Arbok at the Four Island Day Care
 
 ## Moves

@@ -58,14 +58,14 @@ Height 1.5 m (4′11″) · Weight 70.5 kg (155.4 lbs)
 
 ## Where to find it
 
-- **Cerulean Cave 1F**: Grass / cave Lv 46 (10%)
-- **Cerulean Cave 2F**: Grass / cave Lv 49 (20%)
-- **Cerulean Cave B1F**: Grass / cave Lv 52 (10%)
+- **Cerulean Cave 1F**: Grass / cave Lv 53 (10%)
+- **Cerulean Cave 2F**: Grass / cave Lv 56 (20%)
+- **Cerulean Cave B1F**: Grass / cave Lv 60 (10%)
 - **Mt. Ember Ruby Path 1F**: Grass / cave Lv 40–42 (10%)
 - **Mt. Ember Summit Path 2F**: Grass / cave Lv 38–40 (20%)
-- **Victory Road 1F**: Grass / cave Lv 44–46 (5%)
-- **Victory Road 2F**: Grass / cave Lv 46–48 (5%)
-- **Victory Road 3F**: Grass / cave Lv 44–46 (5%)
+- **Victory Road 1F**: Grass / cave Lv 51–53 (5%)
+- **Victory Road 2F**: Grass / cave Lv 53–55 (5%)
+- **Victory Road 3F**: Grass / cave Lv 51–53 (5%)
 - Evolve [Machop](066-machop.md)
 
 ## Moves

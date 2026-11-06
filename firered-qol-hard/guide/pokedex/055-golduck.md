@@ -57,8 +57,8 @@ Height 1.7 m (5′07″) · Weight 76.6 kg (168.9 lbs)
 
 ## Where to find it
 
-- **Cerulean Cave 1F**: Surfing Lv 40–55 (35%)
-- **Cerulean Cave B1F**: Surfing Lv 50–65 (35%)
+- **Cerulean Cave 1F**: Surfing Lv 46–63 (35%)
+- **Cerulean Cave B1F**: Surfing Lv 57–75 (35%)
 - **Seafoam Islands B1F**: Grass / cave Lv 33–35 (5%)
 - **Seafoam Islands B2F**: Grass / cave Lv 32–34 (10%)
 - **Seafoam Islands B3F**: Grass / cave Lv 32–34 (15%); Surfing Lv 35–40 (1%)

@@ -62,9 +62,9 @@ Height 8.8 m (28′10″) · Weight 210 kg (463.0 lbs)
 
 - **Rock Tunnel 1F**: Grass / cave Lv 13–15 (5%)
 - **Rock Tunnel B1F**: Grass / cave Lv 13–17 (10%)
-- **Victory Road 1F**: Grass / cave Lv 40–43 (20%)
-- **Victory Road 2F**: Grass / cave Lv 45 (10%)
-- **Victory Road 3F**: Grass / cave Lv 40–43 (20%)
+- **Victory Road 1F**: Grass / cave Lv 46–49 (20%)
+- **Victory Road 2F**: Grass / cave Lv 52 (10%)
+- **Victory Road 3F**: Grass / cave Lv 46–49 (20%)
 - **Seven Island Sevault Canyon**: Grass / cave Lv 54 (5%)
 - Breeding: hatches from an Egg left by a Onix or Steelix at the Four Island Day Care
 

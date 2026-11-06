@@ -59,7 +59,7 @@ Height 1.2 m (3′11″) · Weight 38 kg (83.8 lbs)
 
 - **Route 17**: Grass / cave Lv 25–27 (5%)
 - **Route 18**: Grass / cave Lv 25–29 (15%)
-- **Route 23**: Grass / cave Lv 40–44 (21%)
+- **Route 23**: Grass / cave Lv 46–51 (21%)
 - **Mt. Ember Exterior**: Grass / cave Lv 38 (20%)
 - **One Island Kindle Road**: Grass / cave Lv 36 (10%)
 - **One Island Treasure Beach**: Grass / cave Lv 36–40 (15%)

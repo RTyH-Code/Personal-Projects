@@ -83,7 +83,18 @@ def level_after(start, exp, rate):
         lv += 1
     return lv, e - exp_for(lv, rate)
 
-totals = {s[0]: 0 for s in SEGMENTS}
+def gain(b, L, Lp, n):
+    """Exp one of n team members gets for a trainer's Lv. L Pokémon (modern formula)."""
+    base = b * L // 5 // n
+    return int(base * ((2 * L + 10) / (L + Lp + 10)) ** 2.5 + 1) * 3 // 2
+
+def level_of(e, rate):
+    l = 1
+    while l < 100 and exp_for(l + 1, rate) <= e:
+        l += 1
+    return l
+
+mons = {s[0]: [] for s in SEGMENTS}
 counts = {s[0]: 0 for s in SEGMENTS}
 unplaced = []
 for t, mp in sorted(trainer_map.items()):
@@ -95,33 +106,30 @@ for t, mp in sorted(trainer_map.items()):
     seg = segment_of(t, mp)
     if seg is None:
         unplaced.append((t, mp)); continue
-    p = parties.get(trainer_party.get(t), [])
-    totals[seg] += sum(yield_.get(s, 0) * l // 7 * 3 // 2 for l, s in p)
+    mons[seg] += parties.get(trainer_party.get(t), [])
     counts[seg] += 1
 
 sizes = [int(a) for a in sys.argv[1:]] or [3, 4, 6]
 RATES = [('MF', 'GROWTH_MEDIUM_FAST'), ('MS', 'GROWTH_MEDIUM_SLOW')]
-# Carry the team forward: start at Lv. 5, add each stretch's trainer Exp
-# (split evenly), and stop at the cap the way the game does.
-state = {(n, r): 5 for n in sizes for _, r in RATES}
+# Carry the team forward: start at Lv. 5, beat each stretch's trainers in turn
+# (Exp split evenly, scaled by the team's level at the time), and stop at the
+# cap the way the game does.
 exp = {(n, r): exp_for(5, r) for n in sizes for _, r in RATES}
-print(f"{'Next':<11}{'Cap':>4}{'Trainers':>9}{'Exp':>8}   " +
-      '   '.join(f'{n} mons MF/MS' for n in sizes))
+print(f"{'Next':<11}{'Cap':>4}{'Trainers':>9}   " + '   '.join(f'{n} mons MF/MS' for n in sizes))
 for name, cap, _, _ in SEGMENTS:
     cells = []
     for n in sizes:
         lv = []
         for _, r in RATES:
-            e = min(exp[(n, r)] + totals[name] // n, exp_for(cap, r))
+            e = exp[(n, r)]
+            for L, sp in mons[name]:
+                e = min(e + gain(yield_.get(sp, 0), L, level_of(e, r), n), exp_for(cap, r))
             exp[(n, r)] = e
-            l = 5
-            while l < 100 and exp_for(l + 1, r) <= e:
-                l += 1
-            lv.append(l)
+            lv.append(level_of(e, r))
         cells.append(f'{lv[0]:>5}/{lv[1]:<6}  ')
-    print(f'{name:<11}{cap:>4}{counts[name]:>9}{totals[name]:>8}   ' + '   '.join(cells))
-print('\nTeam level when reaching each Gym Leader on trainer Exp alone (no wild')
-print('battles; Gym Leader Exp included), split evenly, clamped at each cap.')
-print('MF = Medium Fast growth, MS = Medium Slow (the starters and many others).')
+    print(f'{name:<11}{cap:>4}{counts[name]:>9}   ' + '   '.join(cells))
+print('\nTeam level after each stretch on trainer Exp alone (no wild battles; Gym')
+print('Leader Exp included), split evenly, using the modern Exp formula, clamped at')
+print('each cap. MF = Medium Fast growth, MS = Medium Slow (the starters and many others).')
 if unplaced:
     print('\nNot counted (post-game or unmapped):', ', '.join(sorted({m.split('_')[0] for _, m in unplaced})))

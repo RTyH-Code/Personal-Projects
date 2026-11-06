@@ -59,7 +59,7 @@ Height 0.6 m (2′00″) · Weight 95.2 kg (209.9 lbs)
 
 ## Where to find it
 
-- **Victory Road 3F**: Grass / cave Lv 25–29 (10%)
+- **Victory Road 3F**: Grass / cave Lv 29–33 (10%)
 - Breeding: hatches from an Egg left by a Beldum or Metang or Metagross at the Four Island Day Care
 
 ## Moves
