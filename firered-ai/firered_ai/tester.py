@@ -80,7 +80,7 @@ def screen_hash(screen: np.ndarray) -> int:
 class Tester:
     __test__ = False  # not a pytest test class
     def __init__(self, emu, game: Game, out: Path, worker: int = 0, seed: int | None = None,
-                 addresses=DEFAULT_ADDRESSES, log=print, stop=None):
+                 addresses=DEFAULT_ADDRESSES, log=print, stop=None, live: bool = False, realtime: bool = False):
         self.emu = emu
         self.game = game
         self.out = Path(out)
@@ -94,6 +94,16 @@ class Tester:
         self.stats = Stats()
         self.captures: dict[str, int] = {}
         self.pool = self.out / "pool"
+        # The live view (live.html): this worker's screen and status, refreshed about once a
+        # second, or ~15 times a second when it plays at normal speed so someone can watch.
+        self.live = self.out / "live" if live else None
+        self.realtime = realtime
+        self.live_interval = 1 / 15 if realtime else 1.0
+        self._next_live = 0.0
+        self._clock = None  # real-time pacing
+        self._replaying = False
+        self._live_info: dict = {}
+        self.stats_problems = 0  # findings in earlier sessions, for the live view
 
     # --- plumbing ---------------------------------------------------------------
 
@@ -104,13 +114,66 @@ class Tester:
         """Press, and return gMain.heldKeysRaw read while the buttons were down."""
         held = None
         if a.buttons:
-            self.emu.press(a.buttons, a.hold)
+            self._frames(a.buttons, a.hold)
             held = int.from_bytes(self.emu.read(self.addresses["gMain"] + MAIN_HELD_KEYS_RAW, 2), "little")
         elif a.hold:
-            self.emu.press((), a.hold)
+            self._frames((), a.hold)
         if a.wait:
-            self.emu.press((), a.wait)
+            self._frames((), a.wait)
         return held
+
+    def _frames(self, buttons, n: int) -> None:
+        """Run n frames. At normal speed, run them a few at a time at 60 a second, showing each."""
+        if not self.realtime or self._replaying:
+            self.emu.press(buttons, n)
+            return
+        while n > 0:
+            k = min(4, n)
+            self.emu.press(buttons, k)
+            n -= k
+            now = time.monotonic()
+            # Never fall more than a quarter second behind (say, after saving a finding).
+            self._clock = max(self._clock or now, now - 0.25) + k / 60
+            if self._clock > now:
+                time.sleep(self._clock - now)
+            self._show_live()
+
+    def _show_live(self, force: bool = False) -> None:
+        if self.live is None:
+            return
+        now = time.monotonic()
+        if not force and now < self._next_live:
+            return
+        self._next_live = now + self.live_interval
+        from PIL import Image
+
+        self.live.mkdir(parents=True, exist_ok=True)
+        img = self.live / f"w{self.worker}.png"
+        tmp = img.with_suffix(".tmp")
+        Image.fromarray(self.emu.screen()).save(tmp, "PNG", compress_level=1)
+        tmp.replace(img)
+        info = {**self._live_info, "worker": self.worker, "normal_speed": self.realtime,
+                "updated": time.time()}
+        js = self.live / f"w{self.worker}.js"
+        tmp = js.with_suffix(".jstmp")
+        tmp.write_text(f"window.liveStatus = window.liveStatus || {{}}; window.liveStatus[{self.worker}] = "
+                       f"{json.dumps(info)};\n")
+        tmp.replace(js)
+
+    def _update_live_info(self, s, start: Start, step: int, found: list) -> None:
+        g = self.game
+        party = [f"{g.species_name(m.species).replace('_', ' ').title()} Lv{m.level}"
+                 for m in s.party if not m.is_egg] if s.valid else []
+        self._live_info = {
+            "map": g.map_name(*s.map_id) if s.valid else "(title screen / loading)",
+            "start": start.label,
+            "step": step,
+            "total": self.stats.steps + step,
+            "in_battle": s.valid and s.in_battle,
+            "party": party,
+            "badges": s.badge_count if s.valid else 0,
+            "problems": self.stats_problems + len(found),
+        }
 
     def load(self, start: Start) -> bool:
         if start.kind == "sav":
@@ -155,6 +218,9 @@ class Tester:
                 break
             s = self.read()
             screen = self.emu.screen()
+            if self.live is not None:
+                self._update_live_info(s, start, step, found)
+                self._show_live()
             if step % CLIP_EVERY == 0:
                 clip.append(screen[::2, ::2].copy())
             new = det.check(s, a.buttons, screen_hash(screen), held, step, last_was_move=a.tag == "move")
@@ -168,6 +234,7 @@ class Tester:
             if any(f.fatal for f in new):
                 break
         self.stats.steps += step + 1 if steps else 0
+        self.stats_problems += len(found)
         return found
 
     # --- coverage, difficulty and the start-point pool ---------------------------------
@@ -251,12 +318,16 @@ class Tester:
     def _reproduce(self, f: Finding, before: bytes, inputs) -> bool:
         """Replay the presses from the earlier state and see if the same thing happens."""
         now = self.emu.save_state()
+        self._replaying = True  # full speed, and nothing shown in the live view
+        live, self.live = self.live, None
         try:
             self.emu.load_state(before)
             return any(x.check == f.check and x.title == f.title for x in replay(self, inputs))
         except Exception:
             return False
         finally:
+            self._replaying = False
+            self.live = live
             self.emu.load_state(now)
 
     def _note(self, f: Finding, d: Path | None) -> None:

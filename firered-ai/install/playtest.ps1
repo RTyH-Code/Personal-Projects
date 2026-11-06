@@ -53,12 +53,19 @@ if ($saves) {
     $savesLinux = To-Linux $saves
 }
 
+Write-Host ''
+Write-Host 'You can watch it play in your browser while it runs.'
+$watchAnswer = Read-Host 'Have one game play at normal speed, so you can follow it? (y/N)'
+$watch = '-'
+if ($watchAnswer -match '^\s*y') { $watch = 'watch' }
+
 # --- Run -----------------------------------------------------------------------------------------------
 $name = 'playtest-' + (Get-Date -Format 'yyyyMMdd-HHmm')
 $romLinux = To-Linux $Rom
 $runs = (& wsl.exe -d $distro -e bash -c 'mkdir -p ~/firered-playtester/runs && wslpath -w ~/firered-playtester/runs' | Out-String).Trim()
 if (-not $runs) { Fail 'The playtester is not installed in Ubuntu. Run Install.bat again.' }
 $report = Join-Path (Join-Path $runs $name) 'report.html'
+$live = Join-Path (Join-Path $runs $name) 'live.html'
 
 # Keep Windows from going to sleep while this window is open (the run would pause).
 Add-Type -Namespace Win32 -Name Power -MemberDefinition '[DllImport("kernel32.dll")] public static extern uint SetThreadExecutionState(uint flags);'
@@ -67,12 +74,19 @@ Add-Type -Namespace Win32 -Name Power -MemberDefinition '[DllImport("kernel32.dl
 Write-Host ''
 Write-Host "Playing for $hours hour(s). Leave this window open; closing it stops the run." -ForegroundColor Yellow
 Write-Host 'Your PC will stay awake until it finishes (the screen can still turn off).'
+Write-Host "Watch it live (opens by itself in a moment): $live"
 Write-Host "The report will be at: $report"
 Write-Host '(It appears after about a minute and refreshes every 5 minutes.)'
 Write-Host ''
 
+# Open the live view as soon as the run has written it (a hidden helper waits for the file).
+# (Its own variable is written `$n so this script doesn't fill it in. It gives up after 10 minutes.)
+$opener = "`$n = 0; while (-not (Test-Path -LiteralPath '$live') -and `$n -lt 300) { Start-Sleep -Seconds 2; `$n++ }; " +
+          "if (Test-Path -LiteralPath '$live') { Start-Process -FilePath '$live' }"
+Start-Process powershell.exe -WindowStyle Hidden -ArgumentList @('-NoProfile', '-Command', $opener) | Out-Null
+
 # No double quotes inside arguments here: Windows PowerShell 5.1 passes them on mangled.
-& wsl.exe -d $distro --cd '~' -e bash firered-playtester/install/run.sh $romLinux $hours $savesLinux $name
+& wsl.exe -d $distro --cd '~' -e bash firered-playtester/install/run.sh $romLinux $hours $savesLinux $name $watch
 $code = $LASTEXITCODE
 [Win32.Power]::SetThreadExecutionState([uint32]2147483648) | Out-Null  # back to normal
 

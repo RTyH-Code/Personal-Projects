@@ -159,6 +159,7 @@ about {s["game_hours"]} h of play, {s["presses"]:,} presses, {s["sessions"]} ses
 <div class="tile"><b>{s["trainers_beaten"]}/{s["trainers_total"]}</b>trainers beaten</div>
 <div class="tile"><b>{s["species_owned"]}/{s["dex_count"]}</b>species owned</div>
 <div class="tile"><b>{s["blackouts"]}</b>blackouts</div></div>
+<p><a href="live.html">Watch the run live</a></p>
 <h2>Problems found</h2>
 <p class="muted">Worst first. "Reproduced" means replaying the same presses from the saved state shortly before
 caused it again. Click a screenshot for a clip of the lead-up.</p>
