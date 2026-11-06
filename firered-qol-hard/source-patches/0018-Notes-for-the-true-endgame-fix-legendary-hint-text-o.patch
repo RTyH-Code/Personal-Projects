@@ -1,7 +1,7 @@
 From 57bf0c513397d78a8bb40c00ff4f5a87a341d2a3 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Sun, 1 Nov 2026 00:53:40 +0000
-Subject: [PATCH 18/51] Notes for the true endgame; fix legendary hint text
+Subject: [PATCH 18/52] Notes for the true endgame; fix legendary hint text
  overflow
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

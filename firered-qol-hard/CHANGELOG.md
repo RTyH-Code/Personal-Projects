@@ -8,6 +8,14 @@ made it, so you can see exactly what changed.
 previous release keeps working. In short, saves made on **release 7 or later**
 carry over to the current release. Older saves need a new game.
 
+## Release 14 (2026-11-06)
+Pull requests: [#32](https://github.com/RTyH-Code/Personal-Projects/pull/32)
+
+- **Audit fix:** very large Exp. awards can no longer wrap around to a
+  negative amount. This could only happen to a very low-level Pokémon beating
+  a high-level foe with bonuses stacked and no level cap.
+- **Saves:** release 13 saves carry over.
+
 ## Release 13 (2026-11-06)
 Pull requests: [#30](https://github.com/RTyH-Code/Personal-Projects/pull/30), [#31](https://github.com/RTyH-Code/Personal-Projects/pull/31)
 
