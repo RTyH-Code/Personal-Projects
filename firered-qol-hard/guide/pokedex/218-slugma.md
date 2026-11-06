@@ -57,11 +57,11 @@ Height 0.7 m (2′04″) · Weight 35 kg (77.2 lbs)
 
 ## Where to find it
 
-- **Mt. Ember Ruby Path B1F**: Grass / cave Lv 24–30 (30%)
-- **Mt. Ember Ruby Path B1F Stairs**: Grass / cave Lv 22–32 (60%)
-- **Mt. Ember Ruby Path B2F**: Grass / cave Lv 22–32 (60%)
-- **Mt. Ember Ruby Path B2F Stairs**: Grass / cave Lv 24–30 (30%)
-- **Mt. Ember Ruby Path B3F**: Grass / cave Lv 18–36 (100%); Rock Smash Lv 15–35 (90%)
+- **Mt. Ember Ruby Path B1F**: Grass / cave Lv 28–34 (30%)
+- **Mt. Ember Ruby Path B1F Stairs**: Grass / cave Lv 25–37 (60%)
+- **Mt. Ember Ruby Path B2F**: Grass / cave Lv 25–37 (60%)
+- **Mt. Ember Ruby Path B2F Stairs**: Grass / cave Lv 28–34 (30%)
+- **Mt. Ember Ruby Path B3F**: Grass / cave Lv 21–41 (100%); Rock Smash Lv 17–40 (90%)
 - Breeding: hatches from an Egg left by a Slugma or Magcargo at the Four Island Day Care
 
 ## Moves

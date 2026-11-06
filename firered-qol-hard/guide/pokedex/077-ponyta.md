@@ -59,8 +59,8 @@ Height 1 m (3′03″) · Weight 30 kg (66.1 lbs)
 
 ## Where to find it
 
-- **Mt. Ember Exterior**: Grass / cave Lv 30–33 (30%)
-- **One Island Kindle Road**: Grass / cave Lv 34 (20%)
+- **Mt. Ember Exterior**: Grass / cave Lv 34–38 (30%)
+- **One Island Kindle Road**: Grass / cave Lv 39 (20%)
 - Breeding: hatches from an Egg left by a Ponyta or Rapidash at the Four Island Day Care
 
 ## Moves

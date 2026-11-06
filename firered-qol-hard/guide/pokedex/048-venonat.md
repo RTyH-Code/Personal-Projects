@@ -58,14 +58,14 @@ Height 1 m (3′03″) · Weight 30 kg (66.1 lbs)
 
 ## Where to find it
 
-- **Route 12**: Grass / cave Lv 24–26 (30%)
-- **Route 13**: Grass / cave Lv 24–26 (30%)
-- **Route 14**: Grass / cave Lv 24 (20%)
-- **Route 15**: Grass / cave Lv 24 (20%)
-- **Safari Zone Center**: Grass / cave Lv 22 (15%)
-- **Safari Zone West**: Grass / cave Lv 23 (15%)
-- **Three Island Berry Forest**: Grass / cave Lv 34 (10%)
-- **Three Island Bond Bridge**: Grass / cave Lv 34 (5%)
+- **Route 12**: Grass / cave Lv 28–30 (30%)
+- **Route 13**: Grass / cave Lv 28–30 (30%)
+- **Route 14**: Grass / cave Lv 28 (20%)
+- **Route 15**: Grass / cave Lv 28 (20%)
+- **Safari Zone Center**: Grass / cave Lv 25 (15%)
+- **Safari Zone West**: Grass / cave Lv 26 (15%)
+- **Three Island Berry Forest**: Grass / cave Lv 39 (10%)
+- **Three Island Bond Bridge**: Grass / cave Lv 39 (5%)
 - Breeding: hatches from an Egg left by a Venonat or Venomoth at the Four Island Day Care
 
 ## Moves

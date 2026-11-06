@@ -403,9 +403,11 @@ How the cap works with each way of gaining levels:
 ### Trainers
 - Every Gym Leader has a new, larger team with max IVs, better moves and a held item.
 - Every other trainer's levels are scaled by 1.15x.
-- Wild Pokémon on Route 23, in Victory Road and in Cerulean Cave are also
-  1.15x higher (Victory Road now reaches Lv. 55), so there's somewhere worth
-  training before the Elite Four.
+- Wild Pokémon from the Erika stretch on are also 1.15x higher, so training
+  on them keeps pace with the trainers. This covers Routes 7–21, Rock Tunnel,
+  Pokémon Tower, the Safari Zone, Power Plant, Seafoam Islands, Pokémon
+  Mansion, the Sevii Islands 1–3, Route 23, Victory Road (now up to Lv. 55)
+  and Cerulean Cave. Fishing levels are unchanged.
 - **Gym double battles:** one trainer in each gym from Misty's on (except
   Cinnabar) fights two-on-two, with a team built for doubles:
   - Spread moves that hit both of your Pokémon, such as Twister, Electroweb,
@@ -511,7 +513,7 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `b5f44d35979f132f88bac94278acbf51cfe0ea42`
+Patched ROM SHA-1: `cc2d6045f306ac3f88415149f8806bec689ebb31`
 
 Current release: **14**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
 Saves made on release 7 or later carry over to this release. Older saves need a new game.
@@ -546,6 +548,7 @@ unmodified pret data:
 - `gym_doubles.py`: the gym double battles and their doubles movesets.
 - `learnsets.py`: what each species can learn in this hack (used by the trainer scripts).
 - `vr_rematches.py`: the Victory Road VS Seeker rematch teams and scripts.
+- `wild_levels.py`: wild Pokémon levels 1.15x from the Erika stretch on.
 - `exp_budget.py`: how much trainer Exp. each stretch of the game gives, against the level caps.
 - `save_check.py REF`: checks whether saves from an older release (a git ref) still load.
 

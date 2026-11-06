@@ -59,9 +59,9 @@ Height 0.6 m (2′00″) · Weight 9.5 kg (20.9 lbs)
 
 ## Where to find it
 
-- **Route 18**: Grass / cave Lv 28 (5%)
-- **Route 19**: Surfing Lv 20–30 (5%)
-- **One Island Treasure Beach**: Grass / cave Lv 38 (5%)
+- **Route 18**: Grass / cave Lv 32 (5%)
+- **Route 19**: Surfing Lv 23–34 (5%)
+- **One Island Treasure Beach**: Grass / cave Lv 44 (5%)
 - Breeding: hatches from an Egg left by a Wingull or Pelipper at the Four Island Day Care
 
 ## Moves

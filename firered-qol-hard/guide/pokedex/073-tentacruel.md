@@ -59,10 +59,10 @@ Height 1.6 m (5′03″) · Weight 55 kg (121.3 lbs)
 
 <details><summary>16 places (click to expand)</summary>
 
-- **One Island**: Surfing Lv 35–40 (5%)
-- **One Island Kindle Road**: Surfing Lv 35–40 (5%)
-- **One Island Treasure Beach**: Surfing Lv 35–40 (5%)
-- **Three Island Bond Bridge**: Surfing Lv 35–40 (5%)
+- **One Island**: Surfing Lv 40–46 (5%)
+- **One Island Kindle Road**: Surfing Lv 40–46 (5%)
+- **One Island Treasure Beach**: Surfing Lv 40–46 (5%)
+- **Three Island Bond Bridge**: Surfing Lv 40–46 (5%)
 - **Four Island Icefall Cave Back**: Surfing Lv 35–45 (4%)
 - **Five Island**: Surfing Lv 35–40 (5%)
 - **Five Island Meadow**: Surfing Lv 35–40 (5%)

@@ -63,8 +63,8 @@ Height 1 m (3′03″) · Weight 115 kg (253.5 lbs)
 
 ## Where to find it
 
-- **Safari Zone Center**: Grass / cave Lv 25 (20%)
-- **Safari Zone North**: Grass / cave Lv 26 (20%)
+- **Safari Zone Center**: Grass / cave Lv 29 (20%)
+- **Safari Zone North**: Grass / cave Lv 30 (20%)
 - Breeding: hatches from an Egg left by a Rhyhorn or Rhyperior or Rhydon at the Four Island Day Care
 
 ## Moves

@@ -58,10 +58,10 @@ Height 0.9 m (2′11″) · Weight 19.5 kg (43.0 lbs)
 
 ## Where to find it
 
-- **Safari Zone Center**: Grass / cave Lv 31 (10%)
-- **Safari Zone East**: Grass / cave Lv 33 (10%)
-- **Safari Zone North**: Grass / cave Lv 30 (10%)
-- **Safari Zone West**: Grass / cave Lv 30 (10%)
+- **Safari Zone Center**: Grass / cave Lv 36 (10%)
+- **Safari Zone East**: Grass / cave Lv 38 (10%)
+- **Safari Zone North**: Grass / cave Lv 34 (10%)
+- **Safari Zone West**: Grass / cave Lv 34 (10%)
 - Evolve [Nidoran♂](032-nidoran-m.md)
 
 ## Moves

@@ -57,7 +57,7 @@ Sudowoodo does not evolve.
 
 ## Where to find it
 
-- **Three Island Berry Forest**: Grass / cave Lv 31 (5%)
+- **Three Island Berry Forest**: Grass / cave Lv 36 (5%)
 - Breeding: hatches from an Egg left by a Sudowoodo at the Four Island Day Care
 
 ## Moves

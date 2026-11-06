@@ -57,7 +57,7 @@ Height 1.6 m (5′03″) · Weight 75.6 kg (166.7 lbs)
 
 ## Where to find it
 
-- **Three Island Berry Forest**: Grass / cave Lv 37–40 (5%)
+- **Three Island Berry Forest**: Grass / cave Lv 43–46 (5%)
 - **Three Island Berry Forest**: one-time encounter, Lv 30
 - Evolve [Drowzee](096-drowzee.md)
 

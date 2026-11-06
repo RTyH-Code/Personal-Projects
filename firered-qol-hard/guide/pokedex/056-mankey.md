@@ -62,8 +62,8 @@ Height 0.5 m (1′08″) · Weight 28 kg (61.7 lbs)
 - **Route 4**: Grass / cave Lv 10–12 (5%)
 - **Route 22**: Grass / cave Lv 2–5 (45%)
 - **Route 23**: Grass / cave Lv 37–39 (30%)
-- **Rock Tunnel 1F**: Grass / cave Lv 16–17 (15%)
-- **Rock Tunnel B1F**: Grass / cave Lv 16–17 (15%)
+- **Rock Tunnel 1F**: Grass / cave Lv 18–20 (15%)
+- **Rock Tunnel B1F**: Grass / cave Lv 18–20 (15%)
 - Breeding: hatches from an Egg left by a Mankey or Annihilape or Primeape at the Four Island Day Care
 
 ## Moves

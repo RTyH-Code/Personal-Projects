@@ -62,7 +62,7 @@ Height 0.4 m (1′04″) · Weight 60 kg (132.3 lbs)
 ## Where to find it
 
 - **Mt. Moon 1F**: Grass / cave Lv 9 (5%)
-- **Rock Tunnel 1F**: Grass / cave Lv 17 (10%)
+- **Rock Tunnel 1F**: Grass / cave Lv 20 (10%)
 - Breeding: hatches from an Egg left by a Aron or Lairon or Aggron at the Four Island Day Care
 
 ## Moves

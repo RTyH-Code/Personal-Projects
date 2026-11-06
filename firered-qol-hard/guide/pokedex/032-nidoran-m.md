@@ -59,10 +59,10 @@ Height 0.5 m (1′08″) · Weight 9 kg (19.8 lbs)
 ## Where to find it
 
 - **Route 3**: Grass / cave Lv 6–7 (14%)
-- **Safari Zone Center**: Grass / cave Lv 22 (20%)
-- **Safari Zone East**: Grass / cave Lv 24 (20%)
-- **Safari Zone North**: Grass / cave Lv 30 (20%)
-- **Safari Zone West**: Grass / cave Lv 22 (20%)
+- **Safari Zone Center**: Grass / cave Lv 25 (20%)
+- **Safari Zone East**: Grass / cave Lv 28 (20%)
+- **Safari Zone North**: Grass / cave Lv 34 (20%)
+- **Safari Zone West**: Grass / cave Lv 25 (20%)
 - Breeding: hatches from an Egg left by a Nidoran♂ or Nidorino or Nidoking at the Four Island Day Care
 
 ## Moves

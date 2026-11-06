@@ -57,7 +57,7 @@ Height 0.4 m (1′04″) · Weight 10.3 kg (22.7 lbs)
 
 ## Where to find it
 
-- **Route 8**: Grass / cave Lv 20 (10%)
+- **Route 8**: Grass / cave Lv 23 (10%)
 - Breeding: hatches from an Egg left by a Gulpin or Swalot at the Four Island Day Care
 
 ## Moves

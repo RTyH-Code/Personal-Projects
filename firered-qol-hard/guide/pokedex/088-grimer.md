@@ -58,10 +58,10 @@ Height 0.9 m (2′11″) · Weight 30 kg (66.1 lbs)
 ## Where to find it
 
 - **Celadon City**: Super Rod Lv 30–40 (1%)
-- **Pokémon Mansion 1F**: Grass / cave Lv 28 (5%)
-- **Pokémon Mansion 2F**: Grass / cave Lv 28 (5%)
-- **Pokémon Mansion 3F**: Grass / cave Lv 28 (5%)
-- **Pokémon Mansion B1F**: Grass / cave Lv 28 (5%)
+- **Pokémon Mansion 1F**: Grass / cave Lv 32 (5%)
+- **Pokémon Mansion 2F**: Grass / cave Lv 32 (5%)
+- **Pokémon Mansion 3F**: Grass / cave Lv 32 (5%)
+- **Pokémon Mansion B1F**: Grass / cave Lv 32 (5%)
 - Breeding: hatches from an Egg left by a Grimer or Muk at the Four Island Day Care
 
 ## Moves

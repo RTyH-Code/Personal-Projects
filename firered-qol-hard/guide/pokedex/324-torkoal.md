@@ -57,7 +57,7 @@ Torkoal does not evolve.
 
 ## Where to find it
 
-- **Mt. Ember Ruby Path B1F**: Grass / cave Lv 42 (5%)
+- **Mt. Ember Ruby Path B1F**: Grass / cave Lv 48 (5%)
 - Breeding: hatches from an Egg left by a Torkoal at the Four Island Day Care
 
 ## Moves

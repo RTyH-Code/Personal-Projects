@@ -59,7 +59,7 @@ Mawile does not evolve.
 
 ## Where to find it
 
-- **Rock Tunnel B1F**: Grass / cave Lv 15 (4%)
+- **Rock Tunnel B1F**: Grass / cave Lv 17 (4%)
 - Breeding: hatches from an Egg left by a Mawile at the Four Island Day Care
 
 ## Moves

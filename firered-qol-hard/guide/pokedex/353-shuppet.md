@@ -58,8 +58,8 @@ Height 0.6 m (2′00″) · Weight 2.3 kg (5.1 lbs)
 
 ## Where to find it
 
-- **Pokémon Tower 3F**: Grass / cave Lv 19 (5%)
-- **Pokémon Tower 6F**: Grass / cave Lv 18 (4%)
+- **Pokémon Tower 3F**: Grass / cave Lv 22 (5%)
+- **Pokémon Tower 6F**: Grass / cave Lv 21 (4%)
 - Breeding: hatches from an Egg left by a Shuppet or Banette at the Four Island Day Care
 
 ## Moves

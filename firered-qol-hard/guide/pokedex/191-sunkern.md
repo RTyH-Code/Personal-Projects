@@ -57,8 +57,8 @@ Height 0.3 m (1′00″) · Weight 1.8 kg (4.0 lbs)
 
 ## Where to find it
 
-- **Route 15**: Grass / cave Lv 26 (5%)
-- **Three Island Berry Forest**: Grass / cave Lv 37 (4%)
+- **Route 15**: Grass / cave Lv 30 (5%)
+- **Three Island Berry Forest**: Grass / cave Lv 43 (4%)
 - Breeding: hatches from an Egg left by a Sunkern or Sunflora at the Four Island Day Care
 
 ## Moves

@@ -58,7 +58,7 @@ Height 0.6 m (2′00″) · Weight 12 kg (26.5 lbs)
 ## Where to find it
 
 - **Route 4**: Grass / cave Lv 12 (5%)
-- **Route 8**: Grass / cave Lv 19 (5%)
+- **Route 8**: Grass / cave Lv 22 (5%)
 - Breeding: hatches from an Egg left by a Sandshrew or Sandslash at the Four Island Day Care
 
 ## Moves

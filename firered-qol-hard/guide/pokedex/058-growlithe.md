@@ -59,12 +59,12 @@ Height 0.7 m (2′04″) · Weight 19 kg (41.9 lbs)
 
 ## Where to find it
 
-- **Route 7**: Grass / cave Lv 18–20 (10%)
-- **Route 8**: Grass / cave Lv 15–18 (15%)
-- **Pokémon Mansion 1F**: Grass / cave Lv 30–32 (15%)
-- **Pokémon Mansion 2F**: Grass / cave Lv 30–32 (15%)
-- **Pokémon Mansion 3F**: Grass / cave Lv 30–32 (15%)
-- **Pokémon Mansion B1F**: Grass / cave Lv 30–32 (15%)
+- **Route 7**: Grass / cave Lv 21–23 (10%)
+- **Route 8**: Grass / cave Lv 17–21 (15%)
+- **Pokémon Mansion 1F**: Grass / cave Lv 34–37 (15%)
+- **Pokémon Mansion 2F**: Grass / cave Lv 34–37 (15%)
+- **Pokémon Mansion 3F**: Grass / cave Lv 34–37 (15%)
+- **Pokémon Mansion B1F**: Grass / cave Lv 34–37 (15%)
 - Breeding: hatches from an Egg left by a Growlithe or Arcanine at the Four Island Day Care
 
 ## Moves

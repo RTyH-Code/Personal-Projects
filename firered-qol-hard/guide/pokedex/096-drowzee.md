@@ -57,8 +57,8 @@ Height 1 m (3′03″) · Weight 32.4 kg (71.4 lbs)
 
 ## Where to find it
 
-- **Route 11**: Grass / cave Lv 11–15 (25%)
-- **Three Island Berry Forest**: Grass / cave Lv 34 (10%)
+- **Route 11**: Grass / cave Lv 13–17 (25%)
+- **Three Island Berry Forest**: Grass / cave Lv 39 (10%)
 - Breeding: hatches from an Egg left by a Drowzee or Hypno at the Four Island Day Care
 
 ## Moves

@@ -60,8 +60,8 @@ Height 1.5 m (4′11″) · Weight 41.5 kg (91.5 lbs)
 
 ## Where to find it
 
-- **Safari Zone East**: Grass / cave Lv 22 (4%)
-- **Safari Zone North**: Grass / cave Lv 25 (10%)
+- **Safari Zone East**: Grass / cave Lv 25 (4%)
+- **Safari Zone North**: Grass / cave Lv 29 (10%)
 - Breeding: hatches from an Egg left by a Girafarig or Farigiraf at the Four Island Day Care
 
 ## Moves

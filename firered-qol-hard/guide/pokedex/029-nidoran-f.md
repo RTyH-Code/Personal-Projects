@@ -59,8 +59,8 @@ Height 0.4 m (1′04″) · Weight 7 kg (15.4 lbs)
 ## Where to find it
 
 - **Route 3**: Grass / cave Lv 6 (1%)
-- **Safari Zone East**: Grass / cave Lv 24 (5%)
-- **Safari Zone West**: Grass / cave Lv 30 (5%)
+- **Safari Zone East**: Grass / cave Lv 28 (5%)
+- **Safari Zone West**: Grass / cave Lv 34 (5%)
 - **Underground Path North Entrance**: in-game trade for Nidoran♂ ("MS. NIDO")
 - Breeding: hatches from an Egg left by a Nidoran♀ at the Four Island Day Care
 

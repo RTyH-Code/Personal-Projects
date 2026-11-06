@@ -57,7 +57,7 @@ Volbeat does not evolve.
 
 ## Where to find it
 
-- **Route 15**: Grass / cave Lv 26 (10%)
+- **Route 15**: Grass / cave Lv 30 (10%)
 - Breeding: hatches from an Egg left by a Volbeat at the Four Island Day Care
 
 ## Moves

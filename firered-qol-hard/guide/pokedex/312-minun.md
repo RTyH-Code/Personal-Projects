@@ -58,7 +58,7 @@ Minun does not evolve.
 
 ## Where to find it
 
-- **Power Plant**: Grass / cave Lv 25 (10%)
+- **Power Plant**: Grass / cave Lv 29 (10%)
 - Breeding: hatches from an Egg left by a Minun at the Four Island Day Care
 
 ## Moves

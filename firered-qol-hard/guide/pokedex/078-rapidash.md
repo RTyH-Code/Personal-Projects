@@ -59,8 +59,8 @@ Height 1.7 m (5′07″) · Weight 95 kg (209.4 lbs)
 
 ## Where to find it
 
-- **Mt. Ember Exterior**: Grass / cave Lv 39–42 (5%)
-- **One Island Kindle Road**: Grass / cave Lv 37–40 (5%)
+- **Mt. Ember Exterior**: Grass / cave Lv 45–48 (5%)
+- **One Island Kindle Road**: Grass / cave Lv 43–46 (5%)
 - Evolve [Ponyta](077-ponyta.md)
 
 ## Moves

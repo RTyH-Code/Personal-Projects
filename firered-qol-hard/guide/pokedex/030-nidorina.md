@@ -58,8 +58,8 @@ Height 0.8 m (2′07″) · Weight 20 kg (44.1 lbs)
 
 ## Where to find it
 
-- **Safari Zone Center**: Grass / cave Lv 31 (5%)
-- **Safari Zone North**: Grass / cave Lv 30 (5%)
+- **Safari Zone Center**: Grass / cave Lv 36 (5%)
+- **Safari Zone North**: Grass / cave Lv 34 (5%)
 - **Route 11 East Entrance 2F**: in-game trade for Nidorino ("NINA")
 - Evolve [Nidoran♀](029-nidoran-f.md)
 

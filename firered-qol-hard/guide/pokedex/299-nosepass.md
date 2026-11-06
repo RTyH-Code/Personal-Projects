@@ -57,7 +57,7 @@ Height 1 m (3′03″) · Weight 97 kg (213.8 lbs)
 
 ## Where to find it
 
-- **Rock Tunnel B1F**: Rock Smash Lv 15–30 (5%)
+- **Rock Tunnel B1F**: Rock Smash Lv 17–34 (5%)
 - Breeding: hatches from an Egg left by a Nosepass or Probopass at the Four Island Day Care
 
 ## Moves

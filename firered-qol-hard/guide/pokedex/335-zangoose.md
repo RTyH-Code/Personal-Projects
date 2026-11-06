@@ -56,7 +56,7 @@ Zangoose does not evolve.
 
 ## Where to find it
 
-- **Route 17**: Grass / cave Lv 28 (5%)
+- **Route 17**: Grass / cave Lv 32 (5%)
 - Breeding: hatches from an Egg left by a Zangoose at the Four Island Day Care
 
 ## Moves

@@ -58,7 +58,7 @@ Height 0.4 m (1′04″) · Weight 51.3 kg (113.1 lbs)
 
 ## Where to find it
 
-- **Route 9**: Grass / cave Lv 17 (5%)
+- **Route 9**: Grass / cave Lv 20 (5%)
 - Breeding: hatches from an Egg left by a Cacnea or Cacturne at the Four Island Day Care
 
 ## Moves

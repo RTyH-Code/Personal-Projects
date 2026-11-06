@@ -57,7 +57,7 @@ Height 0.4 m (1′04″) · Weight 2.5 kg (5.5 lbs)
 
 ## Where to find it
 
-- **Mt. Ember Exterior**: Grass / cave Lv 15–18 (5%)
+- **Mt. Ember Exterior**: Grass / cave Lv 17–21 (5%)
 - Breeding: hatches from an Egg left by a Torchic or Combusken or Blaziken at the Four Island Day Care
 
 ## Moves

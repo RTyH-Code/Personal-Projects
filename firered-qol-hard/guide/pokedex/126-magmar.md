@@ -57,8 +57,8 @@ Height 1.3 m (4′03″) · Weight 44.5 kg (98.1 lbs)
 
 ## Where to find it
 
-- **Mt. Ember Ruby Path 1F**: Grass / cave Lv 38 (5%)
-- **Pokémon Mansion B1F**: Grass / cave Lv 38 (10%)
+- **Mt. Ember Ruby Path 1F**: Grass / cave Lv 44 (5%)
+- **Pokémon Mansion B1F**: Grass / cave Lv 44 (10%)
 - Evolve [Magby](240-magby.md)
 
 ## Moves

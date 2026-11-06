@@ -14,6 +14,10 @@ Pull requests: [#32](https://github.com/RTyH-Code/Personal-Projects/pull/32)
 - **Audit fix:** very large Exp. awards can no longer wrap around to a
   negative amount. This could only happen to a very low-level Pokémon beating
   a high-level foe with bonuses stacked and no level cap.
+- **Wild levels:** wild Pokémon from the Erika stretch on are 1.15x higher,
+  matching the trainers. This covers Routes 7–21, Rock Tunnel, Pokémon
+  Tower, the Safari Zone, Power Plant, Seafoam, the Mansion and Sevii 1–3.
+  Fishing levels are unchanged.
 - **Saves:** release 13 saves carry over.
 
 ## Release 13 (2026-11-06)

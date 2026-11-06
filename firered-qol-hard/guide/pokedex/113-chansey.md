@@ -57,8 +57,8 @@ Height 1.1 m (3′07″) · Weight 34.6 kg (76.3 lbs)
 
 ## Where to find it
 
-- **Safari Zone Center**: Grass / cave Lv 23 (1%)
-- **Safari Zone North**: Grass / cave Lv 26 (4%)
+- **Safari Zone Center**: Grass / cave Lv 26 (1%)
+- **Safari Zone North**: Grass / cave Lv 30 (4%)
 - Breeding: hatches from an Egg left by a Chansey or Blissey at the Four Island Day Care
 
 ## Moves

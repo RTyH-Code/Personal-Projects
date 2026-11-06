@@ -313,42 +313,42 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Meowth | 17–20 | 36% |
-|  | Pidgey | 19–22 | 30% |
-|  | Oddish | 19–22 | 20% |
-|  | Growlithe | 18–20 | 10% |
-|  | Vulpix ★ | 17 | 4% |
+| Grass / cave | Meowth | 20–23 | 36% |
+|  | Pidgey | 22–25 | 30% |
+|  | Oddish | 22–25 | 20% |
+|  | Growlithe | 21–23 | 10% |
+|  | Vulpix ★ | 20 | 4% |
 
 ## Route 8
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Pidgey | 18–20 | 30% |
-|  | Meowth | 18 | 20% |
-|  | Growlithe | 15–18 | 15% |
-|  | Ekans | 17 | 15% |
-|  | Gulpin ★ | 20 | 10% |
-|  | Vulpix ★ | 17 | 5% |
-|  | Sandshrew ★ | 19 | 5% |
+| Grass / cave | Pidgey | 21–23 | 30% |
+|  | Meowth | 21 | 20% |
+|  | Growlithe | 17–21 | 15% |
+|  | Ekans | 20 | 15% |
+|  | Gulpin ★ | 23 | 10% |
+|  | Vulpix ★ | 20 | 5% |
+|  | Sandshrew ★ | 22 | 5% |
 
 ## Route 9
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Spearow | 13–17 | 35% |
-|  | Rattata | 14–16 | 35% |
-|  | Ekans | 11–17 | 25% |
-|  | Cacnea ★ | 17 | 5% |
+| Grass / cave | Spearow | 15–20 | 35% |
+|  | Rattata | 16–18 | 35% |
+|  | Ekans | 13–20 | 25% |
+|  | Cacnea ★ | 20 | 5% |
 
 ## Route 10
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Spearow | 13–17 | 35% |
-|  | Voltorb | 14–16 | 35% |
-|  | Ekans | 11–17 | 25% |
-|  | Electrike ★ | 17 | 5% |
-| Surfing | Tentacool | 5–40 | 100% |
+| Grass / cave | Spearow | 15–20 | 35% |
+|  | Voltorb | 16–18 | 35% |
+|  | Ekans | 13–20 | 25% |
+|  | Electrike ★ | 20 | 5% |
+| Surfing | Tentacool | 6–46 | 100% |
 | Old Rod | Magikarp | 5 | 100% |
 | Good Rod | Horsea | 5–15 | 60% |
 |  | Magikarp | 5–15 | 20% |
@@ -361,11 +361,11 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Ekans | 12–14 | 35% |
-|  | Spearow | 13–17 | 35% |
-|  | Drowzee | 11–15 | 25% |
-|  | Spoink ★ | 15 | 5% |
-| Surfing | Tentacool | 5–40 | 100% |
+| Grass / cave | Ekans | 14–16 | 35% |
+|  | Spearow | 15–20 | 35% |
+|  | Drowzee | 13–17 | 25% |
+|  | Spoink ★ | 17 | 5% |
+| Surfing | Tentacool | 6–46 | 100% |
 | Old Rod | Magikarp | 5 | 100% |
 | Good Rod | Horsea | 5–15 | 60% |
 |  | Magikarp | 5–15 | 20% |
@@ -378,13 +378,13 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Oddish | 22–24 | 30% |
-|  | Venonat | 24–26 | 30% |
-|  | Pidgey | 23–27 | 30% |
-|  | Hoothoot ★ | 26 | 5% |
-|  | Gloom | 28–30 | 5% |
-| Surfing | Tentacool | 5–40 | 95% |
-|  | Slowpoke ★ | 20–30 | 5% |
+| Grass / cave | Oddish | 25–28 | 30% |
+|  | Venonat | 28–30 | 30% |
+|  | Pidgey | 26–31 | 30% |
+|  | Hoothoot ★ | 30 | 5% |
+|  | Gloom | 32–34 | 5% |
+| Surfing | Tentacool | 6–46 | 95% |
+|  | Slowpoke ★ | 23–34 | 5% |
 | Old Rod | Magikarp | 5 | 100% |
 | Good Rod | Horsea | 5–15 | 60% |
 |  | Magikarp | 5–15 | 20% |
@@ -398,14 +398,14 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Oddish | 22–24 | 30% |
-|  | Venonat | 24–26 | 30% |
-|  | Pidgey | 25–27 | 20% |
-|  | Hoothoot ★ | 26 | 5% |
-|  | Ditto | 25 | 5% |
-|  | Pidgeotto | 29 | 5% |
-|  | Gloom | 28–30 | 5% |
-| Surfing | Tentacool | 5–40 | 100% |
+| Grass / cave | Oddish | 25–28 | 30% |
+|  | Venonat | 28–30 | 30% |
+|  | Pidgey | 29–31 | 20% |
+|  | Hoothoot ★ | 30 | 5% |
+|  | Ditto | 29 | 5% |
+|  | Pidgeotto | 33 | 5% |
+|  | Gloom | 32–34 | 5% |
+| Surfing | Tentacool | 6–46 | 100% |
 | Old Rod | Magikarp | 5 | 100% |
 | Good Rod | Horsea | 5–15 | 60% |
 |  | Magikarp | 5–15 | 20% |
@@ -418,70 +418,70 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Oddish | 22–24 | 30% |
-|  | Venonat | 24 | 20% |
-|  | Ditto | 23 | 15% |
-|  | Pidgey | 27 | 10% |
-|  | Castform ★ | 26 | 10% |
-|  | Roselia ★ | 26 | 5% |
-|  | Gloom | 30 | 5% |
-|  | Pidgeotto | 29 | 5% |
+| Grass / cave | Oddish | 25–28 | 30% |
+|  | Venonat | 28 | 20% |
+|  | Ditto | 26 | 15% |
+|  | Pidgey | 31 | 10% |
+|  | Castform ★ | 30 | 10% |
+|  | Roselia ★ | 30 | 5% |
+|  | Gloom | 34 | 5% |
+|  | Pidgeotto | 33 | 5% |
 
 ## Route 15
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Oddish | 24 | 20% |
-|  | Venonat | 24 | 20% |
-|  | Pidgey | 25–27 | 20% |
-|  | Illumise ★ | 22 | 10% |
-|  | Volbeat ★ | 26 | 10% |
-|  | Sunkern ★ | 26 | 5% |
-|  | Ditto | 25 | 5% |
-|  | Pidgeotto | 29 | 5% |
-|  | Gloom | 28–30 | 5% |
+| Grass / cave | Oddish | 28 | 20% |
+|  | Venonat | 28 | 20% |
+|  | Pidgey | 29–31 | 20% |
+|  | Illumise ★ | 25 | 10% |
+|  | Volbeat ★ | 30 | 10% |
+|  | Sunkern ★ | 30 | 5% |
+|  | Ditto | 29 | 5% |
+|  | Pidgeotto | 33 | 5% |
+|  | Gloom | 32–34 | 5% |
 
 ## Route 16
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Spearow | 20–22 | 30% |
-|  | Doduo | 18–20 | 30% |
-|  | Rattata | 18–20 | 25% |
-|  | Kecleon ★ | 22 | 5% |
-|  | Spinda ★ | 22 | 5% |
-|  | Raticate | 23–25 | 5% |
+| Grass / cave | Spearow | 23–25 | 30% |
+|  | Doduo | 21–23 | 30% |
+|  | Rattata | 21–23 | 25% |
+|  | Kecleon ★ | 25 | 5% |
+|  | Spinda ★ | 25 | 5% |
+|  | Raticate | 26–29 | 5% |
 
 ## Route 17
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Spearow | 20–22 | 30% |
-|  | Doduo | 24–26 | 30% |
-|  | Raticate | 25–27 | 20% |
-|  | Zangoose ★ | 28 | 5% |
-|  | Seviper ★ | 29 | 5% |
-|  | Rattata | 22 | 5% |
-|  | Fearow | 25–27 | 5% |
+| Grass / cave | Spearow | 23–25 | 30% |
+|  | Doduo | 28–30 | 30% |
+|  | Raticate | 29–31 | 20% |
+|  | Zangoose ★ | 32 | 5% |
+|  | Seviper ★ | 33 | 5% |
+|  | Rattata | 25 | 5% |
+|  | Fearow | 29–31 | 5% |
 
 ## Route 18
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Spearow | 20–22 | 30% |
-|  | Doduo | 24–26 | 30% |
-|  | Raticate | 25–29 | 15% |
-|  | Fearow | 25–29 | 15% |
-|  | Wingull ★ | 28 | 5% |
-|  | Rattata | 22 | 5% |
+| Grass / cave | Spearow | 23–25 | 30% |
+|  | Doduo | 28–30 | 30% |
+|  | Raticate | 29–33 | 15% |
+|  | Fearow | 29–33 | 15% |
+|  | Wingull ★ | 32 | 5% |
+|  | Rattata | 25 | 5% |
 
 ## Route 19
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Surfing | Tentacool | 5–40 | 91% |
-|  | Wingull ★ | 20–30 | 5% |
-|  | Mantine ★ | 30–35 | 4% |
+| Surfing | Tentacool | 6–46 | 91% |
+|  | Wingull ★ | 23–34 | 5% |
+|  | Mantine ★ | 34–40 | 4% |
 | Old Rod | Magikarp | 5 | 100% |
 | Good Rod | Horsea | 5–15 | 60% |
 |  | Magikarp | 5–15 | 20% |
@@ -496,9 +496,9 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Surfing | Tentacool | 5–40 | 91% |
-|  | Wailmer ★ | 20–30 | 5% |
-|  | Corsola ★ | 30–35 | 4% |
+| Surfing | Tentacool | 6–46 | 91% |
+|  | Wailmer ★ | 23–34 | 5% |
+|  | Corsola ★ | 34–40 | 4% |
 | Old Rod | Magikarp | 5 | 100% |
 | Good Rod | Horsea | 5–15 | 60% |
 |  | Luvdisc ★ | 5–15 | 20% |
@@ -513,8 +513,8 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Tangela | 17–28 | 100% |
-| Surfing | Tentacool | 5–40 | 100% |
+| Grass / cave | Tangela | 20–32 | 100% |
+| Surfing | Tentacool | 6–46 | 100% |
 | Old Rod | Magikarp | 5 | 100% |
 | Good Rod | Horsea | 5–15 | 60% |
 |  | Magikarp | 5–15 | 20% |
@@ -529,8 +529,8 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Tangela | 17–28 | 100% |
-| Surfing | Tentacool | 5–40 | 100% |
+| Grass / cave | Tangela | 20–32 | 100% |
+| Surfing | Tentacool | 6–46 | 100% |
 | Old Rod | Magikarp | 5 | 100% |
 | Good Rod | Horsea | 5–15 | 60% |
 |  | Magikarp | 5–15 | 20% |
@@ -704,96 +704,96 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Ponyta | 30–33 | 30% |
-|  | Fearow | 38 | 20% |
-|  | Spearow | 30–32 | 15% |
-|  | Machop | 35 | 10% |
-|  | Geodude | 33 | 10% |
-|  | Torchic ★ | 15–18 | 5% |
-|  | Numel ★ | 40 | 5% |
-|  | Rapidash | 39–42 | 5% |
-| Rock Smash | Geodude | 5–30 | 95% |
-|  | Graveler | 25–40 | 5% |
+| Grass / cave | Ponyta | 34–38 | 30% |
+|  | Fearow | 44 | 20% |
+|  | Spearow | 34–37 | 15% |
+|  | Machop | 40 | 10% |
+|  | Geodude | 38 | 10% |
+|  | Torchic ★ | 17–21 | 5% |
+|  | Numel ★ | 46 | 5% |
+|  | Rapidash | 45–48 | 5% |
+| Rock Smash | Geodude | 6–34 | 95% |
+|  | Graveler | 29–46 | 5% |
 
 ## Mt. Ember Ruby Path 1F
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Geodude | 32–40 | 45% |
-|  | Machop | 34–38 | 40% |
-|  | Machoke | 40–42 | 10% |
-|  | Magmar ★ | 38 | 5% |
-| Rock Smash | Geodude | 25–40 | 65% |
-|  | Graveler | 30–50 | 35% |
+| Grass / cave | Geodude | 37–46 | 45% |
+|  | Machop | 39–44 | 40% |
+|  | Machoke | 46–48 | 10% |
+|  | Magmar ★ | 44 | 5% |
+| Rock Smash | Geodude | 29–46 | 65% |
+|  | Graveler | 34–57 | 35% |
 
 ## Mt. Ember Ruby Path B1F
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Geodude | 34–42 | 65% |
-|  | Slugma | 24–30 | 30% |
-|  | Torkoal ★ | 42 | 5% |
-| Rock Smash | Geodude | 25–40 | 65% |
-|  | Graveler | 30–50 | 35% |
+| Grass / cave | Geodude | 39–48 | 65% |
+|  | Slugma | 28–34 | 30% |
+|  | Torkoal ★ | 48 | 5% |
+| Rock Smash | Geodude | 29–46 | 65% |
+|  | Graveler | 34–57 | 35% |
 
 ## Mt. Ember Ruby Path B1F Stairs
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Slugma | 22–32 | 60% |
-|  | Geodude | 40–44 | 40% |
-| Rock Smash | Geodude | 25–40 | 65% |
-|  | Graveler | 30–50 | 35% |
+| Grass / cave | Slugma | 25–37 | 60% |
+|  | Geodude | 46–51 | 40% |
+| Rock Smash | Geodude | 29–46 | 65% |
+|  | Graveler | 34–57 | 35% |
 
 ## Mt. Ember Ruby Path B2F
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Slugma | 22–32 | 60% |
-|  | Geodude | 40–44 | 40% |
-| Rock Smash | Geodude | 25–40 | 65% |
-|  | Graveler | 30–50 | 35% |
+| Grass / cave | Slugma | 25–37 | 60% |
+|  | Geodude | 46–51 | 40% |
+| Rock Smash | Geodude | 29–46 | 65% |
+|  | Graveler | 34–57 | 35% |
 
 ## Mt. Ember Ruby Path B2F Stairs
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Geodude | 34–42 | 70% |
-|  | Slugma | 24–30 | 30% |
-| Rock Smash | Geodude | 25–40 | 65% |
-|  | Graveler | 30–50 | 35% |
+| Grass / cave | Geodude | 39–48 | 70% |
+|  | Slugma | 28–34 | 30% |
+| Rock Smash | Geodude | 29–46 | 65% |
+|  | Graveler | 34–57 | 35% |
 
 ## Mt. Ember Ruby Path B3F
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Slugma | 18–36 | 100% |
-| Rock Smash | Slugma | 15–35 | 90% |
-|  | Magcargo | 25–45 | 10% |
+| Grass / cave | Slugma | 21–41 | 100% |
+| Rock Smash | Slugma | 17–40 | 90% |
+|  | Magcargo | 29–52 | 10% |
 
 ## Mt. Ember Summit Path 1F
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Geodude | 29–37 | 50% |
-|  | Machop | 31–39 | 50% |
+| Grass / cave | Geodude | 33–43 | 50% |
+|  | Machop | 36–45 | 50% |
 
 ## Mt. Ember Summit Path 2F
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Geodude | 30–34 | 40% |
-|  | Machop | 32–36 | 40% |
-|  | Machoke | 38–40 | 20% |
-| Rock Smash | Geodude | 5–30 | 95% |
-|  | Graveler | 25–40 | 5% |
+| Grass / cave | Geodude | 34–39 | 40% |
+|  | Machop | 37–41 | 40% |
+|  | Machoke | 44–46 | 20% |
+| Rock Smash | Geodude | 6–34 | 95% |
+|  | Graveler | 29–46 | 5% |
 
 ## Mt. Ember Summit Path 3F
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Geodude | 29–37 | 50% |
-|  | Machop | 31–39 | 50% |
+| Grass / cave | Geodude | 33–43 | 50% |
+|  | Machop | 36–45 | 50% |
 
 ## Mt. Moon 1F
 
@@ -826,150 +826,150 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Raticate | 32–36 | 30% |
-|  | Koffing | 28 | 20% |
-|  | Growlithe | 30–32 | 15% |
-|  | Rattata | 26–28 | 15% |
-|  | Vulpix ★ | 30 | 10% |
-|  | Grimer | 28 | 5% |
-|  | Weezing | 32 | 5% |
+| Grass / cave | Raticate | 37–41 | 30% |
+|  | Koffing | 32 | 20% |
+|  | Growlithe | 34–37 | 15% |
+|  | Rattata | 30–32 | 15% |
+|  | Vulpix ★ | 34 | 10% |
+|  | Grimer | 32 | 5% |
+|  | Weezing | 37 | 5% |
 
 ## Pokémon Mansion 2F
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Koffing | 28–30 | 30% |
-|  | Raticate | 32–36 | 30% |
-|  | Growlithe | 30–32 | 15% |
-|  | Rattata | 26–28 | 15% |
-|  | Grimer | 28 | 5% |
-|  | Weezing | 32 | 5% |
+| Grass / cave | Koffing | 32–34 | 30% |
+|  | Raticate | 37–41 | 30% |
+|  | Growlithe | 34–37 | 15% |
+|  | Rattata | 30–32 | 15% |
+|  | Grimer | 32 | 5% |
+|  | Weezing | 37 | 5% |
 
 ## Pokémon Mansion 3F
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Koffing | 28–30 | 30% |
-|  | Raticate | 32–36 | 30% |
-|  | Growlithe | 30–32 | 15% |
-|  | Rattata | 26–28 | 15% |
-|  | Grimer | 28 | 5% |
-|  | Weezing | 32 | 5% |
+| Grass / cave | Koffing | 32–34 | 30% |
+|  | Raticate | 37–41 | 30% |
+|  | Growlithe | 34–37 | 15% |
+|  | Rattata | 30–32 | 15% |
+|  | Grimer | 32 | 5% |
+|  | Weezing | 37 | 5% |
 
 ## Pokémon Mansion B1F
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Koffing | 28–30 | 30% |
-|  | Raticate | 34 | 20% |
-|  | Growlithe | 30–32 | 15% |
-|  | Ditto | 30 | 10% |
-|  | Magmar ★ | 38 | 10% |
-|  | Grimer | 28 | 5% |
-|  | Weezing | 34 | 5% |
-|  | Rattata | 26 | 5% |
+| Grass / cave | Koffing | 32–34 | 30% |
+|  | Raticate | 39 | 20% |
+|  | Growlithe | 34–37 | 15% |
+|  | Ditto | 34 | 10% |
+|  | Magmar ★ | 44 | 10% |
+|  | Grimer | 32 | 5% |
+|  | Weezing | 39 | 5% |
+|  | Rattata | 30 | 5% |
 
 ## Pokémon Tower 3F
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Gastly | 13–18 | 85% |
-|  | Cubone | 15–17 | 9% |
-|  | Shuppet ★ | 19 | 5% |
-|  | Haunter | 20 | 1% |
+| Grass / cave | Gastly | 15–21 | 85% |
+|  | Cubone | 17–20 | 9% |
+|  | Shuppet ★ | 22 | 5% |
+|  | Haunter | 23 | 1% |
 
 ## Pokémon Tower 4F
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Gastly | 13–19 | 82% |
-|  | Cubone | 15–17 | 9% |
-|  | Haunter | 20 | 5% |
-|  | Duskull ★ | 17 | 4% |
+| Grass / cave | Gastly | 15–22 | 82% |
+|  | Cubone | 17–20 | 9% |
+|  | Haunter | 23 | 5% |
+|  | Duskull ★ | 20 | 4% |
 
 ## Pokémon Tower 5F
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Gastly | 13–19 | 82% |
-|  | Cubone | 15–17 | 9% |
-|  | Haunter | 20 | 5% |
-|  | Misdreavus ★ | 17 | 4% |
+| Grass / cave | Gastly | 15–22 | 82% |
+|  | Cubone | 17–20 | 9% |
+|  | Haunter | 23 | 5% |
+|  | Misdreavus ★ | 20 | 4% |
 
 ## Pokémon Tower 6F
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Gastly | 14–19 | 71% |
-|  | Duskull ★ | 15 | 10% |
-|  | Cubone | 17–19 | 9% |
-|  | Haunter | 21–23 | 6% |
-|  | Shuppet ★ | 18 | 4% |
+| Grass / cave | Gastly | 16–22 | 71% |
+|  | Duskull ★ | 17 | 10% |
+|  | Cubone | 20–22 | 9% |
+|  | Haunter | 24–26 | 6% |
+|  | Shuppet ★ | 21 | 4% |
 
 ## Pokémon Tower 7F
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Gastly | 15–18 | 61% |
-|  | Haunter | 23–25 | 15% |
-|  | Chimecho ★ | 19 | 10% |
-|  | Cubone | 17–19 | 10% |
-|  | Misdreavus ★ | 18 | 4% |
+| Grass / cave | Gastly | 17–21 | 61% |
+|  | Haunter | 26–29 | 15% |
+|  | Chimecho ★ | 22 | 10% |
+|  | Cubone | 20–22 | 10% |
+|  | Misdreavus ★ | 21 | 4% |
 
 ## Power Plant
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Pikachu | 22–26 | 21% |
-|  | Voltorb | 22 | 20% |
-|  | Magnemite | 22 | 20% |
-|  | Plusle ★ | 25 | 10% |
-|  | Minun ★ | 25 | 10% |
-|  | Magneton | 31–34 | 10% |
-|  | Electabuzz | 32–35 | 5% |
-|  | Electrike ★ | 26 | 4% |
+| Grass / cave | Pikachu | 25–30 | 21% |
+|  | Voltorb | 25 | 20% |
+|  | Magnemite | 25 | 20% |
+|  | Plusle ★ | 29 | 10% |
+|  | Minun ★ | 29 | 10% |
+|  | Magneton | 36–39 | 10% |
+|  | Electabuzz | 37–40 | 5% |
+|  | Electrike ★ | 30 | 4% |
 
 ## Rock Tunnel 1F
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Zubat | 15–16 | 30% |
-|  | Geodude | 15–16 | 21% |
-|  | Mankey | 16–17 | 15% |
-|  | Machop | 16–17 | 15% |
-|  | Aron ★ | 17 | 10% |
-|  | Onix | 13–15 | 5% |
-|  | Makuhita ★ | 15 | 4% |
+| Grass / cave | Zubat | 17–18 | 30% |
+|  | Geodude | 17–18 | 21% |
+|  | Mankey | 18–20 | 15% |
+|  | Machop | 18–20 | 15% |
+|  | Aron ★ | 20 | 10% |
+|  | Onix | 15–17 | 5% |
+|  | Makuhita ★ | 17 | 4% |
 
 ## Rock Tunnel B1F
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Geodude | 15–17 | 31% |
-|  | Zubat | 15–16 | 30% |
-|  | Mankey | 16–17 | 15% |
-|  | Machop | 17 | 10% |
-|  | Onix | 13–17 | 10% |
-|  | Mawile ★ | 15 | 4% |
-| Rock Smash | Geodude | 5–20 | 90% |
-|  | Nosepass ★ | 15–30 | 5% |
-|  | Graveler | 25–40 | 5% |
+| Grass / cave | Geodude | 17–20 | 31% |
+|  | Zubat | 17–18 | 30% |
+|  | Mankey | 18–20 | 15% |
+|  | Machop | 20 | 10% |
+|  | Onix | 15–20 | 10% |
+|  | Mawile ★ | 17 | 4% |
+| Rock Smash | Geodude | 6–23 | 90% |
+|  | Nosepass ★ | 17–34 | 5% |
+|  | Graveler | 29–46 | 5% |
 
 ## Safari Zone Center
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Rhyhorn | 25 | 20% |
-|  | Nidoran♂ | 22 | 20% |
-|  | Venonat | 22 | 15% |
-|  | Pinsir ★ | 24 | 10% |
-|  | Exeggcute | 25 | 10% |
-|  | Nidorino | 31 | 10% |
-|  | Nidorina | 31 | 5% |
-|  | Parasect | 30 | 5% |
-|  | Scyther | 23 | 4% |
-|  | Chansey | 23 | 1% |
-| Surfing | Psyduck | 20–40 | 100% |
+| Grass / cave | Rhyhorn | 29 | 20% |
+|  | Nidoran♂ | 25 | 20% |
+|  | Venonat | 25 | 15% |
+|  | Pinsir ★ | 28 | 10% |
+|  | Exeggcute | 29 | 10% |
+|  | Nidorino | 36 | 10% |
+|  | Nidorina | 36 | 5% |
+|  | Parasect | 34 | 5% |
+|  | Scyther | 26 | 4% |
+|  | Chansey | 26 | 1% |
+| Surfing | Psyduck | 23–46 | 100% |
 | Old Rod | Magikarp | 5 | 100% |
 | Good Rod | Goldeen | 5–15 | 60% |
 |  | Magikarp | 5–15 | 20% |
@@ -984,18 +984,18 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Nidoran♂ | 24 | 20% |
-|  | Doduo | 26 | 20% |
-|  | Paras | 22 | 11% |
-|  | Pinsir ★ | 23 | 10% |
-|  | Exeggcute | 25 | 10% |
-|  | Nidorino | 33 | 10% |
-|  | Nidoran♀ | 24 | 5% |
-|  | Parasect | 25 | 5% |
-|  | Girafarig ★ | 22 | 4% |
-|  | Kangaskhan | 25 | 4% |
-|  | Scyther | 28 | 1% |
-| Surfing | Psyduck | 20–40 | 100% |
+| Grass / cave | Nidoran♂ | 28 | 20% |
+|  | Doduo | 30 | 20% |
+|  | Paras | 25 | 11% |
+|  | Pinsir ★ | 26 | 10% |
+|  | Exeggcute | 29 | 10% |
+|  | Nidorino | 38 | 10% |
+|  | Nidoran♀ | 28 | 5% |
+|  | Parasect | 29 | 5% |
+|  | Girafarig ★ | 25 | 4% |
+|  | Kangaskhan | 29 | 4% |
+|  | Scyther | 32 | 1% |
+| Surfing | Psyduck | 23–46 | 100% |
 | Old Rod | Magikarp | 5 | 100% |
 | Good Rod | Goldeen | 5–15 | 60% |
 |  | Magikarp | 5–15 | 20% |
@@ -1010,17 +1010,17 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Rhyhorn | 26 | 20% |
-|  | Nidoran♂ | 30 | 20% |
-|  | Paras | 23 | 15% |
-|  | Girafarig ★ | 25 | 10% |
-|  | Exeggcute | 27 | 10% |
-|  | Nidorino | 30 | 10% |
-|  | Nidorina | 30 | 5% |
-|  | Venomoth | 32 | 5% |
-|  | Chansey | 26 | 4% |
-|  | Tauros | 28 | 1% |
-| Surfing | Psyduck | 20–40 | 100% |
+| Grass / cave | Rhyhorn | 30 | 20% |
+|  | Nidoran♂ | 34 | 20% |
+|  | Paras | 26 | 15% |
+|  | Girafarig ★ | 29 | 10% |
+|  | Exeggcute | 31 | 10% |
+|  | Nidorino | 34 | 10% |
+|  | Nidorina | 34 | 5% |
+|  | Venomoth | 37 | 5% |
+|  | Chansey | 30 | 4% |
+|  | Tauros | 32 | 1% |
+| Surfing | Psyduck | 23–46 | 100% |
 | Old Rod | Magikarp | 5 | 100% |
 | Good Rod | Goldeen | 5–15 | 60% |
 |  | Magikarp | 5–15 | 20% |
@@ -1035,17 +1035,17 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Doduo | 26 | 20% |
-|  | Nidoran♂ | 22 | 20% |
-|  | Venonat | 23 | 15% |
-|  | Kecleon ★ | 25 | 10% |
-|  | Exeggcute | 27 | 10% |
-|  | Nidorino | 30 | 10% |
-|  | Nidoran♀ | 30 | 5% |
-|  | Venomoth | 32 | 5% |
-|  | Tauros | 25 | 4% |
-|  | Kangaskhan | 28 | 1% |
-| Surfing | Psyduck | 20–40 | 100% |
+| Grass / cave | Doduo | 30 | 20% |
+|  | Nidoran♂ | 25 | 20% |
+|  | Venonat | 26 | 15% |
+|  | Kecleon ★ | 29 | 10% |
+|  | Exeggcute | 31 | 10% |
+|  | Nidorino | 34 | 10% |
+|  | Nidoran♀ | 34 | 5% |
+|  | Venomoth | 37 | 5% |
+|  | Tauros | 29 | 4% |
+|  | Kangaskhan | 32 | 1% |
+| Surfing | Psyduck | 23–46 | 100% |
 | Old Rod | Magikarp | 5 | 100% |
 | Good Rod | Goldeen | 5–15 | 60% |
 |  | Magikarp | 5–15 | 20% |
@@ -1060,49 +1060,49 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Psyduck | 26–31 | 51% |
-|  | Zubat | 22–26 | 34% |
-|  | Golbat | 26–30 | 11% |
-|  | Slowpoke ★ | 33 | 4% |
+| Grass / cave | Psyduck | 30–36 | 51% |
+|  | Zubat | 25–30 | 34% |
+|  | Golbat | 30–34 | 11% |
+|  | Slowpoke ★ | 38 | 4% |
 
 ## Seafoam Islands B1F
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Psyduck | 29–31 | 40% |
-|  | Zubat | 22–24 | 30% |
-|  | Golbat | 26–30 | 11% |
-|  | Seel | 28 | 10% |
-|  | Golduck | 33–35 | 5% |
-|  | Snorunt ★ | 26 | 4% |
+| Grass / cave | Psyduck | 33–36 | 40% |
+|  | Zubat | 25–28 | 30% |
+|  | Golbat | 30–34 | 11% |
+|  | Seel | 32 | 10% |
+|  | Golduck | 38–40 | 5% |
+|  | Snorunt ★ | 30 | 4% |
 
 ## Seafoam Islands B2F
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Psyduck | 30–32 | 40% |
-|  | Seel | 30–32 | 20% |
-|  | Snorunt ★ | 22 | 10% |
-|  | Zubat | 24 | 10% |
-|  | Golbat | 26–30 | 10% |
-|  | Golduck | 32–34 | 10% |
+| Grass / cave | Psyduck | 34–37 | 40% |
+|  | Seel | 34–37 | 20% |
+|  | Snorunt ★ | 25 | 10% |
+|  | Zubat | 28 | 10% |
+|  | Golbat | 30–34 | 10% |
+|  | Golduck | 37–39 | 10% |
 
 ## Seafoam Islands B3F
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Seel | 30–32 | 40% |
-|  | Golduck | 32–34 | 15% |
-|  | Spheal ★ | 32 | 10% |
-|  | Psyduck | 30 | 10% |
-|  | Zubat | 24 | 10% |
-|  | Golbat | 26–30 | 10% |
-|  | Dewgong | 32–34 | 5% |
-| Surfing | Seel | 25–35 | 60% |
-|  | Horsea | 25–30 | 30% |
-|  | Dewgong | 35–40 | 5% |
-|  | Psyduck | 30–40 | 4% |
-|  | Golduck | 35–40 | 1% |
+| Grass / cave | Seel | 34–37 | 40% |
+|  | Golduck | 37–39 | 15% |
+|  | Spheal ★ | 37 | 10% |
+|  | Psyduck | 34 | 10% |
+|  | Zubat | 28 | 10% |
+|  | Golbat | 30–34 | 10% |
+|  | Dewgong | 37–39 | 5% |
+| Surfing | Seel | 29–40 | 60% |
+|  | Horsea | 29–34 | 30% |
+|  | Dewgong | 40–46 | 5% |
+|  | Psyduck | 34–46 | 4% |
+|  | Golduck | 40–46 | 1% |
 | Old Rod | Magikarp | 5 | 100% |
 | Good Rod | Horsea | 5–15 | 60% |
 |  | Magikarp | 5–15 | 20% |
@@ -1115,16 +1115,16 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Seel | 30–34 | 50% |
-|  | Golduck | 32–34 | 15% |
-|  | Golbat | 26–30 | 15% |
-|  | Psyduck | 32 | 10% |
-|  | Dewgong | 34–36 | 10% |
-| Surfing | Seel | 25–35 | 60% |
-|  | Horsea | 25–30 | 30% |
-|  | Dewgong | 35–40 | 5% |
-|  | Psyduck | 30–40 | 4% |
-|  | Golduck | 35–40 | 1% |
+| Grass / cave | Seel | 34–39 | 50% |
+|  | Golduck | 37–39 | 15% |
+|  | Golbat | 30–34 | 15% |
+|  | Psyduck | 37 | 10% |
+|  | Dewgong | 39–41 | 10% |
+| Surfing | Seel | 29–40 | 60% |
+|  | Horsea | 29–34 | 30% |
+|  | Dewgong | 40–46 | 5% |
+|  | Psyduck | 34–46 | 4% |
+|  | Golduck | 40–46 | 1% |
 | Old Rod | Magikarp | 5 | 100% |
 | Good Rod | Horsea | 5–15 | 60% |
 |  | Magikarp | 5–15 | 20% |
@@ -1207,8 +1207,8 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Surfing | Tentacool | 5–40 | 95% |
-|  | Tentacruel | 35–40 | 5% |
+| Surfing | Tentacool | 6–46 | 95% |
+|  | Tentacruel | 40–46 | 5% |
 | Old Rod | Magikarp | 5 | 100% |
 | Good Rod | Horsea | 5–15 | 80% |
 |  | Magikarp | 5–15 | 20% |
@@ -1222,20 +1222,20 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Spearow | 32 | 20% |
-|  | Ponyta | 34 | 20% |
-|  | Fearow | 36 | 10% |
-|  | Numel ★ | 31 | 10% |
-|  | Geodude | 31 | 10% |
-|  | Meowth | 31 | 10% |
-|  | Cyndaquil ★ | 15–18 | 5% |
-|  | Psyduck | 34 | 5% |
-|  | Rapidash | 37–40 | 5% |
-|  | Persian | 37–40 | 5% |
-| Surfing | Tentacool | 5–40 | 95% |
-|  | Tentacruel | 35–40 | 5% |
-| Rock Smash | Geodude | 5–30 | 95% |
-|  | Graveler | 25–40 | 5% |
+| Grass / cave | Spearow | 37 | 20% |
+|  | Ponyta | 39 | 20% |
+|  | Fearow | 41 | 10% |
+|  | Numel ★ | 36 | 10% |
+|  | Geodude | 36 | 10% |
+|  | Meowth | 36 | 10% |
+|  | Cyndaquil ★ | 17–21 | 5% |
+|  | Psyduck | 39 | 5% |
+|  | Rapidash | 43–46 | 5% |
+|  | Persian | 43–46 | 5% |
+| Surfing | Tentacool | 6–46 | 95% |
+|  | Tentacruel | 40–46 | 5% |
+| Rock Smash | Geodude | 6–34 | 95% |
+|  | Graveler | 29–46 | 5% |
 | Old Rod | Magikarp | 5 | 100% |
 | Good Rod | Horsea | 5–15 | 80% |
 |  | Magikarp | 5–15 | 20% |
@@ -1248,16 +1248,16 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Spearow | 31–32 | 30% |
-|  | Tangela | 33–35 | 30% |
-|  | Fearow | 36–40 | 15% |
-|  | Meowth | 31 | 10% |
-|  | Wingull ★ | 38 | 5% |
-|  | Psyduck | 31 | 5% |
-|  | Persian | 37–40 | 5% |
-| Surfing | Tentacool | 5–35 | 90% |
-|  | Corsola ★ | 35–40 | 5% |
-|  | Tentacruel | 35–40 | 5% |
+| Grass / cave | Spearow | 36–37 | 30% |
+|  | Tangela | 38–40 | 30% |
+|  | Fearow | 41–46 | 15% |
+|  | Meowth | 36 | 10% |
+|  | Wingull ★ | 44 | 5% |
+|  | Psyduck | 36 | 5% |
+|  | Persian | 43–46 | 5% |
+| Surfing | Tentacool | 6–40 | 90% |
+|  | Corsola ★ | 40–46 | 5% |
+|  | Tentacruel | 40–46 | 5% |
 | Old Rod | Magikarp | 5 | 100% |
 | Good Rod | Horsea | 5–15 | 60% |
 |  | Magikarp | 5–15 | 20% |
@@ -1271,18 +1271,18 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Spearow | 31 | 20% |
-|  | Oddish | 30 | 20% |
-|  | Gloom | 36–38 | 15% |
-|  | Totodile ★ | 15–18 | 10% |
-|  | Fearow | 36 | 10% |
-|  | Meowth | 31 | 10% |
-|  | Psyduck | 31 | 5% |
-|  | Golduck | 37–40 | 5% |
-|  | Persian | 37–40 | 5% |
-| Surfing | Psyduck | 5–35 | 90% |
-|  | Lotad ★ | 35–40 | 5% |
-|  | Golduck | 35–40 | 5% |
+| Grass / cave | Spearow | 36 | 20% |
+|  | Oddish | 34 | 20% |
+|  | Gloom | 41–44 | 15% |
+|  | Totodile ★ | 17–21 | 10% |
+|  | Fearow | 41 | 10% |
+|  | Meowth | 36 | 10% |
+|  | Psyduck | 36 | 5% |
+|  | Golduck | 43–46 | 5% |
+|  | Persian | 43–46 | 5% |
+| Surfing | Psyduck | 6–40 | 90% |
+|  | Lotad ★ | 40–46 | 5% |
+|  | Golduck | 40–46 | 5% |
 | Old Rod | Magikarp | 5 | 100% |
 | Good Rod | Poliwag | 5–15 | 60% |
 |  | Magikarp | 5–15 | 20% |
@@ -1296,19 +1296,19 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Pidgeotto | 37 | 20% |
-|  | Gloom | 35 | 20% |
-|  | Pidgey | 32 | 10% |
-|  | Oddish | 30 | 10% |
-|  | Venonat | 34 | 10% |
-|  | Drowzee | 34 | 10% |
-|  | Exeggcute | 35 | 5% |
-|  | Sudowoodo ★ | 31 | 5% |
-|  | Hypno | 37–40 | 5% |
-|  | Sunkern ★ | 37 | 4% |
-|  | Venomoth | 40 | 1% |
-| Surfing | Psyduck | 5–40 | 95% |
-|  | Golduck | 35–40 | 5% |
+| Grass / cave | Pidgeotto | 43 | 20% |
+|  | Gloom | 40 | 20% |
+|  | Pidgey | 37 | 10% |
+|  | Oddish | 34 | 10% |
+|  | Venonat | 39 | 10% |
+|  | Drowzee | 39 | 10% |
+|  | Exeggcute | 40 | 5% |
+|  | Sudowoodo ★ | 36 | 5% |
+|  | Hypno | 43–46 | 5% |
+|  | Sunkern ★ | 43 | 4% |
+|  | Venomoth | 46 | 1% |
+| Surfing | Psyduck | 6–46 | 95% |
+|  | Golduck | 40–46 | 5% |
 | Old Rod | Magikarp | 5 | 100% |
 | Good Rod | Goldeen | 5–15 | 60% |
 |  | Magikarp | 5–15 | 20% |
@@ -1322,17 +1322,17 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Pidgey | 29–32 | 30% |
-|  | Oddish | 31 | 20% |
-|  | Pidgeotto | 34–40 | 15% |
-|  | Gloom | 36 | 10% |
-|  | Meowth | 31 | 10% |
-|  | Venonat | 34 | 5% |
-|  | Psyduck | 31 | 5% |
-|  | Persian | 37–40 | 5% |
-| Surfing | Tentacool | 5–35 | 90% |
-|  | Wailmer ★ | 35–40 | 5% |
-|  | Tentacruel | 35–40 | 5% |
+| Grass / cave | Pidgey | 33–37 | 30% |
+|  | Oddish | 36 | 20% |
+|  | Pidgeotto | 39–46 | 15% |
+|  | Gloom | 41 | 10% |
+|  | Meowth | 36 | 10% |
+|  | Venonat | 39 | 5% |
+|  | Psyduck | 36 | 5% |
+|  | Persian | 43–46 | 5% |
+| Surfing | Tentacool | 6–40 | 90% |
+|  | Wailmer ★ | 40–46 | 5% |
+|  | Tentacruel | 40–46 | 5% |
 | Old Rod | Magikarp | 5 | 100% |
 | Good Rod | Horsea | 5–15 | 80% |
 |  | Magikarp | 5–15 | 20% |
@@ -1345,7 +1345,7 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 
 | Method | Pokémon | Levels | Chance |
 |---|---|---|---|
-| Grass / cave | Dunsparce | 5–35 | 100% |
+| Grass / cave | Dunsparce | 6–40 | 100% |
 
 ## Four Island
 

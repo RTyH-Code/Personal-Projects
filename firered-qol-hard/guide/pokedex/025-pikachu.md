@@ -59,7 +59,7 @@ Height 0.4 m (1′04″) · Weight 6 kg (13.2 lbs)
 
 ## Where to find it
 
-- **Power Plant**: Grass / cave Lv 22–26 (21%)
+- **Power Plant**: Grass / cave Lv 25–30 (21%)
 - **Viridian Forest**: Grass / cave Lv 3–5 (5%)
 - Evolve [Pichu](172-pichu.md)
 

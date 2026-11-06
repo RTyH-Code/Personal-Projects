@@ -58,9 +58,9 @@ Height 0.6 m (2′00″) · Weight 9.9 kg (21.8 lbs)
 
 ## Where to find it
 
-- **Route 7**: Grass / cave Lv 17 (4%)
-- **Route 8**: Grass / cave Lv 17 (5%)
-- **Pokémon Mansion 1F**: Grass / cave Lv 30 (10%)
+- **Route 7**: Grass / cave Lv 20 (4%)
+- **Route 8**: Grass / cave Lv 20 (5%)
+- **Pokémon Mansion 1F**: Grass / cave Lv 34 (10%)
 - Breeding: hatches from an Egg left by a Vulpix or Ninetales at the Four Island Day Care
 
 ## Moves

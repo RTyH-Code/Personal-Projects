@@ -57,11 +57,11 @@ Height 0.4 m (1′04″) · Weight 2.5 kg (5.5 lbs)
 
 ## Where to find it
 
-- **Safari Zone Center**: Grass / cave Lv 25 (10%)
-- **Safari Zone East**: Grass / cave Lv 25 (10%)
-- **Safari Zone North**: Grass / cave Lv 27 (10%)
-- **Safari Zone West**: Grass / cave Lv 27 (10%)
-- **Three Island Berry Forest**: Grass / cave Lv 35 (5%)
+- **Safari Zone Center**: Grass / cave Lv 29 (10%)
+- **Safari Zone East**: Grass / cave Lv 29 (10%)
+- **Safari Zone North**: Grass / cave Lv 31 (10%)
+- **Safari Zone West**: Grass / cave Lv 31 (10%)
+- **Three Island Berry Forest**: Grass / cave Lv 40 (5%)
 - Breeding: hatches from an Egg left by a Exeggcute or Exeggutor at the Four Island Day Care
 
 ## Moves

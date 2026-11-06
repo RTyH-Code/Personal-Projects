@@ -59,7 +59,7 @@ Height 1 m (3′03″) · Weight 86.4 kg (190.5 lbs)
 
 ## Where to find it
 
-- **Rock Tunnel 1F**: Grass / cave Lv 15 (4%)
+- **Rock Tunnel 1F**: Grass / cave Lv 17 (4%)
 - Breeding: hatches from an Egg left by a Makuhita or Hariyama at the Four Island Day Care
 
 ## Moves

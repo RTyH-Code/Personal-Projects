@@ -57,8 +57,8 @@ Height 2 m (6′07″) · Weight 130 kg (286.6 lbs)
 
 ## Where to find it
 
-- **Route 20**: Surfing Lv 20–30 (5%)
-- **Three Island Bond Bridge**: Surfing Lv 35–40 (5%)
+- **Route 20**: Surfing Lv 23–34 (5%)
+- **Three Island Bond Bridge**: Surfing Lv 40–46 (5%)
 - Breeding: hatches from an Egg left by a Wailmer or Wailord at the Four Island Day Care
 
 ## Moves

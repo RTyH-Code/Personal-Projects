@@ -57,9 +57,9 @@ Height 1 m (3′03″) · Weight 35 kg (77.2 lbs)
 
 ## Where to find it
 
-- **Route 21 North**: Grass / cave Lv 17–28 (100%)
-- **Route 21 South**: Grass / cave Lv 17–28 (100%)
-- **One Island Treasure Beach**: Grass / cave Lv 33–35 (30%)
+- **Route 21 North**: Grass / cave Lv 20–32 (100%)
+- **Route 21 South**: Grass / cave Lv 20–32 (100%)
+- **One Island Treasure Beach**: Grass / cave Lv 38–40 (30%)
 - **Cinnabar Island Pokémon Lab Lounge**: in-game trade for Venonat ("TANGENY")
 - Breeding: hatches from an Egg left by a Tangela or Tangrowth at the Four Island Day Care
 

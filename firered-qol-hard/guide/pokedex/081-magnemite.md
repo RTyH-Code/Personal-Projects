@@ -61,7 +61,7 @@ Height 0.3 m (1′00″) · Weight 6 kg (13.2 lbs)
 
 ## Where to find it
 
-- **Power Plant**: Grass / cave Lv 22 (20%)
+- **Power Plant**: Grass / cave Lv 25 (20%)
 - Breeding: hatches from an Egg left by a Magnemite or Magnezone or Magneton at the Four Island Day Care
 
 ## Moves
