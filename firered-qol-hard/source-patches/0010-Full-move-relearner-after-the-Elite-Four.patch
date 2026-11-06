@@ -1,7 +1,7 @@
 From 537f1a79d5649c4ada5f1b84fd9711af30f3acbd Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Sun, 1 Nov 2026 00:04:29 +0000
-Subject: [PATCH 10/46] Full move relearner after the Elite Four
+Subject: [PATCH 10/50] Full move relearner after the Elite Four
 
 Once you're Champion, the Two Island Move Maniac teaches for free any
 level-up (any level), egg, TM/HM or tutor move the Pokemon can learn.

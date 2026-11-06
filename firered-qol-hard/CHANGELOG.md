@@ -8,6 +8,22 @@ made it, so you can see exactly what changed.
 previous release keeps working. In short, saves made on **release 7 or later**
 carry over to the current release. Older saves need a new game.
 
+## Release 13 (2026-11-06)
+Pull requests: [#30](https://github.com/RTyH-Code/Personal-Projects/pull/30)
+
+- **Party Exp. Share:** an option, off by default. Your whole team gets Exp.,
+  and Pokémon that didn't battle get half. Switch it on in the challenge menu
+  or with the Viridian City scientist, on any save.
+- **Gym double battles:** one trainer in each gym from Misty's on (except
+  Cinnabar) fights two-on-two, with spread moves, Fake Out, Protect, screens
+  and Trick Room.
+- **Trainer Tower:** competitive teams. They're fully evolved, with moves
+  from Showdown's role-based sets (doubles sets on Double floors), 252/252
+  EVs, natures, perfect IVs and role items.
+- **Automated playtest:** milestone checks from a new game through Brock
+  (tools/hack/playtest/).
+- **Saves:** release 12 saves carry over.
+
 ## Release 12 (2026-11-06)
 Pull requests: [#29](https://github.com/RTyH-Code/Personal-Projects/pull/29)
 

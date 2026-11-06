@@ -531,7 +531,7 @@ Includes the rival's earlier battles; which team you face depends on your starte
 | Tamer Cole | Arbok Lv45, Tauros Lv45 |
 | Tamer Jason | Rhyhorn Lv49 |
 | Black Belt Kiyo | Machoke Lv49 — items: Machoke @ Black Belt |
-| Cool Trainer Samuel | Sandslash Lv43, Sandslash Lv43, Rhyhorn Lv44, Nidorino Lv45, Nidoking Lv45 |
+| Cool Trainer Samuel *(double)* | Sandslash Lv43, Rhyhorn Lv44, Nidorino Lv45, Sandslash Lv43, Nidoking Lv45 |
 | Black Belt Takashi | Machoke Lv44, Machop Lv44, Machoke Lv44 — items: Machoke @ Black Belt, Machop @ Black Belt, Machoke @ Black Belt |
 | Cool Trainer Warren | Marowak Lv43, Marowak Lv43, Rhyhorn Lv44, Nidorina Lv45, Nidoqueen Lv45 |
 | Cool Trainer Yuji | Sandslash Lv44, Graveler Lv44, Onix Lv44, Graveler Lv44, Marowak Lv44 |
@@ -556,13 +556,13 @@ Includes the rival's earlier battles; which team you face depends on your starte
 | Trainer | Pokémon |
 |---|---|
 | Picnicker Diana | Goldeen Lv22 |
-| Swimmer M Luis | Horsea Lv18, Shellder Lv18 |
+| Swimmer M Luis *(double)* | Horsea Lv18, Shellder Lv18, Staryu Lv18 |
 
 ### Vermilion City Gym
 
 | Trainer | Pokémon |
 |---|---|
-| Engineer Baily | Voltorb Lv24, Magnemite Lv24 |
+| Engineer Baily *(double)* | Voltorb Lv24, Magnemite Lv24, Pikachu Lv24 |
 | Sailor Dwayne | Pikachu Lv24, Pikachu Lv24 |
 | Gentleman Tucker | Pikachu Lv26 |
 
@@ -576,7 +576,7 @@ Includes the rival's earlier battles; which team you face depends on your starte
 
 | Trainer | Pokémon |
 |---|---|
-| Beauty Bridget | Oddish Lv24, Bellsprout Lv24, Oddish Lv24, Bellsprout Lv24 |
+| Beauty Bridget *(double)* | Oddish Lv24, Bellsprout Lv24, Gloom Lv25, Weepinbell Lv25 |
 | Lass Kay | Bellsprout Lv26, Weepinbell Lv26 |
 | Lass Lisa | Oddish Lv26, Gloom Lv26 |
 | Beauty Lori | Exeggcute Lv28 |
@@ -588,7 +588,7 @@ Includes the rival's earlier battles; which team you face depends on your starte
 
 | Trainer | Pokémon |
 |---|---|
-| Tamer Edgar | Arbok Lv38, Sandslash Lv38, Arbok Lv38 |
+| Tamer Edgar *(double)* | Arbok Lv38, Sandslash Lv38, Arbok Lv38 |
 | Juggler Kayden | Hypno Lv44 |
 | Juggler Kirk | Drowzee Lv36, Drowzee Lv36, Kadabra Lv36, Drowzee Lv36 |
 | Juggler Nate | Drowzee Lv39, Kadabra Lv39 |
@@ -611,7 +611,7 @@ Includes the rival's earlier battles; which team you face depends on your starte
 |---|---|
 | Channeler Amanda | Gastly Lv39, Haunter Lv39 |
 | Psychic Cameron | Slowpoke Lv38, Slowpoke Lv38, Slowbro Lv38 |
-| Psychic Johan | Kadabra Lv36, Slowpoke Lv36, Mr. Mime Lv36, Kadabra Lv36 |
+| Psychic Johan *(double)* | Mr. Mime Lv36, Kadabra Lv36, Slowpoke Lv36, Kadabra Lv36 |
 | Psychic Preston | Slowbro Lv44 |
 | Channeler Stacy | Haunter Lv44 |
 | Channeler Tasha | Gastly Lv38, Gastly Lv38, Haunter Lv38 |

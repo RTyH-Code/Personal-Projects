@@ -329,9 +329,22 @@ START ADVENTURE:
 | Level caps | The level caps described in the next section. |
 | No items in battle | You can't use items from the Bag in battle. Poké Balls still work. |
 | Set battle style | No free switch after you knock out a foe. The battle style option is locked to Set. |
+| Party Exp. Share | Not a challenge: your whole team gets Exp. (see below). |
 
-The rules are chosen once, for the whole run. Level caps are the exception:
-the Viridian City scientist can still switch them on or off.
+The rules are chosen once, for the whole run. Level caps and Party Exp. Share
+are the exceptions: the scientist in the Viridian City Pokémon Center can
+switch either on or off at any time, including on saves from before these
+options existed.
+
+**Party Exp. Share** works like the modern Exp. Share:
+- Every Pokémon that battled gets the full Exp.
+- The rest of the team gets half.
+- The Exp. formula still scales with each Pokémon's own level.
+- Level caps still apply.
+
+It makes the game much easier, so it's off by default. For example, beating a
+wild Lv. 9 Rattata with a Lv. 50 lead gives the lead 11 Exp. and a benched
+Lv. 5 Pokémon 75.
 
 **Nuzlocke mode** starts once Prof. Oak gives you your Poké Balls:
 - **First encounter only:** you can only catch the first wild Pokémon you meet
@@ -393,6 +406,16 @@ How the cap works with each way of gaining levels:
 - Wild Pokémon on Route 23, in Victory Road and in Cerulean Cave are also
   1.15x higher (Victory Road now reaches Lv. 55), so there's somewhere worth
   training before the Elite Four.
+- **Gym double battles:** one trainer in each gym from Misty's on (except
+  Cinnabar) fights two-on-two, with a team built for doubles:
+  - Spread moves that hit both of your Pokémon, such as Twister, Electroweb,
+    Razor Leaf, Rock Slide and Dazzling Gleam.
+  - Support such as Fake Out, Protect, screens, Trick Room and Helping Hand.
+  - They never use moves that would hit their own partner.
+
+  The trainers are Swimmer Luis, Engineer Baily, Beauty Bridget, Tamer Edgar,
+  Psychic Johan and Cool Trainer Samuel. You need two Pokémon that can battle
+  to take them on.
 - **Victory Road rematches:** the VS Seeker now works in Victory Road, and
   all 12 of its trainers have rematch teams 8 levels higher (Lv. 54–63, evolved
   where the level allows). Like other VS Seeker rematches, you can fight them
@@ -444,6 +467,25 @@ How the cap works with each way of gaining levels:
   252 in Speed (or in HP for slow Pokémon). Each peak trainer carries Full
   Restores.
 
+## Trainer Tower (Seven Island)
+Every Trainer Tower trainer now uses competitive sets, built the way real
+teams are:
+- **Fully evolved:** every Pokémon, using the later evolutions where they
+  exist (e.g. Magmortar, Togekiss, Scizor, Porygon-Z). There's one of each
+  species per team.
+- **Moves from real roles:** they come from Pokémon Showdown's role-based
+  sets (Fast Attacker, Setup Sweeper, Bulky Support and so on), limited to
+  moves in this hack that the Pokémon can learn.
+  - On Double floors, the sets come from the doubles format, with Protect,
+    spread moves, Helping Hand, Follow Me and Trick Room.
+- **EVs, nature and IVs:** 252/252 EVs and a nature that suit the role, and
+  perfect IVs.
+- **Ability and item:** a fitting ability, and a held item for the role
+  (Choice Band, Leftovers, Lum or Sitrus Berry, or a type booster), with no
+  item repeated on a team.
+
+Opponents still scale to your highest-level Pokémon, as in the original.
+
 ## True endgame (after beating the round 2 Champion)
 The Champion's rematch (round 2) unlocks once the Sevii Islands story is
 done. The first time you beat it, or the peak round 3, you get:
@@ -469,9 +511,9 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `229bcb00465d787e42db01e0053241241212ac7d`
+Patched ROM SHA-1: `7dfb6ad4f56c30f6a7ee4dabaa6aa29e975a0685`
 
-Current release: **12**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
+Current release: **13**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
 Saves made on release 7 or later carry over to this release. Older saves need a new game.
 
 ## Building from source
@@ -499,10 +541,14 @@ unmodified pret data:
 - `evo_moves.py`: later level-up moves for stone evolutions (run after `modernize.py`).
 - `peak_trainers.py`: peak teams, gym rematches and the Elite Four round 3.
 - `spoiler_guide.py <dir>`: regenerates the spoiler guide from the game data.
+- `tower_sets.py <dir>`: the competitive Trainer Tower teams, from Showdown's random-battle set files (read as data).
+- `playtest/`: an automated playtest through Brock (a headless mGBA harness plus milestone checks).
+- `gym_doubles.py`: the gym double battles and their doubles movesets.
+- `learnsets.py`: what each species can learn in this hack (used by the trainer scripts).
 - `vr_rematches.py`: the Victory Road VS Seeker rematch teams and scripts.
 - `exp_budget.py`: how much trainer Exp. each stretch of the game gives, against the level caps.
 - `save_check.py REF`: checks whether saves from an older release (a git ref) still load.
 
 ## Credits
 - The later evolutions' sprites, icons, footprints and cries, and the new evolution items' icons, are community-made Gen 3-style graphics from [pokeemerald-expansion](https://github.com/rh-hideout/pokeemerald-expansion); see its [credits](https://github.com/rh-hideout/pokeemerald-expansion/blob/master/CREDITS.md).
-- Move, stat and learnset data comes from [Pokémon Showdown](https://github.com/smogon/pokemon-showdown).
+- Move, stat and learnset data comes from [Pokémon Showdown](https://github.com/smogon/pokemon-showdown), as do the role-based sets the Trainer Tower teams are built from.
