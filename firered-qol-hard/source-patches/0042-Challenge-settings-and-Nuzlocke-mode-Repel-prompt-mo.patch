@@ -1,7 +1,7 @@
 From 1fbfc770327217e9cbd8b455c9d9560ee51bbfc0 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Thu, 5 Nov 2026 23:27:10 +0000
-Subject: [PATCH 42/53] Challenge settings and Nuzlocke mode, Repel prompt,
+Subject: [PATCH 42/54] Challenge settings and Nuzlocke mode, Repel prompt,
  modern shiny odds
 
 - A challenge menu on the first morning: Nuzlocke mode, level caps, no

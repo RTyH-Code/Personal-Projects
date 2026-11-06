@@ -1,7 +1,7 @@
 From f7dd224759a826cc1abbb4fe4c562a582dcdbd44 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Sat, 31 Oct 2026 23:24:11 +0000
-Subject: [PATCH 03/53] Physical/special split and modern stats, moves,
+Subject: [PATCH 03/54] Physical/special split and modern stats, moves,
  learnsets
 
 - Per-move category (.split) drives damage calc, Hustle, Counter/Mirror Coat

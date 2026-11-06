@@ -18,6 +18,12 @@ Pull requests: [#32](https://github.com/RTyH-Code/Personal-Projects/pull/32)
   matching the trainers. This covers Routes 7–21, Rock Tunnel, Pokémon
   Tower, the Safari Zone, Power Plant, Seafoam, the Mansion and Sevii 1–3.
   Fishing levels are unchanged.
+- **Rematches catch up:**
+  - **When:** until you have all eight badges.
+  - **What:** VS Seeker rematch Pokémon more than 5 levels under the next
+    Gym Leader's strongest are raised to that level, and evolve if they can.
+- **Lucky Egg:** Koga gives you one after his gym. If your save already beat
+  him, talk to him again.
 - **Saves:** release 13 saves carry over.
 
 ## Release 13 (2026-11-06)

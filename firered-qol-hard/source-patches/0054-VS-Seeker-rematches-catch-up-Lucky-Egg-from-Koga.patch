@@ -1,0 +1,252 @@
+From 99f8d7930e4ea0bf0a9dedf45e6c0e5badd1e22d Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Fri, 6 Nov 2026 19:06:33 +0000
+Subject: [PATCH 54/54] VS Seeker rematches catch up; Lucky Egg from Koga
+
+- Until all eight badges, a VS Seeker rematch Pokemon below 5 levels
+  under the next Gym Leader's ace is raised to that level and evolves if
+  the new level allows (level-based evolutions).
+- Koga gives a Lucky Egg after his gym (existing saves: talk to him again).
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ HACK_NOTES.md                         | 11 ++++++
+ data/maps/FuchsiaCity_Gym/scripts.inc | 17 ++++++++
+ data/maps/FuchsiaCity_Gym/text.inc    | 14 +++++++
+ include/constants/flags.h             |  1 +
+ include/pokemon.h                     |  3 ++
+ src/battle_main.c                     |  8 ++--
+ src/battle_setup.c                    |  6 +++
+ src/pokemon.c                         | 56 +++++++++++++++++++++++++++
+ 8 files changed, 112 insertions(+), 4 deletions(-)
+
+diff --git a/HACK_NOTES.md b/HACK_NOTES.md
+index 2bfdaab..18dab8c 100644
+--- a/HACK_NOTES.md
++++ b/HACK_NOTES.md
+@@ -406,6 +406,17 @@ How the cap works with each way of gaining levels:
+   Pokémon Tower, the Safari Zone, Power Plant, Seafoam Islands, Pokémon
+   Mansion, the Sevii Islands 1–3, Route 23, Victory Road (now up to Lv. 55)
+   and Cerulean Cave. Fishing levels are unchanged.
++- **VS Seeker rematches catch up:**
++  - **When:** until you have all eight badges.
++  - **What:** any route rematch Pokémon below 5 levels under the next Gym
++    Leader's strongest is raised to that level.
++  - **Evolution:** it also evolves if its new level allows, so you won't
++    meet a Lv. 40 Rattata.
++  - **Why:** this keeps rematches worth fighting when you train before
++    Koga, Sabrina, Blaine and Giovanni.
++- **Lucky Egg from Koga:** after his gym, Koga also gives you a Lucky Egg.
++  It's handy for bringing a Pokémon that has fallen behind up to speed.
++  Saves that already beat him can talk to him again to get it.
+ - **Gym double battles:** one trainer in each gym from Misty's on (except
+   Cinnabar) fights two-on-two, with a team built for doubles:
+   - Spread moves that hit both of your Pokémon, such as Twister, Electroweb,
+diff --git a/data/maps/FuchsiaCity_Gym/scripts.inc b/data/maps/FuchsiaCity_Gym/scripts.inc
+index e0a21a8..468c40f 100644
+--- a/data/maps/FuchsiaCity_Gym/scripts.inc
++++ b/data/maps/FuchsiaCity_Gym/scripts.inc
+@@ -5,6 +5,7 @@ FuchsiaCity_Gym_EventScript_Koga::
+ 	famechecker FAMECHECKER_KOGA, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
+ 	trainerbattle_single TRAINER_LEADER_KOGA, FuchsiaCity_Gym_Text_KogaIntro, FuchsiaCity_Gym_Text_KogaDefeat, FuchsiaCity_Gym_EventScript_DefeatedKoga, NO_MUSIC
+ 	goto_if_unset FLAG_GOT_TM06_FROM_KOGA, FuchsiaCity_Gym_EventScript_GiveTM06
++	goto_if_unset FLAG_HACK_GOT_LUCKY_EGG, FuchsiaCity_Gym_EventScript_GiveLuckyEgg
+ 	goto_if_set FLAG_SYS_GAME_CLEAR, FuchsiaCity_Gym_EventScript_PeakRematch
+ 	msgbox FuchsiaCity_Gym_Text_KogaPostBattle
+ 	release
+@@ -26,6 +27,22 @@ FuchsiaCity_Gym_EventScript_GiveTM06::
+ 	giveitem_msg FuchsiaCity_Gym_Text_ReceivedTM06FromKoga, ITEM_TM06
+ 	setflag FLAG_GOT_TM06_FROM_KOGA
+ 	msgbox FuchsiaCity_Gym_Text_KogaExplainTM06
++	goto FuchsiaCity_Gym_EventScript_GiveLuckyEgg
++	end
++
++@ FireRed QoL+Hard: a Lucky Egg to help bring up a straggler
++FuchsiaCity_Gym_EventScript_GiveLuckyEgg::
++	msgbox FuchsiaCity_Gym_Text_HackKogaLuckyEgg
++	checkitemspace ITEM_LUCKY_EGG
++	goto_if_eq VAR_RESULT, FALSE, FuchsiaCity_Gym_EventScript_NoRoomForLuckyEgg
++	giveitem ITEM_LUCKY_EGG
++	setflag FLAG_HACK_GOT_LUCKY_EGG
++	msgbox FuchsiaCity_Gym_Text_HackKogaLuckyEggExplain
++	release
++	end
++
++FuchsiaCity_Gym_EventScript_NoRoomForLuckyEgg::
++	msgbox FuchsiaCity_Gym_Text_HackKogaNoRoom
+ 	release
+ 	end
+ 
+diff --git a/data/maps/FuchsiaCity_Gym/text.inc b/data/maps/FuchsiaCity_Gym/text.inc
+index 4d71e9f..751061f 100644
+--- a/data/maps/FuchsiaCity_Gym/text.inc
++++ b/data/maps/FuchsiaCity_Gym/text.inc
+@@ -154,3 +154,17 @@ FuchsiaCity_Gym_Text_GymStatuePlayerWon::
+     .string "WINNING TRAINERS:\n"
+     .string "{RIVAL}, {PLAYER}$"
+ 
++
++FuchsiaCity_Gym_Text_HackKogaLuckyEgg::
++    .string "A ninja's training never ends.\n"
++    .string "Take this as well.$"
++
++FuchsiaCity_Gym_Text_HackKogaLuckyEggExplain::
++    .string "A POKéMON holding a LUCKY EGG\n"
++    .string "earns extra EXP. in battle.\p"
++    .string "Use it to bring a POKéMON that's\n"
++    .string "fallen behind up to speed.$"
++
++FuchsiaCity_Gym_Text_HackKogaNoRoom::
++    .string "Your BAG is full. Make room, then\n"
++    .string "come back and see me.$"
+diff --git a/include/constants/flags.h b/include/constants/flags.h
+index 7f4bc9e..76549ae 100644
+--- a/include/constants/flags.h
++++ b/include/constants/flags.h
+@@ -1328,6 +1328,7 @@
+ #define FLAG_HACK_GOT_SHINY_CHARM        (TRAINER_FLAGS_START + TRAINER_GUITARIST)
+ #define FLAG_HACK_NORMAL_BATTLE_SPEED    (TRAINER_FLAGS_START + TRAINER_EXPERT_M) // Options: battle speed NORMAL (unset = FAST)
+ #define FLAG_HACK_PARTY_EXP_SHARE        (TRAINER_FLAGS_START + TRAINER_EXPERT_F) // modern party-wide Exp. Share
++#define FLAG_HACK_GOT_LUCKY_EGG          (TRAINER_FLAGS_START + TRAINER_RS_FISHERMAN) // Koga's Lucky Egg gift
+ #define FLAG_HACK_LEVEL_CAP              (TRAINER_FLAGS_START + TRAINER_RS_BEAUTY) // optional level caps on
+ #define FLAG_HACK_TRUE_ENDGAME           (TRAINER_FLAGS_START + TRAINER_RS_COOLTRAINER_F) // beat the round 2 Champion
+ #define FLAG_HIDE_SEVAULT_CANYON_ROOT_FOSSIL (TRAINER_FLAGS_START + TRAINER_HEX_MANIAC)
+diff --git a/include/pokemon.h b/include/pokemon.h
+index d563607..92e0c71 100644
+--- a/include/pokemon.h
++++ b/include/pokemon.h
+@@ -399,6 +399,9 @@ bool8 Hack_IsTrueEndgame(void);
+ u8 Hack_GetLevelCap(void);
+ u32 Hack_CapExpGain(u16 species, u32 exp, u32 gain);
+ u32 Hack_ScaleExp(u32 exp, u8 foeLevel, u8 monLevel);
++u8 Hack_RematchLevel(u8 level);
++u16 Hack_RematchSpecies(u16 species, u8 level);
++bool8 Hack_IsRematchBattle(void);
+ u8 GetLevelUpMovesBySpecies(u16 species, u16 *moves);
+ u8 GetNumberOfRelearnableMoves(struct Pokemon *mon);
+ u16 SpeciesToPokedexNum(u16 species);
+diff --git a/src/battle_main.c b/src/battle_main.c
+index e616dc4..f099201 100644
+--- a/src/battle_main.c
++++ b/src/battle_main.c
+@@ -1633,7 +1633,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
+ 
+                 personalityValue += nameHash << 8;
+                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
+-                CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
++                CreateMon(&party[i], Hack_RematchSpecies(partyData[i].species, partyData[i].lvl), Hack_RematchLevel(partyData[i].lvl), fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                 break;
+             }
+             case F_TRAINER_PARTY_CUSTOM_MOVESET:
+@@ -1645,7 +1645,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
+ 
+                 personalityValue += nameHash << 8;
+                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
+-                CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
++                CreateMon(&party[i], Hack_RematchSpecies(partyData[i].species, partyData[i].lvl), Hack_RematchLevel(partyData[i].lvl), fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+ 
+                 for (j = 0; j < MAX_MON_MOVES; j++)
+                 {
+@@ -1663,7 +1663,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
+ 
+                 personalityValue += nameHash << 8;
+                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
+-                CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
++                CreateMon(&party[i], Hack_RematchSpecies(partyData[i].species, partyData[i].lvl), Hack_RematchLevel(partyData[i].lvl), fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+ 
+                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
+                 break;
+@@ -1680,7 +1680,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
+                 if (gTrainers[trainerNum].partyFlags & F_TRAINER_PARTY_PEAK)
+                     CreatePeakTrainerMon(&party[i], partyData[i].species, partyData[i].lvl, partyData[i].moves);
+                 else
+-                    CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
++                    CreateMon(&party[i], Hack_RematchSpecies(partyData[i].species, partyData[i].lvl), Hack_RematchLevel(partyData[i].lvl), fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
+ 
+                 for (j = 0; j < MAX_MON_MOVES; j++)
+diff --git a/src/battle_setup.c b/src/battle_setup.c
+index 08e4d64..cb6417d 100644
+--- a/src/battle_setup.c
++++ b/src/battle_setup.c
+@@ -1070,3 +1070,9 @@ static const u8 *GetTrainerCantBattleSpeech(void)
+ {
+     return ReturnEmptyStringIfNull(sTrainerCannotBattleSpeech);
+ }
++
++// FireRed QoL+Hard: is the trainer battle being set up a VS Seeker rematch?
++bool8 Hack_IsRematchBattle(void)
++{
++    return sTrainerBattleMode == TRAINER_BATTLE_REMATCH || sTrainerBattleMode == TRAINER_BATTLE_REMATCH_DOUBLE;
++}
+diff --git a/src/pokemon.c b/src/pokemon.c
+index c952a12..965aca0 100644
+--- a/src/pokemon.c
++++ b/src/pokemon.c
+@@ -7266,6 +7266,62 @@ u8 Hack_GetLevelCap(void)
+     return cap;
+ }
+ 
++// VS Seeker rematch teams catch up: until you have all eight badges, a
++// rematch Pokemon below 5 levels under the next Gym Leader's strongest is
++// raised to that level, and evolves if its new level allows.
++static u8 Hack_RematchFloor(void)
++{
++    u8 i, lvl, ace = 0xFF;
++
++    if (!Hack_IsRematchBattle())
++        return 0;
++    for (i = 0; i < ARRAY_COUNT(sHackCapLeaders); i++)
++    {
++        if (!FlagGet(FLAG_BADGE01_GET + i))
++        {
++            lvl = Hack_TrainerMaxLevel(sHackCapLeaders[i]);
++            if (lvl < ace)
++                ace = lvl;
++        }
++    }
++    return (ace == 0xFF || ace <= 5) ? 0 : ace - 5;
++}
++
++u8 Hack_RematchLevel(u8 level)
++{
++    u8 floor = Hack_RematchFloor();
++    return level < floor ? floor : level;
++}
++
++u16 Hack_RematchSpecies(u16 species, u8 level)
++{
++    u8 i, step;
++    bool8 evolved;
++
++    level = Hack_RematchLevel(level);
++    if (!Hack_IsRematchBattle())
++        return species;
++    for (step = 0; step < 3; step++)
++    {
++        evolved = FALSE;
++        for (i = 0; i < EVOS_PER_MON; i++)
++        {
++            const struct Evolution *evo = &gEvolutionTable[species][i];
++            if ((evo->method == EVO_LEVEL || evo->method == EVO_LEVEL_ATK_GT_DEF || evo->method == EVO_LEVEL_ATK_EQ_DEF
++              || evo->method == EVO_LEVEL_ATK_LT_DEF || evo->method == EVO_LEVEL_SILCOON || evo->method == EVO_LEVEL_CASCOON
++              || evo->method == EVO_LEVEL_NINJASK) && evo->param <= level)
++            {
++                species = evo->targetSpecies;
++                evolved = TRUE;
++                break;
++            }
++        }
++        if (!evolved)
++            break;
++    }
++    return species;
++}
++
+ // For the toggle NPC: VAR_RESULT = cap, STR_VAR_1 = cap as text.
+ static u32 Hack_Isqrt(u64 n)
+ {
+-- 
+2.43.0
+

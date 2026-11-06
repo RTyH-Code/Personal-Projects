@@ -1,7 +1,7 @@
 From abadf649c88d8648ce0bffd52cfa2aceeb6a92fa Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Sat, 31 Oct 2026 22:58:20 +0000
-Subject: [PATCH 01/53] QoL + difficulty hack
+Subject: [PATCH 01/54] QoL + difficulty hack
 
 - Running shoes from start, fast text + Set style default
 - Reusable TMs, forgettable HMs, trade evolutions by level/item

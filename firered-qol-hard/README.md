@@ -408,6 +408,17 @@ How the cap works with each way of gaining levels:
   Pokémon Tower, the Safari Zone, Power Plant, Seafoam Islands, Pokémon
   Mansion, the Sevii Islands 1–3, Route 23, Victory Road (now up to Lv. 55)
   and Cerulean Cave. Fishing levels are unchanged.
+- **VS Seeker rematches catch up:**
+  - **When:** until you have all eight badges.
+  - **What:** any route rematch Pokémon below 5 levels under the next Gym
+    Leader's strongest is raised to that level.
+  - **Evolution:** it also evolves if its new level allows, so you won't
+    meet a Lv. 40 Rattata.
+  - **Why:** this keeps rematches worth fighting when you train before
+    Koga, Sabrina, Blaine and Giovanni.
+- **Lucky Egg from Koga:** after his gym, Koga also gives you a Lucky Egg.
+  It's handy for bringing a Pokémon that has fallen behind up to speed.
+  Saves that already beat him can talk to him again to get it.
 - **Gym double battles:** one trainer in each gym from Misty's on (except
   Cinnabar) fights two-on-two, with a team built for doubles:
   - Spread moves that hit both of your Pokémon, such as Twister, Electroweb,
@@ -513,7 +524,7 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `cc2d6045f306ac3f88415149f8806bec689ebb31`
+Patched ROM SHA-1: `62c2a05dec0301b03e9fffe92661d4604dfc01e2`
 
 Current release: **14**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
 Saves made on release 7 or later carry over to this release. Older saves need a new game.
