@@ -10,6 +10,8 @@
 # Safe to run again: it picks up where it left off, and updates the
 # playtester to the version in this folder.
 
+param([switch]$Elevated)  # set when this script restarted itself with administrator rights
+
 # Errors from programs are checked by hand ($LASTEXITCODE): in Windows PowerShell 5.1,
 # 'Stop' turns any message a program prints to stderr into a fatal error.
 $ErrorActionPreference = 'Continue'
@@ -17,11 +19,17 @@ $here = $PSScriptRoot
 $source = (Resolve-Path (Join-Path $here '..')).Path
 
 function Say($text) { Write-Host ''; Write-Host $text -ForegroundColor Cyan }
+function Pause-IfOwnWindow {
+    # Install.bat waits for a key itself; the administrator window has no Install.bat around it.
+    if ($Elevated) { Write-Host ''; Read-Host 'Press Enter to close' | Out-Null }
+}
 function Fail($text) {
     Write-Host ''
     Write-Host $text -ForegroundColor Red
     Write-Host ''
-    Read-Host 'Press Enter to close'
+    Write-Host "A log of this setup is in $log"
+    Stop-Transcript | Out-Null
+    Pause-IfOwnWindow
     exit 1
 }
 function Test-Admin {
@@ -39,14 +47,27 @@ function Get-UbuntuName {
     return $null
 }
 
+$log = Join-Path $env:TEMP 'FireRedPlaytester-install.log'
+Start-Transcript -Path $log -Append | Out-Null
 Write-Host '=== FireRed Playtester setup ===' -ForegroundColor Green
+Write-Host "Installing from: $source"
 
 # --- 1. WSL and Ubuntu ------------------------------------------------------------
 $distro = Get-UbuntuName
 if (-not $distro) {
     if (-not (Test-Admin)) {
-        Say 'Ubuntu (WSL) is not installed yet. Windows will ask for administrator permission to install it.'
-        Start-Process powershell.exe -Verb RunAs -ArgumentList @('-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', "`"$PSCommandPath`"")
+        Say 'Ubuntu (WSL) is not installed yet. Installing it needs administrator permission.'
+        Write-Host 'Windows will now ask "Do you want to allow this app to make changes to your device?". Click Yes.'
+        try {
+            Start-Process powershell.exe -Verb RunAs -ErrorAction Stop -ArgumentList @(
+                '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', "`"$PSCommandPath`"", '-Elevated')
+        } catch {
+            Fail 'Windows did not give administrator permission (maybe "No" was clicked). Run Install.bat again and click Yes.'
+        }
+        Write-Host ''
+        Write-Host 'The setup continues in a NEW window (titled Administrator: Windows PowerShell).' -ForegroundColor Yellow
+        Write-Host 'Follow the instructions there. If you do not see it, check the taskbar.' -ForegroundColor Yellow
+        Stop-Transcript | Out-Null
         exit 0
     }
     Say 'Installing WSL and Ubuntu. This downloads about 1 GB and can take a while.'
@@ -62,8 +83,8 @@ if (-not $distro) {
     Write-Host '     to pick a username and password. They are only for Ubuntu; any will do.'
     Write-Host '     Nothing shows while you type the password - that is normal.'
     Write-Host '  3. When it shows a prompt ending in $, close that window and run Install.bat again.'
-    Write-Host ''
-    Read-Host 'Press Enter to close'
+    Stop-Transcript | Out-Null
+    Pause-IfOwnWindow
     exit 0
 }
 Say "Found $distro."
@@ -78,7 +99,7 @@ if ($user -eq 'root') {
     Write-Host 'Ubuntu has no user of your own yet. Open "Ubuntu" from the Start menu, follow its' -ForegroundColor Yellow
     Write-Host 'questions (username and password), then run Install.bat again.' -ForegroundColor Yellow
     Write-Host '(If you prefer, this works as root too: press Enter to carry on anyway.)'
-    Read-Host 'Press Enter to continue'
+    Read-Host 'Press Enter to continue' | Out-Null
 }
 
 # --- 2. Python inside Ubuntu -----------------------------------------------------------
@@ -120,5 +141,5 @@ Write-Host ''
 Write-Host 'All set!' -ForegroundColor Green
 Write-Host 'Start a run: double-click "FireRed Playtest" on your desktop, or drop your ROM (.gba) onto it.'
 Write-Host 'See results: "FireRed Playtest Reports" on your desktop, then report.html inside a run folder.'
-Write-Host ''
-Read-Host 'Press Enter to close'
+Stop-Transcript | Out-Null
+Pause-IfOwnWindow

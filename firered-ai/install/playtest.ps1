@@ -10,7 +10,6 @@ $ErrorActionPreference = 'Continue'
 function Fail($text) {
     Write-Host ''
     Write-Host $text -ForegroundColor Red
-    Read-Host 'Press Enter to close'
     exit 1
 }
 function To-Linux($path) {
@@ -84,5 +83,3 @@ if (Test-Path -LiteralPath $report) {
 } elseif ($code -ne 0) {
     Fail 'The playtest stopped with an error (see the messages above).'
 }
-Write-Host ''
-Read-Host 'Press Enter to close'
