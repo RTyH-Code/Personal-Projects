@@ -1,7 +1,7 @@
 From d9a650985db894b779855553067b921f8f9b971e Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Sat, 31 Oct 2026 23:34:50 +0000
-Subject: [PATCH 05/46] Make every non-legendary Pokemon obtainable
+Subject: [PATCH 05/48] Make every non-legendary Pokemon obtainable
 
 - tools/hack/encounters.py places ~130 species in thematic FireRed tables,
   taking slots only from common species, and verifies all 386 are obtainable

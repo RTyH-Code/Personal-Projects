@@ -329,9 +329,22 @@ START ADVENTURE:
 | Level caps | The level caps described in the next section. |
 | No items in battle | You can't use items from the Bag in battle. Poké Balls still work. |
 | Set battle style | No free switch after you knock out a foe. The battle style option is locked to Set. |
+| Party Exp. Share | Not a challenge: your whole team gets Exp. (see below). |
 
-The rules are chosen once, for the whole run. Level caps are the exception:
-the Viridian City scientist can still switch them on or off.
+The rules are chosen once, for the whole run. Level caps and Party Exp. Share
+are the exceptions: the scientist in the Viridian City Pokémon Center can
+switch either on or off at any time, including on saves from before these
+options existed.
+
+**Party Exp. Share** works like the modern Exp. Share:
+- Every Pokémon that battled gets the full Exp.
+- The rest of the team gets half.
+- The Exp. formula still scales with each Pokémon's own level.
+- Level caps still apply.
+
+It makes the game much easier, so it's off by default. For example, beating a
+wild Lv. 9 Rattata with a Lv. 50 lead gives the lead 11 Exp. and a benched
+Lv. 5 Pokémon 75.
 
 **Nuzlocke mode** starts once Prof. Oak gives you your Poké Balls:
 - **First encounter only:** you can only catch the first wild Pokémon you meet
@@ -393,6 +406,16 @@ How the cap works with each way of gaining levels:
 - Wild Pokémon on Route 23, in Victory Road and in Cerulean Cave are also
   1.15x higher (Victory Road now reaches Lv. 55), so there's somewhere worth
   training before the Elite Four.
+- **Gym double battles:** one trainer in each gym from Misty's on (except
+  Cinnabar) fights two-on-two, with a team built for doubles:
+  - Spread moves that hit both of your Pokémon, such as Twister, Electroweb,
+    Razor Leaf, Rock Slide and Dazzling Gleam.
+  - Support such as Fake Out, Protect, screens, Trick Room and Helping Hand.
+  - They never use moves that would hit their own partner.
+
+  The trainers are Swimmer Luis, Engineer Baily, Beauty Bridget, Tamer Edgar,
+  Psychic Johan and Cool Trainer Samuel. You need two Pokémon that can battle
+  to take them on.
 - **Victory Road rematches:** the VS Seeker now works in Victory Road, and
   all 12 of its trainers have rematch teams 8 levels higher (Lv. 54–63, evolved
   where the level allows). Like other VS Seeker rematches, you can fight them
@@ -469,9 +492,9 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `229bcb00465d787e42db01e0053241241212ac7d`
+Patched ROM SHA-1: `d6734e5adf27c7c9e55b4c011fe1b01675b50993`
 
-Current release: **12**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
+Current release: **13**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
 Saves made on release 7 or later carry over to this release. Older saves need a new game.
 
 ## Building from source
@@ -499,6 +522,8 @@ unmodified pret data:
 - `evo_moves.py`: later level-up moves for stone evolutions (run after `modernize.py`).
 - `peak_trainers.py`: peak teams, gym rematches and the Elite Four round 3.
 - `spoiler_guide.py <dir>`: regenerates the spoiler guide from the game data.
+- `gym_doubles.py`: the gym double battles and their doubles movesets.
+- `learnsets.py`: what each species can learn in this hack (used by the trainer scripts).
 - `vr_rematches.py`: the Victory Road VS Seeker rematch teams and scripts.
 - `exp_budget.py`: how much trainer Exp. each stretch of the game gives, against the level caps.
 - `save_check.py REF`: checks whether saves from an older release (a git ref) still load.

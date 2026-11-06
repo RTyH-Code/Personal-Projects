@@ -1,0 +1,330 @@
+From a9b3898fdcd144d191ca7549fcdca0e89a29a0f9 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Fri, 6 Nov 2026 02:31:45 +0000
+Subject: [PATCH 47/48] Party Exp. Share option
+
+Modern Exp. Share: every Pokemon that battled gets the full Exp., the
+rest of the team half (each still scaled by its own level, and capped).
+Off by default; switch it on in the challenge menu or with the Viridian
+City scientist, who now asks LEVEL CAPS / EXP. SHARE. exp_budget.py
+gains --party-share to model it.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ HACK_NOTES.md                                 | 17 ++++++++++--
+ .../ViridianCity_PokemonCenter_1F/scripts.inc | 27 +++++++++++++++++++
+ .../ViridianCity_PokemonCenter_1F/text.inc    | 21 +++++++++++++++
+ include/constants/flags.h                     |  1 +
+ include/constants/menu.h                      |  1 +
+ include/hack_challenge.h                      |  1 +
+ src/battle_script_commands.c                  | 25 ++++++++++++++---
+ src/hack_challenge.c                          | 20 +++++++++-----
+ src/script_menu.c                             |  9 +++++++
+ tools/hack/exp_budget.py                      | 17 +++++++++---
+ 10 files changed, 125 insertions(+), 14 deletions(-)
+
+diff --git a/HACK_NOTES.md b/HACK_NOTES.md
+index 97cb790..7b55914 100644
+--- a/HACK_NOTES.md
++++ b/HACK_NOTES.md
+@@ -327,9 +327,22 @@ START ADVENTURE:
+ | Level caps | The level caps described in the next section. |
+ | No items in battle | You can't use items from the Bag in battle. Poké Balls still work. |
+ | Set battle style | No free switch after you knock out a foe. The battle style option is locked to Set. |
++| Party Exp. Share | Not a challenge: your whole team gets Exp. (see below). |
+ 
+-The rules are chosen once, for the whole run. Level caps are the exception:
+-the Viridian City scientist can still switch them on or off.
++The rules are chosen once, for the whole run. Level caps and Party Exp. Share
++are the exceptions: the scientist in the Viridian City Pokémon Center can
++switch either on or off at any time, including on saves from before these
++options existed.
++
++**Party Exp. Share** works like the modern Exp. Share:
++- Every Pokémon that battled gets the full Exp.
++- The rest of the team gets half.
++- The Exp. formula still scales with each Pokémon's own level.
++- Level caps still apply.
++
++It makes the game much easier, so it's off by default. For example, beating a
++wild Lv. 9 Rattata with a Lv. 50 lead gives the lead 11 Exp. and a benched
++Lv. 5 Pokémon 75.
+ 
+ **Nuzlocke mode** starts once Prof. Oak gives you your Poké Balls:
+ - **First encounter only:** you can only catch the first wild Pokémon you meet
+diff --git a/data/maps/ViridianCity_PokemonCenter_1F/scripts.inc b/data/maps/ViridianCity_PokemonCenter_1F/scripts.inc
+index 19a086e..20b6482 100644
+--- a/data/maps/ViridianCity_PokemonCenter_1F/scripts.inc
++++ b/data/maps/ViridianCity_PokemonCenter_1F/scripts.inc
+@@ -30,6 +30,33 @@ ViridianCity_PokemonCenter_1F_EventScript_Youngster::
+ ViridianCity_PokemonCenter_1F_EventScript_LevelCap::
+ 	lock
+ 	faceplayer
++	message Hack_Text_SettingsWhich
++	waitmessage
++	multichoice 18, 6, MULTICHOICE_HACK_SETTINGS, FALSE
++	switch VAR_RESULT
++	case 0, ViridianCity_PokemonCenter_1F_EventScript_LevelCapMenu
++	case 1, ViridianCity_PokemonCenter_1F_EventScript_ExpShare
++	goto ViridianCity_PokemonCenter_1F_EventScript_LevelCapDone
++	end
++
++ViridianCity_PokemonCenter_1F_EventScript_ExpShare::
++	goto_if_set FLAG_HACK_PARTY_EXP_SHARE, ViridianCity_PokemonCenter_1F_EventScript_ExpShareIsOn
++	msgbox Hack_Text_ExpShareOffer, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, ViridianCity_PokemonCenter_1F_EventScript_LevelCapDone
++	setflag FLAG_HACK_PARTY_EXP_SHARE
++	msgbox Hack_Text_ExpShareNowOn
++	release
++	end
++
++ViridianCity_PokemonCenter_1F_EventScript_ExpShareIsOn::
++	msgbox Hack_Text_ExpShareIsOn, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, ViridianCity_PokemonCenter_1F_EventScript_LevelCapDone
++	clearflag FLAG_HACK_PARTY_EXP_SHARE
++	msgbox Hack_Text_ExpShareNowOff
++	release
++	end
++
++ViridianCity_PokemonCenter_1F_EventScript_LevelCapMenu::
+ 	goto_if_set FLAG_SYS_GAME_CLEAR, ViridianCity_PokemonCenter_1F_EventScript_LevelCapChampion
+ 	goto_if_set FLAG_HACK_LEVEL_CAP, ViridianCity_PokemonCenter_1F_EventScript_LevelCapIsOn
+ 	msgbox Hack_Text_LevelCapOffer, MSGBOX_YESNO
+diff --git a/data/maps/ViridianCity_PokemonCenter_1F/text.inc b/data/maps/ViridianCity_PokemonCenter_1F/text.inc
+index 6ffb615..a6a65c8 100644
+--- a/data/maps/ViridianCity_PokemonCenter_1F/text.inc
++++ b/data/maps/ViridianCity_PokemonCenter_1F/text.inc
+@@ -44,6 +44,27 @@ Hack_Text_LevelCapChampion::
+     .string "You're the CHAMPION!\n"
+     .string "No level cap holds you back now.$"
+ 
++Hack_Text_SettingsWhich::
++    .string "I look after the LEVEL CAP and\n"
++    .string "EXP. SHARE settings. Which one?$"
++
++Hack_Text_ExpShareOffer::
++    .string "With PARTY EXP. SHARE, your whole\n"
++    .string "team earns EXP. from each battle.\p"
++    .string "POKéMON that didn't battle get half.\n"
++    .string "It makes leveling up much easier.\p"
++    .string "Turn PARTY EXP. SHARE on?$"
++
++Hack_Text_ExpShareNowOn::
++    .string "PARTY EXP. SHARE is ON!$"
++
++Hack_Text_ExpShareIsOn::
++    .string "PARTY EXP. SHARE is ON.\n"
++    .string "Turn it off?$"
++
++Hack_Text_ExpShareNowOff::
++    .string "PARTY EXP. SHARE is OFF.$"
++
+ Hack_Text_LevelCapDone::
+     .string "Come back any time.$"
+ 
+diff --git a/include/constants/flags.h b/include/constants/flags.h
+index f294895..7f4bc9e 100644
+--- a/include/constants/flags.h
++++ b/include/constants/flags.h
+@@ -1327,6 +1327,7 @@
+ #define FLAG_HACK_NUZLOCKE_OVER          (TRAINER_FLAGS_START + TRAINER_RS_BLACK_BELT) // whited out: show the run-over message
+ #define FLAG_HACK_GOT_SHINY_CHARM        (TRAINER_FLAGS_START + TRAINER_GUITARIST)
+ #define FLAG_HACK_NORMAL_BATTLE_SPEED    (TRAINER_FLAGS_START + TRAINER_EXPERT_M) // Options: battle speed NORMAL (unset = FAST)
++#define FLAG_HACK_PARTY_EXP_SHARE        (TRAINER_FLAGS_START + TRAINER_EXPERT_F) // modern party-wide Exp. Share
+ #define FLAG_HACK_LEVEL_CAP              (TRAINER_FLAGS_START + TRAINER_RS_BEAUTY) // optional level caps on
+ #define FLAG_HACK_TRUE_ENDGAME           (TRAINER_FLAGS_START + TRAINER_RS_COOLTRAINER_F) // beat the round 2 Champion
+ #define FLAG_HIDE_SEVAULT_CANYON_ROOT_FOSSIL (TRAINER_FLAGS_START + TRAINER_HEX_MANIAC)
+diff --git a/include/constants/menu.h b/include/constants/menu.h
+index 372e87c..0d690a3 100644
+--- a/include/constants/menu.h
++++ b/include/constants/menu.h
+@@ -72,6 +72,7 @@
+ #define MULTICHOICE_HACK_NATURE_ABILITY                        65
+ #define MULTICHOICE_HACK_RAISE_STAT                            66
+ #define MULTICHOICE_HACK_LOWER_STAT                            67
++#define MULTICHOICE_HACK_SETTINGS                              68
+ 
+ #define MULTICHOICE_NONE                                      255
+ 
+diff --git a/include/hack_challenge.h b/include/hack_challenge.h
+index be07b4a..dcaf3ef 100644
+--- a/include/hack_challenge.h
++++ b/include/hack_challenge.h
+@@ -13,6 +13,7 @@ bool8 Hack_NuzlockeCanCatch(void);
+ bool8 Hack_NoBattleItems(void);
+ void Hack_ChallengeMenu(void);
+ bool8 Hack_FastBattles(void);
++bool8 Hack_PartyExpShare(void);
+ void Hack_NuzlockeTracker(void);
+ extern const u8 EventScript_HackNuzlockeTracker[];
+ 
+diff --git a/src/battle_script_commands.c b/src/battle_script_commands.c
+index 6029427..c1f0ebe 100644
+--- a/src/battle_script_commands.c
++++ b/src/battle_script_commands.c
+@@ -3306,7 +3306,16 @@ static void Cmd_getexp(void)
+ 
+             calculatedExp = gSpeciesInfo[gBattleMons[gBattlerFainted].species].expYield * gBattleMons[gBattlerFainted].level / 5; // FireRed QoL+Hard: modern base (scaled per Pokemon below)
+ 
+-            if (viaExpShare) // at least one mon is getting exp via exp share
++            if (Hack_PartyExpShare())
++            {
++                // FireRed QoL+Hard: modern Exp. Share. Every Pokemon that battled
++                // gets the full amount; the rest of the team gets half.
++                *exp = calculatedExp;
++                gExpShareExp = calculatedExp / 2;
++                if (gExpShareExp == 0)
++                    gExpShareExp = 1;
++            }
++            else if (viaExpShare) // at least one mon is getting exp via exp share
+             {
+                 *exp = SAFE_DIV(calculatedExp / 2, viaSentIn);
+                 if (*exp == 0)
+@@ -3339,7 +3348,15 @@ static void Cmd_getexp(void)
+             else
+                 holdEffect = ItemId_GetHoldEffect(item);
+ 
+-            if (holdEffect != HOLD_EFFECT_EXP_SHARE && !(gBattleStruct->sentInPokes & 1))
++            if (Hack_PartyExpShare()
++             && (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_SPECIES) == SPECIES_NONE
++              || GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_IS_EGG)))
++            {
++                *(&gBattleStruct->sentInPokes) >>= 1;
++                gBattleScripting.getexpState = 5;
++                gBattleMoveDamage = 0; // used for exp
++            }
++            else if (!Hack_PartyExpShare() && holdEffect != HOLD_EFFECT_EXP_SHARE && !(gBattleStruct->sentInPokes & 1))
+             {
+                 *(&gBattleStruct->sentInPokes) >>= 1;
+                 gBattleScripting.getexpState = 5;
+@@ -3368,7 +3385,9 @@ static void Cmd_getexp(void)
+                     else
+                         gBattleMoveDamage = 0;
+ 
+-                    if (holdEffect == HOLD_EFFECT_EXP_SHARE)
++                    if (Hack_PartyExpShare())
++                        gBattleMoveDamage = (gBattleStruct->sentInPokes & 1) ? *exp : gExpShareExp;
++                    else if (holdEffect == HOLD_EFFECT_EXP_SHARE)
+                         gBattleMoveDamage += gExpShareExp;
+                     gBattleMoveDamage = Hack_ScaleExp(gBattleMoveDamage, gBattleMons[gBattlerFainted].level,
+                                                       GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL));
+diff --git a/src/hack_challenge.c b/src/hack_challenge.c
+index c503811..a810587 100644
+--- a/src/hack_challenge.c
++++ b/src/hack_challenge.c
+@@ -167,12 +167,13 @@ bool8 Hack_NoBattleItems(void)
+ // ---------------------------------------------------------------------------
+ // Challenge settings menu, shown the first time you wake up in your room.
+ 
+-#define ROW_DONE 4
++#define ROW_DONE 5
+ 
+ static const u8 sText_Nuzlocke[]  = _("NUZLOCKE MODE");
+ static const u8 sText_LevelCaps[] = _("LEVEL CAPS");
+ static const u8 sText_NoItems[]   = _("NO ITEMS IN BATTLE");
+ static const u8 sText_SetOnly[]   = _("SET BATTLE STYLE");
++static const u8 sText_ExpShare[]  = _("PARTY EXP. SHARE");
+ static const u8 sText_Done[]      = _("START ADVENTURE");
+ static const u8 sText_On[]        = _("ON");
+ static const u8 sText_Off[]       = _("OFF");
+@@ -182,14 +183,15 @@ static const u8 sDesc_Nuzlocke[]  = _("Only the first POKéMON in each area\ncan
+ static const u8 sDesc_LevelCaps[] = _("Your POKéMON can't out-level the next\nGYM LEADER's strongest POKéMON.");
+ static const u8 sDesc_NoItems[]   = _("No items from the BAG in battle.\nPOKé BALLS can still be thrown.");
+ static const u8 sDesc_SetOnly[]   = _("No free switch after you knock out\na foe. Locks the battle style option.");
+-static const u8 sDesc_Done[]      = _("Start with these rules. Only LEVEL\nCAPS can be changed later on.");
++static const u8 sDesc_ExpShare[]  = _("Your whole team gets EXP. Those that\ndidn't battle get half.");
++static const u8 sDesc_Done[]      = _("Start with these rules. LEVEL CAPS and\nEXP. SHARE can change later (VIRIDIAN).");
+ 
+-static const u8 *const sRowNames[] = {sText_Nuzlocke, sText_LevelCaps, sText_NoItems, sText_SetOnly, sText_Done};
+-static const u8 *const sRowDescs[] = {sDesc_Nuzlocke, sDesc_LevelCaps, sDesc_NoItems, sDesc_SetOnly, sDesc_Done};
+-static const u16 sRowFlags[] = {FLAG_HACK_NUZLOCKE, FLAG_HACK_LEVEL_CAP, FLAG_HACK_NO_BATTLE_ITEMS, FLAG_HACK_SET_ONLY};
++static const u8 *const sRowNames[] = {sText_Nuzlocke, sText_LevelCaps, sText_NoItems, sText_SetOnly, sText_ExpShare, sText_Done};
++static const u8 *const sRowDescs[] = {sDesc_Nuzlocke, sDesc_LevelCaps, sDesc_NoItems, sDesc_SetOnly, sDesc_ExpShare, sDesc_Done};
++static const u16 sRowFlags[] = {FLAG_HACK_NUZLOCKE, FLAG_HACK_LEVEL_CAP, FLAG_HACK_NO_BATTLE_ITEMS, FLAG_HACK_SET_ONLY, FLAG_HACK_PARTY_EXP_SHARE};
+ 
+ static const struct WindowTemplate sMenuWindow = {
+-    .bg = 0, .tilemapLeft = 2, .tilemapTop = 1, .width = 26, .height = 10, .paletteNum = 15, .baseBlock = 0x008,
++    .bg = 0, .tilemapLeft = 2, .tilemapTop = 1, .width = 26, .height = 12, .paletteNum = 15, .baseBlock = 0x008,
+ };
+ static const struct WindowTemplate sDescWindow = {
+     .bg = 0, .tilemapLeft = 2, .tilemapTop = 15, .width = 26, .height = 4, .paletteNum = 15, .baseBlock = 0x198,
+@@ -277,6 +279,12 @@ void Hack_ChallengeMenu(void)
+     DrawChallengeMenu(taskId);
+ }
+ 
++// Party Exp. Share (challenge menu or the Viridian City scientist).
++bool8 Hack_PartyExpShare(void)
++{
++    return FlagGet(FLAG_HACK_PARTY_EXP_SHARE) && !(gBattleTypeFlags & BATTLE_TYPE_LINK);
++}
++
+ // Options > Battle speed. FAST (the default) drains HP and fills Exp. bars
+ // faster and halves the pauses after battle messages.
+ bool8 Hack_FastBattles(void)
+diff --git a/src/script_menu.c b/src/script_menu.c
+index ecf5b84..63888ab 100644
+--- a/src/script_menu.c
++++ b/src/script_menu.c
+@@ -514,6 +514,14 @@ static const struct MenuAction sMultichoiceList_HackNatureAbility[] = {
+     { gOtherText_Exit }
+ };
+ 
++static const u8 sText_HackLevelCaps[] = _("LEVEL CAPS");
++static const u8 sText_HackExpShare[] = _("EXP. SHARE");
++static const struct MenuAction sMultichoiceList_HackSettings[] = {
++    { sText_HackLevelCaps },
++    { sText_HackExpShare },
++    { gOtherText_Exit }
++};
++
+ // Order matches the nature table: Atk, Def, Spe, SpA, SpD.
+ static const struct MenuAction sMultichoiceList_HackStats[] = {
+     { sText_HackAttack },
+@@ -597,6 +605,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] = {
+     [MULTICHOICE_HACK_NATURE_ABILITY]                        = MULTICHOICE(sMultichoiceList_HackNatureAbility),
+     [MULTICHOICE_HACK_RAISE_STAT]                            = MULTICHOICE(sMultichoiceList_HackStats),
+     [MULTICHOICE_HACK_LOWER_STAT]                            = MULTICHOICE(sMultichoiceList_HackStats),
++    [MULTICHOICE_HACK_SETTINGS]                              = MULTICHOICE(sMultichoiceList_HackSettings),
+ };
+ 
+ // From Cool to Berries goes unused
+diff --git a/tools/hack/exp_budget.py b/tools/hack/exp_budget.py
+index 5384571..090dd1b 100644
+--- a/tools/hack/exp_budget.py
++++ b/tools/hack/exp_budget.py
+@@ -6,7 +6,7 @@ trainers on those maps give (one-time battles, Gym Leaders included; their
+ Exp is awarded before the badge, so it's still clamped at the old cap) and work out what level a team would
+ reach on trainer Exp alone, starting at the previous cap.
+ 
+-usage: python3 tools/hack/exp_budget.py [team sizes, default 3 4 6]
++usage: python3 tools/hack/exp_budget.py [--party-share] [team sizes, default 3 4 6]
+ """
+ import glob, os, re, sys
+ 
+@@ -83,9 +83,20 @@ def level_after(start, exp, rate):
+         lv += 1
+     return lv, e - exp_for(lv, rate)
+ 
++PARTY_SHARE = '--party-share' in sys.argv
++if PARTY_SHARE:
++    sys.argv.remove('--party-share')
++
++
+ def gain(b, L, Lp, n):
+-    """Exp one of n team members gets for a trainer's Lv. L Pokémon (modern formula)."""
+-    base = b * L // 5 // n
++    """Exp one of n team members gets for a trainer's Lv. L Pokémon (modern formula).
++
++    Normally the team shares each knockout. With --party-share (the Party Exp.
++    Share option) one Pokémon battles and gets it all, the others get half, so
++    on average each gets (1 + (n - 1) / 2) / n of the full amount.
++    """
++    base = b * L // 5
++    base = base * (1 + (n - 1) / 2) / n if PARTY_SHARE else base // n
+     return int(base * ((2 * L + 10) / (L + Lp + 10)) ** 2.5 + 1) * 3 // 2
+ 
+ def level_of(e, rate):
+-- 
+2.43.0
+

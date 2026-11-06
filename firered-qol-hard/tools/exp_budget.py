@@ -6,7 +6,7 @@ trainers on those maps give (one-time battles, Gym Leaders included; their
 Exp is awarded before the badge, so it's still clamped at the old cap) and work out what level a team would
 reach on trainer Exp alone, starting at the previous cap.
 
-usage: python3 tools/hack/exp_budget.py [team sizes, default 3 4 6]
+usage: python3 tools/hack/exp_budget.py [--party-share] [team sizes, default 3 4 6]
 """
 import glob, os, re, sys
 
@@ -83,9 +83,20 @@ def level_after(start, exp, rate):
         lv += 1
     return lv, e - exp_for(lv, rate)
 
+PARTY_SHARE = '--party-share' in sys.argv
+if PARTY_SHARE:
+    sys.argv.remove('--party-share')
+
+
 def gain(b, L, Lp, n):
-    """Exp one of n team members gets for a trainer's Lv. L Pokémon (modern formula)."""
-    base = b * L // 5 // n
+    """Exp one of n team members gets for a trainer's Lv. L Pokémon (modern formula).
+
+    Normally the team shares each knockout. With --party-share (the Party Exp.
+    Share option) one Pokémon battles and gets it all, the others get half, so
+    on average each gets (1 + (n - 1) / 2) / n of the full amount.
+    """
+    base = b * L // 5
+    base = base * (1 + (n - 1) / 2) / n if PARTY_SHARE else base // n
     return int(base * ((2 * L + 10) / (L + Lp + 10)) ** 2.5 + 1) * 3 // 2
 
 def level_of(e, rate):
