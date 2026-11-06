@@ -35,7 +35,7 @@ if (-not $Rom) {
 if (-not (Test-Path -LiteralPath $Rom)) { Fail "Can't find the ROM: $Rom" }
 Write-Host "ROM: $Rom"
 
-# --- How long, and which saves ---------------------------------------------------------------------
+# --- How long, and where to start ---------------------------------------------------------------------
 $hours = Read-Host 'How many hours should it play? (press Enter for 8)'
 if (-not $hours) { $hours = '8' }
 $parsed = 0.0
@@ -44,13 +44,26 @@ $ok = [double]::TryParse($hours, [Globalization.NumberStyles]::Float, [Globaliza
 if (-not $ok -or $parsed -le 0) { Fail "That isn't a number of hours: $hours" }
 
 Write-Host ''
-Write-Host 'Optional: a folder with your own .sav files, so it can also test later parts of the game.'
-$saves = Read-Host 'Drag the folder into this window and press Enter (or just press Enter to skip)'
-$saves = $saves.Trim().Trim('"')
+Write-Host 'Where should it start?'
+Write-Host '  1  New games, one for each set of challenge rules'
+Write-Host '  2  Your own saves: the points you want checked'
+Write-Host '  3  Carry on from where the last run got to'
+$choice = (Read-Host 'Type 1, 2 or 3 and press Enter (just Enter for 1)').Trim()
+$start = 'new'
 $savesLinux = '-'  # "none" (Windows PowerShell drops empty arguments)
-if ($saves) {
-    if (-not (Test-Path -LiteralPath $saves -PathType Container)) { Fail "That isn't a folder: $saves" }
+if ($choice -eq '2') {
+    $start = 'saves'
+    Write-Host ''
+    Write-Host 'Put the .sav files you want checked in one folder. mGBA keeps a game''s save next to the ROM.'
+    $saves = Read-Host 'Drag that folder into this window and press Enter'
+    $saves = $saves.Trim().Trim('"')
+    if (-not $saves -or -not (Test-Path -LiteralPath $saves -PathType Container)) { Fail "That isn't a folder: $saves" }
+    if (-not (Get-ChildItem -LiteralPath $saves -Filter '*.sav' -File)) { Fail "There are no .sav files in $saves" }
     $savesLinux = To-Linux $saves
+} elseif ($choice -eq '3') {
+    $start = 'continue'
+} elseif ($choice -and $choice -ne '1') {
+    Fail "Please type 1, 2 or 3 (you typed: $choice)"
 }
 
 # --- Run -----------------------------------------------------------------------------------------------
@@ -72,7 +85,7 @@ Write-Host '(It appears after about a minute and refreshes every 5 minutes.)'
 Write-Host ''
 
 # No double quotes inside arguments here: Windows PowerShell 5.1 passes them on mangled.
-& wsl.exe -d $distro --cd '~' -e bash firered-playtester/install/run.sh $romLinux $hours $savesLinux $name
+& wsl.exe -d $distro --cd '~' -e bash firered-playtester/install/run.sh $romLinux $hours $start $savesLinux $name
 $code = $LASTEXITCODE
 [Win32.Power]::SetThreadExecutionState([uint32]2147483648) | Out-Null  # back to normal
 

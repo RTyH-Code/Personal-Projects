@@ -45,7 +45,7 @@ def collect(out: Path) -> dict:
         except ValueError:
             pass
     total = {"steps": 0, "sessions": 0, "maps": {}, "trainers_beaten": {}, "seen": set(), "owned": set(),
-             "battles": {}, "blackouts": [], "starts": {}}
+             "battles": {}, "blackouts": [], "starts": {}, "session_ends": []}
     for st in stats:
         total["steps"] += st["steps"]
         total["sessions"] += st["sessions"]
@@ -59,7 +59,32 @@ def collect(out: Path) -> dict:
             for k, v in b.items():
                 t[k] += v
         total["blackouts"] += st["blackouts"]
-    return {"config": config, "game": game, "groups": groups, "total": total}
+        total["session_ends"] += st.get("session_ends", [])
+    furthest = []
+    for f in sorted(out.glob("furthest/w*.json")):
+        try:
+            furthest.append({**json.loads(f.read_text()), "file": f"furthest/{f.stem}.state"})
+        except ValueError:
+            pass
+    return {"config": config, "game": game, "groups": groups, "total": total, "furthest": furthest}
+
+
+def progress_summary(ends: list) -> dict:
+    """Where sessions finished: how many had each number of badges, and the usual last maps."""
+    if not ends:
+        return {"sessions": 0}
+    badges: dict[int, int] = {}
+    maps: dict[str, int] = {}
+    for e in ends:
+        badges[e["badges"]] = badges.get(e["badges"], 0) + 1
+        maps[e["map"]] = maps.get(e["map"], 0) + 1
+    return {
+        "sessions": len(ends),
+        "average_badges": round(sum(e["badges"] for e in ends) / len(ends), 1),
+        "average_top_level": round(sum(e["top_level"] for e in ends) / len(ends)),
+        "badges": dict(sorted(badges.items())),
+        "common_maps": sorted(maps.items(), key=lambda kv: -kv[1])[:8],
+    }
 
 
 def summarize(data: dict) -> dict:
@@ -96,6 +121,10 @@ def summarize(data: dict) -> dict:
         "blackouts": len(total["blackouts"]),
         "difficulty_spikes": spikes,
         "starts": total["starts"],
+        "furthest": sorted(data["furthest"], key=lambda f: (f["champion"], f["badges"], f["top_level"],
+                                                            f["dex_owned"]), reverse=True),
+        "session_ends": progress_summary(total["session_ends"]),
+        "continued_from": data["config"].get("continued_from"),
     }
 
 
@@ -120,6 +149,34 @@ img { max-width:240px; border-radius:6px; border:1px solid var(--line); image-re
 details summary { cursor:pointer; } code { font-size:13px; }
 .wrap { overflow-x:auto; }
 """
+
+
+def progress_html(s: dict) -> str:
+    e = html.escape
+    parts = ["<h2>How far it got</h2>"]
+    if s.get("continued_from"):
+        parts.append(f'<p class="muted">This run carried on from {e(str(s["continued_from"]))}.</p>')
+    if s["furthest"]:
+        f = s["furthest"][0]
+        where = "became Champion" if f["champion"] else f'{f["badges"]} badge{"" if f["badges"] == 1 else "s"}'
+        parts.append(
+            f'<p><b>Furthest point:</b> {e(where)}, on {e(f["map"].replace("_", " "))}, with '
+            f'{e(", ".join(f["party"]))} ({f["dex_owned"]} species caught). '
+            f'It started that session from {e(f["start"])}.</p>'
+            f'<p class="muted">A save state of that moment is <a href="{e(f["file"])}">{e(f["file"])}</a> in this run\'s '
+            "folder. Load it in mGBA (File &rarr; Load State File) to see it or to make a save there. "
+            "Choose <i>Carry on from the last run</i> next time to keep going from it.</p>")
+    else:
+        parts.append("<p>Nothing yet.</p>")
+    se = s["session_ends"]
+    if se.get("sessions"):
+        counts = " &middot; ".join(f"{b} badge{'' if b == 1 else 's'}: {n}" for b, n in se["badges"].items())
+        common = ", ".join(f"{e(m.replace('_', ' '))} ({n})" for m, n in se["common_maps"])
+        parts.append(
+            f'<p><b>Where sessions ended</b> ({se["sessions"]} sessions): on average {se["average_badges"]} badges '
+            f'and a strongest Pokémon of Lv. {se["average_top_level"]}.<br>{counts}</p>'
+            f'<p class="muted">Most common last maps: {common}</p>')
+    return "\n".join(parts)
 
 
 def write_report(out: Path) -> Path:
@@ -159,6 +216,7 @@ about {s["game_hours"]} h of play, {s["presses"]:,} presses, {s["sessions"]} ses
 <div class="tile"><b>{s["trainers_beaten"]}/{s["trainers_total"]}</b>trainers beaten</div>
 <div class="tile"><b>{s["species_owned"]}/{s["dex_count"]}</b>species owned</div>
 <div class="tile"><b>{s["blackouts"]}</b>blackouts</div></div>
+{progress_html(s)}
 <h2>Problems found</h2>
 <p class="muted">Worst first. "Reproduced" means replaying the same presses from the saved state shortly before
 caused it again. Click a screenshot for a clip of the lead-up.</p>
