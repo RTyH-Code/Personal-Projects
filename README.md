@@ -11,3 +11,9 @@ vanilla FireRed). It plays the patched ROM in several emulators at once, hunts
 for crashes, softlocks, corrupt data and broken challenge rules, and writes a
 report with a save state and video for each problem. It also includes an
 optional reinforcement-learning agent. See its [README](firered-ai/README.md).
+
+## FF1 Pixel Remaster Agent
+
+`ff1-pr-agent/` has Claude play FINAL FANTASY (Pixel Remaster, PC) toward a 100%
+checklist, using its own knowledge of the game, screenshots and a virtual Xbox
+controller. See its [README](ff1-pr-agent/README.md).
