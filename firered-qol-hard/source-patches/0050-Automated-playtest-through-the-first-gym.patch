@@ -1,7 +1,7 @@
 From b2c3f118d8f419000fb1bc8a9856818739b11644 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Fri, 6 Nov 2026 02:45:29 +0000
-Subject: [PATCH 50/50] Automated playtest through the first gym
+Subject: [PATCH 50/51] Automated playtest through the first gym
 
 tools/hack/playtest/: a headless mGBA harness (button scripts, screenshots
 and save-block reads) and playtest.py, which builds scenario ROMs and runs

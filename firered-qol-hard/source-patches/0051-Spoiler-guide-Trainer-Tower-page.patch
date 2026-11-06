@@ -1,0 +1,121 @@
+From 4faa72c08da74e4cb0006061cb7c850ded5b586f Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Fri, 6 Nov 2026 12:18:47 +0000
+Subject: [PATCH 51/51] Spoiler guide: Trainer Tower page
+
+TOWER.md lists every challenge floor by floor with the exact Pokemon each
+trainer uses there (the floor-position picks from trainer_tower.c), their
+item, ability, nature, EVs and moves, plus each challenge's prize.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ tools/hack/spoiler_guide.py | 79 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 79 insertions(+)
+
+diff --git a/tools/hack/spoiler_guide.py b/tools/hack/spoiler_guide.py
+index b905f78..e853c89 100644
+--- a/tools/hack/spoiler_guide.py
++++ b/tools/hack/spoiler_guide.py
+@@ -1380,6 +1380,83 @@ def gametext_ability(a):
+     return a.replace("ABILITY_", "").replace("_", " ").title()
+ 
+ 
++NATURES = ["Hardy", "Lonely", "Brave", "Adamant", "Naughty", "Bold", "Docile", "Relaxed", "Impish", "Lax",
++           "Timid", "Hasty", "Serious", "Jolly", "Naive", "Modest", "Mild", "Quiet", "Bashful", "Rash",
++           "Calm", "Gentle", "Sassy", "Careful", "Quirky"]
++
++
++def write_tower():
++    text = read("src/trainer_tower_sets.c")
++    abil_names = dict(re.findall(r"\[(ABILITY_\w+)\] = _\(\"(.*?)\"\)", read("src/data/text/abilities.h")))
++    species_abil = {}
++    for sp, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\n    \}", read("src/data/pokemon/species_info.h"), re.S):
++        a = re.search(r"\.abilities = \{([^}]*)\}", body)
++        if a:
++            species_abil[sp] = re.findall(r"ABILITY_\w+", a.group(1))
++    floors = {}
++    for name, body in re.findall(r"static const struct TrainerTowerFloor (\w+) = \{(.*?)\n\};", text, re.S):
++        trainers = []
++        for t in re.split(r"\.name = _\(", body)[1:]:
++            tname = t.split('"')[1]
++            cls = re.sub(r" [MF]$", "", re.search(r"\.facilityClass = FACILITY_CLASS_(\w+)", t).group(1).replace("_", " ").title())
++            cls = cls.replace("Cooltrainer", "Cool Trainer")
++            mons = []
++            for m in re.findall(r"\.species = (SPECIES_\w+),(.*?)\.friendship", t, re.S):
++                sp, b = m
++                g = lambda k: re.search(r"\.%s = ([^,\n]+)" % k, b).group(1).strip()
++                evs = {k: int(g(k + "EV")) for k in ("hp", "attack", "defense", "speed", "spAttack", "spDefense")}
++                mons.append(dict(species=sp, item=g("heldItem"), moves=re.findall(r"MOVE_\w+", re.search(r"\.moves = \{([^}]*)\}", b).group(1)),
++                                 evs=evs, ability=int(g("abilityNum")), nature=int(g("personality"), 0) % 25))
++            trainers.append(dict(name=tname, cls=cls, mons=mons))
++        floors[name] = dict(type=re.search(r"\.challengeType = CHALLENGE_TYPE_(\w+)", body).group(1),
++                            prize=re.search(r"\.prize = TTPRIZE_(\w+)", body).group(1), trainers=trainers)
++    picks = {"SINGLE": [(0, 2), (1, 3), (2, 4), (3, 5), (4, 1), (5, 2), (0, 3), (1, 4)],
++             "DOUBLE": [(0, 1), (1, 3), (2, 0), (3, 4), (4, 2), (5, 2), (0, 3), (1, 5)],
++             "KNOCKOUT": [(0, 2, 4), (1, 3, 5), (2, 3, 1), (3, 4, 0), (4, 1, 2), (5, 0, 3), (0, 5, 2), (1, 4, 5)]}
++    tables = re.findall(r"\[CHALLENGE_TYPE_(\w+)\] = \{(.*?)\}", text[text.rindex("[CHALLENGE_TYPE_SINGLE] = {"):], re.S)
++    ev_names = [("hp", "HP"), ("attack", "Atk"), ("defense", "Def"), ("spAttack", "SpA"), ("spDefense", "SpD"), ("speed", "Spe")]
++
++    def row(m):
++        ab = species_abil.get(m["species"], ["ABILITY_NONE"])
++        ab = ab[m["ability"]] if m["ability"] < len(ab) and ab[m["ability"]] != "ABILITY_NONE" else ab[0]
++        evs = " / ".join(f"{v} {n}" for k, n in ev_names for v in [m["evs"][k]] if v)
++        return (f"| {mon(m['species'])} | {item(m['item']) if m['item'] != 'ITEM_NONE' else '—'} | "
++                f"{abil_names.get(ab, ab[8:]).title()} | {NATURES[m['nature']]} | {evs} | "
++                f"{', '.join(move(x) for x in m['moves'] if x != 'MOVE_NONE')} |")
++
++    head = ["| Pokémon | Item | Ability | Nature | EVs | Moves |", "|---|---|---|---|---|---|"]
++    out = ["# Trainer Tower", "",
++           "The Trainer Tower on Seven Island has four challenges of eight floors each. Every Pokémon here is a "
++           "competitive set: fully evolved, perfect IVs, 252/252 EVs, a nature and item for its role, and moves "
++           "from Pokémon Showdown's role-based sets (doubles sets on Double floors).", "",
++           "**Levels** match your highest-level Pokémon when you start the battle.", "",
++           "Each trainer has six Pokémon but only uses some of them, depending on the floor. The tables "
++           "below list exactly the Pokémon you'll face on each floor.", ""]
++    titles = {"SINGLE": "Single battles", "DOUBLE": "Double battles", "KNOCKOUT": "Knockout (three trainers, one Pokémon each)",
++              "MIXED": "Mixed (a mix of the other three)"}
++    for ctype, body in tables:
++        names = re.findall(r"&(\w+)", body)
++        out += [f"## {titles.get(ctype, ctype.title())}", "",
++                f"Prize for clearing all eight floors: **{item('ITEM_' + floors[names[0]]['prize'])}**.", ""]
++        for i, fname in enumerate(names):
++            f = floors[fname]
++            kind = f["type"]
++            tr = f["trainers"]
++            if kind == "DOUBLE":
++                who = f"{tr[0]['cls']} {tr[0]['name'].title()}"
++                mons = [tr[0]["mons"][picks[kind][i][0]], tr[1]["mons"][picks[kind][i][1]]]
++                label = f"double battle vs. {who}"
++            elif kind == "KNOCKOUT":
++                who = ", ".join(f"{t['cls']} {t['name'].title()}" for t in tr[:3])
++                mons = [tr[j]["mons"][picks[kind][i][j]] for j in range(3)]
++                label = f"knockout vs. {who}"
++            else:
++                mons = [tr[0]["mons"][k] for k in picks["SINGLE"][i]]
++                label = f"single battle vs. {tr[0]['cls']} {tr[0]['name'].title()}"
++            out += [f"### Floor {i + 1}: {label}", ""] + head + [row(m) for m in mons] + [""]
++    open(os.path.join(OUT, "TOWER.md"), "w").write("\n".join(out))
++
++
+ def write_index():
+     open(os.path.join(OUT, "README.md"), "w").write("""# FireRed QoL + Hard: spoiler guide
+ 
+@@ -1390,6 +1467,7 @@ def write_index():
+ - [Trainers](TRAINERS.md): Gym Leaders, Elite Four and Champion (rounds 1–2 and peak) in full, then every other trainer by location.
+ - [Pokédex](POKEDEX.md): every Pokémon (all 386, plus later evolutions added by the hack) with stat ranges, abilities, type defenses, evolutions, locations and full learnsets.
+ - [Peak trainer prep](PEAK.md): every Lv. 100 peak team with real stats, what they attack with, what they're weak to, and suggested counters.
++- [Trainer Tower](TOWER.md): every challenge floor by floor, with each competitive set you'll face.
+ - [Types and moves](TYPES.md): the type chart, moves whose physical/special category changed, and every move with its power, accuracy, PP and effect.
+ - [Pokémon](POKEMON.md): gift, static and legendary Pokémon, in-game trades, changed evolutions, base stat and move changes.
+ 
+@@ -1405,5 +1483,6 @@ write_pokemon()
+ write_pokedex()
+ write_types()
+ write_peak()
++write_tower()
+ write_index()
+ print("guide written to", OUT)
+-- 
+2.43.0
+

@@ -7,6 +7,7 @@
 - [Trainers](TRAINERS.md): Gym Leaders, Elite Four and Champion (rounds 1–2 and peak) in full, then every other trainer by location.
 - [Pokédex](POKEDEX.md): every Pokémon (all 386, plus later evolutions added by the hack) with stat ranges, abilities, type defenses, evolutions, locations and full learnsets.
 - [Peak trainer prep](PEAK.md): every Lv. 100 peak team with real stats, what they attack with, what they're weak to, and suggested counters.
+- [Trainer Tower](TOWER.md): every challenge floor by floor, with each competitive set you'll face.
 - [Types and moves](TYPES.md): the type chart, moves whose physical/special category changed, and every move with its power, accuracy, PP and effect.
 - [Pokémon](POKEMON.md): gift, static and legendary Pokémon, in-game trades, changed evolutions, base stat and move changes.
 

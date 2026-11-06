@@ -1,7 +1,7 @@
 From 336678d0b3b6b731b0b0d25a7c71baf5e4c8990d Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Sat, 31 Oct 2026 23:43:47 +0000
-Subject: [PATCH 07/50] IV/EV editor: A switches IV/EV column, START saves
+Subject: [PATCH 07/51] IV/EV editor: A switches IV/EV column, START saves
 
 L/R open FireRed's help system, so EVs are moved with Left/Right on the
 EV column instead. Help text no longer overlaps the ABILITY label.

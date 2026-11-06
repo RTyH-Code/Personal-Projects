@@ -9,7 +9,7 @@ previous release keeps working. In short, saves made on **release 7 or later**
 carry over to the current release. Older saves need a new game.
 
 ## Release 13 (2026-11-06)
-Pull requests: [#30](https://github.com/RTyH-Code/Personal-Projects/pull/30)
+Pull requests: [#30](https://github.com/RTyH-Code/Personal-Projects/pull/30), [#31](https://github.com/RTyH-Code/Personal-Projects/pull/31)
 
 - **Party Exp. Share:** an option, off by default. Your whole team gets Exp.,
   and Pokémon that didn't battle get half. Switch it on in the challenge menu
@@ -22,6 +22,9 @@ Pull requests: [#30](https://github.com/RTyH-Code/Personal-Projects/pull/30)
   EVs, natures, perfect IVs and role items.
 - **Automated playtest:** milestone checks from a new game through Brock
   (tools/hack/playtest/).
+- **Spoiler guide:** a new Trainer Tower page (TOWER.md) shows every floor's
+  exact opponents and sets. This changes the guide only; the ROM is
+  unchanged.
 - **Saves:** release 12 saves carry over.
 
 ## Release 12 (2026-11-06)

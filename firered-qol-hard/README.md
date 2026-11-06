@@ -1,6 +1,6 @@
 # FireRed QoL + Hard
 
-> **Spoiler guide:** every encounter table, item, trainer team and gift Pokémon is listed in [guide/](guide/README.md), plus a full [Pokédex](guide/POKEDEX.md) for all 386 Pokémon, [peak trainer prep](guide/PEAK.md) and a [type chart and move list](guide/TYPES.md).
+> **Spoiler guide:** every encounter table, item, trainer team and gift Pokémon is listed in [guide/](guide/README.md), plus a full [Pokédex](guide/POKEDEX.md) for all 386 Pokémon, [peak trainer prep](guide/PEAK.md) and a [type chart and move list](guide/TYPES.md) and the [Trainer Tower teams](guide/TOWER.md).
 
 A quality-of-life, modernization and difficulty hack built on the pret/pokefirered decompilation.
 
