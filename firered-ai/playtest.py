@@ -14,6 +14,11 @@ Exp. Share). Add your own to test later parts of the game:
 Results go to runs/playtest-<date>/: report.html (open it in a browser),
 summary.json, and findings/ with a save state, inputs, screenshot and clip
 for each problem. Stop early with Ctrl+C; the report is written either way.
+
+Each run also keeps a save state of the furthest point each emulator reached
+(furthest/ in the run folder). To carry on where the last run got to:
+
+    python playtest.py rom.gba --hours 8 --continue-from latest
 """
 
 from __future__ import annotations
@@ -38,6 +43,9 @@ def main():
                         "(default: three rule sets when no --states/--saves are given)")
     p.add_argument("--session-steps", type=int, default=2500, help="presses per session before a fresh start")
     p.add_argument("--out", default=None, help="results folder (default runs/playtest-<date>)")
+    p.add_argument("--continue-from", metavar="RUN",
+                   help="carry on where an earlier run got to: a run folder, or 'latest' for the newest in "
+                        "the same place as --out")
     p.add_argument("--seed", type=int, default=int(time.time()) % 100000)
     p.add_argument("--addresses", help="JSON file of RAM addresses (see tools/symbols_from_map.py)")
     args = p.parse_args()

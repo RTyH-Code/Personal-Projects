@@ -74,9 +74,12 @@ The playtester runs inside WSL, the Linux system built into Windows 10 and
 3. **Two shortcuts appear on your desktop:**
    - **FireRed Playtest** starts a run. Double-click it and pick your
      patched ROM, or drag the `.gba` file onto it. It asks how many hours to
-     play (just press Enter for 8). It also asks for an optional folder of
-     your `.sav` files, so it can test later parts of the game: drag the
-     folder into the window and press Enter.
+     play (just press Enter for 8), then where to start:
+     1. **New games**, one for each set of challenge rules (the default).
+     2. **Your own saves:** only the points you want checked. Put those
+        `.sav` files in one folder and drag it into the window.
+     3. **Carry on from the last run:** start from the furthest points the
+        last run reached, plus the save states it kept around the map.
    - **FireRed Playtest Reports** opens the folder of past runs. Open
      `report.html` in a run's folder to see the results.
 
@@ -95,6 +98,9 @@ setup in `~/firered-playtester`. Then start a run with:
 ```bash
 bash ~/firered-playtester/install/run.sh path/to/rom.gba 8
 ```
+
+Add `saves path/to/saves-folder` or `continue` after the hours to start from
+your saves or carry on from the last run.
 
 ## Manual setup
 
@@ -138,11 +144,22 @@ game's battery save next to the ROM as a `.sav` file:
 python playtest.py ~/roms/FireRed-QoL-Hard.gba --hours 8 --saves ~/saves/*.sav
 ```
 
-The playtester boots each save and picks CONTINUE. Saves from all through
-the game work best: one before each gym, the Elite Four, the Sevii Islands
-and so on. You can also pass save states with `--states`, or choose the
-new games with `--new-games plain nuzlocke,level_caps`. The rules are
-`nuzlocke`, `level_caps`, `no_items`, `set_style` and `exp_share`.
+The playtester boots each save and picks CONTINUE. With saves, it makes no
+new games: it tests from your points only. Saves from all through the game
+work best: one before each gym, the Elite Four, the Sevii Islands and so
+on. You can also pass save states with `--states`, or choose the new games
+with `--new-games plain nuzlocke,level_caps`. The rules are `nuzlocke`,
+`level_caps`, `no_items`, `set_style` and `exp_share`.
+
+**Carry on from an earlier run.** Each run keeps a save state of the
+furthest point each emulator reached (`furthest/` in the run folder), plus
+the states it saved around the map. To start the next run from those:
+
+```bash
+python playtest.py ~/roms/FireRed-QoL-Hard.gba --hours 8 --continue-from latest
+```
+
+`latest` means the newest earlier run; you can also give a run folder.
 
 Other options: `--workers N`, `--session-steps` (presses before it jumps to
 a new start point, default 2500), `--out DIR`. Stop early with Ctrl+C; the
@@ -153,6 +170,11 @@ report is written either way.
 Open `report.html` in the run folder. On WSL, `explorer.exe runs` opens the
 folder in Windows. It refreshes every 5 minutes while the run goes on.
 
+- **How far it got:** the furthest point any emulator reached (Champion,
+  then badges, then its strongest Pokémon's level), with a save state of
+  that moment. You can load it in mGBA (*File → Load State File*) to look,
+  or to make a real save there for later runs. There's also how many
+  badges sessions had when they ended, and the maps they usually ended on.
 - **Problems found:** the worst first, with how often each happened and a
   screenshot. Click it for a clip of the ~40 seconds before.
   "Reproduced: yes" means the playtester re-ran the same presses from a

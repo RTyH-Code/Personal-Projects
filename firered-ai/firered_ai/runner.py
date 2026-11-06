@@ -142,6 +142,55 @@ def run(config: dict, hours: float, workers: int, report_every: float = 300, log
     return report
 
 
+def latest_run(runs: Path, exclude: Path | None = None) -> Path | None:
+    """The most recent run folder that got far enough to leave something to carry on from."""
+    found = []
+    for d in Path(runs).iterdir() if Path(runs).is_dir() else []:
+        if not d.is_dir() or (exclude is not None and d.resolve() == Path(exclude).resolve()):
+            continue
+        if (d / "config.json").exists() and (any(d.glob("furthest/*.state")) or (d / "pool").is_dir()):
+            found.append(d)
+    return max(found, key=lambda d: (d / "config.json").stat().st_mtime, default=None)
+
+
+def carry_on(previous: str, out: Path, log=print) -> tuple[list[str], str]:
+    """Start a run where an earlier one got to.
+
+    Copies the earlier run's pool of save states (one to three per map it
+    reached) and adds each worker's furthest point as a start of its own.
+    `previous` is a run folder, or "latest" for the newest one next to `out`.
+    Returns the new start states and the name of the run carried on from.
+    """
+    import shutil
+
+    prev = latest_run(out.parent, exclude=out) if previous == "latest" else Path(previous)
+    if prev is None or not prev.is_dir():
+        raise SystemExit(f"No earlier run to carry on from ({previous}).")
+    log(f"Carrying on from {prev.name}.")
+    pool = prev / "pool"
+    if pool.is_dir():
+        for d in pool.iterdir():
+            if d.is_dir():
+                shutil.copytree(d, out / "pool" / d.name, dirs_exist_ok=True)
+    starts = []
+    for f in sorted(prev.glob("furthest/w*.state")):
+        try:
+            info = json.loads(f.with_suffix(".json").read_text())
+            label = f"carry-on-{info['badges']}badges-{info['map']}-{f.stem}"
+        except (OSError, ValueError, KeyError):
+            label = f"carry-on-{f.stem}"
+        dest = out / "starts" / f"{label}.state"
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(f, dest)
+        starts.append(str(dest))
+    if not starts and not (out / "pool").is_dir():
+        raise SystemExit(f"{prev} has nothing to carry on from (no furthest points or pool).")
+    maps = len(list((out / "pool").glob("*_*")))
+    log(f"  {len(starts)} furthest point{'' if len(starts) == 1 else 's'} and saves from "
+        f"{maps} map{'' if maps == 1 else 's'}.")
+    return starts, prev.name
+
+
 def prepare(args, log=print) -> dict:
     """Detect the game, collect start points and write config.json."""
     game, note = detect(args.rom)
@@ -151,6 +200,10 @@ def prepare(args, log=print) -> dict:
     addresses = load_addresses(args.addresses)
     states = [str(Path(p)) for p in args.states]
     saves = [str(Path(p)) for p in args.saves]
+    continued_from = None
+    if getattr(args, "continue_from", None):
+        more, continued_from = carry_on(args.continue_from, out, log)
+        states += more
     if args.new_games is not None:
         rule_sets = [[r for r in rs.split(",") if r and r != "plain"] for rs in args.new_games]
         if "HACK_NUZLOCKE" not in game.flags and any(rule_sets):
@@ -177,6 +230,7 @@ def prepare(args, log=print) -> dict:
         "seed": args.seed,
         "addresses": args.addresses,
         "started": time.time(),
+        "continued_from": continued_from,
         "hours": args.hours,
         "workers": args.workers,
     }

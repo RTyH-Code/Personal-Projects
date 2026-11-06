@@ -347,3 +347,65 @@ def test_report(tmp_path):
     assert "Bad Egg / corrupt Pokémon data" in page and "maps visited" in page
     summary = json.loads((tmp_path / "summary.json").read_text())
     assert summary["findings"][0]["reproduced"] is True and summary["presses"] == 300
+
+
+# --- how far it got, and carrying on --------------------------------------------------------
+
+def test_furthest_point_is_kept(tmp_path):
+    emu = FakeEmulator()
+    emu.bounds = (8, 8)
+    emu.set_party([dict(level=12, species=4)])
+    t = Tester(emu, VANILLA, tmp_path, worker=2, seed=1, log=None)
+    t.session(Start("state", "new-game-plain.state", emu.save_state()), 30)
+    info = json.loads((tmp_path / "furthest" / "w2.json").read_text())
+    assert info["badges"] == 0 and info["top_level"] == 12 and info["party"] == ["Charmander Lv12"]
+    assert (tmp_path / "furthest" / "w2.state").read_bytes()[:1]  # a raw state, loadable as is
+    # A badge beats any level.
+    emu.set_flag(ram.FLAG_BADGE01)
+    emu.set_party([dict(level=9, species=4)])
+    t.session(Start("state", "later", emu.save_state()), 30)
+    info = json.loads((tmp_path / "furthest" / "w2.json").read_text())
+    assert info["badges"] == 1 and info["start"] == "later"
+    assert [e["badges"] for e in t.stats.session_ends] == [0, 1]
+
+
+def test_carry_on_from_the_latest_run(tmp_path):
+    from firered_ai.runner import carry_on, latest_run
+
+    runs = tmp_path / "runs"
+    old = runs / "playtest-1"
+    for d in [old, runs / "playtest-2"]:
+        (d / "furthest").mkdir(parents=True)
+        (d / "config.json").write_text("{}")
+    (runs / "playtest-2" / "furthest" / "w0.state").write_bytes(b"newer")
+    (runs / "playtest-2" / "furthest" / "w0.json").write_text(json.dumps({"badges": 3, "map": "CeruleanCity"}))
+    (runs / "playtest-2" / "pool" / "3_3").mkdir(parents=True)
+    (runs / "playtest-2" / "pool" / "3_3" / "a.state").write_bytes(b"pool")
+    os.utime(old / "config.json", (1, 1))  # older
+    new = runs / "playtest-3"
+    new.mkdir()
+    assert latest_run(runs, exclude=new) == runs / "playtest-2"
+    starts, name = carry_on("latest", new, log=lambda *_: None)
+    assert name == "playtest-2"
+    assert [Path(p).name for p in starts] == ["carry-on-3badges-CeruleanCity-w0.state"]
+    assert Path(starts[0]).read_bytes() == b"newer"
+    assert (new / "pool" / "3_3" / "a.state").read_bytes() == b"pool"
+    with pytest.raises(SystemExit):
+        carry_on(str(tmp_path / "nothing-here"), new, log=lambda *_: None)
+
+
+def test_report_shows_how_far_it_got(tmp_path):
+    emu = FakeEmulator()
+    emu.bounds = (8, 8)
+    emu.set_flag(ram.FLAG_BADGE01)
+    emu.set_party([dict(level=15, species=7)])
+    t = Tester(emu, VANILLA, tmp_path, seed=1, log=None)
+    t.session(Start("state", "my-save.sav", emu.save_state()), 40)
+    (tmp_path / "stats-w0.json").write_text(json.dumps(t.stats.to_json()))
+    (tmp_path / "config.json").write_text(json.dumps({"game": "firered", "rom_note": "test", "started": 0,
+                                                      "continued_from": "playtest-2"}))
+    page = write_report(tmp_path).read_text()
+    assert "How far it got" in page and "1 badge, on PalletTown PlayersHouse 2F" in page
+    assert "Squirtle Lv15" in page and "furthest/w0.state" in page and "carried on from playtest-2" in page
+    s = json.loads((tmp_path / "summary.json").read_text())
+    assert s["session_ends"]["average_badges"] == 1 and s["furthest"][0]["top_level"] == 15

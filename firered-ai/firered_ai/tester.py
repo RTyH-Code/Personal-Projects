@@ -65,6 +65,7 @@ class Stats:
     battles: dict = field(default_factory=dict)  # map name -> {"wild": n, "trainer": n, "blackouts": n, "trainer_losses": n}
     blackouts: list = field(default_factory=list)  # {map, trainer, party levels}
     starts: dict = field(default_factory=dict)  # start label -> sessions
+    session_ends: list = field(default_factory=list)  # {badges, map, top_level, champion} as each session ended
 
     def to_json(self):
         d = asdict(self)
@@ -94,6 +95,7 @@ class Tester:
         self.stats = Stats()
         self.captures: dict[str, int] = {}
         self.pool = self.out / "pool"
+        self.best_progress = None  # how far this worker has got, for "How far it got" in the report
 
     # --- plumbing ---------------------------------------------------------------
 
@@ -160,6 +162,7 @@ class Tester:
             new = det.check(s, a.buttons, screen_hash(screen), held, step, last_was_move=a.tag == "move")
             self._account(prev, s)
             self._maybe_pool(s)
+            self._maybe_furthest(s, start, step)
             prev = s
             for f in new:
                 f.extra.setdefault("start", start.label)
@@ -168,6 +171,10 @@ class Tester:
             if any(f.fatal for f in new):
                 break
         self.stats.steps += step + 1 if steps else 0
+        if s.valid:
+            self.stats.session_ends.append({
+                "badges": s.badge_count, "champion": s.champion, "map": self.game.map_name(*s.map_id),
+                "top_level": max((m.level for m in s.party if not m.is_egg), default=0)})
         return found
 
     # --- coverage, difficulty and the start-point pool ---------------------------------
@@ -206,6 +213,34 @@ class Tester:
                 st.blackouts.append({"map": info["map"], "trainer_battle": info["trainer"],
                                      "party_levels": info["levels"],
                                      "badges": s.badge_count})
+
+    def _maybe_furthest(self, s, start: Start, step: int) -> None:
+        """Keep a save state of the furthest point this worker has reached.
+
+        "Furthest" is the Hall of Fame first, then badges, then the strongest
+        Pokémon's level, then Pokédex size. Kept in furthest/w<n>.state, so a
+        person can load it in mGBA and later runs can carry on from it.
+        """
+        if not s.valid or s.in_battle or s.all_fainted or not s.party or s.map_id not in self.game.maps:
+            return
+        top = max((m.level for m in s.party if not m.is_egg), default=0)
+        key = (s.champion, s.badge_count, top, s.dex_owned)
+        if self.best_progress is not None and key <= self.best_progress:
+            return
+        self.best_progress = key
+        d = self.out / "furthest"
+        d.mkdir(parents=True, exist_ok=True)
+        info = {
+            "worker": self.worker, "champion": s.champion, "badges": s.badge_count, "top_level": top,
+            "dex_owned": s.dex_owned, "map": self.game.map_name(*s.map_id),
+            "party": [f"{self.game.species_name(m.species).replace('_', ' ').title()} Lv{m.level}"
+                      for m in s.party if not m.is_egg],
+            "start": start.label, "presses": self.stats.steps + step, "time": time.time(),
+        }
+        tmp = d / f"w{self.worker}.tmp"
+        tmp.write_bytes(self.emu.save_state())  # raw, so mGBA can load it directly
+        tmp.replace(d / f"w{self.worker}.state")
+        (d / f"w{self.worker}.json").write_text(json.dumps(info, indent=1))
 
     def _maybe_pool(self, s) -> None:
         """Keep a few save states per map, so later sessions can start all over the game."""
