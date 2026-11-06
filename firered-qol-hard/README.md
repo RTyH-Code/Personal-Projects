@@ -384,6 +384,10 @@ How the cap works with each way of gaining levels:
 - Wild Pokémon on Route 23, in Victory Road and in Cerulean Cave are also
   1.15x higher (Victory Road now reaches Lv. 55), so there's somewhere worth
   training before the Elite Four.
+- **Victory Road rematches:** the VS Seeker now works in Victory Road, and
+  all 12 of its trainers have rematch teams 8 levels higher (Lv. 54–63, evolved
+  where the level allows). Like other VS Seeker rematches, you can fight them
+  again each time the battery recharges (100 steps).
 - Regular trainers have at least ~18 IVs. The Elite Four, Champion, Rival and Giovanni have max IVs.
 - Every trainer uses the smart battle AI.
 - From Lt. Surge on, the Gym Leaders, Elite Four and Champion use some of
@@ -456,9 +460,9 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `968a3c7dcbeca369d312640bd30b89b3982a7b50`
+Patched ROM SHA-1: `619abda87cd7bde2f51ccc7e4a2a32d997e868eb`
 
-Current release: **10**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
+Current release: **11**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
 Saves made on release 7 or later carry over to this release. Older saves need a new game.
 
 ## Building from source
@@ -486,6 +490,7 @@ unmodified pret data:
 - `evo_moves.py`: later level-up moves for stone evolutions (run after `modernize.py`).
 - `peak_trainers.py`: peak teams, gym rematches and the Elite Four round 3.
 - `spoiler_guide.py <dir>`: regenerates the spoiler guide from the game data.
+- `vr_rematches.py`: the Victory Road VS Seeker rematch teams and scripts.
 - `exp_budget.py`: how much trainer Exp. each stretch of the game gives, against the level caps.
 - `save_check.py REF`: checks whether saves from an older release (a git ref) still load.
 
