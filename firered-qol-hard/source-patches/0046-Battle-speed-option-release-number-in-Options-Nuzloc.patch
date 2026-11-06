@@ -1,0 +1,607 @@
+From 9986083955754c072bd08fc6b9bab28e9ed9bc99 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Fri, 6 Nov 2026 02:09:04 +0000
+Subject: [PATCH 46/46] Battle speed option, release number in Options,
+ Nuzlocke tracker
+
+- Options > BATTLE SPEED (FAST by default): HP bars drain about one
+  pixel a frame, Exp. bars fill twice as fast, and battle message pauses
+  are halved. NORMAL keeps vanilla timing.
+- The Options header shows the release (include/hack_version.h).
+- Start menu > NUZLOCKE (while the mode is on): each used area with its
+  catch (by met location) and whether it's in the party, PC, fainted or
+  missed. The Start menu packs 8 entries 13px apart to stay in the frame.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ HACK_NOTES.md                |   9 ++
+ data/scripts/white_out.inc   |   8 ++
+ data/specials.inc            |   1 +
+ include/constants/flags.h    |   1 +
+ include/hack_challenge.h     |   3 +
+ include/strings.h            |   2 +
+ src/battle_interface.c       |   6 +-
+ src/battle_script_commands.c |   2 +
+ src/hack_challenge.c         | 177 +++++++++++++++++++++++++++++++++++
+ src/option_menu.c            |  34 +++++--
+ src/start_menu.c             |  33 +++++--
+ src/strings.c                |   2 +
+ 12 files changed, 265 insertions(+), 13 deletions(-)
+
+diff --git a/HACK_NOTES.md b/HACK_NOTES.md
+index 53afbb5..97cb790 100644
+--- a/HACK_NOTES.md
++++ b/HACK_NOTES.md
+@@ -33,6 +33,11 @@ A quality-of-life, modernization and difficulty hack built on the pret/pokefirer
+   them level-1 moves, so the 18 affected Pokémon now learn their
+   pre-evolution's later moves a few levels later instead, e.g. Ninetales
+   learns Flamethrower at 37 (Vulpix: 32) and Fire Blast at 60 (Vulpix: 52).
++- **Battle speed:** Options > BATTLE SPEED. FAST, the default, drains HP and
++  fills Exp. bars faster and halves the pause after each battle message.
++  Choose NORMAL for vanilla speed.
++- **Release number:** the Options screen shows which release you're playing
++  (for example, "QoL+HARD R12"). It's handy when reporting a bug.
+ - **Repel prompt:** when a Repel wears off and you have another of the same
+   kind, the game asks whether to use it.
+ - **Modern shiny odds:** shiny Pokémon appear at 1 in 4,096 (up from
+@@ -339,6 +344,10 @@ the Viridian City scientist can still switch them on or off.
+   and don't use up the area.
+ - **Fainting is permanent:** a Pokémon that faints can't be healed or revived
+   by Pokémon Centers, items or anything else, even after a trip to the PC.
++- **Tracker:** while Nuzlocke mode is on, the Start menu has a NUZLOCKE entry.
++  It lists every area you've used, with what you caught there and whether it's
++  in your party, in the PC, fainted or missed (ran away, fainted or failed to
++  catch).
+ - **Blacking out ends the run:** the Nuzlocke rules are lifted and the game
+   carries on as a normal playthrough.
+ 
+diff --git a/data/scripts/white_out.inc b/data/scripts/white_out.inc
+index 7ef6e22..e16c8b7 100644
+--- a/data/scripts/white_out.inc
++++ b/data/scripts/white_out.inc
+@@ -72,3 +72,11 @@ EventScript_FieldWhiteOutFade::
+ 	special SetCB2WhiteOut
+ 	waitstate
+ 	end
++
++@ FireRed QoL+Hard: Start menu > NUZLOCKE
++EventScript_HackNuzlockeTracker::
++	lockall
++	special Hack_NuzlockeTracker
++	waitstate
++	releaseall
++	end
+diff --git a/data/specials.inc b/data/specials.inc
+index f11c73d..76babfa 100644
+--- a/data/specials.inc
++++ b/data/specials.inc
+@@ -461,4 +461,5 @@ gSpecials::
+ 	def_special Hack_EndModernTutor
+ 	def_special Hack_ChallengeMenu
+ 	def_special Hack_UseRepelAgain
++	def_special Hack_NuzlockeTracker
+ gSpecialsEnd::
+diff --git a/include/constants/flags.h b/include/constants/flags.h
+index e77298f..f294895 100644
+--- a/include/constants/flags.h
++++ b/include/constants/flags.h
+@@ -1326,6 +1326,7 @@
+ #define FLAG_HACK_SET_ONLY               (TRAINER_FLAGS_START + TRAINER_RS_SWIMMER_M)  // challenge: battle style locked to Set
+ #define FLAG_HACK_NUZLOCKE_OVER          (TRAINER_FLAGS_START + TRAINER_RS_BLACK_BELT) // whited out: show the run-over message
+ #define FLAG_HACK_GOT_SHINY_CHARM        (TRAINER_FLAGS_START + TRAINER_GUITARIST)
++#define FLAG_HACK_NORMAL_BATTLE_SPEED    (TRAINER_FLAGS_START + TRAINER_EXPERT_M) // Options: battle speed NORMAL (unset = FAST)
+ #define FLAG_HACK_LEVEL_CAP              (TRAINER_FLAGS_START + TRAINER_RS_BEAUTY) // optional level caps on
+ #define FLAG_HACK_TRUE_ENDGAME           (TRAINER_FLAGS_START + TRAINER_RS_COOLTRAINER_F) // beat the round 2 Champion
+ #define FLAG_HIDE_SEVAULT_CANYON_ROOT_FOSSIL (TRAINER_FLAGS_START + TRAINER_HEX_MANIAC)
+diff --git a/include/hack_challenge.h b/include/hack_challenge.h
+index e60e80e..be07b4a 100644
+--- a/include/hack_challenge.h
++++ b/include/hack_challenge.h
+@@ -12,5 +12,8 @@ void Hack_NuzlockeOnBattleStart(void);
+ bool8 Hack_NuzlockeCanCatch(void);
+ bool8 Hack_NoBattleItems(void);
+ void Hack_ChallengeMenu(void);
++bool8 Hack_FastBattles(void);
++void Hack_NuzlockeTracker(void);
++extern const u8 EventScript_HackNuzlockeTracker[];
+ 
+ #endif // GUARD_HACK_CHALLENGE_H
+diff --git a/include/strings.h b/include/strings.h
+index f3fac1b..441500a 100644
+--- a/include/strings.h
++++ b/include/strings.h
+@@ -640,6 +640,8 @@ extern const u8 gStartMenuDesc_Bag[];
+ extern const u8 gStartMenuDesc_Save[];
+ extern const u8 gStartMenuDesc_Option[];
+ extern const u8 gStartMenuDesc_Exit[];
++extern const u8 gText_HackMenuNuzlocke[];
++extern const u8 gStartMenuDesc_HackNuzlocke[];
+ extern const u8 gStartMenuDesc_Retire[];
+ extern const u8 gStartMenuDesc_Player[];
+ extern const u8 gText_SaveError_PleaseExchangeBackupMemory[];
+diff --git a/src/battle_interface.c b/src/battle_interface.c
+index 36fc9a5..4b590bb 100644
+--- a/src/battle_interface.c
++++ b/src/battle_interface.c
+@@ -1,4 +1,5 @@
+ #include "global.h"
++#include "hack_challenge.h"
+ #include "gflib.h"
+ #include "battle_anim.h"
+ #include "battle_interface.h"
+@@ -1857,7 +1858,8 @@ s32 MoveBattleBar(u8 battlerId, u8 healthboxSpriteId, u8 whichBar, u8 unused)
+                                           gBattleSpritesDataPtr->battleBars[battlerId].receivedValue,
+                                           &gBattleSpritesDataPtr->battleBars[battlerId].currValue,
+                                           B_HEALTHBAR_NUM_TILES,
+-                                          1);
++                                          Hack_FastBattles() && gBattleSpritesDataPtr->battleBars[battlerId].maxValue >= B_HEALTHBAR_NUM_TILES * 8 * 2
++                                              ? gBattleSpritesDataPtr->battleBars[battlerId].maxValue / (B_HEALTHBAR_NUM_TILES * 8 / 2) : 1);
+     }
+     else // exp bar
+     {
+@@ -1869,6 +1871,8 @@ s32 MoveBattleBar(u8 battlerId, u8 healthboxSpriteId, u8 whichBar, u8 unused)
+         if (increment == 0)
+             increment = 1;
+         increment = abs(gBattleSpritesDataPtr->battleBars[battlerId].receivedValue / increment);
++        if (Hack_FastBattles())
++            increment *= 2;
+ 
+         currentBarValue = CalcNewBarValue(gBattleSpritesDataPtr->battleBars[battlerId].maxValue,
+                                           gBattleSpritesDataPtr->battleBars[battlerId].oldValue,
+diff --git a/src/battle_script_commands.c b/src/battle_script_commands.c
+index ff1f621..6029427 100644
+--- a/src/battle_script_commands.c
++++ b/src/battle_script_commands.c
+@@ -2173,6 +2173,8 @@ static void Cmd_waitmessage(void)
+         else
+         {
+             u16 toWait = T2_READ_16(gBattlescriptCurrInstr + 1);
++            if (Hack_FastBattles())
++                toWait /= 2;
+             if (++gPauseCounterBattle >= toWait)
+             {
+                 gPauseCounterBattle = 0;
+diff --git a/src/hack_challenge.c b/src/hack_challenge.c
+index e7ff163..c503811 100644
+--- a/src/hack_challenge.c
++++ b/src/hack_challenge.c
+@@ -8,6 +8,9 @@
+ #include "new_menu_helpers.h"
+ #include "pokedex.h"
+ #include "pokemon.h"
++#include "pokemon_storage_system.h"
++#include "region_map.h"
++#include "data.h"
+ #include "script.h"
+ #include "sound.h"
+ #include "string_util.h"
+@@ -273,3 +276,177 @@ void Hack_ChallengeMenu(void)
+     DrawStdWindowFrame(tDescWin, FALSE);
+     DrawChallengeMenu(taskId);
+ }
++
++// Options > Battle speed. FAST (the default) drains HP and fills Exp. bars
++// faster and halves the pauses after battle messages.
++bool8 Hack_FastBattles(void)
++{
++    return !FlagGet(FLAG_HACK_NORMAL_BATTLE_SPEED) && !(gBattleTypeFlags & BATTLE_TYPE_LINK);
++}
++
++// ---------------------------------------------------------------------------
++// Start menu > NUZLOCKE: each used area, what was caught there and its status.
++
++enum { NZ_PARTY, NZ_PC, NZ_LOST, NZ_MISSED };
++
++#define NZ_MAX_ROWS   128
++#define NZ_PAGE_ROWS  7
++
++struct NuzlockeRow
++{
++    u8 sec;
++    u8 status;
++    u16 species;
++};
++
++EWRAM_DATA static struct NuzlockeRow sNzRows[NZ_MAX_ROWS] = {0};
++EWRAM_DATA static u8 sNzCount = 0;
++
++static const u8 sText_NzTitle[]  = _("NUZLOCKE RUN");
++static const u8 sText_NzParty[]  = _("PARTY");
++static const u8 sText_NzPC[]     = _("PC");
++static const u8 sText_NzLost[]   = _("FAINTED");
++static const u8 sText_NzMissed[] = _("MISSED");
++static const u8 sText_NzNone[]   = _("No encounters yet.");
++static const u8 sText_NzTally[]  = _("{STR_VAR_1} alive · {STR_VAR_2} fainted");
++static const u8 sText_NzUp[]     = _("{UP_ARROW}");
++static const u8 sText_NzDown[]   = _("{DOWN_ARROW}");
++static const u8 *const sNzStatus[] = {sText_NzParty, sText_NzPC, sText_NzLost, sText_NzMissed};
++
++static const struct WindowTemplate sNzWindow = {
++    .bg = 0, .tilemapLeft = 2, .tilemapTop = 1, .width = 26, .height = 16, .paletteNum = 15, .baseBlock = 0x008,
++};
++
++static u32 PlayerOtId(void)
++{
++    return gSaveBlock2Ptr->playerTrainerId[0] | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
++         | (gSaveBlock2Ptr->playerTrainerId[2] << 16) | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
++}
++
++static void NzConsider(struct BoxPokemon *boxMon, u8 status)
++{
++    u8 i, sec;
++
++    if (!GetBoxMonData(boxMon, MON_DATA_SANITY_HAS_SPECIES) || GetBoxMonData(boxMon, MON_DATA_IS_EGG))
++        return;
++    if (GetBoxMonData(boxMon, MON_DATA_OT_ID) != PlayerOtId())
++        return;
++    sec = GetBoxMonData(boxMon, MON_DATA_MET_LOCATION);
++    if (GetBoxMonData(boxMon, MON_DATA_UNUSED_RIBBONS) & DEAD_BIT)
++        status = NZ_LOST;
++    for (i = 0; i < sNzCount; i++)
++    {
++        if (sNzRows[i].sec == sec && sNzRows[i].status == NZ_MISSED)
++        {
++            sNzRows[i].status = status;
++            sNzRows[i].species = GetBoxMonData(boxMon, MON_DATA_SPECIES);
++            return;
++        }
++    }
++}
++
++static void NzBuildRows(void)
++{
++    u8 i, j;
++
++    sNzCount = 0;
++    for (i = 0; i < sizeof(gSaveBlock1Ptr->hackNuzlockeAreas) * 8 && KANTO_MAPSEC_START + i < MAPSEC_NONE; i++)
++    {
++        if (gSaveBlock1Ptr->hackNuzlockeAreas[i / 8] & (1 << (i % 8)))
++        {
++            sNzRows[sNzCount].sec = KANTO_MAPSEC_START + i;
++            sNzRows[sNzCount].status = NZ_MISSED;
++            sNzRows[sNzCount].species = SPECIES_NONE;
++            sNzCount++;
++        }
++    }
++    for (i = 0; i < PARTY_SIZE; i++)
++    {
++        u8 status = NZ_PARTY;
++        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) && GetMonData(&gPlayerParty[i], MON_DATA_HP) == 0)
++            status = NZ_LOST;
++        NzConsider(&gPlayerParty[i].box, status);
++    }
++    for (i = 0; i < TOTAL_BOXES_COUNT; i++)
++        for (j = 0; j < IN_BOX_COUNT; j++)
++            NzConsider(GetBoxedMonPtr(i, j), NZ_PC);
++}
++
++#define tTop data[0]
++#define tWin data[1]
++
++static void NzDraw(u8 taskId)
++{
++    s16 *data = gTasks[taskId].data;
++    u8 i, alive = 0, lost = 0, y;
++    u8 buf[32];
++
++    FillWindowPixelBuffer(tWin, PIXEL_FILL(1));
++    for (i = 0; i < sNzCount; i++)
++    {
++        if (sNzRows[i].status == NZ_PARTY || sNzRows[i].status == NZ_PC)
++            alive++;
++        else if (sNzRows[i].status == NZ_LOST)
++            lost++;
++    }
++    AddTextPrinterParameterized(tWin, FONT_NORMAL, sText_NzTitle, 4, 1, TEXT_SKIP_DRAW, NULL);
++    ConvertIntToDecimalStringN(gStringVar1, alive, STR_CONV_MODE_LEFT_ALIGN, 3);
++    ConvertIntToDecimalStringN(gStringVar2, lost, STR_CONV_MODE_LEFT_ALIGN, 3);
++    StringExpandPlaceholders(gStringVar4, sText_NzTally);
++    AddTextPrinterParameterized(tWin, FONT_SMALL, gStringVar4, 204 - GetStringWidth(FONT_SMALL, gStringVar4, 0), 3, TEXT_SKIP_DRAW, NULL);
++    if (sNzCount == 0)
++        AddTextPrinterParameterized(tWin, FONT_NORMAL, sText_NzNone, 4, 20, TEXT_SKIP_DRAW, NULL);
++    for (i = 0; i < NZ_PAGE_ROWS && tTop + i < sNzCount; i++)
++    {
++        const struct NuzlockeRow *row = &sNzRows[tTop + i];
++        y = 20 + i * 15;
++        GetMapNameGeneric(buf, row->sec);
++        AddTextPrinterParameterized(tWin, FONT_NORMAL, buf, 4, y, TEXT_SKIP_DRAW, NULL);
++        if (row->species)
++            AddTextPrinterParameterized(tWin, FONT_NORMAL, gSpeciesNames[row->species], 104, y, TEXT_SKIP_DRAW, NULL);
++        AddTextPrinterParameterized(tWin, FONT_SMALL, sNzStatus[row->status], 168, y + 2, TEXT_SKIP_DRAW, NULL);
++    }
++    if (tTop > 0)
++        AddTextPrinterParameterized(tWin, FONT_SMALL, sText_NzUp, 196, 14, TEXT_SKIP_DRAW, NULL);
++    if (tTop + NZ_PAGE_ROWS < sNzCount)
++        AddTextPrinterParameterized(tWin, FONT_SMALL, sText_NzDown, 196, 118, TEXT_SKIP_DRAW, NULL);
++    CopyWindowToVram(tWin, COPYWIN_FULL);
++}
++
++static void Task_NuzlockeTracker(u8 taskId)
++{
++    s16 *data = gTasks[taskId].data;
++
++    if (JOY_REPT(DPAD_UP) && tTop > 0)
++    {
++        PlaySE(SE_SELECT);
++        tTop--;
++        NzDraw(taskId);
++    }
++    else if (JOY_REPT(DPAD_DOWN) && tTop + NZ_PAGE_ROWS < sNzCount)
++    {
++        PlaySE(SE_SELECT);
++        tTop++;
++        NzDraw(taskId);
++    }
++    else if (JOY_NEW(A_BUTTON | B_BUTTON))
++    {
++        PlaySE(SE_SELECT);
++        ClearStdWindowAndFrame(tWin, TRUE);
++        RemoveWindow(tWin);
++        DestroyTask(taskId);
++        ScriptContext_Enable();
++    }
++}
++
++void Hack_NuzlockeTracker(void)
++{
++    u8 taskId = CreateTask(Task_NuzlockeTracker, 80);
++    s16 *data = gTasks[taskId].data;
++
++    NzBuildRows();
++    tTop = 0;
++    tWin = AddWindow(&sNzWindow);
++    DrawStdWindowFrame(tWin, FALSE);
++    NzDraw(taskId);
++}
+diff --git a/src/option_menu.c b/src/option_menu.c
+index ba90088..4b6571f 100644
+--- a/src/option_menu.c
++++ b/src/option_menu.c
+@@ -1,5 +1,6 @@
+ #include "global.h"
+ #include "hack_challenge.h"
++#include "hack_version.h"
+ #include "event_data.h"
+ #include "gflib.h"
+ #include "scanline_effect.h"
+@@ -22,6 +23,7 @@ enum
+     MENUITEM_TEXTSPEED = 0,
+     MENUITEM_BATTLESCENE,
+     MENUITEM_BATTLESTYLE,
++    MENUITEM_BATTLESPEED, // FireRed QoL+Hard
+     MENUITEM_SOUND,
+     MENUITEM_BUTTONMODE,
+     MENUITEM_FRAMETYPE,
+@@ -133,13 +135,23 @@ static const struct BgTemplate sOptionMenuBgTemplates[] =
+ };
+ 
+ static const u16 sOptionMenuPalette[] = INCBIN_U16("graphics/misc/option_menu.gbapal");
+-static const u16 sOptionMenuItemCounts[MENUITEM_COUNT] = {3, 2, 2, 2, 3, 10, 0};
++static const u8 sText_HackBattleSpeed[] = _("BATTLE SPEED");
++static const u8 sText_HackSpeedFast[] = _("FAST");
++static const u8 sText_HackSpeedNormal[] = _("NORMAL");
++static const u8 sText_HackRelease[] = _("QoL+HARD " HACK_RELEASE_STRING);
++static const u8 *const sBattleSpeedOptions[] = {sText_HackSpeedFast, sText_HackSpeedNormal};
++
++// FireRed QoL+Hard: 8 rows, so the rows are 1px closer than in vanilla.
++#define ROW_HEIGHT (GetFontAttribute(FONT_NORMAL, FONTATTR_MAX_LETTER_HEIGHT) - 2)
++
++static const u16 sOptionMenuItemCounts[MENUITEM_COUNT] = {3, 2, 2, 2, 2, 3, 10, 0};
+ 
+ static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
+ {
+     [MENUITEM_TEXTSPEED]   = gText_TextSpeed,
+     [MENUITEM_BATTLESCENE] = gText_BattleScene,
+     [MENUITEM_BATTLESTYLE] = gText_BattleStyle,
++    [MENUITEM_BATTLESPEED] = sText_HackBattleSpeed,
+     [MENUITEM_SOUND]       = gText_Sound,
+     [MENUITEM_BUTTONMODE]  = gText_ButtonMode,
+     [MENUITEM_FRAMETYPE]   = gText_Frame,
+@@ -211,6 +223,7 @@ void CB2_OptionsMenuFromStartMenu(void)
+     sOptionMenuPtr->option[MENUITEM_TEXTSPEED] = gSaveBlock2Ptr->optionsTextSpeed;
+     sOptionMenuPtr->option[MENUITEM_BATTLESCENE] = gSaveBlock2Ptr->optionsBattleSceneOff;
+     sOptionMenuPtr->option[MENUITEM_BATTLESTYLE] = gSaveBlock2Ptr->optionsBattleStyle;
++    sOptionMenuPtr->option[MENUITEM_BATTLESPEED] = FlagGet(FLAG_HACK_NORMAL_BATTLE_SPEED) ? 1 : 0;
+     sOptionMenuPtr->option[MENUITEM_SOUND] = gSaveBlock2Ptr->optionsSound;
+     sOptionMenuPtr->option[MENUITEM_BUTTONMODE] = gSaveBlock2Ptr->optionsButtonMode;
+     sOptionMenuPtr->option[MENUITEM_FRAMETYPE] = gSaveBlock2Ptr->optionsWindowFrameType;
+@@ -476,8 +489,8 @@ static void BufferOptionMenuString(u8 selection)
+     
+     memcpy(dst, sOptionMenuTextColor, 3);
+     x = 0x82;
+-    y = ((GetFontAttribute(FONT_NORMAL, FONTATTR_MAX_LETTER_HEIGHT) - 1) * selection) + 2;
+-    FillWindowPixelRect(1, 1, x, y, 0x46, GetFontAttribute(FONT_NORMAL, FONTATTR_MAX_LETTER_HEIGHT));
++    y = (ROW_HEIGHT * selection) + 1;
++    FillWindowPixelRect(1, 1, x, y, 0x46, ROW_HEIGHT);
+ 
+     switch (selection)
+     {
+@@ -490,6 +503,9 @@ static void BufferOptionMenuString(u8 selection)
+     case MENUITEM_BATTLESTYLE:
+         AddTextPrinterParameterized3(1, FONT_NORMAL, x, y, dst, -1, sBattleStyleOptions[sOptionMenuPtr->option[selection]]);
+         break;
++    case MENUITEM_BATTLESPEED:
++        AddTextPrinterParameterized3(1, FONT_NORMAL, x, y, dst, -1, sBattleSpeedOptions[sOptionMenuPtr->option[selection]]);
++        break;
+     case MENUITEM_SOUND:
+         AddTextPrinterParameterized3(1, FONT_NORMAL, x, y, dst, -1, sSoundOptions[sOptionMenuPtr->option[selection]]);
+         break;
+@@ -519,6 +535,10 @@ static void CloseAndSaveOptionMenu(u8 taskId)
+     gSaveBlock2Ptr->optionsBattleStyle = sOptionMenuPtr->option[MENUITEM_BATTLESTYLE];
+     if (FlagGet(FLAG_HACK_SET_ONLY))
+         gSaveBlock2Ptr->optionsBattleStyle = OPTIONS_BATTLE_STYLE_SET;
++    if (sOptionMenuPtr->option[MENUITEM_BATTLESPEED])
++        FlagSet(FLAG_HACK_NORMAL_BATTLE_SPEED);
++    else
++        FlagClear(FLAG_HACK_NORMAL_BATTLE_SPEED);
+     gSaveBlock2Ptr->optionsSound = sOptionMenuPtr->option[MENUITEM_SOUND];
+     gSaveBlock2Ptr->optionsButtonMode = sOptionMenuPtr->option[MENUITEM_BUTTONMODE];
+     gSaveBlock2Ptr->optionsWindowFrameType = sOptionMenuPtr->option[MENUITEM_FRAMETYPE];
+@@ -531,6 +551,8 @@ static void PrintOptionMenuHeader(void)
+ {
+     FillWindowPixelBuffer(0, PIXEL_FILL(1));
+     AddTextPrinterParameterized(WIN_TEXT_OPTION, FONT_NORMAL, gText_Option, 8, 1, TEXT_SKIP_DRAW, NULL);
++    AddTextPrinterParameterized(WIN_TEXT_OPTION, FONT_SMALL, sText_HackRelease,
++                                26 * 8 - 4 - GetStringWidth(FONT_SMALL, sText_HackRelease, 0), 3, TEXT_SKIP_DRAW, NULL);
+     PutWindowTilemap(0);
+     CopyWindowToVram(0, COPYWIN_FULL);
+ }
+@@ -566,7 +588,7 @@ static void LoadOptionMenuItemNames(void)
+     FillWindowPixelBuffer(1, PIXEL_FILL(1));
+     for (i = 0; i < MENUITEM_COUNT; i++)
+     {
+-        AddTextPrinterParameterized(WIN_OPTIONS, FONT_NORMAL, sOptionMenuItemsNames[i], 8, (u8)((i * (GetFontAttribute(FONT_NORMAL, FONTATTR_MAX_LETTER_HEIGHT))) + 2) - i, TEXT_SKIP_DRAW, NULL);    
++        AddTextPrinterParameterized(WIN_OPTIONS, FONT_NORMAL, sOptionMenuItemsNames[i], 8, (u8)(i * ROW_HEIGHT + 1), TEXT_SKIP_DRAW, NULL);    
+     }
+ }
+ 
+@@ -575,7 +597,7 @@ static void UpdateSettingSelectionDisplay(u16 selection)
+     u16 maxLetterHeight, y;
+     
+     maxLetterHeight = GetFontAttribute(FONT_NORMAL, FONTATTR_MAX_LETTER_HEIGHT);
+-    y = selection * (maxLetterHeight - 1) + 0x3A;
+-    SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(y, y + maxLetterHeight));
++    y = selection * (maxLetterHeight - 2) + 0x39;
++    SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(y, y + maxLetterHeight - 2));
+     SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0x10, 0xE0));
+ }
+diff --git a/src/start_menu.c b/src/start_menu.c
+index 88cc377..0b9bb9f 100644
+--- a/src/start_menu.c
++++ b/src/start_menu.c
+@@ -1,4 +1,5 @@
+ #include "global.h"
++#include "hack_challenge.h"
+ #include "gflib.h"
+ #include "scanline_effect.h"
+ #include "overworld.h"
+@@ -49,6 +50,7 @@ enum StartMenuOption
+     STARTMENU_EXIT,
+     STARTMENU_RETIRE,
+     STARTMENU_PLAYER2,
++    STARTMENU_NUZLOCKE, // FireRed QoL+Hard
+     MAX_STARTMENU_ITEMS
+ };
+ 
+@@ -88,6 +90,7 @@ static bool8 StartMenuOptionCallback(void);
+ static bool8 StartMenuExitCallback(void);
+ static bool8 StartMenuSafariZoneRetireCallback(void);
+ static bool8 StartMenuLinkPlayerCallback(void);
++static bool8 StartMenuNuzlockeCallback(void);
+ static bool8 StartCB_Save1(void);
+ static bool8 StartCB_Save2(void);
+ static void StartMenu_PrepareForSave(void);
+@@ -113,6 +116,10 @@ static void PrintSaveStats(void);
+ static void CloseSaveStatsWindow(void);
+ static void CloseStartMenu(void);
+ 
++// FireRed QoL+Hard: 8 entries (with NUZLOCKE) are spaced closer so the menu
++// stays the height of the vanilla 7-entry one.
++#define START_MENU_ROW_HEIGHT (sNumStartMenuItems > 7 ? 13 : 15)
++
+ static const struct MenuAction sStartMenuActionTable[] = {
+     [STARTMENU_POKEDEX] = { gText_MenuPokedex, {.u8_void = StartMenuPokedexCallback} },
+     [STARTMENU_POKEMON] = { gText_MenuPokemon, {.u8_void = StartMenuPokemonCallback} },
+@@ -122,7 +129,8 @@ static const struct MenuAction sStartMenuActionTable[] = {
+     [STARTMENU_OPTION]  = { gText_MenuOption,  {.u8_void = StartMenuOptionCallback} },
+     [STARTMENU_EXIT]    = { gText_MenuExit,    {.u8_void = StartMenuExitCallback} },
+     [STARTMENU_RETIRE]  = { gText_MenuRetire,  {.u8_void = StartMenuSafariZoneRetireCallback} },
+-    [STARTMENU_PLAYER2] = { gText_MenuPlayer,  {.u8_void = StartMenuLinkPlayerCallback} }
++    [STARTMENU_PLAYER2] = { gText_MenuPlayer,  {.u8_void = StartMenuLinkPlayerCallback} },
++    [STARTMENU_NUZLOCKE] = { gText_HackMenuNuzlocke, {.u8_void = StartMenuNuzlockeCallback} }
+ };
+ 
+ static const struct WindowTemplate sSafariZoneStatsWindowTemplate = {
+@@ -144,7 +152,8 @@ static const u8 *const sStartMenuDescPointers[] = {
+     gStartMenuDesc_Option,
+     gStartMenuDesc_Exit,
+     gStartMenuDesc_Retire,
+-    gStartMenuDesc_Player
++    gStartMenuDesc_Player,
++    gStartMenuDesc_HackNuzlocke
+ };
+ 
+ static const struct BgTemplate sBGTemplates_AfterLinkSaveMessage[] = {
+@@ -217,6 +226,8 @@ static void SetUpStartMenu_NormalField(void)
+     if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE)
+         AppendToStartMenuItems(STARTMENU_POKEMON);
+     AppendToStartMenuItems(STARTMENU_BAG);
++    if (FlagGet(FLAG_HACK_NUZLOCKE) == TRUE)
++        AppendToStartMenuItems(STARTMENU_NUZLOCKE);
+     AppendToStartMenuItems(STARTMENU_PLAYER);
+     AppendToStartMenuItems(STARTMENU_SAVE);
+     AppendToStartMenuItems(STARTMENU_OPTION);
+@@ -282,12 +293,12 @@ static s8 PrintStartMenuItems(s8 *cursor_p, u8 nitems)
+     {
+         if (sStartMenuOrder[i] == STARTMENU_PLAYER || sStartMenuOrder[i] == STARTMENU_PLAYER2)
+         {
+-            Menu_PrintFormatIntlPlayerName(GetStartMenuWindowId(), sStartMenuActionTable[sStartMenuOrder[i]].text, 8, i * 15);
++            Menu_PrintFormatIntlPlayerName(GetStartMenuWindowId(), sStartMenuActionTable[sStartMenuOrder[i]].text, 8, i * START_MENU_ROW_HEIGHT);
+         }
+         else
+         {
+             StringExpandPlaceholders(gStringVar4, sStartMenuActionTable[sStartMenuOrder[i]].text);
+-            AddTextPrinterParameterized(GetStartMenuWindowId(), FONT_NORMAL, gStringVar4, 8, i * 15, 0xFF, NULL);
++            AddTextPrinterParameterized(GetStartMenuWindowId(), FONT_NORMAL, gStringVar4, 8, i * START_MENU_ROW_HEIGHT, 0xFF, NULL);
+         }
+         i++;
+         if (i >= sNumStartMenuItems)
+@@ -313,7 +324,7 @@ static s8 DoDrawStartMenu(void)
+         break;
+     case 2:
+         LoadStdWindowFrameGfx();
+-        DrawStdWindowFrame(CreateStartMenuWindow(sNumStartMenuItems), FALSE);
++        DrawStdWindowFrame(CreateStartMenuWindow(sNumStartMenuItems > 7 ? 7 : sNumStartMenuItems), FALSE);
+         sDrawStartMenuState[0]++;
+         break;
+     case 3:
+@@ -326,7 +337,7 @@ static s8 DoDrawStartMenu(void)
+             sDrawStartMenuState[0]++;
+         break;
+     case 5:
+-        sStartMenuCursorPos = Menu_InitCursor(GetStartMenuWindowId(), FONT_NORMAL, 0, 0, 15, sNumStartMenuItems, sStartMenuCursorPos);
++        sStartMenuCursorPos = Menu_InitCursor(GetStartMenuWindowId(), FONT_NORMAL, 0, 0, START_MENU_ROW_HEIGHT, sNumStartMenuItems, sStartMenuCursorPos);
+         if (!MenuHelpers_IsLinkActive() && InUnionRoom() != TRUE && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_HELP)
+         {
+             DrawHelpMessageWindowWithText(sStartMenuDescPointers[sStartMenuOrder[sStartMenuCursorPos]]);
+@@ -447,6 +458,7 @@ static bool8 StartCB_HandleInput(void)
+ static void StartMenu_FadeScreenIfLeavingOverworld(void)
+ {
+     if (sStartMenuCallback != StartMenuSaveCallback
++     && sStartMenuCallback != StartMenuNuzlockeCallback
+      && sStartMenuCallback != StartMenuExitCallback
+      && sStartMenuCallback != StartMenuSafariZoneRetireCallback)
+     {
+@@ -543,6 +555,15 @@ static bool8 StartMenuExitCallback(void)
+     return TRUE;
+ }
+ 
++static bool8 StartMenuNuzlockeCallback(void)
++{
++    DestroySafariZoneStatsWindow();
++    DestroyHelpMessageWindow_();
++    CloseStartMenu();
++    ScriptContext_SetupScript(EventScript_HackNuzlockeTracker);
++    return TRUE;
++}
++
+ static bool8 StartMenuSafariZoneRetireCallback(void)
+ {
+     DestroySafariZoneStatsWindow();
+diff --git a/src/strings.c b/src/strings.c
+index e6ecb99..45521e4 100644
+--- a/src/strings.c
++++ b/src/strings.c
+@@ -905,6 +905,8 @@ const u8 gStartMenuDesc_Bag[] = _("Equipped with pockets for storing items\nyou
+ const u8 gStartMenuDesc_Player[] = _("Check your money and other game data.");
+ const u8 gStartMenuDesc_Save[] = _("Save your game with a complete record\nof your progress to take a break.");
+ const u8 gStartMenuDesc_Option[] = _("Adjust various game settings such as text\nspeed, game rules, etc.");
++const u8 gText_HackMenuNuzlocke[] = _("NUZLOCKE");
++const u8 gStartMenuDesc_HackNuzlocke[] = _("Your catches and who's still alive.");
+ const u8 gStartMenuDesc_Exit[] = _("Close this MENU window.");
+ const u8 gStartMenuDesc_Retire[] = _("Retire from the SAFARI GAME and return to\nthe registration counter.");
+ 
+-- 
+2.43.0
+

@@ -8,6 +8,17 @@ made it, so you can see exactly what changed.
 previous release keeps working. In short, saves made on **release 7 or later**
 carry over to the current release. Older saves need a new game.
 
+## Release 12 (2026-11-06)
+Pull requests: [#29](https://github.com/RTyH-Code/Personal-Projects/pull/29)
+
+- **Battle speed:** a new Options setting, FAST by default. It drains HP and
+  fills Exp. bars faster and halves the pauses after battle messages.
+- **Release number in-game:** the Options screen shows "QoL+HARD R12".
+- **Nuzlocke tracker:** a NUZLOCKE entry in the Start menu lists each used
+  area, what you caught there, and whether it's in your party, in the PC,
+  fainted or missed.
+- **Saves:** release 11 saves carry over.
+
 ## Release 11 (2026-11-06)
 Pull requests: [#27](https://github.com/RTyH-Code/Personal-Projects/pull/27), [#28](https://github.com/RTyH-Code/Personal-Projects/pull/28)
 
