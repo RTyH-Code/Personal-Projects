@@ -55,9 +55,10 @@ def collect(out: Path) -> dict:
         total["seen"] |= set(st["species_seen"])
         total["owned"] |= set(st["species_owned"])
         for name, b in st["battles"].items():
-            t = total["battles"].setdefault(name, {"wild": 0, "trainer": 0, "blackouts": 0, "trainer_losses": 0})
+            t = total["battles"].setdefault(name, {"wild": 0, "trainer": 0, "blackouts": 0, "trainer_losses": 0,
+                                                   "lost_no_blackout": 0})
             for k, v in b.items():
-                t[k] += v
+                t[k] = t.get(k, 0) + v
         total["blackouts"] += st["blackouts"]
         total["session_ends"] += st.get("session_ends", [])
     furthest = []
@@ -119,6 +120,7 @@ def summarize(data: dict) -> dict:
         "species_owned": len(total["owned"]),
         "dex_count": game.p["dex_count"],
         "blackouts": len(total["blackouts"]),
+        "battles": total["battles"],
         "difficulty_spikes": spikes,
         "starts": total["starts"],
         "furthest": sorted(data["furthest"], key=lambda f: (f["champion"], f["badges"], f["top_level"],
@@ -149,6 +151,10 @@ img { max-width:240px; border-radius:6px; border:1px solid var(--line); image-re
 details summary { cursor:pointer; } code { font-size:13px; }
 .wrap { overflow-x:auto; }
 """
+
+
+def data_battles(s: dict):
+    return s.get("battles", {}).items()
 
 
 def progress_html(s: dict) -> str:
@@ -202,6 +208,12 @@ def write_report(out: Path) -> Path:
                      f'<td>{int(x["rate"] * 100)}%</td></tr>' for x in s["difficulty_spikes"])
     spikes = ("<div class=wrap><table><tr><th>Map</th><th>Blackouts</th><th>Wild battles</th><th>Trainer battles</th>"
               f"<th>Blackout rate</th></tr>{spikes}</table></div>") if spikes else "<p>No map stood out.</p>"
+    lost = sorted(((n, b["lost_no_blackout"]) for n, b in data_battles(s) if b.get("lost_no_blackout")),
+                  key=lambda kv: -kv[1])
+    if lost:
+        spikes += ('<p class="muted">Battles lost without a blackout (the game carried on, as after the first '
+                   "rival battle), not counted above: "
+                   + ", ".join(f"{e(n.replace('_', ' '))} ({c})" for n, c in lost) + "</p>")
     never = ", ".join(e(m) for m in s["maps_never"][:400])
     starts = ", ".join(f"{e(k)} ×{v}" for k, v in sorted(s["starts"].items(), key=lambda kv: -kv[1])[:30])
     page = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
