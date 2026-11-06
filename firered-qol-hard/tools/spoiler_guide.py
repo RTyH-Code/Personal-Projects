@@ -456,6 +456,9 @@ def write_trainers():
     out = ["# Trainers", "",
            "Gym Leaders, the Elite Four, the Champion, post-game peak trainers and the Victory Road rematches are listed in full first. "
            "Then every other trainer, by location.", "",
+           "**VS Seeker rematches** on routes: until you have all eight badges, any rematch Pokémon more than "
+           "5 levels under the next Gym Leader's strongest is raised to that level (and evolves if it can), so "
+           "rematches stay worth fighting. The teams below are the first battles.", "",
            "Regular trainers use their normal level-up moves unless moves are listed. "
            "Peak trainers' Pokémon have perfect IVs, a nature that boosts their main attacking stat, "
            "and 252/252 EVs (attack stat and Speed, or HP for slow Pokémon).", ""]

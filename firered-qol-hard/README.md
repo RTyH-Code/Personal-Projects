@@ -552,6 +552,10 @@ unmodified pret data:
 - `fairy.py <pokemon-showdown>/data`: the Fairy type, retyped Pokémon, Fairy moves and their learnsets.
 - `abilities.py <pokemon-showdown>/data`: ability slots, new ability names and each Pokémon's modern abilities (`--species` re-assigns them).
 - `evo_moves.py`: later level-up moves for stone evolutions (run after `modernize.py`).
+- `add_species.py <pokemon-showdown>/data <expansion> NAME`: adds a later Pokémon in an unused species slot, with its graphics, cry, Pokédex entry and evolution item.
+- `moves.py <pokemon-showdown>/data <batch>`: the later moves, the modern tutor and its data; `moves_engine_b2.py` and `moves_engine_b3.py` add the battle effects batches 2 and 3 need.
+- `balance.py`: modern boss movesets and peak teams with the later evolutions.
+- `validate.py`: checks the game data for missing or inconsistent entries.
 - `peak_trainers.py`: peak teams, gym rematches and the Elite Four round 3.
 - `spoiler_guide.py <dir>`: regenerates the spoiler guide from the game data.
 - `tower_sets.py <dir>`: the competitive Trainer Tower teams, from Showdown's random-battle set files (read as data).
