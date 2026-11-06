@@ -64,8 +64,8 @@ Height 1 m (3′03″) · Weight 29.5 kg (65.0 lbs)
 - **Cerulean Cave 1F**: Grass / cave Lv 56–67 (25%)
 - **Cerulean Cave 2F**: Grass / cave Lv 60–70 (14%)
 - **Cerulean Cave B1F**: Grass / cave Lv 63–74 (14%)
-- **Safari Zone Center**: Grass / cave Lv 30 (5%)
-- **Safari Zone East**: Grass / cave Lv 25 (5%)
+- **Safari Zone Center**: Grass / cave Lv 34 (5%)
+- **Safari Zone East**: Grass / cave Lv 29 (5%)
 - Evolve [Paras](046-paras.md)
 
 ## Moves

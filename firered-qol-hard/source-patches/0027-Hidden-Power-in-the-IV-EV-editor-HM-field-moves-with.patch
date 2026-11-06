@@ -1,7 +1,7 @@
 From 75912e010e9ea0d8a6fc3fe73dda99a64b38232c Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Wed, 4 Nov 2026 02:16:05 +0000
-Subject: [PATCH 27/51] Hidden Power in the IV/EV editor, HM field moves
+Subject: [PATCH 27/54] Hidden Power in the IV/EV editor, HM field moves
  without teaching, optional level caps
 
 - The IV/EV editor shows the Hidden Power type and power for the IVs

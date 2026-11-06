@@ -59,10 +59,10 @@ Height 1.2 m (3′11″) · Weight 9.5 kg (20.9 lbs)
 
 ## Where to find it
 
-- **Pokémon Mansion 1F**: Grass / cave Lv 32 (5%)
-- **Pokémon Mansion 2F**: Grass / cave Lv 32 (5%)
-- **Pokémon Mansion 3F**: Grass / cave Lv 32 (5%)
-- **Pokémon Mansion B1F**: Grass / cave Lv 34 (5%)
+- **Pokémon Mansion 1F**: Grass / cave Lv 37 (5%)
+- **Pokémon Mansion 2F**: Grass / cave Lv 37 (5%)
+- **Pokémon Mansion 3F**: Grass / cave Lv 37 (5%)
+- **Pokémon Mansion B1F**: Grass / cave Lv 39 (5%)
 - Evolve [Koffing](109-koffing.md)
 
 ## Moves

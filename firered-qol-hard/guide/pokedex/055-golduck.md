@@ -59,12 +59,12 @@ Height 1.7 m (5′07″) · Weight 76.6 kg (168.9 lbs)
 
 - **Cerulean Cave 1F**: Surfing Lv 46–63 (35%)
 - **Cerulean Cave B1F**: Surfing Lv 57–75 (35%)
-- **Seafoam Islands B1F**: Grass / cave Lv 33–35 (5%)
-- **Seafoam Islands B2F**: Grass / cave Lv 32–34 (10%)
-- **Seafoam Islands B3F**: Grass / cave Lv 32–34 (15%); Surfing Lv 35–40 (1%)
-- **Seafoam Islands B4F**: Grass / cave Lv 32–34 (15%); Surfing Lv 35–40 (1%)
-- **Two Island Cape Brink**: Grass / cave Lv 37–40 (5%); Surfing Lv 35–40 (5%)
-- **Three Island Berry Forest**: Surfing Lv 35–40 (5%)
+- **Seafoam Islands B1F**: Grass / cave Lv 38–40 (5%)
+- **Seafoam Islands B2F**: Grass / cave Lv 37–39 (10%)
+- **Seafoam Islands B3F**: Grass / cave Lv 37–39 (15%); Surfing Lv 40–46 (1%)
+- **Seafoam Islands B4F**: Grass / cave Lv 37–39 (15%); Surfing Lv 40–46 (1%)
+- **Two Island Cape Brink**: Grass / cave Lv 43–46 (5%); Surfing Lv 40–46 (5%)
+- **Three Island Berry Forest**: Surfing Lv 40–46 (5%)
 - Evolve [Psyduck](054-psyduck.md)
 
 ## Moves

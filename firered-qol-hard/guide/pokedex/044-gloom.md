@@ -59,13 +59,13 @@ Height 0.8 m (2′07″) · Weight 8.6 kg (19.0 lbs)
 
 ## Where to find it
 
-- **Route 12**: Grass / cave Lv 28–30 (5%)
-- **Route 13**: Grass / cave Lv 28–30 (5%)
-- **Route 14**: Grass / cave Lv 30 (5%)
-- **Route 15**: Grass / cave Lv 28–30 (5%)
-- **Two Island Cape Brink**: Grass / cave Lv 36–38 (15%)
-- **Three Island Berry Forest**: Grass / cave Lv 35 (20%)
-- **Three Island Bond Bridge**: Grass / cave Lv 36 (10%)
+- **Route 12**: Grass / cave Lv 32–34 (5%)
+- **Route 13**: Grass / cave Lv 32–34 (5%)
+- **Route 14**: Grass / cave Lv 34 (5%)
+- **Route 15**: Grass / cave Lv 32–34 (5%)
+- **Two Island Cape Brink**: Grass / cave Lv 41–44 (15%)
+- **Three Island Berry Forest**: Grass / cave Lv 40 (20%)
+- **Three Island Bond Bridge**: Grass / cave Lv 41 (10%)
 - **Six Island Water Path**: Grass / cave Lv 48 (5%)
 - Evolve [Oddish](043-oddish.md)
 

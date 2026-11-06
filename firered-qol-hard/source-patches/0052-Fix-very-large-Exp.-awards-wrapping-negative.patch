@@ -1,0 +1,47 @@
+From 72b4de5a79e58b8b7a00c88106190fe7051eea95 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Fri, 6 Nov 2026 17:06:38 +0000
+Subject: [PATCH 52/54] Fix: very large Exp. awards wrapping negative
+
+The battle controller passes Exp. as a signed 16-bit value. With the
+modern formula, a very low-level Pokemon beating a high-level foe (with
+Lucky Egg, trade and trainer bonuses and no level cap) can earn more than
+32,767 at once, which wrapped to a negative amount. Clamp the award.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ include/hack_version.h       | 2 +-
+ src/battle_script_commands.c | 4 ++++
+ 2 files changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/include/hack_version.h b/include/hack_version.h
+index 5960d1b..e1c43a1 100644
+--- a/include/hack_version.h
++++ b/include/hack_version.h
+@@ -3,6 +3,6 @@
+ 
+ // FireRed QoL+Hard release number, shown in the Options menu. Bump it with
+ // each release (see CHANGELOG.md in the Personal-Projects repository).
+-#define HACK_RELEASE_STRING "R13"
++#define HACK_RELEASE_STRING "R14"
+ 
+ #endif // GUARD_HACK_VERSION_H
+diff --git a/src/battle_script_commands.c b/src/battle_script_commands.c
+index c1f0ebe..4c3957b 100644
+--- a/src/battle_script_commands.c
++++ b/src/battle_script_commands.c
+@@ -3408,6 +3408,10 @@ static void Cmd_getexp(void)
+                     gBattleMoveDamage = Hack_CapExpGain(GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_SPECIES),
+                                                         GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_EXP),
+                                                         gBattleMoveDamage);
++                    // The controller passes Exp. as a signed 16-bit value; the modern
++                    // formula can exceed that for a very low-level Pokemon.
++                    if (gBattleMoveDamage > 32767)
++                        gBattleMoveDamage = 32767;
+ 
+                     // get exp getter battlerId
+                     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+-- 
+2.43.0
+

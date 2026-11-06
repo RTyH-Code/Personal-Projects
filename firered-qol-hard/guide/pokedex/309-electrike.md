@@ -59,8 +59,8 @@ Height 0.6 m (2′00″) · Weight 15.2 kg (33.5 lbs)
 
 ## Where to find it
 
-- **Route 10**: Grass / cave Lv 17 (5%)
-- **Power Plant**: Grass / cave Lv 26 (4%)
+- **Route 10**: Grass / cave Lv 20 (5%)
+- **Power Plant**: Grass / cave Lv 30 (4%)
 - Breeding: hatches from an Egg left by a Electrike or Manectric at the Four Island Day Care
 
 ## Moves

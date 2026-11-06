@@ -58,9 +58,9 @@ Height 1.5 m (4′11″) · Weight 12.5 kg (27.6 lbs)
 
 ## Where to find it
 
-- **Safari Zone North**: Grass / cave Lv 32 (5%)
-- **Safari Zone West**: Grass / cave Lv 32 (5%)
-- **Three Island Berry Forest**: Grass / cave Lv 40 (1%)
+- **Safari Zone North**: Grass / cave Lv 37 (5%)
+- **Safari Zone West**: Grass / cave Lv 37 (5%)
+- **Three Island Berry Forest**: Grass / cave Lv 46 (1%)
 - Evolve [Venonat](048-venonat.md)
 
 ## Moves

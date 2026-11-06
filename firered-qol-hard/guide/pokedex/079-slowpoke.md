@@ -58,8 +58,8 @@ Height 1.2 m (3′11″) · Weight 36 kg (79.4 lbs)
 
 ## Where to find it
 
-- **Route 12**: Surfing Lv 20–30 (5%)
-- **Seafoam Islands 1F**: Grass / cave Lv 33 (4%)
+- **Route 12**: Surfing Lv 23–34 (5%)
+- **Seafoam Islands 1F**: Grass / cave Lv 38 (4%)
 - Breeding: hatches from an Egg left by a Slowpoke or Slowbro or Slowking at the Four Island Day Care
 
 ## Moves

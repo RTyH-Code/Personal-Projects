@@ -56,8 +56,8 @@ Height 0.7 m (2′04″) · Weight 1 kg (2.2 lbs)
 
 ## Where to find it
 
-- **Pokémon Tower 5F**: Grass / cave Lv 17 (4%)
-- **Pokémon Tower 7F**: Grass / cave Lv 18 (4%)
+- **Pokémon Tower 5F**: Grass / cave Lv 20 (4%)
+- **Pokémon Tower 7F**: Grass / cave Lv 21 (4%)
 - Breeding: hatches from an Egg left by a Misdreavus or Mismagius at the Four Island Day Care
 
 ## Moves

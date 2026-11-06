@@ -57,7 +57,7 @@ Illumise does not evolve.
 
 ## Where to find it
 
-- **Route 15**: Grass / cave Lv 22 (10%)
+- **Route 15**: Grass / cave Lv 25 (10%)
 - Breeding: hatches from an Egg left by a Illumise at the Four Island Day Care
 
 ## Moves

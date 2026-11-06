@@ -59,8 +59,8 @@ Corsola does not evolve.
 
 ## Where to find it
 
-- **Route 20**: Surfing Lv 30–35 (4%)
-- **One Island Treasure Beach**: Surfing Lv 35–40 (5%)
+- **Route 20**: Surfing Lv 34–40 (4%)
+- **One Island Treasure Beach**: Surfing Lv 40–46 (5%)
 - Breeding: hatches from an Egg left by a Corsola at the Four Island Day Care
 
 ## Moves

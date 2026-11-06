@@ -57,8 +57,8 @@ Kangaskhan does not evolve.
 
 ## Where to find it
 
-- **Safari Zone East**: Grass / cave Lv 25 (4%)
-- **Safari Zone West**: Grass / cave Lv 28 (1%)
+- **Safari Zone East**: Grass / cave Lv 29 (4%)
+- **Safari Zone West**: Grass / cave Lv 32 (1%)
 - Breeding: hatches from an Egg left by a Kangaskhan at the Four Island Day Care
 
 ## Moves

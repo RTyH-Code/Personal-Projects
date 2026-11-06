@@ -58,11 +58,11 @@ Height 1.4 m (4′07″) · Weight 39.2 kg (86.4 lbs)
 
 ## Where to find it
 
-- **Route 16**: Grass / cave Lv 18–20 (30%)
-- **Route 17**: Grass / cave Lv 24–26 (30%)
-- **Route 18**: Grass / cave Lv 24–26 (30%)
-- **Safari Zone East**: Grass / cave Lv 26 (20%)
-- **Safari Zone West**: Grass / cave Lv 26 (20%)
+- **Route 16**: Grass / cave Lv 21–23 (30%)
+- **Route 17**: Grass / cave Lv 28–30 (30%)
+- **Route 18**: Grass / cave Lv 28–30 (30%)
+- **Safari Zone East**: Grass / cave Lv 30 (20%)
+- **Safari Zone West**: Grass / cave Lv 30 (20%)
 - Breeding: hatches from an Egg left by a Doduo or Dodrio at the Four Island Day Care
 
 ## Moves

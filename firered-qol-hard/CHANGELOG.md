@@ -8,6 +8,24 @@ made it, so you can see exactly what changed.
 previous release keeps working. In short, saves made on **release 7 or later**
 carry over to the current release. Older saves need a new game.
 
+## Release 14 (2026-11-06)
+Pull requests: [#32](https://github.com/RTyH-Code/Personal-Projects/pull/32)
+
+- **Audit fix:** very large Exp. awards can no longer wrap around to a
+  negative amount. This could only happen to a very low-level Pokémon beating
+  a high-level foe with bonuses stacked and no level cap.
+- **Wild levels:** wild Pokémon from the Erika stretch on are 1.15x higher,
+  matching the trainers. This covers Routes 7–21, Rock Tunnel, Pokémon
+  Tower, the Safari Zone, Power Plant, Seafoam, the Mansion and Sevii 1–3.
+  Fishing levels are unchanged.
+- **Rematches catch up:**
+  - **When:** until you have all eight badges.
+  - **What:** VS Seeker rematch Pokémon more than 5 levels under the next
+    Gym Leader's strongest are raised to that level, and evolve if they can.
+- **Lucky Egg:** Koga gives you one after his gym. If your save already beat
+  him, talk to him again.
+- **Saves:** release 13 saves carry over.
+
 ## Release 13 (2026-11-06)
 Pull requests: [#30](https://github.com/RTyH-Code/Personal-Projects/pull/30), [#31](https://github.com/RTyH-Code/Personal-Projects/pull/31)
 

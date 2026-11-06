@@ -176,7 +176,7 @@ Gifts / events: Coin Case
 
 ## Fuchsia City Gym
 
-Gifts / events: TM06 Toxic
+Gifts / events: Lucky Egg, TM06 Toxic
 
 ## Fuchsia City House
 

@@ -1,7 +1,7 @@
 From b2861a2592264e3d178cbf12660283f779a274c6 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Thu, 5 Nov 2026 00:56:06 +0000
-Subject: [PATCH 38/51] Later evolutions: raise the species limit;
+Subject: [PATCH 38/54] Later evolutions: raise the species limit;
  typing-change and branch groups
 
 New species past the 22 placeholder slots now go after Chimecho, with the

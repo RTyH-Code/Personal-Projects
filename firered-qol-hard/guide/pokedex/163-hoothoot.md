@@ -58,8 +58,8 @@ Height 0.7 m (2′04″) · Weight 21.2 kg (46.7 lbs)
 
 ## Where to find it
 
-- **Route 12**: Grass / cave Lv 26 (5%)
-- **Route 13**: Grass / cave Lv 26 (5%)
+- **Route 12**: Grass / cave Lv 30 (5%)
+- **Route 13**: Grass / cave Lv 30 (5%)
 - Breeding: hatches from an Egg left by a Hoothoot or Noctowl at the Four Island Day Care
 
 ## Moves

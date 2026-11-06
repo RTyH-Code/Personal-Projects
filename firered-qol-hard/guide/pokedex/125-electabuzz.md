@@ -57,7 +57,7 @@ Height 1.1 m (3′07″) · Weight 30 kg (66.1 lbs)
 
 ## Where to find it
 
-- **Power Plant**: Grass / cave Lv 32–35 (5%)
+- **Power Plant**: Grass / cave Lv 37–40 (5%)
 - Evolve [Elekid](239-elekid.md)
 
 ## Moves

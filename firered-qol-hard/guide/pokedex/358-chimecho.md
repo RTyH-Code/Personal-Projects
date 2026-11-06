@@ -55,7 +55,7 @@ Chimecho does not evolve.
 
 ## Where to find it
 
-- **Pokémon Tower 7F**: Grass / cave Lv 19 (10%)
+- **Pokémon Tower 7F**: Grass / cave Lv 22 (10%)
 - Breeding: hatches from an Egg left by a Chimecho at the Four Island Day Care
 
 ## Moves

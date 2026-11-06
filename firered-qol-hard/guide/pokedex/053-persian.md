@@ -57,10 +57,10 @@ Height 1 m (3′03″) · Weight 32 kg (70.5 lbs)
 
 ## Where to find it
 
-- **One Island Kindle Road**: Grass / cave Lv 37–40 (5%)
-- **One Island Treasure Beach**: Grass / cave Lv 37–40 (5%)
-- **Two Island Cape Brink**: Grass / cave Lv 37–40 (5%)
-- **Three Island Bond Bridge**: Grass / cave Lv 37–40 (5%)
+- **One Island Kindle Road**: Grass / cave Lv 43–46 (5%)
+- **One Island Treasure Beach**: Grass / cave Lv 43–46 (5%)
+- **Two Island Cape Brink**: Grass / cave Lv 43–46 (5%)
+- **Three Island Bond Bridge**: Grass / cave Lv 43–46 (5%)
 - **Five Island Meadow**: Grass / cave Lv 47–50 (5%)
 - **Six Island Ruin Valley**: Grass / cave Lv 49–52 (5%)
 - **Six Island Water Path**: Grass / cave Lv 47–50 (5%)

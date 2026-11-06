@@ -57,7 +57,7 @@ Spinda does not evolve.
 
 ## Where to find it
 
-- **Route 16**: Grass / cave Lv 22 (5%)
+- **Route 16**: Grass / cave Lv 25 (5%)
 - Breeding: hatches from an Egg left by a Spinda at the Four Island Day Care
 
 ## Moves

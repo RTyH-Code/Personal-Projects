@@ -1,7 +1,7 @@
 From 60a9f52c3a2d0911de5de28613830b391d8b8b9d Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Fri, 6 Nov 2026 00:13:30 +0000
-Subject: [PATCH 43/51] Modern Exp formula and higher late-game wild levels
+Subject: [PATCH 43/54] Modern Exp formula and higher late-game wild levels
 
 - Gen 5+ Exp scaling by level gap (base yield * L / 5, then
   ((2L+10)/(L+Lp+10))^2.5 per Pokemon, in 16.16 fixed point).

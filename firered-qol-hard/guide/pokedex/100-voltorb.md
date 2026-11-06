@@ -57,8 +57,8 @@ Height 0.5 m (1′08″) · Weight 10.4 kg (22.9 lbs)
 
 ## Where to find it
 
-- **Route 10**: Grass / cave Lv 14–16 (35%)
-- **Power Plant**: Grass / cave Lv 22 (20%)
+- **Route 10**: Grass / cave Lv 16–18 (35%)
+- **Power Plant**: Grass / cave Lv 25 (20%)
 - Breeding: hatches from an Egg left by a Voltorb or Electrode at the Four Island Day Care
 
 ## Moves

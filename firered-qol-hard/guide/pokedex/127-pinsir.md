@@ -57,8 +57,8 @@ Pinsir does not evolve.
 
 ## Where to find it
 
-- **Safari Zone Center**: Grass / cave Lv 24 (10%)
-- **Safari Zone East**: Grass / cave Lv 23 (10%)
+- **Safari Zone Center**: Grass / cave Lv 28 (10%)
+- **Safari Zone East**: Grass / cave Lv 26 (10%)
 - Breeding: hatches from an Egg left by a Pinsir at the Four Island Day Care
 
 ## Moves

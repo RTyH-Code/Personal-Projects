@@ -59,7 +59,7 @@ Height 0.8 m (2′07″) · Weight 55 kg (121.3 lbs)
 
 ## Where to find it
 
-- **Mt. Ember Ruby Path B3F**: Rock Smash Lv 25–45 (10%)
+- **Mt. Ember Ruby Path B3F**: Rock Smash Lv 29–52 (10%)
 - Evolve [Slugma](218-slugma.md)
 
 ## Moves

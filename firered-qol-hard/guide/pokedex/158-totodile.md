@@ -57,7 +57,7 @@ Height 0.6 m (2′00″) · Weight 9.5 kg (20.9 lbs)
 
 ## Where to find it
 
-- **Two Island Cape Brink**: Grass / cave Lv 15–18 (10%)
+- **Two Island Cape Brink**: Grass / cave Lv 17–21 (10%)
 - Breeding: hatches from an Egg left by a Totodile or Croconaw or Feraligatr at the Four Island Day Care
 
 ## Moves

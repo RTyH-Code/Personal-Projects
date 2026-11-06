@@ -60,10 +60,10 @@ Height 0.6 m (2′00″) · Weight 1 kg (2.2 lbs)
 ## Where to find it
 
 - **Celadon City**: Surfing Lv 30–40 (1%)
-- **Pokémon Mansion 1F**: Grass / cave Lv 28 (20%)
-- **Pokémon Mansion 2F**: Grass / cave Lv 28–30 (30%)
-- **Pokémon Mansion 3F**: Grass / cave Lv 28–30 (30%)
-- **Pokémon Mansion B1F**: Grass / cave Lv 28–30 (30%)
+- **Pokémon Mansion 1F**: Grass / cave Lv 32 (20%)
+- **Pokémon Mansion 2F**: Grass / cave Lv 32–34 (30%)
+- **Pokémon Mansion 3F**: Grass / cave Lv 32–34 (30%)
+- **Pokémon Mansion B1F**: Grass / cave Lv 32–34 (30%)
 - Breeding: hatches from an Egg left by a Koffing or Weezing at the Four Island Day Care
 
 ## Moves

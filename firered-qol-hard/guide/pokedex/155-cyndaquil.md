@@ -59,7 +59,7 @@ Height 0.5 m (1′08″) · Weight 7.9 kg (17.4 lbs)
 
 ## Where to find it
 
-- **One Island Kindle Road**: Grass / cave Lv 15–18 (5%)
+- **One Island Kindle Road**: Grass / cave Lv 17–21 (5%)
 - Breeding: hatches from an Egg left by a Cyndaquil or Quilava or Typhlosion at the Four Island Day Care
 
 ## Moves

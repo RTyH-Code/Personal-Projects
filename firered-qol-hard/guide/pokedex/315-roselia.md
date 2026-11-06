@@ -58,7 +58,7 @@ Height 0.3 m (1′00″) · Weight 2 kg (4.4 lbs)
 
 ## Where to find it
 
-- **Route 14**: Grass / cave Lv 26 (5%)
+- **Route 14**: Grass / cave Lv 30 (5%)
 - Breeding: hatches from an Egg left by a Roselia or Roserade at the Four Island Day Care
 
 ## Moves

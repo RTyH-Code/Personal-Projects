@@ -61,7 +61,7 @@ Height 0.8 m (2′07″) · Weight 39.5 kg (87.1 lbs)
 
 ## Where to find it
 
-- **Seafoam Islands B3F**: Grass / cave Lv 32 (10%)
+- **Seafoam Islands B3F**: Grass / cave Lv 37 (10%)
 - **Four Island Icefall Cave B1F**: Grass / cave Lv 31 (5%)
 - Breeding: hatches from an Egg left by a Spheal or Sealeo or Walrein at the Four Island Day Care
 

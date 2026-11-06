@@ -57,13 +57,13 @@ Height 0.7 m (2′04″) · Weight 18.5 kg (40.8 lbs)
 
 ## Where to find it
 
-- **Route 16**: Grass / cave Lv 23–25 (5%)
-- **Route 17**: Grass / cave Lv 25–27 (20%)
-- **Route 18**: Grass / cave Lv 25–29 (15%)
-- **Pokémon Mansion 1F**: Grass / cave Lv 32–36 (30%)
-- **Pokémon Mansion 2F**: Grass / cave Lv 32–36 (30%)
-- **Pokémon Mansion 3F**: Grass / cave Lv 32–36 (30%)
-- **Pokémon Mansion B1F**: Grass / cave Lv 34 (20%)
+- **Route 16**: Grass / cave Lv 26–29 (5%)
+- **Route 17**: Grass / cave Lv 29–31 (20%)
+- **Route 18**: Grass / cave Lv 29–33 (15%)
+- **Pokémon Mansion 1F**: Grass / cave Lv 37–41 (30%)
+- **Pokémon Mansion 2F**: Grass / cave Lv 37–41 (30%)
+- **Pokémon Mansion 3F**: Grass / cave Lv 37–41 (30%)
+- **Pokémon Mansion B1F**: Grass / cave Lv 39 (20%)
 - Evolve [Rattata](019-rattata.md)
 
 ## Moves

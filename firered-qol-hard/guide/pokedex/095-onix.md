@@ -60,8 +60,8 @@ Height 8.8 m (28′10″) · Weight 210 kg (463.0 lbs)
 
 ## Where to find it
 
-- **Rock Tunnel 1F**: Grass / cave Lv 13–15 (5%)
-- **Rock Tunnel B1F**: Grass / cave Lv 13–17 (10%)
+- **Rock Tunnel 1F**: Grass / cave Lv 15–17 (5%)
+- **Rock Tunnel B1F**: Grass / cave Lv 15–20 (10%)
 - **Victory Road 1F**: Grass / cave Lv 46–49 (20%)
 - **Victory Road 2F**: Grass / cave Lv 52 (10%)
 - **Victory Road 3F**: Grass / cave Lv 46–49 (20%)

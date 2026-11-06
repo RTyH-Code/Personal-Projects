@@ -60,7 +60,7 @@ Height 0.5 m (1′08″) · Weight 2.6 kg (5.7 lbs)
 ## Where to find it
 
 - **Route 6**: Surfing Lv 25–30 (5%)
-- **Two Island Cape Brink**: Surfing Lv 35–40 (5%)
+- **Two Island Cape Brink**: Surfing Lv 40–46 (5%)
 - Breeding: hatches from an Egg left by a Lotad or Lombre or Ludicolo at the Four Island Day Care
 
 ## Moves

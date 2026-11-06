@@ -56,8 +56,8 @@ Kecleon does not evolve.
 
 ## Where to find it
 
-- **Route 16**: Grass / cave Lv 22 (5%)
-- **Safari Zone West**: Grass / cave Lv 25 (10%)
+- **Route 16**: Grass / cave Lv 25 (5%)
+- **Safari Zone West**: Grass / cave Lv 29 (10%)
 - Breeding: hatches from an Egg left by a Kecleon at the Four Island Day Care
 
 ## Moves

@@ -59,10 +59,10 @@ Height 1.1 m (3′07″) · Weight 90 kg (198.4 lbs)
 
 ## Where to find it
 
-- **Seafoam Islands B1F**: Grass / cave Lv 28 (10%)
-- **Seafoam Islands B2F**: Grass / cave Lv 30–32 (20%)
-- **Seafoam Islands B3F**: Grass / cave Lv 30–32 (40%); Surfing Lv 25–35 (60%)
-- **Seafoam Islands B4F**: Grass / cave Lv 30–34 (50%); Surfing Lv 25–35 (60%)
+- **Seafoam Islands B1F**: Grass / cave Lv 32 (10%)
+- **Seafoam Islands B2F**: Grass / cave Lv 34–37 (20%)
+- **Seafoam Islands B3F**: Grass / cave Lv 34–37 (40%); Surfing Lv 29–40 (60%)
+- **Seafoam Islands B4F**: Grass / cave Lv 34–39 (50%); Surfing Lv 29–40 (60%)
 - **Four Island Icefall Cave 1F**: Grass / cave Lv 45 (10%)
 - **Four Island Icefall Cave B1F**: Grass / cave Lv 45 (10%)
 - **Four Island Icefall Cave Back**: Grass / cave Lv 43–47 (40%)

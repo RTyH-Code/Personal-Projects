@@ -59,8 +59,8 @@ Height 0.7 m (2′04″) · Weight 24 kg (52.9 lbs)
 
 ## Where to find it
 
-- **Mt. Ember Exterior**: Grass / cave Lv 40 (5%)
-- **One Island Kindle Road**: Grass / cave Lv 31 (10%)
+- **Mt. Ember Exterior**: Grass / cave Lv 46 (5%)
+- **One Island Kindle Road**: Grass / cave Lv 36 (10%)
 - Breeding: hatches from an Egg left by a Numel or Camerupt at the Four Island Day Care
 
 ## Moves

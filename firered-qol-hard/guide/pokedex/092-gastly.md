@@ -60,11 +60,11 @@ Height 1.3 m (4′03″) · Weight 0.1 kg (0.2 lbs)
 
 <details><summary>20 places (click to expand)</summary>
 
-- **Pokémon Tower 3F**: Grass / cave Lv 13–18 (85%)
-- **Pokémon Tower 4F**: Grass / cave Lv 13–19 (82%)
-- **Pokémon Tower 5F**: Grass / cave Lv 13–19 (82%)
-- **Pokémon Tower 6F**: Grass / cave Lv 14–19 (71%)
-- **Pokémon Tower 7F**: Grass / cave Lv 15–18 (61%)
+- **Pokémon Tower 3F**: Grass / cave Lv 15–21 (85%)
+- **Pokémon Tower 4F**: Grass / cave Lv 15–22 (82%)
+- **Pokémon Tower 5F**: Grass / cave Lv 15–22 (82%)
+- **Pokémon Tower 6F**: Grass / cave Lv 16–22 (71%)
+- **Pokémon Tower 7F**: Grass / cave Lv 17–21 (61%)
 - **Five Island Lost Cave Room 1**: Grass / cave Lv 38–40 (25%)
 - **Five Island Lost Cave Room 10**: Grass / cave Lv 38–40 (25%)
 - **Five Island Lost Cave Room 11**: Grass / cave Lv 40 (20%)

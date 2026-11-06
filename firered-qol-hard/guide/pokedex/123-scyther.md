@@ -61,8 +61,8 @@ Height 1.5 m (4′11″) · Weight 56 kg (123.5 lbs)
 
 ## Where to find it
 
-- **Safari Zone Center**: Grass / cave Lv 23 (4%)
-- **Safari Zone East**: Grass / cave Lv 28 (1%)
+- **Safari Zone Center**: Grass / cave Lv 26 (4%)
+- **Safari Zone East**: Grass / cave Lv 32 (1%)
 - **Celadon City Game Corner Prize Room**: Game Corner prize (5500 coins), Lv 25
 - Breeding: hatches from an Egg left by a Scyther or Scizor or Kleavor at the Four Island Day Care
 

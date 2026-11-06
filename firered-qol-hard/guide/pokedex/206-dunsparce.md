@@ -57,7 +57,7 @@ Height 1.5 m (4′11″) · Weight 14 kg (30.9 lbs)
 
 ## Where to find it
 
-- **Three Island Port**: Grass / cave Lv 5–35 (100%)
+- **Three Island Port**: Grass / cave Lv 6–40 (100%)
 - Breeding: hatches from an Egg left by a Dunsparce or Dudunsparce at the Four Island Day Care
 
 ## Moves

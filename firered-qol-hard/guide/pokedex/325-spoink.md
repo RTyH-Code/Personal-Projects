@@ -59,7 +59,7 @@ Height 0.7 m (2′04″) · Weight 30.6 kg (67.5 lbs)
 
 ## Where to find it
 
-- **Route 11**: Grass / cave Lv 15 (5%)
+- **Route 11**: Grass / cave Lv 17 (5%)
 - Breeding: hatches from an Egg left by a Spoink or Grumpig at the Four Island Day Care
 
 ## Moves

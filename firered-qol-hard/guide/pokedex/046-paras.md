@@ -64,8 +64,8 @@ Height 0.3 m (1′00″) · Weight 5.4 kg (11.9 lbs)
 - **Mt. Moon 1F**: Grass / cave Lv 8 (5%)
 - **Mt. Moon B1F**: Grass / cave Lv 5–10 (100%)
 - **Mt. Moon B2F**: Grass / cave Lv 10–12 (15%)
-- **Safari Zone East**: Grass / cave Lv 22 (11%)
-- **Safari Zone North**: Grass / cave Lv 23 (15%)
+- **Safari Zone East**: Grass / cave Lv 25 (11%)
+- **Safari Zone North**: Grass / cave Lv 26 (15%)
 - Breeding: hatches from an Egg left by a Paras or Parasect at the Four Island Day Care
 
 ## Moves

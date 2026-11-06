@@ -56,7 +56,7 @@ Seviper does not evolve.
 
 ## Where to find it
 
-- **Route 17**: Grass / cave Lv 29 (5%)
+- **Route 17**: Grass / cave Lv 33 (5%)
 - Breeding: hatches from an Egg left by a Seviper at the Four Island Day Care
 
 ## Moves

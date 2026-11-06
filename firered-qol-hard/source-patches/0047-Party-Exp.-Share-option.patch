@@ -1,7 +1,7 @@
 From a9b3898fdcd144d191ca7549fcdca0e89a29a0f9 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Fri, 6 Nov 2026 02:31:45 +0000
-Subject: [PATCH 47/51] Party Exp. Share option
+Subject: [PATCH 47/54] Party Exp. Share option
 
 Modern Exp. Share: every Pokemon that battled gets the full Exp., the
 rest of the team half (each still scaled by its own level, and capped).
