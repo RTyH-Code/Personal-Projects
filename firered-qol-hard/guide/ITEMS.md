@@ -10,7 +10,7 @@ Item balls, hidden items (use the Itemfinder), NPC gifts and shop stock, by loca
 
 ## Pallet Town Professor Oaks Lab
 
-Gifts / events: Poké Ball
+Gifts / events: Poké Ball, Shiny Charm
 
 ## Pallet Town Rivals House
 

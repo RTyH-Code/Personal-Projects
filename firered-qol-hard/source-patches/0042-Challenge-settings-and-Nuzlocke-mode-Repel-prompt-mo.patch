@@ -1,0 +1,1495 @@
+From 1fbfc770327217e9cbd8b455c9d9560ee51bbfc0 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Thu, 5 Nov 2026 23:27:10 +0000
+Subject: [PATCH 42/42] Challenge settings and Nuzlocke mode, Repel prompt,
+ modern shiny odds
+
+- A challenge menu on the first morning: Nuzlocke mode, level caps, no
+  items in battle and the Set battle style.
+- Nuzlocke: first encounter per area (dupes and shiny clauses; one-time
+  encounters exempt), permanent fainting, and blacking out ends the run.
+- Repel wears off -> offer to use another of the same kind.
+- Shiny odds 1/4096; the Shiny Charm from Oak's aide after the Champion
+  gives two extra rolls.
+- tools/hack/exp_budget.py and tools/hack/save_check.py.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ HACK_NOTES.md                                 |  41 +++
+ data/battle_scripts_2.s                       |   6 +
+ .../PalletTown_PlayersHouse_2F/scripts.inc    |  28 ++
+ data/maps/PalletTown_PlayersHouse_2F/text.inc |  25 ++
+ .../PalletTown_ProfessorOaksLab/scripts.inc   |  10 +
+ .../maps/PalletTown_ProfessorOaksLab/text.inc |  12 +
+ data/scripts/repel.inc                        |  27 +-
+ data/scripts/white_out.inc                    |   8 +
+ data/specials.inc                             |   2 +
+ data/text/white_out.inc                       |   5 +
+ include/battle_scripts.h                      |   1 +
+ include/constants/battle_string_ids.h         |   3 +-
+ include/constants/flags.h                     |   5 +
+ include/constants/items.h                     |   1 +
+ include/constants/pokemon.h                   |   2 +-
+ include/constants/vars.h                      |   1 +
+ include/global.h                              |   2 +-
+ include/hack_challenge.h                      |  16 +
+ include/strings.h                             |   2 +
+ ld_script.ld                                  |   2 +
+ ld_script_rev10.ld                            |   2 +
+ src/battle_main.c                             |   4 +
+ src/battle_message.c                          |   2 +
+ src/battle_script_commands.c                  |   7 +
+ src/battle_setup.c                            |   2 +
+ src/data/item_icon_table.h                    |   2 +-
+ src/data/items.json                           |  16 +-
+ src/daycare.c                                 |   2 +
+ src/field_poison.c                            |   2 +
+ src/hack_challenge.c                          | 275 ++++++++++++++++++
+ src/item_menu.c                               |   7 +-
+ src/item_use.c                                |  16 +-
+ src/option_menu.c                             |   6 +
+ src/overworld.c                               |   2 +
+ src/pokemon.c                                 |  43 ++-
+ src/pokemon_storage_system_tasks.c            |   2 +
+ src/script_pokemon_util.c                     |   4 +
+ src/strings.c                                 |   2 +
+ tools/hack/exp_budget.py                      | 127 ++++++++
+ tools/hack/save_check.py                      |  81 ++++++
+ 40 files changed, 785 insertions(+), 18 deletions(-)
+ create mode 100644 include/hack_challenge.h
+ create mode 100644 src/hack_challenge.c
+ create mode 100644 tools/hack/exp_budget.py
+ create mode 100644 tools/hack/save_check.py
+
+diff --git a/HACK_NOTES.md b/HACK_NOTES.md
+index a8651f9..5b8b5aa 100644
+--- a/HACK_NOTES.md
++++ b/HACK_NOTES.md
+@@ -33,6 +33,12 @@ A quality-of-life, modernization and difficulty hack built on the pret/pokefirer
+   them level-1 moves, so the 18 affected Pokémon now learn their
+   pre-evolution's later moves a few levels later instead, e.g. Ninetales
+   learns Flamethrower at 37 (Vulpix: 32) and Fire Blast at 60 (Vulpix: 52).
++- **Repel prompt:** when a Repel wears off and you have another of the same
++  kind, the game asks whether to use it.
++- **Modern shiny odds:** shiny Pokémon appear at 1 in 4,096 (up from
++  1 in 8,192). After you become Champion, Prof. Oak's aide (by the lab door)
++  gives you the **Shiny Charm**. While it's in your bag, each new wild, gift or
++  one-time Pokémon gets two extra chances to be shiny (about 1 in 1,365).
+ 
+ ## Move relearner
+ The Move Maniac on Two Island works as usual (for mushrooms) until you
+@@ -297,6 +303,37 @@ All 386 Pokémon can be caught, evolved or bred in a single FireRed save:
+   Catching it removes it.
+ 
+ ## Difficulty
++### Challenge settings and Nuzlocke mode
++When you wake up in your room at the start of a new game, a menu lets you
++switch on any of these rules. Pick a rule to turn it ON or OFF, then choose
++START ADVENTURE:
++
++| Rule | What it does |
++|---|---|
++| Nuzlocke mode | The core Nuzlocke rules below. |
++| Level caps | The level caps described in the next section. |
++| No items in battle | You can't use items from the Bag in battle. Poké Balls still work. |
++| Set battle style | No free switch after you knock out a foe. The battle style option is locked to Set. |
++
++The rules are chosen once, for the whole run. Level caps are the exception:
++the Viridian City scientist can still switch them on or off.
++
++**Nuzlocke mode** starts once Prof. Oak gives you your Poké Balls:
++- **First encounter only:** you can only catch the first wild Pokémon you meet
++  in each area. That includes grass, caves, water, fishing and the Safari Zone.
++  Once an area is used, Poké Balls won't work there. The game tells you and
++  the ball isn't used up (a Safari Ball still is).
++- **Dupes clause:** if that first Pokémon is in an evolution family you
++  already own, it doesn't count, so the area stays open until you find a
++  new one.
++- **Shiny clause:** a shiny Pokémon can always be caught.
++- **One-time Pokémon** like Snorlax and the legendaries can always be caught
++  and don't use up the area.
++- **Fainting is permanent:** a Pokémon that faints can't be healed or revived
++  by Pokémon Centers, items or anything else, even after a trip to the PC.
++- **Blacking out ends the run:** the Nuzlocke rules are lifted and the game
++  carries on as a normal playthrough.
++
+ ### Optional level caps
+ Talk to the scientist in the Viridian City Pokémon Center to turn level caps on
+ or off at any time. While they're on, your Pokémon can't gain Exp. (or Rare
+@@ -405,6 +442,10 @@ Each script runs once against the original pret data:
+   an unused species slot, with its graphics, cry, Pokédex entry and evolution item.
+ - `balance.py`: modern boss movesets, peak teams with the later evolutions.
+ - `validate.py`: checks the game data for missing or inconsistent entries.
++- `exp_budget.py`: how much trainer Exp. each stretch of the game gives, and
++  where that leaves a team against each level cap.
++- `save_check.py REF`: checks whether saves from an older release (a git ref)
++  still load with the current code.
+ - `moves.py <showdown>/data <batch>`: later moves, the modern tutor and its data;
+   `moves_engine_b2.py` and `moves_engine_b3.py` add the battle effects
+   batches 2 and 3 need.
+diff --git a/data/battle_scripts_2.s b/data/battle_scripts_2.s
+index 6f41e3c..ddc0715 100644
+--- a/data/battle_scripts_2.s
++++ b/data/battle_scripts_2.s
+@@ -121,6 +121,12 @@ BattleScript_TrainerBallBlock::
+ 	waitmessage B_WAIT_TIME_LONG
+ 	finishaction
+ 
++BattleScript_HackNuzlockeBallBlock::
++	waitmessage B_WAIT_TIME_LONG
++	printstring STRINGID_HACKNUZLOCKEBALL
++	waitmessage B_WAIT_TIME_LONG
++	finishaction
++
+ BattleScript_GhostBallDodge::
+ 	waitmessage B_WAIT_TIME_LONG
+ 	printstring STRINGID_ITDODGEDBALL
+diff --git a/data/maps/PalletTown_PlayersHouse_2F/scripts.inc b/data/maps/PalletTown_PlayersHouse_2F/scripts.inc
+index edc6ac3..04aad89 100644
+--- a/data/maps/PalletTown_PlayersHouse_2F/scripts.inc
++++ b/data/maps/PalletTown_PlayersHouse_2F/scripts.inc
+@@ -1,6 +1,7 @@
+ PalletTown_PlayersHouse_2F_MapScripts::
+ 	map_script MAP_SCRIPT_ON_TRANSITION, PalletTown_PlayersHouse_2F_OnTransition
+ 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, PalletTown_PlayersHouse_2F_OnWarp
++	map_script MAP_SCRIPT_ON_FRAME_TABLE, PalletTown_PlayersHouse_2F_OnFrame
+ 	.byte 0
+ 
+ PalletTown_PlayersHouse_2F_OnTransition::
+@@ -20,6 +21,33 @@ PalletTown_PlayersHouse_2F_FirstWarpIn::
+ 	setvar VAR_MAP_SCENE_PALLET_TOWN_PLAYERS_HOUSE_2F, 1
+ 	end
+ 
++PalletTown_PlayersHouse_2F_OnFrame::
++	map_script_2 VAR_MAP_SCENE_PALLET_TOWN_PLAYERS_HOUSE_2F, 1, PalletTown_PlayersHouse_2F_EventScript_Challenge
++	.2byte 0
++
++@ FireRed QoL+Hard: pick the challenge rules on the first morning.
++PalletTown_PlayersHouse_2F_EventScript_Challenge::
++	lockall
++	setvar VAR_MAP_SCENE_PALLET_TOWN_PLAYERS_HOUSE_2F, 2
++	goto_if_set FLAG_SYS_POKEMON_GET, PalletTown_PlayersHouse_2F_EventScript_ChallengeEnd
++	textcolor NPC_TEXT_COLOR_NEUTRAL
++	msgbox PalletTown_PlayersHouse_2F_Text_ChallengeIntro
++	closemessage
++PalletTown_PlayersHouse_2F_EventScript_ChallengePick::
++	special Hack_ChallengeMenu
++	waitstate
++	msgbox PalletTown_PlayersHouse_2F_Text_ChallengeConfirm, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, PalletTown_PlayersHouse_2F_EventScript_ChallengeRepick
++	goto_if_unset FLAG_HACK_NUZLOCKE, PalletTown_PlayersHouse_2F_EventScript_ChallengeEnd
++	msgbox PalletTown_PlayersHouse_2F_Text_NuzlockeRules
++PalletTown_PlayersHouse_2F_EventScript_ChallengeEnd::
++	releaseall
++	end
++
++PalletTown_PlayersHouse_2F_EventScript_ChallengeRepick::
++	closemessage
++	goto PalletTown_PlayersHouse_2F_EventScript_ChallengePick
++
+ PalletTown_PlayersHouse_2F_EventScript_NES::
+ 	msgbox PalletTown_PlayersHouse_2F_Text_PlayedWithNES, MSGBOX_SIGN
+ 	end
+diff --git a/data/maps/PalletTown_PlayersHouse_2F/text.inc b/data/maps/PalletTown_PlayersHouse_2F/text.inc
+index cf981a0..38bbdfe 100644
+--- a/data/maps/PalletTown_PlayersHouse_2F/text.inc
++++ b/data/maps/PalletTown_PlayersHouse_2F/text.inc
+@@ -8,3 +8,28 @@ PalletTown_PlayersHouse_2F_Text_PressLRForHelp::
+     .string "If you're confused, ask for HELP!\n"
+     .string "Press the L or R Button!$"
+ 
++
++PalletTown_PlayersHouse_2F_Text_ChallengeIntro::
++	.string "Before your adventure begins, choose\n"
++	.string "any challenge rules you'd like.\p"
++	.string "Pick a rule to switch it ON or OFF,\n"
++	.string "then choose START ADVENTURE.$"
++
++PalletTown_PlayersHouse_2F_Text_ChallengeConfirm::
++	.string "Start your adventure with these\n"
++	.string "rules?$"
++
++PalletTown_PlayersHouse_2F_Text_NuzlockeRules::
++	.string "NUZLOCKE MODE starts once PROF. OAK\n"
++	.string "gives you your POKé BALLS.\p"
++	.string "Only your first wild encounter in\n"
++	.string "each area can be caught.\p"
++	.string "If it belongs to an evolution family\n"
++	.string "you already own, it doesn't count,\l"
++	.string "so keep looking.\p"
++	.string "Shiny POKéMON and one-time POKéMON,\n"
++	.string "like SNORLAX, can always be caught.\p"
++	.string "A POKéMON that faints can't be\n"
++	.string "healed or revived ever again.\p"
++	.string "If you black out, the run is over\n"
++	.string "and the rules are lifted. Good luck!$"
+diff --git a/data/maps/PalletTown_ProfessorOaksLab/scripts.inc b/data/maps/PalletTown_ProfessorOaksLab/scripts.inc
+index 90adf86..0d38d93 100644
+--- a/data/maps/PalletTown_ProfessorOaksLab/scripts.inc
++++ b/data/maps/PalletTown_ProfessorOaksLab/scripts.inc
+@@ -1249,11 +1249,21 @@ PalletTown_ProfessorOaksLab_EventScript_Aide1::
+ 	end
+ 
+ PalletTown_ProfessorOaksLab_EventScript_Aide1GameClear::
++	goto_if_unset FLAG_HACK_GOT_SHINY_CHARM, PalletTown_ProfessorOaksLab_EventScript_AideShinyCharm
+ 	famechecker FAMECHECKER_OAK, 5
+ 	msgbox PalletTown_ProfessorOaksLab_Text_OakIsGoingToHaveRadioShow
+ 	release
+ 	end
+ 
++@ FireRed QoL+Hard: a post-game gift for the new Champion
++PalletTown_ProfessorOaksLab_EventScript_AideShinyCharm::
++	msgbox PalletTown_ProfessorOaksLab_Text_AideShinyCharm
++	giveitem ITEM_SHINY_CHARM
++	setflag FLAG_HACK_GOT_SHINY_CHARM
++	msgbox PalletTown_ProfessorOaksLab_Text_AideShinyCharmExplain
++	release
++	end
++
+ PalletTown_ProfessorOaksLab_EventScript_Aide2::
+ 	lock
+ 	faceplayer
+diff --git a/data/maps/PalletTown_ProfessorOaksLab/text.inc b/data/maps/PalletTown_ProfessorOaksLab/text.inc
+index 849a643..ea9334c 100644
+--- a/data/maps/PalletTown_ProfessorOaksLab/text.inc
++++ b/data/maps/PalletTown_ProfessorOaksLab/text.inc
+@@ -355,3 +355,15 @@ PalletTown_ProfessorOaksLab_Text_RivalIllCompleteThePokedex::
+     .string "ONE ISLAND first…\p"
+     .string "Anyways, I'm outta here!$"
+ 
++
++PalletTown_ProfessorOaksLab_Text_AideShinyCharm::
++	.string "Oh, {PLAYER}! Congratulations on\n"
++	.string "becoming the CHAMPION!\p"
++	.string "PROF. OAK asked me to give you this\n"
++	.string "as a reward.$"
++
++PalletTown_ProfessorOaksLab_Text_AideShinyCharmExplain::
++	.string "That's a SHINY CHARM.\p"
++	.string "While you carry it, POKéMON with\n"
++	.string "unusual colors will appear more\l"
++	.string "often. About three times as often!$"
+diff --git a/data/scripts/repel.inc b/data/scripts/repel.inc
+index 97bf963..8665fb9 100644
+--- a/data/scripts/repel.inc
++++ b/data/scripts/repel.inc
+@@ -1,6 +1,31 @@
+ EventScript_RepelWoreOff::
+-	msgbox Text_RepelWoreOff, MSGBOX_SIGN
++	lockall
++	goto_if_eq VAR_HACK_LAST_REPEL, ITEM_NONE, EventScript_RepelWoreOffNoMore
++	checkitem VAR_HACK_LAST_REPEL
++	goto_if_eq VAR_RESULT, FALSE, EventScript_RepelWoreOffNoMore
++	bufferitemname STR_VAR_2, VAR_HACK_LAST_REPEL
++	msgbox Text_RepelWoreOffUseAnother, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, EventScript_RepelWoreOffEnd
++	special Hack_UseRepelAgain
++	msgbox Text_UsedAnotherRepel
++EventScript_RepelWoreOffEnd::
++	closemessage
++	releaseall
++	end
++
++EventScript_RepelWoreOffNoMore::
++	msgbox Text_RepelWoreOff
++	closemessage
++	releaseall
+ 	end
+ 
+ Text_RepelWoreOff::
+ 	.string "REPEL's effect wore off…$"
++
++Text_RepelWoreOffUseAnother::
++	.string "REPEL's effect wore off…\n"
++	.string "Use another {STR_VAR_2}?$"
++
++Text_UsedAnotherRepel::
++	.string "{PLAYER} used the\n"
++	.string "{STR_VAR_2}.$"
+diff --git a/data/scripts/white_out.inc b/data/scripts/white_out.inc
+index ff4feb6..7ef6e22 100644
+--- a/data/scripts/white_out.inc
++++ b/data/scripts/white_out.inc
+@@ -7,10 +7,17 @@ EventScript_AfterWhiteOutHeal::
+ 	call_if_set FLAG_DEFEATED_BROCK, EventScript_AfterWhiteOutHealMsg
+ 	applymovement VAR_LAST_TALKED, Movement_Bow
+ 	waitmovement 0
++	call_if_set FLAG_HACK_NUZLOCKE_OVER, EventScript_HackNuzlockeOver
+ 	fadedefaultbgm
+ 	releaseall
+ 	end
+ 
++EventScript_HackNuzlockeOver::
++	clearflag FLAG_HACK_NUZLOCKE_OVER
++	textcolor NPC_TEXT_COLOR_NEUTRAL
++	msgbox Text_HackNuzlockeOver
++	return
++
+ EventScript_AfterWhiteOutHealMsgPreBrock::
+ 	msgbox Text_MonsHealedShouldBuyPotions
+ 	return
+@@ -27,6 +34,7 @@ EventScript_AfterWhiteOutMomHeal::
+ 	msgbox Text_HadQuiteAnExperienceTakeRest
+ 	call EventScript_OutOfCenterPartyHeal
+ 	msgbox Text_MomExplainHPGetPotions
++	call_if_set FLAG_HACK_NUZLOCKE_OVER, EventScript_HackNuzlockeOver
+ 	fadedefaultbgm
+ 	releaseall
+ 	end
+diff --git a/data/specials.inc b/data/specials.inc
+index 44c7131..f11c73d 100644
+--- a/data/specials.inc
++++ b/data/specials.inc
+@@ -459,4 +459,6 @@ gSpecials::
+ 	def_special Hack_BufferLevelCap
+ 	def_special Hack_StartModernTutor
+ 	def_special Hack_EndModernTutor
++	def_special Hack_ChallengeMenu
++	def_special Hack_UseRepelAgain
+ gSpecialsEnd::
+diff --git a/data/text/white_out.inc b/data/text/white_out.inc
+index 1d00c1e..7c4288c 100644
+--- a/data/text/white_out.inc
++++ b/data/text/white_out.inc
+@@ -51,3 +51,8 @@ Text_WhitedOut::
+ 	.string "{PLAYER} is out of usable\n"
+ 	.string "POKéMON!\p"
+ 	.string "{PLAYER} whited out!$"
++
++Text_HackNuzlockeOver::
++	.string "Your NUZLOCKE run has come to an end.\p"
++	.string "The NUZLOCKE rules have been lifted,\n"
++	.string "so you can keep playing normally.$"
+diff --git a/include/battle_scripts.h b/include/battle_scripts.h
+index 49392b4..cdb86eb 100644
+--- a/include/battle_scripts.h
++++ b/include/battle_scripts.h
+@@ -254,6 +254,7 @@ extern const u8 BattleScript_MoveEffectRecoil[];
+ extern const u8 BattleScript_FlushMessageBox[];
+ extern const u8 BattleScript_SpikesOnFaintedBattler[];
+ extern const u8 BattleScript_GhostBallDodge[];
++extern const u8 BattleScript_HackNuzlockeBallBlock[];
+ extern const u8 BattleScript_OldMan_Pokedude_CaughtMessage[];
+ extern const u8 BattleScript_SilphScopeUnveiled[];
+ extern const u8 BattleScript_BattleTowerTrainerBattleWon[];
+diff --git a/include/constants/battle_string_ids.h b/include/constants/battle_string_ids.h
+index 500ff6c..79e6482 100644
+--- a/include/constants/battle_string_ids.h
++++ b/include/constants/battle_string_ids.h
+@@ -410,8 +410,9 @@
+ #define STRINGID_HACKSTICKYWEB        408
+ #define STRINGID_HACKDEFOG            409
+ #define STRINGID_HACKHURTBYROCKS      410
++#define STRINGID_HACKNUZLOCKEBALL     411
+ 
+-#define BATTLESTRINGS_COUNT     411
++#define BATTLESTRINGS_COUNT     412
+ 
+ // This is the string id that gBattleStringsTable starts with.
+ // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,
+diff --git a/include/constants/flags.h b/include/constants/flags.h
+index f5ef63a..e77298f 100644
+--- a/include/constants/flags.h
++++ b/include/constants/flags.h
+@@ -1321,6 +1321,11 @@
+ 
+ // FireRed QoL+Hard: legendary encounter flags (see tools/hack/legendaries.py)
+ #define FLAG_HACK_PEAK_LEAGUE            (TRAINER_FLAGS_START + TRAINER_RS_COOLTRAINER_M)
++#define FLAG_HACK_NUZLOCKE               (TRAINER_FLAGS_START + TRAINER_RICH_BOY)     // Nuzlocke mode on
++#define FLAG_HACK_NO_BATTLE_ITEMS        (TRAINER_FLAGS_START + TRAINER_RS_POKEMANIAC) // challenge: no bag items in battle
++#define FLAG_HACK_SET_ONLY               (TRAINER_FLAGS_START + TRAINER_RS_SWIMMER_M)  // challenge: battle style locked to Set
++#define FLAG_HACK_NUZLOCKE_OVER          (TRAINER_FLAGS_START + TRAINER_RS_BLACK_BELT) // whited out: show the run-over message
++#define FLAG_HACK_GOT_SHINY_CHARM        (TRAINER_FLAGS_START + TRAINER_GUITARIST)
+ #define FLAG_HACK_LEVEL_CAP              (TRAINER_FLAGS_START + TRAINER_RS_BEAUTY) // optional level caps on
+ #define FLAG_HACK_TRUE_ENDGAME           (TRAINER_FLAGS_START + TRAINER_RS_COOLTRAINER_F) // beat the round 2 Champion
+ #define FLAG_HIDE_SEVAULT_CANYON_ROOT_FOSSIL (TRAINER_FLAGS_START + TRAINER_HEX_MANIAC)
+diff --git a/include/constants/items.h b/include/constants/items.h
+index 00c5050..721da2a 100644
+--- a/include/constants/items.h
++++ b/include/constants/items.h
+@@ -103,6 +103,7 @@
+ #define ITEM_REPEL 86
+ #define ITEM_BLACK_AUGURITE ITEM_057 // FireRed QoL+Hard
+ #define ITEM_057 87
++#define ITEM_SHINY_CHARM ITEM_058 // FireRed QoL+Hard
+ #define ITEM_058 88
+ #define ITEM_059 89
+ #define ITEM_05A 90
+diff --git a/include/constants/pokemon.h b/include/constants/pokemon.h
+index 3ef91cf..153cf7b 100644
+--- a/include/constants/pokemon.h
++++ b/include/constants/pokemon.h
+@@ -183,7 +183,7 @@
+ #define MAX_STAT_STAGE    12
+ 
+ // Shiny odds
+-#define SHINY_ODDS 8 // Actual probability is SHINY_ODDS/65536
++#define SHINY_ODDS 16 // Actual probability is SHINY_ODDS/65536 (FireRed QoL+Hard: modern 1/4096)
+ 
+ #define MAX_LEVEL 100
+ 
+diff --git a/include/constants/vars.h b/include/constants/vars.h
+index 5c7bbf8..d7f3778 100644
+--- a/include/constants/vars.h
++++ b/include/constants/vars.h
+@@ -85,6 +85,7 @@
+ // Used by Quest Log.
+ #define VAR_QUEST_LOG_MON_COUNTS           0x4027
+ #define VAR_WONDER_NEWS_STEP_COUNTER       0x4028
++#define VAR_HACK_LAST_REPEL VAR_0x4029 // FireRed QoL+Hard: last Repel used, for the re-use prompt
+ #define VAR_0x4029                         0x4029
+ #define VAR_0x402A                         0x402A
+ #define VAR_0x402B                         0x402B
+diff --git a/include/global.h b/include/global.h
+index 77155b0..eed29fc 100644
+--- a/include/global.h
++++ b/include/global.h
+@@ -816,7 +816,7 @@ struct SaveBlock1
+     /*0x3AD4*/ u8 registeredTexts[UNION_ROOM_KB_ROW_COUNT][21];
+     /*0x3BA8*/ struct TrainerNameRecord trainerNameRecords[20];
+     /*0x3C98*/ struct DaycareMon route5DayCareMon;
+-    /*0x3D24*/ u8 unused_3D24[16];
++    /*0x3D24*/ u8 hackNuzlockeAreas[16]; // FireRed QoL+Hard: areas whose Nuzlocke encounter is used
+     /*0x3D34*/ u32 towerChallengeId;
+     /*0x3D38*/ struct TrainerTower trainerTower[NUM_TOWER_CHALLENGE_TYPES];
+ }; // size: 0x3D68
+diff --git a/include/hack_challenge.h b/include/hack_challenge.h
+new file mode 100644
+index 0000000..e60e80e
+--- /dev/null
++++ b/include/hack_challenge.h
+@@ -0,0 +1,16 @@
++#ifndef GUARD_HACK_CHALLENGE_H
++#define GUARD_HACK_CHALLENGE_H
++
++extern bool8 gHackRandomEncounter;
++
++bool8 Hack_NuzlockeActive(void);
++bool8 Hack_NuzlockeBoxMonDead(struct BoxPokemon *boxMon);
++bool8 Hack_NuzlockeMonDead(struct Pokemon *mon);
++void Hack_NuzlockeMarkFainted(void);
++void Hack_NuzlockeWhiteOut(void);
++void Hack_NuzlockeOnBattleStart(void);
++bool8 Hack_NuzlockeCanCatch(void);
++bool8 Hack_NoBattleItems(void);
++void Hack_ChallengeMenu(void);
++
++#endif // GUARD_HACK_CHALLENGE_H
+diff --git a/include/strings.h b/include/strings.h
+index 6ca26a6..f3fac1b 100644
+--- a/include/strings.h
++++ b/include/strings.h
+@@ -180,6 +180,8 @@ extern const u8 gText_PlayedPokeFlute[];
+ extern const u8 gText_PokeFluteAwakenedMon[];
+ extern const u8 gText_WontHaveEffect[];
+ extern const u8 gText_HackAtLevelCap[];
++extern const u8 gText_HackNuzlockeNoCatch[];
++extern const u8 gText_HackNoBattleItems[];
+ extern const u8 gText_YesNo[];
+ extern const u8 gText_Berry[];
+ extern const u8 gText_Ghost[];
+diff --git a/ld_script.ld b/ld_script.ld
+index 9a4b450..b76d1f4 100644
+--- a/ld_script.ld
++++ b/ld_script.ld
+@@ -82,6 +82,7 @@ SECTIONS {
+         src/battle_ai_switch_items.o(.text);
+         src/battle_controller_link_opponent.o(.text);
+         src/pokemon.o(.text);
++        src/hack_challenge.o(.text);
+         src/trig.o(.text);
+         src/random.o(.text);
+         src/util.o(.text);
+@@ -420,6 +421,7 @@ SECTIONS {
+         src/battle_controller_opponent.o(.rodata);
+         src/battle_controller_link_opponent.o(.rodata);
+         src/pokemon.o(.rodata);
++        src/hack_challenge.o(.rodata);
+         src/trig.o(.rodata);
+         src/util.o(.rodata);
+         src/daycare.o(.rodata);
+diff --git a/ld_script_rev10.ld b/ld_script_rev10.ld
+index 4eb3bc2..635a229 100644
+--- a/ld_script_rev10.ld
++++ b/ld_script_rev10.ld
+@@ -84,6 +84,7 @@ SECTIONS {
+         src/battle_ai_switch_items.o(.text);
+         src/battle_controller_link_opponent.o(.text);
+         src/pokemon.o(.text);
++        src/hack_challenge.o(.text);
+         src/trig.o(.text);
+         src/random.o(.text);
+         src/util.o(.text);
+@@ -421,6 +422,7 @@ SECTIONS {
+         src/battle_controller_opponent.o(.rodata);
+         src/battle_controller_link_opponent.o(.rodata);
+         src/pokemon.o(.rodata);
++        src/hack_challenge.o(.rodata);
+         src/trig.o(.rodata);
+         src/util.o(.rodata);
+         src/daycare.o(.rodata);
+diff --git a/src/battle_main.c b/src/battle_main.c
+index 157c324..e616dc4 100644
+--- a/src/battle_main.c
++++ b/src/battle_main.c
+@@ -1,4 +1,5 @@
+ #include "global.h"
++#include "hack_challenge.h"
+ #include "gflib.h"
+ #include "battle.h"
+ #include "battle_anim.h"
+@@ -622,6 +623,7 @@ const u8 *const gStatusConditionStringsTable[][2] =
+ 
+ void CB2_InitBattle(void)
+ {
++    Hack_NuzlockeOnBattleStart();
+     MoveSaveBlocks_ResetHeap();
+     AllocateBattleResources();
+     AllocateBattleSpritesData();
+@@ -3971,6 +3973,8 @@ static void FreeResetData_ReturnToOvOrDoEvolutions(void)
+ {
+     if (!gPaletteFade.active)
+     {
++        if (!(gBattleTypeFlags & BATTLE_TYPE_LINK))
++            Hack_NuzlockeMarkFainted();
+         ResetSpriteData();
+         if (gLeveledUpInBattle == 0 || gBattleOutcome != B_OUTCOME_WON)
+             gBattleMainFunc = ReturnFromBattleToOverworld;
+diff --git a/src/battle_message.c b/src/battle_message.c
+index be72eb1..8c7e6dd 100644
+--- a/src/battle_message.c
++++ b/src/battle_message.c
+@@ -297,6 +297,7 @@ static const u8 sText_Hackstealthrock[] = _("Pointed stones float in the air\nar
+ static const u8 sText_Hacktoxicspikes[] = _("Poison spikes were scattered all\naround the opponent's side!");
+ static const u8 sText_Hackstickyweb[] = _("A sticky web spreads out on\nthe opponent's side!");
+ static const u8 sText_Hackdefog[] = _("{B_ATK_NAME_WITH_PREFIX} blew away\nhazards and barriers!");
++static const u8 sText_HackNuzlockeBall[] = _("NUZLOCKE rules: this POKéMON\ncan't be caught!");
+ static const u8 sText_Hackhurtbyrocks[] = _("Pointed stones dug into\n{B_SCR_ACTIVE_NAME_WITH_PREFIX}!");
+ static const u8 sText_HackSelfStat[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_BUFF1}\n{B_BUFF2}");
+ static const u8 sText_HackAbilityHurtSelf[] = _("{B_ATK_NAME_WITH_PREFIX} was hurt by\nits {B_ATK_ABILITY}!");
+@@ -761,6 +762,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT - BATTLESTRINGS_TABLE_ST
+     [STRINGID_HACKSTICKYWEB - BATTLESTRINGS_TABLE_START] = sText_Hackstickyweb,
+     [STRINGID_HACKDEFOG - BATTLESTRINGS_TABLE_START] = sText_Hackdefog,
+     [STRINGID_HACKHURTBYROCKS - BATTLESTRINGS_TABLE_START] = sText_Hackhurtbyrocks,
++    [STRINGID_HACKNUZLOCKEBALL - BATTLESTRINGS_TABLE_START] = sText_HackNuzlockeBall,
+     [STRINGID_PKMNTRACED - BATTLESTRINGS_TABLE_START]                    = sText_PkmnTraced,
+     [STRINGID_STATSHARPLY - BATTLESTRINGS_TABLE_START]                   = sText_StatSharply,
+     [STRINGID_STATROSE - BATTLESTRINGS_TABLE_START]                      = gBattleText_Rose,
+diff --git a/src/battle_script_commands.c b/src/battle_script_commands.c
+index eddd50d..598a0f8 100644
+--- a/src/battle_script_commands.c
++++ b/src/battle_script_commands.c
+@@ -1,4 +1,5 @@
+ #include "global.h"
++#include "hack_challenge.h"
+ #include "gflib.h"
+ #include "item.h"
+ #include "util.h"
+@@ -9772,6 +9773,12 @@ static void Cmd_handleballthrow(void)
+         MarkBattlerForControllerExec(gActiveBattler);
+         gBattlescriptCurrInstr = BattleScript_OldMan_Pokedude_CaughtMessage;
+     }
++    else if (!Hack_NuzlockeCanCatch())
++    {
++        BtlController_EmitBallThrowAnim(BUFFER_A, BALL_GHOST_DODGE);
++        MarkBattlerForControllerExec(gActiveBattler);
++        gBattlescriptCurrInstr = BattleScript_HackNuzlockeBallBlock;
++    }
+     else
+     {
+         u32 odds;
+diff --git a/src/battle_setup.c b/src/battle_setup.c
+index 3399c33..08e4d64 100644
+--- a/src/battle_setup.c
++++ b/src/battle_setup.c
+@@ -1,4 +1,5 @@
+ #include "global.h"
++#include "hack_challenge.h"
+ #include "task.h"
+ #include "help_system.h"
+ #include "overworld.h"
+@@ -236,6 +237,7 @@ static bool8 CheckSilphScopeInPokemonTower(u16 mapGroup, u16 mapNum)
+ 
+ void StartWildBattle(void)
+ {
++    gHackRandomEncounter = TRUE;
+     if (GetSafariZoneFlag())
+         DoSafariBattle();
+     else if (CheckSilphScopeInPokemonTower(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum))
+diff --git a/src/data/item_icon_table.h b/src/data/item_icon_table.h
+index 7529865..0ad5c43 100644
+--- a/src/data/item_icon_table.h
++++ b/src/data/item_icon_table.h
+@@ -98,7 +98,7 @@ static const u32 *const sItemIconTable[ITEMS_COUNT + 1][2] =
+     [ITEM_REPEL]          = {gItemIcon_Repel, gItemIconPalette_Repel},
+     // ????????
+     [ITEM_BLACK_AUGURITE] = {gItemIcon_BlackAugurite, gItemIconPalette_BlackAugurite},
+-    [ITEM_058]            = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
++    [ITEM_SHINY_CHARM]    = {gItemIcon_StarPiece, gItemIconPalette_Star},
+     [ITEM_059]            = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+     [ITEM_05A]            = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+     [ITEM_05B]            = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+diff --git a/src/data/items.json b/src/data/items.json
+index f636cf6..172f128 100644
+--- a/src/data/items.json
++++ b/src/data/items.json
+@@ -65,7 +65,7 @@
+       "secondaryId": 2
+     },
+     {
+-      "english": "POK\u00e9 BALL",
++      "english": "POKé BALL",
+       "itemId": "ITEM_POKE_BALL",
+       "price": 200,
+       "holdEffect": "HOLD_EFFECT_NONE",
+@@ -1281,7 +1281,7 @@
+       "secondaryId": 0
+     },
+     {
+-      "english": "POK\u00e9 DOLL",
++      "english": "POKé DOLL",
+       "itemId": "ITEM_POKE_DOLL",
+       "price": 1000,
+       "holdEffect": "HOLD_EFFECT_NONE",
+@@ -1409,15 +1409,15 @@
+       "secondaryId": 0
+     },
+     {
+-      "english": "????????",
+-      "itemId": "ITEM_NONE",
++      "english": "SHINY CHARM",
++      "itemId": "ITEM_SHINY_CHARM",
+       "price": 0,
+       "holdEffect": "HOLD_EFFECT_NONE",
+       "holdEffectParam": 0,
+-      "description_english": "?????",
+-      "importance": 0,
++      "description_english": "A shiny charm said to bring luck.\\nHaving it makes shiny POKéMON\\nshow up more often.",
++      "importance": 1,
+       "registrability": 0,
+-      "pocket": "POCKET_ITEMS",
++      "pocket": "POCKET_KEY_ITEMS",
+       "type": "ITEM_TYPE_BAG_MENU",
+       "fieldUseFunc": "FieldUseFunc_OakStopsYou",
+       "battleUsage": 0,
+@@ -5659,7 +5659,7 @@
+       "secondaryId": 0
+     },
+     {
+-      "english": "POK\u00e9 FLUTE",
++      "english": "POKé FLUTE",
+       "itemId": "ITEM_POKE_FLUTE",
+       "price": 0,
+       "holdEffect": "HOLD_EFFECT_NONE",
+diff --git a/src/daycare.c b/src/daycare.c
+index d8fd488..2de29b1 100644
+--- a/src/daycare.c
++++ b/src/daycare.c
+@@ -1,4 +1,5 @@
+ #include "global.h"
++#include "hack_challenge.h"
+ #include "gflib.h"
+ #include "data.h"
+ #include "battle.h"
+@@ -424,6 +425,7 @@ static s8 Daycare_FindEmptySpot(struct DayCare *daycare)
+ 
+ static void StorePokemonInDaycare(struct Pokemon *mon, struct DaycareMon *daycareMon)
+ {
++    Hack_NuzlockeMarkFainted();
+     if (MonHasMail(mon))
+     {
+         u8 mailId;
+diff --git a/src/field_poison.c b/src/field_poison.c
+index d44e32b..5b651ac 100644
+--- a/src/field_poison.c
++++ b/src/field_poison.c
+@@ -1,4 +1,5 @@
+ #include "global.h"
++#include "hack_challenge.h"
+ #include "gflib.h"
+ #include "strings.h"
+ #include "task.h"
+@@ -37,6 +38,7 @@ static void FaintFromFieldPoison(u8 partyIdx)
+     SetMonData(pokemon, MON_DATA_STATUS, &status);
+     GetMonData(pokemon, MON_DATA_NICKNAME, gStringVar1);
+     StringGet_Nickname(gStringVar1);
++    Hack_NuzlockeMarkFainted();
+ }
+ 
+ static bool32 MonFaintedFromPoison(u8 partyIdx)
+diff --git a/src/hack_challenge.c b/src/hack_challenge.c
+new file mode 100644
+index 0000000..e7ff163
+--- /dev/null
++++ b/src/hack_challenge.c
+@@ -0,0 +1,275 @@
++// FireRed QoL+Hard: challenge settings (Nuzlocke mode and optional rules).
++#include "global.h"
++#include "battle.h"
++#include "event_data.h"
++#include "item.h"
++#include "main.h"
++#include "menu.h"
++#include "new_menu_helpers.h"
++#include "pokedex.h"
++#include "pokemon.h"
++#include "script.h"
++#include "sound.h"
++#include "string_util.h"
++#include "task.h"
++#include "text.h"
++#include "window.h"
++#include "hack_challenge.h"
++#include "constants/flags.h"
++#include "constants/region_map_sections.h"
++#include "constants/songs.h"
++
++#define DEAD_BIT 1 // stored in MON_DATA_UNUSED_RIBBONS
++
++extern const struct Evolution gEvolutionTable[][EVOS_PER_MON];
++
++EWRAM_DATA static bool8 sCatchable = TRUE;
++EWRAM_DATA bool8 gHackRandomEncounter = FALSE;
++
++bool8 Hack_NuzlockeActive(void)
++{
++    // The rules start once Oak hands over the Pokédex and Poké Balls.
++    return FlagGet(FLAG_HACK_NUZLOCKE) && FlagGet(FLAG_SYS_POKEDEX_GET);
++}
++
++static bool8 IsPlayerPartyMon(struct Pokemon *mon)
++{
++    return mon >= &gPlayerParty[0] && mon < &gPlayerParty[PARTY_SIZE];
++}
++
++bool8 Hack_NuzlockeBoxMonDead(struct BoxPokemon *boxMon)
++{
++    return Hack_NuzlockeActive() && (GetBoxMonData(boxMon, MON_DATA_UNUSED_RIBBONS) & DEAD_BIT);
++}
++
++// A Pokémon that has fainted can't be healed or revived by anything.
++bool8 Hack_NuzlockeMonDead(struct Pokemon *mon)
++{
++    if (!Hack_NuzlockeActive() || !IsPlayerPartyMon(mon))
++        return FALSE;
++    if (GetMonData(mon, MON_DATA_SPECIES) == SPECIES_NONE || GetMonData(mon, MON_DATA_IS_EGG))
++        return FALSE;
++    return (GetMonData(mon, MON_DATA_UNUSED_RIBBONS) & DEAD_BIT) || GetMonData(mon, MON_DATA_HP) == 0;
++}
++
++void Hack_NuzlockeMarkFainted(void)
++{
++    u8 i, bits;
++
++    if (!Hack_NuzlockeActive())
++        return;
++    for (i = 0; i < PARTY_SIZE; i++)
++    {
++        struct Pokemon *mon = &gPlayerParty[i];
++        if (GetMonData(mon, MON_DATA_SPECIES) == SPECIES_NONE || GetMonData(mon, MON_DATA_IS_EGG))
++            continue;
++        if (GetMonData(mon, MON_DATA_HP) == 0)
++        {
++            bits = GetMonData(mon, MON_DATA_UNUSED_RIBBONS) | DEAD_BIT;
++            SetMonData(mon, MON_DATA_UNUSED_RIBBONS, &bits);
++        }
++    }
++}
++
++// Whiting out ends a Nuzlocke run: the rules are lifted so the game carries on normally.
++void Hack_NuzlockeWhiteOut(void)
++{
++    if (Hack_NuzlockeActive())
++    {
++        FlagClear(FLAG_HACK_NUZLOCKE);
++        FlagSet(FLAG_HACK_NUZLOCKE_OVER);
++    }
++}
++
++static bool8 FamilyCaught(u16 species)
++{
++    u16 stack[16], cur, i, j;
++    u8 depth, n = 0;
++    bool8 found;
++
++    // Walk back to the first stage.
++    for (depth = 0; depth < 4; depth++)
++    {
++        found = FALSE;
++        for (i = 1; i < NUM_SPECIES && !found; i++)
++        {
++            for (j = 0; j < EVOS_PER_MON; j++)
++            {
++                if (gEvolutionTable[i][j].method && gEvolutionTable[i][j].targetSpecies == species)
++                {
++                    species = i;
++                    found = TRUE;
++                    break;
++                }
++            }
++        }
++        if (!found)
++            break;
++    }
++    // Then check it and everything it evolves into.
++    stack[n++] = species;
++    while (n)
++    {
++        cur = stack[--n];
++        if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(cur), FLAG_GET_CAUGHT))
++            return TRUE;
++        for (j = 0; j < EVOS_PER_MON; j++)
++        {
++            if (gEvolutionTable[cur][j].method && gEvolutionTable[cur][j].targetSpecies && n < ARRAY_COUNT(stack))
++                stack[n++] = gEvolutionTable[cur][j].targetSpecies;
++        }
++    }
++    return FALSE;
++}
++
++// Called as a battle starts: decides whether this wild Pokémon can be caught.
++void Hack_NuzlockeOnBattleStart(void)
++{
++    u8 sec;
++    bool8 random = gHackRandomEncounter;
++
++    gHackRandomEncounter = FALSE;
++    sCatchable = TRUE;
++    if (!Hack_NuzlockeActive() || !random
++     || (gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_LINK | BATTLE_TYPE_POKEDUDE | BATTLE_TYPE_OLD_MAN_TUTORIAL | BATTLE_TYPE_GHOST)))
++        return; // one-time encounters (Snorlax, legendaries, ...) are always catchable
++    if (IsMonShiny(&gEnemyParty[0]))
++        return; // shiny clause
++    if (FamilyCaught(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)))
++    {
++        sCatchable = FALSE; // dupes clause: doesn't use up the area
++        return;
++    }
++    if (gMapHeader.regionMapSectionId < KANTO_MAPSEC_START)
++        return;
++    sec = gMapHeader.regionMapSectionId - KANTO_MAPSEC_START;
++    if (sec >= sizeof(gSaveBlock1Ptr->hackNuzlockeAreas) * 8)
++        return;
++    if (gSaveBlock1Ptr->hackNuzlockeAreas[sec / 8] & (1 << (sec % 8)))
++        sCatchable = FALSE;
++    else
++        gSaveBlock1Ptr->hackNuzlockeAreas[sec / 8] |= 1 << (sec % 8);
++}
++
++bool8 Hack_NuzlockeCanCatch(void)
++{
++    return !Hack_NuzlockeActive() || sCatchable;
++}
++
++bool8 Hack_NoBattleItems(void)
++{
++    return FlagGet(FLAG_HACK_NO_BATTLE_ITEMS) && !(gBattleTypeFlags & (BATTLE_TYPE_POKEDUDE | BATTLE_TYPE_OLD_MAN_TUTORIAL));
++}
++
++// ---------------------------------------------------------------------------
++// Challenge settings menu, shown the first time you wake up in your room.
++
++#define ROW_DONE 4
++
++static const u8 sText_Nuzlocke[]  = _("NUZLOCKE MODE");
++static const u8 sText_LevelCaps[] = _("LEVEL CAPS");
++static const u8 sText_NoItems[]   = _("NO ITEMS IN BATTLE");
++static const u8 sText_SetOnly[]   = _("SET BATTLE STYLE");
++static const u8 sText_Done[]      = _("START ADVENTURE");
++static const u8 sText_On[]        = _("ON");
++static const u8 sText_Off[]       = _("OFF");
++static const u8 sText_Cursor[]    = _("▶");
++
++static const u8 sDesc_Nuzlocke[]  = _("Only the first POKéMON in each area\ncan be caught. Fainted ones are lost.");
++static const u8 sDesc_LevelCaps[] = _("Your POKéMON can't out-level the next\nGYM LEADER's strongest POKéMON.");
++static const u8 sDesc_NoItems[]   = _("No items from the BAG in battle.\nPOKé BALLS can still be thrown.");
++static const u8 sDesc_SetOnly[]   = _("No free switch after you knock out\na foe. Locks the battle style option.");
++static const u8 sDesc_Done[]      = _("Start with these rules. Only LEVEL\nCAPS can be changed later on.");
++
++static const u8 *const sRowNames[] = {sText_Nuzlocke, sText_LevelCaps, sText_NoItems, sText_SetOnly, sText_Done};
++static const u8 *const sRowDescs[] = {sDesc_Nuzlocke, sDesc_LevelCaps, sDesc_NoItems, sDesc_SetOnly, sDesc_Done};
++static const u16 sRowFlags[] = {FLAG_HACK_NUZLOCKE, FLAG_HACK_LEVEL_CAP, FLAG_HACK_NO_BATTLE_ITEMS, FLAG_HACK_SET_ONLY};
++
++static const struct WindowTemplate sMenuWindow = {
++    .bg = 0, .tilemapLeft = 2, .tilemapTop = 1, .width = 26, .height = 10, .paletteNum = 15, .baseBlock = 0x008,
++};
++static const struct WindowTemplate sDescWindow = {
++    .bg = 0, .tilemapLeft = 2, .tilemapTop = 15, .width = 26, .height = 4, .paletteNum = 15, .baseBlock = 0x198,
++};
++
++#define tCursor  data[0]
++#define tMenuWin data[1]
++#define tDescWin data[2]
++
++static void DrawChallengeMenu(u8 taskId)
++{
++    s16 *data = gTasks[taskId].data;
++    u8 i;
++
++    FillWindowPixelBuffer(tMenuWin, PIXEL_FILL(1));
++    for (i = 0; i <= ROW_DONE; i++)
++    {
++        if (i == tCursor)
++            AddTextPrinterParameterized(tMenuWin, FONT_NORMAL, sText_Cursor, 4, i * 16 + 1, TEXT_SKIP_DRAW, NULL);
++        AddTextPrinterParameterized(tMenuWin, FONT_NORMAL, sRowNames[i], 16, i * 16 + 1, TEXT_SKIP_DRAW, NULL);
++        if (i < ROW_DONE)
++            AddTextPrinterParameterized(tMenuWin, FONT_NORMAL, FlagGet(sRowFlags[i]) ? sText_On : sText_Off, 168, i * 16 + 1, TEXT_SKIP_DRAW, NULL);
++    }
++    CopyWindowToVram(tMenuWin, COPYWIN_FULL);
++    FillWindowPixelBuffer(tDescWin, PIXEL_FILL(1));
++    AddTextPrinterParameterized(tDescWin, FONT_NORMAL, sRowDescs[tCursor], 0, 1, TEXT_SKIP_DRAW, NULL);
++    CopyWindowToVram(tDescWin, COPYWIN_FULL);
++}
++
++static void Task_ChallengeMenu(u8 taskId)
++{
++    s16 *data = gTasks[taskId].data;
++
++    if (JOY_NEW(DPAD_UP))
++    {
++        PlaySE(SE_SELECT);
++        tCursor = tCursor == 0 ? ROW_DONE : tCursor - 1;
++        DrawChallengeMenu(taskId);
++    }
++    else if (JOY_NEW(DPAD_DOWN))
++    {
++        PlaySE(SE_SELECT);
++        tCursor = tCursor == ROW_DONE ? 0 : tCursor + 1;
++        DrawChallengeMenu(taskId);
++    }
++    else if (JOY_NEW(B_BUTTON) && tCursor != ROW_DONE)
++    {
++        PlaySE(SE_SELECT);
++        tCursor = ROW_DONE;
++        DrawChallengeMenu(taskId);
++    }
++    else if (tCursor < ROW_DONE && JOY_NEW(A_BUTTON | DPAD_LEFT | DPAD_RIGHT))
++    {
++        PlaySE(SE_SELECT);
++        if (FlagGet(sRowFlags[tCursor]))
++            FlagClear(sRowFlags[tCursor]);
++        else
++            FlagSet(sRowFlags[tCursor]);
++        DrawChallengeMenu(taskId);
++    }
++    else if (tCursor == ROW_DONE && JOY_NEW(A_BUTTON))
++    {
++        PlaySE(SE_SELECT);
++        ClearStdWindowAndFrame(tMenuWin, TRUE);
++        ClearStdWindowAndFrame(tDescWin, TRUE);
++        RemoveWindow(tMenuWin);
++        RemoveWindow(tDescWin);
++        if (FlagGet(FLAG_HACK_SET_ONLY))
++            gSaveBlock2Ptr->optionsBattleStyle = OPTIONS_BATTLE_STYLE_SET;
++        DestroyTask(taskId);
++        ScriptContext_Enable();
++    }
++}
++
++void Hack_ChallengeMenu(void)
++{
++    u8 taskId = CreateTask(Task_ChallengeMenu, 80);
++    s16 *data = gTasks[taskId].data;
++
++    tCursor = 0;
++    tMenuWin = AddWindow(&sMenuWindow);
++    tDescWin = AddWindow(&sDescWindow);
++    DrawStdWindowFrame(tMenuWin, FALSE);
++    DrawStdWindowFrame(tDescWin, FALSE);
++    DrawChallengeMenu(taskId);
++}
+diff --git a/src/item_menu.c b/src/item_menu.c
+index 8f52ead..5e5cc97 100644
+--- a/src/item_menu.c
++++ b/src/item_menu.c
+@@ -1,4 +1,6 @@
+ #include "global.h"
++#include "hack_challenge.h"
++#include "event_data.h"
+ #include "gflib.h"
+ #include "bag.h"
+ #include "battle_controllers.h"
+@@ -1692,7 +1694,10 @@ static void Task_ItemMenuAction_BattleUse(u8 taskId)
+         PutWindowTilemap(0);
+         PutWindowTilemap(1);
+         CopyWindowToVram(0, COPYWIN_MAP);
+-        ItemId_GetBattleFunc(gSpecialVar_ItemId)(taskId);
++        if (Hack_NoBattleItems() && ItemId_GetPocket(gSpecialVar_ItemId) != POCKET_POKE_BALLS)
++            DisplayItemMessageInBag(taskId, FONT_NORMAL, gText_HackNoBattleItems, Task_ReturnToBagFromContextMenu);
++        else
++            ItemId_GetBattleFunc(gSpecialVar_ItemId)(taskId);
+     }
+ }
+ 
+diff --git a/src/item_use.c b/src/item_use.c
+index 1783c6b..06370dc 100644
+--- a/src/item_use.c
++++ b/src/item_use.c
+@@ -1,4 +1,5 @@
+ #include "global.h"
++#include "hack_challenge.h"
+ #include "gflib.h"
+ #include "battle.h"
+ #include "berry_pouch.h"
+@@ -571,6 +572,7 @@ static void Task_UseRepel(u8 taskId)
+     {
+         ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, NULL, gSpecialVar_ItemId, 0xFFFF);
+         VarSet(VAR_REPEL_STEP_COUNT, ItemId_GetHoldEffectParam(gSpecialVar_ItemId));
++        VarSet(VAR_HACK_LAST_REPEL, gSpecialVar_ItemId);
+         RemoveUsedItem();
+         DisplayItemMessageInBag(taskId, FONT_NORMAL, gStringVar4, Task_ReturnToBagFromContextMenu);
+     }
+@@ -742,7 +744,9 @@ void Task_ItemUse_CloseMessageBoxAndReturnToField_VsSeeker(u8 taskId)
+ 
+ void BattleUseFunc_PokeBallEtc(u8 taskId)
+ {
+-    if (!IsPlayerPartyAndPokemonStorageFull())
++    if (ItemId_GetPocket(gSpecialVar_ItemId) == POCKET_POKE_BALLS && !Hack_NuzlockeCanCatch())
++        DisplayItemMessageInBag(taskId, FONT_NORMAL, gText_HackNuzlockeNoCatch, Task_ReturnToBagFromContextMenu);
++    else if (!IsPlayerPartyAndPokemonStorageFull())
+     {
+         RemoveBagItem(gSpecialVar_ItemId, 1);
+         Bag_BeginCloseWin0Animation();
+@@ -929,3 +933,13 @@ void ItemUse_SetQuestLogEvent(u8 eventId, struct Pokemon *pokemon, u16 itemId, u
+     SetQuestLogEvent(eventId, (void *)data);
+     Free(data);
+ }
++
++// FireRed QoL+Hard: "Use another?" when a Repel wears off.
++void Hack_UseRepelAgain(void)
++{
++    u16 item = VarGet(VAR_HACK_LAST_REPEL);
++
++    RemoveBagItem(item, 1);
++    VarSet(VAR_REPEL_STEP_COUNT, ItemId_GetHoldEffectParam(item));
++    PlaySE(SE_REPEL);
++}
+diff --git a/src/option_menu.c b/src/option_menu.c
+index 0b55a34..ba90088 100644
+--- a/src/option_menu.c
++++ b/src/option_menu.c
+@@ -1,4 +1,6 @@
+ #include "global.h"
++#include "hack_challenge.h"
++#include "event_data.h"
+ #include "gflib.h"
+ #include "scanline_effect.h"
+ #include "text_window_graphics.h"
+@@ -412,6 +414,8 @@ static u8 OptionMenu_ProcessInput(void)
+ { 
+     u16 current;
+     u16 *curr;
++    if (sOptionMenuPtr->cursorPos == MENUITEM_BATTLESTYLE && FlagGet(FLAG_HACK_SET_ONLY) && JOY_REPT(DPAD_LEFT | DPAD_RIGHT))
++        return 0; // locked by the challenge settings
+     if (JOY_REPT(DPAD_RIGHT))
+     {
+         current = sOptionMenuPtr->option[(sOptionMenuPtr->cursorPos)];
+@@ -513,6 +517,8 @@ static void CloseAndSaveOptionMenu(u8 taskId)
+     gSaveBlock2Ptr->optionsTextSpeed = sOptionMenuPtr->option[MENUITEM_TEXTSPEED];
+     gSaveBlock2Ptr->optionsBattleSceneOff = sOptionMenuPtr->option[MENUITEM_BATTLESCENE];
+     gSaveBlock2Ptr->optionsBattleStyle = sOptionMenuPtr->option[MENUITEM_BATTLESTYLE];
++    if (FlagGet(FLAG_HACK_SET_ONLY))
++        gSaveBlock2Ptr->optionsBattleStyle = OPTIONS_BATTLE_STYLE_SET;
+     gSaveBlock2Ptr->optionsSound = sOptionMenuPtr->option[MENUITEM_SOUND];
+     gSaveBlock2Ptr->optionsButtonMode = sOptionMenuPtr->option[MENUITEM_BUTTONMODE];
+     gSaveBlock2Ptr->optionsWindowFrameType = sOptionMenuPtr->option[MENUITEM_FRAMETYPE];
+diff --git a/src/overworld.c b/src/overworld.c
+index 339014d..103cdb4 100644
+--- a/src/overworld.c
++++ b/src/overworld.c
+@@ -1,4 +1,5 @@
+ #include "global.h"
++#include "hack_challenge.h"
+ #include "gflib.h"
+ #include "bg_regs.h"
+ #include "cable_club.h"
+@@ -251,6 +252,7 @@ static void DoWhiteOut(void)
+ {
+     RunScriptImmediately(EventScript_ResetEliteFourEnd);
+     RemoveMoney(&gSaveBlock1Ptr->money, ComputeWhiteOutMoneyLoss());
++    Hack_NuzlockeWhiteOut();
+     HealPlayerParty();
+     Overworld_ResetStateAfterWhitingOut();
+     Overworld_SetWhiteoutRespawnPoint();
+diff --git a/src/pokemon.c b/src/pokemon.c
+index fd3848c..1852ae1 100644
+--- a/src/pokemon.c
++++ b/src/pokemon.c
+@@ -1,6 +1,7 @@
+ #define IS_POKEMON_C
+ 
+ #include "global.h"
++#include "hack_challenge.h"
+ #include "gflib.h"
+ #include "random.h"
+ #include "pokemon_icon.h"
+@@ -1786,6 +1787,9 @@ void CreateMon(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 hasFix
+     CalculateMonStats(mon);
+ }
+ 
++static u8 Hack_ShinyRolls(void);
++static bool8 Hack_ShinyForPlayer(u32 personality);
++
+ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, u8 hasFixedPersonality, u32 fixedPersonality, u8 otIdType, u32 fixedOtId)
+ {
+     u8 speciesName[POKEMON_NAME_LENGTH + 1];
+@@ -1798,7 +1802,14 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV,
+     if (hasFixedPersonality)
+         personality = fixedPersonality;
+     else
+-        personality = Random32();
++    {
++        u8 rolls = (otIdType == OT_ID_PLAYER_ID) ? Hack_ShinyRolls() : 1;
++        do
++        {
++            personality = Random32();
++        }
++        while (--rolls != 0 && !Hack_ShinyForPlayer(personality));
++    }
+ 
+     SetBoxMonData(boxMon, MON_DATA_PERSONALITY, &personality);
+ 
+@@ -1884,15 +1895,35 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV,
+     GiveBoxMonInitialMoveset(boxMon);
+ }
+ 
++// FireRed QoL+Hard: the Shiny Charm gives a new Pokémon two extra chances to be shiny.
++static u8 Hack_ShinyRolls(void)
++{
++    return CheckBagHasItem(ITEM_SHINY_CHARM, 1) ? 3 : 1;
++}
++
++static bool8 Hack_ShinyForPlayer(u32 personality)
++{
++    u32 otId = gSaveBlock2Ptr->playerTrainerId[0]
++             | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
++             | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
++             | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
++    return GET_SHINY_VALUE(otId, personality) < SHINY_ODDS;
++}
++
+ void CreateMonWithNature(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 nature)
+ {
+     u32 personality;
++    u8 rolls = Hack_ShinyRolls();
+ 
+     do
+     {
+-        personality = Random32();
++        do
++        {
++            personality = Random32();
++        }
++        while (nature != GetNatureFromPersonality(personality));
+     }
+-    while (nature != GetNatureFromPersonality(personality));
++    while (--rolls != 0 && !Hack_ShinyForPlayer(personality));
+ 
+     CreateMon(mon, species, level, fixedIV, TRUE, personality, OT_ID_PLAYER_ID, 0);
+ }
+@@ -2189,6 +2220,8 @@ void CalculateMonStats(struct Pokemon *mon)
+             return;
+     }
+ 
++    if (Hack_NuzlockeBoxMonDead(&mon->box))
++        currentHP = 0; // Nuzlocke: fainted for good
+     SetMonData(mon, MON_DATA_HP, &currentHP);
+ }
+ 
+@@ -4292,6 +4325,8 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
+     u8 val;
+     u32 evDelta;
+ 
++    if (Hack_NuzlockeMonDead(mon))
++        return TRUE;
+     // Get item hold effect
+     heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
+     if (heldItem == ITEM_ENIGMA_BERRY)
+@@ -4820,6 +4855,8 @@ bool8 PokemonItemUseNoEffect(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mo
+     u8 curEffect;
+     u32 curMoveId;
+ 
++    if (Hack_NuzlockeMonDead(mon))
++        return TRUE;
+     // Get item hold effect
+     heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
+     if (heldItem == ITEM_ENIGMA_BERRY)
+diff --git a/src/pokemon_storage_system_tasks.c b/src/pokemon_storage_system_tasks.c
+index fdc5250..01a24be 100644
+--- a/src/pokemon_storage_system_tasks.c
++++ b/src/pokemon_storage_system_tasks.c
+@@ -1,4 +1,5 @@
+ #include "global.h"
++#include "hack_challenge.h"
+ #include "gflib.h"
+ #include "data.h"
+ #include "decompress.h"
+@@ -410,6 +411,7 @@ static void CB2_PokeStorage(void)
+ 
+ void EnterPokeStorage(u8 boxOption)
+ {
++    Hack_NuzlockeMarkFainted();
+     ResetTasks();
+     sCurrentBoxOption = boxOption;
+     gStorage = Alloc(sizeof(struct PokemonStorageSystemData));
+diff --git a/src/script_pokemon_util.c b/src/script_pokemon_util.c
+index bc11dc0..06a9b73 100644
+--- a/src/script_pokemon_util.c
++++ b/src/script_pokemon_util.c
+@@ -1,4 +1,5 @@
+ #include "global.h"
++#include "hack_challenge.h"
+ #include "gflib.h"
+ #include "berry.h"
+ #include "daycare.h"
+@@ -20,10 +21,13 @@ void HealPlayerParty(void)
+     u8 ppBonuses;
+     u8 arg[4];
+ 
++    Hack_NuzlockeMarkFainted();
+     // restore HP.
+     for(i = 0; i < gPlayerPartyCount; i++)
+     {
+         u16 maxHP = GetMonData(&gPlayerParty[i], MON_DATA_MAX_HP);
++        if (Hack_NuzlockeMonDead(&gPlayerParty[i]))
++            continue; // Nuzlocke: fainted for good
+         arg[0] = maxHP;
+         arg[1] = maxHP >> 8;
+         SetMonData(&gPlayerParty[i], MON_DATA_HP, arg);
+diff --git a/src/strings.c b/src/strings.c
+index f94b12c..e6ecb99 100644
+--- a/src/strings.c
++++ b/src/strings.c
+@@ -251,6 +251,8 @@ const u8 gText_ItemEffect_SpDef[] = _("SP. DEF");
+ const u8 gText_PartyMenu_OK[] = _("OK");
+ const u8 gText_Empty[] = _("");
+ const u8 gText_PauseUntilPress[] = _("{PAUSE_UNTIL_PRESS}");
++const u8 gText_HackNuzlockeNoCatch[] = _("NUZLOCKE rules: this POKéMON\ncan't be caught.{PAUSE_UNTIL_PRESS}");
++const u8 gText_HackNoBattleItems[] = _("Your challenge rules don't allow\nitems in battle.{PAUSE_UNTIL_PRESS}");
+ const u8 gText_HackAtLevelCap[] = _("{STR_VAR_1} has hit the level\ncap (Lv. {STR_VAR_2}) for now.{PAUSE_UNTIL_PRESS}");
+ const u8 gText_WontHaveEffect[] = _("It won't have any effect.{PAUSE_UNTIL_PRESS}");
+ const u8 gText_CantBeUsedOnPkmn[] = _("This can't be used on\nthat POKéMON.{PAUSE_UNTIL_PRESS}");
+diff --git a/tools/hack/exp_budget.py b/tools/hack/exp_budget.py
+new file mode 100644
+index 0000000..75ebd15
+--- /dev/null
++++ b/tools/hack/exp_budget.py
+@@ -0,0 +1,127 @@
++#!/usr/bin/env python3
++"""Exp budget vs level caps.
++
++For each stretch of the game between level caps, add up the Exp that the
++trainers on those maps give (one-time battles, Gym Leaders included; their
++Exp is awarded before the badge, so it's still clamped at the old cap) and work out what level a team would
++reach on trainer Exp alone, starting at the previous cap.
++
++usage: python3 tools/hack/exp_budget.py [team sizes, default 3 4 6]
++"""
++import glob, os, re, sys
++
++R = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
++os.chdir(R)
++
++# --- species data -----------------------------------------------------------
++info = open('src/data/pokemon/species_info.h').read()
++yield_, growth = {}, {}
++for m in re.finditer(r'\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\n    \}', info, re.S):
++    b = m.group(2)
++    y = re.search(r'\.expYield\s*=\s*(\d+)', b)
++    g = re.search(r'\.growthRate\s*=\s*(GROWTH_\w+)', b)
++    if y: yield_[m.group(1)] = int(y.group(1))
++    if g: growth[m.group(1)] = g.group(1)
++# aliases like #define SPECIES_X SPECIES_OLD_UNOWN_Y
++for a, b in re.findall(r'#define (SPECIES_\w+)\s+(SPECIES_OLD_UNOWN_\w+)', open('include/constants/species.h').read()):
++    if b in yield_: yield_[a] = yield_[b]
++
++# --- trainer parties ----------------------------------------------------------
++tp = open('src/data/trainer_parties.h').read()
++parties = {}
++for m in re.finditer(r'(sParty_\w+)\[\] = \{(.*?)\n\};', tp, re.S):
++    mons = re.findall(r'\.lvl = (\d+),.*?\.species = (SPECIES_\w+)', m.group(2), re.S)
++    parties[m.group(1)] = [(int(l), s) for l, s in mons]
++tr = open('src/data/trainers.h').read()
++trainer_party = dict(re.findall(r'\[(TRAINER_\w+)\] = \{.*?\.party = \w+\((sParty_\w+)\)', tr, re.S))
++
++# --- which maps each trainer is fought on -------------------------------------
++trainer_map = {}
++for f in glob.glob('data/maps/*/scripts.inc'):
++    mp = f.split('/')[2]
++    for t in re.findall(r'trainerbattle\w*\s+(TRAINER_\w+)', open(f).read()):
++        trainer_map.setdefault(t, mp)
++
++# Map-name prefixes for each stretch, in story order.
++SEGMENTS = [
++    ('Brock',      16, 5,  ['PalletTown', 'Route1', 'ViridianCity', 'Route22', 'Route2', 'ViridianForest', 'PewterCity']),
++    ('Misty',      23, 16, ['Route3', 'MtMoon', 'Route4', 'CeruleanCity', 'Route24', 'Route25']),
++    ('Lt. Surge',  28, 23, ['Route5', 'Route6', 'UndergroundPath', 'VermilionCity', 'SSAnne', 'Route11', 'DiglettsCave']),
++    ('Erika',      35, 28, ['Route9', 'Route10', 'RockTunnel', 'LavenderTown', 'Route8', 'Route7', 'CeladonCity']),
++    ('Koga',       45, 35, ['RocketHideout', 'PokemonTower', 'Route12', 'Route13', 'Route14', 'Route15',
++                            'Route16', 'Route17', 'Route18', 'FuchsiaCity', 'SafariZone']),
++    ('Sabrina',    47, 45, ['SilphCo', 'SaffronCity']),
++    ('Blaine',     51, 47, ['Route19', 'Route20', 'Route21', 'SeafoamIslands', 'CinnabarIsland', 'PokemonMansion']),
++    ('Giovanni',   54, 51, ['OneIsland', 'TwoIsland', 'ThreeIsland', 'MtEmber', 'ViridianCity']),
++    ('Elite Four', 72, 54, ['Route23', 'VictoryRoad', 'IndigoPlateau', 'Route22']),
++]
++
++LEADERS = {'BROCK': 'Brock', 'MISTY': 'Misty', 'LT_SURGE': 'Lt. Surge', 'ERIKA': 'Erika', 'KOGA': 'Koga',
++           'SABRINA': 'Sabrina', 'BLAINE': 'Blaine', 'GIOVANNI': 'Giovanni'}
++
++def segment_of(t, mp):
++    if t.startswith('TRAINER_LEADER_'): return LEADERS.get(t[len('TRAINER_LEADER_'):])
++    if t.startswith('TRAINER_RIVAL_ROUTE22_LATE'): return 'Elite Four'
++    if t.startswith('TRAINER_RIVAL_ROUTE22_EARLY'): return 'Brock'
++    if mp.startswith('ViridianCity_Gym'): return 'Giovanni'
++    for name, _, _, pref in SEGMENTS:
++        if any(mp == p or mp.startswith(p + '_') for p in pref):
++            return name
++    return None
++
++def exp_for(lvl, rate):
++    n = lvl
++    if rate == 'GROWTH_MEDIUM_SLOW': return int(6 * n**3 / 5 - 15 * n**2 + 100 * n - 140)
++    if rate == 'GROWTH_FAST': return 4 * n**3 // 5
++    if rate == 'GROWTH_SLOW': return 5 * n**3 // 4
++    return n**3
++
++def level_after(start, exp, rate):
++    e = exp_for(start, rate) + exp
++    lv = start
++    while lv < 100 and exp_for(lv + 1, rate) <= e:
++        lv += 1
++    return lv, e - exp_for(lv, rate)
++
++totals = {s[0]: 0 for s in SEGMENTS}
++counts = {s[0]: 0 for s in SEGMENTS}
++unplaced = []
++for t, mp in sorted(trainer_map.items()):
++    if t.startswith(('TRAINER_ELITE_FOUR_', 'TRAINER_CHAMPION_')):
++        continue
++    # Rival battles exist once per starter choice: count one of them.
++    if t.startswith('TRAINER_RIVAL') and not t.endswith('SQUIRTLE'):
++        continue
++    seg = segment_of(t, mp)
++    if seg is None:
++        unplaced.append((t, mp)); continue
++    p = parties.get(trainer_party.get(t), [])
++    totals[seg] += sum(yield_.get(s, 0) * l // 7 * 3 // 2 for l, s in p)
++    counts[seg] += 1
++
++sizes = [int(a) for a in sys.argv[1:]] or [3, 4, 6]
++RATES = [('MF', 'GROWTH_MEDIUM_FAST'), ('MS', 'GROWTH_MEDIUM_SLOW')]
++# Carry the team forward: start at Lv. 5, add each stretch's trainer Exp
++# (split evenly), and stop at the cap the way the game does.
++state = {(n, r): 5 for n in sizes for _, r in RATES}
++exp = {(n, r): exp_for(5, r) for n in sizes for _, r in RATES}
++print(f"{'Next':<11}{'Cap':>4}{'Trainers':>9}{'Exp':>8}   " +
++      '   '.join(f'{n} mons MF/MS' for n in sizes))
++for name, cap, _, _ in SEGMENTS:
++    cells = []
++    for n in sizes:
++        lv = []
++        for _, r in RATES:
++            e = min(exp[(n, r)] + totals[name] // n, exp_for(cap, r))
++            exp[(n, r)] = e
++            l = 5
++            while l < 100 and exp_for(l + 1, r) <= e:
++                l += 1
++            lv.append(l)
++        cells.append(f'{lv[0]:>5}/{lv[1]:<6}  ')
++    print(f'{name:<11}{cap:>4}{counts[name]:>9}{totals[name]:>8}   ' + '   '.join(cells))
++print('\nTeam level when reaching each Gym Leader on trainer Exp alone (no wild')
++print('battles; Gym Leader Exp included), split evenly, clamped at each cap.')
++print('MF = Medium Fast growth, MS = Medium Slow (the starters and many others).')
++if unplaced:
++    print('\nNot counted (post-game or unmapped):', ', '.join(sorted({m.split('_')[0] for _, m in unplaced})))
+diff --git a/tools/hack/save_check.py b/tools/hack/save_check.py
+new file mode 100644
+index 0000000..aaf2f53
+--- /dev/null
++++ b/tools/hack/save_check.py
+@@ -0,0 +1,81 @@
++#!/usr/bin/env python3
++"""Save compatibility check.
++
++Compares the structures that make up a save file between a git ref (an older
++release) and the working tree. Field names are ignored, so renaming an unused
++field doesn't count; a change of type, array size, bit width or field order
++does. The Pokédex flag arrays depend on NUM_SPECIES, so that's checked too.
++
++usage: python3 tools/hack/save_check.py REF
++exit status 0 = saves from REF still load, 1 = the layout changed
++"""
++import os, re, subprocess, sys
++
++R = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
++
++FILES = ['include/global.h', 'include/pokemon.h', 'include/pokemon_storage_system.h',
++         'include/global.berry.h', 'include/global.fieldmap.h']
++STRUCTS = ['SaveBlock1', 'SaveBlock2', 'Pokedex', 'PokemonStorage', 'BoxPokemon', 'Pokemon',
++           'PokemonSubstruct0', 'PokemonSubstruct1', 'PokemonSubstruct2', 'PokemonSubstruct3',
++           'DaycareMon', 'DayCare', 'Roamer', 'ItemSlot', 'Coords16', 'WarpData', 'Time']
++
++
++def read(ref, path):
++    if ref is None:
++        p = os.path.join(R, path)
++        return open(p).read() if os.path.exists(p) else ''
++    r = subprocess.run(['git', 'show', f'{ref}:{path}'], cwd=R, capture_output=True, text=True)
++    return r.stdout if r.returncode == 0 else ''
++
++
++def num_species(ref):
++    s = read(ref, 'include/constants/species.h')
++    m = re.search(r'#define SPECIES_EGG (\d+)', s) or re.search(r'#define NUM_SPECIES (\d+)', s)
++    return int(m.group(1)) if m else None
++
++
++def layout(ref):
++    text = '\n'.join(read(ref, f) for f in FILES)
++    text = re.sub(r'//[^\n]*|/\*.*?\*/', '', text, flags=re.S)
++    out = {}
++    for name in STRUCTS:
++        m = re.search(r'struct ' + name + r'\s*\{(.*?)\n\};', text, re.S)
++        if not m:
++            continue
++        fields = []
++        for decl in m.group(1).split(';'):
++            decl = ' '.join(decl.split())
++            if not decl:
++                continue
++            # keep the type, the array sizes and the bit width; drop the name
++            t = re.sub(r'\b(\w+)\s*((\[[^\]]*\])*)\s*(:\s*\d+)?$', lambda x: 'NAME' + (x.group(2) or '') + (x.group(4) or ''), decl)
++            fields.append(t)
++        out[name] = fields
++    return out
++
++
++def main():
++    if len(sys.argv) != 2:
++        print(__doc__)
++        sys.exit(2)
++    ref = sys.argv[1]
++    problems = []
++    a, b = num_species(ref), num_species(None)
++    if a and b and (a + 7) // 8 != (b + 7) // 8:
++        problems.append(f'Pokédex flag arrays changed size: {(a + 7) // 8} -> {(b + 7) // 8} bytes (NUM_SPECIES {a} -> {b})')
++    old, new = layout(ref), layout(None)
++    for name in STRUCTS:
++        if old.get(name) != new.get(name):
++            o, n = old.get(name, []), new.get(name, [])
++            diff = [f'    - {x}' for x in o if x not in n] + [f'    + {x}' for x in n if x not in o]
++            problems.append(f'struct {name} changed:\n' + '\n'.join(diff[:12] or ['    (field order changed)']))
++    if problems:
++        print(f'Saves from {ref} may NOT load correctly:')
++        for p in problems:
++            print('  ' + p)
++        sys.exit(1)
++    print(f'Save layout matches {ref}: saves carry over.')
++
++
++if __name__ == '__main__':
++    main()
+-- 
+2.43.0
+
