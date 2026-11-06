@@ -55,7 +55,7 @@ def pick_start(rng: random.Random, starts: list[Start], out: Path, game: Game) -
     weights = [1.0 / (1 + seen.get(name(d), 0)) for d in pool]
     d = rng.choices(pool, weights)[0]
     f = rng.choice(sorted(d.glob("*.state")))
-    return Start("pool", f"pool:{name(d)}", f.read_bytes())
+    return Start("pool", f"pool:{name(d)}", load_state_file(f))
 
 
 def worker_main(config: dict, worker: int, stop) -> None:
@@ -153,6 +153,9 @@ def prepare(args, log=print) -> dict:
     saves = [str(Path(p)) for p in args.saves]
     if args.new_games is not None:
         rule_sets = [[r for r in rs.split(",") if r and r != "plain"] for rs in args.new_games]
+        if "HACK_NUZLOCKE" not in game.flags and any(rule_sets):
+            log("This game has no challenge rules; making one plain new game instead.")
+            rule_sets = [[]]
     elif not states and not saves:
         rule_sets = [[], ["nuzlocke", "level_caps"], ["no_items", "set_style", "exp_share"]] \
             if "HACK_NUZLOCKE" in game.flags else [[]]

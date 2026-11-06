@@ -19,6 +19,7 @@ check they really happen.
 
 from __future__ import annotations
 
+import gzip
 import json
 import random
 import time
@@ -77,6 +78,7 @@ def screen_hash(screen: np.ndarray) -> int:
 
 
 class Tester:
+    __test__ = False  # not a pytest test class
     def __init__(self, emu, game: Game, out: Path, worker: int = 0, seed: int | None = None,
                  addresses=DEFAULT_ADDRESSES, log=print, stop=None):
         self.emu = emu
@@ -216,7 +218,7 @@ class Tester:
             return
         d.mkdir(parents=True, exist_ok=True)
         tmp = d / f"{uuid.uuid4().hex[:10]}.tmp"
-        tmp.write_bytes(self.emu.save_state())
+        tmp.write_bytes(gzip.compress(self.emu.save_state(), 6))  # ~400 KB raw
         tmp.replace(tmp.with_suffix(".state"))
 
     # --- findings -------------------------------------------------------------------

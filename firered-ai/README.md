@@ -46,10 +46,58 @@ and caught) and **difficulty** numbers (battles and blackouts per map).
   every map it reaches. Later sessions start from those, favouring the
   least-visited maps. Give it your own saves to reach later content sooner.
 
-## Setup
+## Install on Windows (one click)
 
-In Ubuntu (WSL) on Windows, or a terminal on Linux or an Apple Silicon Mac,
-with Python 3.10 or newer:
+The playtester runs inside WSL, the Linux system built into Windows 10 and
+11. The installer sets all of that up for you.
+
+1. **Get the files.** On this repository's GitHub page, click the green
+   **Code** button, then **Download ZIP**. Right-click the downloaded file,
+   choose **Extract All...**, and extract it somewhere easy, like your
+   Documents folder.
+2. **Run the installer.** In the extracted folder, open `firered-ai`, then
+   `install`, and double-click **`Install.bat`**.
+   - If Windows says "Windows protected your PC", click **More info**, then
+     **Run anyway**. It's a script you downloaded yourself, so Windows is
+     being careful.
+   - **The first time only:** it needs administrator permission (click
+     **Yes**) to install WSL and Ubuntu. That downloads about 1 GB. Restart
+     if Windows asks. An **Ubuntu** window then asks you to choose a
+     username and password. They're only for Ubuntu, so pick anything you'll
+     remember. Nothing appears while you type the password; that's normal.
+     When it shows a line ending in `$`, close that window and
+     **double-click `Install.bat` again**.
+   - It then installs Python and the playtester and runs its self-check,
+     which takes a few minutes. When it says **All set!**, you're done.
+3. **Two shortcuts appear on your desktop:**
+   - **FireRed Playtest** starts a run. Double-click it and pick your
+     patched ROM, or drag the `.gba` file onto it. It asks how many hours to
+     play (just press Enter for 8). It also asks for an optional folder of
+     your `.sav` files, so it can test later parts of the game: drag the
+     folder into the window and press Enter.
+   - **FireRed Playtest Reports** opens the folder of past runs. Open
+     `report.html` in a run's folder to see the results.
+
+While a run goes on, leave its window open. Closing it stops the run. Your
+PC stays awake until the run ends (the screen can still turn off), and the
+report opens by itself at the end.
+
+**Updating:** download the ZIP again and double-click `Install.bat`. It
+updates the playtester and keeps your past runs.
+
+## Install on Linux or a Mac
+
+On Linux or an Apple Silicon Mac, `bash install/setup.sh` does the same
+setup in `~/firered-playtester`. Then start a run with:
+
+```bash
+bash ~/firered-playtester/install/run.sh path/to/rom.gba 8
+```
+
+## Manual setup
+
+If you'd rather set it up by hand: in Ubuntu (WSL) on Windows, or a terminal
+on Linux or an Apple Silicon Mac, with Python 3.10 or newer:
 
 ```bash
 cd ~/Personal-Projects/firered-ai
@@ -178,6 +226,8 @@ tiny hand-assembled GBA ROM run on the real mGBA core.
 
 | File | What it does |
 |---|---|
+| `install/Install.bat` | One-click Windows installer (`install.ps1`, which runs `setup.sh` inside Ubuntu) |
+| `install/Playtest.bat` | Windows launcher behind the desktop shortcut (`playtest.ps1`, which runs `run.sh`) |
 | `playtest.py` | Run the playtester |
 | `replay.py` | Replay a finding |
 | `make_start_state.py` | Make a new-game save state, with challenge rules |
