@@ -8,6 +8,15 @@ made it, so you can see exactly what changed.
 previous release keeps working. In short, saves made on **release 7 or later**
 carry over to the current release. Older saves need a new game.
 
+## Release 11 (2026-11-06)
+Pull requests: [#27](https://github.com/RTyH-Code/Personal-Projects/pull/27)
+
+- **Victory Road rematches:**
+  - The VS Seeker now works in Victory Road.
+  - All 12 trainers there have rematch teams 8 levels higher (Lv. 54–63).
+  - You can re-fight them each time the battery recharges.
+- **Saves:** release 10 saves carry over.
+
 ## Release 10 (2026-11-06)
 Pull requests: [#26](https://github.com/RTyH-Code/Personal-Projects/pull/26)
 
