@@ -65,7 +65,7 @@ def write(p, s):
 
 
 tr = read("src/data/trainers.h")
-if "FireRed QoL+Hard: gym double battle" in tr:
+if "FireRed QoL+Hard: gym double battle" in tr or "FireRed QoL+Hard: gym double battle" in read("src/data/trainer_parties.h"):
     sys.exit("Gym doubles are already in place.")
 tp = read("src/data/trainer_parties.h")
 bad = False
@@ -85,7 +85,7 @@ for t, team in TEAMS.items():
         f"        .moves = {{{', '.join('MOVE_' + m for m in moves)}}},\n    }}"
         for sp, lv, moves in team)
     tp = re.sub(r"static const struct \w+ " + party + r"\[\] = \{\n.*?\n\};\n",
-                lambda _: f"static const struct TrainerMonNoItemCustomMoves {party}[] = {{ // FireRed QoL+Hard: gym double battle\n{mons},\n}};\n",
+                lambda _: f"// FireRed QoL+Hard: gym double battle\nstatic const struct TrainerMonNoItemCustomMoves {party}[] = {{\n{mons},\n}};\n",
                 tp, count=1, flags=re.S)
     body = entry.group(2)
     body = re.sub(r"\.doubleBattle = FALSE", ".doubleBattle = TRUE", body)

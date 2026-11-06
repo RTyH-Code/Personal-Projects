@@ -1,4 +1,4 @@
-From 3bec96c5c19bcec3d3579abffcd52cc0a0075d3c Mon Sep 17 00:00:00 2001
+From bef3f6c9c0b1d0fdaa9f48c0a9fd5a9ba828ab7d Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Fri, 6 Nov 2026 02:34:54 +0000
 Subject: [PATCH 48/48] Gym double battles
@@ -20,11 +20,11 @@ Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
  data/maps/ViridianCity_Gym/scripts.inc  |   2 +-
  data/scripts/white_out.inc              |   6 ++
  include/hack_version.h                  |   2 +-
- src/data/trainer_parties.h              |  73 +++++++++++-----
+ src/data/trainer_parties.h              |  77 ++++++++++++-----
  src/data/trainers.h                     |  34 ++++----
  tools/hack/gym_doubles.py               | 107 ++++++++++++++++++++++++
  tools/hack/learnsets.py                 |  47 +++++++++++
- 13 files changed, 246 insertions(+), 47 deletions(-)
+ 13 files changed, 251 insertions(+), 46 deletions(-)
  create mode 100644 tools/hack/gym_doubles.py
  create mode 100644 tools/hack/learnsets.py
 
@@ -163,15 +163,16 @@ index f375925..5960d1b 100644
  
  #endif // GUARD_HACK_VERSION_H
 diff --git a/src/data/trainer_parties.h b/src/data/trainer_parties.h
-index 9c278ba..714a813 100644
+index 9c278ba..a5adf01 100644
 --- a/src/data/trainer_parties.h
 +++ b/src/data/trainer_parties.h
-@@ -2045,16 +2045,24 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BurglarLewis[] = {
+@@ -2045,16 +2045,25 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BurglarLewis[] = {
      },
  };
  
 -static const struct TrainerMonNoItemDefaultMoves sParty_EngineerBaily[] = {
-+static const struct TrainerMonNoItemCustomMoves sParty_EngineerBaily[] = { // FireRed QoL+Hard: gym double battle
++// FireRed QoL+Hard: gym double battle
++static const struct TrainerMonNoItemCustomMoves sParty_EngineerBaily[] = {
      {
          .iv = 150,
          .lvl = 24,
@@ -192,12 +193,13 @@ index 9c278ba..714a813 100644
      },
  };
  
-@@ -2277,16 +2285,24 @@ static const struct TrainerMonNoItemDefaultMoves sParty_FishermanAndrew[] = {
+@@ -2277,16 +2286,25 @@ static const struct TrainerMonNoItemDefaultMoves sParty_FishermanAndrew[] = {
      },
  };
  
 -static const struct TrainerMonNoItemDefaultMoves sParty_SwimmerMaleLuis[] = {
-+static const struct TrainerMonNoItemCustomMoves sParty_SwimmerMaleLuis[] = { // FireRed QoL+Hard: gym double battle
++// FireRed QoL+Hard: gym double battle
++static const struct TrainerMonNoItemCustomMoves sParty_SwimmerMaleLuis[] = {
      {
          .iv = 150,
          .lvl = 18,
@@ -218,12 +220,13 @@ index 9c278ba..714a813 100644
      },
  };
  
-@@ -2729,26 +2745,30 @@ static const struct TrainerMonNoItemDefaultMoves sParty_GamerRich[] = {
+@@ -2729,26 +2747,31 @@ static const struct TrainerMonNoItemDefaultMoves sParty_GamerRich[] = {
      },
  };
  
 -static const struct TrainerMonNoItemDefaultMoves sParty_BeautyBridget[] = {
-+static const struct TrainerMonNoItemCustomMoves sParty_BeautyBridget[] = { // FireRed QoL+Hard: gym double battle
++// FireRed QoL+Hard: gym double battle
++static const struct TrainerMonNoItemCustomMoves sParty_BeautyBridget[] = {
      {
          .iv = 150,
          .lvl = 24,
@@ -254,12 +257,13 @@ index 9c278ba..714a813 100644
      },
  };
  
-@@ -2964,26 +2984,30 @@ static const struct TrainerMonNoItemDefaultMoves sParty_SwimmerFemaleShirley[] =
+@@ -2964,26 +2987,31 @@ static const struct TrainerMonNoItemDefaultMoves sParty_SwimmerFemaleShirley[] =
      },
  };
  
 -static const struct TrainerMonNoItemDefaultMoves sParty_PsychicJohan[] = {
-+static const struct TrainerMonNoItemCustomMoves sParty_PsychicJohan[] = { // FireRed QoL+Hard: gym double battle
++// FireRed QoL+Hard: gym double battle
++static const struct TrainerMonNoItemCustomMoves sParty_PsychicJohan[] = {
      {
          .iv = 150,
          .lvl = 36,
@@ -289,12 +293,13 @@ index 9c278ba..714a813 100644
      },
  };
  
-@@ -3199,21 +3223,24 @@ static const struct TrainerMonNoItemDefaultMoves sParty_TamerPhil[] = {
+@@ -3199,21 +3227,25 @@ static const struct TrainerMonNoItemDefaultMoves sParty_TamerPhil[] = {
      },
  };
  
 -static const struct TrainerMonNoItemDefaultMoves sParty_TamerEdgar[] = {
-+static const struct TrainerMonNoItemCustomMoves sParty_TamerEdgar[] = { // FireRed QoL+Hard: gym double battle
++// FireRed QoL+Hard: gym double battle
++static const struct TrainerMonNoItemCustomMoves sParty_TamerEdgar[] = {
      {
          .iv = 150,
          .lvl = 38,
@@ -315,22 +320,22 @@ index 9c278ba..714a813 100644
      },
  };
  
-@@ -4867,36 +4894,36 @@ static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt41[] = {
+@@ -4867,36 +4899,37 @@ static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt41[] = {
      },
  };
  
--static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerSamuel[] = {
--    {
--        .iv = 150,
--        .lvl = 43,
--        .species = SPECIES_SANDSLASH,
--        .moves = {MOVE_SLASH, MOVE_SWIFT, MOVE_SAND_ATTACK, MOVE_POISON_STING},
--    },
-+static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerSamuel[] = { // FireRed QoL+Hard: gym double battle
++// FireRed QoL+Hard: gym double battle
+ static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerSamuel[] = {
      {
          .iv = 150,
          .lvl = 43,
          .species = SPECIES_SANDSLASH,
+-        .moves = {MOVE_SLASH, MOVE_SWIFT, MOVE_SAND_ATTACK, MOVE_POISON_STING},
+-    },
+-    {
+-        .iv = 150,
+-        .lvl = 43,
+-        .species = SPECIES_SANDSLASH,
 -        .moves = {MOVE_SLASH, MOVE_SWIFT, MOVE_SAND_ATTACK, MOVE_POISON_STING},
 +        .moves = {MOVE_ROCK_SLIDE, MOVE_SLASH, MOVE_SWORDS_DANCE, MOVE_PROTECT},
      },
@@ -480,7 +485,7 @@ index 281252f..4bc11e1 100644
      },
 diff --git a/tools/hack/gym_doubles.py b/tools/hack/gym_doubles.py
 new file mode 100644
-index 0000000..32233c9
+index 0000000..8e8e73f
 --- /dev/null
 +++ b/tools/hack/gym_doubles.py
 @@ -0,0 +1,107 @@
@@ -551,7 +556,7 @@ index 0000000..32233c9
 +
 +
 +tr = read("src/data/trainers.h")
-+if "FireRed QoL+Hard: gym double battle" in tr:
++if "FireRed QoL+Hard: gym double battle" in tr or "FireRed QoL+Hard: gym double battle" in read("src/data/trainer_parties.h"):
 +    sys.exit("Gym doubles are already in place.")
 +tp = read("src/data/trainer_parties.h")
 +bad = False
@@ -571,7 +576,7 @@ index 0000000..32233c9
 +        f"        .moves = {{{', '.join('MOVE_' + m for m in moves)}}},\n    }}"
 +        for sp, lv, moves in team)
 +    tp = re.sub(r"static const struct \w+ " + party + r"\[\] = \{\n.*?\n\};\n",
-+                lambda _: f"static const struct TrainerMonNoItemCustomMoves {party}[] = {{ // FireRed QoL+Hard: gym double battle\n{mons},\n}};\n",
++                lambda _: f"// FireRed QoL+Hard: gym double battle\nstatic const struct TrainerMonNoItemCustomMoves {party}[] = {{\n{mons},\n}};\n",
 +                tp, count=1, flags=re.S)
 +    body = entry.group(2)
 +    body = re.sub(r"\.doubleBattle = FALSE", ".doubleBattle = TRUE", body)
