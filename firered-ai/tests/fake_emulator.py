@@ -134,6 +134,8 @@ class FakeEmulator:
             if b in moves and not self.crashed:
                 nx, ny = x + moves[b][0], y + moves[b][1]
                 g, n = self.location()
+                if self.walls is not None and (g, n, nx, ny) in self.walls:
+                    continue  # walls win, even over a warp (a person standing in a doorway)
                 if (g, n, nx, ny) in self.warps:
                     g2, n2, x2, y2 = self.warps[(g, n, nx, ny)]
                     self.set_map(g2, n2)

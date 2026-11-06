@@ -12,7 +12,7 @@ from pathlib import Path
 from .game import Game, detect
 from .ram import load_addresses
 from .states import load_state_file
-from .tester import Start, Tester
+from .tester import Start, Tester, pool_rank
 
 USER_START_SHARE = 0.35  # the rest come from the pool of states saved all over the game
 
@@ -54,7 +54,9 @@ def pick_start(rng: random.Random, starts: list[Start], out: Path, game: Game) -
 
     weights = [1.0 / (1 + seen.get(name(d), 0)) for d in pool]
     d = rng.choices(pool, weights)[0]
-    f = rng.choice(sorted(d.glob("*.state")))
+    files = sorted(d.glob("*.state"), key=pool_rank)
+    # Usually the most advanced state there, sometimes another for variety.
+    f = files[-1] if rng.random() < 0.6 else rng.choice(files)
     return Start("pool", f"pool:{name(d)}", load_state_file(f))
 
 

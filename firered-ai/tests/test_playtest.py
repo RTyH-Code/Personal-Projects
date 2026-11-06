@@ -409,3 +409,100 @@ def test_report_shows_how_far_it_got(tmp_path):
     assert "Squirtle Lv15" in page and "furthest/w0.state" in page and "carried on from playtest-2" in page
     s = json.loads((tmp_path / "summary.json").read_text())
     assert s["session_ends"]["average_badges"] == 1 and s["furthest"][0]["top_level"] == 15
+
+
+# --- lessons from the first real run: stuck in Pallet Town ---------------------------------------
+
+def pallet_town():
+    """Map 3,0 (5x4). Walking off the top at x=2 leads to Route 1 (3,19), but 'Oak' blocks it at first."""
+    emu = FakeEmulator()
+    emu.set_map(3, 0)
+    emu.set_pos(2, 3)
+    emu.bounds = (5, 4)
+    emu.warps = {(3, 0, 2, -1): (3, 19, 2, 9)}
+    emu.walls = {(3, 0, 2, -1)}  # Oak stops you leaving without a Pokémon
+    return emu
+
+
+def walk(ex, emu, steps):
+    for _ in range(steps):
+        a = ex.next(state(emu))
+        emu.press(a.buttons, a.hold)
+        if emu.location() == (3, 19):
+            return True
+    return False
+
+
+def test_temporary_walls_are_forgotten_between_sessions():
+    emu = pallet_town()
+    ex = Explorer(random.Random(4), interact_prob=0, menu_prob=0)
+    assert not walk(ex, emu, 300)  # Oak's in the way
+    assert (2, 0, "UP") in ex.maps[(3, 0)].blocked
+    emu.walls = set()  # got a Pokémon: Oak lets you go
+    ex.new_session()
+    emu.set_pos(2, 3)
+    assert walk(ex, emu, 300)
+
+
+def test_temporary_walls_are_forgotten_when_the_story_moves_on():
+    emu = pallet_town()
+    ex = Explorer(random.Random(5), interact_prob=0, menu_prob=0)
+    assert not walk(ex, emu, 300)
+    emu.walls = set()
+    emu.set_flag(ram.FLAG_SYS_POKEMON_GET)  # the same session: the starter arrives
+    assert walk(ex, emu, 600)
+
+
+def test_pool_keeps_the_most_advanced_states(tmp_path):
+    emu = FakeEmulator()
+    t = Tester(emu, VANILLA, tmp_path, log=None)
+    t.rng = random.Random(0)
+    t.rng.random = lambda: 0.0  # always save
+    pool = tmp_path / "pool" / "4_1"
+    pool.mkdir(parents=True)
+    (pool / "0123abcdef.state").write_bytes(b"old, unranked")  # from an older version
+    for level in [5, 6, 7]:
+        emu.set_party([dict(level=level)])
+        t._maybe_pool(state(emu))
+    names = sorted(p.name.split("_")[0] for p in pool.glob("*.state"))
+    assert names == ["0000005000", "0000006000", "0000007000"]  # the unranked one went first
+    emu.set_party([dict(level=3)])
+    t._maybe_pool(state(emu))  # less advanced: not kept
+    assert len(list(pool.glob("0000003000_*"))) == 0
+    emu.set_flag(ram.FLAG_SYS_POKEMON_GET)
+    t._maybe_pool(state(emu))  # having a Pokémon beats any level without one
+    names = sorted(p.name.split("_")[0] for p in pool.glob("*.state"))
+    assert names == ["0000006000", "0000007000", "0010003000"]
+
+
+def test_blackout_needs_a_whiteout(tmp_path):
+    emu = FakeEmulator()
+    emu.set_map(3, 19)
+    emu.set_party([dict(level=5, hp=20, max_hp=20)])
+    t = Tester(emu, VANILLA, tmp_path, log=None)
+    t._battle = t._lost = None
+
+    def fight_and_lose(then):
+        before = state(emu)
+        emu.set_in_battle(True)
+        emu.w32(ram.DEFAULT_ADDRESSES["gBattleTypeFlags"], 8)
+        s = state(emu); t._account(before, s); before = s
+        emu.set_party([dict(level=5, hp=0, max_hp=20)])
+        s = state(emu); t._account(before, s); before = s
+        emu.set_in_battle(False)
+        s = state(emu); t._account(before, s); before = s
+        then()
+        for _ in range(70):
+            s = state(emu); t._account(before, s); before = s
+
+    def whiteout():  # warped to the Pokémon Center and healed
+        emu.set_map(3, 1)
+        emu.set_party([dict(level=5, hp=20, max_hp=20)])
+
+    fight_and_lose(whiteout)
+    assert t.stats.battles["Route1"]["blackouts"] == 1 and len(t.stats.blackouts) == 1
+    emu.set_map(4, 3)  # Oak's lab: losing to the rival here carries on
+    emu.set_party([dict(level=5, hp=20, max_hp=20)])
+    fight_and_lose(lambda: emu.set_party([dict(level=5, hp=20, max_hp=20)]))
+    lab = t.stats.battles["PalletTown_ProfessorOaksLab"]
+    assert lab["blackouts"] == 0 and lab["lost_no_blackout"] == 1 and len(t.stats.blackouts) == 1

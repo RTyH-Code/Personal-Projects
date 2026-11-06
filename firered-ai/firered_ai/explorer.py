@@ -7,7 +7,9 @@ Overworld:
 - When a map is used up, leave through a known exit, preferring the exits
   to maps it has seen least.
 - When a step doesn't move it, press B once (to close any text) and try
-  again; if it still doesn't move, the way is blocked. The first time it
+  again; if it still doesn't move, the way is blocked. Walls are forgotten
+  at the start of each session and when the story moves on, because some
+  are scripts (Oak stopping you leaving Pallet Town) that go away later. The first time it
   bumps into something, it presses A at it (people, signs, items, doors,
   HM obstacles).
 - Now and then it opens the START menu and pokes around.
@@ -27,6 +29,7 @@ from dataclasses import dataclass, field
 from .ram import GameState
 
 DIRS = {"UP": (0, -1), "DOWN": (0, 1), "LEFT": (-1, 0), "RIGHT": (1, 0)}
+FORGET_EVERY = 200  # at most this often, forget walls when the story flags change
 REVERSE = {"UP": "DOWN", "DOWN": "UP", "LEFT": "RIGHT", "RIGHT": "LEFT"}
 
 
@@ -81,6 +84,25 @@ class Explorer:
         self.retrying = False
         self.heading = self.rng.choice(list(DIRS))
         self.was_in_battle = False
+        self.flags_seen = None
+        self.steps_since_forget = 0
+
+    def new_session(self) -> None:
+        """Forget walls (keep layouts and exits): the next start may be further into the game."""
+        self.forget_walls()
+        self.queue.clear()
+        self.last_move = None
+        self.retrying = False
+        self.was_in_battle = False
+
+    def forget_walls(self) -> None:
+        """Some walls are scripts that stop the player (Oak at the edge of Pallet Town)
+        and go away as the story moves on, so they shouldn't be remembered forever."""
+        for m in self.maps.values():
+            m.blocked.clear()
+            m.misses.clear()
+            m.interacted.clear()
+        self.steps_since_forget = 0
 
     def mem(self, map_id) -> MapMemory:
         return self.maps.setdefault(map_id, MapMemory())
@@ -125,6 +147,12 @@ class Explorer:
 
     def next(self, s: GameState) -> Action:
         self._observe(s)
+        self.steps_since_forget += 1
+        if s.valid and s.flags:
+            # The story moved on (an event, a badge, a gift...): paths may have opened.
+            if self.flags_seen is not None and s.flags != self.flags_seen and self.steps_since_forget >= FORGET_EVERY:
+                self.forget_walls()
+            self.flags_seen = s.flags
         if self.queue:
             a = self.queue.popleft()
             if a.tag == "move" and s.valid:
@@ -156,7 +184,14 @@ class Explorer:
         path = self._path_to(m, here, lambda t: bool(m.untried(*t)))
         if path:
             return path[0]
-        # This map is explored: head for an exit, least-visited destination first.
+        # This map looks explored. Now and then, try a wall again (it may have
+        # been a person, or a script that has since gone) rather than an exit.
+        if m.blocked and self.rng.random() < 0.25:
+            m.blocked.discard(self.rng.choice(sorted(m.blocked)))
+            path = self._path_to(m, here, lambda t: bool(m.untried(*t)))
+            if path is not None:
+                return path[0] if path else self._direction(s)
+        # Head for an exit, least-visited destination first.
         exits = sorted(m.exits.items(), key=lambda e: (self.map_visits.get(e[1], 0), self.rng.random()))
         for (x, y, d), _dest in exits:
             if (x, y) == here:
