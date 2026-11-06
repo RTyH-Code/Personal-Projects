@@ -1,7 +1,7 @@
 From 9986083955754c072bd08fc6b9bab28e9ed9bc99 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Fri, 6 Nov 2026 02:09:04 +0000
-Subject: [PATCH 46/54] Battle speed option, release number in Options,
+Subject: [PATCH 46/55] Battle speed option, release number in Options,
  Nuzlocke tracker
 
 - Options > BATTLE SPEED (FAST by default): HP bars drain about one

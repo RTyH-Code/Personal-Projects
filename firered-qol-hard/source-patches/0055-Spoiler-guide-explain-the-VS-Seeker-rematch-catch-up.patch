@@ -1,0 +1,28 @@
+From 97dcc96d459d140ee58c176e8a6416510baf50a0 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Fri, 6 Nov 2026 19:57:33 +0000
+Subject: [PATCH 55/55] Spoiler guide: explain the VS Seeker rematch catch-up
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ tools/hack/spoiler_guide.py | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/tools/hack/spoiler_guide.py b/tools/hack/spoiler_guide.py
+index e853c89..812d14f 100644
+--- a/tools/hack/spoiler_guide.py
++++ b/tools/hack/spoiler_guide.py
+@@ -456,6 +456,9 @@ def write_trainers():
+     out = ["# Trainers", "",
+            "Gym Leaders, the Elite Four, the Champion, post-game peak trainers and the Victory Road rematches are listed in full first. "
+            "Then every other trainer, by location.", "",
++           "**VS Seeker rematches** on routes: until you have all eight badges, any rematch Pokémon more than "
++           "5 levels under the next Gym Leader's strongest is raised to that level (and evolves if it can), so "
++           "rematches stay worth fighting. The teams below are the first battles.", "",
+            "Regular trainers use their normal level-up moves unless moves are listed. "
+            "Peak trainers' Pokémon have perfect IVs, a nature that boosts their main attacking stat, "
+            "and 252/252 EVs (attack stat and Speed, or HP for slow Pokémon).", ""]
+-- 
+2.43.0
+
