@@ -1,0 +1,361 @@
+From b2c3f118d8f419000fb1bc8a9856818739b11644 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Fri, 6 Nov 2026 02:45:29 +0000
+Subject: [PATCH 50/50] Automated playtest through the first gym
+
+tools/hack/playtest/: a headless mGBA harness (button scripts, screenshots
+and save-block reads) and playtest.py, which builds scenario ROMs and runs
+six milestone checks through Brock (boot menu, wild Exp. + level cap,
+trainer battle, Nuzlocke catch rule, gym double battle, Brock's gym
+script), confirming each by reading flags, vars and the party.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ .gitignore                      |   4 +
+ HACK_NOTES.md                   |   6 +
+ tools/hack/playtest/harness.c   |  69 ++++++++++
+ tools/hack/playtest/playtest.py | 226 ++++++++++++++++++++++++++++++++
+ 4 files changed, 305 insertions(+)
+ create mode 100644 tools/hack/playtest/harness.c
+ create mode 100644 tools/hack/playtest/playtest.py
+
+diff --git a/.gitignore b/.gitignore
+index 93261e5..d6deb79 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -69,3 +69,7 @@ CMakeLists.txt
+ compile_commands.json
+ .porydaw/
+ __pycache__/
++
++# FireRed QoL+Hard playtest
++tools/hack/playtest/harness
++playtest_out/
+diff --git a/HACK_NOTES.md b/HACK_NOTES.md
+index 9781e38..34c0b31 100644
+--- a/HACK_NOTES.md
++++ b/HACK_NOTES.md
+@@ -508,6 +508,12 @@ Each script runs once against the original pret data:
+   an unused species slot, with its graphics, cry, Pokédex entry and evolution item.
+ - `balance.py`: modern boss movesets, peak teams with the later evolutions.
+ - `validate.py`: checks the game data for missing or inconsistent entries.
++- `playtest/playtest.py [check ...]`: automated playtest. It plays milestone
++  checks from a new game through Brock in a headless mGBA: the boot menu, a
++  wild battle with the level cap, a trainer battle, the Nuzlocke catch rule, a
++  gym double battle and Brock's real gym script. Each check reads the save
++  data to confirm it worked. Build the harness first with
++  `gcc -O2 -w -o tools/hack/playtest/harness tools/hack/playtest/harness.c -lmgba`.
+ - `tower_sets.py <dir>`: the competitive Trainer Tower teams, from Showdown's
+   random-battle set files (read as data).
+ - `gym_doubles.py`: the gym double battles (one trainer per gym) and their doubles movesets.
+diff --git a/tools/hack/playtest/harness.c b/tools/hack/playtest/harness.c
+new file mode 100644
+index 0000000..d52b04d
+--- /dev/null
++++ b/tools/hack/playtest/harness.c
+@@ -0,0 +1,69 @@
++// Minimal mGBA driver: run a ROM headless following a command script.
++//   wait N | press KEYS [frames] | shot NAME | peek ADDR LEN | peekp PTR OFFSET LEN
++// peek prints "PEEK <addr> <hex bytes>" so a test can check game state; peekp
++// reads the pointer stored at PTR first (for the save blocks, which move).
++// KEYS: letters A B s(elect) S(tart) R(ight) L(eft) U(p) D(own) r l, e.g. "AU"
++#include <mgba/core/core.h>
++#include <mgba/core/log.h>
++#include <stdio.h>
++#include <stdlib.h>
++#include <string.h>
++
++static void quiet(struct mLogger* l, int c, enum mLogLevel lv, const char* f, va_list a) { (void)l;(void)c;(void)lv;(void)f;(void)a; }
++static struct mLogger logger = { .log = quiet };
++
++static struct mCore* core; static color_t* buf; static unsigned W, H;
++
++static void frames(int n, uint32_t keys) { core->setKeys(core, keys); while (n--) core->runFrame(core); }
++static uint32_t keymask(const char* s) {
++    uint32_t k = 0;
++    for (; *s; s++) switch (*s) {
++        case 'A': k |= 1; break; case 'B': k |= 2; break; case 's': k |= 4; break; case 'S': k |= 8; break;
++        case 'R': k |= 16; break; case 'L': k |= 32; break; case 'U': k |= 64; break; case 'D': k |= 128; break;
++        case 'r': k |= 256; break; case 'l': k |= 512; break; }
++    return k;
++}
++static void shot(const char* name) {
++    char path[256]; snprintf(path, sizeof path, "%s.ppm", name);
++    FILE* f = fopen(path, "wb"); fprintf(f, "P6 %u %u 255\n", W, H);
++    for (unsigned i = 0; i < W * H; i++) {
++        uint32_t c = buf[i];
++        unsigned char px[3] = { c & 0xFF, (c >> 8) & 0xFF, (c >> 16) & 0xFF };
++        fwrite(px, 1, 3, f);
++    }
++    fclose(f);
++}
++int main(int argc, char** argv) {
++    mLogSetDefaultLogger(&logger);
++    core = mCoreFind(argv[1]); core->init(core); mCoreInitConfig(core, NULL);
++    core->desiredVideoDimensions(core, &W, &H);
++    buf = malloc(W * H * sizeof(color_t)); core->setVideoBuffer(core, buf, W);
++    if (!mCoreLoadFile(core, argv[1])) { fprintf(stderr, "load failed\n"); return 1; }
++    core->reset(core);
++    char cmd[32], arg[64]; int n;
++    FILE* in = fopen(argv[2], "r");
++    while (fscanf(in, "%31s", cmd) == 1) {
++        if (!strcmp(cmd, "wait")) { fscanf(in, "%d", &n); frames(n, 0); }
++        else if (!strcmp(cmd, "press")) { fscanf(in, "%63s %d", arg, &n); frames(n > 0 ? n : 6, keymask(arg)); frames(12, 0); }
++        else if (!strcmp(cmd, "shot")) { fscanf(in, "%63s", arg); shot(arg); }
++        else if (!strcmp(cmd, "peek")) {
++            unsigned addr, len, i;
++            fscanf(in, "%x %u", &addr, &len);
++            printf("PEEK %08x ", addr);
++            for (i = 0; i < len; i++) printf("%02x", core->busRead8(core, addr + i));
++            printf("\n");
++            fflush(stdout);
++        }
++        else if (!strcmp(cmd, "peekp")) {
++            unsigned ptr, off, len, i, base;
++            fscanf(in, "%x %x %u", &ptr, &off, &len);
++            base = core->busRead32(core, ptr);
++            printf("PEEKP %08x+%x ", ptr, off);
++            for (i = 0; i < len; i++) printf("%02x", core->busRead8(core, base + off + i));
++            printf("\n");
++            fflush(stdout);
++        }
++    }
++    core->deinit(core);
++    return 0;
++}
+diff --git a/tools/hack/playtest/playtest.py b/tools/hack/playtest/playtest.py
+new file mode 100644
+index 0000000..257e2c1
+--- /dev/null
++++ b/tools/hack/playtest/playtest.py
+@@ -0,0 +1,226 @@
++#!/usr/bin/env python3
++"""Automated playtest: milestone checks from a new game through the first gym.
++
++Each check builds a throwaway ROM that starts a new game at a set point (a
++warp plus a party), plays the real game scripts and battles with button
++presses, then reads the save block to confirm the milestone happened:
++
++  boot        new game -> challenge menu in your room -> START ADVENTURE
++  wild_exp    a wild battle gives Exp. and stops at the level cap (16)
++  trainer     a Viridian Forest trainer battle is won and recorded
++  nuzlocke    Nuzlocke: the first catch in an area works, the second is refused
++  gym_double  a gym double battle (Psychic Johan) is won
++  brock       Brock's real gym script: battle won, Boulder Badge awarded
++
++A check fails if its state isn't reached, which also catches crashes and
++softlocks. Screenshots of every check go to the output directory.
++
++usage: python3 tools/hack/playtest/playtest.py [check ...] [--out DIR]
++needs: a built tree (make), git, and the harness built from harness.c:
++  gcc -O2 -w -o tools/hack/playtest/harness tools/hack/playtest/harness.c -lmgba
++The scenario edits to the source are always reverted (git checkout).
++"""
++import json, os, re, shutil, subprocess, sys, tempfile
++
++HERE = os.path.dirname(os.path.abspath(__file__))
++R = os.path.dirname(os.path.dirname(os.path.dirname(HERE)))
++HARNESS = os.path.join(HERE, "harness")
++
++
++def read(p):
++    return open(os.path.join(R, p), encoding="utf-8").read()
++
++
++# ---------------------------------------------------------------- constants
++DEFS = {}
++for f in ("include/constants/flags.h", "include/constants/vars.h", "include/constants/opponents.h"):
++    for name, val in re.findall(r"#define (\w+)\s+([^/\n]+)", read(f)):
++        DEFS[name] = val.strip()
++
++
++def const(expr, depth=0):
++    """Evaluate a constant name or expression from the headers."""
++    if depth > 20:
++        raise ValueError(expr)
++    expr = DEFS.get(expr, expr)
++    expr = re.sub(r"\b[A-Za-z_]\w*\b", lambda m: str(const(m.group(0), depth + 1)) if m.group(0) in DEFS else m.group(0), expr)
++    return int(eval(expr, {}))
++
++
++SB1_FLAGS, SB1_VARS = 0x0EE0, 0x1000
++SYMS = {}
++for addr, name in re.findall(r"^\s+0x([0-9a-f]{8})\s+(g\w+)(?:\s*=\s*\.)?$", read("pokefirered.map"), re.M):
++    SYMS[name] = int(addr, 16)
++
++# ---------------------------------------------------------------- scenarios
++INTRO = "wait 2100\npress S 6\nwait 120\n" + ("press A 4\nwait 20\n" * 5) * 18 + "wait 200\n"
++GENTLEMAN = ("data/maps/ViridianCity_PokemonCenter_1F/scripts.inc",
++             "\tmsgbox ViridianCity_PokemonCenter_1F_Text_FeelFreeToUsePC, MSGBOX_NPC\n\tend\n\n"
++             "ViridianCity_PokemonCenter_1F_EventScript_Youngster")
++VIRIDIAN = ["MAP_VIRIDIAN_CITY_POKEMON_CENTER_1F", 13, 5]
++
++
++def gentleman(script):
++    return [GENTLEMAN[0], GENTLEMAN[1], script + "\n\tend\n\nViridianCity_PokemonCenter_1F_EventScript_Youngster"]
++
++
++def mash(n, wait=120):
++    return "".join(f"press A 6\nwait {wait}\n" for _ in range(n))
++
++
++TALK_LEFT = "wait 120\npress L 2\nwait 30\npress A 6\nwait 300\n"
++CHECKS = {
++    "boot": dict(
++        scenario=None,
++        body="wait 200\n" + mash(2) + "".join("press D 6\nwait 15\n" for _ in range(5)) + "press A 6\nwait 60\n" + mash(10),
++        expect=[("var", "VAR_MAP_SCENE_PALLET_TOWN_PLAYERS_HOUSE_2F", 2)]),
++    "wild_exp": dict(
++        scenario={"party": [["RATTATA", 14, ["HYPER_FANG"]]], "set": ["FLAG_HACK_LEVEL_CAP"], "warp": VIRIDIAN,
++                  "patch": [gentleman("\tsetwildbattle SPECIES_RATTATA, 5\n\tdowildbattle"),
++                            ["src/battle_script_commands.c", "expYield * gBattleMons[gBattlerFainted].level / 5;",
++                             "expYield * gBattleMons[gBattlerFainted].level * 30;"]]},
++        body=TALK_LEFT + mash(30, 90),
++        expect=[("level", 0, 16)]),
++    "trainer": dict(
++        scenario={"party": [["PIDGEOT", 30, ["WING_ATTACK"]]], "warp": VIRIDIAN,
++                  "patch": [gentleman("\ttrainerbattle_no_intro TRAINER_BUG_CATCHER_RICK, ViridianCity_PokemonCenter_1F_Text_FeelFreeToUsePC")]},
++        body=TALK_LEFT + mash(40, 90),
++        expect=[("flag", "TRAINER_FLAGS_START + TRAINER_BUG_CATCHER_RICK", 1)]),
++    "nuzlocke": dict(
++        scenario={"party": [["MEWTWO", 50, ["CONFUSION"]]], "items": [["MASTER_BALL", 3]],
++                  "set": ["FLAG_HACK_NUZLOCKE", "FLAG_SYS_POKEDEX_GET"], "warp": VIRIDIAN,
++                  "patch": [gentleman("\tsetwildbattle SPECIES_CATERPIE, 3\n\tdowildbattle"),
++                            ["src/scrcmd.c", "    StartScriptedWildBattle();\n    ScriptContext_Stop();",
++                             "    { extern bool8 gHackRandomEncounter; gHackRandomEncounter = TRUE; }\n"
++                             "    StartScriptedWildBattle();\n    ScriptContext_Stop();"]]},
++        # Battle 1: Bag -> Poke Balls -> Master Ball -> Use. Battle 2: the same, refused, then run.
++        body=(TALK_LEFT + "press A 6\nwait 200\npress R 6\nwait 30\npress A 6\nwait 150\npress R 6\nwait 40\npress R 6\n"
++              "wait 40\npress A 6\nwait 40\npress A 6\nwait 400\n" + "press B 6\nwait 120\n" * 10 +
++              TALK_LEFT + "press A 6\nwait 200\npress R 6\nwait 30\npress A 6\nwait 150\npress A 6\nwait 40\n"
++              "press A 6\nwait 150\npress A 6\nwait 60\npress B 6\nwait 60\npress B 6\nwait 120\n"
++              "press D 6\nwait 20\npress R 6\nwait 20\npress A 6\nwait 300\n" + mash(4)),
++        expect=[("party_count", None, 2)]),
++    "gym_double": dict(
++        scenario={"party": [["MEWTWO", 60, ["SHADOW_BALL"]], ["SNORLAX", 60, ["BODY_SLAM"]]], "warp": VIRIDIAN,
++                  "patch": [gentleman("\ttrainerbattle_double TRAINER_PSYCHIC_JOHAN, ViridianCity_PokemonCenter_1F_Text_FeelFreeToUsePC, "
++                                      "ViridianCity_PokemonCenter_1F_Text_FeelFreeToUsePC, Hack_Text_GymDoubleNotEnough")]},
++        body=TALK_LEFT + mash(80, 90),
++        expect=[("flag", "TRAINER_FLAGS_START + TRAINER_PSYCHIC_JOHAN", 1)]),
++    "brock": dict(
++        scenario={"party": [["BLASTOISE", 36, ["SURF"]]], "set": ["FLAG_SYS_POKEDEX_GET"],
++                  "warp": ["MAP_PEWTER_CITY_GYM", 6, 6]},
++        body="wait 120\npress U 2\nwait 30\npress A 6\nwait 200\n" + mash(70, 90),
++        expect=[("flag", "FLAG_BADGE01_GET", 1), ("flag", "FLAG_DEFEATED_BROCK", 1)]),
++}
++
++
++def build(name, cfg, workdir):
++    """Build a scenario ROM (or the plain ROM) and return its path."""
++    rom = os.path.join(workdir, name + ".gba")
++    if cfg is None:
++        subprocess.run(["make", "-j8"], cwd=R, check=True, capture_output=True)
++        shutil.copy(os.path.join(R, "pokefirered.gba"), rom)
++        return rom
++    code = ["    { // PLAYTEST SCENARIO", "        u16 mv; u8 slot = 0;"]
++    for i, p in enumerate(cfg.get("party", [])):
++        code.append(f"        ScriptGiveMon(SPECIES_{p[0]}, {p[1]}, 0, 0, 0, 0);")
++        for j, m in enumerate(p[2] if len(p) > 2 else []):
++            code.append(f"        mv = MOVE_{m}; SetMonData(&gPlayerParty[{i}], MON_DATA_MOVE1 + {j}, &mv); "
++                        f"SetMonData(&gPlayerParty[{i}], MON_DATA_PP1 + {j}, &gBattleMoves[mv].pp);")
++    for it, n in cfg.get("items", []):
++        code.append(f"        AddBagItem(ITEM_{it}, {n});")
++    code.append("        FlagSet(FLAG_SYS_POKEMON_GET);")
++    code += [f"        FlagSet({f});" for f in cfg.get("set", [])]
++    m, x, y = cfg["warp"]
++    code.append(f"        SetWarpDestination(MAP_GROUP({m}), MAP_NUM({m}), -1, {x}, {y}); WarpIntoMap();")
++    code += ["        (void)slot;", "    }"]
++    touched = {"src/new_game.c": None}
++    for f, _, _ in cfg.get("patch", []):
++        touched[f] = None
++    dirty = subprocess.run(["git", "status", "--porcelain", "--"] + list(touched), cwd=R, capture_output=True, text=True).stdout
++    if dirty.strip():
++        sys.exit("Commit or stash your changes to these files first:\n" + dirty)
++    try:
++        p = os.path.join(R, "src/new_game.c")
++        s = open(p).read()
++        s = s.replace('#include "overworld.h"', '#include "overworld.h"\n#include "script_pokemon_util.h"\n#include "pokemon.h"\n'
++                      '#include "constants/items.h"\n#include "constants/moves.h"\n#include "constants/opponents.h"\n'
++                      '#include "constants/flags.h"\n#include "constants/vars.h"', 1)
++        s = s.replace("    ResetTrainerTowerResults();\n}", "    ResetTrainerTowerResults();\n" + "\n".join(code) + "\n}", 1)
++        open(p, "w").write(s)
++        for f, old, new in cfg.get("patch", []):
++            q = os.path.join(R, f)
++            t = open(q).read()
++            assert old in t, (f, old)
++            open(q, "w").write(t.replace(old, new))
++        r = subprocess.run(["make", "-j8"], cwd=R, capture_output=True, text=True)
++        if r.returncode:
++            raise RuntimeError("build failed:\n" + "\n".join(l for l in (r.stdout + r.stderr).splitlines() if "error" in l.lower()))
++        shutil.copy(os.path.join(R, "pokefirered.gba"), rom)
++    finally:
++        subprocess.run(["git", "checkout", "--"] + list(touched), cwd=R, capture_output=True)
++    return rom
++
++
++def run(rom, body, outdir, name):
++    ptr = SYMS["gSaveBlock1Ptr"]
++    script = INTRO + body + f"shot {name}_end\n"
++    script += f"peekp {ptr:x} {SB1_FLAGS:x} 288\npeekp {ptr:x} {SB1_VARS:x} 512\n"
++    script += f"peek {SYMS['gPlayerPartyCount']:x} 1\npeek {SYMS['gPlayerParty']:x} 600\n"
++    os.makedirs(outdir, exist_ok=True)
++    path = os.path.join(outdir, name + ".txt")
++    open(path, "w").write(script)
++    out = subprocess.run([HARNESS, rom, path], cwd=outdir, capture_output=True, text=True, timeout=1200).stdout
++    peeks = re.findall(r"^PEEKP? \S+ ([0-9a-f]*)$", out, re.M)
++    flags, vars_, count, party = (bytes.fromhex(p) for p in peeks)
++    return flags, vars_, count[0], party
++
++
++def check(name, spec, workdir, outdir):
++    rom = build(name, spec["scenario"], workdir)
++    flags, vars_, count, party = run(rom, spec["body"], outdir, name)
++    fails = []
++    for kind, what, want in spec["expect"]:
++        if kind == "flag":
++            n = const(what) if not what.isdigit() else int(what)
++            got = (flags[n // 8] >> (n % 8)) & 1
++        elif kind == "var":
++            n = const(what) - 0x4000
++            got = vars_[2 * n] | (vars_[2 * n + 1] << 8)
++        elif kind == "level":
++            got = party[100 * what + 0x54]  # struct Pokemon is 100 bytes; level at 0x54
++        elif kind == "party_count":
++            got = count
++        if got != want:
++            fails.append(f"{kind} {what}: expected {want}, got {got}")
++    return fails
++
++
++def main():
++    args = sys.argv[1:]
++    outdir = os.path.join(R, "playtest_out")
++    if "--out" in args:
++        i = args.index("--out")
++        outdir = os.path.abspath(args[i + 1])
++        del args[i:i + 2]
++    names = args or list(CHECKS)
++    if not os.path.exists(HARNESS):
++        sys.exit(f"Build the harness first:\n  gcc -O2 -w -o {HARNESS} {HARNESS}.c -lmgba")
++    workdir = tempfile.mkdtemp(prefix="playtest_")
++    failed = 0
++    for name in names:
++        try:
++            fails = check(name, CHECKS[name], workdir, outdir)
++        except Exception as e:  # build or harness trouble counts as a failure
++            fails = [str(e)]
++        print(f"{'PASS' if not fails else 'FAIL'}  {name}")
++        for f in fails:
++            print("      " + f)
++        failed += bool(fails)
++    subprocess.run(["make", "-j8"], cwd=R, capture_output=True)  # leave the normal ROM built
++    print(f"\n{len(names) - failed}/{len(names)} checks passed. Screenshots: {outdir}")
++    sys.exit(1 if failed else 0)
++
++
++if __name__ == "__main__":
++    main()
+-- 
+2.43.0
+

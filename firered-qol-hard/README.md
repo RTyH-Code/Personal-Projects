@@ -467,6 +467,25 @@ How the cap works with each way of gaining levels:
   252 in Speed (or in HP for slow Pokémon). Each peak trainer carries Full
   Restores.
 
+## Trainer Tower (Seven Island)
+Every Trainer Tower trainer now uses competitive sets, built the way real
+teams are:
+- **Fully evolved:** every Pokémon, using the later evolutions where they
+  exist (e.g. Magmortar, Togekiss, Scizor, Porygon-Z). There's one of each
+  species per team.
+- **Moves from real roles:** they come from Pokémon Showdown's role-based
+  sets (Fast Attacker, Setup Sweeper, Bulky Support and so on), limited to
+  moves in this hack that the Pokémon can learn.
+  - On Double floors, the sets come from the doubles format, with Protect,
+    spread moves, Helping Hand, Follow Me and Trick Room.
+- **EVs, nature and IVs:** 252/252 EVs and a nature that suit the role, and
+  perfect IVs.
+- **Ability and item:** a fitting ability, and a held item for the role
+  (Choice Band, Leftovers, Lum or Sitrus Berry, or a type booster), with no
+  item repeated on a team.
+
+Opponents still scale to your highest-level Pokémon, as in the original.
+
 ## True endgame (after beating the round 2 Champion)
 The Champion's rematch (round 2) unlocks once the Sevii Islands story is
 done. The first time you beat it, or the peak round 3, you get:
@@ -492,7 +511,7 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `d6734e5adf27c7c9e55b4c011fe1b01675b50993`
+Patched ROM SHA-1: `7dfb6ad4f56c30f6a7ee4dabaa6aa29e975a0685`
 
 Current release: **13**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
 Saves made on release 7 or later carry over to this release. Older saves need a new game.
@@ -522,6 +541,8 @@ unmodified pret data:
 - `evo_moves.py`: later level-up moves for stone evolutions (run after `modernize.py`).
 - `peak_trainers.py`: peak teams, gym rematches and the Elite Four round 3.
 - `spoiler_guide.py <dir>`: regenerates the spoiler guide from the game data.
+- `tower_sets.py <dir>`: the competitive Trainer Tower teams, from Showdown's random-battle set files (read as data).
+- `playtest/`: an automated playtest through Brock (a headless mGBA harness plus milestone checks).
 - `gym_doubles.py`: the gym double battles and their doubles movesets.
 - `learnsets.py`: what each species can learn in this hack (used by the trainer scripts).
 - `vr_rematches.py`: the Victory Road VS Seeker rematch teams and scripts.
@@ -530,4 +551,4 @@ unmodified pret data:
 
 ## Credits
 - The later evolutions' sprites, icons, footprints and cries, and the new evolution items' icons, are community-made Gen 3-style graphics from [pokeemerald-expansion](https://github.com/rh-hideout/pokeemerald-expansion); see its [credits](https://github.com/rh-hideout/pokeemerald-expansion/blob/master/CREDITS.md).
-- Move, stat and learnset data comes from [Pokémon Showdown](https://github.com/smogon/pokemon-showdown).
+- Move, stat and learnset data comes from [Pokémon Showdown](https://github.com/smogon/pokemon-showdown), as do the role-based sets the Trainer Tower teams are built from.

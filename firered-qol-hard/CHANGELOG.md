@@ -17,6 +17,11 @@ Pull requests: [#30](https://github.com/RTyH-Code/Personal-Projects/pull/30)
 - **Gym double battles:** one trainer in each gym from Misty's on (except
   Cinnabar) fights two-on-two, with spread moves, Fake Out, Protect, screens
   and Trick Room.
+- **Trainer Tower:** competitive teams. They're fully evolved, with moves
+  from Showdown's role-based sets (doubles sets on Double floors), 252/252
+  EVs, natures, perfect IVs and role items.
+- **Automated playtest:** milestone checks from a new game through Brock
+  (tools/hack/playtest/).
 - **Saves:** release 12 saves carry over.
 
 ## Release 12 (2026-11-06)

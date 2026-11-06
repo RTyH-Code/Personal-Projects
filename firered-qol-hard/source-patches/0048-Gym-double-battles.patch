@@ -1,7 +1,7 @@
 From bef3f6c9c0b1d0fdaa9f48c0a9fd5a9ba828ab7d Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Fri, 6 Nov 2026 02:34:54 +0000
-Subject: [PATCH 48/48] Gym double battles
+Subject: [PATCH 48/50] Gym double battles
 
 One trainer in each gym from Misty's on (not Cinnabar) fights a double
 battle with a doubles moveset: spread moves that only hit foes, plus
