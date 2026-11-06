@@ -13,8 +13,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from fake_emulator import SB2, FakeEmulator  # noqa: E402
 
 from firered_ai import ram  # noqa: E402
-from firered_ai.env import FireRedEnv  # noqa: E402
-from firered_ai.goals import KNOWN_ROMS, Goals, PokedexTarget, detect_game  # noqa: E402
+from firered_ai.game import VANILLA_CRCS, Game, detect, find_release  # noqa: E402
+from firered_ai.goals import Goals, PokedexTarget, detect_game  # noqa: E402
 from firered_ai.progress import ProgressPool  # noqa: E402
 from firered_ai.rewards import DEFAULT_WEIGHTS, RewardTracker  # noqa: E402
 
@@ -60,9 +60,11 @@ def test_vanilla_pokedex_list():
 def test_qol_hard_pokedex_list():
     dex = PokedexTarget.load("firered-qol-hard")
     names = {v: k for k, v in dex.names.items()}
-    # The hack makes every species obtainable in one save, with no either/or choices.
-    assert dex.progress(frozenset())[1] == 386 and not dex.choices
-    for fixed in ["ESPEON", "UMBREON", "MILOTIC", "OMASTAR", "KABUTOPS", "LILEEP", "ANORITH", "DEOXYS"]:
+    # The hack makes every species obtainable in one save, with no either/or
+    # choices, including the 29 later evolutions (Pokédex numbers 387-415).
+    assert dex.progress(frozenset())[1] == 415 and not dex.choices
+    for fixed in ["ESPEON", "UMBREON", "MILOTIC", "OMASTAR", "KABUTOPS", "LILEEP", "ANORITH", "DEOXYS",
+                  "WEAVILE", "SYLVEON", "LEAFEON", "KLEAVOR", "TOGEKISS", "LICKILICKY"]:
         assert names[fixed] in dex.required
 
 
@@ -91,22 +93,39 @@ def test_detect_game(tmp_path):
     rom = tmp_path / "x.gba"
     rom.write_bytes(b"not a real rom")
     assert detect_game(str(rom)) is None
-    # One patch per FireRed revision; each must map its base ROM to vanilla
-    # FireRed and its output to the hack.
+    # A FireRed header with an unknown checksum still counts as FireRed.
+    fake = bytearray(0x200)
+    fake[0xAC:0xB0] = b"BPRE"
+    rom.write_bytes(bytes(fake))
+    assert detect_game(str(rom)) == "firered"
+    # The hack is recognised by its release string, which a patch carries as new bytes.
+    hack = Game.load("firered_qol_hard")
+    rom.write_bytes(bytes(fake) + b"\x00" * 64 + bytes(hack.p["release"]["signature"]) + bytes([0xCC, 0xA2, 0xA6, 0xFF]))
+    game, note = detect(str(rom))
+    assert game.name == "firered_qol_hard" and "R15" in note and "regenerate" in note
+
+
+def test_profiles_match_the_hack_in_this_repo():
+    """Each .bps patches vanilla FireRed (v1.0 or v1.1) into the release the profile was made from.
+
+    If this fails after a new hack release, regenerate the profile:
+        python tools/game_data.py <patched pokefirered> firered_qol_hard > firered_ai/data/games/firered_qol_hard.json
+    """
     patches = sorted((REPO / "firered-qol-hard").glob("*.bps"))
-    if patches:
-        assert {p.name for p in patches} >= {"FireRed-QoL-Hard.bps", "FireRed-QoL-Hard-v1.1.bps"}
+    if not patches:
+        pytest.skip("no hack patches in this checkout")
+    assert {p.name for p in patches} >= {"FireRed-QoL-Hard.bps", "FireRed-QoL-Hard-v1.1.bps"}
+    hack = Game.load("firered_qol_hard")
     sources = set()
     for bps in patches:
-        source, target = struct.unpack("<II", bps.read_bytes()[-12:-4])
-        assert KNOWN_ROMS[source] == "firered", bps.name
-        assert KNOWN_ROMS[target] == "firered_qol_hard", bps.name
-        sources.add(source)
-    assert len(sources) == len(patches)  # v1.0 and v1.1 really are different base ROMs
-    assert zlib.crc32(b"not a real rom") not in KNOWN_ROMS
+        data = bps.read_bytes()
+        sources.add(struct.unpack("<I", data[-12:-8])[0])
+        assert find_release(data, hack.p) == hack.release, bps.name
+    assert sources == set(VANILLA_CRCS)
 
 
 def test_goal_rewards_and_episode_end():
+    FireRedEnv = pytest.importorskip("firered_ai.env").FireRedEnv
     emu = FakeEmulator()
     emu.set_party([(5, 20, 20)])
     dex = PokedexTarget("t", frozenset({1, 4}))
@@ -155,6 +174,7 @@ def test_progress_pool(tmp_path):
 
 
 def test_env_continues_from_progress_pool(tmp_path):
+    FireRedEnv = pytest.importorskip("firered_ai.env").FireRedEnv
     env = FireRedEnv(emulator=FakeEmulator(), progress_dir=str(tmp_path), progress_prob=1.0, max_steps=60)
     env.reset(seed=0)
     for _ in range(49):
@@ -172,6 +192,7 @@ def test_env_continues_from_progress_pool(tmp_path):
 
 
 def test_finished_states_stay_out_of_the_pool(tmp_path):
+    FireRedEnv = pytest.importorskip("firered_ai.env").FireRedEnv
     emu = FakeEmulator()
     env = FireRedEnv(emulator=emu, goals=Goals(badges=True, champion=False), progress_dir=str(tmp_path))
     env.reset()

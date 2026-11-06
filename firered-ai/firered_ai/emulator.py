@@ -18,6 +18,7 @@ import numpy as np
 GAME_NAME = "PokemonFireRedAI-GbAdvance"
 # stable-retro's GBA button order.
 BUTTONS = ["B", None, "SELECT", "START", "UP", "DOWN", "LEFT", "RIGHT", "A", None, "L", "R"]
+FLASH_BASE, FLASH_SIZE = 0x0E000000, 0x20000
 DEFAULT_CACHE = Path(os.environ.get("FIRERED_AI_CACHE", Path.home() / ".cache" / "firered-ai"))
 
 
@@ -65,6 +66,7 @@ class Emulator:
         self.env.reset()
         self._screen = None
         self._blocks = None
+        self.power_on = self.save_state()  # for booting again with a battery save
 
     def press(self, buttons: tuple[str, ...], frames: int) -> None:
         """Hold `buttons` for `frames` frames (60 frames = 1 second)."""
@@ -99,6 +101,20 @@ class Emulator:
 
     def load_state(self, state: bytes) -> None:
         self.env.em.set_state(state)
+        self._invalidate()
+
+    def boot_with_save(self, sav: bytes) -> None:
+        """Power on again with `sav` (a .sav file from mGBA or another emulator) on the cartridge.
+
+        FireRed saves to a 128 KiB flash chip. stable-retro exposes it at
+        0x0E000000; the game reads it when it boots. Save states don't include
+        it, so it stays until the next call.
+        """
+        self.load_state(self.power_on)
+        memory = self.env.data.memory
+        data = sav[:FLASH_SIZE].ljust(FLASH_SIZE, b"\xff")
+        for i, b in enumerate(data):
+            memory.assign(FLASH_BASE + i, "|u1", b)
         self._invalidate()
 
     def close(self) -> None:

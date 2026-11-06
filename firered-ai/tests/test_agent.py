@@ -10,9 +10,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from fake_emulator import FakeEmulator  # noqa: E402
 
 from firered_ai import ram  # noqa: E402
-from firered_ai.bootstrap import BEDROOM, skip_intro  # noqa: E402
-from firered_ai.env import FireRedEnv  # noqa: E402
-from firered_ai.maps import map_name  # noqa: E402
+from firered_ai.bootstrap import CHALLENGE_FLAGS, CHALLENGE_ROWS, skip_intro  # noqa: E402
+from firered_ai.game import Game  # noqa: E402
 from firered_ai.rewards import DEFAULT_WEIGHTS, RewardTracker  # noqa: E402
 
 
@@ -27,7 +26,7 @@ def test_read_state():
     emu.set_in_battle(True)
     s = ram.read_state(emu.read)
     assert s.valid
-    assert map_name(*s.map_id) == "PalletTown_PlayersHouse_2F"
+    assert Game.load("firered").map_name(*s.map_id) == "PalletTown_PlayersHouse_2F"
     assert (s.x, s.y) == (5, 5)
     assert [m.level for m in s.party] == [5, 12]
     assert s.level_sum == 17
@@ -83,6 +82,7 @@ def test_rewards():
 
 
 def test_env_obs_and_steps():
+    FireRedEnv = pytest.importorskip("firered_ai.env").FireRedEnv
     env = FireRedEnv(emulator=FakeEmulator(), max_steps=20)
     from gymnasium.utils.env_checker import check_env
 
@@ -110,7 +110,11 @@ def test_env_obs_and_steps():
 
 
 def test_env_allow_start():
+    FireRedEnv = pytest.importorskip("firered_ai.env").FireRedEnv
     assert FireRedEnv(emulator=FakeEmulator(), allow_start=True).action_space.n == 7
+
+
+BEDROOM = (4, 1)
 
 
 class IntroEmulator(FakeEmulator):
@@ -135,6 +139,71 @@ def test_skip_intro():
 
 def test_skip_intro_gives_up():
     assert not skip_intro(FakeEmulator(valid=False), max_presses=30, log=None)
+
+
+class ChallengeMenuEmulator(IntroEmulator):
+    """The QoL + Hard bedroom: intro text, the challenge menu, then "Is this OK?".
+
+    Follows Task_ChallengeMenu (src/hack_challenge.c) and the bedroom script:
+    the cursor starts on row 0; Up/Down wrap; B jumps to START ADVENTURE; A or
+    Left/Right toggle a rule; A on START ADVENTURE closes the menu; on the
+    YES/NO box A is YES and B is NO (back to the menu); with Nuzlocke on, a
+    rules message follows.
+    """
+
+    def __init__(self, game):
+        super().__init__()
+        self.game = game
+        self.phase, self.text, self.cursor = "intro", 0, 0
+
+    def press(self, buttons, frames):
+        was_bedroom = len(self.presses) >= 50
+        super().press(buttons, frames)
+        if not buttons or not was_bedroom:
+            return
+        b = buttons[0]
+        if self.phase == "intro" and b in ("A", "B"):
+            self.text += 1
+            if self.text == 4:
+                self.phase = "menu"
+        elif self.phase == "menu":
+            if b == "DOWN":
+                self.cursor = (self.cursor + 1) % 6
+            elif b == "UP":
+                self.cursor = (self.cursor - 1) % 6
+            elif b == "B" and self.cursor != 5:
+                self.cursor = 5
+            elif self.cursor < 5 and b in ("A", "LEFT", "RIGHT"):
+                flag = self.game.flags[CHALLENGE_FLAGS[CHALLENGE_ROWS[self.cursor]]]
+                self.set_flag(flag, not ram.read_state(self.read).flag(flag))
+            elif self.cursor == 5 and b == "A":
+                self.phase = "confirm"
+        elif self.phase == "confirm":
+            if b == "A":
+                nuz = ram.read_state(self.read).flag(self.game.flags["HACK_NUZLOCKE"])
+                self.phase = "rules" if nuz else "free"
+            elif b == "B":
+                self.phase, self.cursor = "menu", 0
+        elif self.phase == "rules" and b in ("A", "B"):
+            self.phase = "free"
+
+
+@pytest.mark.parametrize("rules", [[], ["nuzlocke"], ["level_caps", "exp_share"], CHALLENGE_ROWS])
+def test_challenge_menu(rules):
+    game = Game.load("firered_qol_hard")
+    emu = ChallengeMenuEmulator(game)
+    assert skip_intro(emu, game, rules, log=None)
+    assert emu.phase == "free"
+    s = ram.read_state(emu.read, layout=game.layout)
+    for r in CHALLENGE_ROWS:
+        assert s.flag(game.flags[CHALLENGE_FLAGS[r]]) == (r in rules), r
+
+
+def test_challenge_rules_are_checked():
+    with pytest.raises(ValueError):
+        skip_intro(IntroEmulator(), Game.load("firered"), ["nuzlocke"], log=None)
+    with pytest.raises(ValueError):
+        skip_intro(IntroEmulator(), Game.load("firered_qol_hard"), ["nuzlock"], log=None)
 
 
 def test_symbols_from_map(tmp_path, capsys, monkeypatch):

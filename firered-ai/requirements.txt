@@ -1,8 +1,4 @@
+# The playtester (playtest.py, replay.py, make_start_state.py). stable-retro brings gymnasium along.
 stable-retro>=1.0
-gymnasium>=1.0
-stable-baselines3>=2.3
-torch>=2.2
 numpy
 pillow
-tensorboard
-imageio[ffmpeg]

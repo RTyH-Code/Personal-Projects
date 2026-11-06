@@ -41,7 +41,11 @@ ALWAYS_OK = {
     "EVO_FRIENDSHIP", "EVO_LEVEL", "EVO_LEVEL_ATK_GT_DEF", "EVO_LEVEL_ATK_EQ_DEF",
     "EVO_LEVEL_ATK_LT_DEF", "EVO_LEVEL_SILCOON", "EVO_LEVEL_CASCOON",
     "EVO_LEVEL_NINJASK", "EVO_LEVEL_SHEDINJA",
+    # FireRed QoL + Hard: level up knowing a move (or, with friendship, a move
+    # of a type). Treated as working: the moves are learnable by those species.
+    "EVO_MOVE", "EVO_MOVE_TYPE",
 }
+ITEM_METHODS = {"EVO_ITEM", "EVO_ITEM_MALE", "EVO_ITEM_FEMALE"}  # need the item
 NEVER_OK = {"EVO_TRADE", "EVO_TRADE_ITEM", "EVO_BEAUTY"}
 INCENSE_BABIES = {"WYNAUT": ("WOBBUFFET", "LAX_INCENSE"), "AZURILL": ("MARILL", "SEA_INCENSE")}
 CHECK_ONLY = re.compile(r"\b(checkitem|removeitem|checkitemspace|checkitemtype|checkpcitem)\b")
@@ -76,18 +80,22 @@ def preprocess(text):
 
 
 def species_tables(root):
-    species = {}
-    for name, num in re.findall(r"#define SPECIES_(\w+) (\d+)", read(root, "include/constants/species.h")):
-        if name in ("NONE", "EGG") or name.startswith(("OLD_UNOWN", "UNOWN_")):
+    """Species name -> Pokédex number. Resolves aliases such as the hack's
+    `#define SPECIES_WEAVILE SPECIES_OLD_UNOWN_E`. Formes (DEOXYS_ATTACK) are
+    left out: they share their species' entry."""
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from game_data import Consts
+
+    c = Consts(root, ["include/constants/species.h", "include/constants/pokedex.h"])
+    out = {}
+    for full in c.raw:
+        if not full.startswith("SPECIES_"):
             continue
-        species[name] = int(num)
-    body = read(root, "include/constants/pokedex.h")
-    body = body[body.index("NATIONAL_DEX_NONE"):]
-    dex = {}
-    for i, name in enumerate(re.findall(r"NATIONAL_DEX_(\w+),", body)):
-        if name != "NONE":
-            dex[name] = i
-    return {s: dex[s] for s in species if s in dex}
+        name = full.removeprefix("SPECIES_")
+        if name in ("NONE", "EGG") or name.startswith(("OLD_UNOWN", "UNOWN_")) or "NATIONAL_DEX_" + name not in c.raw:
+            continue
+        out[name] = c.get("NATIONAL_DEX_" + name)
+    return out
 
 
 def evolutions(root):
@@ -101,7 +109,7 @@ def evolutions(root):
 def working_evo_methods(root):
     """EVO_ methods whose case in GetEvolutionTargetSpecies can succeed."""
     code = strip_comments(read(root, "src/pokemon.c"))
-    ok = set(ALWAYS_OK) | {"EVO_ITEM"}
+    ok = set(ALWAYS_OK) | ITEM_METHODS
     for method in ("EVO_FRIENDSHIP_DAY", "EVO_FRIENDSHIP_NIGHT"):
         m = re.search(rf"case {method}:(.*?)break;", code, re.S)
         if m and "targetSpecies =" in m.group(1):
@@ -218,7 +226,7 @@ def analyse(root):
             pre[t] = a
 
     def can_evolve(method, param):
-        if method == "EVO_ITEM":
+        if method in ITEM_METHODS:
             return param.removeprefix("ITEM_") in items
         return method in methods
 

@@ -14,7 +14,6 @@ legendary, and in vanilla the Mt. Moon fossil); one option of each is enough.
 from __future__ import annotations
 
 import json
-import zlib
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -23,20 +22,14 @@ from .ram import GameState
 DATA = Path(__file__).parent / "data"
 GOAL_NAMES = ("badges", "champion", "pokedex")
 
-# CRC32 of the whole ROM -> Pokédex list. The values are the source and
-# target checksums in the last 12 bytes of the hack's .bps patches: both
-# patches (for v1.0 and v1.1) produce the same hacked ROM. v1.0 and v1.1
-# have the same game data, so they share a Pokédex list.
-KNOWN_ROMS = {
-    0xDD88761C: "firered",  # Pokémon FireRed (US) v1.0
-    0x84EE4776: "firered",  # Pokémon FireRed (US) v1.1 (Rev 1)
-    0xC6B98153: "firered_qol_hard",  # FireRed QoL + Hard, from either patch
-}
-
-
 def detect_game(rom_path: str) -> str | None:
-    """Which known ROM this is, by checksum, or None."""
-    return KNOWN_ROMS.get(zlib.crc32(Path(rom_path).read_bytes()))
+    """The Pokédex list for a ROM: its game profile's name, or None if it isn't FireRed."""
+    from .game import detect
+
+    try:
+        return detect(rom_path)[0].name
+    except ValueError:
+        return None
 
 
 @dataclass
