@@ -7,6 +7,8 @@ import json
 import time
 from pathlib import Path
 
+from . import story
+from .explorer import STORY_BUDGET
 from .game import Game
 
 SEVERITY = {"setup": -1, "crash": 0, "softlock": 1, "corrupt": 2, "rule": 3}
@@ -45,12 +47,12 @@ def collect(out: Path) -> dict:
         except ValueError:
             pass
     total = {"steps": 0, "sessions": 0, "maps": {}, "trainers_beaten": {}, "seen": set(), "owned": set(),
-             "battles": {}, "blackouts": [], "starts": {}, "session_ends": []}
+             "battles": {}, "blackouts": [], "starts": {}, "session_ends": [], "story_stalls": {}}
     for st in stats:
         total["steps"] += st["steps"]
         total["sessions"] += st["sessions"]
-        for k in ("maps", "trainers_beaten", "starts"):
-            for name, n in st[k].items():
+        for k in ("maps", "trainers_beaten", "starts", "story_stalls"):
+            for name, n in st.get(k, {}).items():
                 total[k][name] = total[k].get(name, 0) + n
         total["seen"] |= set(st["species_seen"])
         total["owned"] |= set(st["species_owned"])
@@ -76,15 +78,19 @@ def progress_summary(ends: list) -> dict:
         return {"sessions": 0}
     badges: dict[int, int] = {}
     maps: dict[str, int] = {}
+    objectives: dict[str, int] = {}
     for e in ends:
         badges[e["badges"]] = badges.get(e["badges"], 0) + 1
         maps[e["map"]] = maps.get(e["map"], 0) + 1
+        if e.get("objective"):
+            objectives[e["objective"]] = objectives.get(e["objective"], 0) + 1
     return {
         "sessions": len(ends),
         "average_badges": round(sum(e["badges"] for e in ends) / len(ends), 1),
         "average_top_level": round(sum(e["top_level"] for e in ends) / len(ends)),
         "badges": dict(sorted(badges.items())),
         "common_maps": sorted(maps.items(), key=lambda kv: -kv[1])[:8],
+        "objectives": sorted(objectives.items(), key=lambda kv: -kv[1])[:8],
     }
 
 
@@ -123,8 +129,10 @@ def summarize(data: dict) -> dict:
         "battles": total["battles"],
         "difficulty_spikes": spikes,
         "starts": total["starts"],
-        "furthest": sorted(data["furthest"], key=lambda f: (f["champion"], f["badges"], f["top_level"],
-                                                            f["dex_owned"]), reverse=True),
+        "furthest": sorted(data["furthest"], key=lambda f: (f["champion"], f["badges"], f.get("story_done", 0),
+                                                            f["top_level"], f["dex_owned"]), reverse=True),
+        "story_stalls": sorted(total["story_stalls"].items(), key=lambda kv: -kv[1]),
+        "story_total": sum(1 for o in story.STORY if not o.post_game),
         "session_ends": progress_summary(total["session_ends"]),
         "continued_from": data["config"].get("continued_from"),
     }
@@ -165,6 +173,8 @@ def progress_html(s: dict) -> str:
     if s["furthest"]:
         f = s["furthest"][0]
         where = "became Champion" if f["champion"] else f'{f["badges"]} badge{"" if f["badges"] == 1 else "s"}'
+        if f.get("story_done"):
+            where += f', {f["story_done"]} of {s.get("story_total", "?")} story objectives'
         parts.append(
             f'<p><b>Furthest point:</b> {e(where)}, on {e(f["map"].replace("_", " "))}, with '
             f'{e(", ".join(f["party"]))} ({f["dex_owned"]} species caught). '
@@ -182,7 +192,21 @@ def progress_html(s: dict) -> str:
             f'<p><b>Where sessions ended</b> ({se["sessions"]} sessions): on average {se["average_badges"]} badges '
             f'and a strongest Pokémon of Lv. {se["average_top_level"]}.<br>{counts}</p>'
             f'<p class="muted">Most common last maps: {common}</p>')
+        if se.get("objectives"):
+            stuck = ", ".join(f"{e(title(k))} ({n})" for k, n in se["objectives"])
+            parts.append(f'<p><b>Story objective they were on</b> when sessions ended: {stuck}</p>')
+    if s.get("story_stalls"):
+        stalls = ", ".join(f"{e(title(k))} ({n}&times;)" for k, n in s["story_stalls"])
+        parts.append(f'<p><b>Story objectives it got stuck on</b> (worked on for {STORY_BUDGET} presses without '
+                     f'getting done, then put aside for a while): {stalls}</p>'
+                     '<p class="muted">An objective high on this list may be a story bug (a flag that never '
+                     "gets set, an event that won't start), or just a puzzle the playtester can't do.</p>")
     return "\n".join(parts)
+
+
+def title(key: str) -> str:
+    o = story.BY_KEY.get(key)
+    return o.title if o else key
 
 
 def write_report(out: Path) -> Path:

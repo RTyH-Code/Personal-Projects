@@ -151,6 +151,7 @@ class GameState:
     national_dex: bool = False
     held_keys: int = 0  # gMain.heldKeysRaw
     flags: bytes = b""
+    vars: bytes = b""  # story variables 0x4000-0x40FF
     bag: dict[str, list[tuple[int, int]]] = field(default_factory=dict)  # pocket -> [(item, quantity)]
     enemy: Mon | None = None  # the opposing lead, in battle
     enemy_party: list[Mon] = field(default_factory=list)  # the opposing team, in battle
@@ -181,6 +182,10 @@ class GameState:
     @property
     def trainer_battle(self) -> bool:
         return self.in_battle and bool(self.battle_type & BATTLE_TYPE_TRAINER)
+
+    def var(self, n: int) -> int:
+        i = 2 * (n - VARS_START)
+        return int.from_bytes(self.vars[i : i + 2], "little") if 0 <= i < len(self.vars) - 1 else 0
 
     def flag(self, n: int) -> bool:
         i = n // 8
@@ -330,6 +335,7 @@ def read_state(read: Reader, addrs: dict[str, int] = DEFAULT_ADDRESSES, layout: 
         national_dex=flag(FLAG_SYS_NATIONAL_DEX),
         held_keys=held,
         flags=flags,
+        vars=read(sb1 + SB1_VARS, 0x200),
         bag=bag,
         enemy=enemy,
         enemy_party=enemy_party,

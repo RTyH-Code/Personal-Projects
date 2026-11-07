@@ -41,10 +41,22 @@ and caught) and **difficulty** numbers (battles and blackouts per map).
   uses HM obstacles. Walls are forgotten when the story moves on, since some
   are scripts (Oak stopping you leaving Pallet Town). If no direction works
   at all (the nickname screen), it presses START to get out.
-- **Healing:** when talking to someone fully heals the party (Mom, a
-  Pokémon Center nurse), it remembers where. It goes back there, through
-  the maps it knows, when the party's HP is under 40% or its attacks are
-  out of PP.
+- **Following the story:** it knows the whole map (every room, door,
+  ledge and stretch of water) and every point where the game stops you until
+  you've done something: Oak's Parcel, the old man on Route 2, the Mt. Moon
+  fossil, Bill, the S.S. Anne, Cut, the Saffron guards and their Tea, the
+  Rocket Hideout and Silph Scope, Mr. Fuji, Snorlax, Surf and Strength,
+  Silph Co., the Secret Key, the gyms, Victory Road, the Elite Four, and
+  the Sevii Islands after the Hall of Fame. Most of the time it works on the
+  first of those not yet done: it walks there by the shortest way, around
+  people and story gates that are still shut, and talks to the right
+  person or steps on the right tile. On the way it presses A at Cut trees,
+  rocks, boulders and water once the hack's HM rules let it use them. If an
+  objective isn't done after 3,000 presses it puts it aside for a while and
+  explores instead, and the report lists it, since it may be a story bug.
+- **Healing:** when the party's HP is under 40% or its attacks are out of
+  PP, it walks to the nearest Pokémon Center (or anyone else it has seen
+  heal the party, like Mom) and talks to the nurse.
 - **Battles:** it picks the move that does the most damage against the
   opponent: power, same-type bonus, the type chart (Fairy included) and
   accuracy, skipping status moves, empty PP and moves like Self-Destruct.
@@ -55,11 +67,7 @@ and caught) and **difficulty** numbers (battles and blackouts per map).
   evolution.
 - **Training:** when its strongest Pokémon is more than 2 levels under the
   next Gym Leader's strongest, and it's healthy, it spends some of its time
-  walking in grass where it has met wild Pokémon before.
-- **Story errands:** while it carries a story item (Oak's Parcel, the S.S.
-  Ticket, the Bike Voucher, the Tea, the Silph Scope, the Poké Flute, the
-  Gold Teeth, the Lift Key, the Card Key, the Secret Key), it heads for
-  where that item is needed, if it has found the way there.
+  walking in the nearest grass.
 - **Menus:** now and then it opens the START menu and pokes around (bag,
   party, the Nuzlocke tracker, options, saving...).
 - **Covering the whole game:** while it plays it keeps the most advanced
@@ -192,10 +200,12 @@ Open `report.html` in the run folder. On WSL, `explorer.exe runs` opens the
 folder in Windows. It refreshes every 5 minutes while the run goes on.
 
 - **How far it got:** the furthest point any emulator reached (Champion,
-  then badges, then its strongest Pokémon's level), with a save state of
+  then badges, then story objectives done, then its strongest Pokémon's
+  level), with a save state of
   that moment. You can load it in mGBA (*File → Load State File*) to look,
   or to make a real save there for later runs. There's also how many
-  badges sessions had when they ended, and the maps they usually ended on.
+  badges sessions had when they ended, the maps they usually ended on, the
+  story objective they were working on, and the objectives it got stuck on.
 - **Problems found:** the worst first, with how often each happened and a
   screenshot. Click it for a clip of the ~40 seconds before.
   "Reproduced: yes" means the playtester re-ran the same presses from a
@@ -250,6 +260,15 @@ python tools/game_data.py ../pokefirered firered_qol_hard > firered_ai/data/game
 python tools/pokedex_targets.py ../pokefirered firered-qol-hard > firered_ai/data/pokedex_firered_qol_hard.json
 ```
 
+```bash
+python tools/world_data.py ../pokefirered | gzip -9 > firered_ai/data/games/firered_qol_hard.world.json.gz
+```
+
+If the hack changes the story (a new gate, a moved event), update
+`firered_ai/story.py` too. `tests/test_story.py` checks every name in it
+against the game data and walks the whole story through the route planner,
+so it points at what no longer fits.
+
 A test, `test_profiles_match_the_hack_in_this_repo`, fails when the hack's
 `.bps` patches are a newer release than this data, as a reminder.
 
@@ -279,6 +298,9 @@ tiny hand-assembled GBA ROM run on the real mGBA core.
 | `firered_ai/tester.py` | One worker: sessions, captures, replays |
 | `firered_ai/detectors.py` | The bug checks |
 | `firered_ai/explorer.py` | What to press |
+| `firered_ai/story.py` | The story's objectives and gates, from the game's scripts |
+| `firered_ai/world.py` | The whole map, and the shortest way across it |
+| `firered_ai/navigate.py` | Walking there: people, HM obstacles and gates as the game stands |
 | `firered_ai/runner.py` | Workers, start points, the shared pool |
 | `firered_ai/report.py` | `report.html` and `summary.json` |
 | `firered_ai/game.py` | Recognising the ROM; what's known about it |
@@ -287,5 +309,6 @@ tiny hand-assembled GBA ROM run on the real mGBA core.
 | `firered_ai/emulator.py` | mGBA via stable-retro, including loading battery saves |
 | `firered_ai/data/games/` | Game profiles for FireRed and FireRed QoL + Hard |
 | `tools/game_data.py` | Make a game profile from pret source |
+| `tools/world_data.py` | Make the world map from pret source |
 | `tools/pokedex_targets.py` | Work out which Pokémon a game lets you own |
 | `tools/symbols_from_map.py` | RAM addresses for hacks that move things around |

@@ -405,7 +405,7 @@ def test_report_shows_how_far_it_got(tmp_path):
     (tmp_path / "config.json").write_text(json.dumps({"game": "firered", "rom_note": "test", "started": 0,
                                                       "continued_from": "playtest-2"}))
     page = write_report(tmp_path).read_text()
-    assert "How far it got" in page and "1 badge, on PalletTown PlayersHouse 2F" in page
+    assert "How far it got" in page and "1 badge, 1 of " in page and "story objectives, on PalletTown PlayersHouse 2F" in page
     assert "Squirtle Lv15" in page and "furthest/w0.state" in page and "carried on from playtest-2" in page
     s = json.loads((tmp_path / "summary.json").read_text())
     assert s["session_ends"]["average_badges"] == 1 and s["furthest"][0]["top_level"] == 15
@@ -472,7 +472,7 @@ def test_pool_keeps_the_most_advanced_states(tmp_path):
     emu.set_flag(ram.FLAG_SYS_POKEMON_GET)
     t._maybe_pool(state(emu))  # having a Pokémon beats any level without one
     names = sorted(p.name.split("_")[0] for p in pool.glob("*.state"))
-    assert names == ["0000006000", "0000007000", "0010003000"]
+    assert names == ["0000006000", "0000007000", "0001003000"]
 
 
 def test_blackout_needs_a_whiteout(tmp_path):

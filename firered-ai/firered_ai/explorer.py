@@ -30,8 +30,18 @@ Training: when the strongest Pokémon is more than TRAIN_MARGIN levels under
 the next Gym Leader's strongest, and healthy, walk in grass where wild
 battles have started before.
 
-Errands: holding a story item (Oak's Parcel, the S.S. Ticket...), head for
-the map that needs it (ERRANDS), through exits it knows.
+Story (with the world map): most of the time, work on the first story
+objective not yet done (story.py): walk there by the shortest way the world
+map knows (navigate.py), talk to the people or step on the tiles it names,
+and press A at Cut trees, rocks and water on the way. An objective that
+doesn't get done after STORY_BUDGET presses is put aside for a while, so a
+stuck tester goes back to exploring instead of walking into the same wall.
+With the world map, healing goes to the nearest Pokémon Center and training
+to the nearest grass.
+
+Errands (without the world map): holding a story item (Oak's Parcel, the
+S.S. Ticket...), head for the map that needs it (ERRANDS), through exits it
+knows.
 
 Outside the overworld (title screen, text, menus): A and B.
 """
@@ -42,7 +52,10 @@ import random
 from collections import deque
 from dataclasses import dataclass, field
 
+from . import story
+from .navigate import Navigator
 from .ram import GameState
+from .world import LAND_ENCOUNTERS, WALL
 
 DIRS = {"UP": (0, -1), "DOWN": (0, 1), "LEFT": (-1, 0), "RIGHT": (1, 0)}
 FORGET_EVERY = 200  # at most this often, forget walls when the story flags change
@@ -55,6 +68,9 @@ TRAIN_SHARE = 0.6  # share of overworld presses spent training (the rest keep ex
 ERRAND_SHARE = 0.6  # share of overworld presses spent heading for an errand's destination
 ERRAND_STEPS = 400  # presses to spend at an errand's destination before it counts as tried
 NO_B_AFTER_LEVEL_UP = 80  # presses without B after a battle with a level-up (B cancels evolution)
+STORY_SHARE = 0.75  # share of overworld presses spent on the current story objective
+STORY_BUDGET = 3000  # presses on one objective before putting it aside for a while
+STORY_REST = 1500  # presses an objective stays put aside
 
 # FireRed's item-gated story: holding the item, go to one of these maps.
 ERRANDS = [
@@ -111,7 +127,7 @@ def tap(buttons, wait=20, tag=""):
 
 class Explorer:
     def __init__(self, rng: random.Random | None = None, map_visits=None, interact_prob=0.04, menu_prob=0.008,
-                 catch_prob=0.35, game=None):
+                 catch_prob=0.35, game=None, world=None):
         self.rng = rng or random.Random()
         self.game = game  # the game profile: moves, types, gym levels, items (optional)
         self.maps: dict[tuple[int, int], MapMemory] = {}
@@ -141,6 +157,14 @@ class Explorer:
         self.no_b_until = 0
         self.battle_levels = None  # party levels when the current battle started
         self.fainted_seen = 0
+        # Story: the world map and a navigator over it (when the game has one).
+        self.nav = Navigator(world, game) if world is not None and game is not None else None
+        self.objective: str | None = None  # the story objective being worked on
+        self.story_presses: dict[str, int] = {}
+        self.story_rest: dict[str, int] = {}  # objective -> press until which it's put aside
+        self.story_target: dict[str, int] = {}  # objective -> which of its people to talk to next
+        self.story_stalls: dict[str, int] = {}  # objective -> times it was put aside
+        self._nurses = None
 
     def new_session(self) -> None:
         """Forget walls (keep layouts and exits): the next start may be further into the game."""
@@ -218,6 +242,8 @@ class Explorer:
         if m.misses[key] >= 2:
             m.blocked.add(key)
             self.retrying = False
+            if self.nav is not None:
+                self.nav.plan_key = None  # find a way around it
             if all((x, y, dd) in m.blocked for dd in DIRS):
                 # Walled in on all sides: really a screen that swallows the d-pad (the
                 # nickname screen, a menu). START jumps to OK on the naming screen.
@@ -266,11 +292,17 @@ class Explorer:
             a = self._go_heal(s)
             if a is not None:
                 return a
-        a = self._errand(s)
-        if a is not None:
-            return a
         if self._wants_training(s) and self.rng.random() < TRAIN_SHARE:
             a = self._train(s)
+            if a is not None:
+                return a
+        if self.nav is not None:
+            if self.rng.random() < STORY_SHARE:
+                a = self._story(s)
+                if a is not None:
+                    return a
+        else:
+            a = self._errand(s)
             if a is not None:
                 return a
         if self.rng.random() < self.interact_prob:
@@ -316,7 +348,7 @@ class Explorer:
 
     def _needs_healing(self, s: GameState) -> bool:
         live = [mon for mon in s.party if not mon.is_egg and mon.hp > 0]
-        if not live or not self.heal_spots:
+        if not live or not (self.heal_spots or self.nav is not None):
             return False
         out_of_pp = self.game is not None and not any(self.game.has_damaging_pp(mon) for mon in live)
         return s.hp_fraction < HEAL_BELOW or out_of_pp
@@ -359,6 +391,103 @@ class Explorer:
                 return Action((path[0],), tag="move")
         return None
 
+    # --- the story ------------------------------------------------------------------
+
+    def _nav_to(self, s: GameState, key, goal) -> Action | None:
+        """One press along the world map's way to a tile where goal(map, x, y) holds."""
+        r = self.nav.step(s, key, goal, self.t, avoid=lambda: self.nav.avoid_from(self.maps))
+        if r is None:
+            return None
+        kind, d = r
+        if kind == "use":  # a Cut tree, a rock, a boulder, water: face it and press A (YES)
+            self._talk(s.map_id, s.x, s.y, d)
+            return tap((d,), 10, "use")
+        self.last_move = (s.map_id, s.x, s.y, d)
+        return Action((d,), tag="move")
+
+    def current_objective(self, s: GameState):
+        if self.nav is None or not s.valid or not s.flags:
+            return None
+        return story.current(s, self.game)
+
+    def _story(self, s: GameState) -> Action | None:
+        """One press towards finishing the current story objective, or None to explore."""
+        if not self.nav.knows(s.map_id):
+            return None
+        resting = {k for k, until in self.story_rest.items() if until > self.t}
+        o = story.current(s, self.game, skip=resting)
+        self.objective = o.key if o else None
+        if o is None:
+            return None
+        n = self.story_presses[o.key] = self.story_presses.get(o.key, 0) + 1
+        if n % STORY_BUDGET == 0:
+            # Not getting anywhere: put it aside, explore, and come back to it later.
+            self.story_rest[o.key] = self.t + STORY_REST
+            self.story_stalls[o.key] = self.story_stalls.get(o.key, 0) + 1
+            return None
+        here = self.nav.name(s.map_id)
+        steps = [st for st in o.steps if st.when(s, self.game)]
+        for st in steps:
+            a = self._story_step(s, o, st, here)
+            if a == "explore":
+                return None
+            if a is not None:
+                return a
+        if o.post_game and here not in {st.map for st in steps}:
+            return self._ferry(s, o)
+        return None
+
+    def _story_step(self, s: GameState, o, st, here):
+        """An Action for this step, "explore" (it's on the step's map with nothing better
+        to do), or None (no way there: try the next step)."""
+        nav = self.nav
+        if st.talk:
+            targets = nav.talk_spots(s, st.map, st.talk)
+            for _ in range(len(targets)):
+                i = self.story_target.get(o.key, 0) % len(targets)
+                spots = {(st.map, x, y): d for x, y, d in targets[i]}
+                facing = spots.get((here, s.x, s.y))
+                if facing is not None:
+                    self.story_target[o.key] = i + 1  # someone else next time
+                    self._talk(s.map_id, s.x, s.y, facing)
+                    return tap((facing,), 10, "story")
+                a = self._nav_to(s, ("talk", o.key, i), lambda m, x, y, sp=spots: (m, x, y) in sp)
+                if a is not None:
+                    return a
+                self.story_target[o.key] = i + 1  # no way to them: try the next
+        if st.step:
+            tiles = {(st.map, x, y) for x, y in nav.trigger_tiles(st.map, st.step)}
+            if (here, s.x, s.y) in tiles:
+                return "explore"  # on it: its script runs (or not); step about
+            a = self._nav_to(s, ("step", o.key), lambda m, x, y: (m, x, y) in tiles)
+            if a is not None:
+                return a
+        if here == st.map:
+            return "explore"
+        return self._nav_to(s, ("enter", st.map), lambda m, x, y: m == st.map)
+
+    def _ferry(self, s: GameState, o) -> Action | None:
+        """No way on foot to an island objective: find a Seagallop sailor and take the ferry
+        (A to talk and say YES, a random island from the list, A)."""
+        here = self.nav.name(s.map_id)
+        m = self.nav.world.maps[here]
+        for obj in m.objects:
+            if any(p in obj[3] for p in story.FERRY_SAILORS):
+                spots = {(here, x, y): d for x, y, d in self.nav.world.adjacent_spots(here, obj[1], obj[2])}
+                facing = spots.get((here, s.x, s.y))
+                if facing is not None:
+                    self.queue.extend([tap(("A",), 40, "ferry") for _ in range(3)])
+                    self.queue.extend([tap(("DOWN",), 20, "ferry") for _ in range(self.rng.randint(0, 3))])
+                    self.queue.extend([tap(("A",), 60, "ferry") for _ in range(4)])
+                    return tap((facing,), 10, "ferry")
+                return self._nav_to(s, ("ferry", here), lambda mp, x, y: (mp, x, y) in spots)
+        sailors = {}
+        for name, mm in self.nav.world.maps.items():
+            for obj in mm.objects:
+                if any(p in obj[3] for p in story.FERRY_SAILORS):
+                    sailors.update({(name, x, y): d for x, y, d in self.nav.world.adjacent_spots(name, obj[1], obj[2])})
+        return self._nav_to(s, "ferry", lambda mp, x, y: (mp, x, y) in sailors)
+
     # --- errands and training ----------------------------------------------------
 
     def _errand(self, s: GameState) -> Action | None:
@@ -379,7 +508,7 @@ class Explorer:
         return None
 
     def _wants_training(self, s: GameState) -> bool:
-        if self.game is None or not self.grass:
+        if self.game is None or not (self.grass or self.nav is not None):
             return False
         live = [mon for mon in s.party if not mon.is_egg]
         if not live or s.hp_fraction < TRAIN_HP:
@@ -387,8 +516,32 @@ class Explorer:
         top = max(mon.level for mon in live)
         return top < self.game.next_gym_level(s) - TRAIN_MARGIN
 
+    def _train_world(self, s: GameState) -> Action | None:
+        """Walk to the nearest grass (or cave floor) on the world map, then pace about in it."""
+        world = self.nav.world
+        m = world.maps[self.nav.name(s.map_id)]
+
+        def grass(x, y, mm=m):
+            c = mm.cell(x, y)
+            return c is not None and bool(c & LAND_ENCOUNTERS) and not c & WALL
+
+        if grass(s.x, s.y):
+            mem = self.mem(s.map_id)
+            options = [d for d, (dx, dy) in DIRS.items()
+                       if grass(s.x + dx, s.y + dy) and (s.x, s.y, d) not in mem.blocked]
+            if not options:
+                return None
+            d = self.rng.choice(options)
+            self.last_move = (s.map_id, s.x, s.y, d)
+            return Action((d,), tag="move")
+        return self._nav_to(s, "train", lambda mp, x, y: grass(x, y, world.maps[mp]))
+
     def _train(self, s: GameState) -> Action | None:
         """Walk in grass it knows (where wild battles started) to win some battles."""
+        if self.nav is not None and self.nav.knows(s.map_id):
+            a = self._train_world(s)
+            if a is not None:
+                return a
         grass = self.grass.get(s.map_id)
         if not grass:
             return self._travel(s, set(self.grass))
@@ -409,8 +562,43 @@ class Explorer:
         self.last_move = (s.map_id, s.x, s.y, d)
         return Action((d,), tag="move")
 
+    def _heal_here(self, s: GameState, x, y, facing) -> Action | None:
+        """At a healing spot: face them and talk, or give up on the spot after a few tries."""
+        if self.heal_attempt is not None and self.t - self.heal_attempt < 40:
+            return None  # just tried: let the result show before trying again
+        if self.heal_attempt is not None:
+            # Talked here before and still hurt: after a few tries, forget the spot.
+            self.heal_fails[s.map_id] = self.heal_fails.get(s.map_id, 0) + 1
+            if self.heal_fails[s.map_id] >= 3:
+                self.heal_spots.pop(s.map_id, None)
+                self.heal_attempt = None
+                return None
+        self.heal_attempt = self.t
+        self._talk(s.map_id, x, y, facing)
+        return tap((facing,), 10, "heal")  # face them first
+
+    def _go_heal_world(self, s: GameState) -> Action | None:
+        """The nearest Pokémon Center nurse (or other spot that healed before), by the world map."""
+        nav = self.nav
+        if self._nurses is None:
+            self._nurses = nav.nurse_spots()
+        spots = {k: d for k, d in self._nurses.items()
+                 if self.heal_fails.get(nav.id_by_name.get(k[0]), 0) < 3}
+        for map_id, (x, y, facing) in self.heal_spots.items():
+            spots[(nav.name(map_id), x, y)] = facing
+        here = (nav.name(s.map_id), s.x, s.y)
+        if here in spots:
+            return self._heal_here(s, s.x, s.y, spots[here])
+        return self._nav_to(s, "heal", lambda m, x, y: (m, x, y) in spots)
+
     def _go_heal(self, s: GameState) -> Action | None:
         """One step towards the nearest known healing spot, or talk to it once there."""
+        if self.nav is not None and self.nav.knows(s.map_id):
+            a = self._go_heal_world(s)
+            if a is not None or self.heal_attempt is not None and self.t - self.heal_attempt < 40:
+                return a
+        if not self.heal_spots:
+            return None
         route = self._map_route(s.map_id, set(self.heal_spots))
         if route is None:
             return None
@@ -419,18 +607,7 @@ class Explorer:
         if len(route) == 1:
             x, y, facing = self.heal_spots[s.map_id]
             if here == (x, y):
-                if self.heal_attempt is not None and self.t - self.heal_attempt < 40:
-                    return None  # just tried: let the result show before trying again
-                if self.heal_attempt is not None:
-                    # Talked here before and still hurt: after a few tries, forget the spot.
-                    self.heal_fails[s.map_id] = self.heal_fails.get(s.map_id, 0) + 1
-                    if self.heal_fails[s.map_id] >= 3:
-                        del self.heal_spots[s.map_id]
-                        self.heal_attempt = None
-                        return None
-                self.heal_attempt = self.t
-                self._talk(s.map_id, x, y, facing)
-                return tap((facing,), 10, "heal")  # face them first
+                return self._heal_here(s, x, y, facing)
             path = self._path_to(m, here, lambda t: t == (x, y))
         else:
             return self._travel(s, set(self.heal_spots))

@@ -314,11 +314,11 @@ def main():
     c = Consts(root, ["include/constants/species.h", "include/constants/pokedex.h", "include/constants/flags.h",
                       "include/constants/vars.h", "include/constants/opponents.h", "include/constants/items.h",
                       "include/constants/global.h", "include/constants/pokemon.h", "include/global.h",
-                      "include/constants/battle.h", "include/constants/moves.h"])
+                      "include/constants/battle.h", "include/constants/moves.h", "include/constants/vars.h"])
     species, dex = species_and_dex(root, c)
     trainer_info = trainers(root, c)
-    flags = {k.removeprefix("FLAG_"): v for k, v in c.names("FLAG_").items()
-             if k.startswith(("FLAG_HACK_", "FLAG_BADGE", "FLAG_SYS_"))}
+    flags = {k.removeprefix("FLAG_"): v for k, v in c.names("FLAG_").items() if 0 <= v < 0x900}
+    story_vars = {k.removeprefix("VAR_"): v for k, v in c.names("VAR_").items() if 0x4000 <= v < 0x4100}
     profile = {
         "name": name,
         "release": release_info(root),
@@ -332,7 +332,7 @@ def main():
         "trainers": {str(k): v for k, v in sorted(trainer_info.items())},
         "level_caps": level_caps(root, c, trainer_info),
         "flags": dict(sorted(flags.items(), key=lambda kv: kv[1])),
-        "vars": {"MAP_SCENE_PALLET_TOWN_PLAYERS_HOUSE_2F": c.get("VAR_MAP_SCENE_PALLET_TOWN_PLAYERS_HOUSE_2F")},
+        "vars": dict(sorted(story_vars.items(), key=lambda kv: kv[1])),
         "items_count": c.get("ITEMS_COUNT"),
         "poke_balls": [c.get("ITEM_MASTER_BALL"), c.get("ITEM_PREMIER_BALL")],
         "max_level": 100,
