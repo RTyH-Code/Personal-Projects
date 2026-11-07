@@ -31,7 +31,7 @@ from pathlib import Path
 
 import numpy as np
 
-from . import story
+from . import checklist, story
 from .bootstrap import continue_from_save
 from .detectors import Detectors, Finding
 from .explorer import Action, Explorer
@@ -74,6 +74,7 @@ class Stats:
     starts: dict = field(default_factory=dict)  # start label -> sessions
     session_ends: list = field(default_factory=list)  # {badges, map, top_level, champion, objective} as each session ended
     story_stalls: dict = field(default_factory=dict)  # story objective -> times it was put aside, not getting done
+    checklist: dict = field(default_factory=dict)  # checklist key -> {"pass": n, "fail": n, "unreached": n}
 
     def to_json(self):
         d = asdict(self)
@@ -185,6 +186,7 @@ class Tester:
             if step % CLIP_EVERY == 0:
                 clip.append(screen[::2, ::2].copy())
             new = det.check(s, a.buttons, screen_hash(screen), held, step, last_was_move=a.tag == "move")
+            new += self._checklist_events(s, step)
             self._account(prev, s)
             self._maybe_pool(s)
             self._maybe_furthest(s, start, step)
@@ -205,6 +207,23 @@ class Tester:
                 "story_done": story.progress(s, self.game)[0] if s.flags else 0})
         self.stats.story_stalls = dict(self.explorer.story_stalls)
         return found
+
+    def _checklist_events(self, s, step) -> list:
+        """What the explorer's checklist saw: counts for the report, and a finding for each
+        hack feature that didn't work."""
+        out = []
+        for ev in self.explorer.events:
+            c = self.stats.checklist.setdefault(ev["key"], {"pass": 0, "fail": 0, "unreached": 0})
+            c[ev["result"]] += 1
+            if ev["result"] == "fail":
+                title = checklist.ALL_TITLES.get(ev["key"], ev["key"])
+                out.append(Finding("feature", "checklist", f"Didn't work: {title}",
+                                   ev["detail"] + " It may be a bug in the hack, or presses the playtester got wrong:"
+                                   " the clip shows which.",
+                                   map=self.game.map_name(*s.map_id) if s.valid else "", step=step,
+                                   reproducible=False, extra={"check": ev["key"]}))
+        self.explorer.events.clear()
+        return out
 
     # --- coverage, difficulty and the start-point pool ---------------------------------
 

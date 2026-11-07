@@ -68,6 +68,11 @@ class Game:
         return {int(k): v for k, v in self.p["trainers"].items()}
 
     @cached_property
+    def trainer_ids(self) -> dict[str, int]:
+        """TRAINER_ constant without the prefix -> trainer number."""
+        return {v["id"]: k for k, v in self.trainers.items() if v.get("id")}
+
+    @cached_property
     def fightable_trainers(self) -> dict[int, dict]:
         """Trainers some map's script battles."""
         return {k: v for k, v in self.trainers.items() if v["maps"]}

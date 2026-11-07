@@ -15,6 +15,8 @@ from .states import load_state_file
 from .tester import Start, Tester, pool_rank
 
 USER_START_SHARE = 0.35  # the rest come from the pool of states saved all over the game
+ADVANCED_SHARE = 0.75  # of pool starts: one of the most advanced states saved (the rest: less-visited maps)
+ADVANCED_TOP = 6
 
 
 def load_bytes(path) -> bytes:
@@ -52,6 +54,13 @@ def pick_start(rng: random.Random, starts: list[Start], out: Path, game: Game) -
         g, n = (int(x) for x in d.name.split("_"))
         return game.map_name(g, n)
 
+    if rng.random() < ADVANCED_SHARE:
+        # Usually carry on from the furthest points reached, so the checklist moves forward.
+        files = sorted((f for d in pool for f in d.glob("*.state")), key=pool_rank)[-ADVANCED_TOP:]
+        f = rng.choice(files)
+        return Start("pool", f"pool:{name(f.parent)}", load_state_file(f))
+
+    # Otherwise somewhere less visited, for variety.
     weights = [1.0 / (1 + seen.get(name(d), 0)) for d in pool]
     d = rng.choices(pool, weights)[0]
     files = sorted(d.glob("*.state"), key=pool_rank)

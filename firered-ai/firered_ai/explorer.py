@@ -30,12 +30,16 @@ Training: when the strongest Pokémon is more than TRAIN_MARGIN levels under
 the next Gym Leader's strongest, and healthy, walk in grass where wild
 battles have started before.
 
-Story (with the world map): most of the time, work on the first story
-objective not yet done (story.py): walk there by the shortest way the world
+The checklist (with the world map): nearly all the time, work on the first
+checklist item not yet done (checklist.py: the story's objectives, with the
+hack's features to try slotted in): walk there by the shortest way the world
 map knows (navigate.py), talk to the people or step on the tiles it names,
-and press A at Cut trees, rocks and water on the way. An objective that
-doesn't get done after STORY_BUDGET presses is put aside for a while, so a
-stuck tester goes back to exploring instead of walking into the same wall.
+and press A at Cut trees, rocks and water on the way. After trying a hack
+feature it waits to see it work (a flag, an item, a battle starting); one
+that doesn't after a few tries is reported. An item not done after
+STORY_BUDGET presses (CHECK_BUDGET for hack checks) is put aside for a while,
+so a stuck tester looks around instead of walking into the same wall.
+Exploring on its own is only for when nothing on the list can be reached.
 With the world map, healing goes to the nearest Pokémon Center and training
 to the nearest grass.
 
@@ -52,8 +56,8 @@ import random
 from collections import deque
 from dataclasses import dataclass, field
 
-from . import story
-from .navigate import Navigator
+from . import checklist, story
+from .navigate import OBSTACLE_TRIES, Navigator
 from .ram import GameState
 from .world import LAND_ENCOUNTERS, WALL
 
@@ -68,8 +72,10 @@ TRAIN_SHARE = 0.6  # share of overworld presses spent training (the rest keep ex
 ERRAND_SHARE = 0.6  # share of overworld presses spent heading for an errand's destination
 ERRAND_STEPS = 400  # presses to spend at an errand's destination before it counts as tried
 NO_B_AFTER_LEVEL_UP = 80  # presses without B after a battle with a level-up (B cancels evolution)
-STORY_SHARE = 0.75  # share of overworld presses spent on the current story objective
-STORY_BUDGET = 3000  # presses on one objective before putting it aside for a while
+STORY_SHARE = 0.95  # share of overworld presses spent on the checklist (the rest: a look around)
+STORY_BUDGET = 3000  # presses on one story objective before putting it aside for a while
+CHECK_BUDGET = 1500  # the same for a hack feature check
+CHECK_GIVE_UP = 2  # a hack check put aside this many times is dropped as out of reach
 STORY_REST = 1500  # presses an objective stays put aside
 
 # FireRed's item-gated story: holding the item, go to one of these maps.
@@ -126,7 +132,7 @@ def tap(buttons, wait=20, tag=""):
 
 
 class Explorer:
-    def __init__(self, rng: random.Random | None = None, map_visits=None, interact_prob=0.04, menu_prob=0.008,
+    def __init__(self, rng: random.Random | None = None, map_visits=None, interact_prob=0.02, menu_prob=0.003,
                  catch_prob=0.35, game=None, world=None):
         self.rng = rng or random.Random()
         self.game = game  # the game profile: moves, types, gym levels, items (optional)
@@ -165,6 +171,16 @@ class Explorer:
         self.story_target: dict[str, int] = {}  # objective -> which of its people to talk to next
         self.story_stalls: dict[str, int] = {}  # objective -> times it was put aside
         self._nurses = None
+        # The checklist: hack checks this worker has settled (passed, failed, or out of reach),
+        # the try being verified now, watches in progress, and what happened, for the tester.
+        self.checked: set[str] = set()
+        self.check_tries: dict[str, int] = {}
+        self.pending: dict | None = None
+        self.watching: dict[str, int] = {}  # watch key -> press its `after` became true
+        self.watch_prev: dict[str, bool] = {}
+        self.story_prev: dict[str, bool] = {}
+        self.field_tries: dict = {}  # obstacle tile -> (kind, tries)
+        self.events: list[dict] = []  # {"key", "result": pass/fail/unreached, "detail"}
 
     def new_session(self) -> None:
         """Forget walls (keep layouts and exits): the next start may be further into the game."""
@@ -271,6 +287,8 @@ class Explorer:
             if self.flags_seen is not None and s.flags != self.flags_seen and self.steps_since_forget >= FORGET_EVERY:
                 self.forget_walls()
             self.flags_seen = s.flags
+        if s.valid and s.flags and self.nav is not None:
+            self._follow_up(s)
         if self.queue:
             a = self.queue.popleft()
             if a.tag == "move" and s.valid:
@@ -297,6 +315,8 @@ class Explorer:
             if a is not None:
                 return a
         if self.nav is not None:
+            if self.pending is not None:
+                return Action((), 0, 30, "wait")  # let the last try show what it did
             if self.rng.random() < STORY_SHARE:
                 a = self._story(s)
                 if a is not None:
@@ -400,6 +420,17 @@ class Explorer:
             return None
         kind, d = r
         if kind == "use":  # a Cut tree, a rock, a boulder, water: face it and press A (YES)
+            dx, dy = DIRS[d]
+            target = (self.nav.name(s.map_id), s.x + dx, s.y + dy)
+            what = self.nav.obstacles(s)[1].get(target, "water")
+            _k, tries = self.field_tries.get(target, (what, 0))
+            self.field_tries[target] = (what, tries + 1)
+            if (tries + 1 >= OBSTACLE_TRIES and what in checklist.FIELD_MOVES and what != "EventScript_StrengthBoulder"
+                    and checklist.is_hack(self.game)):
+                key, title = checklist.FIELD_MOVES[what]
+                if key not in self.checked:
+                    self._event(key, "fail", f"Pressed A at it {tries + 1} times at {target[0]} ({target[1]}, "
+                                             f"{target[2]}) with the HM in the bag and the badge, and it stayed.")
             self._talk(s.map_id, s.x, s.y, d)
             return tap((d,), 10, "use")
         self.last_move = (s.map_id, s.x, s.y, d)
@@ -408,22 +439,100 @@ class Explorer:
     def current_objective(self, s: GameState):
         if self.nav is None or not s.valid or not s.flags:
             return None
-        return story.current(s, self.game)
+        return checklist.current(s, self.game, checked=self.checked)
+
+    # --- the checklist: trying things and checking they worked ------------------------
+
+    def _event(self, key: str, result: str, detail: str = "") -> None:
+        self.checked.add(key)
+        self.events.append({"key": key, "result": result, "detail": detail})
+
+    def _follow_up(self, s: GameState) -> None:
+        """Every press: see whether the last try worked, keep an eye on the watches,
+        notice field moves working and story objectives getting done."""
+        g = self.game
+        p = self.pending
+        if p is not None and (not s.in_battle or p["verify"] in ("battle", "double")):
+            c = checklist.BY_KEY[p["key"]]
+            worked = {"done": lambda: c.done(s, g), "battle": lambda: s.in_battle,
+                      "double": lambda: s.in_battle and bool(s.battle_type & 1),
+                      "visit": lambda: not self.queue,
+                      "toggle": lambda: not self.queue and self._flag(s, c.flag) != p["before"]}[c.verify]()
+            if worked:
+                self.pending = None
+                if c.verify == "toggle" and not p.get("restoring"):
+                    # It flipped: talk again to put it back as the run's rules had it.
+                    self.check_tries[c.key] = 0
+                    self._try_check(s, c, p["facing"], restoring=True)
+                else:
+                    self._event(c.key, "pass")
+            elif self.t - p["t"] > checklist.VERIFY_WITHIN and not self.queue:
+                self.pending = None
+                tries = self.check_tries[c.key] = self.check_tries.get(c.key, 0) + 1
+                if tries >= checklist.TRIES:
+                    what = {"done": "it didn't happen", "battle": "no battle started",
+                            "double": "no double battle started",
+                            "toggle": f"{c.flag} didn't change", "visit": "it didn't finish"}[c.verify]
+                    self._event(c.key, "fail", f"Tried {tries} times ({c.why}): {what}.")
+        if self.t % 5:
+            return
+        hack = checklist.is_hack(g)
+        for w in checklist.WATCHES if hack else ():
+            now = w.after(s, g)
+            if now and self.watch_prev.get(w.key) is False and w.key not in self.checked:
+                self.watching[w.key] = self.t
+            self.watch_prev[w.key] = now
+            start = self.watching.get(w.key)
+            if start is None:
+                continue
+            if w.expect(s, g):
+                del self.watching[w.key]
+                self._event(w.key, "pass")
+            elif self.t - start > w.within:
+                del self.watching[w.key]
+                self._event(w.key, "fail", f"{w.within} presses after it, still nothing ({w.why}).")
+        here = (self.nav.name(s.map_id), s.x, s.y)
+        tried = self.field_tries.pop(here, None)
+        if hack and tried is not None and tried[0] in checklist.FIELD_MOVES:
+            key = checklist.FIELD_MOVES[tried[0]][0]
+            if key not in self.checked:
+                self._event(key, "pass")
+        for o in story.STORY:
+            now = o.done(s, g)
+            if now and self.story_prev.get(o.key) is False:
+                self.events.append({"key": o.key, "result": "pass", "detail": ""})
+            self.story_prev[o.key] = now
+
+    def _flag(self, s, name) -> bool:
+        n = self.game.flags.get(name)
+        return n is not None and bool(s.flag(n))
+
+    def _try_check(self, s, c, facing, restoring=False) -> Action:
+        """Face them and do the check's presses; then wait and see whether it worked."""
+        self.pending = {"key": c.key, "verify": c.verify, "t": self.t, "facing": facing, "restoring": restoring,
+                        "before": self._flag(s, c.flag) if c.flag else None}
+        self.last_talk = (s.map_id, s.x, s.y, facing, self.t)
+        if restoring:  # straight after the first conversation, from the queue
+            self.queue.append(tap((facing,), 10, "check"))
+        self.queue.extend(tap((b,), 40, "check") for b in c.macro)
+        return tap((facing,), 10, "check")
 
     def _story(self, s: GameState) -> Action | None:
-        """One press towards finishing the current story objective, or None to explore."""
+        """One press towards the current checklist item, or None to look around."""
         if not self.nav.knows(s.map_id):
             return None
         resting = {k for k, until in self.story_rest.items() if until > self.t}
-        o = story.current(s, self.game, skip=resting)
+        o = checklist.current(s, self.game, skip=resting, checked=self.checked)
         self.objective = o.key if o else None
         if o is None:
             return None
         n = self.story_presses[o.key] = self.story_presses.get(o.key, 0) + 1
-        if n % STORY_BUDGET == 0:
-            # Not getting anywhere: put it aside, explore, and come back to it later.
+        if n % (STORY_BUDGET if o.part == "story" else CHECK_BUDGET) == 0:
+            # Not getting anywhere: put it aside, look around, and come back to it later.
             self.story_rest[o.key] = self.t + STORY_REST
             self.story_stalls[o.key] = self.story_stalls.get(o.key, 0) + 1
+            if o.part == "hack" and self.story_stalls[o.key] >= CHECK_GIVE_UP:
+                self._event(o.key, "unreached", f"Couldn't get it done in {n} presses.")
             return None
         here = self.nav.name(s.map_id)
         steps = [st for st in o.steps if st.when(s, self.game)]
@@ -449,6 +558,8 @@ class Explorer:
                 facing = spots.get((here, s.x, s.y))
                 if facing is not None:
                     self.story_target[o.key] = i + 1  # someone else next time
+                    if getattr(o, "part", "story") == "hack":
+                        return self._try_check(s, o, facing)
                     self._talk(s.map_id, s.x, s.y, facing)
                     return tap((facing,), 10, "story")
                 a = self._nav_to(s, ("talk", o.key, i), lambda m, x, y, sp=spots: (m, x, y) in sp)

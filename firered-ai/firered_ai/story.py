@@ -25,7 +25,7 @@ from dataclasses import dataclass, field
 
 @dataclass(frozen=True)
 class Cond:
-    kind: str  # flag, var, item, all, any, not, true, party
+    kind: str  # flag, var, item, trainer (beaten), all, any, not, true, party
     name: str = ""
     op: str = ""
     value: int = 0
@@ -45,6 +45,9 @@ class Cond:
         if k == "item":
             n = game.item(self.name)
             return n is not None and s.item_count(n) > 0
+        if k == "trainer":
+            n = game.trainer_ids.get(self.name)
+            return n is not None and s.flag(game.trainer_flags_start + n)
         if k == "party":
             return len([m for m in s.party if not m.is_egg]) >= self.value
         if k == "all":
@@ -57,7 +60,7 @@ class Cond:
 
     def names(self):
         """(kind, name) of everything this refers to, for checking against the game."""
-        if self.kind in ("flag", "var", "item"):
+        if self.kind in ("flag", "var", "item", "trainer"):
             yield self.kind, self.name
         for p in self.parts:
             yield from p.names()
@@ -73,6 +76,11 @@ def var(name, op, value):
 
 def item(name):
     return Cond("item", name)
+
+
+def trainer(trainer_id):
+    """Beaten: a trainer by its TRAINER_ constant without the prefix, e.g. SWIMMER_MALE_LUIS."""
+    return Cond("trainer", trainer_id)
 
 
 def all_of(*parts):

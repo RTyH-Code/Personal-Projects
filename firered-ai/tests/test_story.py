@@ -12,7 +12,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from world_emulator import WorldEmulator  # noqa: E402
 
-from firered_ai import story  # noqa: E402
+from firered_ai import checklist, story  # noqa: E402
 from firered_ai.explorer import Explorer  # noqa: E402
 from firered_ai.game import Game  # noqa: E402
 from firered_ai.navigate import Navigator  # noqa: E402
@@ -34,11 +34,20 @@ def test_every_name_in_the_story_is_real(game_world):
 
     def check(c, where):
         for kind, name in c.names():
-            ok = {"flag": name in g.flags, "var": name in g.vars, "item": g.item(name) is not None}[kind]
+            ok = {"flag": name in g.flags, "var": name in g.vars, "item": g.item(name) is not None,
+                  "trainer": name in g.trainer_ids}[kind]
             if not ok:
                 bad.append((where, kind, name))
 
-    for o in story.STORY:
+    hack = g.name == "firered_qol_hard"
+    items = list(story.STORY) + (checklist.CHECKS if hack else [])
+    for w_ in checklist.WATCHES if hack else []:
+        check(w_.after, w_.key)
+        check(w_.expect, w_.key)
+    for c in checklist.CHECKS if hack else []:
+        if c.verify == "toggle":
+            check(story.flag(c.flag), c.key)
+    for o in items:
         check(o.done, o.key)
         check(o.needs, o.key)
         for st in o.steps:
@@ -118,7 +127,8 @@ class Save:
 SIDE_EFFECTS = {
     "starter": [("var", "MAP_SCENE_PALLET_TOWN_OAK", 3), ("var", "MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB", 4)],
     "pokedex": [("var", "MAP_SCENE_VIRIDIAN_CITY_OLD_MAN", 1)],
-    "mt_moon_fossil": [("flag", "HIDE_DOME_FOSSIL"), ("flag", "HIDE_HELIX_FOSSIL")],
+    # Taking the Dome Fossil. In vanilla, Miguel takes the other; in the hack it stays for you.
+    "mt_moon_fossil": [("flag", "GOT_DOME_FOSSIL"), ("flag", "HIDE_DOME_FOSSIL"), ("vanilla", "HIDE_HELIX_FOSSIL")],
     "ss_anne": [("item", "HM01")],
     "bike_voucher": [("item", "BIKE_VOUCHER")],
     "surf": [("item", "HM03")],
@@ -138,8 +148,20 @@ def test_the_whole_story_has_a_way_through(game_world):
     save = Save(g)
     pos = ("PalletTown_PlayersHouse_2F", 5, 5)
     stuck = []
-    for o in [o for o in story.STORY if not o.post_game]:
+    hack = g.name == "firered_qol_hard"
+    for o in [o for o in (checklist.CHECKS if hack else story.STORY) if not o.post_game]:
         s = save.state(nav, pos)
+        if getattr(o, "part", "story") == "hack":
+            # A hack check on the way: its place must be reachable from here. (It doesn't move us on.)
+            if not o.needs(s, g):
+                continue  # e.g. no second Pokémon for a double battle
+            st = story.next_step(o, s, g)
+            spots = {(st.map, x, y) for sp in nav.talk_spots(s, st.map, st.talk) for x, y, _d in sp}
+            nav.plan_key = None
+            nav._make_plan(s, o.key, lambda m, x, y: (m, x, y) in spots, set())
+            if nav.plan is None:
+                stuck.append((o.key, pos[0], st.map))
+            continue
         assert o.needs(s, g), f"{o.key}: its needs don't hold after the objectives before it"
         st = story.next_step(o, s, g)
         if st.talk:
@@ -168,6 +190,10 @@ def test_the_whole_story_has_a_way_through(game_world):
                         w._exit_from_warp(m, *last[1:3], last[3]) or pos
         save.satisfy(o.done)
         for kind, *args in SIDE_EFFECTS.get(o.key, []):
+            if kind == "vanilla":
+                if not hack:
+                    save.flag(*args)
+                continue
             {"flag": save.flag, "var": save.var, "item": save.items.add}[kind](*args)
     assert not stuck
 
@@ -302,3 +328,68 @@ def test_report_shows_where_the_story_stalls():
                           "session_ends": {"sessions": 1, "badges": {0: 1}, "common_maps": [], "average_badges": 0,
                                            "average_top_level": 5, "objectives": [("parcel", 1)]}})
     assert "Collect Oak&#x27;s Parcel" in page and "(2&times;)" in page and "they were on" in page
+
+
+
+def viridian_pc_emulator(g, flips=True):
+    """In the Viridian Pokémon Center with the Pokédex: the checklist's first hack item is the
+    level-cap scientist. With `flips`, talking to him switches the flag, as the hack does."""
+    emu = WorldEmulator(g, start=("ViridianCity_PokemonCenter_1F", 7, 8))
+    emu.set_party([dict(level=60, hp=200, max_hp=200)])
+    for f in ("SYS_POKEMON_GET", "SYS_POKEDEX_GET"):
+        emu.set_flag(g.flags[f])
+    emu.set_var("MAP_SCENE_PALLET_TOWN_OAK", 3)
+    sci = next(o for o in emu.world.maps["ViridianCity_PokemonCenter_1F"].objects if o[3].endswith("LevelCap"))
+    state = {"last": -99}
+
+    def talk(e, name, x, y):
+        if flips and (x, y) == (sci[1], sci[2]) and len(e.presses) - state["last"] >= 5:
+            state["last"] = len(e.presses)  # one conversation: facing them, then four A presses
+            e.set_flag(g.flags["HACK_LEVEL_CAP"], not e.flag_on("HACK_LEVEL_CAP"))
+    emu.on_talk = talk
+    return emu
+
+
+def test_switches_level_caps_and_back():
+    g = Game.load("firered_qol_hard")
+    emu = viridian_pc_emulator(g)
+    ex = Explorer(random.Random(8), interact_prob=0, menu_prob=0, game=g, world=emu.world)
+    run(emu, ex, g, 800, lambda: "level_cap_toggle" in ex.checked)
+    assert {"key": "level_cap_toggle", "result": "pass", "detail": ""} in ex.events
+    assert not emu.flag_on("HACK_LEVEL_CAP")  # put back as it was
+
+
+def test_a_feature_that_does_nothing_is_reported():
+    g = Game.load("firered_qol_hard")
+    emu = viridian_pc_emulator(g, flips=False)
+    ex = Explorer(random.Random(9), interact_prob=0, menu_prob=0, game=g, world=emu.world)
+    run(emu, ex, g, 1500, lambda: "level_cap_toggle" in ex.checked)
+    fails = [e for e in ex.events if e["result"] == "fail"]
+    assert fails and fails[0]["key"] == "level_cap_toggle" and "HACK_LEVEL_CAP didn't change" in fails[0]["detail"]
+    # It moves on down the list instead of trying forever.
+    assert ex.objective != "level_cap_toggle"
+
+
+@pytest.mark.parametrize("gets_egg", [True, False])
+def test_koga_must_give_the_lucky_egg(gets_egg):
+    g = Game.load("firered_qol_hard")
+    emu = viridian_pc_emulator(g)
+    ex = Explorer(random.Random(10), interact_prob=0, menu_prob=0, game=g, world=emu.world)
+    from firered_ai.ram import DEFAULT_ADDRESSES, read_state
+    for i in range(700):
+        if i == 50:
+            emu.set_flag(g.flags["BADGE05_GET"])
+            if gets_egg:
+                emu.set_bag_item("items", g.item("LUCKY_EGG"), 1, g.layout)
+        ex.next(read_state(emu.read, DEFAULT_ADDRESSES, g.layout))
+    results = [e["result"] for e in ex.events if e["key"] == "lucky_egg"]
+    assert results == (["pass"] if gets_egg else ["fail"])
+
+
+def test_report_lists_the_checklist():
+    from firered_ai.report import checklist_html, checklist_rows
+    rows = checklist_rows({"parcel": {"pass": 2, "fail": 0, "unreached": 0},
+                           "level_cap_toggle": {"pass": 0, "fail": 1, "unreached": 0}})
+    page = checklist_html({"checklist": rows})
+    assert "Done (2&times;)" in page and "Didn&#x27;t work" not in page and "Didn't work (1&times;)" in page
+    assert "Not reached yet" in page and "Gym double battles" in page

@@ -325,14 +325,18 @@ def test_pool_and_pick_start(tmp_path):
     rng = random.Random(0)
     starts = [Start("state", "mine", b"x")]
     assert pick_start(rng, starts, out, VANILLA).label == "mine"  # empty pool
-    for g, n in [(3, 0), (3, 19)]:
+    for i, (g, n) in enumerate([(3, 0), (3, 19), (3, 20), (3, 21), (3, 22), (3, 23), (3, 24), (3, 25)]):
         d = out / "pool" / f"{g}_{n}"
         d.mkdir(parents=True)
-        (d / "a.state").write_bytes(b"state")
+        rank = "0103020000" if i == 0 else f"00000{i:02d}000"  # Pallet Town's is the most advanced
+        (d / f"{rank}_a.state").write_bytes(b"state")
     (out / "stats-w0.json").write_text(json.dumps({"maps": {"PalletTown": 10000}}))
-    labels = [pick_start(rng, starts, out, VANILLA).label for _ in range(300)]
-    assert labels.count("pool:Route1") > 5 * labels.count("pool:PalletTown")  # favours little-visited maps
-    assert labels.count("mine") > 50
+    labels = [pick_start(rng, starts, out, VANILLA).label for _ in range(600)]
+    # The most advanced state is a favourite even on a much-visited map...
+    assert labels.count("pool:PalletTown") > 40
+    # ...and the least advanced are only picked for variety, by how little their maps were visited.
+    assert 0 < labels.count("pool:Route1") < labels.count("pool:PalletTown")
+    assert labels.count("mine") > 100
 
 
 def test_report(tmp_path):

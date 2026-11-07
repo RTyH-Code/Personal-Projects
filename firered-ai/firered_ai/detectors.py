@@ -34,7 +34,7 @@ STUCK_STEPS = 4000
 
 @dataclass
 class Finding:
-    kind: str  # crash, softlock, corrupt, rule
+    kind: str  # crash, softlock, corrupt, rule, feature (a hack feature on the checklist didn't work)
     check: str  # which detector
     title: str
     detail: str
