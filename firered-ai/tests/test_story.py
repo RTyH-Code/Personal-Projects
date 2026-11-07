@@ -269,6 +269,7 @@ def run(emu, ex, g, presses, until):
         s = read_state(emu.read, DEFAULT_ADDRESSES, g.layout)
         a = ex.next(s)
         emu.press(a.buttons, a.hold)
+        emu.press((), a.wait)  # the frames after it, as the tester waits
         if until():
             return i + 1
     return None
@@ -331,12 +332,13 @@ def test_report_shows_where_the_story_stalls():
 
 
 
-def viridian_pc_emulator(g, flips=True):
+def viridian_pc_emulator(g, flips=True, menu_frames=60):
     """In the Viridian Pokémon Center with the Pokédex: the checklist's first hack item is the
-    level-cap scientist. With `flips`, talking to him switches the flag as the hack does: the
-    first A starts the conversation, and the YES that switches it comes a different number of
-    A presses later depending on the setting (its message is longer when caps are on). B, or an
-    A after that, ends the conversation."""
+    level-cap scientist. With `flips`, talking to him works as in the hack: the first A starts
+    the conversation and shows his menu (LEVEL CAPS / EXP. SHARE) `menu_frames` later; a DOWN
+    before that is lost. The next A picks the option, and the YES that switches it comes some A
+    presses later (more when the setting is on: a longer message). B, or an A after that, ends
+    the conversation."""
     emu = WorldEmulator(g, start=("ViridianCity_PokemonCenter_1F", 7, 8))
     emu.set_party([dict(level=60, hp=200, max_hp=200)])
     for f in ("SYS_POKEMON_GET", "SYS_POKEDEX_GET"):
@@ -344,21 +346,33 @@ def viridian_pc_emulator(g, flips=True):
     emu.set_var("MAP_SCENE_PALLET_TOWN_OAK", 3)
     sci = next(o for o in emu.world.maps["ViridianCity_PokemonCenter_1F"].objects if o[3].endswith("LevelCap"))
     conv = {"a": 0}  # A presses in the conversation; 0: not talking
+    settings = ["HACK_LEVEL_CAP", "HACK_PARTY_EXP_SHARE"]
 
     def talk(e, name, x, y):
-        if conv["a"] == 0 and (x, y) != (sci[1], sci[2]):
+        if conv["a"] == 0:
+            if (x, y) != (sci[1], sci[2]):
+                return
+            conv.update(a=1, start=e.frame, option=0)
+            e.talking = True
             return
         conv["a"] += 1
-        on = e.flag_on("HACK_LEVEL_CAP")
-        need = 4 if on else 3
+        flag = settings[conv["option"]]
+        on = e.flag_on(flag)
+        # A presses from the start of the conversation to the YES. Turning level caps on, his
+        # offer runs four pages (as the real game's does), each needing an A or two.
+        need = 4 if on or flag != "HACK_LEVEL_CAP" else 10
         if flips and conv["a"] == need:
-            e.set_flag(g.flags["HACK_LEVEL_CAP"], not on)
+            e.set_flag(g.flags[flag], not on)
         elif conv["a"] > need:
             conv["a"] = 0
+            e.talking = False
 
     def press(e, b):
         if b == "B":
             conv["a"] = 0
+            e.talking = False
+        elif b == "DOWN" and conv["a"] == 1 and e.frame - conv["start"] >= menu_frames:
+            conv["option"] = 1
     emu.on_talk = talk
     emu.on_press = press
     return emu
@@ -504,3 +518,20 @@ def test_trains_on_trainers_first_and_saves_the_gym_for_last():
     assert gym_at > 0  # someone outside the gym first
     outside = emu.beaten[:gym_at]
     assert all(not t.startswith(("LEADER_", "RIVAL_")) for t in outside)
+
+
+@pytest.mark.parametrize("menu_frames,works", [(150, True), (400, False)])
+def test_exp_share_switch_and_a_wrong_pick_put_back(menu_frames, works):
+    """Exp. Share is the menu's second option. If the DOWN is lost (the menu slow to appear),
+    the A presses switch level caps instead: that's put back at once, and the check fails
+    with a note that it picked the wrong option."""
+    g = Game.load("firered_qol_hard")
+    emu = viridian_pc_emulator(g, menu_frames=menu_frames)
+    ex = Explorer(random.Random(14), interact_prob=0, menu_prob=0, game=g, world=emu.world)
+    ex.checked |= {"level_cap_toggle"}
+    run(emu, ex, g, 2500, lambda: "exp_share_toggle" in ex.checked)
+    results = {e["key"]: e for e in ex.events}
+    assert results["exp_share_toggle"]["result"] == ("pass" if works else "fail")
+    if not works:
+        assert "wrong option" in results["exp_share_toggle"]["detail"]
+    assert not emu.flag_on("HACK_LEVEL_CAP") and not emu.flag_on("HACK_PARTY_EXP_SHARE")  # rules as they were
