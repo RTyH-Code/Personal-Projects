@@ -36,15 +36,36 @@ and caught) and **difficulty** numbers (battles and blackouts per map).
 - **Exploring:** it heads for ground it hasn't stood on, finds its way back
   to unfinished spots, and leaves maps through exits toward the places
   visited least. When a step doesn't move it, it presses B (in case text is
-  open) and tries again. Then it presses A at the obstacle, which talks to
-  people, reads signs, picks up items and uses HM obstacles.
+  open) and tries again. Then it presses A at the obstacle a few times,
+  which talks to people (answering YES), reads signs, picks up items and
+  uses HM obstacles. Walls are forgotten when the story moves on, since some
+  are scripts (Oak stopping you leaving Pallet Town). If no direction works
+  at all (the nickname screen), it presses START to get out.
+- **Healing:** when talking to someone fully heals the party (Mom, a
+  Pokémon Center nurse), it remembers where. It goes back there, through
+  the maps it knows, when the party's HP is under 40% or its attacks are
+  out of PP.
+- **Battles:** it picks the move that does the most damage against the
+  opponent: power, same-type bonus, the type chart (Fairy included) and
+  accuracy, skipping status moves, empty PP and moves like Self-Destruct.
+  When one of its Pokémon faints, it sends in the next one that can fight.
+  It runs from wild battles below half HP, sometimes throws a Poké Ball,
+  and now and then presses something random so the bag and party screens
+  get used too. Right after a level-up it avoids B, which would cancel an
+  evolution.
+- **Training:** when its strongest Pokémon is more than 2 levels under the
+  next Gym Leader's strongest, and it's healthy, it spends some of its time
+  walking in grass where it has met wild Pokémon before.
+- **Story errands:** while it carries a story item (Oak's Parcel, the S.S.
+  Ticket, the Bike Voucher, the Tea, the Silph Scope, the Poké Flute, the
+  Gold Teeth, the Lift Key, the Card Key, the Secret Key), it heads for
+  where that item is needed, if it has found the way there.
 - **Menus:** now and then it opens the START menu and pokes around (bag,
   party, the Nuzlocke tracker, options, saving...).
-- **Battles:** mostly FIGHT, with random menu moves so the bag, switching
-  and RUN get used too. In wild battles it sometimes throws a Poké Ball.
-- **Covering the whole game:** while it plays it keeps a few save states on
-  every map it reaches. Later sessions start from those, favouring the
-  least-visited maps. Give it your own saves to reach later content sooner.
+- **Covering the whole game:** while it plays it keeps the most advanced
+  few save states on every map it reaches. Later sessions start from those,
+  favouring the least-visited maps. Give it your own saves to reach later
+  content sooner.
 
 ## Install on Windows (one click)
 

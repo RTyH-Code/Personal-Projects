@@ -109,7 +109,7 @@ class Tester:
         self.log = log or (lambda *_: None)
         self.stop = stop  # a multiprocessing.Event, or None
         self.map_visits: dict = {}
-        self.explorer = Explorer(self.rng, self.map_visits)
+        self.explorer = Explorer(self.rng, self.map_visits, game=game)
         self.stats = Stats()
         self.captures: dict[str, int] = {}
         self.pool = self.out / "pool"

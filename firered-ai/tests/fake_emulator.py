@@ -13,10 +13,11 @@ KEY = 0x12345678
 
 
 def encode_mon(level=5, hp=20, max_hp=20, species=1, exp=135, personality=1000, ot_id=0x1234ABCD,
-               held_item=0, nuzlocke_dead=False, is_egg=False, bad_checksum=False, stats=(10, 10, 10, 10, 10)):
+               held_item=0, nuzlocke_dead=False, is_egg=False, bad_checksum=False, stats=(10, 10, 10, 10, 10),
+               moves=(33, 0, 0, 0), pp=(35, 0, 0, 0)):
     """A 100-byte party Pokémon, encrypted the way the game stores it."""
     growth = struct.pack("<HHIBB2x", species, held_item, exp, 0, 70)
-    attacks = struct.pack("<4H4B", 33, 0, 0, 0, 35, 0, 0, 0)
+    attacks = struct.pack("<4H4B", *moves, *pp)
     evs = bytes(12)
     ribbons = ram.NUZLOCKE_DEAD_BIT if nuzlocke_dead else 0
     misc = struct.pack("<BBHII", 0, 0, 0, (1 << 30) if is_egg else 0, ribbons)
@@ -100,6 +101,16 @@ class FakeEmulator:
 
     def set_money(self, m):
         self.w32(SB1 + ram.SB1_MONEY, m ^ KEY)
+
+    def set_bag_item(self, pocket, item, qty, layout=None, slot=0):
+        lay = layout or ram.VANILLA_LAYOUT
+        off = lay["sb1_bag_pockets"][pocket][0] + 4 * slot
+        self.write(SB1 + off, struct.pack("<HH", item, qty ^ (KEY & 0xFFFF)))
+
+    def set_enemy_party(self, mons):
+        for i in range(6):
+            raw = encode_mon(personality=5000 + i, **mons[i]) if i < len(mons) else bytes(100)
+            self.write(ram.DEFAULT_ADDRESSES["gEnemyParty"] + i * ram.MON_SIZE, raw)
 
     def set_in_battle(self, on):
         self.write(ram.DEFAULT_ADDRESSES["gMain"] + ram.MAIN_IN_BATTLE, bytes([0x2 if on else 0]))
