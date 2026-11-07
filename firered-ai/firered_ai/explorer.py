@@ -185,6 +185,7 @@ class Explorer:
         # the try being verified now, watches in progress, and what happened, for the tester.
         self.checked: set[str] = set()
         self.check_tries: dict[str, int] = {}
+        self.wrong_switches: dict[str, int] = {}  # toggle check -> tries that switched another setting
         self.pending: dict | None = None
         self.watching: dict[str, int] = {}  # watch key -> press its `after` became true
         self.watch_prev: dict[str, bool] = {}
@@ -522,10 +523,24 @@ class Explorer:
         rest of the conversation with B (which can only answer NO from there on)."""
         c = checklist.BY_KEY[p["key"]]
         tidy = [tap(("B",), 40, "check") for _ in range(3)]
+        others = [o for o in checklist.CHECKS if o.verify == "toggle" and o.flag != c.flag]
+        wrong = next((o for o in others if self._flag(s, o.flag) != p["others"].get(o.flag)), None)
+        if wrong is not None and not p.get("fixing"):
+            # The wrong option got picked and switched another setting: put that one back
+            # first (without counting it as that check's result), then try this one again.
+            self.queue.clear()
+            self.queue.extend(tidy)
+            self.check_tries[c.key] = self.check_tries.get(c.key, 0) + 1
+            self.wrong_switches[c.key] = self.wrong_switches.get(c.key, 0) + 1
+            self._try_check(s, wrong, p["facing"], restoring=True)
+            self.pending["fixing"] = True
+            return
         if self._flag(s, c.flag) != p["before"]:
             self.queue.clear()  # that A answered YES: no more
             self.queue.extend(tidy)
             self.pending = None
+            if p.get("fixing"):
+                return  # put back; the check it interrupted gets tried again
             if p["restoring"]:
                 self._event(c.key, "pass")
             else:
@@ -548,11 +563,17 @@ class Explorer:
             if p["restoring"]:  # keep trying to put it back, not to switch it again
                 self._try_check(s, c, p["facing"], restoring=True)
             return
-        if p["restoring"]:
+        if p.get("fixing"):
+            self._event(c.key, "fail", f"Another check switched {c.flag} by mistake, and switching it back didn't "
+                                       f"work. This run's rules are now different.")
+        elif p["restoring"]:
             self._event(c.key, "fail", f"It switched {c.flag}, but switching it back didn't work after {tries} "
                                        f"tries ({c.why}). This run's rules are now different.")
         else:
-            self._event(c.key, "fail", f"Tried {tries} times ({c.why}): {c.flag} didn't change.")
+            wrong = self.wrong_switches.get(c.key, 0)
+            note = (f" {wrong} of the tries switched a different setting instead (put back each time): the "
+                    "playtester probably picked the wrong option in the menu.") if wrong else ""
+            self._event(c.key, "fail", f"Tried {tries} times ({c.why}): {c.flag} didn't change.{note}")
 
     def _flag(self, s, name) -> bool:
         n = self.game.flags.get(name)
@@ -561,11 +582,13 @@ class Explorer:
     def _try_check(self, s, c, facing, restoring=False) -> Action:
         """Face them and do the check's presses; then wait and see whether it worked."""
         self.pending = {"key": c.key, "verify": c.verify, "t": self.t, "facing": facing, "restoring": restoring,
-                        "before": self._flag(s, c.flag) if c.flag else None, "a_left": checklist.TOGGLE_A_PRESSES}
+                        "before": self._flag(s, c.flag) if c.flag else None, "a_left": checklist.TOGGLE_A_PRESSES,
+                        "others": {o.flag: self._flag(s, o.flag) for o in checklist.CHECKS if o.verify == "toggle"}}
         self.last_talk = (s.map_id, s.x, s.y, facing, self.t)
         if restoring:  # straight after the first conversation, from the queue
             self.queue.append(tap((facing,), 10, "check"))
-        self.queue.extend(tap((b,), 40, "check") for b in c.macro)
+        # The first A starts the conversation: give its message and menu time to appear.
+        self.queue.extend(tap((b,), 120 if i == 0 else 40, "check") for i, b in enumerate(c.macro))
         return tap((facing,), 10, "check")
 
     def _story(self, s: GameState) -> Action | None:

@@ -26,6 +26,7 @@ class WorldEmulator(FakeEmulator):
         self.facing = "DOWN"
         self.on_talk = None  # f(emu, map name, x, y) when A is pressed facing (x, y)
         self.on_press = None  # f(emu, button), for every button
+        self.talking = False  # in a conversation: the d-pad moves menu cursors, not the player
         self.talks = []
         self.teleport(*start)
 
@@ -69,7 +70,7 @@ class WorldEmulator(FakeEmulator):
                 self.talks.append((name, x, y, self.facing))
                 if self.on_talk:
                     self.on_talk(self, name, x + dx, y + dy)
-            if b not in DIRS:
+            if b not in DIRS or self.talking:
                 continue
             self.facing = b
             dx, dy = DIRS[b]
