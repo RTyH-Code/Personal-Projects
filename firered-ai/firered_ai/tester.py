@@ -267,11 +267,17 @@ class Tester:
         lost["steps"] += 1
         live = [m for m in s.party if not m.is_egg]
         whited_out = s.map_id != lost["map_id"] and live and all(m.hp == m.max_hp for m in live)
-        if not whited_out and lost["steps"] < WHITEOUT_STEPS:
+        # A whiteout warps you away before you take a step. Walking off first means the game
+        # let you carry on (the first rival battle in Oak's lab heals you and you walk out).
+        walked = False
+        if s.valid and s.map_id == lost["map_id"]:
+            lost.setdefault("pos", (s.x, s.y))
+            walked = (s.x, s.y) != lost["pos"]
+        if not whited_out and not walked and lost["steps"] < WHITEOUT_STEPS:
             return
         self._lost = None
         b = self.stats.battles.setdefault(lost["map"], new_battle_counts())
-        if whited_out:
+        if whited_out and not walked:
             b["blackouts"] += 1
             if lost["trainer"]:
                 b["trainer_losses"] += 1

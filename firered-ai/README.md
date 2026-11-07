@@ -91,7 +91,8 @@ battle counts towards the difficulty numbers.
   evolution.
 - **Training:** when its strongest Pokémon is more than 2 levels under the
   next Gym Leader's strongest, and it's healthy, it spends some of its time
-  walking in the nearest grass.
+  walking in grass: the last grass on the way to its next checklist item
+  (Viridian Forest before Brock), where the wild Pokémon give the most Exp.
 - **Menus:** once in a while it opens the START menu and pokes around (bag,
   party, the Nuzlocke tracker, options, saving...).
 - **Moving forward:** while it plays it keeps the most advanced few save

@@ -27,8 +27,9 @@ other battle menus get used. After a level-up, no B for a while (it would
 cancel an evolution).
 
 Training: when the strongest Pokémon is more than TRAIN_MARGIN levels under
-the next Gym Leader's strongest, and healthy, walk in grass where wild
-battles have started before.
+the next Gym Leader's strongest, and healthy, walk in grass: with the world
+map, the last grass on the way to the next checklist item (wild Pokémon are
+stronger there); without it, grass where wild battles have started before.
 
 The checklist (with the world map): nearly all the time, work on the first
 checklist item not yet done (checklist.py: the story's objectives, with the
@@ -171,6 +172,7 @@ class Explorer:
         self.story_target: dict[str, int] = {}  # objective -> which of its people to talk to next
         self.story_stalls: dict[str, int] = {}  # objective -> times it was put aside
         self._nurses = None
+        self.train_maps: dict = {}  # (checklist item, its map) -> where to train for it
         # The checklist: hack checks this worker has settled (passed, failed, or out of reach),
         # the try being verified now, watches in progress, and what happened, for the tester.
         self.checked: set[str] = set()
@@ -452,7 +454,9 @@ class Explorer:
         notice field moves working and story objectives getting done."""
         g = self.game
         p = self.pending
-        if p is not None and (not s.in_battle or p["verify"] in ("battle", "double")):
+        if p is not None and p["verify"] == "toggle" and not s.in_battle:
+            self._follow_up_toggle(s, p)
+        elif p is not None and (not s.in_battle or p["verify"] in ("battle", "double")):
             c = checklist.BY_KEY[p["key"]]
             worked = {"done": lambda: c.done(s, g), "battle": lambda: s.in_battle,
                       "double": lambda: s.in_battle and bool(s.battle_type & 1),
@@ -503,6 +507,44 @@ class Explorer:
                 self.events.append({"key": o.key, "result": "pass", "detail": ""})
             self.story_prev[o.key] = now
 
+    def _follow_up_toggle(self, s: GameState, p: dict) -> None:
+        """A setting switch: after the presses that reach its YES/NO, press A one at a time
+        until the flag flips (messages can run a page longer or shorter), then close the
+        rest of the conversation with B (which can only answer NO from there on)."""
+        c = checklist.BY_KEY[p["key"]]
+        tidy = [tap(("B",), 40, "check") for _ in range(3)]
+        if self._flag(s, c.flag) != p["before"]:
+            self.queue.clear()  # that A answered YES: no more
+            self.queue.extend(tidy)
+            self.pending = None
+            if p["restoring"]:
+                self._event(c.key, "pass")
+            else:
+                # It flipped: talk again to put it back as the run's rules had it.
+                self.check_tries[c.key] = 0
+                self._try_check(s, c, p["facing"], restoring=True)
+            return
+        if self.queue:
+            return
+        if p["a_left"] > 0:
+            p["a_left"] -= 1
+            self.queue.append(tap(("A",), 40, "check"))
+            return
+        if self.t - p["t"] <= checklist.VERIFY_WITHIN:
+            return
+        self.pending = None
+        self.queue.extend(tidy)
+        tries = self.check_tries[c.key] = self.check_tries.get(c.key, 0) + 1
+        if tries < checklist.TRIES:
+            if p["restoring"]:  # keep trying to put it back, not to switch it again
+                self._try_check(s, c, p["facing"], restoring=True)
+            return
+        if p["restoring"]:
+            self._event(c.key, "fail", f"It switched {c.flag}, but switching it back didn't work after {tries} "
+                                       f"tries ({c.why}). This run's rules are now different.")
+        else:
+            self._event(c.key, "fail", f"Tried {tries} times ({c.why}): {c.flag} didn't change.")
+
     def _flag(self, s, name) -> bool:
         n = self.game.flags.get(name)
         return n is not None and bool(s.flag(n))
@@ -510,7 +552,7 @@ class Explorer:
     def _try_check(self, s, c, facing, restoring=False) -> Action:
         """Face them and do the check's presses; then wait and see whether it worked."""
         self.pending = {"key": c.key, "verify": c.verify, "t": self.t, "facing": facing, "restoring": restoring,
-                        "before": self._flag(s, c.flag) if c.flag else None}
+                        "before": self._flag(s, c.flag) if c.flag else None, "a_left": checklist.TOGGLE_A_PRESSES}
         self.last_talk = (s.map_id, s.x, s.y, facing, self.t)
         if restoring:  # straight after the first conversation, from the queue
             self.queue.append(tap((facing,), 10, "check"))
@@ -627,16 +669,37 @@ class Explorer:
         top = max(mon.level for mon in live)
         return top < self.game.next_gym_level(s) - TRAIN_MARGIN
 
+    def _training_map(self, s: GameState) -> str | None:
+        """Where to train: the last map with grass (or a cave) on the way to the current checklist
+        item. Wild Pokémon get stronger along the story, so that's where Exp. comes fastest."""
+        o = self.current_objective(s)
+        st = story.next_step(o, s, self.game) if o is not None else None
+        if st is None:
+            return None
+        key = (o.key, st.map)
+        if key not in self.train_maps:
+            nav, world = self.nav, self.nav.world
+            here = (nav.name(s.map_id), s.x, s.y)
+            plan = world.route(here, lambda m, x, y: m == st.map, surf=story.CAN_SURF(s, self.game),
+                               blocked=nav.obstacles(s)[0]) or []
+            maps = list(dict.fromkeys([p[0] for p in plan] + [st.map]))
+            with_grass = [m for m in maps if world.maps[m].grass()]
+            self.train_maps[key] = with_grass[-1] if with_grass else None
+        return self.train_maps[key]
+
     def _train_world(self, s: GameState) -> Action | None:
-        """Walk to the nearest grass (or cave floor) on the world map, then pace about in it."""
+        """Walk to grass (or cave floor) on the training map, or the nearest if there's none,
+        then pace about in it."""
         world = self.nav.world
-        m = world.maps[self.nav.name(s.map_id)]
+        here = self.nav.name(s.map_id)
+        m = world.maps[here]
+        where = self._training_map(s)
 
         def grass(x, y, mm=m):
             c = mm.cell(x, y)
             return c is not None and bool(c & LAND_ENCOUNTERS) and not c & WALL
 
-        if grass(s.x, s.y):
+        if grass(s.x, s.y) and where in (None, here):
             mem = self.mem(s.map_id)
             options = [d for d, (dx, dy) in DIRS.items()
                        if grass(s.x + dx, s.y + dy) and (s.x, s.y, d) not in mem.blocked]
@@ -645,6 +708,10 @@ class Explorer:
             d = self.rng.choice(options)
             self.last_move = (s.map_id, s.x, s.y, d)
             return Action((d,), tag="move")
+        if where is not None:
+            a = self._nav_to(s, ("train", where), lambda mp, x, y: mp == where and grass(x, y, world.maps[mp]))
+            if a is not None:
+                return a
         return self._nav_to(s, "train", lambda mp, x, y: grass(x, y, world.maps[mp]))
 
     def _train(self, s: GameState) -> Action | None:

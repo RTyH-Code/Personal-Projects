@@ -333,30 +333,49 @@ def test_report_shows_where_the_story_stalls():
 
 def viridian_pc_emulator(g, flips=True):
     """In the Viridian Pokémon Center with the Pokédex: the checklist's first hack item is the
-    level-cap scientist. With `flips`, talking to him switches the flag, as the hack does."""
+    level-cap scientist. With `flips`, talking to him switches the flag as the hack does: the
+    first A starts the conversation, and the YES that switches it comes a different number of
+    A presses later depending on the setting (its message is longer when caps are on). B, or an
+    A after that, ends the conversation."""
     emu = WorldEmulator(g, start=("ViridianCity_PokemonCenter_1F", 7, 8))
     emu.set_party([dict(level=60, hp=200, max_hp=200)])
     for f in ("SYS_POKEMON_GET", "SYS_POKEDEX_GET"):
         emu.set_flag(g.flags[f])
     emu.set_var("MAP_SCENE_PALLET_TOWN_OAK", 3)
     sci = next(o for o in emu.world.maps["ViridianCity_PokemonCenter_1F"].objects if o[3].endswith("LevelCap"))
-    state = {"last": -99}
+    conv = {"a": 0}  # A presses in the conversation; 0: not talking
 
     def talk(e, name, x, y):
-        if flips and (x, y) == (sci[1], sci[2]) and len(e.presses) - state["last"] >= 5:
-            state["last"] = len(e.presses)  # one conversation: facing them, then four A presses
-            e.set_flag(g.flags["HACK_LEVEL_CAP"], not e.flag_on("HACK_LEVEL_CAP"))
+        if conv["a"] == 0 and (x, y) != (sci[1], sci[2]):
+            return
+        conv["a"] += 1
+        on = e.flag_on("HACK_LEVEL_CAP")
+        need = 4 if on else 3
+        if flips and conv["a"] == need:
+            e.set_flag(g.flags["HACK_LEVEL_CAP"], not on)
+        elif conv["a"] > need:
+            conv["a"] = 0
+
+    def press(e, b):
+        if b == "B":
+            conv["a"] = 0
     emu.on_talk = talk
+    emu.on_press = press
     return emu
 
 
-def test_switches_level_caps_and_back():
+@pytest.mark.parametrize("caps_on", [False, True])
+def test_switches_level_caps_and_back(caps_on):
+    """Off -> on and on -> off take different numbers of A presses; either way it
+    switches the setting and puts it back."""
     g = Game.load("firered_qol_hard")
     emu = viridian_pc_emulator(g)
+    if caps_on:
+        emu.set_flag(g.flags["HACK_LEVEL_CAP"])
     ex = Explorer(random.Random(8), interact_prob=0, menu_prob=0, game=g, world=emu.world)
     run(emu, ex, g, 800, lambda: "level_cap_toggle" in ex.checked)
     assert {"key": "level_cap_toggle", "result": "pass", "detail": ""} in ex.events
-    assert not emu.flag_on("HACK_LEVEL_CAP")  # put back as it was
+    assert emu.flag_on("HACK_LEVEL_CAP") == caps_on  # put back as it was
 
 
 def test_a_feature_that_does_nothing_is_reported():
@@ -367,7 +386,9 @@ def test_a_feature_that_does_nothing_is_reported():
     fails = [e for e in ex.events if e["result"] == "fail"]
     assert fails and fails[0]["key"] == "level_cap_toggle" and "HACK_LEVEL_CAP didn't change" in fails[0]["detail"]
     # It moves on down the list instead of trying forever.
-    assert ex.objective != "level_cap_toggle"
+    from firered_ai.ram import DEFAULT_ADDRESSES, read_state
+    s = read_state(emu.read, DEFAULT_ADDRESSES, g.layout)
+    assert checklist.current(s, g, checked=ex.checked).key != "level_cap_toggle"
 
 
 @pytest.mark.parametrize("gets_egg", [True, False])
@@ -393,3 +414,20 @@ def test_report_lists_the_checklist():
     page = checklist_html({"checklist": rows})
     assert "Done (2&times;)" in page and "Didn&#x27;t work" not in page and "Didn't work (1&times;)" in page
     assert "Not reached yet" in page and "Gym double battles" in page
+
+
+def test_trains_in_the_last_grass_before_the_next_gym():
+    """Before Brock: Viridian Forest, not Route 1 next door."""
+    g = Game.load("firered_qol_hard")
+    emu = WorldEmulator(g, start=("ViridianCity", 20, 20))
+    emu.set_party([dict(level=5, hp=20, max_hp=20)])
+    for f in ("SYS_POKEMON_GET", "SYS_POKEDEX_GET"):
+        emu.set_flag(g.flags[f])
+    emu.set_var("MAP_SCENE_PALLET_TOWN_OAK", 3)
+    emu.set_var("MAP_SCENE_VIRIDIAN_CITY_OLD_MAN", 2)
+    ex = Explorer(random.Random(11), interact_prob=0, menu_prob=0, game=g, world=emu.world)
+    ex.checked |= {"level_cap_toggle", "exp_share_toggle", "modern_tutor"}
+    from firered_ai.ram import DEFAULT_ADDRESSES, read_state
+    assert ex._training_map(read_state(emu.read, DEFAULT_ADDRESSES, g.layout)) == "ViridianForest"
+    n = run(emu, ex, g, 2000, lambda: emu.where()[0] == "ViridianForest")
+    assert n is not None

@@ -10,7 +10,8 @@ how to tell it worked (`verify`):
 - "done":   its `done` condition holds afterwards (a flag, an item, a beaten trainer)
 - "battle": a battle starts (a legendary's marker, a Gym Leader's rematch)
 - "double": a double battle starts (the gyms' double battle trainers)
-- "toggle": talking flips `flag` (it talks again to flip it back)
+- "toggle": talking flips `flag` (it talks again to flip it back). After the
+            macro it presses A one at a time until the flag flips, then B to close
 - "visit":  the conversation or menu opens and closes without trouble
 
 After each try it waits VERIFY_WITHIN presses. If a check still hasn't
@@ -31,6 +32,7 @@ from .story import TRUE, S, all_of, any_of, badge, flag, item, not_, trainer
 
 TRIES = 3
 VERIFY_WITHIN = 60  # presses to wait for a try to show its result
+TOGGLE_A_PRESSES = 8  # a setting switch: A presses, one at a time, until the setting flips
 
 
 @dataclass(frozen=True)
@@ -81,10 +83,11 @@ HACK_BEFORE = {
     "viridian_old_man": [
         C("level_cap_toggle", "Switch level caps with the Viridian Pokémon Center scientist (and back)", TRUE,
           S("ViridianCity_PokemonCenter_1F", talk=["EventScript_LevelCap"]), needs=flag("SYS_POKEDEX_GET"),
-          verify="toggle", flag_name="HACK_LEVEL_CAP", why="Challenge settings: level caps can be switched any time"),
+          verify="toggle", flag_name="HACK_LEVEL_CAP", macro=("A",),
+          why="Challenge settings: level caps can be switched any time"),
         C("exp_share_toggle", "Switch Party Exp. Share with the same scientist (and back)", TRUE,
           S("ViridianCity_PokemonCenter_1F", talk=["EventScript_LevelCap"]), needs=flag("SYS_POKEDEX_GET"),
-          verify="toggle", flag_name="HACK_PARTY_EXP_SHARE", macro=("A", "A", "DOWN", "A", "A", "A"),
+          verify="toggle", flag_name="HACK_PARTY_EXP_SHARE", macro=("A", "DOWN"),
           why="Party Exp. Share option"),
         C("modern_tutor", "Talk to the modern move tutor in the Viridian Pokémon Center", TRUE,
           S("ViridianCity_PokemonCenter_1F", talk=["ModernTutor"]), needs=flag("SYS_POKEDEX_GET"), verify="visit",

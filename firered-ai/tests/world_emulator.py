@@ -25,6 +25,7 @@ class WorldEmulator(FakeEmulator):
         self.names = {k: m["name"] for k, m in game.maps.items()}
         self.facing = "DOWN"
         self.on_talk = None  # f(emu, map name, x, y) when A is pressed facing (x, y)
+        self.on_press = None  # f(emu, button), for every button
         self.talks = []
         self.teleport(*start)
 
@@ -61,6 +62,8 @@ class WorldEmulator(FakeEmulator):
         name, x, y = self.where()
         m = self.world.maps[name]
         for b in buttons:
+            if self.on_press:
+                self.on_press(self, b)
             if b == "A":
                 dx, dy = DIRS[self.facing]
                 self.talks.append((name, x, y, self.facing))
