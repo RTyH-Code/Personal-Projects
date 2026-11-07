@@ -51,6 +51,13 @@ INCENSE_BABIES = {"WYNAUT": ("WOBBUFFET", "LAX_INCENSE"), "AZURILL": ("MARILL", 
 CHECK_ONLY = re.compile(r"\b(checkitem|removeitem|checkitemspace|checkitemtype|checkpcitem)\b")
 
 
+
+def species_entries(text):
+    """(name, body) for each [SPECIES_X] = ... entry of a species table. Splits at each
+    entry's own line, so a one-line entry ([SPECIES_NONE] = {0},) can't swallow the next."""
+    parts = re.split(r"^\s*\[SPECIES_(\w+)\]\s*=", text, flags=re.M)
+    return list(zip(parts[1::2], parts[2::2]))
+
 def read(root, path):
     with open(os.path.join(root, path), encoding="utf-8") as f:
         return f.read()
@@ -120,7 +127,7 @@ def working_evo_methods(root):
 def egg_groups(root):
     text = read(root, "src/data/pokemon/species_info.h")
     out = {}
-    for name, body in re.findall(r"\[SPECIES_(\w+)\]\s*=\s*(.*?)\n    \},?", text, re.S):
+    for name, body in species_entries(text):
         m = re.search(r"\.eggGroups = \{\s*(\w+)\s*,\s*(\w+)\s*\}", body)
         if m:
             out[name] = {m.group(1), m.group(2)}

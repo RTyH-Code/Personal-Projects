@@ -7,11 +7,13 @@ import json
 import time
 from pathlib import Path
 
+from . import checklist, story
+from .explorer import CHECK_BUDGET, STORY_BUDGET
 from .game import Game
 
-SEVERITY = {"setup": -1, "crash": 0, "softlock": 1, "corrupt": 2, "rule": 3}
+SEVERITY = {"setup": -1, "crash": 0, "softlock": 1, "corrupt": 2, "rule": 3, "feature": 4}
 KIND_LABEL = {"setup": "Playtester setup", "crash": "Crash", "softlock": "Softlock", "corrupt": "Corrupt data",
-              "rule": "Rule broken"}
+              "rule": "Rule broken", "feature": "Hack feature"}
 # Maps that exist but aren't normally reachable (link rooms, unused, event-only).
 UNREACHABLE_PREFIXES = ("BattleColosseum", "TradeCenter", "RecordCorner", "UnionRoom", "Unused", "BirthIsland",
                         "NavelRock", "SevenIsland_TanobyRuins_", "SixIsland_AlteringCave")
@@ -45,12 +47,12 @@ def collect(out: Path) -> dict:
         except ValueError:
             pass
     total = {"steps": 0, "sessions": 0, "maps": {}, "trainers_beaten": {}, "seen": set(), "owned": set(),
-             "battles": {}, "blackouts": [], "starts": {}, "session_ends": []}
+             "battles": {}, "blackouts": [], "starts": {}, "session_ends": [], "story_stalls": {}, "checklist": {}}
     for st in stats:
         total["steps"] += st["steps"]
         total["sessions"] += st["sessions"]
-        for k in ("maps", "trainers_beaten", "starts"):
-            for name, n in st[k].items():
+        for k in ("maps", "trainers_beaten", "starts", "story_stalls"):
+            for name, n in st.get(k, {}).items():
                 total[k][name] = total[k].get(name, 0) + n
         total["seen"] |= set(st["species_seen"])
         total["owned"] |= set(st["species_owned"])
@@ -60,6 +62,10 @@ def collect(out: Path) -> dict:
             for k, v in b.items():
                 t[k] = t.get(k, 0) + v
         total["blackouts"] += st["blackouts"]
+        for key, c in st.get("checklist", {}).items():
+            t = total["checklist"].setdefault(key, {"pass": 0, "fail": 0, "unreached": 0})
+            for k, v in c.items():
+                t[k] = t.get(k, 0) + v
         total["session_ends"] += st.get("session_ends", [])
     furthest = []
     for f in sorted(out.glob("furthest/w*.json")):
@@ -76,15 +82,19 @@ def progress_summary(ends: list) -> dict:
         return {"sessions": 0}
     badges: dict[int, int] = {}
     maps: dict[str, int] = {}
+    objectives: dict[str, int] = {}
     for e in ends:
         badges[e["badges"]] = badges.get(e["badges"], 0) + 1
         maps[e["map"]] = maps.get(e["map"], 0) + 1
+        if e.get("objective"):
+            objectives[e["objective"]] = objectives.get(e["objective"], 0) + 1
     return {
         "sessions": len(ends),
         "average_badges": round(sum(e["badges"] for e in ends) / len(ends), 1),
         "average_top_level": round(sum(e["top_level"] for e in ends) / len(ends)),
         "badges": dict(sorted(badges.items())),
         "common_maps": sorted(maps.items(), key=lambda kv: -kv[1])[:8],
+        "objectives": sorted(objectives.items(), key=lambda kv: -kv[1])[:8],
     }
 
 
@@ -123,8 +133,11 @@ def summarize(data: dict) -> dict:
         "battles": total["battles"],
         "difficulty_spikes": spikes,
         "starts": total["starts"],
-        "furthest": sorted(data["furthest"], key=lambda f: (f["champion"], f["badges"], f["top_level"],
-                                                            f["dex_owned"]), reverse=True),
+        "furthest": sorted(data["furthest"], key=lambda f: (f["champion"], f["badges"], f.get("story_done", 0),
+                                                            f["top_level"], f["dex_owned"]), reverse=True),
+        "checklist": checklist_rows(total["checklist"], checklist.is_hack(game)),
+        "story_stalls": sorted(total["story_stalls"].items(), key=lambda kv: -kv[1]),
+        "story_total": sum(1 for o in story.STORY if not o.post_game),
         "session_ends": progress_summary(total["session_ends"]),
         "continued_from": data["config"].get("continued_from"),
     }
@@ -146,7 +159,7 @@ table { width:100%; border-collapse:collapse; background:var(--card); border:1px
 th, td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
 th { font-size:13px; color:var(--muted); font-weight:600; }
 .kind { font-weight:600; white-space:nowrap; } .crash{color:var(--crash)} .softlock{color:var(--softlock)}
-.corrupt{color:var(--corrupt)} .rule{color:var(--rule)} .ok{color:var(--ok)} .setup{color:var(--muted)}
+.corrupt{color:var(--corrupt)} .rule{color:var(--rule)} .ok{color:var(--ok)} .setup{color:var(--muted)} .feature{color:var(--softlock)}
 img { max-width:240px; border-radius:6px; border:1px solid var(--line); image-rendering:pixelated; }
 details summary { cursor:pointer; } code { font-size:13px; }
 .wrap { overflow-x:auto; }
@@ -165,6 +178,8 @@ def progress_html(s: dict) -> str:
     if s["furthest"]:
         f = s["furthest"][0]
         where = "became Champion" if f["champion"] else f'{f["badges"]} badge{"" if f["badges"] == 1 else "s"}'
+        if f.get("story_done"):
+            where += f', {f["story_done"]} of {s.get("story_total", "?")} story objectives'
         parts.append(
             f'<p><b>Furthest point:</b> {e(where)}, on {e(f["map"].replace("_", " "))}, with '
             f'{e(", ".join(f["party"]))} ({f["dex_owned"]} species caught). '
@@ -182,7 +197,69 @@ def progress_html(s: dict) -> str:
             f'<p><b>Where sessions ended</b> ({se["sessions"]} sessions): on average {se["average_badges"]} badges '
             f'and a strongest Pokémon of Lv. {se["average_top_level"]}.<br>{counts}</p>'
             f'<p class="muted">Most common last maps: {common}</p>')
+        if se.get("objectives"):
+            stuck = ", ".join(f"{e(title(k))} ({n})" for k, n in se["objectives"])
+            parts.append(f'<p><b>Story objective they were on</b> when sessions ended: {stuck}</p>')
+    if s.get("story_stalls"):
+        stalls = ", ".join(f"{e(title(k))} ({n}&times;)" for k, n in s["story_stalls"])
+        parts.append(f'<p><b>Story objectives it got stuck on</b> (worked on for {CHECK_BUDGET:,} to {STORY_BUDGET:,} '
+                     f'presses without getting done, then put aside for a while): {stalls}</p>'
+                     '<p class="muted">An objective high on this list may be a story bug (a flag that never '
+                     "gets set, an event that won't start), or just a puzzle the playtester can't do.</p>")
     return "\n".join(parts)
+
+
+def checklist_rows(counts: dict, hack: bool = True) -> list[dict]:
+    """Every checklist item, in order, with what happened to it across all workers."""
+    rows = [{"key": c.key, "title": c.title, "part": c.part, "why": c.why, "post_game": c.post_game}
+            for c in checklist.CHECKS if hack or c.part == "story"]
+    if not hack:
+        for r in rows:
+            r.update(counts.get(r["key"], {"pass": 0, "fail": 0, "unreached": 0}))
+        return rows
+    rows += [{"key": w.key, "title": w.title, "part": "hack", "why": w.why, "post_game": w.post_game}
+             for w in checklist.WATCHES]
+    rows += [{"key": k, "title": t, "part": "hack", "why": "HMs work from the overworld", "post_game": False}
+             for k, t in checklist.FIELD_MOVES.values()]
+    for r in rows:
+        r.update(counts.get(r["key"], {"pass": 0, "fail": 0, "unreached": 0}))
+    return rows
+
+
+def checklist_html(s: dict) -> str:
+    e = html.escape
+    rows = s.get("checklist") or []
+    if not rows:
+        return ""
+    worked = sum(1 for r in rows if r["pass"])
+    broken = sum(1 for r in rows if r["fail"])
+    out = [f"<h2>Checklist</h2><p>{worked} of {len(rows)} items done at least once"
+           f"{f', <b>{broken} that didn\'t work</b> (see Problems found)' if broken else ''}. "
+           "Story items count when a worker finished them during the run; hack items when a worker tried the "
+           "feature and saw it work.</p>", '<div class="wrap"><table><tr><th>Item</th><th>Part</th>'
+           "<th>Result</th></tr>"]
+    for r in rows:
+        if r["fail"]:
+            res = f'<span class="crash">Didn\'t work ({r["fail"]}&times;)</span>'
+            if r["pass"]:
+                res += f', worked {r["pass"]}&times;'
+        elif r["pass"]:
+            res = f'<span class="ok">Done ({r["pass"]}&times;)</span>'
+        elif r["unreached"]:
+            res = "Couldn't get there"
+        else:
+            res = '<span class="muted">Not reached yet</span>'
+        part = "Story" if r["part"] == "story" else "Hack"
+        if r["post_game"]:
+            part += ", post-game"
+        why = f'<br><span class="muted">{e(r["why"])}</span>' if r.get("why") else ""
+        out.append(f"<tr><td>{e(r['title'])}{why}</td><td>{part}</td><td>{res}</td></tr>")
+    out.append("</table></div>")
+    return "\n".join(out)
+
+
+def title(key: str) -> str:
+    return checklist.ALL_TITLES.get(key, key)
 
 
 def write_report(out: Path) -> Path:
@@ -235,9 +312,10 @@ caused it again. Click a screenshot for a clip of the lead-up.</p>
 {findings}
 <h2>Possible difficulty spikes</h2>
 <p class="muted">Maps with at least {SPIKE_MIN_BLACKOUTS} blackouts and a blackout rate of
-{int(SPIKE_RATE * 100)}% or more. The tester battles simply (it mostly picks the first move), so treat this as a
-pointer, not a verdict.</p>
+{int(SPIKE_RATE * 100)}% or more. The tester battles with simple rules (the move that does the most damage), so
+treat this as a pointer, not a verdict.</p>
 {spikes}
+{checklist_html(s)}
 <h2>Coverage</h2>
 <details><summary>{len(s["maps_never"])} reachable maps not visited yet</summary><p>{never}</p></details>
 <details><summary>Where sessions started</summary><p>{starts}</p></details>

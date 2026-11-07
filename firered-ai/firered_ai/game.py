@@ -18,6 +18,10 @@ from pathlib import Path
 
 GAMES = Path(__file__).parent / "data" / "games"
 VANILLA_CRCS = {0xDD88761C: "v1.0", 0x84EE4776: "v1.1"}
+# Moves the playtester never picks to attack with: they faint the user, or only
+# work when the target is asleep.
+AVOID_EFFECTS = {"EFFECT_EXPLOSION", "EFFECT_DREAM_EATER", "EFFECT_MEMENTO", "EFFECT_FOCUS_PUNCH",
+                 "EFFECT_SNORE", "EFFECT_FAKE_OUT"}
 
 
 class Game:
@@ -64,6 +68,11 @@ class Game:
         return {int(k): v for k, v in self.p["trainers"].items()}
 
     @cached_property
+    def trainer_ids(self) -> dict[str, int]:
+        """TRAINER_ constant without the prefix -> trainer number."""
+        return {v["id"]: k for k, v in self.trainers.items() if v.get("id")}
+
+    @cached_property
     def fightable_trainers(self) -> dict[int, dict]:
         """Trainers some map's script battles."""
         return {k: v for k, v in self.trainers.items() if v["maps"]}
@@ -74,6 +83,64 @@ class Game:
 
     def flag(self, name: str) -> int | None:
         return self.flags.get(name)
+
+    # --- battles -------------------------------------------------------------
+
+    @cached_property
+    def moves(self) -> dict[int, dict]:
+        return {int(k): v for k, v in self.p.get("moves", {}).items()}
+
+    @cached_property
+    def species_types(self) -> dict[int, list[int]]:
+        return {int(k): v for k, v in self.p.get("species_types", {}).items()}
+
+    @cached_property
+    def type_chart(self) -> dict[tuple[int, int], float]:
+        return {(a, d): m / 10 for a, d, m in self.p.get("type_chart", [])}
+
+    def effectiveness(self, move_type: int, defender_species: int) -> float:
+        mult = 1.0
+        for t in dict.fromkeys(self.species_types.get(defender_species, [])):  # once per distinct type
+            mult *= self.type_chart.get((move_type, t), 1.0)
+        return mult
+
+    def move_score(self, mon, slot: int, target) -> float:
+        """Roughly how much damage a move does: power x same-type bonus x matchup x accuracy."""
+        move = self.moves.get(mon.moves[slot]) if slot < len(mon.moves) else None
+        if move is None or not mon.moves[slot] or (slot < len(mon.pp) and mon.pp[slot] == 0):
+            return -1.0
+        power = move["power"]
+        if power == 0 or move["effect"] in AVOID_EFFECTS:
+            return 0.0  # status moves, and ones that hurt us
+        if power == 1:  # fixed or level-based damage (Seismic Toss, Night Shade, ...)
+            power = max(40, getattr(mon, "level", 40))
+        score = power * (move["accuracy"] or 100) / 100
+        if move["type"] in self.species_types.get(mon.species, []):
+            score *= 1.5
+        if target is not None:
+            score *= self.effectiveness(move["type"], target.species)
+        return score
+
+    def best_move(self, mon, target) -> int:
+        """The move slot (0-3) to use against `target`: the most damage, or slot 0 if nothing helps."""
+        scores = [self.move_score(mon, i, target) for i in range(4)]
+        best = max(range(4), key=lambda i: scores[i])
+        return best if scores[best] > 0 else max(range(4), key=lambda i: (scores[i] >= 0, -i))
+
+    def has_damaging_pp(self, mon) -> bool:
+        return any(self.move_score(mon, i, None) > 0 for i in range(4))
+
+    def next_gym_level(self, state) -> int:
+        """The highest level on the next Gym Leader's team (the League's after 8 badges)."""
+        levels = self.p.get("gym_levels") or {}
+        leaders = levels.get("leaders", [])
+        for i, lvl in enumerate(leaders):
+            if not state.flag(self.flags["BADGE01_GET"] + i):
+                return lvl
+        return levels.get("league", 100)
+
+    def item(self, name: str) -> int | None:
+        return self.p.get("items", {}).get(name)
 
     def level_cap(self, state) -> int:
         """The level cap the game applies now (src/pokemon.c Hack_GetLevelCap), or 100."""

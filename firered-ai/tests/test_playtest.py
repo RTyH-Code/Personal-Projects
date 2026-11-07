@@ -325,14 +325,18 @@ def test_pool_and_pick_start(tmp_path):
     rng = random.Random(0)
     starts = [Start("state", "mine", b"x")]
     assert pick_start(rng, starts, out, VANILLA).label == "mine"  # empty pool
-    for g, n in [(3, 0), (3, 19)]:
+    for i, (g, n) in enumerate([(3, 0), (3, 19), (3, 20), (3, 21), (3, 22), (3, 23), (3, 24), (3, 25)]):
         d = out / "pool" / f"{g}_{n}"
         d.mkdir(parents=True)
-        (d / "a.state").write_bytes(b"state")
+        rank = "0103020000" if i == 0 else f"00000{i:02d}000"  # Pallet Town's is the most advanced
+        (d / f"{rank}_a.state").write_bytes(b"state")
     (out / "stats-w0.json").write_text(json.dumps({"maps": {"PalletTown": 10000}}))
-    labels = [pick_start(rng, starts, out, VANILLA).label for _ in range(300)]
-    assert labels.count("pool:Route1") > 5 * labels.count("pool:PalletTown")  # favours little-visited maps
-    assert labels.count("mine") > 50
+    labels = [pick_start(rng, starts, out, VANILLA).label for _ in range(600)]
+    # The most advanced state is a favourite even on a much-visited map...
+    assert labels.count("pool:PalletTown") > 40
+    # ...and the least advanced are only picked for variety, by how little their maps were visited.
+    assert 0 < labels.count("pool:Route1") < labels.count("pool:PalletTown")
+    assert labels.count("mine") > 100
 
 
 def test_report(tmp_path):
@@ -405,7 +409,7 @@ def test_report_shows_how_far_it_got(tmp_path):
     (tmp_path / "config.json").write_text(json.dumps({"game": "firered", "rom_note": "test", "started": 0,
                                                       "continued_from": "playtest-2"}))
     page = write_report(tmp_path).read_text()
-    assert "How far it got" in page and "1 badge, on PalletTown PlayersHouse 2F" in page
+    assert "How far it got" in page and "1 badge, 1 of " in page and "story objectives, on PalletTown PlayersHouse 2F" in page
     assert "Squirtle Lv15" in page and "furthest/w0.state" in page and "carried on from playtest-2" in page
     s = json.loads((tmp_path / "summary.json").read_text())
     assert s["session_ends"]["average_badges"] == 1 and s["furthest"][0]["top_level"] == 15
@@ -472,7 +476,7 @@ def test_pool_keeps_the_most_advanced_states(tmp_path):
     emu.set_flag(ram.FLAG_SYS_POKEMON_GET)
     t._maybe_pool(state(emu))  # having a Pokémon beats any level without one
     names = sorted(p.name.split("_")[0] for p in pool.glob("*.state"))
-    assert names == ["0000006000", "0000007000", "0010003000"]
+    assert names == ["0000006000", "0000007000", "0001003000"]
 
 
 def test_blackout_needs_a_whiteout(tmp_path):
@@ -506,3 +510,200 @@ def test_blackout_needs_a_whiteout(tmp_path):
     fight_and_lose(lambda: emu.set_party([dict(level=5, hp=20, max_hp=20)]))
     lab = t.stats.battles["PalletTown_ProfessorOaksLab"]
     assert lab["blackouts"] == 0 and lab["lost_no_blackout"] == 1 and len(t.stats.blackouts) == 1
+
+
+# --- healing and running away -------------------------------------------------------------------
+
+class HealWorld(FakeEmulator):
+    """A 3x3 house (map 4,0) with Mom at (1,0): pressing A at her, from (1,1) facing up, heals.
+    Its door at (1,2) leads down to a 6x6 town (map 3,0); the town's (2,0) leads back up."""
+
+    def __init__(self):
+        super().__init__()
+        self.set_map(4, 0)
+        self.set_pos(0, 2)
+        self.walls = {(4, 0, 1, 0)}
+        self.warps = {(4, 0, 1, 3): (3, 0, 2, 1), (3, 0, 2, 0): (4, 0, 1, 2)}
+        self.facing = "UP"
+        self.heals = 0
+
+    def press(self, buttons, frames):
+        for b in buttons:
+            if b in ("UP", "DOWN", "LEFT", "RIGHT"):
+                self.facing = b
+        g, n = self.location()
+        if (g, n) == (4, 0):
+            self.bounds = (3, 3)
+        else:
+            self.bounds = (6, 6)
+        super().press(buttons, frames)
+        if "A" in buttons and self.location() == (4, 0) and self.pos() == (1, 1) and self.facing == "UP":
+            self.set_party([dict(level=8, hp=30, max_hp=30)])
+            self.heals += 1
+
+
+def test_learns_where_mom_heals_and_goes_back_when_hurt():
+    emu = HealWorld()
+    emu.set_party([dict(level=8, hp=10, max_hp=30)])
+    ex = Explorer(random.Random(7), interact_prob=0, menu_prob=0)
+    for _ in range(300):
+        a = ex.next(state(emu))
+        emu.press(a.buttons, a.hold)
+        if (4, 0) in ex.heal_spots:
+            break
+    assert ex.heal_spots.get((4, 0)) == (1, 1, "UP")
+    # Out in the town, badly hurt: it should walk home and talk to Mom.
+    emu.set_map(3, 0)
+    emu.set_pos(4, 4)
+    for _ in range(100):
+        a = ex.next(state(emu))
+        emu.press(a.buttons, a.hold)
+    emu.set_party([dict(level=8, hp=5, max_hp=30)])
+    healed_before = emu.heals
+    for _ in range(150):
+        a = ex.next(state(emu))
+        emu.press(a.buttons, a.hold)
+        if emu.heals > healed_before:
+            break
+    assert emu.heals > healed_before
+
+
+def test_runs_from_wild_battles_when_weak():
+    emu = FakeEmulator()
+    emu.set_party([dict(level=8, hp=6, max_hp=30)])
+    emu.set_in_battle(True)
+    ex = Explorer(random.Random(1), catch_prob=0)
+    pressed = [ex.next(state(emu)) for _ in range(6)]
+    assert [a.buttons[0] for a in pressed] == ["B", "B", "DOWN", "RIGHT", "A", "A"]
+    assert {a.tag for a in pressed} == {"run"}
+    # Never in trainer battles (you can't run from those).
+    emu.w32(ram.DEFAULT_ADDRESSES["gBattleTypeFlags"], 8)
+    ex = Explorer(random.Random(1), catch_prob=0)
+    assert all(ex.next(state(emu)).tag != "run" for _ in range(30))
+
+
+# --- smarter play -------------------------------------------------------------------------------
+
+def ids(game):
+    moves = {v["name"]: int(k) for k, v in game.p["moves"].items()}
+    species = {v: int(k) for k, v in game.p["species"].items()}
+    return moves, species
+
+
+def test_picks_the_best_move():
+    mv, sp = ids(HACK)
+    emu = FakeEmulator()
+    emu.set_party([dict(level=8, species=sp["CHARMANDER"], moves=(mv["SCRATCH"], mv["GROWL"], mv["EMBER"], 0),
+                        pp=(35, 40, 25, 0))])
+    emu.set_enemy_party([dict(level=5, species=sp["BULBASAUR"])])
+    emu.set_in_battle(True)
+    ex = Explorer(random.Random(0), catch_prob=0, game=HACK)
+    ex.rng.random = lambda: 0.0  # always the planned fight, never a random press
+    s = ram.read_state(emu.read, layout=HACK.layout)
+    first = ex.next(s)
+    pressed = [first] + [ex.next(s) for _ in range(len(ex.queue))]
+    assert [a.buttons[0] for a in pressed] == ["UP", "LEFT", "A", "UP", "LEFT", "DOWN", "A", "A", "A"]  # Ember
+    # Against Squirtle, Ember is resisted: Scratch (the top-left move) is better.
+    emu.set_enemy_party([dict(level=5, species=sp["SQUIRTLE"])])
+    s = ram.read_state(emu.read, layout=HACK.layout)
+    first = ex.next(s)
+    pressed = [first] + [ex.next(s) for _ in range(len(ex.queue))]
+    assert [a.buttons[0] for a in pressed] == ["UP", "LEFT", "A", "UP", "LEFT", "A", "A", "A"]
+    # No PP left for Ember or Scratch: Growl is the only move it can use, so that.
+    emu.set_party([dict(level=8, species=sp["CHARMANDER"], moves=(mv["SCRATCH"], mv["GROWL"], mv["EMBER"], 0),
+                        pp=(0, 40, 0, 0))])
+    mon = ram.read_state(emu.read, layout=HACK.layout).party[0]
+    assert HACK.best_move(mon, None) == 1 and not HACK.has_damaging_pp(mon)
+
+
+def test_sends_in_the_next_pokemon_when_one_faints():
+    emu = FakeEmulator()
+    emu.set_party([dict(level=8, hp=20, max_hp=20), dict(level=6, hp=15, max_hp=15)])
+    emu.set_in_battle(True)
+    ex = Explorer(random.Random(0), catch_prob=0)
+    ex.next(state(emu))
+    emu.set_party([dict(level=8, hp=0, max_hp=20), dict(level=6, hp=15, max_hp=15)])
+    first = ex.next(state(emu))
+    pressed = [first] + [ex.queue.popleft() for _ in range(len(ex.queue))]
+    assert [a.buttons[0] for a in pressed] == ["A", "DOWN", "A", "A"]
+
+
+def test_trains_in_known_grass_until_strong_enough():
+    emu = FakeEmulator()
+    emu.set_map(3, 19)
+    emu.bounds = (8, 8)
+    emu.set_pos(0, 0)
+    emu.set_party([dict(level=8, hp=30, max_hp=30)])
+    ex = Explorer(random.Random(3), interact_prob=0, menu_prob=0, game=HACK)
+    grass = {(5, 5), (5, 6), (6, 5), (6, 6)}
+    ex.grass[(3, 19)] = set(grass)
+    ex.mem((3, 19)).visited |= {(x, y) for x in range(8) for y in range(8)}
+    import firered_ai.explorer as explorer_module
+    explorer_module_share = explorer_module.TRAIN_SHARE
+    explorer_module.TRAIN_SHARE = 1.0
+    try:
+        positions = []
+        for _ in range(60):
+            a = ex.next(state(emu, HACK))
+            emu.press(a.buttons, a.hold)
+            positions.append(emu.pos())
+        assert sum(p in grass for p in positions[-30:]) >= 25  # got there and stayed
+        emu.set_party([dict(level=15, hp=30, max_hp=30)])  # Brock's top level is 16: close enough
+        assert not ex._wants_training(state(emu, HACK))
+        emu.set_party([dict(level=8, hp=10, max_hp=30)])  # too hurt to train
+        assert not ex._wants_training(state(emu, HACK))
+    finally:
+        explorer_module.TRAIN_SHARE = explorer_module_share
+
+
+def test_takes_oaks_parcel_to_oak():
+    emu = FakeEmulator()
+    emu.set_map(3, 0)  # Pallet Town; the lab door at (2,0) leads to Oak's lab (4,3)
+    emu.bounds = (6, 6)
+    emu.set_pos(5, 5)
+    emu.warps = {(3, 0, 2, -1): (4, 3, 2, 2)}
+    ex = Explorer(random.Random(2), interact_prob=0, menu_prob=0, game=HACK)
+    ex.mem((3, 0)).visited |= {(x, y) for x in range(6) for y in range(6)}
+    ex.mem((3, 0)).exits[(2, 0, "UP")] = (4, 3)
+    emu.set_bag_item("key_items", HACK.item("OAKS_PARCEL"), 1, HACK.layout)
+    for _ in range(80):
+        a = ex.next(state(emu, HACK))
+        emu.press(a.buttons, a.hold)
+        if emu.location() == (4, 3):
+            break
+    assert emu.location() == (4, 3)
+
+
+def test_escapes_screens_that_swallow_the_dpad():
+    emu = FakeEmulator()
+    emu.walls = {(4, 1, 5, 4), (4, 1, 5, 6), (4, 1, 4, 5), (4, 1, 6, 5)}  # nothing moves: a naming screen
+    ex = Explorer(random.Random(0), interact_prob=0, menu_prob=0)
+    tags = []
+    for _ in range(40):
+        a = ex.next(state(emu))
+        tags.append((a.tag, a.buttons))
+        emu.press(a.buttons, a.hold)
+    assert ("escape", ("START",)) in tags
+
+
+def test_heals_when_out_of_pp():
+    mv, sp = ids(HACK)
+    emu = FakeEmulator()
+    emu.set_party([dict(level=8, species=sp["CHARMANDER"], moves=(mv["SCRATCH"], mv["GROWL"], 0, 0), pp=(0, 30, 0, 0))])
+    ex = Explorer(random.Random(0), game=HACK)
+    ex.heal_spots[(4, 0)] = (1, 1, "UP")
+    assert ex._needs_healing(state(emu, HACK))  # full HP, but only Growl left
+
+
+def test_no_b_right_after_a_level_up():
+    emu = FakeEmulator()
+    emu.set_party([dict(level=8)])
+    emu.set_in_battle(True)
+    ex = Explorer(random.Random(0), catch_prob=0)
+    ex.next(state(emu))
+    emu.set_party([dict(level=9)])
+    emu.set_in_battle(False)
+    ex.next(state(emu))
+    assert ex._close_button() == "A"  # B would cancel an evolution
+    ex.t += 200
+    assert ex._close_button() == "B"

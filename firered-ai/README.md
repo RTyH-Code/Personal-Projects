@@ -24,6 +24,7 @@ After every button press it reads the game's memory and checks:
 | **Softlock** | The screen doesn't change at all for ~6 minutes of pressing everything, or the player can't move from one spot for ~25 minutes. |
 | **Corrupt data** | Bad Eggs (a Pokémon's encrypted data doesn't match its checksum), impossible species, levels, HP or stats, Exp. overflow, a level or Exp. going down, money over 999,999, broken bag slots, being on a map that doesn't exist, more than 6 in the party. |
 | **Rule broken** | A Pokémon levels past the level cap. With Nuzlocke on: a fainted Pokémon gets HP back, or a second catch happens in a used area. With "no items in battle" on: a bag item gets used in battle. |
+| **Hack feature** | Something on the checklist (below) that the hack adds didn't work after three tries. |
 
 Data that could be read halfway through the game writing it has to stay
 wrong for two presses in a row before it counts.
@@ -31,20 +32,72 @@ wrong for two presses in a row before it counts.
 It also keeps **coverage** (maps visited, trainers beaten, species seen
 and caught) and **difficulty** numbers (battles and blackouts per map).
 
+## The checklist
+
+The playtester doesn't wander. It works through a checklist in order: the
+first item not yet done that it can do now.
+
+- **Finish the game:** every point where the story stops you until you've
+  done something. That covers Oak's Parcel, the old man on Route 2, the
+  Mt. Moon fossil, Bill, the S.S. Anne, Cut, the Saffron guards and their Tea,
+  the Rocket Hideout and Silph Scope, Mr. Fuji, Snorlax, Surf and Strength,
+  Silph Co., the Secret Key, all eight gyms, Victory Road and the Elite Four,
+  then the Sevii Islands.
+- **Try what the hack changed**, each where it first becomes possible, and
+  check that it worked:
+
+| Check | It works if |
+|---|---|
+| Level caps and Party Exp. Share switches (Viridian Pokémon Center scientist) | The setting flips. It then flips it back, so the run keeps its rules. |
+| The modern move tutor (Viridian Pokémon Center) | Talking to him opens and closes cleanly |
+| Both Mt. Moon fossils | It can take the second one too |
+| Each gym's double battle trainer (Cerulean to Viridian) | Talking to them starts a double battle |
+| Celadon Dept. Store 4F evolution items | The shop opens and closes cleanly |
+| HMs from the overworld (Cut, Surf, Rock Smash, Strength) | The tree, rock or boulder goes, or it starts surfing, with just the HM and badge |
+| Koga's Lucky Egg | It's in the bag soon after his badge |
+| The Hall of Fame tickets | The Mystic and Aurora Tickets arrive after the credits |
+| After the Hall of Fame: the Shiny Charm, the nature coach, the move relearner, Lv. 100 Gym Leader rematches, the 14 legendary spots | The item arrives, the menu opens, or a battle starts |
+
+The report's **Checklist** table shows each item: done (and how often),
+didn't work, couldn't get there, or not reached yet. Everything else is
+watched along the way: the bug checks above run on every press, and every
+battle counts towards the difficulty numbers.
+
 ## How it plays
 
-- **Exploring:** it heads for ground it hasn't stood on, finds its way back
-  to unfinished spots, and leaves maps through exits toward the places
-  visited least. When a step doesn't move it, it presses B (in case text is
-  open) and tries again. Then it presses A at the obstacle, which talks to
-  people, reads signs, picks up items and uses HM obstacles.
-- **Menus:** now and then it opens the START menu and pokes around (bag,
+- **Getting there:** it knows the whole map (every room, door, ledge and
+  stretch of water) and walks the shortest way to the next checklist item.
+  It goes around people and story gates that are still shut, talks to the
+  right person or steps on the right tile, and presses A at Cut trees,
+  rocks, boulders and water once the hack's HM rules let it use them. An
+  item that isn't done after 1,500 presses (3,000 for the story) is put
+  aside for a while. A hack check put aside twice is dropped as out of
+  reach. The report lists story items it got stuck on, since one may be a
+  story bug.
+- **When it's stuck:** only then does it explore on its own. It heads for
+  ground it hasn't stood on and presses A at whatever stops it (people,
+  signs, items). If no direction works at all (the nickname screen), it
+  presses START to get out.
+- **Healing:** when the party's HP is under 40% or its attacks are out of
+  PP, it walks to the nearest Pokémon Center (or anyone else it has seen
+  heal the party, like Mom) and talks to the nurse.
+- **Battles:** it picks the move that does the most damage against the
+  opponent: power, same-type bonus, the type chart (Fairy included) and
+  accuracy, skipping status moves, empty PP and moves like Self-Destruct.
+  When one of its Pokémon faints, it sends in the next one that can fight.
+  It runs from wild battles below half HP, sometimes throws a Poké Ball,
+  and now and then presses something random so the bag and party screens
+  get used too. Right after a level-up it avoids B, which would cancel an
+  evolution.
+- **Training:** when its strongest Pokémon is more than 2 levels under the
+  next Gym Leader's strongest, and it's healthy, it spends some of its time
+  walking in the nearest grass.
+- **Menus:** once in a while it opens the START menu and pokes around (bag,
   party, the Nuzlocke tracker, options, saving...).
-- **Battles:** mostly FIGHT, with random menu moves so the bag, switching
-  and RUN get used too. In wild battles it sometimes throws a Poké Ball.
-- **Covering the whole game:** while it plays it keeps a few save states on
-  every map it reaches. Later sessions start from those, favouring the
-  least-visited maps. Give it your own saves to reach later content sooner.
+- **Moving forward:** while it plays it keeps the most advanced few save
+  states on every map it reaches. Most later sessions carry on from the
+  furthest of those; some start from less-visited maps for variety. Give it
+  your own saves to reach later content sooner.
 
 ## Install on Windows (one click)
 
@@ -171,10 +224,12 @@ Open `report.html` in the run folder. On WSL, `explorer.exe runs` opens the
 folder in Windows. It refreshes every 5 minutes while the run goes on.
 
 - **How far it got:** the furthest point any emulator reached (Champion,
-  then badges, then its strongest Pokémon's level), with a save state of
+  then badges, then story objectives done, then its strongest Pokémon's
+  level), with a save state of
   that moment. You can load it in mGBA (*File → Load State File*) to look,
   or to make a real save there for later runs. There's also how many
-  badges sessions had when they ended, and the maps they usually ended on.
+  badges sessions had when they ended, the maps they usually ended on, the
+  story objective they were working on, and the objectives it got stuck on.
 - **Problems found:** the worst first, with how often each happened and a
   screenshot. Click it for a clip of the ~40 seconds before.
   "Reproduced: yes" means the playtester re-ran the same presses from a
@@ -229,6 +284,15 @@ python tools/game_data.py ../pokefirered firered_qol_hard > firered_ai/data/game
 python tools/pokedex_targets.py ../pokefirered firered-qol-hard > firered_ai/data/pokedex_firered_qol_hard.json
 ```
 
+```bash
+python tools/world_data.py ../pokefirered | gzip -9 > firered_ai/data/games/firered_qol_hard.world.json.gz
+```
+
+If the hack changes the story (a new gate, a moved event), update
+`firered_ai/story.py` (and `checklist.py` for new features) too. `tests/test_story.py` checks every name in them
+against the game data and walks the whole story through the route planner,
+so it points at what no longer fits.
+
 A test, `test_profiles_match_the_hack_in_this_repo`, fails when the hack's
 `.bps` patches are a newer release than this data, as a reminder.
 
@@ -258,6 +322,10 @@ tiny hand-assembled GBA ROM run on the real mGBA core.
 | `firered_ai/tester.py` | One worker: sessions, captures, replays |
 | `firered_ai/detectors.py` | The bug checks |
 | `firered_ai/explorer.py` | What to press |
+| `firered_ai/checklist.py` | The checklist: the story, plus the hack's features to try |
+| `firered_ai/story.py` | The story's objectives and gates, from the game's scripts |
+| `firered_ai/world.py` | The whole map, and the shortest way across it |
+| `firered_ai/navigate.py` | Walking there: people, HM obstacles and gates as the game stands |
 | `firered_ai/runner.py` | Workers, start points, the shared pool |
 | `firered_ai/report.py` | `report.html` and `summary.json` |
 | `firered_ai/game.py` | Recognising the ROM; what's known about it |
@@ -266,5 +334,6 @@ tiny hand-assembled GBA ROM run on the real mGBA core.
 | `firered_ai/emulator.py` | mGBA via stable-retro, including loading battery saves |
 | `firered_ai/data/games/` | Game profiles for FireRed and FireRed QoL + Hard |
 | `tools/game_data.py` | Make a game profile from pret source |
+| `tools/world_data.py` | Make the world map from pret source |
 | `tools/pokedex_targets.py` | Work out which Pokémon a game lets you own |
 | `tools/symbols_from_map.py` | RAM addresses for hacks that move things around |

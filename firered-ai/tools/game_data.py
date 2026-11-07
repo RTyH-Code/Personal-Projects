@@ -24,6 +24,13 @@ import sys
 KNOWN_VANILLA = {"sb2_dex_owned": 0x28, "sb2_dex_seen": 0x5C, "sb2_encryption_key": 0xF20, "dex_flag_bytes": 52}
 
 
+
+def species_entries(text):
+    """(name, body) for each [SPECIES_X] = ... entry of a species table. Splits at each
+    entry's own line, so a one-line entry ([SPECIES_NONE] = {0},) can't swallow the next."""
+    parts = re.split(r"^\s*\[SPECIES_(\w+)\]\s*=", text, flags=re.M)
+    return list(zip(parts[1::2], parts[2::2]))
+
 def read(root, path):
     with open(os.path.join(root, path), encoding="utf-8") as f:
         return f.read()
@@ -223,6 +230,63 @@ def level_caps(root, c, trainer_info):
     }
 
 
+def battle_data(root, c):
+    """Moves, species types and the type chart, so the playtester can pick good moves."""
+    text = strip_comments(read(root, "src/data/battle_moves.h"))
+    moves = {}
+    for name, body in re.findall(r"\[MOVE_(\w+)\]\s*=\s*\{(.*?)\n    \},", text, re.S):
+        try:
+            num = c.get("MOVE_" + name)
+        except ValueError:
+            continue
+
+        def field(f, default=0):
+            m = re.search(rf"\.{f}\s*=\s*(\w+)", body)
+            if not m:
+                return default
+            v = m.group(1)
+            return int(v) if v.isdigit() else v
+
+        moves[num] = {
+            "name": name, "power": field("power"), "type": c.get(field("type", "TYPE_NORMAL")),
+            "accuracy": field("accuracy"), "pp": field("pp"), "effect": str(field("effect", "")),
+        }
+    info = strip_comments(read(root, "src/data/pokemon/species_info.h"))
+    types = {}
+    for name, body in species_entries(info):
+        m = re.search(r"\.types\s*=\s*\{\s*(\w+)\s*,\s*(\w+)\s*\}", body)
+        if m:
+            try:
+                types[c.get("SPECIES_" + name)] = [c.get(m.group(1)), c.get(m.group(2))]
+            except ValueError:
+                pass
+    code = strip_comments(read(root, "src/battle_main.c"))
+    table = re.search(r"gTypeEffectiveness\[\w*\]\s*=\s*\{(.*?)\};", code, re.S).group(1)
+    mul = {"TYPE_MUL_NO_EFFECT": 0, "TYPE_MUL_NOT_EFFECTIVE": 5, "TYPE_MUL_NORMAL": 10,
+           "TYPE_MUL_SUPER_EFFECTIVE": 20}
+    chart = []
+    for a, d, m in re.findall(r"(TYPE_\w+)\s*,\s*(TYPE_\w+)\s*,\s*(TYPE_MUL_\w+)", table):
+        if "FORESIGHT" in a or "ENDTABLE" in a:
+            continue  # markers in the table, not types (the Ghost immunities after them still apply)
+        chart.append([c.get(a), c.get(d), mul[m]])
+    return {"moves": {str(k): v for k, v in sorted(moves.items())},
+            "species_types": {str(k): v for k, v in sorted(types.items())},
+            "type_chart": chart}
+
+
+GYM_LEADERS = ["LEADER_BROCK", "LEADER_MISTY", "LEADER_LT_SURGE", "LEADER_ERIKA", "LEADER_KOGA",
+               "LEADER_SABRINA", "LEADER_BLAINE", "LEADER_GIOVANNI"]
+LEAGUE = ["ELITE_FOUR_LORELEI", "ELITE_FOUR_BRUNO", "ELITE_FOUR_AGATHA", "ELITE_FOUR_LANCE",
+          "CHAMPION_FIRST_SQUIRTLE", "CHAMPION_FIRST_BULBASAUR", "CHAMPION_FIRST_CHARMANDER"]
+
+
+def gym_levels(trainer_info):
+    """Each Gym Leader's highest level, then the Elite Four's and Champion's."""
+    by_id = {t["id"]: t for t in trainer_info.values()}
+    return {"leaders": [by_id[n]["max_level"] for n in GYM_LEADERS if n in by_id],
+            "league": max((by_id[n]["max_level"] for n in LEAGUE if n in by_id), default=0)}
+
+
 def encode(root, text):
     table = {}
     for line in read(root, "charmap.txt").splitlines():
@@ -250,11 +314,11 @@ def main():
     c = Consts(root, ["include/constants/species.h", "include/constants/pokedex.h", "include/constants/flags.h",
                       "include/constants/vars.h", "include/constants/opponents.h", "include/constants/items.h",
                       "include/constants/global.h", "include/constants/pokemon.h", "include/global.h",
-                      "include/constants/battle.h"])
+                      "include/constants/battle.h", "include/constants/moves.h", "include/constants/vars.h"])
     species, dex = species_and_dex(root, c)
     trainer_info = trainers(root, c)
-    flags = {k.removeprefix("FLAG_"): v for k, v in c.names("FLAG_").items()
-             if k.startswith(("FLAG_HACK_", "FLAG_BADGE", "FLAG_SYS_"))}
+    flags = {k.removeprefix("FLAG_"): v for k, v in c.names("FLAG_").items() if 0 <= v < 0x900}
+    story_vars = {k.removeprefix("VAR_"): v for k, v in c.names("VAR_").items() if 0x4000 <= v < 0x4100}
     profile = {
         "name": name,
         "release": release_info(root),
@@ -268,13 +332,17 @@ def main():
         "trainers": {str(k): v for k, v in sorted(trainer_info.items())},
         "level_caps": level_caps(root, c, trainer_info),
         "flags": dict(sorted(flags.items(), key=lambda kv: kv[1])),
-        "vars": {"MAP_SCENE_PALLET_TOWN_PLAYERS_HOUSE_2F": c.get("VAR_MAP_SCENE_PALLET_TOWN_PLAYERS_HOUSE_2F")},
+        "vars": dict(sorted(story_vars.items(), key=lambda kv: kv[1])),
         "items_count": c.get("ITEMS_COUNT"),
         "poke_balls": [c.get("ITEM_MASTER_BALL"), c.get("ITEM_PREMIER_BALL")],
         "max_level": 100,
         "kanto_mapsec_start": map_sections(root).index("MAPSEC_PALLET_TOWN"),
         "battle_types": {k.removeprefix("BATTLE_TYPE_"): v for k, v in c.names("BATTLE_TYPE_").items() if v < 1 << 31},
         "shiny_odds": c.get("SHINY_ODDS"),
+        "gym_levels": gym_levels(trainer_info),
+        "items": {k.removeprefix("ITEM_"): v for k, v in sorted(c.names("ITEM_").items(), key=lambda kv: kv[1])
+                  if 0 < v < c.get("ITEMS_COUNT")},
+        **battle_data(root, c),
     }
     if name == "firered":
         for k, v in KNOWN_VANILLA.items():

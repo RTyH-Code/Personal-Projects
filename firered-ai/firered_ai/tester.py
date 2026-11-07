@@ -31,11 +31,13 @@ from pathlib import Path
 
 import numpy as np
 
+from . import checklist, story
 from .bootstrap import continue_from_save
 from .detectors import Detectors, Finding
 from .explorer import Action, Explorer
 from .game import Game
 from .ram import DEFAULT_ADDRESSES, MAIN_HELD_KEYS_RAW, read_state
+from .world import World
 
 RING_EVERY = 50  # presses between rolling save states
 RING_KEEP = 3
@@ -70,7 +72,9 @@ class Stats:
     battles: dict = field(default_factory=dict)  # map name -> {"wild": n, "trainer": n, "blackouts": n, "trainer_losses": n}
     blackouts: list = field(default_factory=list)  # {map, trainer, party levels}
     starts: dict = field(default_factory=dict)  # start label -> sessions
-    session_ends: list = field(default_factory=list)  # {badges, map, top_level, champion} as each session ended
+    session_ends: list = field(default_factory=list)  # {badges, map, top_level, champion, objective} as each session ended
+    story_stalls: dict = field(default_factory=dict)  # story objective -> times it was put aside, not getting done
+    checklist: dict = field(default_factory=dict)  # checklist key -> {"pass": n, "fail": n, "unreached": n}
 
     def to_json(self):
         d = asdict(self)
@@ -79,10 +83,12 @@ class Stats:
         return d
 
 
-def progress_rank(s) -> str:
-    """How far into the game a state is, as text that sorts in that order."""
+def progress_rank(s, game=None) -> str:
+    """How far into the game a state is, as text that sorts in that order: the Hall of Fame,
+    badges, story objectives done, the strongest Pokémon's level, Pokédex size."""
     top = max((m.level for m in s.party if not m.is_egg), default=0)
-    return (f"{int(s.champion)}{s.badge_count}{int(s.has_pokemon)}{int(s.has_pokedex)}"
+    done = story.progress(s, game)[0] if game is not None and s.flags else int(s.has_pokemon) + int(s.has_pokedex)
+    return (f"{int(s.champion)}{s.badge_count}{min(done, 99):02d}"
             f"{min(top, 100):03d}{min(s.dex_owned, 999):03d}")
 
 
@@ -99,7 +105,7 @@ def screen_hash(screen: np.ndarray) -> int:
 class Tester:
     __test__ = False  # not a pytest test class
     def __init__(self, emu, game: Game, out: Path, worker: int = 0, seed: int | None = None,
-                 addresses=DEFAULT_ADDRESSES, log=print, stop=None):
+                 addresses=DEFAULT_ADDRESSES, log=print, stop=None, world=None):
         self.emu = emu
         self.game = game
         self.out = Path(out)
@@ -109,7 +115,7 @@ class Tester:
         self.log = log or (lambda *_: None)
         self.stop = stop  # a multiprocessing.Event, or None
         self.map_visits: dict = {}
-        self.explorer = Explorer(self.rng, self.map_visits)
+        self.explorer = Explorer(self.rng, self.map_visits, game=game, world=world or World.load(game.name))
         self.stats = Stats()
         self.captures: dict[str, int] = {}
         self.pool = self.out / "pool"
@@ -180,6 +186,7 @@ class Tester:
             if step % CLIP_EVERY == 0:
                 clip.append(screen[::2, ::2].copy())
             new = det.check(s, a.buttons, screen_hash(screen), held, step, last_was_move=a.tag == "move")
+            new += self._checklist_events(s, step)
             self._account(prev, s)
             self._maybe_pool(s)
             self._maybe_furthest(s, start, step)
@@ -192,10 +199,31 @@ class Tester:
                 break
         self.stats.steps += step + 1 if steps else 0
         if s.valid:
+            o = self.explorer.current_objective(s)
             self.stats.session_ends.append({
                 "badges": s.badge_count, "champion": s.champion, "map": self.game.map_name(*s.map_id),
-                "top_level": max((m.level for m in s.party if not m.is_egg), default=0)})
+                "top_level": max((m.level for m in s.party if not m.is_egg), default=0),
+                "objective": o.key if o else None,
+                "story_done": story.progress(s, self.game)[0] if s.flags else 0})
+        self.stats.story_stalls = dict(self.explorer.story_stalls)
         return found
+
+    def _checklist_events(self, s, step) -> list:
+        """What the explorer's checklist saw: counts for the report, and a finding for each
+        hack feature that didn't work."""
+        out = []
+        for ev in self.explorer.events:
+            c = self.stats.checklist.setdefault(ev["key"], {"pass": 0, "fail": 0, "unreached": 0})
+            c[ev["result"]] += 1
+            if ev["result"] == "fail":
+                title = checklist.ALL_TITLES.get(ev["key"], ev["key"])
+                out.append(Finding("feature", "checklist", f"Didn't work: {title}",
+                                   ev["detail"] + " It may be a bug in the hack, or presses the playtester got wrong:"
+                                   " the clip shows which.",
+                                   map=self.game.map_name(*s.map_id) if s.valid else "", step=step,
+                                   reproducible=False, extra={"check": ev["key"]}))
+        self.explorer.events.clear()
+        return out
 
     # --- coverage, difficulty and the start-point pool ---------------------------------
 
@@ -255,14 +283,15 @@ class Tester:
     def _maybe_furthest(self, s, start: Start, step: int) -> None:
         """Keep a save state of the furthest point this worker has reached.
 
-        "Furthest" is the Hall of Fame first, then badges, then the strongest
+        "Furthest" is the Hall of Fame first, then badges, then story objectives, then the strongest
         Pokémon's level, then Pokédex size. Kept in furthest/w<n>.state, so a
         person can load it in mGBA and later runs can carry on from it.
         """
         if not s.valid or s.in_battle or s.all_fainted or not s.party or s.map_id not in self.game.maps:
             return
         top = max((m.level for m in s.party if not m.is_egg), default=0)
-        key = (s.champion, s.badge_count, top, s.dex_owned)
+        done = story.progress(s, self.game)[0] if s.flags else 0
+        key = (s.champion, s.badge_count, done, top, s.dex_owned)
         if self.best_progress is not None and key <= self.best_progress:
             return
         self.best_progress = key
@@ -270,7 +299,7 @@ class Tester:
         d.mkdir(parents=True, exist_ok=True)
         info = {
             "worker": self.worker, "champion": s.champion, "badges": s.badge_count, "top_level": top,
-            "dex_owned": s.dex_owned, "map": self.game.map_name(*s.map_id),
+            "dex_owned": s.dex_owned, "map": self.game.map_name(*s.map_id), "story_done": done,
             "party": [f"{self.game.species_name(m.species).replace('_', ' ').title()} Lv{m.level}"
                       for m in s.party if not m.is_egg],
             "start": start.label, "presses": self.stats.steps + step, "time": time.time(),
@@ -291,7 +320,7 @@ class Tester:
             return
         if self.rng.random() > 0.02:  # not on the first step in: let the map settle
             return
-        rank = progress_rank(s)
+        rank = progress_rank(s, self.game)
         d = self.pool / f"{s.map_id[0]}_{s.map_id[1]}"
         kept = sorted(d.glob("*.state"), key=pool_rank) if d.exists() else []
         if len(kept) >= POOL_PER_MAP and pool_rank(kept[0]) >= rank:

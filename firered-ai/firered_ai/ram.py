@@ -119,6 +119,8 @@ class Mon:
     raw_hp: int = 0  # current HP as stored, before clamping to max_hp
     personality: int = 0
     ot_id: int = 0
+    moves: tuple[int, ...] = ()  # move numbers (0 = empty slot)
+    pp: tuple[int, ...] = ()
 
     def is_shiny(self, odds: int = 8) -> bool:
         p, t = self.personality, self.ot_id
@@ -149,8 +151,10 @@ class GameState:
     national_dex: bool = False
     held_keys: int = 0  # gMain.heldKeysRaw
     flags: bytes = b""
+    vars: bytes = b""  # story variables 0x4000-0x40FF
     bag: dict[str, list[tuple[int, int]]] = field(default_factory=dict)  # pocket -> [(item, quantity)]
     enemy: Mon | None = None  # the opposing lead, in battle
+    enemy_party: list[Mon] = field(default_factory=list)  # the opposing team, in battle
     nuzlocke_areas: bytes = b""  # QoL + Hard: used-area bits
 
     @property
@@ -179,9 +183,22 @@ class GameState:
     def trainer_battle(self) -> bool:
         return self.in_battle and bool(self.battle_type & BATTLE_TYPE_TRAINER)
 
+    def var(self, n: int) -> int:
+        i = 2 * (n - VARS_START)
+        return int.from_bytes(self.vars[i : i + 2], "little") if 0 <= i < len(self.vars) - 1 else 0
+
     def flag(self, n: int) -> bool:
         i = n // 8
         return i < len(self.flags) and bool(self.flags[i] >> (n % 8) & 1)
+
+    @property
+    def active(self) -> "Mon | None":
+        """Our Pokémon most likely in battle: the first one that can still fight."""
+        return next((m for m in self.party if not m.is_egg and m.hp > 0), None)
+
+    @property
+    def active_enemy(self) -> "Mon | None":
+        return next((m for m in self.enemy_party if m.hp > 0), self.enemy)
 
     def item_count(self, item: int) -> int:
         return sum(q for pocket in self.bag.values() for it, q in pocket if it == item)
@@ -211,7 +228,10 @@ def decode_mon(raw: bytes) -> Mon:
     ok = (sum(struct.unpack("<24H", plain)) & 0xFFFF) == checksum
     pos = SUBSTRUCT_POS[personality % 24]
     growth = plain[pos[0] * 12 : pos[0] * 12 + 12]
+    attacks = plain[pos[1] * 12 : pos[1] * 12 + 12]
     misc = plain[pos[3] * 12 : pos[3] * 12 + 12]
+    moves = struct.unpack_from("<4H", attacks)
+    pp = struct.unpack_from("<4B", attacks, 8)
     species, held_item, exp = struct.unpack_from("<HHI", growth)
     ivs, ribbons = struct.unpack_from("<II", misc, 4)
     hp, max_hp = struct.unpack_from("<HH", raw, MON_HP)
@@ -231,6 +251,8 @@ def decode_mon(raw: bytes) -> Mon:
         raw_hp=hp,
         personality=personality,
         ot_id=ot_id,
+        moves=moves,
+        pp=pp,
     )
 
 
@@ -277,10 +299,14 @@ def read_state(read: Reader, addrs: dict[str, int] = DEFAULT_ADDRESSES, layout: 
 
     in_battle = bool(_u8(read, addrs["gMain"] + MAIN_IN_BATTLE) & 0x2)
     enemy = None
+    enemy_party = []
     if in_battle:
-        raw = read(addrs["gEnemyParty"], MON_SIZE)
-        if any(raw[:BOX_SECURE]):
-            enemy = decode_mon(raw)
+        raw_all = read(addrs["gEnemyParty"], MON_SIZE * 6)
+        for i in range(6):
+            raw = raw_all[i * MON_SIZE : (i + 1) * MON_SIZE]
+            if any(raw[:BOX_SECURE]):
+                enemy_party.append(decode_mon(raw))
+        enemy = enemy_party[0] if enemy_party else None
     areas = b""
     if "sb1_nuzlocke_areas" in lay:
         off, size = lay["sb1_nuzlocke_areas"]
@@ -309,8 +335,10 @@ def read_state(read: Reader, addrs: dict[str, int] = DEFAULT_ADDRESSES, layout: 
         national_dex=flag(FLAG_SYS_NATIONAL_DEX),
         held_keys=held,
         flags=flags,
+        vars=read(sb1 + SB1_VARS, 0x200),
         bag=bag,
         enemy=enemy,
+        enemy_party=enemy_party,
         nuzlocke_areas=areas,
     )
 
