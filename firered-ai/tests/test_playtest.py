@@ -511,6 +511,17 @@ def test_blackout_needs_a_whiteout(tmp_path):
     lab = t.stats.battles["PalletTown_ProfessorOaksLab"]
     assert lab["blackouts"] == 0 and lab["lost_no_blackout"] == 1 and len(t.stats.blackouts) == 1
 
+    def healed_then_walk_out():  # the game heals you after the lab battle; you walk to the door
+        emu.set_party([dict(level=5, hp=20, max_hp=20)])
+        s = state(emu); t._account(state(emu), s)
+        emu.set_pos(6, 11)
+        s2 = state(emu); t._account(s, s2)
+        emu.set_map(3, 0)  # out into Pallet Town
+    emu.set_map(4, 3)
+    emu.set_pos(6, 6)
+    fight_and_lose(healed_then_walk_out)
+    assert lab["blackouts"] == 0 and lab["lost_no_blackout"] == 2 and len(t.stats.blackouts) == 1
+
 
 # --- healing and running away -------------------------------------------------------------------
 

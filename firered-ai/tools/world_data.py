@@ -5,7 +5,8 @@
 
 For every map: its size, a grid of what each tile is (wall, water, grass,
 ledge), its warps (doors, stairs) and connections (walking off an edge into
-the next route), and its people, signs and trigger tiles. Reads the source
+the next route), and its people (with the trainer each one battles), signs and
+trigger tiles. Reads the source
 as text; builds nothing.
 
 Each grid cell is one byte:
@@ -88,14 +89,27 @@ def grid(root, layout, attrs, surfable, ledges):
     return w, h, base64.b64encode(bytes(cells)).decode()
 
 
-def gate_scripts(root):
-    """Trigger scripts that turn the player back ("You can't go through yet"): story gates."""
+def all_scripts(root):
+    """Script label -> its body, from every map's scripts.inc and data/scripts."""
     scripts = {}
     for f in glob.glob(os.path.join(root, "data", "maps", "*", "scripts.inc")) + \
             glob.glob(os.path.join(root, "data", "scripts", "*.inc")):
         text = open(f, encoding="utf-8").read()
         for m in re.finditer(r"^(\w+)::\n(.*?)(?=^\w+::|\Z)", text, re.S | re.M):
             scripts[m.group(1)] = m.group(2)
+    return scripts
+
+
+def object_trainer(scripts, label):
+    """(trainer constant without TRAINER_, double battle?) if the person's script battles them."""
+    m = re.search(r"\btrainerbattle(\w*)\s+TRAINER_(\w+)", scripts.get(label, ""))
+    if not m:
+        return "", False
+    return m.group(2), "double" in m.group(1)
+
+
+def gate_scripts(root, scripts):
+    """Trigger scripts that turn the player back ("You can't go through yet"): story gates."""
 
     def body(name, depth=0, seen=None):
         seen = seen if seen is not None else set()
@@ -129,7 +143,8 @@ def main():
         sys.exit(__doc__)
     root = sys.argv[1]
     surfable, ledges = behaviors(root)
-    gates = gate_scripts(root)
+    scripts = all_scripts(root)
+    gates = gate_scripts(root, scripts)
     attrs = tileset_attributes(root)
     layouts = {l["id"]: l for l in json.loads(read(root, "data/layouts/layouts.json"))["layouts"] if "id" in l}
     maps = {}
@@ -150,7 +165,9 @@ def main():
                       for e in d.get("warp_events") or []],
             "connections": [[c["direction"], c["offset"], id_to_name.get(c["map"], c["map"])]
                             for c in d.get("connections") or []],
-            "objects": [[o.get("local_id", ""), o["x"], o["y"], o.get("script", ""), o.get("flag", "0")]
+            # [local id, x, y, script, hide flag, trainer (TRAINER_ without the prefix, or ""), double battle]
+            "objects": [[o.get("local_id", ""), o["x"], o["y"], o.get("script", ""), o.get("flag", "0"),
+                         *object_trainer(scripts, o.get("script", ""))]
                         for o in d.get("object_events") or [] if "x" in o],
             "signs": [[b["x"], b["y"], b.get("type", ""), b.get("script", "")]
                       for b in d.get("bg_events") or []],
