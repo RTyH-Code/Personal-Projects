@@ -506,3 +506,73 @@ def test_blackout_needs_a_whiteout(tmp_path):
     fight_and_lose(lambda: emu.set_party([dict(level=5, hp=20, max_hp=20)]))
     lab = t.stats.battles["PalletTown_ProfessorOaksLab"]
     assert lab["blackouts"] == 0 and lab["lost_no_blackout"] == 1 and len(t.stats.blackouts) == 1
+
+
+# --- healing and running away -------------------------------------------------------------------
+
+class HealWorld(FakeEmulator):
+    """A 3x3 house (map 4,0) with Mom at (1,0): pressing A at her, from (1,1) facing up, heals.
+    Its door at (1,2) leads down to a 6x6 town (map 3,0); the town's (2,0) leads back up."""
+
+    def __init__(self):
+        super().__init__()
+        self.set_map(4, 0)
+        self.set_pos(0, 2)
+        self.walls = {(4, 0, 1, 0)}
+        self.warps = {(4, 0, 1, 3): (3, 0, 2, 1), (3, 0, 2, 0): (4, 0, 1, 2)}
+        self.facing = "UP"
+        self.heals = 0
+
+    def press(self, buttons, frames):
+        for b in buttons:
+            if b in ("UP", "DOWN", "LEFT", "RIGHT"):
+                self.facing = b
+        g, n = self.location()
+        if (g, n) == (4, 0):
+            self.bounds = (3, 3)
+        else:
+            self.bounds = (6, 6)
+        super().press(buttons, frames)
+        if "A" in buttons and self.location() == (4, 0) and self.pos() == (1, 1) and self.facing == "UP":
+            self.set_party([dict(level=8, hp=30, max_hp=30)])
+            self.heals += 1
+
+
+def test_learns_where_mom_heals_and_goes_back_when_hurt():
+    emu = HealWorld()
+    emu.set_party([dict(level=8, hp=10, max_hp=30)])
+    ex = Explorer(random.Random(7), interact_prob=0, menu_prob=0)
+    for _ in range(300):
+        a = ex.next(state(emu))
+        emu.press(a.buttons, a.hold)
+        if (4, 0) in ex.heal_spots:
+            break
+    assert ex.heal_spots.get((4, 0)) == (1, 1, "UP")
+    # Out in the town, badly hurt: it should walk home and talk to Mom.
+    emu.set_map(3, 0)
+    emu.set_pos(4, 4)
+    for _ in range(100):
+        a = ex.next(state(emu))
+        emu.press(a.buttons, a.hold)
+    emu.set_party([dict(level=8, hp=5, max_hp=30)])
+    healed_before = emu.heals
+    for _ in range(150):
+        a = ex.next(state(emu))
+        emu.press(a.buttons, a.hold)
+        if emu.heals > healed_before:
+            break
+    assert emu.heals > healed_before
+
+
+def test_runs_from_wild_battles_when_weak():
+    emu = FakeEmulator()
+    emu.set_party([dict(level=8, hp=6, max_hp=30)])
+    emu.set_in_battle(True)
+    ex = Explorer(random.Random(1), catch_prob=0)
+    pressed = [ex.next(state(emu)) for _ in range(6)]
+    assert [a.buttons[0] for a in pressed] == ["B", "B", "DOWN", "RIGHT", "A", "A"]
+    assert {a.tag for a in pressed} == {"run"}
+    # Never in trainer battles (you can't run from those).
+    emu.w32(ram.DEFAULT_ADDRESSES["gBattleTypeFlags"], 8)
+    ex = Explorer(random.Random(1), catch_prob=0)
+    assert all(ex.next(state(emu)).tag != "run" for _ in range(30))

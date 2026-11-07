@@ -14,8 +14,13 @@ Overworld:
   HM obstacles).
 - Now and then it opens the START menu and pokes around.
 
+Healing: when the party is healed right after it talks to someone (Mom, a
+Pokémon Center nurse), it remembers that spot. When the party's HP drops
+below 40%, it walks back there through the maps it knows and talks again.
+
 Battle: mostly A (fight), with some random menu moves so the bag, party and
-RUN get used too. In wild battles it sometimes throws a Poké Ball.
+RUN get used too. In wild battles it sometimes throws a Poké Ball, and it
+runs away when the party's HP is below half.
 
 Outside the overworld (title screen, text, menus): A and B.
 """
@@ -30,6 +35,9 @@ from .ram import GameState
 
 DIRS = {"UP": (0, -1), "DOWN": (0, 1), "LEFT": (-1, 0), "RIGHT": (1, 0)}
 FORGET_EVERY = 200  # at most this often, forget walls when the story flags change
+HEAL_BELOW = 0.4  # go back to a known healing spot when the party's HP is below this
+RUN_BELOW = 0.5  # run from wild battles when the party's HP is below this
+HEAL_SEEN_WITHIN = 15  # a full heal this many presses after talking to someone: they heal
 REVERSE = {"UP": "DOWN", "DOWN": "UP", "LEFT": "RIGHT", "RIGHT": "LEFT"}
 
 
@@ -86,6 +94,16 @@ class Explorer:
         self.was_in_battle = False
         self.flags_seen = None
         self.steps_since_forget = 0
+        self.t = 0  # presses so far
+        # Healing: where talking to someone healed the party (Mom, a Pokémon Center
+        # nurse), per map: (x, y, facing). Learned by noticing it happen.
+        self.heal_spots: dict[tuple[int, int], tuple[int, int, str]] = {}
+        self.heal_fails: dict[tuple[int, int], int] = {}
+        self.last_talk = None  # (map, x, y, facing, press)
+        self.prev_hp = None
+        self.prev_party = 0
+        self.heal_attempt = None  # press when it last talked at a healing spot
+        self.run_cooldown = 0
 
     def new_session(self) -> None:
         """Forget walls (keep layouts and exits): the next start may be further into the game."""
@@ -109,10 +127,32 @@ class Explorer:
 
     # --- learning from the last step -----------------------------------------
 
+    def _talk(self, map_id, x, y, facing) -> None:
+        """Press A at what's in front, then A a few more times: that reads the text and
+        answers YES (a nurse asks "Shall I heal?"; B would mean no)."""
+        self.last_talk = (map_id, x, y, facing, self.t)
+        self.queue.append(tap(("A",), 30, "interact"))
+        for _ in range(3):
+            self.queue.append(tap(("A",), 40, "talk"))
+
+    def _learn_healing(self, s: GameState) -> None:
+        """Notice the party being healed right after talking to someone, and remember where."""
+        live = [mon for mon in s.party if not mon.is_egg]
+        hp = s.hp_fraction if live else None
+        talk = self.last_talk
+        if (hp is not None and self.prev_hp is not None and not s.in_battle and talk is not None
+                and self.prev_hp < 0.95 and hp >= 0.999 and len(s.party) == self.prev_party
+                and talk[0] == s.map_id and self.t - talk[4] <= HEAL_SEEN_WITHIN):
+            self.heal_spots[s.map_id] = talk[1:4]
+            self.heal_fails.pop(s.map_id, None)
+        self.prev_hp = hp
+        self.prev_party = len(s.party)
+
     def _observe(self, s: GameState) -> None:
         if not s.valid:
             self.last_move = None
             return
+        self._learn_healing(s)
         m = self.mem(s.map_id)
         m.visited.add((s.x, s.y))
         if self.last_move is None:
@@ -136,7 +176,7 @@ class Explorer:
             self.retrying = False
             if key not in m.interacted:
                 m.interacted.add(key)
-                self.queue.append(tap(("A",), 30, "interact"))
+                self._talk(s.map_id, x, y, d)
         else:
             # Maybe a text box was open: close it and try the same step again.
             self.retrying = True
@@ -146,6 +186,7 @@ class Explorer:
     # --- choosing -------------------------------------------------------------
 
     def next(self, s: GameState) -> Action:
+        self.t += 1
         self._observe(s)
         self.steps_since_forget += 1
         if s.valid and s.flags:
@@ -166,7 +207,12 @@ class Explorer:
         if self.rng.random() < self.menu_prob:
             self._menu_excursion()
             return self.queue.popleft()
+        if self._needs_healing(s):
+            a = self._go_heal(s)
+            if a is not None:
+                return a
         if self.rng.random() < self.interact_prob:
+            self.last_talk = (s.map_id, s.x, s.y, self.heading, self.t)
             return tap(("A",), 30, "interact")
         d = self._direction(s)
         if d is None:
@@ -204,6 +250,70 @@ class Explorer:
             m.blocked.discard(self.rng.choice(sorted(m.blocked)))
         return self.rng.choice(list(DIRS))
 
+    # --- healing ----------------------------------------------------------------
+
+    def _needs_healing(self, s: GameState) -> bool:
+        live = [mon for mon in s.party if not mon.is_egg]
+        return bool(live) and s.hp_fraction < HEAL_BELOW and bool(self.heal_spots)
+
+    def _map_route(self, start, goals) -> list | None:
+        """Maps to walk through (by known exits) to reach one of `goals`."""
+        prev = {start: None}
+        q = deque([start])
+        while q:
+            cur = q.popleft()
+            if cur in goals:
+                route = []
+                while cur is not None:
+                    route.append(cur)
+                    cur = prev[cur]
+                return route[::-1]
+            for dest in set(self.mem(cur).exits.values()):
+                if dest not in prev:
+                    prev[dest] = cur
+                    q.append(dest)
+        return None
+
+    def _go_heal(self, s: GameState) -> Action | None:
+        """One step towards the nearest known healing spot, or talk to it once there."""
+        route = self._map_route(s.map_id, set(self.heal_spots))
+        if route is None:
+            return None
+        m = self.mem(s.map_id)
+        here = (s.x, s.y)
+        if len(route) == 1:
+            x, y, facing = self.heal_spots[s.map_id]
+            if here == (x, y):
+                if self.heal_attempt is not None and self.t - self.heal_attempt < 40:
+                    return None  # just tried: let the result show before trying again
+                if self.heal_attempt is not None:
+                    # Talked here before and still hurt: after a few tries, forget the spot.
+                    self.heal_fails[s.map_id] = self.heal_fails.get(s.map_id, 0) + 1
+                    if self.heal_fails[s.map_id] >= 3:
+                        del self.heal_spots[s.map_id]
+                        self.heal_attempt = None
+                        return None
+                self.heal_attempt = self.t
+                self._talk(s.map_id, x, y, facing)
+                return tap((facing,), 10, "heal")  # face them first
+            path = self._path_to(m, here, lambda t: t == (x, y))
+        else:
+            nxt = route[1]
+            doors = [(ex, ey, d) for (ex, ey, d), dest in m.exits.items() if dest == nxt]
+            for ex, ey, d in doors:
+                if (ex, ey) == here:
+                    self.last_move = (s.map_id, s.x, s.y, d)
+                    return Action((d,), tag="move")
+            path = None
+            for ex, ey, _d in doors:
+                path = self._path_to(m, here, lambda t, ex=ex, ey=ey: t == (ex, ey))
+                if path:
+                    break
+        if not path:
+            return None
+        self.last_move = (s.map_id, s.x, s.y, path[0])
+        return Action((path[0],), tag="move")
+
     def _path_to(self, m: MapMemory, start, goal) -> list[str] | None:
         """Shortest walk over known tiles to one matching `goal`, as directions."""
         if goal(start):
@@ -227,9 +337,19 @@ class Explorer:
         return None
 
     def _battle(self, s: GameState) -> Action:
+        wild = not s.trainer_battle
+        live = [mon for mon in s.party if not mon.is_egg]
+        weak = bool(live) and s.hp_fraction < RUN_BELOW
+        self.run_cooldown -= 1
+        if wild and weak and self.run_cooldown <= 0:
+            # RUN: back out to the action menu (FIGHT BAG / POKéMON RUN), then down, right, A.
+            self.was_in_battle = True
+            self.run_cooldown = 12
+            self.queue.extend([tap(("B",), 30, "run"), tap(("B",), 30, "run"), tap(("DOWN",), 20, "run"),
+                               tap(("RIGHT",), 20, "run"), tap(("A",), 90, "run"), tap(("A",), 60, "run")])
+            return self.queue.popleft()
         if not self.was_in_battle:
             self.was_in_battle = True
-            wild = not s.trainer_battle
             if wild and s.bag.get("poke_balls") and self.rng.random() < self.catch_prob:
                 # From the opening message: BAG (right of FIGHT), the Poké Balls
                 # pocket (two pockets right of Items), the first ball, USE.
