@@ -533,14 +533,18 @@ class Explorer:
             self.check_tries[c.key] = self.check_tries.get(c.key, 0) + 1
             self.wrong_switches[c.key] = self.wrong_switches.get(c.key, 0) + 1
             self._try_check(s, wrong, p["facing"], restoring=True)
-            self.pending["fixing"] = True
+            self.pending["fixing"] = c.key  # the check it interrupted
             return
         if self._flag(s, c.flag) != p["before"]:
             self.queue.clear()  # that A answered YES: no more
             self.queue.extend(tidy)
             self.pending = None
             if p.get("fixing"):
-                return  # put back; the check it interrupted gets tried again
+                # Put back. The check it interrupted gets tried again, unless that was its last try.
+                was = p["fixing"]
+                if self.check_tries.get(was, 0) >= checklist.TRIES:
+                    self._fail_toggle(checklist.BY_KEY[was], self.check_tries[was])
+                return
             if p["restoring"]:
                 self._event(c.key, "pass")
             else:
@@ -570,10 +574,13 @@ class Explorer:
             self._event(c.key, "fail", f"It switched {c.flag}, but switching it back didn't work after {tries} "
                                        f"tries ({c.why}). This run's rules are now different.")
         else:
-            wrong = self.wrong_switches.get(c.key, 0)
-            note = (f" {wrong} of the tries switched a different setting instead (put back each time): the "
-                    "playtester probably picked the wrong option in the menu.") if wrong else ""
-            self._event(c.key, "fail", f"Tried {tries} times ({c.why}): {c.flag} didn't change.{note}")
+            self._fail_toggle(c, tries)
+
+    def _fail_toggle(self, c, tries) -> None:
+        wrong = self.wrong_switches.get(c.key, 0)
+        note = (f" {wrong} of the tries switched a different setting instead (put back each time): the "
+                "playtester probably picked the wrong option in the menu.") if wrong else ""
+        self._event(c.key, "fail", f"Tried {tries} times ({c.why}): {c.flag} didn't change.{note}")
 
     def _flag(self, s, name) -> bool:
         n = self.game.flags.get(name)
@@ -588,7 +595,7 @@ class Explorer:
         if restoring:  # straight after the first conversation, from the queue
             self.queue.append(tap((facing,), 10, "check"))
         # The first A starts the conversation: give its message and menu time to appear.
-        self.queue.extend(tap((b,), 120 if i == 0 else 40, "check") for i, b in enumerate(c.macro))
+        self.queue.extend(tap((b,), 180 if i == 0 else 40, "check") for i, b in enumerate(c.macro))
         return tap((facing,), 10, "check")
 
     def _story(self, s: GameState) -> Action | None:

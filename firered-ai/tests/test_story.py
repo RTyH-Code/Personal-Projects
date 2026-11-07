@@ -358,7 +358,9 @@ def viridian_pc_emulator(g, flips=True, menu_frames=60):
         conv["a"] += 1
         flag = settings[conv["option"]]
         on = e.flag_on(flag)
-        need = 4 if on else 3  # A presses from the start of the conversation to the YES
+        # A presses from the start of the conversation to the YES. Turning level caps on, his
+        # offer runs four pages (as the real game's does), each needing an A or two.
+        need = 4 if on or flag != "HACK_LEVEL_CAP" else 10
         if flips and conv["a"] == need:
             e.set_flag(g.flags[flag], not on)
         elif conv["a"] > need:
@@ -518,7 +520,7 @@ def test_trains_on_trainers_first_and_saves_the_gym_for_last():
     assert all(not t.startswith(("LEADER_", "RIVAL_")) for t in outside)
 
 
-@pytest.mark.parametrize("menu_frames,works", [(60, True), (400, False)])
+@pytest.mark.parametrize("menu_frames,works", [(150, True), (400, False)])
 def test_exp_share_switch_and_a_wrong_pick_put_back(menu_frames, works):
     """Exp. Share is the menu's second option. If the DOWN is lost (the menu slow to appear),
     the A presses switch level caps instead: that's put back at once, and the check fails

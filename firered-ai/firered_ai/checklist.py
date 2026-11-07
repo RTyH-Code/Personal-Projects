@@ -32,7 +32,9 @@ from .story import TRUE, S, all_of, any_of, badge, flag, item, not_, trainer
 
 TRIES = 3
 VERIFY_WITHIN = 60  # presses to wait for a try to show its result
-TOGGLE_A_PRESSES = 8  # a setting switch: A presses, one at a time, until the setting flips
+# A setting switch: A presses, one at a time, until the setting flips. The level-cap offer
+# runs four pages before its YES/NO, and an A while a page is still printing only finishes it.
+TOGGLE_A_PRESSES = 20
 
 
 @dataclass(frozen=True)
