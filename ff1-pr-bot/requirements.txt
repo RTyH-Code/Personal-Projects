@@ -1,0 +1,5 @@
+# Windows only: the virtual Xbox controller (needs the ViGEmBus driver) and window focus.
+vgamepad; sys_platform == "win32"
+pygetwindow; sys_platform == "win32"
+# For the tests.
+pytest

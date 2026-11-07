@@ -1,6 +1,0 @@
-anthropic>=2.6
-pillow
-# Windows only: screenshots, window focus and the virtual Xbox controller (needs the ViGEmBus driver).
-mss; sys_platform == "win32"
-pygetwindow; sys_platform == "win32"
-vgamepad; sys_platform == "win32"

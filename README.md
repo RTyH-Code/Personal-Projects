@@ -12,8 +12,9 @@ for crashes, softlocks, corrupt data and broken challenge rules, and writes a
 report with a save state and video for each problem. It also includes an
 optional reinforcement-learning agent. See its [README](firered-ai/README.md).
 
-## FF1 Pixel Remaster Agent
+## FF1 Pixel Remaster Bot
 
-`ff1-pr-agent/` has Claude play FINAL FANTASY (Pixel Remaster, PC) toward a 100%
-checklist, using its own knowledge of the game, screenshots and a virtual Xbox
-controller. See its [README](ff1-pr-agent/README.md).
+`ff1-pr-bot/` is a local bot for FINAL FANTASY (Pixel Remaster, PC). A BepInEx
+mod reads the game's state from inside the game, and a Python bot plays
+through a virtual Xbox controller. It's early: the bridge is built, and the bot
+itself comes next. See its [README](ff1-pr-bot/README.md).

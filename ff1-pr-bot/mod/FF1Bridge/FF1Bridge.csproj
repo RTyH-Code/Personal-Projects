@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Builds the BepInEx plugin against the DLLs BepInEx generates in your game folder
+    (run the game once with BepInEx installed first). The game folder is read from
+    Steam's registry entry for FINAL FANTASY (app 1173770); override it with
+      dotnet build -c Release -p:GamePath="D:\SteamLibrary\steamapps\common\FINAL FANTASY PR"
+    The built FF1Bridge.dll is copied into BepInEx\plugins.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>FF1Bridge</AssemblyName>
+    <RootNamespace>FF1Bridge</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GameRegistryPath>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 1173770</GameRegistryPath>
+    <GamePath Condition="'$(GamePath)' == ''">$([MSBuild]::GetRegistryValueFromView('$(GameRegistryPath)', 'InstallLocation', null, RegistryView.Registry32))</GamePath>
+    <GamePath Condition="'$(GamePath)' == ''">$([MSBuild]::GetRegistryValueFromView('$(GameRegistryPath)', 'InstallLocation', null, RegistryView.Registry64))</GamePath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="BepInEx.Core" HintPath="$(GamePath)\BepInEx\core\BepInEx.Core.dll" Private="false" />
+    <Reference Include="BepInEx.Unity.IL2CPP" HintPath="$(GamePath)\BepInEx\core\BepInEx.Unity.IL2CPP.dll" Private="false" />
+    <Reference Include="Il2CppInterop.Runtime" HintPath="$(GamePath)\BepInEx\core\Il2CppInterop.Runtime.dll" Private="false" />
+    <Reference Include="Il2Cppmscorlib" HintPath="$(GamePath)\BepInEx\interop\Il2Cppmscorlib.dll" Private="false" />
+    <Reference Include="UnityEngine.CoreModule" HintPath="$(GamePath)\BepInEx\interop\UnityEngine.CoreModule.dll" Private="false" />
+  </ItemGroup>
+
+  <Target Name="CheckGamePath" BeforeTargets="ResolveAssemblyReferences">
+    <Error Condition="!Exists('$(GamePath)\BepInEx\interop\UnityEngine.CoreModule.dll')"
+           Text="Couldn't find BepInEx's generated DLLs under '$(GamePath)'. Install BepInEx, run the game once, or pass -p:GamePath=&quot;...&quot;." />
+  </Target>
+
+  <Target Name="CopyToPlugins" AfterTargets="Build" Condition="Exists('$(GamePath)\BepInEx\plugins')">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(GamePath)\BepInEx\plugins" />
+    <Message Importance="high" Text="Copied FF1Bridge.dll to $(GamePath)\BepInEx\plugins" />
+  </Target>
+</Project>

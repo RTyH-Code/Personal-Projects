@@ -1,0 +1,17 @@
+{
+  "_comment": [
+    "Where the bot finds each piece of game state, as paths into the game's live objects.",
+    "status: 'known' = taken from another open-source Pixel Remaster mod's code;",
+    "'guess' = plausible but unconfirmed; 'todo' = still to be found with the explorer.",
+    "Check them with:  python -m ff1bot.explore state"
+  ],
+  "in_battle":  {"path": "Last.Battle.BattlePlugManager.Instance().IsBattle()", "status": "known"},
+  "time_scale": {"path": "UnityEngine.Time.timeScale", "status": "known"},
+  "frame":      {"path": "UnityEngine.Time.frameCount", "status": "known"},
+  "auto_dash":  {"path": "Last.Management.UserDataManager.Instance().Config.IsAutoDash", "status": "known"},
+  "gil":        {"path": "Last.Management.UserDataManager.Instance().OwendGil", "status": "guess"},
+  "party":      {"path": "Last.Management.UserDataManager.Instance().GetOwnedCharactersClone()", "depth": 1, "status": "guess"},
+  "map_id":     {"path": "", "status": "todo"},
+  "player_x":   {"path": "", "status": "todo"},
+  "player_y":   {"path": "", "status": "todo"}
+}
