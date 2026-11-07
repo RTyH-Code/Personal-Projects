@@ -35,7 +35,8 @@ class MapData:
         self.cells = base64.b64decode(d["grid"])
         self.warps = d["warps"]  # [x, y, dest map, dest warp index (-1: dynamic)]
         self.connections = {CONNECTION_DIRS[c[0]]: (c[1], c[2]) for c in d["connections"] if c[0] in CONNECTION_DIRS}
-        self.objects = d["objects"]  # [local id, x, y, script, hide flag]
+        # [local id, x, y, script, hide flag, trainer id ("" if not a trainer), double battle]
+        self.objects = [o + ["", False][len(o) - 5:] if len(o) < 7 else o for o in d["objects"]]
         self.signs = d["signs"]  # [x, y, type, script]
         self.triggers = d["triggers"]  # [x, y, var, value, script]
         self.warp_at = {(w[0], w[1]): w for w in self.warps}

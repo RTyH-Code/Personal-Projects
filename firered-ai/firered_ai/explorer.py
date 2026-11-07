@@ -27,9 +27,12 @@ other battle menus get used. After a level-up, no B for a while (it would
 cancel an evolution).
 
 Training: when the strongest Pokémon is more than TRAIN_MARGIN levels under
-the next Gym Leader's strongest, and healthy, walk in grass: with the world
-map, the last grass on the way to the next checklist item (wild Pokémon are
-stronger there); without it, grass where wild battles have started before.
+the next Gym Leader's strongest, and healthy: with the world map, challenge
+the nearest trainer still to beat (not far stronger than the team), outside
+gyms first, then the next gym's; when none are left, walk in the last grass
+on the way to the next checklist item (wild Pokémon are stronger there).
+Without the world map, walk in grass where wild battles have started before.
+At a gym, its trainers come before the leader.
 
 The checklist (with the world map): nearly all the time, work on the first
 checklist item not yet done (checklist.py: the story's objectives, with the
@@ -69,6 +72,8 @@ RUN_BELOW = 0.5  # run from wild battles when the party's HP is below this
 HEAL_SEEN_WITHIN = 15  # a full heal this many presses after talking to someone: they heal
 TRAIN_MARGIN = 2  # train until the strongest Pokémon is this close to the next Gym Leader's level
 TRAIN_HP = 0.6  # only go training with at least this much HP
+TRAINER_LEVEL_MARGIN = 3  # challenge trainers whose strongest is at most this many levels above ours
+TRAINER_LOSSES = 2  # losses to one trainer before leaving them alone for a while
 TRAIN_SHARE = 0.6  # share of overworld presses spent training (the rest keep exploring)
 ERRAND_SHARE = 0.6  # share of overworld presses spent heading for an errand's destination
 ERRAND_STEPS = 400  # presses to spend at an errand's destination before it counts as tried
@@ -173,6 +178,9 @@ class Explorer:
         self.story_stalls: dict[str, int] = {}  # objective -> times it was put aside
         self._nurses = None
         self.train_maps: dict = {}  # (checklist item, its map) -> where to train for it
+        self.trainer_target = None  # (trainer, press) when it last challenged one
+        self.trainer_losses: dict[str, int] = {}
+        self.trainer_rest: dict[str, int] = {}  # trainer -> press until which it's left alone
         # The checklist: hack checks this worker has settled (passed, failed, or out of reach),
         # the try being verified now, watches in progress, and what happened, for the tester.
         self.checked: set[str] = set()
@@ -300,6 +308,7 @@ class Explorer:
             return tap(("A",) if self.rng.random() < 0.8 else ("START",), 30, "text")
         if s.in_battle:
             return self._battle(s)
+        self._after_trainer(s)
         if self.was_in_battle and self.battle_levels is not None:
             if [m.level for m in s.party] > self.battle_levels:  # leveled up: an evolution may follow
                 self.no_b_until = self.t + NO_B_AFTER_LEVEL_UP
@@ -578,6 +587,11 @@ class Explorer:
             return None
         here = self.nav.name(s.map_id)
         steps = [st for st in o.steps if st.when(s, self.game)]
+        if o.key.startswith("badge") and steps and steps[0].map.endswith("_Gym"):
+            gym = steps[0].map  # the gym's trainers first, then the leader
+            a = self._fight_trainers(s, lambda m: m == gym, gym)
+            if a is not None:
+                return a
         for st in steps:
             a = self._story_step(s, o, st, here)
             if a == "explore":
@@ -714,10 +728,57 @@ class Explorer:
                 return a
         return self._nav_to(s, "train", lambda mp, x, y: grass(x, y, world.maps[mp]))
 
+    # --- trainer battles -----------------------------------------------------------
+
+    def _next_gym(self, s: GameState) -> str | None:
+        for o in story.STORY:
+            if o.key.startswith("badge") and not o.done(s, self.game):
+                return o.steps[0].map
+        return None
+
+    def _fight_trainers(self, s: GameState, maps, key) -> Action | None:
+        """Walk to the nearest trainer still to beat on `maps` and challenge them."""
+        top = max((m.level for m in s.party if not m.is_egg), default=0)
+        resting = {t for t, until in self.trainer_rest.items() if until > self.t}
+        spots = self.nav.trainer_spots(s, maps, top + TRAINER_LEVEL_MARGIN, resting)
+        if not spots:
+            return None
+        here = (self.nav.name(s.map_id), s.x, s.y)
+        if here in spots:
+            tid, facing = spots[here]
+            self.trainer_target = (tid, self.t)
+            self._talk(s.map_id, s.x, s.y, facing)
+            return tap((facing,), 10, "trainer")
+        return self._nav_to(s, ("trainers", key, len(spots)), lambda m, x, y: (m, x, y) in spots)
+
+    def _after_trainer(self, s: GameState) -> None:
+        """After challenging a trainer: count a loss, or leave alone one that wouldn't battle."""
+        target = self.trainer_target
+        if target is None or s.in_battle or not s.valid:
+            return
+        tid, t = target
+        n = self.game.trainer_ids.get(tid)
+        if n is not None and s.flag(self.game.trainer_flags_start + n):
+            self.trainer_target = None  # beaten
+        elif self.was_in_battle:
+            self.trainer_target = None  # lost
+            self.trainer_losses[tid] = self.trainer_losses.get(tid, 0) + 1
+            if self.trainer_losses[tid] >= TRAINER_LOSSES:
+                self.trainer_losses[tid] = 0
+                self.trainer_rest[tid] = self.t + STORY_REST
+        elif self.t - t > 40:
+            self.trainer_target = None  # no battle: someone moved, or it's not their turn yet
+            self.trainer_rest[tid] = self.t + STORY_REST
+
     def _train(self, s: GameState) -> Action | None:
-        """Walk in grass it knows (where wild battles started) to win some battles."""
+        """Trainers first (outside gyms, then the next gym's), then wild Pokémon in grass."""
         if self.nav is not None and self.nav.knows(s.map_id):
-            a = self._train_world(s)
+            a = self._fight_trainers(s, lambda m: not m.endswith("_Gym"), "outside")
+            gym = self._next_gym(s)
+            if a is None and gym is not None:
+                a = self._fight_trainers(s, lambda m: m == gym, gym)
+            if a is None:
+                a = self._train_world(s)
             if a is not None:
                 return a
         grass = self.grass.get(s.map_id)

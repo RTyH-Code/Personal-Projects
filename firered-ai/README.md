@@ -90,9 +90,14 @@ battle counts towards the difficulty numbers.
   get used too. Right after a level-up it avoids B, which would cancel an
   evolution.
 - **Training:** when its strongest Pokémon is more than 2 levels under the
-  next Gym Leader's strongest, and it's healthy, it spends some of its time
-  walking in grass: the last grass on the way to its next checklist item
-  (Viridian Forest before Brock), where the wild Pokémon give the most Exp.
+  next Gym Leader's strongest, and it's healthy, it trains. It challenges
+  the nearest trainers it hasn't beaten yet, leaving out any whose strongest
+  Pokémon is more than 3 levels above its own. It fights trainers outside
+  gyms first, then the next gym's. A trainer it loses to twice is left
+  alone for a while. With no trainers left, it walks in the last grass on
+  the way to its next checklist item (Viridian Forest before Brock), where
+  the wild Pokémon give the most Exp.
+- **Gyms:** it beats a gym's trainers before taking on the leader.
 - **Menus:** once in a while it opens the START menu and pokes around (bag,
   party, the Nuzlocke tracker, options, saving...).
 - **Moving forward:** while it plays it keeps the most advanced few save

@@ -431,3 +431,76 @@ def test_trains_in_the_last_grass_before_the_next_gym():
     assert ex._training_map(read_state(emu.read, DEFAULT_ADDRESSES, g.layout)) == "ViridianForest"
     n = run(emu, ex, g, 2000, lambda: emu.where()[0] == "ViridianForest")
     assert n is not None
+
+
+def pewter_save(g):
+    save = Save(g)
+    for f in ("SYS_POKEMON_GET", "SYS_POKEDEX_GET"):
+        save.flag(f)
+    save.var("MAP_SCENE_PALLET_TOWN_OAK", 3)
+    save.var("MAP_SCENE_VIRIDIAN_CITY_OLD_MAN", 2)
+    return save
+
+
+def test_trainers_to_fight_leave_the_story_ones_and_the_too_strong():
+    g, w = Game.load("firered_qol_hard"), World.load("firered_qol_hard")
+    nav = Navigator(w, g)
+    save = pewter_save(g)
+    s = save.state(nav, ("PewterCity_Gym", 6, 12))
+    spots = nav.trainer_spots(s, lambda m: m == "PewterCity_Gym", 100)
+    assert {t for t, _d in spots.values()} == {"CAMPER_LIAM"}  # not Brock
+    assert not nav.trainer_spots(s, lambda m: m == "PewterCity_Gym", 1)  # Liam is too strong at Lv. 1
+    f = g.trainer_flags_start + g.trainer_ids["CAMPER_LIAM"]  # beaten
+    save.flags[f // 8] |= 1 << (f % 8)
+    assert not nav.trainer_spots(save.state(nav, ("PewterCity_Gym", 6, 12)), lambda m: m == "PewterCity_Gym", 100)
+    # A double battle needs two Pokémon that can fight (the state above has none).
+    s = save.state(nav, ("CeruleanCity_Gym", 5, 12))
+    assert "SWIMMER_MALE_LUIS" not in {t for t, _d in nav.trainer_spots(s, lambda m: True, 100).values()}
+
+
+def trainer_emulator(g, start, level):
+    """Talking to a trainer beats them (sets their flag); records who, in order."""
+    emu = WorldEmulator(g, start=start)
+    emu.set_party([dict(level=level, hp=200, max_hp=200)])
+    for f in ("SYS_POKEMON_GET", "SYS_POKEDEX_GET"):
+        emu.set_flag(g.flags[f])
+    emu.set_var("MAP_SCENE_PALLET_TOWN_OAK", 3)
+    emu.set_var("MAP_SCENE_VIRIDIAN_CITY_OLD_MAN", 2)
+    emu.beaten = []
+
+    def talk(e, name, x, y):
+        o = e._person_at(name, x, y)
+        if o and o[5] and o[5] not in e.beaten:
+            e.beaten.append(o[5])
+            e.set_flag(g.trainer_flags_start + g.trainer_ids[o[5]])
+    emu.on_talk = talk
+    return emu
+
+
+def test_beats_the_gym_trainers_before_the_leader():
+    g = Game.load("firered_qol_hard")
+    emu = trainer_emulator(g, ("PewterCity_Gym", 6, 13), 60)
+    ex = Explorer(random.Random(12), interact_prob=0, menu_prob=0, game=g, world=emu.world)
+    ex.checked |= {"level_cap_toggle", "exp_share_toggle", "modern_tutor"}
+    run(emu, ex, g, 600, lambda: "LEADER_BROCK" in emu.beaten)
+    assert emu.beaten[:2] == ["CAMPER_LIAM", "LEADER_BROCK"]
+
+
+def test_trains_on_trainers_first_and_saves_the_gym_for_last():
+    """Under-levelled in Pewter: route trainers it can take, then Brock's gym trainer."""
+    g = Game.load("firered_qol_hard")
+    emu = trainer_emulator(g, ("PewterCity", 15, 17), 12)
+    ex = Explorer(random.Random(13), interact_prob=0, menu_prob=0, game=g, world=emu.world)
+    ex.checked |= {"level_cap_toggle", "exp_share_toggle", "modern_tutor"}
+    import firered_ai.explorer as explorer
+    old = explorer.TRAIN_SHARE
+    explorer.TRAIN_SHARE = 1.0
+    try:
+        run(emu, ex, g, 4000, lambda: "CAMPER_LIAM" in emu.beaten)
+    finally:
+        explorer.TRAIN_SHARE = old
+    assert "CAMPER_LIAM" in emu.beaten and "LEADER_BROCK" not in emu.beaten
+    gym_at = emu.beaten.index("CAMPER_LIAM")
+    assert gym_at > 0  # someone outside the gym first
+    outside = emu.beaten[:gym_at]
+    assert all(not t.startswith(("LEADER_", "RIVAL_")) for t in outside)

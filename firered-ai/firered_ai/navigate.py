@@ -25,6 +25,7 @@ HM_OBSTACLES = {
     "EventScript_RockSmash": story.CAN_ROCK_SMASH,
     "EventScript_StrengthBoulder": story.CAN_STRENGTH,
 }
+STORY_TRAINERS = ("LEADER_", "ELITE_FOUR_", "CHAMPION_", "RIVAL_", "BOSS_")
 OBSTACLE_TRIES = 3  # presses of A at one obstacle before it counts as a wall
 FAIL_REST = 300  # after finding no way to a goal, wait this many presses before looking again
 
@@ -86,7 +87,7 @@ class Navigator:
         blocked, obstacles = set(), {}
         for name, m in self.world.maps.items():
             for o in m.objects:
-                lid, x, y, script, hide = o
+                lid, x, y, script, hide = o[:5]
                 if lid:
                     x, y = story.placed(name, lid, x, y, s, self.game)
                 if self._flag_set(hide, s, here, name) or (x, y) in m.warp_at:
@@ -191,6 +192,31 @@ class Navigator:
         if m is None:
             return set()
         return {(t[0], t[1]) for t in m.triggers if any(p in t[4] for p in parts)}
+
+    def trainer_spots(self, s, maps, max_level: int, skip=frozenset()) -> dict:
+        """Where to stand to challenge each trainer still to beat on `maps` (a function of the
+        map name): {(map, x, y): (trainer, facing)}. Only trainers whose strongest Pokémon is at
+        most `max_level`, and double battles only with two Pokémon that can fight. Story
+        trainers (Gym Leaders, rivals, Giovanni, the Elite Four) are left to the story."""
+        g = self.game
+        here = self.name(s.map_id)
+        able = sum(1 for m in s.party if not m.is_egg and m.hp > 0)
+        out = {}
+        for name, m in self.world.maps.items():
+            if not maps(name):
+                continue
+            for o in m.objects:
+                tid, double = o[5], o[6]
+                if not tid or tid in skip or tid.startswith(STORY_TRAINERS) or (double and able < 2):
+                    continue
+                n = g.trainer_ids.get(tid)
+                if n is None or s.flag(g.trainer_flags_start + n) or self._flag_set(o[4], s, here, name):
+                    continue
+                if g.trainers[n].get("max_level", 0) > max_level:
+                    continue
+                for x, y, d in self.world.adjacent_spots(name, o[1], o[2]):
+                    out[(name, x, y)] = (tid, d)
+        return out
 
     def nurse_spots(self) -> dict:
         """Where to stand to talk to each Pokémon Center nurse: {(map, x, y): facing}."""
