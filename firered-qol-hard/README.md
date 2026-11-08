@@ -620,7 +620,7 @@ unmodified pret data:
 - `peak_trainers.py`: peak teams, gym rematches and the Elite Four round 3.
 - `spoiler_guide.py <dir>`: regenerates the spoiler guide from the game data.
 - `tower_sets.py <dir>`: the competitive Trainer Tower teams, from Showdown's random-battle set files (read as data).
-- `playtest/`: an automated playtest (a headless mGBA harness plus 26 milestone checks, from the first battles to the post-game rewards).
+- `playtest/`: an automated playtest (a headless mGBA harness plus 25 milestone checks, from the first battles to the post-game rewards).
 - `gym_doubles.py`: the gym double battles and their doubles movesets.
 - `learnsets.py`: what each species can learn in this hack (used by the trainer scripts).
 - `vr_rematches.py`: the Victory Road VS Seeker rematch teams and scripts.

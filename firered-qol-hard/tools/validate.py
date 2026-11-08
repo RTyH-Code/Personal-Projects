@@ -7,6 +7,8 @@ Prints every problem found (and exits 1 if there are any). It checks that each
 move has data, a name, a description and an animation; that each species has
 stats, graphics, learnsets and a Pokedex entry; that learnsets, egg moves,
 evolutions, trainer parties and wild encounters only use things that exist;
+(also: peak teams are six Lv. 100 Pokemon, and Trainer Tower teams are fully
+evolved with one of each species and item);
 and that text fits the boxes it is shown in.
 """
 import json
@@ -298,6 +300,48 @@ for grp in we["wild_encounter_groups"]:
                     bad(f"{enc.get('base_label')}: unknown wild {m['species']}")
                 if not 1 <= m["min_level"] <= m["max_level"] <= 100:
                     bad(f"{enc.get('base_label')}: levels {m['min_level']}-{m['max_level']}")
+
+# ---------------------------------------------------------------- post-game teams
+# Peak trainers: six Lv. 100 Pokemon each, with real moves and no repeats.
+evolves = {a for a, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", evo_txt, re.S) if "EVO_" in body}
+peak_parties = re.findall(r"PEAK_PARTY\((sParty_\w+)\)", read("src/data/trainers.h"))
+if len(peak_parties) < 13:
+    bad(f"only {len(peak_parties)} peak parties")
+for party in peak_parties:
+    m = re.search(r"static const struct \w+ %s\[\] = \{(.*?)\n\};" % party, tp, re.S)
+    mons = re.findall(r"\{(.*?)\n    \}", m.group(1), re.S) if m else []
+    if len(mons) != 6:
+        bad(f"{party}: {len(mons)} Pokemon (peak teams have 6)")
+    for mon in mons:
+        if re.search(r"\.lvl = (\d+)", mon).group(1) != "100":
+            bad(f"{party}: a Pokemon below Lv. 100")
+        mv = [x for x in re.findall(r"MOVE_\w+", mon) if x != "MOVE_NONE"]
+        if not mv or len(mv) != len(set(mv)):
+            bad(f"{party}: moves {mv}")
+# Trainer Tower: fully evolved, real moves, one of each species and item per team.
+for floor, body in re.findall(r"static const struct TrainerTowerFloor (\w+) = \{(.*?)\n\};", read("src/trainer_tower_sets.c"), re.S):
+    for t in re.split(r"\.name = _\(", body)[1:]:
+        tname = t.split('"')[1]
+        sps, its = [], []
+        for sp, mon in re.findall(r"\.species = (SPECIES_\w+),(.*?)\.friendship", t, re.S):
+            where = f"Trainer Tower {floor} {tname} {sp}"
+            if sp not in species_names:
+                bad(f"{where}: unknown species")
+            if sp in evolves:
+                bad(f"{where}: not fully evolved")
+            mv = [x for x in re.findall(r"MOVE_\w+", re.search(r"\.moves = \{([^}]*)\}", mon).group(1)) if x != "MOVE_NONE"]
+            if not mv or len(mv) != len(set(mv)) or any(x not in moves for x in mv):
+                bad(f"{where}: moves {mv}")
+            it = re.search(r"\.heldItem = (ITEM_\w+)", mon).group(1)
+            if it not in items:
+                bad(f"{where}: unknown item {it}")
+            sps.append(sp)
+            if it != "ITEM_NONE":
+                its.append(it)
+        if not sps:
+            bad(f"Trainer Tower {floor} {tname}: no Pokemon")
+        if len(sps) != len(set(sps)) or len(its) != len(set(its)):
+            bad(f"Trainer Tower {floor} {tname}: repeated species or item")
 
 # ---------------------------------------------------------------- battle strings
 ids = defines("include/constants/battle_string_ids.h", "STRINGID_")

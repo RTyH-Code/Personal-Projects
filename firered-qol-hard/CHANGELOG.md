@@ -26,7 +26,7 @@ Pull requests: [#46](https://github.com/RTyH-Code/Personal-Projects/pull/46)
 - **Audit:** the data validator now checks every peak team (six Lv. 100
   Pokémon) and every Trainer Tower team (fully evolved, no repeated
   species or item). That's how the Trainer Tower issue was found.
-- **Automated playtest:** now 26 checks, adding the trader's Master Ball
+- **Automated playtest:** now 25 checks, adding the trader's Master Ball
   limit and PP Up trade, and the peak Champion's battle.
 - **Saves:** release 18 saves carry over.
 
