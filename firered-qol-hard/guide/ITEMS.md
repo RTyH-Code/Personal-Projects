@@ -30,7 +30,7 @@ Gifts / events: Teachy TV
 |---|---|---|
 | Hidden | Macho Brace | 2, 2 |
 
-Gifts / events: TM26 Earthquake
+Gifts / events: Nugget, PP Max, PP Up, Star Piece, TM26 Earthquake
 
 ## Viridian City Mart
 
@@ -46,7 +46,7 @@ Shop: Poké Ball (₽200), Potion (₽300), Antidote (₽100), Parlyz Heal (₽2
 
 ## Pewter City Gym
 
-Gifts / events: TM39 Rock Tomb
+Gifts / events: Nugget, PP Max, PP Up, Star Piece, TM39 Rock Tomb
 
 ## Pewter City Mart
 
@@ -70,7 +70,7 @@ Gifts / events: Bicycle
 
 ## Cerulean City Gym
 
-Gifts / events: TM03 Water Pulse
+Gifts / events: Nugget, PP Max, PP Up, Star Piece, TM03 Water Pulse
 
 ## Cerulean City House
 
@@ -88,7 +88,7 @@ Shop: Poké Ball (₽200), Super Potion (₽700), Potion (₽300), Antidote (₽
 
 ## Vermilion City Gym
 
-Gifts / events: TM34 Shock Wave
+Gifts / events: Nugget, PP Max, PP Up, Star Piece, TM34 Shock Wave
 
 ## Vermilion City House
 
@@ -186,7 +186,7 @@ Gifts / events: Coin Case
 
 ## Fuchsia City Gym
 
-Gifts / events: Lucky Egg, TM06 Toxic
+Gifts / events: Lucky Egg, Nugget, PP Max, PP Up, Star Piece, TM06 Toxic
 
 ## Fuchsia City House
 
@@ -212,7 +212,7 @@ Gifts / events: HM04 Strength
 
 ## Saffron City Gym
 
-Gifts / events: TM04 Calm Mind
+Gifts / events: Nugget, PP Max, PP Up, Star Piece, TM04 Calm Mind
 
 ## Saffron City Mart
 
@@ -224,7 +224,7 @@ Gifts / events: TM29 Psychic
 
 ## Cinnabar Island Gym
 
-Gifts / events: TM38 Fire Blast
+Gifts / events: Nugget, PP Max, PP Up, Star Piece, TM38 Fire Blast
 
 ## Cinnabar Island Mart
 
@@ -504,9 +504,25 @@ Gifts / events: Ruby
 
 Gifts / events: Dome Fossil, Helix Fossil
 
-## Pokémon League Champions Room
+## Pokémon League Agatha's Room
+
+Gifts / events: Nugget, PP Max, PP Up, Star Piece
+
+## Pokémon League Bruno's Room
+
+Gifts / events: Nugget, PP Max, PP Up, Star Piece
+
+## Pokémon League Champion's Room
 
 Gifts / events: Master Ball, Nugget, PP Max, Special Candy, Star Piece
+
+## Pokémon League Lance's Room
+
+Gifts / events: Nugget, PP Max, PP Up, Star Piece
+
+## Pokémon League Lorelei's Room
+
+Gifts / events: Nugget, PP Max, PP Up, Star Piece
 
 ## Pokémon Mansion 1F
 

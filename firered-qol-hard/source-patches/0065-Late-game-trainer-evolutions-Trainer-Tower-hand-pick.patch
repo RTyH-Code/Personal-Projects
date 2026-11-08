@@ -1,0 +1,1351 @@
+From af4bd408e591b6bb97d5d8cd9e6691b9e24d3327 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 8 Nov 2026 22:47:31 +0000
+Subject: [PATCH] Late-game trainer evolutions, Trainer Tower hand-picked
+ stand-ins, guide gift listings (R20)
+
+- trainer_evolutions.py: every Lv. 50+ trainer Pokemon at least 5 levels
+  past a level-up evolution evolves (68 Pokemon). postgame_levels.py had
+  skipped evolutions whose species was already on the team.
+- validate.py: flags any Lv. 50+ trainer Pokemon left unevolved.
+- tower_sets.py: hand-picked stand-ins where the automatic pick broke a
+  trainer's theme (Glaceon and Leafeon for the Eeveelution twins, Kingdra
+  and Feraligatr for Shania, Ampharos for Owen, Dusknoir for Zackery).
+- Spoiler guide: shared rewards are listed under every place that gives
+  them, and the League rooms have their apostrophes.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ HACK_NOTES.md                    |  10 +-
+ include/hack_version.h           |   2 +-
+ src/data/trainer_parties.h       | 183 +++++++++++++++++++------------
+ src/trainer_tower_sets.c         | 100 ++++++++---------
+ tools/hack/spoiler_guide.py      |  18 ++-
+ tools/hack/tower_sets.py         |  21 +++-
+ tools/hack/trainer_evolutions.py |  68 ++++++++++++
+ tools/hack/validate.py           |  16 ++-
+ 8 files changed, 289 insertions(+), 129 deletions(-)
+ create mode 100644 tools/hack/trainer_evolutions.py
+
+diff --git a/HACK_NOTES.md b/HACK_NOTES.md
+index dee7724..8bce5ee 100644
+--- a/HACK_NOTES.md
++++ b/HACK_NOTES.md
+@@ -553,6 +553,10 @@ teams are:
+   - Trainer Pokémon evolve where their new level allows.
+ - **Post-game route rematches:** VS Seeker rematch teams that unlock after
+   the Champion are 1.25x stronger (about Lv. 66–86).
++- **Late-game evolutions:** every trainer Pokémon of Lv. 50 or higher has
++  evolved where its level allows (5 levels past the evolution), even if the
++  team already has one, e.g. no more Lv. 72 Mareep or Lv. 68 Magikarp.
++  Earlier trainers keep their classic unevolved Pokémon.
+ - **Held items:** the Trainer Tower lobby shop on Seven Island also sells the
+   held items competitive teams use: Leftovers, Choice Band, Shell Bell, Focus
+   Band, Quick Claw, Scope Lens, Bright Powder, King's Rock, Lucky Egg, Metal
+@@ -582,8 +586,9 @@ Each script runs once against the original pret data:
+   an unused species slot, with its graphics, cry, Pokédex entry and evolution item.
+ - `balance.py`: modern boss movesets, peak teams with the later evolutions.
+ - `validate.py`: checks the game data for missing or inconsistent entries,
+-  including that every peak team is six Lv. 100 Pokémon and every Trainer
+-  Tower team is fully evolved with no repeated species or item.
++  including that every peak team is six Lv. 100 Pokémon, every Trainer
++  Tower team is fully evolved with no repeated species or item, and no
++  Lv. 50+ trainer Pokémon is left unevolved.
+ - `playtest/playtest.py [check ...]`: automated playtest. It runs 25 milestone
+   checks in a headless mGBA:
+   - The boot menu.
+@@ -609,6 +614,7 @@ Each script runs once against the original pret data:
+   `gcc -O2 -w -o tools/hack/playtest/harness tools/hack/playtest/harness.c -lmgba`.
+ - `held_item_shop.py`: held items in the Trainer Tower lobby shop and their prices.
+ - `postgame_levels.py`: Sevii Islands 4–7 trainers and wild Pokémon, and post-game route rematches.
++- `trainer_evolutions.py`: Lv. 50+ trainer Pokémon evolve where their level allows (run after `postgame_levels.py`).
+ - `tower_sets.py <dir>`: the competitive Trainer Tower teams, from Showdown's
+   random-battle set files (read as data).
+ - `gym_doubles.py`: the gym double battles (one trainer per gym) and their doubles movesets.
+diff --git a/include/hack_version.h b/include/hack_version.h
+index 0e5478c..ab1d04f 100644
+--- a/include/hack_version.h
++++ b/include/hack_version.h
+@@ -3,6 +3,6 @@
+ 
+ // FireRed QoL+Hard release number, shown in the Options menu. Bump it with
+ // each release (see CHANGELOG.md in the Personal-Projects repository).
+-#define HACK_RELEASE_STRING "R19"
++#define HACK_RELEASE_STRING "R20"
+ 
+ #endif // GUARD_HACK_VERSION_H
+diff --git a/src/data/trainer_parties.h b/src/data/trainer_parties.h
+index 7c478f4..64caf65 100644
+--- a/src/data/trainer_parties.h
++++ b/src/data/trainer_parties.h
+@@ -3167,17 +3167,18 @@ static const struct TrainerMonNoItemCustomMoves sParty_JugglerGregory[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_JugglerEdward[] = {
+     {
+         .iv = 150,
+         .lvl = 69,
+-        .species = SPECIES_VOLTORB,
++        .species = SPECIES_ELECTRODE,
+         .moves = {MOVE_SWIFT, MOVE_LIGHT_SCREEN, MOVE_SPARK, MOVE_SONIC_BOOM},
+     },
+     {
+         .iv = 150,
+         .lvl = 69,
+-        .species = SPECIES_VOLTORB,
++        .species = SPECIES_ELECTRODE,
+         .moves = {MOVE_SWIFT, MOVE_LIGHT_SCREEN, MOVE_SPARK, MOVE_SONIC_BOOM},
+     },
+     {
+@@ -5571,6 +5572,7 @@ static const struct TrainerMonItemCustomMoves sParty_EliteFourBruno[] = {
+     },
+ };
+ 
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonItemCustomMoves sParty_EliteFourAgatha[] = {
+     {
+         .iv = 255,
+@@ -5589,7 +5591,7 @@ static const struct TrainerMonItemCustomMoves sParty_EliteFourAgatha[] = {
+     {
+         .iv = 255,
+         .lvl = 61,
+-        .species = SPECIES_HAUNTER,
++        .species = SPECIES_GENGAR,
+         .heldItem = ITEM_NONE,
+         .moves = {MOVE_HYPNOSIS, MOVE_DREAM_EATER, MOVE_HEX, MOVE_MEAN_LOOK},
+     },
+@@ -5609,6 +5611,7 @@ static const struct TrainerMonItemCustomMoves sParty_EliteFourAgatha[] = {
+     },
+ };
+ 
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonItemCustomMoves sParty_EliteFourLance[] = {
+     {
+         .iv = 255,
+@@ -5620,14 +5623,14 @@ static const struct TrainerMonItemCustomMoves sParty_EliteFourLance[] = {
+     {
+         .iv = 255,
+         .lvl = 62,
+-        .species = SPECIES_DRAGONAIR,
++        .species = SPECIES_DRAGONITE,
+         .heldItem = ITEM_NONE,
+         .moves = {MOVE_DRAGON_PULSE, MOVE_IRON_TAIL, MOVE_THUNDER_WAVE, MOVE_OUTRAGE},
+     },
+     {
+         .iv = 255,
+         .lvl = 62,
+-        .species = SPECIES_DRAGONAIR,
++        .species = SPECIES_DRAGONITE,
+         .heldItem = ITEM_NONE,
+         .moves = {MOVE_AQUA_TAIL, MOVE_SAFEGUARD, MOVE_THUNDER_WAVE, MOVE_OUTRAGE},
+     },
+@@ -6177,6 +6180,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_RivalSilphCharmander[] =
+     },
+ };
+ 
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_RivalRoute22LateSquirtle[] = {
+     {
+         .iv = 255,
+@@ -6187,7 +6191,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_RivalRoute22LateSquirtle[
+     {
+         .iv = 255,
+         .lvl = 52,
+-        .species = SPECIES_RHYHORN,
++        .species = SPECIES_RHYDON,
+         .moves = {MOVE_TAKE_DOWN, MOVE_HORN_DRILL, MOVE_ROCK_BLAST, MOVE_FURY_ATTACK},
+     },
+     {
+@@ -6216,6 +6220,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_RivalRoute22LateSquirtle[
+     },
+ };
+ 
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_RivalRoute22LateBulbasaur[] = {
+     {
+         .iv = 255,
+@@ -6226,7 +6231,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_RivalRoute22LateBulbasaur
+     {
+         .iv = 255,
+         .lvl = 52,
+-        .species = SPECIES_RHYHORN,
++        .species = SPECIES_RHYDON,
+         .moves = {MOVE_TAKE_DOWN, MOVE_HORN_DRILL, MOVE_ROCK_BLAST, MOVE_FURY_ATTACK},
+     },
+     {
+@@ -6255,6 +6260,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_RivalRoute22LateBulbasaur
+     },
+ };
+ 
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_RivalRoute22LateCharmander[] = {
+     {
+         .iv = 255,
+@@ -6265,7 +6271,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_RivalRoute22LateCharmande
+     {
+         .iv = 255,
+         .lvl = 52,
+-        .species = SPECIES_RHYHORN,
++        .species = SPECIES_RHYDON,
+         .moves = {MOVE_TAKE_DOWN, MOVE_HORN_DRILL, MOVE_ROCK_BLAST, MOVE_FURY_ATTACK},
+     },
+     {
+@@ -7275,6 +7281,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_PlayerRed[] = {DUMMY_TRA
+ static const struct TrainerMonNoItemDefaultMoves sParty_PlayerLeaf[] = {DUMMY_TRAINER_MON};
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt42[] = {
+     {
+         .iv = 0,
+@@ -7284,7 +7291,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt42[] = {
+     {
+         .iv = 0,
+         .lvl = 64,
+-        .species = SPECIES_HOUNDOUR,
++        .species = SPECIES_HOUNDOOM,
+     },
+ };
+ 
+@@ -7408,6 +7415,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_AromaLadyNikki[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_RuinManiacStanly[] = {
+     {
+         .iv = 150,
+@@ -7422,11 +7430,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_RuinManiacStanly[] = {
+     {
+         .iv = 150,
+         .lvl = 72,
+-        .species = SPECIES_GRAVELER,
++        .species = SPECIES_GOLEM,
+     },
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonItemDefaultMoves sParty_LadyJacki[] = {
+     {
+         .iv = 150,
+@@ -7437,7 +7446,7 @@ static const struct TrainerMonItemDefaultMoves sParty_LadyJacki[] = {
+     {
+         .iv = 150,
+         .lvl = 74,
+-        .species = SPECIES_SKIPLOOM,
++        .species = SPECIES_JUMPLUFF,
+         .heldItem = ITEM_STARDUST,
+     },
+ };
+@@ -7619,16 +7628,17 @@ static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt44[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt45[] = {
+     {
+         .iv = 150,
+         .lvl = 57,
+-        .species = SPECIES_ZUBAT,
++        .species = SPECIES_GOLBAT,
+     },
+     {
+         .iv = 150,
+         .lvl = 57,
+-        .species = SPECIES_ZUBAT,
++        .species = SPECIES_GOLBAT,
+     },
+     {
+         .iv = 150,
+@@ -7657,6 +7667,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt46[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt47[] = {
+     {
+         .iv = 150,
+@@ -7666,12 +7677,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt47[] = {
+     {
+         .iv = 150,
+         .lvl = 72,
+-        .species = SPECIES_MACHOP,
++        .species = SPECIES_MACHAMP,
+     },
+     {
+         .iv = 150,
+         .lvl = 72,
+-        .species = SPECIES_MACHOKE,
++        .species = SPECIES_MACHAMP,
+     },
+ };
+ 
+@@ -7734,11 +7745,12 @@ static const struct TrainerMonNoItemCustomMoves sParty_TeamRocketAdmin2[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_ScientistGideon[] = {
+     {
+         .iv = 150,
+         .lvl = 69,
+-        .species = SPECIES_VOLTORB,
++        .species = SPECIES_ELECTRODE,
+         .moves = {MOVE_SWIFT, MOVE_SCREECH, MOVE_SPARK, MOVE_SONIC_BOOM},
+     },
+     {
+@@ -7750,7 +7762,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_ScientistGideon[] = {
+     {
+         .iv = 150,
+         .lvl = 69,
+-        .species = SPECIES_MAGNEMITE,
++        .species = SPECIES_MAGNETON,
+         .moves = {MOVE_SCREECH, MOVE_SWIFT, MOVE_SPARK, MOVE_THUNDER_WAVE},
+     },
+     {
+@@ -8054,6 +8066,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_PainterRayna[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonItemDefaultMoves sParty_LadyGillian[] = {
+     {
+         .iv = 150,
+@@ -8064,13 +8077,13 @@ static const struct TrainerMonItemDefaultMoves sParty_LadyGillian[] = {
+     {
+         .iv = 150,
+         .lvl = 72,
+-        .species = SPECIES_MAREEP,
++        .species = SPECIES_AMPHAROS,
+         .heldItem = ITEM_STARDUST,
+     },
+     {
+         .iv = 150,
+         .lvl = 73,
+-        .species = SPECIES_FLAAFFY,
++        .species = SPECIES_AMPHAROS,
+         .heldItem = ITEM_NUGGET,
+     },
+ };
+@@ -8090,6 +8103,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_YoungsterDestin[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_SwimmerMaleToby[] = {
+     {
+         .iv = 150,
+@@ -8099,7 +8113,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_SwimmerMaleToby[] = {
+     {
+         .iv = 150,
+         .lvl = 72,
+-        .species = SPECIES_TENTACOOL,
++        .species = SPECIES_TENTACRUEL,
+     },
+     {
+         .iv = 150,
+@@ -8109,6 +8123,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_SwimmerMaleToby[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt49[] = {
+     {
+         .iv = 150,
+@@ -8118,7 +8133,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt49[] = {
+     {
+         .iv = 150,
+         .lvl = 72,
+-        .species = SPECIES_GRIMER,
++        .species = SPECIES_MUK,
+     },
+     {
+         .iv = 150,
+@@ -8128,11 +8143,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt49[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_TeamRocketGrunt50[] = {
+     {
+         .iv = 150,
+         .lvl = 73,
+-        .species = SPECIES_KOFFING,
++        .species = SPECIES_WEEZING,
+         .moves = {MOVE_MEMENTO, MOVE_HAZE, MOVE_SMOKESCREEN, MOVE_SLUDGE},
+     },
+     {
+@@ -8163,6 +8179,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt51[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_BirdKeeperMilo[] = {
+     {
+         .iv = 150,
+@@ -8172,16 +8189,17 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BirdKeeperMilo[] = {
+     {
+         .iv = 150,
+         .lvl = 73,
+-        .species = SPECIES_PIDGEOTTO,
++        .species = SPECIES_PIDGEOT,
+     },
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_BirdKeeperChaz[] = {
+     {
+         .iv = 150,
+         .lvl = 70,
+-        .species = SPECIES_SPEAROW,
++        .species = SPECIES_FEAROW,
+     },
+     {
+         .iv = 150,
+@@ -8191,11 +8209,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BirdKeeperChaz[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_BirdKeeperHarold[] = {
+     {
+         .iv = 150,
+         .lvl = 70,
+-        .species = SPECIES_HOOTHOOT,
++        .species = SPECIES_NOCTOWL,
+     },
+     {
+         .iv = 150,
+@@ -8279,11 +8298,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_SwimmerMaleSamir[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_SwimmerFemaleDenise[] = {
+     {
+         .iv = 150,
+         .lvl = 73,
+-        .species = SPECIES_CHINCHOU,
++        .species = SPECIES_LANTURN,
+     },
+     {
+         .iv = 150,
+@@ -8330,6 +8350,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_RuinManiacFoster[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_RuinManiacLarry[] = {
+     {
+         .iv = 150,
+@@ -8339,7 +8360,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_RuinManiacLarry[] = {
+     {
+         .iv = 150,
+         .lvl = 73,
+-        .species = SPECIES_MACHOKE,
++        .species = SPECIES_MACHAMP,
+     },
+ };
+ 
+@@ -8377,6 +8398,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_PsychicDario[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_PsychicRodette[] = {
+     {
+         .iv = 150,
+@@ -8387,7 +8409,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_PsychicRodette[] = {
+     {
+         .iv = 150,
+         .lvl = 72,
+-        .species = SPECIES_DROWZEE,
++        .species = SPECIES_HYPNO,
+         .moves = {MOVE_PSYCHIC, MOVE_DISABLE, MOVE_PSYCH_UP, MOVE_FUTURE_SIGHT},
+     },
+     {
+@@ -8413,6 +8435,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_AromaLadyMiah[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_YoungCoupleEveJon[] = {
+     {
+         .iv = 150,
+@@ -8422,11 +8445,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_YoungCoupleEveJon[] = {
+     {
+         .iv = 150,
+         .lvl = 74,
+-        .species = SPECIES_PSYDUCK,
++        .species = SPECIES_GOLDUCK,
+     },
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_JugglerMason[] = {
+     {
+         .iv = 150,
+@@ -8443,13 +8467,13 @@ static const struct TrainerMonNoItemCustomMoves sParty_JugglerMason[] = {
+     {
+         .iv = 150,
+         .lvl = 70,
+-        .species = SPECIES_VOLTORB,
++        .species = SPECIES_ELECTRODE,
+         .moves = {MOVE_SWIFT, MOVE_LIGHT_SCREEN, MOVE_SPARK, MOVE_SONIC_BOOM},
+     },
+     {
+         .iv = 150,
+         .lvl = 70,
+-        .species = SPECIES_PINECO,
++        .species = SPECIES_FORRETRESS,
+         .moves = {MOVE_SPIKES, MOVE_BIDE, MOVE_RAPID_SPIN, MOVE_EXPLOSION},
+     },
+ };
+@@ -8682,6 +8706,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_RuinManiacBrandon[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_RuinManiacBenjamin[] = {
+     {
+         .iv = 150,
+@@ -8692,13 +8717,13 @@ static const struct TrainerMonNoItemCustomMoves sParty_RuinManiacBenjamin[] = {
+     {
+         .iv = 150,
+         .lvl = 72,
+-        .species = SPECIES_GRAVELER,
++        .species = SPECIES_GOLEM,
+         .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_BLAST, MOVE_ROCK_THROW, MOVE_SELF_DESTRUCT},
+     },
+     {
+         .iv = 150,
+         .lvl = 72,
+-        .species = SPECIES_GRAVELER,
++        .species = SPECIES_GOLEM,
+         .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_BLAST, MOVE_ROCK_THROW, MOVE_SELF_DESTRUCT},
+     },
+ };
+@@ -8765,16 +8790,17 @@ static const struct TrainerMonNoItemDefaultMoves sParty_RuinManiacLawson[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_PsychicLaura[] = {
+     {
+         .iv = 150,
+         .lvl = 72,
+-        .species = SPECIES_NATU,
++        .species = SPECIES_XATU,
+     },
+     {
+         .iv = 150,
+         .lvl = 72,
+-        .species = SPECIES_NATU,
++        .species = SPECIES_XATU,
+     },
+     {
+         .iv = 150,
+@@ -8845,11 +8871,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BugCatcherJonah[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_BugCatcherVance[] = {
+     {
+         .iv = 150,
+         .lvl = 72,
+-        .species = SPECIES_VENONAT,
++        .species = SPECIES_VENOMOTH,
+     },
+     {
+         .iv = 150,
+@@ -8892,6 +8919,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_YoungsterCordell[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_LassDalia[] = {
+     {
+         .iv = 150,
+@@ -8901,17 +8929,17 @@ static const struct TrainerMonNoItemDefaultMoves sParty_LassDalia[] = {
+     {
+         .iv = 150,
+         .lvl = 70,
+-        .species = SPECIES_HOPPIP,
++        .species = SPECIES_JUMPLUFF,
+     },
+     {
+         .iv = 150,
+         .lvl = 70,
+-        .species = SPECIES_SKIPLOOM,
++        .species = SPECIES_JUMPLUFF,
+     },
+     {
+         .iv = 150,
+         .lvl = 72,
+-        .species = SPECIES_SKIPLOOM,
++        .species = SPECIES_JUMPLUFF,
+     },
+ };
+ 
+@@ -8939,16 +8967,17 @@ static const struct TrainerMonNoItemDefaultMoves sParty_CamperRiley[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_PicnickerMarcy[] = {
+     {
+         .iv = 150,
+         .lvl = 72,
+-        .species = SPECIES_PARAS,
++        .species = SPECIES_PARASECT,
+     },
+     {
+         .iv = 150,
+         .lvl = 72,
+-        .species = SPECIES_PARAS,
++        .species = SPECIES_PARASECT,
+     },
+     {
+         .iv = 150,
+@@ -9118,16 +9147,17 @@ static const struct TrainerMonNoItemDefaultMoves sParty_PicnickerIsabelle3[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_PicnickerIsabelle4[] = {
+     {
+         .iv = 150,
+         .lvl = 68,
+-        .species = SPECIES_PIDGEOTTO,
++        .species = SPECIES_PIDGEOT,
+     },
+     {
+         .iv = 150,
+         .lvl = 68,
+-        .species = SPECIES_PIDGEOTTO,
++        .species = SPECIES_PIDGEOT,
+     },
+     {
+         .iv = 150,
+@@ -9621,16 +9651,17 @@ static const struct TrainerMonNoItemDefaultMoves sParty_PicnickerSusie4[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_BikerLukas2[] = {
+     {
+         .iv = 150,
+         .lvl = 68,
+-        .species = SPECIES_KOFFING,
++        .species = SPECIES_WEEZING,
+     },
+     {
+         .iv = 150,
+         .lvl = 68,
+-        .species = SPECIES_KOFFING,
++        .species = SPECIES_WEEZING,
+     },
+     {
+         .iv = 150,
+@@ -9895,11 +9926,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BikerJaxon2[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_CueBallIsaiah2[] = {
+     {
+         .iv = 150,
+         .lvl = 70,
+-        .species = SPECIES_MACHOKE,
++        .species = SPECIES_MACHAMP,
+     },
+     {
+         .iv = 150,
+@@ -10036,6 +10068,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_PicnickerMissy3[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_FishermanWade2[] = {
+     {
+         .iv = 150,
+@@ -10045,27 +10078,27 @@ static const struct TrainerMonNoItemDefaultMoves sParty_FishermanWade2[] = {
+     {
+         .iv = 150,
+         .lvl = 68,
+-        .species = SPECIES_MAGIKARP,
++        .species = SPECIES_GYARADOS,
+     },
+     {
+         .iv = 150,
+         .lvl = 68,
+-        .species = SPECIES_MAGIKARP,
++        .species = SPECIES_GYARADOS,
+     },
+     {
+         .iv = 150,
+         .lvl = 68,
+-        .species = SPECIES_MAGIKARP,
++        .species = SPECIES_GYARADOS,
+     },
+     {
+         .iv = 150,
+         .lvl = 68,
+-        .species = SPECIES_MAGIKARP,
++        .species = SPECIES_GYARADOS,
+     },
+     {
+         .iv = 150,
+         .lvl = 68,
+-        .species = SPECIES_MAGIKARP,
++        .species = SPECIES_GYARADOS,
+     },
+ };
+ 
+@@ -10116,6 +10149,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_SwimmerMaleFinn2[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonItemDefaultMoves sParty_CrushGirlSharon2[] = {
+     {
+         .iv = 150,
+@@ -10126,12 +10160,13 @@ static const struct TrainerMonItemDefaultMoves sParty_CrushGirlSharon2[] = {
+     {
+         .iv = 150,
+         .lvl = 71,
+-        .species = SPECIES_PRIMEAPE,
++        .species = SPECIES_ANNIHILAPE,
+         .heldItem = ITEM_BLACK_BELT,
+     },
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonItemDefaultMoves sParty_CrushGirlSharon3[] = {
+     {
+         .iv = 170,
+@@ -10142,7 +10177,7 @@ static const struct TrainerMonItemDefaultMoves sParty_CrushGirlSharon3[] = {
+     {
+         .iv = 170,
+         .lvl = 79,
+-        .species = SPECIES_PRIMEAPE,
++        .species = SPECIES_ANNIHILAPE,
+         .heldItem = ITEM_BLACK_BELT,
+     },
+ };
+@@ -10180,6 +10215,7 @@ static const struct TrainerMonItemDefaultMoves sParty_CrushGirlTanya3[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonItemDefaultMoves sParty_BlackBeltShea2[] = {
+     {
+         .iv = 180,
+@@ -10190,17 +10226,18 @@ static const struct TrainerMonItemDefaultMoves sParty_BlackBeltShea2[] = {
+     {
+         .iv = 180,
+         .lvl = 71,
+-        .species = SPECIES_MACHOKE,
++        .species = SPECIES_MACHAMP,
+         .heldItem = ITEM_BLACK_BELT,
+     },
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonItemDefaultMoves sParty_BlackBeltShea3[] = {
+     {
+         .iv = 220,
+         .lvl = 79,
+-        .species = SPECIES_MACHOKE,
++        .species = SPECIES_MACHAMP,
+         .heldItem = ITEM_BLACK_BELT,
+     },
+     {
+@@ -10212,6 +10249,7 @@ static const struct TrainerMonItemDefaultMoves sParty_BlackBeltShea3[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonItemDefaultMoves sParty_BlackBeltHugh2[] = {
+     {
+         .iv = 180,
+@@ -10222,17 +10260,18 @@ static const struct TrainerMonItemDefaultMoves sParty_BlackBeltHugh2[] = {
+     {
+         .iv = 180,
+         .lvl = 71,
+-        .species = SPECIES_MACHOKE,
++        .species = SPECIES_MACHAMP,
+         .heldItem = ITEM_BLACK_BELT,
+     },
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonItemDefaultMoves sParty_BlackBeltHugh3[] = {
+     {
+         .iv = 220,
+         .lvl = 79,
+-        .species = SPECIES_MACHOKE,
++        .species = SPECIES_MACHAMP,
+         .heldItem = ITEM_BLACK_BELT,
+     },
+     {
+@@ -10379,11 +10418,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_YoungCoupleGiaJes3[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_BirdKeeperMilo2[] = {
+     {
+         .iv = 150,
+         .lvl = 79,
+-        .species = SPECIES_PIDGEOTTO,
++        .species = SPECIES_PIDGEOT,
+     },
+     {
+         .iv = 150,
+@@ -10475,6 +10515,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_HikerEarl2[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_RuinManiacLarry2[] = {
+     {
+         .iv = 150,
+@@ -10484,7 +10525,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_RuinManiacLarry2[] = {
+     {
+         .iv = 150,
+         .lvl = 81,
+-        .species = SPECIES_MACHOKE,
++        .species = SPECIES_MACHAMP,
+     },
+ };
+ 
+@@ -10535,6 +10576,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_PsychicRodette2[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_JugglerMason2[] = {
+     {
+         .iv = 150,
+@@ -10554,7 +10596,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_JugglerMason2[] = {
+     {
+         .iv = 150,
+         .lvl = 78,
+-        .species = SPECIES_PINECO,
++        .species = SPECIES_FORRETRESS,
+     },
+ };
+ 
+@@ -11807,6 +11849,7 @@ static const struct TrainerMonItemCustomMoves sParty_PeakChampionCharmander[] =
+ };
+ 
+ // FireRed QoL+Hard: Victory Road rematch teams
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerNaomiVR[] = {
+     {
+         .iv = 150,
+@@ -11817,7 +11860,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerNaomiVR[] = {
+     {
+         .iv = 150,
+         .lvl = 56,
+-        .species = SPECIES_PONYTA,
++        .species = SPECIES_RAPIDASH,
+         .moves = {MOVE_AGILITY, MOVE_TAKE_DOWN, MOVE_FIRE_SPIN, MOVE_STOMP},
+     },
+     {
+@@ -11840,6 +11883,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerNaomiVR[] = {
+     },
+ };
+ 
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerRolandoVR[] = {
+     {
+         .iv = 150,
+@@ -11862,7 +11906,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerRolandoVR[] =
+     {
+         .iv = 150,
+         .lvl = 56,
+-        .species = SPECIES_CHARMELEON,
++        .species = SPECIES_CHARIZARD,
+         .moves = {MOVE_FLAMETHROWER, MOVE_SLASH, MOVE_SMOKESCREEN, MOVE_SCARY_FACE},
+     },
+     {
+@@ -11891,6 +11935,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_PokemaniacDawsonVR[] = {
+     },
+ };
+ 
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonItemDefaultMoves sParty_BlackBeltDaisukeVR[] = {
+     {
+         .iv = 150,
+@@ -11901,22 +11946,23 @@ static const struct TrainerMonItemDefaultMoves sParty_BlackBeltDaisukeVR[] = {
+     {
+         .iv = 150,
+         .lvl = 57,
+-        .species = SPECIES_MACHOP,
++        .species = SPECIES_MACHAMP,
+         .heldItem = ITEM_BLACK_BELT,
+     },
+     {
+         .iv = 150,
+         .lvl = 57,
+-        .species = SPECIES_MACHOKE,
++        .species = SPECIES_MACHAMP,
+         .heldItem = ITEM_BLACK_BELT,
+     },
+ };
+ 
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_JugglerNelsonVR[] = {
+     {
+         .iv = 150,
+         .lvl = 55,
+-        .species = SPECIES_DROWZEE,
++        .species = SPECIES_HYPNO,
+     },
+     {
+         .iv = 150,
+@@ -11931,7 +11977,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_JugglerNelsonVR[] = {
+     {
+         .iv = 150,
+         .lvl = 55,
+-        .species = SPECIES_KADABRA,
++        .species = SPECIES_ALAKAZAM,
+     },
+ };
+ 
+@@ -12023,11 +12069,12 @@ static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerColbyVR[] = {
+     },
+ };
+ 
++// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerCarolineVR[] = {
+     {
+         .iv = 150,
+         .lvl = 56,
+-        .species = SPECIES_BELLSPROUT,
++        .species = SPECIES_WEEPINBELL,
+         .moves = {MOVE_RAZOR_LEAF, MOVE_ACID, MOVE_STUN_SPORE, MOVE_POISON_POWDER},
+     },
+     {
+@@ -12045,7 +12092,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerCarolineVR[] =
+     {
+         .iv = 150,
+         .lvl = 56,
+-        .species = SPECIES_PARAS,
++        .species = SPECIES_PARASECT,
+         .moves = {MOVE_GROWTH, MOVE_SLASH, MOVE_LEECH_LIFE, MOVE_STUN_SPORE},
+     },
+     {
+diff --git a/src/trainer_tower_sets.c b/src/trainer_tower_sets.c
+index 26871f3..a4b305d 100644
+--- a/src/trainer_tower_sets.c
++++ b/src/trainer_tower_sets.c
+@@ -3135,14 +3135,14 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Double_1 = {
+ 					.friendship = 255
+ 				},
+ 				{
+-					.species = SPECIES_HONCHKROW,
+-					.heldItem = ITEM_SHARP_BEAK,
+-					.moves = {MOVE_PROTECT, MOVE_BRAVE_BIRD, MOVE_SUCKER_PUNCH, MOVE_TAILWIND},
++					.species = SPECIES_GLACEON,
++					.heldItem = ITEM_NEVER_MELT_ICE,
++					.moves = {MOVE_PROTECT, MOVE_FREEZE_DRY, MOVE_BLIZZARD, MOVE_WISH},
+ 					.hpEV = 6,
+-					.attackEV = 252,
++					.attackEV = 0,
+ 					.defenseEV = 0,
+ 					.speedEV = 252,
+-					.spAttackEV = 0,
++					.spAttackEV = 252,
+ 					.spDefenseEV = 0,
+ 					.otId = 0 | (4096 << 16),
+ 					.hpIV = 31,
+@@ -3152,8 +3152,8 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Double_1 = {
+ 					.spAttackIV = 31,
+ 					.spDefenseIV = 31,
+ 					.abilityNum = 0,
+-					.personality = 0x3, // ADAMANT
+-					.nickname = _("HONCHKROW"),
++					.personality = 0xF, // MODEST
++					.nickname = _("GLACEON"),
+ 					.friendship = 255
+ 				},
+ 			}
+@@ -3278,9 +3278,9 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Double_1 = {
+ 					.friendship = 255
+ 				},
+ 				{
+-					.species = SPECIES_HONCHKROW,
+-					.heldItem = ITEM_SHARP_BEAK,
+-					.moves = {MOVE_PROTECT, MOVE_BRAVE_BIRD, MOVE_SUCKER_PUNCH, MOVE_TAILWIND},
++					.species = SPECIES_LEAFEON,
++					.heldItem = ITEM_MIRACLE_SEED,
++					.moves = {MOVE_PROTECT, MOVE_DOUBLE_EDGE, MOVE_LEAF_BLADE, MOVE_SWORDS_DANCE},
+ 					.hpEV = 6,
+ 					.attackEV = 252,
+ 					.defenseEV = 0,
+@@ -3295,8 +3295,8 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Double_1 = {
+ 					.spAttackIV = 31,
+ 					.spDefenseIV = 31,
+ 					.abilityNum = 0,
+-					.personality = 0x1C, // ADAMANT
+-					.nickname = _("HONCHKROW"),
++					.personality = 0x26, // JOLLY
++					.nickname = _("LEAFEON"),
+ 					.friendship = 255
+ 				},
+ 			}
+@@ -6183,9 +6183,9 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_7 = {
+ 					.friendship = 255
+ 				},
+ 				{
+-					.species = SPECIES_DODRIO,
+-					.heldItem = ITEM_SILK_SCARF,
+-					.moves = {MOVE_DRILL_RUN, MOVE_DOUBLE_EDGE, MOVE_SWORDS_DANCE, MOVE_BRAVE_BIRD},
++					.species = SPECIES_KINGDRA,
++					.heldItem = ITEM_DRAGON_FANG,
++					.moves = {MOVE_IRON_HEAD, MOVE_DRACO_METEOR, MOVE_DRAGON_DANCE, MOVE_RAIN_DANCE},
+ 					.hpEV = 6,
+ 					.attackEV = 252,
+ 					.defenseEV = 0,
+@@ -6199,15 +6199,15 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_7 = {
+ 					.speedIV = 31,
+ 					.spAttackIV = 31,
+ 					.spDefenseIV = 31,
+-					.abilityNum = 1,
++					.abilityNum = 0,
+ 					.personality = 0xD, // JOLLY
+-					.nickname = _("DODRIO"),
++					.nickname = _("KINGDRA"),
+ 					.friendship = 255
+ 				},
+ 				{
+-					.species = SPECIES_CLOYSTER,
+-					.heldItem = ITEM_NEVER_MELT_ICE,
+-					.moves = {MOVE_DRILL_RUN, MOVE_ICICLE_SPEAR, MOVE_SHELL_SMASH, MOVE_HYDRO_PUMP},
++					.species = SPECIES_FERALIGATR,
++					.heldItem = ITEM_CHOICE_BAND,
++					.moves = {MOVE_TRAILBLAZE, MOVE_LIQUIDATION, MOVE_CRUNCH, MOVE_EARTHQUAKE},
+ 					.hpEV = 6,
+ 					.attackEV = 252,
+ 					.defenseEV = 0,
+@@ -6221,9 +6221,9 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_7 = {
+ 					.speedIV = 31,
+ 					.spAttackIV = 31,
+ 					.spDefenseIV = 31,
+-					.abilityNum = 1,
++					.abilityNum = 0,
+ 					.personality = 0x3, // ADAMANT
+-					.nickname = _("CLOYSTER"),
++					.nickname = _("FERALIGATR"),
+ 					.friendship = 255
+ 				},
+ 				{
+@@ -6249,15 +6249,15 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_7 = {
+ 					.friendship = 255
+ 				},
+ 				{
+-					.species = SPECIES_FERALIGATR,
+-					.heldItem = ITEM_CHOICE_BAND,
+-					.moves = {MOVE_TRAILBLAZE, MOVE_LIQUIDATION, MOVE_CRUNCH, MOVE_EARTHQUAKE},
+-					.hpEV = 6,
+-					.attackEV = 252,
+-					.defenseEV = 0,
+-					.speedEV = 252,
++					.species = SPECIES_DEWGONG,
++					.heldItem = ITEM_SITRUS_BERRY,
++					.moves = {MOVE_FLIP_TURN, MOVE_ENCORE, MOVE_SURF, MOVE_ICE_BEAM},
++					.hpEV = 252,
++					.attackEV = 0,
++					.defenseEV = 6,
++					.speedEV = 0,
+ 					.spAttackEV = 0,
+-					.spDefenseEV = 0,
++					.spDefenseEV = 252,
+ 					.otId = 0 | (4096 << 16),
+ 					.hpIV = 31,
+ 					.attackIV = 31,
+@@ -6266,8 +6266,8 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_7 = {
+ 					.spAttackIV = 31,
+ 					.spDefenseIV = 31,
+ 					.abilityNum = 0,
+-					.personality = 0x80, // ADAMANT
+-					.nickname = _("FERALIGATR"),
++					.personality = 0x91, // CALM
++					.nickname = _("DEWGONG"),
+ 					.friendship = 255
+ 				},
+ 			}
+@@ -6996,14 +6996,14 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Mixed_3 = {
+ 					.friendship = 255
+ 				},
+ 				{
+-					.species = SPECIES_DODRIO,
+-					.heldItem = ITEM_CHOICE_BAND,
+-					.moves = {MOVE_QUICK_ATTACK, MOVE_BRAVE_BIRD, MOVE_DOUBLE_EDGE, MOVE_DRILL_RUN},
++					.species = SPECIES_AMPHAROS,
++					.heldItem = ITEM_SCOPE_LENS,
++					.moves = {MOVE_VOLT_SWITCH, MOVE_THUNDERBOLT, MOVE_FOCUS_BLAST, MOVE_DISCHARGE},
+ 					.hpEV = 6,
+-					.attackEV = 252,
++					.attackEV = 0,
+ 					.defenseEV = 0,
+ 					.speedEV = 252,
+-					.spAttackEV = 0,
++					.spAttackEV = 252,
+ 					.spDefenseEV = 0,
+ 					.otId = 5 | (0 << 16),
+ 					.hpIV = 31,
+@@ -7012,9 +7012,9 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Mixed_3 = {
+ 					.speedIV = 31,
+ 					.spAttackIV = 31,
+ 					.spDefenseIV = 31,
+-					.abilityNum = 1,
+-					.personality = 0xD, // JOLLY
+-					.nickname = _("DODRIO"),
++					.abilityNum = 0,
++					.personality = 0xF, // MODEST
++					.nickname = _("AMPHAROS"),
+ 					.friendship = 255
+ 				},
+ 			}
+@@ -8483,15 +8483,15 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_6 = {
+ 					.friendship = 255
+ 				},
+ 				{
+-					.species = SPECIES_VENUSAUR,
+-					.heldItem = ITEM_WHITE_HERB,
+-					.moves = {MOVE_GIGA_DRAIN, MOVE_LEECH_SEED, MOVE_SLEEP_POWDER, MOVE_SUBSTITUTE},
+-					.hpEV = 252,
+-					.attackEV = 0,
+-					.defenseEV = 6,
+-					.speedEV = 0,
++					.species = SPECIES_DUSKNOIR,
++					.heldItem = ITEM_SCOPE_LENS,
++					.moves = {MOVE_SHADOW_SNEAK, MOVE_EARTHQUAKE, MOVE_PAIN_SPLIT, MOVE_POLTERGEIST},
++					.hpEV = 6,
++					.attackEV = 252,
++					.defenseEV = 0,
++					.speedEV = 252,
+ 					.spAttackEV = 0,
+-					.spDefenseEV = 252,
++					.spDefenseEV = 0,
+ 					.otId = 0 | (4096 << 16),
+ 					.hpIV = 31,
+ 					.attackIV = 31,
+@@ -8500,8 +8500,8 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_6 = {
+ 					.spAttackIV = 31,
+ 					.spDefenseIV = 31,
+ 					.abilityNum = 0,
+-					.personality = 0x91, // CALM
+-					.nickname = _("VENUSAUR"),
++					.personality = 0x80, // ADAMANT
++					.nickname = _("DUSKNOIR"),
+ 					.friendship = 255
+ 				},
+ 			}
+diff --git a/tools/hack/spoiler_guide.py b/tools/hack/spoiler_guide.py
+index 3d61920..6404de7 100644
+--- a/tools/hack/spoiler_guide.py
++++ b/tools/hack/spoiler_guide.py
+@@ -106,6 +106,8 @@ def map_name(const):
+             words.append("Co.")
+         elif w == "DIGLETTS":
+             words.append("Diglett's")
++        elif w in ("LORELEIS", "BRUNOS", "AGATHAS", "LANCES", "CHAMPIONS"):
++            words.append(w[:-1].title() + "'s")
+         elif re.fullmatch(r"HOUSE\d", w):
+             words.append("House")
+         elif re.fullmatch(r"ROOM\d+", w):
+@@ -252,6 +254,19 @@ def label_location(lab, depth=0):
+                 return loc
+     return None
+ 
++def label_locations(lab, depth=0):
++    """Every map that runs this label (a shared script can be reached from several)."""
++    one = label_map.get(lab) or label_file_map.get(lab)
++    if not one and lab.split("_EventScript_")[0] in dir_to_map:
++        one = dir_to_map[lab.split("_EventScript_")[0]]
++    if one:
++        return {one}
++    out = set()
++    if depth < 4:
++        for c in callers.get(lab, ()):
++            out |= label_locations(c, depth + 1)
++    return out
++
+ # ---------------------------------------------------------------- encounters
+ 
+ RATES = {"land_mons": [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1], "water_mons": [60, 30, 5, 4, 1],
+@@ -345,8 +360,7 @@ def write_items():
+     gifts = {}
+     for lab, body in label_body.items():
+         for it in re.findall(r"^\s*(?:giveitem|giveitem_msg [^,]+,|msgreceiveditem [^,]+,)\s*(ITEM_\w+)", body, re.M):
+-            loc = label_location(lab)
+-            if loc:
++            for loc in label_locations(lab):
+                 gifts.setdefault(loc, set()).add(item(it))
+     marts = {}
+     for f, text in script_text.items():
+diff --git a/tools/hack/tower_sets.py b/tools/hack/tower_sets.py
+index 5dc6ce8..d12bf0a 100644
+--- a/tools/hack/tower_sets.py
++++ b/tools/hack/tower_sets.py
+@@ -208,6 +208,13 @@ def stats_types(sp):
+     return {t.group(1), t.group(2)} if t else set()
+ 
+ 
++# Stand-ins that fit the trainer better than the automatic pick (Eeveelution
++# twins, a Water trainer, a tech trainer, a Ghost/Poison trainer).
++STAND_INS = {"SPECIES_UMBREON": ["SPECIES_GLACEON", "SPECIES_LEAFEON"], "SPECIES_MANTINE": ["SPECIES_KINGDRA"],
++             "SPECIES_PORYGON": ["SPECIES_AMPHAROS"], "SPECIES_HAUNTER": ["SPECIES_DUSKNOIR"],
++             "SPECIES_GYARADOS": ["SPECIES_FERALIGATR"]}
++stand_ins_used = set()
++
+ # ---------------------------------------------------------------- rewrite every floor
+ # Each trainer has a pool of six; single floors send out two of them, double
+ # floors one from each of two trainers, knockout floors one per trainer.
+@@ -239,10 +246,16 @@ def do_mon(mm):
+     else:
+         # The family is used up on this team: another fully evolved,
+         # non-legendary Pokemon that shares a type, so the theme holds.
+-        want = stats_types((finals(sp) or [sp])[0])
+-        alts = sorted(o for o in stats if not evolves.get(o) and o not in used_species
+-                      and 470 <= sum(stats[o].values()) < 580 and stats_types(o) & want)
+-        new_sp = pick(alts, tname + sp)
++        # Hand-picked stand-ins keep a trainer's theme; each one is used once.
++        hand = [o for o in STAND_INS.get(sp, []) if o not in used_species and o not in stand_ins_used]
++        if hand:
++            new_sp = hand[0]
++            stand_ins_used.add(new_sp)
++        else:
++            want = stats_types((finals(sp) or [sp])[0])
++            alts = sorted(o for o in stats if not evolves.get(o) and o not in used_species
++                          and 470 <= sum(stats[o].values()) < 580 and stats_types(o) & want)
++            new_sp = pick(alts, tname + sp)
+     used_species.add(new_sp)
+     old_moves = re.findall(r"MOVE_\w+", re.search(r"\.moves = \{([^}]*)\}", mon).group(1))
+     moves, ev, nature, item, slot, role = build(new_sp, doubles, tname + new_sp, old_moves, used_items)
+diff --git a/tools/hack/trainer_evolutions.py b/tools/hack/trainer_evolutions.py
+new file mode 100644
+index 0000000..b33f169
+--- /dev/null
++++ b/tools/hack/trainer_evolutions.py
+@@ -0,0 +1,68 @@
++#!/usr/bin/env python3
++"""Late-game trainer Pokemon evolve where their level allows.
++
++The post-game level scaling (postgame_levels.py) skipped an evolution when
++the evolved species was already on the team, which left teams like a Lv. 72
++Mareep next to an Ampharos, or five Lv. 68 Magikarp. This evolves every
++trainer Pokemon of Lv. 50 or higher that is at least 5 levels past a
++level-up evolution, step by step along its family (duplicates are allowed,
++as in the original game). Early and mid-game teams keep their classic
++unevolved Pokemon. Custom movesets are kept. Runs once.
++"""
++import os, re, sys
++
++os.chdir(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
++MIN_LEVEL, GRACE = 50, 5
++MARK = "// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)\n"
++
++
++def read(p):
++    return open(p, encoding="utf-8").read()
++
++
++tp = read("src/data/trainer_parties.h")
++if MARK in tp:
++    sys.exit("Late-game trainer Pokemon are already evolved.")
++
++level_evo = {}
++for sp, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", read("src/data/pokemon/evolution.h"), re.S):
++    for method, param, target in re.findall(r"\{(EVO_LEVEL\w*), (\d+), (SPECIES_\w+)", body):
++        if method != "EVO_LEVEL_SHEDINJA":
++            level_evo.setdefault(sp, (int(param), target))
++
++
++def evolve(sp, lvl):
++    for _ in range(3):
++        if sp in level_evo and lvl >= level_evo[sp][0] + GRACE:
++            sp = level_evo[sp][1]
++        else:
++            break
++    return sp
++
++
++changes = []
++
++
++def do_mon(m):
++    mon = m.group(0)
++    lvl = int(re.search(r"\.lvl = (\d+)", mon).group(1))
++    sp = re.search(r"\.species = (SPECIES_\w+)", mon).group(1)
++    to = evolve(sp, lvl) if lvl >= MIN_LEVEL else sp
++    if to == sp:
++        return mon
++    changes.append(f"Lv. {lvl} {sp[8:]} -> {to[8:]}")
++    return mon.replace(f".species = {sp}", f".species = {to}")
++
++
++def do_party(m):
++    before = len(changes)
++    body = re.sub(r"    \{\n.*?\n    \}", do_mon, m.group(2), flags=re.S)
++    if len(changes) == before:
++        return m.group(0)
++    return MARK + m.group(1) + body + m.group(3)
++
++
++tp = re.sub(r"(static const struct \w+ sParty_\w+\[\] = \{\n)(.*?)(\n\};\n)", do_party, tp, flags=re.S)
++open("src/data/trainer_parties.h", "w", encoding="utf-8").write(tp)
++print("\n".join(changes))
++print(f"\n{len(changes)} trainer Pokemon evolved.")
+diff --git a/tools/hack/validate.py b/tools/hack/validate.py
+index d999c89..213e1c0 100644
+--- a/tools/hack/validate.py
++++ b/tools/hack/validate.py
+@@ -7,8 +7,9 @@ Prints every problem found (and exits 1 if there are any). It checks that each
+ move has data, a name, a description and an animation; that each species has
+ stats, graphics, learnsets and a Pokedex entry; that learnsets, egg moves,
+ evolutions, trainer parties and wild encounters only use things that exist;
+-(also: peak teams are six Lv. 100 Pokemon, and Trainer Tower teams are fully
+-evolved with one of each species and item);
++(also: peak teams are six Lv. 100 Pokemon, Trainer Tower teams are fully
++evolved with one of each species and item, and Lv. 50+ trainer Pokemon have
++evolved where their level allows);
+ and that text fits the boxes it is shown in.
+ """
+ import json
+@@ -318,6 +319,17 @@ for party in peak_parties:
+         mv = [x for x in re.findall(r"MOVE_\w+", mon) if x != "MOVE_NONE"]
+         if not mv or len(mv) != len(set(mv)):
+             bad(f"{party}: moves {mv}")
++# Late-game trainers (Lv. 50+): nothing 5+ levels past a level-up evolution.
++level_evo = {}
++for a, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", evo_txt, re.S):
++    for meth, param, t in re.findall(r"\{(EVO_LEVEL\w*), (\d+), (SPECIES_\w+)", body):
++        if meth != "EVO_LEVEL_SHEDINJA":
++            level_evo.setdefault(a, int(param))
++for party, body in re.findall(r"static const struct \w+ (sParty_\w+)\[\] = \{(.*?)\n\};", tp, re.S):
++    for mon in re.findall(r"\{(.*?)\n    \}", body, re.S):
++        sp, lv = re.search(r"\.species = (SPECIES_\w+)", mon).group(1), int(re.search(r"\.lvl = (\d+)", mon).group(1))
++        if lv >= 50 and sp in level_evo and lv >= level_evo[sp] + 5:
++            bad(f"{party}: Lv. {lv} {sp} should have evolved (Lv. {level_evo[sp]})")
+ # Trainer Tower: fully evolved, real moves, one of each species and item per team.
+ for floor, body in re.findall(r"static const struct TrainerTowerFloor (\w+) = \{(.*?)\n\};", read("src/trainer_tower_sets.c"), re.S):
+     for t in re.split(r"\.name = _\(", body)[1:]:
+-- 
+2.43.0
+

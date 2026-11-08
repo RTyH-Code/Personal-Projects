@@ -7,8 +7,9 @@ Prints every problem found (and exits 1 if there are any). It checks that each
 move has data, a name, a description and an animation; that each species has
 stats, graphics, learnsets and a Pokedex entry; that learnsets, egg moves,
 evolutions, trainer parties and wild encounters only use things that exist;
-(also: peak teams are six Lv. 100 Pokemon, and Trainer Tower teams are fully
-evolved with one of each species and item);
+(also: peak teams are six Lv. 100 Pokemon, Trainer Tower teams are fully
+evolved with one of each species and item, and Lv. 50+ trainer Pokemon have
+evolved where their level allows);
 and that text fits the boxes it is shown in.
 """
 import json
@@ -318,6 +319,17 @@ for party in peak_parties:
         mv = [x for x in re.findall(r"MOVE_\w+", mon) if x != "MOVE_NONE"]
         if not mv or len(mv) != len(set(mv)):
             bad(f"{party}: moves {mv}")
+# Late-game trainers (Lv. 50+): nothing 5+ levels past a level-up evolution.
+level_evo = {}
+for a, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", evo_txt, re.S):
+    for meth, param, t in re.findall(r"\{(EVO_LEVEL\w*), (\d+), (SPECIES_\w+)", body):
+        if meth != "EVO_LEVEL_SHEDINJA":
+            level_evo.setdefault(a, int(param))
+for party, body in re.findall(r"static const struct \w+ (sParty_\w+)\[\] = \{(.*?)\n\};", tp, re.S):
+    for mon in re.findall(r"\{(.*?)\n    \}", body, re.S):
+        sp, lv = re.search(r"\.species = (SPECIES_\w+)", mon).group(1), int(re.search(r"\.lvl = (\d+)", mon).group(1))
+        if lv >= 50 and sp in level_evo and lv >= level_evo[sp] + 5:
+            bad(f"{party}: Lv. {lv} {sp} should have evolved (Lv. {level_evo[sp]})")
 # Trainer Tower: fully evolved, real moves, one of each species and item per team.
 for floor, body in re.findall(r"static const struct TrainerTowerFloor (\w+) = \{(.*?)\n\};", read("src/trainer_tower_sets.c"), re.S):
     for t in re.split(r"\.name = _\(", body)[1:]:

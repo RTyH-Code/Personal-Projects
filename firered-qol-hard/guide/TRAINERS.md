@@ -113,7 +113,7 @@ Regular trainers use their normal level-up moves unless moves are listed. Peak t
 |---|---|---|---|
 | Gengar | 62 | — | Hex, Will-O-Wisp, Confuse Ray, Sludge Bomb |
 | Golbat | 62 | — | Poison Fang, Air Slash, Confuse Ray, Bite |
-| Haunter | 61 | — | Hypnosis, Dream Eater, Hex, Mean Look |
+| Gengar | 61 | — | Hypnosis, Dream Eater, Hex, Mean Look |
 | Arbok | 64 | — | Gunk Shot, Glare, Sucker Punch, Iron Tail |
 | Gengar | 67 | Sitrus Berry | Shadow Ball, Sludge Bomb, Hypnosis, Nasty Plot |
 
@@ -122,8 +122,8 @@ Regular trainers use their normal level-up moves unless moves are listed. Peak t
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
 | Gyarados | 64 | — | Waterfall, Crunch, Dragon Dance, Iron Tail |
-| Dragonair | 62 | — | Dragon Pulse, Iron Tail, Thunder Wave, Outrage |
-| Dragonair | 62 | — | Aqua Tail, Safeguard, Thunder Wave, Outrage |
+| Dragonite | 62 | — | Dragon Pulse, Iron Tail, Thunder Wave, Outrage |
+| Dragonite | 62 | — | Aqua Tail, Safeguard, Thunder Wave, Outrage |
 | Aerodactyl | 67 | — | Stone Edge, Aerial Ace, Ice Fang, Crunch |
 | Dragonite | 69 | Sitrus Berry | Dragon Dance, Outrage, Extreme Speed, Iron Tail |
 
@@ -411,7 +411,7 @@ Use the VS Seeker in Victory Road and these trainers want a rematch. Their teams
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
 | Persian | 56 | — | Fury Swipes, Screech, Faint Attack, Pay Day |
-| Ponyta | 56 | — | Agility, Take Down, Fire Spin, Stomp |
+| Rapidash | 56 | — | Agility, Take Down, Fire Spin, Stomp |
 | Rapidash | 56 | — | Fury Attack, Fire Spin, Stomp, Growl |
 | Vulpix | 56 | — | Flamethrower, Confuse Ray, Quick Attack, Imprison |
 | Ninetales | 56 | — | Safeguard, Will-O-Wisp, Confuse Ray, Fire Spin |
@@ -423,7 +423,7 @@ Use the VS Seeker in Victory Road and these trainers want a rematch. Their teams
 | Raticate | 56 | — | Super Fang, Pursuit, Scary Face, Quick Attack |
 | Venusaur | 56 | — | Razor Leaf, Sleep Powder, Sweet Scent, Synthesis |
 | Blastoise | 56 | — | Water Gun, Bite, Rapid Spin, Tail Whip |
-| Charmeleon | 56 | — | Flamethrower, Slash, Smokescreen, Scary Face |
+| Charizard | 56 | — | Flamethrower, Slash, Smokescreen, Scary Face |
 | Charizard | 56 | — | Flamethrower, Wing Attack, Smokescreen, Scary Face |
 
 ### Pokemaniac Dawson (Victory Road 2F)
@@ -439,17 +439,17 @@ Use the VS Seeker in Victory Road and these trainers want a rematch. Their teams
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
 | Machamp | 57 | Black Belt | level-up moves |
-| Machop | 57 | Black Belt | level-up moves |
-| Machoke | 57 | Black Belt | level-up moves |
+| Machamp | 57 | Black Belt | level-up moves |
+| Machamp | 57 | Black Belt | level-up moves |
 
 ### Juggler Nelson (Victory Road 2F)
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Drowzee | 55 | — | level-up moves |
+| Hypno | 55 | — | level-up moves |
 | Hypno | 55 | — | level-up moves |
 | Alakazam | 55 | — | level-up moves |
-| Kadabra | 55 | — | level-up moves |
+| Alakazam | 55 | — | level-up moves |
 
 ### Juggler Gregory (Victory Road 2F)
 
@@ -488,10 +488,10 @@ Use the VS Seeker in Victory Road and these trainers want a rematch. Their teams
 
 | Pokémon | Lv | Item | Moves |
 |---|---|---|---|
-| Bellsprout | 56 | — | Razor Leaf, Acid, Stun Spore, Poison Powder |
+| Weepinbell | 56 | — | Razor Leaf, Acid, Stun Spore, Poison Powder |
 | Weepinbell | 56 | — | Razor Leaf, Acid, Sleep Powder, Poison Powder |
 | Victreebel | 56 | — | Razor Leaf, Acid, Stun Spore, Sleep Powder |
-| Paras | 56 | — | Growth, Slash, Leech Life, Stun Spore |
+| Parasect | 56 | — | Growth, Slash, Leech Life, Stun Spore |
 | Parasect | 56 | — | Spore, Slash, Leech Life, Poison Powder |
 
 ### Cool Trainer Alexa (Victory Road 3F)
@@ -870,9 +870,9 @@ Includes the rival's earlier battles; which team you face depends on your starte
 | Rival (your rival) | Pidgey Lv10, Squirtle Lv10 |
 | Rival (your rival) | Pidgey Lv10, Bulbasaur Lv10 |
 | Rival (your rival) | Pidgey Lv10, Charmander Lv10 |
-| Rival (your rival) | Pidgeot Lv54, Rhyhorn Lv52, Growlithe Lv52, Exeggcute Lv52, Alakazam Lv54, Blastoise Lv61 |
-| Rival (your rival) | Pidgeot Lv54, Rhyhorn Lv52, Gyarados Lv52, Growlithe Lv52, Alakazam Lv54, Venusaur Lv61 |
-| Rival (your rival) | Pidgeot Lv54, Rhyhorn Lv52, Exeggcute Lv52, Gyarados Lv52, Alakazam Lv54, Charizard Lv61 |
+| Rival (your rival) | Pidgeot Lv54, Rhydon Lv52, Growlithe Lv52, Exeggcute Lv52, Alakazam Lv54, Blastoise Lv61 |
+| Rival (your rival) | Pidgeot Lv54, Rhydon Lv52, Gyarados Lv52, Growlithe Lv52, Alakazam Lv54, Venusaur Lv61 |
+| Rival (your rival) | Pidgeot Lv54, Rhydon Lv52, Exeggcute Lv52, Gyarados Lv52, Alakazam Lv54, Charizard Lv61 |
 
 ### Route 24
 
@@ -1307,7 +1307,7 @@ Includes the rival's earlier battles; which team you face depends on your starte
 
 | Trainer | Pokémon |
 |---|---|
-| Team Rocket Grunt | Zubat Lv57, Zubat Lv57, Golbat Lv57 |
+| Team Rocket Grunt | Golbat Lv57, Golbat Lv57, Golbat Lv57 |
 
 ### Five Island Lost Cave Room 1
 
@@ -1325,23 +1325,23 @@ Includes the rival's earlier battles; which team you face depends on your starte
 
 | Trainer | Pokémon |
 |---|---|
-| Psychic Laura | Natu Lv72, Natu Lv72, Xatu Lv73 |
+| Psychic Laura | Xatu Lv72, Xatu Lv72, Xatu Lv73 |
 
 ### Five Island Meadow
 
 | Trainer | Pokémon |
 |---|---|
-| Team Rocket Grunt | Raticate Lv72, Grimer Lv72, Muk Lv72 |
-| Team Rocket Grunt | Koffing Lv73, Weezing Lv73 |
+| Team Rocket Grunt | Raticate Lv72, Muk Lv72, Muk Lv72 |
+| Team Rocket Grunt | Weezing Lv73, Weezing Lv73 |
 | Team Rocket Grunt | Arbok Lv72, Vileplume Lv72, Gloom Lv72 |
 
 ### Five Island Memorial Pillar
 
 | Trainer | Pokémon |
 |---|---|
-| Bird Keeper Chaz | Spearow Lv70, Fearow Lv73 |
-| Bird Keeper Harold | Hoothoot Lv70, Noctowl Lv73 |
-| Bird Keeper Milo | Pidgeot Lv70, Pidgeotto Lv73 |
+| Bird Keeper Chaz | Fearow Lv70, Fearow Lv73 |
+| Bird Keeper Harold | Noctowl Lv70, Noctowl Lv73 |
+| Bird Keeper Milo | Pidgeot Lv70, Pidgeot Lv73 |
 
 ### Five Island Resort Gorgeous
 
@@ -1350,10 +1350,10 @@ Includes the rival's earlier battles; which team you face depends on your starte
 | Painter Celina | Smeargle Lv74 |
 | Painter Daisy | Smeargle Lv74 |
 | Youngster Destin | Raticate Lv72, Pidgeot Lv72 |
-| Lady Gillian | Ampharos Lv70, Mareep Lv72, Flaaffy Lv73 — items: Ampharos @ Stardust, Mareep @ Stardust, Flaaffy @ Nugget |
-| Lady Jacki | Jumpluff Lv72, Skiploom Lv74 — items: Jumpluff @ Stardust, Skiploom @ Stardust |
+| Lady Gillian | Ampharos Lv70, Ampharos Lv72, Ampharos Lv73 — items: Ampharos @ Stardust, Ampharos @ Stardust, Ampharos @ Nugget |
+| Lady Jacki | Jumpluff Lv72, Jumpluff Lv74 — items: Jumpluff @ Stardust, Jumpluff @ Stardust |
 | Painter Rayna | Smeargle Lv74 |
-| Swimmer M Toby | Poliwrath Lv72, Tentacool Lv72, Tentacruel Lv72 |
+| Swimmer M Toby | Poliwrath Lv72, Tentacruel Lv72, Tentacruel Lv72 |
 
 ### Five Island Rocket Warehouse
 
@@ -1361,10 +1361,10 @@ Includes the rival's earlier battles; which team you face depends on your starte
 |---|---|
 | Team Rocket Admin | Golbat Lv79, Weezing Lv81, Houndoom Lv82 |
 | Team Rocket Admin | Muk Lv78, Arbok Lv79, Vileplume Lv81 |
-| Scientist Gideon | Voltorb Lv69, Electrode Lv69, Magnemite Lv69, Magneton Lv69, Porygon Lv69 |
-| Team Rocket Grunt | Machamp Lv72, Machop Lv72, Machoke Lv72 |
+| Scientist Gideon | Electrode Lv69, Electrode Lv69, Magneton Lv69, Magneton Lv69, Porygon Lv69 |
+| Team Rocket Grunt | Machamp Lv72, Machamp Lv72, Machamp Lv72 |
 | Team Rocket Grunt | Hypno Lv73, Hypno Lv73 |
-| Team Rocket Grunt | Houndoom Lv64, Houndour Lv64 |
+| Team Rocket Grunt | Houndoom Lv64, Houndoom Lv64 |
 
 ### Five Island Water Labyrinth
 
@@ -1395,15 +1395,15 @@ Includes the rival's earlier battles; which team you face depends on your starte
 | Pkmn Breeder Allison | Clefairy Lv72, Clefairy Lv72, Clefable Lv72 |
 | Pkmn Breeder Bethany | Chansey Lv74 |
 | Youngster Cordell | Farfetch'd Lv72, Farfetch'd Lv72 |
-| Lass Dalia | Jumpluff Lv69, Hoppip Lv70, Skiploom Lv70, Skiploom Lv72 |
+| Lass Dalia | Jumpluff Lv69, Jumpluff Lv70, Jumpluff Lv70, Jumpluff Lv72 |
 | Bug Catcher Garret | Heracross Lv73 |
 | Lass Joana | Granbull Lv73 |
 | Bug Catcher Jonah | Yanma Lv68, Beedrill Lv68, Yanma Lv69, Beedrill Lv70 |
 | Ruin Maniac Layton | Sandslash Lv72, Onix Lv72, Sandslash Lv72 |
-| Picnicker Marcy | Paras Lv72, Paras Lv72, Parasect Lv73 |
+| Picnicker Marcy | Parasect Lv72, Parasect Lv72, Parasect Lv73 |
 | Youngster Nash | Weepinbell Lv70, Weepinbell Lv70, Victreebel Lv73 |
 | Camper Riley | Pinsir Lv73, Heracross Lv74 |
-| Bug Catcher Vance | Venonat Lv72, Venomoth Lv72 |
+| Bug Catcher Vance | Venomoth Lv72, Venomoth Lv72 |
 
 ### Six Island Ruin Valley
 
@@ -1412,16 +1412,16 @@ Includes the rival's earlier battles; which team you face depends on your starte
 | Hiker Daryl | Sudowoodo Lv74 |
 | Ruin Maniac Foster | Golem Lv74 |
 | Pokemaniac Hector | Rhydon Lv73, Kangaskhan Lv73 |
-| Ruin Maniac Larry | Machamp Lv73, Machoke Lv73 |
-| Ruin Maniac Stanly | Golem Lv72, Onix Lv72, Graveler Lv72 |
+| Ruin Maniac Larry | Machamp Lv73, Machamp Lv73 |
+| Ruin Maniac Stanly | Golem Lv72, Onix Lv72, Golem Lv72 |
 
 ### Six Island Water Path
 
 | Trainer | Pokémon |
 |---|---|
-| Swimmer F Denise | Chinchou Lv73, Lanturn Lv73 |
+| Swimmer F Denise | Lanturn Lv73, Lanturn Lv73 |
 | Hiker Earl | Onix Lv73, Machamp Lv73 |
-| Juggler Edward | Voltorb Lv69, Voltorb Lv69, Electrode Lv70, Mr. Mime Lv72 |
+| Juggler Edward | Electrode Lv69, Electrode Lv69, Electrode Lv70, Mr. Mime Lv72 |
 | Twins Miu & Mia *(double)* | Pikachu Lv74, Pikachu Lv74 |
 | Aroma Lady Rose | Sunkern Lv73, Sunflora Lv73 |
 | Swimmer M Samir | Gyarados Lv74 |
@@ -1442,9 +1442,9 @@ Includes the rival's earlier battles; which team you face depends on your starte
 
 | Trainer | Pokémon |
 |---|---|
-| Young Couple Eve & Jon *(double)* | Golduck Lv74, Psyduck Lv74 |
+| Young Couple Eve & Jon *(double)* | Golduck Lv74, Golduck Lv74 |
 | Pkmn Ranger Madeline | Gloom Lv77, Vileplume Lv77 |
-| Juggler Mason | Electrode Lv70, Forretress Lv70, Voltorb Lv70, Pineco Lv70 |
+| Juggler Mason | Electrode Lv70, Forretress Lv70, Electrode Lv70, Forretress Lv70 |
 | Aroma Lady Miah | Bellossom Lv74, Bellossom Lv74 |
 | Pkmn Ranger Nicolas | Weepinbell Lv77, Victreebel Lv77 |
 
@@ -1452,7 +1452,7 @@ Includes the rival's earlier battles; which team you face depends on your starte
 
 | Trainer | Pokémon |
 |---|---|
-| Ruin Maniac Benjamin | Golem Lv72, Graveler Lv72, Graveler Lv72 |
+| Ruin Maniac Benjamin | Golem Lv72, Golem Lv72, Golem Lv72 |
 | Ruin Maniac Brandon | Onix Lv74 |
 | Gentleman Clifford | Marowak Lv73, Golduck Lv73 |
 | Painter Edna | Smeargle Lv74 |
@@ -1462,4 +1462,4 @@ Includes the rival's earlier battles; which team you face depends on your starte
 | Trainer | Pokémon |
 |---|---|
 | Psychic Dario | Farigiraf Lv78 |
-| Psychic Rodette | Xatu Lv72, Drowzee Lv72, Hypno Lv74 |
+| Psychic Rodette | Xatu Lv72, Hypno Lv72, Hypno Lv74 |

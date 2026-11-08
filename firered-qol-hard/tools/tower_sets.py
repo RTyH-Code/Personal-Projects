@@ -208,6 +208,13 @@ def stats_types(sp):
     return {t.group(1), t.group(2)} if t else set()
 
 
+# Stand-ins that fit the trainer better than the automatic pick (Eeveelution
+# twins, a Water trainer, a tech trainer, a Ghost/Poison trainer).
+STAND_INS = {"SPECIES_UMBREON": ["SPECIES_GLACEON", "SPECIES_LEAFEON"], "SPECIES_MANTINE": ["SPECIES_KINGDRA"],
+             "SPECIES_PORYGON": ["SPECIES_AMPHAROS"], "SPECIES_HAUNTER": ["SPECIES_DUSKNOIR"],
+             "SPECIES_GYARADOS": ["SPECIES_FERALIGATR"]}
+stand_ins_used = set()
+
 # ---------------------------------------------------------------- rewrite every floor
 # Each trainer has a pool of six; single floors send out two of them, double
 # floors one from each of two trainers, knockout floors one per trainer.
@@ -239,10 +246,16 @@ def do_mon(mm):
     else:
         # The family is used up on this team: another fully evolved,
         # non-legendary Pokemon that shares a type, so the theme holds.
-        want = stats_types((finals(sp) or [sp])[0])
-        alts = sorted(o for o in stats if not evolves.get(o) and o not in used_species
-                      and 470 <= sum(stats[o].values()) < 580 and stats_types(o) & want)
-        new_sp = pick(alts, tname + sp)
+        # Hand-picked stand-ins keep a trainer's theme; each one is used once.
+        hand = [o for o in STAND_INS.get(sp, []) if o not in used_species and o not in stand_ins_used]
+        if hand:
+            new_sp = hand[0]
+            stand_ins_used.add(new_sp)
+        else:
+            want = stats_types((finals(sp) or [sp])[0])
+            alts = sorted(o for o in stats if not evolves.get(o) and o not in used_species
+                          and 470 <= sum(stats[o].values()) < 580 and stats_types(o) & want)
+            new_sp = pick(alts, tname + sp)
     used_species.add(new_sp)
     old_moves = re.findall(r"MOVE_\w+", re.search(r"\.moves = \{([^}]*)\}", mon).group(1))
     moves, ev, nature, item, slot, role = build(new_sp, doubles, tname + new_sp, old_moves, used_items)
