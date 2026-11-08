@@ -21,6 +21,9 @@ presses, then reads the save block to confirm the milestone happened:
   league_reward  a peak Champion win gives an item from the League reward pool
   tower_record   a new Trainer Tower record time gives the bonus prize
   trader      the Trainer Tower lobby trader swaps 3 Star Pieces for a Master Ball
+  trader_limit  ... but only once per Trainer Tower clear
+  trader_ppup   ... and 3 PP Ups for a PP Max
+  peak_champion the peak (round 3) Champion's battle loads with a Lv. 100 team
   nuzlocke_blackout    Nuzlocke: losing an ordinary trainer battle ends the run
   nuzlocke_exhibition  Nuzlocke: losing to a peak trainer doesn't (exhibition battle)
   exp_share   Party Exp. Share: the Pokemon that didn't battle levels up too
@@ -196,9 +199,26 @@ CHECKS = {
         expect=[("bag_any", ["ITEM_MASTER_BALL", "ITEM_RARE_CANDY", "ITEM_STAR_PIECE", "ITEM_PP_MAX"], 1)]),
     "trader": dict(
         # The Trainer Tower lobby trader: 3 Star Pieces for a Master Ball.
+        scenario={"party": [["PIDGEY", 10]], "items": [["STAR_PIECE", 3]], "set": ["FLAG_HACK_TRADER_BALL"],
+                  "warp": ["MAP_TRAINER_TOWER_LOBBY", 3, 12]},
+        body=TALK_LEFT + mash(10) + "press B 6\nwait 90\npress A 6\nwait 120\n",
+        expect=[("bag_has", "ITEM_MASTER_BALL", 1), ("bag_has", "ITEM_STAR_PIECE", 0), ("flag", "FLAG_HACK_TRADER_BALL", 0)]),
+    "trader_limit": dict(
+        # No Trainer Tower clear since the last Master Ball trade: the trader says no.
         scenario={"party": [["PIDGEY", 10]], "items": [["STAR_PIECE", 3]], "warp": ["MAP_TRAINER_TOWER_LOBBY", 3, 12]},
-        body=TALK_LEFT + mash(9) + "press B 6\nwait 90\npress A 6\nwait 120\n",
-        expect=[("bag_has", "ITEM_MASTER_BALL", 1), ("bag_has", "ITEM_STAR_PIECE", 0)]),
+        body=TALK_LEFT + mash(10) + "press B 6\nwait 90\npress A 6\nwait 120\n",
+        expect=[("bag_has", "ITEM_MASTER_BALL", 0), ("bag_has", "ITEM_STAR_PIECE", 1)]),
+    "trader_ppup": dict(
+        # The trader's third option: 3 PP Ups for a PP Max.
+        scenario={"party": [["PIDGEY", 10]], "items": [["PP_UP", 3]], "warp": ["MAP_TRAINER_TOWER_LOBBY", 3, 12]},
+        body=TALK_LEFT + mash(5) + "press D 6\nwait 20\npress D 6\nwait 20\n" + mash(5) + "press B 6\nwait 90\npress A 6\nwait 120\n",
+        expect=[("bag_has", "ITEM_PP_MAX", 1), ("bag_has", "ITEM_PP_UP", 0)]),
+    "peak_champion": dict(
+        # The peak (round 3) Champion's battle loads: a Lv. 100 Pidgeot leads.
+        scenario={"party": [["MAGIKARP", 5, ["SPLASH"]]], "warp": VIRIDIAN,
+                  "patch": [gentleman("\ttrainerbattle_no_intro TRAINER_PEAK_CHAMPION_SQUIRTLE, ViridianCity_PokemonCenter_1F_Text_FeelFreeToUsePC")]},
+        body=TALK_LEFT + mash(4, 120) + "BATTLE_PEEK\n" + mash(30, 90),
+        expect=[("foe", "SPECIES_PIDGEOT", 100)]),
     "nuzlocke_blackout": dict(
         # Nuzlocke: losing an ordinary trainer battle ends the run.
         scenario={"party": [["MAGIKARP", 5, ["SPLASH"]]], "set": ["FLAG_HACK_NUZLOCKE", "FLAG_SYS_POKEDEX_GET"], "warp": VIRIDIAN,

@@ -8,6 +8,28 @@ made it, so you can see exactly what changed.
 previous release keeps working. In short, saves made on **release 7 or later**
 carry over to the current release. Older saves need a new game.
 
+## Release 19 (2026-11-08)
+Pull requests: [#46](https://github.com/RTyH-Code/Personal-Projects/pull/46)
+
+- **Treasure trader:**
+  - One Master Ball per Trainer Tower clear, so they can't be farmed
+    endlessly. Saves from release 18 need one clear first.
+  - 3 PP Ups now trade for a PP Max.
+- **Elite Four round 3:** each peak Elite Four member gives the Gym Leader
+  rematch reward (a Nugget, PP Up, PP Max or Star Piece).
+- **Nuzlocke:** blacking out in an exhibition battle now tells you the run
+  goes on.
+- **Trainer Tower fix:** trainers whose family ran out (e.g. three Goldeen,
+  or Voltorb next to Electrode) had a base form or a repeat on their team.
+  They now get another fully evolved Pokémon of the same type instead.
+  20 Pokémon changed.
+- **Audit:** the data validator now checks every peak team (six Lv. 100
+  Pokémon) and every Trainer Tower team (fully evolved, no repeated
+  species or item). That's how the Trainer Tower issue was found.
+- **Automated playtest:** now 25 checks, adding the trader's Master Ball
+  limit and PP Up trade, and the peak Champion's battle.
+- **Saves:** release 18 saves carry over.
+
 ## Release 18 (2026-11-08)
 Pull requests: [#45](https://github.com/RTyH-Code/Personal-Projects/pull/45)
 

@@ -8,7 +8,7 @@ The Trainer Tower on Seven Island has four challenges of eight floors each. Ever
 
 **Record bonus:** beat your best time for a challenge (your first clear counts) and the Owner adds a PP Max (40%), 2 Star Pieces (30%), 3 Rare Candies (20%) or a Master Ball (10%).
 
-**Treasure trader:** the man in the lobby swaps 3 Star Pieces for a Master Ball, 2 Big Pearls for a PP Max, or a Nugget for 2 Rare Candies.
+**Treasure trader:** the man in the lobby swaps 3 Star Pieces for a Master Ball (one per Trainer Tower clear), 2 Big Pearls or 3 PP Ups for a PP Max, or a Nugget for 2 Rare Candies.
 
 **Nuzlocke:** Trainer Tower battles are exhibition battles. Pokémon that faint here aren't lost (they're left with 1 HP).
 
@@ -191,8 +191,8 @@ Usual prize for clearing all eight floors: **Metal Coat**.
 | Pokémon | Item | Ability | Nature | EVs | Moves |
 |---|---|---|---|---|---|
 | Seaking | Choice Band | Swift Swim | Adamant | 6 HP / 252 Atk / 252 Spe | Waterfall, Drill Run, Megahorn, Ice Beam |
-| Qwilfish | Sitrus Berry | Poison Point | Impish | 252 HP / 252 Def / 6 SpD | Waterfall, Destiny Bond, Thunder Wave, Spikes |
-| Mantine | Sitrus Berry | Swift Swim | Calm | 252 HP / 6 Def / 252 SpD | Scald, Hurricane, Roost, Toxic |
+| Gorebyss | Scope Lens | Swift Swim | Modest | 6 HP / 252 SpA / 252 Spe | Ice Beam, Hydro Pump, Shell Smash, Rain Dance |
+| Dodrio | Silk Scarf | Early Bird | Jolly | 6 HP / 252 Atk / 252 Spe | Drill Run, Double-Edge, Swords Dance, Brave Bird |
 
 ### Floor 8: knockout vs. Pkmn Ranger Chelsea, Pkmn Ranger Trenton, Cool Trainer Albert
 

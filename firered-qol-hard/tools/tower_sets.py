@@ -3,7 +3,8 @@
 
 Rebuilds every Trainer Tower Pokemon as a competitive set, the way real
 teams are built:
-  - Fully evolved (one of each species per team).
+  - Fully evolved, one of each species per team. When a team's family is
+    used up, another fully evolved Pokemon of the same type stands in.
   - Moves from Pokemon Showdown's role-based random-battle sets: Gen 9
     doubles sets on Double floors, Gen 9 singles sets elsewhere, then Gen 3.
     Moves must exist in this hack and be learnable by the species.
@@ -236,7 +237,12 @@ def do_mon(mm):
     if options:
         new_sp = pick(options, tname + sp)
     else:
-        new_sp = sp if sp not in used_species else pick(finals(sp) or [sp], tname + sp)
+        # The family is used up on this team: another fully evolved,
+        # non-legendary Pokemon that shares a type, so the theme holds.
+        want = stats_types((finals(sp) or [sp])[0])
+        alts = sorted(o for o in stats if not evolves.get(o) and o not in used_species
+                      and 470 <= sum(stats[o].values()) < 580 and stats_types(o) & want)
+        new_sp = pick(alts, tname + sp)
     used_species.add(new_sp)
     old_moves = re.findall(r"MOVE_\w+", re.search(r"\.moves = \{([^}]*)\}", mon).group(1))
     moves, ev, nature, item, slot, role = build(new_sp, doubles, tname + new_sp, old_moves, used_items)

@@ -1307,7 +1307,8 @@ def write_peak():
            "what it's weak to, and Pokémon that match up well. Gym Leaders rematch any number of times once you're "
            "Champion, and each win gives a Nugget (35%), PP Up (25%), PP Max (15%) or Star Piece (25%); "
            "the Elite Four and Champion use these teams when the League official in the Indigo Plateau "
-           "Pokémon Center has the PEAK challenge switched on. Each peak Champion win gives a Master Ball (20%), "
+           "Pokémon Center has the PEAK challenge switched on. Each peak Elite Four member gives the Gym Leader reward, "
+           "and each peak Champion win gives a Master Ball (20%), "
            "3 PP Max (30%), 3 Star Pieces (25%) or 5 Nuggets (25%). In Nuzlocke mode these are exhibition "
            "battles: Pokémon that faint aren't lost (they're left with 1 HP), and losing doesn't end the run.", "",
            "How peak Pokémon are built: perfect IVs; 252 EVs in the attacking stat their moves use; 252 Speed EVs "
@@ -1457,8 +1458,8 @@ def write_tower():
            "PP Up (20%), PP Max (10%), Nugget (20%), Big Pearl (15%) or Star Piece (10%).", "",
            "**Record bonus:** beat your best time for a challenge (your first clear counts) and the Owner adds "
            "a PP Max (40%), 2 Star Pieces (30%), 3 Rare Candies (20%) or a Master Ball (10%).", "",
-           "**Treasure trader:** the man in the lobby swaps 3 Star Pieces for a Master Ball, 2 Big Pearls for a "
-           "PP Max, or a Nugget for 2 Rare Candies.", "",
+           "**Treasure trader:** the man in the lobby swaps 3 Star Pieces for a Master Ball (one per Trainer Tower "
+           "clear), 2 Big Pearls or 3 PP Ups for a PP Max, or a Nugget for 2 Rare Candies.", "",
            "**Nuzlocke:** Trainer Tower battles are exhibition battles. Pokémon that faint here aren't lost (they're left with 1 HP).", "",
            "Each trainer has six Pokémon but only uses some of them, depending on the floor. The tables "
            "below list exactly the Pokémon you'll face on each floor.", ""]

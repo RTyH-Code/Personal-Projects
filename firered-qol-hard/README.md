@@ -391,7 +391,8 @@ Lv. 5 Pokémon 75.
 - **Exhibition battles don't count:** in the Trainer Tower and against the
   Lv. 100 peak trainers (Gym Leader rematches and Elite Four round 3),
   Pokémon that faint aren't lost (they're left with 1 HP), and losing
-  doesn't end the run.
+  doesn't end the run. If you black out in one, the game tells you the run
+  goes on.
 
 ### Optional level caps
 Talk to the scientist in the Viridian City Pokémon Center to turn level caps on
@@ -508,7 +509,8 @@ How the cap works with each way of gaining levels:
   Restores.
 - **Gym rematch rewards:** each time you beat a Gym Leader's rematch, they
   give you a Nugget (35%), PP Up (25%), PP Max (15%) or Star Piece (25%).
-- **Elite Four round 3 reward:** each time you beat the peak Champion, the
+- **Elite Four round 3 rewards:** each peak Elite Four member gives the
+  same reward as a Gym Leader rematch. Each time you beat the peak Champion, the
   League gives you a Master Ball (20%), 3 PP Max (30%), 3 Star Pieces (25%)
   or 5 Nuggets (25%).
 
@@ -517,7 +519,8 @@ Every Trainer Tower trainer now uses competitive sets, built the way real
 teams are:
 - **Fully evolved:** every Pokémon, using the later evolutions where they
   exist (e.g. Magmortar, Togekiss, Scizor, Porygon-Z). There's one of each
-  species per team.
+  species per team. When a trainer's family runs out (say, three Goldeen),
+  another fully evolved Pokémon of the same type stands in.
 - **Moves from real roles:** they come from Pokémon Showdown's role-based
   sets (Fast Attacker, Setup Sweeper, Bulky Support and so on), limited to
   moves in this hack that the Pokémon can learn.
@@ -539,8 +542,9 @@ teams are:
   counts) and the Owner adds a PP Max (40%), 2 Star Pieces (30%), 3 Rare
   Candies (20%) or a Master Ball (10%).
 - **Treasure trader:** the man in the lobby swaps treasures for items you
-  can't buy: 3 Star Pieces for a Master Ball, 2 Big Pearls for a PP Max, or
-  a Nugget for 2 Rare Candies.
+  can't buy: 3 Star Pieces for a Master Ball, 2 Big Pearls or 3 PP Ups for a
+  PP Max, or a Nugget for 2 Rare Candies. He trades one Master Ball per
+  Trainer Tower clear.
 
 ## Post-game difficulty and held items
 - **Sevii Islands 4–7:** these are the islands you reach after becoming
@@ -581,9 +585,9 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `e899f430db5fa8401cfb3bedb90523dea53d6a3f`
+Patched ROM SHA-1: `f59d7d78bdf688a4d9033188fe8edeee842c5eaf`
 
-Current release: **18**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
+Current release: **19**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
 Saves made on release 7 or later carry over to this release. Older saves need a new game.
 
 ## Building from source
@@ -616,7 +620,7 @@ unmodified pret data:
 - `peak_trainers.py`: peak teams, gym rematches and the Elite Four round 3.
 - `spoiler_guide.py <dir>`: regenerates the spoiler guide from the game data.
 - `tower_sets.py <dir>`: the competitive Trainer Tower teams, from Showdown's random-battle set files (read as data).
-- `playtest/`: an automated playtest (a headless mGBA harness plus 22 milestone checks, from the first battles to the post-game rewards).
+- `playtest/`: an automated playtest (a headless mGBA harness plus 25 milestone checks, from the first battles to the post-game rewards).
 - `gym_doubles.py`: the gym double battles and their doubles movesets.
 - `learnsets.py`: what each species can learn in this hack (used by the trainer scripts).
 - `vr_rematches.py`: the Victory Road VS Seeker rematch teams and scripts.

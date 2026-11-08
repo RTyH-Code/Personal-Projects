@@ -1,0 +1,1104 @@
+From 8edd602b8c5a985e37d9bd8dfb0c998842fbb9cb Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 8 Nov 2026 21:35:19 +0000
+Subject: [PATCH] Trader limits, Elite Four rewards, exhibition message,
+ post-game audit (R19)
+
+- Treasure trader: one Master Ball per Trainer Tower clear, and 3 PP Ups
+  trade for a PP Max.
+- Each peak Elite Four member gives the Gym Leader rematch reward.
+- Nuzlocke: blacking out in an exhibition battle says the run goes on.
+- Trainer Tower: trainers whose family ran out (e.g. three Goldeen) get
+  another fully evolved Pokemon of the same type instead of a base form or
+  a repeat (tower_sets.py, re-run on the original data).
+- validate.py audits peak teams and Trainer Tower teams.
+- Playtest: 25 checks.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ HACK_NOTES.md                                 |  24 +-
+ .../PokemonLeague_AgathasRoom/scripts.inc     |   1 +
+ .../maps/PokemonLeague_BrunosRoom/scripts.inc |   1 +
+ .../maps/PokemonLeague_LancesRoom/scripts.inc |   1 +
+ .../PokemonLeague_LoreleisRoom/scripts.inc    |   1 +
+ data/scripts/hack_peak_trainers.inc           |  30 +-
+ data/scripts/trainer_tower.inc                |   2 +
+ data/scripts/white_out.inc                    |  13 +
+ include/constants/flags.h                     |   2 +
+ include/hack_version.h                        |   2 +-
+ src/hack_challenge.c                          |   2 +
+ src/script_menu.c                             |   6 +-
+ src/trainer_tower_sets.c                      | 324 +++++++++---------
+ tools/hack/playtest/playtest.py               |  24 +-
+ tools/hack/spoiler_guide.py                   |   7 +-
+ tools/hack/tower_sets.py                      |  10 +-
+ tools/hack/validate.py                        |  44 +++
+ 17 files changed, 310 insertions(+), 184 deletions(-)
+
+diff --git a/HACK_NOTES.md b/HACK_NOTES.md
+index caf4531..dee7724 100644
+--- a/HACK_NOTES.md
++++ b/HACK_NOTES.md
+@@ -389,7 +389,8 @@ Lv. 5 Pokémon 75.
+ - **Exhibition battles don't count:** in the Trainer Tower and against the
+   Lv. 100 peak trainers (Gym Leader rematches and Elite Four round 3),
+   Pokémon that faint aren't lost (they're left with 1 HP), and losing
+-  doesn't end the run.
++  doesn't end the run. If you black out in one, the game tells you the run
++  goes on.
+ 
+ ### Optional level caps
+ Talk to the scientist in the Viridian City Pokémon Center to turn level caps on
+@@ -506,7 +507,8 @@ How the cap works with each way of gaining levels:
+   Restores.
+ - **Gym rematch rewards:** each time you beat a Gym Leader's rematch, they
+   give you a Nugget (35%), PP Up (25%), PP Max (15%) or Star Piece (25%).
+-- **Elite Four round 3 reward:** each time you beat the peak Champion, the
++- **Elite Four round 3 rewards:** each peak Elite Four member gives the
++  same reward as a Gym Leader rematch. Each time you beat the peak Champion, the
+   League gives you a Master Ball (20%), 3 PP Max (30%), 3 Star Pieces (25%)
+   or 5 Nuggets (25%).
+ 
+@@ -515,7 +517,8 @@ Every Trainer Tower trainer now uses competitive sets, built the way real
+ teams are:
+ - **Fully evolved:** every Pokémon, using the later evolutions where they
+   exist (e.g. Magmortar, Togekiss, Scizor, Porygon-Z). There's one of each
+-  species per team.
++  species per team. When a trainer's family runs out (say, three Goldeen),
++  another fully evolved Pokémon of the same type stands in.
+ - **Moves from real roles:** they come from Pokémon Showdown's role-based
+   sets (Fast Attacker, Setup Sweeper, Bulky Support and so on), limited to
+   moves in this hack that the Pokémon can learn.
+@@ -537,8 +540,9 @@ teams are:
+   counts) and the Owner adds a PP Max (40%), 2 Star Pieces (30%), 3 Rare
+   Candies (20%) or a Master Ball (10%).
+ - **Treasure trader:** the man in the lobby swaps treasures for items you
+-  can't buy: 3 Star Pieces for a Master Ball, 2 Big Pearls for a PP Max, or
+-  a Nugget for 2 Rare Candies.
++  can't buy: 3 Star Pieces for a Master Ball, 2 Big Pearls or 3 PP Ups for a
++  PP Max, or a Nugget for 2 Rare Candies. He trades one Master Ball per
++  Trainer Tower clear.
+ 
+ ## Post-game difficulty and held items
+ - **Sevii Islands 4–7:** these are the islands you reach after becoming
+@@ -577,8 +581,10 @@ Each script runs once against the original pret data:
+ - `add_species.py <showdown>/data <expansion> NAME`: adds a later Pokémon in
+   an unused species slot, with its graphics, cry, Pokédex entry and evolution item.
+ - `balance.py`: modern boss movesets, peak teams with the later evolutions.
+-- `validate.py`: checks the game data for missing or inconsistent entries.
+-- `playtest/playtest.py [check ...]`: automated playtest. It runs 22 milestone
++- `validate.py`: checks the game data for missing or inconsistent entries,
++  including that every peak team is six Lv. 100 Pokémon and every Trainer
++  Tower team is fully evolved with no repeated species or item.
++- `playtest/playtest.py [check ...]`: automated playtest. It runs 25 milestone
+   checks in a headless mGBA:
+   - The boot menu.
+   - A wild battle stopping at the level cap.
+@@ -591,7 +597,9 @@ Each script runs once against the original pret data:
+   - The Trainer Tower's single, double and knockout floors, where it checks
+     that the opponents are real Pokémon from that floor, all at Lv. 50, and
+     that your team gets its real level back afterwards.
+-  - The Trainer Tower prize, the record bonus and the lobby trader.
++  - The Trainer Tower prize, the record bonus and the lobby trader (its
++    Master Ball limit and the PP Up trade too).
++  - The peak Champion's battle.
+   - The Gym Leader rematch and Elite Four round 3 rewards.
+   - Nuzlocke blackouts: an ordinary loss ends the run, and a peak trainer
+     loss doesn't.
+diff --git a/data/maps/PokemonLeague_AgathasRoom/scripts.inc b/data/maps/PokemonLeague_AgathasRoom/scripts.inc
+index 78cad8b..928c59d 100644
+--- a/data/maps/PokemonLeague_AgathasRoom/scripts.inc
++++ b/data/maps/PokemonLeague_AgathasRoom/scripts.inc
+@@ -97,4 +97,5 @@ PokemonLeague_AgathasRoom_EventScript_HackChooseBattle::
+ PokemonLeague_AgathasRoom_EventScript_HackPeakBattle::
+ 	cleartrainerflag TRAINER_PEAK_AGATHA
+ 	trainerbattle_no_intro TRAINER_PEAK_AGATHA, PokemonLeague_AgathasRoom_Text_Defeat
++	call Hack_EventScript_PeakReward
+ 	return
+diff --git a/data/maps/PokemonLeague_BrunosRoom/scripts.inc b/data/maps/PokemonLeague_BrunosRoom/scripts.inc
+index 429e744..0a6b43b 100644
+--- a/data/maps/PokemonLeague_BrunosRoom/scripts.inc
++++ b/data/maps/PokemonLeague_BrunosRoom/scripts.inc
+@@ -121,4 +121,5 @@ PokemonLeague_BrunosRoom_EventScript_HackChooseBattle::
+ PokemonLeague_BrunosRoom_EventScript_HackPeakBattle::
+ 	cleartrainerflag TRAINER_PEAK_BRUNO
+ 	trainerbattle_no_intro TRAINER_PEAK_BRUNO, PokemonLeague_BrunosRoom_Text_Defeat
++	call Hack_EventScript_PeakReward
+ 	return
+diff --git a/data/maps/PokemonLeague_LancesRoom/scripts.inc b/data/maps/PokemonLeague_LancesRoom/scripts.inc
+index e2a45e8..88a1751 100644
+--- a/data/maps/PokemonLeague_LancesRoom/scripts.inc
++++ b/data/maps/PokemonLeague_LancesRoom/scripts.inc
+@@ -173,4 +173,5 @@ PokemonLeague_LancesRoom_EventScript_HackChooseBattle::
+ PokemonLeague_LancesRoom_EventScript_HackPeakBattle::
+ 	cleartrainerflag TRAINER_PEAK_LANCE
+ 	trainerbattle_no_intro TRAINER_PEAK_LANCE, PokemonLeague_LancesRoom_Text_Defeat
++	call Hack_EventScript_PeakReward
+ 	return
+diff --git a/data/maps/PokemonLeague_LoreleisRoom/scripts.inc b/data/maps/PokemonLeague_LoreleisRoom/scripts.inc
+index c2262d7..3adc8e7 100644
+--- a/data/maps/PokemonLeague_LoreleisRoom/scripts.inc
++++ b/data/maps/PokemonLeague_LoreleisRoom/scripts.inc
+@@ -101,4 +101,5 @@ PokemonLeague_LoreleisRoom_EventScript_HackChooseBattle::
+ PokemonLeague_LoreleisRoom_EventScript_HackPeakBattle::
+ 	cleartrainerflag TRAINER_PEAK_LORELEI
+ 	trainerbattle_no_intro TRAINER_PEAK_LORELEI, PokemonLeague_LoreleisRoom_Text_Defeat
++	call Hack_EventScript_PeakReward
+ 	return
+diff --git a/data/scripts/hack_peak_trainers.inc b/data/scripts/hack_peak_trainers.inc
+index 4bbd3e9..0d40ffa 100644
+--- a/data/scripts/hack_peak_trainers.inc
++++ b/data/scripts/hack_peak_trainers.inc
+@@ -154,21 +154,24 @@ Hack_EventScript_Trader::
+ Hack_EventScript_TraderMenu::
+ 	message Hack_Text_TraderWhich
+ 	waitmessage
+-	multichoice 17, 0, MULTICHOICE_HACK_TRADER, FALSE
++	multichoice 14, 0, MULTICHOICE_HACK_TRADER, FALSE
+ 	switch VAR_RESULT
+ 	case 0, Hack_EventScript_TradeMasterBall
+ 	case 1, Hack_EventScript_TradePPMax
+-	case 2, Hack_EventScript_TradeRareCandy
++	case 2, Hack_EventScript_TradePPUps
++	case 3, Hack_EventScript_TradeRareCandy
+ 	msgbox Hack_Text_TraderBye
+ 	release
+ 	end
+ 
+ Hack_EventScript_TradeMasterBall::
++	goto_if_unset FLAG_HACK_TRADER_BALL, Hack_EventScript_TraderBallLimit
+ 	checkitem ITEM_STAR_PIECE, 3
+ 	goto_if_eq VAR_RESULT, FALSE, Hack_EventScript_TraderNotEnough
+ 	checkitemspace ITEM_MASTER_BALL
+ 	goto_if_eq VAR_RESULT, FALSE, Hack_EventScript_TraderBagFull
+ 	removeitem ITEM_STAR_PIECE, 3
++	clearflag FLAG_HACK_TRADER_BALL
+ 	giveitem ITEM_MASTER_BALL
+ 	goto Hack_EventScript_TraderMenu
+ 
+@@ -181,6 +184,19 @@ Hack_EventScript_TradePPMax::
+ 	giveitem ITEM_PP_MAX
+ 	goto Hack_EventScript_TraderMenu
+ 
++Hack_EventScript_TradePPUps::
++	checkitem ITEM_PP_UP, 3
++	goto_if_eq VAR_RESULT, FALSE, Hack_EventScript_TraderNotEnough
++	checkitemspace ITEM_PP_MAX
++	goto_if_eq VAR_RESULT, FALSE, Hack_EventScript_TraderBagFull
++	removeitem ITEM_PP_UP, 3
++	giveitem ITEM_PP_MAX
++	goto Hack_EventScript_TraderMenu
++
++Hack_EventScript_TraderBallLimit::
++	msgbox Hack_Text_TraderBallLimit
++	goto Hack_EventScript_TraderMenu
++
+ Hack_EventScript_TradeRareCandy::
+ 	checkitem ITEM_NUGGET, 1
+ 	goto_if_eq VAR_RESULT, FALSE, Hack_EventScript_TraderNotEnough
+@@ -204,12 +220,18 @@ Hack_Text_TraderIntro::
+ 	.string "But I collect treasures. I'll swap\n"
+ 	.string "things you can't buy for them.\p"
+ 	.string "3 STAR PIECES: a MASTER BALL.\n"
+-	.string "2 BIG PEARLS: a PP MAX.\l"
+-	.string "1 NUGGET: 2 RARE CANDIES.$"
++	.string "2 BIG PEARLS or 3 PP UPS: a PP MAX.\l"
++	.string "1 NUGGET: 2 RARE CANDIES.\p"
++	.string "MASTER BALLS are rare, though. One\n"
++	.string "per TRAINER TOWER clear!$"
+ 
+ Hack_Text_TraderWhich::
+ 	.string "What would you like?$"
+ 
++Hack_Text_TraderBallLimit::
++	.string "I'm saving my next MASTER BALL for\n"
++	.string "your next TRAINER TOWER clear!$"
++
+ Hack_Text_TraderNotEnough::
+ 	.string "You don't have enough for that\n"
+ 	.string "one, I'm afraid.$"
+diff --git a/data/scripts/trainer_tower.inc b/data/scripts/trainer_tower.inc
+index c11508f..f35b115 100644
+--- a/data/scripts/trainer_tower.inc
++++ b/data/scripts/trainer_tower.inc
+@@ -281,6 +281,7 @@ TrainerTower_Roof_EventScript_GivePrize:
+ 	case 2, TrainerTower_Roof_EventScript_CheckFinalTime
+ 
+ TrainerTower_Roof_EventScript_ReceivePrize:
++	setflag FLAG_HACK_TRADER_BALL
+ 	msgbox TrainerTower_Roof_Text_ThisIsForYou
+ 	textcolor NPC_TEXT_COLOR_NEUTRAL
+ 	playfanfare MUS_LEVEL_UP
+@@ -293,6 +294,7 @@ TrainerTower_Roof_EventScript_ReceivePrize:
+ 	goto TrainerTower_Roof_EventScript_CheckFinalTime
+ 
+ TrainerTower_Roof_EventScript_NoRoomForPrize::
++	setflag FLAG_HACK_TRADER_BALL
+ 	msgbox TrainerTower_Roof_Text_ThisIsForYou
+ 	msgbox Text_BagIsFull
+ 	goto TrainerTower_Roof_EventScript_CheckFinalTime
+diff --git a/data/scripts/white_out.inc b/data/scripts/white_out.inc
+index 97c560a..9bdb99f 100644
+--- a/data/scripts/white_out.inc
++++ b/data/scripts/white_out.inc
+@@ -8,6 +8,7 @@ EventScript_AfterWhiteOutHeal::
+ 	applymovement VAR_LAST_TALKED, Movement_Bow
+ 	waitmovement 0
+ 	call_if_set FLAG_HACK_NUZLOCKE_OVER, EventScript_HackNuzlockeOver
++	call_if_set FLAG_HACK_NUZLOCKE_EXHIBITION, EventScript_HackNuzlockeExhibition
+ 	fadedefaultbgm
+ 	releaseall
+ 	end
+@@ -18,6 +19,17 @@ EventScript_HackNuzlockeOver::
+ 	msgbox Text_HackNuzlockeOver
+ 	return
+ 
++EventScript_HackNuzlockeExhibition::
++	clearflag FLAG_HACK_NUZLOCKE_EXHIBITION
++	textcolor NPC_TEXT_COLOR_NEUTRAL
++	msgbox Text_HackNuzlockeExhibition
++	return
++
++Text_HackNuzlockeExhibition::
++	.string "That was an exhibition battle, so\n"
++	.string "it doesn't count. Your NUZLOCKE\l"
++	.string "run goes on!$"
++
+ EventScript_AfterWhiteOutHealMsgPreBrock::
+ 	msgbox Text_MonsHealedShouldBuyPotions
+ 	return
+@@ -35,6 +47,7 @@ EventScript_AfterWhiteOutMomHeal::
+ 	call EventScript_OutOfCenterPartyHeal
+ 	msgbox Text_MomExplainHPGetPotions
+ 	call_if_set FLAG_HACK_NUZLOCKE_OVER, EventScript_HackNuzlockeOver
++	call_if_set FLAG_HACK_NUZLOCKE_EXHIBITION, EventScript_HackNuzlockeExhibition
+ 	fadedefaultbgm
+ 	releaseall
+ 	end
+diff --git a/include/constants/flags.h b/include/constants/flags.h
+index 76549ae..844439d 100644
+--- a/include/constants/flags.h
++++ b/include/constants/flags.h
+@@ -1330,6 +1330,8 @@
+ #define FLAG_HACK_PARTY_EXP_SHARE        (TRAINER_FLAGS_START + TRAINER_EXPERT_F) // modern party-wide Exp. Share
+ #define FLAG_HACK_GOT_LUCKY_EGG          (TRAINER_FLAGS_START + TRAINER_RS_FISHERMAN) // Koga's Lucky Egg gift
+ #define FLAG_HACK_LEVEL_CAP              (TRAINER_FLAGS_START + TRAINER_RS_BEAUTY) // optional level caps on
++#define FLAG_HACK_TRADER_BALL           FLAG_0x0B0 // a Trainer Tower clear since the last Master Ball trade
++#define FLAG_HACK_NUZLOCKE_EXHIBITION   FLAG_0x0B1 // whited out in an exhibition battle: show the run-goes-on message
+ #define FLAG_HACK_TRUE_ENDGAME           (TRAINER_FLAGS_START + TRAINER_RS_COOLTRAINER_F) // beat the round 2 Champion
+ #define FLAG_HIDE_SEVAULT_CANYON_ROOT_FOSSIL (TRAINER_FLAGS_START + TRAINER_HEX_MANIAC)
+ #define FLAG_HIDE_SEVAULT_CANYON_CLAW_FOSSIL (TRAINER_FLAGS_START + TRAINER_RS_LADY)
+diff --git a/include/hack_version.h b/include/hack_version.h
+index 2d86f1c..0e5478c 100644
+--- a/include/hack_version.h
++++ b/include/hack_version.h
+@@ -3,6 +3,6 @@
+ 
+ // FireRed QoL+Hard release number, shown in the Options menu. Bump it with
+ // each release (see CHANGELOG.md in the Personal-Projects repository).
+-#define HACK_RELEASE_STRING "R18"
++#define HACK_RELEASE_STRING "R19"
+ 
+ #endif // GUARD_HACK_VERSION_H
+diff --git a/src/hack_challenge.c b/src/hack_challenge.c
+index d0fa4ec..10b40de 100644
+--- a/src/hack_challenge.c
++++ b/src/hack_challenge.c
+@@ -122,6 +122,8 @@ void Hack_NuzlockeWhiteOut(void)
+     bool8 exhibition = sExhibitionLoss;
+ 
+     sExhibitionLoss = FALSE;
++    if (Hack_NuzlockeActive() && exhibition)
++        FlagSet(FLAG_HACK_NUZLOCKE_EXHIBITION);
+     if (Hack_NuzlockeActive() && !exhibition)
+     {
+         FlagClear(FLAG_HACK_NUZLOCKE);
+diff --git a/src/script_menu.c b/src/script_menu.c
+index aee5fb2..3416f38 100644
+--- a/src/script_menu.c
++++ b/src/script_menu.c
+@@ -523,12 +523,14 @@ static const struct MenuAction sMultichoiceList_HackSettings[] = {
+ };
+ 
+ static const u8 sText_HackMasterBall[] = _("MASTER BALL");
+-static const u8 sText_HackPPMax[] = _("PP MAX");
++static const u8 sText_HackPPMaxPearls[] = _("PP MAX (PEARLS)");
++static const u8 sText_HackPPMaxPPUps[] = _("PP MAX (PP UPS)");
+ static const u8 sText_HackRareCandy[] = _("RARE CANDY");
+ 
+ static const struct MenuAction sMultichoiceList_HackTrader[] = {
+     { sText_HackMasterBall },
+-    { sText_HackPPMax },
++    { sText_HackPPMaxPearls },
++    { sText_HackPPMaxPPUps },
+     { sText_HackRareCandy },
+     { gOtherText_Exit }
+ };
+diff --git a/src/trainer_tower_sets.c b/src/trainer_tower_sets.c
+index a89cd4f..26871f3 100644
+--- a/src/trainer_tower_sets.c
++++ b/src/trainer_tower_sets.c
+@@ -405,15 +405,15 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Single_Unused = {
+ 					.friendship = 255
+ 				},
+ 				{
+-					.species = SPECIES_TOGETIC,
++					.species = SPECIES_CROBAT,
+ 					.heldItem = ITEM_LUM_BERRY,
+-					.moves = {MOVE_FLAMETHROWER, MOVE_THUNDER_WAVE, MOVE_SOFT_BOILED, MOVE_TOXIC},
++					.moves = {MOVE_BRAVE_BIRD, MOVE_U_TURN, MOVE_DEFOG, MOVE_TAUNT},
+ 					.hpEV = 252,
+ 					.attackEV = 0,
+-					.defenseEV = 6,
++					.defenseEV = 252,
+ 					.speedEV = 0,
+ 					.spAttackEV = 0,
+-					.spDefenseEV = 252,
++					.spDefenseEV = 6,
+ 					.otId = 0 | (4096 << 16),
+ 					.hpIV = 31,
+ 					.attackIV = 31,
+@@ -421,21 +421,21 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Single_Unused = {
+ 					.speedIV = 31,
+ 					.spAttackIV = 31,
+ 					.spDefenseIV = 31,
+-					.abilityNum = 1,
+-					.personality = 0x2D, // CALM
+-					.nickname = _("TOGETIC"),
++					.abilityNum = 0,
++					.personality = 0x21, // IMPISH
++					.nickname = _("CROBAT"),
+ 					.friendship = 255
+ 				},
+ 				{
+-					.species = SPECIES_CHANSEY,
+-					.heldItem = ITEM_WHITE_HERB,
+-					.moves = {MOVE_SEISMIC_TOSS, MOVE_SOFT_BOILED, MOVE_STEALTH_ROCK, MOVE_THUNDER_WAVE},
+-					.hpEV = 252,
+-					.attackEV = 0,
+-					.defenseEV = 6,
+-					.speedEV = 0,
++					.species = SPECIES_AMBIPOM,
++					.heldItem = ITEM_CHOICE_BAND,
++					.moves = {MOVE_DOUBLE_EDGE, MOVE_U_TURN, MOVE_TRIPLE_AXEL, MOVE_RETURN},
++					.hpEV = 6,
++					.attackEV = 252,
++					.defenseEV = 0,
++					.speedEV = 252,
+ 					.spAttackEV = 0,
+-					.spDefenseEV = 252,
++					.spDefenseEV = 0,
+ 					.otId = 0 | (4096 << 16),
+ 					.hpIV = 31,
+ 					.attackIV = 31,
+@@ -444,14 +444,14 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Single_Unused = {
+ 					.spAttackIV = 31,
+ 					.spDefenseIV = 31,
+ 					.abilityNum = 0,
+-					.personality = 0x17, // CAREFUL
+-					.nickname = _("CHANSEY"),
++					.personality = 0xD, // JOLLY
++					.nickname = _("AMBIPOM"),
+ 					.friendship = 255
+ 				},
+ 				{
+-					.species = SPECIES_CLEFABLE,
+-					.heldItem = ITEM_MENTAL_HERB,
+-					.moves = {MOVE_FIRE_BLAST, MOVE_THUNDER_WAVE, MOVE_STEALTH_ROCK, MOVE_MOONLIGHT},
++					.species = SPECIES_SYLVEON,
++					.heldItem = ITEM_WHITE_HERB,
++					.moves = {MOVE_MYSTICAL_FIRE, MOVE_BODY_SLAM, MOVE_PROTECT, MOVE_CALM_MIND},
+ 					.hpEV = 252,
+ 					.attackEV = 0,
+ 					.defenseEV = 6,
+@@ -465,9 +465,9 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Single_Unused = {
+ 					.speedIV = 31,
+ 					.spAttackIV = 31,
+ 					.spDefenseIV = 31,
+-					.abilityNum = 1,
++					.abilityNum = 0,
+ 					.personality = 0xC3, // CALM
+-					.nickname = _("CLEFABLE"),
++					.nickname = _("SYLVEON"),
+ 					.friendship = 255
+ 				},
+ 			}
+@@ -3135,15 +3135,15 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Double_1 = {
+ 					.friendship = 255
+ 				},
+ 				{
+-					.species = SPECIES_UMBREON,
+-					.heldItem = ITEM_WHITE_HERB,
+-					.moves = {MOVE_PROTECT, MOVE_SNARL, MOVE_HELPING_HAND, MOVE_FOUL_PLAY},
+-					.hpEV = 252,
+-					.attackEV = 0,
+-					.defenseEV = 6,
+-					.speedEV = 0,
++					.species = SPECIES_HONCHKROW,
++					.heldItem = ITEM_SHARP_BEAK,
++					.moves = {MOVE_PROTECT, MOVE_BRAVE_BIRD, MOVE_SUCKER_PUNCH, MOVE_TAILWIND},
++					.hpEV = 6,
++					.attackEV = 252,
++					.defenseEV = 0,
++					.speedEV = 252,
+ 					.spAttackEV = 0,
+-					.spDefenseEV = 252,
++					.spDefenseEV = 0,
+ 					.otId = 0 | (4096 << 16),
+ 					.hpIV = 31,
+ 					.attackIV = 31,
+@@ -3152,8 +3152,8 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Double_1 = {
+ 					.spAttackIV = 31,
+ 					.spDefenseIV = 31,
+ 					.abilityNum = 0,
+-					.personality = 0x17, // CAREFUL
+-					.nickname = _("UMBREON"),
++					.personality = 0x3, // ADAMANT
++					.nickname = _("HONCHKROW"),
+ 					.friendship = 255
+ 				},
+ 			}
+@@ -3278,15 +3278,15 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Double_1 = {
+ 					.friendship = 255
+ 				},
+ 				{
+-					.species = SPECIES_UMBREON,
+-					.heldItem = ITEM_WHITE_HERB,
+-					.moves = {MOVE_PROTECT, MOVE_SNARL, MOVE_HELPING_HAND, MOVE_FOUL_PLAY},
+-					.hpEV = 252,
+-					.attackEV = 0,
+-					.defenseEV = 6,
+-					.speedEV = 0,
++					.species = SPECIES_HONCHKROW,
++					.heldItem = ITEM_SHARP_BEAK,
++					.moves = {MOVE_PROTECT, MOVE_BRAVE_BIRD, MOVE_SUCKER_PUNCH, MOVE_TAILWIND},
++					.hpEV = 6,
++					.attackEV = 252,
++					.defenseEV = 0,
++					.speedEV = 252,
+ 					.spAttackEV = 0,
+-					.spDefenseEV = 252,
++					.spDefenseEV = 0,
+ 					.otId = 35 | (0 << 16),
+ 					.hpIV = 31,
+ 					.attackIV = 31,
+@@ -3295,8 +3295,8 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Double_1 = {
+ 					.spAttackIV = 31,
+ 					.spDefenseIV = 31,
+ 					.abilityNum = 0,
+-					.personality = 0x30, // CAREFUL
+-					.nickname = _("UMBREON"),
++					.personality = 0x1C, // ADAMANT
++					.nickname = _("HONCHKROW"),
+ 					.friendship = 255
+ 				},
+ 			}
+@@ -5875,14 +5875,14 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_7 = {
+ 					.friendship = 0
+ 				},
+ 				{
+-					.species = SPECIES_SEAKING,
++					.species = SPECIES_BLASTOISE,
+ 					.heldItem = ITEM_MYSTIC_WATER,
+-					.moves = {MOVE_WATERFALL, MOVE_DRILL_RUN, MOVE_MEGAHORN, MOVE_ICE_BEAM},
++					.moves = {MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_EARTHQUAKE, MOVE_SHELL_SMASH},
+ 					.hpEV = 6,
+-					.attackEV = 252,
++					.attackEV = 0,
+ 					.defenseEV = 0,
+ 					.speedEV = 252,
+-					.spAttackEV = 0,
++					.spAttackEV = 252,
+ 					.spDefenseEV = 0,
+ 					.otId = 0 | (4096 << 16),
+ 					.hpIV = 31,
+@@ -5892,8 +5892,8 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_7 = {
+ 					.spAttackIV = 31,
+ 					.spDefenseIV = 31,
+ 					.abilityNum = 0,
+-					.personality = 0x3, // ADAMANT
+-					.nickname = _("SEAKING"),
++					.personality = 0xF, // MODEST
++					.nickname = _("BLASTOISE"),
+ 					.friendship = 0
+ 				},
+ 				{
+@@ -5919,15 +5919,15 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_7 = {
+ 					.friendship = 0
+ 				},
+ 				{
+-					.species = SPECIES_LANTURN,
+-					.heldItem = ITEM_SITRUS_BERRY,
+-					.moves = {MOVE_THUNDERBOLT, MOVE_ICE_BEAM, MOVE_THUNDER_WAVE, MOVE_SCALD},
+-					.hpEV = 252,
++					.species = SPECIES_WAILORD,
++					.heldItem = ITEM_LUM_BERRY,
++					.moves = {MOVE_SCALD, MOVE_WATER_SPOUT, MOVE_HYDRO_PUMP, MOVE_ICE_BEAM},
++					.hpEV = 6,
+ 					.attackEV = 0,
+-					.defenseEV = 6,
+-					.speedEV = 0,
+-					.spAttackEV = 0,
+-					.spDefenseEV = 252,
++					.defenseEV = 0,
++					.speedEV = 252,
++					.spAttackEV = 252,
++					.spDefenseEV = 0,
+ 					.otId = 0 | (4096 << 16),
+ 					.hpIV = 31,
+ 					.attackIV = 31,
+@@ -5936,20 +5936,20 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_7 = {
+ 					.spAttackIV = 31,
+ 					.spDefenseIV = 31,
+ 					.abilityNum = 0,
+-					.personality = 0x14, // CALM
+-					.nickname = _("LANTURN"),
++					.personality = 0xF, // MODEST
++					.nickname = _("WAILORD"),
+ 					.friendship = 0
+ 				},
+ 				{
+-					.species = SPECIES_GOLDEEN,
+-					.heldItem = ITEM_LUM_BERRY,
+-					.moves = {MOVE_WATER_PULSE, MOVE_DOUBLE_EDGE, MOVE_TOXIC, MOVE_PSYBEAM},
+-					.hpEV = 6,
++					.species = SPECIES_TENTACRUEL,
++					.heldItem = ITEM_SITRUS_BERRY,
++					.moves = {MOVE_RAPID_SPIN, MOVE_SLUDGE_BOMB, MOVE_FLIP_TURN, MOVE_TOXIC},
++					.hpEV = 252,
+ 					.attackEV = 0,
+-					.defenseEV = 0,
+-					.speedEV = 252,
+-					.spAttackEV = 252,
+-					.spDefenseEV = 0,
++					.defenseEV = 6,
++					.speedEV = 0,
++					.spAttackEV = 0,
++					.spDefenseEV = 252,
+ 					.otId = 0 | (4096 << 16),
+ 					.hpIV = 31,
+ 					.attackIV = 31,
+@@ -5957,21 +5957,21 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_7 = {
+ 					.speedIV = 31,
+ 					.spAttackIV = 31,
+ 					.spDefenseIV = 31,
+-					.abilityNum = 0,
+-					.personality = 0xF, // MODEST
+-					.nickname = _("GOLDEEN"),
++					.abilityNum = 1,
++					.personality = 0x17, // CAREFUL
++					.nickname = _("TENTACRUEL"),
+ 					.friendship = 0
+ 				},
+ 				{
+-					.species = SPECIES_SEAKING,
+-					.heldItem = ITEM_SCOPE_LENS,
+-					.moves = {MOVE_WATERFALL, MOVE_DRILL_RUN, MOVE_MEGAHORN, MOVE_ICE_BEAM},
+-					.hpEV = 6,
+-					.attackEV = 252,
+-					.defenseEV = 0,
+-					.speedEV = 252,
++					.species = SPECIES_SWAMPERT,
++					.heldItem = ITEM_SHELL_BELL,
++					.moves = {MOVE_ICE_BEAM, MOVE_FLIP_TURN, MOVE_STEALTH_ROCK, MOVE_EARTHQUAKE},
++					.hpEV = 252,
++					.attackEV = 0,
++					.defenseEV = 252,
++					.speedEV = 0,
+ 					.spAttackEV = 0,
+-					.spDefenseEV = 0,
++					.spDefenseEV = 6,
+ 					.otId = 0 | (4096 << 16),
+ 					.hpIV = 31,
+ 					.attackIV = 31,
+@@ -5980,8 +5980,8 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_7 = {
+ 					.spAttackIV = 31,
+ 					.spDefenseIV = 31,
+ 					.abilityNum = 0,
+-					.personality = 0x99, // ADAMANT
+-					.nickname = _("SEAKING"),
++					.personality = 0x9E, // IMPISH
++					.nickname = _("SWAMPERT"),
+ 					.friendship = 0
+ 				},
+ 			}
+@@ -6040,9 +6040,9 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_7 = {
+ 					.friendship = 255
+ 				},
+ 				{
+-					.species = SPECIES_REMORAID,
++					.species = SPECIES_POLITOED,
+ 					.heldItem = ITEM_MYSTIC_WATER,
+-					.moves = {MOVE_SURF, MOVE_PSYCHIC, MOVE_ICE_BEAM, MOVE_THUNDER_WAVE},
++					.moves = {MOVE_ICE_BEAM, MOVE_FOCUS_BLAST, MOVE_HYDRO_PUMP, MOVE_SCALD},
+ 					.hpEV = 6,
+ 					.attackEV = 0,
+ 					.defenseEV = 0,
+@@ -6058,18 +6058,18 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_7 = {
+ 					.spDefenseIV = 31,
+ 					.abilityNum = 0,
+ 					.personality = 0xA5, // MODEST
+-					.nickname = _("REMORAID"),
++					.nickname = _("POLITOED"),
+ 					.friendship = 255
+ 				},
+ 				{
+-					.species = SPECIES_OCTILLERY,
+-					.heldItem = ITEM_SCOPE_LENS,
+-					.moves = {MOVE_GUNK_SHOT, MOVE_ICE_BEAM, MOVE_FIRE_BLAST, MOVE_THUNDER_WAVE},
++					.species = SPECIES_CLOYSTER,
++					.heldItem = ITEM_NEVER_MELT_ICE,
++					.moves = {MOVE_ICICLE_SPEAR, MOVE_DRILL_RUN, MOVE_SHELL_SMASH, MOVE_HYDRO_PUMP},
+ 					.hpEV = 6,
+-					.attackEV = 0,
++					.attackEV = 252,
+ 					.defenseEV = 0,
+ 					.speedEV = 252,
+-					.spAttackEV = 252,
++					.spAttackEV = 0,
+ 					.spDefenseEV = 0,
+ 					.otId = 0 | (4096 << 16),
+ 					.hpIV = 31,
+@@ -6079,20 +6079,20 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_7 = {
+ 					.spAttackIV = 31,
+ 					.spDefenseIV = 31,
+ 					.abilityNum = 1,
+-					.personality = 0xF, // MODEST
+-					.nickname = _("OCTILLERY"),
++					.personality = 0x3, // ADAMANT
++					.nickname = _("CLOYSTER"),
+ 					.friendship = 255
+ 				},
+ 				{
+-					.species = SPECIES_OCTILLERY,
+-					.heldItem = ITEM_SHELL_BELL,
+-					.moves = {MOVE_GUNK_SHOT, MOVE_ICE_BEAM, MOVE_FIRE_BLAST, MOVE_THUNDER_WAVE},
+-					.hpEV = 6,
++					.species = SPECIES_SLOWKING,
++					.heldItem = ITEM_SITRUS_BERRY,
++					.moves = {MOVE_FUTURE_SIGHT, MOVE_SCALD, MOVE_SLACK_OFF, MOVE_PSYSHOCK},
++					.hpEV = 252,
+ 					.attackEV = 0,
+-					.defenseEV = 0,
+-					.speedEV = 252,
+-					.spAttackEV = 252,
+-					.spDefenseEV = 0,
++					.defenseEV = 6,
++					.speedEV = 0,
++					.spAttackEV = 0,
++					.spDefenseEV = 252,
+ 					.otId = 0 | (4096 << 16),
+ 					.hpIV = 31,
+ 					.attackIV = 31,
+@@ -6100,21 +6100,21 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_7 = {
+ 					.speedIV = 31,
+ 					.spAttackIV = 31,
+ 					.spDefenseIV = 31,
+-					.abilityNum = 1,
+-					.personality = 0x8C, // MODEST
+-					.nickname = _("OCTILLERY"),
++					.abilityNum = 0,
++					.personality = 0x91, // CALM
++					.nickname = _("SLOWKING"),
+ 					.friendship = 255
+ 				},
+ 				{
+-					.species = SPECIES_QWILFISH,
+-					.heldItem = ITEM_SITRUS_BERRY,
+-					.moves = {MOVE_WATERFALL, MOVE_DESTINY_BOND, MOVE_THUNDER_WAVE, MOVE_SPIKES},
+-					.hpEV = 252,
++					.species = SPECIES_GOREBYSS,
++					.heldItem = ITEM_SCOPE_LENS,
++					.moves = {MOVE_ICE_BEAM, MOVE_HYDRO_PUMP, MOVE_SHELL_SMASH, MOVE_RAIN_DANCE},
++					.hpEV = 6,
+ 					.attackEV = 0,
+-					.defenseEV = 252,
+-					.speedEV = 0,
+-					.spAttackEV = 0,
+-					.spDefenseEV = 6,
++					.defenseEV = 0,
++					.speedEV = 252,
++					.spAttackEV = 252,
++					.spDefenseEV = 0,
+ 					.otId = 0 | (4096 << 16),
+ 					.hpIV = 31,
+ 					.attackIV = 31,
+@@ -6123,8 +6123,8 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_7 = {
+ 					.spAttackIV = 31,
+ 					.spDefenseIV = 31,
+ 					.abilityNum = 0,
+-					.personality = 0x9E, // IMPISH
+-					.nickname = _("QWILFISH"),
++					.personality = 0xA5, // MODEST
++					.nickname = _("GOREBYSS"),
+ 					.friendship = 255
+ 				},
+ 			}
+@@ -6183,15 +6183,15 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_7 = {
+ 					.friendship = 255
+ 				},
+ 				{
+-					.species = SPECIES_MANTINE,
+-					.heldItem = ITEM_SITRUS_BERRY,
+-					.moves = {MOVE_SCALD, MOVE_HURRICANE, MOVE_ROOST, MOVE_TOXIC},
+-					.hpEV = 252,
+-					.attackEV = 0,
+-					.defenseEV = 6,
+-					.speedEV = 0,
++					.species = SPECIES_DODRIO,
++					.heldItem = ITEM_SILK_SCARF,
++					.moves = {MOVE_DRILL_RUN, MOVE_DOUBLE_EDGE, MOVE_SWORDS_DANCE, MOVE_BRAVE_BIRD},
++					.hpEV = 6,
++					.attackEV = 252,
++					.defenseEV = 0,
++					.speedEV = 252,
+ 					.spAttackEV = 0,
+-					.spDefenseEV = 252,
++					.spDefenseEV = 0,
+ 					.otId = 0 | (4096 << 16),
+ 					.hpIV = 31,
+ 					.attackIV = 31,
+@@ -6199,15 +6199,15 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_7 = {
+ 					.speedIV = 31,
+ 					.spAttackIV = 31,
+ 					.spDefenseIV = 31,
+-					.abilityNum = 0,
+-					.personality = 0x14, // CALM
+-					.nickname = _("MANTINE"),
++					.abilityNum = 1,
++					.personality = 0xD, // JOLLY
++					.nickname = _("DODRIO"),
+ 					.friendship = 255
+ 				},
+ 				{
+-					.species = SPECIES_GYARADOS,
+-					.heldItem = ITEM_LUM_BERRY,
+-					.moves = {MOVE_WATERFALL, MOVE_EARTHQUAKE, MOVE_DRAGON_DANCE, MOVE_POWER_WHIP},
++					.species = SPECIES_CLOYSTER,
++					.heldItem = ITEM_NEVER_MELT_ICE,
++					.moves = {MOVE_DRILL_RUN, MOVE_ICICLE_SPEAR, MOVE_SHELL_SMASH, MOVE_HYDRO_PUMP},
+ 					.hpEV = 6,
+ 					.attackEV = 252,
+ 					.defenseEV = 0,
+@@ -6221,20 +6221,20 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_7 = {
+ 					.speedIV = 31,
+ 					.spAttackIV = 31,
+ 					.spDefenseIV = 31,
+-					.abilityNum = 0,
+-					.personality = 0xD, // JOLLY
+-					.nickname = _("GYARADOS"),
++					.abilityNum = 1,
++					.personality = 0x3, // ADAMANT
++					.nickname = _("CLOYSTER"),
+ 					.friendship = 255
+ 				},
+ 				{
+-					.species = SPECIES_MAGIKARP,
+-					.heldItem = ITEM_SCOPE_LENS,
+-					.moves = {MOVE_FLAIL, MOVE_TACKLE, MOVE_NONE, MOVE_NONE},
++					.species = SPECIES_WAILORD,
++					.heldItem = ITEM_LUM_BERRY,
++					.moves = {MOVE_WATER_SPOUT, MOVE_ICE_BEAM, MOVE_HYDRO_PUMP, MOVE_SCALD},
+ 					.hpEV = 6,
+-					.attackEV = 252,
++					.attackEV = 0,
+ 					.defenseEV = 0,
+ 					.speedEV = 252,
+-					.spAttackEV = 0,
++					.spAttackEV = 252,
+ 					.spDefenseEV = 0,
+ 					.otId = 0 | (4096 << 16),
+ 					.hpIV = 31,
+@@ -6244,14 +6244,14 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_7 = {
+ 					.spAttackIV = 31,
+ 					.spDefenseIV = 31,
+ 					.abilityNum = 0,
+-					.personality = 0x8A, // JOLLY
+-					.nickname = _("MAGIKARP"),
++					.personality = 0x8C, // MODEST
++					.nickname = _("WAILORD"),
+ 					.friendship = 255
+ 				},
+ 				{
+-					.species = SPECIES_GYARADOS,
+-					.heldItem = ITEM_SHELL_BELL,
+-					.moves = {MOVE_WATERFALL, MOVE_EARTHQUAKE, MOVE_DRAGON_DANCE, MOVE_POWER_WHIP},
++					.species = SPECIES_FERALIGATR,
++					.heldItem = ITEM_CHOICE_BAND,
++					.moves = {MOVE_TRAILBLAZE, MOVE_LIQUIDATION, MOVE_CRUNCH, MOVE_EARTHQUAKE},
+ 					.hpEV = 6,
+ 					.attackEV = 252,
+ 					.defenseEV = 0,
+@@ -6266,8 +6266,8 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_7 = {
+ 					.spAttackIV = 31,
+ 					.spDefenseIV = 31,
+ 					.abilityNum = 0,
+-					.personality = 0x8A, // JOLLY
+-					.nickname = _("GYARADOS"),
++					.personality = 0x80, // ADAMANT
++					.nickname = _("FERALIGATR"),
+ 					.friendship = 255
+ 				},
+ 			}
+@@ -6753,14 +6753,14 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Single_3 = {
+ 					.friendship = 255
+ 				},
+ 				{
+-					.species = SPECIES_VOLTORB,
+-					.heldItem = ITEM_LUM_BERRY,
+-					.moves = {MOVE_EXPLOSION, MOVE_THUNDER, MOVE_FLASH, MOVE_DOUBLE_TEAM},
++					.species = SPECIES_ELECTIVIRE,
++					.heldItem = ITEM_CHOICE_BAND,
++					.moves = {MOVE_ICE_PUNCH, MOVE_SUPERCELL_SLAM, MOVE_EARTHQUAKE, MOVE_FLAMETHROWER},
+ 					.hpEV = 6,
+-					.attackEV = 0,
++					.attackEV = 252,
+ 					.defenseEV = 0,
+ 					.speedEV = 252,
+-					.spAttackEV = 252,
++					.spAttackEV = 0,
+ 					.spDefenseEV = 0,
+ 					.otId = 0 | (4096 << 16),
+ 					.hpIV = 31,
+@@ -6770,8 +6770,8 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Single_3 = {
+ 					.spAttackIV = 31,
+ 					.spDefenseIV = 31,
+ 					.abilityNum = 0,
+-					.personality = 0xA, // TIMID
+-					.nickname = _("VOLTORB"),
++					.personality = 0xD, // JOLLY
++					.nickname = _("ELECTIVIRE"),
+ 					.friendship = 255
+ 				},
+ 				{
+@@ -6842,7 +6842,7 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Single_3 = {
+ 				},
+ 				{
+ 					.species = SPECIES_FORRETRESS,
+-					.heldItem = ITEM_WHITE_HERB,
++					.heldItem = ITEM_LUM_BERRY,
+ 					.moves = {MOVE_IRON_HEAD, MOVE_STEALTH_ROCK, MOVE_VOLT_SWITCH, MOVE_TOXIC_SPIKES},
+ 					.hpEV = 252,
+ 					.attackEV = 0,
+@@ -6996,15 +6996,15 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Mixed_3 = {
+ 					.friendship = 255
+ 				},
+ 				{
+-					.species = SPECIES_PORYGON,
+-					.heldItem = ITEM_SHELL_BELL,
+-					.moves = {MOVE_ZAP_CANNON, MOVE_THUNDER_WAVE, MOVE_DOUBLE_TEAM, MOVE_PROTECT},
+-					.hpEV = 252,
+-					.attackEV = 0,
+-					.defenseEV = 6,
+-					.speedEV = 0,
++					.species = SPECIES_DODRIO,
++					.heldItem = ITEM_CHOICE_BAND,
++					.moves = {MOVE_QUICK_ATTACK, MOVE_BRAVE_BIRD, MOVE_DOUBLE_EDGE, MOVE_DRILL_RUN},
++					.hpEV = 6,
++					.attackEV = 252,
++					.defenseEV = 0,
++					.speedEV = 252,
+ 					.spAttackEV = 0,
+-					.spDefenseEV = 252,
++					.spDefenseEV = 0,
+ 					.otId = 5 | (0 << 16),
+ 					.hpIV = 31,
+ 					.attackIV = 31,
+@@ -7012,9 +7012,9 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Mixed_3 = {
+ 					.speedIV = 31,
+ 					.spAttackIV = 31,
+ 					.spDefenseIV = 31,
+-					.abilityNum = 0,
+-					.personality = 0x14, // CALM
+-					.nickname = _("PORYGON"),
++					.abilityNum = 1,
++					.personality = 0xD, // JOLLY
++					.nickname = _("DODRIO"),
+ 					.friendship = 255
+ 				},
+ 			}
+@@ -8483,9 +8483,9 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_6 = {
+ 					.friendship = 255
+ 				},
+ 				{
+-					.species = SPECIES_HAUNTER,
++					.species = SPECIES_VENUSAUR,
+ 					.heldItem = ITEM_WHITE_HERB,
+-					.moves = {MOVE_GUNK_SHOT, MOVE_HYPNOSIS, MOVE_CONFUSE_RAY, MOVE_TOXIC},
++					.moves = {MOVE_GIGA_DRAIN, MOVE_LEECH_SEED, MOVE_SLEEP_POWDER, MOVE_SUBSTITUTE},
+ 					.hpEV = 252,
+ 					.attackEV = 0,
+ 					.defenseEV = 6,
+@@ -8500,8 +8500,8 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_6 = {
+ 					.spAttackIV = 31,
+ 					.spDefenseIV = 31,
+ 					.abilityNum = 0,
+-					.personality = 0x94, // CAREFUL
+-					.nickname = _("HAUNTER"),
++					.personality = 0x91, // CALM
++					.nickname = _("VENUSAUR"),
+ 					.friendship = 255
+ 				},
+ 			}
+diff --git a/tools/hack/playtest/playtest.py b/tools/hack/playtest/playtest.py
+index 1868bd8..402b77a 100644
+--- a/tools/hack/playtest/playtest.py
++++ b/tools/hack/playtest/playtest.py
+@@ -21,6 +21,9 @@ presses, then reads the save block to confirm the milestone happened:
+   league_reward  a peak Champion win gives an item from the League reward pool
+   tower_record   a new Trainer Tower record time gives the bonus prize
+   trader      the Trainer Tower lobby trader swaps 3 Star Pieces for a Master Ball
++  trader_limit  ... but only once per Trainer Tower clear
++  trader_ppup   ... and 3 PP Ups for a PP Max
++  peak_champion the peak (round 3) Champion's battle loads with a Lv. 100 team
+   nuzlocke_blackout    Nuzlocke: losing an ordinary trainer battle ends the run
+   nuzlocke_exhibition  Nuzlocke: losing to a peak trainer doesn't (exhibition battle)
+   exp_share   Party Exp. Share: the Pokemon that didn't battle levels up too
+@@ -196,9 +199,26 @@ CHECKS = {
+         expect=[("bag_any", ["ITEM_MASTER_BALL", "ITEM_RARE_CANDY", "ITEM_STAR_PIECE", "ITEM_PP_MAX"], 1)]),
+     "trader": dict(
+         # The Trainer Tower lobby trader: 3 Star Pieces for a Master Ball.
++        scenario={"party": [["PIDGEY", 10]], "items": [["STAR_PIECE", 3]], "set": ["FLAG_HACK_TRADER_BALL"],
++                  "warp": ["MAP_TRAINER_TOWER_LOBBY", 3, 12]},
++        body=TALK_LEFT + mash(10) + "press B 6\nwait 90\npress A 6\nwait 120\n",
++        expect=[("bag_has", "ITEM_MASTER_BALL", 1), ("bag_has", "ITEM_STAR_PIECE", 0), ("flag", "FLAG_HACK_TRADER_BALL", 0)]),
++    "trader_limit": dict(
++        # No Trainer Tower clear since the last Master Ball trade: the trader says no.
+         scenario={"party": [["PIDGEY", 10]], "items": [["STAR_PIECE", 3]], "warp": ["MAP_TRAINER_TOWER_LOBBY", 3, 12]},
+-        body=TALK_LEFT + mash(9) + "press B 6\nwait 90\npress A 6\nwait 120\n",
+-        expect=[("bag_has", "ITEM_MASTER_BALL", 1), ("bag_has", "ITEM_STAR_PIECE", 0)]),
++        body=TALK_LEFT + mash(10) + "press B 6\nwait 90\npress A 6\nwait 120\n",
++        expect=[("bag_has", "ITEM_MASTER_BALL", 0), ("bag_has", "ITEM_STAR_PIECE", 1)]),
++    "trader_ppup": dict(
++        # The trader's third option: 3 PP Ups for a PP Max.
++        scenario={"party": [["PIDGEY", 10]], "items": [["PP_UP", 3]], "warp": ["MAP_TRAINER_TOWER_LOBBY", 3, 12]},
++        body=TALK_LEFT + mash(5) + "press D 6\nwait 20\npress D 6\nwait 20\n" + mash(5) + "press B 6\nwait 90\npress A 6\nwait 120\n",
++        expect=[("bag_has", "ITEM_PP_MAX", 1), ("bag_has", "ITEM_PP_UP", 0)]),
++    "peak_champion": dict(
++        # The peak (round 3) Champion's battle loads: a Lv. 100 Pidgeot leads.
++        scenario={"party": [["MAGIKARP", 5, ["SPLASH"]]], "warp": VIRIDIAN,
++                  "patch": [gentleman("\ttrainerbattle_no_intro TRAINER_PEAK_CHAMPION_SQUIRTLE, ViridianCity_PokemonCenter_1F_Text_FeelFreeToUsePC")]},
++        body=TALK_LEFT + mash(4, 120) + "BATTLE_PEEK\n" + mash(30, 90),
++        expect=[("foe", "SPECIES_PIDGEOT", 100)]),
+     "nuzlocke_blackout": dict(
+         # Nuzlocke: losing an ordinary trainer battle ends the run.
+         scenario={"party": [["MAGIKARP", 5, ["SPLASH"]]], "set": ["FLAG_HACK_NUZLOCKE", "FLAG_SYS_POKEDEX_GET"], "warp": VIRIDIAN,
+diff --git a/tools/hack/spoiler_guide.py b/tools/hack/spoiler_guide.py
+index 2e89ca9..3d61920 100644
+--- a/tools/hack/spoiler_guide.py
++++ b/tools/hack/spoiler_guide.py
+@@ -1307,7 +1307,8 @@ def write_peak():
+            "what it's weak to, and Pokémon that match up well. Gym Leaders rematch any number of times once you're "
+            "Champion, and each win gives a Nugget (35%), PP Up (25%), PP Max (15%) or Star Piece (25%); "
+            "the Elite Four and Champion use these teams when the League official in the Indigo Plateau "
+-           "Pokémon Center has the PEAK challenge switched on. Each peak Champion win gives a Master Ball (20%), "
++           "Pokémon Center has the PEAK challenge switched on. Each peak Elite Four member gives the Gym Leader reward, "
++           "and each peak Champion win gives a Master Ball (20%), "
+            "3 PP Max (30%), 3 Star Pieces (25%) or 5 Nuggets (25%). In Nuzlocke mode these are exhibition "
+            "battles: Pokémon that faint aren't lost (they're left with 1 HP), and losing doesn't end the run.", "",
+            "How peak Pokémon are built: perfect IVs; 252 EVs in the attacking stat their moves use; 252 Speed EVs "
+@@ -1457,8 +1458,8 @@ def write_tower():
+            "PP Up (20%), PP Max (10%), Nugget (20%), Big Pearl (15%) or Star Piece (10%).", "",
+            "**Record bonus:** beat your best time for a challenge (your first clear counts) and the Owner adds "
+            "a PP Max (40%), 2 Star Pieces (30%), 3 Rare Candies (20%) or a Master Ball (10%).", "",
+-           "**Treasure trader:** the man in the lobby swaps 3 Star Pieces for a Master Ball, 2 Big Pearls for a "
+-           "PP Max, or a Nugget for 2 Rare Candies.", "",
++           "**Treasure trader:** the man in the lobby swaps 3 Star Pieces for a Master Ball (one per Trainer Tower "
++           "clear), 2 Big Pearls or 3 PP Ups for a PP Max, or a Nugget for 2 Rare Candies.", "",
+            "**Nuzlocke:** Trainer Tower battles are exhibition battles. Pokémon that faint here aren't lost (they're left with 1 HP).", "",
+            "Each trainer has six Pokémon but only uses some of them, depending on the floor. The tables "
+            "below list exactly the Pokémon you'll face on each floor.", ""]
+diff --git a/tools/hack/tower_sets.py b/tools/hack/tower_sets.py
+index 7545424..5dc6ce8 100644
+--- a/tools/hack/tower_sets.py
++++ b/tools/hack/tower_sets.py
+@@ -3,7 +3,8 @@
+ 
+ Rebuilds every Trainer Tower Pokemon as a competitive set, the way real
+ teams are built:
+-  - Fully evolved (one of each species per team).
++  - Fully evolved, one of each species per team. When a team's family is
++    used up, another fully evolved Pokemon of the same type stands in.
+   - Moves from Pokemon Showdown's role-based random-battle sets: Gen 9
+     doubles sets on Double floors, Gen 9 singles sets elsewhere, then Gen 3.
+     Moves must exist in this hack and be learnable by the species.
+@@ -236,7 +237,12 @@ def do_mon(mm):
+     if options:
+         new_sp = pick(options, tname + sp)
+     else:
+-        new_sp = sp if sp not in used_species else pick(finals(sp) or [sp], tname + sp)
++        # The family is used up on this team: another fully evolved,
++        # non-legendary Pokemon that shares a type, so the theme holds.
++        want = stats_types((finals(sp) or [sp])[0])
++        alts = sorted(o for o in stats if not evolves.get(o) and o not in used_species
++                      and 470 <= sum(stats[o].values()) < 580 and stats_types(o) & want)
++        new_sp = pick(alts, tname + sp)
+     used_species.add(new_sp)
+     old_moves = re.findall(r"MOVE_\w+", re.search(r"\.moves = \{([^}]*)\}", mon).group(1))
+     moves, ev, nature, item, slot, role = build(new_sp, doubles, tname + new_sp, old_moves, used_items)
+diff --git a/tools/hack/validate.py b/tools/hack/validate.py
+index e366d92..d999c89 100644
+--- a/tools/hack/validate.py
++++ b/tools/hack/validate.py
+@@ -7,6 +7,8 @@ Prints every problem found (and exits 1 if there are any). It checks that each
+ move has data, a name, a description and an animation; that each species has
+ stats, graphics, learnsets and a Pokedex entry; that learnsets, egg moves,
+ evolutions, trainer parties and wild encounters only use things that exist;
++(also: peak teams are six Lv. 100 Pokemon, and Trainer Tower teams are fully
++evolved with one of each species and item);
+ and that text fits the boxes it is shown in.
+ """
+ import json
+@@ -299,6 +301,48 @@ for grp in we["wild_encounter_groups"]:
+                 if not 1 <= m["min_level"] <= m["max_level"] <= 100:
+                     bad(f"{enc.get('base_label')}: levels {m['min_level']}-{m['max_level']}")
+ 
++# ---------------------------------------------------------------- post-game teams
++# Peak trainers: six Lv. 100 Pokemon each, with real moves and no repeats.
++evolves = {a for a, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", evo_txt, re.S) if "EVO_" in body}
++peak_parties = re.findall(r"PEAK_PARTY\((sParty_\w+)\)", read("src/data/trainers.h"))
++if len(peak_parties) < 13:
++    bad(f"only {len(peak_parties)} peak parties")
++for party in peak_parties:
++    m = re.search(r"static const struct \w+ %s\[\] = \{(.*?)\n\};" % party, tp, re.S)
++    mons = re.findall(r"\{(.*?)\n    \}", m.group(1), re.S) if m else []
++    if len(mons) != 6:
++        bad(f"{party}: {len(mons)} Pokemon (peak teams have 6)")
++    for mon in mons:
++        if re.search(r"\.lvl = (\d+)", mon).group(1) != "100":
++            bad(f"{party}: a Pokemon below Lv. 100")
++        mv = [x for x in re.findall(r"MOVE_\w+", mon) if x != "MOVE_NONE"]
++        if not mv or len(mv) != len(set(mv)):
++            bad(f"{party}: moves {mv}")
++# Trainer Tower: fully evolved, real moves, one of each species and item per team.
++for floor, body in re.findall(r"static const struct TrainerTowerFloor (\w+) = \{(.*?)\n\};", read("src/trainer_tower_sets.c"), re.S):
++    for t in re.split(r"\.name = _\(", body)[1:]:
++        tname = t.split('"')[1]
++        sps, its = [], []
++        for sp, mon in re.findall(r"\.species = (SPECIES_\w+),(.*?)\.friendship", t, re.S):
++            where = f"Trainer Tower {floor} {tname} {sp}"
++            if sp not in species_names:
++                bad(f"{where}: unknown species")
++            if sp in evolves:
++                bad(f"{where}: not fully evolved")
++            mv = [x for x in re.findall(r"MOVE_\w+", re.search(r"\.moves = \{([^}]*)\}", mon).group(1)) if x != "MOVE_NONE"]
++            if not mv or len(mv) != len(set(mv)) or any(x not in moves for x in mv):
++                bad(f"{where}: moves {mv}")
++            it = re.search(r"\.heldItem = (ITEM_\w+)", mon).group(1)
++            if it not in items:
++                bad(f"{where}: unknown item {it}")
++            sps.append(sp)
++            if it != "ITEM_NONE":
++                its.append(it)
++        if not sps:
++            bad(f"Trainer Tower {floor} {tname}: no Pokemon")
++        if len(sps) != len(set(sps)) or len(its) != len(set(its)):
++            bad(f"Trainer Tower {floor} {tname}: repeated species or item")
++
+ # ---------------------------------------------------------------- battle strings
+ ids = defines("include/constants/battle_string_ids.h", "STRINGID_")
+ ids["BATTLESTRINGS_COUNT"] = int(re.search(r"#define BATTLESTRINGS_COUNT\s+(\d+)", read("include/constants/battle_string_ids.h")).group(1))
+-- 
+2.43.0
+
