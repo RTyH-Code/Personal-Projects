@@ -1303,7 +1303,8 @@ def write_peak():
     out = ["# Peak trainer prep", "",
            "Every post-game peak team (all Lv. 100), with each Pokémon's real stats, what the team attacks with, "
            "what it's weak to, and Pokémon that match up well. Gym Leaders rematch any number of times once you're "
-           "Champion; the Elite Four and Champion use these teams when the League official in the Indigo Plateau "
+           "Champion, and each win gives a Nugget (35%), PP Up (25%), PP Max (15%) or Star Piece (25%); "
+           "the Elite Four and Champion use these teams when the League official in the Indigo Plateau "
            "Pokémon Center has the PEAK challenge switched on.", "",
            "How peak Pokémon are built: perfect IVs; 252 EVs in the attacking stat their moves use; 252 Speed EVs "
            "(or 252 HP for Pokémon with base Speed under 50); Jolly/Timid if base Speed is 80+, otherwise "
@@ -1446,7 +1447,10 @@ def write_tower():
            "The Trainer Tower on Seven Island has four challenges of eight floors each. Every Pokémon here is a "
            "competitive set: fully evolved, perfect IVs, 252/252 EVs, a nature and item for its role, and moves "
            "from Pokémon Showdown's role-based sets (doubles sets on Double floors).", "",
-           "**Levels** match your highest-level Pokémon when you start the battle.", "",
+           "**Level 50 rule:** every opponent is Lv. 50, and your Pokémon above Lv. 50 battle as Lv. 50. "
+           "They get their real level back after each battle.", "",
+           "**Prize:** you get one each time you reach the Owner. It's the prize listed below (25%), "
+           "PP Up (20%), PP Max (10%), Nugget (20%), Big Pearl (15%) or Star Piece (10%).", "",
            "Each trainer has six Pokémon but only uses some of them, depending on the floor. The tables "
            "below list exactly the Pokémon you'll face on each floor.", ""]
     titles = {"SINGLE": "Single battles", "DOUBLE": "Double battles", "KNOCKOUT": "Knockout (three trainers, one Pokémon each)",
@@ -1454,7 +1458,7 @@ def write_tower():
     for ctype, body in tables:
         names = re.findall(r"&(\w+)", body)
         out += [f"## {titles.get(ctype, ctype.title())}", "",
-                f"Prize for clearing all eight floors: **{item('ITEM_' + floors[names[0]]['prize'])}**.", ""]
+                f"Usual prize for clearing all eight floors: **{item('ITEM_' + floors[names[0]]['prize'])}**.", ""]
         for i, fname in enumerate(names):
             f = floors[fname]
             kind = f["type"]

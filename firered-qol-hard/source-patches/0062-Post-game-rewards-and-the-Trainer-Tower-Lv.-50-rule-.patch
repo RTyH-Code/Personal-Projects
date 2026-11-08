@@ -1,0 +1,503 @@
+From 934939ca281b25463969bca9b5d29e8e0f09c5c6 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 8 Nov 2026 20:15:11 +0000
+Subject: [PATCH] Post-game rewards and the Trainer Tower Lv. 50 rule (R17)
+
+- Trainer Tower: your Pokemon above Lv. 50 battle as Lv. 50 and get their
+  real level back afterwards; opponents are Lv. 50.
+- A Trainer Tower prize on every clear, from a pool of PP Up, PP Max,
+  Nugget, Big Pearl and Star Piece.
+- Gym Leader rematches give a random reward.
+- Playtest: 16 checks.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ HACK_NOTES.md                            | 15 ++++-
+ data/maps/CeladonCity_Gym/scripts.inc    |  1 +
+ data/maps/CeruleanCity_Gym/scripts.inc   |  1 +
+ data/maps/CinnabarIsland_Gym/scripts.inc |  1 +
+ data/maps/FuchsiaCity_Gym/scripts.inc    |  1 +
+ data/maps/PewterCity_Gym/scripts.inc     |  1 +
+ data/maps/SaffronCity_Gym/scripts.inc    |  1 +
+ data/maps/TrainerTower_Lobby/text.inc    |  7 +-
+ data/maps/VermilionCity_Gym/scripts.inc  |  1 +
+ data/maps/ViridianCity_Gym/scripts.inc   |  1 +
+ data/scripts/hack_peak_trainers.inc      | 26 ++++++++
+ include/hack_version.h                   |  2 +-
+ src/trainer_tower.c                      | 83 +++++++++++++++++++++++-
+ tools/hack/playtest/playtest.py          | 45 +++++++++----
+ tools/hack/spoiler_guide.py              | 10 ++-
+ 15 files changed, 175 insertions(+), 21 deletions(-)
+
+diff --git a/HACK_NOTES.md b/HACK_NOTES.md
+index 0ebf951..0898f1f 100644
+--- a/HACK_NOTES.md
++++ b/HACK_NOTES.md
+@@ -500,6 +500,8 @@ How the cap works with each way of gaining levels:
+   their moves use (physical or special), 252 EVs in that attack stat, and
+   252 in Speed (or in HP for slow Pokémon). Each peak trainer carries Full
+   Restores.
++- **Gym rematch rewards:** each time you beat a Gym Leader's rematch, they
++  give you a Nugget (35%), PP Up (25%), PP Max (15%) or Star Piece (25%).
+ 
+ ## Trainer Tower (Seven Island)
+ Every Trainer Tower trainer now uses competitive sets, built the way real
+@@ -518,7 +520,12 @@ teams are:
+   (Choice Band, Leftovers, Lum or Sitrus Berry, or a type booster), with no
+   item repeated on a team.
+ 
+-Opponents still scale to your highest-level Pokémon, as in the original.
++- **Level 50 rule:** your Pokémon above Lv. 50 battle as Lv. 50, with
++  their stats recalculated, and the opponents are all Lv. 50. Your team goes
++  back to its real level after each battle, keeping the same share of its HP.
++- **A prize every clear:** you get a prize each time you reach the Owner, not
++  just the first time. It's the floor set's usual prize (25%), PP Up (20%),
++  PP Max (10%), Nugget (20%), Big Pearl (15%) or Star Piece (10%).
+ 
+ ## Post-game difficulty and held items
+ - **Sevii Islands 4–7:** these are the islands you reach after becoming
+@@ -558,7 +565,7 @@ Each script runs once against the original pret data:
+   an unused species slot, with its graphics, cry, Pokédex entry and evolution item.
+ - `balance.py`: modern boss movesets, peak teams with the later evolutions.
+ - `validate.py`: checks the game data for missing or inconsistent entries.
+-- `playtest/playtest.py [check ...]`: automated playtest. It runs 14 milestone
++- `playtest/playtest.py [check ...]`: automated playtest. It runs 16 milestone
+   checks in a headless mGBA:
+   - The boot menu.
+   - A wild battle stopping at the level cap.
+@@ -569,7 +576,9 @@ Each script runs once against the original pret data:
+   - Buying from the berry stand and the post-game held-item shop.
+   - A Victory Road VS Seeker rematch.
+   - The Trainer Tower's single, double and knockout floors, where it checks
+-    that the opponents are real Pokémon from that floor.
++    that the opponents are real Pokémon from that floor, all at Lv. 50, and
++    that your team gets its real level back afterwards.
++  - The Trainer Tower prize and a Gym Leader rematch reward.
+ 
+   Each check reads the game's memory to confirm it worked. Build the harness first with
+   `gcc -O2 -w -o tools/hack/playtest/harness tools/hack/playtest/harness.c -lmgba`.
+diff --git a/data/maps/CeladonCity_Gym/scripts.inc b/data/maps/CeladonCity_Gym/scripts.inc
+index 9613029..c66cfff 100644
+--- a/data/maps/CeladonCity_Gym/scripts.inc
++++ b/data/maps/CeladonCity_Gym/scripts.inc
+@@ -91,6 +91,7 @@ CeladonCity_Gym_EventScript_PeakRematch::
+ 	msgbox Hack_Text_PeakRematchStart
+ 	cleartrainerflag TRAINER_PEAK_ERIKA
+ 	trainerbattle_no_intro TRAINER_PEAK_ERIKA, Hack_Text_PeakRematchDefeat
++	call Hack_EventScript_PeakReward
+ 	msgbox Hack_Text_PeakRematchAfter
+ 	release
+ 	end
+diff --git a/data/maps/CeruleanCity_Gym/scripts.inc b/data/maps/CeruleanCity_Gym/scripts.inc
+index 20d4dee..643c302 100644
+--- a/data/maps/CeruleanCity_Gym/scripts.inc
++++ b/data/maps/CeruleanCity_Gym/scripts.inc
+@@ -77,6 +77,7 @@ CeruleanCity_Gym_EventScript_PeakRematch::
+ 	msgbox Hack_Text_PeakRematchStart
+ 	cleartrainerflag TRAINER_PEAK_MISTY
+ 	trainerbattle_no_intro TRAINER_PEAK_MISTY, Hack_Text_PeakRematchDefeat
++	call Hack_EventScript_PeakReward
+ 	msgbox Hack_Text_PeakRematchAfter
+ 	release
+ 	end
+diff --git a/data/maps/CinnabarIsland_Gym/scripts.inc b/data/maps/CinnabarIsland_Gym/scripts.inc
+index fe55e55..f325ab5 100644
+--- a/data/maps/CinnabarIsland_Gym/scripts.inc
++++ b/data/maps/CinnabarIsland_Gym/scripts.inc
+@@ -717,6 +717,7 @@ CinnabarIsland_Gym_EventScript_PeakRematch::
+ 	msgbox Hack_Text_PeakRematchStart
+ 	cleartrainerflag TRAINER_PEAK_BLAINE
+ 	trainerbattle_no_intro TRAINER_PEAK_BLAINE, Hack_Text_PeakRematchDefeat
++	call Hack_EventScript_PeakReward
+ 	msgbox Hack_Text_PeakRematchAfter
+ 	release
+ 	end
+diff --git a/data/maps/FuchsiaCity_Gym/scripts.inc b/data/maps/FuchsiaCity_Gym/scripts.inc
+index 468c40f..d101783 100644
+--- a/data/maps/FuchsiaCity_Gym/scripts.inc
++++ b/data/maps/FuchsiaCity_Gym/scripts.inc
+@@ -114,6 +114,7 @@ FuchsiaCity_Gym_EventScript_PeakRematch::
+ 	msgbox Hack_Text_PeakRematchStart
+ 	cleartrainerflag TRAINER_PEAK_KOGA
+ 	trainerbattle_no_intro TRAINER_PEAK_KOGA, Hack_Text_PeakRematchDefeat
++	call Hack_EventScript_PeakReward
+ 	msgbox Hack_Text_PeakRematchAfter
+ 	release
+ 	end
+diff --git a/data/maps/PewterCity_Gym/scripts.inc b/data/maps/PewterCity_Gym/scripts.inc
+index d22c6d0..e6304ee 100644
+--- a/data/maps/PewterCity_Gym/scripts.inc
++++ b/data/maps/PewterCity_Gym/scripts.inc
+@@ -89,6 +89,7 @@ PewterCity_Gym_EventScript_PeakRematch::
+ 	msgbox Hack_Text_PeakRematchStart
+ 	cleartrainerflag TRAINER_PEAK_BROCK
+ 	trainerbattle_no_intro TRAINER_PEAK_BROCK, Hack_Text_PeakRematchDefeat
++	call Hack_EventScript_PeakReward
+ 	msgbox Hack_Text_PeakRematchAfter
+ 	release
+ 	end
+diff --git a/data/maps/SaffronCity_Gym/scripts.inc b/data/maps/SaffronCity_Gym/scripts.inc
+index e5b094c..09546a9 100644
+--- a/data/maps/SaffronCity_Gym/scripts.inc
++++ b/data/maps/SaffronCity_Gym/scripts.inc
+@@ -103,6 +103,7 @@ SaffronCity_Gym_EventScript_PeakRematch::
+ 	msgbox Hack_Text_PeakRematchStart
+ 	cleartrainerflag TRAINER_PEAK_SABRINA
+ 	trainerbattle_no_intro TRAINER_PEAK_SABRINA, Hack_Text_PeakRematchDefeat
++	call Hack_EventScript_PeakReward
+ 	msgbox Hack_Text_PeakRematchAfter
+ 	release
+ 	end
+diff --git a/data/maps/TrainerTower_Lobby/text.inc b/data/maps/TrainerTower_Lobby/text.inc
+index b71ddf4..d9896ff 100644
+--- a/data/maps/TrainerTower_Lobby/text.inc
++++ b/data/maps/TrainerTower_Lobby/text.inc
+@@ -101,7 +101,12 @@ TrainerTower_Lobby_Text_ExplainTrainerTower::
+     .string "Try competing with friends to see\n"
+     .string "who can beat it the fastest.\p"
+     .string "You will not earn any EXP. Points\n"
+-    .string "or money by beating TRAINERS here.$"
++    .string "or money by beating TRAINERS here.\p"
++    .string "All battles follow the LEVEL 50\n"
++    .string "rule. POKéMON above LV. 50 battle\l"
++    .string "at LV. 50 here.\p"
++    .string "Every time you reach the OWNER,\n"
++    .string "you'll receive a prize!$"
+ 
+ TrainerTower_Lobby_Text_ThanksForCompeting::
+     .string "Thank you for competing!$"
+diff --git a/data/maps/VermilionCity_Gym/scripts.inc b/data/maps/VermilionCity_Gym/scripts.inc
+index a8b26de..f929904 100644
+--- a/data/maps/VermilionCity_Gym/scripts.inc
++++ b/data/maps/VermilionCity_Gym/scripts.inc
+@@ -295,6 +295,7 @@ VermilionCity_Gym_EventScript_PeakRematch::
+ 	msgbox Hack_Text_PeakRematchStart
+ 	cleartrainerflag TRAINER_PEAK_LT_SURGE
+ 	trainerbattle_no_intro TRAINER_PEAK_LT_SURGE, Hack_Text_PeakRematchDefeat
++	call Hack_EventScript_PeakReward
+ 	msgbox Hack_Text_PeakRematchAfter
+ 	release
+ 	end
+diff --git a/data/maps/ViridianCity_Gym/scripts.inc b/data/maps/ViridianCity_Gym/scripts.inc
+index 34834de..7a77b35 100644
+--- a/data/maps/ViridianCity_Gym/scripts.inc
++++ b/data/maps/ViridianCity_Gym/scripts.inc
+@@ -112,6 +112,7 @@ ViridianCity_Gym_EventScript_PeakRematch::
+ 	msgbox Hack_Text_PeakRematchStart
+ 	cleartrainerflag TRAINER_PEAK_GIOVANNI
+ 	trainerbattle_no_intro TRAINER_PEAK_GIOVANNI, Hack_Text_PeakRematchDefeat
++	call Hack_EventScript_PeakReward
+ 	msgbox Hack_Text_PeakRematchAfter
+ 	release
+ 	end
+diff --git a/data/scripts/hack_peak_trainers.inc b/data/scripts/hack_peak_trainers.inc
+index 07380e7..2af20d2 100644
+--- a/data/scripts/hack_peak_trainers.inc
++++ b/data/scripts/hack_peak_trainers.inc
+@@ -66,3 +66,29 @@ Hack_Text_SpecialCandyExplain::
+ 	.string "out vitamins for free to someone\l"
+ 	.string "like you. One is enough to max out\l"
+ 	.string "a stat's training!$"
++
++@ FireRed QoL+Hard: a reward for each peak Gym Leader win
++Hack_EventScript_PeakReward::
++	msgbox Hack_Text_PeakReward
++	random 100
++	goto_if_lt VAR_RESULT, 35, Hack_EventScript_PeakRewardNugget
++	goto_if_lt VAR_RESULT, 60, Hack_EventScript_PeakRewardPPUp
++	goto_if_lt VAR_RESULT, 75, Hack_EventScript_PeakRewardPPMax
++	giveitem ITEM_STAR_PIECE
++	return
++
++Hack_EventScript_PeakRewardNugget::
++	giveitem ITEM_NUGGET
++	return
++
++Hack_EventScript_PeakRewardPPUp::
++	giveitem ITEM_PP_UP
++	return
++
++Hack_EventScript_PeakRewardPPMax::
++	giveitem ITEM_PP_MAX
++	return
++
++Hack_Text_PeakReward::
++	.string "That was a real battle!\n"
++	.string "Here, you've earned this.$"
+diff --git a/include/hack_version.h b/include/hack_version.h
+index 87d7ce1..66d7137 100644
+--- a/include/hack_version.h
++++ b/include/hack_version.h
+@@ -3,6 +3,6 @@
+ 
+ // FireRed QoL+Hard release number, shown in the Options menu. Bump it with
+ // each release (see CHANGELOG.md in the Personal-Projects repository).
+-#define HACK_RELEASE_STRING "R16"
++#define HACK_RELEASE_STRING "R17"
+ 
+ #endif // GUARD_HACK_VERSION_H
+diff --git a/src/trainer_tower.c b/src/trainer_tower.c
+index 732b3f2..b862db5 100644
+--- a/src/trainer_tower.c
++++ b/src/trainer_tower.c
+@@ -1,4 +1,5 @@
+ #include "global.h"
++#include "random.h"
+ #include "gflib.h"
+ #include "util.h"
+ #include "event_data.h"
+@@ -714,8 +715,65 @@ static void TrainerTowerGetOpponentTextColor(u8 challengeType, u8 facilityClass)
+     gSpecialVar_TextColor = gender;
+ }
+ 
++// FireRed QoL+Hard: Trainer Tower battles follow the Lv. 50 rule, like
++// official tournaments. Opponents are Lv. 50, and your Pokemon above Lv. 50
++// battle at Lv. 50 (stats recalculated); afterwards they go back to their real
++// level, keeping the battle's HP (as a share of max HP), PP, status and item.
++// Only each Pokemon's Exp. is saved (EWRAM is nearly full).
++#define TOWER_LEVEL 50
++static EWRAM_DATA u32 sTowerExpBackup[PARTY_SIZE] = {0};
++static EWRAM_DATA u32 sTowerPersonality[PARTY_SIZE] = {0};
++
++static void Hack_TowerScaleParty(void)
++{
++    s32 i;
++    u32 exp;
++
++    for (i = 0; i < PARTY_SIZE; i++)
++    {
++        struct Pokemon *mon = &gPlayerParty[i];
++        sTowerPersonality[i] = 0;
++        sTowerExpBackup[i] = 0;
++        if (GetMonData(mon, MON_DATA_SPECIES) == SPECIES_NONE || GetMonData(mon, MON_DATA_IS_EGG)
++         || GetMonData(mon, MON_DATA_LEVEL) <= TOWER_LEVEL)
++            continue;
++        sTowerPersonality[i] = GetMonData(mon, MON_DATA_PERSONALITY);
++        sTowerExpBackup[i] = GetMonData(mon, MON_DATA_EXP);
++        exp = gExperienceTables[gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES)].growthRate][TOWER_LEVEL];
++        SetMonData(mon, MON_DATA_EXP, &exp);
++        CalculateMonStats(mon);
++    }
++}
++
++static void Hack_TowerRestoreParty(void)
++{
++    s32 i;
++
++    for (i = 0; i < PARTY_SIZE; i++)
++    {
++        struct Pokemon *mon = &gPlayerParty[i];
++        u32 hp, maxHP;
++
++        if (sTowerExpBackup[i] == 0 || GetMonData(mon, MON_DATA_PERSONALITY) != sTowerPersonality[i])
++            continue;
++        hp = GetMonData(mon, MON_DATA_HP);
++        maxHP = GetMonData(mon, MON_DATA_MAX_HP);
++        SetMonData(mon, MON_DATA_EXP, &sTowerExpBackup[i]);
++        CalculateMonStats(mon);
++        if (hp != 0 && maxHP != 0)
++        {
++            hp = hp * GetMonData(mon, MON_DATA_MAX_HP) / maxHP;
++            if (hp == 0)
++                hp = 1;
++        }
++        SetMonData(mon, MON_DATA_HP, &hp);
++        sTowerExpBackup[i] = 0;
++    }
++}
++
+ static void CB2_EndTrainerTowerBattle(void)
+ {
++    Hack_TowerRestoreParty();
+     SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+ }
+ 
+@@ -739,6 +797,7 @@ static void DoTrainerTowerBattle(void)
+ 
+     gTrainerBattleOpponent_A = 0;
+     BuildEnemyParty();
++    Hack_TowerScaleParty();
+     CreateTask(Task_DoTrainerTowerBattle, 1);
+     PlayMapChosenOrBattleBGM(0);
+     BattleTransition_StartOnField(BattleSetup_GetBattleTowerBattleTransition());
+@@ -777,6 +836,7 @@ static void StartTrainerTowerChallenge(void)
+     else
+         TRAINER_TOWER.validated = FALSE;
+     TRAINER_TOWER.floorsCleared = 0;
++    TRAINER_TOWER.receivedPrize = FALSE; // FireRed QoL+Hard: a prize for every clear
+     SetVBlankCounter1Ptr(&TRAINER_TOWER.timer);
+     TRAINER_TOWER.timer = 0;
+     TRAINER_TOWER.spokeToOwner = FALSE;
+@@ -796,9 +856,28 @@ static void GetOwnerState(void)
+     TRAINER_TOWER.spokeToOwner = TRUE;
+ }
+ 
++// FireRed QoL+Hard: a prize for every full clear (not just the first), drawn
++// from the challenge's own prize, PP Up / PP Max, and items that sell well.
++static u16 Hack_TowerPrize(u16 challengePrize)
++{
++    u16 roll = Random() % 100;
++
++    if (roll < 25)
++        return challengePrize;
++    if (roll < 45)
++        return ITEM_PP_UP;
++    if (roll < 55)
++        return ITEM_PP_MAX;
++    if (roll < 75)
++        return ITEM_NUGGET;
++    if (roll < 90)
++        return ITEM_BIG_PEARL;
++    return ITEM_STAR_PIECE;
++}
++
+ static void GiveChallengePrize(void)
+ {
+-    u16 itemId = sPrizeList[sTrainerTowerState->data.floors->prize];
++    u16 itemId = Hack_TowerPrize(sPrizeList[sTrainerTowerState->data.floors->prize]);
+ 
+     if (TRAINER_TOWER.receivedPrize)
+     {
+@@ -988,7 +1067,7 @@ static void HasSpokenToOwner(void)
+ static void BuildEnemyParty(void)
+ {
+     u16 trainerIdx = VarGet(VAR_TEMP_1);
+-    s32 level = GetPartyMaxLevel();
++    s32 level = TOWER_LEVEL; // FireRed QoL+Hard: was GetPartyMaxLevel()
+     u8 floorIdx = TRAINER_TOWER.floorsCleared;
+     s32 i;
+     u8 monIdx;
+diff --git a/tools/hack/playtest/playtest.py b/tools/hack/playtest/playtest.py
+index 88ed84c..3cfdf01 100644
+--- a/tools/hack/playtest/playtest.py
++++ b/tools/hack/playtest/playtest.py
+@@ -11,10 +11,13 @@ presses, then reads the save block to confirm the milestone happened:
+   nuzlocke    Nuzlocke: the first catch in an area works, the second is refused
+   gym_double  a gym double battle (Psychic Johan) is won
+   tower_*     Trainer Tower 1F in the Single, Double and Knockout challenges:
+-              the battle starts and the foes are that floor's Pokemon
++              the foes are that floor's Pokemon, everyone battles at Lv. 50, and
++              the player's Pokemon are back to their real level afterwards
+   misty, surge  their real gym scripts: battle won, badge awarded
+   berry_shop  buy a Cheri Berry at the Celadon 2F berry stand (it lands in the Berry Pouch)
+   held_item_shop  buy Leftovers at the post-game Trainer Tower lobby shop
++  peak_reward a peak Gym Leader win gives an item from the reward pool
++  tower_prize the Trainer Tower prize is given again on a second clear
+   vr_rematch  the VS Seeker in Victory Road: Naomi's rematch team (Lv. 56 Persian)
+   brock       Brock's real gym script: battle won, Boulder Badge awarded
+ 
+@@ -114,22 +117,24 @@ CHECKS = {
+         expect=[("flag", "TRAINER_FLAGS_START + TRAINER_PSYCHIC_JOHAN", 1)]),
+     # Trainer Tower: the challenge is started in the scenario setup, then the
+     # player steps onto the floor's battle trigger on 1F. Mid-battle, the foes
+-    # must be real species from that floor's data, at the player's level.
++    # must be real species from that floor's data, and every battler (the
++    # player's Lv. 100 Mewtwo too) must be Lv. 50 under the tower's Lv. 50 rule.
++    # After the battle the player's Pokemon are back to Lv. 100.
+     "tower_single": dict(
+-        scenario={"party": [["MEWTWO", 100, ["PSYCHIC"]]] * 3, "tower": 0,
++        scenario={"party": [["MEWTWO", 100, ["PSYCHIC"]]], "tower": 0,
+                   "warp": ["MAP_TRAINER_TOWER_1F", 10, 14]},
+         body="wait 120\npress U 12\nwait 300\n" + mash(12, 90) + "BATTLE_PEEK\n" + mash(60, 90),
+-        expect=[("tower_foes", 0, 1)]),
++        expect=[("tower_foes", 0, 1), ("level", 0, 100)]),
+     "tower_double": dict(
+-        scenario={"party": [["MEWTWO", 100, ["PSYCHIC"]]] * 4, "tower": 1,
++        scenario={"party": [["MEWTWO", 100, ["PSYCHIC"]]] * 2, "tower": 1,
+                   "warp": ["MAP_TRAINER_TOWER_1F", 9, 14]},
+         body="wait 120\npress U 12\nwait 300\n" + mash(12, 90) + "BATTLE_PEEK\n" + mash(60, 90),
+-        expect=[("tower_foes", 1, 2)]),
++        expect=[("tower_foes", 1, 2), ("level", 0, 100), ("level", 1, 100)]),
+     "tower_knockout": dict(
+-        scenario={"party": [["MEWTWO", 100, ["PSYCHIC"]]] * 3, "tower": 2,
++        scenario={"party": [["MEWTWO", 100, ["PSYCHIC"]]], "tower": 2,
+                   "warp": ["MAP_TRAINER_TOWER_1F", 10, 14]},
+         body="wait 120\npress U 12\nwait 300\n" + mash(12, 90) + "BATTLE_PEEK\n" + mash(60, 90),
+-        expect=[("tower_foes", 2, 1)]),
++        expect=[("tower_foes", 2, 1), ("level", 0, 100)]),
+     "misty": dict(
+         scenario={"party": [["VENUSAUR", 40, ["GIGA_DRAIN"]]] * 2,
+                   "set": ["FLAG_SYS_POKEDEX_GET", "FLAG_BADGE01_GET", "TRAINER_FLAGS_START + TRAINER_SWIMMER_MALE_LUIS",
+@@ -156,6 +161,20 @@ CHECKS = {
+         body=("wait 150\npress U 2\nwait 30\npress A 6\nwait 120\npress A 6\nwait 120\n" + "press D 6\nwait 10\n" * 9 +
+               "press A 6\nwait 60\npress A 6\nwait 60\npress A 6\nwait 90\npress A 6\nwait 90\npress B 6\nwait 60\npress B 6\nwait 90\n" + mash(3)),
+         expect=[("bag_has", "ITEM_LEFTOVERS", 1)]),
++    "peak_reward": dict(
++        # The reward a peak Gym Leader gives after a win (the script the gyms call).
++        scenario={"party": [["PIDGEY", 10]], "warp": VIRIDIAN,
++                  "patch": [gentleman("\tlock\n\tcall Hack_EventScript_PeakReward\n\trelease")]},
++        body=TALK_LEFT + mash(8),
++        expect=[("bag_any", ["ITEM_NUGGET", "ITEM_PP_UP", "ITEM_PP_MAX", "ITEM_STAR_PIECE"], 1)]),
++    "tower_prize": dict(
++        # The Trainer Tower prize, twice: every clear now gives one.
++        scenario={"party": [["PIDGEY", 10]], "warp": VIRIDIAN,
++                  "patch": [gentleman("\tlock\n\tsetvar VAR_0x8005, 0\n\tttower_startchallenge\n\tttower_giveprize\n"
++                                      "\tttower_startchallenge\n\tttower_giveprize\n\tcopyvar VAR_0x402A, VAR_RESULT\n\trelease")]},
++        body=TALK_LEFT + mash(4),
++        expect=[("bag_any", ["ITEM_UP_GRADE", "ITEM_NUGGET", "ITEM_PP_UP", "ITEM_PP_MAX", "ITEM_BIG_PEARL", "ITEM_STAR_PIECE"], 1),
++                ("var", "VAR_0x402A", 0)]),
+     "vr_rematch": dict(
+         # The real VS Seeker flow in Victory Road: use it, then challenge Naomi.
+         scenario={"party": [["MEWTWO", 70, ["PSYCHIC"]]], "items": [["VS_SEEKER", 1]],
+@@ -293,15 +312,19 @@ def check(name, spec, workdir, outdir):
+             got = r["count"][0]
+         elif kind == "tower_foes":
+             # what = challenge type; want = number of opposing battlers. Each must be a
+-            # species from that challenge's first floor, at the player's top level (100).
++            # species from that challenge's first floor; every battler is Lv. 50.
+             b = r["battle"] or bytes(4 * 0x58)
+             allowed = tower_floor1_species(what)
+             foes = [b[0x58 * i] | (b[0x58 * i + 1] << 8) for i in (1, 3)[:want]]
+-            levels = [b[0x58 * i + 0x2A] for i in (1, 3)[:want]]
+-            got = want if all(f in allowed for f in foes) and all(l == 100 for l in levels) else f"species {foes} levels {levels}"
++            levels = [b[0x58 * i + 0x2A] for i in ((0, 1) if want == 1 else (0, 1, 2, 3))]
++            got = want if all(f in allowed for f in foes) and all(l == 50 for l in levels) else f"species {foes} levels {levels}"
+         elif kind == "bag_has":
+             item = const(what) if what in DEFS else ITEMS[what]
+             got = int(any(r["bag"][i] | (r["bag"][i + 1] << 8) == item for i in range(0, len(r["bag"]), 4)))
++        elif kind == "bag_any":
++            ids = {ITEMS[w] for w in what}
++            got = int(any(r["bag"][i] | (r["bag"][i + 1] << 8) in ids for i in range(0, len(r["bag"]), 4)))
++            what = "/".join(w[5:] for w in what)
+         elif kind == "foe":
+             b = r["battle"] or bytes(4 * 0x58)
+             got = (b[0x58] | (b[0x59] << 8), b[0x58 + 0x2A])
+diff --git a/tools/hack/spoiler_guide.py b/tools/hack/spoiler_guide.py
+index 0e70c9b..acf5983 100644
+--- a/tools/hack/spoiler_guide.py
++++ b/tools/hack/spoiler_guide.py
+@@ -1303,7 +1303,8 @@ def write_peak():
+     out = ["# Peak trainer prep", "",
+            "Every post-game peak team (all Lv. 100), with each Pokémon's real stats, what the team attacks with, "
+            "what it's weak to, and Pokémon that match up well. Gym Leaders rematch any number of times once you're "
+-           "Champion; the Elite Four and Champion use these teams when the League official in the Indigo Plateau "
++           "Champion, and each win gives a Nugget (35%), PP Up (25%), PP Max (15%) or Star Piece (25%); "
++           "the Elite Four and Champion use these teams when the League official in the Indigo Plateau "
+            "Pokémon Center has the PEAK challenge switched on.", "",
+            "How peak Pokémon are built: perfect IVs; 252 EVs in the attacking stat their moves use; 252 Speed EVs "
+            "(or 252 HP for Pokémon with base Speed under 50); Jolly/Timid if base Speed is 80+, otherwise "
+@@ -1446,7 +1447,10 @@ def write_tower():
+            "The Trainer Tower on Seven Island has four challenges of eight floors each. Every Pokémon here is a "
+            "competitive set: fully evolved, perfect IVs, 252/252 EVs, a nature and item for its role, and moves "
+            "from Pokémon Showdown's role-based sets (doubles sets on Double floors).", "",
+-           "**Levels** match your highest-level Pokémon when you start the battle.", "",
++           "**Level 50 rule:** every opponent is Lv. 50, and your Pokémon above Lv. 50 battle as Lv. 50. "
++           "They get their real level back after each battle.", "",
++           "**Prize:** you get one each time you reach the Owner. It's the prize listed below (25%), "
++           "PP Up (20%), PP Max (10%), Nugget (20%), Big Pearl (15%) or Star Piece (10%).", "",
+            "Each trainer has six Pokémon but only uses some of them, depending on the floor. The tables "
+            "below list exactly the Pokémon you'll face on each floor.", ""]
+     titles = {"SINGLE": "Single battles", "DOUBLE": "Double battles", "KNOCKOUT": "Knockout (three trainers, one Pokémon each)",
+@@ -1454,7 +1458,7 @@ def write_tower():
+     for ctype, body in tables:
+         names = re.findall(r"&(\w+)", body)
+         out += [f"## {titles.get(ctype, ctype.title())}", "",
+-                f"Prize for clearing all eight floors: **{item('ITEM_' + floors[names[0]]['prize'])}**.", ""]
++                f"Usual prize for clearing all eight floors: **{item('ITEM_' + floors[names[0]]['prize'])}**.", ""]
+         for i, fname in enumerate(names):
+             f = floors[fname]
+             kind = f["type"]
+-- 
+2.43.0
+
