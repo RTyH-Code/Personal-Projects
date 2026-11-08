@@ -1307,159 +1307,159 @@ Includes the rival's earlier battles; which team you face depends on your starte
 
 | Trainer | Pokémon |
 |---|---|
-| Team Rocket Grunt | Zubat Lv44, Zubat Lv44, Golbat Lv44 |
+| Team Rocket Grunt | Zubat Lv57, Zubat Lv57, Golbat Lv57 |
 
 ### Five Island Lost Cave Room 1
 
 | Trainer | Pokémon |
 |---|---|
-| Ruin Maniac Lawson | Onix Lv54, Graveler Lv55, Marowak Lv56 |
+| Ruin Maniac Lawson | Onix Lv70, Golem Lv72, Marowak Lv73 |
 
 ### Five Island Lost Cave Room 10
 
 | Trainer | Pokémon |
 |---|---|
-| Lady Selphy | Persian Lv56, Persian Lv56 — items: Persian @ Nugget, Persian @ Nugget |
+| Lady Selphy | Persian Lv73, Persian Lv73 — items: Persian @ Nugget, Persian @ Nugget |
 
 ### Five Island Lost Cave Room 4
 
 | Trainer | Pokémon |
 |---|---|
-| Psychic Laura | Natu Lv55, Natu Lv55, Xatu Lv56 |
+| Psychic Laura | Natu Lv72, Natu Lv72, Xatu Lv73 |
 
 ### Five Island Meadow
 
 | Trainer | Pokémon |
 |---|---|
-| Team Rocket Grunt | Rattata Lv55, Grimer Lv55, Muk Lv55 |
-| Team Rocket Grunt | Koffing Lv56, Weezing Lv56 |
-| Team Rocket Grunt | Ekans Lv55, Gloom Lv55, Gloom Lv55 |
+| Team Rocket Grunt | Raticate Lv72, Grimer Lv72, Muk Lv72 |
+| Team Rocket Grunt | Koffing Lv73, Weezing Lv73 |
+| Team Rocket Grunt | Arbok Lv72, Vileplume Lv72, Gloom Lv72 |
 
 ### Five Island Memorial Pillar
 
 | Trainer | Pokémon |
 |---|---|
-| Bird Keeper Chaz | Spearow Lv54, Fearow Lv56 |
-| Bird Keeper Harold | Hoothoot Lv54, Noctowl Lv56 |
-| Bird Keeper Milo | Pidgey Lv54, Pidgeotto Lv56 |
+| Bird Keeper Chaz | Spearow Lv70, Fearow Lv73 |
+| Bird Keeper Harold | Hoothoot Lv70, Noctowl Lv73 |
+| Bird Keeper Milo | Pidgeot Lv70, Pidgeotto Lv73 |
 
 ### Five Island Resort Gorgeous
 
 | Trainer | Pokémon |
 |---|---|
-| Painter Celina | Smeargle Lv57 |
-| Painter Daisy | Smeargle Lv57 |
-| Youngster Destin | Raticate Lv55, Pidgeotto Lv55 |
-| Lady Gillian | Mareep Lv54, Mareep Lv55, Flaaffy Lv56 — items: Mareep @ Stardust, Mareep @ Stardust, Flaaffy @ Nugget |
-| Lady Jacki | Hoppip Lv55, Skiploom Lv57 — items: Hoppip @ Stardust, Skiploom @ Stardust |
-| Painter Rayna | Smeargle Lv57 |
-| Swimmer M Toby | Poliwhirl Lv55, Tentacool Lv55, Tentacruel Lv55 |
+| Painter Celina | Smeargle Lv74 |
+| Painter Daisy | Smeargle Lv74 |
+| Youngster Destin | Raticate Lv72, Pidgeot Lv72 |
+| Lady Gillian | Ampharos Lv70, Mareep Lv72, Flaaffy Lv73 — items: Ampharos @ Stardust, Mareep @ Stardust, Flaaffy @ Nugget |
+| Lady Jacki | Jumpluff Lv72, Skiploom Lv74 — items: Jumpluff @ Stardust, Skiploom @ Stardust |
+| Painter Rayna | Smeargle Lv74 |
+| Swimmer M Toby | Poliwrath Lv72, Tentacool Lv72, Tentacruel Lv72 |
 
 ### Five Island Rocket Warehouse
 
 | Trainer | Pokémon |
 |---|---|
-| Team Rocket Admin | Golbat Lv61, Weezing Lv62, Houndoom Lv63 |
-| Team Rocket Admin | Muk Lv60, Arbok Lv61, Vileplume Lv62 |
-| Scientist Gideon | Voltorb Lv53, Electrode Lv53, Magnemite Lv53, Magneton Lv53, Porygon Lv53 |
-| Team Rocket Grunt | Machop Lv55, Machop Lv55, Machoke Lv55 |
-| Team Rocket Grunt | Hypno Lv56, Hypno Lv56 |
-| Team Rocket Grunt | Houndour Lv49, Houndour Lv49 |
+| Team Rocket Admin | Golbat Lv79, Weezing Lv81, Houndoom Lv82 |
+| Team Rocket Admin | Muk Lv78, Arbok Lv79, Vileplume Lv81 |
+| Scientist Gideon | Voltorb Lv69, Electrode Lv69, Magnemite Lv69, Magneton Lv69, Porygon Lv69 |
+| Team Rocket Grunt | Machamp Lv72, Machop Lv72, Machoke Lv72 |
+| Team Rocket Grunt | Hypno Lv73, Hypno Lv73 |
+| Team Rocket Grunt | Houndoom Lv64, Houndour Lv64 |
 
 ### Five Island Water Labyrinth
 
 | Trainer | Pokémon |
 |---|---|
-| Pkmn Breeder Alize | Pikachu Lv55, Clefairy Lv55, Marill Lv55 |
+| Pkmn Breeder Alize | Pikachu Lv72, Clefable Lv72, Azumarill Lv72 |
 
 ### Six Island Green Path
 
 | Trainer | Pokémon |
 |---|---|
-| Psychic Jaclyn | Natu Lv55, Slowbro Lv55, Kadabra Lv56 |
+| Psychic Jaclyn | Xatu Lv72, Slowbro Lv72, Alakazam Lv73 |
 
 ### Six Island Outcast Island
 
 | Trainer | Pokémon |
 |---|---|
-| Sis and Bro Ava & Geb *(double)* | Poliwhirl Lv57, Starmie Lv57 |
-| Team Rocket Grunt | Muk Lv55, Golbat Lv55, Raticate Lv55 |
-| Swimmer M Mymo | Kingler Lv56, Wartortle Lv56 |
-| Swimmer F Nicole | Marill Lv57 |
-| Fisherman Tylor | Qwilfish Lv56, Qwilfish Lv56 |
+| Sis and Bro Ava & Geb *(double)* | Poliwrath Lv74, Starmie Lv74 |
+| Team Rocket Grunt | Muk Lv72, Golbat Lv72, Raticate Lv72 |
+| Swimmer M Mymo | Kingler Lv73, Blastoise Lv73 |
+| Swimmer F Nicole | Azumarill Lv74 |
+| Fisherman Tylor | Qwilfish Lv73, Qwilfish Lv73 |
 
 ### Six Island Pattern Bush
 
 | Trainer | Pokémon |
 |---|---|
-| Pkmn Breeder Allison | Clefairy Lv55, Clefairy Lv55, Clefable Lv55 |
-| Pkmn Breeder Bethany | Chansey Lv57 |
-| Youngster Cordell | Farfetch'd Lv55, Farfetch'd Lv55 |
-| Lass Dalia | Hoppip Lv53, Hoppip Lv54, Skiploom Lv54, Skiploom Lv55 |
-| Bug Catcher Garret | Heracross Lv56 |
-| Lass Joana | Snubbull Lv56 |
-| Bug Catcher Jonah | Yanma Lv52, Beedrill Lv52, Yanma Lv53, Beedrill Lv54 |
-| Ruin Maniac Layton | Sandslash Lv55, Onix Lv55, Sandslash Lv55 |
-| Picnicker Marcy | Paras Lv55, Paras Lv55, Parasect Lv56 |
-| Youngster Nash | Weepinbell Lv54, Weepinbell Lv54, Victreebel Lv56 |
-| Camper Riley | Pinsir Lv56, Heracross Lv57 |
-| Bug Catcher Vance | Venonat Lv55, Venomoth Lv55 |
+| Pkmn Breeder Allison | Clefairy Lv72, Clefairy Lv72, Clefable Lv72 |
+| Pkmn Breeder Bethany | Chansey Lv74 |
+| Youngster Cordell | Farfetch'd Lv72, Farfetch'd Lv72 |
+| Lass Dalia | Jumpluff Lv69, Hoppip Lv70, Skiploom Lv70, Skiploom Lv72 |
+| Bug Catcher Garret | Heracross Lv73 |
+| Lass Joana | Granbull Lv73 |
+| Bug Catcher Jonah | Yanma Lv68, Beedrill Lv68, Yanma Lv69, Beedrill Lv70 |
+| Ruin Maniac Layton | Sandslash Lv72, Onix Lv72, Sandslash Lv72 |
+| Picnicker Marcy | Paras Lv72, Paras Lv72, Parasect Lv73 |
+| Youngster Nash | Weepinbell Lv70, Weepinbell Lv70, Victreebel Lv73 |
+| Camper Riley | Pinsir Lv73, Heracross Lv74 |
+| Bug Catcher Vance | Venonat Lv72, Venomoth Lv72 |
 
 ### Six Island Ruin Valley
 
 | Trainer | Pokémon |
 |---|---|
-| Hiker Daryl | Sudowoodo Lv57 |
-| Ruin Maniac Foster | Golem Lv57 |
-| Pokemaniac Hector | Rhyhorn Lv56, Kangaskhan Lv56 |
-| Ruin Maniac Larry | Machoke Lv56, Machoke Lv56 |
-| Ruin Maniac Stanly | Graveler Lv55, Onix Lv55, Graveler Lv55 |
+| Hiker Daryl | Sudowoodo Lv74 |
+| Ruin Maniac Foster | Golem Lv74 |
+| Pokemaniac Hector | Rhydon Lv73, Kangaskhan Lv73 |
+| Ruin Maniac Larry | Machamp Lv73, Machoke Lv73 |
+| Ruin Maniac Stanly | Golem Lv72, Onix Lv72, Graveler Lv72 |
 
 ### Six Island Water Path
 
 | Trainer | Pokémon |
 |---|---|
-| Swimmer F Denise | Chinchou Lv56, Lanturn Lv56 |
-| Hiker Earl | Onix Lv56, Machoke Lv56 |
-| Juggler Edward | Voltorb Lv53, Voltorb Lv53, Electrode Lv54, Mr. Mime Lv55 |
-| Twins Miu & Mia *(double)* | Pikachu Lv57, Pikachu Lv57 |
-| Aroma Lady Rose | Sunkern Lv56, Sunflora Lv56 |
-| Swimmer M Samir | Gyarados Lv57 |
+| Swimmer F Denise | Chinchou Lv73, Lanturn Lv73 |
+| Hiker Earl | Onix Lv73, Machamp Lv73 |
+| Juggler Edward | Voltorb Lv69, Voltorb Lv69, Electrode Lv70, Mr. Mime Lv72 |
+| Twins Miu & Mia *(double)* | Pikachu Lv74, Pikachu Lv74 |
+| Aroma Lady Rose | Sunkern Lv73, Sunflora Lv73 |
+| Swimmer M Samir | Gyarados Lv74 |
 
 ### Seven Island Sevault Canyon
 
 | Trainer | Pokémon |
 |---|---|
-| Crush Girl Cyndy | Primeape Lv55, Hitmontop Lv55, Machoke Lv55 — items: Primeape @ Black Belt, Hitmontop @ Black Belt, Machoke @ Black Belt |
-| Tamer Evan | Sandslash Lv55, Lickitung Lv55, Ursaring Lv56 |
-| Pkmn Ranger Jackson | Tangela Lv56, Exeggcute Lv56, Exeggutor Lv56 |
-| Pkmn Ranger Katelyn | Chansey Lv60 |
-| Cool Trainer Leroy | Rhydon Lv54, Slowbro Lv55, Kangaskhan Lv54, Machoke Lv55, Ursaring Lv57 |
-| Cool Couple Lex & Nya *(double)* | Miltank Lv60, Tauros Lv60 |
-| Cool Trainer Michelle | Persian Lv54, Dewgong Lv54, Ninetales Lv55, Rapidash Lv55, Girafarig Lv57 |
+| Crush Girl Cyndy | Annihilape Lv72, Hitmontop Lv72, Machamp Lv72 — items: Annihilape @ Black Belt, Hitmontop @ Black Belt, Machamp @ Black Belt |
+| Tamer Evan | Sandslash Lv72, Lickitung Lv72, Ursaring Lv73 |
+| Pkmn Ranger Jackson | Tangela Lv73, Exeggcute Lv73, Exeggutor Lv73 |
+| Pkmn Ranger Katelyn | Chansey Lv78 |
+| Cool Trainer Leroy | Rhydon Lv70, Slowbro Lv72, Kangaskhan Lv70, Machamp Lv72, Ursaring Lv74 |
+| Cool Couple Lex & Nya *(double)* | Miltank Lv78, Tauros Lv78 |
+| Cool Trainer Michelle | Persian Lv70, Dewgong Lv70, Ninetales Lv72, Rapidash Lv72, Farigiraf Lv74 |
 
 ### Seven Island Sevault Canyon Entrance
 
 | Trainer | Pokémon |
 |---|---|
-| Young Couple Eve & Jon *(double)* | Golduck Lv57, Psyduck Lv57 |
-| Pkmn Ranger Madeline | Gloom Lv59, Vileplume Lv59 |
-| Juggler Mason | Voltorb Lv54, Pineco Lv54, Voltorb Lv54, Pineco Lv54 |
-| Aroma Lady Miah | Bellossom Lv57, Bellossom Lv57 |
-| Pkmn Ranger Nicolas | Weepinbell Lv59, Victreebel Lv59 |
+| Young Couple Eve & Jon *(double)* | Golduck Lv74, Psyduck Lv74 |
+| Pkmn Ranger Madeline | Gloom Lv77, Vileplume Lv77 |
+| Juggler Mason | Electrode Lv70, Forretress Lv70, Voltorb Lv70, Pineco Lv70 |
+| Aroma Lady Miah | Bellossom Lv74, Bellossom Lv74 |
+| Pkmn Ranger Nicolas | Weepinbell Lv77, Victreebel Lv77 |
 
 ### Seven Island Tanoby Ruins
 
 | Trainer | Pokémon |
 |---|---|
-| Ruin Maniac Benjamin | Geodude Lv55, Graveler Lv55, Graveler Lv55 |
-| Ruin Maniac Brandon | Onix Lv57 |
-| Gentleman Clifford | Marowak Lv56, Golduck Lv56 |
-| Painter Edna | Smeargle Lv57 |
+| Ruin Maniac Benjamin | Golem Lv72, Graveler Lv72, Graveler Lv72 |
+| Ruin Maniac Brandon | Onix Lv74 |
+| Gentleman Clifford | Marowak Lv73, Golduck Lv73 |
+| Painter Edna | Smeargle Lv74 |
 
 ### Seven Island Trainer Tower
 
 | Trainer | Pokémon |
 |---|---|
-| Psychic Dario | Girafarig Lv60 |
-| Psychic Rodette | Natu Lv55, Drowzee Lv55, Hypno Lv57 |
+| Psychic Dario | Farigiraf Lv78 |
+| Psychic Rodette | Xatu Lv72, Drowzee Lv72, Hypno Lv74 |

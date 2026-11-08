@@ -57,7 +57,7 @@ Height 0.6 m (2′00″) · Weight 7.8 kg (17.2 lbs)
 
 ## Where to find it
 
-- **Six Island Altering Cave**: Grass / cave Lv 18–22 (10%)
+- **Six Island Altering Cave**: Grass / cave Lv 24–30 (10%)
 - Breeding: hatches from an Egg left by a Mareep or Flaaffy or Ampharos at the Four Island Day Care
 
 ## Moves

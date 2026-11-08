@@ -56,7 +56,7 @@ Height 0.6 m (2′00″) · Weight 7.2 kg (15.9 lbs)
 
 ## Where to find it
 
-- **Six Island Altering Cave**: Grass / cave Lv 20–24 (10%)
+- **Six Island Altering Cave**: Grass / cave Lv 27–32 (10%)
 - Breeding: hatches from an Egg left by a Pineco or Forretress at the Four Island Day Care
 
 ## Moves

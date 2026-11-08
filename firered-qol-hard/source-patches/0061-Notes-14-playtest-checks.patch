@@ -1,0 +1,27 @@
+From 7e4bd6e7524d4eac93c8c18420c14cbd972a5391 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 8 Nov 2026 19:42:12 +0000
+Subject: [PATCH 61/61] Notes: 14 playtest checks
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ HACK_NOTES.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/HACK_NOTES.md b/HACK_NOTES.md
+index 72d7c2e..0ebf951 100644
+--- a/HACK_NOTES.md
++++ b/HACK_NOTES.md
+@@ -558,7 +558,7 @@ Each script runs once against the original pret data:
+   an unused species slot, with its graphics, cry, Pokédex entry and evolution item.
+ - `balance.py`: modern boss movesets, peak teams with the later evolutions.
+ - `validate.py`: checks the game data for missing or inconsistent entries.
+-- `playtest/playtest.py [check ...]`: automated playtest. It runs 15 milestone
++- `playtest/playtest.py [check ...]`: automated playtest. It runs 14 milestone
+   checks in a headless mGBA:
+   - The boot menu.
+   - A wild battle stopping at the level cap.
+-- 
+2.43.0
+

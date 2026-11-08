@@ -83,7 +83,7 @@ Height 0.4 m (1′04″) · Weight 20 kg (44.1 lbs)
 - **Victory Road 2F**: Grass / cave Lv 39 (20%)
 - **Victory Road 3F**: Grass / cave Lv 37 (20%)
 - **One Island Kindle Road**: Grass / cave Lv 36 (10%); Rock Smash Lv 6–34 (95%)
-- **Seven Island Sevault Canyon**: Grass / cave Lv 46 (20%); Rock Smash Lv 25–40 (61%)
+- **Seven Island Sevault Canyon**: Grass / cave Lv 62 (20%); Rock Smash Lv 34–54 (61%)
 - Breeding: hatches from an Egg left by a Geodude or Graveler or Golem at the Four Island Day Care
 
 </details>

@@ -55,13 +55,13 @@ Unown does not evolve.
 
 ## Where to find it
 
-- **Seven Island Tanoby Ruins Dilford Chamber**: Grass / cave Lv 25 (100%)
-- **Seven Island Tanoby Ruins Liptoo Chamber**: Grass / cave Lv 25 (100%)
-- **Seven Island Tanoby Ruins Monean Chamber**: Grass / cave Lv 25 (100%)
-- **Seven Island Tanoby Ruins Rixy Chamber**: Grass / cave Lv 25 (100%)
-- **Seven Island Tanoby Ruins Scufib Chamber**: Grass / cave Lv 25 (100%)
-- **Seven Island Tanoby Ruins Viapois Chamber**: Grass / cave Lv 25 (100%)
-- **Seven Island Tanoby Ruins Weepth Chamber**: Grass / cave Lv 25 (100%)
+- **Seven Island Tanoby Ruins Dilford Chamber**: Grass / cave Lv 34 (100%)
+- **Seven Island Tanoby Ruins Liptoo Chamber**: Grass / cave Lv 34 (100%)
+- **Seven Island Tanoby Ruins Monean Chamber**: Grass / cave Lv 34 (100%)
+- **Seven Island Tanoby Ruins Rixy Chamber**: Grass / cave Lv 34 (100%)
+- **Seven Island Tanoby Ruins Scufib Chamber**: Grass / cave Lv 34 (100%)
+- **Seven Island Tanoby Ruins Viapois Chamber**: Grass / cave Lv 34 (100%)
+- **Seven Island Tanoby Ruins Weepth Chamber**: Grass / cave Lv 34 (100%)
 
 ## Moves
 

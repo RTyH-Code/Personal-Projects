@@ -73,7 +73,7 @@ Height 0.5 m (1′08″) · Weight 5.4 kg (11.9 lbs)
 - **Two Island Cape Brink**: Grass / cave Lv 34 (20%)
 - **Three Island Berry Forest**: Grass / cave Lv 34 (10%)
 - **Three Island Bond Bridge**: Grass / cave Lv 36 (20%)
-- **Six Island Water Path**: Grass / cave Lv 44 (10%)
+- **Six Island Water Path**: Grass / cave Lv 59 (10%)
 - Breeding: hatches from an Egg left by a Oddish or Gloom or Vileplume or Bellossom at the Four Island Day Care
 
 </details>

@@ -59,7 +59,7 @@ Skarmory does not evolve.
 
 ## Where to find it
 
-- **Seven Island Sevault Canyon**: Grass / cave Lv 30 (5%)
+- **Seven Island Sevault Canyon**: Grass / cave Lv 40 (5%)
 - Breeding: hatches from an Egg left by a Skarmory at the Four Island Day Care
 
 ## Moves

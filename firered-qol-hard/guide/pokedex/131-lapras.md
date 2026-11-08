@@ -60,7 +60,7 @@ Lapras does not evolve.
 
 ## Where to find it
 
-- **Four Island Icefall Cave Back**: Surfing Lv 30–45 (1%)
+- **Four Island Icefall Cave Back**: Surfing Lv 40–61 (1%)
 - **Silph Co. 7F**: Gift, Lv 25
 - Breeding: hatches from an Egg left by a Lapras at the Four Island Day Care
 

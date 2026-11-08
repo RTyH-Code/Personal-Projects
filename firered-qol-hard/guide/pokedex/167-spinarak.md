@@ -58,7 +58,7 @@ Height 0.5 m (1′08″) · Weight 8.5 kg (18.7 lbs)
 
 ## Where to find it
 
-- **Six Island Pattern Bush**: Grass / cave Lv 9–14 (30%)
+- **Six Island Pattern Bush**: Grass / cave Lv 12–19 (30%)
 - Breeding: hatches from an Egg left by a Spinarak or Ariados at the Four Island Day Care
 
 ## Moves

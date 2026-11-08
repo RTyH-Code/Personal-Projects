@@ -58,7 +58,7 @@ Heracross does not evolve.
 
 ## Where to find it
 
-- **Six Island Pattern Bush**: Grass / cave Lv 15–30 (15%)
+- **Six Island Pattern Bush**: Grass / cave Lv 20–40 (15%)
 - Breeding: hatches from an Egg left by a Heracross at the Four Island Day Care
 
 ## Moves

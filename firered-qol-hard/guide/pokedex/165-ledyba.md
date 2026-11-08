@@ -60,7 +60,7 @@ Height 1 m (3′03″) · Weight 10.8 kg (23.8 lbs)
 
 ## Where to find it
 
-- **Six Island Pattern Bush**: Grass / cave Lv 9–14 (5%)
+- **Six Island Pattern Bush**: Grass / cave Lv 12–19 (5%)
 - Breeding: hatches from an Egg left by a Ledyba or Ledian at the Four Island Day Care
 
 ## Moves

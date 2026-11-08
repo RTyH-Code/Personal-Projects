@@ -57,7 +57,7 @@ Height 0.5 m (1′08″) · Weight 5 kg (11.0 lbs)
 
 ## Where to find it
 
-- **Six Island Pattern Bush**: Grass / cave Lv 15–18 (5%)
+- **Six Island Pattern Bush**: Grass / cave Lv 20–24 (5%)
 - Breeding: hatches from an Egg left by a Treecko or Grovyle or Sceptile at the Four Island Day Care
 
 ## Moves

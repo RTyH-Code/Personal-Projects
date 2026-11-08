@@ -60,7 +60,7 @@ Height 0.7 m (2′04″) · Weight 16.8 kg (37.0 lbs)
 
 - **Seafoam Islands B1F**: Grass / cave Lv 30 (4%)
 - **Seafoam Islands B2F**: Grass / cave Lv 25 (10%)
-- **Four Island Icefall Cave 1F**: Grass / cave Lv 23 (4%)
+- **Four Island Icefall Cave 1F**: Grass / cave Lv 31 (4%)
 - Breeding: hatches from an Egg left by a Snorunt or Glalie or Froslass at the Four Island Day Care
 
 ## Moves

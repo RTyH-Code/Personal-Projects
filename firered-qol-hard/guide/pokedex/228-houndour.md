@@ -60,7 +60,7 @@ Height 0.6 m (2′00″) · Weight 10.8 kg (23.8 lbs)
 
 ## Where to find it
 
-- **Six Island Altering Cave**: Grass / cave Lv 20–24 (10%)
+- **Six Island Altering Cave**: Grass / cave Lv 27–32 (10%)
 - Breeding: hatches from an Egg left by a Houndour or Houndoom at the Four Island Day Care
 
 ## Moves

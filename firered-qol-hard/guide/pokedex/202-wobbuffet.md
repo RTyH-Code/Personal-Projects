@@ -59,7 +59,7 @@ Height 1.3 m (4′03″) · Weight 28.5 kg (62.8 lbs)
 - **Cerulean Cave 1F**: Grass / cave Lv 63 (4%)
 - **Cerulean Cave 2F**: Grass / cave Lv 67 (5%)
 - **Cerulean Cave B1F**: Grass / cave Lv 70 (1%)
-- **Six Island Ruin Valley**: Grass / cave Lv 25 (5%)
+- **Six Island Ruin Valley**: Grass / cave Lv 34 (5%)
 - Evolve [Wynaut](360-wynaut.md)
 
 ## Moves

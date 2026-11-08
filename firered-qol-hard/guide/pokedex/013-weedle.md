@@ -62,7 +62,7 @@ Height 0.3 m (1′00″) · Weight 3.2 kg (7.1 lbs)
 - **Route 24**: Grass / cave Lv 7 (20%)
 - **Route 25**: Grass / cave Lv 8 (20%)
 - **Viridian Forest**: Grass / cave Lv 4–5 (30%)
-- **Six Island Pattern Bush**: Grass / cave Lv 6 (10%)
+- **Six Island Pattern Bush**: Grass / cave Lv 8 (10%)
 - Breeding: hatches from an Egg left by a Weedle or Kakuna or Beedrill at the Four Island Day Care
 
 ## Moves

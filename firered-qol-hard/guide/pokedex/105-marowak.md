@@ -63,7 +63,7 @@ Height 1 m (3′03″) · Weight 45 kg (99.2 lbs)
 - **Victory Road 1F**: Grass / cave Lv 51–53 (5%)
 - **Victory Road 2F**: Grass / cave Lv 53–55 (5%)
 - **Victory Road 3F**: Grass / cave Lv 51–53 (5%)
-- **Seven Island Sevault Canyon**: Grass / cave Lv 52 (10%)
+- **Seven Island Sevault Canyon**: Grass / cave Lv 70 (10%)
 - **Pokémon Tower 6F**: one-time encounter, Lv 30
 - Evolve [Cubone](104-cubone.md)
 

@@ -1,6 +1,6 @@
 # FireRed QoL + Hard
 
-> **Spoiler guide:** every encounter table, item, trainer team and gift Pokémon is listed in [guide/](guide/README.md), plus a full [Pokédex](guide/POKEDEX.md) for all 386 Pokémon, [peak trainer prep](guide/PEAK.md) and a [type chart and move list](guide/TYPES.md) and the [Trainer Tower teams](guide/TOWER.md).
+> **Spoiler guide:** every encounter table, item, trainer team and gift Pokémon is listed in [guide/](guide/README.md), plus a full [Pokédex](guide/POKEDEX.md) for all 386 Pokémon, [peak trainer prep](guide/PEAK.md) and a [type chart and move list](guide/TYPES.md) the [Trainer Tower teams](guide/TOWER.md) and the [VS Seeker rematch teams](guide/REMATCHES.md).
 
 A quality-of-life, modernization and difficulty hack built on the pret/pokefirered decompilation.
 
@@ -522,6 +522,20 @@ teams are:
 
 Opponents still scale to your highest-level Pokémon, as in the original.
 
+## Post-game difficulty and held items
+- **Sevii Islands 4–7:** these are the islands you reach after becoming
+  Champion, and they now bridge the gap between the first Champion
+  (Lv. 66–72) and the round 2 Elite Four (Lv. 72–86):
+  - Their trainers and rematch teams are 1.3x stronger (about Lv. 57–82).
+  - Their wild Pokémon are 1.35x stronger.
+  - Trainer Pokémon evolve where their new level allows.
+- **Post-game route rematches:** VS Seeker rematch teams that unlock after
+  the Champion are 1.25x stronger (about Lv. 66–86).
+- **Held items:** the Trainer Tower lobby shop on Seven Island also sells the
+  held items competitive teams use: Leftovers, Choice Band, Shell Bell, Focus
+  Band, Quick Claw, Scope Lens, Bright Powder, King's Rock, Lucky Egg, Metal
+  Coat, Silk Scarf and every type-boosting item (₽3,000–10,000).
+
 ## True endgame (after beating the round 2 Champion)
 The Champion's rematch (round 2) unlocks once the Sevii Islands story is
 done. The first time you beat it, or the peak round 3, you get:
@@ -547,9 +561,9 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `faf4427801ab1ea2bfb90d210643408a2ba5fc4f`
+Patched ROM SHA-1: `91c37deacb42225ee4ef7efa335ac01715b19cf4`
 
-Current release: **15**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
+Current release: **16**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
 Saves made on release 7 or later carry over to this release. Older saves need a new game.
 
 ## Building from source
@@ -582,12 +596,14 @@ unmodified pret data:
 - `peak_trainers.py`: peak teams, gym rematches and the Elite Four round 3.
 - `spoiler_guide.py <dir>`: regenerates the spoiler guide from the game data.
 - `tower_sets.py <dir>`: the competitive Trainer Tower teams, from Showdown's random-battle set files (read as data).
-- `playtest/`: an automated playtest through Brock (a headless mGBA harness plus milestone checks).
+- `playtest/`: an automated playtest (a headless mGBA harness plus 14 milestone checks, including the Trainer Tower).
 - `gym_doubles.py`: the gym double battles and their doubles movesets.
 - `learnsets.py`: what each species can learn in this hack (used by the trainer scripts).
 - `vr_rematches.py`: the Victory Road VS Seeker rematch teams and scripts.
 - `consumables_shop.py`: herbs, PP restorers and Max Revive in the Celadon shops (run after `berry_shop.py`).
 - `berry_shop.py`: the Celadon Department Store berry stand and berry prices.
+- `held_item_shop.py`: held items in the post-game Trainer Tower lobby shop.
+- `postgame_levels.py`: Sevii Islands 4–7 trainers and wild Pokémon, and post-game route rematches.
 - `wild_levels.py`: wild Pokémon levels 1.15x from the Erika stretch on.
 - `exp_budget.py`: how much trainer Exp. each stretch of the game gives, against the level caps.
 - `save_check.py REF`: checks whether saves from an older release (a git ref) still load.

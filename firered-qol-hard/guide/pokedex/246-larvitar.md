@@ -60,7 +60,7 @@ Height 0.6 m (2′00″) · Weight 72 kg (158.7 lbs)
 
 ## Where to find it
 
-- **Seven Island Sevault Canyon**: Grass / cave Lv 15–20 (5%)
+- **Seven Island Sevault Canyon**: Grass / cave Lv 20–27 (5%)
 - Breeding: hatches from an Egg left by a Larvitar or Pupitar or Tyranitar at the Four Island Day Care
 
 ## Moves

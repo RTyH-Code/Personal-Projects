@@ -57,7 +57,7 @@ Height 0.7 m (2′04″) · Weight 9.9 kg (21.8 lbs)
 - **Route 24**: Grass / cave Lv 8 (1%)
 - **Route 25**: Grass / cave Lv 9 (1%)
 - **Viridian Forest**: Grass / cave Lv 5 (5%)
-- **Six Island Pattern Bush**: Grass / cave Lv 9 (5%)
+- **Six Island Pattern Bush**: Grass / cave Lv 12 (5%)
 - Evolve [Caterpie](010-caterpie.md)
 
 ## Moves

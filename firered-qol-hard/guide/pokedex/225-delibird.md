@@ -59,8 +59,8 @@ Delibird does not evolve.
 
 ## Where to find it
 
-- **Four Island Icefall Cave 1F**: Grass / cave Lv 30 (5%)
-- **Four Island Icefall Cave B1F**: Grass / cave Lv 30 (5%)
+- **Four Island Icefall Cave 1F**: Grass / cave Lv 40 (5%)
+- **Four Island Icefall Cave B1F**: Grass / cave Lv 40 (5%)
 - Breeding: hatches from an Egg left by a Delibird at the Four Island Day Care
 
 ## Moves

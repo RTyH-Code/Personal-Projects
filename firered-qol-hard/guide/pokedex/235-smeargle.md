@@ -57,7 +57,7 @@ Smeargle does not evolve.
 
 ## Where to find it
 
-- **Six Island Altering Cave**: Grass / cave Lv 20–24 (4%)
+- **Six Island Altering Cave**: Grass / cave Lv 27–32 (4%)
 - Breeding: hatches from an Egg left by a Smeargle at the Four Island Day Care
 
 ## Moves

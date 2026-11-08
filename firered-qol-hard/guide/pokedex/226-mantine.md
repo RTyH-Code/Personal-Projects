@@ -62,7 +62,7 @@ Mantine does not evolve.
 ## Where to find it
 
 - **Route 19**: Surfing Lv 34–40 (4%)
-- **Five Island Resort Gorgeous**: Surfing Lv 35–40 (5%)
+- **Five Island Resort Gorgeous**: Surfing Lv 47–54 (5%)
 - Breeding: hatches from an Egg left by a Mantine at the Four Island Day Care
 
 ## Moves
