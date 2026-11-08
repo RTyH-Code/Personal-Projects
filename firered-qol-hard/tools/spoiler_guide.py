@@ -243,6 +243,8 @@ def label_location(lab, depth=0):
         return label_map[lab]
     if label_file_map.get(lab):
         return label_file_map[lab]
+    if lab.split("_EventScript_")[0] in dir_to_map:  # a shared script named after its map
+        return dir_to_map[lab.split("_EventScript_")[0]]
     if depth < 4:
         for c in sorted(callers.get(lab, ())):
             loc = label_location(c, depth + 1)
@@ -1305,7 +1307,9 @@ def write_peak():
            "what it's weak to, and Pokémon that match up well. Gym Leaders rematch any number of times once you're "
            "Champion, and each win gives a Nugget (35%), PP Up (25%), PP Max (15%) or Star Piece (25%); "
            "the Elite Four and Champion use these teams when the League official in the Indigo Plateau "
-           "Pokémon Center has the PEAK challenge switched on.", "",
+           "Pokémon Center has the PEAK challenge switched on. Each peak Champion win gives a Master Ball (20%), "
+           "3 PP Max (30%), 3 Star Pieces (25%) or 5 Nuggets (25%). In Nuzlocke mode these are exhibition "
+           "battles: Pokémon that faint aren't lost (they're left with 1 HP), and losing doesn't end the run.", "",
            "How peak Pokémon are built: perfect IVs; 252 EVs in the attacking stat their moves use; 252 Speed EVs "
            "(or 252 HP for Pokémon with base Speed under 50); Jolly/Timid if base Speed is 80+, otherwise "
            "Adamant/Modest. Their held items are listed below, and each trainer also carries Full Restores.", "",
@@ -1451,6 +1455,11 @@ def write_tower():
            "They get their real level back after each battle.", "",
            "**Prize:** you get one each time you reach the Owner. It's the prize listed below (25%), "
            "PP Up (20%), PP Max (10%), Nugget (20%), Big Pearl (15%) or Star Piece (10%).", "",
+           "**Record bonus:** beat your best time for a challenge (your first clear counts) and the Owner adds "
+           "a PP Max (40%), 2 Star Pieces (30%), 3 Rare Candies (20%) or a Master Ball (10%).", "",
+           "**Treasure trader:** the man in the lobby swaps 3 Star Pieces for a Master Ball, 2 Big Pearls for a "
+           "PP Max, or a Nugget for 2 Rare Candies.", "",
+           "**Nuzlocke:** Trainer Tower battles are exhibition battles. Pokémon that faint here aren't lost (they're left with 1 HP).", "",
            "Each trainer has six Pokémon but only uses some of them, depending on the floor. The tables "
            "below list exactly the Pokémon you'll face on each floor.", ""]
     titles = {"SINGLE": "Single battles", "DOUBLE": "Double battles", "KNOCKOUT": "Knockout (three trainers, one Pokémon each)",

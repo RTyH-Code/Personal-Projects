@@ -1,0 +1,590 @@
+From 2fac44fff59c348e070e9077fbf36ab29e6a5562 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 8 Nov 2026 20:42:13 +0000
+Subject: [PATCH] League and record rewards, treasure trader, Nuzlocke
+ exhibition battles (R18)
+
+- Elite Four round 3: each peak Champion win gives a League reward.
+- Trainer Tower: a bonus prize for a new record time, and a lobby trader
+  who swaps Star Pieces, Big Pearls and Nuggets for items you can't buy.
+- Nuzlocke: Trainer Tower and peak trainer battles are exhibition battles.
+  Fainted Pokemon are left with 1 HP, and losing doesn't end the run.
+- Playtest: 22 checks, adding the new rewards, the trader, Nuzlocke
+  blackouts and Party Exp. Share.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ HACK_NOTES.md                                 |  21 ++-
+ .../PokemonLeague_ChampionsRoom/scripts.inc   |   1 +
+ data/maps/TrainerTower_Lobby/scripts.inc      |   2 +-
+ data/scripts/hack_peak_trainers.inc           | 124 ++++++++++++++++++
+ data/scripts/trainer_tower.inc                |   1 +
+ include/constants/menu.h                      |   1 +
+ include/hack_challenge.h                      |   2 +
+ include/hack_version.h                        |   2 +-
+ src/battle_main.c                             |   2 +-
+ src/hack_challenge.c                          |  52 +++++++-
+ src/script_menu.c                             |  12 ++
+ tools/hack/playtest/playtest.py               |  57 +++++++-
+ tools/hack/spoiler_guide.py                   |  11 +-
+ 13 files changed, 275 insertions(+), 13 deletions(-)
+
+diff --git a/HACK_NOTES.md b/HACK_NOTES.md
+index 0898f1f..caf4531 100644
+--- a/HACK_NOTES.md
++++ b/HACK_NOTES.md
+@@ -386,6 +386,10 @@ Lv. 5 Pokémon 75.
+   catch).
+ - **Blacking out ends the run:** the Nuzlocke rules are lifted and the game
+   carries on as a normal playthrough.
++- **Exhibition battles don't count:** in the Trainer Tower and against the
++  Lv. 100 peak trainers (Gym Leader rematches and Elite Four round 3),
++  Pokémon that faint aren't lost (they're left with 1 HP), and losing
++  doesn't end the run.
+ 
+ ### Optional level caps
+ Talk to the scientist in the Viridian City Pokémon Center to turn level caps on
+@@ -502,6 +506,9 @@ How the cap works with each way of gaining levels:
+   Restores.
+ - **Gym rematch rewards:** each time you beat a Gym Leader's rematch, they
+   give you a Nugget (35%), PP Up (25%), PP Max (15%) or Star Piece (25%).
++- **Elite Four round 3 reward:** each time you beat the peak Champion, the
++  League gives you a Master Ball (20%), 3 PP Max (30%), 3 Star Pieces (25%)
++  or 5 Nuggets (25%).
+ 
+ ## Trainer Tower (Seven Island)
+ Every Trainer Tower trainer now uses competitive sets, built the way real
+@@ -526,6 +533,12 @@ teams are:
+ - **A prize every clear:** you get a prize each time you reach the Owner, not
+   just the first time. It's the floor set's usual prize (25%), PP Up (20%),
+   PP Max (10%), Nugget (20%), Big Pearl (15%) or Star Piece (10%).
++- **Record bonus:** beat your best time for a challenge (your first clear
++  counts) and the Owner adds a PP Max (40%), 2 Star Pieces (30%), 3 Rare
++  Candies (20%) or a Master Ball (10%).
++- **Treasure trader:** the man in the lobby swaps treasures for items you
++  can't buy: 3 Star Pieces for a Master Ball, 2 Big Pearls for a PP Max, or
++  a Nugget for 2 Rare Candies.
+ 
+ ## Post-game difficulty and held items
+ - **Sevii Islands 4–7:** these are the islands you reach after becoming
+@@ -565,7 +578,7 @@ Each script runs once against the original pret data:
+   an unused species slot, with its graphics, cry, Pokédex entry and evolution item.
+ - `balance.py`: modern boss movesets, peak teams with the later evolutions.
+ - `validate.py`: checks the game data for missing or inconsistent entries.
+-- `playtest/playtest.py [check ...]`: automated playtest. It runs 16 milestone
++- `playtest/playtest.py [check ...]`: automated playtest. It runs 22 milestone
+   checks in a headless mGBA:
+   - The boot menu.
+   - A wild battle stopping at the level cap.
+@@ -578,7 +591,11 @@ Each script runs once against the original pret data:
+   - The Trainer Tower's single, double and knockout floors, where it checks
+     that the opponents are real Pokémon from that floor, all at Lv. 50, and
+     that your team gets its real level back afterwards.
+-  - The Trainer Tower prize and a Gym Leader rematch reward.
++  - The Trainer Tower prize, the record bonus and the lobby trader.
++  - The Gym Leader rematch and Elite Four round 3 rewards.
++  - Nuzlocke blackouts: an ordinary loss ends the run, and a peak trainer
++    loss doesn't.
++  - Party Exp. Share.
+ 
+   Each check reads the game's memory to confirm it worked. Build the harness first with
+   `gcc -O2 -w -o tools/hack/playtest/harness tools/hack/playtest/harness.c -lmgba`.
+diff --git a/data/maps/PokemonLeague_ChampionsRoom/scripts.inc b/data/maps/PokemonLeague_ChampionsRoom/scripts.inc
+index 0354174..47cc549 100644
+--- a/data/maps/PokemonLeague_ChampionsRoom/scripts.inc
++++ b/data/maps/PokemonLeague_ChampionsRoom/scripts.inc
+@@ -66,6 +66,7 @@ PokemonLeague_ChampionsRoom_EventScript_EnterRoom::
+ 	setflag FLAG_TEMP_4
+ 	msgbox PokemonLeague_ChampionsRoom_Text_PostBattle
+ 	call_if_set FLAG_SYS_CAN_LINK_WITH_RS, PokemonLeague_ChampionsRoom_EventScript_HackGiveSpecialCandy
++	call_if_set FLAG_HACK_PEAK_LEAGUE, Hack_EventScript_PeakLeagueReward
+ 	playbgm MUS_SLOW_PALLET, 0
+ 	addobject LOCALID_CHAMPIONS_ROOM_PROF_OAK
+ 	msgbox PokemonLeague_ChampionsRoom_Text_OakPlayer
+diff --git a/data/maps/TrainerTower_Lobby/scripts.inc b/data/maps/TrainerTower_Lobby/scripts.inc
+index 9223d87..183a12a 100644
+--- a/data/maps/TrainerTower_Lobby/scripts.inc
++++ b/data/maps/TrainerTower_Lobby/scripts.inc
+@@ -244,5 +244,5 @@ TrainerTower_Lobby_EventScript_CooltrainerF::
+ 	end
+ 
+ TrainerTower_Lobby_EventScript_BaldingMan::
+-	msgbox TrainerTower_Lobby_Text_StairsTougherThanAnyBattle, MSGBOX_NPC
++	goto Hack_EventScript_Trader
+ 	end
+diff --git a/data/scripts/hack_peak_trainers.inc b/data/scripts/hack_peak_trainers.inc
+index 2af20d2..4bbd3e9 100644
+--- a/data/scripts/hack_peak_trainers.inc
++++ b/data/scripts/hack_peak_trainers.inc
+@@ -92,3 +92,127 @@ Hack_EventScript_PeakRewardPPMax::
+ Hack_Text_PeakReward::
+ 	.string "That was a real battle!\n"
+ 	.string "Here, you've earned this.$"
++
++@ FireRed QoL+Hard: a bigger reward for each peak (round 3) Champion win
++Hack_EventScript_PeakLeagueReward::
++	msgbox Hack_Text_PeakLeagueReward
++	random 100
++	goto_if_lt VAR_RESULT, 20, Hack_EventScript_PeakLeagueMasterBall
++	goto_if_lt VAR_RESULT, 50, Hack_EventScript_PeakLeaguePPMax
++	goto_if_lt VAR_RESULT, 75, Hack_EventScript_PeakLeagueStarPiece
++	giveitem ITEM_NUGGET, 5
++	return
++
++Hack_EventScript_PeakLeagueMasterBall::
++	giveitem ITEM_MASTER_BALL
++	return
++
++Hack_EventScript_PeakLeaguePPMax::
++	giveitem ITEM_PP_MAX, 3
++	return
++
++Hack_EventScript_PeakLeagueStarPiece::
++	giveitem ITEM_STAR_PIECE, 3
++	return
++
++Hack_Text_PeakLeagueReward::
++	.string "The LEAGUE has a prize for anyone\n"
++	.string "who beats us at our very best.$"
++
++@ FireRed QoL+Hard: a bonus prize for a new Trainer Tower record
++Hack_EventScript_TowerRecordBonus::
++	msgbox Hack_Text_TowerRecordBonus
++	random 100
++	goto_if_lt VAR_RESULT, 10, Hack_EventScript_TowerRecordMasterBall
++	goto_if_lt VAR_RESULT, 30, Hack_EventScript_TowerRecordRareCandy
++	goto_if_lt VAR_RESULT, 60, Hack_EventScript_TowerRecordStarPiece
++	giveitem ITEM_PP_MAX
++	return
++
++Hack_EventScript_TowerRecordMasterBall::
++	giveitem ITEM_MASTER_BALL
++	return
++
++Hack_EventScript_TowerRecordRareCandy::
++	giveitem ITEM_RARE_CANDY, 3
++	return
++
++Hack_EventScript_TowerRecordStarPiece::
++	giveitem ITEM_STAR_PIECE, 2
++	return
++
++Hack_Text_TowerRecordBonus::
++	.string "A new record deserves something\n"
++	.string "extra. Take this, too!$"
++
++@ FireRed QoL+Hard: the Trainer Tower lobby trader swaps valuables for
++@ items you can't buy
++Hack_EventScript_Trader::
++	lock
++	faceplayer
++	msgbox Hack_Text_TraderIntro
++Hack_EventScript_TraderMenu::
++	message Hack_Text_TraderWhich
++	waitmessage
++	multichoice 17, 0, MULTICHOICE_HACK_TRADER, FALSE
++	switch VAR_RESULT
++	case 0, Hack_EventScript_TradeMasterBall
++	case 1, Hack_EventScript_TradePPMax
++	case 2, Hack_EventScript_TradeRareCandy
++	msgbox Hack_Text_TraderBye
++	release
++	end
++
++Hack_EventScript_TradeMasterBall::
++	checkitem ITEM_STAR_PIECE, 3
++	goto_if_eq VAR_RESULT, FALSE, Hack_EventScript_TraderNotEnough
++	checkitemspace ITEM_MASTER_BALL
++	goto_if_eq VAR_RESULT, FALSE, Hack_EventScript_TraderBagFull
++	removeitem ITEM_STAR_PIECE, 3
++	giveitem ITEM_MASTER_BALL
++	goto Hack_EventScript_TraderMenu
++
++Hack_EventScript_TradePPMax::
++	checkitem ITEM_BIG_PEARL, 2
++	goto_if_eq VAR_RESULT, FALSE, Hack_EventScript_TraderNotEnough
++	checkitemspace ITEM_PP_MAX
++	goto_if_eq VAR_RESULT, FALSE, Hack_EventScript_TraderBagFull
++	removeitem ITEM_BIG_PEARL, 2
++	giveitem ITEM_PP_MAX
++	goto Hack_EventScript_TraderMenu
++
++Hack_EventScript_TradeRareCandy::
++	checkitem ITEM_NUGGET, 1
++	goto_if_eq VAR_RESULT, FALSE, Hack_EventScript_TraderNotEnough
++	checkitemspace ITEM_RARE_CANDY, 2
++	goto_if_eq VAR_RESULT, FALSE, Hack_EventScript_TraderBagFull
++	removeitem ITEM_NUGGET, 1
++	giveitem ITEM_RARE_CANDY, 2
++	goto Hack_EventScript_TraderMenu
++
++Hack_EventScript_TraderNotEnough::
++	msgbox Hack_Text_TraderNotEnough
++	goto Hack_EventScript_TraderMenu
++
++Hack_EventScript_TraderBagFull::
++	msgbox Text_BagIsFull
++	goto Hack_EventScript_TraderMenu
++
++Hack_Text_TraderIntro::
++	.string "Climbing those stairs is tougher\n"
++	.string "than any battle!\p"
++	.string "But I collect treasures. I'll swap\n"
++	.string "things you can't buy for them.\p"
++	.string "3 STAR PIECES: a MASTER BALL.\n"
++	.string "2 BIG PEARLS: a PP MAX.\l"
++	.string "1 NUGGET: 2 RARE CANDIES.$"
++
++Hack_Text_TraderWhich::
++	.string "What would you like?$"
++
++Hack_Text_TraderNotEnough::
++	.string "You don't have enough for that\n"
++	.string "one, I'm afraid.$"
++
++Hack_Text_TraderBye::
++	.string "Come back with more treasures!$"
+diff --git a/data/scripts/trainer_tower.inc b/data/scripts/trainer_tower.inc
+index 6a526e9..c11508f 100644
+--- a/data/scripts/trainer_tower.inc
++++ b/data/scripts/trainer_tower.inc
+@@ -306,6 +306,7 @@ TrainerTower_Roof_EventScript_CheckFinalTime::
+ 
+ TrainerTower_Roof_EventScript_NewRecord:
+ 	msgbox TrainerTower_Roof_Text_DoneItInRecordTime
++	call Hack_EventScript_TowerRecordBonus
+ 	goto TrainerTower_Roof_EventScript_OwnerEnd
+ 
+ TrainerTower_Roof_EventScript_NoNewRecord::
+diff --git a/include/constants/menu.h b/include/constants/menu.h
+index 0d690a3..ac5fbc5 100644
+--- a/include/constants/menu.h
++++ b/include/constants/menu.h
+@@ -73,6 +73,7 @@
+ #define MULTICHOICE_HACK_RAISE_STAT                            66
+ #define MULTICHOICE_HACK_LOWER_STAT                            67
+ #define MULTICHOICE_HACK_SETTINGS                              68
++#define MULTICHOICE_HACK_TRADER                                69
+ 
+ #define MULTICHOICE_NONE                                      255
+ 
+diff --git a/include/hack_challenge.h b/include/hack_challenge.h
+index dcaf3ef..e67e981 100644
+--- a/include/hack_challenge.h
++++ b/include/hack_challenge.h
+@@ -7,6 +7,8 @@ bool8 Hack_NuzlockeActive(void);
+ bool8 Hack_NuzlockeBoxMonDead(struct BoxPokemon *boxMon);
+ bool8 Hack_NuzlockeMonDead(struct Pokemon *mon);
+ void Hack_NuzlockeMarkFainted(void);
++void Hack_NuzlockeBattleEnd(void);
++bool8 Hack_ExhibitionBattle(void);
+ void Hack_NuzlockeWhiteOut(void);
+ void Hack_NuzlockeOnBattleStart(void);
+ bool8 Hack_NuzlockeCanCatch(void);
+diff --git a/include/hack_version.h b/include/hack_version.h
+index 66d7137..2d86f1c 100644
+--- a/include/hack_version.h
++++ b/include/hack_version.h
+@@ -3,6 +3,6 @@
+ 
+ // FireRed QoL+Hard release number, shown in the Options menu. Bump it with
+ // each release (see CHANGELOG.md in the Personal-Projects repository).
+-#define HACK_RELEASE_STRING "R17"
++#define HACK_RELEASE_STRING "R18"
+ 
+ #endif // GUARD_HACK_VERSION_H
+diff --git a/src/battle_main.c b/src/battle_main.c
+index f099201..0fb06a9 100644
+--- a/src/battle_main.c
++++ b/src/battle_main.c
+@@ -3974,7 +3974,7 @@ static void FreeResetData_ReturnToOvOrDoEvolutions(void)
+     if (!gPaletteFade.active)
+     {
+         if (!(gBattleTypeFlags & BATTLE_TYPE_LINK))
+-            Hack_NuzlockeMarkFainted();
++            Hack_NuzlockeBattleEnd();
+         ResetSpriteData();
+         if (gLeveledUpInBattle == 0 || gBattleOutcome != B_OUTCOME_WON)
+             gBattleMainFunc = ReturnFromBattleToOverworld;
+diff --git a/src/hack_challenge.c b/src/hack_challenge.c
+index a810587..d0fa4ec 100644
+--- a/src/hack_challenge.c
++++ b/src/hack_challenge.c
+@@ -1,6 +1,7 @@
+ // FireRed QoL+Hard: challenge settings (Nuzlocke mode and optional rules).
+ #include "global.h"
+ #include "battle.h"
++#include "battle_setup.h"
+ #include "event_data.h"
+ #include "item.h"
+ #include "main.h"
+@@ -19,6 +20,7 @@
+ #include "window.h"
+ #include "hack_challenge.h"
+ #include "constants/flags.h"
++#include "constants/opponents.h"
+ #include "constants/region_map_sections.h"
+ #include "constants/songs.h"
+ 
+@@ -28,6 +30,7 @@ extern const struct Evolution gEvolutionTable[][EVOS_PER_MON];
+ 
+ EWRAM_DATA static bool8 sCatchable = TRUE;
+ EWRAM_DATA bool8 gHackRandomEncounter = FALSE;
++EWRAM_DATA static bool8 sExhibitionLoss = FALSE;
+ 
+ bool8 Hack_NuzlockeActive(void)
+ {
+@@ -45,14 +48,53 @@ bool8 Hack_NuzlockeBoxMonDead(struct BoxPokemon *boxMon)
+     return Hack_NuzlockeActive() && (GetBoxMonData(boxMon, MON_DATA_UNUSED_RIBBONS) & DEAD_BIT);
+ }
+ 
+-// A Pokémon that has fainted can't be healed or revived by anything.
++// Exhibition battles don't count for the Nuzlocke rules: the Trainer Tower
++// and the Lv. 100 peak trainers (gym rematches and Elite Four round 3).
++bool8 Hack_ExhibitionBattle(void)
++{
++    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_TOWER)
++        return TRUE;
++    if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) && gTrainerBattleOpponent_A < MAX_TRAINERS_COUNT
++     && (gTrainers[gTrainerBattleOpponent_A].partyFlags & F_TRAINER_PARTY_PEAK))
++        return TRUE;
++    return FALSE;
++}
++
++// A Pokémon that has fainted can't be healed or revived by anything. In battle
++// it counts as soon as it faints; it's marked for good when the battle ends.
+ bool8 Hack_NuzlockeMonDead(struct Pokemon *mon)
+ {
+     if (!Hack_NuzlockeActive() || !IsPlayerPartyMon(mon))
+         return FALSE;
+     if (GetMonData(mon, MON_DATA_SPECIES) == SPECIES_NONE || GetMonData(mon, MON_DATA_IS_EGG))
+         return FALSE;
+-    return (GetMonData(mon, MON_DATA_UNUSED_RIBBONS) & DEAD_BIT) || GetMonData(mon, MON_DATA_HP) == 0;
++    if (GetMonData(mon, MON_DATA_UNUSED_RIBBONS) & DEAD_BIT)
++        return TRUE;
++    return gMain.inBattle && !Hack_ExhibitionBattle() && GetMonData(mon, MON_DATA_HP) == 0;
++}
++
++// Called when a battle ends.
++void Hack_NuzlockeBattleEnd(void)
++{
++    u8 i;
++    u16 hp = 1;
++
++    sExhibitionLoss = Hack_ExhibitionBattle() && gBattleOutcome != B_OUTCOME_WON;
++    if (!Hack_ExhibitionBattle())
++    {
++        Hack_NuzlockeMarkFainted();
++        return;
++    }
++    // Exhibition battle: Pokemon that fainted are left with 1 HP, not lost.
++    if (!Hack_NuzlockeActive())
++        return;
++    for (i = 0; i < PARTY_SIZE; i++)
++    {
++        struct Pokemon *mon = &gPlayerParty[i];
++        if (GetMonData(mon, MON_DATA_SPECIES) != SPECIES_NONE && !GetMonData(mon, MON_DATA_IS_EGG)
++         && GetMonData(mon, MON_DATA_HP) == 0)
++            SetMonData(mon, MON_DATA_HP, &hp);
++    }
+ }
+ 
+ void Hack_NuzlockeMarkFainted(void)
+@@ -77,7 +119,10 @@ void Hack_NuzlockeMarkFainted(void)
+ // Whiting out ends a Nuzlocke run: the rules are lifted so the game carries on normally.
+ void Hack_NuzlockeWhiteOut(void)
+ {
+-    if (Hack_NuzlockeActive())
++    bool8 exhibition = sExhibitionLoss;
++
++    sExhibitionLoss = FALSE;
++    if (Hack_NuzlockeActive() && !exhibition)
+     {
+         FlagClear(FLAG_HACK_NUZLOCKE);
+         FlagSet(FLAG_HACK_NUZLOCKE_OVER);
+@@ -133,6 +178,7 @@ void Hack_NuzlockeOnBattleStart(void)
+ 
+     gHackRandomEncounter = FALSE;
+     sCatchable = TRUE;
++    sExhibitionLoss = FALSE;
+     if (!Hack_NuzlockeActive() || !random
+      || (gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_LINK | BATTLE_TYPE_POKEDUDE | BATTLE_TYPE_OLD_MAN_TUTORIAL | BATTLE_TYPE_GHOST)))
+         return; // one-time encounters (Snorlax, legendaries, ...) are always catchable
+diff --git a/src/script_menu.c b/src/script_menu.c
+index 63888ab..aee5fb2 100644
+--- a/src/script_menu.c
++++ b/src/script_menu.c
+@@ -522,6 +522,17 @@ static const struct MenuAction sMultichoiceList_HackSettings[] = {
+     { gOtherText_Exit }
+ };
+ 
++static const u8 sText_HackMasterBall[] = _("MASTER BALL");
++static const u8 sText_HackPPMax[] = _("PP MAX");
++static const u8 sText_HackRareCandy[] = _("RARE CANDY");
++
++static const struct MenuAction sMultichoiceList_HackTrader[] = {
++    { sText_HackMasterBall },
++    { sText_HackPPMax },
++    { sText_HackRareCandy },
++    { gOtherText_Exit }
++};
++
+ // Order matches the nature table: Atk, Def, Spe, SpA, SpD.
+ static const struct MenuAction sMultichoiceList_HackStats[] = {
+     { sText_HackAttack },
+@@ -606,6 +617,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] = {
+     [MULTICHOICE_HACK_RAISE_STAT]                            = MULTICHOICE(sMultichoiceList_HackStats),
+     [MULTICHOICE_HACK_LOWER_STAT]                            = MULTICHOICE(sMultichoiceList_HackStats),
+     [MULTICHOICE_HACK_SETTINGS]                              = MULTICHOICE(sMultichoiceList_HackSettings),
++    [MULTICHOICE_HACK_TRADER]                                = MULTICHOICE(sMultichoiceList_HackTrader),
+ };
+ 
+ // From Cool to Berries goes unused
+diff --git a/tools/hack/playtest/playtest.py b/tools/hack/playtest/playtest.py
+index 3cfdf01..1868bd8 100644
+--- a/tools/hack/playtest/playtest.py
++++ b/tools/hack/playtest/playtest.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Automated playtest: milestone checks from a new game through the first gym.
++"""Automated playtest: milestone checks from a new game to the post-game.
+ 
+ Each check builds a throwaway ROM that starts a new game at a set point (a
+ warp plus a party), plays the real game scripts and battles with button
+@@ -18,6 +18,12 @@ presses, then reads the save block to confirm the milestone happened:
+   held_item_shop  buy Leftovers at the post-game Trainer Tower lobby shop
+   peak_reward a peak Gym Leader win gives an item from the reward pool
+   tower_prize the Trainer Tower prize is given again on a second clear
++  league_reward  a peak Champion win gives an item from the League reward pool
++  tower_record   a new Trainer Tower record time gives the bonus prize
++  trader      the Trainer Tower lobby trader swaps 3 Star Pieces for a Master Ball
++  nuzlocke_blackout    Nuzlocke: losing an ordinary trainer battle ends the run
++  nuzlocke_exhibition  Nuzlocke: losing to a peak trainer doesn't (exhibition battle)
++  exp_share   Party Exp. Share: the Pokemon that didn't battle levels up too
+   vr_rematch  the VS Seeker in Victory Road: Naomi's rematch team (Lv. 56 Persian)
+   brock       Brock's real gym script: battle won, Boulder Badge awarded
+ 
+@@ -56,7 +62,7 @@ def const(expr, depth=0):
+     return int(eval(expr, {}))
+ 
+ 
+-SB1_FLAGS, SB1_VARS, SB1_ITEMS, SB1_BAG = 0x0EE0, 0x1000, 0x0310, 0x054C  # flags, vars, Items pocket, Berry Pouch
++SB1_FLAGS, SB1_VARS, SB1_ITEMS, SB1_BAG, SB1_BALLS = 0x0EE0, 0x1000, 0x0310, 0x054C, 0x0430  # flags, vars, Items, Berry Pouch, Poke Balls
+ SYMS = {}
+ for addr, name in re.findall(r"^\s+0x([0-9a-f]{8})\s+(g\w+)(?:\s*=\s*\.)?$", read("pokefirered.map"), re.M):
+     SYMS[name] = int(addr, 16)
+@@ -175,6 +181,43 @@ CHECKS = {
+         body=TALK_LEFT + mash(4),
+         expect=[("bag_any", ["ITEM_UP_GRADE", "ITEM_NUGGET", "ITEM_PP_UP", "ITEM_PP_MAX", "ITEM_BIG_PEARL", "ITEM_STAR_PIECE"], 1),
+                 ("var", "VAR_0x402A", 0)]),
++    "league_reward": dict(
++        # The reward for a peak (round 3) Champion win.
++        scenario={"party": [["PIDGEY", 10]], "warp": VIRIDIAN,
++                  "patch": [gentleman("\tlock\n\tcall Hack_EventScript_PeakLeagueReward\n\trelease")]},
++        body=TALK_LEFT + mash(8),
++        expect=[("bag_any", ["ITEM_MASTER_BALL", "ITEM_PP_MAX", "ITEM_STAR_PIECE", "ITEM_NUGGET"], 1)]),
++    "tower_record": dict(
++        # A new Trainer Tower record time: the roof script's record check gives the bonus prize.
++        scenario={"party": [["PIDGEY", 10]], "warp": VIRIDIAN,
++                  "patch": [gentleman("\tlock\n\tsetvar VAR_0x8005, 0\n\tttower_startchallenge\n"
++                                      "\tcall TrainerTower_Roof_EventScript_CheckFinalTime")]},
++        body=TALK_LEFT + mash(10),
++        expect=[("bag_any", ["ITEM_MASTER_BALL", "ITEM_RARE_CANDY", "ITEM_STAR_PIECE", "ITEM_PP_MAX"], 1)]),
++    "trader": dict(
++        # The Trainer Tower lobby trader: 3 Star Pieces for a Master Ball.
++        scenario={"party": [["PIDGEY", 10]], "items": [["STAR_PIECE", 3]], "warp": ["MAP_TRAINER_TOWER_LOBBY", 3, 12]},
++        body=TALK_LEFT + mash(9) + "press B 6\nwait 90\npress A 6\nwait 120\n",
++        expect=[("bag_has", "ITEM_MASTER_BALL", 1), ("bag_has", "ITEM_STAR_PIECE", 0)]),
++    "nuzlocke_blackout": dict(
++        # Nuzlocke: losing an ordinary trainer battle ends the run.
++        scenario={"party": [["MAGIKARP", 5, ["SPLASH"]]], "set": ["FLAG_HACK_NUZLOCKE", "FLAG_SYS_POKEDEX_GET"], "warp": VIRIDIAN,
++                  "patch": [gentleman("\ttrainerbattle_no_intro TRAINER_LEADER_BROCK, ViridianCity_PokemonCenter_1F_Text_FeelFreeToUsePC")]},
++        body=TALK_LEFT + mash(40, 90),
++        expect=[("flag", "FLAG_HACK_NUZLOCKE", 0)]),  # the "run over" flag is cleared once its message shows
++    "nuzlocke_exhibition": dict(
++        # Nuzlocke: losing to a peak trainer (an exhibition battle) doesn't count.
++        scenario={"party": [["MAGIKARP", 5, ["SPLASH"]]], "set": ["FLAG_HACK_NUZLOCKE", "FLAG_SYS_POKEDEX_GET"], "warp": VIRIDIAN,
++                  "patch": [gentleman("\ttrainerbattle_no_intro TRAINER_PEAK_BROCK, ViridianCity_PokemonCenter_1F_Text_FeelFreeToUsePC")]},
++        body=TALK_LEFT + mash(40, 90),
++        expect=[("flag", "FLAG_HACK_NUZLOCKE", 1), ("alive", 0, 1)]),
++    "exp_share": dict(
++        # Party Exp. Share: the Pokemon that didn't battle still levels up.
++        scenario={"party": [["PIDGEOT", 40, ["WING_ATTACK"]], ["RATTATA", 5, ["TACKLE"]]],
++                  "set": ["FLAG_HACK_PARTY_EXP_SHARE"], "warp": VIRIDIAN,
++                  "patch": [gentleman("\tsetwildbattle SPECIES_RATTATA, 20\n\tdowildbattle")]},
++        body=TALK_LEFT + mash(30, 90),
++        expect=[("level_min", 1, 6), ("level", 0, 40)]),
+     "vr_rematch": dict(
+         # The real VS Seeker flow in Victory Road: use it, then challenge Naomi.
+         scenario={"party": [["MEWTWO", 70, ["PSYCHIC"]]], "items": [["VS_SEEKER", 1]],
+@@ -281,7 +324,7 @@ def run(rom, body, outdir, name):
+     script = INTRO + body + f"shot {name}_end\n"
+     script += f"peekp {ptr:x} {SB1_FLAGS:x} 288\npeekp {ptr:x} {SB1_VARS:x} 512\n"
+     script += f"peek {SYMS['gPlayerPartyCount']:x} 1\npeek {SYMS['gPlayerParty']:x} 600\n"
+-    script += f"peekp {ptr:x} {SB1_BAG:x} 172\npeekp {ptr:x} {SB1_ITEMS:x} 168\n"
++    script += f"peekp {ptr:x} {SB1_BAG:x} 172\npeekp {ptr:x} {SB1_ITEMS:x} 168\npeekp {ptr:x} {SB1_BALLS:x} 52\n"
+     os.makedirs(outdir, exist_ok=True)
+     path = os.path.join(outdir, name + ".txt")
+     open(path, "w").write(script)
+@@ -291,7 +334,8 @@ def run(rom, body, outdir, name):
+         reads[addr] = bytes.fromhex(data)
+     keyed = {"flags": reads.get(f"{ptr:08x}+{SB1_FLAGS:x}"), "vars": reads.get(f"{ptr:08x}+{SB1_VARS:x}"),
+              "count": reads.get(f"{SYMS['gPlayerPartyCount']:08x}"), "party": reads.get(f"{SYMS['gPlayerParty']:08x}"),
+-             "battle": reads.get(f"{SYMS['gBattleMons']:08x}"), "bag": (reads.get(f"{ptr:08x}+{SB1_BAG:x}") or b"") + (reads.get(f"{ptr:08x}+{SB1_ITEMS:x}") or b"")}
++             "battle": reads.get(f"{SYMS['gBattleMons']:08x}"), "bag": (reads.get(f"{ptr:08x}+{SB1_BAG:x}") or b"") + (reads.get(f"{ptr:08x}+{SB1_ITEMS:x}") or b"")
++             + (reads.get(f"{ptr:08x}+{SB1_BALLS:x}") or b"")}
+     return keyed
+ 
+ 
+@@ -308,6 +352,11 @@ def check(name, spec, workdir, outdir):
+             got = r["vars"][2 * n] | (r["vars"][2 * n + 1] << 8)
+         elif kind == "level":
+             got = r["party"][100 * what + 0x54]  # struct Pokemon is 100 bytes; level at 0x54
++        elif kind == "level_min":
++            lvl = r["party"][100 * what + 0x54]
++            got = want if lvl >= want else lvl
++        elif kind == "alive":
++            got = int((r["party"][100 * what + 0x56] | (r["party"][100 * what + 0x57] << 8)) > 0)
+         elif kind == "party_count":
+             got = r["count"][0]
+         elif kind == "tower_foes":
+diff --git a/tools/hack/spoiler_guide.py b/tools/hack/spoiler_guide.py
+index acf5983..2e89ca9 100644
+--- a/tools/hack/spoiler_guide.py
++++ b/tools/hack/spoiler_guide.py
+@@ -243,6 +243,8 @@ def label_location(lab, depth=0):
+         return label_map[lab]
+     if label_file_map.get(lab):
+         return label_file_map[lab]
++    if lab.split("_EventScript_")[0] in dir_to_map:  # a shared script named after its map
++        return dir_to_map[lab.split("_EventScript_")[0]]
+     if depth < 4:
+         for c in sorted(callers.get(lab, ())):
+             loc = label_location(c, depth + 1)
+@@ -1305,7 +1307,9 @@ def write_peak():
+            "what it's weak to, and Pokémon that match up well. Gym Leaders rematch any number of times once you're "
+            "Champion, and each win gives a Nugget (35%), PP Up (25%), PP Max (15%) or Star Piece (25%); "
+            "the Elite Four and Champion use these teams when the League official in the Indigo Plateau "
+-           "Pokémon Center has the PEAK challenge switched on.", "",
++           "Pokémon Center has the PEAK challenge switched on. Each peak Champion win gives a Master Ball (20%), "
++           "3 PP Max (30%), 3 Star Pieces (25%) or 5 Nuggets (25%). In Nuzlocke mode these are exhibition "
++           "battles: Pokémon that faint aren't lost (they're left with 1 HP), and losing doesn't end the run.", "",
+            "How peak Pokémon are built: perfect IVs; 252 EVs in the attacking stat their moves use; 252 Speed EVs "
+            "(or 252 HP for Pokémon with base Speed under 50); Jolly/Timid if base Speed is 80+, otherwise "
+            "Adamant/Modest. Their held items are listed below, and each trainer also carries Full Restores.", "",
+@@ -1451,6 +1455,11 @@ def write_tower():
+            "They get their real level back after each battle.", "",
+            "**Prize:** you get one each time you reach the Owner. It's the prize listed below (25%), "
+            "PP Up (20%), PP Max (10%), Nugget (20%), Big Pearl (15%) or Star Piece (10%).", "",
++           "**Record bonus:** beat your best time for a challenge (your first clear counts) and the Owner adds "
++           "a PP Max (40%), 2 Star Pieces (30%), 3 Rare Candies (20%) or a Master Ball (10%).", "",
++           "**Treasure trader:** the man in the lobby swaps 3 Star Pieces for a Master Ball, 2 Big Pearls for a "
++           "PP Max, or a Nugget for 2 Rare Candies.", "",
++           "**Nuzlocke:** Trainer Tower battles are exhibition battles. Pokémon that faint here aren't lost (they're left with 1 HP).", "",
+            "Each trainer has six Pokémon but only uses some of them, depending on the floor. The tables "
+            "below list exactly the Pokémon you'll face on each floor.", ""]
+     titles = {"SINGLE": "Single battles", "DOUBLE": "Double battles", "KNOCKOUT": "Knockout (three trainers, one Pokémon each)",
+-- 
+2.43.0
+

@@ -6,6 +6,12 @@ The Trainer Tower on Seven Island has four challenges of eight floors each. Ever
 
 **Prize:** you get one each time you reach the Owner. It's the prize listed below (25%), PP Up (20%), PP Max (10%), Nugget (20%), Big Pearl (15%) or Star Piece (10%).
 
+**Record bonus:** beat your best time for a challenge (your first clear counts) and the Owner adds a PP Max (40%), 2 Star Pieces (30%), 3 Rare Candies (20%) or a Master Ball (10%).
+
+**Treasure trader:** the man in the lobby swaps 3 Star Pieces for a Master Ball, 2 Big Pearls for a PP Max, or a Nugget for 2 Rare Candies.
+
+**Nuzlocke:** Trainer Tower battles are exhibition battles. Pokémon that faint here aren't lost (they're left with 1 HP).
+
 Each trainer has six Pokémon but only uses some of them, depending on the floor. The tables below list exactly the Pokémon you'll face on each floor.
 
 ## Single battles

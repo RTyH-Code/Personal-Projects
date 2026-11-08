@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Automated playtest: milestone checks from a new game through the first gym.
+"""Automated playtest: milestone checks from a new game to the post-game.
 
 Each check builds a throwaway ROM that starts a new game at a set point (a
 warp plus a party), plays the real game scripts and battles with button
@@ -18,6 +18,12 @@ presses, then reads the save block to confirm the milestone happened:
   held_item_shop  buy Leftovers at the post-game Trainer Tower lobby shop
   peak_reward a peak Gym Leader win gives an item from the reward pool
   tower_prize the Trainer Tower prize is given again on a second clear
+  league_reward  a peak Champion win gives an item from the League reward pool
+  tower_record   a new Trainer Tower record time gives the bonus prize
+  trader      the Trainer Tower lobby trader swaps 3 Star Pieces for a Master Ball
+  nuzlocke_blackout    Nuzlocke: losing an ordinary trainer battle ends the run
+  nuzlocke_exhibition  Nuzlocke: losing to a peak trainer doesn't (exhibition battle)
+  exp_share   Party Exp. Share: the Pokemon that didn't battle levels up too
   vr_rematch  the VS Seeker in Victory Road: Naomi's rematch team (Lv. 56 Persian)
   brock       Brock's real gym script: battle won, Boulder Badge awarded
 
@@ -56,7 +62,7 @@ def const(expr, depth=0):
     return int(eval(expr, {}))
 
 
-SB1_FLAGS, SB1_VARS, SB1_ITEMS, SB1_BAG = 0x0EE0, 0x1000, 0x0310, 0x054C  # flags, vars, Items pocket, Berry Pouch
+SB1_FLAGS, SB1_VARS, SB1_ITEMS, SB1_BAG, SB1_BALLS = 0x0EE0, 0x1000, 0x0310, 0x054C, 0x0430  # flags, vars, Items, Berry Pouch, Poke Balls
 SYMS = {}
 for addr, name in re.findall(r"^\s+0x([0-9a-f]{8})\s+(g\w+)(?:\s*=\s*\.)?$", read("pokefirered.map"), re.M):
     SYMS[name] = int(addr, 16)
@@ -175,6 +181,43 @@ CHECKS = {
         body=TALK_LEFT + mash(4),
         expect=[("bag_any", ["ITEM_UP_GRADE", "ITEM_NUGGET", "ITEM_PP_UP", "ITEM_PP_MAX", "ITEM_BIG_PEARL", "ITEM_STAR_PIECE"], 1),
                 ("var", "VAR_0x402A", 0)]),
+    "league_reward": dict(
+        # The reward for a peak (round 3) Champion win.
+        scenario={"party": [["PIDGEY", 10]], "warp": VIRIDIAN,
+                  "patch": [gentleman("\tlock\n\tcall Hack_EventScript_PeakLeagueReward\n\trelease")]},
+        body=TALK_LEFT + mash(8),
+        expect=[("bag_any", ["ITEM_MASTER_BALL", "ITEM_PP_MAX", "ITEM_STAR_PIECE", "ITEM_NUGGET"], 1)]),
+    "tower_record": dict(
+        # A new Trainer Tower record time: the roof script's record check gives the bonus prize.
+        scenario={"party": [["PIDGEY", 10]], "warp": VIRIDIAN,
+                  "patch": [gentleman("\tlock\n\tsetvar VAR_0x8005, 0\n\tttower_startchallenge\n"
+                                      "\tcall TrainerTower_Roof_EventScript_CheckFinalTime")]},
+        body=TALK_LEFT + mash(10),
+        expect=[("bag_any", ["ITEM_MASTER_BALL", "ITEM_RARE_CANDY", "ITEM_STAR_PIECE", "ITEM_PP_MAX"], 1)]),
+    "trader": dict(
+        # The Trainer Tower lobby trader: 3 Star Pieces for a Master Ball.
+        scenario={"party": [["PIDGEY", 10]], "items": [["STAR_PIECE", 3]], "warp": ["MAP_TRAINER_TOWER_LOBBY", 3, 12]},
+        body=TALK_LEFT + mash(9) + "press B 6\nwait 90\npress A 6\nwait 120\n",
+        expect=[("bag_has", "ITEM_MASTER_BALL", 1), ("bag_has", "ITEM_STAR_PIECE", 0)]),
+    "nuzlocke_blackout": dict(
+        # Nuzlocke: losing an ordinary trainer battle ends the run.
+        scenario={"party": [["MAGIKARP", 5, ["SPLASH"]]], "set": ["FLAG_HACK_NUZLOCKE", "FLAG_SYS_POKEDEX_GET"], "warp": VIRIDIAN,
+                  "patch": [gentleman("\ttrainerbattle_no_intro TRAINER_LEADER_BROCK, ViridianCity_PokemonCenter_1F_Text_FeelFreeToUsePC")]},
+        body=TALK_LEFT + mash(40, 90),
+        expect=[("flag", "FLAG_HACK_NUZLOCKE", 0)]),  # the "run over" flag is cleared once its message shows
+    "nuzlocke_exhibition": dict(
+        # Nuzlocke: losing to a peak trainer (an exhibition battle) doesn't count.
+        scenario={"party": [["MAGIKARP", 5, ["SPLASH"]]], "set": ["FLAG_HACK_NUZLOCKE", "FLAG_SYS_POKEDEX_GET"], "warp": VIRIDIAN,
+                  "patch": [gentleman("\ttrainerbattle_no_intro TRAINER_PEAK_BROCK, ViridianCity_PokemonCenter_1F_Text_FeelFreeToUsePC")]},
+        body=TALK_LEFT + mash(40, 90),
+        expect=[("flag", "FLAG_HACK_NUZLOCKE", 1), ("alive", 0, 1)]),
+    "exp_share": dict(
+        # Party Exp. Share: the Pokemon that didn't battle still levels up.
+        scenario={"party": [["PIDGEOT", 40, ["WING_ATTACK"]], ["RATTATA", 5, ["TACKLE"]]],
+                  "set": ["FLAG_HACK_PARTY_EXP_SHARE"], "warp": VIRIDIAN,
+                  "patch": [gentleman("\tsetwildbattle SPECIES_RATTATA, 20\n\tdowildbattle")]},
+        body=TALK_LEFT + mash(30, 90),
+        expect=[("level_min", 1, 6), ("level", 0, 40)]),
     "vr_rematch": dict(
         # The real VS Seeker flow in Victory Road: use it, then challenge Naomi.
         scenario={"party": [["MEWTWO", 70, ["PSYCHIC"]]], "items": [["VS_SEEKER", 1]],
@@ -281,7 +324,7 @@ def run(rom, body, outdir, name):
     script = INTRO + body + f"shot {name}_end\n"
     script += f"peekp {ptr:x} {SB1_FLAGS:x} 288\npeekp {ptr:x} {SB1_VARS:x} 512\n"
     script += f"peek {SYMS['gPlayerPartyCount']:x} 1\npeek {SYMS['gPlayerParty']:x} 600\n"
-    script += f"peekp {ptr:x} {SB1_BAG:x} 172\npeekp {ptr:x} {SB1_ITEMS:x} 168\n"
+    script += f"peekp {ptr:x} {SB1_BAG:x} 172\npeekp {ptr:x} {SB1_ITEMS:x} 168\npeekp {ptr:x} {SB1_BALLS:x} 52\n"
     os.makedirs(outdir, exist_ok=True)
     path = os.path.join(outdir, name + ".txt")
     open(path, "w").write(script)
@@ -291,7 +334,8 @@ def run(rom, body, outdir, name):
         reads[addr] = bytes.fromhex(data)
     keyed = {"flags": reads.get(f"{ptr:08x}+{SB1_FLAGS:x}"), "vars": reads.get(f"{ptr:08x}+{SB1_VARS:x}"),
              "count": reads.get(f"{SYMS['gPlayerPartyCount']:08x}"), "party": reads.get(f"{SYMS['gPlayerParty']:08x}"),
-             "battle": reads.get(f"{SYMS['gBattleMons']:08x}"), "bag": (reads.get(f"{ptr:08x}+{SB1_BAG:x}") or b"") + (reads.get(f"{ptr:08x}+{SB1_ITEMS:x}") or b"")}
+             "battle": reads.get(f"{SYMS['gBattleMons']:08x}"), "bag": (reads.get(f"{ptr:08x}+{SB1_BAG:x}") or b"") + (reads.get(f"{ptr:08x}+{SB1_ITEMS:x}") or b"")
+             + (reads.get(f"{ptr:08x}+{SB1_BALLS:x}") or b"")}
     return keyed
 
 
@@ -308,6 +352,11 @@ def check(name, spec, workdir, outdir):
             got = r["vars"][2 * n] | (r["vars"][2 * n + 1] << 8)
         elif kind == "level":
             got = r["party"][100 * what + 0x54]  # struct Pokemon is 100 bytes; level at 0x54
+        elif kind == "level_min":
+            lvl = r["party"][100 * what + 0x54]
+            got = want if lvl >= want else lvl
+        elif kind == "alive":
+            got = int((r["party"][100 * what + 0x56] | (r["party"][100 * what + 0x57] << 8)) > 0)
         elif kind == "party_count":
             got = r["count"][0]
         elif kind == "tower_foes":

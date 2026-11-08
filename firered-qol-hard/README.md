@@ -388,6 +388,10 @@ Lv. 5 Pokémon 75.
   catch).
 - **Blacking out ends the run:** the Nuzlocke rules are lifted and the game
   carries on as a normal playthrough.
+- **Exhibition battles don't count:** in the Trainer Tower and against the
+  Lv. 100 peak trainers (Gym Leader rematches and Elite Four round 3),
+  Pokémon that faint aren't lost (they're left with 1 HP), and losing
+  doesn't end the run.
 
 ### Optional level caps
 Talk to the scientist in the Viridian City Pokémon Center to turn level caps on
@@ -504,6 +508,9 @@ How the cap works with each way of gaining levels:
   Restores.
 - **Gym rematch rewards:** each time you beat a Gym Leader's rematch, they
   give you a Nugget (35%), PP Up (25%), PP Max (15%) or Star Piece (25%).
+- **Elite Four round 3 reward:** each time you beat the peak Champion, the
+  League gives you a Master Ball (20%), 3 PP Max (30%), 3 Star Pieces (25%)
+  or 5 Nuggets (25%).
 
 ## Trainer Tower (Seven Island)
 Every Trainer Tower trainer now uses competitive sets, built the way real
@@ -528,6 +535,12 @@ teams are:
 - **A prize every clear:** you get a prize each time you reach the Owner, not
   just the first time. It's the floor set's usual prize (25%), PP Up (20%),
   PP Max (10%), Nugget (20%), Big Pearl (15%) or Star Piece (10%).
+- **Record bonus:** beat your best time for a challenge (your first clear
+  counts) and the Owner adds a PP Max (40%), 2 Star Pieces (30%), 3 Rare
+  Candies (20%) or a Master Ball (10%).
+- **Treasure trader:** the man in the lobby swaps treasures for items you
+  can't buy: 3 Star Pieces for a Master Ball, 2 Big Pearls for a PP Max, or
+  a Nugget for 2 Rare Candies.
 
 ## Post-game difficulty and held items
 - **Sevii Islands 4–7:** these are the islands you reach after becoming
@@ -568,9 +581,9 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `10fa5515601d73c782bbdbfef79356e7af15dd4b`
+Patched ROM SHA-1: `e899f430db5fa8401cfb3bedb90523dea53d6a3f`
 
-Current release: **17**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
+Current release: **18**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
 Saves made on release 7 or later carry over to this release. Older saves need a new game.
 
 ## Building from source
@@ -603,7 +616,7 @@ unmodified pret data:
 - `peak_trainers.py`: peak teams, gym rematches and the Elite Four round 3.
 - `spoiler_guide.py <dir>`: regenerates the spoiler guide from the game data.
 - `tower_sets.py <dir>`: the competitive Trainer Tower teams, from Showdown's random-battle set files (read as data).
-- `playtest/`: an automated playtest (a headless mGBA harness plus 16 milestone checks, including the Trainer Tower and its prizes).
+- `playtest/`: an automated playtest (a headless mGBA harness plus 22 milestone checks, from the first battles to the post-game rewards).
 - `gym_doubles.py`: the gym double battles and their doubles movesets.
 - `learnsets.py`: what each species can learn in this hack (used by the trainer scripts).
 - `vr_rematches.py`: the Victory Road VS Seeker rematch teams and scripts.
