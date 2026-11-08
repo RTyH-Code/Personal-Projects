@@ -555,6 +555,10 @@ teams are:
   - Trainer Pokémon evolve where their new level allows.
 - **Post-game route rematches:** VS Seeker rematch teams that unlock after
   the Champion are 1.25x stronger (about Lv. 66–86).
+- **Late-game evolutions:** every trainer Pokémon of Lv. 50 or higher has
+  evolved where its level allows (5 levels past the evolution), even if the
+  team already has one, e.g. no more Lv. 72 Mareep or Lv. 68 Magikarp.
+  Earlier trainers keep their classic unevolved Pokémon.
 - **Held items:** the Trainer Tower lobby shop on Seven Island also sells the
   held items competitive teams use: Leftovers, Choice Band, Shell Bell, Focus
   Band, Quick Claw, Scope Lens, Bright Powder, King's Rock, Lucky Egg, Metal
@@ -587,7 +591,7 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 
 Patched ROM SHA-1: `f59d7d78bdf688a4d9033188fe8edeee842c5eaf`
 
-Current release: **19**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
+Current release: **20**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
 Saves made on release 7 or later carry over to this release. Older saves need a new game.
 
 ## Building from source

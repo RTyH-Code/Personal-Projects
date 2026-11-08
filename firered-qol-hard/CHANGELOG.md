@@ -8,6 +8,30 @@ made it, so you can see exactly what changed.
 previous release keeps working. In short, saves made on **release 7 or later**
 carry over to the current release. Older saves need a new game.
 
+## Release 20 (2026-11-08)
+Pull requests: [#47](https://github.com/RTyH-Code/Personal-Projects/pull/47)
+
+- **Late-game evolutions:** 68 trainer Pokémon of Lv. 50 or higher that
+  were well past their evolution level now evolve. Examples: a Lv. 72
+  Mareep, five Lv. 68 Magikarp, Lv. 70+ Machoke. The post-game level
+  scaling had skipped an evolution when the evolved species was already on
+  the team. Trainers below Lv. 50 keep their classic unevolved Pokémon.
+- **Trainer Tower stand-ins:** hand picks replace the automatic ones that
+  broke a trainer's theme:
+  - Jen & Kira: Glaceon and Leafeon instead of two Honchkrow.
+  - Shania: Kingdra and Dewgong instead of Dodrio and Cloyster, so her
+    team is all Water types.
+  - Owen: Ampharos instead of Dodrio.
+  - Zackery: Dusknoir instead of Venusaur.
+- **Spoiler guide:**
+  - Shared rewards are listed under every place that gives them, so each
+    gym and Elite Four room shows its rematch rewards.
+  - The League rooms are spelled with apostrophes (e.g. Lorelei's Room).
+  - The Trainer Tower page shows the new stand-ins.
+- **Audit:** the data validator now flags any Lv. 50+ trainer Pokémon left
+  unevolved.
+- **Saves:** release 19 saves carry over.
+
 ## Release 19 (2026-11-08)
 Pull requests: [#46](https://github.com/RTyH-Code/Personal-Projects/pull/46)
 
