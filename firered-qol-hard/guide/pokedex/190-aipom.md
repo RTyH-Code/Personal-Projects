@@ -57,7 +57,7 @@ Height 0.8 m (2′07″) · Weight 11.5 kg (25.4 lbs)
 
 ## Where to find it
 
-- **Six Island Altering Cave**: Grass / cave Lv 20–24 (5%)
+- **Six Island Altering Cave**: Grass / cave Lv 27–32 (5%)
 - Breeding: hatches from an Egg left by a Aipom or Ambipom at the Four Island Day Care
 
 ## Moves

@@ -56,7 +56,7 @@ Height 0.5 m (1′08″) · Weight 21.5 kg (47.4 lbs)
 
 ## Where to find it
 
-- **Six Island Ruin Valley**: Grass / cave Lv 20 (1%)
+- **Six Island Ruin Valley**: Grass / cave Lv 27 (1%)
 - Breeding: hatches from an Egg left by a Baltoy or Claydol at the Four Island Day Care
 
 ## Moves

@@ -61,8 +61,8 @@ Height 0.4 m (1′04″) · Weight 6.5 kg (14.3 lbs)
 
 ## Where to find it
 
-- **Four Island Icefall Cave 1F**: Grass / cave Lv 23–29 (41%)
-- **Four Island Icefall Cave B1F**: Grass / cave Lv 23–29 (41%)
+- **Four Island Icefall Cave 1F**: Grass / cave Lv 31–39 (41%)
+- **Four Island Icefall Cave B1F**: Grass / cave Lv 31–39 (41%)
 - Breeding: hatches from an Egg left by a Swinub or Mamoswine or Piloswine at the Four Island Day Care
 
 ## Moves

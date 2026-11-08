@@ -1474,6 +1474,48 @@ def write_tower():
     open(os.path.join(OUT, "TOWER.md"), "w").write("\n".join(out))
 
 
+def write_rematches():
+    parties = parse_parties()
+    trainers, _ = parse_trainers()
+    vs = read("src/vs_seeker.c")
+    rows = re.findall(r"\{ \{([^}]*)\},\s*MAP\((MAP_\w+)\) \}", vs)
+    when = ["First battle", "With the VS Seeker", "After you reach Celadon City", "After you reach Fuchsia City",
+            "After you become Champion", "After the Sevii Islands story"]
+    by_map = {}
+    for ids, mp in rows:
+        ids = [x.strip() for x in ids.split(",")]
+        by_map.setdefault(mp, []).append(ids)
+    out = ["# VS Seeker rematches", "",
+           "Use the VS Seeker on a route and the trainers there who want a rematch raise their hands. Each "
+           "trainer's team gets stronger as you progress; the table lists every version and when it unlocks. "
+           "You can fight the newest one each time the VS Seeker recharges (100 steps).", "",
+           "**Catch-up:** until you have all eight badges, any rematch Pokémon more than 5 levels under the next "
+           "Gym Leader's strongest is raised to that level and evolves if it can, so rematches stay worth "
+           "fighting even when the listed team is lower.", "",
+           "The Victory Road rematches are listed in [Trainers](TRAINERS.md#victory-road-rematches-vs-seeker).", ""]
+    for mp in sorted(by_map, key=map_order):
+        if "VICTORY_ROAD" in mp:
+            continue
+        out += [f"## {map_name(mp)}", "", "| Trainer | When | Pokémon |", "|---|---|---|"]
+        for ids in by_map[mp]:
+            first = ids[0]
+            if first not in trainers:
+                continue
+            name = trainer_title(trainers[first]) + (" *(double)*" if trainers[first]["double"] else "")
+            seen = set()
+            for k, t in enumerate(ids):
+                if k > 0 and t == first and len(ids) == 2:
+                    out.append(f"| | {when[1]} | Same team as the first battle |")
+                    continue
+                if t == "SKIP" or t not in trainers or (k > 0 and t == first) or t in seen:
+                    continue
+                seen.add(t)
+                out.append(f"| {name if k == 0 else ''} | {when[k] if k < len(when) else f'Tier {k}'} | "
+                           f"{party_line(parties[trainers[t]['party']])} |")
+        out.append("")
+    open(os.path.join(OUT, "REMATCHES.md"), "w").write("\n".join(out))
+
+
 def write_index():
     open(os.path.join(OUT, "README.md"), "w").write("""# FireRed QoL + Hard: spoiler guide
 
@@ -1484,6 +1526,7 @@ def write_index():
 - [Trainers](TRAINERS.md): Gym Leaders, Elite Four and Champion (rounds 1–2 and peak) in full, then every other trainer by location.
 - [Pokédex](POKEDEX.md): every Pokémon (all 386, plus later evolutions added by the hack) with stat ranges, abilities, type defenses, evolutions, locations and full learnsets.
 - [Peak trainer prep](PEAK.md): every Lv. 100 peak team with real stats, what they attack with, what they're weak to, and suggested counters.
+- [VS Seeker rematches](REMATCHES.md): every route trainer's rematch teams and when each unlocks.
 - [Trainer Tower](TOWER.md): every challenge floor by floor, with each competitive set you'll face.
 - [Types and moves](TYPES.md): the type chart, moves whose physical/special category changed, and every move with its power, accuracy, PP and effect.
 - [Pokémon](POKEMON.md): gift, static and legendary Pokémon, in-game trades, changed evolutions, base stat and move changes.
@@ -1501,5 +1544,6 @@ write_pokedex()
 write_types()
 write_peak()
 write_tower()
+write_rematches()
 write_index()
 print("guide written to", OUT)

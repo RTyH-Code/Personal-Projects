@@ -57,7 +57,7 @@ Height 0.6 m (2′00″) · Weight 8.8 kg (19.4 lbs)
 
 ## Where to find it
 
-- **Six Island Altering Cave**: Grass / cave Lv 20–24 (10%)
+- **Six Island Altering Cave**: Grass / cave Lv 27–32 (10%)
 - Breeding: hatches from an Egg left by a Teddiursa or Ursaluna or Ursaring at the Four Island Day Care
 
 ## Moves

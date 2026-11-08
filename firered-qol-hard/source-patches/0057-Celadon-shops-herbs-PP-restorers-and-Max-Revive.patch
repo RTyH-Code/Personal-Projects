@@ -1,7 +1,7 @@
 From c33b18531dc6d423bee8fc91c35d33c5dcccea38 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Sun, 8 Nov 2026 04:23:23 +0000
-Subject: [PATCH 57/57] Celadon shops: herbs, PP restorers and Max Revive
+Subject: [PATCH 57/61] Celadon shops: herbs, PP restorers and Max Revive
 
 Battle consumables you could only find before:
 - Berry stand: Energy Powder and Heal Powder from the start; Energy Root,

@@ -59,7 +59,7 @@ Height 0.2 m (0′08″) · Weight 2 kg (4.4 lbs)
 
 ## Where to find it
 
-- **Six Island Ruin Valley**: Grass / cave Lv 15 (20%)
+- **Six Island Ruin Valley**: Grass / cave Lv 20 (20%)
 - Breeding: hatches from an Egg left by a Natu or Xatu at the Four Island Day Care
 
 ## Moves

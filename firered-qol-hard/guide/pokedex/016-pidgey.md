@@ -76,7 +76,7 @@ Height 0.3 m (1′00″) · Weight 1.8 kg (4.0 lbs)
 - **Route 25**: Grass / cave Lv 13 (10%)
 - **Three Island Berry Forest**: Grass / cave Lv 37 (10%)
 - **Three Island Bond Bridge**: Grass / cave Lv 33–37 (30%)
-- **Five Island Meadow**: Grass / cave Lv 44 (20%)
+- **Five Island Meadow**: Grass / cave Lv 59 (20%)
 - Breeding: hatches from an Egg left by a Pidgey or Pidgeotto or Pidgeot at the Four Island Day Care
 
 </details>

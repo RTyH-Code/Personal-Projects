@@ -58,7 +58,7 @@ Height 1 m (3′03″) · Weight 23.8 kg (52.5 lbs)
 
 ## Where to find it
 
-- **Seven Island Sevault Canyon**: Rock Smash Lv 35–50 (5%)
+- **Seven Island Sevault Canyon**: Rock Smash Lv 47–68 (5%)
 - **Cinnabar Island Pokémon Lab Experiment Room**: Gift, Lv 5
 - Breeding: hatches from an Egg left by a Lileep or Cradily at the Four Island Day Care
 

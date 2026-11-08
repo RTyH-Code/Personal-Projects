@@ -60,7 +60,7 @@ Tropius does not evolve.
 
 ## Where to find it
 
-- **Five Island Meadow**: Grass / cave Lv 41 (5%)
+- **Five Island Meadow**: Grass / cave Lv 55 (5%)
 - Breeding: hatches from an Egg left by a Tropius at the Four Island Day Care
 
 ## Moves

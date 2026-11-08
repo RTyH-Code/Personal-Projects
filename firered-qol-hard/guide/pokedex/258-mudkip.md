@@ -57,7 +57,7 @@ Height 0.4 m (1′04″) · Weight 7.6 kg (16.8 lbs)
 
 ## Where to find it
 
-- **Six Island Ruin Valley**: Grass / cave Lv 15–18 (4%)
+- **Six Island Ruin Valley**: Grass / cave Lv 20–24 (4%)
 - Breeding: hatches from an Egg left by a Mudkip or Marshtomp or Swampert at the Four Island Day Care
 
 ## Moves

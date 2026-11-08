@@ -58,7 +58,7 @@ Absol does not evolve.
 
 ## Where to find it
 
-- **Seven Island Sevault Canyon Entrance**: Grass / cave Lv 15 (10%)
+- **Seven Island Sevault Canyon Entrance**: Grass / cave Lv 20 (10%)
 - Breeding: hatches from an Egg left by a Absol at the Four Island Day Care
 
 ## Moves

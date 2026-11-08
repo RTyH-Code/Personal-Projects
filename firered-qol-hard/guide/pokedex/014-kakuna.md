@@ -58,7 +58,7 @@ Height 0.6 m (2′00″) · Weight 10 kg (22.0 lbs)
 - **Route 24**: Grass / cave Lv 8 (4%)
 - **Route 25**: Grass / cave Lv 9 (4%)
 - **Viridian Forest**: Grass / cave Lv 4–6 (10%)
-- **Six Island Pattern Bush**: Grass / cave Lv 9 (20%)
+- **Six Island Pattern Bush**: Grass / cave Lv 12 (20%)
 - Evolve [Weedle](013-weedle.md)
 
 ## Moves

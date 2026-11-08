@@ -66,7 +66,7 @@ Height 0.8 m (2′07″) · Weight 8.6 kg (19.0 lbs)
 - **Two Island Cape Brink**: Grass / cave Lv 41–44 (15%)
 - **Three Island Berry Forest**: Grass / cave Lv 40 (20%)
 - **Three Island Bond Bridge**: Grass / cave Lv 41 (10%)
-- **Six Island Water Path**: Grass / cave Lv 48 (5%)
+- **Six Island Water Path**: Grass / cave Lv 65 (5%)
 - Evolve [Oddish](043-oddish.md)
 
 ## Moves

@@ -75,7 +75,7 @@ Height 1 m (3′03″) · Weight 105 kg (231.5 lbs)
 - **Mt. Ember Summit Path 2F**: Rock Smash Lv 29–46 (5%)
 - **Rock Tunnel B1F**: Rock Smash Lv 29–46 (5%)
 - **One Island Kindle Road**: Rock Smash Lv 29–46 (5%)
-- **Seven Island Sevault Canyon**: Rock Smash Lv 30–45 (30%)
+- **Seven Island Sevault Canyon**: Rock Smash Lv 40–61 (30%)
 - Evolve [Geodude](074-geodude.md)
 
 </details>

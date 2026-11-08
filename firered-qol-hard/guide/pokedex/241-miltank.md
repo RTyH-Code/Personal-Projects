@@ -61,7 +61,7 @@ Miltank does not evolve.
 
 ## Where to find it
 
-- **Five Island Meadow**: Grass / cave Lv 15 (5%)
+- **Five Island Meadow**: Grass / cave Lv 20 (5%)
 - Breeding: hatches from an Egg left by a Miltank at the Four Island Day Care
 
 ## Moves

@@ -1,0 +1,221 @@
+From 4dccfaf2297e86e3761bab5cbe11d07e59a39216 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 8 Nov 2026 19:40:05 +0000
+Subject: [PATCH 58/61] Playtest: Trainer Tower floors and more checkpoints
+
+New checks: the Trainer Tower's single, double and knockout floors (the
+foes mid-battle must be real species from that floor, at the player's
+level), Misty's and Lt. Surge's gyms, buying at the berry stand and the
+post-game held-item shop, and a Victory Road VS Seeker rematch.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ tools/hack/playtest/playtest.py | 135 +++++++++++++++++++++++++++++---
+ 1 file changed, 125 insertions(+), 10 deletions(-)
+
+diff --git a/tools/hack/playtest/playtest.py b/tools/hack/playtest/playtest.py
+index 257e2c1..88ed84c 100644
+--- a/tools/hack/playtest/playtest.py
++++ b/tools/hack/playtest/playtest.py
+@@ -10,6 +10,12 @@ presses, then reads the save block to confirm the milestone happened:
+   trainer     a Viridian Forest trainer battle is won and recorded
+   nuzlocke    Nuzlocke: the first catch in an area works, the second is refused
+   gym_double  a gym double battle (Psychic Johan) is won
++  tower_*     Trainer Tower 1F in the Single, Double and Knockout challenges:
++              the battle starts and the foes are that floor's Pokemon
++  misty, surge  their real gym scripts: battle won, badge awarded
++  berry_shop  buy a Cheri Berry at the Celadon 2F berry stand (it lands in the Berry Pouch)
++  held_item_shop  buy Leftovers at the post-game Trainer Tower lobby shop
++  vr_rematch  the VS Seeker in Victory Road: Naomi's rematch team (Lv. 56 Persian)
+   brock       Brock's real gym script: battle won, Boulder Badge awarded
+ 
+ A check fails if its state isn't reached, which also catches crashes and
+@@ -47,7 +53,7 @@ def const(expr, depth=0):
+     return int(eval(expr, {}))
+ 
+ 
+-SB1_FLAGS, SB1_VARS = 0x0EE0, 0x1000
++SB1_FLAGS, SB1_VARS, SB1_ITEMS, SB1_BAG = 0x0EE0, 0x1000, 0x0310, 0x054C  # flags, vars, Items pocket, Berry Pouch
+ SYMS = {}
+ for addr, name in re.findall(r"^\s+0x([0-9a-f]{8})\s+(g\w+)(?:\s*=\s*\.)?$", read("pokefirered.map"), re.M):
+     SYMS[name] = int(addr, 16)
+@@ -106,6 +112,60 @@ CHECKS = {
+                                       "ViridianCity_PokemonCenter_1F_Text_FeelFreeToUsePC, Hack_Text_GymDoubleNotEnough")]},
+         body=TALK_LEFT + mash(80, 90),
+         expect=[("flag", "TRAINER_FLAGS_START + TRAINER_PSYCHIC_JOHAN", 1)]),
++    # Trainer Tower: the challenge is started in the scenario setup, then the
++    # player steps onto the floor's battle trigger on 1F. Mid-battle, the foes
++    # must be real species from that floor's data, at the player's level.
++    "tower_single": dict(
++        scenario={"party": [["MEWTWO", 100, ["PSYCHIC"]]] * 3, "tower": 0,
++                  "warp": ["MAP_TRAINER_TOWER_1F", 10, 14]},
++        body="wait 120\npress U 12\nwait 300\n" + mash(12, 90) + "BATTLE_PEEK\n" + mash(60, 90),
++        expect=[("tower_foes", 0, 1)]),
++    "tower_double": dict(
++        scenario={"party": [["MEWTWO", 100, ["PSYCHIC"]]] * 4, "tower": 1,
++                  "warp": ["MAP_TRAINER_TOWER_1F", 9, 14]},
++        body="wait 120\npress U 12\nwait 300\n" + mash(12, 90) + "BATTLE_PEEK\n" + mash(60, 90),
++        expect=[("tower_foes", 1, 2)]),
++    "tower_knockout": dict(
++        scenario={"party": [["MEWTWO", 100, ["PSYCHIC"]]] * 3, "tower": 2,
++                  "warp": ["MAP_TRAINER_TOWER_1F", 10, 14]},
++        body="wait 120\npress U 12\nwait 300\n" + mash(12, 90) + "BATTLE_PEEK\n" + mash(60, 90),
++        expect=[("tower_foes", 2, 1)]),
++    "misty": dict(
++        scenario={"party": [["VENUSAUR", 40, ["GIGA_DRAIN"]]] * 2,
++                  "set": ["FLAG_SYS_POKEDEX_GET", "FLAG_BADGE01_GET", "TRAINER_FLAGS_START + TRAINER_SWIMMER_MALE_LUIS",
++                          "TRAINER_FLAGS_START + TRAINER_PICNICKER_DIANA"],
++                  "warp": ["MAP_CERULEAN_CITY_GYM", 8, 7]},
++        body="wait 120\npress U 2\nwait 30\npress A 6\nwait 200\n" + mash(90, 90),
++        expect=[("flag", "FLAG_BADGE02_GET", 1)]),
++    "surge": dict(
++        scenario={"party": [["GOLEM", 45, ["EARTHQUAKE"]]] * 2,
++                  "set": ["FLAG_SYS_POKEDEX_GET", "FLAG_BADGE01_GET", "FLAG_BADGE02_GET"],
++                  "warp": ["MAP_VERMILION_CITY_GYM", 5, 3]},
++        body="wait 120\npress U 2\nwait 30\npress A 6\nwait 200\n" + mash(90, 90),
++        expect=[("flag", "FLAG_BADGE03_GET", 1)]),
++    "berry_shop": dict(
++        # Celadon 2F berry stand: Buy -> Cheri Berry -> x1 -> yes.
++        scenario={"party": [["PIDGEY", 10]], "warp": ["MAP_CELADON_CITY_DEPARTMENT_STORE_2F", 3, 7]},
++        body=("wait 150\npress L 2\nwait 30\npress A 6\nwait 120\npress A 6\nwait 120\npress A 6\nwait 60\n"
++              "press A 6\nwait 60\npress A 6\nwait 90\npress A 6\nwait 90\npress B 6\nwait 60\npress B 6\nwait 90\n" + mash(3)),
++        expect=[("bag_has", "ITEM_CHERI_BERRY", 1)]),
++    "held_item_shop": dict(
++        # Trainer Tower lobby shop (post-game): buy Leftovers, the first held item after the 9 consumables.
++        scenario={"party": [["PIDGEY", 10]], "warp": ["MAP_TRAINER_TOWER_LOBBY", 14, 10],
++                  "patch": [["src/new_game.c", "(void)slot;", "(void)slot; SetMoney(&gSaveBlock1Ptr->money, 50000);"]]},
++        body=("wait 150\npress U 2\nwait 30\npress A 6\nwait 120\npress A 6\nwait 120\n" + "press D 6\nwait 10\n" * 9 +
++              "press A 6\nwait 60\npress A 6\nwait 60\npress A 6\nwait 90\npress A 6\nwait 90\npress B 6\nwait 60\npress B 6\nwait 90\n" + mash(3)),
++        expect=[("bag_has", "ITEM_LEFTOVERS", 1)]),
++    "vr_rematch": dict(
++        # The real VS Seeker flow in Victory Road: use it, then challenge Naomi.
++        scenario={"party": [["MEWTWO", 70, ["PSYCHIC"]]], "items": [["VS_SEEKER", 1]],
++                  "set": ["FLAG_GOT_VS_SEEKER", "FLAG_SYS_POKEDEX_GET", "TRAINER_FLAGS_START + TRAINER_COOLTRAINER_NAOMI"],
++                  "warp": ["MAP_VICTORY_ROAD_1F", 14, 8],
++                  "patch": [["src/new_game.c", "(void)slot;", "(void)slot; gSaveBlock1Ptr->trainerRematchStepCounter = 100;"]]},
++        body=("wait 150\npress S 6\nwait 40\npress D 6\nwait 10\npress D 6\nwait 10\npress A 6\nwait 150\n"
++              "press R 6\nwait 40\npress A 6\nwait 40\npress A 6\nwait 400\npress A 6\nwait 120\n"
++              "press U 6\nwait 30\npress U 12\nwait 60\npress A 6\nwait 150\n" + mash(6, 120) + "BATTLE_PEEK\n" + mash(10)),
++        expect=[("foe", "SPECIES_PERSIAN", 56)]),
+     "brock": dict(
+         scenario={"party": [["BLASTOISE", 36, ["SURF"]]], "set": ["FLAG_SYS_POKEDEX_GET"],
+                   "warp": ["MAP_PEWTER_CITY_GYM", 6, 6]},
+@@ -131,6 +191,9 @@ def build(name, cfg, workdir):
+         code.append(f"        AddBagItem(ITEM_{it}, {n});")
+     code.append("        FlagSet(FLAG_SYS_POKEMON_GET);")
+     code += [f"        FlagSet({f});" for f in cfg.get("set", [])]
++    if "tower" in cfg:
++        code.append(f"        gSpecialVar_0x8005 = {cfg['tower']}; gSpecialVar_0x8004 = TRAINER_TOWER_FUNC_START_CHALLENGE; "
++                    "CallTrainerTowerFunc(); VarSet(VAR_MAP_SCENE_TRAINER_TOWER, 1);")
+     m, x, y = cfg["warp"]
+     code.append(f"        SetWarpDestination(MAP_GROUP({m}), MAP_NUM({m}), -1, {x}, {y}); WarpIntoMap();")
+     code += ["        (void)slot;", "    }"]
+@@ -145,7 +208,8 @@ def build(name, cfg, workdir):
+         s = open(p).read()
+         s = s.replace('#include "overworld.h"', '#include "overworld.h"\n#include "script_pokemon_util.h"\n#include "pokemon.h"\n'
+                       '#include "constants/items.h"\n#include "constants/moves.h"\n#include "constants/opponents.h"\n'
+-                      '#include "constants/flags.h"\n#include "constants/vars.h"', 1)
++                      '#include "constants/flags.h"\n#include "constants/vars.h"\n#include "constants/trainer_tower.h"\n'
++                      'void CallTrainerTowerFunc(void);', 1)
+         s = s.replace("    ResetTrainerTowerResults();\n}", "    ResetTrainerTowerResults();\n" + "\n".join(code) + "\n}", 1)
+         open(p, "w").write(s)
+         for f, old, new in cfg.get("patch", []):
+@@ -162,35 +226,86 @@ def build(name, cfg, workdir):
+     return rom
+ 
+ 
++ITEMS = {n: int(v) for n, v in re.findall(r"#define (ITEM_\w+)\s+(\d+)\n", read("include/constants/items.h"))}
++for n, v in re.findall(r"#define (ITEM_\w+)\s+(ITEM_\w+)", read("include/constants/items.h")):
++    if v in ITEMS:
++        ITEMS[n] = ITEMS[v]
++
++
++def species_id(name, depth=0):
++    v = dict(re.findall(r"#define (SPECIES_\w+)\s+([^/\n]+)", read("include/constants/species.h")))[name].strip()
++    return int(v, 0) if re.fullmatch(r"(0x[0-9A-Fa-f]+|\d+)", v) else species_id(v, depth + 1)
++
++
++def tower_floor1_species(mode):
++    """Species in the first floor of a Trainer Tower challenge (all its trainers)."""
++    text = read("src/trainer_tower_sets.c")
++    table = text[text.rindex("[CHALLENGE_TYPE_SINGLE] = {"):]
++    names = re.findall(r"&(\w+)", re.findall(r"\[CHALLENGE_TYPE_\w+\] = \{(.*?)\}", table, re.S)[mode])
++    body = re.search(r"static const struct TrainerTowerFloor %s = \{(.*?)\n\};" % names[0], text, re.S).group(1)
++    species = read("include/constants/species.h")
++    ids = {}
++    for n, v in re.findall(r"#define (SPECIES_\w+)\s+([^/\n]+)", species):
++        ids[n] = v.strip()
++
++    def num(n, d=0):
++        v = ids[n]
++        return int(v, 0) if re.fullmatch(r"(0x[0-9A-Fa-f]+|\d+)", v) else num(v, d + 1)
++    return {num(sp) for sp in re.findall(r"\.species = (SPECIES_\w+)", body)}
++
++
+ def run(rom, body, outdir, name):
++    """Run the scenario. Returns a dict of reads: flags, vars, count, party,
++    and battle (gBattleMons, if the body asked for it with BATTLE_PEEK)."""
+     ptr = SYMS["gSaveBlock1Ptr"]
++    body = body.replace("BATTLE_PEEK", f"peek {SYMS['gBattleMons']:x} {4 * 0x58}")
+     script = INTRO + body + f"shot {name}_end\n"
+     script += f"peekp {ptr:x} {SB1_FLAGS:x} 288\npeekp {ptr:x} {SB1_VARS:x} 512\n"
+     script += f"peek {SYMS['gPlayerPartyCount']:x} 1\npeek {SYMS['gPlayerParty']:x} 600\n"
++    script += f"peekp {ptr:x} {SB1_BAG:x} 172\npeekp {ptr:x} {SB1_ITEMS:x} 168\n"
+     os.makedirs(outdir, exist_ok=True)
+     path = os.path.join(outdir, name + ".txt")
+     open(path, "w").write(script)
+     out = subprocess.run([HARNESS, rom, path], cwd=outdir, capture_output=True, text=True, timeout=1200).stdout
+-    peeks = re.findall(r"^PEEKP? \S+ ([0-9a-f]*)$", out, re.M)
+-    flags, vars_, count, party = (bytes.fromhex(p) for p in peeks)
+-    return flags, vars_, count[0], party
++    reads = {}
++    for addr, data in re.findall(r"^PEEKP? (\S+) ([0-9a-f]*)$", out, re.M):
++        reads[addr] = bytes.fromhex(data)
++    keyed = {"flags": reads.get(f"{ptr:08x}+{SB1_FLAGS:x}"), "vars": reads.get(f"{ptr:08x}+{SB1_VARS:x}"),
++             "count": reads.get(f"{SYMS['gPlayerPartyCount']:08x}"), "party": reads.get(f"{SYMS['gPlayerParty']:08x}"),
++             "battle": reads.get(f"{SYMS['gBattleMons']:08x}"), "bag": (reads.get(f"{ptr:08x}+{SB1_BAG:x}") or b"") + (reads.get(f"{ptr:08x}+{SB1_ITEMS:x}") or b"")}
++    return keyed
+ 
+ 
+ def check(name, spec, workdir, outdir):
+     rom = build(name, spec["scenario"], workdir)
+-    flags, vars_, count, party = run(rom, spec["body"], outdir, name)
++    r = run(rom, spec["body"], outdir, name)
+     fails = []
+     for kind, what, want in spec["expect"]:
+         if kind == "flag":
+             n = const(what) if not what.isdigit() else int(what)
+-            got = (flags[n // 8] >> (n % 8)) & 1
++            got = (r["flags"][n // 8] >> (n % 8)) & 1
+         elif kind == "var":
+             n = const(what) - 0x4000
+-            got = vars_[2 * n] | (vars_[2 * n + 1] << 8)
++            got = r["vars"][2 * n] | (r["vars"][2 * n + 1] << 8)
+         elif kind == "level":
+-            got = party[100 * what + 0x54]  # struct Pokemon is 100 bytes; level at 0x54
++            got = r["party"][100 * what + 0x54]  # struct Pokemon is 100 bytes; level at 0x54
+         elif kind == "party_count":
+-            got = count
++            got = r["count"][0]
++        elif kind == "tower_foes":
++            # what = challenge type; want = number of opposing battlers. Each must be a
++            # species from that challenge's first floor, at the player's top level (100).
++            b = r["battle"] or bytes(4 * 0x58)
++            allowed = tower_floor1_species(what)
++            foes = [b[0x58 * i] | (b[0x58 * i + 1] << 8) for i in (1, 3)[:want]]
++            levels = [b[0x58 * i + 0x2A] for i in (1, 3)[:want]]
++            got = want if all(f in allowed for f in foes) and all(l == 100 for l in levels) else f"species {foes} levels {levels}"
++        elif kind == "bag_has":
++            item = const(what) if what in DEFS else ITEMS[what]
++            got = int(any(r["bag"][i] | (r["bag"][i + 1] << 8) == item for i in range(0, len(r["bag"]), 4)))
++        elif kind == "foe":
++            b = r["battle"] or bytes(4 * 0x58)
++            got = (b[0x58] | (b[0x59] << 8), b[0x58 + 0x2A])
++            want = (species_id(what), want)
+         if got != want:
+             fails.append(f"{kind} {what}: expected {want}, got {got}")
+     return fails
+-- 
+2.43.0
+

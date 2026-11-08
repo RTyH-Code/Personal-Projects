@@ -8,6 +8,26 @@ made it, so you can see exactly what changed.
 previous release keeps working. In short, saves made on **release 7 or later**
 carry over to the current release. Older saves need a new game.
 
+## Release 16 (2026-11-08)
+Pull requests: [#43](https://github.com/RTyH-Code/Personal-Projects/pull/43)
+
+- **Post-game difficulty:**
+  - Sevii Islands 4–7 trainers and their rematches are 1.3x (about
+    Lv. 57–82), and their wild Pokémon are 1.35x.
+  - Post-Champion route rematches are 1.25x (about Lv. 66–86).
+  - Trainer Pokémon evolve where their new level allows.
+  - This closes the gap between the first Champion and the round 2 Elite
+    Four.
+- **Held items:** the post-game Trainer Tower lobby shop sells Leftovers,
+  Choice Band, Shell Bell, Focus Band, Quick Claw, Scope Lens, Bright Powder,
+  King's Rock, Lucky Egg, Metal Coat, Silk Scarf and every type booster.
+- **Spoiler guide:** a new VS Seeker rematches page (REMATCHES.md) lists every
+  route trainer's rematch teams and when each unlocks.
+- **Automated playtest:** now 14 checks. They cover the Trainer Tower's
+  single, double and knockout floors, Misty's and Lt. Surge's gyms, both new
+  shops and a Victory Road rematch.
+- **Saves:** release 15 saves carry over.
+
 ## Release 15 (2026-11-08)
 Pull requests: [#42](https://github.com/RTyH-Code/Personal-Projects/pull/42)
 

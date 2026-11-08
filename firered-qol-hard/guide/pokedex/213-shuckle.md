@@ -57,7 +57,7 @@ Shuckle does not evolve.
 
 ## Where to find it
 
-- **Six Island Altering Cave**: Grass / cave Lv 20–24 (5%)
+- **Six Island Altering Cave**: Grass / cave Lv 27–32 (5%)
 - Breeding: hatches from an Egg left by a Shuckle at the Four Island Day Care
 
 ## Moves

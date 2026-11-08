@@ -64,7 +64,7 @@ Height 1.1 m (3′07″) · Weight 30 kg (66.1 lbs)
 - **Route 15**: Grass / cave Lv 33 (5%)
 - **Three Island Berry Forest**: Grass / cave Lv 43 (20%)
 - **Three Island Bond Bridge**: Grass / cave Lv 39–46 (15%)
-- **Five Island Meadow**: Grass / cave Lv 48–50 (15%)
+- **Five Island Meadow**: Grass / cave Lv 65–68 (15%)
 - Evolve [Pidgey](016-pidgey.md)
 
 ## Moves

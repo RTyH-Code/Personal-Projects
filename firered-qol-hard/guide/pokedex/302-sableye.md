@@ -58,8 +58,8 @@ Sableye does not evolve.
 
 ## Where to find it
 
-- **Five Island Lost Cave Room 1**: Grass / cave Lv 48 (5%)
-- **Five Island Lost Cave Room 5**: Grass / cave Lv 48 (5%)
+- **Five Island Lost Cave Room 1**: Grass / cave Lv 65 (5%)
+- **Five Island Lost Cave Room 5**: Grass / cave Lv 65 (5%)
 - Breeding: hatches from an Egg left by a Sableye at the Four Island Day Care
 
 ## Moves

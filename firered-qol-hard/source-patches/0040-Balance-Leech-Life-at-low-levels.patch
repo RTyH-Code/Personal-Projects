@@ -1,7 +1,7 @@
 From 4e0b3f67db91482c893fd6b3fd5c9be52ea5799d Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Thu, 5 Nov 2026 21:49:42 +0000
-Subject: [PATCH 40/57] Balance: Leech Life at low levels
+Subject: [PATCH 40/61] Balance: Leech Life at low levels
 
 Leech Life is 80 power now: a Rocket Grunt's Lv. 20 Zubat use Absorb
 instead of their FireRed custom Leech Life, and (as in Gen 9) it's no

@@ -73,9 +73,9 @@ Height 0.3 m (1′00″) · Weight 2 kg (4.4 lbs)
 - **One Island Kindle Road**: Grass / cave Lv 37 (20%)
 - **One Island Treasure Beach**: Grass / cave Lv 36–37 (30%)
 - **Two Island Cape Brink**: Grass / cave Lv 36 (20%)
-- **Six Island Ruin Valley**: Grass / cave Lv 44 (20%)
-- **Six Island Water Path**: Grass / cave Lv 44 (20%)
-- **Seven Island Sevault Canyon Entrance**: Grass / cave Lv 44 (20%)
+- **Six Island Ruin Valley**: Grass / cave Lv 59 (20%)
+- **Six Island Water Path**: Grass / cave Lv 59 (20%)
+- **Seven Island Sevault Canyon Entrance**: Grass / cave Lv 59 (20%)
 - Breeding: hatches from an Egg left by a Spearow or Fearow at the Four Island Day Care
 
 </details>

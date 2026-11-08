@@ -57,7 +57,7 @@ Height 0.4 m (1′04″) · Weight 1.2 kg (2.6 lbs)
 
 ## Where to find it
 
-- **Five Island Memorial Pillar**: Grass / cave Lv 16 (5%)
+- **Five Island Memorial Pillar**: Grass / cave Lv 22 (5%)
 - Breeding: hatches from an Egg left by a Swablu or Altaria at the Four Island Day Care
 
 ## Moves

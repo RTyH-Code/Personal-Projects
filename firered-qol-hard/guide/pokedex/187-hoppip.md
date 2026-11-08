@@ -61,11 +61,11 @@ Height 0.4 m (1′04″) · Weight 0.5 kg (1.1 lbs)
 
 ## Where to find it
 
-- **Five Island**: Surfing Lv 5–15 (30%)
-- **Five Island Meadow**: Grass / cave Lv 10 (10%); Surfing Lv 5–15 (30%)
-- **Five Island Memorial Pillar**: Grass / cave Lv 6–14 (95%); Surfing Lv 5–15 (30%)
-- **Five Island Resort Gorgeous**: Surfing Lv 5–15 (30%)
-- **Five Island Water Labyrinth**: Surfing Lv 5–15 (30%)
+- **Five Island**: Surfing Lv 7–20 (30%)
+- **Five Island Meadow**: Grass / cave Lv 14 (10%); Surfing Lv 7–20 (30%)
+- **Five Island Memorial Pillar**: Grass / cave Lv 8–19 (95%); Surfing Lv 7–20 (30%)
+- **Five Island Resort Gorgeous**: Surfing Lv 7–20 (30%)
+- **Five Island Water Labyrinth**: Surfing Lv 7–20 (30%)
 - Breeding: hatches from an Egg left by a Hoppip or Skiploom or Jumpluff at the Four Island Day Care
 
 ## Moves

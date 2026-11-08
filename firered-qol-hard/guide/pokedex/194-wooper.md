@@ -60,9 +60,9 @@ Height 0.4 m (1′04″) · Weight 8.5 kg (18.7 lbs)
 
 ## Where to find it
 
-- **Four Island**: Surfing Lv 5–25 (70%)
-- **Four Island Icefall Cave Entrance**: Surfing Lv 5–15 (5%)
-- **Six Island Ruin Valley**: Grass / cave Lv 15 (10%); Surfing Lv 5–25 (100%)
+- **Four Island**: Surfing Lv 7–34 (70%)
+- **Four Island Icefall Cave Entrance**: Surfing Lv 7–20 (5%)
+- **Six Island Ruin Valley**: Grass / cave Lv 20 (10%); Surfing Lv 7–34 (100%)
 - Breeding: hatches from an Egg left by a Wooper or Quagsire at the Four Island Day Care
 
 ## Moves

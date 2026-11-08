@@ -62,7 +62,7 @@ Height 0.8 m (2′07″) · Weight 15 kg (33.1 lbs)
 
 - **Pokémon Tower 4F**: Grass / cave Lv 20 (4%)
 - **Pokémon Tower 6F**: Grass / cave Lv 17 (10%)
-- **Five Island Lost Cave Room 10**: Grass / cave Lv 48 (5%)
+- **Five Island Lost Cave Room 10**: Grass / cave Lv 65 (5%)
 - Breeding: hatches from an Egg left by a Duskull or Dusknoir or Dusclops at the Four Island Day Care
 
 ## Moves

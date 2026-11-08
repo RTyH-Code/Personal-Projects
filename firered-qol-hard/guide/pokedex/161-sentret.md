@@ -57,9 +57,9 @@ Height 0.8 m (2′07″) · Weight 6 kg (13.2 lbs)
 
 ## Where to find it
 
-- **Five Island Meadow**: Grass / cave Lv 10 (20%)
-- **Six Island Water Path**: Grass / cave Lv 10–15 (30%)
-- **Seven Island Sevault Canyon Entrance**: Grass / cave Lv 10 (20%)
+- **Five Island Meadow**: Grass / cave Lv 14 (20%)
+- **Six Island Water Path**: Grass / cave Lv 14–20 (30%)
+- **Seven Island Sevault Canyon Entrance**: Grass / cave Lv 14 (20%)
 - Breeding: hatches from an Egg left by a Sentret or Furret at the Four Island Day Care
 
 ## Moves

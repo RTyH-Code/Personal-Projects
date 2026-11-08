@@ -57,7 +57,7 @@ Height 0.9 m (2′11″) · Weight 6.4 kg (14.1 lbs)
 
 ## Where to find it
 
-- **Five Island Meadow**: Grass / cave Lv 15–18 (10%)
+- **Five Island Meadow**: Grass / cave Lv 20–24 (10%)
 - Breeding: hatches from an Egg left by a Chikorita or Bayleef or Meganium at the Four Island Day Care
 
 ## Moves

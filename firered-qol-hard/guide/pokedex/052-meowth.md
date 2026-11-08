@@ -67,11 +67,11 @@ Height 0.4 m (1′04″) · Weight 4.2 kg (9.3 lbs)
 - **One Island Treasure Beach**: Grass / cave Lv 36 (10%)
 - **Two Island Cape Brink**: Grass / cave Lv 36 (10%)
 - **Three Island Bond Bridge**: Grass / cave Lv 36 (10%)
-- **Five Island Meadow**: Grass / cave Lv 41 (10%)
-- **Six Island Ruin Valley**: Grass / cave Lv 43 (10%)
-- **Six Island Water Path**: Grass / cave Lv 41 (10%)
-- **Seven Island Sevault Canyon**: Grass / cave Lv 43 (10%)
-- **Seven Island Sevault Canyon Entrance**: Grass / cave Lv 41 (10%)
+- **Five Island Meadow**: Grass / cave Lv 55 (10%)
+- **Six Island Ruin Valley**: Grass / cave Lv 58 (10%)
+- **Six Island Water Path**: Grass / cave Lv 55 (10%)
+- **Seven Island Sevault Canyon**: Grass / cave Lv 58 (10%)
+- **Seven Island Sevault Canyon Entrance**: Grass / cave Lv 55 (10%)
 - Breeding: hatches from an Egg left by a Meowth or Persian at the Four Island Day Care
 
 </details>

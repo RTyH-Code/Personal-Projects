@@ -57,8 +57,8 @@ Height 0.5 m (1′08″) · Weight 33.5 kg (73.9 lbs)
 
 ## Where to find it
 
-- **Seven Island Sevault Canyon**: Grass / cave Lv 15 (20%)
-- **Seven Island Sevault Canyon Entrance**: Grass / cave Lv 10–15 (15%)
+- **Seven Island Sevault Canyon**: Grass / cave Lv 20 (20%)
+- **Seven Island Sevault Canyon Entrance**: Grass / cave Lv 14–20 (15%)
 - Breeding: hatches from an Egg left by a Phanpy or Donphan at the Four Island Day Care
 
 ## Moves

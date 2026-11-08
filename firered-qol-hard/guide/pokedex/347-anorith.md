@@ -56,7 +56,7 @@ Height 0.7 m (2′04″) · Weight 12.5 kg (27.6 lbs)
 
 ## Where to find it
 
-- **Seven Island Sevault Canyon**: Rock Smash Lv 30–40 (4%)
+- **Seven Island Sevault Canyon**: Rock Smash Lv 40–54 (4%)
 - **Cinnabar Island Pokémon Lab Experiment Room**: Gift, Lv 5
 - Breeding: hatches from an Egg left by a Anorith or Armaldo at the Four Island Day Care
 

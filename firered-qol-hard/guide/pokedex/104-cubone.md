@@ -65,7 +65,7 @@ Height 0.4 m (1′04″) · Weight 6.5 kg (14.3 lbs)
 - **Pokémon Tower 5F**: Grass / cave Lv 17–20 (9%)
 - **Pokémon Tower 6F**: Grass / cave Lv 20–22 (9%)
 - **Pokémon Tower 7F**: Grass / cave Lv 20–22 (10%)
-- **Seven Island Sevault Canyon**: Grass / cave Lv 46 (10%)
+- **Seven Island Sevault Canyon**: Grass / cave Lv 62 (10%)
 - Breeding: hatches from an Egg left by a Cubone or Marowak at the Four Island Day Care
 
 ## Moves

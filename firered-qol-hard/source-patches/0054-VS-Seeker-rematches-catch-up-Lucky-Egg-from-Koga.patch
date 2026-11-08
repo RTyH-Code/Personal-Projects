@@ -1,7 +1,7 @@
 From 99f8d7930e4ea0bf0a9dedf45e6c0e5badd1e22d Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Fri, 6 Nov 2026 19:06:33 +0000
-Subject: [PATCH 54/57] VS Seeker rematches catch up; Lucky Egg from Koga
+Subject: [PATCH 54/61] VS Seeker rematches catch up; Lucky Egg from Koga
 
 - Until all eight badges, a VS Seeker rematch Pokemon below 5 levels
   under the next Gym Leader's ace is raised to that level and evolves if
