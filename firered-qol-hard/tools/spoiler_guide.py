@@ -243,6 +243,8 @@ def label_location(lab, depth=0):
         return label_map[lab]
     if label_file_map.get(lab):
         return label_file_map[lab]
+    if lab.split("_EventScript_")[0] in dir_to_map:  # a shared script named after its map
+        return dir_to_map[lab.split("_EventScript_")[0]]
     if depth < 4:
         for c in sorted(callers.get(lab, ())):
             loc = label_location(c, depth + 1)

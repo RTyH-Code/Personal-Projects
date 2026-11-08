@@ -855,13 +855,13 @@ Gifts / events: HM01 Cut
 | Hidden | Pecha Berry | 14, 4 |
 | Item ball | Great Ball | 1, 10 |
 
-## Trainer Tower 2F
-
-Gifts / events: Master Ball, PP Max, Rare Candy, Star Piece
-
 ## Trainer Tower Lobby
 
 Shop: Ultra Ball (₽1200), Great Ball (₽600), Full Restore (₽3000), Max Potion (₽2500), Hyper Potion (₽1200), Revive (₽1500), Full Heal (₽600), Escape Rope (₽550), Max Repel (₽700), Leftovers (₽10000), Choice Band (₽10000), Shell Bell (₽8000), Focus Band (₽8000), Quick Claw (₽6000), Scope Lens (₽6000), Bright Powder (₽6000), King's Rock (₽3000), Lucky Egg (₽10000), Silk Scarf (₽3000), Charcoal (₽3000), Mystic Water (₽3000), Magnet (₽3000), Miracle Seed (₽3000), Never-Melt Ice (₽3000), Black Belt (₽3000), Poison Barb (₽3000), Soft Sand (₽3000), Sharp Beak (₽3000), Twisted Spoon (₽3000), Silver Powder (₽3000), Hard Stone (₽3000), Spell Tag (₽3000), Dragon Fang (₽3000), Black Glasses (₽3000), Metal Coat (₽3000)
+
+## Trainer Tower Roof
+
+Gifts / events: Master Ball, PP Max, Rare Candy, Star Piece
 
 ## Underground Path East West Tunnel
 
