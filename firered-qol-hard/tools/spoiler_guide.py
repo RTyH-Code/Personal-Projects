@@ -313,6 +313,19 @@ def write_encounters():
 
 # ---------------------------------------------------------------- items
 
+# Shops whose stock grows with progress; the label tells which list is which.
+SHOP_TIERS = {
+    "CeladonCity_DepartmentStore_4F_Items": " (before the 5th badge)",
+    "CeladonCity_DepartmentStore_4F_ItemsAll": " (from the 5th badge)",
+    "CeladonCity_DepartmentStore_2F_BerriesBasic": " (berry stand, from the start)",
+    "CeladonCity_DepartmentStore_2F_BerriesMid": " (berry stand, after Erika)",
+    "CeladonCity_DepartmentStore_2F_BerriesAll": " (berry stand, after you become Champion)",
+    "CeladonCity_DepartmentStore_5F_XItems": " (before Erika)",
+    "CeladonCity_DepartmentStore_5F_XItemsMid": " (after Erika)",
+    "CeladonCity_DepartmentStore_5F_XItemsAll": " (after you become Champion)",
+}
+
+
 def write_items():
     ball_items = {lab: (re.search(r"finditem (ITEM_\w+)(?:, (\d+))?", body)) for lab, body in label_body.items()}
     per_map = {}
@@ -342,7 +355,7 @@ def write_items():
             its = [i for i in re.findall(r"(ITEM_\w+)", m.group(1)) if i != "ITEM_NONE"]
             loc = label_location(lab) or (dir_to_map.get(f.split("/")[2]) if f.startswith("data/maps/") else None)
             if loc:
-                marts.setdefault(loc, []).append(its)
+                marts.setdefault(loc, []).append((lab, its))
 
     out = ["# Items", "",
            "Item balls, hidden items (use the Itemfinder), NPC gifts and shop stock, by location. "
@@ -363,13 +376,14 @@ def write_items():
         if k in gifts:
             out += ["Gifts / events: " + ", ".join(sorted(gifts[k])), ""]
         if k in marts:
-            for its in marts[k]:
+            for lab, its in marts[k]:
                 prices = []
                 for i in its:
                     idx = item_index(i)
                     p = items_json[idx]["price"] if idx is not None else 0
                     prices.append(f"{item(i)} (₽{p})")
-                out += ["Shop: " + ", ".join(prices), ""]
+                tag = SHOP_TIERS.get(lab, "")
+                out += [f"Shop{tag}: " + ", ".join(prices), ""]
     open(os.path.join(OUT, "ITEMS.md"), "w").write("\n".join(out))
 
 # ---------------------------------------------------------------- trainers

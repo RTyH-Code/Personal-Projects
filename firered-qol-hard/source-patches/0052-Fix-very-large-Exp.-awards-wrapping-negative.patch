@@ -1,7 +1,7 @@
 From 72b4de5a79e58b8b7a00c88106190fe7051eea95 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Fri, 6 Nov 2026 17:06:38 +0000
-Subject: [PATCH 52/55] Fix: very large Exp. awards wrapping negative
+Subject: [PATCH 52/57] Fix: very large Exp. awards wrapping negative
 
 The battle controller passes Exp. as a signed 16-bit value. With the
 modern formula, a very low-level Pokemon beating a high-level foe (with

@@ -8,6 +8,26 @@ made it, so you can see exactly what changed.
 previous release keeps working. In short, saves made on **release 7 or later**
 carry over to the current release. Older saves need a new game.
 
+## Release 15 (2026-11-08)
+Pull requests: [#42](https://github.com/RTyH-Code/Personal-Projects/pull/42)
+
+- **Berry stand:** a new clerk at the Celadon Department Store 2F counter
+  sells berries. The stock grows as you progress:
+  - From the start: the status berries, Oran and Leppa.
+  - After Erika: Sitrus, Lum and the confusion-healing berries.
+  - After you become Champion: the pinch berries, Lansat, Starf and the
+    EV-lowering berries.
+- **Berry prices** are raised from ₽20 to ₽100–5,000. Each still sells back
+  for half.
+- **Herbs at the stand:**
+  - From the start: Energy Powder and Heal Powder.
+  - After Erika: Energy Root, Revival Herb, White Herb and Mental Herb.
+- **Celadon 5F:** the X-item clerk adds Ether and Elixir after Erika, and Max
+  Ether, Max Elixir and Max Revive after the Champion.
+- **Spoiler guide:** shop lists that change with your progress are now
+  labelled.
+- **Saves:** release 14 saves carry over.
+
 ## Release 14 (2026-11-06)
 Pull requests: [#32](https://github.com/RTyH-Code/Personal-Projects/pull/32)
 

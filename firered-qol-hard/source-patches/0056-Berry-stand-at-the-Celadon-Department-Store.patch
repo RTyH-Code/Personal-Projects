@@ -1,0 +1,618 @@
+From eda6e3a0cbeb76d474a52b0e32807548ac15b541 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 8 Nov 2026 03:54:09 +0000
+Subject: [PATCH 56/57] Berry stand at the Celadon Department Store
+
+A third clerk at the 2F counter sells berries, since FireRed can't grow
+them: status berries, Oran and Leppa from the start; Sitrus, Lum and the
+confusion berries after Erika; pinch berries, Lansat, Starf and the
+EV-lowering berries after the Champion. Berry prices raised from 20.
+The spoiler guide labels badge-gated shop lists. tools/hack/berry_shop.py.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ HACK_NOTES.md                                 | 16 +++
+ .../CeladonCity_DepartmentStore_2F/map.json   | 14 +++
+ .../scripts.inc                               | 92 +++++++++++++++++
+ .../CeladonCity_DepartmentStore_2F/text.inc   |  4 +
+ include/hack_version.h                        |  2 +-
+ src/data/items.json                           | 56 +++++------
+ tools/hack/berry_shop.py                      | 98 +++++++++++++++++++
+ tools/hack/spoiler_guide.py                   | 17 +++-
+ 8 files changed, 267 insertions(+), 32 deletions(-)
+ create mode 100644 tools/hack/berry_shop.py
+
+diff --git a/HACK_NOTES.md b/HACK_NOTES.md
+index 18dab8c..32f8ab0 100644
+--- a/HACK_NOTES.md
++++ b/HACK_NOTES.md
+@@ -28,6 +28,21 @@ A quality-of-life, modernization and difficulty hack built on the pret/pokefirer
+     by smashing rocks in Sevault Canyon.
+ - Celadon Department Store 4F sells every evolution item: all stones,
+   including the Moon and Sun Stones, plus the trade items above.
++- **Berry stand:** a clerk at the Celadon Department Store 2F counter sells
++  berries, since FireRed has no berry growing. The stock grows as you
++  progress:
++
++  | When | Berries | Price |
++  |---|---|---|
++  | From the start | Cheri, Chesto, Pecha, Rawst, Aspear, Persim | ₽200 |
++  | | Oran | ₽100 |
++  | | Leppa | ₽400 |
++  | After Erika | Sitrus | ₽1,200 |
++  | | Lum | ₽1,500 |
++  | | Figy, Wiki, Mago, Aguav, Iapapa | ₽600 |
++  | After you become Champion | Liechi, Ganlon, Salac, Petaya, Apicot | ₽3,000 |
++  | | Lansat, Starf | ₽5,000 |
++  | | The EV-lowering berries (Pomeg, Kelpsy, Qualot, Hondew, Grepa, Tamato) | ₽300 |
+ - Pokémon from Johto and Hoenn can evolve before you have the National Dex.
+ - Stone evolutions keep learning moves by level-up. Modern games only give
+   them level-1 moves, so the 18 affected Pokémon now learn their
+@@ -532,6 +547,7 @@ Each script runs once against the original pret data:
+ - `gym_doubles.py`: the gym double battles (one trainer per gym) and their doubles movesets.
+ - `learnsets.py`: what each species can learn in this hack (used by the scripts that set trainer moves).
+ - `vr_rematches.py`: the Victory Road VS Seeker rematch teams and scripts.
++- `berry_shop.py`: the Celadon Department Store berry stand and berry prices.
+ - `wild_levels.py`: wild Pokémon levels 1.15x from the Erika stretch on.
+ - `exp_budget.py`: how much trainer Exp. each stretch of the game gives, and
+   where that leaves a team against each level cap.
+diff --git a/data/maps/CeladonCity_DepartmentStore_2F/map.json b/data/maps/CeladonCity_DepartmentStore_2F/map.json
+index f97e35b..7021618 100644
+--- a/data/maps/CeladonCity_DepartmentStore_2F/map.json
++++ b/data/maps/CeladonCity_DepartmentStore_2F/map.json
+@@ -70,6 +70,20 @@
+       "trainer_sight_or_berry_tree_id": "0",
+       "script": "CeladonCity_DepartmentStore_2F_EventScript_Woman",
+       "flag": "FLAG_HIDE_POSTGAME_GOSSIPERS"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_CLERK",
++      "x": 1,
++      "y": 7,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "CeladonCity_DepartmentStore_2F_EventScript_ClerkBerries",
++      "flag": "0"
+     }
+   ],
+   "warp_events": [
+diff --git a/data/maps/CeladonCity_DepartmentStore_2F/scripts.inc b/data/maps/CeladonCity_DepartmentStore_2F/scripts.inc
+index c15e291..f5c146b 100644
+--- a/data/maps/CeladonCity_DepartmentStore_2F/scripts.inc
++++ b/data/maps/CeladonCity_DepartmentStore_2F/scripts.inc
+@@ -61,3 +61,95 @@ CeladonCity_DepartmentStore_2F_TMs::
+ 	.2byte ITEM_NONE
+ 	release
+ 	end
++
++@ FireRed QoL+Hard: berry shop (tools/hack/berry_shop.py)
++CeladonCity_DepartmentStore_2F_EventScript_ClerkBerries::
++	goto_if_questlog EventScript_ReleaseEnd
++	lock
++	faceplayer
++	message CeladonCity_DepartmentStore_2F_Text_HackBerryClerk
++	waitmessage
++	goto_if_set FLAG_SYS_GAME_CLEAR, CeladonCity_DepartmentStore_2F_EventScript_ClerkBerriesAll
++	goto_if_set FLAG_BADGE04_GET, CeladonCity_DepartmentStore_2F_EventScript_ClerkBerriesMid
++	pokemart CeladonCity_DepartmentStore_2F_BerriesBasic
++	goto CeladonCity_DepartmentStore_2F_EventScript_ClerkBerriesEnd
++
++CeladonCity_DepartmentStore_2F_EventScript_ClerkBerriesMid::
++	pokemart CeladonCity_DepartmentStore_2F_BerriesMid
++	goto CeladonCity_DepartmentStore_2F_EventScript_ClerkBerriesEnd
++
++CeladonCity_DepartmentStore_2F_EventScript_ClerkBerriesAll::
++	pokemart CeladonCity_DepartmentStore_2F_BerriesAll
++CeladonCity_DepartmentStore_2F_EventScript_ClerkBerriesEnd::
++	msgbox Text_PleaseComeAgain
++	release
++	end
++
++	.align 2
++CeladonCity_DepartmentStore_2F_BerriesBasic::
++	.2byte ITEM_CHERI_BERRY
++	.2byte ITEM_CHESTO_BERRY
++	.2byte ITEM_PECHA_BERRY
++	.2byte ITEM_RAWST_BERRY
++	.2byte ITEM_ASPEAR_BERRY
++	.2byte ITEM_PERSIM_BERRY
++	.2byte ITEM_ORAN_BERRY
++	.2byte ITEM_LEPPA_BERRY
++	.2byte ITEM_NONE
++	release
++	end
++
++	.align 2
++CeladonCity_DepartmentStore_2F_BerriesMid::
++	.2byte ITEM_CHERI_BERRY
++	.2byte ITEM_CHESTO_BERRY
++	.2byte ITEM_PECHA_BERRY
++	.2byte ITEM_RAWST_BERRY
++	.2byte ITEM_ASPEAR_BERRY
++	.2byte ITEM_PERSIM_BERRY
++	.2byte ITEM_ORAN_BERRY
++	.2byte ITEM_LEPPA_BERRY
++	.2byte ITEM_SITRUS_BERRY
++	.2byte ITEM_LUM_BERRY
++	.2byte ITEM_FIGY_BERRY
++	.2byte ITEM_WIKI_BERRY
++	.2byte ITEM_MAGO_BERRY
++	.2byte ITEM_AGUAV_BERRY
++	.2byte ITEM_IAPAPA_BERRY
++	.2byte ITEM_NONE
++	release
++	end
++
++	.align 2
++CeladonCity_DepartmentStore_2F_BerriesAll::
++	.2byte ITEM_CHERI_BERRY
++	.2byte ITEM_CHESTO_BERRY
++	.2byte ITEM_PECHA_BERRY
++	.2byte ITEM_RAWST_BERRY
++	.2byte ITEM_ASPEAR_BERRY
++	.2byte ITEM_PERSIM_BERRY
++	.2byte ITEM_ORAN_BERRY
++	.2byte ITEM_LEPPA_BERRY
++	.2byte ITEM_SITRUS_BERRY
++	.2byte ITEM_LUM_BERRY
++	.2byte ITEM_FIGY_BERRY
++	.2byte ITEM_WIKI_BERRY
++	.2byte ITEM_MAGO_BERRY
++	.2byte ITEM_AGUAV_BERRY
++	.2byte ITEM_IAPAPA_BERRY
++	.2byte ITEM_LIECHI_BERRY
++	.2byte ITEM_GANLON_BERRY
++	.2byte ITEM_SALAC_BERRY
++	.2byte ITEM_PETAYA_BERRY
++	.2byte ITEM_APICOT_BERRY
++	.2byte ITEM_LANSAT_BERRY
++	.2byte ITEM_STARF_BERRY
++	.2byte ITEM_POMEG_BERRY
++	.2byte ITEM_KELPSY_BERRY
++	.2byte ITEM_QUALOT_BERRY
++	.2byte ITEM_HONDEW_BERRY
++	.2byte ITEM_GREPA_BERRY
++	.2byte ITEM_TAMATO_BERRY
++	.2byte ITEM_NONE
++	release
++	end
+diff --git a/data/maps/CeladonCity_DepartmentStore_2F/text.inc b/data/maps/CeladonCity_DepartmentStore_2F/text.inc
+index 7cfb9f9..fd71cee 100644
+--- a/data/maps/CeladonCity_DepartmentStore_2F/text.inc
++++ b/data/maps/CeladonCity_DepartmentStore_2F/text.inc
+@@ -17,3 +17,7 @@ CeladonCity_DepartmentStore_2F_Text_LanceComesToBuyCapes::
+     .string "He always buys capes.\p"
+     .string "I wonder… Does he have many\n"
+     .string "identical capes at home?$"
++
++CeladonCity_DepartmentStore_2F_Text_HackBerryClerk::
++    .string "Welcome to the BERRY STAND!\n"
++    .string "Fresh from the SEVII ISLANDS.$"
+diff --git a/include/hack_version.h b/include/hack_version.h
+index e1c43a1..b50dd8e 100644
+--- a/include/hack_version.h
++++ b/include/hack_version.h
+@@ -3,6 +3,6 @@
+ 
+ // FireRed QoL+Hard release number, shown in the Options menu. Bump it with
+ // each release (see CHANGELOG.md in the Personal-Projects repository).
+-#define HACK_RELEASE_STRING "R14"
++#define HACK_RELEASE_STRING "R15"
+ 
+ #endif // GUARD_HACK_VERSION_H
+diff --git a/src/data/items.json b/src/data/items.json
+index 172f128..ec9eb94 100644
+--- a/src/data/items.json
++++ b/src/data/items.json
+@@ -2131,7 +2131,7 @@
+     {
+       "english": "CHERI BERRY",
+       "itemId": "ITEM_CHERI_BERRY",
+-      "price": 20,
++      "price": 200,
+       "holdEffect": "HOLD_EFFECT_CURE_PAR",
+       "holdEffectParam": 0,
+       "description_english": "When held by a POKéMON, it will be\\nused in battle to heal paralysis.",
+@@ -2147,7 +2147,7 @@
+     {
+       "english": "CHESTO BERRY",
+       "itemId": "ITEM_CHESTO_BERRY",
+-      "price": 20,
++      "price": 200,
+       "holdEffect": "HOLD_EFFECT_CURE_SLP",
+       "holdEffectParam": 0,
+       "description_english": "When held by a POKéMON, it will be\\nused in battle to wake up.",
+@@ -2163,7 +2163,7 @@
+     {
+       "english": "PECHA BERRY",
+       "itemId": "ITEM_PECHA_BERRY",
+-      "price": 20,
++      "price": 200,
+       "holdEffect": "HOLD_EFFECT_CURE_PSN",
+       "holdEffectParam": 0,
+       "description_english": "When held by a POKéMON, it will be\\nused in battle to cure poison.",
+@@ -2179,7 +2179,7 @@
+     {
+       "english": "RAWST BERRY",
+       "itemId": "ITEM_RAWST_BERRY",
+-      "price": 20,
++      "price": 200,
+       "holdEffect": "HOLD_EFFECT_CURE_BRN",
+       "holdEffectParam": 0,
+       "description_english": "When held by a POKéMON, it will be\\nused in battle to heal a burn.",
+@@ -2195,7 +2195,7 @@
+     {
+       "english": "ASPEAR BERRY",
+       "itemId": "ITEM_ASPEAR_BERRY",
+-      "price": 20,
++      "price": 200,
+       "holdEffect": "HOLD_EFFECT_CURE_FRZ",
+       "holdEffectParam": 0,
+       "description_english": "When held by a POKéMON, it will be\\nused in battle for defrosting.",
+@@ -2211,7 +2211,7 @@
+     {
+       "english": "LEPPA BERRY",
+       "itemId": "ITEM_LEPPA_BERRY",
+-      "price": 20,
++      "price": 400,
+       "holdEffect": "HOLD_EFFECT_RESTORE_PP",
+       "holdEffectParam": 10,
+       "description_english": "When held by a POKéMON, it will be\\nused in battle to restore 10 PP.",
+@@ -2227,7 +2227,7 @@
+     {
+       "english": "ORAN BERRY",
+       "itemId": "ITEM_ORAN_BERRY",
+-      "price": 20,
++      "price": 100,
+       "holdEffect": "HOLD_EFFECT_RESTORE_HP",
+       "holdEffectParam": 10,
+       "description_english": "When held by a POKéMON, it will be\\nused in battle to restore 10 HP.",
+@@ -2243,7 +2243,7 @@
+     {
+       "english": "PERSIM BERRY",
+       "itemId": "ITEM_PERSIM_BERRY",
+-      "price": 20,
++      "price": 200,
+       "holdEffect": "HOLD_EFFECT_CURE_CONFUSION",
+       "holdEffectParam": 0,
+       "description_english": "When held by a POKéMON, it will be\\nused in battle to lift confusion.",
+@@ -2259,7 +2259,7 @@
+     {
+       "english": "LUM BERRY",
+       "itemId": "ITEM_LUM_BERRY",
+-      "price": 20,
++      "price": 1500,
+       "holdEffect": "HOLD_EFFECT_CURE_STATUS",
+       "holdEffectParam": 0,
+       "description_english": "When held by a POKéMON, it will be\\nused in battle to heal any problem.",
+@@ -2275,7 +2275,7 @@
+     {
+       "english": "SITRUS BERRY",
+       "itemId": "ITEM_SITRUS_BERRY",
+-      "price": 20,
++      "price": 1200,
+       "holdEffect": "HOLD_EFFECT_RESTORE_HP",
+       "holdEffectParam": 30,
+       "description_english": "When held by a POKéMON, it will be\\nused in battle to restore 30 HP.",
+@@ -2291,7 +2291,7 @@
+     {
+       "english": "FIGY BERRY",
+       "itemId": "ITEM_FIGY_BERRY",
+-      "price": 20,
++      "price": 600,
+       "holdEffect": "HOLD_EFFECT_CONFUSE_SPICY",
+       "holdEffectParam": 8,
+       "description_english": "A hold item that restores HP but\\nmay cause confusion when used.",
+@@ -2307,7 +2307,7 @@
+     {
+       "english": "WIKI BERRY",
+       "itemId": "ITEM_WIKI_BERRY",
+-      "price": 20,
++      "price": 600,
+       "holdEffect": "HOLD_EFFECT_CONFUSE_DRY",
+       "holdEffectParam": 8,
+       "description_english": "A hold item that restores HP but\\nmay cause confusion when used.",
+@@ -2323,7 +2323,7 @@
+     {
+       "english": "MAGO BERRY",
+       "itemId": "ITEM_MAGO_BERRY",
+-      "price": 20,
++      "price": 600,
+       "holdEffect": "HOLD_EFFECT_CONFUSE_SWEET",
+       "holdEffectParam": 8,
+       "description_english": "A hold item that restores HP but\\nmay cause confusion when used.",
+@@ -2339,7 +2339,7 @@
+     {
+       "english": "AGUAV BERRY",
+       "itemId": "ITEM_AGUAV_BERRY",
+-      "price": 20,
++      "price": 600,
+       "holdEffect": "HOLD_EFFECT_CONFUSE_BITTER",
+       "holdEffectParam": 8,
+       "description_english": "A hold item that restores HP but\\nmay cause confusion when used.",
+@@ -2355,7 +2355,7 @@
+     {
+       "english": "IAPAPA BERRY",
+       "itemId": "ITEM_IAPAPA_BERRY",
+-      "price": 20,
++      "price": 600,
+       "holdEffect": "HOLD_EFFECT_CONFUSE_SOUR",
+       "holdEffectParam": 8,
+       "description_english": "A hold item that restores HP but\\nmay cause confusion when used.",
+@@ -2451,7 +2451,7 @@
+     {
+       "english": "POMEG BERRY",
+       "itemId": "ITEM_POMEG_BERRY",
+-      "price": 20,
++      "price": 300,
+       "holdEffect": "HOLD_EFFECT_NONE",
+       "holdEffectParam": 0,
+       "description_english": "Can be ground up into a powder as\\nan ingredient for medicine.",
+@@ -2467,7 +2467,7 @@
+     {
+       "english": "KELPSY BERRY",
+       "itemId": "ITEM_KELPSY_BERRY",
+-      "price": 20,
++      "price": 300,
+       "holdEffect": "HOLD_EFFECT_NONE",
+       "holdEffectParam": 0,
+       "description_english": "Can be ground up into a powder as\\nan ingredient for medicine.",
+@@ -2483,7 +2483,7 @@
+     {
+       "english": "QUALOT BERRY",
+       "itemId": "ITEM_QUALOT_BERRY",
+-      "price": 20,
++      "price": 300,
+       "holdEffect": "HOLD_EFFECT_NONE",
+       "holdEffectParam": 0,
+       "description_english": "Can be ground up into a powder as\\nan ingredient for medicine.",
+@@ -2499,7 +2499,7 @@
+     {
+       "english": "HONDEW BERRY",
+       "itemId": "ITEM_HONDEW_BERRY",
+-      "price": 20,
++      "price": 300,
+       "holdEffect": "HOLD_EFFECT_NONE",
+       "holdEffectParam": 0,
+       "description_english": "Can be ground up into a powder as\\nan ingredient for medicine.",
+@@ -2515,7 +2515,7 @@
+     {
+       "english": "GREPA BERRY",
+       "itemId": "ITEM_GREPA_BERRY",
+-      "price": 20,
++      "price": 300,
+       "holdEffect": "HOLD_EFFECT_NONE",
+       "holdEffectParam": 0,
+       "description_english": "Can be ground up into a powder as\\nan ingredient for medicine.",
+@@ -2531,7 +2531,7 @@
+     {
+       "english": "TAMATO BERRY",
+       "itemId": "ITEM_TAMATO_BERRY",
+-      "price": 20,
++      "price": 300,
+       "holdEffect": "HOLD_EFFECT_NONE",
+       "holdEffectParam": 0,
+       "description_english": "Can be ground up into a powder as\\nan ingredient for medicine.",
+@@ -2691,7 +2691,7 @@
+     {
+       "english": "LIECHI BERRY",
+       "itemId": "ITEM_LIECHI_BERRY",
+-      "price": 20,
++      "price": 3000,
+       "holdEffect": "HOLD_EFFECT_ATTACK_UP",
+       "holdEffectParam": 4,
+       "description_english": "When held by a POKéMON, it raises\\nthe ATTACK stat in a pinch.",
+@@ -2707,7 +2707,7 @@
+     {
+       "english": "GANLON BERRY",
+       "itemId": "ITEM_GANLON_BERRY",
+-      "price": 20,
++      "price": 3000,
+       "holdEffect": "HOLD_EFFECT_DEFENSE_UP",
+       "holdEffectParam": 4,
+       "description_english": "When held by a POKéMON, it raises\\nthe DEFENSE stat in a pinch.",
+@@ -2723,7 +2723,7 @@
+     {
+       "english": "SALAC BERRY",
+       "itemId": "ITEM_SALAC_BERRY",
+-      "price": 20,
++      "price": 3000,
+       "holdEffect": "HOLD_EFFECT_SPEED_UP",
+       "holdEffectParam": 4,
+       "description_english": "When held by a POKéMON, it raises\\nthe SPEED stat in a pinch.",
+@@ -2739,7 +2739,7 @@
+     {
+       "english": "PETAYA BERRY",
+       "itemId": "ITEM_PETAYA_BERRY",
+-      "price": 20,
++      "price": 3000,
+       "holdEffect": "HOLD_EFFECT_SP_ATTACK_UP",
+       "holdEffectParam": 4,
+       "description_english": "When held by a POKéMON, it raises\\nthe SP. ATK stat in a pinch.",
+@@ -2755,7 +2755,7 @@
+     {
+       "english": "APICOT BERRY",
+       "itemId": "ITEM_APICOT_BERRY",
+-      "price": 20,
++      "price": 3000,
+       "holdEffect": "HOLD_EFFECT_SP_DEFENSE_UP",
+       "holdEffectParam": 4,
+       "description_english": "When held by a POKéMON, it raises\\nthe SP. DEF stat in a pinch.",
+@@ -2771,7 +2771,7 @@
+     {
+       "english": "LANSAT BERRY",
+       "itemId": "ITEM_LANSAT_BERRY",
+-      "price": 20,
++      "price": 5000,
+       "holdEffect": "HOLD_EFFECT_CRITICAL_UP",
+       "holdEffectParam": 4,
+       "description_english": "When held by a POKéMON, it raises\\nthe critical-hit ratio in a pinch.",
+@@ -2787,7 +2787,7 @@
+     {
+       "english": "STARF BERRY",
+       "itemId": "ITEM_STARF_BERRY",
+-      "price": 20,
++      "price": 5000,
+       "holdEffect": "HOLD_EFFECT_RANDOM_STAT_UP",
+       "holdEffectParam": 4,
+       "description_english": "When held by a POKéMON, it sharply\\nraises one stat in a pinch.",
+diff --git a/tools/hack/berry_shop.py b/tools/hack/berry_shop.py
+new file mode 100644
+index 0000000..577042a
+--- /dev/null
++++ b/tools/hack/berry_shop.py
+@@ -0,0 +1,98 @@
++#!/usr/bin/env python3
++"""Berry shop: a clerk at the Celadon Department Store 2F counter sells berries.
++
++FireRed has no berry growing, so this makes battle berries reliable to get.
++The stock grows with your progress:
++  always             status-curing berries, Oran and Leppa
++  after Erika        Sitrus, Lum and the confusion-healing berries
++  after the Champion pinch berries, Lansat, Starf and the EV-lowering berries
++Prices are raised from 20 (each still sells back for half). Runs once.
++"""
++import json, os, sys
++
++os.chdir(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
++
++TIERS = [
++    ("CHERI", "CHESTO", "PECHA", "RAWST", "ASPEAR", "PERSIM", "ORAN", "LEPPA"),
++    ("SITRUS", "LUM", "FIGY", "WIKI", "MAGO", "AGUAV", "IAPAPA"),
++    ("LIECHI", "GANLON", "SALAC", "PETAYA", "APICOT", "LANSAT", "STARF",
++     "POMEG", "KELPSY", "QUALOT", "HONDEW", "GREPA", "TAMATO"),
++]
++PRICES = {"CHERI": 200, "CHESTO": 200, "PECHA": 200, "RAWST": 200, "ASPEAR": 200, "PERSIM": 200,
++          "ORAN": 100, "LEPPA": 400, "SITRUS": 1200, "LUM": 1500,
++          "FIGY": 600, "WIKI": 600, "MAGO": 600, "AGUAV": 600, "IAPAPA": 600,
++          "LIECHI": 3000, "GANLON": 3000, "SALAC": 3000, "PETAYA": 3000, "APICOT": 3000,
++          "LANSAT": 5000, "STARF": 5000,
++          "POMEG": 300, "KELPSY": 300, "QUALOT": 300, "HONDEW": 300, "GREPA": 300, "TAMATO": 300}
++MAP = "data/maps/CeladonCity_DepartmentStore_2F"
++LABEL = "CeladonCity_DepartmentStore_2F_EventScript_ClerkBerries"
++
++
++def read(p):
++    return open(p, encoding="utf-8").read()
++
++
++def write(p, s):
++    open(p, "w", encoding="utf-8").write(s)
++
++
++scripts = read(MAP + "/scripts.inc")
++if LABEL in scripts:
++    sys.exit("The berry shop is already in place.")
++
++# Prices
++raw = read("src/data/items.json")
++items = json.loads(raw)
++for it in items["items"]:
++    name = it["itemId"][len("ITEM_"):-len("_BERRY")] if it["itemId"].endswith("_BERRY") else None
++    if name in PRICES:
++        it["price"] = PRICES[name]
++write("src/data/items.json", json.dumps(items, indent=2, ensure_ascii=False) + ("\n" if raw.endswith("\n") else ""))
++
++# The clerk, between the two existing ones behind the left counter
++m = json.loads(read(MAP + "/map.json"))
++m["object_events"].append({
++    "type": "object", "graphics_id": "OBJ_EVENT_GFX_CLERK", "x": 1, "y": 7, "elevation": 3,
++    "movement_type": "MOVEMENT_TYPE_FACE_RIGHT", "movement_range_x": 1, "movement_range_y": 1,
++    "trainer_type": "TRAINER_TYPE_NONE", "trainer_sight_or_berry_tree_id": "0", "script": LABEL, "flag": "0"})
++write(MAP + "/map.json", json.dumps(m, indent=2, ensure_ascii=False) + "\n")
++
++
++def mart(label, berries):
++    return f"\t.align 2\n{label}::\n" + "".join(f"\t.2byte ITEM_{b}_BERRY\n" for b in berries) + "\t.2byte ITEM_NONE\n\trelease\n\tend\n"
++
++
++prefix = "CeladonCity_DepartmentStore_2F_Berries"
++scripts += f"""
++@ FireRed QoL+Hard: berry shop (tools/hack/berry_shop.py)
++{LABEL}::
++\tgoto_if_questlog EventScript_ReleaseEnd
++\tlock
++\tfaceplayer
++\tmessage CeladonCity_DepartmentStore_2F_Text_HackBerryClerk
++\twaitmessage
++\tgoto_if_set FLAG_SYS_GAME_CLEAR, {LABEL}All
++\tgoto_if_set FLAG_BADGE04_GET, {LABEL}Mid
++\tpokemart {prefix}Basic
++\tgoto {LABEL}End
++
++{LABEL}Mid::
++\tpokemart {prefix}Mid
++\tgoto {LABEL}End
++
++{LABEL}All::
++\tpokemart {prefix}All
++{LABEL}End::
++\tmsgbox Text_PleaseComeAgain
++\trelease
++\tend
++
++""" + mart(prefix + "Basic", TIERS[0]) + "\n" + mart(prefix + "Mid", TIERS[0] + TIERS[1]) + "\n" + mart(prefix + "All", TIERS[0] + TIERS[1] + TIERS[2])
++write(MAP + "/scripts.inc", scripts)
++text = read(MAP + "/text.inc") + """
++CeladonCity_DepartmentStore_2F_Text_HackBerryClerk::
++    .string "Welcome to the BERRY STAND!\\n"
++    .string "Fresh from the SEVII ISLANDS.$"
++"""
++write(MAP + "/text.inc", text)
++print("Berry shop added.")
+diff --git a/tools/hack/spoiler_guide.py b/tools/hack/spoiler_guide.py
+index 812d14f..bd89df9 100644
+--- a/tools/hack/spoiler_guide.py
++++ b/tools/hack/spoiler_guide.py
+@@ -313,6 +313,16 @@ def write_encounters():
+ 
+ # ---------------------------------------------------------------- items
+ 
++# Shops whose stock grows with progress; the label tells which list is which.
++SHOP_TIERS = {
++    "CeladonCity_DepartmentStore_4F_Items": " (before the 5th badge)",
++    "CeladonCity_DepartmentStore_4F_ItemsAll": " (from the 5th badge)",
++    "CeladonCity_DepartmentStore_2F_BerriesBasic": " (berry stand, from the start)",
++    "CeladonCity_DepartmentStore_2F_BerriesMid": " (berry stand, after Erika)",
++    "CeladonCity_DepartmentStore_2F_BerriesAll": " (berry stand, after you become Champion)",
++}
++
++
+ def write_items():
+     ball_items = {lab: (re.search(r"finditem (ITEM_\w+)(?:, (\d+))?", body)) for lab, body in label_body.items()}
+     per_map = {}
+@@ -342,7 +352,7 @@ def write_items():
+             its = [i for i in re.findall(r"(ITEM_\w+)", m.group(1)) if i != "ITEM_NONE"]
+             loc = label_location(lab) or (dir_to_map.get(f.split("/")[2]) if f.startswith("data/maps/") else None)
+             if loc:
+-                marts.setdefault(loc, []).append(its)
++                marts.setdefault(loc, []).append((lab, its))
+ 
+     out = ["# Items", "",
+            "Item balls, hidden items (use the Itemfinder), NPC gifts and shop stock, by location. "
+@@ -363,13 +373,14 @@ def write_items():
+         if k in gifts:
+             out += ["Gifts / events: " + ", ".join(sorted(gifts[k])), ""]
+         if k in marts:
+-            for its in marts[k]:
++            for lab, its in marts[k]:
+                 prices = []
+                 for i in its:
+                     idx = item_index(i)
+                     p = items_json[idx]["price"] if idx is not None else 0
+                     prices.append(f"{item(i)} (₽{p})")
+-                out += ["Shop: " + ", ".join(prices), ""]
++                tag = SHOP_TIERS.get(lab, "")
++                out += [f"Shop{tag}: " + ", ".join(prices), ""]
+     open(os.path.join(OUT, "ITEMS.md"), "w").write("\n".join(out))
+ 
+ # ---------------------------------------------------------------- trainers
+-- 
+2.43.0
+
