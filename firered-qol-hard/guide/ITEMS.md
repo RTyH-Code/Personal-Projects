@@ -506,7 +506,7 @@ Gifts / events: Dome Fossil, Helix Fossil
 
 ## Pokémon League Champions Room
 
-Gifts / events: Special Candy
+Gifts / events: Master Ball, Nugget, PP Max, Special Candy, Star Piece
 
 ## Pokémon Mansion 1F
 
@@ -854,6 +854,10 @@ Gifts / events: HM01 Cut
 | Hidden | Chesto Berry | 14, 8 |
 | Hidden | Pecha Berry | 14, 4 |
 | Item ball | Great Ball | 1, 10 |
+
+## Trainer Tower 2F
+
+Gifts / events: Master Ball, PP Max, Rare Candy, Star Piece
 
 ## Trainer Tower Lobby
 
