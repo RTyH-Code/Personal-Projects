@@ -8,6 +8,29 @@ made it, so you can see exactly what changed.
 previous release keeps working. In short, saves made on **release 7 or later**
 carry over to the current release. Older saves need a new game.
 
+## Release 18 (2026-11-08)
+Pull requests: [#45](https://github.com/RTyH-Code/Personal-Projects/pull/45)
+
+- **Elite Four round 3 reward:** each win against the peak Champion gives a
+  Master Ball, 3 PP Max, 3 Star Pieces or 5 Nuggets.
+- **Trainer Tower record bonus:** beating your best time (or your first
+  clear) adds a PP Max, 2 Star Pieces, 3 Rare Candies or a Master Ball.
+- **Treasure trader:** the man in the Trainer Tower lobby swaps:
+  - 3 Star Pieces for a Master Ball;
+  - 2 Big Pearls for a PP Max;
+  - a Nugget for 2 Rare Candies.
+- **Nuzlocke exhibition battles:**
+  - The Trainer Tower and the Lv. 100 peak trainers no longer count for the
+    Nuzlocke rules.
+  - Pokémon that faint there are left with 1 HP, and losing doesn't end the
+    run.
+- **Spoiler guide:** the Trainer Tower and peak trainer pages list the new
+  rewards and the exhibition rule.
+- **Automated playtest:** now 22 checks. The new ones cover the League
+  reward, the record bonus, the trader, Nuzlocke blackouts (ordinary and
+  exhibition) and Party Exp. Share.
+- **Saves:** release 17 saves carry over.
+
 ## Release 17 (2026-11-08)
 Pull requests: [#44](https://github.com/RTyH-Code/Personal-Projects/pull/44)
 
