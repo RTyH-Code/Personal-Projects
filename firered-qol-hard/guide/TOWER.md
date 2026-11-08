@@ -2,13 +2,15 @@
 
 The Trainer Tower on Seven Island has four challenges of eight floors each. Every Pokémon here is a competitive set: fully evolved, perfect IVs, 252/252 EVs, a nature and item for its role, and moves from Pokémon Showdown's role-based sets (doubles sets on Double floors).
 
-**Levels** match your highest-level Pokémon when you start the battle.
+**Level 50 rule:** every opponent is Lv. 50, and your Pokémon above Lv. 50 battle as Lv. 50. They get their real level back after each battle.
+
+**Prize:** you get one each time you reach the Owner. It's the prize listed below (25%), PP Up (20%), PP Max (10%), Nugget (20%), Big Pearl (15%) or Star Piece (10%).
 
 Each trainer has six Pokémon but only uses some of them, depending on the floor. The tables below list exactly the Pokémon you'll face on each floor.
 
 ## Single battles
 
-Prize for clearing all eight floors: **Up-Grade**.
+Usual prize for clearing all eight floors: **Up-Grade**.
 
 ### Floor 1: single battle vs. Sailor Alberto
 
@@ -68,7 +70,7 @@ Prize for clearing all eight floors: **Up-Grade**.
 
 ## Double battles
 
-Prize for clearing all eight floors: **Dragon Scale**.
+Usual prize for clearing all eight floors: **Dragon Scale**.
 
 ### Floor 1: double battle vs. Twins Jen & Kira
 
@@ -128,7 +130,7 @@ Prize for clearing all eight floors: **Dragon Scale**.
 
 ## Knockout (three trainers, one Pokémon each)
 
-Prize for clearing all eight floors: **Metal Coat**.
+Usual prize for clearing all eight floors: **Metal Coat**.
 
 ### Floor 1: knockout vs. Biker Jordy, Biker Ernest, Cue Ball Gabriel
 
@@ -196,7 +198,7 @@ Prize for clearing all eight floors: **Metal Coat**.
 
 ## Mixed (a mix of the other three)
 
-Prize for clearing all eight floors: **King's Rock**.
+Usual prize for clearing all eight floors: **King's Rock**.
 
 ### Floor 1: single battle vs. Cool Trainer Allyson
 

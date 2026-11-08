@@ -1,6 +1,6 @@
 # Peak trainer prep
 
-Every post-game peak team (all Lv. 100), with each Pokémon's real stats, what the team attacks with, what it's weak to, and Pokémon that match up well. Gym Leaders rematch any number of times once you're Champion; the Elite Four and Champion use these teams when the League official in the Indigo Plateau Pokémon Center has the PEAK challenge switched on.
+Every post-game peak team (all Lv. 100), with each Pokémon's real stats, what the team attacks with, what it's weak to, and Pokémon that match up well. Gym Leaders rematch any number of times once you're Champion, and each win gives a Nugget (35%), PP Up (25%), PP Max (15%) or Star Piece (25%); the Elite Four and Champion use these teams when the League official in the Indigo Plateau Pokémon Center has the PEAK challenge switched on.
 
 How peak Pokémon are built: perfect IVs; 252 EVs in the attacking stat their moves use; 252 Speed EVs (or 252 HP for Pokémon with base Speed under 50); Jolly/Timid if base Speed is 80+, otherwise Adamant/Modest. Their held items are listed below, and each trainer also carries Full Restores.
 

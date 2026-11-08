@@ -1,6 +1,6 @@
 # FireRed QoL + Hard
 
-> **Spoiler guide:** every encounter table, item, trainer team and gift Pokémon is listed in [guide/](guide/README.md), plus a full [Pokédex](guide/POKEDEX.md) for all 386 Pokémon, [peak trainer prep](guide/PEAK.md) and a [type chart and move list](guide/TYPES.md) the [Trainer Tower teams](guide/TOWER.md) and the [VS Seeker rematch teams](guide/REMATCHES.md).
+> **Spoiler guide:** every encounter table, item, trainer team and gift Pokémon is listed in [guide/](guide/README.md), plus a full [Pokédex](guide/POKEDEX.md) for all 386 Pokémon, [peak trainer prep](guide/PEAK.md) and a [type chart and move list](guide/TYPES.md), the [Trainer Tower teams](guide/TOWER.md) and the [VS Seeker rematch teams](guide/REMATCHES.md).
 
 A quality-of-life, modernization and difficulty hack built on the pret/pokefirered decompilation.
 
@@ -502,6 +502,8 @@ How the cap works with each way of gaining levels:
   their moves use (physical or special), 252 EVs in that attack stat, and
   252 in Speed (or in HP for slow Pokémon). Each peak trainer carries Full
   Restores.
+- **Gym rematch rewards:** each time you beat a Gym Leader's rematch, they
+  give you a Nugget (35%), PP Up (25%), PP Max (15%) or Star Piece (25%).
 
 ## Trainer Tower (Seven Island)
 Every Trainer Tower trainer now uses competitive sets, built the way real
@@ -520,7 +522,12 @@ teams are:
   (Choice Band, Leftovers, Lum or Sitrus Berry, or a type booster), with no
   item repeated on a team.
 
-Opponents still scale to your highest-level Pokémon, as in the original.
+- **Level 50 rule:** your Pokémon above Lv. 50 battle as Lv. 50, with
+  their stats recalculated, and the opponents are all Lv. 50. Your team goes
+  back to its real level after each battle, keeping the same share of its HP.
+- **A prize every clear:** you get a prize each time you reach the Owner, not
+  just the first time. It's the floor set's usual prize (25%), PP Up (20%),
+  PP Max (10%), Nugget (20%), Big Pearl (15%) or Star Piece (10%).
 
 ## Post-game difficulty and held items
 - **Sevii Islands 4–7:** these are the islands you reach after becoming
@@ -561,9 +568,9 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `91c37deacb42225ee4ef7efa335ac01715b19cf4`
+Patched ROM SHA-1: `10fa5515601d73c782bbdbfef79356e7af15dd4b`
 
-Current release: **16**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
+Current release: **17**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
 Saves made on release 7 or later carry over to this release. Older saves need a new game.
 
 ## Building from source
@@ -596,7 +603,7 @@ unmodified pret data:
 - `peak_trainers.py`: peak teams, gym rematches and the Elite Four round 3.
 - `spoiler_guide.py <dir>`: regenerates the spoiler guide from the game data.
 - `tower_sets.py <dir>`: the competitive Trainer Tower teams, from Showdown's random-battle set files (read as data).
-- `playtest/`: an automated playtest (a headless mGBA harness plus 14 milestone checks, including the Trainer Tower).
+- `playtest/`: an automated playtest (a headless mGBA harness plus 16 milestone checks, including the Trainer Tower and its prizes).
 - `gym_doubles.py`: the gym double battles and their doubles movesets.
 - `learnsets.py`: what each species can learn in this hack (used by the trainer scripts).
 - `vr_rematches.py`: the Victory Road VS Seeker rematch teams and scripts.

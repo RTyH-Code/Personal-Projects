@@ -172,7 +172,7 @@ Shop (after you become Champion): X Attack (₽500), X Defend (₽550), X Speed 
 
 ## Celadon City Gym
 
-Gifts / events: TM19 Giga Drain
+Gifts / events: Nugget, PP Max, PP Up, Star Piece, TM19 Giga Drain
 
 ## Celadon City Restaurant
 

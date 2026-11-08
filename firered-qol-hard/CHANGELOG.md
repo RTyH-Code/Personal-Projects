@@ -8,6 +8,29 @@ made it, so you can see exactly what changed.
 previous release keeps working. In short, saves made on **release 7 or later**
 carry over to the current release. Older saves need a new game.
 
+## Release 17 (2026-11-08)
+Pull requests: [#44](https://github.com/RTyH-Code/Personal-Projects/pull/44)
+
+- **Trainer Tower Lv. 50 rule:**
+  - Your Pokémon above Lv. 50 battle as Lv. 50, and every opponent is
+    Lv. 50.
+  - Your team gets its real level back after each battle.
+- **Trainer Tower prizes:** you now get a prize every time you reach the
+  Owner. It's the usual prize, or PP Up, PP Max, Nugget, Big Pearl or Star
+  Piece.
+- **Gym rematch rewards:** each win against a Gym Leader's Lv. 100 rematch
+  gives a Nugget, PP Up, PP Max or Star Piece.
+- **Post-game Exp. check:** the climb from the first Champion to the round 2
+  Elite Four needs no change.
+  - A team of four reaches about Lv. 78 from the Sevii trainers alone.
+  - A team of six reaches about Lv. 76 and needs around 30 post-game
+    rematches to reach Lv. 80.
+- **Spoiler guide:** the Trainer Tower and peak trainer pages list the new
+  rules and prize odds.
+- **Automated playtest:** now 16 checks, adding the Trainer Tower prize and a
+  Gym Leader rematch reward.
+- **Saves:** release 16 saves carry over.
+
 ## Release 16 (2026-11-08)
 Pull requests: [#43](https://github.com/RTyH-Code/Personal-Projects/pull/43)
 

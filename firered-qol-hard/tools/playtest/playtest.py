@@ -11,10 +11,13 @@ presses, then reads the save block to confirm the milestone happened:
   nuzlocke    Nuzlocke: the first catch in an area works, the second is refused
   gym_double  a gym double battle (Psychic Johan) is won
   tower_*     Trainer Tower 1F in the Single, Double and Knockout challenges:
-              the battle starts and the foes are that floor's Pokemon
+              the foes are that floor's Pokemon, everyone battles at Lv. 50, and
+              the player's Pokemon are back to their real level afterwards
   misty, surge  their real gym scripts: battle won, badge awarded
   berry_shop  buy a Cheri Berry at the Celadon 2F berry stand (it lands in the Berry Pouch)
   held_item_shop  buy Leftovers at the post-game Trainer Tower lobby shop
+  peak_reward a peak Gym Leader win gives an item from the reward pool
+  tower_prize the Trainer Tower prize is given again on a second clear
   vr_rematch  the VS Seeker in Victory Road: Naomi's rematch team (Lv. 56 Persian)
   brock       Brock's real gym script: battle won, Boulder Badge awarded
 
@@ -114,22 +117,24 @@ CHECKS = {
         expect=[("flag", "TRAINER_FLAGS_START + TRAINER_PSYCHIC_JOHAN", 1)]),
     # Trainer Tower: the challenge is started in the scenario setup, then the
     # player steps onto the floor's battle trigger on 1F. Mid-battle, the foes
-    # must be real species from that floor's data, at the player's level.
+    # must be real species from that floor's data, and every battler (the
+    # player's Lv. 100 Mewtwo too) must be Lv. 50 under the tower's Lv. 50 rule.
+    # After the battle the player's Pokemon are back to Lv. 100.
     "tower_single": dict(
-        scenario={"party": [["MEWTWO", 100, ["PSYCHIC"]]] * 3, "tower": 0,
+        scenario={"party": [["MEWTWO", 100, ["PSYCHIC"]]], "tower": 0,
                   "warp": ["MAP_TRAINER_TOWER_1F", 10, 14]},
         body="wait 120\npress U 12\nwait 300\n" + mash(12, 90) + "BATTLE_PEEK\n" + mash(60, 90),
-        expect=[("tower_foes", 0, 1)]),
+        expect=[("tower_foes", 0, 1), ("level", 0, 100)]),
     "tower_double": dict(
-        scenario={"party": [["MEWTWO", 100, ["PSYCHIC"]]] * 4, "tower": 1,
+        scenario={"party": [["MEWTWO", 100, ["PSYCHIC"]]] * 2, "tower": 1,
                   "warp": ["MAP_TRAINER_TOWER_1F", 9, 14]},
         body="wait 120\npress U 12\nwait 300\n" + mash(12, 90) + "BATTLE_PEEK\n" + mash(60, 90),
-        expect=[("tower_foes", 1, 2)]),
+        expect=[("tower_foes", 1, 2), ("level", 0, 100), ("level", 1, 100)]),
     "tower_knockout": dict(
-        scenario={"party": [["MEWTWO", 100, ["PSYCHIC"]]] * 3, "tower": 2,
+        scenario={"party": [["MEWTWO", 100, ["PSYCHIC"]]], "tower": 2,
                   "warp": ["MAP_TRAINER_TOWER_1F", 10, 14]},
         body="wait 120\npress U 12\nwait 300\n" + mash(12, 90) + "BATTLE_PEEK\n" + mash(60, 90),
-        expect=[("tower_foes", 2, 1)]),
+        expect=[("tower_foes", 2, 1), ("level", 0, 100)]),
     "misty": dict(
         scenario={"party": [["VENUSAUR", 40, ["GIGA_DRAIN"]]] * 2,
                   "set": ["FLAG_SYS_POKEDEX_GET", "FLAG_BADGE01_GET", "TRAINER_FLAGS_START + TRAINER_SWIMMER_MALE_LUIS",
@@ -156,6 +161,20 @@ CHECKS = {
         body=("wait 150\npress U 2\nwait 30\npress A 6\nwait 120\npress A 6\nwait 120\n" + "press D 6\nwait 10\n" * 9 +
               "press A 6\nwait 60\npress A 6\nwait 60\npress A 6\nwait 90\npress A 6\nwait 90\npress B 6\nwait 60\npress B 6\nwait 90\n" + mash(3)),
         expect=[("bag_has", "ITEM_LEFTOVERS", 1)]),
+    "peak_reward": dict(
+        # The reward a peak Gym Leader gives after a win (the script the gyms call).
+        scenario={"party": [["PIDGEY", 10]], "warp": VIRIDIAN,
+                  "patch": [gentleman("\tlock\n\tcall Hack_EventScript_PeakReward\n\trelease")]},
+        body=TALK_LEFT + mash(8),
+        expect=[("bag_any", ["ITEM_NUGGET", "ITEM_PP_UP", "ITEM_PP_MAX", "ITEM_STAR_PIECE"], 1)]),
+    "tower_prize": dict(
+        # The Trainer Tower prize, twice: every clear now gives one.
+        scenario={"party": [["PIDGEY", 10]], "warp": VIRIDIAN,
+                  "patch": [gentleman("\tlock\n\tsetvar VAR_0x8005, 0\n\tttower_startchallenge\n\tttower_giveprize\n"
+                                      "\tttower_startchallenge\n\tttower_giveprize\n\tcopyvar VAR_0x402A, VAR_RESULT\n\trelease")]},
+        body=TALK_LEFT + mash(4),
+        expect=[("bag_any", ["ITEM_UP_GRADE", "ITEM_NUGGET", "ITEM_PP_UP", "ITEM_PP_MAX", "ITEM_BIG_PEARL", "ITEM_STAR_PIECE"], 1),
+                ("var", "VAR_0x402A", 0)]),
     "vr_rematch": dict(
         # The real VS Seeker flow in Victory Road: use it, then challenge Naomi.
         scenario={"party": [["MEWTWO", 70, ["PSYCHIC"]]], "items": [["VS_SEEKER", 1]],
@@ -293,15 +312,19 @@ def check(name, spec, workdir, outdir):
             got = r["count"][0]
         elif kind == "tower_foes":
             # what = challenge type; want = number of opposing battlers. Each must be a
-            # species from that challenge's first floor, at the player's top level (100).
+            # species from that challenge's first floor; every battler is Lv. 50.
             b = r["battle"] or bytes(4 * 0x58)
             allowed = tower_floor1_species(what)
             foes = [b[0x58 * i] | (b[0x58 * i + 1] << 8) for i in (1, 3)[:want]]
-            levels = [b[0x58 * i + 0x2A] for i in (1, 3)[:want]]
-            got = want if all(f in allowed for f in foes) and all(l == 100 for l in levels) else f"species {foes} levels {levels}"
+            levels = [b[0x58 * i + 0x2A] for i in ((0, 1) if want == 1 else (0, 1, 2, 3))]
+            got = want if all(f in allowed for f in foes) and all(l == 50 for l in levels) else f"species {foes} levels {levels}"
         elif kind == "bag_has":
             item = const(what) if what in DEFS else ITEMS[what]
             got = int(any(r["bag"][i] | (r["bag"][i + 1] << 8) == item for i in range(0, len(r["bag"]), 4)))
+        elif kind == "bag_any":
+            ids = {ITEMS[w] for w in what}
+            got = int(any(r["bag"][i] | (r["bag"][i + 1] << 8) in ids for i in range(0, len(r["bag"]), 4)))
+            what = "/".join(w[5:] for w in what)
         elif kind == "foe":
             b = r["battle"] or bytes(4 * 0x58)
             got = (b[0x58] | (b[0x59] << 8), b[0x58 + 0x2A])
