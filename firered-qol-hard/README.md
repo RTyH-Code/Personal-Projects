@@ -632,6 +632,7 @@ unmodified pret data:
 - `berry_shop.py`: the Celadon Department Store berry stand and berry prices.
 - `held_item_shop.py`: held items in the post-game Trainer Tower lobby shop.
 - `postgame_levels.py`: Sevii Islands 4–7 trainers and wild Pokémon, and post-game route rematches.
+- `trainer_evolutions.py`: Lv. 50+ trainer Pokémon evolve where their level allows (run after `postgame_levels.py`).
 - `wild_levels.py`: wild Pokémon levels 1.15x from the Erika stretch on.
 - `exp_budget.py`: how much trainer Exp. each stretch of the game gives, against the level caps.
 - `save_check.py REF`: checks whether saves from an older release (a git ref) still load.
