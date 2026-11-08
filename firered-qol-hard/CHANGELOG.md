@@ -9,7 +9,7 @@ previous release keeps working. In short, saves made on **release 7 or later**
 carry over to the current release. Older saves need a new game.
 
 ## Release 15 (2026-11-08)
-Pull requests: [#34](https://github.com/RTyH-Code/Personal-Projects/pull/34)
+Pull requests: [#42](https://github.com/RTyH-Code/Personal-Projects/pull/42)
 
 - **Berry stand:** a new clerk at the Celadon Department Store 2F counter
   sells berries. The stock grows as you progress:
