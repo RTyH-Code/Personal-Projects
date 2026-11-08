@@ -131,11 +131,17 @@ Shop: Great Ball (₽600), Super Potion (₽700), Revive (₽1500), Antidote (�
 
 Shop: TM05 Roar (₽1000), TM15 Hyper Beam (₽7500), TM28 Dig (₽2000), TM31 Brick Break (₽3000), TM43 Secret Power (₽3000), TM45 Attract (₽3000)
 
+Shop (berry stand, from the start): Cheri Berry (₽200), Chesto Berry (₽200), Pecha Berry (₽200), Rawst Berry (₽200), Aspear Berry (₽200), Persim Berry (₽200), Oran Berry (₽100), Leppa Berry (₽400)
+
+Shop (berry stand, after Erika): Cheri Berry (₽200), Chesto Berry (₽200), Pecha Berry (₽200), Rawst Berry (₽200), Aspear Berry (₽200), Persim Berry (₽200), Oran Berry (₽100), Leppa Berry (₽400), Sitrus Berry (₽1200), Lum Berry (₽1500), Figy Berry (₽600), Wiki Berry (₽600), Mago Berry (₽600), Aguav Berry (₽600), Iapapa Berry (₽600)
+
+Shop (berry stand, after you become Champion): Cheri Berry (₽200), Chesto Berry (₽200), Pecha Berry (₽200), Rawst Berry (₽200), Aspear Berry (₽200), Persim Berry (₽200), Oran Berry (₽100), Leppa Berry (₽400), Sitrus Berry (₽1200), Lum Berry (₽1500), Figy Berry (₽600), Wiki Berry (₽600), Mago Berry (₽600), Aguav Berry (₽600), Iapapa Berry (₽600), Liechi Berry (₽3000), Ganlon Berry (₽3000), Salac Berry (₽3000), Petaya Berry (₽3000), Apicot Berry (₽3000), Lansat Berry (₽5000), Starf Berry (₽5000), Pomeg Berry (₽300), Kelpsy Berry (₽300), Qualot Berry (₽300), Hondew Berry (₽300), Grepa Berry (₽300), Tamato Berry (₽300)
+
 ## Celadon City Department Store 4F
 
-Shop: Poké Doll (₽1000), Retro Mail (₽50), Fire Stone (₽2100), Thunder Stone (₽2100), Water Stone (₽2100), Leaf Stone (₽2100), Moon Stone (₽2100), Sun Stone (₽2100), Dusk Stone (₽2100), Shiny Stone (₽2100), Dawn Stone (₽2100), Ice Stone (₽2100), King's Rock (₽3000), Metal Coat (₽3000), Dragon Scale (₽3000), Up-Grade (₽3000), Deep Sea Tooth (₽3000), Deep Sea Scale (₽3000)
+Shop (before the 5th badge): Poké Doll (₽1000), Retro Mail (₽50), Fire Stone (₽2100), Thunder Stone (₽2100), Water Stone (₽2100), Leaf Stone (₽2100), Moon Stone (₽2100), Sun Stone (₽2100), Dusk Stone (₽2100), Shiny Stone (₽2100), Dawn Stone (₽2100), Ice Stone (₽2100), King's Rock (₽3000), Metal Coat (₽3000), Dragon Scale (₽3000), Up-Grade (₽3000), Deep Sea Tooth (₽3000), Deep Sea Scale (₽3000)
 
-Shop: Poké Doll (₽1000), Retro Mail (₽50), Fire Stone (₽2100), Thunder Stone (₽2100), Water Stone (₽2100), Leaf Stone (₽2100), Moon Stone (₽2100), Sun Stone (₽2100), Dusk Stone (₽2100), Shiny Stone (₽2100), Dawn Stone (₽2100), Ice Stone (₽2100), King's Rock (₽3000), Metal Coat (₽3000), Dragon Scale (₽3000), Up-Grade (₽3000), Deep Sea Tooth (₽3000), Deep Sea Scale (₽3000), Razor Claw (₽2100), Razor Fang (₽2100), Protector (₽2100), Electirizer (₽2100), Magmarizer (₽2100), Dubious Disc (₽2100), Reaper Cloth (₽2100), Peat Block (₽2100), Black Augurite (₽2100)
+Shop (from the 5th badge): Poké Doll (₽1000), Retro Mail (₽50), Fire Stone (₽2100), Thunder Stone (₽2100), Water Stone (₽2100), Leaf Stone (₽2100), Moon Stone (₽2100), Sun Stone (₽2100), Dusk Stone (₽2100), Shiny Stone (₽2100), Dawn Stone (₽2100), Ice Stone (₽2100), King's Rock (₽3000), Metal Coat (₽3000), Dragon Scale (₽3000), Up-Grade (₽3000), Deep Sea Tooth (₽3000), Deep Sea Scale (₽3000), Razor Claw (₽2100), Razor Fang (₽2100), Protector (₽2100), Electirizer (₽2100), Magmarizer (₽2100), Dubious Disc (₽2100), Reaper Cloth (₽2100), Peat Block (₽2100), Black Augurite (₽2100)
 
 ## Celadon City Department Store 5F
 

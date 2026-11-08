@@ -30,6 +30,21 @@ A quality-of-life, modernization and difficulty hack built on the pret/pokefirer
     by smashing rocks in Sevault Canyon.
 - Celadon Department Store 4F sells every evolution item: all stones,
   including the Moon and Sun Stones, plus the trade items above.
+- **Berry stand:** a clerk at the Celadon Department Store 2F counter sells
+  berries, since FireRed has no berry growing. The stock grows as you
+  progress:
+
+  | When | Berries | Price |
+  |---|---|---|
+  | From the start | Cheri, Chesto, Pecha, Rawst, Aspear, Persim | ₽200 |
+  | | Oran | ₽100 |
+  | | Leppa | ₽400 |
+  | After Erika | Sitrus | ₽1,200 |
+  | | Lum | ₽1,500 |
+  | | Figy, Wiki, Mago, Aguav, Iapapa | ₽600 |
+  | After you become Champion | Liechi, Ganlon, Salac, Petaya, Apicot | ₽3,000 |
+  | | Lansat, Starf | ₽5,000 |
+  | | The EV-lowering berries (Pomeg, Kelpsy, Qualot, Hondew, Grepa, Tamato) | ₽300 |
 - Pokémon from Johto and Hoenn can evolve before you have the National Dex.
 - Stone evolutions keep learning moves by level-up. Modern games only give
   them level-1 moves, so the 18 affected Pokémon now learn their
@@ -524,9 +539,9 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `62c2a05dec0301b03e9fffe92661d4604dfc01e2`
+Patched ROM SHA-1: `7934a153f7df75e544d919c9d97da0613b506a4e`
 
-Current release: **14**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
+Current release: **15**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
 Saves made on release 7 or later carry over to this release. Older saves need a new game.
 
 ## Building from source
@@ -563,6 +578,7 @@ unmodified pret data:
 - `gym_doubles.py`: the gym double battles and their doubles movesets.
 - `learnsets.py`: what each species can learn in this hack (used by the trainer scripts).
 - `vr_rematches.py`: the Victory Road VS Seeker rematch teams and scripts.
+- `berry_shop.py`: the Celadon Department Store berry stand and berry prices.
 - `wild_levels.py`: wild Pokémon levels 1.15x from the Erika stretch on.
 - `exp_budget.py`: how much trainer Exp. each stretch of the game gives, against the level caps.
 - `save_check.py REF`: checks whether saves from an older release (a git ref) still load.
