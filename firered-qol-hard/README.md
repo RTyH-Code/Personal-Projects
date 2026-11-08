@@ -585,7 +585,7 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `e899f430db5fa8401cfb3bedb90523dea53d6a3f`
+Patched ROM SHA-1: `f59d7d78bdf688a4d9033188fe8edeee842c5eaf`
 
 Current release: **19**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
 Saves made on release 7 or later carry over to this release. Older saves need a new game.
