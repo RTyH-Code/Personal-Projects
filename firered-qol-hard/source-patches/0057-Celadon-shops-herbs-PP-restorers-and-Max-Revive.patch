@@ -1,0 +1,304 @@
+From c33b18531dc6d423bee8fc91c35d33c5dcccea38 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 8 Nov 2026 04:23:23 +0000
+Subject: [PATCH 57/57] Celadon shops: herbs, PP restorers and Max Revive
+
+Battle consumables you could only find before:
+- Berry stand: Energy Powder and Heal Powder from the start; Energy Root,
+  Revival Herb, White Herb and Mental Herb after Erika (the held herbs
+  now cost 2,000).
+- 5F X-item clerk: Ether and Elixir after Erika; Max Ether, Max Elixir
+  and Max Revive after the Champion.
+The spoiler guide labels the new shop tiers. tools/hack/consumables_shop.py.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ HACK_NOTES.md                                 |  9 ++
+ .../scripts.inc                               | 14 +++
+ .../CeladonCity_DepartmentStore_2F/text.inc   |  2 +-
+ .../scripts.inc                               | 45 +++++++++
+ src/data/items.json                           |  4 +-
+ tools/hack/consumables_shop.py                | 96 +++++++++++++++++++
+ tools/hack/spoiler_guide.py                   |  3 +
+ 7 files changed, 170 insertions(+), 3 deletions(-)
+ create mode 100644 tools/hack/consumables_shop.py
+
+diff --git a/HACK_NOTES.md b/HACK_NOTES.md
+index 32f8ab0..9b9b428 100644
+--- a/HACK_NOTES.md
++++ b/HACK_NOTES.md
+@@ -43,6 +43,14 @@ A quality-of-life, modernization and difficulty hack built on the pret/pokefirer
+   | After you become Champion | Liechi, Ganlon, Salac, Petaya, Apicot | ₽3,000 |
+   | | Lansat, Starf | ₽5,000 |
+   | | The EV-lowering berries (Pomeg, Kelpsy, Qualot, Hondew, Grepa, Tamato) | ₽300 |
++
++  The stand also sells herbs:
++  - **From the start:** Energy Powder and Heal Powder.
++  - **After Erika:** Energy Root, Revival Herb, White Herb and Mental Herb
++    (the two held herbs are ₽2,000 each).
++- **More battle consumables:** the X-item clerk on Celadon Department Store 5F
++  adds Ether and Elixir after Erika, and Max Ether, Max Elixir and Max Revive
++  after you become Champion. In the original game you could only find these.
+ - Pokémon from Johto and Hoenn can evolve before you have the National Dex.
+ - Stone evolutions keep learning moves by level-up. Modern games only give
+   them level-1 moves, so the 18 affected Pokémon now learn their
+@@ -547,6 +555,7 @@ Each script runs once against the original pret data:
+ - `gym_doubles.py`: the gym double battles (one trainer per gym) and their doubles movesets.
+ - `learnsets.py`: what each species can learn in this hack (used by the scripts that set trainer moves).
+ - `vr_rematches.py`: the Victory Road VS Seeker rematch teams and scripts.
++- `consumables_shop.py`: herbs, PP restorers and Max Revive in the Celadon shops (run after `berry_shop.py`).
+ - `berry_shop.py`: the Celadon Department Store berry stand and berry prices.
+ - `wild_levels.py`: wild Pokémon levels 1.15x from the Erika stretch on.
+ - `exp_budget.py`: how much trainer Exp. each stretch of the game gives, and
+diff --git a/data/maps/CeladonCity_DepartmentStore_2F/scripts.inc b/data/maps/CeladonCity_DepartmentStore_2F/scripts.inc
+index f5c146b..c4f2ed5 100644
+--- a/data/maps/CeladonCity_DepartmentStore_2F/scripts.inc
++++ b/data/maps/CeladonCity_DepartmentStore_2F/scripts.inc
+@@ -95,6 +95,8 @@ CeladonCity_DepartmentStore_2F_BerriesBasic::
+ 	.2byte ITEM_PERSIM_BERRY
+ 	.2byte ITEM_ORAN_BERRY
+ 	.2byte ITEM_LEPPA_BERRY
++	.2byte ITEM_ENERGY_POWDER
++	.2byte ITEM_HEAL_POWDER
+ 	.2byte ITEM_NONE
+ 	release
+ 	end
+@@ -116,6 +118,12 @@ CeladonCity_DepartmentStore_2F_BerriesMid::
+ 	.2byte ITEM_MAGO_BERRY
+ 	.2byte ITEM_AGUAV_BERRY
+ 	.2byte ITEM_IAPAPA_BERRY
++	.2byte ITEM_ENERGY_POWDER
++	.2byte ITEM_HEAL_POWDER
++	.2byte ITEM_ENERGY_ROOT
++	.2byte ITEM_REVIVAL_HERB
++	.2byte ITEM_WHITE_HERB
++	.2byte ITEM_MENTAL_HERB
+ 	.2byte ITEM_NONE
+ 	release
+ 	end
+@@ -150,6 +158,12 @@ CeladonCity_DepartmentStore_2F_BerriesAll::
+ 	.2byte ITEM_HONDEW_BERRY
+ 	.2byte ITEM_GREPA_BERRY
+ 	.2byte ITEM_TAMATO_BERRY
++	.2byte ITEM_ENERGY_POWDER
++	.2byte ITEM_HEAL_POWDER
++	.2byte ITEM_ENERGY_ROOT
++	.2byte ITEM_REVIVAL_HERB
++	.2byte ITEM_WHITE_HERB
++	.2byte ITEM_MENTAL_HERB
+ 	.2byte ITEM_NONE
+ 	release
+ 	end
+diff --git a/data/maps/CeladonCity_DepartmentStore_2F/text.inc b/data/maps/CeladonCity_DepartmentStore_2F/text.inc
+index fd71cee..aaa37c0 100644
+--- a/data/maps/CeladonCity_DepartmentStore_2F/text.inc
++++ b/data/maps/CeladonCity_DepartmentStore_2F/text.inc
+@@ -20,4 +20,4 @@ CeladonCity_DepartmentStore_2F_Text_LanceComesToBuyCapes::
+ 
+ CeladonCity_DepartmentStore_2F_Text_HackBerryClerk::
+     .string "Welcome to the BERRY STAND!\n"
+-    .string "Fresh from the SEVII ISLANDS.$"
++    .string "We have herbs, too.$"
+diff --git a/data/maps/CeladonCity_DepartmentStore_5F/scripts.inc b/data/maps/CeladonCity_DepartmentStore_5F/scripts.inc
+index 8625e22..02d40c0 100644
+--- a/data/maps/CeladonCity_DepartmentStore_5F/scripts.inc
++++ b/data/maps/CeladonCity_DepartmentStore_5F/scripts.inc
+@@ -19,7 +19,10 @@ CeladonCity_DepartmentStore_5F_EventScript_ClerkXItems::
+ 	faceplayer
+ 	message Text_MayIHelpYou
+ 	waitmessage
++	goto_if_set FLAG_SYS_GAME_CLEAR, CeladonCity_DepartmentStore_5F_EventScript_HackXItemsAll
++	goto_if_set FLAG_BADGE04_GET, CeladonCity_DepartmentStore_5F_EventScript_HackXItemsMid
+ 	pokemart CeladonCity_DepartmentStore_5F_XItems
++CeladonCity_DepartmentStore_5F_EventScript_HackXItemsEnd::
+ 	msgbox Text_PleaseComeAgain
+ 	release
+ 	end
+@@ -59,3 +62,45 @@ CeladonCity_DepartmentStore_5F_Vitamins::
+ 	.2byte ITEM_NONE
+ 	release
+ 	end
++
++@ FireRed QoL+Hard: PP restorers and Max Revive (tools/hack/consumables_shop.py)
++CeladonCity_DepartmentStore_5F_EventScript_HackXItemsMid::
++	pokemart CeladonCity_DepartmentStore_5F_XItemsMid
++	goto CeladonCity_DepartmentStore_5F_EventScript_HackXItemsEnd
++
++CeladonCity_DepartmentStore_5F_EventScript_HackXItemsAll::
++	pokemart CeladonCity_DepartmentStore_5F_XItemsAll
++	goto CeladonCity_DepartmentStore_5F_EventScript_HackXItemsEnd
++
++	.align 2
++CeladonCity_DepartmentStore_5F_XItemsMid::
++	.2byte ITEM_X_ATTACK
++	.2byte ITEM_X_DEFEND
++	.2byte ITEM_X_SPEED
++	.2byte ITEM_X_SPECIAL
++	.2byte ITEM_X_ACCURACY
++	.2byte ITEM_GUARD_SPEC
++	.2byte ITEM_DIRE_HIT
++	.2byte ITEM_ETHER
++	.2byte ITEM_ELIXIR
++	.2byte ITEM_NONE
++	release
++	end
++
++	.align 2
++CeladonCity_DepartmentStore_5F_XItemsAll::
++	.2byte ITEM_X_ATTACK
++	.2byte ITEM_X_DEFEND
++	.2byte ITEM_X_SPEED
++	.2byte ITEM_X_SPECIAL
++	.2byte ITEM_X_ACCURACY
++	.2byte ITEM_GUARD_SPEC
++	.2byte ITEM_DIRE_HIT
++	.2byte ITEM_ETHER
++	.2byte ITEM_ELIXIR
++	.2byte ITEM_MAX_ETHER
++	.2byte ITEM_MAX_ELIXIR
++	.2byte ITEM_MAX_REVIVE
++	.2byte ITEM_NONE
++	release
++	end
+diff --git a/src/data/items.json b/src/data/items.json
+index ec9eb94..fbcedc6 100644
+--- a/src/data/items.json
++++ b/src/data/items.json
+@@ -2883,7 +2883,7 @@
+     {
+       "english": "WHITE HERB",
+       "itemId": "ITEM_WHITE_HERB",
+-      "price": 100,
++      "price": 2000,
+       "holdEffect": "HOLD_EFFECT_RESTORE_STATS",
+       "holdEffectParam": 0,
+       "description_english": "An item to be held by a POKéMON.\\nIt restores any lowered stat in\\nbattle. It can be used only once.",
+@@ -2963,7 +2963,7 @@
+     {
+       "english": "MENTAL HERB",
+       "itemId": "ITEM_MENTAL_HERB",
+-      "price": 100,
++      "price": 2000,
+       "holdEffect": "HOLD_EFFECT_CURE_ATTRACT",
+       "holdEffectParam": 0,
+       "description_english": "An item to be held by a POKéMON.\\nIt snaps the holder out of\\ninfatuation. It can be used once.",
+diff --git a/tools/hack/consumables_shop.py b/tools/hack/consumables_shop.py
+new file mode 100644
+index 0000000..a180c24
+--- /dev/null
++++ b/tools/hack/consumables_shop.py
+@@ -0,0 +1,96 @@
++#!/usr/bin/env python3
++"""Battle consumables you couldn't restock: add them to Celadon's shops.
++
++Run after berry_shop.py. Runs once.
++  Berry stand (2F)  from the start:  Energy Powder, Heal Powder
++                    after Erika:     Energy Root, Revival Herb, White Herb, Mental Herb
++  X items (5F)      after Erika:     Ether, Elixir
++                    after Champion:  Max Ether, Max Elixir, Max Revive
++White and Mental Herb now cost 2,000 (they were 100).
++"""
++import json, os, re, sys
++
++os.chdir(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
++
++
++def read(p):
++    return open(p, encoding="utf-8").read()
++
++
++def write(p, s):
++    open(p, "w", encoding="utf-8").write(s)
++
++
++def add_to_mart(text, label, items):
++    m = re.search(r"(%s::\n(?:\t\.2byte ITEM_\w+\n)*?)(\t\.2byte ITEM_NONE\n)" % label, text)
++    assert m, label
++    return text[:m.end(1)] + "".join(f"\t.2byte ITEM_{i}\n" for i in items) + text[m.end(1):]
++
++
++P2 = "data/maps/CeladonCity_DepartmentStore_2F/scripts.inc"
++P5 = "data/maps/CeladonCity_DepartmentStore_5F/scripts.inc"
++s2, s5 = read(P2), read(P5)
++if "ITEM_ENERGY_POWDER" in s2:
++    sys.exit("The consumables are already on sale.")
++if "CeladonCity_DepartmentStore_2F_BerriesBasic" not in s2:
++    sys.exit("Run berry_shop.py first.")
++
++# Berry stand: herbal medicine and the two held herbs
++basic, mid = ["ENERGY_POWDER", "HEAL_POWDER"], ["ENERGY_ROOT", "REVIVAL_HERB", "WHITE_HERB", "MENTAL_HERB"]
++s2 = add_to_mart(s2, "CeladonCity_DepartmentStore_2F_BerriesBasic", basic)
++s2 = add_to_mart(s2, "CeladonCity_DepartmentStore_2F_BerriesMid", basic + mid)
++s2 = add_to_mart(s2, "CeladonCity_DepartmentStore_2F_BerriesAll", basic + mid)
++write(P2, s2)
++t2 = "data/maps/CeladonCity_DepartmentStore_2F/text.inc"
++write(t2, read(t2).replace('''    .string "Welcome to the BERRY STAND!\\n"
++    .string "Fresh from the SEVII ISLANDS.$"''', '''    .string "Welcome to the BERRY STAND!\\n"
++    .string "We have herbs, too.$"'''))
++
++# 5F X-item clerk: PP restorers and Max Revive by progress
++lab = "CeladonCity_DepartmentStore_5F_XItems"
++xitems = re.search(r"%s::\n((?:\t\.2byte ITEM_\w+\n)*?)\t\.2byte ITEM_NONE\n" % lab, s5).group(1)
++s5 = s5.replace('''	pokemart CeladonCity_DepartmentStore_5F_XItems
++	msgbox Text_PleaseComeAgain''', '''	goto_if_set FLAG_SYS_GAME_CLEAR, CeladonCity_DepartmentStore_5F_EventScript_HackXItemsAll
++	goto_if_set FLAG_BADGE04_GET, CeladonCity_DepartmentStore_5F_EventScript_HackXItemsMid
++	pokemart CeladonCity_DepartmentStore_5F_XItems
++CeladonCity_DepartmentStore_5F_EventScript_HackXItemsEnd::
++	msgbox Text_PleaseComeAgain''', 1)
++s5 += f"""
++@ FireRed QoL+Hard: PP restorers and Max Revive (tools/hack/consumables_shop.py)
++CeladonCity_DepartmentStore_5F_EventScript_HackXItemsMid::
++\tpokemart CeladonCity_DepartmentStore_5F_XItemsMid
++\tgoto CeladonCity_DepartmentStore_5F_EventScript_HackXItemsEnd
++
++CeladonCity_DepartmentStore_5F_EventScript_HackXItemsAll::
++\tpokemart CeladonCity_DepartmentStore_5F_XItemsAll
++\tgoto CeladonCity_DepartmentStore_5F_EventScript_HackXItemsEnd
++
++\t.align 2
++CeladonCity_DepartmentStore_5F_XItemsMid::
++{xitems}\t.2byte ITEM_ETHER
++\t.2byte ITEM_ELIXIR
++\t.2byte ITEM_NONE
++\trelease
++\tend
++
++\t.align 2
++CeladonCity_DepartmentStore_5F_XItemsAll::
++{xitems}\t.2byte ITEM_ETHER
++\t.2byte ITEM_ELIXIR
++\t.2byte ITEM_MAX_ETHER
++\t.2byte ITEM_MAX_ELIXIR
++\t.2byte ITEM_MAX_REVIVE
++\t.2byte ITEM_NONE
++\trelease
++\tend
++"""
++write(P5, s5)
++
++# Prices
++raw = read("src/data/items.json")
++d = json.loads(raw)
++for it in d["items"]:
++    if it["itemId"] in ("ITEM_WHITE_HERB", "ITEM_MENTAL_HERB"):
++        it["price"] = 2000
++write("src/data/items.json", json.dumps(d, indent=2, ensure_ascii=False) + ("\n" if raw.endswith("\n") else ""))
++print("Consumables added to the Celadon shops.")
+diff --git a/tools/hack/spoiler_guide.py b/tools/hack/spoiler_guide.py
+index bd89df9..b51d3cf 100644
+--- a/tools/hack/spoiler_guide.py
++++ b/tools/hack/spoiler_guide.py
+@@ -320,6 +320,9 @@ SHOP_TIERS = {
+     "CeladonCity_DepartmentStore_2F_BerriesBasic": " (berry stand, from the start)",
+     "CeladonCity_DepartmentStore_2F_BerriesMid": " (berry stand, after Erika)",
+     "CeladonCity_DepartmentStore_2F_BerriesAll": " (berry stand, after you become Champion)",
++    "CeladonCity_DepartmentStore_5F_XItems": " (before Erika)",
++    "CeladonCity_DepartmentStore_5F_XItemsMid": " (after Erika)",
++    "CeladonCity_DepartmentStore_5F_XItemsAll": " (after you become Champion)",
+ }
+ 
+ 
+-- 
+2.43.0
+

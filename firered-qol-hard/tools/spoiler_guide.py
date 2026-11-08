@@ -320,6 +320,9 @@ SHOP_TIERS = {
     "CeladonCity_DepartmentStore_2F_BerriesBasic": " (berry stand, from the start)",
     "CeladonCity_DepartmentStore_2F_BerriesMid": " (berry stand, after Erika)",
     "CeladonCity_DepartmentStore_2F_BerriesAll": " (berry stand, after you become Champion)",
+    "CeladonCity_DepartmentStore_5F_XItems": " (before Erika)",
+    "CeladonCity_DepartmentStore_5F_XItemsMid": " (after Erika)",
+    "CeladonCity_DepartmentStore_5F_XItemsAll": " (after you become Champion)",
 }
 
 

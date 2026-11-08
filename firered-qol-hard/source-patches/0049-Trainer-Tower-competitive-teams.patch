@@ -1,7 +1,7 @@
 From a088c0436b04b4241659995bd617d12db23df195 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Fri, 6 Nov 2026 02:41:09 +0000
-Subject: [PATCH 49/56] Trainer Tower: competitive teams
+Subject: [PATCH 49/57] Trainer Tower: competitive teams
 
 Every Trainer Tower Pokemon is rebuilt as a competitive set: fully
 evolved (one per species per team), moves from Showdown's role-based

@@ -131,11 +131,11 @@ Shop: Great Ball (₽600), Super Potion (₽700), Revive (₽1500), Antidote (�
 
 Shop: TM05 Roar (₽1000), TM15 Hyper Beam (₽7500), TM28 Dig (₽2000), TM31 Brick Break (₽3000), TM43 Secret Power (₽3000), TM45 Attract (₽3000)
 
-Shop (berry stand, from the start): Cheri Berry (₽200), Chesto Berry (₽200), Pecha Berry (₽200), Rawst Berry (₽200), Aspear Berry (₽200), Persim Berry (₽200), Oran Berry (₽100), Leppa Berry (₽400)
+Shop (berry stand, from the start): Cheri Berry (₽200), Chesto Berry (₽200), Pecha Berry (₽200), Rawst Berry (₽200), Aspear Berry (₽200), Persim Berry (₽200), Oran Berry (₽100), Leppa Berry (₽400), Energypowder (₽500), Heal Powder (₽450)
 
-Shop (berry stand, after Erika): Cheri Berry (₽200), Chesto Berry (₽200), Pecha Berry (₽200), Rawst Berry (₽200), Aspear Berry (₽200), Persim Berry (₽200), Oran Berry (₽100), Leppa Berry (₽400), Sitrus Berry (₽1200), Lum Berry (₽1500), Figy Berry (₽600), Wiki Berry (₽600), Mago Berry (₽600), Aguav Berry (₽600), Iapapa Berry (₽600)
+Shop (berry stand, after Erika): Cheri Berry (₽200), Chesto Berry (₽200), Pecha Berry (₽200), Rawst Berry (₽200), Aspear Berry (₽200), Persim Berry (₽200), Oran Berry (₽100), Leppa Berry (₽400), Sitrus Berry (₽1200), Lum Berry (₽1500), Figy Berry (₽600), Wiki Berry (₽600), Mago Berry (₽600), Aguav Berry (₽600), Iapapa Berry (₽600), Energypowder (₽500), Heal Powder (₽450), Energy Root (₽800), Revival Herb (₽2800), White Herb (₽2000), Mental Herb (₽2000)
 
-Shop (berry stand, after you become Champion): Cheri Berry (₽200), Chesto Berry (₽200), Pecha Berry (₽200), Rawst Berry (₽200), Aspear Berry (₽200), Persim Berry (₽200), Oran Berry (₽100), Leppa Berry (₽400), Sitrus Berry (₽1200), Lum Berry (₽1500), Figy Berry (₽600), Wiki Berry (₽600), Mago Berry (₽600), Aguav Berry (₽600), Iapapa Berry (₽600), Liechi Berry (₽3000), Ganlon Berry (₽3000), Salac Berry (₽3000), Petaya Berry (₽3000), Apicot Berry (₽3000), Lansat Berry (₽5000), Starf Berry (₽5000), Pomeg Berry (₽300), Kelpsy Berry (₽300), Qualot Berry (₽300), Hondew Berry (₽300), Grepa Berry (₽300), Tamato Berry (₽300)
+Shop (berry stand, after you become Champion): Cheri Berry (₽200), Chesto Berry (₽200), Pecha Berry (₽200), Rawst Berry (₽200), Aspear Berry (₽200), Persim Berry (₽200), Oran Berry (₽100), Leppa Berry (₽400), Sitrus Berry (₽1200), Lum Berry (₽1500), Figy Berry (₽600), Wiki Berry (₽600), Mago Berry (₽600), Aguav Berry (₽600), Iapapa Berry (₽600), Liechi Berry (₽3000), Ganlon Berry (₽3000), Salac Berry (₽3000), Petaya Berry (₽3000), Apicot Berry (₽3000), Lansat Berry (₽5000), Starf Berry (₽5000), Pomeg Berry (₽300), Kelpsy Berry (₽300), Qualot Berry (₽300), Hondew Berry (₽300), Grepa Berry (₽300), Tamato Berry (₽300), Energypowder (₽500), Heal Powder (₽450), Energy Root (₽800), Revival Herb (₽2800), White Herb (₽2000), Mental Herb (₽2000)
 
 ## Celadon City Department Store 4F
 
@@ -145,9 +145,13 @@ Shop (from the 5th badge): Poké Doll (₽1000), Retro Mail (₽50), Fire Stone 
 
 ## Celadon City Department Store 5F
 
-Shop: X Attack (₽500), X Defend (₽550), X Speed (₽350), X Special (₽350), X Accuracy (₽950), Guard Spec. (₽700), Dire Hit (₽650)
+Shop (before Erika): X Attack (₽500), X Defend (₽550), X Speed (₽350), X Special (₽350), X Accuracy (₽950), Guard Spec. (₽700), Dire Hit (₽650)
 
 Shop: HP Up (₽9800), Protein (₽9800), Iron (₽9800), Calcium (₽9800), Zinc (₽9800), Carbos (₽9800)
+
+Shop (after Erika): X Attack (₽500), X Defend (₽550), X Speed (₽350), X Special (₽350), X Accuracy (₽950), Guard Spec. (₽700), Dire Hit (₽650), Ether (₽1200), Elixir (₽3000)
+
+Shop (after you become Champion): X Attack (₽500), X Defend (₽550), X Speed (₽350), X Special (₽350), X Accuracy (₽950), Guard Spec. (₽700), Dire Hit (₽650), Ether (₽1200), Elixir (₽3000), Max Ether (₽2000), Max Elixir (₽4500), Max Revive (₽4000)
 
 ## Celadon City Game Corner
 

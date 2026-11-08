@@ -45,6 +45,14 @@ A quality-of-life, modernization and difficulty hack built on the pret/pokefirer
   | After you become Champion | Liechi, Ganlon, Salac, Petaya, Apicot | ₽3,000 |
   | | Lansat, Starf | ₽5,000 |
   | | The EV-lowering berries (Pomeg, Kelpsy, Qualot, Hondew, Grepa, Tamato) | ₽300 |
+
+  The stand also sells herbs:
+  - **From the start:** Energy Powder and Heal Powder.
+  - **After Erika:** Energy Root, Revival Herb, White Herb and Mental Herb
+    (the two held herbs are ₽2,000 each).
+- **More battle consumables:** the X-item clerk on Celadon Department Store 5F
+  adds Ether and Elixir after Erika, and Max Ether, Max Elixir and Max Revive
+  after you become Champion. In the original game you could only find these.
 - Pokémon from Johto and Hoenn can evolve before you have the National Dex.
 - Stone evolutions keep learning moves by level-up. Modern games only give
   them level-1 moves, so the 18 affected Pokémon now learn their
@@ -539,7 +547,7 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `7934a153f7df75e544d919c9d97da0613b506a4e`
+Patched ROM SHA-1: `faf4427801ab1ea2bfb90d210643408a2ba5fc4f`
 
 Current release: **15**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
 Saves made on release 7 or later carry over to this release. Older saves need a new game.
@@ -578,6 +586,7 @@ unmodified pret data:
 - `gym_doubles.py`: the gym double battles and their doubles movesets.
 - `learnsets.py`: what each species can learn in this hack (used by the trainer scripts).
 - `vr_rematches.py`: the Victory Road VS Seeker rematch teams and scripts.
+- `consumables_shop.py`: herbs, PP restorers and Max Revive in the Celadon shops (run after `berry_shop.py`).
 - `berry_shop.py`: the Celadon Department Store berry stand and berry prices.
 - `wild_levels.py`: wild Pokémon levels 1.15x from the Erika stretch on.
 - `exp_budget.py`: how much trainer Exp. each stretch of the game gives, against the level caps.

@@ -1,7 +1,7 @@
 From 1928fd03a36fd407ff618f1f52e8b3b1c83ab983 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Wed, 4 Nov 2026 03:30:11 +0000
-Subject: [PATCH 29/56] Modern abilities, batch 1: three ability slots and 41
+Subject: [PATCH 29/57] Modern abilities, batch 1: three ability slots and 41
  new abilities
 
 - Species get up to three abilities (two regular + hidden) from modern

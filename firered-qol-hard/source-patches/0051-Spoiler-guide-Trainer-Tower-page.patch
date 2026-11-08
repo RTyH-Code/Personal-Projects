@@ -1,7 +1,7 @@
 From 4faa72c08da74e4cb0006061cb7c850ded5b586f Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Fri, 6 Nov 2026 12:18:47 +0000
-Subject: [PATCH 51/56] Spoiler guide: Trainer Tower page
+Subject: [PATCH 51/57] Spoiler guide: Trainer Tower page
 
 TOWER.md lists every challenge floor by floor with the exact Pokemon each
 trainer uses there (the floor-position picks from trainer_tower.c), their
