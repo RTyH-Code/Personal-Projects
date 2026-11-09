@@ -26,6 +26,7 @@ presses, then reads the save block to confirm the milestone happened:
   peak_champion the peak (round 3) Champion's battle loads with a Lv. 100 team
   nuzlocke_blackout    Nuzlocke: losing an ordinary trainer battle ends the run
   nuzlocke_exhibition  Nuzlocke: losing to a peak trainer doesn't (exhibition battle)
+  nuzlocke_poison  Nuzlocke: a field-poison black-out after a Trainer Tower loss still ends the run
   exp_share   Party Exp. Share: the Pokemon that didn't battle levels up too
   vr_rematch  the VS Seeker in Victory Road: Naomi's rematch team (Lv. 56 Persian)
   brock       Brock's real gym script: battle won, Boulder Badge awarded
@@ -231,6 +232,18 @@ CHECKS = {
                   "patch": [gentleman("\ttrainerbattle_no_intro TRAINER_PEAK_BROCK, ViridianCity_PokemonCenter_1F_Text_FeelFreeToUsePC")]},
         body=TALK_LEFT + mash(40, 90),
         expect=[("flag", "FLAG_HACK_NUZLOCKE", 1), ("alive", 0, 1)]),
+    "nuzlocke_poison": dict(
+        # Nuzlocke: lose in the Trainer Tower (an exhibition battle, no black-out),
+        # then black out from field poison. The run must end. (The test makes the
+        # Tower loss leave the Pokemon poisoned at 1 HP.)
+        scenario={"party": [["MAGIKARP", 5, ["SPLASH"]]], "tower": 0, "set": ["FLAG_HACK_NUZLOCKE", "FLAG_SYS_POKEDEX_GET"],
+                  "warp": ["MAP_TRAINER_TOWER_1F", 10, 14],
+                  "patch": [["src/trainer_tower.c", "static void TrainerTowerSetPlayerLost(void)\n{\n",
+                             "static void TrainerTowerSetPlayerLost(void)\n{\n    { u16 hp = 1; u32 st = 8; SetMonData(&gPlayerParty[0], MON_DATA_HP, &hp);"
+                             " SetMonData(&gPlayerParty[0], MON_DATA_STATUS, &st); }\n"]]},
+        body=("wait 120\npress U 12\nwait 300\n" + mash(40, 90) + "shot nuzlocke_poison_lobby\n" +
+              "".join("press D 16\nwait 20\npress U 16\nwait 20\n" for _ in range(20)) + mash(16, 90)),
+        expect=[("flag", "FLAG_HACK_NUZLOCKE", 0)]),
     "exp_share": dict(
         # Party Exp. Share: the Pokemon that didn't battle still levels up.
         scenario={"party": [["PIDGEOT", 40, ["WING_ATTACK"]], ["RATTATA", 5, ["TACKLE"]]],

@@ -38,7 +38,7 @@ but it won't gain Exp. until the cap rises. Gift Pokémon (your starter, Eevee, 
 |---|--:|--:|--:|--:|---|
 | Brock | 4 | 4 | 16 | 6 | — |
 | Misty | 5 | 9 | 23 | 14 | — |
-| Lt. Surge | 9 | 18 | 28 | 31 | Diglett's Cave B1F |
+| Lt. Surge | 9 | 18 | 28 | 28 | — |
 | Erika | 6 | 24 | 35 | 25 | — |
 | Koga | 10 | 34 | 45 | 38 | — |
 | Sabrina | 6 | 40 | 47 | 46 | — |
