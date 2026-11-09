@@ -207,7 +207,7 @@ The Victory Road rematches are listed in [Trainers](TRAINERS.md#victory-road-rem
 | | With the VS Seeker | Same team as the first battle |
 | Picnicker Susie | First battle | Pidgey Lv28, Meowth Lv28, Rattata Lv28, Pikachu Lv28, Meowth Lv28 |
 |  | After you reach Fuchsia City | Pidgeotto Lv31, Meowth Lv31, Raticate Lv31, Pikachu Lv31, Meowth Lv31 |
-|  | After you become Champion | Pidgeot Lv68, Persian Lv68, Raticate Lv68, Pikachu Lv68, Persian Lv68 |
+|  | After you become Champion | Pidgeot Lv68, Persian Lv68, Raticate Lv68, Raichu Lv68, Persian Lv68 |
 |  | After the Sevii Islands story | Pidgeot Lv75, Persian Lv75, Raticate Lv75, Raichu Lv75, Persian Lv75 |
 | Picnicker Valerie | First battle | Poliwag Lv34, Poliwag Lv34 |
 | | With the VS Seeker | Same team as the first battle |
@@ -266,7 +266,7 @@ The Victory Road rematches are listed in [Trainers](TRAINERS.md#victory-road-rem
 | | With the VS Seeker | Same team as the first battle |
 | Picnicker Becky | First battle | Pikachu Lv33, Raichu Lv33 |
 |  | After you reach Fuchsia City | Pikachu Lv37, Raichu Lv37 |
-|  | After you become Champion | Pikachu Lv70, Raichu Lv70 |
+|  | After you become Champion | Raichu Lv70, Raichu Lv70 |
 |  | After the Sevii Islands story | Raichu Lv78, Raichu Lv78 |
 | Picnicker Celia | First battle | Clefairy Lv38 |
 | | With the VS Seeker | Same team as the first battle |
@@ -340,13 +340,13 @@ The Victory Road rematches are listed in [Trainers](TRAINERS.md#victory-road-rem
 | Swimmer M Reece | First battle | Goldeen Lv33, Horsea Lv33, Staryu Lv33 |
 | | With the VS Seeker | Same team as the first battle |
 | Swimmer M Matthew | First battle | Poliwag Lv34, Poliwhirl Lv34 |
-|  | After you become Champion | Poliwhirl Lv70, Poliwrath Lv70 |
+|  | After you become Champion | Poliwrath Lv70, Poliwrath Lv70 |
 | Swimmer M Douglas | First battle | Horsea Lv31, Tentacool Lv31, Tentacool Lv31, Goldeen Lv31 |
 | | With the VS Seeker | Same team as the first battle |
 | Swimmer M David | First battle | Goldeen Lv33, Shellder Lv33, Seaking Lv33 |
 | | With the VS Seeker | Same team as the first battle |
 | Swimmer M Tony | First battle | Horsea Lv34, Horsea Lv34 |
-|  | After you become Champion | Seadra Lv70, Seadra Lv70 |
+|  | After you become Champion | Kingdra Lv70, Kingdra Lv70 |
 | Swimmer M Axle | First battle | Tentacool Lv31, Tentacool Lv31, Staryu Lv31, Horsea Lv31, Tentacruel Lv31 |
 | | With the VS Seeker | Same team as the first battle |
 | Swimmer F Anya | First battle | Poliwag Lv31, Goldeen Lv31, Seaking Lv31, Goldeen Lv31, Poliwag Lv31 |
@@ -367,7 +367,7 @@ The Victory Road rematches are listed in [Trainers](TRAINERS.md#victory-road-rem
 | Swimmer M Dean | First battle | Staryu Lv40 |
 | | With the VS Seeker | Same team as the first battle |
 | Swimmer M Darrin | First battle | Horsea Lv32, Horsea Lv32, Seadra Lv32, Horsea Lv32 |
-|  | After the Sevii Islands story | Seadra Lv75, Seadra Lv75, Seadra Lv75, Seadra Lv75 |
+|  | After the Sevii Islands story | Kingdra Lv75, Kingdra Lv75, Kingdra Lv75, Kingdra Lv75 |
 | Swimmer F Tiffany | First battle | Seaking Lv40 |
 | | With the VS Seeker | Same team as the first battle |
 | Swimmer F Nora | First battle | Shellder Lv34, Shellder Lv34, Cloyster Lv34 |
@@ -405,8 +405,8 @@ The Victory Road rematches are listed in [Trainers](TRAINERS.md#victory-road-rem
 | Swimmer M Roland | First battle | Poliwhirl Lv37, Tentacool Lv37, Seadra Lv37 |
 | | With the VS Seeker | Same team as the first battle |
 | Sis and Bro Lil & Ian *(double)* | First battle | Seadra Lv38, Starmie Lv38 |
-|  | After you become Champion | Seadra Lv71, Starmie Lv71 |
-|  | After the Sevii Islands story | Seadra Lv79, Starmie Lv79 |
+|  | After you become Champion | Kingdra Lv71, Starmie Lv71 |
+|  | After the Sevii Islands story | Kingdra Lv79, Starmie Lv79 |
 
 ## Route 24
 
@@ -415,7 +415,7 @@ The Victory Road rematches are listed in [Trainers](TRAINERS.md#victory-road-rem
 | Youngster Timmy | First battle | Sandshrew Lv16, Ekans Lv16 |
 |  | With the VS Seeker | Raticate Lv22, Ekans Lv22, Zubat Lv22 |
 |  | After you reach Fuchsia City | Raticate Lv31, Ekans Lv31, Golbat Lv31 |
-|  | After the Sevii Islands story | Raticate Lv75, Arbok Lv75, Golbat Lv75 |
+|  | After the Sevii Islands story | Raticate Lv75, Arbok Lv75, Crobat Lv75 |
 | Bug Catcher Cale | First battle | Caterpie Lv12, Weedle Lv12, Metapod Lv12, Kakuna Lv12 |
 | | With the VS Seeker | Same team as the first battle |
 | Lass Reli | First battle | Nidoran♂ Lv18, Nidoran♀ Lv18 |
@@ -505,13 +505,13 @@ The Victory Road rematches are listed in [Trainers](TRAINERS.md#victory-road-rem
 | Aroma Lady Violet | First battle | Bulbasaur Lv41, Ivysaur Lv41, Ivysaur Lv41 |
 | | With the VS Seeker | Same team as the first battle |
 | Tuber Amira | First battle | Poliwag Lv39, Poliwhirl Lv40, Poliwag Lv39 |
-|  | After you become Champion | Poliwrath Lv68, Poliwhirl Lv68, Poliwhirl Lv68 |
+|  | After you become Champion | Poliwrath Lv68, Poliwrath Lv68, Poliwrath Lv68 |
 | Tuber Alexis | First battle | Staryu Lv39, Staryu Lv39, Krabby Lv39, Krabby Lv39 |
 | | With the VS Seeker | Same team as the first battle |
 | Swimmer F Tisha | First battle | Kingler Lv44 |
 | | With the VS Seeker | Same team as the first battle |
 | Twins Joy & Meg *(double)* | First battle | Clefairy Lv43, Clefairy Lv43 |
-|  | After you become Champion | Clefable Lv70, Clefairy Lv70 |
+|  | After you become Champion | Clefable Lv70, Clefable Lv70 |
 
 ## Five Island Memorial Pillar
 
@@ -547,8 +547,8 @@ The Victory Road rematches are listed in [Trainers](TRAINERS.md#victory-road-rem
 
 | Trainer | When | Pokémon |
 |---|---|---|
-| Pkmn Breeder Alize | First battle | Pikachu Lv72, Clefable Lv72, Azumarill Lv72 |
-|  | After the Sevii Islands story | Pikachu Lv79, Clefable Lv79, Azumarill Lv79 |
+| Pkmn Breeder Alize | First battle | Raichu Lv72, Clefable Lv72, Azumarill Lv72 |
+|  | After the Sevii Islands story | Raichu Lv79, Clefable Lv79, Azumarill Lv79 |
 
 ## Six Island Green Path
 
@@ -574,7 +574,7 @@ The Victory Road rematches are listed in [Trainers](TRAINERS.md#victory-road-rem
 
 | Trainer | When | Pokémon |
 |---|---|---|
-| Ruin Maniac Stanly | First battle | Golem Lv72, Onix Lv72, Golem Lv72 |
+| Ruin Maniac Stanly | First battle | Golem Lv72, Steelix Lv72, Golem Lv72 |
 | | With the VS Seeker | Same team as the first battle |
 | Ruin Maniac Foster | First battle | Golem Lv74 |
 | | With the VS Seeker | Same team as the first battle |
@@ -589,7 +589,7 @@ The Victory Road rematches are listed in [Trainers](TRAINERS.md#victory-road-rem
 
 | Trainer | When | Pokémon |
 |---|---|---|
-| Aroma Lady Rose | First battle | Sunkern Lv73, Sunflora Lv73 |
+| Aroma Lady Rose | First battle | Sunflora Lv73, Sunflora Lv73 |
 | | With the VS Seeker | Same team as the first battle |
 | Juggler Edward | First battle | Electrode Lv69, Electrode Lv69, Electrode Lv70, Mr. Mime Lv72 |
 | | With the VS Seeker | Same team as the first battle |
@@ -597,10 +597,10 @@ The Victory Road rematches are listed in [Trainers](TRAINERS.md#victory-road-rem
 |  | After the Sevii Islands story | Gyarados Lv82 |
 | Swimmer F Denise | First battle | Lanturn Lv73, Lanturn Lv73 |
 | | With the VS Seeker | Same team as the first battle |
-| Twins Miu & Mia *(double)* | First battle | Pikachu Lv74, Pikachu Lv74 |
+| Twins Miu & Mia *(double)* | First battle | Raichu Lv74, Raichu Lv74 |
 | | With the VS Seeker | Same team as the first battle |
-| Hiker Earl | First battle | Onix Lv73, Machamp Lv73 |
-|  | After the Sevii Islands story | Onix Lv81, Machamp Lv81 |
+| Hiker Earl | First battle | Steelix Lv73, Machamp Lv73 |
+|  | After the Sevii Islands story | Steelix Lv81, Machamp Lv81 |
 
 ## Seven Island Sevault Canyon
 
@@ -610,10 +610,10 @@ The Victory Road rematches are listed in [Trainers](TRAINERS.md#victory-road-rem
 |  | After the Sevii Islands story | Annihilape Lv81, Hitmontop Lv81, Machamp Lv81 |
 | Tamer Evan | First battle | Sandslash Lv72, Lickitung Lv72, Ursaring Lv73 |
 |  | After the Sevii Islands story | Sandslash Lv78, Lickitung Lv78, Ursaring Lv82 |
-| Pkmn Ranger Jackson | First battle | Tangela Lv73, Exeggcute Lv73, Exeggutor Lv73 |
+| Pkmn Ranger Jackson | First battle | Tangela Lv73, Exeggutor Lv73, Exeggutor Lv73 |
 |  | After the Sevii Islands story | Tangela Lv79, Exeggutor Lv81, Exeggutor Lv82 |
-| Pkmn Ranger Katelyn | First battle | Chansey Lv78 |
-|  | After the Sevii Islands story | Chansey Lv83 |
+| Pkmn Ranger Katelyn | First battle | Blissey Lv78 |
+|  | After the Sevii Islands story | Blissey Lv83 |
 | Cool Trainer Leroy | First battle | Rhydon Lv70, Slowbro Lv72, Kangaskhan Lv70, Machamp Lv72, Ursaring Lv74 |
 |  | After the Sevii Islands story | Rhydon Lv78, Slowbro Lv81, Kangaskhan Lv78, Machamp Lv78, Ursaring Lv82 |
 | Cool Trainer Michelle | First battle | Persian Lv70, Dewgong Lv70, Ninetales Lv72, Rapidash Lv72, Farigiraf Lv74 |
@@ -631,16 +631,16 @@ The Victory Road rematches are listed in [Trainers](TRAINERS.md#victory-road-rem
 | | With the VS Seeker | Same team as the first battle |
 | Juggler Mason | First battle | Electrode Lv70, Forretress Lv70, Electrode Lv70, Forretress Lv70 |
 |  | After the Sevii Islands story | Electrode Lv78, Forretress Lv78, Electrode Lv78, Forretress Lv78 |
-| Pkmn Ranger Nicolas | First battle | Weepinbell Lv77, Victreebel Lv77 |
+| Pkmn Ranger Nicolas | First battle | Victreebel Lv77, Victreebel Lv77 |
 |  | After the Sevii Islands story | Victreebel Lv82, Victreebel Lv82 |
-| Pkmn Ranger Madeline | First battle | Gloom Lv77, Vileplume Lv77 |
+| Pkmn Ranger Madeline | First battle | Vileplume Lv77, Vileplume Lv77 |
 |  | After the Sevii Islands story | Vileplume Lv82, Vileplume Lv82 |
 
 ## Seven Island Tanoby Ruins
 
 | Trainer | When | Pokémon |
 |---|---|---|
-| Ruin Maniac Brandon | First battle | Onix Lv74 |
+| Ruin Maniac Brandon | First battle | Steelix Lv74 |
 | | With the VS Seeker | Same team as the first battle |
 | Ruin Maniac Benjamin | First battle | Golem Lv72, Golem Lv72, Golem Lv72 |
 | | With the VS Seeker | Same team as the first battle |

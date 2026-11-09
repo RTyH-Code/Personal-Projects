@@ -1,0 +1,935 @@
+From 5c7ce5f0a42a384b03b405b7229439afd5449126 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 9 Nov 2026 00:35:27 +0000
+Subject: [PATCH] Late-game stone and item evolutions, Trainer Tower type
+ summaries (R21)
+
+- trainer_evolutions.py (second pass): Lv. 50+ trainer Pokemon take their
+  classic Gen 1-3 stone, item, trade and friendship evolutions (55
+  Pokemon: Kingdra, Crobat, Steelix, Blissey, Raichu, ...). Later-gen
+  evolutions are left alone.
+- validate.py: flags those too.
+- Spoiler guide: each Trainer Tower challenge lists the types you'll face.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ HACK_NOTES.md                    |  12 ++-
+ include/hack_version.h           |   2 +-
+ src/data/trainer_parties.h       | 152 ++++++++++++++++++++-----------
+ tools/hack/spoiler_guide.py      |  15 ++-
+ tools/hack/trainer_evolutions.py |  30 ++++--
+ tools/hack/validate.py           |  13 ++-
+ 6 files changed, 157 insertions(+), 67 deletions(-)
+
+diff --git a/HACK_NOTES.md b/HACK_NOTES.md
+index 8bce5ee..8c7c7f9 100644
+--- a/HACK_NOTES.md
++++ b/HACK_NOTES.md
+@@ -556,7 +556,11 @@ teams are:
+ - **Late-game evolutions:** every trainer Pokémon of Lv. 50 or higher has
+   evolved where its level allows (5 levels past the evolution), even if the
+   team already has one, e.g. no more Lv. 72 Mareep or Lv. 68 Magikarp.
+-  Earlier trainers keep their classic unevolved Pokémon.
++  They also have their classic stone, item, trade and friendship
++  evolutions (Kingdra, Crobat, Steelix, Blissey, Raichu and so on). The
++  later-generation ones (Rhyperior, Magnezone, ...) are left alone, since
++  those items are badge-gated. Earlier trainers keep their classic
++  unevolved Pokémon.
+ - **Held items:** the Trainer Tower lobby shop on Seven Island also sells the
+   held items competitive teams use: Leftovers, Choice Band, Shell Bell, Focus
+   Band, Quick Claw, Scope Lens, Bright Powder, King's Rock, Lucky Egg, Metal
+@@ -588,7 +592,8 @@ Each script runs once against the original pret data:
+ - `validate.py`: checks the game data for missing or inconsistent entries,
+   including that every peak team is six Lv. 100 Pokémon, every Trainer
+   Tower team is fully evolved with no repeated species or item, and no
+-  Lv. 50+ trainer Pokémon is left unevolved.
++  Lv. 50+ trainer Pokémon is left unevolved (level-up or classic
++  stone/item/trade/friendship evolutions).
+ - `playtest/playtest.py [check ...]`: automated playtest. It runs 25 milestone
+   checks in a headless mGBA:
+   - The boot menu.
+@@ -614,7 +619,8 @@ Each script runs once against the original pret data:
+   `gcc -O2 -w -o tools/hack/playtest/harness tools/hack/playtest/harness.c -lmgba`.
+ - `held_item_shop.py`: held items in the Trainer Tower lobby shop and their prices.
+ - `postgame_levels.py`: Sevii Islands 4–7 trainers and wild Pokémon, and post-game route rematches.
+-- `trainer_evolutions.py`: Lv. 50+ trainer Pokémon evolve where their level allows (run after `postgame_levels.py`).
++- `trainer_evolutions.py`: Lv. 50+ trainer Pokémon evolve where their level allows, then
++  (second run) by classic stone, item, trade or friendship evolutions (run after `postgame_levels.py`).
+ - `tower_sets.py <dir>`: the competitive Trainer Tower teams, from Showdown's
+   random-battle set files (read as data).
+ - `gym_doubles.py`: the gym double battles (one trainer per gym) and their doubles movesets.
+diff --git a/include/hack_version.h b/include/hack_version.h
+index ab1d04f..cbd6eb8 100644
+--- a/include/hack_version.h
++++ b/include/hack_version.h
+@@ -3,6 +3,6 @@
+ 
+ // FireRed QoL+Hard release number, shown in the Options menu. Bump it with
+ // each release (see CHANGELOG.md in the Personal-Projects repository).
+-#define HACK_RELEASE_STRING "R20"
++#define HACK_RELEASE_STRING "R21"
+ 
+ #endif // GUARD_HACK_VERSION_H
+diff --git a/src/data/trainer_parties.h b/src/data/trainer_parties.h
+index 64caf65..60a3bb5 100644
+--- a/src/data/trainer_parties.h
++++ b/src/data/trainer_parties.h
+@@ -5534,11 +5534,12 @@ static const struct TrainerMonItemCustomMoves sParty_EliteFourLorelei[] = {
+     },
+ };
+ 
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonItemCustomMoves sParty_EliteFourBruno[] = {
+     {
+         .iv = 255,
+         .lvl = 59,
+-        .species = SPECIES_ONIX,
++        .species = SPECIES_STEELIX,
+         .heldItem = ITEM_NONE,
+         .moves = {MOVE_EARTHQUAKE, MOVE_STONE_EDGE, MOVE_IRON_TAIL, MOVE_STEALTH_ROCK},
+     },
+@@ -5559,7 +5560,7 @@ static const struct TrainerMonItemCustomMoves sParty_EliteFourBruno[] = {
+     {
+         .iv = 255,
+         .lvl = 62,
+-        .species = SPECIES_ONIX,
++        .species = SPECIES_STEELIX,
+         .heldItem = ITEM_NONE,
+         .moves = {MOVE_ROCK_POLISH, MOVE_EARTHQUAKE, MOVE_STONE_EDGE, MOVE_IRON_TAIL},
+     },
+@@ -5573,6 +5574,7 @@ static const struct TrainerMonItemCustomMoves sParty_EliteFourBruno[] = {
+ };
+ 
+ // FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonItemCustomMoves sParty_EliteFourAgatha[] = {
+     {
+         .iv = 255,
+@@ -5584,7 +5586,7 @@ static const struct TrainerMonItemCustomMoves sParty_EliteFourAgatha[] = {
+     {
+         .iv = 255,
+         .lvl = 62,
+-        .species = SPECIES_GOLBAT,
++        .species = SPECIES_CROBAT,
+         .heldItem = ITEM_NONE,
+         .moves = {MOVE_POISON_FANG, MOVE_AIR_SLASH, MOVE_CONFUSE_RAY, MOVE_BITE},
+     },
+@@ -6181,6 +6183,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_RivalSilphCharmander[] =
+ };
+ 
+ // FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_RivalRoute22LateSquirtle[] = {
+     {
+         .iv = 255,
+@@ -6197,13 +6200,13 @@ static const struct TrainerMonNoItemCustomMoves sParty_RivalRoute22LateSquirtle[
+     {
+         .iv = 255,
+         .lvl = 52,
+-        .species = SPECIES_GROWLITHE,
++        .species = SPECIES_ARCANINE,
+         .moves = {MOVE_FLAME_WHEEL, MOVE_TAKE_DOWN, MOVE_LEER, MOVE_AGILITY},
+     },
+     {
+         .iv = 255,
+         .lvl = 52,
+-        .species = SPECIES_EXEGGCUTE,
++        .species = SPECIES_EXEGGUTOR,
+         .moves = {MOVE_SOLAR_BEAM, MOVE_SLEEP_POWDER, MOVE_POISON_POWDER, MOVE_STUN_SPORE},
+     },
+     {
+@@ -6221,6 +6224,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_RivalRoute22LateSquirtle[
+ };
+ 
+ // FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_RivalRoute22LateBulbasaur[] = {
+     {
+         .iv = 255,
+@@ -6243,7 +6247,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_RivalRoute22LateBulbasaur
+     {
+         .iv = 255,
+         .lvl = 52,
+-        .species = SPECIES_GROWLITHE,
++        .species = SPECIES_ARCANINE,
+         .moves = {MOVE_FLAME_WHEEL, MOVE_TAKE_DOWN, MOVE_LEER, MOVE_AGILITY},
+     },
+     {
+@@ -6261,6 +6265,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_RivalRoute22LateBulbasaur
+ };
+ 
+ // FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_RivalRoute22LateCharmander[] = {
+     {
+         .iv = 255,
+@@ -6277,7 +6282,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_RivalRoute22LateCharmande
+     {
+         .iv = 255,
+         .lvl = 52,
+-        .species = SPECIES_EXEGGCUTE,
++        .species = SPECIES_EXEGGUTOR,
+         .moves = {MOVE_SOLAR_BEAM, MOVE_SLEEP_POWDER, MOVE_POISON_POWDER, MOVE_STUN_SPORE},
+     },
+     {
+@@ -7190,6 +7195,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_YoungsterTimmy3[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_YoungsterTimmy4[] = {
+     {
+         .iv = 150,
+@@ -7204,7 +7210,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_YoungsterTimmy4[] = {
+     {
+         .iv = 150,
+         .lvl = 75,
+-        .species = SPECIES_GOLBAT,
++        .species = SPECIES_CROBAT,
+     },
+ };
+ 
+@@ -7351,11 +7357,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_TuberAmira[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_PkmnBreederAlize[] = {
+     {
+         .iv = 150,
+         .lvl = 72,
+-        .species = SPECIES_PIKACHU,
++        .species = SPECIES_RAICHU,
+     },
+     {
+         .iv = 150,
+@@ -7370,11 +7377,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_PkmnBreederAlize[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_PkmnRangerNicolas[] = {
+     {
+         .iv = 150,
+         .lvl = 77,
+-        .species = SPECIES_WEEPINBELL,
++        .species = SPECIES_VICTREEBEL,
+         .moves = {MOVE_RAZOR_LEAF, MOVE_ACID, MOVE_SWEET_SCENT, MOVE_WRAP},
+     },
+     {
+@@ -7386,11 +7394,12 @@ static const struct TrainerMonNoItemCustomMoves sParty_PkmnRangerNicolas[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_PkmnRangerMadeline[] = {
+     {
+         .iv = 150,
+         .lvl = 77,
+-        .species = SPECIES_GLOOM,
++        .species = SPECIES_VILEPLUME,
+         .moves = {MOVE_PETAL_DANCE, MOVE_ACID, MOVE_SWEET_SCENT, MOVE_POISON_POWDER},
+     },
+     {
+@@ -7416,6 +7425,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_AromaLadyNikki[] = {
+ 
+ // FireRed QoL+Hard: post-game levels
+ // FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_RuinManiacStanly[] = {
+     {
+         .iv = 150,
+@@ -7425,7 +7435,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_RuinManiacStanly[] = {
+     {
+         .iv = 150,
+         .lvl = 72,
+-        .species = SPECIES_ONIX,
++        .species = SPECIES_STEELIX,
+     },
+     {
+         .iv = 150,
+@@ -7629,25 +7639,27 @@ static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt44[] = {
+ 
+ // FireRed QoL+Hard: post-game levels
+ // FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt45[] = {
+     {
+         .iv = 150,
+         .lvl = 57,
+-        .species = SPECIES_GOLBAT,
++        .species = SPECIES_CROBAT,
+     },
+     {
+         .iv = 150,
+         .lvl = 57,
+-        .species = SPECIES_GOLBAT,
++        .species = SPECIES_CROBAT,
+     },
+     {
+         .iv = 150,
+         .lvl = 57,
+-        .species = SPECIES_GOLBAT,
++        .species = SPECIES_CROBAT,
+     },
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt46[] = {
+     {
+         .iv = 150,
+@@ -7657,7 +7669,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt46[] = {
+     {
+         .iv = 150,
+         .lvl = 72,
+-        .species = SPECIES_GOLBAT,
++        .species = SPECIES_CROBAT,
+     },
+     {
+         .iv = 150,
+@@ -7723,11 +7735,12 @@ static const struct TrainerMonNoItemCustomMoves sParty_TeamRocketAdmin[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_TeamRocketAdmin2[] = {
+     {
+         .iv = 200,
+         .lvl = 79,
+-        .species = SPECIES_GOLBAT,
++        .species = SPECIES_CROBAT,
+         .moves = {MOVE_CONFUSE_RAY, MOVE_SLUDGE_BOMB, MOVE_AIR_CUTTER, MOVE_SHADOW_BALL},
+     },
+     {
+@@ -7746,6 +7759,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_TeamRocketAdmin2[] = {
+ 
+ // FireRed QoL+Hard: post-game levels
+ // FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_ScientistGideon[] = {
+     {
+         .iv = 150,
+@@ -7774,7 +7788,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_ScientistGideon[] = {
+     {
+         .iv = 150,
+         .lvl = 69,
+-        .species = SPECIES_PORYGON,
++        .species = SPECIES_PORYGON2,
+         .moves = {MOVE_TRI_ATTACK, MOVE_CONVERSION, MOVE_RECOVER, MOVE_PSYBEAM},
+     },
+ };
+@@ -8160,6 +8174,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_TeamRocketGrunt50[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt51[] = {
+     {
+         .iv = 150,
+@@ -8174,7 +8189,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt51[] = {
+     {
+         .iv = 150,
+         .lvl = 72,
+-        .species = SPECIES_GLOOM,
++        .species = SPECIES_VILEPLUME,
+     },
+ };
+ 
+@@ -8275,11 +8290,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_SisAndBroAvaGeb[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_AromaLadyRose[] = {
+     {
+         .iv = 150,
+         .lvl = 73,
+-        .species = SPECIES_SUNKERN,
++        .species = SPECIES_SUNFLORA,
+     },
+     {
+         .iv = 150,
+@@ -8313,25 +8329,27 @@ static const struct TrainerMonNoItemDefaultMoves sParty_SwimmerFemaleDenise[] =
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_TwinsMiuMia[] = {
+     {
+         .iv = 150,
+         .lvl = 74,
+-        .species = SPECIES_PIKACHU,
++        .species = SPECIES_RAICHU,
+     },
+     {
+         .iv = 150,
+         .lvl = 74,
+-        .species = SPECIES_PIKACHU,
++        .species = SPECIES_RAICHU,
+     },
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_HikerEarl[] = {
+     {
+         .iv = 150,
+         .lvl = 73,
+-        .species = SPECIES_ONIX,
++        .species = SPECIES_STEELIX,
+     },
+     {
+         .iv = 150,
+@@ -8563,6 +8581,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_PkmnRangerLogan[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_PkmnRangerJackson[] = {
+     {
+         .iv = 150,
+@@ -8573,7 +8592,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_PkmnRangerJackson[] = {
+     {
+         .iv = 150,
+         .lvl = 73,
+-        .species = SPECIES_EXEGGCUTE,
++        .species = SPECIES_EXEGGUTOR,
+         .moves = {MOVE_CONFUSION, MOVE_POISON_POWDER, MOVE_BARRAGE, MOVE_REFLECT},
+     },
+     {
+@@ -8603,11 +8622,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_PkmnRangerBeth[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_PkmnRangerKatelyn[] = {
+     {
+         .iv = 150,
+         .lvl = 78,
+-        .species = SPECIES_CHANSEY,
++        .species = SPECIES_BLISSEY,
+         .moves = {MOVE_EGG_BOMB, MOVE_DEFENSE_CURL, MOVE_MINIMIZE, MOVE_SOFT_BOILED},
+     },
+ };
+@@ -8697,11 +8717,12 @@ static const struct TrainerMonNoItemCustomMoves sParty_CoolCoupleLexNya[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_RuinManiacBrandon[] = {
+     {
+         .iv = 150,
+         .lvl = 74,
+-        .species = SPECIES_ONIX,
++        .species = SPECIES_STEELIX,
+     },
+ };
+ 
+@@ -8771,11 +8792,12 @@ static const struct TrainerMonItemCustomMoves sParty_LadySelphy[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_RuinManiacLawson[] = {
+     {
+         .iv = 150,
+         .lvl = 70,
+-        .species = SPECIES_ONIX,
++        .species = SPECIES_STEELIX,
+     },
+     {
+         .iv = 150,
+@@ -8810,25 +8832,27 @@ static const struct TrainerMonNoItemDefaultMoves sParty_PsychicLaura[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_PkmnBreederBethany[] = {
+     {
+         .iv = 150,
+         .lvl = 74,
+-        .species = SPECIES_CHANSEY,
++        .species = SPECIES_BLISSEY,
+     },
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_PkmnBreederAllison[] = {
+     {
+         .iv = 150,
+         .lvl = 72,
+-        .species = SPECIES_CLEFAIRY,
++        .species = SPECIES_CLEFABLE,
+     },
+     {
+         .iv = 150,
+         .lvl = 72,
+-        .species = SPECIES_CLEFAIRY,
++        .species = SPECIES_CLEFABLE,
+     },
+     {
+         .iv = 150,
+@@ -8886,16 +8910,17 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BugCatcherVance[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_YoungsterNash[] = {
+     {
+         .iv = 150,
+         .lvl = 70,
+-        .species = SPECIES_WEEPINBELL,
++        .species = SPECIES_VICTREEBEL,
+     },
+     {
+         .iv = 150,
+         .lvl = 70,
+-        .species = SPECIES_WEEPINBELL,
++        .species = SPECIES_VICTREEBEL,
+     },
+     {
+         .iv = 150,
+@@ -8987,6 +9012,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_PicnickerMarcy[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_RuinManiacLayton[] = {
+     {
+         .iv = 150,
+@@ -8996,7 +9022,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_RuinManiacLayton[] = {
+     {
+         .iv = 150,
+         .lvl = 72,
+-        .species = SPECIES_ONIX,
++        .species = SPECIES_STEELIX,
+     },
+     {
+         .iv = 150,
+@@ -9593,6 +9619,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_PicnickerSusie2[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_PicnickerSusie3[] = {
+     {
+         .iv = 150,
+@@ -9612,7 +9639,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_PicnickerSusie3[] = {
+     {
+         .iv = 150,
+         .lvl = 68,
+-        .species = SPECIES_PIKACHU,
++        .species = SPECIES_RAICHU,
+     },
+     {
+         .iv = 150,
+@@ -9804,11 +9831,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_PicnickerBecky2[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_PicnickerBecky3[] = {
+     {
+         .iv = 150,
+         .lvl = 70,
+-        .species = SPECIES_PIKACHU,
++        .species = SPECIES_RAICHU,
+     },
+     {
+         .iv = 150,
+@@ -10016,26 +10044,27 @@ static const struct TrainerMonNoItemDefaultMoves sParty_SwimmerFemaleAlice2[] =
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_SwimmerMaleDarrin2[] = {
+     {
+         .iv = 150,
+         .lvl = 75,
+-        .species = SPECIES_SEADRA,
++        .species = SPECIES_KINGDRA,
+     },
+     {
+         .iv = 150,
+         .lvl = 75,
+-        .species = SPECIES_SEADRA,
++        .species = SPECIES_KINGDRA,
+     },
+     {
+         .iv = 150,
+         .lvl = 75,
+-        .species = SPECIES_SEADRA,
++        .species = SPECIES_KINGDRA,
+     },
+     {
+         .iv = 150,
+         .lvl = 75,
+-        .species = SPECIES_SEADRA,
++        .species = SPECIES_KINGDRA,
+     },
+ };
+ 
+@@ -10112,11 +10141,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_SwimmerMaleJack2[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_SisAndBroLilIan2[] = {
+     {
+         .iv = 150,
+         .lvl = 71,
+-        .species = SPECIES_SEADRA,
++        .species = SPECIES_KINGDRA,
+     },
+     {
+         .iv = 150,
+@@ -10126,11 +10156,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_SisAndBroLilIan2[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_SisAndBroLilIan3[] = {
+     {
+         .iv = 150,
+         .lvl = 79,
+-        .species = SPECIES_SEADRA,
++        .species = SPECIES_KINGDRA,
+     },
+     {
+         .iv = 150,
+@@ -10315,6 +10346,7 @@ static const struct TrainerMonItemDefaultMoves sParty_CrushKinMikKia3[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_TuberAmira2[] = {
+     {
+         .iv = 150,
+@@ -10324,16 +10356,17 @@ static const struct TrainerMonNoItemDefaultMoves sParty_TuberAmira2[] = {
+     {
+         .iv = 150,
+         .lvl = 68,
+-        .species = SPECIES_POLIWHIRL,
++        .species = SPECIES_POLIWRATH,
+     },
+     {
+         .iv = 150,
+         .lvl = 68,
+-        .species = SPECIES_POLIWHIRL,
++        .species = SPECIES_POLIWRATH,
+     },
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_TwinsJoyMeg2[] = {
+     {
+         .iv = 150,
+@@ -10343,7 +10376,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_TwinsJoyMeg2[] = {
+     {
+         .iv = 150,
+         .lvl = 70,
+-        .species = SPECIES_CLEFAIRY,
++        .species = SPECIES_CLEFABLE,
+     },
+ };
+ 
+@@ -10372,11 +10405,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_YoungsterDestin2[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_PkmnBreederAlize2[] = {
+     {
+         .iv = 150,
+         .lvl = 79,
+-        .species = SPECIES_PIKACHU,
++        .species = SPECIES_RAICHU,
+     },
+     {
+         .iv = 150,
+@@ -10501,11 +10535,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_SwimmerMaleSamir2[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_HikerEarl2[] = {
+     {
+         .iv = 150,
+         .lvl = 81,
+-        .species = SPECIES_ONIX,
++        .species = SPECIES_STEELIX,
+     },
+     {
+         .iv = 150,
+@@ -10696,11 +10731,12 @@ static const struct TrainerMonNoItemCustomMoves sParty_PkmnRangerJackson2[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_PkmnRangerKatelyn2[] = {
+     {
+         .iv = 220,
+         .lvl = 83,
+-        .species = SPECIES_CHANSEY,
++        .species = SPECIES_BLISSEY,
+         .moves = {MOVE_EGG_BOMB, MOVE_DEFENSE_CURL, MOVE_MINIMIZE, MOVE_SOFT_BOILED},
+     },
+ };
+@@ -10845,11 +10881,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BugCatcherColton4[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_SwimmerMaleMatthew2[] = {
+     {
+         .iv = 150,
+         .lvl = 70,
+-        .species = SPECIES_POLIWHIRL,
++        .species = SPECIES_POLIWRATH,
+     },
+     {
+         .iv = 150,
+@@ -10859,16 +10896,17 @@ static const struct TrainerMonNoItemDefaultMoves sParty_SwimmerMaleMatthew2[] =
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_SwimmerMaleTony2[] = {
+     {
+         .iv = 150,
+         .lvl = 70,
+-        .species = SPECIES_SEADRA,
++        .species = SPECIES_KINGDRA,
+     },
+     {
+         .iv = 150,
+         .lvl = 70,
+-        .species = SPECIES_SEADRA,
++        .species = SPECIES_KINGDRA,
+     },
+ };
+ 
+@@ -11850,6 +11888,7 @@ static const struct TrainerMonItemCustomMoves sParty_PeakChampionCharmander[] =
+ 
+ // FireRed QoL+Hard: Victory Road rematch teams
+ // FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerNaomiVR[] = {
+     {
+         .iv = 150,
+@@ -11872,7 +11911,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerNaomiVR[] = {
+     {
+         .iv = 150,
+         .lvl = 56,
+-        .species = SPECIES_VULPIX,
++        .species = SPECIES_NINETALES,
+         .moves = {MOVE_FLAMETHROWER, MOVE_CONFUSE_RAY, MOVE_QUICK_ATTACK, MOVE_IMPRISON},
+     },
+     {
+@@ -12036,6 +12075,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerGeorgeVR[] = {
+     },
+ };
+ 
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerColbyVR[] = {
+     {
+         .iv = 150,
+@@ -12058,7 +12098,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerColbyVR[] = {
+     {
+         .iv = 150,
+         .lvl = 56,
+-        .species = SPECIES_SEADRA,
++        .species = SPECIES_KINGDRA,
+         .moves = {MOVE_WATER_GUN, MOVE_SMOKESCREEN, MOVE_TWISTER, MOVE_LEER},
+     },
+     {
+@@ -12070,17 +12110,18 @@ static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerColbyVR[] = {
+ };
+ 
+ // FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerCarolineVR[] = {
+     {
+         .iv = 150,
+         .lvl = 56,
+-        .species = SPECIES_WEEPINBELL,
++        .species = SPECIES_VICTREEBEL,
+         .moves = {MOVE_RAZOR_LEAF, MOVE_ACID, MOVE_STUN_SPORE, MOVE_POISON_POWDER},
+     },
+     {
+         .iv = 150,
+         .lvl = 56,
+-        .species = SPECIES_WEEPINBELL,
++        .species = SPECIES_VICTREEBEL,
+         .moves = {MOVE_RAZOR_LEAF, MOVE_ACID, MOVE_SLEEP_POWDER, MOVE_POISON_POWDER},
+     },
+     {
+@@ -12103,6 +12144,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerCarolineVR[] =
+     },
+ };
+ 
++// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerAlexaVR[] = {
+     {
+         .iv = 150,
+@@ -12131,7 +12173,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerAlexaVR[] = {
+     {
+         .iv = 150,
+         .lvl = 56,
+-        .species = SPECIES_CHANSEY,
++        .species = SPECIES_BLISSEY,
+         .moves = {MOVE_SING, MOVE_EGG_BOMB, MOVE_SOFT_BOILED, MOVE_MINIMIZE},
+     },
+ };
+diff --git a/tools/hack/spoiler_guide.py b/tools/hack/spoiler_guide.py
+index 6404de7..f5b6e94 100644
+--- a/tools/hack/spoiler_guide.py
++++ b/tools/hack/spoiler_guide.py
+@@ -1479,10 +1479,17 @@ def write_tower():
+            "below list exactly the Pokémon you'll face on each floor.", ""]
+     titles = {"SINGLE": "Single battles", "DOUBLE": "Double battles", "KNOCKOUT": "Knockout (three trainers, one Pokémon each)",
+               "MIXED": "Mixed (a mix of the other three)"}
++    sp_types = {}
++    for sp, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\n    \}", read("src/data/pokemon/species_info.h"), re.S):
++        t = re.search(r"\.types = \{(TYPE_\w+), (TYPE_\w+)\}", body)
++        if t:
++            sp_types[sp] = list(dict.fromkeys(t.groups()))
+     for ctype, body in tables:
+         names = re.findall(r"&(\w+)", body)
+         out += [f"## {titles.get(ctype, ctype.title())}", "",
+                 f"Usual prize for clearing all eight floors: **{item('ITEM_' + floors[names[0]]['prize'])}**.", ""]
++        section = []
++        faced = {}
+         for i, fname in enumerate(names):
+             f = floors[fname]
+             kind = f["type"]
+@@ -1498,7 +1505,13 @@ def write_tower():
+             else:
+                 mons = [tr[0]["mons"][k] for k in picks["SINGLE"][i]]
+                 label = f"single battle vs. {tr[0]['cls']} {tr[0]['name'].title()}"
+-            out += [f"### Floor {i + 1}: {label}", ""] + head + [row(m) for m in mons] + [""]
++            section += [f"### Floor {i + 1}: {label}", ""] + head + [row(m) for m in mons] + [""]
++            for m in mons:
++                for t in sp_types.get(m["species"], []):
++                    faced[t] = faced.get(t, 0) + 1
++        ranked = sorted(faced.items(), key=lambda kv: (-kv[1], kv[0]))
++        out += ["**Types you'll face** (Pokémon of each type across the eight floors): " +
++                ", ".join(f"{t[5:].title()} {n}" for t, n in ranked) + ".", ""] + section
+     open(os.path.join(OUT, "TOWER.md"), "w").write("\n".join(out))
+ 
+ 
+diff --git a/tools/hack/trainer_evolutions.py b/tools/hack/trainer_evolutions.py
+index b33f169..79be2b4 100644
+--- a/tools/hack/trainer_evolutions.py
++++ b/tools/hack/trainer_evolutions.py
+@@ -6,14 +6,18 @@ the evolved species was already on the team, which left teams like a Lv. 72
+ Mareep next to an Ampharos, or five Lv. 68 Magikarp. This evolves every
+ trainer Pokemon of Lv. 50 or higher that is at least 5 levels past a
+ level-up evolution, step by step along its family (duplicates are allowed,
+-as in the original game). Early and mid-game teams keep their classic
+-unevolved Pokemon. Custom movesets are kept. Runs once.
++as in the original game). A second run (release 21) adds the classic
++Gen 1-3 stone, item, trade and friendship evolutions for Lv. 50+ trainers;
++later-generation ones (Rhyperior, Magnezone, ...) are left alone. Early and
++mid-game teams keep their classic unevolved Pokemon. Custom movesets are
++kept. Each pass runs once.
+ """
+-import os, re, sys
++import os, re, subprocess, sys
+ 
+ os.chdir(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+ MIN_LEVEL, GRACE = 50, 5
+ MARK = "// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)\n"
++ITEM_MARK = "// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)\n"
+ 
+ 
+ def read(p):
+@@ -21,9 +25,21 @@ def read(p):
+ 
+ 
+ tp = read("src/data/trainer_parties.h")
+-if MARK in tp:
++done_level = MARK in tp
++if done_level and ITEM_MARK in tp:
+     sys.exit("Late-game trainer Pokemon are already evolved.")
+ 
++# Classic (Gen 1-3) evolutions by stone, held item, trade or friendship:
++# a Lv. 50+ trainer's Pokemon has them. Later-generation evolutions
++# (Rhyperior, Magnezone, ...) need badge-gated items, so they're left alone.
++CLASSIC = set(re.findall(r"#define (SPECIES_\w+) ", subprocess.run(
++    ["git", "show", "ce6406d:include/constants/species.h"], capture_output=True, text=True).stdout))
++item_evo = {}
++for sp, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", read("src/data/pokemon/evolution.h"), re.S):
++    for method, param, target in re.findall(r"\{(EVO_\w+), ([^,]+), (SPECIES_\w+)", body):
++        if not method.startswith("EVO_LEVEL") and target in CLASSIC and sp in CLASSIC:
++            item_evo.setdefault(sp, target)
++
+ level_evo = {}
+ for sp, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", read("src/data/pokemon/evolution.h"), re.S):
+     for method, param, target in re.findall(r"\{(EVO_LEVEL\w*), (\d+), (SPECIES_\w+)", body):
+@@ -33,8 +49,10 @@ for sp, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", read("src/da
+ 
+ def evolve(sp, lvl):
+     for _ in range(3):
+-        if sp in level_evo and lvl >= level_evo[sp][0] + GRACE:
++        if not done_level and sp in level_evo and lvl >= level_evo[sp][0] + GRACE:
+             sp = level_evo[sp][1]
++        elif sp in item_evo:
++            sp = item_evo[sp]
+         else:
+             break
+     return sp
+@@ -59,7 +77,7 @@ def do_party(m):
+     body = re.sub(r"    \{\n.*?\n    \}", do_mon, m.group(2), flags=re.S)
+     if len(changes) == before:
+         return m.group(0)
+-    return MARK + m.group(1) + body + m.group(3)
++    return (ITEM_MARK if done_level else MARK) + m.group(1) + body + m.group(3)
+ 
+ 
+ tp = re.sub(r"(static const struct \w+ sParty_\w+\[\] = \{\n)(.*?)(\n\};\n)", do_party, tp, flags=re.S)
+diff --git a/tools/hack/validate.py b/tools/hack/validate.py
+index 213e1c0..c425b06 100644
+--- a/tools/hack/validate.py
++++ b/tools/hack/validate.py
+@@ -14,6 +14,7 @@ and that text fits the boxes it is shown in.
+ """
+ import json
+ import re
++import subprocess
+ import sys
+ 
+ problems = []
+@@ -319,7 +320,15 @@ for party in peak_parties:
+         mv = [x for x in re.findall(r"MOVE_\w+", mon) if x != "MOVE_NONE"]
+         if not mv or len(mv) != len(set(mv)):
+             bad(f"{party}: moves {mv}")
+-# Late-game trainers (Lv. 50+): nothing 5+ levels past a level-up evolution.
++# Late-game trainers (Lv. 50+): nothing 5+ levels past a level-up evolution,
++# and no classic (Gen 1-3) stone, item, trade or friendship evolution left undone.
++classic = set(re.findall(r"#define (SPECIES_\w+) ", subprocess.run(
++    ["git", "show", "ce6406d:include/constants/species.h"], capture_output=True, text=True).stdout))
++classic_evo = {}
++for a, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", evo_txt, re.S):
++    for meth, param, t in re.findall(r"\{(EVO_\w+), ([^,]+), (SPECIES_\w+)", body):
++        if not meth.startswith("EVO_LEVEL") and a in classic and t in classic:
++            classic_evo.setdefault(a, t)
+ level_evo = {}
+ for a, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", evo_txt, re.S):
+     for meth, param, t in re.findall(r"\{(EVO_LEVEL\w*), (\d+), (SPECIES_\w+)", body):
+@@ -330,6 +339,8 @@ for party, body in re.findall(r"static const struct \w+ (sParty_\w+)\[\] = \{(.*
+         sp, lv = re.search(r"\.species = (SPECIES_\w+)", mon).group(1), int(re.search(r"\.lvl = (\d+)", mon).group(1))
+         if lv >= 50 and sp in level_evo and lv >= level_evo[sp] + 5:
+             bad(f"{party}: Lv. {lv} {sp} should have evolved (Lv. {level_evo[sp]})")
++        if lv >= 50 and sp in classic_evo:
++            bad(f"{party}: Lv. {lv} {sp} should have evolved into {classic_evo[sp]}")
+ # Trainer Tower: fully evolved, real moves, one of each species and item per team.
+ for floor, body in re.findall(r"static const struct TrainerTowerFloor (\w+) = \{(.*?)\n\};", read("src/trainer_tower_sets.c"), re.S):
+     for t in re.split(r"\.name = _\(", body)[1:]:
+-- 
+2.43.0
+

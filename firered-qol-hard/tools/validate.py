@@ -14,6 +14,7 @@ and that text fits the boxes it is shown in.
 """
 import json
 import re
+import subprocess
 import sys
 
 problems = []
@@ -319,7 +320,15 @@ for party in peak_parties:
         mv = [x for x in re.findall(r"MOVE_\w+", mon) if x != "MOVE_NONE"]
         if not mv or len(mv) != len(set(mv)):
             bad(f"{party}: moves {mv}")
-# Late-game trainers (Lv. 50+): nothing 5+ levels past a level-up evolution.
+# Late-game trainers (Lv. 50+): nothing 5+ levels past a level-up evolution,
+# and no classic (Gen 1-3) stone, item, trade or friendship evolution left undone.
+classic = set(re.findall(r"#define (SPECIES_\w+) ", subprocess.run(
+    ["git", "show", "ce6406d:include/constants/species.h"], capture_output=True, text=True).stdout))
+classic_evo = {}
+for a, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", evo_txt, re.S):
+    for meth, param, t in re.findall(r"\{(EVO_\w+), ([^,]+), (SPECIES_\w+)", body):
+        if not meth.startswith("EVO_LEVEL") and a in classic and t in classic:
+            classic_evo.setdefault(a, t)
 level_evo = {}
 for a, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", evo_txt, re.S):
     for meth, param, t in re.findall(r"\{(EVO_LEVEL\w*), (\d+), (SPECIES_\w+)", body):
@@ -330,6 +339,8 @@ for party, body in re.findall(r"static const struct \w+ (sParty_\w+)\[\] = \{(.*
         sp, lv = re.search(r"\.species = (SPECIES_\w+)", mon).group(1), int(re.search(r"\.lvl = (\d+)", mon).group(1))
         if lv >= 50 and sp in level_evo and lv >= level_evo[sp] + 5:
             bad(f"{party}: Lv. {lv} {sp} should have evolved (Lv. {level_evo[sp]})")
+        if lv >= 50 and sp in classic_evo:
+            bad(f"{party}: Lv. {lv} {sp} should have evolved into {classic_evo[sp]}")
 # Trainer Tower: fully evolved, real moves, one of each species and item per team.
 for floor, body in re.findall(r"static const struct TrainerTowerFloor (\w+) = \{(.*?)\n\};", read("src/trainer_tower_sets.c"), re.S):
     for t in re.split(r"\.name = _\(", body)[1:]:

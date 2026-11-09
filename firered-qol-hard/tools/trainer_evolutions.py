@@ -6,14 +6,18 @@ the evolved species was already on the team, which left teams like a Lv. 72
 Mareep next to an Ampharos, or five Lv. 68 Magikarp. This evolves every
 trainer Pokemon of Lv. 50 or higher that is at least 5 levels past a
 level-up evolution, step by step along its family (duplicates are allowed,
-as in the original game). Early and mid-game teams keep their classic
-unevolved Pokemon. Custom movesets are kept. Runs once.
+as in the original game). A second run (release 21) adds the classic
+Gen 1-3 stone, item, trade and friendship evolutions for Lv. 50+ trainers;
+later-generation ones (Rhyperior, Magnezone, ...) are left alone. Early and
+mid-game teams keep their classic unevolved Pokemon. Custom movesets are
+kept. Each pass runs once.
 """
-import os, re, sys
+import os, re, subprocess, sys
 
 os.chdir(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 MIN_LEVEL, GRACE = 50, 5
 MARK = "// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)\n"
+ITEM_MARK = "// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)\n"
 
 
 def read(p):
@@ -21,8 +25,20 @@ def read(p):
 
 
 tp = read("src/data/trainer_parties.h")
-if MARK in tp:
+done_level = MARK in tp
+if done_level and ITEM_MARK in tp:
     sys.exit("Late-game trainer Pokemon are already evolved.")
+
+# Classic (Gen 1-3) evolutions by stone, held item, trade or friendship:
+# a Lv. 50+ trainer's Pokemon has them. Later-generation evolutions
+# (Rhyperior, Magnezone, ...) need badge-gated items, so they're left alone.
+CLASSIC = set(re.findall(r"#define (SPECIES_\w+) ", subprocess.run(
+    ["git", "show", "ce6406d:include/constants/species.h"], capture_output=True, text=True).stdout))
+item_evo = {}
+for sp, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", read("src/data/pokemon/evolution.h"), re.S):
+    for method, param, target in re.findall(r"\{(EVO_\w+), ([^,]+), (SPECIES_\w+)", body):
+        if not method.startswith("EVO_LEVEL") and target in CLASSIC and sp in CLASSIC:
+            item_evo.setdefault(sp, target)
 
 level_evo = {}
 for sp, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", read("src/data/pokemon/evolution.h"), re.S):
@@ -33,8 +49,10 @@ for sp, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", read("src/da
 
 def evolve(sp, lvl):
     for _ in range(3):
-        if sp in level_evo and lvl >= level_evo[sp][0] + GRACE:
+        if not done_level and sp in level_evo and lvl >= level_evo[sp][0] + GRACE:
             sp = level_evo[sp][1]
+        elif sp in item_evo:
+            sp = item_evo[sp]
         else:
             break
     return sp
@@ -59,7 +77,7 @@ def do_party(m):
     body = re.sub(r"    \{\n.*?\n    \}", do_mon, m.group(2), flags=re.S)
     if len(changes) == before:
         return m.group(0)
-    return MARK + m.group(1) + body + m.group(3)
+    return (ITEM_MARK if done_level else MARK) + m.group(1) + body + m.group(3)
 
 
 tp = re.sub(r"(static const struct \w+ sParty_\w+\[\] = \{\n)(.*?)(\n\};\n)", do_party, tp, flags=re.S)

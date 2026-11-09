@@ -18,6 +18,8 @@ Each trainer has six Pokémon but only uses some of them, depending on the floor
 
 Usual prize for clearing all eight floors: **Up-Grade**.
 
+**Types you'll face** (Pokémon of each type across the eight floors): Normal 6, Poison 3, Water 3, Bug 2, Flying 2, Psychic 2, Fairy 1, Fighting 1, Ghost 1, Grass 1, Ground 1.
+
 ### Floor 1: single battle vs. Sailor Alberto
 
 | Pokémon | Item | Ability | Nature | EVs | Moves |
@@ -78,6 +80,8 @@ Usual prize for clearing all eight floors: **Up-Grade**.
 
 Usual prize for clearing all eight floors: **Dragon Scale**.
 
+**Types you'll face** (Pokémon of each type across the eight floors): Ground 4, Flying 3, Normal 3, Electric 2, Fire 2, Psychic 2, Rock 2, Water 2, Dark 1, Dragon 1, Fighting 1, Ice 1, Poison 1.
+
 ### Floor 1: double battle vs. Twins Jen & Kira
 
 | Pokémon | Item | Ability | Nature | EVs | Moves |
@@ -137,6 +141,8 @@ Usual prize for clearing all eight floors: **Dragon Scale**.
 ## Knockout (three trainers, one Pokémon each)
 
 Usual prize for clearing all eight floors: **Metal Coat**.
+
+**Types you'll face** (Pokémon of each type across the eight floors): Water 8, Poison 5, Fire 4, Ground 3, Fairy 2, Flying 2, Grass 2, Ice 2, Normal 2, Psychic 2, Dragon 1, Electric 1, Fighting 1, Ghost 1.
 
 ### Floor 1: knockout vs. Biker Jordy, Biker Ernest, Cue Ball Gabriel
 
@@ -205,6 +211,8 @@ Usual prize for clearing all eight floors: **Metal Coat**.
 ## Mixed (a mix of the other three)
 
 Usual prize for clearing all eight floors: **King's Rock**.
+
+**Types you'll face** (Pokémon of each type across the eight floors): Water 6, Poison 4, Fighting 3, Flying 3, Ground 3, Psychic 2, Rock 2, Bug 1, Dark 1, Dragon 1, Electric 1, Fire 1, Ghost 1, Normal 1.
 
 ### Floor 1: single battle vs. Cool Trainer Allyson
 
