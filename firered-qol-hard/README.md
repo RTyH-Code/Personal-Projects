@@ -4,6 +4,41 @@
 
 A quality-of-life, modernization and difficulty hack built on the pret/pokefirered decompilation.
 
+## What's new (releases 10–22)
+Coming back after a while? Here's the short version. Every detail is in
+[CHANGELOG.md](CHANGELOG.md), and the full feature list follows below.
+
+- **Options and challenge rules:**
+  - Modern Exp. formula (release 10).
+  - A FAST battle speed option (12).
+  - A Nuzlocke tracker in the Start menu (12).
+  - An optional party-wide Exp. Share (13).
+  - Nuzlocke-friendly exhibition battles in the Trainer Tower and against
+    the peak trainers (18).
+- **Main game:**
+  - Victory Road VS Seeker rematches (11).
+  - One double battle per gym from Misty on (13).
+  - Wild levels raised to match the trainers (10, 14).
+  - Rematches that catch up to the next Gym Leader, and a Lucky Egg from
+    Koga (14).
+  - A berry and herb stand at the Celadon Department Store, plus PP
+    restorers and Max Revive on 5F (15).
+- **Post-game:**
+  - Harder Sevii Islands 4–7 and post-game rematches (16).
+  - Late-game trainer Pokémon that are properly evolved (20–22).
+  - A held-item shop in the Trainer Tower lobby (16).
+- **Trainer Tower:**
+  - Competitive teams (13).
+  - A Lv. 50 rule and a prize on every clear (17).
+  - A record-time bonus and a treasure trader (18, 19).
+- **Rewards:** Gym Leader, Elite Four and Champion rematches give items
+  (17–19).
+- **Spoiler guide:**
+  - Trainer Tower teams with type summaries and suggested counters
+    (13, 21, 22).
+  - VS Seeker rematch teams (16).
+  - Shop stock by progress (15).
+
 ## Quality of life
 - Running Shoes work from the start (hold B).
 - New games default to Fast text and the "Set" battle style.
@@ -560,9 +595,10 @@ teams are:
   team already has one, e.g. no more Lv. 72 Mareep or Lv. 68 Magikarp.
   They also have their classic stone, item, trade and friendship
   evolutions (Kingdra, Crobat, Steelix, Blissey, Raichu and so on). The
-  later-generation ones (Rhyperior, Magnezone, ...) are left alone, since
-  those items are badge-gated. Earlier trainers keep their classic
-  unevolved Pokémon.
+  later-generation ones (Rhyperior, Magnezone, ...) are left alone below
+  Lv. 75, since those items are badge-gated. The toughest teams (Lv. 75+)
+  have them too, as a last step before the round 2 Elite Four. Earlier
+  trainers keep their classic unevolved Pokémon.
 - **Held items:** the Trainer Tower lobby shop on Seven Island also sells the
   held items competitive teams use: Leftovers, Choice Band, Shell Bell, Focus
   Band, Quick Claw, Scope Lens, Bright Powder, King's Rock, Lucky Egg, Metal
@@ -595,7 +631,7 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 
 Patched ROM SHA-1: `090a6a629f786be00c074fbe3f4617b43b03caa9`
 
-Current release: **21**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
+Current release: **22**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
 Saves made on release 7 or later carry over to this release. Older saves need a new game.
 
 ## Building from source
@@ -636,7 +672,7 @@ unmodified pret data:
 - `berry_shop.py`: the Celadon Department Store berry stand and berry prices.
 - `held_item_shop.py`: held items in the post-game Trainer Tower lobby shop.
 - `postgame_levels.py`: Sevii Islands 4–7 trainers and wild Pokémon, and post-game route rematches.
-- `trainer_evolutions.py`: Lv. 50+ trainer Pokémon evolve where their level allows, then by classic stone, item, trade or friendship evolutions (run after `postgame_levels.py`).
+- `trainer_evolutions.py`: Lv. 50+ trainer Pokémon evolve where their level allows, then by classic stone, item, trade or friendship evolutions, then any evolution at Lv. 75+ (run after `postgame_levels.py`).
 - `wild_levels.py`: wild Pokémon levels 1.15x from the Erika stretch on.
 - `exp_budget.py`: how much trainer Exp. each stretch of the game gives, against the level caps.
 - `save_check.py REF`: checks whether saves from an older release (a git ref) still load.

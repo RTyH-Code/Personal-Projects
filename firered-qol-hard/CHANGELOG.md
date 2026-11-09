@@ -8,6 +8,23 @@ made it, so you can see exactly what changed.
 previous release keeps working. In short, saves made on **release 7 or later**
 carry over to the current release. Older saves need a new game.
 
+## Release 22 (2026-11-09)
+Pull requests: [#49](https://github.com/RTyH-Code/Personal-Projects/pull/49)
+
+- **Toughest teams fully evolved:** the 9 trainer Pokémon of Lv. 75 or
+  higher that still had an evolution now have it, including the
+  later-generation ones: Rhyperior ×3, Lickilicky ×2, Ursaluna ×2,
+  Tangrowth and Mismagius. This is a last difficulty step before the
+  round 2 Elite Four. Below Lv. 75, later-generation evolutions stay
+  badge-gated.
+- **Spoiler guide:** each Trainer Tower challenge now lists the attacking
+  types that hit the most of its Pokémon, the ones to avoid, and suggested
+  counters, worked out the same way as on the peak trainer page.
+- **README:** a "What's new" summary of releases 10–22 near the top.
+- **Audit:** the data validator flags Lv. 75+ trainer Pokémon with any
+  evolution left undone.
+- **Saves:** release 21 saves carry over.
+
 ## Release 21 (2026-11-09)
 Pull requests: [#48](https://github.com/RTyH-Code/Personal-Projects/pull/48)
 
