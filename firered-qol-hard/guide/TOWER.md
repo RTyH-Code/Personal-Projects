@@ -14,11 +14,19 @@ The Trainer Tower on Seven Island has four challenges of eight floors each. Ever
 
 Each trainer has six Pokémon but only uses some of them, depending on the floor. The tables below list exactly the Pokémon you'll face on each floor.
 
+Each challenge starts with the types you'll face, the attacking types that hit the most of its Pokémon (and those to avoid relying on), and **suggested counters**, picked the same way as on the [peak trainer page](PEAK.md): fully evolved, non-legendary Pokémon that hit the challenge's Pokémon super effectively and resist their attacks. Remember everything battles at Lv. 50 here.
+
 ## Single battles
 
 Usual prize for clearing all eight floors: **Up-Grade**.
 
 **Types you'll face** (Pokémon of each type across the eight floors): Normal 6, Poison 3, Water 3, Bug 2, Flying 2, Psychic 2, Fairy 1, Fighting 1, Ghost 1, Grass 1, Ground 1.
+
+**Hit them with:** Flying (4 weak, 0 resist); Electric (5 weak, 2 resist); Psychic (4 weak, 2 resist); Ice (4 weak, 3 resist); Rock (3 weak, 2 resist).
+
+**Avoid relying on:** Bug (6 resist or immune); Water (4 resist or immune); Ghost (6 resist or immune); Fairy (3 resist or immune); Steel (3 resist or immune).
+
+**Suggested counters:** [Annihilape](pokedex/979-annihilape.md) (Fighting / Ghost), [Gyarados](pokedex/130-gyarados.md) (Water / Flying), [Mantine](pokedex/226-mantine.md) (Water / Flying), [Froslass](pokedex/478-froslass.md) (Ice / Ghost), [Mismagius](pokedex/429-mismagius.md) (Ghost), [Gallade](pokedex/475-gallade.md) (Psychic / Fighting).
 
 ### Floor 1: single battle vs. Sailor Alberto
 
@@ -82,6 +90,12 @@ Usual prize for clearing all eight floors: **Dragon Scale**.
 
 **Types you'll face** (Pokémon of each type across the eight floors): Ground 4, Flying 3, Normal 3, Electric 2, Fire 2, Psychic 2, Rock 2, Water 2, Dark 1, Dragon 1, Fighting 1, Ice 1, Poison 1.
 
+**Hit them with:** Water (6 weak, 3 resist); Ground (6 weak, 3 resist); Fighting (7 weak, 5 resist); Ice (5 weak, 3 resist); Rock (5 weak, 4 resist).
+
+**Avoid relying on:** Fire (7 resist or immune); Poison (5 resist or immune); Flying (4 resist or immune); Bug (5 resist or immune); Electric (5 resist or immune).
+
+**Suggested counters:** [Swampert](pokedex/260-swampert.md) (Water / Ground), [Flygon](pokedex/330-flygon.md) (Ground / Dragon), [Gliscor](pokedex/472-gliscor.md) (Ground / Flying), [Heracross](pokedex/214-heracross.md) (Bug / Fighting), [Gallade](pokedex/475-gallade.md) (Psychic / Fighting), [Annihilape](pokedex/979-annihilape.md) (Fighting / Ghost).
+
 ### Floor 1: double battle vs. Twins Jen & Kira
 
 | Pokémon | Item | Ability | Nature | EVs | Moves |
@@ -143,6 +157,12 @@ Usual prize for clearing all eight floors: **Dragon Scale**.
 Usual prize for clearing all eight floors: **Metal Coat**.
 
 **Types you'll face** (Pokémon of each type across the eight floors): Water 8, Poison 5, Fire 4, Ground 3, Fairy 2, Flying 2, Grass 2, Ice 2, Normal 2, Psychic 2, Dragon 1, Electric 1, Fighting 1, Ghost 1.
+
+**Hit them with:** Ground (7 weak, 3 resist); Psychic (6 weak, 2 resist); Electric (9 weak, 6 resist); Rock (7 weak, 4 resist); Flying (3 weak, 1 resist).
+
+**Avoid relying on:** Bug (11 resist or immune); Steel (12 resist or immune); Fire (11 resist or immune); Fairy (9 resist or immune); Fighting (10 resist or immune).
+
+**Suggested counters:** [Gyarados](pokedex/130-gyarados.md) (Water / Flying), [Mantine](pokedex/226-mantine.md) (Water / Flying), [Starmie](pokedex/121-starmie.md) (Water / Psychic), [Slowking](pokedex/199-slowking.md) (Water / Psychic), [Slowbro](pokedex/080-slowbro.md) (Water / Psychic), [Ludicolo](pokedex/272-ludicolo.md) (Water / Grass).
 
 ### Floor 1: knockout vs. Biker Jordy, Biker Ernest, Cue Ball Gabriel
 
@@ -213,6 +233,12 @@ Usual prize for clearing all eight floors: **Metal Coat**.
 Usual prize for clearing all eight floors: **King's Rock**.
 
 **Types you'll face** (Pokémon of each type across the eight floors): Water 6, Poison 4, Fighting 3, Flying 3, Ground 3, Psychic 2, Rock 2, Bug 1, Dark 1, Dragon 1, Electric 1, Fire 1, Ghost 1, Normal 1.
+
+**Hit them with:** Psychic (7 weak, 3 resist); Ground (7 weak, 3 resist); Electric (7 weak, 4 resist); Grass (5 weak, 3 resist); Flying (4 weak, 3 resist).
+
+**Avoid relying on:** Fire (8 resist or immune); Bug (10 resist or immune); Poison (6 resist or immune); Steel (7 resist or immune); Fighting (9 resist or immune).
+
+**Suggested counters:** [Gliscor](pokedex/472-gliscor.md) (Ground / Flying), [Gyarados](pokedex/130-gyarados.md) (Water / Flying), [Mantine](pokedex/226-mantine.md) (Water / Flying), [Swampert](pokedex/260-swampert.md) (Water / Ground), [Flygon](pokedex/330-flygon.md) (Ground / Dragon), [Gallade](pokedex/475-gallade.md) (Psychic / Fighting).
 
 ### Floor 1: single battle vs. Cool Trainer Allyson
 

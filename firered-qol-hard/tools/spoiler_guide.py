@@ -1258,6 +1258,84 @@ NATURE_MOD = {"Jolly": ("Speed", "Sp. Atk"), "Adamant": ("Attack", "Sp. Atk"),
               "Timid": ("Speed", "Attack"), "Modest": ("Sp. Atk", "Attack")}
 
 
+def make_matchup():
+    """Returns advise(team): which types hit a team, which to avoid, and suggested
+    counters. team is a list of dicts with "species" and "moves". Shared by the
+    peak trainer and Trainer Tower pages."""
+    info = species_info(read("src/data/pokemon/species_info.h"))
+    ev = evos(read("src/data/pokemon/evolution.h"))
+    dex_order = [d for d in re.findall(r"NATIONAL_DEX_(\w+),", read("include/constants/pokedex.h").split("HOENN_DEX_NONE")[0]) if d != "NONE"]
+    dex_order = dex_order[:dex_order.index("DEOXYS") + 1]
+    dexno = {"SPECIES_" + d: i + 1 for i, d in enumerate(dex_order)}
+    dexno.update(dict(new_species()))
+    def link(sp):
+        return f"[{mon(sp)}](pokedex/{dexno[sp]:03d}-" + sp[8:].lower().replace("_", "-") + ".md)"
+    def types_of(sp):
+        return list(dict.fromkeys(t[5:] for t in re.findall(r"TYPE_\w+", info[sp]["types"])))
+    def abilities(sp):
+        return [a for a in dict.fromkeys(re.findall(r"ABILITY_\w+", info[sp]["abilities"])) if a != "ABILITY_NONE"]
+    def eff(atk, ts):
+        m = 1
+        for d in ts:
+            m *= chart.get((atk, d), 1)
+        return m
+    def damaging(m):
+        return mv.get(m, {}).get("power", "0") != "0"
+    def mtype(m):
+        return mv[m]["type"][5:]
+    has_evo = {a for a, _ in ev}
+    candidates = [sp for sp in dexno if sp not in has_evo and sp[8:] not in LEGENDARY and sp != "SPECIES_SHEDINJA"
+                  and sum(int(info[sp][f]) for _, f in STATS) >= 470
+                  and max(int(info[sp]["baseAttack"]), int(info[sp]["baseSpAttack"])) >= 80]
+
+    def advise(team):
+        sec = []
+        def taken(a, sp):
+            """Damage multiplier on an enemy, counting an ability immunity every one of its abilities grants."""
+            m = eff(a, types_of(sp))
+            mods = [ABILITY_IMMUNE.get(ab, {}).get(a, 1) for ab in abilities(sp)]
+            return m * max(mods) if mods else m
+        rows = []
+        for a in TYPES:
+            weak = sum(1 for p in team if taken(a, p["species"]) >= 2)
+            res = sum(1 for p in team if taken(a, p["species"]) <= 0.5)
+            rows.append((weak - res, weak, res, a))
+        good = [r for r in sorted(rows, reverse=True) if r[1] >= 2 and r[0] > 0][:5]
+        bad = [r for r in sorted(rows) if r[2] >= 3][:5]
+        if good:
+            sec += ["**Hit them with:** " + "; ".join(f"{a.title()} ({w} weak, {r} resist)" for _, w, r, a in good) + ".", ""]
+        if bad:
+            sec += ["**Avoid relying on:** " + "; ".join(f"{a.title()} ({r} resist or immune)" for _, w, r, a in bad) + ".", ""]
+
+        enemy_moves = [m for p in team for m in p["moves"] if damaging(m) and mtype(m) != "MYSTERY"]
+        scored = []
+        for c in candidates:
+            cts = types_of(c)
+            off = sum(1 for p in team if max(taken(t, p["species"]) for t in cts) >= 2)
+            best_def = None
+            for ab in abilities(c):
+                hurt = good_def = 0
+                for m in enemy_moves:
+                    e = eff(mtype(m), cts) * ABILITY_IMMUNE.get(ab, {}).get(mtype(m), 1)
+                    hurt += e >= 2
+                    good_def += e <= 0.5
+                d = good_def - 2 * hurt
+                if best_def is None or d > best_def[0]:
+                    best_def = (d, ab)
+            bst = sum(int(info[c][f]) for _, f in STATS)
+            scored.append((3 * off + best_def[0], bst, c, best_def[1]))
+        scored.sort(reverse=True)
+        picks = []
+        for sc, bst, c, ab in scored[:6]:
+            note = ""
+            if ab in ABILITY_IMMUNE and len(abilities(c)) > 1:
+                note = f" with {gametext_ability(ab)}"
+            picks.append(f"{link(c)} ({' / '.join(x.title() for x in types_of(c))}{note})")
+        sec += ["**Suggested counters:** " + ", ".join(picks) + ".", ""]
+        return sec
+    return advise
+
+
 def write_peak():
     info = species_info(read("src/data/pokemon/species_info.h"))
     ev = evos(read("src/data/pokemon/evolution.h"))
@@ -1285,6 +1363,7 @@ def write_peak():
     parties = parse_parties()
     trainers, aliases = parse_trainers()
     trainer_text = firered_only(read("src/data/trainers.h"))
+    advise = make_matchup()
 
     # Candidate counters: fully evolved, non-legendary Pokémon (any of their abilities, since the coach can swap).
     has_evo = {a for a, _ in ev}
@@ -1366,48 +1445,7 @@ def write_peak():
         sec.append("")
         sec += ["**Attacks with:** " + ", ".join(f"{a.title()} ×{n}" for a, n in sorted(atk_types.items(), key=lambda kv: -kv[1])) + ".", ""]
 
-        def taken(a, sp):
-            """Damage multiplier on an enemy, counting an ability immunity every one of its abilities grants."""
-            m = eff(a, types_of(sp))
-            mods = [ABILITY_IMMUNE.get(ab, {}).get(a, 1) for ab in abilities(sp)]
-            return m * max(mods) if mods else m
-        rows = []
-        for a in TYPES:
-            weak = sum(1 for p in team if taken(a, p["species"]) >= 2)
-            res = sum(1 for p in team if taken(a, p["species"]) <= 0.5)
-            rows.append((weak - res, weak, res, a))
-        good = [r for r in sorted(rows, reverse=True) if r[1] >= 2 and r[0] > 0][:5]
-        bad = [r for r in sorted(rows) if r[2] >= 3][:5]
-        if good:
-            sec += ["**Hit them with:** " + "; ".join(f"{a.title()} ({w} weak, {r} resist)" for _, w, r, a in good) + ".", ""]
-        if bad:
-            sec += ["**Avoid relying on:** " + "; ".join(f"{a.title()} ({r} resist or immune)" for _, w, r, a in bad) + ".", ""]
-
-        enemy_moves = [m for p in team for m in p["moves"] if damaging(m) and mtype(m) != "MYSTERY"]
-        scored = []
-        for c in candidates:
-            cts = types_of(c)
-            off = sum(1 for p in team if max(taken(t, p["species"]) for t in cts) >= 2)
-            best_def = None
-            for ab in abilities(c):
-                hurt = good_def = 0
-                for m in enemy_moves:
-                    e = eff(mtype(m), cts) * ABILITY_IMMUNE.get(ab, {}).get(mtype(m), 1)
-                    hurt += e >= 2
-                    good_def += e <= 0.5
-                d = good_def - 2 * hurt
-                if best_def is None or d > best_def[0]:
-                    best_def = (d, ab)
-            bst = sum(int(info[c][f]) for _, f in STATS)
-            scored.append((3 * off + best_def[0], bst, c, best_def[1]))
-        scored.sort(reverse=True)
-        picks = []
-        for sc, bst, c, ab in scored[:6]:
-            note = ""
-            if ab in ABILITY_IMMUNE and len(abilities(c)) > 1:
-                note = f" with {gametext_ability(ab)}"
-            picks.append(f"{link(c)} ({' / '.join(x.title() for x in types_of(c))}{note})")
-        sec += ["**Suggested counters:** " + ", ".join(picks) + ".", ""]
+        sec += advise(team)
         sections += sec
     out += [""] + sections
     open(os.path.join(OUT, "PEAK.md"), "w").write("\n".join(out))
@@ -1476,9 +1514,14 @@ def write_tower():
            "clear), 2 Big Pearls or 3 PP Ups for a PP Max, or a Nugget for 2 Rare Candies.", "",
            "**Nuzlocke:** Trainer Tower battles are exhibition battles. Pokémon that faint here aren't lost (they're left with 1 HP).", "",
            "Each trainer has six Pokémon but only uses some of them, depending on the floor. The tables "
-           "below list exactly the Pokémon you'll face on each floor.", ""]
+           "below list exactly the Pokémon you'll face on each floor.", "",
+           "Each challenge starts with the types you'll face, the attacking types that hit the most of its Pokémon "
+           "(and those to avoid relying on), and **suggested counters**, picked the same way as on the "
+           "[peak trainer page](PEAK.md): fully evolved, non-legendary Pokémon that hit the challenge's Pokémon "
+           "super effectively and resist their attacks. Remember everything battles at Lv. 50 here.", ""]
     titles = {"SINGLE": "Single battles", "DOUBLE": "Double battles", "KNOCKOUT": "Knockout (three trainers, one Pokémon each)",
               "MIXED": "Mixed (a mix of the other three)"}
+    advise = make_matchup()
     sp_types = {}
     for sp, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\n    \}", read("src/data/pokemon/species_info.h"), re.S):
         t = re.search(r"\.types = \{(TYPE_\w+), (TYPE_\w+)\}", body)
@@ -1488,7 +1531,7 @@ def write_tower():
         names = re.findall(r"&(\w+)", body)
         out += [f"## {titles.get(ctype, ctype.title())}", "",
                 f"Usual prize for clearing all eight floors: **{item('ITEM_' + floors[names[0]]['prize'])}**.", ""]
-        section = []
+        section, all_mons = [], []
         faced = {}
         for i, fname in enumerate(names):
             f = floors[fname]
@@ -1506,12 +1549,13 @@ def write_tower():
                 mons = [tr[0]["mons"][k] for k in picks["SINGLE"][i]]
                 label = f"single battle vs. {tr[0]['cls']} {tr[0]['name'].title()}"
             section += [f"### Floor {i + 1}: {label}", ""] + head + [row(m) for m in mons] + [""]
+            all_mons += mons
             for m in mons:
                 for t in sp_types.get(m["species"], []):
                     faced[t] = faced.get(t, 0) + 1
         ranked = sorted(faced.items(), key=lambda kv: (-kv[1], kv[0]))
         out += ["**Types you'll face** (Pokémon of each type across the eight floors): " +
-                ", ".join(f"{t[5:].title()} {n}" for t, n in ranked) + ".", ""] + section
+                ", ".join(f"{t[5:].title()} {n}" for t, n in ranked) + ".", ""] + advise(all_mons) + section
     open(os.path.join(OUT, "TOWER.md"), "w").write("\n".join(out))
 
 

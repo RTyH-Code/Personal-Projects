@@ -129,7 +129,7 @@ The Victory Road rematches are listed in [Trainers](TRAINERS.md#victory-road-rem
 | | With the VS Seeker | Same team as the first battle |
 | Pokemaniac Mark | First battle | Rhyhorn Lv33, Lickitung Lv33 |
 |  | After you reach Fuchsia City | Rhyhorn Lv38, Lickitung Lv38 |
-|  | After the Sevii Islands story | Rhydon Lv78, Lickitung Lv78 |
+|  | After the Sevii Islands story | Rhyperior Lv78, Lickilicky Lv78 |
 | Pokemaniac Herman | First battle | Cubone Lv23, Slowpoke Lv23 |
 |  | After you reach Fuchsia City | Marowak Lv33, Slowbro Lv33 |
 |  | After the Sevii Islands story | Marowak Lv78, Slowbro Lv78 |
@@ -583,7 +583,7 @@ The Victory Road rematches are listed in [Trainers](TRAINERS.md#victory-road-rem
 | Hiker Daryl | First battle | Sudowoodo Lv74 |
 | | With the VS Seeker | Same team as the first battle |
 | Pokemaniac Hector | First battle | Rhydon Lv73, Kangaskhan Lv73 |
-|  | After the Sevii Islands story | Rhydon Lv82, Kangaskhan Lv82 |
+|  | After the Sevii Islands story | Rhyperior Lv82, Kangaskhan Lv82 |
 
 ## Six Island Water Path
 
@@ -609,13 +609,13 @@ The Victory Road rematches are listed in [Trainers](TRAINERS.md#victory-road-rem
 | Crush Girl Cyndy | First battle | Annihilape Lv72, Hitmontop Lv72, Machamp Lv72 |
 |  | After the Sevii Islands story | Annihilape Lv81, Hitmontop Lv81, Machamp Lv81 |
 | Tamer Evan | First battle | Sandslash Lv72, Lickitung Lv72, Ursaring Lv73 |
-|  | After the Sevii Islands story | Sandslash Lv78, Lickitung Lv78, Ursaring Lv82 |
+|  | After the Sevii Islands story | Sandslash Lv78, Lickilicky Lv78, Ursaluna Lv82 |
 | Pkmn Ranger Jackson | First battle | Tangela Lv73, Exeggutor Lv73, Exeggutor Lv73 |
-|  | After the Sevii Islands story | Tangela Lv79, Exeggutor Lv81, Exeggutor Lv82 |
+|  | After the Sevii Islands story | Tangrowth Lv79, Exeggutor Lv81, Exeggutor Lv82 |
 | Pkmn Ranger Katelyn | First battle | Blissey Lv78 |
 |  | After the Sevii Islands story | Blissey Lv83 |
 | Cool Trainer Leroy | First battle | Rhydon Lv70, Slowbro Lv72, Kangaskhan Lv70, Machamp Lv72, Ursaring Lv74 |
-|  | After the Sevii Islands story | Rhydon Lv78, Slowbro Lv81, Kangaskhan Lv78, Machamp Lv78, Ursaring Lv82 |
+|  | After the Sevii Islands story | Rhyperior Lv78, Slowbro Lv81, Kangaskhan Lv78, Machamp Lv78, Ursaluna Lv82 |
 | Cool Trainer Michelle | First battle | Persian Lv70, Dewgong Lv70, Ninetales Lv72, Rapidash Lv72, Farigiraf Lv74 |
 |  | After the Sevii Islands story | Persian Lv79, Dewgong Lv79, Ninetales Lv81, Rapidash Lv81, Farigiraf Lv83 |
 | Cool Couple Lex & Nya *(double)* | First battle | Miltank Lv78, Tauros Lv78 |
