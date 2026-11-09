@@ -555,6 +555,10 @@ teams are:
   - Trainer Pokémon evolve where their new level allows.
 - **Post-game route rematches:** VS Seeker rematch teams that unlock after
   the Champion are 1.25x stronger (about Lv. 66–86).
+- **Late-game evolutions:** every trainer Pokémon of Lv. 50 or higher has
+  evolved where its level allows (5 levels past the evolution), even if the
+  team already has one, e.g. no more Lv. 72 Mareep or Lv. 68 Magikarp.
+  Earlier trainers keep their classic unevolved Pokémon.
 - **Held items:** the Trainer Tower lobby shop on Seven Island also sells the
   held items competitive teams use: Leftovers, Choice Band, Shell Bell, Focus
   Band, Quick Claw, Scope Lens, Bright Powder, King's Rock, Lucky Egg, Metal
@@ -585,9 +589,9 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `f59d7d78bdf688a4d9033188fe8edeee842c5eaf`
+Patched ROM SHA-1: `2f629f2071bd13912f35ba55e25b5c9c90f0e243`
 
-Current release: **19**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
+Current release: **20**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
 Saves made on release 7 or later carry over to this release. Older saves need a new game.
 
 ## Building from source
@@ -628,6 +632,7 @@ unmodified pret data:
 - `berry_shop.py`: the Celadon Department Store berry stand and berry prices.
 - `held_item_shop.py`: held items in the post-game Trainer Tower lobby shop.
 - `postgame_levels.py`: Sevii Islands 4–7 trainers and wild Pokémon, and post-game route rematches.
+- `trainer_evolutions.py`: Lv. 50+ trainer Pokémon evolve where their level allows (run after `postgame_levels.py`).
 - `wild_levels.py`: wild Pokémon levels 1.15x from the Erika stretch on.
 - `exp_budget.py`: how much trainer Exp. each stretch of the game gives, against the level caps.
 - `save_check.py REF`: checks whether saves from an older release (a git ref) still load.

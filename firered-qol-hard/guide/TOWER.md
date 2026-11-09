@@ -192,7 +192,7 @@ Usual prize for clearing all eight floors: **Metal Coat**.
 |---|---|---|---|---|---|
 | Seaking | Choice Band | Swift Swim | Adamant | 6 HP / 252 Atk / 252 Spe | Waterfall, Drill Run, Megahorn, Ice Beam |
 | Gorebyss | Scope Lens | Swift Swim | Modest | 6 HP / 252 SpA / 252 Spe | Ice Beam, Hydro Pump, Shell Smash, Rain Dance |
-| Dodrio | Silk Scarf | Early Bird | Jolly | 6 HP / 252 Atk / 252 Spe | Drill Run, Double-Edge, Swords Dance, Brave Bird |
+| Kingdra | Dragon Fang | Swift Swim | Jolly | 6 HP / 252 Atk / 252 Spe | Iron Head, Draco Meteor, Dragon Dance, Rain Dance |
 
 ### Floor 8: knockout vs. Pkmn Ranger Chelsea, Pkmn Ranger Trenton, Cool Trainer Albert
 

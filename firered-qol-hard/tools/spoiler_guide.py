@@ -106,6 +106,8 @@ def map_name(const):
             words.append("Co.")
         elif w == "DIGLETTS":
             words.append("Diglett's")
+        elif w in ("LORELEIS", "BRUNOS", "AGATHAS", "LANCES", "CHAMPIONS"):
+            words.append(w[:-1].title() + "'s")
         elif re.fullmatch(r"HOUSE\d", w):
             words.append("House")
         elif re.fullmatch(r"ROOM\d+", w):
@@ -252,6 +254,19 @@ def label_location(lab, depth=0):
                 return loc
     return None
 
+def label_locations(lab, depth=0):
+    """Every map that runs this label (a shared script can be reached from several)."""
+    one = label_map.get(lab) or label_file_map.get(lab)
+    if not one and lab.split("_EventScript_")[0] in dir_to_map:
+        one = dir_to_map[lab.split("_EventScript_")[0]]
+    if one:
+        return {one}
+    out = set()
+    if depth < 4:
+        for c in callers.get(lab, ()):
+            out |= label_locations(c, depth + 1)
+    return out
+
 # ---------------------------------------------------------------- encounters
 
 RATES = {"land_mons": [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1], "water_mons": [60, 30, 5, 4, 1],
@@ -345,8 +360,7 @@ def write_items():
     gifts = {}
     for lab, body in label_body.items():
         for it in re.findall(r"^\s*(?:giveitem|giveitem_msg [^,]+,|msgreceiveditem [^,]+,)\s*(ITEM_\w+)", body, re.M):
-            loc = label_location(lab)
-            if loc:
+            for loc in label_locations(lab):
                 gifts.setdefault(loc, set()).add(item(it))
     marts = {}
     for f, text in script_text.items():
