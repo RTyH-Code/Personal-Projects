@@ -1479,10 +1479,17 @@ def write_tower():
            "below list exactly the Pokémon you'll face on each floor.", ""]
     titles = {"SINGLE": "Single battles", "DOUBLE": "Double battles", "KNOCKOUT": "Knockout (three trainers, one Pokémon each)",
               "MIXED": "Mixed (a mix of the other three)"}
+    sp_types = {}
+    for sp, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\n    \}", read("src/data/pokemon/species_info.h"), re.S):
+        t = re.search(r"\.types = \{(TYPE_\w+), (TYPE_\w+)\}", body)
+        if t:
+            sp_types[sp] = list(dict.fromkeys(t.groups()))
     for ctype, body in tables:
         names = re.findall(r"&(\w+)", body)
         out += [f"## {titles.get(ctype, ctype.title())}", "",
                 f"Usual prize for clearing all eight floors: **{item('ITEM_' + floors[names[0]]['prize'])}**.", ""]
+        section = []
+        faced = {}
         for i, fname in enumerate(names):
             f = floors[fname]
             kind = f["type"]
@@ -1498,7 +1505,13 @@ def write_tower():
             else:
                 mons = [tr[0]["mons"][k] for k in picks["SINGLE"][i]]
                 label = f"single battle vs. {tr[0]['cls']} {tr[0]['name'].title()}"
-            out += [f"### Floor {i + 1}: {label}", ""] + head + [row(m) for m in mons] + [""]
+            section += [f"### Floor {i + 1}: {label}", ""] + head + [row(m) for m in mons] + [""]
+            for m in mons:
+                for t in sp_types.get(m["species"], []):
+                    faced[t] = faced.get(t, 0) + 1
+        ranked = sorted(faced.items(), key=lambda kv: (-kv[1], kv[0]))
+        out += ["**Types you'll face** (Pokémon of each type across the eight floors): " +
+                ", ".join(f"{t[5:].title()} {n}" for t, n in ranked) + ".", ""] + section
     open(os.path.join(OUT, "TOWER.md"), "w").write("\n".join(out))
 
 
