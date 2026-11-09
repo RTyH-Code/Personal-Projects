@@ -8,6 +8,26 @@ made it, so you can see exactly what changed.
 previous release keeps working. In short, saves made on **release 7 or later**
 carry over to the current release. Older saves need a new game.
 
+## Release 23 (2026-11-09)
+Pull requests: [#50](https://github.com/RTyH-Code/Personal-Projects/pull/50)
+
+- **Audit of releases 14–22:** a code and balance review of everything since
+  the last audit. That covers the rematch catch-up, the Trainer Tower Lv. 50
+  rule and prizes, the shops, the rewards, the trader, the exhibition rules
+  and the evolution passes. It found one bug:
+  - **Fix (Nuzlocke):** losing in the Trainer Tower sends you back to the
+    lobby rather than blacking out. That loss used to stay "remembered", so
+    if field poison then made you black out before your next battle, the
+    run wrongly carried on. Only peak trainer losses count now.
+- **Spoiler guide:** the main page now has:
+  - A "where to start" order for new players.
+  - A Nuzlocke planning table: how many new encounter areas you can reach
+    before each gym (4 before Brock, 9 before Misty, 18 before Lt. Surge,
+    48 by Giovanni), each gym's level cap, and any area where wild Pokémon
+    can be above it. The only one is Diglett's Cave, whose Lv. 31 Dugtrio is
+    above Lt. Surge's cap of 28, as in the original game.
+- **Saves:** release 22 saves carry over.
+
 ## Release 22 (2026-11-09)
 Pull requests: [#49](https://github.com/RTyH-Code/Personal-Projects/pull/49)
 

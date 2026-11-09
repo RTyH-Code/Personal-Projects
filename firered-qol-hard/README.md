@@ -4,7 +4,7 @@
 
 A quality-of-life, modernization and difficulty hack built on the pret/pokefirered decompilation.
 
-## What's new (releases 10–22)
+## What's new (releases 10–23)
 Coming back after a while? Here's the short version. Every detail is in
 [CHANGELOG.md](CHANGELOG.md), and the full feature list follows below.
 
@@ -34,6 +34,7 @@ Coming back after a while? Here's the short version. Every detail is in
 - **Rewards:** Gym Leader, Elite Four and Champion rematches give items
   (17–19).
 - **Spoiler guide:**
+  - A where-to-start page with a Nuzlocke planning table (23).
   - Trainer Tower teams with type summaries and suggested counters
     (13, 21, 22).
   - VS Seeker rematch teams (16).
@@ -629,9 +630,9 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `18d07d3f45b83b595e929ca88ab30f18762ca365`
+Patched ROM SHA-1: `fc6ad2dcff1136a92b9f3781bd7751ee892d570a`
 
-Current release: **22**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
+Current release: **23**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
 Saves made on release 7 or later carry over to this release. Older saves need a new game.
 
 ## Building from source

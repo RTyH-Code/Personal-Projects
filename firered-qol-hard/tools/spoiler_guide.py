@@ -1601,20 +1601,93 @@ def write_rematches():
     open(os.path.join(OUT, "REMATCHES.md"), "w").write("\n".join(out))
 
 
+# Nuzlocke planning: the maps you can reach before each gym (in the usual
+# order), and when each encounter method opens up (Old Rod in Vermilion,
+# Surf after Koga).
+NUZLOCKE_STRETCHES = [
+    ("Brock", "TRAINER_LEADER_BROCK", ["ROUTE1", "ROUTE22", "ROUTE2", "VIRIDIAN_FOREST", "PALLET_TOWN", "VIRIDIAN_CITY"], {"land_mons"}),
+    ("Misty", "TRAINER_LEADER_MISTY", ["ROUTE3", "MT_MOON_1F", "MT_MOON_B1F", "MT_MOON_B2F", "ROUTE4", "ROUTE24", "ROUTE25", "CERULEAN_CITY"], set()),
+    ("Lt. Surge", "TRAINER_LEADER_LT_SURGE", ["ROUTE5", "ROUTE6", "ROUTE11", "DIGLETTS_CAVE_B1F", "VERMILION_CITY", "SSANNE_EXTERIOR"], {"fishing_mons"}),
+    ("Erika", "TRAINER_LEADER_ERIKA", ["ROUTE9", "ROUTE10", "ROCK_TUNNEL_1F", "ROCK_TUNNEL_B1F", "ROUTE8", "ROUTE7", "CELADON_CITY"], set()),
+    ("Koga", "TRAINER_LEADER_KOGA", ["POKEMON_TOWER_3F", "POKEMON_TOWER_4F", "POKEMON_TOWER_5F", "POKEMON_TOWER_6F", "POKEMON_TOWER_7F",
+                                     "ROUTE12", "ROUTE13", "ROUTE14", "ROUTE15", "ROUTE16", "ROUTE17", "ROUTE18", "FUCHSIA_CITY",
+                                     "SAFARI_ZONE_CENTER", "SAFARI_ZONE_EAST", "SAFARI_ZONE_NORTH", "SAFARI_ZONE_WEST"], set()),
+    ("Sabrina", "TRAINER_LEADER_SABRINA", ["POWER_PLANT", "ROUTE19", "ROUTE20", "ROUTE21_NORTH", "ROUTE21_SOUTH", "SEAFOAM_ISLANDS_1F",
+                                           "SEAFOAM_ISLANDS_B1F", "SEAFOAM_ISLANDS_B2F", "SEAFOAM_ISLANDS_B3F", "SEAFOAM_ISLANDS_B4F", "CINNABAR_ISLAND"], {"water_mons"}),
+    ("Blaine", "TRAINER_LEADER_BLAINE", ["POKEMON_MANSION_1F", "POKEMON_MANSION_2F", "POKEMON_MANSION_3F", "POKEMON_MANSION_B1F"], set()),
+    ("Giovanni", "TRAINER_LEADER_GIOVANNI", ["ONE_ISLAND_KINDLE_ROAD", "ONE_ISLAND_TREASURE_BEACH", "TWO_ISLAND_CAPE_BRINK", "THREE_ISLAND_BOND_BRIDGE",
+                                             "THREE_ISLAND_BERRY_FOREST", "MT_EMBER_EXTERIOR", "ONE_ISLAND"], set()),
+]
+
+
+def nuzlocke_table():
+    sec = {}
+    for f in glob.glob("data/maps/*/map.json"):
+        m = json.load(open(f, encoding="utf-8"))
+        sec[m["id"][4:]] = m.get("region_map_section", "")
+    kinds, top = {}, {}
+    for e in fr_tables(json.load(open("src/data/wild_encounters.json", encoding="utf-8"))).values():
+        mp = e["map"][4:]
+        kinds[mp] = {k for k in e if k.endswith("_mons")}
+        for k in kinds[mp]:
+            top[(mp, k)] = max(x["max_level"] for x in e[k]["mons"])
+    parties = parse_parties()
+    trainers, _ = parse_trainers()
+    rows = ["| Before | New areas | Areas in all | Level cap | Highest wild level | Above the cap |", "|---|--:|--:|--:|--:|---|"]
+    reach, methods, used = [], {"land_mons"}, set()
+    for gym, leader, maps, new in NUZLOCKE_STRETCHES:
+        methods |= new
+        reach += maps
+        cap = max(p["lvl"] for p in parties[trainers[leader]["party"]])
+        avail = {sec.get(mp) for mp in reach if kinds.get(mp, set()) & methods}
+        fresh = avail - used
+        used |= avail
+        lv = [(top[(mp, k)], mp) for mp in maps for k in methods & kinds.get(mp, set()) if k != "fishing_mons"]
+        hi = max(lv)[0] if lv else 0
+        over = sorted({map_name("MAP_" + mp) for l, mp in lv if l > cap})
+        rows.append(f"| {gym} | {len(fresh)} | {len(used)} | {cap} | {hi} | {', '.join(over) or '—'} |")
+    return rows
+
+
 def write_index():
-    open(os.path.join(OUT, "README.md"), "w").write("""# FireRed QoL + Hard: spoiler guide
+    nz = "\n".join(nuzlocke_table())
+    open(os.path.join(OUT, "README.md"), "w").write(f"""# FireRed QoL + Hard: spoiler guide
 
 **Spoilers ahead.** Generated from the game's data, so it matches the patched ROM.
 
-- [Wild encounters](ENCOUNTERS.md): every map's grass, cave, surf, Rock Smash and fishing tables, with rates and levels. ★ marks additions.
-- [Items](ITEMS.md): item balls, hidden items, NPC gifts and shop stock, by location.
-- [Trainers](TRAINERS.md): Gym Leaders, Elite Four and Champion (rounds 1–2 and peak) in full, then every other trainer by location.
-- [Pokédex](POKEDEX.md): every Pokémon (all 386, plus later evolutions added by the hack) with stat ranges, abilities, type defenses, evolutions, locations and full learnsets.
-- [Peak trainer prep](PEAK.md): every Lv. 100 peak team with real stats, what they attack with, what they're weak to, and suggested counters.
-- [VS Seeker rematches](REMATCHES.md): every route trainer's rematch teams and when each unlocks.
-- [Trainer Tower](TOWER.md): every challenge floor by floor, with each competitive set you'll face.
-- [Types and moves](TYPES.md): the type chart, moves whose physical/special category changed, and every move with its power, accuracy, PP and effect.
-- [Pokémon](POKEMON.md): gift, static and legendary Pokémon, in-game trades, changed evolutions, base stat and move changes.
+## Where to start
+New to the hack? These pages, roughly in the order you'll want them:
+
+1. [Pokédex](POKEDEX.md): plan your team. Every Pokémon (all 386, plus the later evolutions the hack adds) with stat
+   ranges, abilities, type defenses, evolutions, where to find it and full learnsets.
+2. [Wild encounters](ENCOUNTERS.md): what each area has, by grass, cave, surf, Rock Smash and fishing, with rates and
+   levels. ★ marks additions. In a Nuzlocke, this is where you plan your first encounters.
+3. [Trainers](TRAINERS.md): every Gym Leader, Elite Four and Champion team (rounds 1–2 and peak), then every other
+   trainer by location. Check the next gym before you go in.
+4. [Items](ITEMS.md): item balls, hidden items, gifts and shop stock by location, including the stock that grows as you
+   progress.
+5. [VS Seeker rematches](REMATCHES.md): every rematch team and when it unlocks, the intended way to catch up on levels.
+
+After the Elite Four:
+
+6. [Peak trainer prep](PEAK.md): the Lv. 100 Gym Leader and Elite Four teams, with real stats, what they're weak to and
+   suggested counters.
+7. [Trainer Tower](TOWER.md): every challenge floor by floor, with the types you'll face and suggested counters.
+
+Reference:
+
+- [Types and moves](TYPES.md): the type chart (with Fairy), moves whose physical/special category changed, and every
+  move with its power, accuracy, PP and effect.
+- [Pokémon](POKEMON.md): gift, static and legendary Pokémon, in-game trades, changed evolutions, base stat and move
+  changes.
+
+## Nuzlocke planning
+How many new encounter areas (map sections) you can reach before each gym, going in the usual order. The Old Rod
+opens fishing before Lt. Surge, and Surf opens after Koga. The level cap is the Gym Leader's strongest Pokémon. "Above
+the cap" lists areas where a wild Pokémon (not counting fishing) can be higher than that. You can still catch and use it,
+but it won't gain Exp. until the cap rises. Gift Pokémon (your starter, Eevee, Lapras, the fossils and so on) come on top.
+
+{nz}
 
 Regenerate with `python3 tools/hack/spoiler_guide.py <output dir>` from the source tree.
 """)
