@@ -8,6 +8,28 @@ made it, so you can see exactly what changed.
 previous release keeps working. In short, saves made on **release 7 or later**
 carry over to the current release. Older saves need a new game.
 
+## Release 21 (2026-11-09)
+Pull requests: [#48](https://github.com/RTyH-Code/Personal-Projects/pull/48)
+
+- **Late-game stone and item evolutions:** 55 more trainer Pokémon of
+  Lv. 50 or higher now have their classic stone, item, trade or friendship
+  evolution, e.g. Seadra → Kingdra, Golbat → Crobat, Onix → Steelix,
+  Chansey → Blissey, Pikachu → Raichu. Later-generation evolutions
+  (Rhyperior, Magnezone, ...) are left alone, since those items are
+  badge-gated.
+- **Post-game level check:**
+  - Release 20's evolutions and this release's together make the Sevii 4–7
+    and post-game rematch teams about 8% stronger by base stats.
+  - The evolved Pokémon also give a little more Exp., so a team of six
+    needs slightly fewer rematches to keep pace than before.
+  - No other balance change is needed.
+- **Spoiler guide:** each Trainer Tower challenge now lists the types you'll
+  face across its eight floors, for planning counters. The trainer and
+  rematch pages show the evolved teams.
+- **Audit:** the data validator also flags Lv. 50+ trainer Pokémon missing
+  a classic stone, item, trade or friendship evolution.
+- **Saves:** release 20 saves carry over.
+
 ## Release 20 (2026-11-08)
 Pull requests: [#47](https://github.com/RTyH-Code/Personal-Projects/pull/47)
 
