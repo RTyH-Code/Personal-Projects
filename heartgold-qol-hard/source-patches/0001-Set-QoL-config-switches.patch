@@ -1,0 +1,74 @@
+From bd7cd0c4ee16bca4ba47e38bffa5a2eb1f770aec Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 9 Nov 2026 23:47:13 +0000
+Subject: [PATCH] Set QoL config switches
+
+Turn on forgettable HMs, the new-game tutorial skip and 60 fps battles.
+Turn off Mega Evolution, Primal Reversion and critical captures, which
+the hack does not use.
+---
+ armips/include/config.s |  2 +-
+ include/config.h        | 10 +++++-----
+ 2 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/armips/include/config.s b/armips/include/config.s
+index 7605cba7b..d37386219 100644
+--- a/armips/include/config.s
++++ b/armips/include/config.s
+@@ -39,7 +39,7 @@ ALWAYS_HAVE_NATIONAL_DEX equ 0
+ ALWAYS_UNCAPPED_FRAME_RATE equ 0
+ 
+ // BATTLES_UNCAPPED_FRAME_RATE defines whether or not the frame rate of the game will be uncapped solely in battles or not.
+-BATTLES_UNCAPPED_FRAME_RATE equ 0
++BATTLES_UNCAPPED_FRAME_RATE equ 1
+ 
+ // FAST_TEXT_PRINTING will make the text print quickly, almost instantly
+ FAST_TEXT_PRINTING equ 0
+diff --git a/include/config.h b/include/config.h
+index 9ce6b4c77..ef048e393 100644
+--- a/include/config.h
++++ b/include/config.h
+@@ -42,11 +42,11 @@
+ 
+ // MEGA_EVOLUTIONS defines whether or not Pokémon that are able to mega evolve will be able to do so.
+ // commenting this line out essentially disables mega evolutions and maintains default behavior with respect to them.  leaving this as-is will introduce mega evolutions when applied to the game.
+-#define MEGA_EVOLUTIONS
++// #define MEGA_EVOLUTIONS
+ 
+ // PRIMAL_REVERSION defines whether or not Kyogre and Groudon, when holding their orbs, will be able to change form when sent out in battle.
+ // commenting this line out essentially disables primal reversion.  leaving this as-is will introduce primal reversions when applied to the game.
+-#define PRIMAL_REVERSION
++// #define PRIMAL_REVERSION
+ 
+ // ITEM_POCKET_EXPANSION defines whether or not item pockets will be given extra slots in the save in order to provide space for new items that are implemented
+ // commenting this line out will prevent the item pockets from being expanded for the new items
+@@ -71,7 +71,7 @@
+ 
+ // IMPLEMENT_CRITICAL_CAPTURE defines whether or not throwing a poké ball has a certain percent chance of a guaranteed capture called a critical throw
+ // commenting this line out disables critical captures
+-#define IMPLEMENT_CRITICAL_CAPTURE
++// #define IMPLEMENT_CRITICAL_CAPTURE
+ 
+ // if critical capture generation is 9 or above, then the critical capture animation will be triggered if the mon is going to be caught and has already been caught.
+ // this will also make the critical capture species only count the regional dex species.
+@@ -168,7 +168,7 @@
+ #define REUSABLE_TMS
+ 
+ // DELETABLE_HMS allows HMs to be forgotten, this also makes their quantity reduce, but the infinite TMs change prevents this.
+-// #define DELETABLE_HMS
++#define DELETABLE_HMS
+ 
+ // MART_EXPANSION allows for adding and modifying items to the mart inventories
+ #define MART_EXPANSION
+@@ -241,7 +241,7 @@
+ 
+ // SKIP_TUTORIAL_INFO will skip the tutorial when starting a new game and go straight to Professor Oak greeting you.
+ // uncomment the line out to get this functionality
+-// #define SKIP_TUTORIAL_INFO
++#define SKIP_TUTORIAL_INFO
+ 
+ // Champions-specific move configurations. Set to 0 to use Scarlet/Violet values.
+ #define CHAMPIONS_POWER_CHANGES         1
+-- 
+2.43.0
+
