@@ -1,0 +1,479 @@
+From 2b6972b40c8302f543e53c052c6131bc8a8a9ec1 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 9 Nov 2026 01:24:45 +0000
+Subject: [PATCH] Later-gen evolutions for Lv. 75+ teams, Trainer Tower counter
+ suggestions (R22)
+
+- trainer_evolutions.py (third pass): Lv. 75+ trainer Pokemon take any
+  remaining evolution, including later-generation ones (9 Pokemon:
+  Rhyperior, Lickilicky, Ursaluna, Tangrowth, Mismagius).
+- validate.py: flags Lv. 75+ Pokemon with an evolution left undone.
+- Spoiler guide: the peak page's matchup and counter logic is shared, and
+  each Trainer Tower challenge now lists the types that hit it, the ones
+  to avoid, and suggested counters.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEZftLdDmGYX3wiQ71G
+---
+ HACK_NOTES.md                    |  12 +--
+ include/hack_version.h           |   2 +-
+ src/data/trainer_parties.h       |  24 +++---
+ tools/hack/spoiler_guide.py      | 134 ++++++++++++++++++++-----------
+ tools/hack/trainer_evolutions.py |  19 +++--
+ tools/hack/validate.py           |   9 ++-
+ 6 files changed, 133 insertions(+), 67 deletions(-)
+
+diff --git a/HACK_NOTES.md b/HACK_NOTES.md
+index 8c7c7f9..cf9b1fb 100644
+--- a/HACK_NOTES.md
++++ b/HACK_NOTES.md
+@@ -558,9 +558,10 @@ teams are:
+   team already has one, e.g. no more Lv. 72 Mareep or Lv. 68 Magikarp.
+   They also have their classic stone, item, trade and friendship
+   evolutions (Kingdra, Crobat, Steelix, Blissey, Raichu and so on). The
+-  later-generation ones (Rhyperior, Magnezone, ...) are left alone, since
+-  those items are badge-gated. Earlier trainers keep their classic
+-  unevolved Pokémon.
++  later-generation ones (Rhyperior, Magnezone, ...) are left alone below
++  Lv. 75, since those items are badge-gated. The toughest teams (Lv. 75+)
++  have them too, as a last step before the round 2 Elite Four. Earlier
++  trainers keep their classic unevolved Pokémon.
+ - **Held items:** the Trainer Tower lobby shop on Seven Island also sells the
+   held items competitive teams use: Leftovers, Choice Band, Shell Bell, Focus
+   Band, Quick Claw, Scope Lens, Bright Powder, King's Rock, Lucky Egg, Metal
+@@ -593,7 +594,7 @@ Each script runs once against the original pret data:
+   including that every peak team is six Lv. 100 Pokémon, every Trainer
+   Tower team is fully evolved with no repeated species or item, and no
+   Lv. 50+ trainer Pokémon is left unevolved (level-up or classic
+-  stone/item/trade/friendship evolutions).
++  stone/item/trade/friendship evolutions; any evolution at Lv. 75+).
+ - `playtest/playtest.py [check ...]`: automated playtest. It runs 25 milestone
+   checks in a headless mGBA:
+   - The boot menu.
+@@ -620,7 +621,8 @@ Each script runs once against the original pret data:
+ - `held_item_shop.py`: held items in the Trainer Tower lobby shop and their prices.
+ - `postgame_levels.py`: Sevii Islands 4–7 trainers and wild Pokémon, and post-game route rematches.
+ - `trainer_evolutions.py`: Lv. 50+ trainer Pokémon evolve where their level allows, then
+-  (second run) by classic stone, item, trade or friendship evolutions (run after `postgame_levels.py`).
++  (second run) by classic stone, item, trade or friendship evolutions, then (third run) any evolution
++  at Lv. 75+ (run after `postgame_levels.py`).
+ - `tower_sets.py <dir>`: the competitive Trainer Tower teams, from Showdown's
+   random-battle set files (read as data).
+ - `gym_doubles.py`: the gym double battles (one trainer per gym) and their doubles movesets.
+diff --git a/include/hack_version.h b/include/hack_version.h
+index cbd6eb8..a45c15b 100644
+--- a/include/hack_version.h
++++ b/include/hack_version.h
+@@ -3,6 +3,6 @@
+ 
+ // FireRed QoL+Hard release number, shown in the Options menu. Bump it with
+ // each release (see CHANGELOG.md in the Personal-Projects repository).
+-#define HACK_RELEASE_STRING "R21"
++#define HACK_RELEASE_STRING "R22"
+ 
+ #endif // GUARD_HACK_VERSION_H
+diff --git a/src/data/trainer_parties.h b/src/data/trainer_parties.h
+index 60a3bb5..00624a8 100644
+--- a/src/data/trainer_parties.h
++++ b/src/data/trainer_parties.h
+@@ -9339,16 +9339,17 @@ static const struct TrainerMonNoItemDefaultMoves sParty_HikerJeremy2[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: later-generation evolutions for Lv. 75+ (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_PokemaniacMark3[] = {
+     {
+         .iv = 150,
+         .lvl = 78,
+-        .species = SPECIES_RHYDON,
++        .species = SPECIES_RHYPERIOR,
+     },
+     {
+         .iv = 150,
+         .lvl = 78,
+-        .species = SPECIES_LICKITUNG,
++        .species = SPECIES_LICKILICKY,
+     },
+ };
+ 
+@@ -10565,11 +10566,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_RuinManiacLarry2[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: later-generation evolutions for Lv. 75+ (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_PokemaniacHector2[] = {
+     {
+         .iv = 150,
+         .lvl = 82,
+-        .species = SPECIES_RHYDON,
++        .species = SPECIES_RHYPERIOR,
+     },
+     {
+         .iv = 150,
+@@ -10690,6 +10692,7 @@ static const struct TrainerMonItemDefaultMoves sParty_CrushGirlCyndy2[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: later-generation evolutions for Lv. 75+ (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemDefaultMoves sParty_TamerEvan2[] = {
+     {
+         .iv = 160,
+@@ -10699,21 +10702,22 @@ static const struct TrainerMonNoItemDefaultMoves sParty_TamerEvan2[] = {
+     {
+         .iv = 160,
+         .lvl = 78,
+-        .species = SPECIES_LICKITUNG,
++        .species = SPECIES_LICKILICKY,
+     },
+     {
+         .iv = 160,
+         .lvl = 82,
+-        .species = SPECIES_URSARING,
++        .species = SPECIES_URSALUNA,
+     },
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: later-generation evolutions for Lv. 75+ (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_PkmnRangerJackson2[] = {
+     {
+         .iv = 220,
+         .lvl = 79,
+-        .species = SPECIES_TANGELA,
++        .species = SPECIES_TANGROWTH,
+         .moves = {MOVE_SLAM, MOVE_MEGA_DRAIN, MOVE_BIND, MOVE_INGRAIN},
+     },
+     {
+@@ -10742,11 +10746,12 @@ static const struct TrainerMonNoItemCustomMoves sParty_PkmnRangerKatelyn2[] = {
+ };
+ 
+ // FireRed QoL+Hard: post-game levels
++// FireRed QoL+Hard: later-generation evolutions for Lv. 75+ (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerLeroy2[] = {
+     {
+         .iv = 220,
+         .lvl = 78,
+-        .species = SPECIES_RHYDON,
++        .species = SPECIES_RHYPERIOR,
+         .moves = {MOVE_EARTHQUAKE, MOVE_HORN_DRILL, MOVE_ROCK_BLAST, MOVE_SCARY_FACE},
+     },
+     {
+@@ -10770,7 +10775,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerLeroy2[] = {
+     {
+         .iv = 220,
+         .lvl = 82,
+-        .species = SPECIES_URSARING,
++        .species = SPECIES_URSALUNA,
+         .moves = {MOVE_SLASH, MOVE_FAINT_ATTACK, MOVE_SNORE, MOVE_REST},
+     },
+ };
+@@ -11000,6 +11005,7 @@ static const struct TrainerMonItemCustomMoves sParty_EliteFourBruno2[] = {
+     },
+ };
+ 
++// FireRed QoL+Hard: later-generation evolutions for Lv. 75+ (tools/hack/trainer_evolutions.py)
+ static const struct TrainerMonItemCustomMoves sParty_EliteFourAgatha2[] = {
+     {
+         .iv = 255,
+@@ -11018,7 +11024,7 @@ static const struct TrainerMonItemCustomMoves sParty_EliteFourAgatha2[] = {
+     {
+         .iv = 255,
+         .lvl = 75,
+-        .species = SPECIES_MISDREAVUS,
++        .species = SPECIES_MISMAGIUS,
+         .heldItem = ITEM_NONE,
+         .moves = {MOVE_SHADOW_BALL, MOVE_PSYCHIC, MOVE_THUNDERBOLT, MOVE_ATTRACT},
+     },
+diff --git a/tools/hack/spoiler_guide.py b/tools/hack/spoiler_guide.py
+index f5b6e94..225896b 100644
+--- a/tools/hack/spoiler_guide.py
++++ b/tools/hack/spoiler_guide.py
+@@ -1258,6 +1258,84 @@ NATURE_MOD = {"Jolly": ("Speed", "Sp. Atk"), "Adamant": ("Attack", "Sp. Atk"),
+               "Timid": ("Speed", "Attack"), "Modest": ("Sp. Atk", "Attack")}
+ 
+ 
++def make_matchup():
++    """Returns advise(team): which types hit a team, which to avoid, and suggested
++    counters. team is a list of dicts with "species" and "moves". Shared by the
++    peak trainer and Trainer Tower pages."""
++    info = species_info(read("src/data/pokemon/species_info.h"))
++    ev = evos(read("src/data/pokemon/evolution.h"))
++    dex_order = [d for d in re.findall(r"NATIONAL_DEX_(\w+),", read("include/constants/pokedex.h").split("HOENN_DEX_NONE")[0]) if d != "NONE"]
++    dex_order = dex_order[:dex_order.index("DEOXYS") + 1]
++    dexno = {"SPECIES_" + d: i + 1 for i, d in enumerate(dex_order)}
++    dexno.update(dict(new_species()))
++    def link(sp):
++        return f"[{mon(sp)}](pokedex/{dexno[sp]:03d}-" + sp[8:].lower().replace("_", "-") + ".md)"
++    def types_of(sp):
++        return list(dict.fromkeys(t[5:] for t in re.findall(r"TYPE_\w+", info[sp]["types"])))
++    def abilities(sp):
++        return [a for a in dict.fromkeys(re.findall(r"ABILITY_\w+", info[sp]["abilities"])) if a != "ABILITY_NONE"]
++    def eff(atk, ts):
++        m = 1
++        for d in ts:
++            m *= chart.get((atk, d), 1)
++        return m
++    def damaging(m):
++        return mv.get(m, {}).get("power", "0") != "0"
++    def mtype(m):
++        return mv[m]["type"][5:]
++    has_evo = {a for a, _ in ev}
++    candidates = [sp for sp in dexno if sp not in has_evo and sp[8:] not in LEGENDARY and sp != "SPECIES_SHEDINJA"
++                  and sum(int(info[sp][f]) for _, f in STATS) >= 470
++                  and max(int(info[sp]["baseAttack"]), int(info[sp]["baseSpAttack"])) >= 80]
++
++    def advise(team):
++        sec = []
++        def taken(a, sp):
++            """Damage multiplier on an enemy, counting an ability immunity every one of its abilities grants."""
++            m = eff(a, types_of(sp))
++            mods = [ABILITY_IMMUNE.get(ab, {}).get(a, 1) for ab in abilities(sp)]
++            return m * max(mods) if mods else m
++        rows = []
++        for a in TYPES:
++            weak = sum(1 for p in team if taken(a, p["species"]) >= 2)
++            res = sum(1 for p in team if taken(a, p["species"]) <= 0.5)
++            rows.append((weak - res, weak, res, a))
++        good = [r for r in sorted(rows, reverse=True) if r[1] >= 2 and r[0] > 0][:5]
++        bad = [r for r in sorted(rows) if r[2] >= 3][:5]
++        if good:
++            sec += ["**Hit them with:** " + "; ".join(f"{a.title()} ({w} weak, {r} resist)" for _, w, r, a in good) + ".", ""]
++        if bad:
++            sec += ["**Avoid relying on:** " + "; ".join(f"{a.title()} ({r} resist or immune)" for _, w, r, a in bad) + ".", ""]
++
++        enemy_moves = [m for p in team for m in p["moves"] if damaging(m) and mtype(m) != "MYSTERY"]
++        scored = []
++        for c in candidates:
++            cts = types_of(c)
++            off = sum(1 for p in team if max(taken(t, p["species"]) for t in cts) >= 2)
++            best_def = None
++            for ab in abilities(c):
++                hurt = good_def = 0
++                for m in enemy_moves:
++                    e = eff(mtype(m), cts) * ABILITY_IMMUNE.get(ab, {}).get(mtype(m), 1)
++                    hurt += e >= 2
++                    good_def += e <= 0.5
++                d = good_def - 2 * hurt
++                if best_def is None or d > best_def[0]:
++                    best_def = (d, ab)
++            bst = sum(int(info[c][f]) for _, f in STATS)
++            scored.append((3 * off + best_def[0], bst, c, best_def[1]))
++        scored.sort(reverse=True)
++        picks = []
++        for sc, bst, c, ab in scored[:6]:
++            note = ""
++            if ab in ABILITY_IMMUNE and len(abilities(c)) > 1:
++                note = f" with {gametext_ability(ab)}"
++            picks.append(f"{link(c)} ({' / '.join(x.title() for x in types_of(c))}{note})")
++        sec += ["**Suggested counters:** " + ", ".join(picks) + ".", ""]
++        return sec
++    return advise
++
++
+ def write_peak():
+     info = species_info(read("src/data/pokemon/species_info.h"))
+     ev = evos(read("src/data/pokemon/evolution.h"))
+@@ -1285,6 +1363,7 @@ def write_peak():
+     parties = parse_parties()
+     trainers, aliases = parse_trainers()
+     trainer_text = firered_only(read("src/data/trainers.h"))
++    advise = make_matchup()
+ 
+     # Candidate counters: fully evolved, non-legendary Pokémon (any of their abilities, since the coach can swap).
+     has_evo = {a for a, _ in ev}
+@@ -1366,48 +1445,7 @@ def write_peak():
+         sec.append("")
+         sec += ["**Attacks with:** " + ", ".join(f"{a.title()} ×{n}" for a, n in sorted(atk_types.items(), key=lambda kv: -kv[1])) + ".", ""]
+ 
+-        def taken(a, sp):
+-            """Damage multiplier on an enemy, counting an ability immunity every one of its abilities grants."""
+-            m = eff(a, types_of(sp))
+-            mods = [ABILITY_IMMUNE.get(ab, {}).get(a, 1) for ab in abilities(sp)]
+-            return m * max(mods) if mods else m
+-        rows = []
+-        for a in TYPES:
+-            weak = sum(1 for p in team if taken(a, p["species"]) >= 2)
+-            res = sum(1 for p in team if taken(a, p["species"]) <= 0.5)
+-            rows.append((weak - res, weak, res, a))
+-        good = [r for r in sorted(rows, reverse=True) if r[1] >= 2 and r[0] > 0][:5]
+-        bad = [r for r in sorted(rows) if r[2] >= 3][:5]
+-        if good:
+-            sec += ["**Hit them with:** " + "; ".join(f"{a.title()} ({w} weak, {r} resist)" for _, w, r, a in good) + ".", ""]
+-        if bad:
+-            sec += ["**Avoid relying on:** " + "; ".join(f"{a.title()} ({r} resist or immune)" for _, w, r, a in bad) + ".", ""]
+-
+-        enemy_moves = [m for p in team for m in p["moves"] if damaging(m) and mtype(m) != "MYSTERY"]
+-        scored = []
+-        for c in candidates:
+-            cts = types_of(c)
+-            off = sum(1 for p in team if max(taken(t, p["species"]) for t in cts) >= 2)
+-            best_def = None
+-            for ab in abilities(c):
+-                hurt = good_def = 0
+-                for m in enemy_moves:
+-                    e = eff(mtype(m), cts) * ABILITY_IMMUNE.get(ab, {}).get(mtype(m), 1)
+-                    hurt += e >= 2
+-                    good_def += e <= 0.5
+-                d = good_def - 2 * hurt
+-                if best_def is None or d > best_def[0]:
+-                    best_def = (d, ab)
+-            bst = sum(int(info[c][f]) for _, f in STATS)
+-            scored.append((3 * off + best_def[0], bst, c, best_def[1]))
+-        scored.sort(reverse=True)
+-        picks = []
+-        for sc, bst, c, ab in scored[:6]:
+-            note = ""
+-            if ab in ABILITY_IMMUNE and len(abilities(c)) > 1:
+-                note = f" with {gametext_ability(ab)}"
+-            picks.append(f"{link(c)} ({' / '.join(x.title() for x in types_of(c))}{note})")
+-        sec += ["**Suggested counters:** " + ", ".join(picks) + ".", ""]
++        sec += advise(team)
+         sections += sec
+     out += [""] + sections
+     open(os.path.join(OUT, "PEAK.md"), "w").write("\n".join(out))
+@@ -1476,9 +1514,14 @@ def write_tower():
+            "clear), 2 Big Pearls or 3 PP Ups for a PP Max, or a Nugget for 2 Rare Candies.", "",
+            "**Nuzlocke:** Trainer Tower battles are exhibition battles. Pokémon that faint here aren't lost (they're left with 1 HP).", "",
+            "Each trainer has six Pokémon but only uses some of them, depending on the floor. The tables "
+-           "below list exactly the Pokémon you'll face on each floor.", ""]
++           "below list exactly the Pokémon you'll face on each floor.", "",
++           "Each challenge starts with the types you'll face, the attacking types that hit the most of its Pokémon "
++           "(and those to avoid relying on), and **suggested counters**, picked the same way as on the "
++           "[peak trainer page](PEAK.md): fully evolved, non-legendary Pokémon that hit the challenge's Pokémon "
++           "super effectively and resist their attacks. Remember everything battles at Lv. 50 here.", ""]
+     titles = {"SINGLE": "Single battles", "DOUBLE": "Double battles", "KNOCKOUT": "Knockout (three trainers, one Pokémon each)",
+               "MIXED": "Mixed (a mix of the other three)"}
++    advise = make_matchup()
+     sp_types = {}
+     for sp, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\n    \}", read("src/data/pokemon/species_info.h"), re.S):
+         t = re.search(r"\.types = \{(TYPE_\w+), (TYPE_\w+)\}", body)
+@@ -1488,7 +1531,7 @@ def write_tower():
+         names = re.findall(r"&(\w+)", body)
+         out += [f"## {titles.get(ctype, ctype.title())}", "",
+                 f"Usual prize for clearing all eight floors: **{item('ITEM_' + floors[names[0]]['prize'])}**.", ""]
+-        section = []
++        section, all_mons = [], []
+         faced = {}
+         for i, fname in enumerate(names):
+             f = floors[fname]
+@@ -1506,12 +1549,13 @@ def write_tower():
+                 mons = [tr[0]["mons"][k] for k in picks["SINGLE"][i]]
+                 label = f"single battle vs. {tr[0]['cls']} {tr[0]['name'].title()}"
+             section += [f"### Floor {i + 1}: {label}", ""] + head + [row(m) for m in mons] + [""]
++            all_mons += mons
+             for m in mons:
+                 for t in sp_types.get(m["species"], []):
+                     faced[t] = faced.get(t, 0) + 1
+         ranked = sorted(faced.items(), key=lambda kv: (-kv[1], kv[0]))
+         out += ["**Types you'll face** (Pokémon of each type across the eight floors): " +
+-                ", ".join(f"{t[5:].title()} {n}" for t, n in ranked) + ".", ""] + section
++                ", ".join(f"{t[5:].title()} {n}" for t, n in ranked) + ".", ""] + advise(all_mons) + section
+     open(os.path.join(OUT, "TOWER.md"), "w").write("\n".join(out))
+ 
+ 
+diff --git a/tools/hack/trainer_evolutions.py b/tools/hack/trainer_evolutions.py
+index 79be2b4..101c2ef 100644
+--- a/tools/hack/trainer_evolutions.py
++++ b/tools/hack/trainer_evolutions.py
+@@ -8,7 +8,8 @@ trainer Pokemon of Lv. 50 or higher that is at least 5 levels past a
+ level-up evolution, step by step along its family (duplicates are allowed,
+ as in the original game). A second run (release 21) adds the classic
+ Gen 1-3 stone, item, trade and friendship evolutions for Lv. 50+ trainers;
+-later-generation ones (Rhyperior, Magnezone, ...) are left alone. Early and
++later-generation ones (Rhyperior, Magnezone, ...) are left alone below Lv. 75;
++a third run (release 22) gives them to the Lv. 75+ teams only. Early and
+ mid-game teams keep their classic unevolved Pokemon. Custom movesets are
+ kept. Each pass runs once.
+ """
+@@ -18,6 +19,8 @@ os.chdir(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file_
+ MIN_LEVEL, GRACE = 50, 5
+ MARK = "// FireRed QoL+Hard: late-game evolutions (tools/hack/trainer_evolutions.py)\n"
+ ITEM_MARK = "// FireRed QoL+Hard: late-game stone and item evolutions (tools/hack/trainer_evolutions.py)\n"
++TOP_MARK = "// FireRed QoL+Hard: later-generation evolutions for Lv. 75+ (tools/hack/trainer_evolutions.py)\n"
++TOP_LEVEL = 75
+ 
+ 
+ def read(p):
+@@ -26,7 +29,8 @@ def read(p):
+ 
+ tp = read("src/data/trainer_parties.h")
+ done_level = MARK in tp
+-if done_level and ITEM_MARK in tp:
++done_item = ITEM_MARK in tp
++if done_level and done_item and TOP_MARK in tp:
+     sys.exit("Late-game trainer Pokemon are already evolved.")
+ 
+ # Classic (Gen 1-3) evolutions by stone, held item, trade or friendship:
+@@ -34,11 +38,13 @@ if done_level and ITEM_MARK in tp:
+ # (Rhyperior, Magnezone, ...) need badge-gated items, so they're left alone.
+ CLASSIC = set(re.findall(r"#define (SPECIES_\w+) ", subprocess.run(
+     ["git", "show", "ce6406d:include/constants/species.h"], capture_output=True, text=True).stdout))
+-item_evo = {}
++item_evo, any_evo = {}, {}
+ for sp, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", read("src/data/pokemon/evolution.h"), re.S):
+     for method, param, target in re.findall(r"\{(EVO_\w+), ([^,]+), (SPECIES_\w+)", body):
+         if not method.startswith("EVO_LEVEL") and target in CLASSIC and sp in CLASSIC:
+             item_evo.setdefault(sp, target)
++        if not method.startswith("EVO_LEVEL"):
++            any_evo.setdefault(sp, target)
+ 
+ level_evo = {}
+ for sp, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", read("src/data/pokemon/evolution.h"), re.S):
+@@ -51,8 +57,10 @@ def evolve(sp, lvl):
+     for _ in range(3):
+         if not done_level and sp in level_evo and lvl >= level_evo[sp][0] + GRACE:
+             sp = level_evo[sp][1]
+-        elif sp in item_evo:
++        elif not done_item and sp in item_evo:
+             sp = item_evo[sp]
++        elif done_item and lvl >= TOP_LEVEL and sp in any_evo:
++            sp = any_evo[sp]
+         else:
+             break
+     return sp
+@@ -77,7 +85,8 @@ def do_party(m):
+     body = re.sub(r"    \{\n.*?\n    \}", do_mon, m.group(2), flags=re.S)
+     if len(changes) == before:
+         return m.group(0)
+-    return (ITEM_MARK if done_level else MARK) + m.group(1) + body + m.group(3)
++    mark = TOP_MARK if done_item else ITEM_MARK if done_level else MARK
++    return mark + m.group(1) + body + m.group(3)
+ 
+ 
+ tp = re.sub(r"(static const struct \w+ sParty_\w+\[\] = \{\n)(.*?)(\n\};\n)", do_party, tp, flags=re.S)
+diff --git a/tools/hack/validate.py b/tools/hack/validate.py
+index c425b06..07abc62 100644
+--- a/tools/hack/validate.py
++++ b/tools/hack/validate.py
+@@ -321,14 +321,17 @@ for party in peak_parties:
+         if not mv or len(mv) != len(set(mv)):
+             bad(f"{party}: moves {mv}")
+ # Late-game trainers (Lv. 50+): nothing 5+ levels past a level-up evolution,
+-# and no classic (Gen 1-3) stone, item, trade or friendship evolution left undone.
++# no classic (Gen 1-3) stone, item, trade or friendship evolution left undone,
++# and at Lv. 75+ no evolution of any kind left undone.
+ classic = set(re.findall(r"#define (SPECIES_\w+) ", subprocess.run(
+     ["git", "show", "ce6406d:include/constants/species.h"], capture_output=True, text=True).stdout))
+-classic_evo = {}
++classic_evo, other_evo = {}, {}
+ for a, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", evo_txt, re.S):
+     for meth, param, t in re.findall(r"\{(EVO_\w+), ([^,]+), (SPECIES_\w+)", body):
+         if not meth.startswith("EVO_LEVEL") and a in classic and t in classic:
+             classic_evo.setdefault(a, t)
++        if not meth.startswith("EVO_LEVEL"):
++            other_evo.setdefault(a, t)
+ level_evo = {}
+ for a, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", evo_txt, re.S):
+     for meth, param, t in re.findall(r"\{(EVO_LEVEL\w*), (\d+), (SPECIES_\w+)", body):
+@@ -341,6 +344,8 @@ for party, body in re.findall(r"static const struct \w+ (sParty_\w+)\[\] = \{(.*
+             bad(f"{party}: Lv. {lv} {sp} should have evolved (Lv. {level_evo[sp]})")
+         if lv >= 50 and sp in classic_evo:
+             bad(f"{party}: Lv. {lv} {sp} should have evolved into {classic_evo[sp]}")
++        if lv >= 75 and sp in other_evo and "Peak" not in party:
++            bad(f"{party}: Lv. {lv} {sp} should have evolved into {other_evo[sp]} (Lv. 75+)")
+ # Trainer Tower: fully evolved, real moves, one of each species and item per team.
+ for floor, body in re.findall(r"static const struct TrainerTowerFloor (\w+) = \{(.*?)\n\};", read("src/trainer_tower_sets.c"), re.S):
+     for t in re.split(r"\.name = _\(", body)[1:]:
+-- 
+2.43.0
+

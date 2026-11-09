@@ -186,7 +186,7 @@ Regular trainers use their normal level-up moves unless moves are listed. Peak t
 |---|---|---|---|
 | Gengar | 76 | — | Shadow Ball, Psychic, Confuse Ray, Hypnosis |
 | Crobat | 76 | — | Sludge Bomb, Air Cutter, Shadow Ball, Confuse Ray |
-| Misdreavus | 75 | — | Shadow Ball, Psychic, Thunderbolt, Attract |
+| Mismagius | 75 | — | Shadow Ball, Psychic, Thunderbolt, Attract |
 | Arbok | 78 | — | Sludge Bomb, Earthquake, Giga Drain, Double Team |
 | Gengar | 80 | Chesto Berry | Shadow Ball, Psychic, Thunderbolt, Sludge Bomb |
 

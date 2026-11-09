@@ -321,14 +321,17 @@ for party in peak_parties:
         if not mv or len(mv) != len(set(mv)):
             bad(f"{party}: moves {mv}")
 # Late-game trainers (Lv. 50+): nothing 5+ levels past a level-up evolution,
-# and no classic (Gen 1-3) stone, item, trade or friendship evolution left undone.
+# no classic (Gen 1-3) stone, item, trade or friendship evolution left undone,
+# and at Lv. 75+ no evolution of any kind left undone.
 classic = set(re.findall(r"#define (SPECIES_\w+) ", subprocess.run(
     ["git", "show", "ce6406d:include/constants/species.h"], capture_output=True, text=True).stdout))
-classic_evo = {}
+classic_evo, other_evo = {}, {}
 for a, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", evo_txt, re.S):
     for meth, param, t in re.findall(r"\{(EVO_\w+), ([^,]+), (SPECIES_\w+)", body):
         if not meth.startswith("EVO_LEVEL") and a in classic and t in classic:
             classic_evo.setdefault(a, t)
+        if not meth.startswith("EVO_LEVEL"):
+            other_evo.setdefault(a, t)
 level_evo = {}
 for a, body in re.findall(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\}\},", evo_txt, re.S):
     for meth, param, t in re.findall(r"\{(EVO_LEVEL\w*), (\d+), (SPECIES_\w+)", body):
@@ -341,6 +344,8 @@ for party, body in re.findall(r"static const struct \w+ (sParty_\w+)\[\] = \{(.*
             bad(f"{party}: Lv. {lv} {sp} should have evolved (Lv. {level_evo[sp]})")
         if lv >= 50 and sp in classic_evo:
             bad(f"{party}: Lv. {lv} {sp} should have evolved into {classic_evo[sp]}")
+        if lv >= 75 and sp in other_evo and "Peak" not in party:
+            bad(f"{party}: Lv. {lv} {sp} should have evolved into {other_evo[sp]} (Lv. 75+)")
 # Trainer Tower: fully evolved, real moves, one of each species and item per team.
 for floor, body in re.findall(r"static const struct TrainerTowerFloor (\w+) = \{(.*?)\n\};", read("src/trainer_tower_sets.c"), re.S):
     for t in re.split(r"\.name = _\(", body)[1:]:
