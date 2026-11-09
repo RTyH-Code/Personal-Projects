@@ -22,9 +22,30 @@ that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md
 - Friendship evolutions trigger at 160 friendship instead of 220.
 - The Exp. formula scales with level difference, as in recent games.
 - Mega Evolution, Primal Reversion and critical captures are switched off.
+- **National Dex from the start.** The Pokédex has its National mode from
+  the first moment, and Professor Oak rates the national count over the
+  phone. What HeartGold unlocks along with the National Dex now waits until
+  you become Champion instead, which is when the original game gives you
+  the dex:
+  - the Tuesday, Thursday and Saturday Bug-Catching Contests with Hoenn and
+    Sinnoh bugs, their tougher contestants and the wider first-prize pool;
+  - Hoenn Sound and Sinnoh Sound on the Pokégear radio;
+  - Baoba's later Safari Zone phone calls;
+  - the second Pokéathlon prize list and the Supreme Cup;
+  - the Rock Smash rocks in Cliff Cave.
 
-Only the tutorial skip has been checked in the emulator so far. The others
-are hg-engine switches that build cleanly but haven't been played through.
+Only the tutorial skip has been checked in the emulator so far. The other
+switches build cleanly but haven't been played through. The National Dex
+change was checked by disassembling the built ROM, not by playing to
+Champion.
+
+## Design rules
+
+- **Pokémon:** the original 493, plus later-generation evolutions and
+  pre-evolutions of those (Sylveon, for example). No other later-generation
+  Pokémon.
+- **Fairy type:** on.
+- **No Mega Evolution or Primal Reversion.**
 
 ## Plan
 
@@ -35,7 +56,7 @@ The FireRed recipe, and where each part comes from here:
 | Physical/special split, abilities, natures | Already in HeartGold |
 | Fairy type, hidden abilities, later moves, abilities and Pokémon | hg-engine |
 | Reusable TMs, forgettable HMs, modern Exp. formula, EV/IV viewer | Done: hg-engine config switches |
-| National Dex from the start, with its unlocks moved to story checks | To do: needs code changes |
+| National Dex from the start, with its unlocks moved to a Champion check | Done |
 | Set mode, level cap and no-items rules as player options | Undecided: hg-engine only offers them as fixed rules |
 | Harder trainers, Gym Leaders, Elite Four and rematches | To do: `data/Trainers.c` |
 | Wild levels and a fixed Johto level curve | To do: `data/Encounters.c` |
