@@ -4,7 +4,7 @@
 
 A quality-of-life, modernization and difficulty hack built on the pret/pokefirered decompilation.
 
-## What's new (releases 10–23)
+## What's new (releases 10–24)
 Coming back after a while? Here's the short version. Every detail is in
 [CHANGELOG.md](CHANGELOG.md), and the full feature list follows below.
 
@@ -630,9 +630,9 @@ There are two patches, one per game revision; both produce the same hacked ROM.
 2. Apply the matching patch with Rom Patcher JS or Floating IPS.
 3. Play the patched ROM in any GBA emulator, such as mGBA.
 
-Patched ROM SHA-1: `fc6ad2dcff1136a92b9f3781bd7751ee892d570a`
+Patched ROM SHA-1: `147b427f924e78a44af1c330615691eb2aadd56c`
 
-Current release: **23**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
+Current release: **24**. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.
 Saves made on release 7 or later carry over to this release. Older saves need a new game.
 
 ## Building from source
@@ -665,7 +665,7 @@ unmodified pret data:
 - `peak_trainers.py`: peak teams, gym rematches and the Elite Four round 3.
 - `spoiler_guide.py <dir>`: regenerates the spoiler guide from the game data.
 - `tower_sets.py <dir>`: the competitive Trainer Tower teams, from Showdown's random-battle set files (read as data).
-- `playtest/`: an automated playtest (a headless mGBA harness plus 25 milestone checks, from the first battles to the post-game rewards).
+- `playtest/`: an automated playtest (a headless mGBA harness plus 26 milestone checks, from the first battles to the post-game rewards).
 - `gym_doubles.py`: the gym double battles and their doubles movesets.
 - `learnsets.py`: what each species can learn in this hack (used by the trainer scripts).
 - `vr_rematches.py`: the Victory Road VS Seeker rematch teams and scripts.

@@ -8,6 +8,18 @@ made it, so you can see exactly what changed.
 previous release keeps working. In short, saves made on **release 7 or later**
 carry over to the current release. Older saves need a new game.
 
+## Release 24 (2026-11-09)
+Pull requests: [#51](https://github.com/RTyH-Code/Personal-Projects/pull/51)
+
+- **Diglett's Cave:** its Dugtrio are now Lv. 27–28 (they were Lv. 29 and
+  31), so nothing you can catch before Lt. Surge is above his level cap
+  (28). The Nuzlocke planning table in the guide now shows no area above
+  the cap.
+- **Automated playtest:** now 26 checks. The new one loses a Trainer Tower
+  battle in Nuzlocke mode, then blacks out from field poison, and checks
+  that the run ends. It fails without release 23's fix.
+- **Saves:** release 23 saves carry over.
+
 ## Release 23 (2026-11-09)
 Pull requests: [#50](https://github.com/RTyH-Code/Personal-Projects/pull/50)
 

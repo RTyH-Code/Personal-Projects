@@ -698,7 +698,7 @@ Altering Cave uses one mixed table (the Mystery Gift tables aren't used). Tanoby
 | Grass / cave | Diglett | 15–20 | 85% |
 |  | Trapinch ★ | 21 | 5% |
 |  | Whismur ★ | 22 | 5% |
-|  | Dugtrio | 29–31 | 5% |
+|  | Dugtrio | 27–28 | 5% |
 
 ## Mt. Ember Exterior
 
