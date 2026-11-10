@@ -55,15 +55,28 @@ that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md
     | Deep Sea Scale | Clamperl → Gorebyss |
     | Prism Scale | Feebas → Milotic (the Beauty method still works too) |
 
-    The items keep their held effects. Where to get each one hasn't been
-    changed yet, and the Prism Scale can't be obtained at all yet.
+    The items keep their held effects.
+- **Evolution item shop:** the Goldenrod Department Store 4F clerk sells
+  every evolution item alongside the vitamins. The original ways of
+  getting them are all still there.
+
+  | When | Items |
+  |---|---|
+  | From the start | Fire, Water, Thunder, Leaf, Ice, Moon, Sun, Shiny, Dusk and Dawn Stones, Oval Stone, King's Rock, Metal Coat, Dragon Scale, Up-Grade, Deep Sea Tooth, Deep Sea Scale, Prism Scale |
+  | With seven badges | Protector, Electirizer, Magmarizer, Dubious Disc, Reaper Cloth, Razor Claw, Razor Fang |
+
+  The Ice Stone is there because hg-engine evolves Eevee into Glaceon with
+  it; Leafeon uses the Leaf Stone, and Magneton and Nosepass the
+  Thunder Stone. The stock, the badge requirement and the prices are a
+  first pass and will be revisited when the difficulty is balanced.
 
 The tutorial skip, the Running Shoes and the Fast text default have been
 checked in the emulator. The other
 switches build cleanly but haven't been played through. The National Dex
 change was checked by disassembling the built ROM, not by playing to
 Champion. The trade evolutions were checked in the built data files, not by
-evolving a Pokémon in play.
+evolving a Pokémon in play. The shop's stock list and badge check are in the built
+ROM, but the shop hasn't been visited in play.
 
 ## Design rules
 
@@ -88,7 +101,7 @@ The FireRed recipe, and where each part comes from here:
 | Wild levels and a fixed Johto level curve | To do: `data/Encounters.c` |
 | Every non-legendary Pokémon obtainable | To do: encounters, gifts, evolutions |
 | Trade evolutions without trading | Done: `tools/hack/trade_evos.py` |
-| Other awkward evolutions (location-based, Beauty) and where the evolution items are found | To do |
+| Evolution item shop | Done, to be rebalanced |
 | Field HMs without teaching them, shops, post-game ladder | To do: code and scripts |
 | Spoiler guide generated from the data | To do: port `spoiler_guide.py` |
 | Unattended playtester | To do: py-desmume based |
