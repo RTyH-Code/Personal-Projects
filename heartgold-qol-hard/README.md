@@ -36,6 +36,17 @@ that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md
   - Baoba's later Safari Zone phone calls;
   - the second Pokéathlon prize list and the Supreme Cup;
   - the Rock Smash rocks in Cliff Cave.
+- **HMs without teaching them:** with the HM in your bag and the badge that
+  allows it, the move works even if no Pokémon knows it.
+  - Cut, Surf, Strength, Whirlpool, Rock Smash, Waterfall and Rock Climb
+    work straight from the overworld: face the tree, rock or water and
+    press A, as usual.
+  - Fly and Flash (TM70) show up in the party menu on every Pokémon that
+    could learn them, or on your first Pokémon if none can.
+  - The game names a Pokémon as the one using the move: one that knows it
+    if there is one, otherwise the first that could learn it, otherwise the
+    first in the party.
+  - Headbutt, Dig, Teleport and Sweet Scent still have to be known.
 - **Trade evolutions without trading:**
   - Kadabra, Machoke, Graveler and Haunter evolve at Lv. 37.
   - Use the item on the Pokémon, the same way you use an evolution stone:
@@ -86,7 +97,11 @@ that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md
   first pass and will be revisited when the difficulty is balanced.
 
 The tutorial skip, the Running Shoes and the Fast text default have been
-checked in the emulator. The other
+checked in the emulator. So have the HM changes, on a save given the HMs
+and badges: Surf (on a Chikorita), Fly and Flash in the party menu, Fly
+opening the map, and Fly being refused without the badge. Cut, Strength,
+Whirlpool, Rock Smash, Waterfall and Rock Climb use the same code but
+haven't been tried in play. The other
 switches build cleanly but haven't been played through. The National Dex
 change was checked by disassembling the built ROM, not by playing to
 Champion. The trade evolutions were checked in the built data files, not by
@@ -117,7 +132,8 @@ The FireRed recipe, and where each part comes from here:
 | Every non-legendary Pokémon obtainable | To do: encounters, gifts, evolutions |
 | Trade evolutions without trading | Done: `tools/hack/trade_evos.py` |
 | Evolution item shop | Done, to be rebalanced |
-| Field HMs without teaching them, shops, post-game ladder | To do: code and scripts |
+| Field HMs without teaching them | Done |
+| Shops, post-game ladder | To do: code and scripts |
 | Spoiler guide generated from the data | To do: port `spoiler_guide.py` |
 | Unattended playtester | To do: py-desmume based |
 
