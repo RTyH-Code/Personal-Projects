@@ -33,11 +33,33 @@ that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md
   - Baoba's later Safari Zone phone calls;
   - the second Pokéathlon prize list and the Supreme Cup;
   - the Rock Smash rocks in Cliff Cave.
+- **Trade evolutions without trading:**
+  - Kadabra, Machoke, Graveler and Haunter evolve at Lv. 37.
+  - Use the item on the Pokémon, the same way you use an evolution stone:
+
+    | Item | Evolves |
+    |---|---|
+    | King's Rock | Poliwhirl → Politoed, Slowpoke → Slowking |
+    | Metal Coat | Onix → Steelix, Scyther → Scizor |
+    | Dragon Scale | Seadra → Kingdra |
+    | Up-Grade | Porygon → Porygon2 |
+    | Dubious Disc | Porygon2 → Porygon-Z |
+    | Protector | Rhydon → Rhyperior |
+    | Electirizer | Electabuzz → Electivire |
+    | Magmarizer | Magmar → Magmortar |
+    | Reaper Cloth | Dusclops → Dusknoir |
+    | Deep Sea Tooth | Clamperl → Huntail |
+    | Deep Sea Scale | Clamperl → Gorebyss |
+    | Prism Scale | Feebas → Milotic (the Beauty method still works too) |
+
+    The items keep their held effects. Where to get each one hasn't been
+    changed yet, and the Prism Scale can't be obtained at all yet.
 
 Only the tutorial skip has been checked in the emulator so far. The other
 switches build cleanly but haven't been played through. The National Dex
 change was checked by disassembling the built ROM, not by playing to
-Champion.
+Champion. The trade evolutions were checked in the built data files, not by
+evolving a Pokémon in play.
 
 ## Design rules
 
@@ -61,7 +83,8 @@ The FireRed recipe, and where each part comes from here:
 | Harder trainers, Gym Leaders, Elite Four and rematches | To do: `data/Trainers.c` |
 | Wild levels and a fixed Johto level curve | To do: `data/Encounters.c` |
 | Every non-legendary Pokémon obtainable | To do: encounters, gifts, evolutions |
-| Trade and other awkward evolutions without trading | To do: `data/Evolutions.c` |
+| Trade evolutions without trading | Done: `tools/hack/trade_evos.py` |
+| Other awkward evolutions (location-based, Beauty) and where the evolution items are found | To do |
 | Field HMs without teaching them, shops, post-game ladder | To do: code and scripts |
 | Spoiler guide generated from the data | To do: port `spoiler_guide.py` |
 | Unattended playtester | To do: py-desmume based |
