@@ -56,14 +56,29 @@ that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md
     | Prism Scale | Feebas → Milotic (the Beauty method still works too) |
 
     The items keep their held effects.
+- **Later evolutions of Johto-era Pokémon:**
+
+  | Evolution | How |
+  |---|---|
+  | Scyther → Kleavor | Use a Black Augurite |
+  | Ursaring → Ursaluna | Level up at night holding a Peat Block |
+  | Primeape → Annihilape | Lv. 40 |
+  | Stantler → Wyrdeer | Level up knowing Psyshield Bash (learned at Lv. 31) |
+  | Girafarig → Farigiraf | Level up knowing Twin Beam (learned at Lv. 32) |
+  | Dunsparce → Dudunsparce | Level up knowing Hyper Drill (learned at Lv. 32) |
+  | Eevee → Sylveon | Level up knowing a Fairy-type move (Baby-Doll Eyes at Lv. 15) |
+
+  Annihilape and Wyrdeer use different methods from the official games,
+  where a move has to be used 20 times; hg-engine doesn't support that.
+  Rage Fist isn't implemented in hg-engine, so Annihilape can't learn it.
 - **Evolution item shop:** the Goldenrod Department Store 4F clerk sells
   every evolution item alongside the vitamins. The original ways of
   getting them are all still there.
 
   | When | Items |
   |---|---|
-  | From the start | Fire, Water, Thunder, Leaf, Ice, Moon, Sun, Shiny, Dusk and Dawn Stones, Oval Stone, King's Rock, Metal Coat, Dragon Scale, Up-Grade, Deep Sea Tooth, Deep Sea Scale, Prism Scale |
-  | With seven badges | Protector, Electirizer, Magmarizer, Dubious Disc, Reaper Cloth, Razor Claw, Razor Fang |
+  | From the start | Fire, Water, Thunder, Leaf, Ice, Moon, Sun, Shiny, Dusk and Dawn Stones, Oval Stone, King's Rock, Metal Coat, Dragon Scale, Up-Grade, Deep Sea Tooth, Deep Sea Scale, Prism Scale, Black Augurite |
+  | With seven badges | Peat Block, Protector, Electirizer, Magmarizer, Dubious Disc, Reaper Cloth, Razor Claw, Razor Fang |
 
   The Ice Stone is there because hg-engine evolves Eevee into Glaceon with
   it; Leafeon uses the Leaf Stone, and Magneton and Nosepass the
