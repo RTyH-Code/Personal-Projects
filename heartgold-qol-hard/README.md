@@ -13,6 +13,9 @@ that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md
 
 ## What's changed so far
 
+- Running Shoes work from the start (hold B). The man in Cherrygrove City
+  still hands you a pair after his tour.
+- New games default to Fast text. You can still change it in Options.
 - HM moves can be forgotten at any time.
 - TMs are reusable (hg-engine's default).
 - New games skip the control and adventure info screens and start at
@@ -55,7 +58,8 @@ that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md
     The items keep their held effects. Where to get each one hasn't been
     changed yet, and the Prism Scale can't be obtained at all yet.
 
-Only the tutorial skip has been checked in the emulator so far. The other
+The tutorial skip, the Running Shoes and the Fast text default have been
+checked in the emulator. The other
 switches build cleanly but haven't been played through. The National Dex
 change was checked by disassembling the built ROM, not by playing to
 Champion. The trade evolutions were checked in the built data files, not by
