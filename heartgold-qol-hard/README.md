@@ -108,6 +108,36 @@ Champion. The trade evolutions were checked in the built data files, not by
 evolving a Pokémon in play. The shop's stock list and badge check are in the built
 ROM, but the shop hasn't been visited in play.
 
+## Difficulty
+
+First pass only: the levels, IVs and AI are in, the hand-built boss teams
+and the new wild Pokémon are not.
+
+- **Level curve.** Trainers and wild Pokémon in Johto are unchanged up to
+  Lv. 8, then rise to 1.15× by Lv. 18. Each boss's highest level:
+
+  | Boss | Original | Now | Boss | Original | Now |
+  |---|---|---|---|---|---|
+  | Falkner | 13 | 14 | Pryce | 34 | 39 |
+  | Bugsy | 17 | 19 | Clair | 41 | 47 |
+  | Whitney | 19 | 22 | Elite Four | 42–47 | 48–54 |
+  | Morty | 25 | 29 | Lance | 50 | 58 |
+  | Chuck | 31 | 36 | Blue | 60 | 78 |
+  | Jasmine | 35 | 40 | Red | 88 | 95 |
+
+  The Gym Leaders will get hand-built teams later; that is when Whitney,
+  Chuck, Jasmine and Pryce move to their planned levels (24, 34, 38, 42).
+- **Kanto and the post-game:** Kanto trainers and the Gym Leader rematch
+  teams are 1.3×, the second Elite Four round 1.2×. Kanto wild levels,
+  fishing, Headbutt trees and the Safari Zone are unchanged for now.
+- **IVs:** every trainer Pokémon has at least about 18 in each stat; Gym
+  Leaders, the Elite Four, the Champion, your rival, Red and the Rocket
+  bosses have 31.
+- **AI:** every trainer uses the smartest move-choice settings.
+
+None of this has been battled in the emulator yet; the game was only
+checked to build and to boot into the overworld.
+
 ## Design rules
 
 - **Pokémon:** the original 493, plus later-generation evolutions and
@@ -127,8 +157,10 @@ The FireRed recipe, and where each part comes from here:
 | Reusable TMs, forgettable HMs, modern Exp. formula, EV/IV viewer | Done: hg-engine config switches |
 | National Dex from the start, with its unlocks moved to a Champion check | Done |
 | Set mode, level cap and no-items rules as player options | Undecided: hg-engine only offers them as fixed rules |
-| Harder trainers, Gym Leaders, Elite Four and rematches | To do: `data/Trainers.c` |
-| Wild levels and a fixed Johto level curve | To do: `data/Encounters.c` |
+| Trainer levels, IVs and AI | Done: `tools/hack/difficulty.py` |
+| Hand-built Gym Leader, Elite Four and rival teams | To do |
+| Johto wild levels | Done: `tools/hack/wild_levels.py` |
+| Kanto wild levels | To do |
 | Every non-legendary Pokémon obtainable | To do: encounters, gifts, evolutions |
 | Trade evolutions without trading | Done: `tools/hack/trade_evos.py` |
 | Evolution item shop | Done, to be rebalanced |
