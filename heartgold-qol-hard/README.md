@@ -111,8 +111,7 @@ ROM, but the shop hasn't been visited in play.
 
 ## Difficulty
 
-The levels, IVs, AI and the Johto and League boss teams are in. Kanto's
-bosses, Red and the rematch teams still use their scaled original teams.
+The levels, IVs, AI and every boss team are in.
 
 - **Level curve.** Trainers and wild Pokémon in Johto are unchanged up to
   Lv. 8, then rise to 1.15× by Lv. 18. Each boss's highest level:
@@ -128,9 +127,10 @@ bosses, Red and the rematch teams still use their scaled original teams.
 
   With their hand-built teams (below) Whitney, Chuck, Jasmine and Pryce
   sit at 24, 34, 38 and 42, so the gyms rise in the intended order.
-- **Boss teams.** The eight Johto Gym Leaders, your rival (four battles),
-  the Team Rocket executives, the Kimono Girls, the Elite Four and Lance
-  have new teams. The full teams, with items and moves, are in
+- **Boss teams.** Every boss from Falkner to Red has a new team: the Johto
+  and Kanto Gym Leaders, your rival, the Team Rocket executives, the Kimono
+  Girls, both Elite Four rounds, Lance, Blue, Red and the Gym Leader
+  rematches. The full teams, with items and moves, are in
   [guide/BOSSES.md](guide/BOSSES.md) (spoilers).
   - Johto Pokémon come first, the ace included; Kanto Pokémon fill in
     where Johto has nothing for the theme, and Hoenn or Sinnoh ones only
@@ -159,9 +159,29 @@ bosses, Red and the rematch teams still use their scaled original teams.
   | Bruno | Machamp 53 | Hitmontop, Hitmonlee, Hitmonchan, Steelix, Annihilape |
   | Karen | Houndoom 55 | Honchkrow, Weavile, Gengar, Umbreon, Tyranitar |
   | Lance | Dragonite 58 | Gyarados, Aerodactyl, Charizard, Kingdra, Dragonite |
-- **Kanto and the post-game:** Kanto trainers and the Gym Leader rematch
-  teams are 1.3×, the second Elite Four round 1.2×. Kanto wild levels,
-  fishing, Headbutt trees and the Safari Zone are unchanged for now.
+- **Your rival** uses only Johto Pokémon: Sneasel, the Zubat line, the
+  Mareep line, Misdreavus, the Larvitar line (from the Goldenrod Tunnel
+  on) and his starter. They grow with him: Crobat, Weavile, Ampharos and
+  Mismagius by Victory Road, Tyranitar in the post-game.
+- **Post-game bosses** (each highest level):
+
+  | Boss | Lv. | Boss | Lv. |
+  |---|---|---|---|
+  | Lt. Surge | 64 | Blue | 76 |
+  | Sabrina, Erika | 66 | Rival at the Indigo Plateau | 76 |
+  | Janine, Misty | 68 | Johto leader rematches | 78–82 |
+  | Brock | 70 | Kanto leader rematches | 82–83 |
+  | Blaine | 72 | Elite Four, second round | 80–84 |
+  | Rival at Mt. Moon | 66 | Blue's rematch, Lance's second round | 86, 88 |
+  | | | Red | 95 |
+
+  The Kanto leaders keep their Kanto signatures with Johto Pokémon added
+  (Sudowoodo, Politoed, Lanturn, Ampharos, Sunflora, Qwilfish, Espeon,
+  Magcargo, Houndoom). The rematch teams use anything that fits the
+  leader's type, Hoenn and Sinnoh Pokémon included. Red keeps his team.
+- **Other Kanto trainers** are 1.3× their original levels. Kanto wild
+  levels, fishing, Headbutt trees and the Safari Zone are unchanged for
+  now.
 - **IVs:** every trainer Pokémon has at least about 18 in each stat; Gym
   Leaders, the Elite Four, the Champion, your rival, Red and the Rocket
   bosses have 31.
@@ -243,7 +263,7 @@ The FireRed recipe, and where each part comes from here:
 | Set mode, level cap and no-items rules as player options | Undecided: hg-engine only offers them as fixed rules |
 | Trainer levels, IVs and AI | Done: `tools/hack/difficulty.py` |
 | Johto and League boss teams | Done: `tools/hack/boss_teams.py` |
-| Kanto leaders, Blue, Red and rematch teams | To do |
+| Kanto leaders, Blue, Red, second Elite Four round and rematch teams | Done: `tools/hack/boss_teams.py` |
 | Johto wild levels | Done: `tools/hack/wild_levels.py` |
 | Kanto wild levels | To do |
 | Every non-legendary Pokémon obtainable in Johto | Done: `tools/hack/encounters.py`, `tools/hack/fossil_reviver.py` |
