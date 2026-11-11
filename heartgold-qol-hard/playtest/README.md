@@ -63,6 +63,21 @@ SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 playtest/battle_test.py /pat
 Results go to `out/results.json`. A battle that doesn't end within 25
 minutes of game time is reported as stuck, with a screenshot.
 
+## Results so far
+
+All bosses were fought three times: with the reference party at the boss's
+level, five levels above and ten levels above (76 battles each).
+
+- Every battle ran to its end. No boss team failed to load or hung.
+- The party won 18, 22 and 29 of 76.
+- Up to Whitney it wins at equal level, except against Bugsy.
+- From Morty to Pryce it needs five to ten extra levels. Jasmine beat it
+  even at ten levels above.
+- Proton and Petrel in the Radio Tower lost to it at every level, so they
+  are weaker than the fights around them.
+- From Clair onwards it loses nearly everything even at ten levels above.
+  The tester is too simple to rank those fights against each other.
+
 ## Limits
 
 - One battle per trainer per run, and battles are random, so a close fight
