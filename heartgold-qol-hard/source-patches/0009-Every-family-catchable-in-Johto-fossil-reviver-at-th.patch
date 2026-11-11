@@ -1,0 +1,3191 @@
+From 19e48a2991206711da7e2f19763c8439f61b70bb Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Wed, 11 Nov 2026 00:27:50 +0000
+Subject: [PATCH] Every family catchable in Johto, fossil reviver at the Ruins
+ of Alph
+
+tools/hack/encounters.py places 130 entries so that every non-legendary
+family has a Johto source outside the Safari Zone, weak ones early and
+the strongest with seven or eight badges.
+
+tools/hack/fossil_reviver.py copies the Pewter Museum's fossil reviver
+into the Ruins of Alph Research Center, built from dumped script, event
+and text files. Rock Smash now turns up the Dome Fossil at the Ruins of
+Alph and the Skull, Armor and Root Fossils in Cliff Cave.
+
+The Goldenrod shop sells the Shiny Stone only after Chuck's badge.
+---
+ data/Encounters.c                           | 708 ++++++++++----------
+ data/eventdata/zone_event/292_D24R0102.json | 109 +++
+ data/scr_seq/include/event_D24R0102.inc     |  18 +
+ data/scr_seq/scr_seq_0038_D24R0102.s        | 606 +++++++++++++++++
+ data/text/custom/073.txt                    |  34 +
+ include/config.h                            |   5 +-
+ src/field/mart.c                            |  12 +
+ src/field/rock_smash_item.c                 |   8 +-
+ tools/hack/encounters.py                    | 258 +++++++
+ tools/hack/fossil_reviver.py                |  96 +++
+ 10 files changed, 1494 insertions(+), 360 deletions(-)
+ create mode 100644 data/eventdata/zone_event/292_D24R0102.json
+ create mode 100644 data/scr_seq/include/event_D24R0102.inc
+ create mode 100644 data/scr_seq/scr_seq_0038_D24R0102.s
+ create mode 100644 data/text/custom/073.txt
+ create mode 100644 tools/hack/encounters.py
+ create mode 100644 tools/hack/fossil_reviver.py
+
+diff --git a/data/Encounters.c b/data/Encounters.c
+index 471e01a63..e877dc2c7 100644
+--- a/data/Encounters.c
++++ b/data/Encounters.c
+@@ -122,8 +122,8 @@ const EncounterData __data[] =
+                 SPECIES_SENTRET,
+                 SPECIES_PIDGEY,
+                 SPECIES_SENTRET,
+-                SPECIES_PIDGEY,
+-                SPECIES_PIDGEY,
++                SPECIES_BIDOOF,
++                SPECIES_ZIGZAGOON,
+                 SPECIES_SENTRET,
+                 SPECIES_SENTRET,
+                 SPECIES_RATTATA,
+@@ -136,8 +136,8 @@ const EncounterData __data[] =
+                 SPECIES_SENTRET,
+                 SPECIES_PIDGEY,
+                 SPECIES_SENTRET,
+-                SPECIES_PIDGEY,
+-                SPECIES_PIDGEY,
++                SPECIES_BIDOOF,
++                SPECIES_ZIGZAGOON,
+                 SPECIES_SENTRET,
+                 SPECIES_SENTRET,
+                 SPECIES_RATTATA,
+@@ -150,8 +150,8 @@ const EncounterData __data[] =
+                 SPECIES_HOOTHOOT,
+                 SPECIES_HOOTHOOT,
+                 SPECIES_HOOTHOOT,
+-                SPECIES_HOOTHOOT,
+-                SPECIES_HOOTHOOT,
++                SPECIES_BIDOOF,
++                SPECIES_ZIGZAGOON,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+@@ -322,8 +322,8 @@ const EncounterData __data[] =
+                 SPECIES_CATERPIE,
+                 SPECIES_PIDGEY,
+                 SPECIES_CATERPIE,
+-                SPECIES_CATERPIE,
+-                SPECIES_CATERPIE,
++                SPECIES_WEEDLE,
++                SPECIES_LEDYBA,
+                 SPECIES_METAPOD,
+                 SPECIES_METAPOD,
+                 SPECIES_PIDGEY,
+@@ -337,7 +337,7 @@ const EncounterData __data[] =
+                 SPECIES_PIDGEY,
+                 SPECIES_CATERPIE,
+                 SPECIES_PIDGEY,
+-                SPECIES_PIDGEY,
++                SPECIES_WEEDLE,
+                 SPECIES_METAPOD,
+                 SPECIES_METAPOD,
+                 SPECIES_CATERPIE,
+@@ -350,8 +350,8 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_SPINARAK,
+                 SPECIES_RATTATA,
+-                SPECIES_HOOTHOOT,
+-                SPECIES_HOOTHOOT,
++                SPECIES_KRICKETOT,
++                SPECIES_WEEDLE,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_HOOTHOOT,
+@@ -421,11 +421,11 @@ const EncounterData __data[] =
+                 SPECIES_PIDGEY,
+                 SPECIES_CATERPIE,
+                 SPECIES_PIDGEY,
+-                SPECIES_CATERPIE,
+-                SPECIES_BELLSPROUT,
++                SPECIES_WEEDLE,
+                 SPECIES_BELLSPROUT,
++                SPECIES_LEDYBA,
+                 SPECIES_METAPOD,
+-                SPECIES_METAPOD,
++                SPECIES_PACHIRISU,
+                 SPECIES_CATERPIE,
+                 SPECIES_METAPOD,
+                 SPECIES_CATERPIE,
+@@ -437,9 +437,9 @@ const EncounterData __data[] =
+                 SPECIES_PIDGEY,
+                 SPECIES_CATERPIE,
+                 SPECIES_BELLSPROUT,
+-                SPECIES_BELLSPROUT,
+-                SPECIES_METAPOD,
++                SPECIES_WEEDLE,
+                 SPECIES_METAPOD,
++                SPECIES_PACHIRISU,
+                 SPECIES_CATERPIE,
+                 SPECIES_METAPOD,
+                 SPECIES_CATERPIE,
+@@ -449,11 +449,11 @@ const EncounterData __data[] =
+                 SPECIES_SPINARAK,
+                 SPECIES_RATTATA,
+                 SPECIES_SPINARAK,
+-                SPECIES_RATTATA,
+-                SPECIES_BELLSPROUT,
++                SPECIES_KRICKETOT,
+                 SPECIES_BELLSPROUT,
++                SPECIES_WEEDLE,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_PACHIRISU,
+                 SPECIES_HOOTHOOT,
+                 SPECIES_HOOTHOOT,
+                 SPECIES_HOOTHOOT,
+@@ -820,12 +820,12 @@ const EncounterData __data[] =
+             .speciesMorning = {
+                 SPECIES_BELLSPROUT,
+                 SPECIES_RATTATA,
+-                SPECIES_BELLSPROUT,
+-                SPECIES_RATTATA,
+-                SPECIES_MAREEP,
++                SPECIES_EKANS,
++                SPECIES_WINGULL,
+                 SPECIES_MAREEP,
++                SPECIES_POOCHYENA,
+                 SPECIES_HOPPIP,
+-                SPECIES_HOPPIP,
++                SPECIES_SURSKIT,
+                 SPECIES_RATTATA,
+                 SPECIES_ZUBAT,
+                 SPECIES_RATTATA,
+@@ -834,12 +834,12 @@ const EncounterData __data[] =
+             .speciesDay = {
+                 SPECIES_BELLSPROUT,
+                 SPECIES_RATTATA,
+-                SPECIES_BELLSPROUT,
+-                SPECIES_RATTATA,
++                SPECIES_EKANS,
++                SPECIES_WINGULL,
+                 SPECIES_MAREEP,
+-                SPECIES_MAREEP,
+-                SPECIES_HOPPIP,
++                SPECIES_POOCHYENA,
+                 SPECIES_HOPPIP,
++                SPECIES_SURSKIT,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+@@ -848,12 +848,12 @@ const EncounterData __data[] =
+             .speciesNight = {
+                 SPECIES_WOOPER,
+                 SPECIES_RATTATA,
+-                SPECIES_WOOPER,
+-                SPECIES_RATTATA,
+-                SPECIES_BELLSPROUT,
++                SPECIES_EKANS,
++                SPECIES_WINGULL,
+                 SPECIES_BELLSPROUT,
++                SPECIES_POOCHYENA,
+                 SPECIES_MAREEP,
+-                SPECIES_MAREEP,
++                SPECIES_SURSKIT,
+                 SPECIES_WOOPER,
+                 SPECIES_ZUBAT,
+                 SPECIES_WOOPER,
+@@ -922,10 +922,10 @@ const EncounterData __data[] =
+                 SPECIES_NATU,
+                 SPECIES_NATU,
+                 SPECIES_NATU,
+-                SPECIES_NATU,
+-                SPECIES_NATU,
+-                SPECIES_NATU,
+-                SPECIES_NATU,
++                SPECIES_BRONZOR,
++                SPECIES_BALTOY,
++                SPECIES_SOLROCK,
++                SPECIES_LUNATONE,
+                 SPECIES_SMEARGLE,
+                 SPECIES_SMEARGLE,
+                 SPECIES_SMEARGLE,
+@@ -936,10 +936,10 @@ const EncounterData __data[] =
+                 SPECIES_NATU,
+                 SPECIES_NATU,
+                 SPECIES_NATU,
+-                SPECIES_NATU,
+-                SPECIES_NATU,
+-                SPECIES_NATU,
+-                SPECIES_NATU,
++                SPECIES_BRONZOR,
++                SPECIES_BALTOY,
++                SPECIES_SOLROCK,
++                SPECIES_LUNATONE,
+                 SPECIES_SMEARGLE,
+                 SPECIES_SMEARGLE,
+                 SPECIES_SMEARGLE,
+@@ -950,10 +950,10 @@ const EncounterData __data[] =
+                 SPECIES_NATU,
+                 SPECIES_NATU,
+                 SPECIES_NATU,
+-                SPECIES_NATU,
+-                SPECIES_NATU,
+-                SPECIES_NATU,
+-                SPECIES_NATU,
++                SPECIES_BRONZOR,
++                SPECIES_BALTOY,
++                SPECIES_SOLROCK,
++                SPECIES_LUNATONE,
+                 SPECIES_SMEARGLE,
+                 SPECIES_SMEARGLE,
+                 SPECIES_SMEARGLE,
+@@ -1425,7 +1425,7 @@ const EncounterData __data[] =
+                 SPECIES_ZUBAT,
+                 SPECIES_ZUBAT,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_MAWILE,
+                 SPECIES_ZUBAT,
+                 SPECIES_ONIX,
+                 SPECIES_ZUBAT,
+@@ -1439,7 +1439,7 @@ const EncounterData __data[] =
+                 SPECIES_ZUBAT,
+                 SPECIES_ZUBAT,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_MAWILE,
+                 SPECIES_ZUBAT,
+                 SPECIES_ONIX,
+                 SPECIES_ZUBAT,
+@@ -1453,7 +1453,7 @@ const EncounterData __data[] =
+                 SPECIES_ZUBAT,
+                 SPECIES_ZUBAT,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_MAWILE,
+                 SPECIES_ZUBAT,
+                 SPECIES_ONIX,
+                 SPECIES_ZUBAT,
+@@ -1484,7 +1484,7 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_MAGIKARP },
+             { 10, 10, SPECIES_MAGIKARP },
+             { 10, 10, SPECIES_GOLDEEN },
+-            { 10, 10, SPECIES_GOLDEEN },
++            { 10, 10, SPECIES_BARBOACH },
+         },
+         .goodRodSlots = {
+             { 20, 20, SPECIES_MAGIKARP },
+@@ -1525,7 +1525,7 @@ const EncounterData __data[] =
+                 SPECIES_ZUBAT,
+                 SPECIES_ZUBAT,
+                 SPECIES_ONIX,
+-                SPECIES_ONIX,
++                SPECIES_CUBONE,
+                 SPECIES_ZUBAT,
+                 SPECIES_RATTATA,
+                 SPECIES_ZUBAT,
+@@ -1539,7 +1539,7 @@ const EncounterData __data[] =
+                 SPECIES_ZUBAT,
+                 SPECIES_ZUBAT,
+                 SPECIES_ONIX,
+-                SPECIES_ONIX,
++                SPECIES_CUBONE,
+                 SPECIES_ZUBAT,
+                 SPECIES_RATTATA,
+                 SPECIES_ZUBAT,
+@@ -1553,7 +1553,7 @@ const EncounterData __data[] =
+                 SPECIES_ZUBAT,
+                 SPECIES_ZUBAT,
+                 SPECIES_ONIX,
+-                SPECIES_ONIX,
++                SPECIES_CUBONE,
+                 SPECIES_ZUBAT,
+                 SPECIES_RATTATA,
+                 SPECIES_ZUBAT,
+@@ -1723,9 +1723,9 @@ const EncounterData __data[] =
+                 SPECIES_HOPPIP,
+                 SPECIES_RATTATA,
+                 SPECIES_SPEAROW,
+-                SPECIES_SPEAROW,
+-                SPECIES_RATTATA,
++                SPECIES_NINCADA,
+                 SPECIES_RATTATA,
++                SPECIES_MEDITITE,
+                 SPECIES_HOPPIP,
+                 SPECIES_ZUBAT,
+                 SPECIES_HOPPIP,
+@@ -1737,9 +1737,9 @@ const EncounterData __data[] =
+                 SPECIES_HOPPIP,
+                 SPECIES_RATTATA,
+                 SPECIES_SPEAROW,
+-                SPECIES_SPEAROW,
+-                SPECIES_RATTATA,
++                SPECIES_NINCADA,
+                 SPECIES_RATTATA,
++                SPECIES_MEDITITE,
+                 SPECIES_HOPPIP,
+                 SPECIES_RATTATA,
+                 SPECIES_HOPPIP,
+@@ -1751,9 +1751,9 @@ const EncounterData __data[] =
+                 SPECIES_ZUBAT,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
++                SPECIES_NINCADA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_MEDITITE,
+                 SPECIES_ZUBAT,
+                 SPECIES_ZUBAT,
+                 SPECIES_ZUBAT,
+@@ -2023,9 +2023,9 @@ const EncounterData __data[] =
+                 SPECIES_CATERPIE,
+                 SPECIES_METAPOD,
+                 SPECIES_CATERPIE,
+-                SPECIES_CATERPIE,
+-                SPECIES_PARAS,
+-                SPECIES_PARAS,
++                SPECIES_BUDEW,
++                SPECIES_PIKACHU,
++                SPECIES_KECLEON,
+                 SPECIES_ZUBAT,
+                 SPECIES_PARAS,
+                 SPECIES_ZUBAT,
+@@ -2037,9 +2037,9 @@ const EncounterData __data[] =
+                 SPECIES_CATERPIE,
+                 SPECIES_CATERPIE,
+                 SPECIES_METAPOD,
+-                SPECIES_METAPOD,
+-                SPECIES_METAPOD,
+-                SPECIES_METAPOD,
++                SPECIES_BUDEW,
++                SPECIES_PIKACHU,
++                SPECIES_KECLEON,
+                 SPECIES_ZUBAT,
+                 SPECIES_PARAS,
+                 SPECIES_ZUBAT,
+@@ -2051,11 +2051,11 @@ const EncounterData __data[] =
+                 SPECIES_ODDISH,
+                 SPECIES_ODDISH,
+                 SPECIES_ZUBAT,
+-                SPECIES_ZUBAT,
+-                SPECIES_PARAS,
+-                SPECIES_PARAS,
+-                SPECIES_ZUBAT,
+-                SPECIES_PARAS,
++                SPECIES_BUDEW,
++                SPECIES_PIKACHU,
++                SPECIES_KECLEON,
++                SPECIES_VOLBEAT,
++                SPECIES_ILLUMISE,
+                 SPECIES_ZUBAT,
+                 SPECIES_PARAS,
+             },
+@@ -2122,12 +2122,12 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_DROWZEE,
+                 SPECIES_RATTATA,
+-                SPECIES_DROWZEE,
+-                SPECIES_DROWZEE,
+-                SPECIES_ABRA,
++                SPECIES_GLAMEOW,
++                SPECIES_SKITTY,
+                 SPECIES_ABRA,
+-                SPECIES_RATTATA,
+-                SPECIES_DITTO,
++                SPECIES_SHELLOS,
++                SPECIES_RALTS,
++                SPECIES_JIGGLYPUFF,
+                 SPECIES_RATTATA,
+                 SPECIES_DITTO,
+             },
+@@ -2136,12 +2136,12 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_DROWZEE,
+                 SPECIES_RATTATA,
+-                SPECIES_DROWZEE,
+-                SPECIES_DROWZEE,
+-                SPECIES_ABRA,
++                SPECIES_GLAMEOW,
++                SPECIES_SKITTY,
+                 SPECIES_ABRA,
+-                SPECIES_RATTATA,
+-                SPECIES_DITTO,
++                SPECIES_SHELLOS,
++                SPECIES_RALTS,
++                SPECIES_JIGGLYPUFF,
+                 SPECIES_RATTATA,
+                 SPECIES_DITTO,
+             },
+@@ -2150,12 +2150,12 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_DROWZEE,
+                 SPECIES_RATTATA,
+-                SPECIES_DROWZEE,
+-                SPECIES_DROWZEE,
+-                SPECIES_ABRA,
++                SPECIES_GLAMEOW,
++                SPECIES_SKITTY,
+                 SPECIES_ABRA,
+-                SPECIES_RATTATA,
+-                SPECIES_DITTO,
++                SPECIES_SHELLOS,
++                SPECIES_RALTS,
++                SPECIES_JIGGLYPUFF,
+                 SPECIES_RATTATA,
+                 SPECIES_DITTO,
+             },
+@@ -2184,7 +2184,7 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_MAGIKARP },
+             { 10, 10, SPECIES_MAGIKARP },
+             { 10, 10, SPECIES_KRABBY },
+-            { 10, 10, SPECIES_KRABBY },
++            { 10, 10, SPECIES_CORPHISH },
+         },
+         .goodRodSlots = {
+             { 20, 20, SPECIES_MAGIKARP },
+@@ -2221,12 +2221,12 @@ const EncounterData __data[] =
+                 SPECIES_NIDORAN_M,
+                 SPECIES_NIDORAN_F,
+                 SPECIES_NIDORAN_M,
+-                SPECIES_NIDORAN_F,
+-                SPECIES_DROWZEE,
++                SPECIES_GULPIN,
+                 SPECIES_DROWZEE,
++                SPECIES_STUNKY,
+                 SPECIES_ABRA,
+-                SPECIES_ABRA,
+-                SPECIES_PIDGEY,
++                SPECIES_CHATOT,
++                SPECIES_LOTAD,
+                 SPECIES_DITTO,
+                 SPECIES_PIDGEY,
+                 SPECIES_YANMA,
+@@ -2235,12 +2235,12 @@ const EncounterData __data[] =
+                 SPECIES_NIDORAN_M,
+                 SPECIES_NIDORAN_F,
+                 SPECIES_NIDORAN_M,
+-                SPECIES_NIDORAN_F,
+-                SPECIES_DROWZEE,
++                SPECIES_GULPIN,
+                 SPECIES_DROWZEE,
++                SPECIES_STUNKY,
+                 SPECIES_ABRA,
+-                SPECIES_ABRA,
+-                SPECIES_PIDGEY,
++                SPECIES_CHATOT,
++                SPECIES_LOTAD,
+                 SPECIES_DITTO,
+                 SPECIES_PIDGEY,
+                 SPECIES_YANMA,
+@@ -2249,12 +2249,12 @@ const EncounterData __data[] =
+                 SPECIES_NIDORAN_M,
+                 SPECIES_NIDORAN_F,
+                 SPECIES_NIDORAN_M,
+-                SPECIES_NIDORAN_F,
+-                SPECIES_DROWZEE,
++                SPECIES_GULPIN,
+                 SPECIES_DROWZEE,
++                SPECIES_STUNKY,
+                 SPECIES_ABRA,
+-                SPECIES_ABRA,
+-                SPECIES_HOOTHOOT,
++                SPECIES_CHATOT,
++                SPECIES_LOTAD,
+                 SPECIES_DITTO,
+                 SPECIES_HOOTHOOT,
+                 SPECIES_YANMA,
+@@ -2323,9 +2323,9 @@ const EncounterData __data[] =
+                 SPECIES_CATERPIE,
+                 SPECIES_METAPOD,
+                 SPECIES_CATERPIE,
+-                SPECIES_CATERPIE,
+-                SPECIES_PIDGEY,
++                SPECIES_BUNEARY,
+                 SPECIES_PIDGEY,
++                SPECIES_CARNIVINE,
+                 SPECIES_PIDGEY,
+                 SPECIES_PIDGEY,
+                 SPECIES_PIDGEY,
+@@ -2337,9 +2337,9 @@ const EncounterData __data[] =
+                 SPECIES_CATERPIE,
+                 SPECIES_METAPOD,
+                 SPECIES_SUNKERN,
+-                SPECIES_SUNKERN,
+-                SPECIES_PIDGEY,
++                SPECIES_BUNEARY,
+                 SPECIES_PIDGEY,
++                SPECIES_CARNIVINE,
+                 SPECIES_SUNKERN,
+                 SPECIES_PIDGEY,
+                 SPECIES_SUNKERN,
+@@ -2351,9 +2351,9 @@ const EncounterData __data[] =
+                 SPECIES_HOOTHOOT,
+                 SPECIES_HOOTHOOT,
+                 SPECIES_HOOTHOOT,
++                SPECIES_BUNEARY,
+                 SPECIES_HOOTHOOT,
+-                SPECIES_HOOTHOOT,
+-                SPECIES_HOOTHOOT,
++                SPECIES_CARNIVINE,
+                 SPECIES_HOOTHOOT,
+                 SPECIES_HOOTHOOT,
+                 SPECIES_HOOTHOOT,
+@@ -2522,12 +2522,12 @@ const EncounterData __data[] =
+                 SPECIES_NIDORAN_F,
+                 SPECIES_NIDORAN_M,
+                 SPECIES_NIDORAN_F,
+-                SPECIES_PIDGEY,
+-                SPECIES_PIDGEY,
+-                SPECIES_GROWLITHE,
++                SPECIES_SHINX,
++                SPECIES_VULPIX,
+                 SPECIES_GROWLITHE,
++                SPECIES_BONSLY,
+                 SPECIES_STANTLER,
+-                SPECIES_PIDGEY,
++                SPECIES_PLUSLE,
+                 SPECIES_STANTLER,
+                 SPECIES_PIDGEY,
+             },
+@@ -2535,11 +2535,11 @@ const EncounterData __data[] =
+                 SPECIES_NIDORAN_M,
+                 SPECIES_NIDORAN_F,
+                 SPECIES_NIDORAN_M,
+-                SPECIES_NIDORAN_F,
+-                SPECIES_PIDGEY,
++                SPECIES_SHINX,
+                 SPECIES_PIDGEY,
+-                SPECIES_GROWLITHE,
+-                SPECIES_GROWLITHE,
++                SPECIES_VULPIX,
++                SPECIES_PLUSLE,
++                SPECIES_BONSLY,
+                 SPECIES_STANTLER,
+                 SPECIES_GROWLITHE,
+                 SPECIES_STANTLER,
+@@ -2550,12 +2550,12 @@ const EncounterData __data[] =
+                 SPECIES_NIDORAN_F,
+                 SPECIES_NIDORAN_M,
+                 SPECIES_NIDORAN_F,
+-                SPECIES_HOOTHOOT,
+-                SPECIES_HOOTHOOT,
+-                SPECIES_GROWLITHE,
++                SPECIES_SHINX,
++                SPECIES_VULPIX,
+                 SPECIES_GROWLITHE,
++                SPECIES_BONSLY,
+                 SPECIES_STANTLER,
+-                SPECIES_HOOTHOOT,
++                SPECIES_PLUSLE,
+                 SPECIES_STANTLER,
+                 SPECIES_HOOTHOOT,
+             },
+@@ -2622,10 +2622,10 @@ const EncounterData __data[] =
+                 SPECIES_STANTLER,
+                 SPECIES_PIDGEY,
+                 SPECIES_STANTLER,
+-                SPECIES_PIDGEY,
+-                SPECIES_PIDGEY,
+-                SPECIES_GROWLITHE,
++                SPECIES_ELECTRIKE,
++                SPECIES_VULPIX,
+                 SPECIES_GROWLITHE,
++                SPECIES_MINUN,
+                 SPECIES_PIDGEY,
+                 SPECIES_PIDGEY,
+                 SPECIES_PIDGEY,
+@@ -2636,10 +2636,10 @@ const EncounterData __data[] =
+                 SPECIES_STANTLER,
+                 SPECIES_PIDGEY,
+                 SPECIES_STANTLER,
+-                SPECIES_PIDGEY,
+-                SPECIES_PIDGEY,
+-                SPECIES_GROWLITHE,
++                SPECIES_ELECTRIKE,
++                SPECIES_VULPIX,
+                 SPECIES_GROWLITHE,
++                SPECIES_MINUN,
+                 SPECIES_PIDGEOTTO,
+                 SPECIES_GROWLITHE,
+                 SPECIES_PIDGEOTTO,
+@@ -2649,13 +2649,13 @@ const EncounterData __data[] =
+                 SPECIES_SPINARAK,
+                 SPECIES_STANTLER,
+                 SPECIES_SPINARAK,
+-                SPECIES_STANTLER,
++                SPECIES_ELECTRIKE,
+                 SPECIES_HOOTHOOT,
+-                SPECIES_HOOTHOOT,
+-                SPECIES_GROWLITHE,
++                SPECIES_VULPIX,
+                 SPECIES_GROWLITHE,
++                SPECIES_MINUN,
+                 SPECIES_SPINARAK,
+-                SPECIES_SPINARAK,
++                SPECIES_HOUNDOUR,
+                 SPECIES_SPINARAK,
+                 SPECIES_SPINARAK,
+             },
+@@ -2823,9 +2823,9 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_KOFFING,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
+-                SPECIES_ZUBAT,
++                SPECIES_SHUPPET,
+                 SPECIES_ZUBAT,
++                SPECIES_DRIFLOON,
+                 SPECIES_KOFFING,
+                 SPECIES_RATICATE,
+                 SPECIES_KOFFING,
+@@ -2837,9 +2837,9 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_KOFFING,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
+-                SPECIES_ZUBAT,
++                SPECIES_SHUPPET,
+                 SPECIES_ZUBAT,
++                SPECIES_DRIFLOON,
+                 SPECIES_KOFFING,
+                 SPECIES_RATICATE,
+                 SPECIES_KOFFING,
+@@ -2851,11 +2851,11 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_KOFFING,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
+-                SPECIES_ZUBAT,
++                SPECIES_SHUPPET,
+                 SPECIES_ZUBAT,
++                SPECIES_DRIFLOON,
+                 SPECIES_KOFFING,
+-                SPECIES_RATICATE,
++                SPECIES_MURKROW,
+                 SPECIES_KOFFING,
+                 SPECIES_RATICATE,
+             },
+@@ -2923,13 +2923,13 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_KOFFING,
+                 SPECIES_KOFFING,
+-                SPECIES_KOFFING,
+-                SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SLUGMA,
++                SPECIES_TORKOAL,
++                SPECIES_DUSKULL,
+                 SPECIES_ZUBAT,
+                 SPECIES_MAGMAR,
+                 SPECIES_ZUBAT,
+-                SPECIES_MAGMAR,
++                SPECIES_ROTOM,
+             },
+             .speciesDay = {
+                 SPECIES_RATTATA,
+@@ -2937,13 +2937,13 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_KOFFING,
+                 SPECIES_KOFFING,
+-                SPECIES_KOFFING,
+-                SPECIES_MAGMAR,
++                SPECIES_SLUGMA,
+                 SPECIES_MAGMAR,
++                SPECIES_DUSKULL,
+                 SPECIES_ZUBAT,
+-                SPECIES_RATTATA,
++                SPECIES_TORKOAL,
+                 SPECIES_ZUBAT,
+-                SPECIES_RATTATA,
++                SPECIES_ROTOM,
+             },
+             .speciesNight = {
+                 SPECIES_RATTATA,
+@@ -2951,13 +2951,13 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_KOFFING,
+                 SPECIES_KOFFING,
+-                SPECIES_KOFFING,
+-                SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SLUGMA,
++                SPECIES_TORKOAL,
++                SPECIES_DUSKULL,
+                 SPECIES_ZUBAT,
+                 SPECIES_MAGMAR,
+                 SPECIES_ZUBAT,
+-                SPECIES_MAGMAR,
++                SPECIES_ROTOM,
+             },
+         },
+         .hoennSoundSpecies = {
+@@ -3029,7 +3029,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+             .speciesDay = {
+                 SPECIES_RATTATA,
+@@ -3043,7 +3043,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+             .speciesNight = {
+                 SPECIES_GASTLY,
+@@ -3057,7 +3057,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+         },
+         .hoennSoundSpecies = {
+@@ -3129,7 +3129,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+             .speciesDay = {
+                 SPECIES_RATTATA,
+@@ -3143,7 +3143,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+             .speciesNight = {
+                 SPECIES_GASTLY,
+@@ -3157,7 +3157,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+         },
+         .hoennSoundSpecies = {
+@@ -3229,7 +3229,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+             .speciesDay = {
+                 SPECIES_RATTATA,
+@@ -3243,7 +3243,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+             .speciesNight = {
+                 SPECIES_GASTLY,
+@@ -3257,7 +3257,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+         },
+         .hoennSoundSpecies = {
+@@ -3329,7 +3329,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+             .speciesDay = {
+                 SPECIES_RATTATA,
+@@ -3343,7 +3343,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+             .speciesNight = {
+                 SPECIES_GASTLY,
+@@ -3357,7 +3357,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+         },
+         .hoennSoundSpecies = {
+@@ -3429,7 +3429,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+             .speciesDay = {
+                 SPECIES_RATTATA,
+@@ -3443,7 +3443,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+             .speciesNight = {
+                 SPECIES_GASTLY,
+@@ -3457,7 +3457,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+         },
+         .hoennSoundSpecies = {
+@@ -3529,7 +3529,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+             .speciesDay = {
+                 SPECIES_RATTATA,
+@@ -3543,7 +3543,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+             .speciesNight = {
+                 SPECIES_GASTLY,
+@@ -3557,7 +3557,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+         },
+         .hoennSoundSpecies = {
+@@ -3629,7 +3629,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+             .speciesDay = {
+                 SPECIES_RATTATA,
+@@ -3643,7 +3643,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+             .speciesNight = {
+                 SPECIES_GASTLY,
+@@ -3657,7 +3657,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+         },
+         .hoennSoundSpecies = {
+@@ -3729,7 +3729,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+             .speciesDay = {
+                 SPECIES_RATTATA,
+@@ -3743,7 +3743,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+             .speciesNight = {
+                 SPECIES_GASTLY,
+@@ -3757,7 +3757,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+         },
+         .hoennSoundSpecies = {
+@@ -3820,13 +3820,13 @@ const EncounterData __data[] =
+             .speciesMorning = {
+                 SPECIES_RATTATA,
+                 SPECIES_RATICATE,
+-                SPECIES_RATTATA,
+-                SPECIES_RATICATE,
+-                SPECIES_MAGNEMITE,
++                SPECIES_CYNDAQUIL,
++                SPECIES_CHIKORITA,
+                 SPECIES_MAGNEMITE,
++                SPECIES_MEOWTH,
+                 SPECIES_FARFETCHD,
+-                SPECIES_FARFETCHD,
+-                SPECIES_MILTANK,
++                SPECIES_SPOINK,
++                SPECIES_CHINGLING,
+                 SPECIES_TAUROS,
+                 SPECIES_MILTANK,
+                 SPECIES_SNUBBULL,
+@@ -3834,13 +3834,13 @@ const EncounterData __data[] =
+             .speciesDay = {
+                 SPECIES_RATTATA,
+                 SPECIES_RATICATE,
+-                SPECIES_RATTATA,
+-                SPECIES_RATICATE,
+-                SPECIES_MAGNEMITE,
++                SPECIES_CYNDAQUIL,
++                SPECIES_CHIKORITA,
+                 SPECIES_MAGNEMITE,
++                SPECIES_MEOWTH,
+                 SPECIES_FARFETCHD,
+-                SPECIES_FARFETCHD,
+-                SPECIES_MILTANK,
++                SPECIES_SPOINK,
++                SPECIES_CHINGLING,
+                 SPECIES_TAUROS,
+                 SPECIES_MILTANK,
+                 SPECIES_SNUBBULL,
+@@ -3849,12 +3849,12 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATICATE,
+                 SPECIES_RATTATA,
+-                SPECIES_RATICATE,
+-                SPECIES_MAGNEMITE,
++                SPECIES_CYNDAQUIL,
+                 SPECIES_MAGNEMITE,
+-                SPECIES_RATTATA,
+-                SPECIES_RATTATA,
+-                SPECIES_MILTANK,
++                SPECIES_MEOWTH,
++                SPECIES_CHINGLING,
++                SPECIES_SPOINK,
++                SPECIES_CHIKORITA,
+                 SPECIES_TAUROS,
+                 SPECIES_MILTANK,
+                 SPECIES_SNUBBULL,
+@@ -3921,13 +3921,13 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATICATE,
+                 SPECIES_RATTATA,
+-                SPECIES_RATICATE,
+-                SPECIES_MAGNEMITE,
++                SPECIES_KANGASKHAN,
+                 SPECIES_MAGNEMITE,
++                SPECIES_MEOWTH,
+                 SPECIES_FARFETCHD,
+-                SPECIES_FARFETCHD,
+-                SPECIES_MILTANK,
+-                SPECIES_TAUROS,
++                SPECIES_ZANGOOSE,
++                SPECIES_TOTODILE,
++                SPECIES_SEVIPER,
+                 SPECIES_MILTANK,
+                 SPECIES_TAUROS,
+             },
+@@ -3935,13 +3935,13 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATICATE,
+                 SPECIES_RATTATA,
+-                SPECIES_RATICATE,
+-                SPECIES_MAGNEMITE,
++                SPECIES_KANGASKHAN,
+                 SPECIES_MAGNEMITE,
++                SPECIES_MEOWTH,
+                 SPECIES_FARFETCHD,
+-                SPECIES_FARFETCHD,
+-                SPECIES_MILTANK,
+-                SPECIES_TAUROS,
++                SPECIES_ZANGOOSE,
++                SPECIES_TOTODILE,
++                SPECIES_SEVIPER,
+                 SPECIES_MILTANK,
+                 SPECIES_TAUROS,
+             },
+@@ -3951,11 +3951,11 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATICATE,
+                 SPECIES_MAGNEMITE,
+-                SPECIES_MAGNEMITE,
+-                SPECIES_RATTATA,
+-                SPECIES_RATTATA,
+-                SPECIES_MILTANK,
+-                SPECIES_TAUROS,
++                SPECIES_MEOWTH,
++                SPECIES_SEVIPER,
++                SPECIES_ZANGOOSE,
++                SPECIES_KANGASKHAN,
++                SPECIES_TOTODILE,
+                 SPECIES_MILTANK,
+                 SPECIES_TAUROS,
+             },
+@@ -4171,7 +4171,7 @@ const EncounterData __data[] =
+         .surfSlots = {
+             { 17, 29, SPECIES_TENTACOOL },
+             { 10, 23, SPECIES_TENTACOOL },
+-            { 17, 29, SPECIES_TENTACRUEL },
++            { 17, 29, SPECIES_WAILMER },
+             { 17, 29, SPECIES_TENTACRUEL },
+             { 17, 29, SPECIES_TENTACRUEL },
+         },
+@@ -4191,7 +4191,7 @@ const EncounterData __data[] =
+             { 20, 20, SPECIES_KRABBY },
+             { 20, 20, SPECIES_KRABBY },
+             { 20, 20, SPECIES_CORSOLA },
+-            { 20, 20, SPECIES_KRABBY },
++            { 20, 20, SPECIES_FINNEON },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_KRABBY },
+@@ -4271,7 +4271,7 @@ const EncounterData __data[] =
+         .surfSlots = {
+             { 17, 29, SPECIES_TENTACOOL },
+             { 17, 29, SPECIES_TENTACRUEL },
+-            { 17, 29, SPECIES_MANTINE },
++            { 17, 29, SPECIES_CARVANHA },
+             { 17, 29, SPECIES_MANTINE },
+             { 17, 29, SPECIES_MANTINE },
+         },
+@@ -4291,7 +4291,7 @@ const EncounterData __data[] =
+             { 20, 20, SPECIES_TENTACOOL },
+             { 20, 20, SPECIES_CHINCHOU },
+             { 20, 20, SPECIES_SHELLDER },
+-            { 20, 20, SPECIES_CHINCHOU },
++            { 20, 20, SPECIES_CLAMPERL },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_CHINCHOU },
+@@ -4391,7 +4391,7 @@ const EncounterData __data[] =
+             { 20, 20, SPECIES_KRABBY },
+             { 20, 20, SPECIES_KRABBY },
+             { 20, 20, SPECIES_HORSEA },
+-            { 20, 20, SPECIES_KRABBY },
++            { 20, 20, SPECIES_RELICANTH },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_KRABBY },
+@@ -5191,7 +5191,7 @@ const EncounterData __data[] =
+             { 20, 20, SPECIES_KRABBY },
+             { 20, 20, SPECIES_KRABBY },
+             { 20, 20, SPECIES_CORSOLA },
+-            { 20, 20, SPECIES_KRABBY },
++            { 20, 20, SPECIES_LUVDISC },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_KRABBY },
+@@ -5223,11 +5223,11 @@ const EncounterData __data[] =
+                 SPECIES_MANKEY,
+                 SPECIES_MAREEP,
+                 SPECIES_SPEAROW,
+-                SPECIES_SPEAROW,
++                SPECIES_NUMEL,
+                 SPECIES_SPEAROW,
+                 SPECIES_SPEAROW,
+                 SPECIES_FLAAFFY,
+-                SPECIES_FLAAFFY,
++                SPECIES_BULBASAUR,
+                 SPECIES_FLAAFFY,
+                 SPECIES_FLAAFFY,
+             },
+@@ -5237,11 +5237,11 @@ const EncounterData __data[] =
+                 SPECIES_MANKEY,
+                 SPECIES_MAREEP,
+                 SPECIES_SPEAROW,
++                SPECIES_NUMEL,
+                 SPECIES_SPEAROW,
+                 SPECIES_SPEAROW,
+-                SPECIES_SPEAROW,
+-                SPECIES_FLAAFFY,
+                 SPECIES_FLAAFFY,
++                SPECIES_BULBASAUR,
+                 SPECIES_FLAAFFY,
+                 SPECIES_FLAAFFY,
+             },
+@@ -5251,11 +5251,11 @@ const EncounterData __data[] =
+                 SPECIES_MANKEY,
+                 SPECIES_MAREEP,
+                 SPECIES_ZUBAT,
++                SPECIES_NUMEL,
+                 SPECIES_ZUBAT,
+                 SPECIES_ZUBAT,
+-                SPECIES_ZUBAT,
+-                SPECIES_FLAAFFY,
+                 SPECIES_FLAAFFY,
++                SPECIES_BULBASAUR,
+                 SPECIES_FLAAFFY,
+                 SPECIES_FLAAFFY,
+             },
+@@ -5271,7 +5271,7 @@ const EncounterData __data[] =
+         .surfSlots = {
+             { 17, 29, SPECIES_GOLDEEN },
+             { 10, 23, SPECIES_GOLDEEN },
+-            { 17, 29, SPECIES_SEAKING },
++            { 17, 29, SPECIES_BUIZEL },
+             { 17, 29, SPECIES_SEAKING },
+             { 17, 29, SPECIES_SEAKING },
+         },
+@@ -5422,10 +5422,10 @@ const EncounterData __data[] =
+                 SPECIES_MACHOP,
+                 SPECIES_GEODUDE,
+                 SPECIES_MACHOP,
+-                SPECIES_GEODUDE,
+-                SPECIES_GEODUDE,
+-                SPECIES_RATTATA,
++                SPECIES_WHISMUR,
++                SPECIES_MAKUHITA,
+                 SPECIES_RATTATA,
++                SPECIES_CLEFAIRY,
+                 SPECIES_MACHOP,
+                 SPECIES_ZUBAT,
+                 SPECIES_MACHOP,
+@@ -5436,10 +5436,10 @@ const EncounterData __data[] =
+                 SPECIES_MACHOP,
+                 SPECIES_GEODUDE,
+                 SPECIES_MACHOP,
+-                SPECIES_GEODUDE,
+-                SPECIES_GEODUDE,
+-                SPECIES_RATTATA,
++                SPECIES_WHISMUR,
++                SPECIES_MAKUHITA,
+                 SPECIES_RATTATA,
++                SPECIES_CLEFAIRY,
+                 SPECIES_MACHOP,
+                 SPECIES_ZUBAT,
+                 SPECIES_MACHOP,
+@@ -5450,10 +5450,10 @@ const EncounterData __data[] =
+                 SPECIES_MACHOP,
+                 SPECIES_GEODUDE,
+                 SPECIES_MACHOP,
+-                SPECIES_GEODUDE,
+-                SPECIES_GEODUDE,
+-                SPECIES_RATTATA,
++                SPECIES_WHISMUR,
++                SPECIES_MAKUHITA,
+                 SPECIES_RATTATA,
++                SPECIES_CLEFAIRY,
+                 SPECIES_MACHOP,
+                 SPECIES_ZUBAT,
+                 SPECIES_MACHOP,
+@@ -5526,8 +5526,8 @@ const EncounterData __data[] =
+                 SPECIES_GEODUDE,
+                 SPECIES_RATICATE,
+                 SPECIES_RATICATE,
+-                SPECIES_MACHOP,
+-                SPECIES_GOLBAT,
++                SPECIES_LARVITAR,
++                SPECIES_RIOLU,
+                 SPECIES_MACHOP,
+                 SPECIES_GOLBAT,
+             },
+@@ -5540,8 +5540,8 @@ const EncounterData __data[] =
+                 SPECIES_GEODUDE,
+                 SPECIES_RATICATE,
+                 SPECIES_RATICATE,
+-                SPECIES_MACHOP,
+-                SPECIES_GOLBAT,
++                SPECIES_LARVITAR,
++                SPECIES_RIOLU,
+                 SPECIES_MACHOP,
+                 SPECIES_GOLBAT,
+             },
+@@ -5554,8 +5554,8 @@ const EncounterData __data[] =
+                 SPECIES_GEODUDE,
+                 SPECIES_RATICATE,
+                 SPECIES_RATICATE,
+-                SPECIES_MACHOP,
+-                SPECIES_GOLBAT,
++                SPECIES_LARVITAR,
++                SPECIES_RIOLU,
+                 SPECIES_MACHOP,
+                 SPECIES_GOLBAT,
+             },
+@@ -5625,9 +5625,9 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_MACHOP,
+-                SPECIES_MACHOP,
+-                SPECIES_GEODUDE,
+-                SPECIES_RATICATE,
++                SPECIES_CROAGUNK,
++                SPECIES_ARON,
++                SPECIES_GRIMER,
+                 SPECIES_GEODUDE,
+                 SPECIES_RATICATE,
+             },
+@@ -5639,9 +5639,9 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_MACHOP,
+-                SPECIES_MACHOP,
+-                SPECIES_GEODUDE,
+-                SPECIES_RATICATE,
++                SPECIES_CROAGUNK,
++                SPECIES_ARON,
++                SPECIES_GRIMER,
+                 SPECIES_GEODUDE,
+                 SPECIES_RATICATE,
+             },
+@@ -5653,9 +5653,9 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_MACHOP,
+-                SPECIES_MACHOP,
+-                SPECIES_GEODUDE,
+-                SPECIES_RATICATE,
++                SPECIES_CROAGUNK,
++                SPECIES_ARON,
++                SPECIES_GRIMER,
+                 SPECIES_GEODUDE,
+                 SPECIES_RATICATE,
+             },
+@@ -5725,11 +5725,11 @@ const EncounterData __data[] =
+                 SPECIES_PIDGEOTTO,
+                 SPECIES_PIDGEOTTO,
+                 SPECIES_MAREEP,
+-                SPECIES_MAREEP,
+-                SPECIES_VENONAT,
+-                SPECIES_PIDGEOTTO,
++                SPECIES_CASTFORM,
++                SPECIES_CHARMANDER,
++                SPECIES_MIME_JR,
+                 SPECIES_VENONAT,
+-                SPECIES_PIDGEOTTO,
++                SPECIES_PORYGON,
+             },
+             .speciesDay = {
+                 SPECIES_FLAAFFY,
+@@ -5739,11 +5739,11 @@ const EncounterData __data[] =
+                 SPECIES_PIDGEOTTO,
+                 SPECIES_PIDGEOTTO,
+                 SPECIES_MAREEP,
+-                SPECIES_MAREEP,
+-                SPECIES_FLAAFFY,
+-                SPECIES_FLAAFFY,
+-                SPECIES_FLAAFFY,
++                SPECIES_CASTFORM,
++                SPECIES_CHARMANDER,
++                SPECIES_MIME_JR,
+                 SPECIES_FLAAFFY,
++                SPECIES_PORYGON,
+             },
+             .speciesNight = {
+                 SPECIES_FLAAFFY,
+@@ -5752,11 +5752,11 @@ const EncounterData __data[] =
+                 SPECIES_GIRAFARIG,
+                 SPECIES_NOCTOWL,
+                 SPECIES_NOCTOWL,
+-                SPECIES_VENONAT,
+-                SPECIES_VENONAT,
+-                SPECIES_MAREEP,
+-                SPECIES_VENONAT,
++                SPECIES_MIME_JR,
++                SPECIES_CASTFORM,
+                 SPECIES_MAREEP,
++                SPECIES_CHARMANDER,
++                SPECIES_PORYGON,
+                 SPECIES_VENONAT,
+             },
+         },
+@@ -5891,7 +5891,7 @@ const EncounterData __data[] =
+             { 20, 20, SPECIES_MAGIKARP },
+             { 20, 20, SPECIES_MAGIKARP },
+             { 20, 20, SPECIES_GYARADOS },
+-            { 20, 20, SPECIES_MAGIKARP },
++            { 20, 20, SPECIES_FEEBAS },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_MAGIKARP },
+@@ -5925,11 +5925,11 @@ const EncounterData __data[] =
+                 SPECIES_BELLSPROUT,
+                 SPECIES_BELLSPROUT,
+                 SPECIES_LICKITUNG,
+-                SPECIES_LICKITUNG,
+-                SPECIES_WEEPINBELL,
+-                SPECIES_LICKITUNG,
++                SPECIES_ELEKID,
++                SPECIES_MUNCHLAX,
++                SPECIES_SQUIRTLE,
+                 SPECIES_WEEPINBELL,
+-                SPECIES_LICKITUNG,
++                SPECIES_CHANSEY,
+             },
+             .speciesDay = {
+                 SPECIES_TANGELA,
+@@ -5939,11 +5939,11 @@ const EncounterData __data[] =
+                 SPECIES_BELLSPROUT,
+                 SPECIES_BELLSPROUT,
+                 SPECIES_LICKITUNG,
+-                SPECIES_LICKITUNG,
+-                SPECIES_WEEPINBELL,
+-                SPECIES_LICKITUNG,
++                SPECIES_ELEKID,
++                SPECIES_MUNCHLAX,
++                SPECIES_SQUIRTLE,
+                 SPECIES_WEEPINBELL,
+-                SPECIES_LICKITUNG,
++                SPECIES_CHANSEY,
+             },
+             .speciesNight = {
+                 SPECIES_TANGELA,
+@@ -5953,11 +5953,11 @@ const EncounterData __data[] =
+                 SPECIES_BELLSPROUT,
+                 SPECIES_BELLSPROUT,
+                 SPECIES_LICKITUNG,
+-                SPECIES_LICKITUNG,
++                SPECIES_ELEKID,
++                SPECIES_MUNCHLAX,
++                SPECIES_SQUIRTLE,
+                 SPECIES_WEEPINBELL,
+-                SPECIES_LICKITUNG,
+-                SPECIES_WEEPINBELL,
+-                SPECIES_LICKITUNG,
++                SPECIES_CHANSEY,
+             },
+         },
+         .hoennSoundSpecies = {
+@@ -6022,8 +6022,8 @@ const EncounterData __data[] =
+                 SPECIES_GOLBAT,
+                 SPECIES_SWINUB,
+                 SPECIES_GOLBAT,
+-                SPECIES_ZUBAT,
+-                SPECIES_ZUBAT,
++                SPECIES_SNORUNT,
++                SPECIES_DELIBIRD,
+                 SPECIES_SWINUB,
+                 SPECIES_SWINUB,
+                 SPECIES_ZUBAT,
+@@ -6035,9 +6035,9 @@ const EncounterData __data[] =
+                 SPECIES_SWINUB,
+                 SPECIES_GOLBAT,
+                 SPECIES_SWINUB,
+-                SPECIES_GOLBAT,
+-                SPECIES_ZUBAT,
++                SPECIES_SNORUNT,
+                 SPECIES_ZUBAT,
++                SPECIES_DELIBIRD,
+                 SPECIES_SWINUB,
+                 SPECIES_SWINUB,
+                 SPECIES_JYNX,
+@@ -6050,8 +6050,8 @@ const EncounterData __data[] =
+                 SPECIES_GOLBAT,
+                 SPECIES_SWINUB,
+                 SPECIES_GOLBAT,
+-                SPECIES_ZUBAT,
+-                SPECIES_ZUBAT,
++                SPECIES_SNORUNT,
++                SPECIES_DELIBIRD,
+                 SPECIES_SWINUB,
+                 SPECIES_SWINUB,
+                 SPECIES_ZUBAT,
+@@ -6123,9 +6123,9 @@ const EncounterData __data[] =
+                 SPECIES_SWINUB,
+                 SPECIES_GOLBAT,
+                 SPECIES_ZUBAT,
+-                SPECIES_ZUBAT,
+-                SPECIES_SWINUB,
++                SPECIES_SNOVER,
+                 SPECIES_SWINUB,
++                SPECIES_SNEASEL,
+                 SPECIES_ZUBAT,
+                 SPECIES_JYNX,
+                 SPECIES_ZUBAT,
+@@ -6137,9 +6137,9 @@ const EncounterData __data[] =
+                 SPECIES_SWINUB,
+                 SPECIES_GOLBAT,
+                 SPECIES_ZUBAT,
+-                SPECIES_ZUBAT,
+-                SPECIES_SWINUB,
++                SPECIES_SNOVER,
+                 SPECIES_SWINUB,
++                SPECIES_SNEASEL,
+                 SPECIES_JYNX,
+                 SPECIES_JYNX,
+                 SPECIES_JYNX,
+@@ -6151,9 +6151,9 @@ const EncounterData __data[] =
+                 SPECIES_SWINUB,
+                 SPECIES_GOLBAT,
+                 SPECIES_ZUBAT,
+-                SPECIES_ZUBAT,
+-                SPECIES_SWINUB,
++                SPECIES_SNOVER,
+                 SPECIES_SWINUB,
++                SPECIES_SNEASEL,
+                 SPECIES_ZUBAT,
+                 SPECIES_JYNX,
+                 SPECIES_ZUBAT,
+@@ -6223,9 +6223,9 @@ const EncounterData __data[] =
+                 SPECIES_SWINUB,
+                 SPECIES_GOLBAT,
+                 SPECIES_ZUBAT,
+-                SPECIES_ZUBAT,
+-                SPECIES_SWINUB,
++                SPECIES_SNORUNT,
+                 SPECIES_SWINUB,
++                SPECIES_SPHEAL,
+                 SPECIES_ZUBAT,
+                 SPECIES_JYNX,
+                 SPECIES_ZUBAT,
+@@ -6237,9 +6237,9 @@ const EncounterData __data[] =
+                 SPECIES_SWINUB,
+                 SPECIES_GOLBAT,
+                 SPECIES_ZUBAT,
+-                SPECIES_ZUBAT,
+-                SPECIES_SWINUB,
++                SPECIES_SNORUNT,
+                 SPECIES_SWINUB,
++                SPECIES_SPHEAL,
+                 SPECIES_JYNX,
+                 SPECIES_JYNX,
+                 SPECIES_JYNX,
+@@ -6251,9 +6251,9 @@ const EncounterData __data[] =
+                 SPECIES_SWINUB,
+                 SPECIES_GOLBAT,
+                 SPECIES_ZUBAT,
+-                SPECIES_ZUBAT,
+-                SPECIES_SWINUB,
++                SPECIES_SNORUNT,
+                 SPECIES_SWINUB,
++                SPECIES_SPHEAL,
+                 SPECIES_ZUBAT,
+                 SPECIES_JYNX,
+                 SPECIES_ZUBAT,
+@@ -6323,9 +6323,9 @@ const EncounterData __data[] =
+                 SPECIES_SWINUB,
+                 SPECIES_GOLBAT,
+                 SPECIES_ZUBAT,
+-                SPECIES_ZUBAT,
+-                SPECIES_SWINUB,
+-                SPECIES_SWINUB,
++                SPECIES_SNOVER,
++                SPECIES_DELIBIRD,
++                SPECIES_SNEASEL,
+                 SPECIES_ZUBAT,
+                 SPECIES_JYNX,
+                 SPECIES_ZUBAT,
+@@ -6337,9 +6337,9 @@ const EncounterData __data[] =
+                 SPECIES_SWINUB,
+                 SPECIES_GOLBAT,
+                 SPECIES_ZUBAT,
+-                SPECIES_ZUBAT,
+-                SPECIES_SWINUB,
+-                SPECIES_SWINUB,
++                SPECIES_SNOVER,
++                SPECIES_DELIBIRD,
++                SPECIES_SNEASEL,
+                 SPECIES_JYNX,
+                 SPECIES_JYNX,
+                 SPECIES_JYNX,
+@@ -6351,9 +6351,9 @@ const EncounterData __data[] =
+                 SPECIES_SWINUB,
+                 SPECIES_GOLBAT,
+                 SPECIES_ZUBAT,
+-                SPECIES_ZUBAT,
+-                SPECIES_SWINUB,
+-                SPECIES_SWINUB,
++                SPECIES_SNOVER,
++                SPECIES_DELIBIRD,
++                SPECIES_SNEASEL,
+                 SPECIES_ZUBAT,
+                 SPECIES_JYNX,
+                 SPECIES_ZUBAT,
+@@ -6721,43 +6721,43 @@ const EncounterData __data[] =
+                 SPECIES_GEODUDE,
+                 SPECIES_GRAVELER,
+                 SPECIES_GEODUDE,
+-                SPECIES_GRAVELER,
+-                SPECIES_GLIGAR,
++                SPECIES_SWABLU,
+                 SPECIES_GLIGAR,
++                SPECIES_HIPPOPOTAS,
+                 SPECIES_PHANPY,
+-                SPECIES_PHANPY,
+-                SPECIES_GRAVELER,
+-                SPECIES_GRAVELER,
+-                SPECIES_GRAVELER,
+-                SPECIES_GRAVELER,
++                SPECIES_SKARMORY,
++                SPECIES_TREECKO,
++                SPECIES_ABSOL,
++                SPECIES_BAGON,
++                SPECIES_TORCHIC,
+             },
+             .speciesDay = {
+                 SPECIES_GEODUDE,
+                 SPECIES_GRAVELER,
+                 SPECIES_GEODUDE,
+-                SPECIES_GRAVELER,
+-                SPECIES_GLIGAR,
++                SPECIES_SWABLU,
+                 SPECIES_GLIGAR,
++                SPECIES_HIPPOPOTAS,
+                 SPECIES_PHANPY,
+-                SPECIES_PHANPY,
+-                SPECIES_GRAVELER,
+-                SPECIES_GRAVELER,
+-                SPECIES_GRAVELER,
+-                SPECIES_GRAVELER,
++                SPECIES_SKARMORY,
++                SPECIES_TREECKO,
++                SPECIES_ABSOL,
++                SPECIES_BAGON,
++                SPECIES_TORCHIC,
+             },
+             .speciesNight = {
+                 SPECIES_GEODUDE,
+                 SPECIES_GRAVELER,
+                 SPECIES_GEODUDE,
+-                SPECIES_GRAVELER,
++                SPECIES_SWABLU,
+                 SPECIES_GLIGAR,
+-                SPECIES_GLIGAR,
+-                SPECIES_PHANPY,
++                SPECIES_HIPPOPOTAS,
+                 SPECIES_PHANPY,
+-                SPECIES_GRAVELER,
+-                SPECIES_GRAVELER,
+-                SPECIES_GRAVELER,
+-                SPECIES_GRAVELER,
++                SPECIES_SKARMORY,
++                SPECIES_TREECKO,
++                SPECIES_ABSOL,
++                SPECIES_BAGON,
++                SPECIES_TORCHIC,
+             },
+         },
+         .hoennSoundSpecies = {
+@@ -6823,7 +6823,7 @@ const EncounterData __data[] =
+                 SPECIES_GEODUDE,
+                 SPECIES_SPEAROW,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPINDA,
+                 SPECIES_GEODUDE,
+                 SPECIES_GEODUDE,
+                 SPECIES_SPEAROW,
+@@ -6837,7 +6837,7 @@ const EncounterData __data[] =
+                 SPECIES_GEODUDE,
+                 SPECIES_SPEAROW,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPINDA,
+                 SPECIES_GEODUDE,
+                 SPECIES_GEODUDE,
+                 SPECIES_SPEAROW,
+@@ -6851,7 +6851,7 @@ const EncounterData __data[] =
+                 SPECIES_GEODUDE,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPINDA,
+                 SPECIES_GEODUDE,
+                 SPECIES_GEODUDE,
+                 SPECIES_GEODUDE,
+@@ -6925,7 +6925,7 @@ const EncounterData __data[] =
+                 SPECIES_GEODUDE,
+                 SPECIES_GEODUDE,
+                 SPECIES_GEODUDE,
+-                SPECIES_GEODUDE,
++                SPECIES_SABLEYE,
+                 SPECIES_ZUBAT,
+                 SPECIES_ZUBAT,
+                 SPECIES_ZUBAT,
+@@ -6939,7 +6939,7 @@ const EncounterData __data[] =
+                 SPECIES_GEODUDE,
+                 SPECIES_GEODUDE,
+                 SPECIES_GEODUDE,
+-                SPECIES_GEODUDE,
++                SPECIES_SABLEYE,
+                 SPECIES_ZUBAT,
+                 SPECIES_ZUBAT,
+                 SPECIES_ZUBAT,
+@@ -6953,7 +6953,7 @@ const EncounterData __data[] =
+                 SPECIES_GEODUDE,
+                 SPECIES_GEODUDE,
+                 SPECIES_GEODUDE,
+-                SPECIES_GEODUDE,
++                SPECIES_SABLEYE,
+                 SPECIES_ZUBAT,
+                 SPECIES_ZUBAT,
+                 SPECIES_ZUBAT,
+@@ -7023,13 +7023,13 @@ const EncounterData __data[] =
+                 SPECIES_GEODUDE,
+                 SPECIES_ZUBAT,
+                 SPECIES_GRAVELER,
+-                SPECIES_GRAVELER,
++                SPECIES_TEDDIURSA,
+                 SPECIES_WOBBUFFET,
+                 SPECIES_WOBBUFFET,
+                 SPECIES_WOBBUFFET,
+                 SPECIES_GOLBAT,
+                 SPECIES_WOBBUFFET,
+-                SPECIES_GOLBAT,
++                SPECIES_GIBLE,
+             },
+             .speciesDay = {
+                 SPECIES_GEODUDE,
+@@ -7037,13 +7037,13 @@ const EncounterData __data[] =
+                 SPECIES_GEODUDE,
+                 SPECIES_ZUBAT,
+                 SPECIES_GRAVELER,
+-                SPECIES_GRAVELER,
++                SPECIES_TEDDIURSA,
+                 SPECIES_WOBBUFFET,
+                 SPECIES_WOBBUFFET,
+                 SPECIES_WOBBUFFET,
+                 SPECIES_GOLBAT,
+                 SPECIES_WOBBUFFET,
+-                SPECIES_GOLBAT,
++                SPECIES_GIBLE,
+             },
+             .speciesNight = {
+                 SPECIES_GEODUDE,
+@@ -7051,13 +7051,13 @@ const EncounterData __data[] =
+                 SPECIES_GEODUDE,
+                 SPECIES_ZUBAT,
+                 SPECIES_GRAVELER,
+-                SPECIES_GRAVELER,
++                SPECIES_TEDDIURSA,
+                 SPECIES_WOBBUFFET,
+                 SPECIES_WOBBUFFET,
+                 SPECIES_WOBBUFFET,
+                 SPECIES_GOLBAT,
+                 SPECIES_WOBBUFFET,
+-                SPECIES_GOLBAT,
++                SPECIES_GIBLE,
+             },
+         },
+         .hoennSoundSpecies = {
+@@ -7127,9 +7127,9 @@ const EncounterData __data[] =
+                 SPECIES_GLOOM,
+                 SPECIES_SPEAROW,
+                 SPECIES_FEAROW,
++                SPECIES_SKORUPI,
+                 SPECIES_RATICATE,
+-                SPECIES_RATICATE,
+-                SPECIES_DITTO,
++                SPECIES_TRAPINCH,
+             },
+             .speciesDay = {
+                 SPECIES_FARFETCHD,
+@@ -7141,9 +7141,9 @@ const EncounterData __data[] =
+                 SPECIES_GLOOM,
+                 SPECIES_SPEAROW,
+                 SPECIES_FEAROW,
++                SPECIES_SKORUPI,
+                 SPECIES_RATICATE,
+-                SPECIES_RATICATE,
+-                SPECIES_DITTO,
++                SPECIES_TRAPINCH,
+             },
+             .speciesNight = {
+                 SPECIES_NOCTOWL,
+@@ -7155,9 +7155,9 @@ const EncounterData __data[] =
+                 SPECIES_GLOOM,
+                 SPECIES_SPEAROW,
+                 SPECIES_FEAROW,
++                SPECIES_SKORUPI,
+                 SPECIES_RATICATE,
+-                SPECIES_RATICATE,
+-                SPECIES_DITTO,
++                SPECIES_TRAPINCH,
+             },
+         },
+         .hoennSoundSpecies = {
+@@ -8329,7 +8329,7 @@ const EncounterData __data[] =
+                 SPECIES_GRAVELER,
+                 SPECIES_MACHOKE,
+                 SPECIES_STEELIX,
+-                SPECIES_STEELIX,
++                SPECIES_NOSEPASS,
+             },
+             .speciesDay = {
+                 SPECIES_GOLBAT,
+@@ -8343,7 +8343,7 @@ const EncounterData __data[] =
+                 SPECIES_GRAVELER,
+                 SPECIES_MACHOKE,
+                 SPECIES_STEELIX,
+-                SPECIES_STEELIX,
++                SPECIES_NOSEPASS,
+             },
+             .speciesNight = {
+                 SPECIES_GOLBAT,
+@@ -8354,7 +8354,7 @@ const EncounterData __data[] =
+                 SPECIES_ONIX,
+                 SPECIES_ZUBAT,
+                 SPECIES_MISDREAVUS,
+-                SPECIES_GOLBAT,
++                SPECIES_NOSEPASS,
+                 SPECIES_MACHOKE,
+                 SPECIES_STEELIX,
+                 SPECIES_STEELIX,
+@@ -8429,7 +8429,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+             .speciesDay = {
+                 SPECIES_RATTATA,
+@@ -8443,7 +8443,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+             .speciesNight = {
+                 SPECIES_GASTLY,
+@@ -8457,7 +8457,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_SPIRITOMB,
+             },
+         },
+         .hoennSoundSpecies = {
+@@ -10224,12 +10224,12 @@ const EncounterData __data[] =
+                 SPECIES_FEAROW,
+                 SPECIES_GLOOM,
+                 SPECIES_GLOOM,
+-                SPECIES_GROWLITHE,
++                SPECIES_TROPIUS,
+                 SPECIES_GIRAFARIG,
+                 SPECIES_DIGLETT,
+                 SPECIES_GROWLITHE,
+                 SPECIES_HOPPIP,
+-                SPECIES_TAUROS,
++                SPECIES_CACNEA,
+             },
+             .speciesDay = {
+                 SPECIES_FARFETCHD,
+@@ -10238,12 +10238,12 @@ const EncounterData __data[] =
+                 SPECIES_FEAROW,
+                 SPECIES_GLOOM,
+                 SPECIES_GLOOM,
+-                SPECIES_GROWLITHE,
++                SPECIES_TROPIUS,
+                 SPECIES_GIRAFARIG,
+                 SPECIES_DIGLETT,
+                 SPECIES_GROWLITHE,
+                 SPECIES_HOPPIP,
+-                SPECIES_TAUROS,
++                SPECIES_CACNEA,
+             },
+             .speciesNight = {
+                 SPECIES_GROWLITHE,
+@@ -10252,10 +10252,10 @@ const EncounterData __data[] =
+                 SPECIES_FEAROW,
+                 SPECIES_GLOOM,
+                 SPECIES_GLOOM,
+-                SPECIES_GROWLITHE,
++                SPECIES_TROPIUS,
+                 SPECIES_GIRAFARIG,
+                 SPECIES_DIGLETT,
+-                SPECIES_GROWLITHE,
++                SPECIES_CACNEA,
+                 SPECIES_HOPPIP,
+                 SPECIES_TAUROS,
+             },
+@@ -10326,8 +10326,8 @@ const EncounterData __data[] =
+                 SPECIES_PONYTA,
+                 SPECIES_DODUO,
+                 SPECIES_DODUO,
+-                SPECIES_RATICATE,
+-                SPECIES_DODRIO,
++                SPECIES_CHIMCHAR,
++                SPECIES_TURTWIG,
+                 SPECIES_RATICATE,
+                 SPECIES_DODRIO,
+             },
+@@ -10340,8 +10340,8 @@ const EncounterData __data[] =
+                 SPECIES_PONYTA,
+                 SPECIES_DODUO,
+                 SPECIES_DODUO,
+-                SPECIES_RATICATE,
+-                SPECIES_DODRIO,
++                SPECIES_CHIMCHAR,
++                SPECIES_TURTWIG,
+                 SPECIES_RATICATE,
+                 SPECIES_DODRIO,
+             },
+@@ -10354,8 +10354,8 @@ const EncounterData __data[] =
+                 SPECIES_PONYTA,
+                 SPECIES_RATICATE,
+                 SPECIES_RATICATE,
+-                SPECIES_QUAGSIRE,
+-                SPECIES_QUAGSIRE,
++                SPECIES_CHIMCHAR,
++                SPECIES_TURTWIG,
+                 SPECIES_QUAGSIRE,
+                 SPECIES_QUAGSIRE,
+             },
+@@ -10427,7 +10427,7 @@ const EncounterData __data[] =
+                 SPECIES_RATICATE,
+                 SPECIES_RATICATE,
+                 SPECIES_PONYTA,
+-                SPECIES_SANDSLASH,
++                SPECIES_PIPLUP,
+                 SPECIES_PONYTA,
+                 SPECIES_SANDSLASH,
+             },
+@@ -10441,7 +10441,7 @@ const EncounterData __data[] =
+                 SPECIES_RATICATE,
+                 SPECIES_RATICATE,
+                 SPECIES_PONYTA,
+-                SPECIES_SANDSLASH,
++                SPECIES_PIPLUP,
+                 SPECIES_PONYTA,
+                 SPECIES_SANDSLASH,
+             },
+@@ -10455,7 +10455,7 @@ const EncounterData __data[] =
+                 SPECIES_RATICATE,
+                 SPECIES_RATICATE,
+                 SPECIES_PONYTA,
+-                SPECIES_SANDSLASH,
++                SPECIES_PIPLUP,
+                 SPECIES_PONYTA,
+                 SPECIES_SANDSLASH,
+             },
+@@ -11027,7 +11027,7 @@ const EncounterData __data[] =
+                 SPECIES_ONIX,
+                 SPECIES_ONIX,
+                 SPECIES_ONIX,
+-                SPECIES_RHYHORN,
++                SPECIES_BELDUM,
+                 SPECIES_ONIX,
+                 SPECIES_RHYHORN,
+             },
+@@ -11041,7 +11041,7 @@ const EncounterData __data[] =
+                 SPECIES_ONIX,
+                 SPECIES_ONIX,
+                 SPECIES_ONIX,
+-                SPECIES_RHYHORN,
++                SPECIES_BELDUM,
+                 SPECIES_ONIX,
+                 SPECIES_RHYHORN,
+             },
+@@ -11055,7 +11055,7 @@ const EncounterData __data[] =
+                 SPECIES_ONIX,
+                 SPECIES_ONIX,
+                 SPECIES_ONIX,
+-                SPECIES_RHYHORN,
++                SPECIES_BELDUM,
+                 SPECIES_ONIX,
+                 SPECIES_RHYHORN,
+             },
+@@ -13227,7 +13227,7 @@ const EncounterData __data[] =
+                 SPECIES_SLOWPOKE,
+                 SPECIES_SLOWPOKE,
+                 SPECIES_RATTATA,
+-                SPECIES_SLOWPOKE,
++                SPECIES_MUDKIP,
+                 SPECIES_RATTATA,
+                 SPECIES_SLOWPOKE,
+             },
+@@ -13241,7 +13241,7 @@ const EncounterData __data[] =
+                 SPECIES_SLOWPOKE,
+                 SPECIES_SLOWPOKE,
+                 SPECIES_RATTATA,
+-                SPECIES_SLOWPOKE,
++                SPECIES_MUDKIP,
+                 SPECIES_RATTATA,
+                 SPECIES_SLOWPOKE,
+             },
+@@ -13255,7 +13255,7 @@ const EncounterData __data[] =
+                 SPECIES_SLOWPOKE,
+                 SPECIES_SLOWPOKE,
+                 SPECIES_RATTATA,
+-                SPECIES_SLOWPOKE,
++                SPECIES_MUDKIP,
+                 SPECIES_RATTATA,
+                 SPECIES_SLOWPOKE,
+             },
+@@ -13427,7 +13427,7 @@ const EncounterData __data[] =
+                 SPECIES_ONIX,
+                 SPECIES_ONIX,
+                 SPECIES_ONIX,
+-                SPECIES_RHYHORN,
++                SPECIES_BELDUM,
+                 SPECIES_ONIX,
+                 SPECIES_RHYHORN,
+             },
+@@ -13441,7 +13441,7 @@ const EncounterData __data[] =
+                 SPECIES_ONIX,
+                 SPECIES_ONIX,
+                 SPECIES_ONIX,
+-                SPECIES_RHYHORN,
++                SPECIES_BELDUM,
+                 SPECIES_ONIX,
+                 SPECIES_RHYHORN,
+             },
+@@ -13455,7 +13455,7 @@ const EncounterData __data[] =
+                 SPECIES_ONIX,
+                 SPECIES_ONIX,
+                 SPECIES_ONIX,
+-                SPECIES_RHYHORN,
++                SPECIES_BELDUM,
+                 SPECIES_ONIX,
+                 SPECIES_RHYHORN,
+             },
+diff --git a/data/eventdata/zone_event/292_D24R0102.json b/data/eventdata/zone_event/292_D24R0102.json
+new file mode 100644
+index 000000000..ac900c494
+--- /dev/null
++++ b/data/eventdata/zone_event/292_D24R0102.json
+@@ -0,0 +1,109 @@
++{
++  "header": "data/scr_seq/include/event_D24R0102.inc",
++  "eventId": "292",
++  "bg_events": [
++    {
++      "script": "_EV_scr_seq_D24R0102_003 + 1",
++      "type": 0,
++      "x": 3,
++      "z": 3,
++      "y": 0,
++      "player_facing_dir": 4
++    },
++    {
++      "script": "_EV_scr_seq_D24R0102_004 + 1",
++      "type": 0,
++      "x": 10,
++      "z": 3,
++      "y": 0,
++      "player_facing_dir": 4
++    },
++    {
++      "script": "_EV_scr_seq_D24R0102_004 + 1",
++      "type": 0,
++      "x": 11,
++      "z": 3,
++      "y": 0,
++      "player_facing_dir": 4
++    }
++  ],
++  "object_events": [
++    {
++      "id": "obj_D24R0102_suit",
++      "graphics_id": "SPRITE_SUIT",
++      "movement_type": 15,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_NOTHING",
++      "script": "_EV_scr_seq_D24R0102_000 + 1",
++      "initial_dir": 1,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 1,
++      "z": 4,
++      "y": 0
++    },
++    {
++      "id": "obj_D24R0102_gsassistantm",
++      "graphics_id": "SPRITE_GSASSISTANTM",
++      "movement_type": 17,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_NOTHING",
++      "script": "_EV_scr_seq_D24R0102_002 + 1",
++      "initial_dir": 3,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 9,
++      "z": 7,
++      "y": 0
++    },
++    {
++      "id": "obj_D24R0102_gsassistantm_2",
++      "graphics_id": "SPRITE_GSASSISTANTM",
++      "movement_type": 14,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_NOTHING",
++      "script": "_EV_scr_seq_D24R0102_001 + 1",
++      "initial_dir": 0,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 8,
++      "z": 4,
++      "y": 0
++    },
++    {
++      "id": "obj_D24R0102_fossil",
++      "graphics_id": "SPRITE_GSASSISTANTM",
++      "movement_type": 15,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_NOTHING",
++      "script": "_EV_scr_seq_D24R0102_006 + 1",
++      "initial_dir": 1,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 11,
++      "z": 4,
++      "y": 0
++    }
++  ],
++  "warp_events": [
++    {
++      "x": 4,
++      "z": 12,
++      "dest_header_id": "MAP_D24R0101",
++      "dest_warp_id": 10,
++      "y": 0
++    }
++  ]
++}
+diff --git a/data/scr_seq/include/event_D24R0102.inc b/data/scr_seq/include/event_D24R0102.inc
+new file mode 100644
+index 000000000..96bb7c988
+--- /dev/null
++++ b/data/scr_seq/include/event_D24R0102.inc
+@@ -0,0 +1,18 @@
++.ifndef SCR_SEQ_D24R0102_H_
++.definelabel SCR_SEQ_D24R0102_H_, 0
++
++.equ _EV_scr_seq_D24R0102_000, 0
++.equ _EV_scr_seq_D24R0102_001, 1
++.equ _EV_scr_seq_D24R0102_002, 2
++.equ _EV_scr_seq_D24R0102_003, 3
++.equ _EV_scr_seq_D24R0102_004, 4
++.equ _EV_scr_seq_D24R0102_005, 5
++
++.equ _EV_scr_seq_D24R0102_006, 6
++
++.equ obj_D24R0102_suit, 0
++.equ obj_D24R0102_gsassistantm, 1
++.equ obj_D24R0102_gsassistantm_2, 2
++.equ obj_D24R0102_fossil, 3
++
++.endif //SCR_SEQ_D24R0102_H_
+diff --git a/data/scr_seq/scr_seq_0038_D24R0102.s b/data/scr_seq/scr_seq_0038_D24R0102.s
+new file mode 100644
+index 000000000..fa3befd9d
+--- /dev/null
++++ b/data/scr_seq/scr_seq_0038_D24R0102.s
+@@ -0,0 +1,606 @@
++.include "asm/include/interop_macros.inc"
++
++.include "asm/include/scriptmacros.inc"
++.include "asm/include/flags.inc"
++.include "asm/include/soundeffects.inc"
++.include "asm/include/vars.inc"
++
++.include "asm/include/events.inc"
++.include "asm/include/game_stats.inc"
++.include "asm/include/maps.inc"
++.include "asm/include/map_sections.inc"
++.include "asm/include/movements.inc"
++.include "asm/include/rankings.inc"
++.include "asm/include/spawns.inc"
++.include "asm/include/std_scripts.inc"
++.include "asm/include/trainers.inc"
++
++#include "constants/item.h"
++#include "constants/moves.h"
++#include "constants/species.h"
++
++.include "data/scr_seq/include/event_D24R0102.inc"
++
++
++// text archive to grab from: 073.txt
++
++.data
++
++
++scrdef scr_seq_D24R0102_000
++scrdef scr_seq_D24R0102_001
++scrdef scr_seq_D24R0102_002
++scrdef scr_seq_D24R0102_003
++scrdef scr_seq_D24R0102_004
++scrdef scr_seq_D24R0102_005
++scrdef scr_seq_D24R0102_006
++scrdef_end
++
++scr_seq_D24R0102_005:
++	clearflag FLAG_UNK_10F
++	end
++
++scr_seq_D24R0102_000:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	scrcmd_545 VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 28
++	goto_if_eq _0093
++	compare VAR_UNK_40EC, 1
++	goto_if_ge _008A
++	goto_if_set FLAG_UNK_10F, _0081
++	npc_msg 0
++	setflag FLAG_UNK_10F
++	get_player_facing VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_ne _0077
++	apply_movement obj_D24R0102_suit, _009C
++	goto _007F
++
++_0077:
++	apply_movement obj_D24R0102_suit, _00E4
++_007F:
++	wait_movement
++_0081:
++	npc_msg 1
++	goto _0366
++
++_008A:
++	npc_msg 2
++	goto _0366
++
++_0093:
++	npc_msg 3
++	goto _0366
++
++	.balign 4
++_009C:
++
++	step 2, 1
++	step 0, 1
++	step 3, 1
++	step 1, 1
++	step 2, 1
++	step 0, 1
++	step 3, 1
++	step 1, 1
++	step 2, 1
++	step 0, 1
++	step 3, 1
++	step 1, 1
++	step 2, 1
++	step 0, 1
++	step 3, 1
++	step 1, 1
++	step 75, 1
++	step_end
++	.balign 4
++_00E4:
++
++	step 1, 1
++	step 2, 1
++	step 0, 1
++	step 3, 1
++	step 1, 1
++	step 2, 1
++	step 0, 1
++	step 3, 1
++	step 1, 1
++	step 2, 1
++	step 0, 1
++	step 3, 1
++	step 1, 1
++	step 2, 1
++	step 0, 1
++	step 3, 1
++	step 75, 1
++	step_end
++scr_seq_D24R0102_001:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	compare VAR_UNOWN_REPORT_LEVEL, 8
++	goto_if_eq _033C
++	compare VAR_UNOWN_REPORT_LEVEL, 7
++	goto_if_eq _02C4
++	compare VAR_UNOWN_REPORT_LEVEL, 4
++	goto_if_ge _0277
++	scrcmd_545 VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _02DB
++	check_seen_all_letter_unown VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 1
++	goto_if_eq _0223
++	compare VAR_UNK_40EC, 4
++	goto_if_eq _01F6
++	compare VAR_UNK_40EC, 3
++	goto_if_eq _01D6
++	compare VAR_UNK_40EC, 2
++	goto_if_eq _01C3
++	compare VAR_UNK_40EC, 1
++	goto_if_eq _01BA
++_01B1:
++	npc_msg 4
++	goto _0366
++
++_01BA:
++	npc_msg 5
++	goto _0366
++
++_01C3:
++	compare VAR_UNOWN_REPORT_LEVEL, 1
++	goto_if_eq _035D
++	goto _02FA
++
++_01D6:
++	compare VAR_UNOWN_REPORT_LEVEL, 2
++	goto_if_eq _035D
++	compare VAR_UNOWN_REPORT_LEVEL, 1
++	goto_if_eq _0303
++	goto _02FA
++
++_01F6:
++	compare VAR_UNOWN_REPORT_LEVEL, 3
++	goto_if_eq _035D
++	compare VAR_UNOWN_REPORT_LEVEL, 2
++	goto_if_eq _030C
++	compare VAR_UNOWN_REPORT_LEVEL, 1
++	goto_if_eq _0303
++	goto _02FA
++
++_0223:
++	compare VAR_UNK_40EC, 0
++	goto_if_eq _01B1
++	compare VAR_UNK_40EC, 1
++	goto_if_eq _01BA
++	compare VAR_UNOWN_REPORT_LEVEL, 4
++	goto_if_eq _035D
++	compare VAR_UNOWN_REPORT_LEVEL, 3
++	goto_if_eq _0315
++	compare VAR_UNOWN_REPORT_LEVEL, 2
++	goto_if_eq _030C
++	compare VAR_UNOWN_REPORT_LEVEL, 1
++	goto_if_eq _0303
++	goto _02FA
++
++_0277:
++	compare VAR_UNOWN_REPORT_LEVEL, 6
++	goto_if_eq _035D
++	compare VAR_UNK_40F1, 4
++	goto_if_eq _02B1
++	compare VAR_UNOWN_REPORT_LEVEL, 5
++	goto_if_eq _035D
++	compare VAR_UNK_40F1, 1
++	goto_if_ge _0321
++	goto _035D
++
++_02B1:
++	compare VAR_UNOWN_REPORT_LEVEL, 5
++	goto_if_eq _032A
++	goto _0321
++
++_02C4:
++	scrcmd_545 VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 28
++	goto_if_eq _0333
++	goto _035D
++
++_02DB:
++	compare VAR_UNK_40EC, 1
++	goto_if_eq _02F1
++	npc_msg 4
++	goto _0366
++
++_02F1:
++	npc_msg 9
++	goto _0366
++
++_02FA:
++	npc_msg 6
++	goto _0345
++
++_0303:
++	npc_msg 7
++	goto _0345
++
++_030C:
++	npc_msg 8
++	goto _0345
++
++_0315:
++	npc_msg 10
++	npc_msg 11
++	goto _0345
++
++_0321:
++	npc_msg 12
++	goto _0345
++
++_032A:
++	npc_msg 13
++	goto _0345
++
++_0333:
++	npc_msg 14
++	goto _0345
++
++_033C:
++	npc_msg 17
++	goto _0366
++
++_0345:
++	buffer_players_name 0
++	npc_msg 16
++	play_fanfare SEQ_ME_LVUP
++	wait_fanfare
++	addvar VAR_UNOWN_REPORT_LEVEL, 1
++	goto _0366
++
++_035D:
++	npc_msg 15
++	goto _0366
++
++_0366:
++	wait_button
++	closemsg
++	releaseall
++	end
++
++scr_seq_D24R0102_002:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	check_seen_all_letter_unown VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 1
++	goto_if_eq _03AA
++	scrcmd_545 VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _03A1
++	npc_msg 19
++	goto _0366
++
++_03A1:
++	npc_msg 18
++	goto _0366
++
++_03AA:
++	npc_msg 20
++	goto _0366
++
++scr_seq_D24R0102_003:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	compare VAR_UNOWN_REPORT_LEVEL, 7
++	goto_if_ge _03EB
++	check_seen_all_letter_unown VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 1
++	goto_if_eq _03E2
++	npc_msg 21
++	goto _0366
++
++_03E2:
++	npc_msg 22
++	goto _0366
++
++_03EB:
++	npc_msg 23
++	goto _0366
++
++scr_seq_D24R0102_004:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	npc_msg 24
++	goto _0366
++	.balign 4
++
++// the fossil reviver, copied from the Pewter Museum (scr_seq_T03R0101_001)
++scr_seq_D24R0102_006:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	script_overlay_cmd 2, 0
++	goto_if_set FLAG_MAPTEMP_001, _fossil_0530
++	compare VAR_UNK_407F, 0
++	goto_if_ne _fossil_0550
++	npc_msg 25
++	countfossils VAR_SPECIAL_x8000
++	compare VAR_SPECIAL_x8000, 0
++	goto_if_ne _fossil_019B
++	npc_msg 30
++	goto _fossil_05FC
++
++_fossil_019B:
++	compare VAR_SPECIAL_x8000, 1
++	goto_if_eq _fossil_04F7
++	setvar VAR_SPECIAL_x8001, 0
++	hasitem ITEM_OLD_AMBER, 1, VAR_SPECIAL_RESULT
++	addvar VAR_SPECIAL_x8001, VAR_SPECIAL_RESULT
++	hasitem ITEM_HELIX_FOSSIL, 1, VAR_SPECIAL_RESULT
++	addvar VAR_SPECIAL_x8001, VAR_SPECIAL_RESULT
++	hasitem ITEM_DOME_FOSSIL, 1, VAR_SPECIAL_RESULT
++	addvar VAR_SPECIAL_x8001, VAR_SPECIAL_RESULT
++	hasitem ITEM_ROOT_FOSSIL, 1, VAR_SPECIAL_RESULT
++	addvar VAR_SPECIAL_x8001, VAR_SPECIAL_RESULT
++	hasitem ITEM_CLAW_FOSSIL, 1, VAR_SPECIAL_RESULT
++	addvar VAR_SPECIAL_x8001, VAR_SPECIAL_RESULT
++	hasitem ITEM_ARMOR_FOSSIL, 1, VAR_SPECIAL_RESULT
++	addvar VAR_SPECIAL_x8001, VAR_SPECIAL_RESULT
++	hasitem ITEM_SKULL_FOSSIL, 1, VAR_SPECIAL_RESULT
++	addvar VAR_SPECIAL_x8001, VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_x8001, 1
++	goto_if_eq _fossil_04F7
++	setvar VAR_SPECIAL_x8004, 0
++	setvar VAR_SPECIAL_x8005, 0
++	setvar VAR_TEMP_x4000, 0
++	setvar VAR_TEMP_x4001, 0
++	setvar VAR_TEMP_x4002, 0
++	setvar VAR_TEMP_x4003, 0
++	setvar VAR_TEMP_x4004, 0
++	setvar VAR_TEMP_x4005, 0
++	setvar VAR_TEMP_x4006, 0
++	setvar VAR_TEMP_x4007, 0
++	touchscreen_menu_hide
++	menu_init_std_gmm 1, 1, 0, 1, VAR_SPECIAL_x8000
++_fossil_0263:
++	compare VAR_SPECIAL_x8005, 0
++	call_if_eq _fossil_0417
++	compare VAR_SPECIAL_x8005, 1
++	call_if_eq _fossil_0427
++	compare VAR_SPECIAL_x8005, 2
++	call_if_eq _fossil_0437
++	compare VAR_SPECIAL_x8005, 3
++	call_if_eq _fossil_0447
++	compare VAR_SPECIAL_x8005, 4
++	call_if_eq _fossil_0457
++	compare VAR_SPECIAL_x8005, 5
++	call_if_eq _fossil_0467
++	compare VAR_SPECIAL_x8005, 6
++	call_if_eq _fossil_0477
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _fossil_0340
++	compare VAR_SPECIAL_x8004, 0
++	call_if_eq _fossil_0487
++	compare VAR_SPECIAL_x8004, 1
++	call_if_eq _fossil_048F
++	compare VAR_SPECIAL_x8004, 2
++	call_if_eq _fossil_0497
++	compare VAR_SPECIAL_x8004, 3
++	call_if_eq _fossil_049F
++	compare VAR_SPECIAL_x8004, 4
++	call_if_eq _fossil_04A7
++	compare VAR_SPECIAL_x8004, 5
++	call_if_eq _fossil_04AF
++	compare VAR_SPECIAL_x8004, 6
++	call_if_eq _fossil_04B7
++	copyvar VAR_SPECIAL_x8006, VAR_SPECIAL_x8005
++	addvar VAR_SPECIAL_x8006, 159
++	menu_item_add VAR_SPECIAL_x8006, 255, VAR_SPECIAL_x8004
++	goto _fossil_034C
++
++_fossil_0340:
++	addvar VAR_SPECIAL_x8005, 1
++	goto _fossil_0263
++
++_fossil_034C:
++	addvar VAR_SPECIAL_x8004, 1
++	addvar VAR_SPECIAL_x8005, 1
++	compare VAR_SPECIAL_x8004, VAR_SPECIAL_x8001
++	goto_if_ne _fossil_0263
++	menu_item_add 45, 255, VAR_SPECIAL_x8004
++	menu_exec
++	touchscreen_menu_show
++	compare VAR_SPECIAL_x8000, 255
++	goto_if_eq _fossil_053F
++	compare VAR_SPECIAL_x8000, 0
++	call_if_eq _fossil_04BF
++	compare VAR_SPECIAL_x8000, 1
++	call_if_eq _fossil_04C7
++	compare VAR_SPECIAL_x8000, 2
++	call_if_eq _fossil_04CF
++	compare VAR_SPECIAL_x8000, 3
++	call_if_eq _fossil_04D7
++	compare VAR_SPECIAL_x8000, 4
++	call_if_eq _fossil_04DF
++	compare VAR_SPECIAL_x8000, 5
++	call_if_eq _fossil_04E7
++	compare VAR_SPECIAL_x8000, 6
++	call_if_eq _fossil_04EF
++	getfossilpokemon VAR_UNK_407F, VAR_SPECIAL_x8002
++	compare VAR_UNK_407F, 0
++	goto_if_eq _fossil_053F
++	buffer_item_name 0, VAR_SPECIAL_x8002
++	npc_msg 31
++	touchscreen_menu_hide
++	getmenuchoice VAR_SPECIAL_RESULT
++	touchscreen_menu_show
++	compare VAR_SPECIAL_RESULT, 1
++	goto_if_eq _fossil_053F
++	takeitem VAR_SPECIAL_x8002, 1, VAR_SPECIAL_RESULT
++	goto _fossil_0530
++
++_fossil_0417:
++	setvar VAR_TEMP_x4000, 103
++	hasitem VAR_TEMP_x4000, 1, VAR_SPECIAL_RESULT
++	return
++
++_fossil_0427:
++	setvar VAR_TEMP_x4000, 101
++	hasitem VAR_TEMP_x4000, 1, VAR_SPECIAL_RESULT
++	return
++
++_fossil_0437:
++	setvar VAR_TEMP_x4000, 102
++	hasitem VAR_TEMP_x4000, 1, VAR_SPECIAL_RESULT
++	return
++
++_fossil_0447:
++	setvar VAR_TEMP_x4000, 99
++	hasitem VAR_TEMP_x4000, 1, VAR_SPECIAL_RESULT
++	return
++
++_fossil_0457:
++	setvar VAR_TEMP_x4000, 100
++	hasitem VAR_TEMP_x4000, 1, VAR_SPECIAL_RESULT
++	return
++
++_fossil_0467:
++	setvar VAR_TEMP_x4000, 104
++	hasitem VAR_TEMP_x4000, 1, VAR_SPECIAL_RESULT
++	return
++
++_fossil_0477:
++	setvar VAR_TEMP_x4000, 105
++	hasitem VAR_TEMP_x4000, 1, VAR_SPECIAL_RESULT
++	return
++
++_fossil_0487:
++	copyvar VAR_TEMP_x4001, VAR_TEMP_x4000
++	return
++
++_fossil_048F:
++	copyvar VAR_TEMP_x4002, VAR_TEMP_x4000
++	return
++
++_fossil_0497:
++	copyvar VAR_TEMP_x4003, VAR_TEMP_x4000
++	return
++
++_fossil_049F:
++	copyvar VAR_TEMP_x4004, VAR_TEMP_x4000
++	return
++
++_fossil_04A7:
++	copyvar VAR_TEMP_x4005, VAR_TEMP_x4000
++	return
++
++_fossil_04AF:
++	copyvar VAR_TEMP_x4006, VAR_TEMP_x4000
++	return
++
++_fossil_04B7:
++	copyvar VAR_TEMP_x4007, VAR_TEMP_x4000
++	return
++
++_fossil_04BF:
++	copyvar VAR_SPECIAL_x8002, VAR_TEMP_x4001
++	return
++
++_fossil_04C7:
++	copyvar VAR_SPECIAL_x8002, VAR_TEMP_x4002
++	return
++
++_fossil_04CF:
++	copyvar VAR_SPECIAL_x8002, VAR_TEMP_x4003
++	return
++
++_fossil_04D7:
++	copyvar VAR_SPECIAL_x8002, VAR_TEMP_x4004
++	return
++
++_fossil_04DF:
++	copyvar VAR_SPECIAL_x8002, VAR_TEMP_x4005
++	return
++
++_fossil_04E7:
++	copyvar VAR_SPECIAL_x8002, VAR_TEMP_x4006
++	return
++
++_fossil_04EF:
++	copyvar VAR_SPECIAL_x8002, VAR_TEMP_x4007
++	return
++
++_fossil_04F7:
++	getfossilminimumamount VAR_SPECIAL_x8002, VAR_SPECIAL_x8004, 1
++	buffer_item_name 0, VAR_SPECIAL_x8002
++	npc_msg 31
++	touchscreen_menu_hide
++	getmenuchoice VAR_SPECIAL_RESULT
++	touchscreen_menu_show
++	compare VAR_SPECIAL_RESULT, 1
++	goto_if_eq _fossil_053F
++	getfossilpokemon VAR_UNK_407F, VAR_SPECIAL_x8002
++	takeitem VAR_SPECIAL_x8002, 1, VAR_SPECIAL_RESULT
++	goto _fossil_0530
++
++_fossil_0530:
++	setflag FLAG_MAPTEMP_001
++	npc_msg 27
++	goto _fossil_05FC
++
++	.byte 0x02, 0x00
++_fossil_053F:
++	setvar VAR_UNK_407F, 0
++	npc_msg 26
++	goto _fossil_05FC
++
++	.byte 0x02, 0x00
++_fossil_0550:
++	buffer_species_name 0, VAR_UNK_407F, 0, 0
++	npc_msg 28
++	get_party_count VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 6
++	goto_if_ne _fossil_0575
++	npc_msg 29
++	goto _fossil_05FC
++
++_fossil_0575:
++	buffer_species_name 1, VAR_UNK_407F, 0, 0
++	buffer_players_name 0
++	play_fanfare SEQ_ME_POKEGET
++	npc_msg 32
++	wait_fanfare
++	give_mon VAR_UNK_407F, 20, 0, 0, 0, VAR_SPECIAL_RESULT
++	scrcmd_420 116
++	setvar VAR_UNK_407F, 0
++	npc_msg 33
++	touchscreen_menu_hide
++	getmenuchoice VAR_SPECIAL_RESULT
++	touchscreen_menu_show
++	closemsg
++	compare VAR_SPECIAL_RESULT, 1
++	goto_if_eq _fossil_0600
++	get_party_count VAR_TEMP_x4000
++	subvar VAR_TEMP_x4000, 1
++	fade_screen 6, 1, 0, RGB_BLACK
++	wait_fade
++	nickname_input VAR_TEMP_x4000, VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 1
++	goto_if_eq _fossil_05E8
++	scrcmd_420 50
++_fossil_05E8:
++	fade_screen 6, 1, 1, RGB_BLACK
++	wait_fade
++	script_overlay_cmd 2, 1
++	releaseall
++	end
++
++_fossil_05FC:
++	wait_button
++	closemsg
++_fossil_0600:
++	script_overlay_cmd 2, 1
++	releaseall
++	end
+diff --git a/data/text/custom/073.txt b/data/text/custom/073.txt
+new file mode 100644
+index 000000000..ce9674f28
+--- /dev/null
++++ b/data/text/custom/073.txt
+@@ -0,0 +1,34 @@
++Bravo!\rA promising youth who is about to start\nthe journey of archaeology has\fjust arrived!\r
++What? Just a visitor?\nOh, I see...\fYou got me excited for nothing.
++My staff here at the Ruins Research\nCenter is excellent, and the research\fmakes good progress with absolutely\fno effort on my part.\rIf you have any questions, feel free to\ntalk to my staff!
++I managed to unravel quite a lot of the\nmystery of UNOWN with your help!\rThank you, thank you.\nThank you, again!
++The ruins are about 1,500 years old.\nThat’s all we know about them.\rBut it’s not known why they were\nbuilt...or by whom.
++Wow, did you catch an UNOWN?\nThat’s wonderful!\rCome to think of it... How come we’ve\nsuddenly started to see UNOWN?
++You have to hear this!\nThis is a big discovery!\rIt was you who solved the stone-panel\npuzzle that allowed UNOWN to appear.\rThose tablets are the key to waking\nup UNOWN!\rStill... Why would anyone make such\na key?\r
++You have to hear this!\nThis is a big discovery!\rIf you turn on the radio in the ruins,\nyou can receive mysterious radio waves!\rIt’s proof that UNOWN communicate\nwith each other using radio waves!\r
++You have to hear this!\nThis is a big discovery!\rThere are as many UNOWN as there are\nletters in the alphabet!\rThere have been 26 types confirmed.\nWhy don’t you collect them all?\r
++How do you like the UNOWN Report\nI gave you?\rUNOWN are recorded as you catch them.\nIt is quite useful!
++You have to hear this!\nThis is a big discovery!\rWe have figured out that UNOWN are in a\ncertain order!\fLet me see your report.\r
++There!\nI put the UNOWN in the correct order!\fWe may be able to tell more about them.\r
++What?\nYou found a room with UNOWN symbols?\fThat is a big discovery!\rWe will study them right away.\r
++You have to hear this!\nThis is a big discovery!\rWe have found two new UNOWN symbols!\rIt means that...\nThere must be two more kinds of UNOWN\fsomewhere...\r
++You have to hear this!\nWe are learning more and more about the\fsymbols on the floor!\r...It seems that UNOWN were living at\nthe ruins with a human clan.\rIt is thought that this clan made the\nPokémon statues underground.\rThe UNOWN were easily scared and\nwouldn’t go outside.\rWhen more and more people started to\nappear around the ruins, the clan that\fwished to live in harmony with the UNOWN\feventually left...\rThanks to our research and your\nhelp, we have unraveled so much about\ftheir mystery!\rWe have so many things we don’t know\nleft, of course.\rArchaeology never ends.\r
++I will let you know if I find out\nanything else.
++{STRVAR_1 3, 0, 0} opened the UNOWN Report\nand made notes!
++Thanks to our research and your\nhelp, we have unraveled so much about\ftheir mystery!\rWe have so many things we don’t know\nleft, of course.\rArchaeology never ends.
++There are odd patterns drawn on the\nwalls of the ruins.\rThey must be the keys for unraveling\nthe mystery of the ruins.
++The strange Pokémon you saw in\nthe ruins?\rThey appear to be very much like the\ndrawings on the walls there.\rHmm...\rThat must mean there are many\ndifferent kinds of them...
++Huh?\nI seem to be doing nothing?\rCome on!\nI may not look it, but I’m the one who\fdeveloped the UNOWN Report!
++Ruins of Alph\nExploration Year 10
++Mystery Pokémon\nName: UNOWN\fA total of 26 kinds found.
++Ruins of Alph Research Report\rI dedicate this report to the\nResearch Center’s founder,\fProfessor Silktree...
++There are many academic books.\r“Mysteries of the Ancients”\n“Code-Breaking Guidebook”\f“Weathering Ruins”
++Did you know that you can\nextract Pokémon from Fossils?\rIf you ever need to, let me take care\nof it for you!\r
++Please come by again if you ever want to\nextract Pokémon.
++I’ll extract it for you.\rCome back after a while!
++Hi, there!\rI have extracted a Pokémon from\nyour Fossil!\rIt is called {STRVAR_1 0, 0, 0}.\nTake good care of it!\r
++Oops!\nYour party seems full.\rWhy don’t you go to the PC\nto make room for it?
++Hey!\nYou don’t have any Fossils.\rI heard that sometimes you find Fossils\nwhen you smash rocks at the\fRuins of Alph and other places.
++Do you want to extract a Pokémon\nfrom the {STRVAR_1 8, 0, 0}? {YESNO 0}
++{STRVAR_1 3, 0, 0} received\nthe {STRVAR_1 0, 1, 0}!
++Would you like to give a nickname\nto the {STRVAR_1 0, 1, 0} you received? {YESNO 0}
+diff --git a/include/config.h b/include/config.h
+index e8648b7dd..6a3c2a895 100644
+--- a/include/config.h
++++ b/include/config.h
+@@ -282,7 +282,8 @@
+ // Dumped scripts are not built into the rom unless the matching define below is uncommented, so that a rom.nds edited with
+ // DSPRE, PokeText, or any other external tool keeps its own version of everything hg-engine does not itself change.
+ // hg-engine's own text archives and its common and trainer scripts are always built.
+-// #define BUILD_DUMPED_EVENTDATA
+-// #define BUILD_DUMPED_SCR_SEQ
++// the hack builds the maps it changes from dumped files (see tools/hack/fossil_reviver.py)
++#define BUILD_DUMPED_EVENTDATA
++#define BUILD_DUMPED_SCR_SEQ
+ 
+ #endif
+diff --git a/src/field/mart.c b/src/field/mart.c
+index 0b483b4fa..7e1d68f9c 100644
+--- a/src/field/mart.c
++++ b/src/field/mart.c
+@@ -210,6 +210,12 @@ const struct BadgeMartItems sBadgeLockedMartItems[] = {
+     { ITEM_RAZOR_FANG, 7 },
+ };
+ 
++// items that the special marts only sell once the player has one particular badge
++#define MART_BADGE_STORM 4 // Chuck's, in PlayerProfile_TestBadgeFlag's numbering
++const struct BadgeMartItems sSpecificBadgeLockedMartItems[] = {
++    { ITEM_SHINY_STONE, MART_BADGE_STORM },
++};
++
+ #define SPECIAL_MART_STOCK_TABLE ((const u16 **)0x0210FA3C)
+ #define SPECIAL_MART_MAX_ITEMS 63
+ 
+@@ -236,6 +242,12 @@ BOOL ScrCmd_SpecialMartBuy(SCRIPTCONTEXT *ctx)
+                 break;
+             }
+         }
++        for (j = 0; j < NELEMS(sSpecificBadgeLockedMartItems) && !locked; j++) {
++            if (stock[i] == sSpecificBadgeLockedMartItems[j].item_id
++                && !PlayerProfile_TestBadgeFlag(Sav2_PlayerData_GetProfileAddr(ctx->fsys->savedata), sSpecificBadgeLockedMartItems[j].required_badges)) {
++                locked = TRUE;
++            }
++        }
+         if (!locked) {
+             items[index] = stock[i];
+             index++;
+diff --git a/src/field/rock_smash_item.c b/src/field/rock_smash_item.c
+index b0edc9b18..0e64e5dcc 100644
+--- a/src/field/rock_smash_item.c
++++ b/src/field/rock_smash_item.c
+@@ -30,7 +30,7 @@ const u16 RockSmashItemTable[NUM_ROCK_SMASH_TABLES][MAX_ROCK_SMASH_ITEMS_PER_TAB
+         ITEM_RED_SHARD,
+         ITEM_YELLOW_SHARD,
+         ITEM_HELIX_FOSSIL,
+-        ITEM_MAX_ETHER,
++        ITEM_DOME_FOSSIL, // the hack: was a Max Ether
+         ITEM_BLUE_SHARD,
+         ITEM_GREEN_SHARD,
+         ITEM_OLD_AMBER,
+@@ -41,10 +41,10 @@ const u16 RockSmashItemTable[NUM_ROCK_SMASH_TABLES][MAX_ROCK_SMASH_ITEMS_PER_TAB
+         ITEM_MAX_ETHER,
+         ITEM_PEARL,
+         ITEM_BIG_PEARL,
+-        ITEM_RED_SHARD,
+-        ITEM_YELLOW_SHARD,
+-        ITEM_CLAW_FOSSIL,
++        ITEM_SKULL_FOSSIL, // the hack: was a Red Shard
++        ITEM_ARMOR_FOSSIL, // the hack: was a Yellow Shard
+         ITEM_CLAW_FOSSIL,
++        ITEM_ROOT_FOSSIL, // the hack: was a second Claw Fossil
+         ITEM_RARE_BONE,
+     },
+ };
+diff --git a/tools/hack/encounters.py b/tools/hack/encounters.py
+new file mode 100644
+index 000000000..342bc0531
+--- /dev/null
++++ b/tools/hack/encounters.py
+@@ -0,0 +1,258 @@
++#!/usr/bin/env python3
++"""Wild encounter pass: every non-legendary family is catchable in Johto.
++
++Adds the families that HeartGold only has in Kanto, on the post-game radio,
++in the Safari Zone or not at all (SoulSilver exclusives, most Hoenn and
++Sinnoh families, the other starters). They are placed by strength: weak
++ones early, the strongest (Larvitar, Bagon, Beldum, Gible, Riolu) only with
++seven or eight badges. The Safari Zone itself is not touched.
++
++A placement overwrites one slot of an existing table. Only slots whose
++species also fills another slot of the same table are used, so nothing that
++was already there disappears; the slot's level is kept. Land placements
++name how common they should be:
++    U  uncommon (a 10% slot)    R  rare (5%)
++    V  very rare (4%)           X  1%
++and may be limited to the morning, day or night table ("m", "d", "n").
++Water placements name the list (surf, old, good) and work the same way,
++starting from the least likely slot.
++
++Afterwards the script checks that every family has a Johto source.
++
++Run once from the hg-engine root, after wild_levels.py:
++    python3 tools/hack/encounters.py
++"""
++import re
++import sys
++
++ENCOUNTERS = "data/Encounters.c"
++
++LAND_SLOT_ODDS = [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1]
++CLASS_ODDS = {"U": 10, "R": 5, "V": 4, "X": 1}
++TIMES = {"m": "speciesMorning", "d": "speciesDay", "n": "speciesNight"}
++WATER_LISTS = {"surf": "surfSlots", "old": "oldRodSlots", "good": "goodRodSlots"}
++
++# table -> [(species, class, times)]; times "" means all three
++LAND = {
++    # before the second badge
++    "ROUTE_29": [("ZIGZAGOON", "U", ""), ("BIDOOF", "U", "")],
++    "ROUTE_30": [("LEDYBA", "U", "m"), ("WEEDLE", "U", ""), ("KRICKETOT", "U", "n")],
++    "ROUTE_31": [("LEDYBA", "U", "m"), ("WEEDLE", "U", ""), ("KRICKETOT", "U", "n"), ("PACHIRISU", "R", "")],
++    "ROUTE_46": [("SPINDA", "U", "")],
++    "DARK_CAVE_ROUTE_31_ENTRANCE": [("SABLEYE", "R", "")],
++    "ROUTE_32": [("POOCHYENA", "U", ""), ("WINGULL", "U", ""), ("EKANS", "U", ""), ("SURSKIT", "R", "")],
++    "UNION_CAVE_1F": [("MAWILE", "R", "")],
++    "UNION_CAVE_B1F": [("CUBONE", "R", "")],
++    "ROUTE_33": [("NINCADA", "U", ""), ("MEDITITE", "R", "")],
++    "ILEX_FOREST": [("KECLEON", "R", ""), ("PIKACHU", "R", ""), ("BUDEW", "U", ""),
++                    ("ILLUMISE", "V", "n"), ("VOLBEAT", "V", "n")],
++    # badges two to four
++    "ROUTE_34": [("SKITTY", "U", ""), ("GLAMEOW", "U", ""), ("SHELLOS", "R", ""), ("JIGGLYPUFF", "R", ""),
++                 ("RALTS", "V", "")],
++    "ROUTE_35": [("STUNKY", "U", ""), ("GULPIN", "U", ""), ("CHATOT", "R", ""), ("LOTAD", "R", "")],
++    "NATIONAL_PARK": [("BUNEARY", "U", ""), ("CARNIVINE", "R", "")],
++    "ROUTE_36": [("VULPIX", "U", ""), ("SHINX", "U", ""), ("BONSLY", "R", ""), ("PLUSLE", "R", "")],
++    "ROUTE_37": [("VULPIX", "U", ""), ("ELECTRIKE", "U", ""), ("MINUN", "R", ""), ("HOUNDOUR", "R", "n")],
++    "BURNED_TOWER_1F": [("SHUPPET", "U", ""), ("DRIFLOON", "R", ""), ("MURKROW", "R", "n")],
++    "BURNED_TOWER_B1F": [("SLUGMA", "U", ""), ("DUSKULL", "R", ""), ("TORKOAL", "R", ""), ("ROTOM", "X", "")],
++    # badges four to six
++    "ROUTE_38": [("MEOWTH", "U", ""), ("SPOINK", "R", ""), ("CHINGLING", "R", ""),
++                 ("CHIKORITA", "V", ""), ("CYNDAQUIL", "V", "")],
++    "ROUTE_39": [("MEOWTH", "U", ""), ("ZANGOOSE", "R", ""), ("SEVIPER", "R", ""),
++                 ("TOTODILE", "V", ""), ("KANGASKHAN", "V", "")],
++    "RUINS_OF_ALPH_OUTSIDE": [("BALTOY", "U", ""), ("BRONZOR", "U", ""), ("LUNATONE", "R", ""), ("SOLROCK", "R", "")],
++    "CLIFF_CAVE": [("NOSEPASS", "R", "")],
++    "ROUTE_47": [("SKORUPI", "R", ""), ("TRAPINCH", "V", "")],
++    "ROUTE_48": [("TROPIUS", "R", ""), ("CACNEA", "R", "")],
++    # badges six and seven
++    "ROUTE_42": [("NUMEL", "U", ""), ("BULBASAUR", "V", "")],
++    "MT_MORTAR_CENTRAL_ROOM": [("MAKUHITA", "U", ""), ("WHISMUR", "U", ""), ("CLEFAIRY", "R", "")],
++    "MT_MORTAR_B1F": [("CROAGUNK", "R", ""), ("GRIMER", "R", ""), ("ARON", "R", "")],
++    "ROUTE_43": [("CASTFORM", "R", ""), ("MIME_JR", "R", ""), ("CHARMANDER", "V", ""), ("PORYGON", "X", "")],
++    # badges seven and eight
++    "ROUTE_44": [("ELEKID", "R", ""), ("SQUIRTLE", "V", ""), ("MUNCHLAX", "V", ""), ("CHANSEY", "X", "")],
++    "ICE_PATH_1F": [("DELIBIRD", "U", ""), ("SNORUNT", "U", "")],
++    "ICE_PATH_B1F": [("SNOVER", "U", ""), ("SNEASEL", "R", "")],
++    "ICE_PATH_B2F": [("SNORUNT", "U", ""), ("SPHEAL", "R", "")],
++    "ICE_PATH_B3F": [("SNOVER", "U", ""), ("SNEASEL", "R", ""), ("DELIBIRD", "R", "")],
++    "ROUTE_45": [("SKARMORY", "R", ""), ("ABSOL", "R", ""), ("TREECKO", "V", ""), ("TORCHIC", "V", ""),
++                 ("HIPPOPOTAS", "U", ""), ("SWABLU", "U", ""), ("BAGON", "X", "")],
++    "DARK_CAVE_ROUTE_45_ENTRANCE": [("TEDDIURSA", "U", ""), ("GIBLE", "X", "")],
++    "MT_MORTAR_ROOM_ABOVE_WATERFALL": [("RIOLU", "V", ""), ("LARVITAR", "V", "")],
++    "TOHJO_FALLS": [("MUDKIP", "V", "")],
++    # before the Elite Four
++    "ROUTE_26": [("TURTWIG", "V", ""), ("CHIMCHAR", "V", "")],
++    "ROUTE_27": [("PIPLUP", "V", "")],
++    "VICTORY_ROAD_1F": [("BELDUM", "V", "")],
++    "VICTORY_ROAD_2F": [("BELDUM", "V", "")],
++}
++for floor in range(2, 11):
++    LAND["BELL_TOWER_%dF" % floor] = [("SPIRITOMB", "X", "")]
++
++# table -> [(species, list)]
++WATER = {
++    "UNION_CAVE_1F": [("BARBOACH", "old")],
++    "ROUTE_34": [("CORPHISH", "old")],
++    "CIANWOOD_CITY": [("LUVDISC", "good")],
++    "ROUTE_40": [("WAILMER", "surf"), ("FINNEON", "good")],
++    "ROUTE_41": [("CARVANHA", "surf"), ("CLAMPERL", "good")],
++    "WHIRL_ISLANDS_1F": [("RELICANTH", "good")],
++    "ROUTE_42": [("BUIZEL", "surf")],
++    "LAKE_OF_RAGE": [("FEEBAS", "good")],
++}
++
++# families that already have a Johto source this script cannot see
++OTHER_SOURCES = {
++    "EEVEE": "gift in Goldenrod City", "TOGEPI": "egg from Professor Elm's aide", "TYROGUE": "gift in Mt. Mortar",
++    "SCYTHER": "Bug-Catching Contest", "PINSIR": "Bug-Catching Contest", "LAPRAS": "Union Cave on Fridays",
++    "VOLTORB": "Team Rocket HQ", "SUDOWOODO": "Route 36", "OMANYTE": "fossil", "KABUTO": "fossil",
++    "AERODACTYL": "fossil", "LILEEP": "fossil", "ANORITH": "fossil", "CRANIDOS": "fossil", "SHIELDON": "fossil",
++    "WEEDLE": "Bug-Catching Contest",
++}
++LEGENDARY = set("""ARTICUNO ZAPDOS MOLTRES MEWTWO MEW RAIKOU ENTEI SUICUNE LUGIA HO_OH CELEBI REGIROCK REGICE
++REGISTEEL LATIAS LATIOS KYOGRE GROUDON RAYQUAZA JIRACHI DEOXYS UXIE MESPRIT AZELF DIALGA PALKIA HEATRAN
++REGIGIGAS GIRATINA CRESSELIA PHIONE MANAPHY DARKRAI SHAYMIN ARCEUS UNOWN""".split())
++LATER_EVOLUTIONS = ["KLEAVOR", "URSALUNA", "ANNIHILAPE", "WYRDEER", "FARIGIRAF", "DUDUNSPARCE", "SYLVEON"]
++KANTO = ["ROUTE_%d" % i for i in list(range(1, 26)) + [28]] + [
++    "PALLET", "VIRIDIAN", "PEWTER", "CERULEAN", "LAVENDER", "VERMILION", "CELADON", "FUCHSIA", "CINNABAR",
++    "SAFFRON", "DIGLETTS", "MT_MOON", "ROCK_TUNNEL", "SEAFOAM", "POWER_PLANT", "MT_SILVER",
++]
++
++
++def in_kanto(table):
++    return any(re.search(r"(^|_)%s($|_)" % name, table) for name in KANTO)
++
++
++def die(message):
++    sys.exit("encounters.py: " + message)
++
++
++def pick_slot(species_list, odds_wanted, odds_of):
++    """Index of a slot to overwrite: its species must fill another slot too."""
++    counts = {}
++    for s in species_list:
++        counts[s] = counts.get(s, 0) + 1
++    free = [i for i, s in enumerate(species_list) if s == "SPECIES_NONE" or counts[s] > 1]
++    if not free:
++        return None
++    # the slot closest to the wanted odds, preferring the less likely one on a tie
++    return min(free, key=lambda i: (abs(odds_of[i] - odds_wanted), odds_of[i], -i))
++
++
++def place_land(body, table, placements):
++    for species, cls, times in placements:
++        for t in (times or "mdn"):
++            field = TIMES[t]
++            m = re.search(r"(\.%s = \{\n)(.*?)(\n\s*\},)" % field, body, re.S)
++            slots = re.findall(r"SPECIES_\w+", m.group(2))
++            if len(slots) != 12:
++                die("%s %s does not have 12 slots" % (table, field))
++            if "SPECIES_" + species in slots:
++                continue
++            i = pick_slot(slots, CLASS_ODDS[cls], LAND_SLOT_ODDS)
++            if i is None:
++                die("no free slot for %s in %s (%s)" % (species, table, field))
++            slots[i] = "SPECIES_" + species
++            indent = re.match(r"\s*", m.group(2)).group(0)
++            body = body[:m.start(2)] + ",\n".join(indent + s for s in slots) + "," + body[m.end(2):]
++    return body
++
++
++def place_water(body, table, placements):
++    odds = {"surf": [60, 30, 5, 4, 1], "old": [40, 30, 15, 10, 5], "good": [40, 30, 15, 10, 5]}
++    for species, which in placements:
++        m = re.search(r"(\.%s = \{\n)(.*?)(\n        \},)" % WATER_LISTS[which], body, re.S)
++        rows = re.findall(r"\{ (\d+), (\d+), (SPECIES_\w+) \}", m.group(2))
++        if len(rows) != 5:
++            die("%s %s does not have 5 slots" % (table, which))
++        if all(r[2] == "SPECIES_NONE" for r in rows):
++            die("%s has no %s encounters to add %s to" % (table, which, species))
++        i = pick_slot([r[2] for r in rows], 5, odds[which])
++        if i is None:
++            die("no free %s slot for %s in %s" % (which, species, table))
++        lo, hi, old = rows[i]
++        if old == "SPECIES_NONE":  # an empty slot has no level; borrow a neighbour's
++            lo, hi = next((r[0], r[1]) for r in rows if r[2] != "SPECIES_NONE")
++        rows[i] = (lo, hi, "SPECIES_" + species)
++        indent = re.match(r"\s*", m.group(2)).group(0)
++        body = body[:m.start(2)] + "\n".join("%s{ %s, %s, %s }," % ((indent,) + r) for r in rows) + body[m.end(2):]
++    return body
++
++
++def families():
++    """root species -> members, for the hack's roster."""
++    numbers = {}
++    for m in re.finditer(r"#define SPECIES_(\w+)\s+\(?(\d+)\)?\s*$", open("include/constants/species.h").read(), re.M):
++        numbers.setdefault(m.group(1), int(m.group(2)))
++    roster = {n for n, v in numbers.items() if 1 <= v <= 493 and "EGG" not in n}
++    first = {}
++    for n in roster:
++        first.setdefault(numbers[n], n)
++    roster = set(first.values()) | set(LATER_EVOLUTIONS)
++    parent = {}
++    text = open("data/Evolutions.c").read()
++    for m in re.finditer(r"^    \[SPECIES_(\w+)\] = \{(.*?)^    \},", text, re.S | re.M):
++        if m.group(1) not in roster:
++            continue
++        for method, target in re.findall(r"\{ (EVO_\w+), [^,]+, SPECIES_(\w+) \}", m.group(2)):
++            if method != "EVO_NONE" and target in roster and target != m.group(1):
++                parent.setdefault(target, m.group(1))
++    fams = {}
++    for n in roster:
++        root = n
++        while root in parent:
++            root = parent[root]
++        fams.setdefault(root, set()).add(n)
++    return fams
++
++
++def johto_wild(text):
++    found = set()
++    for table, body in re.findall(r"^    \[ENCDATA_\w+?_([A-Z0-9_]+)\] = \{\n(.*?)^    \},\n", text, re.S | re.M):
++        if in_kanto(table):
++            continue
++        rate = lambda k: int(re.search(r"\.rate%s = (\d+)" % k, body).group(1))
++        if rate("Walk"):
++            for field in TIMES.values():
++                found.update(re.findall(r"SPECIES_(\w+)", re.search(r"\.%s = \{(.*?)\}" % field, body, re.S).group(1)))
++        for field, key in (("surfSlots", "Surf"), ("oldRodSlots", "OldRod"), ("goodRodSlots", "GoodRod"),
++                           ("rockSmashSlots", "RockSmash")):
++            if rate(key):
++                found.update(re.findall(r"SPECIES_(\w+)", re.search(r"\.%s = \{(.*?)\n        \}," % field, body, re.S).group(1)))
++    found.update(re.findall(r"SPECIES_(\w+)", open("data/Headbutt.c").read()))
++    return found
++
++
++def main():
++    text = open(ENCOUNTERS).read()
++    seen = set()
++
++    def rewrite(m):
++        table, body = m.group(1), m.group(0)
++        if table in LAND:
++            if not int(re.search(r"\.rateWalk = (\d+)", body).group(1)):
++                die("%s has no land encounters" % table)
++            body = place_land(body, table, LAND[table])
++        if table in WATER:
++            body = place_water(body, table, WATER[table])
++        seen.add(table)
++        return body
++
++    text = re.sub(r"^    \[ENCDATA_\w+?_([A-Z0-9_]+)\] = \{\n.*?^    \},\n", rewrite, text, flags=re.S | re.M)
++    missing = (set(LAND) | set(WATER)) - seen
++    if missing:
++        die("unknown tables: " + ", ".join(sorted(missing)))
++    open(ENCOUNTERS, "w").write(text)
++
++    wild = johto_wild(text)
++    unplaced = []
++    for root, members in sorted(families().items()):
++        if root in LEGENDARY or members & wild or members & set(OTHER_SOURCES):
++            continue
++        unplaced.append(root)
++    print("placed %d land and %d water entries" % (sum(len(v) for v in LAND.values()), sum(len(v) for v in WATER.values())))
++    print("families with no Johto source: " + (", ".join(unplaced) or "none"))
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/tools/hack/fossil_reviver.py b/tools/hack/fossil_reviver.py
+new file mode 100644
+index 000000000..48ee3f6f5
+--- /dev/null
++++ b/tools/hack/fossil_reviver.py
+@@ -0,0 +1,96 @@
++#!/usr/bin/env python3
++"""Add a fossil reviver to the Ruins of Alph Research Center.
++
++HeartGold only revives fossils at the Pewter Museum, after the Elite Four.
++This copies the museum scientist's script into the Research Center, adds a
++scientist there to run it and adds his lines to the Research Center's text.
++
++It needs the vanilla dump of the two maps, which hg-engine makes with
++    make dump_scripts DUMP_ROM=rom.nds
++(run that in a scratch copy of hg-engine; it rewrites base/). Pass the
++dumped tree as the argument:
++    python3 tools/hack/fossil_reviver.py /path/to/dumped/hg-engine
++
++The files it writes into data/scr_seq, data/eventdata/zone_event and
++data/text/custom are the only dumped files in the hack; hg-engine builds
++just those when BUILD_DUMPED_SCR_SEQ and BUILD_DUMPED_EVENTDATA are on.
++"""
++import json
++import os
++import re
++import sys
++
++MUSEUM_SCRIPT = "data/scr_seq/scr_seq_0755_T03R0101.s"
++MUSEUM_TEXT = "data/text/custom/464.txt"
++CENTER_SCRIPT = "data/scr_seq/scr_seq_0038_D24R0102.s"
++CENTER_INCLUDE = "data/scr_seq/include/event_D24R0102.inc"
++CENTER_EVENTS = "data/eventdata/zone_event/292_D24R0102.json"
++CENTER_TEXT = "data/text/custom/073.txt"
++
++MUSEUM_MESSAGES = range(1, 10)   # the reviver's lines in the museum's archive
++NEW_SCRIPT = 6                   # the Research Center has scripts 0-5
++NEW_OBJECT = 3                   # and objects 0-2
++# in front of the right-hand machine on the back wall: both tiles in front of it can be stood on in the
++# original (they are where the player reads it from), and it can still be read from the left one
++POSITION = (11, 4)
++
++
++def main():
++    dump = sys.argv[1]
++    # newline="" keeps each file's own line endings (the text archives use CRLF)
++    read = lambda path: open(os.path.join(dump, path), encoding="utf-8", newline="").read()
++
++    center_text = read(CENTER_TEXT).split("\r\n")
++    if center_text[-1] == "":
++        center_text.pop()
++    museum_text = read(MUSEUM_TEXT).split("\r\n")
++    offset = len(center_text) - MUSEUM_MESSAGES[0]
++    center_text += [museum_text[i] for i in MUSEUM_MESSAGES]
++
++    museum = read(MUSEUM_SCRIPT)
++    block = re.search(r"^scr_seq_T03R0101_001:\n.*?(?=^scr_seq_T03R0101_\d+:)", museum, re.S | re.M).group(0)
++    block = block.replace("scr_seq_T03R0101_001:", "scr_seq_D24R0102_%03d:" % NEW_SCRIPT)
++    block = re.sub(r"\b_([0-9A-F]{4})\b", r"_fossil_\1", block)
++
++    def message(m):
++        number = int(m.group(1))
++        if number not in MUSEUM_MESSAGES:
++            sys.exit("unexpected message %d in the museum script" % number)
++        return "npc_msg %d" % (number + offset)
++    block = re.sub(r"npc_msg (\d+)", message, block)
++
++    script = read(CENTER_SCRIPT)
++    script = script.replace("scrdef_end", "scrdef scr_seq_D24R0102_%03d\nscrdef_end" % NEW_SCRIPT, 1)
++    script = script.rstrip("\n") + "\n\n// the fossil reviver, copied from the Pewter Museum (scr_seq_T03R0101_001)\n" + block.rstrip("\n") + "\n"
++
++    include = read(CENTER_INCLUDE)
++    include = include.replace("\n.equ obj_D24R0102_suit",
++                              "\n.equ _EV_scr_seq_D24R0102_%03d, %d\n\n.equ obj_D24R0102_suit" % (NEW_SCRIPT, NEW_SCRIPT), 1)
++    include = include.replace("\n.endif", ".equ obj_D24R0102_fossil, %d\n\n.endif" % NEW_OBJECT, 1)
++
++    events = json.loads(read(CENTER_EVENTS))
++    if len(events["object_events"]) != NEW_OBJECT:
++        sys.exit("unexpected number of objects in the Research Center")
++    events["object_events"].append({
++        "id": "obj_D24R0102_fossil",
++        "graphics_id": "SPRITE_GSASSISTANTM",
++        "movement_type": 15,   # stands still facing down, like the man in the suit
++        "trainer_type": 0,
++        "hidden_flag": "FLAG_NOTHING",
++        "script": "_EV_scr_seq_D24R0102_%03d + 1" % NEW_SCRIPT,
++        "initial_dir": 1,
++        "param0": 0, "param1": 0, "param2": 0,
++        "movement_range_x": 0, "movement_range_z": 0,
++        "x": POSITION[0], "z": POSITION[1], "y": 0,
++    })
++
++    for path, content in ((CENTER_SCRIPT, script), (CENTER_INCLUDE, include),
++                          (CENTER_EVENTS, json.dumps(events, indent=2) + "\n"),
++                          (CENTER_TEXT, "\r\n".join(center_text) + "\r\n")):
++        os.makedirs(os.path.dirname(path), exist_ok=True)
++        open(path, "w", encoding="utf-8", newline="").write(content)
++        print("wrote", path)
++
++
++if __name__ == "__main__":
++    main()
+-- 
+2.43.0
+
