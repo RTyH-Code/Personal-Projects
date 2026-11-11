@@ -1,13 +1,21 @@
-# HeartGold battle playtester
+# HeartGold playtesters
 
-An unattended battle tester for [HeartGold QoL + Hard](../README.md). It
-fights trainers in the real game, in an emulator, and reports which battles
-were won, lost or never finished.
+Two unattended testers for [HeartGold QoL + Hard](../README.md). Both play
+the real game in an emulator on a test build of the hack.
 
-It is a first stage. It does not walk the overworld, so it can't find
-broken maps, scripts or warps; it tests what a battle needs: that the
-trainer's team loads, that the fight runs to the end, and roughly how hard
-it is.
+- `battle_test.py` fights trainers and reports which battles were won, lost
+  or never finished.
+- `walk_test.py` goes to every map, to every legendary the hack adds and
+  into the grass of every area, and uses the hack's new features. See
+  [The overworld tester](#the-overworld-tester).
+
+Neither plays the story from start to finish, so neither proves that the
+game can be completed.
+
+# The battle tester
+
+It tests what a battle needs: that the trainer's team loads, that the fight
+runs to the end, and roughly how hard it is.
 
 ## How it works
 
@@ -86,3 +94,53 @@ level, five levels above and ten levels above (76 battles each).
   can go either way between runs.
 - Double battles and tag battles are skipped.
 - A battle takes about a minute and a half of real time.
+
+# The overworld tester
+
+`walk_test.py` starts every check from the same save state in the player's
+bedroom. The harness gives a level 100 party, badges, money and items and
+warps the player to a chosen tile of a chosen map. The tester then presses
+buttons and reads the player's position, the Pokémon the game creates and
+the items it adds to the bag straight from the emulator's memory.
+
+```bash
+SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 playtest/walk_test.py /path/to/test/hg-engine/test.nds /path/to/test/hg-engine /path/to/dumped/hg-engine out --jobs 4
+```
+
+It runs four tests; name one or more after `out` to run only those.
+
+| Test | What it does |
+|---|---|
+| `sweep` | Warps to every map and checks that it loads and that the player can take a step. "scene" means a trainer or a story scene started first, which also shows the map works. |
+| `legendaries` | Goes to each legendary the hack adds, at its real place. With its story gate closed it must not be there. With the gate open, talking to it from every side a player can stand on must start a battle with the right Pokémon at the right level. |
+| `wild` | On every map with wild Pokémon on land, walks in the grass or cave until three appear, and checks each one's species and level against the hack's encounter tables. |
+| `features` | Has the Ruins of Alph scientist revive an Old Amber, buys every item in the evolution item shop with no badges and with all sixteen, and uses Surf from the bag. |
+
+Results go to `out/walk_results.json`; anything that isn't "ok" gets a
+screenshot in `out`. `--maps CODE,CODE` limits a run to some maps.
+
+## Results so far
+
+| Test | Result |
+|---|---|
+| `sweep` | 540 maps: 462 load and can be walked on, 49 start a trainer battle or story scene first, 24 are not maps a player walks on (no events, or nowhere to stand), and 5 load but the player could not step: the four Elite Four rooms and one S.S. Aqua map. Those five are unchanged from the original game and were not looked into further. |
+| `legendaries` | All 21 are absent with their gate closed and start the right battle with it open, from every side. |
+| `wild` | 111 maps: on 103, all three Pokémon met were in the table at the right level. On 4 a trainer stopped the walk (Routes 15 and 27, National Park, Mt. Moon). The other 4 are the Ruins of Alph hall and its copies, where nothing appeared; the Unown there depend on the puzzles. |
+| `features` | The reviver gave an Aerodactyl; the shop sold exactly the expected 24 items with no badges and all 33 with sixteen; Surf from the bag worked. |
+
+The first run found one real problem. Cresselia stood just inside the south
+gap of the Mt. Moon Square fence, where it could not be talked to from the
+gap and blocked that way in. It was moved one tile up, to the edge of the
+pond.
+
+## Limits
+
+- The save is a fresh one apart from what the harness gives, so story
+  scenes and trainers behave as on a first visit. Maps where one of them
+  stops the player are reported as "scene" or "interrupted", not as
+  broken.
+- Wild Pokémon are only sampled on land. Surfing, fishing, Rock Smash and
+  Headbutt encounters are not walked into.
+- It does not talk to people, read signs or pick up items.
+- The legendary gates are opened by setting their flags, not by beating
+  the Champion or Red.

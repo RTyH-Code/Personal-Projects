@@ -12,6 +12,15 @@ script variables that battle_test.py writes through the emulator:
     0x400C         the trainer to fight
     0x400F         result, written after the battle: 1 lost, 2 won
 
+With 0x400E set to 1 it instead gives the party, badges, money and up to
+four items, and warps the player, for walk_test.py:
+
+    0x400D         how many badges to give (0 to 16, in the game's order)
+    0x4038-0x403B  items to give, five of each (0 = none)
+    0x403C         the map to warp to
+    0x403D-0x403E  the tile, x and z
+    0x403F         the direction to face
+
     python3 playtest/make_harness.py /path/to/dumped/hg-engine /path/to/test/hg-engine
 
 The first tree is a vanilla `make dump_scripts` dump (see
@@ -28,13 +37,34 @@ INCLUDE = "data/scr_seq/include/event_T20R0202.inc"
 
 HARNESS = """scr_seq_T20R0202_000:
 	lockall
-%s	trainer_battle 0x400C, 0, 0, 0
+	call _harness_party
+	compare 0x400E, 1
+	goto_if_eq _harness_walk
+	trainer_battle 0x400C, 0, 0, 0
 	check_battle_won VAR_SPECIAL_RESULT
 	copyvar 0x400F, VAR_SPECIAL_RESULT
 	addvar 0x400F, 1
 	releaseall
 	end
 
+_harness_walk:
+%s	addmoney 500000
+%s	fade_screen 6, 1, 0, RGB_BLACK
+	wait_fade
+	warp 0x403C, 0, 0x403D, 0x403E, 0x403F
+	fade_screen 6, 1, 1, RGB_BLACK
+	wait_fade
+	releaseall
+	end
+
+_harness_party:
+%s	return
+
+"""
+ITEM = """	compare 0x40%02X, 0
+	goto_if_eq _harness_noitem_%d
+	giveitem 0x40%02X, 5, VAR_SPECIAL_RESULT
+_harness_noitem_%d:
 """
 GIVE = """	compare 0x40%02X, 0
 	goto_if_eq _harness_skip_%d
@@ -52,7 +82,11 @@ def main():
     text = open(os.path.join(dump, SCRIPT), encoding="utf-8", newline="").read()
     gives = "".join(GIVE % (i, i, i, 6 + i, 0x10 + i, i, 0x20 + 4 * i, i, 0x21 + 4 * i, i, 0x22 + 4 * i,
                                    i, 0x23 + 4 * i, i) for i in range(6))
-    text, n = re.subn(r"^scr_seq_T20R0202_000:\n.*?(?=^scr_seq_T20R0202_001:)", lambda _: HARNESS % gives,
+    badges = "".join("\tcompare 0x400D, %d\n\tgoto_if_lt _harness_badges_done\n\tgive_badge %d\n" % (i + 1, i)
+                     for i in range(16)) + "_harness_badges_done:\n"
+    items = "".join(ITEM % (0x38 + i, i, 0x38 + i, i) for i in range(4))
+    text, n = re.subn(r"^scr_seq_T20R0202_000:\n.*?(?=^scr_seq_T20R0202_001:)",
+                      lambda _: HARNESS % (badges, items, gives),
                       text, flags=re.S | re.M)
     if n != 1:
         sys.exit("could not find the bedroom PC script")

@@ -299,7 +299,7 @@ Added:
 | | Mesprit | Lake of Rage, on the water | 60 |
 | | Azelf | Dragon's Den, on the water | 60 |
 | | Heatran | Cinnabar Island | 65 |
-| | Cresselia | Mt. Moon Square | 65 |
+| | Cresselia | Mt. Moon Square, at the pond | 65 |
 | | Celebi | Ilex Forest, beside the shrine | 65 |
 | | Shaymin | National Park, below the fountain | 65 |
 | | Manaphy | Whirl Islands B2F, on the water | 65 |
@@ -314,11 +314,10 @@ Added:
 "16 badges" means after Professor Oak has seen all sixteen. Phione comes
 from breeding Manaphy.
 
-The fight, running away, coming back and catching were tested in the
-emulator on a test build, and so were the sprites of ten of the new
-Pokémon. The places themselves have not been walked to in the emulator;
-each tile was chosen from the map's collision data so that it can be
-reached and doesn't block a path.
+The overworld playtester has gone to all of them at their real places: each
+is absent until its condition is met and then starts the right battle at the
+right level. Catching, running away and coming back were tested by hand on a
+test build.
 
 ## Design rules
 
@@ -351,7 +350,7 @@ The FireRed recipe, and where each part comes from here:
 | Field HMs without teaching them | Done |
 | Shops, post-game ladder | To do: code and scripts |
 | Spoiler guide generated from the data | To do: port `spoiler_guide.py` |
-| Unattended playtester | To do: py-desmume based |
+| Unattended playtester | Done: battle tester and overworld tester, see [playtest](playtest/README.md). No story playthrough bot. |
 
 ## Building from source
 

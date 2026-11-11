@@ -1,4 +1,4 @@
-From 38fddfc618167435ce4cc4c767be5a189a315822 Mon Sep 17 00:00:00 2001
+From 18e13857ab936de9ca30dbda155f6592f387b3de Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Wed, 11 Nov 2026 20:25:33 +0000
 Subject: [PATCH] Legendary pass: every legendary and mythical Pokemon can be
@@ -4605,7 +4605,7 @@ index 000000000..e2ed6e256
 +}
 diff --git a/data/eventdata/zone_event/404_D02R0103.json b/data/eventdata/zone_event/404_D02R0103.json
 new file mode 100644
-index 000000000..222de50c7
+index 000000000..bc818764d
 --- /dev/null
 +++ b/data/eventdata/zone_event/404_D02R0103.json
 @@ -0,0 +1,81 @@
@@ -4662,7 +4662,7 @@ index 000000000..222de50c7
 +      "movement_range_x": 0,
 +      "movement_range_z": 0,
 +      "x": 9,
-+      "z": 12,
++      "z": 11,
 +      "y": 0
 +    }
 +  ],
@@ -18001,7 +18001,7 @@ index 922eba9db..d16b76dba 100644
          GF_ASSERT(FALSE);
 diff --git a/tools/hack/legendaries.py b/tools/hack/legendaries.py
 new file mode 100644
-index 000000000..db035126d
+index 000000000..c5f5a5df8
 --- /dev/null
 +++ b/tools/hack/legendaries.py
 @@ -0,0 +1,279 @@
@@ -18056,7 +18056,7 @@ index 000000000..db035126d
 +    ("MESPRIT", 60, "T29", "0938", "0711", "085", (525, 66), CHAMPION, None),
 +    ("AZELF", 60, "D44R0102", "0111", "0372", "239", (32, 25), CHAMPION, None),
 +    ("HEATRAN", 65, "T09", "0815", "0588", "054", (1047, 497), CHAMPION, None),
-+    ("CRESSELIA", 65, "D02R0103", "0009", "0270", "404", (9, 12), CHAMPION, None),
++    ("CRESSELIA", 65, "D02R0103", "0009", "0270", "404", (9, 11), CHAMPION, None),
 +    ("CELEBI", 65, "D36R0101", "0092", "0353", "114", (15, 43), CHAMPION, "SPRITE_FOLLOWER_MON_STATIC_CELEBI"),
 +    ("SHAYMIN", 65, "D22R0101", "0025", "0286", "093", (51, 48), CHAMPION, None),
 +    ("MANAPHY", 65, "D40R0104", "0103", "0364", "229", (30, 48), CHAMPION, None),
