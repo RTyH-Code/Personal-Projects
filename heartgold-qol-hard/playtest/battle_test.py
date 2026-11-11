@@ -19,7 +19,8 @@ plain yardstick, not a good player.
 
 It reports, per trainer: won or lost, turns taken, how many of the player's
 Pokemon fainted, and "stuck" with a screenshot when the battle did not end
-(a crash, a softlock or a screen the tester does not understand).
+(a crash, a softlock or a screen the tester does not understand), plus a
+save state of that moment.
 """
 import json
 import os
@@ -30,6 +31,7 @@ import sys
 REFERENCE = ["CYNDAQUIL", "MAREEP", "GEODUDE", "MAGIKARP", "ABRA", "HERACROSS"]
 INTRO = ([("wait", 900)] + [("key", "a")] * 80 + [("key", "start"), ("key", "a"), ("wait", 120)]
          + [("key", "a")] * 60 + [("wait", 300), ("hold", "up", 10), ("wait", 30)])
+TAG_PARTNERS = {733, 734, 735, 736, 737}   # teams for the tag battle in Dragon's Den, not fought alone
 BOSS_CLASS = re.compile(r"LEADER_|ELITE_FOUR_|CHAMPION|RIVAL|PKMN_TRAINER_RED|EXECUTIVE|KIMONO_GIRL")
 MOVE_BUTTONS = [(64, 50), (190, 50), (64, 105), (190, 105)]
 PARTY_SLOTS = [(64, 25), (190, 33), (64, 72), (190, 80), (64, 120), (190, 128)]
@@ -161,6 +163,9 @@ def screen_state(image):
     r, g, b = px(128, 192 + 55)
     if r > 190 and g < 110 and b < 120:
         return "menu"                      # the red FIGHT button
+    blue = lambda c: 170 < c[2] < 225 and c[0] < 70 and 120 < c[1] < 165   # not the lighter blue of the shift screen
+    if blue(px(30, 355)) and blue(px(225, 355)):
+        return "moves"                     # the wide blue CANCEL button under the four moves
     tr, tg, tb = px(128, 168)
     if abs(tr - tg) < 12 and abs(tg - tb) < 12 and 90 < tr < 170:   # top-screen text box greyed out
         sr, sg, sb = px(60, 192 + 172)
@@ -197,6 +202,7 @@ def fight(game, state_path, data, trainer_id, level, out_dir):
     game.key("a")
     order = list(range(6))   # which reference Pokemon is in each on-screen party slot
     turns, faints, last_menu, toggle, pending = 0, 0, 0, 0, 0
+    skipped = {}             # per reference Pokemon: how many moves it has had refused
     while game.frames < MAX_FRAMES:
         result = game.get_var(0x400F)
         if result:
@@ -209,9 +215,15 @@ def fight(game, state_path, data, trainer_id, level, out_dir):
             last_menu = game.frames
             turns += 1
             _, _, best, known = party[order[0]]
-            slot = best if turns % 12 else (turns // 12) % max(known, 1)   # now and then try another move (PP)
+            slot = (best + skipped.get(order[0], 0)) % max(known, 1)
             game.touch(128, 73, after=40)
             game.touch(*MOVE_BUTTONS[slot], after=90)
+        elif state == "moves":
+            # still on the move list: the move was refused (no PP, disabled...), so use the next one from now on
+            last_menu = game.frames
+            _, _, best, known = party[order[0]]
+            skipped[order[0]] = skipped.get(order[0], 0) + 1
+            game.touch(*MOVE_BUTTONS[(best + skipped[order[0]]) % max(known, 1)], after=90)
         elif state == "party":
             last_menu = game.frames
             slots = [party_slot(image, i) for i in range(6)]
@@ -235,7 +247,9 @@ def fight(game, state_path, data, trainer_id, level, out_dir):
             break
     shot = os.path.join(out_dir, "stuck_%d.png" % trainer_id)
     game.emu.screenshot().save(shot)
-    return dict(result="stuck", turns=turns, faints=faints, frames=game.frames, screenshot=shot)
+    state = os.path.join(out_dir, "stuck_%d.dst" % trainer_id)
+    game.emu.savestate.save_file(state)   # load this in the emulator to look at the stuck battle
+    return dict(result="stuck", turns=turns, faints=faints, frames=game.frames, screenshot=shot, savestate=state)
 
 
 # ------------------------------------------------------------------ main
@@ -276,7 +290,8 @@ def main():
     if "--all" in selectors:
         ids = [i for i, t in trainers.items() if t["single"] and t["name"] != "Mickey"]
     elif "--bosses" in selectors or not selectors:
-        ids = [i for i, t in trainers.items() if t["single"] and BOSS_CLASS.search(t["cls"])]
+        ids = [i for i, t in trainers.items() if t["single"] and BOSS_CLASS.search(t["cls"])
+               and i not in TAG_PARTNERS and t["name"] != "Mickey"]
     else:
         ids = [int(x) for x in selectors]
     ids.sort(key=lambda i: (max(trainers[i]["levels"]), i))
