@@ -179,9 +179,26 @@ The levels, IVs, AI and every boss team are in.
   (Sudowoodo, Politoed, Lanturn, Ampharos, Sunflora, Qwilfish, Espeon,
   Magcargo, Houndoom). The rematch teams use anything that fits the
   leader's type, Hoenn and Sinnoh Pokémon included. Red keeps his team.
-- **Other Kanto trainers** are 1.3× their original levels. Kanto wild
-  levels, fishing, Headbutt trees and the Safari Zone are unchanged for
-  now.
+- **Other Kanto trainers** are 1.3× their original levels.
+- **Kanto wild Pokémon** are post-game strength instead of starting again
+  at Lv. 2. The areas keep their original order:
+
+  | Area | Original | Now |
+  |---|---|---|
+  | Route 1, Viridian Forest | 2–7 | 46–48 |
+  | Mt. Moon, Routes 3–4 | 5–12 | 47–50 |
+  | Routes 5–11, Diglett's Cave | 12–29 | 50–57 |
+  | Routes 13–18 | 22–32 | 54–58 |
+  | Seafoam Islands | 26–40 | 56–62 |
+  | Cerulean Cave | 37–49 | 61–66 |
+  | Route 28, Mt. Silver | 15–51 | 62–70 |
+
+  Surfing, Rock Smash and fishing in Kanto follow the same scale. A wild
+  Pokémon that is past a level-up evolution appears evolved (Pidgeot and
+  Raticate on Route 1, not a Lv. 46 Pidgey). Stone, held-item and
+  friendship evolutions are left as they were, and Larvitar's line stops
+  at Pupitar, so there is no wild Tyranitar.
+- Johto fishing, Headbutt trees and the Safari Zone are unchanged.
 - **IVs:** every trainer Pokémon has at least about 18 in each stat; Gym
   Leaders, the Elite Four, the Champion, your rival, Red and the Rocket
   bosses have 31.
@@ -265,7 +282,7 @@ The FireRed recipe, and where each part comes from here:
 | Johto and League boss teams | Done: `tools/hack/boss_teams.py` |
 | Kanto leaders, Blue, Red, second Elite Four round and rematch teams | Done: `tools/hack/boss_teams.py` |
 | Johto wild levels | Done: `tools/hack/wild_levels.py` |
-| Kanto wild levels | To do |
+| Kanto wild levels | Done: `tools/hack/kanto_wild.py` |
 | Every non-legendary Pokémon obtainable in Johto | Done: `tools/hack/encounters.py`, `tools/hack/fossil_reviver.py` |
 | Legendary encounters | To do, as its own pass |
 | Trade evolutions without trading | Done: `tools/hack/trade_evos.py` |
