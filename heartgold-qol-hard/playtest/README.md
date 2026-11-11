@@ -74,7 +74,9 @@ level, five levels above and ten levels above (76 battles each).
 - From Morty to Pryce it needs five to ten extra levels. Jasmine beat it
   even at ten levels above.
 - Proton and Petrel in the Radio Tower lost to it at every level, so they
-  are weaker than the fights around them.
+  were weaker than the fights around them. Both teams were strengthened
+  afterwards: Proton now beats it at five levels above, and Petrel loses
+  only after knocking out four or five of the six.
 - From Clair onwards it loses nearly everything even at ten levels above.
   The tester is too simple to rank those fights against each other.
 

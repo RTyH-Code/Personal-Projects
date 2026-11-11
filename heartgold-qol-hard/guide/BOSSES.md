@@ -165,20 +165,21 @@ All boss Pokémon have perfect IVs. From Chuck onward they also have a nature an
 
 | Pokémon | Lv. | Item | Moves | Ability, nature |
 |---|---|---|---|---|
-| Golbat | 41 | Sitrus Berry | Sludge Bomb, Brave Bird, Zen Headbutt, Hypnosis | Jolly |
-| Qwilfish | 41 | Poison Barb | Aqua Tail, Poison Jab, Ice Beam, Swords Dance | Intimidate, Adamant |
-| Muk | 42 | Black Sludge | Gunk Shot, Brick Break, Curse, Fire Punch | Adamant |
-| Weezing | 43 | Black Sludge | Sludge Bomb, Fire Blast, Will O Wisp, Thunderbolt | Bold |
+| Golbat | 42 | Sitrus Berry | Sludge Bomb, Brave Bird, Zen Headbutt, Hypnosis | Jolly |
+| Qwilfish | 42 | Poison Barb | Aqua Tail, Poison Jab, Ice Beam, Swords Dance | Intimidate, Adamant |
+| Houndoom | 42 | Sitrus Berry | Flamethrower, Dark Pulse, Will O Wisp, Sludge Bomb | Timid |
+| Muk | 43 | Black Sludge | Gunk Shot, Brick Break, Curse, Fire Punch | Adamant |
+| Weezing | 44 | Black Sludge | Sludge Bomb, Fire Blast, Will O Wisp, Thunderbolt | Bold |
 ### Petrel, Radio Tower
 
 | Pokémon | Lv. | Item | Moves | Ability, nature |
 |---|---|---|---|---|
-| Koffing | 41 | Sitrus Berry | Sludge Bomb, Fire Blast, Will O Wisp, Thunderbolt | Modest |
-| Koffing | 41 | Sitrus Berry | Sludge Bomb, Fire Blast, Will O Wisp, Thunderbolt | Modest |
-| Koffing | 41 | Sitrus Berry | Sludge Bomb, Fire Blast, Will O Wisp, Thunderbolt | Modest |
+| Koffing | 42 | Sitrus Berry | Sludge Bomb, Flamethrower, Will O Wisp, Explosion | Modest |
+| Koffing | 42 | Sitrus Berry | Sludge Bomb, Thunderbolt, Toxic, Protect | Bold |
+| Weezing | 43 | Sitrus Berry | Sludge Bomb, Shadow Ball, Thunderbolt, Explosion | Modest |
+| Koffing | 42 | Sitrus Berry | Sludge Bomb, Dark Pulse, Will O Wisp, Explosion | Modest |
+| Koffing | 42 | Sitrus Berry | Sludge Bomb, Fire Blast, Toxic, Protect | Bold |
 | Weezing | 44 | Black Sludge | Sludge Bomb, Fire Blast, Will O Wisp, Thunderbolt | Bold |
-| Koffing | 41 | Sitrus Berry | Sludge Bomb, Fire Blast, Will O Wisp, Thunderbolt | Modest |
-| Koffing | 41 | Sitrus Berry | Sludge Bomb, Fire Blast, Will O Wisp, Thunderbolt | Modest |
 ### Ariana, Radio Tower
 
 | Pokémon | Lv. | Item | Moves | Ability, nature |
