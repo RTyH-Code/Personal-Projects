@@ -111,8 +111,8 @@ ROM, but the shop hasn't been visited in play.
 
 ## Difficulty
 
-First pass only: the levels, IVs and AI are in, the hand-built boss teams
-are not.
+The levels, IVs, AI and the Johto and League boss teams are in. Kanto's
+bosses, Red and the rematch teams still use their scaled original teams.
 
 - **Level curve.** Trainers and wild Pokémon in Johto are unchanged up to
   Lv. 8, then rise to 1.15× by Lv. 18. Each boss's highest level:
@@ -126,8 +126,39 @@ are not.
   | Chuck | 31 | 36 | Blue | 60 | 78 |
   | Jasmine | 35 | 40 | Red | 88 | 95 |
 
-  The Gym Leaders will get hand-built teams later; that is when Whitney,
-  Chuck, Jasmine and Pryce move to their planned levels (24, 34, 38, 42).
+  With their hand-built teams (below) Whitney, Chuck, Jasmine and Pryce
+  sit at 24, 34, 38 and 42, so the gyms rise in the intended order.
+- **Boss teams.** The eight Johto Gym Leaders, your rival (four battles),
+  the Team Rocket executives, the Kimono Girls, the Elite Four and Lance
+  have new teams. The full teams, with items and moves, are in
+  [guide/BOSSES.md](guide/BOSSES.md) (spoilers).
+  - Johto Pokémon come first, the ace included; Kanto Pokémon fill in
+    where Johto has nothing for the theme, and Hoenn or Sinnoh ones only
+    round a team out (Morty's Duskull and Drifblim, Jasmine's Mawile,
+    Clair's Altaria, Gabite and Flygon).
+  - Teams grow: Falkner 3, Bugsy 4, Whitney 4, Morty 5, Chuck 5, then six
+    for Jasmine, Pryce, Clair, each of the Elite Four and Lance.
+  - Every boss Pokémon holds an item and has a chosen moveset. Every move
+    is one that Pokémon can learn at its level (level-up, a TM or HM in the
+    game, and from Morty on Gen 4 egg and tutor moves), except Whitney's
+    Miltank keeping Milk Drink.
+  - From Chuck on, boss Pokémon have natures and full EV spreads.
+
+  | Boss | Ace | Team |
+  |---|---|---|
+  | Falkner | Noctowl 14 | Natu, Murkrow |
+  | Bugsy | Scyther 19 | Spinarak, Pineco, Yanma |
+  | Whitney | Miltank 24 | Furret, Dunsparce, Stantler |
+  | Morty | Mismagius 29 | Duskull, Haunter, Drifblim, Gengar |
+  | Chuck | Heracross 34 | Primeape, Hitmontop, Machoke, Poliwrath |
+  | Jasmine | Steelix 38 | Mawile, Magneton, Forretress, Skarmory, Scizor |
+  | Pryce | Mamoswine 42 | Delibird, Sneasel, Jynx, Dewgong, Lapras |
+  | Clair | Kingdra 47 | Dragonair, Altaria, Gabite, Gyarados, Flygon |
+  | Will | Xatu 51 | Farigiraf, Wobbuffet, Slowking, Exeggutor, Espeon |
+  | Koga | Crobat 52 | Ariados, Qwilfish, Forretress, Weezing, Muk |
+  | Bruno | Machamp 53 | Hitmontop, Hitmonlee, Hitmonchan, Steelix, Annihilape |
+  | Karen | Houndoom 55 | Honchkrow, Weavile, Gengar, Umbreon, Tyranitar |
+  | Lance | Dragonite 58 | Gyarados, Aerodactyl, Charizard, Kingdra, Dragonite |
 - **Kanto and the post-game:** Kanto trainers and the Gym Leader rematch
   teams are 1.3×, the second Elite Four round 1.2×. Kanto wild levels,
   fishing, Headbutt trees and the Safari Zone are unchanged for now.
@@ -136,8 +167,9 @@ are not.
   bosses have 31.
 - **AI:** every trainer uses the smartest move-choice settings.
 
-None of this has been battled in the emulator yet; the game was only
-checked to build and to boot into the overworld.
+None of this has been battled in the emulator yet. The game builds and
+boots, and the built trainer data was decoded to confirm the teams, items,
+abilities, natures and EVs were written as specified.
 
 ## Pokémon availability
 
@@ -210,7 +242,8 @@ The FireRed recipe, and where each part comes from here:
 | National Dex from the start, with its unlocks moved to a Champion check | Done |
 | Set mode, level cap and no-items rules as player options | Undecided: hg-engine only offers them as fixed rules |
 | Trainer levels, IVs and AI | Done: `tools/hack/difficulty.py` |
-| Hand-built Gym Leader, Elite Four and rival teams | To do |
+| Johto and League boss teams | Done: `tools/hack/boss_teams.py` |
+| Kanto leaders, Blue, Red and rematch teams | To do |
 | Johto wild levels | Done: `tools/hack/wild_levels.py` |
 | Kanto wild levels | To do |
 | Every non-legendary Pokémon obtainable in Johto | Done: `tools/hack/encounters.py`, `tools/hack/fossil_reviver.py` |
