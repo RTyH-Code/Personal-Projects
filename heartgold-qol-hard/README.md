@@ -206,9 +206,10 @@ The levels, IVs, AI and every boss team are in.
   bosses have 31.
 - **AI:** every trainer uses the smartest move-choice settings.
 
-None of this has been battled in the emulator yet. The game builds and
-boots, and the built trainer data was decoded to confirm the teams, items,
-abilities, natures and EVs were written as specified.
+Every boss has been fought in the emulator by the battle playtester; see
+[playtest](playtest/README.md) for how the fights ranked. The built trainer
+data was also decoded to confirm the teams, items, abilities, natures and
+EVs were written as specified.
 
 ## Pokémon availability
 
