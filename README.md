@@ -7,8 +7,9 @@ See its [README](firered-qol-hard/README.md).
 ## HeartGold QoL + Hard
 
 `heartgold-qol-hard/` is the same recipe for Pokémon HeartGold, built on
-hg-engine. It is at the project-setup stage: the build works, the hack's own
-changes don't exist yet. See its [README](heartgold-qol-hard/README.md).
+hg-engine. It is in progress: the quality-of-life changes, difficulty,
+Pokémon availability and legendaries are in, as source patches. See its
+[README](heartgold-qol-hard/README.md).
 
 ## FireRed Playtester
 

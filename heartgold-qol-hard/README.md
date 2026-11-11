@@ -16,6 +16,8 @@ that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md
 - Running Shoes work from the start (hold B). The man in Cherrygrove City
   still hands you a pair after his tour.
 - New games default to Fast text. You can still change it in Options.
+- Every legendary and mythical Pokémon can be caught; see
+  [Legendary Pokémon](#legendary-pokémon).
 - HM moves can be forgotten at any time.
 - TMs are reusable (hg-engine's default).
 - New games skip the control and adventure info screens and start at
@@ -259,6 +261,65 @@ The fossil reviver was played through in the emulator (Old Amber to
 Aerodactyl). The wild placements were checked against the data, not by
 finding each Pokémon in play.
 
+## Legendary Pokémon
+
+Every legendary and mythical Pokémon up to Arceus can be caught, with no
+trading and no events. The ones HeartGold already had stay where they
+were, at levels that fit the hack's curve. The missing ones stand in the
+overworld like Articuno or Mewtwo: talk to one to fight it. If you catch it,
+it is gone for good. If it faints or you run, it is back the next time you
+enter the area.
+
+Already in the game:
+
+| Pokémon | Where | Level |
+|---|---|---|
+| Red Gyarados | Lake of Rage | 34 (was 30) |
+| Raikou, Entei | Roaming Johto | 46 (was 40) |
+| Ho-Oh | Bell Tower | 52 (was 45) |
+| Suicune | Route 25 | 60 (was 40) |
+| Latias | Roaming Kanto | 60 (was 35) |
+| Articuno, Zapdos, Moltres | Seafoam Islands, Route 10, Mt. Silver | 65 (was 50) |
+| Lugia | Whirl Islands | 70 |
+| Kyogre | Embedded Tower | 70 (was 50) |
+| Rayquaza | Embedded Tower, once you own Groudon and Kyogre | 75 (was 50) |
+| Mewtwo | Cerulean Cave | 80 (was 70) |
+
+Sudowoodo and the Union Cave Lapras are level 22, and the two Snorlax
+level 65.
+
+Added:
+
+| When | Pokémon | Where | Level |
+|---|---|---|---|
+| After the Champion | Latios | Roams Kanto; Steven releases it with Latias | 60 |
+| | Regirock, Regice, Registeel | Ruins of Alph, in the item rooms behind three of the puzzle chambers (north-east, south-east, north-west) | 60 |
+| | Regigigas | Ruins of Alph, the item room behind the south-west chamber, with the three Regis in your party | 75 |
+| | Uxie | Union Cave B2F, on the water | 60 |
+| | Mesprit | Lake of Rage, on the water | 60 |
+| | Azelf | Dragon's Den, on the water | 60 |
+| | Heatran | Cinnabar Island | 65 |
+| | Cresselia | Mt. Moon Square | 65 |
+| | Celebi | Ilex Forest, beside the shrine | 65 |
+| | Shaymin | National Park, below the fountain | 65 |
+| | Manaphy | Whirl Islands B2F, on the water | 65 |
+| 16 badges | Groudon | Embedded Tower, in Kyogre's room once Kyogre is caught | 70 |
+| | Dialga, Palkia, Giratina | Ruins of Alph, the underground hall | 75 |
+| After Red | Arceus | Ruins of Alph, the underground hall | 80 |
+| | Mew | Mt. Silver summit | 80 |
+| | Jirachi | Route 25, at the cape | 80 |
+| | Deoxys | Route 3 | 80 |
+| | Darkrai | Dark Cave (Route 45 side) | 80 |
+
+"16 badges" means after Professor Oak has seen all sixteen. Phione comes
+from breeding Manaphy.
+
+The fight, running away, coming back and catching were tested in the
+emulator on a test build, and so were the sprites of ten of the new
+Pokémon. The places themselves have not been walked to in the emulator;
+each tile was chosen from the map's collision data so that it can be
+reached and doesn't block a path.
+
 ## Design rules
 
 - **Pokémon:** the original 493, plus later-generation evolutions and
@@ -284,7 +345,7 @@ The FireRed recipe, and where each part comes from here:
 | Johto wild levels | Done: `tools/hack/wild_levels.py` |
 | Kanto wild levels | Done: `tools/hack/kanto_wild.py` |
 | Every non-legendary Pokémon obtainable in Johto | Done: `tools/hack/encounters.py`, `tools/hack/fossil_reviver.py` |
-| Legendary encounters | To do, as its own pass |
+| Legendary encounters | Done: `tools/hack/legendaries.py` |
 | Trade evolutions without trading | Done: `tools/hack/trade_evos.py` |
 | Evolution item shop | Done, to be rebalanced |
 | Field HMs without teaching them | Done |
