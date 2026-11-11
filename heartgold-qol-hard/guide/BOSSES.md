@@ -165,11 +165,11 @@ All boss Pokémon have perfect IVs. From Chuck onward they also have a nature an
 
 | Pokémon | Lv. | Item | Moves | Ability, nature |
 |---|---|---|---|---|
-| Golbat | 42 | Sitrus Berry | Sludge Bomb, Brave Bird, Zen Headbutt, Hypnosis | Jolly |
-| Qwilfish | 42 | Poison Barb | Aqua Tail, Poison Jab, Ice Beam, Swords Dance | Intimidate, Adamant |
-| Houndoom | 42 | Sitrus Berry | Flamethrower, Dark Pulse, Will O Wisp, Sludge Bomb | Timid |
-| Muk | 43 | Black Sludge | Gunk Shot, Brick Break, Curse, Fire Punch | Adamant |
-| Weezing | 44 | Black Sludge | Sludge Bomb, Fire Blast, Will O Wisp, Thunderbolt | Bold |
+| Golbat | 41 | Sitrus Berry | Sludge Bomb, Brave Bird, Zen Headbutt, Hypnosis | Jolly |
+| Qwilfish | 41 | Poison Barb | Aqua Tail, Poison Jab, Ice Beam, Swords Dance | Intimidate, Adamant |
+| Houndoom | 41 | Sitrus Berry | Flamethrower, Dark Pulse, Will O Wisp, Sludge Bomb | Timid |
+| Muk | 42 | Black Sludge | Gunk Shot, Brick Break, Curse, Fire Punch | Adamant |
+| Weezing | 43 | Black Sludge | Sludge Bomb, Fire Blast, Will O Wisp, Thunderbolt | Bold |
 ### Petrel, Radio Tower
 
 | Pokémon | Lv. | Item | Moves | Ability, nature |

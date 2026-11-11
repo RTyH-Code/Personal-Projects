@@ -75,7 +75,7 @@ level, five levels above and ten levels above (76 battles each).
   even at ten levels above.
 - Proton and Petrel in the Radio Tower lost to it at every level, so they
   were weaker than the fights around them. Both teams were strengthened
-  afterwards: Proton now beats it at five levels above, and Petrel loses
+  afterwards: Proton has a fifth Pokémon, and Petrel loses
   only after knocking out four or five of the six.
 - From Clair onwards it loses nearly everything even at ten levels above.
   The tester is too simple to rank those fights against each other.

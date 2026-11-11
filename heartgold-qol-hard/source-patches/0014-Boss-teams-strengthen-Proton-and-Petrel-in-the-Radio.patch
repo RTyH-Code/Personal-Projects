@@ -1,15 +1,15 @@
-From fd7091ee2f63062e2cdb5139a885c3642ee1ecce Mon Sep 17 00:00:00 2001
+From 6768c33aefeeedcdb03889c10206a23fda81fd31 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Wed, 11 Nov 2026 16:02:00 +0000
 Subject: [PATCH] Boss teams: strengthen Proton and Petrel in the Radio Tower
 
 ---
- data/Trainers.c          | 69 ++++++++++++++++++++++++----------------
- tools/hack/boss_teams.py | 19 +++++------
- 2 files changed, 51 insertions(+), 37 deletions(-)
+ data/Trainers.c          | 63 ++++++++++++++++++++++++----------------
+ tools/hack/boss_teams.py | 11 +++----
+ 2 files changed, 44 insertions(+), 30 deletions(-)
 
 diff --git a/data/Trainers.c b/data/Trainers.c
-index 0a8cff3ab..194d1d36a 100644
+index 0a8cff3ab..5eb0f51f0 100644
 --- a/data/Trainers.c
 +++ b/data/Trainers.c
 @@ -21410,34 +21410,34 @@ const TrainerData sTrainerData[] = {
@@ -110,28 +110,14 @@ index 0a8cff3ab..194d1d36a 100644
                  .ballSeal = 0,
              },
          },
-@@ -30635,7 +30635,7 @@ const TrainerData sTrainerData[] = {
-             {
-                 .ivs = 255,
-                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
--                .level = 41,
-+                .level = 42,
-                 .species = SPECIES_GOLBAT,
-                 .item = ITEM_SITRUS_BERRY,
-                 .moves = { MOVE_SLUDGE_BOMB, MOVE_BRAVE_BIRD, MOVE_ZEN_HEADBUTT, MOVE_HYPNOSIS },
-@@ -30648,7 +30648,7 @@ const TrainerData sTrainerData[] = {
-             {
-                 .ivs = 255,
-                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
--                .level = 41,
-+                .level = 42,
-                 .species = SPECIES_QWILFISH,
-                 .item = ITEM_POISON_BARB,
-                 .moves = { MOVE_AQUA_TAIL, MOVE_POISON_JAB, MOVE_ICE_BEAM, MOVE_SWORDS_DANCE },
-@@ -30662,6 +30662,19 @@ const TrainerData sTrainerData[] = {
-                 .ivs = 255,
-                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-                 .level = 42,
+@@ -30658,6 +30658,19 @@ const TrainerData sTrainerData[] = {
+                 .nature = NATURE_ADAMANT,
+                 .ballSeal = 0,
+             },
++            {
++                .ivs = 255,
++                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
++                .level = 41,
 +                .species = SPECIES_HOUNDOOM,
 +                .item = ITEM_SITRUS_BERRY,
 +                .moves = { MOVE_FLAMETHROWER, MOVE_DARK_PULSE, MOVE_WILL_O_WISP, MOVE_SLUDGE_BOMB },
@@ -141,39 +127,20 @@ index 0a8cff3ab..194d1d36a 100644
 +                .nature = NATURE_TIMID,
 +                .ballSeal = 0,
 +            },
-+            {
-+                .ivs = 255,
-+                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
-+                .level = 43,
-                 .species = SPECIES_MUK,
-                 .item = ITEM_BLACK_SLUDGE,
-                 .moves = { MOVE_GUNK_SHOT, MOVE_BRICK_BREAK, MOVE_CURSE, MOVE_FIRE_PUNCH },
-@@ -30674,7 +30687,7 @@ const TrainerData sTrainerData[] = {
              {
                  .ivs = 255,
                  .abilitySlot = TRAINER_POKEMON_ABILITY_1,
--                .level = 43,
-+                .level = 44,
-                 .species = SPECIES_WEEZING,
-                 .item = ITEM_BLACK_SLUDGE,
-                 .moves = { MOVE_SLUDGE_BOMB, MOVE_FIRE_BLAST, MOVE_WILL_O_WISP, MOVE_THUNDERBOLT },
 diff --git a/tools/hack/boss_teams.py b/tools/hack/boss_teams.py
-index a6a0c7e98..68a4f432f 100644
+index a6a0c7e98..8598cda0d 100644
 --- a/tools/hack/boss_teams.py
 +++ b/tools/hack/boss_teams.py
-@@ -395,18 +395,19 @@ TEAMS = {
-         ("MURKROW", 40, "SCOPE_LENS", None, {"ability": "SUPER_LUCK"}),
-     ]),
+@@ -397,16 +397,17 @@ TEAMS = {
      706: ("Proton, Radio Tower", [EXTRA, TUNED], [
--        ("GOLBAT", 41, "SITRUS_BERRY", None, {}),
--        ("QWILFISH", 41, "POISON_BARB", None, {"ability": "INTIMIDATE"}),
--        ("MUK", 42, "BLACK_SLUDGE", None, {"spread": "bulky"}),
--        ("WEEZING", 43, "BLACK_SLUDGE", None, {"spread": "wall"}),
-+        ("GOLBAT", 42, "SITRUS_BERRY", None, {}),
-+        ("QWILFISH", 42, "POISON_BARB", None, {"ability": "INTIMIDATE"}),
-+        ("HOUNDOOM", 42, "SITRUS_BERRY", ["FLAMETHROWER", "DARK_PULSE", "WILL_O_WISP", "SLUDGE_BOMB"], {}),
-+        ("MUK", 43, "BLACK_SLUDGE", None, {"spread": "bulky"}),
-+        ("WEEZING", 44, "BLACK_SLUDGE", None, {"spread": "wall"}),
+         ("GOLBAT", 41, "SITRUS_BERRY", None, {}),
+         ("QWILFISH", 41, "POISON_BARB", None, {"ability": "INTIMIDATE"}),
++        ("HOUNDOOM", 41, "SITRUS_BERRY", ["FLAMETHROWER", "DARK_PULSE", "WILL_O_WISP", "SLUDGE_BOMB"], {}),
+         ("MUK", 42, "BLACK_SLUDGE", None, {"spread": "bulky"}),
+         ("WEEZING", 43, "BLACK_SLUDGE", None, {"spread": "wall"}),
      ]),
      487: ("Petrel, Radio Tower", [EXTRA, TUNED], [
 -        ("KOFFING", 41, "SITRUS_BERRY", None, {}),
