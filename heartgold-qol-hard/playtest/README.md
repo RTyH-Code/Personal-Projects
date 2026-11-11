@@ -27,9 +27,11 @@ The test ROM is for testing only. The harness is never part of a release.
 Every trainer is fought with the same six families, evolved as far as
 their level allows, all at the level of the trainer's strongest Pokémon:
 the Cyndaquil, Mareep, Geodude, Magikarp and Abra lines and Heracross.
-They hold no items and know only their four most recent level-up moves.
-The tester always picks each Pokémon's strongest move and sends in the next
-Pokémon when one faints. It never switches, heals or uses items.
+Each has a sensible moveset picked from its level-up moves and the game's
+TMs, and holds the item that boosts its first type. They have random IVs
+and natures and no EVs. The tester always picks each Pokémon's strongest
+move and sends in the next Pokémon when one faints. It never switches,
+heals or uses items, and it doesn't look at type matchups.
 
 That makes it a plain yardstick, not a good player: a human with a planned
 team, items and switching will do much better. Read the results as a

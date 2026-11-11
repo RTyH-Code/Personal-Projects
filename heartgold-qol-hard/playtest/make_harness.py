@@ -8,6 +8,7 @@ script variables that battle_test.py writes through the emulator:
     0x4000-0x4005  species of the six party Pokemon (0 = no Pokemon)
     0x4006-0x400B  their levels
     0x4010-0x4015  their held items
+    0x4020-0x4037  their moves, four per Pokemon (0 = empty slot)
     0x400C         the trainer to fight
     0x400F         result, written after the battle: 1 lost, 2 won
 
@@ -38,6 +39,10 @@ HARNESS = """scr_seq_T20R0202_000:
 GIVE = """	compare 0x40%02X, 0
 	goto_if_eq _harness_skip_%d
 	give_mon 0x40%02X, 0x40%02X, 0x40%02X, 0, 0, VAR_SPECIAL_RESULT
+	set_mon_move %d, 0, 0x40%02X
+	set_mon_move %d, 1, 0x40%02X
+	set_mon_move %d, 2, 0x40%02X
+	set_mon_move %d, 3, 0x40%02X
 _harness_skip_%d:
 """
 
@@ -45,7 +50,8 @@ _harness_skip_%d:
 def main():
     dump, target = sys.argv[1], sys.argv[2]
     text = open(os.path.join(dump, SCRIPT), encoding="utf-8", newline="").read()
-    gives = "".join(GIVE % (i, i, i, 6 + i, 0x10 + i, i) for i in range(6))
+    gives = "".join(GIVE % (i, i, i, 6 + i, 0x10 + i, i, 0x20 + 4 * i, i, 0x21 + 4 * i, i, 0x22 + 4 * i,
+                                   i, 0x23 + 4 * i, i) for i in range(6))
     text, n = re.subn(r"^scr_seq_T20R0202_000:\n.*?(?=^scr_seq_T20R0202_001:)", lambda _: HARNESS % gives,
                       text, flags=re.S | re.M)
     if n != 1:

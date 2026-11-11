@@ -14,8 +14,9 @@ Pokemon's strongest move and sends in the next Pokemon when one faints.
 The reference party is six common picks (the Cyndaquil, Mareep, Geodude,
 Magikarp and Abra lines and Heracross), evolved as far as their level
 allows, all at the level of the trainer's strongest Pokemon plus
---level-offset. It has no held items and only level-up moves, so it is a
-plain yardstick, not a good player.
+--level-offset. Each has a sensible moveset from level-up moves and TMs
+and a type-boosting item, but random IVs and natures and no EVs, and the
+tester never switches or heals, so it is a yardstick, not a good player.
 
 It reports, per trainer: won or lost, turns taken, how many of the player's
 Pokemon fainted, and "stuck" with a screenshot when the battle did not end
@@ -61,7 +62,12 @@ def load(tree):
         for method, param, target in re.findall(r"\{ (EVO_\w+), (\d+), SPECIES_(\w+) \}", m.group(2)):
             if method == "EVO_LEVEL":
                 evolutions.setdefault(m.group(1), (int(param), target))
-    learnsets = json.loads(read("data/learnsets/learnsets.json"))
+    items = ids(read("include/constants/item.h"), "ITEM")
+    sys.path.insert(0, os.path.join(tree, "tools", "hack"))
+    cwd = os.getcwd()
+    os.chdir(tree)                 # boss_teams.py reads the hack's data relative to the tree
+    import boss_teams
+    os.chdir(cwd)
     trainers = {}
     for m in re.finditer(r"^    \[(\d+)\] = \{\n        \.name = \"(.*?)\",(.*?)^    \},\n", read("data/Trainers.c"), re.S | re.M):
         levels = [int(x) for x in re.findall(r"\.level = (\d+),", m.group(3))]
@@ -70,31 +76,25 @@ def load(tree):
                 name=m.group(2), levels=levels,
                 cls=re.search(r"\.trainerClass = TRAINERCLASS_(\w+)", m.group(3)).group(1),
                 single=re.search(r"\.battleType = (\w+)", m.group(3)).group(1) == "SINGLE_BATTLE")
-    return dict(species=species, moves=moves, stats=stats, evolutions=evolutions, learnsets=learnsets, trainers=trainers)
+    return dict(species=species, evolutions=evolutions, trainers=trainers, items=items, boss_teams=boss_teams)
 
 
 def reference_party(data, level):
-    """(species name, id, index of its best move) for the reference party at this level."""
+    """The reference party at this level: (name, species id, best move slot, move ids, item id) each.
+
+    Moves and items come from the hack's own boss team tool: the best move of each of the Pokemon's types, a
+    coverage move and a status or set-up move, from what it can learn by level-up or from a TM in the game,
+    and the item that boosts its first type.
+    """
+    bt = data["boss_teams"]
     party = []
     for name in REFERENCE:
         while name in data["evolutions"] and data["evolutions"][name][0] <= level:
             name = data["evolutions"][name][1]
-        known = []
-        for entry in data["learnsets"]["SPECIES_" + name]["LevelMoves"]:
-            move = entry["Move"][5:]
-            if entry["Level"] <= level and move not in known:
-                known.append(move)
-        known = known[-4:]   # a new Pokemon knows its four most recent level-up moves
-        stat, types = data["stats"][name]
-
-        def score(move):
-            m = data["moves"].get(move)
-            if not m or m["power"] <= 1 or "STATUS" in m["split"]:
-                return 0
-            attack = stat["attack"] if "PHYSICAL" in m["split"] else stat["spAttack"]
-            return m["power"] * attack * (1.5 if m["type"] in types else 1)
-        best = max(range(len(known)), key=lambda i: score(known[i])) if known else 0
-        party.append((name, data["species"][name], best, len(known)))
+        moves = bt.pick_moves(name, level, False)
+        best = max(range(len(moves)), key=lambda i: bt.move_score(name, moves[i])) if moves else 0
+        item = bt.TYPE_ITEM.get(bt.SPECIES[name]["types"][0], "SITRUS_BERRY")
+        party.append((name, data["species"][name], best, [bt.MOVE_IDS[m] for m in moves], data["items"][item]))
     return party
 
 
@@ -193,10 +193,12 @@ def fight(game, state_path, data, trainer_id, level, out_dir):
     if game.vars_pointer is None:
         return dict(result="stuck", note="could not find the script variables")
     party = reference_party(data, level)
-    for i, (_, species_id, _, _) in enumerate(party):
+    for i, (_, species_id, _, moves, item) in enumerate(party):
         game.set_var(0x4000 + i, species_id)
         game.set_var(0x4006 + i, level)
-        game.set_var(0x4010 + i, 0)
+        game.set_var(0x4010 + i, item)
+        for j in range(4):
+            game.set_var(0x4020 + 4 * i + j, moves[j] if j < len(moves) else 0)
     game.set_var(0x400C, trainer_id)
     game.set_var(0x400F, 0)
     game.key("a")
@@ -214,14 +216,14 @@ def fight(game, state_path, data, trainer_id, level, out_dir):
         if state == "menu":
             last_menu = game.frames
             turns += 1
-            _, _, best, known = party[order[0]]
+            best, known = party[order[0]][2], len(party[order[0]][3])
             slot = (best + skipped.get(order[0], 0)) % max(known, 1)
             game.touch(128, 73, after=40)
             game.touch(*MOVE_BUTTONS[slot], after=90)
         elif state == "moves":
             # still on the move list: the move was refused (no PP, disabled...), so use the next one from now on
             last_menu = game.frames
-            _, _, best, known = party[order[0]]
+            best, known = party[order[0]][2], len(party[order[0]][3])
             skipped[order[0]] = skipped.get(order[0], 0) + 1
             game.touch(*MOVE_BUTTONS[(best + skipped[order[0]]) % max(known, 1)], after=90)
         elif state == "party":
