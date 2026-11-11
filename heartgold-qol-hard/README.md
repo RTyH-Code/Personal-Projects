@@ -88,7 +88,8 @@ that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md
 
   | When | Items |
   |---|---|
-  | From the start | Fire, Water, Thunder, Leaf, Ice, Moon, Sun, Shiny, Dusk and Dawn Stones, Oval Stone, King's Rock, Metal Coat, Dragon Scale, Up-Grade, Deep Sea Tooth, Deep Sea Scale, Prism Scale, Black Augurite |
+  | From the start | Fire, Water, Thunder, Leaf, Ice, Moon, Sun, Dusk and Dawn Stones, Oval Stone, King's Rock, Metal Coat, Dragon Scale, Up-Grade, Deep Sea Tooth, Deep Sea Scale, Prism Scale, Black Augurite |
+  | After beating Chuck | Shiny Stone |
   | With seven badges | Peat Block, Protector, Electirizer, Magmarizer, Dubious Disc, Reaper Cloth, Razor Claw, Razor Fang |
 
   The Ice Stone is there because hg-engine evolves Eevee into Glaceon with
@@ -111,7 +112,7 @@ ROM, but the shop hasn't been visited in play.
 ## Difficulty
 
 First pass only: the levels, IVs and AI are in, the hand-built boss teams
-and the new wild Pokémon are not.
+are not.
 
 - **Level curve.** Trainers and wild Pokémon in Johto are unchanged up to
   Lv. 8, then rise to 1.15× by Lv. 18. Each boss's highest level:
@@ -138,6 +139,57 @@ and the new wild Pokémon are not.
 None of this has been battled in the emulator yet; the game was only
 checked to build and to boot into the overworld.
 
+## Pokémon availability
+
+Every non-legendary Pokémon family can be obtained in Johto, before the
+Elite Four, without the Safari Zone, the post-game radio or trading. The
+weak ones turn up early and the strongest late. Nothing that was already in
+an area was removed; the new Pokémon take slots that repeated a species.
+
+| When | Area | Added |
+|---|---|---|
+| Before badge 2 | Route 29 | Zigzagoon, Bidoof |
+| | Routes 30–31 | Ledyba (morning), Weedle, Kricketot (night), Pachirisu |
+| | Route 46, Dark Cave (Route 31 side) | Spinda, Sableye |
+| | Sprout Tower | Chingling |
+| | Route 32 | Poochyena, Wingull, Ekans, Surskit |
+| | Union Cave | Mawile, Cubone, Barboach (Old Rod) |
+| | Route 33 | Nincada, Meditite |
+| | Ilex Forest | Kecleon, Pikachu, Budew, Illumise and Volbeat (night) |
+| Badges 2–4 | Route 34 | Skitty, Glameow, Shellos, Jigglypuff, Ralts, Corphish (Old Rod) |
+| | Route 35, National Park | Stunky, Gulpin, Chatot, Lotad, Buneary, Carnivine |
+| | Routes 36–37 | Vulpix, Shinx, Electrike, Bonsly, Plusle, Minun, Houndour (night), Cyndaquil |
+| | Burned Tower | Shuppet, Drifloon, Murkrow (night), Slugma, Duskull, Torkoal, Rotom |
+| Badges 4–6 | Routes 38–39 | Meowth, Spoink, Zangoose, Kangaskhan, Chikorita, Totodile |
+| | Routes 40–41, Cianwood, Whirl Islands | Wailmer, Carvanha (surfing); Finneon, Clamperl, Luvdisc, Relicanth (Good Rod) |
+| | Ruins of Alph (outer area), Cliff Cave | Baltoy, Bronzor, Lunatone, Solrock, Nosepass |
+| | Routes 47–48 | Skorupi, Trapinch, Tropius, Cacnea |
+| Badges 6–7 | Route 42, Mt. Mortar | Numel, Seviper, Bulbasaur, Buizel (surfing), Makuhita, Whismur, Clefairy, Croagunk, Grimer, Aron |
+| | Route 43, Lake of Rage | Castform, Mime Jr., Charmander, Porygon, Feebas (Good Rod) |
+| Badges 7–8 | Route 44 | Elekid, Squirtle, Munchlax, Chansey |
+| | Ice Path | Delibird, Snorunt, Snover, Sneasel, Spheal |
+| | Route 45, Dark Cave (Blackthorn side) | Skarmory, Absol, Hippopotas, Swablu, Treecko, Torchic, Bagon, Teddiursa, Gible |
+| | Mt. Mortar (above the waterfall), Tohjo Falls | Riolu, Larvitar, Mudkip |
+| | Bell Tower | Spiritomb |
+| Before the Elite Four | Routes 26–27, Victory Road | Turtwig, Chimchar, Piplup, Beldum |
+
+The starters, Kangaskhan, Munchlax, Trapinch, Riolu, Larvitar and Beldum
+are 4% encounters; Rotom, Porygon, Chansey, Bagon, Gible, Spiritomb,
+Skorupi and Absol are 1%. The rest are 4–10%. Eevee, Togepi, Tyrogue, Lapras, Sudowoodo and the Bug-Catching
+Contest's Scyther and Pinsir are where HeartGold already had them.
+
+- **Fossils:** a scientist in the Ruins of Alph Research Center revives
+  fossils, the same way the Pewter Museum does (hand one over, leave, come
+  back). Smashing rocks at the Ruins of Alph can turn up the Helix and Dome
+  Fossils and the Old Amber; in Cliff Cave, the Claw, Root, Skull and Armor
+  Fossils.
+- The Safari Zone is unchanged.
+- One Shiny Stone can still be picked up early in the National Park.
+
+The fossil reviver was played through in the emulator (Old Amber to
+Aerodactyl). The wild placements were checked against the data, not by
+finding each Pokémon in play.
+
 ## Design rules
 
 - **Pokémon:** the original 493, plus later-generation evolutions and
@@ -161,7 +213,8 @@ The FireRed recipe, and where each part comes from here:
 | Hand-built Gym Leader, Elite Four and rival teams | To do |
 | Johto wild levels | Done: `tools/hack/wild_levels.py` |
 | Kanto wild levels | To do |
-| Every non-legendary Pokémon obtainable | To do: encounters, gifts, evolutions |
+| Every non-legendary Pokémon obtainable in Johto | Done: `tools/hack/encounters.py`, `tools/hack/fossil_reviver.py` |
+| Legendary encounters | To do, as its own pass |
 | Trade evolutions without trading | Done: `tools/hack/trade_evos.py` |
 | Evolution item shop | Done, to be rebalanced |
 | Field HMs without teaching them | Done |
