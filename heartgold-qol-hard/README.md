@@ -349,8 +349,8 @@ The FireRed recipe, and where each part comes from here:
 | Trade evolutions without trading | Done: `tools/hack/trade_evos.py` |
 | Evolution item shop | Done, to be rebalanced |
 | Field HMs without teaching them | Done |
-| Shops, post-game ladder | To do: code and scripts |
-| Spoiler guide generated from the data | To do: port `spoiler_guide.py` |
+| Held-item shop, berry and consumables stand, mart stock review | To do |
+| Spoiler guide generated from the data | Done: `tools/spoiler_guide.py` writes [guide/](guide/README.md) |
 | Unattended playtester | Done: battle tester and overworld tester, see [playtest](playtest/README.md). No story playthrough bot. |
 
 ## Building from source
