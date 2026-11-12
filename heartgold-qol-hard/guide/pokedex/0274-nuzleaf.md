@@ -13,6 +13,10 @@ No. 274 · Grass / Dark · catch rate 120
 - From [Seedot](0273-seedot.md) at Lv. 14.
 - Into [Shiftry](0275-shiftry.md) with a Leaf Stone.
 
+## Where
+
+- Viridian Forest (Headbutt)
+
 ## Moves by level
 
 | Lv. | Move |

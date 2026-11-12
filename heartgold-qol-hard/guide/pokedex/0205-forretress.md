@@ -12,6 +12,23 @@ No. 205 · Bug / Steel · catch rate 75
 
 - From [Pineco](0204-pineco.md) at Lv. 31.
 
+## Where
+
+- Route 1 (Headbutt)
+- Route 2 (Headbutt)
+- Route 3 (Headbutt)
+- Route 4 (Headbutt)
+- Route 5 (Headbutt)
+- Route 6 (Headbutt)
+- Route 8 (Headbutt)
+- Route 22 (Headbutt)
+- Route 25 (Headbutt)
+- Pallet Town (Headbutt)
+- Viridian City (Headbutt)
+- Pewter City (Headbutt)
+- Cerulean City (Headbutt)
+- Route 2414 (Headbutt)
+
 ## Moves by level
 
 | Lv. | Move |

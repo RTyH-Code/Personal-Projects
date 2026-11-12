@@ -12,10 +12,6 @@ No. 285 · Grass · catch rate 255
 
 - Into [Breloom](0286-breloom.md) at Lv. 23.
 
-## Where
-
-- Viridian Forest (Headbutt)
-
 ## Moves by level
 
 | Lv. | Move |

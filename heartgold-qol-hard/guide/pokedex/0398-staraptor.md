@@ -12,6 +12,10 @@ No. 398 · Normal / Flying · catch rate 45
 
 - From [Staravia](0397-staravia.md) at Lv. 34.
 
+## Where
+
+- Pewter City (Headbutt)
+
 ## Moves by level
 
 | Lv. | Move |

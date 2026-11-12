@@ -12,10 +12,6 @@ No. 287 · Normal · catch rate 255
 
 - Into [Vigoroth](0288-vigoroth.md) at Lv. 18.
 
-## Where
-
-- Route 25 (Headbutt)
-
 ## Moves by level
 
 | Lv. | Move |

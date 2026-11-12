@@ -1,0 +1,1095 @@
+From feafe440a50cea6b89243a777ba6b749dbcf52e8 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Thu, 12 Nov 2026 15:30:59 +0000
+Subject: [PATCH] Kanto Headbutt trees join the post-game level band
+
+---
+ data/Headbutt.c              | 768 +++++++++++++++++------------------
+ tools/hack/kanto_headbutt.py |  66 +++
+ tools/hack/kanto_wild.py     |   2 +-
+ 3 files changed, 451 insertions(+), 385 deletions(-)
+ create mode 100644 tools/hack/kanto_headbutt.py
+
+diff --git a/data/Headbutt.c b/data/Headbutt.c
+index 5fe6b3608..df70dfeff 100644
+--- a/data/Headbutt.c
++++ b/data/Headbutt.c
+@@ -4033,18 +4033,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 2, 3 },
+-            { SPECIES_PINECO, 2, 3 },
+-            { SPECIES_PINECO, 2, 3 },
+-            { SPECIES_WURMPLE, 2, 3 },
+-            { SPECIES_WURMPLE, 2, 3 },
+-            { SPECIES_WURMPLE, 2, 3 },
+-            { SPECIES_HOOTHOOT, 5, 6 },
+-            { SPECIES_SPINARAK, 5, 6 },
+-            { SPECIES_SPINARAK, 5, 6 },
+-            { SPECIES_WURMPLE, 5, 6 },
+-            { SPECIES_WURMPLE, 5, 6 },
+-            { SPECIES_WURMPLE, 5, 6 },
++            { SPECIES_NOCTOWL, 46, 46 },
++            { SPECIES_FORRETRESS, 46, 46 },
++            { SPECIES_FORRETRESS, 46, 46 },
++            { SPECIES_WURMPLE, 46, 46 },
++            { SPECIES_WURMPLE, 46, 46 },
++            { SPECIES_WURMPLE, 46, 46 },
++            { SPECIES_NOCTOWL, 47, 48 },
++            { SPECIES_ARIADOS, 47, 48 },
++            { SPECIES_ARIADOS, 47, 48 },
++            { SPECIES_WURMPLE, 47, 48 },
++            { SPECIES_WURMPLE, 47, 48 },
++            { SPECIES_WURMPLE, 47, 48 },
+         },
+         .specialSlots =
+         {
+@@ -4085,18 +4085,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 3, 4 },
+-            { SPECIES_PINECO, 3, 4 },
+-            { SPECIES_PINECO, 3, 4 },
+-            { SPECIES_WURMPLE, 3, 4 },
+-            { SPECIES_WURMPLE, 3, 4 },
+-            { SPECIES_WURMPLE, 3, 4 },
+-            { SPECIES_HOOTHOOT, 5, 7 },
+-            { SPECIES_SPINARAK, 5, 7 },
+-            { SPECIES_SPINARAK, 5, 7 },
+-            { SPECIES_WURMPLE, 5, 7 },
+-            { SPECIES_WURMPLE, 5, 7 },
+-            { SPECIES_WURMPLE, 5, 7 },
++            { SPECIES_NOCTOWL, 46, 47 },
++            { SPECIES_FORRETRESS, 46, 47 },
++            { SPECIES_FORRETRESS, 46, 47 },
++            { SPECIES_WURMPLE, 46, 47 },
++            { SPECIES_WURMPLE, 46, 47 },
++            { SPECIES_WURMPLE, 46, 47 },
++            { SPECIES_NOCTOWL, 47, 48 },
++            { SPECIES_ARIADOS, 47, 48 },
++            { SPECIES_ARIADOS, 47, 48 },
++            { SPECIES_WURMPLE, 47, 48 },
++            { SPECIES_WURMPLE, 47, 48 },
++            { SPECIES_WURMPLE, 47, 48 },
+         },
+         .specialSlots =
+         {
+@@ -4132,18 +4132,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 6, 7 },
+-            { SPECIES_PINECO, 6, 7 },
+-            { SPECIES_PINECO, 6, 7 },
+-            { SPECIES_WURMPLE, 6, 7 },
+-            { SPECIES_WURMPLE, 6, 7 },
+-            { SPECIES_WURMPLE, 6, 7 },
+-            { SPECIES_HOOTHOOT, 9, 10 },
+-            { SPECIES_HOOTHOOT, 9, 10 },
+-            { SPECIES_HOOTHOOT, 9, 10 },
+-            { SPECIES_WURMPLE, 9, 10 },
+-            { SPECIES_WURMPLE, 9, 10 },
+-            { SPECIES_WURMPLE, 9, 10 },
++            { SPECIES_NOCTOWL, 48, 48 },
++            { SPECIES_FORRETRESS, 48, 48 },
++            { SPECIES_FORRETRESS, 48, 48 },
++            { SPECIES_WURMPLE, 48, 48 },
++            { SPECIES_WURMPLE, 48, 48 },
++            { SPECIES_WURMPLE, 48, 48 },
++            { SPECIES_NOCTOWL, 49, 49 },
++            { SPECIES_NOCTOWL, 49, 49 },
++            { SPECIES_NOCTOWL, 49, 49 },
++            { SPECIES_WURMPLE, 49, 49 },
++            { SPECIES_WURMPLE, 49, 49 },
++            { SPECIES_WURMPLE, 49, 49 },
+         },
+         .specialSlots =
+         {
+@@ -4168,18 +4168,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 6, 7 },
+-            { SPECIES_PINECO, 6, 7 },
+-            { SPECIES_PINECO, 6, 7 },
+-            { SPECIES_WURMPLE, 6, 7 },
+-            { SPECIES_WURMPLE, 6, 7 },
+-            { SPECIES_WURMPLE, 6, 7 },
+-            { SPECIES_HOOTHOOT, 9, 10 },
+-            { SPECIES_HOOTHOOT, 9, 10 },
+-            { SPECIES_HOOTHOOT, 9, 10 },
+-            { SPECIES_WURMPLE, 9, 10 },
+-            { SPECIES_WURMPLE, 9, 10 },
+-            { SPECIES_WURMPLE, 9, 10 },
++            { SPECIES_NOCTOWL, 48, 48 },
++            { SPECIES_FORRETRESS, 48, 48 },
++            { SPECIES_FORRETRESS, 48, 48 },
++            { SPECIES_WURMPLE, 48, 48 },
++            { SPECIES_WURMPLE, 48, 48 },
++            { SPECIES_WURMPLE, 48, 48 },
++            { SPECIES_NOCTOWL, 49, 49 },
++            { SPECIES_NOCTOWL, 49, 49 },
++            { SPECIES_NOCTOWL, 49, 49 },
++            { SPECIES_WURMPLE, 49, 49 },
++            { SPECIES_WURMPLE, 49, 49 },
++            { SPECIES_WURMPLE, 49, 49 },
+         },
+         .specialSlots =
+         {
+@@ -4209,18 +4209,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 11, 13 },
+-            { SPECIES_PINECO, 11, 13 },
+-            { SPECIES_PINECO, 11, 13 },
+-            { SPECIES_COMBEE, 11, 13 },
+-            { SPECIES_COMBEE, 11, 13 },
+-            { SPECIES_COMBEE, 11, 13 },
+-            { SPECIES_HOOTHOOT, 14, 16 },
+-            { SPECIES_HOOTHOOT, 14, 16 },
+-            { SPECIES_HOOTHOOT, 14, 16 },
+-            { SPECIES_COMBEE, 14, 16 },
+-            { SPECIES_COMBEE, 14, 16 },
+-            { SPECIES_COMBEE, 14, 16 },
++            { SPECIES_NOCTOWL, 50, 50 },
++            { SPECIES_FORRETRESS, 50, 50 },
++            { SPECIES_FORRETRESS, 50, 50 },
++            { SPECIES_COMBEE, 50, 50 },
++            { SPECIES_COMBEE, 50, 50 },
++            { SPECIES_COMBEE, 50, 50 },
++            { SPECIES_NOCTOWL, 51, 52 },
++            { SPECIES_NOCTOWL, 51, 52 },
++            { SPECIES_NOCTOWL, 51, 52 },
++            { SPECIES_COMBEE, 51, 52 },
++            { SPECIES_COMBEE, 51, 52 },
++            { SPECIES_COMBEE, 51, 52 },
+         },
+         .specialSlots =
+         {
+@@ -4245,18 +4245,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 11, 13 },
+-            { SPECIES_PINECO, 11, 13 },
+-            { SPECIES_PINECO, 11, 13 },
+-            { SPECIES_COMBEE, 11, 13 },
+-            { SPECIES_COMBEE, 11, 13 },
+-            { SPECIES_COMBEE, 11, 13 },
+-            { SPECIES_HOOTHOOT, 14, 16 },
+-            { SPECIES_HOOTHOOT, 14, 16 },
+-            { SPECIES_HOOTHOOT, 14, 16 },
+-            { SPECIES_COMBEE, 14, 16 },
+-            { SPECIES_COMBEE, 14, 16 },
+-            { SPECIES_COMBEE, 14, 16 },
++            { SPECIES_NOCTOWL, 50, 50 },
++            { SPECIES_FORRETRESS, 50, 50 },
++            { SPECIES_FORRETRESS, 50, 50 },
++            { SPECIES_COMBEE, 50, 50 },
++            { SPECIES_COMBEE, 50, 50 },
++            { SPECIES_COMBEE, 50, 50 },
++            { SPECIES_NOCTOWL, 51, 52 },
++            { SPECIES_NOCTOWL, 51, 52 },
++            { SPECIES_NOCTOWL, 51, 52 },
++            { SPECIES_COMBEE, 51, 52 },
++            { SPECIES_COMBEE, 51, 52 },
++            { SPECIES_COMBEE, 51, 52 },
+         },
+         .specialSlots =
+         {
+@@ -4283,18 +4283,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_SPEAROW, 15, 17 },
+-            { SPECIES_HERACROSS, 15, 17 },
+-            { SPECIES_HERACROSS, 15, 17 },
+-            { SPECIES_COMBEE, 15, 17 },
+-            { SPECIES_COMBEE, 15, 17 },
+-            { SPECIES_COMBEE, 15, 17 },
+-            { SPECIES_SPEAROW, 18, 20 },
+-            { SPECIES_SPEAROW, 18, 20 },
+-            { SPECIES_SPEAROW, 18, 20 },
+-            { SPECIES_COMBEE, 18, 20 },
+-            { SPECIES_COMBEE, 18, 20 },
+-            { SPECIES_COMBEE, 18, 20 },
++            { SPECIES_FEAROW, 51, 52 },
++            { SPECIES_HERACROSS, 51, 52 },
++            { SPECIES_HERACROSS, 51, 52 },
++            { SPECIES_COMBEE, 51, 52 },
++            { SPECIES_COMBEE, 51, 52 },
++            { SPECIES_COMBEE, 51, 52 },
++            { SPECIES_FEAROW, 53, 53 },
++            { SPECIES_FEAROW, 53, 53 },
++            { SPECIES_FEAROW, 53, 53 },
++            { SPECIES_COMBEE, 53, 53 },
++            { SPECIES_COMBEE, 53, 53 },
++            { SPECIES_COMBEE, 53, 53 },
+         },
+         .specialSlots =
+         {
+@@ -4323,18 +4323,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 16, 17 },
+-            { SPECIES_PINECO, 16, 17 },
+-            { SPECIES_PINECO, 16, 17 },
+-            { SPECIES_COMBEE, 16, 17 },
+-            { SPECIES_COMBEE, 16, 17 },
+-            { SPECIES_COMBEE, 16, 17 },
+-            { SPECIES_HOOTHOOT, 18, 19 },
+-            { SPECIES_HOOTHOOT, 18, 19 },
+-            { SPECIES_HOOTHOOT, 18, 19 },
+-            { SPECIES_COMBEE, 18, 19 },
+-            { SPECIES_COMBEE, 18, 19 },
+-            { SPECIES_COMBEE, 18, 19 },
++            { SPECIES_NOCTOWL, 52, 52 },
++            { SPECIES_FORRETRESS, 52, 52 },
++            { SPECIES_FORRETRESS, 52, 52 },
++            { SPECIES_COMBEE, 52, 52 },
++            { SPECIES_COMBEE, 52, 52 },
++            { SPECIES_COMBEE, 52, 52 },
++            { SPECIES_NOCTOWL, 53, 53 },
++            { SPECIES_NOCTOWL, 53, 53 },
++            { SPECIES_NOCTOWL, 53, 53 },
++            { SPECIES_COMBEE, 53, 53 },
++            { SPECIES_COMBEE, 53, 53 },
++            { SPECIES_COMBEE, 53, 53 },
+         },
+         .specialSlots =
+         {
+@@ -4370,18 +4370,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_SPEAROW, 13, 14 },
+-            { SPECIES_HERACROSS, 13, 14 },
+-            { SPECIES_HERACROSS, 13, 14 },
+-            { SPECIES_COMBEE, 13, 14 },
+-            { SPECIES_COMBEE, 13, 14 },
+-            { SPECIES_COMBEE, 13, 14 },
+-            { SPECIES_SPEAROW, 15, 16 },
+-            { SPECIES_SPEAROW, 15, 16 },
+-            { SPECIES_SPEAROW, 15, 16 },
+-            { SPECIES_COMBEE, 15, 16 },
+-            { SPECIES_COMBEE, 15, 16 },
+-            { SPECIES_COMBEE, 15, 16 },
++            { SPECIES_FEAROW, 50, 51 },
++            { SPECIES_HERACROSS, 50, 51 },
++            { SPECIES_HERACROSS, 50, 51 },
++            { SPECIES_COMBEE, 50, 51 },
++            { SPECIES_COMBEE, 50, 51 },
++            { SPECIES_COMBEE, 50, 51 },
++            { SPECIES_FEAROW, 51, 52 },
++            { SPECIES_FEAROW, 51, 52 },
++            { SPECIES_FEAROW, 51, 52 },
++            { SPECIES_COMBEE, 51, 52 },
++            { SPECIES_COMBEE, 51, 52 },
++            { SPECIES_COMBEE, 51, 52 },
+         },
+         .specialSlots =
+         {
+@@ -4413,18 +4413,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 22, 23 },
+-            { SPECIES_SPINARAK, 22, 23 },
+-            { SPECIES_SPINARAK, 22, 23 },
+-            { SPECIES_WURMPLE, 22, 23 },
+-            { SPECIES_WURMPLE, 22, 23 },
+-            { SPECIES_WURMPLE, 22, 23 },
+-            { SPECIES_HOOTHOOT, 24, 25 },
+-            { SPECIES_TANGELA, 24, 25 },
+-            { SPECIES_HOOTHOOT, 24, 25 },
+-            { SPECIES_WURMPLE, 24, 25 },
+-            { SPECIES_WURMPLE, 24, 25 },
+-            { SPECIES_WURMPLE, 24, 25 },
++            { SPECIES_NOCTOWL, 54, 55 },
++            { SPECIES_ARIADOS, 54, 55 },
++            { SPECIES_ARIADOS, 54, 55 },
++            { SPECIES_WURMPLE, 54, 55 },
++            { SPECIES_WURMPLE, 54, 55 },
++            { SPECIES_WURMPLE, 54, 55 },
++            { SPECIES_NOCTOWL, 55, 56 },
++            { SPECIES_TANGELA, 55, 56 },
++            { SPECIES_NOCTOWL, 55, 56 },
++            { SPECIES_WURMPLE, 55, 56 },
++            { SPECIES_WURMPLE, 55, 56 },
++            { SPECIES_WURMPLE, 55, 56 },
+         },
+         .specialSlots =
+         {
+@@ -4455,18 +4455,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 22, 23 },
+-            { SPECIES_SPINARAK, 22, 23 },
+-            { SPECIES_SPINARAK, 22, 23 },
+-            { SPECIES_WURMPLE, 22, 23 },
+-            { SPECIES_WURMPLE, 22, 23 },
+-            { SPECIES_WURMPLE, 22, 23 },
+-            { SPECIES_HOOTHOOT, 24, 25 },
+-            { SPECIES_TANGELA, 24, 25 },
+-            { SPECIES_HOOTHOOT, 24, 25 },
+-            { SPECIES_WURMPLE, 24, 25 },
+-            { SPECIES_WURMPLE, 24, 25 },
+-            { SPECIES_WURMPLE, 24, 25 },
++            { SPECIES_NOCTOWL, 54, 55 },
++            { SPECIES_ARIADOS, 54, 55 },
++            { SPECIES_ARIADOS, 54, 55 },
++            { SPECIES_WURMPLE, 54, 55 },
++            { SPECIES_WURMPLE, 54, 55 },
++            { SPECIES_WURMPLE, 54, 55 },
++            { SPECIES_NOCTOWL, 55, 56 },
++            { SPECIES_TANGELA, 55, 56 },
++            { SPECIES_NOCTOWL, 55, 56 },
++            { SPECIES_WURMPLE, 55, 56 },
++            { SPECIES_WURMPLE, 55, 56 },
++            { SPECIES_WURMPLE, 55, 56 },
+         },
+         .specialSlots =
+         {
+@@ -4502,18 +4502,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 26, 27 },
+-            { SPECIES_SPINARAK, 26, 27 },
+-            { SPECIES_SPINARAK, 26, 27 },
+-            { SPECIES_WURMPLE, 26, 27 },
+-            { SPECIES_WURMPLE, 26, 27 },
+-            { SPECIES_WURMPLE, 26, 27 },
+-            { SPECIES_HOOTHOOT, 29, 30 },
+-            { SPECIES_TANGELA, 29, 30 },
+-            { SPECIES_HOOTHOOT, 29, 30 },
+-            { SPECIES_WURMPLE, 29, 30 },
+-            { SPECIES_WURMPLE, 29, 30 },
+-            { SPECIES_WURMPLE, 29, 30 },
++            { SPECIES_NOCTOWL, 56, 56 },
++            { SPECIES_ARIADOS, 56, 56 },
++            { SPECIES_ARIADOS, 56, 56 },
++            { SPECIES_WURMPLE, 56, 56 },
++            { SPECIES_WURMPLE, 56, 56 },
++            { SPECIES_WURMPLE, 56, 56 },
++            { SPECIES_NOCTOWL, 57, 58 },
++            { SPECIES_TANGELA, 57, 58 },
++            { SPECIES_NOCTOWL, 57, 58 },
++            { SPECIES_WURMPLE, 57, 58 },
++            { SPECIES_WURMPLE, 57, 58 },
++            { SPECIES_WURMPLE, 57, 58 },
+         },
+         .specialSlots =
+         {
+@@ -4537,18 +4537,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 21, 23 },
+-            { SPECIES_SPINARAK, 21, 23 },
+-            { SPECIES_SPINARAK, 21, 23 },
+-            { SPECIES_WURMPLE, 21, 23 },
+-            { SPECIES_WURMPLE, 21, 23 },
+-            { SPECIES_WURMPLE, 21, 23 },
+-            { SPECIES_HOOTHOOT, 24, 26 },
+-            { SPECIES_TANGELA, 24, 26 },
+-            { SPECIES_HOOTHOOT, 24, 26 },
+-            { SPECIES_WURMPLE, 24, 26 },
+-            { SPECIES_WURMPLE, 24, 26 },
+-            { SPECIES_WURMPLE, 24, 26 },
++            { SPECIES_NOCTOWL, 54, 55 },
++            { SPECIES_ARIADOS, 54, 55 },
++            { SPECIES_ARIADOS, 54, 55 },
++            { SPECIES_WURMPLE, 54, 55 },
++            { SPECIES_WURMPLE, 54, 55 },
++            { SPECIES_WURMPLE, 54, 55 },
++            { SPECIES_NOCTOWL, 55, 56 },
++            { SPECIES_TANGELA, 55, 56 },
++            { SPECIES_NOCTOWL, 55, 56 },
++            { SPECIES_WURMPLE, 55, 56 },
++            { SPECIES_WURMPLE, 55, 56 },
++            { SPECIES_WURMPLE, 55, 56 },
+         },
+         .specialSlots =
+         {
+@@ -4588,18 +4588,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_SPEAROW, 26, 27 },
+-            { SPECIES_HERACROSS, 26, 27 },
+-            { SPECIES_HERACROSS, 26, 27 },
+-            { SPECIES_COMBEE, 26, 27 },
+-            { SPECIES_COMBEE, 26, 27 },
+-            { SPECIES_COMBEE, 26, 27 },
+-            { SPECIES_SPEAROW, 29, 30 },
+-            { SPECIES_SPEAROW, 29, 30 },
+-            { SPECIES_SPEAROW, 29, 30 },
+-            { SPECIES_COMBEE, 29, 30 },
+-            { SPECIES_COMBEE, 29, 30 },
+-            { SPECIES_COMBEE, 29, 30 },
++            { SPECIES_FEAROW, 56, 56 },
++            { SPECIES_HERACROSS, 56, 56 },
++            { SPECIES_HERACROSS, 56, 56 },
++            { SPECIES_COMBEE, 56, 56 },
++            { SPECIES_COMBEE, 56, 56 },
++            { SPECIES_COMBEE, 56, 56 },
++            { SPECIES_FEAROW, 57, 58 },
++            { SPECIES_FEAROW, 57, 58 },
++            { SPECIES_FEAROW, 57, 58 },
++            { SPECIES_COMBEE, 57, 58 },
++            { SPECIES_COMBEE, 57, 58 },
++            { SPECIES_COMBEE, 57, 58 },
+         },
+         .specialSlots =
+         {
+@@ -4627,18 +4627,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 26, 27 },
+-            { SPECIES_SPINARAK, 26, 27 },
+-            { SPECIES_SPINARAK, 26, 27 },
+-            { SPECIES_WURMPLE, 26, 27 },
+-            { SPECIES_WURMPLE, 26, 27 },
+-            { SPECIES_WURMPLE, 26, 27 },
+-            { SPECIES_HOOTHOOT, 29, 30 },
+-            { SPECIES_TANGELA, 29, 30 },
+-            { SPECIES_HOOTHOOT, 29, 30 },
+-            { SPECIES_WURMPLE, 29, 30 },
+-            { SPECIES_WURMPLE, 29, 30 },
+-            { SPECIES_WURMPLE, 29, 30 },
++            { SPECIES_NOCTOWL, 56, 56 },
++            { SPECIES_ARIADOS, 56, 56 },
++            { SPECIES_ARIADOS, 56, 56 },
++            { SPECIES_WURMPLE, 56, 56 },
++            { SPECIES_WURMPLE, 56, 56 },
++            { SPECIES_WURMPLE, 56, 56 },
++            { SPECIES_NOCTOWL, 57, 58 },
++            { SPECIES_TANGELA, 57, 58 },
++            { SPECIES_NOCTOWL, 57, 58 },
++            { SPECIES_WURMPLE, 57, 58 },
++            { SPECIES_WURMPLE, 57, 58 },
++            { SPECIES_WURMPLE, 57, 58 },
+         },
+         .specialSlots =
+         {
+@@ -4662,18 +4662,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 3, 4 },
+-            { SPECIES_PINECO, 3, 4 },
+-            { SPECIES_PINECO, 3, 4 },
+-            { SPECIES_WURMPLE, 3, 4 },
+-            { SPECIES_WURMPLE, 3, 4 },
+-            { SPECIES_WURMPLE, 3, 4 },
+-            { SPECIES_HOOTHOOT, 5, 7 },
+-            { SPECIES_SPINARAK, 5, 7 },
+-            { SPECIES_SPINARAK, 5, 7 },
+-            { SPECIES_WURMPLE, 5, 7 },
+-            { SPECIES_WURMPLE, 5, 7 },
+-            { SPECIES_WURMPLE, 5, 7 },
++            { SPECIES_NOCTOWL, 46, 47 },
++            { SPECIES_FORRETRESS, 46, 47 },
++            { SPECIES_FORRETRESS, 46, 47 },
++            { SPECIES_WURMPLE, 46, 47 },
++            { SPECIES_WURMPLE, 46, 47 },
++            { SPECIES_WURMPLE, 46, 47 },
++            { SPECIES_NOCTOWL, 47, 48 },
++            { SPECIES_ARIADOS, 47, 48 },
++            { SPECIES_ARIADOS, 47, 48 },
++            { SPECIES_WURMPLE, 47, 48 },
++            { SPECIES_WURMPLE, 47, 48 },
++            { SPECIES_WURMPLE, 47, 48 },
+         },
+         .specialSlots =
+         {
+@@ -4706,27 +4706,27 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 4,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 10, 11 },
+-            { SPECIES_PINECO, 10, 11 },
+-            { SPECIES_PINECO, 10, 11 },
+-            { SPECIES_COMBEE, 10, 11 },
+-            { SPECIES_COMBEE, 10, 11 },
+-            { SPECIES_COMBEE, 10, 11 },
+-            { SPECIES_HOOTHOOT, 13, 14 },
+-            { SPECIES_HOOTHOOT, 13, 14 },
+-            { SPECIES_HOOTHOOT, 13, 14 },
+-            { SPECIES_COMBEE, 13, 14 },
+-            { SPECIES_COMBEE, 13, 14 },
+-            { SPECIES_COMBEE, 13, 14 },
++            { SPECIES_NOCTOWL, 49, 50 },
++            { SPECIES_FORRETRESS, 49, 50 },
++            { SPECIES_FORRETRESS, 49, 50 },
++            { SPECIES_COMBEE, 49, 50 },
++            { SPECIES_COMBEE, 49, 50 },
++            { SPECIES_COMBEE, 49, 50 },
++            { SPECIES_NOCTOWL, 50, 51 },
++            { SPECIES_NOCTOWL, 50, 51 },
++            { SPECIES_NOCTOWL, 50, 51 },
++            { SPECIES_COMBEE, 50, 51 },
++            { SPECIES_COMBEE, 50, 51 },
++            { SPECIES_COMBEE, 50, 51 },
+         },
+         .specialSlots =
+         {
+-            { SPECIES_COMBEE, 10, 14 },
+-            { SPECIES_COMBEE, 10, 14 },
+-            { SPECIES_SLAKOTH, 10, 14 },
+-            { SPECIES_SLAKOTH, 10, 14 },
+-            { SPECIES_SLAKOTH, 10, 14 },
+-            { SPECIES_SLAKOTH, 15, 18 },
++            { SPECIES_COMBEE, 49, 51 },
++            { SPECIES_COMBEE, 49, 51 },
++            { SPECIES_SLAKING, 49, 51 },
++            { SPECIES_SLAKING, 49, 51 },
++            { SPECIES_SLAKING, 49, 51 },
++            { SPECIES_SLAKING, 51, 53 },
+         },
+         .treeCoords =
+         {
+@@ -4851,18 +4851,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HERACROSS, 39, 40 },
+-            { SPECIES_AIPOM, 39, 40 },
+-            { SPECIES_AIPOM, 39, 40 },
+-            { SPECIES_NATU, 39, 40 },
+-            { SPECIES_NATU, 39, 40 },
+-            { SPECIES_NATU, 39, 40 },
+-            { SPECIES_HERACROSS, 41, 43 },
+-            { SPECIES_AIPOM, 41, 43 },
+-            { SPECIES_AIPOM, 41, 43 },
+-            { SPECIES_NATU, 41, 43 },
+-            { SPECIES_NATU, 41, 43 },
+-            { SPECIES_NATU, 41, 43 },
++            { SPECIES_HERACROSS, 67, 68 },
++            { SPECIES_AIPOM, 67, 68 },
++            { SPECIES_AIPOM, 67, 68 },
++            { SPECIES_XATU, 67, 68 },
++            { SPECIES_XATU, 67, 68 },
++            { SPECIES_XATU, 67, 68 },
++            { SPECIES_HERACROSS, 68, 68 },
++            { SPECIES_AIPOM, 68, 68 },
++            { SPECIES_AIPOM, 68, 68 },
++            { SPECIES_XATU, 68, 68 },
++            { SPECIES_XATU, 68, 68 },
++            { SPECIES_XATU, 68, 68 },
+         },
+         .specialSlots =
+         {
+@@ -5668,18 +5668,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 2, 3 },
+-            { SPECIES_PINECO, 2, 3 },
+-            { SPECIES_PINECO, 2, 3 },
+-            { SPECIES_WURMPLE, 2, 3 },
+-            { SPECIES_WURMPLE, 2, 3 },
+-            { SPECIES_WURMPLE, 2, 3 },
+-            { SPECIES_HOOTHOOT, 5, 6 },
+-            { SPECIES_SPINARAK, 5, 6 },
+-            { SPECIES_SPINARAK, 5, 6 },
+-            { SPECIES_WURMPLE, 5, 6 },
+-            { SPECIES_WURMPLE, 5, 6 },
+-            { SPECIES_WURMPLE, 5, 6 },
++            { SPECIES_NOCTOWL, 46, 46 },
++            { SPECIES_FORRETRESS, 46, 46 },
++            { SPECIES_FORRETRESS, 46, 46 },
++            { SPECIES_WURMPLE, 46, 46 },
++            { SPECIES_WURMPLE, 46, 46 },
++            { SPECIES_WURMPLE, 46, 46 },
++            { SPECIES_NOCTOWL, 47, 48 },
++            { SPECIES_ARIADOS, 47, 48 },
++            { SPECIES_ARIADOS, 47, 48 },
++            { SPECIES_WURMPLE, 47, 48 },
++            { SPECIES_WURMPLE, 47, 48 },
++            { SPECIES_WURMPLE, 47, 48 },
+         },
+         .specialSlots =
+         {
+@@ -5717,18 +5717,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 3, 4 },
+-            { SPECIES_PINECO, 3, 4 },
+-            { SPECIES_PINECO, 3, 4 },
+-            { SPECIES_WURMPLE, 3, 4 },
+-            { SPECIES_WURMPLE, 3, 4 },
+-            { SPECIES_WURMPLE, 3, 4 },
+-            { SPECIES_HOOTHOOT, 5, 7 },
+-            { SPECIES_SPINARAK, 5, 7 },
+-            { SPECIES_SPINARAK, 5, 7 },
+-            { SPECIES_WURMPLE, 5, 7 },
+-            { SPECIES_WURMPLE, 5, 7 },
+-            { SPECIES_WURMPLE, 5, 7 },
++            { SPECIES_NOCTOWL, 46, 47 },
++            { SPECIES_FORRETRESS, 46, 47 },
++            { SPECIES_FORRETRESS, 46, 47 },
++            { SPECIES_WURMPLE, 46, 47 },
++            { SPECIES_WURMPLE, 46, 47 },
++            { SPECIES_WURMPLE, 46, 47 },
++            { SPECIES_NOCTOWL, 47, 48 },
++            { SPECIES_ARIADOS, 47, 48 },
++            { SPECIES_ARIADOS, 47, 48 },
++            { SPECIES_WURMPLE, 47, 48 },
++            { SPECIES_WURMPLE, 47, 48 },
++            { SPECIES_WURMPLE, 47, 48 },
+         },
+         .specialSlots =
+         {
+@@ -5770,27 +5770,27 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 2,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 3, 5 },
+-            { SPECIES_PINECO, 3, 5 },
+-            { SPECIES_PINECO, 3, 5 },
+-            { SPECIES_WURMPLE, 3, 5 },
+-            { SPECIES_WURMPLE, 3, 5 },
+-            { SPECIES_WURMPLE, 3, 5 },
+-            { SPECIES_HOOTHOOT, 7, 9 },
+-            { SPECIES_HOOTHOOT, 7, 9 },
+-            { SPECIES_HOOTHOOT, 7, 9 },
+-            { SPECIES_WURMPLE, 7, 9 },
+-            { SPECIES_WURMPLE, 7, 9 },
+-            { SPECIES_WURMPLE, 7, 9 },
++            { SPECIES_NOCTOWL, 46, 47 },
++            { SPECIES_FORRETRESS, 46, 47 },
++            { SPECIES_FORRETRESS, 46, 47 },
++            { SPECIES_WURMPLE, 46, 47 },
++            { SPECIES_WURMPLE, 46, 47 },
++            { SPECIES_WURMPLE, 46, 47 },
++            { SPECIES_NOCTOWL, 48, 49 },
++            { SPECIES_NOCTOWL, 48, 49 },
++            { SPECIES_NOCTOWL, 48, 49 },
++            { SPECIES_WURMPLE, 48, 49 },
++            { SPECIES_WURMPLE, 48, 49 },
++            { SPECIES_WURMPLE, 48, 49 },
+         },
+         .specialSlots =
+         {
+-            { SPECIES_WURMPLE, 5, 9 },
+-            { SPECIES_WURMPLE, 5, 9 },
+-            { SPECIES_STARLY, 5, 9 },
+-            { SPECIES_STARLY, 5, 9 },
+-            { SPECIES_STARLY, 5, 9 },
+-            { SPECIES_STARLY, 8, 12 },
++            { SPECIES_WURMPLE, 47, 49 },
++            { SPECIES_WURMPLE, 47, 49 },
++            { SPECIES_STARAPTOR, 47, 49 },
++            { SPECIES_STARAPTOR, 47, 49 },
++            { SPECIES_STARAPTOR, 47, 49 },
++            { SPECIES_STARAPTOR, 48, 50 },
+         },
+         .treeCoords =
+         {
+@@ -5825,18 +5825,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 11, 13 },
+-            { SPECIES_PINECO, 11, 13 },
+-            { SPECIES_PINECO, 11, 13 },
+-            { SPECIES_COMBEE, 11, 13 },
+-            { SPECIES_COMBEE, 11, 13 },
+-            { SPECIES_COMBEE, 11, 13 },
+-            { SPECIES_HOOTHOOT, 14, 16 },
+-            { SPECIES_HOOTHOOT, 14, 16 },
+-            { SPECIES_HOOTHOOT, 14, 16 },
+-            { SPECIES_COMBEE, 14, 16 },
+-            { SPECIES_COMBEE, 14, 16 },
+-            { SPECIES_COMBEE, 14, 16 },
++            { SPECIES_NOCTOWL, 50, 50 },
++            { SPECIES_FORRETRESS, 50, 50 },
++            { SPECIES_FORRETRESS, 50, 50 },
++            { SPECIES_COMBEE, 50, 50 },
++            { SPECIES_COMBEE, 50, 50 },
++            { SPECIES_COMBEE, 50, 50 },
++            { SPECIES_NOCTOWL, 51, 52 },
++            { SPECIES_NOCTOWL, 51, 52 },
++            { SPECIES_NOCTOWL, 51, 52 },
++            { SPECIES_COMBEE, 51, 52 },
++            { SPECIES_COMBEE, 51, 52 },
++            { SPECIES_COMBEE, 51, 52 },
+         },
+         .specialSlots =
+         {
+@@ -5873,18 +5873,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_SPEAROW, 11, 13 },
+-            { SPECIES_HERACROSS, 11, 13 },
+-            { SPECIES_HERACROSS, 11, 13 },
+-            { SPECIES_COMBEE, 11, 13 },
+-            { SPECIES_COMBEE, 11, 13 },
+-            { SPECIES_COMBEE, 11, 13 },
+-            { SPECIES_SPEAROW, 14, 16 },
+-            { SPECIES_SPEAROW, 14, 16 },
+-            { SPECIES_SPEAROW, 14, 16 },
+-            { SPECIES_COMBEE, 14, 16 },
+-            { SPECIES_COMBEE, 14, 16 },
+-            { SPECIES_COMBEE, 14, 16 },
++            { SPECIES_FEAROW, 50, 50 },
++            { SPECIES_HERACROSS, 50, 50 },
++            { SPECIES_HERACROSS, 50, 50 },
++            { SPECIES_COMBEE, 50, 50 },
++            { SPECIES_COMBEE, 50, 50 },
++            { SPECIES_COMBEE, 50, 50 },
++            { SPECIES_FEAROW, 51, 52 },
++            { SPECIES_FEAROW, 51, 52 },
++            { SPECIES_FEAROW, 51, 52 },
++            { SPECIES_COMBEE, 51, 52 },
++            { SPECIES_COMBEE, 51, 52 },
++            { SPECIES_COMBEE, 51, 52 },
+         },
+         .specialSlots =
+         {
+@@ -5915,18 +5915,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_SPEAROW, 15, 17 },
+-            { SPECIES_HERACROSS, 15, 17 },
+-            { SPECIES_HERACROSS, 15, 17 },
+-            { SPECIES_COMBEE, 15, 17 },
+-            { SPECIES_COMBEE, 15, 17 },
+-            { SPECIES_COMBEE, 15, 17 },
+-            { SPECIES_SPEAROW, 18, 20 },
+-            { SPECIES_SPEAROW, 18, 20 },
+-            { SPECIES_SPEAROW, 18, 20 },
+-            { SPECIES_COMBEE, 18, 20 },
+-            { SPECIES_COMBEE, 18, 20 },
+-            { SPECIES_COMBEE, 18, 20 },
++            { SPECIES_FEAROW, 51, 52 },
++            { SPECIES_HERACROSS, 51, 52 },
++            { SPECIES_HERACROSS, 51, 52 },
++            { SPECIES_COMBEE, 51, 52 },
++            { SPECIES_COMBEE, 51, 52 },
++            { SPECIES_COMBEE, 51, 52 },
++            { SPECIES_FEAROW, 53, 53 },
++            { SPECIES_FEAROW, 53, 53 },
++            { SPECIES_FEAROW, 53, 53 },
++            { SPECIES_COMBEE, 53, 53 },
++            { SPECIES_COMBEE, 53, 53 },
++            { SPECIES_COMBEE, 53, 53 },
+         },
+         .specialSlots =
+         {
+@@ -5979,18 +5979,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 21, 23 },
+-            { SPECIES_SPINARAK, 21, 23 },
+-            { SPECIES_SPINARAK, 21, 23 },
+-            { SPECIES_WURMPLE, 21, 23 },
+-            { SPECIES_WURMPLE, 21, 23 },
+-            { SPECIES_WURMPLE, 21, 23 },
+-            { SPECIES_HOOTHOOT, 26, 34 },
+-            { SPECIES_TANGELA, 26, 34 },
+-            { SPECIES_HOOTHOOT, 26, 34 },
+-            { SPECIES_WURMPLE, 26, 34 },
+-            { SPECIES_WURMPLE, 26, 34 },
+-            { SPECIES_WURMPLE, 26, 34 },
++            { SPECIES_NOCTOWL, 54, 55 },
++            { SPECIES_ARIADOS, 54, 55 },
++            { SPECIES_ARIADOS, 54, 55 },
++            { SPECIES_WURMPLE, 54, 55 },
++            { SPECIES_WURMPLE, 54, 55 },
++            { SPECIES_WURMPLE, 54, 55 },
++            { SPECIES_NOCTOWL, 56, 59 },
++            { SPECIES_TANGELA, 56, 59 },
++            { SPECIES_NOCTOWL, 56, 59 },
++            { SPECIES_WURMPLE, 56, 59 },
++            { SPECIES_WURMPLE, 56, 59 },
++            { SPECIES_WURMPLE, 56, 59 },
+         },
+         .specialSlots =
+         {
+@@ -6460,18 +6460,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HERACROSS, 39, 40 },
+-            { SPECIES_AIPOM, 39, 40 },
+-            { SPECIES_AIPOM, 39, 40 },
+-            { SPECIES_NATU, 39, 40 },
+-            { SPECIES_NATU, 39, 40 },
+-            { SPECIES_NATU, 39, 40 },
+-            { SPECIES_HERACROSS, 41, 43 },
+-            { SPECIES_AIPOM, 41, 43 },
+-            { SPECIES_AIPOM, 41, 43 },
+-            { SPECIES_NATU, 41, 43 },
+-            { SPECIES_NATU, 41, 43 },
+-            { SPECIES_NATU, 41, 43 },
++            { SPECIES_HERACROSS, 67, 68 },
++            { SPECIES_AIPOM, 67, 68 },
++            { SPECIES_AIPOM, 67, 68 },
++            { SPECIES_XATU, 67, 68 },
++            { SPECIES_XATU, 67, 68 },
++            { SPECIES_XATU, 67, 68 },
++            { SPECIES_HERACROSS, 68, 68 },
++            { SPECIES_AIPOM, 68, 68 },
++            { SPECIES_AIPOM, 68, 68 },
++            { SPECIES_XATU, 68, 68 },
++            { SPECIES_XATU, 68, 68 },
++            { SPECIES_XATU, 68, 68 },
+         },
+         .specialSlots =
+         {
+@@ -6507,18 +6507,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 24, 26 },
+-            { SPECIES_SPINARAK, 24, 26 },
+-            { SPECIES_SPINARAK, 24, 26 },
+-            { SPECIES_WURMPLE, 24, 26 },
+-            { SPECIES_WURMPLE, 24, 26 },
+-            { SPECIES_WURMPLE, 24, 26 },
+-            { SPECIES_HOOTHOOT, 27, 30 },
+-            { SPECIES_TANGELA, 27, 30 },
+-            { SPECIES_HOOTHOOT, 27, 30 },
+-            { SPECIES_WURMPLE, 27, 30 },
+-            { SPECIES_WURMPLE, 27, 30 },
+-            { SPECIES_WURMPLE, 27, 30 },
++            { SPECIES_NOCTOWL, 55, 56 },
++            { SPECIES_ARIADOS, 55, 56 },
++            { SPECIES_ARIADOS, 55, 56 },
++            { SPECIES_WURMPLE, 55, 56 },
++            { SPECIES_WURMPLE, 55, 56 },
++            { SPECIES_WURMPLE, 55, 56 },
++            { SPECIES_NOCTOWL, 56, 58 },
++            { SPECIES_TANGELA, 56, 58 },
++            { SPECIES_NOCTOWL, 56, 58 },
++            { SPECIES_WURMPLE, 56, 58 },
++            { SPECIES_WURMPLE, 56, 58 },
++            { SPECIES_WURMPLE, 56, 58 },
+         },
+         .specialSlots =
+         {
+@@ -6944,18 +6944,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 3, 4 },
+-            { SPECIES_SEEDOT, 3, 4 },
+-            { SPECIES_SEEDOT, 3, 4 },
+-            { SPECIES_SPINARAK, 3, 4 },
+-            { SPECIES_HOOTHOOT, 3, 4 },
+-            { SPECIES_SHROOMISH, 3, 4 },
+-            { SPECIES_HOOTHOOT, 5, 7 },
+-            { SPECIES_SEEDOT, 5, 7 },
+-            { SPECIES_SEEDOT, 5, 7 },
+-            { SPECIES_ARIADOS, 5, 7 },
+-            { SPECIES_NOCTOWL, 5, 7 },
+-            { SPECIES_SHROOMISH, 5, 7 },
++            { SPECIES_NOCTOWL, 46, 47 },
++            { SPECIES_NUZLEAF, 46, 47 },
++            { SPECIES_NUZLEAF, 46, 47 },
++            { SPECIES_ARIADOS, 46, 47 },
++            { SPECIES_NOCTOWL, 46, 47 },
++            { SPECIES_BRELOOM, 46, 47 },
++            { SPECIES_NOCTOWL, 47, 48 },
++            { SPECIES_NUZLEAF, 47, 48 },
++            { SPECIES_NUZLEAF, 47, 48 },
++            { SPECIES_ARIADOS, 47, 48 },
++            { SPECIES_NOCTOWL, 47, 48 },
++            { SPECIES_BRELOOM, 47, 48 },
+         },
+         .specialSlots =
+         {
+@@ -8448,18 +8448,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 3, 4 },
+-            { SPECIES_PINECO, 3, 4 },
+-            { SPECIES_PINECO, 3, 4 },
+-            { SPECIES_WURMPLE, 3, 4 },
+-            { SPECIES_WURMPLE, 3, 4 },
+-            { SPECIES_WURMPLE, 3, 4 },
+-            { SPECIES_HOOTHOOT, 5, 7 },
+-            { SPECIES_SPINARAK, 5, 7 },
+-            { SPECIES_SPINARAK, 5, 7 },
+-            { SPECIES_WURMPLE, 5, 7 },
+-            { SPECIES_WURMPLE, 5, 7 },
+-            { SPECIES_WURMPLE, 5, 7 },
++            { SPECIES_NOCTOWL, 46, 47 },
++            { SPECIES_FORRETRESS, 46, 47 },
++            { SPECIES_FORRETRESS, 46, 47 },
++            { SPECIES_WURMPLE, 46, 47 },
++            { SPECIES_WURMPLE, 46, 47 },
++            { SPECIES_WURMPLE, 46, 47 },
++            { SPECIES_NOCTOWL, 47, 48 },
++            { SPECIES_ARIADOS, 47, 48 },
++            { SPECIES_ARIADOS, 47, 48 },
++            { SPECIES_WURMPLE, 47, 48 },
++            { SPECIES_WURMPLE, 47, 48 },
++            { SPECIES_WURMPLE, 47, 48 },
+         },
+         .specialSlots =
+         {
+@@ -8528,18 +8528,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_SPEAROW, 26, 27 },
+-            { SPECIES_HERACROSS, 26, 27 },
+-            { SPECIES_HERACROSS, 26, 27 },
+-            { SPECIES_COMBEE, 26, 27 },
+-            { SPECIES_COMBEE, 26, 27 },
+-            { SPECIES_COMBEE, 26, 27 },
+-            { SPECIES_SPEAROW, 29, 30 },
+-            { SPECIES_SPEAROW, 29, 30 },
+-            { SPECIES_SPEAROW, 29, 30 },
+-            { SPECIES_COMBEE, 29, 30 },
+-            { SPECIES_COMBEE, 29, 30 },
+-            { SPECIES_COMBEE, 29, 30 },
++            { SPECIES_FEAROW, 56, 56 },
++            { SPECIES_HERACROSS, 56, 56 },
++            { SPECIES_HERACROSS, 56, 56 },
++            { SPECIES_COMBEE, 56, 56 },
++            { SPECIES_COMBEE, 56, 56 },
++            { SPECIES_COMBEE, 56, 56 },
++            { SPECIES_FEAROW, 57, 58 },
++            { SPECIES_FEAROW, 57, 58 },
++            { SPECIES_FEAROW, 57, 58 },
++            { SPECIES_COMBEE, 57, 58 },
++            { SPECIES_COMBEE, 57, 58 },
++            { SPECIES_COMBEE, 57, 58 },
+         },
+         .specialSlots =
+         {
+@@ -8750,18 +8750,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HERACROSS, 42, 44 },
+-            { SPECIES_AIPOM, 42, 44 },
+-            { SPECIES_AIPOM, 42, 44 },
+-            { SPECIES_NATU, 42, 44 },
+-            { SPECIES_NATU, 42, 44 },
+-            { SPECIES_NATU, 42, 44 },
+-            { SPECIES_HERACROSS, 45, 48 },
+-            { SPECIES_AIPOM, 45, 48 },
+-            { SPECIES_AIPOM, 45, 48 },
+-            { SPECIES_NATU, 45, 48 },
+-            { SPECIES_NATU, 45, 48 },
+-            { SPECIES_NATU, 45, 48 },
++            { SPECIES_HERACROSS, 68, 69 },
++            { SPECIES_AIPOM, 68, 69 },
++            { SPECIES_AIPOM, 68, 69 },
++            { SPECIES_XATU, 68, 69 },
++            { SPECIES_XATU, 68, 69 },
++            { SPECIES_XATU, 68, 69 },
++            { SPECIES_HERACROSS, 69, 70 },
++            { SPECIES_AIPOM, 69, 70 },
++            { SPECIES_AIPOM, 69, 70 },
++            { SPECIES_XATU, 69, 70 },
++            { SPECIES_XATU, 69, 70 },
++            { SPECIES_XATU, 69, 70 },
+         },
+         .specialSlots =
+         {
+diff --git a/tools/hack/kanto_headbutt.py b/tools/hack/kanto_headbutt.py
+new file mode 100644
+index 000000000..423afc255
+--- /dev/null
++++ b/tools/hack/kanto_headbutt.py
+@@ -0,0 +1,66 @@
++#!/usr/bin/env python3
++"""Kanto Headbutt trees for the post-game.
++
++kanto_wild.py moved Kanto's grass, cave, surfing, Rock Smash and fishing
++Pokemon into a post-game level band but left the Headbutt trees at their
++original levels (Lv. 2-6 on Route 1). This gives the trees of Kanto the same
++band and the same rule: a Pokemon past a plain level-up evolution appears
++evolved. Johto's trees are not touched.
++
++Run once from the hg-engine root, after kanto_wild.py:
++    python3 tools/hack/kanto_headbutt.py
++"""
++import re
++
++from kanto_wild import evolve, kanto_level, load_evolutions
++
++HEADBUTT = "data/Headbutt.c"
++TOWNS = ("pallet", "viridian", "pewter", "cerulean", "lavender", "vermilion", "celadon", "fuchsia", "cinnabar",
++         "saffron")
++
++
++def table_name(area):
++    """The name kanto_level() knows a Kanto area by, or None for an area in Johto."""
++    if area.startswith("mtSilver"):
++        return "MT_SILVER"
++    # some areas have a second entry whose name ends in its three-digit number (route2414 is Route 2)
++    route = re.fullmatch(r"route(\d{1,2}?)(\d{3})?", area)
++    if route:
++        number = int(route.group(1))
++        return "ROUTE_%d" % number if number <= 25 or number == 28 else None
++    return area.upper() if area.startswith(TOWNS) else None
++
++
++def main():
++    evolutions = load_evolutions()
++    text = open(HEADBUTT).read()
++    areas = evolved = 0
++
++    def rewrite(match):
++        nonlocal areas, evolved
++        table = table_name(match.group(1))
++        if table is None or "SPECIES_" not in match.group(0):
++            return match.group(0)
++        changed = False
++
++        def slot(s):
++            nonlocal evolved, changed
++            name, low, high = s.group(1), int(s.group(2)), int(s.group(3))
++            if name == "NONE":
++                return s.group(0)
++            changed = True
++            low, high = kanto_level(low, table), kanto_level(high, table)
++            new = evolve(name, low, evolutions)
++            evolved += new != name
++            return "{ SPECIES_%s, %d, %d }" % (new, low, high)
++        body = re.sub(r"\{ SPECIES_(\w+), (\d+), (\d+) \}", slot, match.group(0))
++        areas += changed
++        return body
++
++    text = re.sub(r"^    \.(\w+) = \{\n.*?^    \},\n", rewrite, text, flags=re.S | re.M)
++    open(HEADBUTT, "w").write(text)
++    print("%d Kanto Headbutt areas, %d slots now hold an evolved Pokemon" % (areas, evolved))
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/tools/hack/kanto_wild.py b/tools/hack/kanto_wild.py
+index cd597f9fc..199ab83d5 100644
+--- a/tools/hack/kanto_wild.py
++++ b/tools/hack/kanto_wild.py
+@@ -13,7 +13,7 @@ evolutions are left alone, and so are the four former trade evolutions and
+ Annihilape, which this hack moved to a level. The strongest lines stop at
+ their middle stage (Pupitar, not Tyranitar).
+ 
+-Headbutt trees and the Safari Zone are unchanged.
++The Safari Zone is unchanged. Headbutt trees are done by kanto_headbutt.py.
+ 
+ Run once from the hg-engine root, after wild_levels.py and encounters.py:
+     python3 tools/hack/kanto_wild.py
+-- 
+2.43.0
+

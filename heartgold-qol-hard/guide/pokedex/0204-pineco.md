@@ -14,15 +14,6 @@ No. 204 · Bug · catch rate 190
 
 ## Where
 
-- Route 1 (Headbutt)
-- Route 2 (Headbutt)
-- Route 3 (Headbutt)
-- Route 4 (Headbutt)
-- Route 5 (Headbutt)
-- Route 6 (Headbutt)
-- Route 8 (Headbutt)
-- Route 22 (Headbutt)
-- Route 25 (Headbutt)
 - Route 26 (Headbutt)
 - Route 27 (Headbutt)
 - Route 29 (Headbutt)
@@ -36,10 +27,6 @@ No. 204 · Bug · catch rate 190
 - Route 38 (Headbutt)
 - Route 39 (Headbutt)
 - Route 43 (Headbutt)
-- Pallet Town (Headbutt)
-- Viridian City (Headbutt)
-- Pewter City (Headbutt)
-- Cerulean City (Headbutt)
 - New Bark Town (Headbutt)
 - Cherrygrove City (Headbutt)
 - Violet City (Headbutt)
@@ -50,7 +37,6 @@ No. 204 · Bug · catch rate 190
 - Route 47 (Headbutt)
 - Route 48 (Headbutt)
 - Safari Zone Gate Outside (Headbutt)
-- Route 2414 (Headbutt)
 
 ## Moves by level
 

@@ -12,10 +12,6 @@ No. 273 · Grass · catch rate 255
 
 - Into [Nuzleaf](0274-nuzleaf.md) at Lv. 14.
 
-## Where
-
-- Viridian Forest (Headbutt)
-
 ## Moves by level
 
 | Lv. | Move |

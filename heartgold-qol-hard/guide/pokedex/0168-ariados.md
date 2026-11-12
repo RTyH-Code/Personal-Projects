@@ -16,7 +16,20 @@ No. 168 · Bug / Poison · catch rate 90
 
 - Route 2 (walking)
 - Route 2 East (walking)
+- Route 1 (Headbutt)
+- Route 2 (Headbutt)
+- Route 12 (Headbutt)
+- Route 13 (Headbutt)
+- Route 14 (Headbutt)
+- Route 15 (Headbutt)
+- Route 18 (Headbutt)
+- Route 22 (Headbutt)
+- Pallet Town (Headbutt)
+- Viridian City (Headbutt)
+- Fuchsia City (Headbutt)
+- Route 21 (Headbutt)
 - Viridian Forest (Headbutt)
+- Route 2414 (Headbutt)
 
 ## Moves by level
 

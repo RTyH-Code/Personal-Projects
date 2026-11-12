@@ -21,18 +21,12 @@ No. 21 · Normal / Flying · catch rate 255
 - Route 47 (walking)
 - Route 4 (swarm)
 - Route 10 (swarm)
-- Route 7 (Headbutt)
-- Route 11 (Headbutt)
-- Route 16 (Headbutt)
 - Route 33 (Headbutt)
 - Route 42 (Headbutt)
 - Route 44 (Headbutt)
 - Route 45 (Headbutt)
 - Route 46 (Headbutt)
-- Vermilion City (Headbutt)
-- Celadon City (Headbutt)
 - Azalea Town (Headbutt)
-- Route 16422 (Headbutt)
 
 ## Moves by level
 

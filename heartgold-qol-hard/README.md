@@ -210,12 +210,14 @@ The levels, IVs, AI and every boss team are in.
   | Cerulean Cave | 37–49 | 61–66 |
   | Route 28, Mt. Silver | 15–51 | 62–70 |
 
-  Surfing, Rock Smash and fishing in Kanto follow the same scale. A wild
+  Surfing, Rock Smash, fishing and Headbutt trees in Kanto follow the same
+  scale. A wild
   Pokémon that is past a level-up evolution appears evolved (Pidgeot and
   Raticate on Route 1, not a Lv. 46 Pidgey). Stone, held-item and
   friendship evolutions are left as they were, and Larvitar's line stops
   at Pupitar, so there is no wild Tyranitar.
-- Johto fishing, Headbutt trees and the Safari Zone are unchanged.
+- Johto fishing, Johto's Headbutt trees and the Safari Zone are unchanged.
+  Routes 26 and 27 count as Johto here, as they do for the other wild levels.
 - **IVs:** every trainer Pokémon has at least about 18 in each stat; Gym
   Leaders, the Elite Four, the Champion, your rival, Red and the Rocket
   bosses have 31.
@@ -358,7 +360,7 @@ The FireRed recipe, and where each part comes from here:
 | Johto and League boss teams | Done: `tools/hack/boss_teams.py` |
 | Kanto leaders, Blue, Red, second Elite Four round and rematch teams | Done: `tools/hack/boss_teams.py` |
 | Johto wild levels | Done: `tools/hack/wild_levels.py` |
-| Kanto wild levels | Done: `tools/hack/kanto_wild.py` |
+| Kanto wild levels | Done: `tools/hack/kanto_wild.py`, `tools/hack/kanto_headbutt.py` |
 | Every non-legendary Pokémon obtainable in Johto | Done: `tools/hack/encounters.py`, `tools/hack/fossil_reviver.py` |
 | Legendary encounters | Done: `tools/hack/legendaries.py` |
 | Trade evolutions without trading | Done: `tools/hack/trade_evos.py` |

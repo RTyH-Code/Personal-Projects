@@ -12,6 +12,10 @@ No. 289 · Normal · catch rate 45
 
 - From [Vigoroth](0288-vigoroth.md) at Lv. 36.
 
+## Where
+
+- Route 25 (Headbutt)
+
 ## Moves by level
 
 | Lv. | Move |

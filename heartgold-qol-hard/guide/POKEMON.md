@@ -27,8 +27,8 @@ the [Pokédex](POKEDEX.md) for each Pokémon's page.
 | 18 | [Pidgeot](pokedex/0018-pidgeot.md) | wild: Route 1, Route 2, Route 5, Route 6, Route 8, Route 13 and 5 more |
 | 19 | [Rattata](pokedex/0019-rattata.md) | wild: Route 29, Route 30, Route 31, Sprout Tower 2F, Sprout Tower 3F, Route 32 and 26 more |
 | 20 | [Raticate](pokedex/0020-raticate.md) | wild: Union Cave B2F, Burned Tower 1F, Route 38, Route 39, Mount Mortar 2F, Mount Mortar B1F and 12 more |
-| 21 | [Spearow](pokedex/0021-spearow.md) | Kenya, from the guard on Route 35; wild: Route 33, Route 42, Route 46, Route 47, Route 4, Route 10 and 9 more |
-| 22 | [Fearow](pokedex/0022-fearow.md) | wild: Route 47, Route 48, Route 3, Route 4, Route 7, Route 9 and 5 more |
+| 21 | [Spearow](pokedex/0021-spearow.md) | Kenya, from the guard on Route 35; wild: Route 33, Route 42, Route 46, Route 47, Route 4, Route 10 and 3 more |
+| 22 | [Fearow](pokedex/0022-fearow.md) | wild: Route 47, Route 48, Route 3, Route 4, Route 7, Route 9 and 10 more |
 | 23 | [Ekans](pokedex/0023-ekans.md) | wild: Route 32 |
 | 24 | [Arbok](pokedex/0024-arbok.md) | evolve Ekans at Lv. 22 |
 | 25 | [Pikachu](pokedex/0025-pikachu.md) | wild: Ilex Forest, Viridian Forest |
@@ -169,12 +169,12 @@ the [Pokédex](POKEDEX.md) for each Pokémon's page.
 | 160 | [Feraligatr](pokedex/0160-feraligatr.md) | evolve Croconaw at Lv. 30 |
 | 161 | [Sentret](pokedex/0161-sentret.md) | wild: Route 29 |
 | 162 | [Furret](pokedex/0162-furret.md) | wild: Route 1 |
-| 163 | [Hoothoot](pokedex/0163-hoothoot.md) | wild: Route 29, Route 30, Route 31, Route 35, National Park, Route 36 and 39 more |
-| 164 | [Noctowl](pokedex/0164-noctowl.md) | wild: Route 43, Route 47, Route 1, Route 2, Route 8, Route 13 and 5 more |
+| 163 | [Hoothoot](pokedex/0163-hoothoot.md) | wild: Route 29, Route 30, Route 31, Route 35, National Park, Route 36 and 17 more |
+| 164 | [Noctowl](pokedex/0164-noctowl.md) | wild: Route 43, Route 47, Route 1, Route 2, Route 8, Route 13 and 20 more |
 | 165 | [Ledyba](pokedex/0165-ledyba.md) | wild: Route 30, Route 31 |
 | 166 | [Ledian](pokedex/0166-ledian.md) | evolve Ledyba at Lv. 18 |
-| 167 | [Spinarak](pokedex/0167-spinarak.md) | wild: Route 30, Route 31, Route 37, Route 1, Route 2, Route 12 and 26 more |
-| 168 | [Ariados](pokedex/0168-ariados.md) | wild: Route 2, Route 2 East, Viridian Forest |
+| 167 | [Spinarak](pokedex/0167-spinarak.md) | wild: Route 30, Route 31, Route 37, Route 26, Route 27, Route 29 and 12 more |
+| 168 | [Ariados](pokedex/0168-ariados.md) | wild: Route 2, Route 2 East, Route 1, Route 12, Route 13, Route 14 and 9 more |
 | 169 | [Crobat](pokedex/0169-crobat.md) | evolve Golbat with high friendship |
 | 170 | [Chinchou](pokedex/0170-chinchou.md) | wild: New Bark Town, Route 41, Route 47, Route 26, Route 27 |
 | 171 | [Lanturn](pokedex/0171-lanturn.md) | wild: New Bark Town, Route 41, Route 47, Route 20, Pallet Town, Vermilion City and 4 more |
@@ -183,8 +183,8 @@ the [Pokédex](POKEDEX.md) for each Pokémon's page.
 | 174 | [Igglybuff](pokedex/0174-igglybuff.md) | breed Jigglypuff |
 | 175 | [Togepi](pokedex/0175-togepi.md) | Egg from Professor Elm's aide, Violet City |
 | 176 | [Togetic](pokedex/0176-togetic.md) | evolve Togepi with high friendship |
-| 177 | [Natu](pokedex/0177-natu.md) | wild: Ruins of Alph, Route 28, Mt. Silver, Mt. Silver Cave Lower Mountainside |
-| 178 | [Xatu](pokedex/0178-xatu.md) | evolve Natu at Lv. 25 |
+| 177 | [Natu](pokedex/0177-natu.md) | wild: Ruins of Alph |
+| 178 | [Xatu](pokedex/0178-xatu.md) | wild: Route 28, Mt. Silver, Mt. Silver Cave Lower Mountainside |
 | 179 | [Mareep](pokedex/0179-mareep.md) | wild: Route 32, Route 42, Route 43 |
 | 180 | [Flaaffy](pokedex/0180-flaaffy.md) | wild: Route 42, Route 43 |
 | 181 | [Ampharos](pokedex/0181-ampharos.md) | evolve Flaaffy at Lv. 30 |
@@ -210,8 +210,8 @@ the [Pokédex](POKEDEX.md) for each Pokémon's page.
 | 201 | [Unown](pokedex/0201-unown.md) | wild: Ruins of Alph Underground Hall, Ruins of Alph Underground Hall Sinjoh Event, Ruins of Alph Underground Hall Sinjoh Event 2, Ruins of Alph Hall Entrance Sinjoh Event |
 | 202 | [Wobbuffet](pokedex/0202-wobbuffet.md) | wild: Dark Cave Route 45 Side, Cerulean Cave 1F, Cerulean Cave 2F, Cerulean Cave B1F |
 | 203 | [Girafarig](pokedex/0203-girafarig.md) | wild: Route 43, Route 48 |
-| 204 | [Pineco](pokedex/0204-pineco.md) | wild: Route 1, Route 2, Route 3, Route 4, Route 5, Route 6 and 31 more |
-| 205 | [Forretress](pokedex/0205-forretress.md) | evolve Pineco at Lv. 31 |
+| 204 | [Pineco](pokedex/0204-pineco.md) | wild: Route 26, Route 27, Route 29, Route 30, Route 31, Route 32 and 17 more |
+| 205 | [Forretress](pokedex/0205-forretress.md) | wild: Route 1, Route 2, Route 3, Route 4, Route 5, Route 6 and 8 more |
 | 206 | [Dunsparce](pokedex/0206-dunsparce.md) | wild: Dark Cave Route 31 Side |
 | 207 | [Gligar](pokedex/0207-gligar.md) | wild: Route 45 |
 | 208 | [Steelix](pokedex/0208-steelix.md) | wild: Mount Silver Cave Moltres Chamber, Cliff Cave |
@@ -279,8 +279,8 @@ the [Pokédex](POKEDEX.md) for each Pokémon's page.
 | 270 | [Lotad](pokedex/0270-lotad.md) | wild: Route 35 |
 | 271 | [Lombre](pokedex/0271-lombre.md) | evolve Lotad at Lv. 14 |
 | 272 | [Ludicolo](pokedex/0272-ludicolo.md) | evolve Lombre with a Water Stone |
-| 273 | [Seedot](pokedex/0273-seedot.md) | wild: Viridian Forest |
-| 274 | [Nuzleaf](pokedex/0274-nuzleaf.md) | evolve Seedot at Lv. 14 |
+| 273 | [Seedot](pokedex/0273-seedot.md) | breed Nuzleaf |
+| 274 | [Nuzleaf](pokedex/0274-nuzleaf.md) | wild: Viridian Forest |
 | 275 | [Shiftry](pokedex/0275-shiftry.md) | evolve Nuzleaf with a Leaf Stone |
 | 276 | [Taillow](pokedex/0276-taillow.md) | wild: Cherrygrove City |
 | 277 | [Swellow](pokedex/0277-swellow.md) | evolve Taillow at Lv. 22 |
@@ -291,11 +291,11 @@ the [Pokédex](POKEDEX.md) for each Pokémon's page.
 | 282 | [Gardevoir](pokedex/0282-gardevoir.md) | evolve Kirlia at Lv. 30 |
 | 283 | [Surskit](pokedex/0283-surskit.md) | wild: Route 32 |
 | 284 | [Masquerain](pokedex/0284-masquerain.md) | evolve Surskit at Lv. 22 |
-| 285 | [Shroomish](pokedex/0285-shroomish.md) | wild: Viridian Forest |
-| 286 | [Breloom](pokedex/0286-breloom.md) | evolve Shroomish at Lv. 23 |
-| 287 | [Slakoth](pokedex/0287-slakoth.md) | wild: Route 25 |
+| 285 | [Shroomish](pokedex/0285-shroomish.md) | breed Breloom |
+| 286 | [Breloom](pokedex/0286-breloom.md) | wild: Viridian Forest |
+| 287 | [Slakoth](pokedex/0287-slakoth.md) | breed Vigoroth |
 | 288 | [Vigoroth](pokedex/0288-vigoroth.md) | evolve Slakoth at Lv. 18 |
-| 289 | [Slaking](pokedex/0289-slaking.md) | evolve Vigoroth at Lv. 36 |
+| 289 | [Slaking](pokedex/0289-slaking.md) | wild: Route 25 |
 | 290 | [Nincada](pokedex/0290-nincada.md) | wild: Route 33 |
 | 291 | [Ninjask](pokedex/0291-ninjask.md) | evolve Nincada at Lv. 20 |
 | 292 | [Shedinja](pokedex/0292-shedinja.md) | evolve Nincada at Lv. 20, with a free party slot and a Poké Ball |
@@ -402,9 +402,9 @@ the [Pokédex](POKEDEX.md) for each Pokémon's page.
 | 393 | [Piplup](pokedex/0393-piplup.md) | wild: Route 27 |
 | 394 | [Prinplup](pokedex/0394-prinplup.md) | evolve Piplup at Lv. 16 |
 | 395 | [Empoleon](pokedex/0395-empoleon.md) | evolve Prinplup at Lv. 36 |
-| 396 | [Starly](pokedex/0396-starly.md) | wild: Pewter City |
+| 396 | [Starly](pokedex/0396-starly.md) | breed Staravia |
 | 397 | [Staravia](pokedex/0397-staravia.md) | evolve Starly at Lv. 14 |
-| 398 | [Staraptor](pokedex/0398-staraptor.md) | evolve Staravia at Lv. 34 |
+| 398 | [Staraptor](pokedex/0398-staraptor.md) | wild: Pewter City |
 | 399 | [Bidoof](pokedex/0399-bidoof.md) | wild: Route 29, Route 30, Route 31, Route 32, Ruins of Alph, Route 34 and 20 more |
 | 400 | [Bibarel](pokedex/0400-bibarel.md) | evolve Bidoof at Lv. 15 |
 | 401 | [Kricketot](pokedex/0401-kricketot.md) | wild: Route 30, Route 31, Viridian Forest |

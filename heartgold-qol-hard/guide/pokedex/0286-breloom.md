@@ -12,6 +12,10 @@ No. 286 · Grass / Fighting · catch rate 90
 
 - From [Shroomish](0285-shroomish.md) at Lv. 23.
 
+## Where
+
+- Viridian Forest (Headbutt)
+
 ## Moves by level
 
 | Lv. | Move |

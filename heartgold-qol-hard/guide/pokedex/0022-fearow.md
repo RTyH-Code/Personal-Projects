@@ -26,6 +26,12 @@ No. 22 · Normal / Flying · catch rate 90
 - Route 17 (swarm)
 - Route 18 (walking)
 - Route 22 (walking)
+- Route 7 (Headbutt)
+- Route 11 (Headbutt)
+- Route 16 (Headbutt)
+- Vermilion City (Headbutt)
+- Celadon City (Headbutt)
+- Route 16422 (Headbutt)
 
 ## Moves by level
 

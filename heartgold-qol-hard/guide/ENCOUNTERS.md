@@ -3109,72 +3109,72 @@ Some trees in an area are special trees with their own Pokémon; which trees dep
 
 ## Route 1
 
-- Ordinary trees: Hoothoot (Lv. 2–6), Pineco (Lv. 2–3), Wurmple (Lv. 2–6), Spinarak (Lv. 5–6).
+- Ordinary trees: Noctowl (Lv. 46–48), Forretress (Lv. 46), Wurmple (Lv. 46–48), Ariados (Lv. 47–48).
 
 ## Route 2
 
-- Ordinary trees: Hoothoot (Lv. 3–7), Pineco (Lv. 3–4), Wurmple (Lv. 3–7), Spinarak (Lv. 5–7).
+- Ordinary trees: Noctowl (Lv. 46–48), Forretress (Lv. 46–47), Wurmple (Lv. 46–48), Ariados (Lv. 47–48).
 
 ## Route 3
 
-- Ordinary trees: Hoothoot (Lv. 6–10), Pineco (Lv. 6–7), Wurmple (Lv. 6–10).
+- Ordinary trees: Noctowl (Lv. 48–49), Forretress (Lv. 48), Wurmple (Lv. 48–49).
 
 ## Route 4
 
-- Ordinary trees: Hoothoot (Lv. 6–10), Pineco (Lv. 6–7), Wurmple (Lv. 6–10).
+- Ordinary trees: Noctowl (Lv. 48–49), Forretress (Lv. 48), Wurmple (Lv. 48–49).
 
 ## Route 5
 
-- Ordinary trees: Hoothoot (Lv. 11–16), Pineco (Lv. 11–13), Combee (Lv. 11–16).
+- Ordinary trees: Noctowl (Lv. 50–52), Forretress (Lv. 50), Combee (Lv. 50–52).
 
 ## Route 6
 
-- Ordinary trees: Hoothoot (Lv. 11–16), Pineco (Lv. 11–13), Combee (Lv. 11–16).
+- Ordinary trees: Noctowl (Lv. 50–52), Forretress (Lv. 50), Combee (Lv. 50–52).
 
 ## Route 7
 
-- Ordinary trees: Spearow (Lv. 15–20), Heracross (Lv. 15–17), Combee (Lv. 15–20).
+- Ordinary trees: Fearow (Lv. 51–53), Heracross (Lv. 51–52), Combee (Lv. 51–53).
 
 ## Route 8
 
-- Ordinary trees: Hoothoot (Lv. 16–19), Pineco (Lv. 16–17), Combee (Lv. 16–19).
+- Ordinary trees: Noctowl (Lv. 52–53), Forretress (Lv. 52), Combee (Lv. 52–53).
 
 ## Route 11
 
-- Ordinary trees: Spearow (Lv. 13–16), Heracross (Lv. 13–14), Combee (Lv. 13–16).
+- Ordinary trees: Fearow (Lv. 50–52), Heracross (Lv. 50–51), Combee (Lv. 50–52).
 
 ## Route 12
 
-- Ordinary trees: Hoothoot (Lv. 22–25), Spinarak (Lv. 22–23), Wurmple (Lv. 22–25), Tangela (Lv. 24–25).
+- Ordinary trees: Noctowl (Lv. 54–56), Ariados (Lv. 54–55), Wurmple (Lv. 54–56), Tangela (Lv. 55–56).
 
 ## Route 13
 
-- Ordinary trees: Hoothoot (Lv. 22–25), Spinarak (Lv. 22–23), Wurmple (Lv. 22–25), Tangela (Lv. 24–25).
+- Ordinary trees: Noctowl (Lv. 54–56), Ariados (Lv. 54–55), Wurmple (Lv. 54–56), Tangela (Lv. 55–56).
 
 ## Route 14
 
-- Ordinary trees: Hoothoot (Lv. 26–30), Spinarak (Lv. 26–27), Wurmple (Lv. 26–30), Tangela (Lv. 29–30).
+- Ordinary trees: Noctowl (Lv. 56–58), Ariados (Lv. 56), Wurmple (Lv. 56–58), Tangela (Lv. 57–58).
 
 ## Route 15
 
-- Ordinary trees: Hoothoot (Lv. 21–26), Spinarak (Lv. 21–23), Wurmple (Lv. 21–26), Tangela (Lv. 24–26).
+- Ordinary trees: Noctowl (Lv. 54–56), Ariados (Lv. 54–55), Wurmple (Lv. 54–56), Tangela (Lv. 55–56).
 
 ## Route 16
 
-- Ordinary trees: Spearow (Lv. 26–30), Heracross (Lv. 26–27), Combee (Lv. 26–30).
+- Ordinary trees: Fearow (Lv. 56–58), Heracross (Lv. 56), Combee (Lv. 56–58).
 
 ## Route 18
 
-- Ordinary trees: Hoothoot (Lv. 26–30), Spinarak (Lv. 26–27), Wurmple (Lv. 26–30), Tangela (Lv. 29–30).
+- Ordinary trees: Noctowl (Lv. 56–58), Ariados (Lv. 56), Wurmple (Lv. 56–58), Tangela (Lv. 57–58).
 
 ## Route 22
 
-- Ordinary trees: Hoothoot (Lv. 3–7), Pineco (Lv. 3–4), Wurmple (Lv. 3–7), Spinarak (Lv. 5–7).
+- Ordinary trees: Noctowl (Lv. 46–48), Forretress (Lv. 46–47), Wurmple (Lv. 46–48), Ariados (Lv. 47–48).
 
 ## Route 25
 
-- Ordinary trees: Hoothoot (Lv. 10–14), Pineco (Lv. 10–11), Combee (Lv. 10–14).
-- Special trees: Combee (Lv. 10–14), Slakoth (Lv. 10–18).
+- Ordinary trees: Noctowl (Lv. 49–51), Forretress (Lv. 49–50), Combee (Lv. 49–51).
+- Special trees: Combee (Lv. 49–51), Slaking (Lv. 49–53).
 
 ## Route 26
 
@@ -3186,7 +3186,7 @@ Some trees in an area are special trees with their own Pokémon; which trees dep
 
 ## Route 28
 
-- Ordinary trees: Heracross (Lv. 39–43), Aipom (Lv. 39–43), Natu (Lv. 39–43).
+- Ordinary trees: Heracross (Lv. 67–68), Aipom (Lv. 67–68), Xatu (Lv. 67–68).
 
 ## Route 29
 
@@ -3255,32 +3255,32 @@ Some trees in an area are special trees with their own Pokémon; which trees dep
 
 ## Pallet Town
 
-- Ordinary trees: Hoothoot (Lv. 2–6), Pineco (Lv. 2–3), Wurmple (Lv. 2–6), Spinarak (Lv. 5–6).
+- Ordinary trees: Noctowl (Lv. 46–48), Forretress (Lv. 46), Wurmple (Lv. 46–48), Ariados (Lv. 47–48).
 
 ## Viridian City
 
-- Ordinary trees: Hoothoot (Lv. 3–7), Pineco (Lv. 3–4), Wurmple (Lv. 3–7), Spinarak (Lv. 5–7).
+- Ordinary trees: Noctowl (Lv. 46–48), Forretress (Lv. 46–47), Wurmple (Lv. 46–48), Ariados (Lv. 47–48).
 
 ## Pewter City
 
-- Ordinary trees: Hoothoot (Lv. 3–9), Pineco (Lv. 3–5), Wurmple (Lv. 3–9).
-- Special trees: Wurmple (Lv. 5–9), Starly (Lv. 5–12).
+- Ordinary trees: Noctowl (Lv. 46–49), Forretress (Lv. 46–47), Wurmple (Lv. 46–49).
+- Special trees: Wurmple (Lv. 47–49), Staraptor (Lv. 47–50).
 
 ## Cerulean City
 
-- Ordinary trees: Hoothoot (Lv. 11–16), Pineco (Lv. 11–13), Combee (Lv. 11–16).
+- Ordinary trees: Noctowl (Lv. 50–52), Forretress (Lv. 50), Combee (Lv. 50–52).
 
 ## Vermilion City
 
-- Ordinary trees: Spearow (Lv. 11–16), Heracross (Lv. 11–13), Combee (Lv. 11–16).
+- Ordinary trees: Fearow (Lv. 50–52), Heracross (Lv. 50), Combee (Lv. 50–52).
 
 ## Celadon City
 
-- Ordinary trees: Spearow (Lv. 15–20), Heracross (Lv. 15–17), Combee (Lv. 15–20).
+- Ordinary trees: Fearow (Lv. 51–53), Heracross (Lv. 51–52), Combee (Lv. 51–53).
 
 ## Fuchsia City
 
-- Ordinary trees: Hoothoot (Lv. 21–34), Spinarak (Lv. 21–23), Wurmple (Lv. 21–34), Tangela (Lv. 26–34).
+- Ordinary trees: Noctowl (Lv. 54–59), Ariados (Lv. 54–55), Wurmple (Lv. 54–59), Tangela (Lv. 56–59).
 
 ## New Bark Town
 
@@ -3309,11 +3309,11 @@ Some trees in an area are special trees with their own Pokémon; which trees dep
 
 ## Mt. Silver
 
-- Ordinary trees: Heracross (Lv. 39–43), Aipom (Lv. 39–43), Natu (Lv. 39–43).
+- Ordinary trees: Heracross (Lv. 67–68), Aipom (Lv. 67–68), Xatu (Lv. 67–68).
 
 ## Route 21
 
-- Ordinary trees: Hoothoot (Lv. 24–30), Spinarak (Lv. 24–26), Wurmple (Lv. 24–30), Tangela (Lv. 27–30).
+- Ordinary trees: Noctowl (Lv. 55–58), Ariados (Lv. 55–56), Wurmple (Lv. 55–58), Tangela (Lv. 56–58).
 
 ## National Park
 
@@ -3326,7 +3326,7 @@ Some trees in an area are special trees with their own Pokémon; which trees dep
 
 ## Viridian Forest
 
-- Ordinary trees: Hoothoot (Lv. 3–7), Seedot (Lv. 3–7), Spinarak (Lv. 3–4), Shroomish (Lv. 3–7), Ariados (Lv. 5–7), Noctowl (Lv. 5–7).
+- Ordinary trees: Noctowl (Lv. 46–48), Nuzleaf (Lv. 46–48), Ariados (Lv. 46–48), Breloom (Lv. 46–48).
 
 ## Route 47
 
@@ -3343,12 +3343,12 @@ Some trees in an area are special trees with their own Pokémon; which trees dep
 
 ## Route 2414
 
-- Ordinary trees: Hoothoot (Lv. 3–7), Pineco (Lv. 3–4), Wurmple (Lv. 3–7), Spinarak (Lv. 5–7).
+- Ordinary trees: Noctowl (Lv. 46–48), Forretress (Lv. 46–47), Wurmple (Lv. 46–48), Ariados (Lv. 47–48).
 
 ## Route 16422
 
-- Ordinary trees: Spearow (Lv. 26–30), Heracross (Lv. 26–27), Combee (Lv. 26–30).
+- Ordinary trees: Fearow (Lv. 56–58), Heracross (Lv. 56), Combee (Lv. 56–58).
 
 ## Mt. Silver Cave Lower Mountainside
 
-- Ordinary trees: Heracross (Lv. 42–48), Aipom (Lv. 42–48), Natu (Lv. 42–48).
+- Ordinary trees: Heracross (Lv. 68–70), Aipom (Lv. 68–70), Xatu (Lv. 68–70).
