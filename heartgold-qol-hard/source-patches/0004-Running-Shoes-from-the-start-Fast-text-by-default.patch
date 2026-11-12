@@ -1,0 +1,66 @@
+From 0fe87367701fce5c73dbd4c7ed7e6a73f4c902e2 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Tue, 10 Nov 2026 00:34:57 +0000
+Subject: [PATCH] Running Shoes from the start, Fast text by default
+
+New save files start with the running shoes and with the text speed
+option set to fast. Both are switches in armips/include/config.s.
+---
+ armips/asm/user_config.s | 25 +++++++++++++++++++++++++
+ armips/include/config.s  |  7 +++++++
+ 2 files changed, 32 insertions(+)
+
+diff --git a/armips/asm/user_config.s b/armips/asm/user_config.s
+index b7653ad19..b682bc359 100644
+--- a/armips/asm/user_config.s
++++ b/armips/asm/user_config.s
+@@ -140,3 +140,28 @@ HasBecomeChampion: // BOOL HasBecomeChampion(void), the argument the callers pas
+ .close
+ 
+ .endif
++
++
++.open "base/arm9.bin", 0x02000000
++
++.if RUNNING_SHOES_FROM_START
++
++.org 0x0205C7BC // PlayerSaveData_Init
++.area 0xC, 0
++
++    mov r1, #1
++    strh r1, [r0, #0] // hasRunningShoes
++    mov r1, #0
++    strh r1, [r0, #2] // runningShoesLock
++    str r1, [r0, #4] // state
++    bx lr
++
++.endarea
++
++.endif
++
++.org 0x0202ACBA // Options_Init: options->textSpeed
++    mov r0, #DEFAULT_TEXT_SPEED
++
++.close
++
+diff --git a/armips/include/config.s b/armips/include/config.s
+index 3af2052c7..0840049f1 100644
+--- a/armips/include/config.s
++++ b/armips/include/config.s
+@@ -42,6 +42,13 @@ ALWAYS_HAVE_NATIONAL_DEX equ 0
+ // leave ALWAYS_HAVE_NATIONAL_DEX at 0 when this is 1, as both rewrite the same function.
+ NATIONAL_DEX_FROM_START equ 1
+ 
++// RUNNING_SHOES_FROM_START gives new save files the running shoes straight away, instead of after the Cherrygrove City tour.
++RUNNING_SHOES_FROM_START equ 1
++
++// DEFAULT_TEXT_SPEED is the text speed option that new save files start with: 0 is slow, 1 is mid (vanilla), 2 is fast.
++// the player can still change it in the options menu.
++DEFAULT_TEXT_SPEED equ 2
++
+ // ALWAYS_UNCAPPED_FRAME_RATE defines whether or not the frame rate of the game will always be uncapped, including in the overworld.
+ ALWAYS_UNCAPPED_FRAME_RATE equ 0
+ 
+-- 
+2.43.0
+

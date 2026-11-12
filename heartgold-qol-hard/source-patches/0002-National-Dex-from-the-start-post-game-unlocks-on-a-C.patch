@@ -1,0 +1,101 @@
+From 10090da00c54b59f2fa364ddd5676fc3777076b9 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 9 Nov 2026 23:53:15 +0000
+Subject: [PATCH] National Dex from the start, post-game unlocks on a Champion
+ check
+
+Pokedex_GetNatDexFlag always returns TRUE. The checks that vanilla uses
+as a post-game gate call a new HasBecomeChampion (FLAG_GAME_CLEAR)
+instead: the national Bug-Catching Contest, the Hoenn and Sinnoh Sound
+radio shows, Baoba's later Safari Zone calls, the second Pokeathlon
+prize list and the script command behind the Supreme Cup, the Cliff
+Cave rocks and the Safari Zone gate.
+---
+ armips/asm/user_config.s | 55 ++++++++++++++++++++++++++++++++++++++++
+ armips/include/config.s  |  7 +++++
+ 2 files changed, 62 insertions(+)
+
+diff --git a/armips/asm/user_config.s b/armips/asm/user_config.s
+index 6fbe3c137..b7653ad19 100644
+--- a/armips/asm/user_config.s
++++ b/armips/asm/user_config.s
+@@ -85,3 +85,58 @@ patch_uncapped_frame_rate:
+ 
+ 
+ .close
++
++
++.if NATIONAL_DEX_FROM_START
++
++.open "base/arm9.bin", 0x02000000
++
++// Pokedex_GetNatDexFlag always returns TRUE.  the rest of the old function body holds HasBecomeChampion,
++// which the post-game checks below call instead.
++.org 0x0202A55C
++.area 0x20, 0
++
++    mov r0, #1
++    bx lr
++
++HasBecomeChampion: // BOOL HasBecomeChampion(void), the argument the callers pass is ignored
++    push {r3, lr}
++    bl 0x020272B0 // SaveBlock2_get
++    bl 0x020503D0 // SavArray_Flags_get
++    ldr r1, =0x964 // FLAG_GAME_CLEAR
++    bl 0x020665AC // CheckScriptFlagPassSave
++    pop {r3, pc}
++
++.pool
++
++.endarea
++
++.org 0x02045494 // ScrCmd_NatDexFlagAction, the "get" action: Pokeathlon Supreme Cup, Cliff Cave rocks, Safari Zone gate
++    bl HasBecomeChampion
++
++.org 0x0204823A // Pokeathlon prize exchange: which price list the shop uses
++    bl HasBecomeChampion
++
++.org 0x0204833A // Pokeathlon prize exchange: which price list is shown
++    bl HasBecomeChampion
++
++.org 0x02092ECE // Baoba's later Safari Zone phone calls
++    bl HasBecomeChampion
++
++.close
++
++.open "base/overlay/overlay_0024.bin", 0x022598C0
++
++.org 0x022598F2 // Bug-Catching Contest: encounters, contestants and first prize
++    bl HasBecomeChampion
++
++.close
++
++.open "base/overlay/overlay_0101.bin", 0x021E7740
++
++.org 0x021F5F5E // Pokemon Music radio show: Hoenn Sound and Sinnoh Sound
++    bl HasBecomeChampion
++
++.close
++
++.endif
+diff --git a/armips/include/config.s b/armips/include/config.s
+index d37386219..3af2052c7 100644
+--- a/armips/include/config.s
++++ b/armips/include/config.s
+@@ -35,6 +35,13 @@ BATTLE_MODE_FORCE_SET equ 0
+ // ALWAYS_HAVE_NATIONAL_DEX defines whether or not the player will always have the national dex unlocked.
+ ALWAYS_HAVE_NATIONAL_DEX equ 0
+ 
++// NATIONAL_DEX_FROM_START gives the player the national dex from the start, like ALWAYS_HAVE_NATIONAL_DEX, but keeps the
++// post-game content that vanilla unlocks with the national dex locked until the player has become Champion
++// (FLAG_GAME_CLEAR): the national Bug-Catching Contest, the Hoenn and Sinnoh Sound radio shows, the later Safari Zone
++// phone calls, the second Pokeathlon prize list and every script that checks for the national dex.
++// leave ALWAYS_HAVE_NATIONAL_DEX at 0 when this is 1, as both rewrite the same function.
++NATIONAL_DEX_FROM_START equ 1
++
+ // ALWAYS_UNCAPPED_FRAME_RATE defines whether or not the frame rate of the game will always be uncapped, including in the overworld.
+ ALWAYS_UNCAPPED_FRAME_RATE equ 0
+ 
+-- 
+2.43.0
+

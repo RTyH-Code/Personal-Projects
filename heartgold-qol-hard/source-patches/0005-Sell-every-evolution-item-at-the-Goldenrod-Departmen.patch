@@ -1,0 +1,104 @@
+From c0dcf72940fdbce3c148b0e65f6d7efcad82729d Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Tue, 10 Nov 2026 00:52:45 +0000
+Subject: [PATCH] Sell every evolution item at the Goldenrod Department Store
+
+The 4F clerk sells the evolution stones and trade-evolution items. A
+new ScrCmd_SpecialMartBuy hides the items in sBadgeLockedMartItems
+until the player has enough badges; the later-generation items need
+seven.
+---
+ hooks            |  1 +
+ src/field/mart.c | 56 +++++++++++++++++++++++++++++++++++++++++++++++-
+ 2 files changed, 56 insertions(+), 1 deletion(-)
+
+diff --git a/hooks b/hooks
+index 1b23ea97e..810c5aa8b 100644
+--- a/hooks
++++ b/hooks
+@@ -577,6 +577,7 @@ arm9 PartyMenu_LearnMoveToSlot 0208254C 3
+ 
+ #ifdef MART_EXPANSION
+ arm9 ScrCmd_MartBuy 02048060 1
++arm9 ScrCmd_SpecialMartBuy 02048158 1
+ #endif
+ 
+ # expand heal blocked moves
+diff --git a/src/field/mart.c b/src/field/mart.c
+index bf68d09e1..c4d5d11c8 100644
+--- a/src/field/mart.c
++++ b/src/field/mart.c
+@@ -68,8 +68,14 @@ u16 sGoldenrodDepartment3F[] = {
+     ITEM_X_SPEED, ITEM_X_ATTACK, ITEM_X_DEFENSE, ITEM_GUARD_SPEC, ITEM_DIRE_HIT, ITEM_X_ACCURACY, ITEM_X_SP_ATK, ITEM_X_SP_DEF, 0xFFFF
+ };
+ 
++// the evolution items are added by the hack.  the ones in sBadgeLockedMartItems only show up once the player has enough badges
+ u16 sGoldenrodDepartment4F[] = {
+-    ITEM_PROTEIN, ITEM_IRON, ITEM_CALCIUM, ITEM_ZINC, ITEM_CARBOS, ITEM_HP_UP, 0xFFFF
++    ITEM_PROTEIN, ITEM_IRON, ITEM_CALCIUM, ITEM_ZINC, ITEM_CARBOS, ITEM_HP_UP,
++    ITEM_FIRE_STONE, ITEM_WATER_STONE, ITEM_THUNDER_STONE, ITEM_LEAF_STONE, ITEM_ICE_STONE, ITEM_MOON_STONE, ITEM_SUN_STONE,
++    ITEM_SHINY_STONE, ITEM_DUSK_STONE, ITEM_DAWN_STONE, ITEM_OVAL_STONE,
++    ITEM_KINGS_ROCK, ITEM_METAL_COAT, ITEM_DRAGON_SCALE, ITEM_UP_GRADE, ITEM_DEEP_SEA_TOOTH, ITEM_DEEP_SEA_SCALE, ITEM_PRISM_SCALE,
++    ITEM_PROTECTOR, ITEM_ELECTIRIZER, ITEM_MAGMARIZER, ITEM_DUBIOUS_DISC, ITEM_REAPER_CLOTH, ITEM_RAZOR_CLAW, ITEM_RAZOR_FANG,
++    0xFFFF
+ };
+ 
+ u16 sGoldenrodDepartment5F[] = {
+@@ -191,6 +197,54 @@ BOOL ScrCmd_MartBuy(SCRIPTCONTEXT *ctx)
+     return TRUE;
+ }
+ 
++// items that the special marts (every mart with its own stock list above) only sell once the player has this many badges
++const struct BadgeMartItems sBadgeLockedMartItems[] = {
++    { ITEM_PROTECTOR, 7 },
++    { ITEM_ELECTIRIZER, 7 },
++    { ITEM_MAGMARIZER, 7 },
++    { ITEM_DUBIOUS_DISC, 7 },
++    { ITEM_REAPER_CLOTH, 7 },
++    { ITEM_RAZOR_CLAW, 7 },
++    { ITEM_RAZOR_FANG, 7 },
++};
++
++#define SPECIAL_MART_STOCK_TABLE ((const u16 **)0x0210FA3C)
++#define SPECIAL_MART_MAX_ITEMS 63
++
++BOOL ScrCmd_SpecialMartBuy(SCRIPTCONTEXT *ctx)
++{
++    u16 which = ScriptGetVar(ctx);
++    const u16 *stock = SPECIAL_MART_STOCK_TABLE[which];
++    u16 items[SPECIAL_MART_MAX_ITEMS + 1];
++    u8 badgeCount = 0;
++    u32 index = 0;
++    u32 i, j;
++
++    for (i = 0; i < 16; i++) {
++        if (PlayerProfile_TestBadgeFlag(Sav2_PlayerData_GetProfileAddr(ctx->fsys->savedata), i) == TRUE) {
++            badgeCount++;
++        }
++    }
++
++    for (i = 0; stock[i] != 0xFFFF && index < SPECIAL_MART_MAX_ITEMS; i++) {
++        BOOL locked = FALSE;
++        for (j = 0; j < NELEMS(sBadgeLockedMartItems); j++) {
++            if (stock[i] == sBadgeLockedMartItems[j].item_id && badgeCount < sBadgeLockedMartItems[j].required_badges) {
++                locked = TRUE;
++                break;
++            }
++        }
++        if (!locked) {
++            items[index] = stock[i];
++            index++;
++        }
++    }
++
++    items[index] = 0xFFFF;
++    InitMartUI(ctx->taskman, ctx->fsys, items, 0, 0, 0, 0);
++    return TRUE;
++}
++
+ #endif // MART_EXPANSION
+ 
+ #ifdef POKEATHLON_SHOP_EXPANSION
+-- 
+2.43.0
+

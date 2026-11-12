@@ -1,0 +1,441 @@
+From 2c3749f23990696bcdfcad2151c50b475c7a845b Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Wed, 11 Nov 2026 00:47:06 +0000
+Subject: [PATCH] Encounters: never place a rare Pokemon in a more common slot
+
+In crowded tables the placement fell back to a 10% slot, which made
+Cyndaquil, and at some times of day Chikorita and Kangaskhan, common.
+A placement now only takes a slot at most as likely as its class, the
+rarest are placed first, and Cyndaquil, Chingling and Seviper move to
+Route 37, Sprout Tower and Route 42 where there is room.
+
+tools/hack/encounters.py now has to be run on the data as it was
+before the previous commit.
+---
+ data/Encounters.c        | 84 ++++++++++++++++++++--------------------
+ tools/hack/encounters.py | 32 +++++++++------
+ 2 files changed, 63 insertions(+), 53 deletions(-)
+
+diff --git a/data/Encounters.c b/data/Encounters.c
+index e877dc2c7..c9e55eb98 100644
+--- a/data/Encounters.c
++++ b/data/Encounters.c
+@@ -625,7 +625,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_CHINGLING,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+@@ -639,7 +639,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_CHINGLING,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+@@ -653,7 +653,7 @@ const EncounterData __data[] =
+                 SPECIES_GASTLY,
+                 SPECIES_GASTLY,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_CHINGLING,
+                 SPECIES_GASTLY,
+                 SPECIES_RATTATA,
+                 SPECIES_GASTLY,
+@@ -725,7 +725,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_CHINGLING,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+@@ -739,7 +739,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_CHINGLING,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+@@ -753,7 +753,7 @@ const EncounterData __data[] =
+                 SPECIES_GASTLY,
+                 SPECIES_GASTLY,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_CHINGLING,
+                 SPECIES_GASTLY,
+                 SPECIES_RATTATA,
+                 SPECIES_GASTLY,
+@@ -2126,8 +2126,8 @@ const EncounterData __data[] =
+                 SPECIES_SKITTY,
+                 SPECIES_ABRA,
+                 SPECIES_SHELLOS,
+-                SPECIES_RALTS,
+                 SPECIES_JIGGLYPUFF,
++                SPECIES_RALTS,
+                 SPECIES_RATTATA,
+                 SPECIES_DITTO,
+             },
+@@ -2140,8 +2140,8 @@ const EncounterData __data[] =
+                 SPECIES_SKITTY,
+                 SPECIES_ABRA,
+                 SPECIES_SHELLOS,
+-                SPECIES_RALTS,
+                 SPECIES_JIGGLYPUFF,
++                SPECIES_RALTS,
+                 SPECIES_RATTATA,
+                 SPECIES_DITTO,
+             },
+@@ -2154,8 +2154,8 @@ const EncounterData __data[] =
+                 SPECIES_SKITTY,
+                 SPECIES_ABRA,
+                 SPECIES_SHELLOS,
+-                SPECIES_RALTS,
+                 SPECIES_JIGGLYPUFF,
++                SPECIES_RALTS,
+                 SPECIES_RATTATA,
+                 SPECIES_DITTO,
+             },
+@@ -2627,7 +2627,7 @@ const EncounterData __data[] =
+                 SPECIES_GROWLITHE,
+                 SPECIES_MINUN,
+                 SPECIES_PIDGEY,
+-                SPECIES_PIDGEY,
++                SPECIES_CYNDAQUIL,
+                 SPECIES_PIDGEY,
+                 SPECIES_PIDGEY,
+             },
+@@ -2641,7 +2641,7 @@ const EncounterData __data[] =
+                 SPECIES_GROWLITHE,
+                 SPECIES_MINUN,
+                 SPECIES_PIDGEOTTO,
+-                SPECIES_GROWLITHE,
++                SPECIES_CYNDAQUIL,
+                 SPECIES_PIDGEOTTO,
+                 SPECIES_GROWLITHE,
+             },
+@@ -2654,8 +2654,8 @@ const EncounterData __data[] =
+                 SPECIES_VULPIX,
+                 SPECIES_GROWLITHE,
+                 SPECIES_MINUN,
+-                SPECIES_SPINARAK,
+                 SPECIES_HOUNDOUR,
++                SPECIES_CYNDAQUIL,
+                 SPECIES_SPINARAK,
+                 SPECIES_SPINARAK,
+             },
+@@ -3820,13 +3820,13 @@ const EncounterData __data[] =
+             .speciesMorning = {
+                 SPECIES_RATTATA,
+                 SPECIES_RATICATE,
+-                SPECIES_CYNDAQUIL,
+-                SPECIES_CHIKORITA,
++                SPECIES_RATTATA,
++                SPECIES_RATICATE,
+                 SPECIES_MAGNEMITE,
+                 SPECIES_MEOWTH,
+                 SPECIES_FARFETCHD,
+                 SPECIES_SPOINK,
+-                SPECIES_CHINGLING,
++                SPECIES_CHIKORITA,
+                 SPECIES_TAUROS,
+                 SPECIES_MILTANK,
+                 SPECIES_SNUBBULL,
+@@ -3834,13 +3834,13 @@ const EncounterData __data[] =
+             .speciesDay = {
+                 SPECIES_RATTATA,
+                 SPECIES_RATICATE,
+-                SPECIES_CYNDAQUIL,
+-                SPECIES_CHIKORITA,
++                SPECIES_RATTATA,
++                SPECIES_RATICATE,
+                 SPECIES_MAGNEMITE,
+                 SPECIES_MEOWTH,
+                 SPECIES_FARFETCHD,
+                 SPECIES_SPOINK,
+-                SPECIES_CHINGLING,
++                SPECIES_CHIKORITA,
+                 SPECIES_TAUROS,
+                 SPECIES_MILTANK,
+                 SPECIES_SNUBBULL,
+@@ -3849,10 +3849,10 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATICATE,
+                 SPECIES_RATTATA,
+-                SPECIES_CYNDAQUIL,
++                SPECIES_RATICATE,
+                 SPECIES_MAGNEMITE,
+                 SPECIES_MEOWTH,
+-                SPECIES_CHINGLING,
++                SPECIES_RATTATA,
+                 SPECIES_SPOINK,
+                 SPECIES_CHIKORITA,
+                 SPECIES_TAUROS,
+@@ -3921,13 +3921,13 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATICATE,
+                 SPECIES_RATTATA,
+-                SPECIES_KANGASKHAN,
++                SPECIES_RATICATE,
+                 SPECIES_MAGNEMITE,
+                 SPECIES_MEOWTH,
+                 SPECIES_FARFETCHD,
+                 SPECIES_ZANGOOSE,
++                SPECIES_KANGASKHAN,
+                 SPECIES_TOTODILE,
+-                SPECIES_SEVIPER,
+                 SPECIES_MILTANK,
+                 SPECIES_TAUROS,
+             },
+@@ -3935,13 +3935,13 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATICATE,
+                 SPECIES_RATTATA,
+-                SPECIES_KANGASKHAN,
++                SPECIES_RATICATE,
+                 SPECIES_MAGNEMITE,
+                 SPECIES_MEOWTH,
+                 SPECIES_FARFETCHD,
+                 SPECIES_ZANGOOSE,
++                SPECIES_KANGASKHAN,
+                 SPECIES_TOTODILE,
+-                SPECIES_SEVIPER,
+                 SPECIES_MILTANK,
+                 SPECIES_TAUROS,
+             },
+@@ -3952,7 +3952,7 @@ const EncounterData __data[] =
+                 SPECIES_RATICATE,
+                 SPECIES_MAGNEMITE,
+                 SPECIES_MEOWTH,
+-                SPECIES_SEVIPER,
++                SPECIES_RATTATA,
+                 SPECIES_ZANGOOSE,
+                 SPECIES_KANGASKHAN,
+                 SPECIES_TOTODILE,
+@@ -5225,7 +5225,7 @@ const EncounterData __data[] =
+                 SPECIES_SPEAROW,
+                 SPECIES_NUMEL,
+                 SPECIES_SPEAROW,
+-                SPECIES_SPEAROW,
++                SPECIES_SEVIPER,
+                 SPECIES_FLAAFFY,
+                 SPECIES_BULBASAUR,
+                 SPECIES_FLAAFFY,
+@@ -5239,7 +5239,7 @@ const EncounterData __data[] =
+                 SPECIES_SPEAROW,
+                 SPECIES_NUMEL,
+                 SPECIES_SPEAROW,
+-                SPECIES_SPEAROW,
++                SPECIES_SEVIPER,
+                 SPECIES_FLAAFFY,
+                 SPECIES_BULBASAUR,
+                 SPECIES_FLAAFFY,
+@@ -5253,7 +5253,7 @@ const EncounterData __data[] =
+                 SPECIES_ZUBAT,
+                 SPECIES_NUMEL,
+                 SPECIES_ZUBAT,
+-                SPECIES_ZUBAT,
++                SPECIES_SEVIPER,
+                 SPECIES_FLAAFFY,
+                 SPECIES_BULBASAUR,
+                 SPECIES_FLAAFFY,
+@@ -5726,8 +5726,8 @@ const EncounterData __data[] =
+                 SPECIES_PIDGEOTTO,
+                 SPECIES_MAREEP,
+                 SPECIES_CASTFORM,
+-                SPECIES_CHARMANDER,
+                 SPECIES_MIME_JR,
++                SPECIES_CHARMANDER,
+                 SPECIES_VENONAT,
+                 SPECIES_PORYGON,
+             },
+@@ -5740,8 +5740,8 @@ const EncounterData __data[] =
+                 SPECIES_PIDGEOTTO,
+                 SPECIES_MAREEP,
+                 SPECIES_CASTFORM,
+-                SPECIES_CHARMANDER,
+                 SPECIES_MIME_JR,
++                SPECIES_CHARMANDER,
+                 SPECIES_FLAAFFY,
+                 SPECIES_PORYGON,
+             },
+@@ -5752,12 +5752,12 @@ const EncounterData __data[] =
+                 SPECIES_GIRAFARIG,
+                 SPECIES_NOCTOWL,
+                 SPECIES_NOCTOWL,
+-                SPECIES_MIME_JR,
++                SPECIES_VENONAT,
+                 SPECIES_CASTFORM,
+-                SPECIES_MAREEP,
++                SPECIES_MIME_JR,
+                 SPECIES_CHARMANDER,
++                SPECIES_MAREEP,
+                 SPECIES_PORYGON,
+-                SPECIES_VENONAT,
+             },
+         },
+         .hoennSoundSpecies = {
+@@ -6726,10 +6726,10 @@ const EncounterData __data[] =
+                 SPECIES_HIPPOPOTAS,
+                 SPECIES_PHANPY,
+                 SPECIES_SKARMORY,
++                SPECIES_TORCHIC,
+                 SPECIES_TREECKO,
+                 SPECIES_ABSOL,
+                 SPECIES_BAGON,
+-                SPECIES_TORCHIC,
+             },
+             .speciesDay = {
+                 SPECIES_GEODUDE,
+@@ -6740,10 +6740,10 @@ const EncounterData __data[] =
+                 SPECIES_HIPPOPOTAS,
+                 SPECIES_PHANPY,
+                 SPECIES_SKARMORY,
++                SPECIES_TORCHIC,
+                 SPECIES_TREECKO,
+                 SPECIES_ABSOL,
+                 SPECIES_BAGON,
+-                SPECIES_TORCHIC,
+             },
+             .speciesNight = {
+                 SPECIES_GEODUDE,
+@@ -6754,10 +6754,10 @@ const EncounterData __data[] =
+                 SPECIES_HIPPOPOTAS,
+                 SPECIES_PHANPY,
+                 SPECIES_SKARMORY,
++                SPECIES_TORCHIC,
+                 SPECIES_TREECKO,
+                 SPECIES_ABSOL,
+                 SPECIES_BAGON,
+-                SPECIES_TORCHIC,
+             },
+         },
+         .hoennSoundSpecies = {
+@@ -7127,9 +7127,9 @@ const EncounterData __data[] =
+                 SPECIES_GLOOM,
+                 SPECIES_SPEAROW,
+                 SPECIES_FEAROW,
+-                SPECIES_SKORUPI,
+-                SPECIES_RATICATE,
+                 SPECIES_TRAPINCH,
++                SPECIES_RATICATE,
++                SPECIES_SKORUPI,
+             },
+             .speciesDay = {
+                 SPECIES_FARFETCHD,
+@@ -7141,9 +7141,9 @@ const EncounterData __data[] =
+                 SPECIES_GLOOM,
+                 SPECIES_SPEAROW,
+                 SPECIES_FEAROW,
+-                SPECIES_SKORUPI,
+-                SPECIES_RATICATE,
+                 SPECIES_TRAPINCH,
++                SPECIES_RATICATE,
++                SPECIES_SKORUPI,
+             },
+             .speciesNight = {
+                 SPECIES_NOCTOWL,
+@@ -7155,9 +7155,9 @@ const EncounterData __data[] =
+                 SPECIES_GLOOM,
+                 SPECIES_SPEAROW,
+                 SPECIES_FEAROW,
+-                SPECIES_SKORUPI,
+-                SPECIES_RATICATE,
+                 SPECIES_TRAPINCH,
++                SPECIES_RATICATE,
++                SPECIES_SKORUPI,
+             },
+         },
+         .hoennSoundSpecies = {
+diff --git a/tools/hack/encounters.py b/tools/hack/encounters.py
+index 342bc0531..dea1cfe75 100644
+--- a/tools/hack/encounters.py
++++ b/tools/hack/encounters.py
+@@ -13,7 +13,9 @@ was already there disappears; the slot's level is kept. Land placements
+ name how common they should be:
+     U  uncommon (a 10% slot)    R  rare (5%)
+     V  very rare (4%)           X  1%
+-and may be limited to the morning, day or night table ("m", "d", "n").
++and may be limited to the morning, day or night table ("m", "d", "n"). A
++placement never takes a slot more likely than its class; when the table is
++full it takes a rarer one, and the script stops if there is none.
+ Water placements name the list (surf, old, good) and work the same way,
+ starting from the least likely slot.
+ 
+@@ -39,6 +41,8 @@ LAND = {
+     "ROUTE_30": [("LEDYBA", "U", "m"), ("WEEDLE", "U", ""), ("KRICKETOT", "U", "n")],
+     "ROUTE_31": [("LEDYBA", "U", "m"), ("WEEDLE", "U", ""), ("KRICKETOT", "U", "n"), ("PACHIRISU", "R", "")],
+     "ROUTE_46": [("SPINDA", "U", "")],
++    "SPROUT_TOWER_2F": [("CHINGLING", "R", "")],
++    "SPROUT_TOWER_3F": [("CHINGLING", "R", "")],
+     "DARK_CAVE_ROUTE_31_ENTRANCE": [("SABLEYE", "R", "")],
+     "ROUTE_32": [("POOCHYENA", "U", ""), ("WINGULL", "U", ""), ("EKANS", "U", ""), ("SURSKIT", "R", "")],
+     "UNION_CAVE_1F": [("MAWILE", "R", "")],
+@@ -52,20 +56,21 @@ LAND = {
+     "ROUTE_35": [("STUNKY", "U", ""), ("GULPIN", "U", ""), ("CHATOT", "R", ""), ("LOTAD", "R", "")],
+     "NATIONAL_PARK": [("BUNEARY", "U", ""), ("CARNIVINE", "R", "")],
+     "ROUTE_36": [("VULPIX", "U", ""), ("SHINX", "U", ""), ("BONSLY", "R", ""), ("PLUSLE", "R", "")],
+-    "ROUTE_37": [("VULPIX", "U", ""), ("ELECTRIKE", "U", ""), ("MINUN", "R", ""), ("HOUNDOUR", "R", "n")],
++    "ROUTE_37": [("VULPIX", "U", ""), ("ELECTRIKE", "U", ""), ("MINUN", "R", ""), ("HOUNDOUR", "R", "n"),
++                 ("CYNDAQUIL", "V", "")],
+     "BURNED_TOWER_1F": [("SHUPPET", "U", ""), ("DRIFLOON", "R", ""), ("MURKROW", "R", "n")],
+     "BURNED_TOWER_B1F": [("SLUGMA", "U", ""), ("DUSKULL", "R", ""), ("TORKOAL", "R", ""), ("ROTOM", "X", "")],
+     # badges four to six
+-    "ROUTE_38": [("MEOWTH", "U", ""), ("SPOINK", "R", ""), ("CHINGLING", "R", ""),
+-                 ("CHIKORITA", "V", ""), ("CYNDAQUIL", "V", "")],
+-    "ROUTE_39": [("MEOWTH", "U", ""), ("ZANGOOSE", "R", ""), ("SEVIPER", "R", ""),
++    "ROUTE_38": [("MEOWTH", "U", ""), ("SPOINK", "R", ""),
++                 ("CHIKORITA", "V", "")],
++    "ROUTE_39": [("MEOWTH", "U", ""), ("ZANGOOSE", "R", ""),
+                  ("TOTODILE", "V", ""), ("KANGASKHAN", "V", "")],
+     "RUINS_OF_ALPH_OUTSIDE": [("BALTOY", "U", ""), ("BRONZOR", "U", ""), ("LUNATONE", "R", ""), ("SOLROCK", "R", "")],
+     "CLIFF_CAVE": [("NOSEPASS", "R", "")],
+     "ROUTE_47": [("SKORUPI", "R", ""), ("TRAPINCH", "V", "")],
+     "ROUTE_48": [("TROPIUS", "R", ""), ("CACNEA", "R", "")],
+     # badges six and seven
+-    "ROUTE_42": [("NUMEL", "U", ""), ("BULBASAUR", "V", "")],
++    "ROUTE_42": [("NUMEL", "U", ""), ("SEVIPER", "R", ""), ("BULBASAUR", "V", "")],
+     "MT_MORTAR_CENTRAL_ROOM": [("MAKUHITA", "U", ""), ("WHISMUR", "U", ""), ("CLEFAIRY", "R", "")],
+     "MT_MORTAR_B1F": [("CROAGUNK", "R", ""), ("GRIMER", "R", ""), ("ARON", "R", "")],
+     "ROUTE_43": [("CASTFORM", "R", ""), ("MIME_JR", "R", ""), ("CHARMANDER", "V", ""), ("PORYGON", "X", "")],
+@@ -128,19 +133,24 @@ def die(message):
+ 
+ 
+ def pick_slot(species_list, odds_wanted, odds_of):
+-    """Index of a slot to overwrite: its species must fill another slot too."""
++    """Index of a slot to overwrite: its species must fill another slot too.
++
++    Takes the most likely free slot that is no more likely than wanted, so a
++    rare Pokemon can end up rarer than asked for but never more common.
++    """
+     counts = {}
+     for s in species_list:
+         counts[s] = counts.get(s, 0) + 1
+-    free = [i for i, s in enumerate(species_list) if s == "SPECIES_NONE" or counts[s] > 1]
++    free = [i for i, s in enumerate(species_list)
++            if (s == "SPECIES_NONE" or counts[s] > 1) and odds_of[i] <= odds_wanted]
+     if not free:
+         return None
+-    # the slot closest to the wanted odds, preferring the less likely one on a tie
+-    return min(free, key=lambda i: (abs(odds_of[i] - odds_wanted), odds_of[i], -i))
++    return max(free, key=lambda i: (odds_of[i], i))
+ 
+ 
+ def place_land(body, table, placements):
+-    for species, cls, times in placements:
++    # rarest first, so that the rare slots go to the Pokemon that need them
++    for species, cls, times in sorted(placements, key=lambda p: CLASS_ODDS[p[1]]):
+         for t in (times or "mdn"):
+             field = TIMES[t]
+             m = re.search(r"(\.%s = \{\n)(.*?)(\n\s*\},)" % field, body, re.S)
+-- 
+2.43.0
+

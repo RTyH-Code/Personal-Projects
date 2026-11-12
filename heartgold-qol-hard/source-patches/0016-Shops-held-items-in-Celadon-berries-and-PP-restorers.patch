@@ -1,0 +1,618 @@
+From d55f5f03db61123db641cd414669c0996b8abfd2 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Thu, 12 Nov 2026 03:42:56 +0000
+Subject: [PATCH] Shops: held items in Celadon, berries and PP restorers in
+ Goldenrod, marts stock up a badge sooner
+
+---
+ data/itemdata/itemdata.c | 92 ++++++++++++++++++++--------------------
+ src/field/mart.c         | 56 +++++++++++++++++++-----
+ tools/hack/shops.py      | 78 ++++++++++++++++++++++++++++++++++
+ 3 files changed, 170 insertions(+), 56 deletions(-)
+ create mode 100644 tools/hack/shops.py
+
+diff --git a/data/itemdata/itemdata.c b/data/itemdata/itemdata.c
+index 459a4af73..2f3999eff 100644
+--- a/data/itemdata/itemdata.c
++++ b/data/itemdata/itemdata.c
+@@ -1898,7 +1898,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_MAX_REVIVE] =
+ {
+-    ITEM_PRICE(4000),
++    ITEM_PRICE(8000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -2483,7 +2483,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_ETHER] =
+ {
+-    ITEM_PRICE(1200),
++    ITEM_PRICE(1500),
+     .holdEffect = 0,
+     .holdEffectParam = 10,
+     .pluckEffect = 0,
+@@ -2548,7 +2548,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_MAX_ETHER] =
+ {
+-    ITEM_PRICE(2000),
++    ITEM_PRICE(3000),
+     .holdEffect = 0,
+     .holdEffectParam = 255,
+     .pluckEffect = 0,
+@@ -2678,7 +2678,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_MAX_ELIXIR] =
+ {
+-    ITEM_PRICE(4500),
++    ITEM_PRICE(6000),
+     .holdEffect = 0,
+     .holdEffectParam = 255,
+     .pluckEffect = 0,
+@@ -9698,7 +9698,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_CHERI_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(200),
+     .holdEffect = HOLD_EFFECT_PRZ_RESTORE,
+     .holdEffectParam = 0,
+     .pluckEffect = 1,
+@@ -9763,7 +9763,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_CHESTO_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(200),
+     .holdEffect = HOLD_EFFECT_SLP_RESTORE,
+     .holdEffectParam = 0,
+     .pluckEffect = 2,
+@@ -9828,7 +9828,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_PECHA_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(200),
+     .holdEffect = HOLD_EFFECT_PSN_RESTORE,
+     .holdEffectParam = 0,
+     .pluckEffect = 3,
+@@ -9893,7 +9893,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_RAWST_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(200),
+     .holdEffect = HOLD_EFFECT_BRN_RESTORE,
+     .holdEffectParam = 0,
+     .pluckEffect = 4,
+@@ -9958,7 +9958,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_ASPEAR_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(200),
+     .holdEffect = HOLD_EFFECT_FRZ_RESTORE,
+     .holdEffectParam = 0,
+     .pluckEffect = 5,
+@@ -10088,7 +10088,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_ORAN_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(200),
+     .holdEffect = HOLD_EFFECT_HP_RESTORE,
+     .holdEffectParam = 10,
+     .pluckEffect = 7,
+@@ -10218,7 +10218,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_LUM_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(1000),
+     .holdEffect = HOLD_EFFECT_STATUS_RESTORE,
+     .holdEffectParam = 0,
+     .pluckEffect = 9,
+@@ -10283,7 +10283,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_SITRUS_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(500),
+     .holdEffect = HOLD_EFFECT_HP_PCT_RESTORE,
+     .holdEffectParam = 25,
+     .pluckEffect = 10,
+@@ -11973,7 +11973,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_OCCA_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(1000),
+     .holdEffect = HOLD_EFFECT_WEAKEN_SE_FIRE,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -12038,7 +12038,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_PASSHO_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(1000),
+     .holdEffect = HOLD_EFFECT_WEAKEN_SE_WATER,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -12103,7 +12103,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_WACAN_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(1000),
+     .holdEffect = HOLD_EFFECT_WEAKEN_SE_ELECTRIC,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -12168,7 +12168,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_RINDO_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(1000),
+     .holdEffect = HOLD_EFFECT_WEAKEN_SE_GRASS,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -12233,7 +12233,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_YACHE_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(1000),
+     .holdEffect = HOLD_EFFECT_WEAKEN_SE_ICE,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -12298,7 +12298,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_CHOPLE_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(1000),
+     .holdEffect = HOLD_EFFECT_WEAKEN_SE_FIGHT,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -12363,7 +12363,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_KEBIA_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(1000),
+     .holdEffect = HOLD_EFFECT_WEAKEN_SE_POISON,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -12428,7 +12428,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_SHUCA_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(1000),
+     .holdEffect = HOLD_EFFECT_WEAKEN_SE_GROUND,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -12493,7 +12493,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_COBA_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(1000),
+     .holdEffect = HOLD_EFFECT_WEAKEN_SE_FLYING,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -12558,7 +12558,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_PAYAPA_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(1000),
+     .holdEffect = HOLD_EFFECT_WEAKEN_SE_PSYCHIC,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -12623,7 +12623,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_TANGA_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(1000),
+     .holdEffect = HOLD_EFFECT_WEAKEN_SE_BUG,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -12688,7 +12688,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_CHARTI_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(1000),
+     .holdEffect = HOLD_EFFECT_WEAKEN_SE_ROCK,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -12753,7 +12753,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_KASIB_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(1000),
+     .holdEffect = HOLD_EFFECT_WEAKEN_SE_GHOST,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -12818,7 +12818,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_HABAN_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(1000),
+     .holdEffect = HOLD_EFFECT_WEAKEN_SE_DRAGON,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -12883,7 +12883,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_COLBUR_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(1000),
+     .holdEffect = HOLD_EFFECT_WEAKEN_SE_DARK,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -12948,7 +12948,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_BABIRI_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(1000),
+     .holdEffect = HOLD_EFFECT_WEAKEN_SE_STEEL,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -13013,7 +13013,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_CHILAN_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(1000),
+     .holdEffect = HOLD_EFFECT_WEAKEN_NORMAL,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -13923,7 +13923,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_WHITE_HERB] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(10000),
+     .holdEffect = HOLD_EFFECT_STATDOWN_RESTORE,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -14313,7 +14313,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_CHOICE_BAND] =
+ {
+-    ITEM_PRICE(100000),
++    ITEM_PRICE(25000),
+     .holdEffect = HOLD_EFFECT_CHOICE_ATK,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -15093,7 +15093,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_SCOPE_LENS] =
+ {
+-    ITEM_PRICE(15000),
++    ITEM_PRICE(10000),
+     .holdEffect = HOLD_EFFECT_CRITRATE_UP,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -15223,7 +15223,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_LEFTOVERS] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(25000),
+     .holdEffect = HOLD_EFFECT_HP_RESTORE_GRADUAL,
+     .holdEffectParam = 10,
+     .pluckEffect = 0,
+@@ -16458,7 +16458,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_SHELL_BELL] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(10000),
+     .holdEffect = HOLD_EFFECT_HP_RESTORE_ON_DMG,
+     .holdEffectParam = 8,
+     .pluckEffect = 0,
+@@ -17303,7 +17303,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_MUSCLE_BAND] =
+ {
+-    ITEM_PRICE(8000),
++    ITEM_PRICE(10000),
+     .holdEffect = HOLD_EFFECT_POWER_UP_PHYS,
+     .holdEffectParam = 10,
+     .pluckEffect = 0,
+@@ -17368,7 +17368,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_WISE_GLASSES] =
+ {
+-    ITEM_PRICE(8000),
++    ITEM_PRICE(10000),
+     .holdEffect = HOLD_EFFECT_POWER_UP_SPEC,
+     .holdEffectParam = 10,
+     .pluckEffect = 0,
+@@ -17433,7 +17433,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_EXPERT_BELT] =
+ {
+-    ITEM_PRICE(30000),
++    ITEM_PRICE(10000),
+     .holdEffect = HOLD_EFFECT_POWER_UP_SE,
+     .holdEffectParam = 20,
+     .pluckEffect = 0,
+@@ -17498,7 +17498,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_LIGHT_CLAY] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(10000),
+     .holdEffect = HOLD_EFFECT_EXTEND_SCREENS,
+     .holdEffectParam = 3,
+     .pluckEffect = 0,
+@@ -17563,7 +17563,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_LIFE_ORB] =
+ {
+-    ITEM_PRICE(50000),
++    ITEM_PRICE(25000),
+     .holdEffect = HOLD_EFFECT_HP_DRAIN_ON_ATK,
+     .holdEffectParam = 30,
+     .pluckEffect = 0,
+@@ -17628,7 +17628,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_POWER_HERB] =
+ {
+-    ITEM_PRICE(30000),
++    ITEM_PRICE(10000),
+     .holdEffect = HOLD_EFFECT_CHARGE_SKIP,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -17693,7 +17693,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_TOXIC_ORB] =
+ {
+-    ITEM_PRICE(15000),
++    ITEM_PRICE(10000),
+     .holdEffect = HOLD_EFFECT_PSN_USER,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -17758,7 +17758,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_FLAME_ORB] =
+ {
+-    ITEM_PRICE(15000),
++    ITEM_PRICE(10000),
+     .holdEffect = HOLD_EFFECT_BRN_USER,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -17888,7 +17888,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_FOCUS_SASH] =
+ {
+-    ITEM_PRICE(50000),
++    ITEM_PRICE(25000),
+     .holdEffect = HOLD_EFFECT_ENDURE,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -18668,7 +18668,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_CHOICE_SCARF] =
+ {
+-    ITEM_PRICE(100000),
++    ITEM_PRICE(25000),
+     .holdEffect = HOLD_EFFECT_CHOICE_SPEED,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -19318,7 +19318,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_CHOICE_SPECS] =
+ {
+-    ITEM_PRICE(100000),
++    ITEM_PRICE(25000),
+     .holdEffect = HOLD_EFFECT_CHOICE_SPATK,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -44603,7 +44603,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_ROSELI_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(1000),
+     .holdEffect = HOLD_EFFECT_WEAKEN_SE_FAIRY,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+diff --git a/src/field/mart.c b/src/field/mart.c
+index 7e1d68f9c..a85678fab 100644
+--- a/src/field/mart.c
++++ b/src/field/mart.c
+@@ -22,24 +22,24 @@ struct BadgeMartItems {
+ // note: limited to 203 items (~34 pages)
+ const struct BadgeMartItems sBadgeMart[] = {
+     { ITEM_POKE_BALL, 0 },
+-    { ITEM_GREAT_BALL, 3 },
+-    { ITEM_ULTRA_BALL, 5 },
++    { ITEM_GREAT_BALL, 2 },
++    { ITEM_ULTRA_BALL, 4 },
+     { ITEM_POTION, 0 },
+     { ITEM_SUPER_POTION, 1 },
+-    { ITEM_HYPER_POTION, 5 },
+-    { ITEM_MAX_POTION, 7 },
++    { ITEM_HYPER_POTION, 4 },
++    { ITEM_MAX_POTION, 6 },
+     { ITEM_FULL_RESTORE, 8 },
+-    { ITEM_REVIVE, 3 },
++    { ITEM_REVIVE, 2 },
+     { ITEM_ANTIDOTE, 0 },
+     { ITEM_PARALYZE_HEAL, 0 },
+     { ITEM_AWAKENING, 1 },
+     { ITEM_BURN_HEAL, 1 },
+     { ITEM_ICE_HEAL, 1 },
+-    { ITEM_FULL_HEAL, 5 },
++    { ITEM_FULL_HEAL, 4 },
+     { ITEM_ESCAPE_ROPE, 1 },
+     { ITEM_REPEL, 1 },
+-    { ITEM_SUPER_REPEL, 3 },
+-    { ITEM_MAX_REPEL, 5 },
++    { ITEM_SUPER_REPEL, 2 },
++    { ITEM_MAX_REPEL, 4 },
+ };
+ 
+ void LONG_CALL InitMartUI(void *taskManager, FieldSystem *fieldSystem, const u16 *items, int kind, int buySell, int decoWhich, const struct MartItem *priceOverrides);
+@@ -64,8 +64,15 @@ u16 sGoldenrodDepartmentLower2F[] = {
+     ITEM_POKE_BALL, ITEM_GREAT_BALL, ITEM_ULTRA_BALL, ITEM_ESCAPE_ROPE, ITEM_POKE_DOLL, ITEM_REPEL, ITEM_SUPER_REPEL, ITEM_MAX_REPEL, ITEM_GRASS_MAIL, ITEM_FLAME_MAIL, ITEM_BUBBLE_MAIL, ITEM_SPACE_MAIL, 0xFFFF
+ };
+ 
++// the berries and PP restorers are added by the hack; sBadgeLockedMartItems holds their badge counts
+ u16 sGoldenrodDepartment3F[] = {
+-    ITEM_X_SPEED, ITEM_X_ATTACK, ITEM_X_DEFENSE, ITEM_GUARD_SPEC, ITEM_DIRE_HIT, ITEM_X_ACCURACY, ITEM_X_SP_ATK, ITEM_X_SP_DEF, 0xFFFF
++    ITEM_X_SPEED, ITEM_X_ATTACK, ITEM_X_DEFENSE, ITEM_GUARD_SPEC, ITEM_DIRE_HIT, ITEM_X_ACCURACY, ITEM_X_SP_ATK, ITEM_X_SP_DEF,
++    ITEM_ORAN_BERRY, ITEM_CHERI_BERRY, ITEM_CHESTO_BERRY, ITEM_PECHA_BERRY, ITEM_RAWST_BERRY, ITEM_ASPEAR_BERRY,
++    ITEM_SITRUS_BERRY, ITEM_LUM_BERRY, ITEM_ETHER, ITEM_OCCA_BERRY, ITEM_PASSHO_BERRY, ITEM_WACAN_BERRY,
++    ITEM_RINDO_BERRY, ITEM_YACHE_BERRY, ITEM_CHOPLE_BERRY, ITEM_KEBIA_BERRY, ITEM_SHUCA_BERRY, ITEM_COBA_BERRY,
++    ITEM_PAYAPA_BERRY, ITEM_TANGA_BERRY, ITEM_CHARTI_BERRY, ITEM_KASIB_BERRY, ITEM_HABAN_BERRY, ITEM_COLBUR_BERRY,
++    ITEM_BABIRI_BERRY, ITEM_CHILAN_BERRY, ITEM_ROSELI_BERRY, ITEM_ELIXIR, ITEM_MAX_ETHER, ITEM_MAX_ELIXIR,
++    ITEM_MAX_REVIVE, 0xFFFF
+ };
+ 
+ // the evolution items are added by the hack.  the ones in sBadgeLockedMartItems only show up once the player has enough badges
+@@ -135,8 +142,12 @@ u16 sCeladonDepartment3F[] = {
+     ITEM_TM021, ITEM_TM027, ITEM_TM087, ITEM_TM078, ITEM_TM012, ITEM_TM041, ITEM_TM020, ITEM_TM028, ITEM_TM076, ITEM_TM055, ITEM_TM072, ITEM_TM079, 0xFFFF
+ };
+ 
++// the held items are added by the hack
+ u16 sCeladonDepartment4F[] = {
+-    ITEM_AIR_MAIL, ITEM_TUNNEL_MAIL, ITEM_BLOOM_MAIL, 0xFFFF
++    ITEM_AIR_MAIL, ITEM_TUNNEL_MAIL, ITEM_BLOOM_MAIL,
++    ITEM_LEFTOVERS, ITEM_CHOICE_BAND, ITEM_CHOICE_SPECS, ITEM_CHOICE_SCARF, ITEM_LIFE_ORB, ITEM_FOCUS_SASH,
++    ITEM_EXPERT_BELT, ITEM_MUSCLE_BAND, ITEM_WISE_GLASSES, ITEM_SCOPE_LENS, ITEM_SHELL_BELL, ITEM_LIGHT_CLAY,
++    ITEM_BLACK_SLUDGE, ITEM_TOXIC_ORB, ITEM_FLAME_ORB, ITEM_WHITE_HERB, ITEM_POWER_HERB, 0xFFFF
+ };
+ 
+ u16 sCeladonDepartmentLeft5F[] = {
+@@ -200,6 +211,31 @@ BOOL ScrCmd_MartBuy(SCRIPTCONTEXT *ctx)
+ 
+ // items that the special marts (every mart with its own stock list above) only sell once the player has this many badges
+ const struct BadgeMartItems sBadgeLockedMartItems[] = {
++    { ITEM_SITRUS_BERRY, 4 },
++    { ITEM_LUM_BERRY, 4 },
++    { ITEM_ETHER, 4 },
++    { ITEM_OCCA_BERRY, 6 },
++    { ITEM_PASSHO_BERRY, 6 },
++    { ITEM_WACAN_BERRY, 6 },
++    { ITEM_RINDO_BERRY, 6 },
++    { ITEM_YACHE_BERRY, 6 },
++    { ITEM_CHOPLE_BERRY, 6 },
++    { ITEM_KEBIA_BERRY, 6 },
++    { ITEM_SHUCA_BERRY, 6 },
++    { ITEM_COBA_BERRY, 6 },
++    { ITEM_PAYAPA_BERRY, 6 },
++    { ITEM_TANGA_BERRY, 6 },
++    { ITEM_CHARTI_BERRY, 6 },
++    { ITEM_KASIB_BERRY, 6 },
++    { ITEM_HABAN_BERRY, 6 },
++    { ITEM_COLBUR_BERRY, 6 },
++    { ITEM_BABIRI_BERRY, 6 },
++    { ITEM_CHILAN_BERRY, 6 },
++    { ITEM_ROSELI_BERRY, 6 },
++    { ITEM_ELIXIR, 6 },
++    { ITEM_MAX_ETHER, 8 },
++    { ITEM_MAX_ELIXIR, 8 },
++    { ITEM_MAX_REVIVE, 8 },
+     { ITEM_PEAT_BLOCK, 7 },
+     { ITEM_PROTECTOR, 7 },
+     { ITEM_ELECTIRIZER, 7 },
+diff --git a/tools/hack/shops.py b/tools/hack/shops.py
+new file mode 100644
+index 000000000..283c7cfd4
+--- /dev/null
++++ b/tools/hack/shops.py
+@@ -0,0 +1,78 @@
++#!/usr/bin/env python3
++"""Shops: a held-item counter, a berry and consumables counter, and Poke Marts that stock up a badge sooner.
++
++- Celadon Department Store 4F (mail, in the original) also sells held items. Celadon is past the Champion.
++- Goldenrod Department Store 3F (X items) also sells berries and PP restorers, more of them as badges come in.
++- Every Poke Mart's ordinary counter gets its better goods one badge earlier, as the hack's trainers are stronger.
++
++The game has one price per item, used for buying and (halved) for selling, so the prices below are set on the
++items themselves.
++
++    python3 tools/hack/shops.py
++"""
++import re
++import sys
++
++MART = "src/field/mart.c"
++ITEMS = "data/itemdata/itemdata.c"
++
++HELD = {  # item: price
++    "LEFTOVERS": 25000, "CHOICE_BAND": 25000, "CHOICE_SPECS": 25000, "CHOICE_SCARF": 25000, "LIFE_ORB": 25000,
++    "FOCUS_SASH": 25000,
++    "EXPERT_BELT": 10000, "MUSCLE_BAND": 10000, "WISE_GLASSES": 10000, "SCOPE_LENS": 10000, "SHELL_BELL": 10000,
++    "LIGHT_CLAY": 10000, "BLACK_SLUDGE": 10000, "TOXIC_ORB": 10000, "FLAME_ORB": 10000, "WHITE_HERB": 10000,
++    "POWER_HERB": 10000,
++}
++RESIST = """OCCA PASSHO WACAN RINDO YACHE CHOPLE KEBIA SHUCA COBA PAYAPA TANGA CHARTI KASIB HABAN COLBUR BABIRI
++CHILAN ROSELI""".split()
++STAND = (  # item, price, badges needed
++    [("ORAN_BERRY", 200, 0)] + [(b + "_BERRY", 200, 0) for b in ("CHERI", "CHESTO", "PECHA", "RAWST", "ASPEAR")]
++    + [("SITRUS_BERRY", 500, 4), ("LUM_BERRY", 1000, 4), ("ETHER", 1500, 4)]
++    + [(b + "_BERRY", 1000, 6) for b in RESIST] + [("ELIXIR", 3000, 6)]
++    + [("MAX_ETHER", 3000, 8), ("MAX_ELIXIR", 6000, 8), ("MAX_REVIVE", 8000, 8)])
++EARLIER = {"GREAT_BALL": 2, "REVIVE": 2, "SUPER_REPEL": 2, "HYPER_POTION": 4, "ULTRA_BALL": 4, "FULL_HEAL": 4,
++           "MAX_REPEL": 4, "MAX_POTION": 6}
++
++
++def main():
++    mart = open(MART).read()
++    items = open(ITEMS).read()
++    if "ITEM_LEFTOVERS" in re.search(r"sCeladonDepartment4F\[\] = \{(.*?)\};", mart, re.S).group(1):
++        sys.exit("the shops are already changed")
++
++    def extend(text, array, names, note):
++        m = re.search(r"(u16 %s\[\] = \{\n)(.*?)(, 0xFFFF\n\};)" % array, text, re.S)
++        if not m:
++            sys.exit("no " + array)
++        added = ",\n    ".join(", ".join("ITEM_" + n for n in names[i:i + 6]) for i in range(0, len(names), 6))
++        return text.replace(m.group(0), "// %s\n%s%s,\n    %s%s" % (note, m.group(1), m.group(2), added, m.group(3)))
++
++    mart = extend(mart, "sCeladonDepartment4F", list(HELD), "the held items are added by the hack")
++    mart = extend(mart, "sGoldenrodDepartment3F", [n for n, _, _ in STAND],
++                  "the berries and PP restorers are added by the hack; sBadgeLockedMartItems holds their badge counts")
++
++    locks = "".join("    { ITEM_%s, %d },\n" % (n, b) for n, _, b in STAND if b)
++    head = "const struct BadgeMartItems sBadgeLockedMartItems[] = {\n"
++    if head not in mart:
++        sys.exit("no sBadgeLockedMartItems")
++    mart = mart.replace(head, head + locks)
++
++    for name, badges in EARLIER.items():
++        mart, n = re.subn(r"(const struct BadgeMartItems sBadgeMart\[\] = \{.*?\{ ITEM_%s, )\d+( \})" % name,
++                          lambda m: m.group(1) + str(badges) + m.group(2), mart, flags=re.S)
++        if n != 1:
++            sys.exit("no %s in sBadgeMart" % name)
++
++    for name, price in list(HELD.items()) + [(n, p) for n, p, _ in STAND]:
++        items, n = re.subn(r"(\[ITEM_%s\] =\n\{\n    ITEM_PRICE\()\d+(\))" % name,
++                           lambda m: m.group(1) + str(price) + m.group(2), items)
++        if n != 1:
++            sys.exit("no price for " + name)
++
++    open(MART, "w").write(mart)
++    open(ITEMS, "w").write(items)
++    print("held items: %d, stand: %d, marts restocked: %d" % (len(HELD), len(STAND), len(EARLIER)))
++
++
++if __name__ == "__main__":
++    main()
+-- 
+2.43.0
+

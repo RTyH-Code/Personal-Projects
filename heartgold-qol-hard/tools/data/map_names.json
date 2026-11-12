@@ -1,0 +1,1962 @@
+{
+"D01R0101": {
+"area": "Diglett's Cave",
+"name": "Diglett Cave"
+},
+"D02FS0101": {
+"area": "Mt. Moon",
+"name": "Mount Moon Square Shop"
+},
+"D02R0101": {
+"area": "Mt. Moon",
+"name": "Mount Moon"
+},
+"D02R0102": {
+"area": "Mt. Moon",
+"name": "Mount Moon Square Entrance"
+},
+"D02R0103": {
+"area": "Mt. Moon",
+"name": "Mount Moon Square"
+},
+"D02R0104": {
+"area": "Mt. Moon",
+"name": "Mount Moon Square Clefairy Event"
+},
+"D03R0101": {
+"area": "Cerulean Cave",
+"name": "Cerulean Cave 1F"
+},
+"D03R0102": {
+"area": "Cerulean Cave",
+"name": "Cerulean Cave 2F"
+},
+"D03R0103": {
+"area": "Cerulean Cave",
+"name": "Cerulean Cave B1F"
+},
+"D05R0101": {
+"area": "Rock Tunnel",
+"name": "Rock Tunnel 1F"
+},
+"D05R0102": {
+"area": "Rock Tunnel",
+"name": "Rock Tunnel B1F"
+},
+"D10R0101": {
+"area": "Pal Park",
+"name": "Pal Park"
+},
+"D11R0101": {
+"area": "Seafoam Islands",
+"name": "Seafoam Islands 1F"
+},
+"D11R0102": {
+"area": "Seafoam Islands",
+"name": "Seafoam Islands B1F"
+},
+"D11R0103": {
+"area": "Seafoam Islands",
+"name": "Seafoam Islands B2F"
+},
+"D11R0104": {
+"area": "Seafoam Islands",
+"name": "Seafoam Islands B3F"
+},
+"D11R0105": {
+"area": "Seafoam Islands",
+"name": "Seafoam Islands B4F"
+},
+"D11R0106": {
+"area": "Seafoam Islands",
+"name": "Seafoam Islands Cinnabar Gym"
+},
+"D15R0101": {
+"area": "Sprout Tower",
+"name": "Sprout Tower 1F"
+},
+"D15R0102": {
+"area": "Sprout Tower",
+"name": "Sprout Tower 2F"
+},
+"D15R0103": {
+"area": "Sprout Tower",
+"name": "Sprout Tower 3F"
+},
+"D17R0101": {
+"area": "Bell Tower",
+"name": "Bell Tower 1F"
+},
+"D17R0102": {
+"area": "Bell Tower",
+"name": "Bell Tower 2F"
+},
+"D17R0103": {
+"area": "Bell Tower",
+"name": "Bell Tower 3F"
+},
+"D17R0104": {
+"area": "Bell Tower",
+"name": "Bell Tower 4F"
+},
+"D17R0105": {
+"area": "Bell Tower",
+"name": "Bell Tower 5F"
+},
+"D17R0106": {
+"area": "Bell Tower",
+"name": "Bell Tower 6F"
+},
+"D17R0107": {
+"area": "Bell Tower",
+"name": "Bell Tower 7F"
+},
+"D17R0108": {
+"area": "Bell Tower",
+"name": "Bell Tower 8F"
+},
+"D17R0109": {
+"area": "Bell Tower",
+"name": "Bell Tower 9F"
+},
+"D17R0110": {
+"area": "Bell Tower",
+"name": "Bell Tower Roof"
+},
+"D17R0112": {
+"area": "Bell Tower",
+"name": "Bell Tower 10F"
+},
+"D17R1101": {
+"area": "Bellchime Trail",
+"name": "Bellchime Tower"
+},
+"D18R0101": {
+"area": "Burned Tower",
+"name": "Burned Tower 1F"
+},
+"D18R0102": {
+"area": "Burned Tower",
+"name": "Burned Tower B1F"
+},
+"D22R0101": {
+"area": "National Park",
+"name": "National Park"
+},
+"D22R0102": {
+"area": "National Park",
+"name": "National Park Bug Catching Contest"
+},
+"D22R0201": {
+"area": "Pokéathlon Dome",
+"name": "National Park Unused Gatehouse"
+},
+"D23R0101": {
+"area": "Radio Tower",
+"name": "Goldenrod Radio Tower 1F"
+},
+"D23R0102": {
+"area": "Radio Tower",
+"name": "Goldenrod Radio Tower 2F"
+},
+"D23R0103": {
+"area": "Radio Tower",
+"name": "Goldenrod Radio Tower 3F"
+},
+"D23R0104": {
+"area": "Radio Tower",
+"name": "Goldenrod Radio Tower 4F"
+},
+"D23R0105": {
+"area": "Radio Tower",
+"name": "Goldenrod Radio Tower 5F"
+},
+"D23R0106": {
+"area": "Radio Tower",
+"name": "Goldenrod Radio Tower Observation Deck"
+},
+"D23R0107": {
+"area": "Radio Tower",
+"name": "Goldenrod Radio Tower Elevator"
+},
+"D24R0101": {
+"area": "Ruins of Alph",
+"name": "Ruins of Alph"
+},
+"D24R0102": {
+"area": "Ruins of Alph",
+"name": "Ruins of Alph Research Center"
+},
+"D24R0202": {
+"area": "Ruins of Alph",
+"name": "Ruins of Alph Northeast Entrance First Room"
+},
+"D24R0203": {
+"area": "Ruins of Alph",
+"name": "Ruins of Alph Northeast Hidden Room"
+},
+"D24R0204": {
+"area": "Ruins of Alph",
+"name": "Ruins of Alph Southeast Entrance First Room"
+},
+"D24R0205": {
+"area": "Ruins of Alph",
+"name": "Ruins of Alph Underground Hall"
+},
+"D24R0206": {
+"area": "Ruins of Alph",
+"name": "Ruins of Alph Southwest Entrance First Room"
+},
+"D24R0207": {
+"area": "Ruins of Alph",
+"name": "Ruins of Alph Southwest Hidden Room"
+},
+"D24R0208": {
+"area": "Ruins of Alph",
+"name": "Ruins of Alph Northwest Entrance First Room"
+},
+"D24R0209": {
+"area": "Ruins of Alph",
+"name": "Ruins of Alph Northwest Hidden Room"
+},
+"D24R0210": {
+"area": "Ruins of Alph",
+"name": "Ruins of Alph Southeast Hidden Room"
+},
+"D24R0211": {
+"area": "Ruins of Alph",
+"name": "Ruins of Alph Hall Entrance"
+},
+"D24R0212": {
+"area": "Ruins of Alph",
+"name": "Ruins of Alph Northeast Entrance Second Room"
+},
+"D24R0213": {
+"area": "Ruins of Alph",
+"name": "Ruins of Alph Southeast Entrance Second Room"
+},
+"D24R0214": {
+"area": "Ruins of Alph",
+"name": "Ruins of Alph Northwest Entrance Second Room"
+},
+"D24R0215": {
+"area": "Ruins of Alph",
+"name": "Ruins of Alph Southwest Entrance Second Room"
+},
+"D24R0216": {
+"area": "Ruins of Alph",
+"name": "Ruins of Alph Underground Hall Sinjoh Event"
+},
+"D24R0217": {
+"area": "Ruins of Alph",
+"name": "Ruins of Alph Hall Entrance Sinjoh Event"
+},
+"D24R0218": {
+"area": "Ruins of Alph",
+"name": "Ruins of Alph Underground Hall Sinjoh Event 2"
+},
+"D25R0101": {
+"area": "Union Cave",
+"name": "Union Cave 1F"
+},
+"D25R0102": {
+"area": "Union Cave",
+"name": "Union Cave B1F"
+},
+"D25R0103": {
+"area": "Union Cave",
+"name": "Union Cave B2F"
+},
+"D26R0101": {
+"area": "Slowpoke Well",
+"name": "Slowpoke Well Entrance"
+},
+"D26R0102": {
+"area": "Slowpoke Well",
+"name": "Slowpoke Well B1F"
+},
+"D26R0103": {
+"area": "Slowpoke Well",
+"name": "Slowpoke Well B2F"
+},
+"D27R0101": {
+"area": "Lighthouse",
+"name": "Olivine Lighthouse 1F"
+},
+"D27R0102": {
+"area": "Lighthouse",
+"name": "Olivine Lighthouse 2F"
+},
+"D27R0103": {
+"area": "Lighthouse",
+"name": "Olivine Lighthouse Exterior"
+},
+"D27R0104": {
+"area": "Lighthouse",
+"name": "Olivine Lighthouse 3F"
+},
+"D27R0105": {
+"area": "Lighthouse",
+"name": "Olivine Lighthouse 4F"
+},
+"D27R0106": {
+"area": "Lighthouse",
+"name": "Olivine Lighthouse 5F"
+},
+"D27R0107": {
+"area": "Lighthouse",
+"name": "Olivine Lighthouse Light Room"
+},
+"D27R0108": {
+"area": "Lighthouse",
+"name": "Olivine Lighthouse Elevator"
+},
+"D31R0201": {
+"area": "Battle Tower",
+"name": "Battle Tower"
+},
+"D31R0202": {
+"area": "Battle Tower",
+"name": "Battle Tower Elevator"
+},
+"D31R0207": {
+"area": "Battle Tower",
+"name": "Battle Tower Partner Room"
+},
+"D32": {
+"area": "Battle Frontier",
+"name": "Battle Frontier"
+},
+"D32FS0101": {
+"area": "Frontier Access",
+"name": "Frontier Access Poké Mart"
+},
+"D32PC0101": {
+"area": "Frontier Access",
+"name": "Frontier Access Pokémon Center 1F"
+},
+"D32PC0102": {
+"area": "Frontier Access",
+"name": "Frontier Access Pokémon Center B1F"
+},
+"D32R0101": {
+"area": "Battle Frontier",
+"name": "Battle Frontier Frontier Access Gatehouse"
+},
+"D32R0102": {
+"area": "Frontier Access",
+"name": "Battle Frontier Frontier Access"
+},
+"D32R0103": {
+"area": "Frontier Access",
+"name": "Frontier Access Move Tutor House"
+},
+"D32R0201": {
+"area": "Battle Tower",
+"name": "Battle Frontier Battle Tower Unused"
+},
+"D32R0301": {
+"area": "Battle Factory",
+"name": "Battle Frontier Battle Factory"
+},
+"D32R0401": {
+"area": "Battle Hall",
+"name": "Battle Frontier Battle Hall"
+},
+"D32R0501": {
+"area": "Battle Castle",
+"name": "Battle Frontier Battle Castle"
+},
+"D32R0601": {
+"area": "Battle Arcade",
+"name": "Battle Frontier Battle Arcade"
+},
+"D35R0101": {
+"area": "Mahogany Town",
+"name": "Mahogany Souvenir Shop"
+},
+"D35R0102": {
+"area": "Team Rocket Hq",
+"name": "Team Rocket Headquarters B1F"
+},
+"D35R0103": {
+"area": "Team Rocket Hq",
+"name": "Team Rocket Headquarters B2F"
+},
+"D35R0104": {
+"area": "Team Rocket Hq",
+"name": "Team Rocket Headquarters B3F"
+},
+"D36R0101": {
+"area": "Ilex Forest",
+"name": "Ilex Forest"
+},
+"D37R0101": {
+"area": "Goldenrod Tunnel",
+"name": "Goldenrod Tunnel 1F"
+},
+"D37R0102": {
+"area": "Goldenrod Tunnel",
+"name": "Goldenrod Tunnel B1F"
+},
+"D37R0103": {
+"area": "Goldenrod City",
+"name": "Goldenrod Department Store Basement"
+},
+"D37R0104": {
+"area": "Goldenrod City",
+"name": "Goldenrod Tunnel B2F"
+},
+"D37R0105": {
+"area": "Goldenrod City",
+"name": "Goldenrod Tunnel Warehouse"
+},
+"D38R0101": {
+"area": "Mt. Mortar",
+"name": "Mount Mortar 1F Entrance"
+},
+"D38R0102": {
+"area": "Mt. Mortar",
+"name": "Mount Mortar 1F Back"
+},
+"D38R0103": {
+"area": "Mt. Mortar",
+"name": "Mount Mortar 2F"
+},
+"D38R0104": {
+"area": "Mt. Mortar",
+"name": "Mount Mortar B1F"
+},
+"D39R0101": {
+"area": "Ice Path",
+"name": "Ice Path 1F"
+},
+"D39R0102": {
+"area": "Ice Path",
+"name": "Ice Path B1F"
+},
+"D39R0103": {
+"area": "Ice Path",
+"name": "Ice Path B2F"
+},
+"D39R0104": {
+"area": "Ice Path",
+"name": "Ice Path B3F"
+},
+"D40R0101": {
+"area": "Whirl Islands",
+"name": "Whirl Islands 1F"
+},
+"D40R0102": {
+"area": "Whirl Islands",
+"name": "Whirl Islands B1F"
+},
+"D40R0104": {
+"area": "Whirl Islands",
+"name": "Whirl Islands B2F"
+},
+"D40R0106": {
+"area": "Whirl Islands",
+"name": "Whirl Islands B3F"
+},
+"D40R0107": {
+"area": "Whirl Islands",
+"name": "Whirl Islands B3F Lugia Cave"
+},
+"D41R0101": {
+"area": "Mt. Silver Cave",
+"name": "Mount Silver Cave 1F"
+},
+"D41R0102": {
+"area": "Mt. Silver Cave",
+"name": "Mount Silver Cave Upper Mountainside"
+},
+"D41R0103": {
+"area": "Mt. Silver Cave",
+"name": "Mount Silver Cave Lower Mountainside"
+},
+"D41R0104": {
+"area": "Mt. Silver Cave",
+"name": "Mount Silver Cave Expert Belt Chamber"
+},
+"D41R0105": {
+"area": "Mt. Silver Cave",
+"name": "Mount Silver Cave Moltres Chamber"
+},
+"D41R0106": {
+"area": "Mt. Silver Cave",
+"name": "Mount Silver Cave 2F"
+},
+"D41R0107": {
+"area": "Mt. Silver Cave",
+"name": "Mount Silver Cave 3F"
+},
+"D41R0108": {
+"area": "Mt. Silver Cave",
+"name": "Mount Silver Cave Summit"
+},
+"D42R0101": {
+"area": "Dark Cave",
+"name": "Dark Cave Route 45 Side"
+},
+"D42R0102": {
+"area": "Dark Cave",
+"name": "Dark Cave Route 31 Side"
+},
+"D43R0101": {
+"area": "Victory Road Jk",
+"name": "Victory Road 1F"
+},
+"D43R0102": {
+"area": "Victory Road Jk",
+"name": "Victory Road 2F"
+},
+"D43R0103": {
+"area": "Victory Road Jk",
+"name": "Victory Road 3F"
+},
+"D44R0101": {
+"area": "Dragon's Den",
+"name": "Dragon's Den Entrance"
+},
+"D44R0102": {
+"area": "Dragon's Den",
+"name": "Dragon's Den"
+},
+"D44R0103": {
+"area": "Dragon's Den",
+"name": "Dragon's Den Shrine"
+},
+"D45R0101": {
+"area": "Tohjo Falls",
+"name": "Tohjo Falls"
+},
+"D45R0102": {
+"area": "Tohjo Falls",
+"name": "Tohjo Falls Hidden Room"
+},
+"D46R0101": {
+"area": "Viridian Forest",
+"name": "Viridian Forest"
+},
+"D47": {
+"area": "Safari Zone Gate",
+"name": "Safari Zone Gate"
+},
+"D47PC0101": {
+"area": "Safari Zone Gate",
+"name": "Safari Zone Gate Pokémon Center 1F"
+},
+"D47PC0102": {
+"area": "Safari Zone Gate",
+"name": "Safari Zone Gate Pokémon Center B1F"
+},
+"D47R0101": {
+"area": "Safari Zone Gate",
+"name": "Safari Zone Entrance Interior"
+},
+"D47R0102": {
+"area": "Safari Zone",
+"name": "Safari Zone Entrance Exterior"
+},
+"D48R0101": {
+"area": "Cliff Edge Gate",
+"name": "Cliff Edge Gate"
+},
+"D49": {
+"area": "Pokéathlon Dome",
+"name": "Pokéathlon Dome"
+},
+"D49R0101": {
+"area": "Pokéathlon Dome",
+"name": "Pokéathlon Dome Interior 1F"
+},
+"D49R0102": {
+"area": "Pokéathlon Dome",
+"name": "Pokéathlon Dome Interior 2F"
+},
+"D49R0103": {
+"area": "Pokéathlon Dome",
+"name": "Pokéathlon Dome Interior 2F Entrance"
+},
+"D49R0104": {
+"area": "Pokéathlon Dome",
+"name": "Pokéathlon Dome Interior B1F Solidarity Room"
+},
+"D49R0105": {
+"area": "Pokéathlon Dome",
+"name": "Pokéathlon Dome Interior B1F Trust Room"
+},
+"D49R0106": {
+"area": "Pokéathlon Dome",
+"name": "Pokéathlon Dome Interior B1F Potential Room"
+},
+"D49R0107": {
+"area": "Pokéathlon Dome",
+"name": "Pokéathlon Dome Interior B1F Friendship Room"
+},
+"D50R0101": {
+"area": "Cliff Cave",
+"name": "Cliff Cave"
+},
+"D51R0101": {
+"area": "Sinjoh Ruins",
+"name": "Sinjoh Ruins Exterior"
+},
+"D51R0201": {
+"area": "Sinjoh Ruins",
+"name": "Sinjoh Ruins Mystri Stage"
+},
+"D51R0301": {
+"area": "Sinjoh Ruins",
+"name": "Sinjoh Ruins Cabin"
+},
+"D52R0101": {
+"area": "Embedded Tower",
+"name": "Embedded Tower Groudon Room"
+},
+"D52R0102": {
+"area": "Embedded Tower",
+"name": "Embedded Tower Kyogre Room"
+},
+"D52R0103": {
+"area": "Embedded Tower",
+"name": "Embedded Tower Rayquaza Room"
+},
+"DIRECT2": {
+"area": "Mystery Zone",
+"name": "Wifi Single Battle Area"
+},
+"DIRECT4": {
+"area": "Mystery Zone",
+"name": "Wifi Multi Battle Area"
+},
+"HIROBA": {
+"area": "Mystery Zone",
+"name": "Wifi Plaza Warp Room"
+},
+"P01R0101": {
+"area": "Olivine City",
+"name": "SS Aqua Olivine Port Interior"
+},
+"P01R0102": {
+"area": "Olivine City",
+"name": "SS Aqua Olivine Port Exterior"
+},
+"P01R0103": {
+"area": "Vermilion City",
+"name": "SS Aqua Vermilion Port Interior"
+},
+"P01R0104": {
+"area": "Vermilion City",
+"name": "SS Aqua Vermilion Port Exterior"
+},
+"P01R0301": {
+"area": "SS Aqua",
+"name": "SS Aqua 1F"
+},
+"P01R0302": {
+"area": "SS Aqua",
+"name": "SS Aqua Captain Room"
+},
+"P01R0303": {
+"area": "SS Aqua",
+"name": "SS Aqua 1F Southeast Rooms"
+},
+"P01R0304": {
+"area": "SS Aqua",
+"name": "SS Aqua 1F Southwest Rooms"
+},
+"P01R0305": {
+"area": "SS Aqua",
+"name": "SS Aqua 1F Northeast Rooms"
+},
+"P01R0306": {
+"area": "SS Aqua",
+"name": "SS Aqua 1F Northwest Rooms"
+},
+"P01R0307": {
+"area": "SS Aqua",
+"name": "SS Aqua B1F"
+},
+"R01": {
+"area": "Route 1",
+"name": "Route 1"
+},
+"R02": {
+"area": "Route 2",
+"name": "Route 2"
+},
+"R02R0101": {
+"area": "Route 2",
+"name": "Route 2 East"
+},
+"R02R0201": {
+"area": "Route 2",
+"name": "Route 2 House"
+},
+"R02R0301": {
+"area": "Route 2",
+"name": "Route 2 Southeast Gatehouse"
+},
+"R02R0401": {
+"area": "Route 2",
+"name": "Route 2 Viridian Forest South Gatehouse"
+},
+"R02R0501": {
+"area": "Route 2",
+"name": "Route 2 Viridian Forest North Gatehouse"
+},
+"R03": {
+"area": "Route 3",
+"name": "Route 3"
+},
+"R03PC0101": {
+"area": "Route 3",
+"name": "Route 3 Pokémon Center 1F"
+},
+"R03PC0102": {
+"area": "Route 3",
+"name": "Route 3 Pokémon Center B1F"
+},
+"R04": {
+"area": "Route 4",
+"name": "Route 4"
+},
+"R05": {
+"area": "Route 5",
+"name": "Route 5"
+},
+"R05R0201": {
+"area": "Route 5",
+"name": "Route 5 Underground Path Gate"
+},
+"R05R0202": {
+"area": "Route 5",
+"name": "Route 5 Underground Path"
+},
+"R05R0301": {
+"area": "Route 5",
+"name": "Route 5 Saffron Gatehouse"
+},
+"R05R0401": {
+"area": "Route 5",
+"name": "Route 5 House"
+},
+"R06": {
+"area": "Route 6",
+"name": "Route 6"
+},
+"R06R0101": {
+"area": "Route 6",
+"name": "Route 6 Underground Path Gate"
+},
+"R06R0201": {
+"area": "Route 6",
+"name": "Route 6 Saffron Gatehouse"
+},
+"R07": {
+"area": "Route 7",
+"name": "Route 7"
+},
+"R07R0101": {
+"area": "Route 7",
+"name": "Route 7 Saffron Gatehouse"
+},
+"R08": {
+"area": "Route 8",
+"name": "Route 8"
+},
+"R08R0201": {
+"area": "Route 8",
+"name": "Route 8 Saffron Gatehouse"
+},
+"R09": {
+"area": "Route 9",
+"name": "Route 9"
+},
+"R10": {
+"area": "Route 10",
+"name": "Route 10"
+},
+"R10PC0101": {
+"area": "Route 10",
+"name": "Route 10 Pokémon Center 1F"
+},
+"R10PC0102": {
+"area": "Route 10",
+"name": "Route 10 Pokémon Center B1F"
+},
+"R10R0101": {
+"area": "Route 10",
+"name": "Route 10 South"
+},
+"R10R0201": {
+"area": "Power Plant",
+"name": "Route 10 Power Plant Repaired"
+},
+"R10R0202": {
+"area": "Power Plant",
+"name": "Route 10 Power Plant Broken"
+},
+"R11": {
+"area": "Route 11",
+"name": "Route 11"
+},
+"R11R0101": {
+"area": "Route 11",
+"name": "Route 19 Route 12 Gatehouse"
+},
+"R12": {
+"area": "Route 12",
+"name": "Route 12"
+},
+"R12R0101": {
+"area": "Route 12",
+"name": "Route 12 Fishing Brother House"
+},
+"R13": {
+"area": "Route 13",
+"name": "Route 13"
+},
+"R14": {
+"area": "Route 14",
+"name": "Route 14"
+},
+"R15": {
+"area": "Route 15",
+"name": "Route 15"
+},
+"R15R0101": {
+"area": "Route 15",
+"name": "Route 15 Fuchsia Gatehouse"
+},
+"R16": {
+"area": "Route 16",
+"name": "Route 16"
+},
+"R16R0101": {
+"area": "Route 16",
+"name": "Route 16 House"
+},
+"R16R0201": {
+"area": "Route 16",
+"name": "Route 16 Gatehouse"
+},
+"R16R0301": {
+"area": "Route 16",
+"name": "Route 16 East"
+},
+"R17": {
+"area": "Route 17",
+"name": "Route 17"
+},
+"R18": {
+"area": "Route 18",
+"name": "Route 18"
+},
+"R18R0101": {
+"area": "Route 18",
+"name": "Route 18 Gatehouse"
+},
+"R22": {
+"area": "Route 22",
+"name": "Route 22"
+},
+"R22R0101": {
+"area": "Route 26",
+"name": "Route 22 Pokémon League Reception Gate"
+},
+"R24": {
+"area": "Route 24",
+"name": "Route 24"
+},
+"R25": {
+"area": "Route 25",
+"name": "Route 25"
+},
+"R25R0101": {
+"area": "Route 25",
+"name": "Route 25 Sea Cottage"
+},
+"R26": {
+"area": "Route 26",
+"name": "Route 26"
+},
+"R26R0101": {
+"area": "Route 26",
+"name": "Route 26 North House"
+},
+"R26R0201": {
+"area": "Route 26",
+"name": "Route 26 Week Siblings House"
+},
+"R27": {
+"area": "Route 27",
+"name": "Route 27"
+},
+"R27R0101": {
+"area": "Route 27",
+"name": "Route 27 House"
+},
+"R28": {
+"area": "Route 28",
+"name": "Route 28"
+},
+"R28R0101": {
+"area": "Route 28",
+"name": "Route 28 House"
+},
+"R29": {
+"area": "Route 29",
+"name": "Route 29"
+},
+"R29R0101": {
+"area": "Route 29",
+"name": "Route 29 Route 46 Gatehouse"
+},
+"R30": {
+"area": "Route 30",
+"name": "Route 30"
+},
+"R30R0101": {
+"area": "Route 30",
+"name": "Route 30 Apricorn House"
+},
+"R30R0201": {
+"area": "Route 30",
+"name": "Route 30 Mr Pokémon House"
+},
+"R31": {
+"area": "Route 31",
+"name": "Route 31"
+},
+"R31R0101": {
+"area": "Route 31",
+"name": "Route 31 Violet Gatehouse"
+},
+"R32": {
+"area": "Route 32",
+"name": "Route 32"
+},
+"R32PC0101": {
+"area": "Route 32",
+"name": "Route 32 Pokémon Center 1F"
+},
+"R32PC0102": {
+"area": "Route 32",
+"name": "Route 32 Pokémon Center B1F"
+},
+"R32R0101": {
+"area": "Route 32",
+"name": "Route 32 Ruins of Alph Gatehouse"
+},
+"R33": {
+"area": "Route 33",
+"name": "Route 33"
+},
+"R34": {
+"area": "Route 34",
+"name": "Route 34"
+},
+"R34R0101": {
+"area": "Route 34",
+"name": "Route 34 Daycare"
+},
+"R34R0201": {
+"area": "Route 34",
+"name": "Route 34 Ilex Forest Gatehouse"
+},
+"R35": {
+"area": "Route 35",
+"name": "Route 35"
+},
+"R35R0101": {
+"area": "Route 35",
+"name": "Route 35 Goldenrod Gatehouse"
+},
+"R35R0201": {
+"area": "Route 35",
+"name": "Route 35 National Park Pokeathalon Gatehouse"
+},
+"R36": {
+"area": "Route 36",
+"name": "Route 36"
+},
+"R36R0101": {
+"area": "Route 36",
+"name": "Route 36 Ruins of Alph Gatehouse"
+},
+"R36R0201": {
+"area": "Route 36",
+"name": "Route 36 National Park Gatehouse"
+},
+"R37": {
+"area": "Route 37",
+"name": "Route 37"
+},
+"R38": {
+"area": "Route 38",
+"name": "Route 38"
+},
+"R38R0101": {
+"area": "Route 38",
+"name": "Route 38 Ecruteak Gatehouse"
+},
+"R39": {
+"area": "Route 39",
+"name": "Route 39"
+},
+"R39R0101": {
+"area": "Route 39",
+"name": "Route 39 Moomoo Farm House"
+},
+"R39R0201": {
+"area": "Route 39",
+"name": "Route 39 Moomoo Farm Stable"
+},
+"R42": {
+"area": "Route 42",
+"name": "Route 42"
+},
+"R42R0101": {
+"area": "Route 42",
+"name": "Route 42 Ecruteak Gatehouse"
+},
+"R43": {
+"area": "Route 43",
+"name": "Route 43"
+},
+"R43R0101": {
+"area": "Route 43",
+"name": "Route 43 Mahogany Gatehouse"
+},
+"R43R0201": {
+"area": "Route 43",
+"name": "Route 43 Gatehouse"
+},
+"R44": {
+"area": "Route 44",
+"name": "Route 44"
+},
+"R45": {
+"area": "Route 45",
+"name": "Route 45"
+},
+"R46": {
+"area": "Route 46",
+"name": "Route 46"
+},
+"R47": {
+"area": "Route 47",
+"name": "Route 47"
+},
+"R48": {
+"area": "Route 48",
+"name": "Route 48"
+},
+"T01": {
+"area": "Pallet Town",
+"name": "Pallet"
+},
+"T01R0101": {
+"area": "Pallet Town",
+"name": "Pallet Town Reds House 1F"
+},
+"T01R0102": {
+"area": "Pallet Town",
+"name": "Pallet Town Reds House 2F"
+},
+"T01R0201": {
+"area": "Pallet Town",
+"name": "Pallet Town Blues House 1F"
+},
+"T01R0202": {
+"area": "Pallet Town",
+"name": "Pallet Town Blues House 2F"
+},
+"T01R0301": {
+"area": "Pallet Town",
+"name": "Pallet Town Oak's Lab"
+},
+"T02": {
+"area": "Viridian City",
+"name": "Viridian"
+},
+"T02FS0101": {
+"area": "Viridian City",
+"name": "Viridian Poké Mart"
+},
+"T02GYM0101": {
+"area": "Viridian City",
+"name": "Viridian Gym"
+},
+"T02PC0101": {
+"area": "Viridian City",
+"name": "Viridian Pokémon Center 1F"
+},
+"T02PC0102": {
+"area": "Viridian City",
+"name": "Viridian Pokémon Center B1F"
+},
+"T02R0201": {
+"area": "Viridian City",
+"name": "Viridian Northeast House"
+},
+"T02R0301": {
+"area": "Viridian City",
+"name": "Viridian Trainer House 1F"
+},
+"T02R0302": {
+"area": "Viridian City",
+"name": "Viridian Trainer House B1F"
+},
+"T02R0401": {
+"area": "Route 1",
+"name": "Viridian Route 1 Gatehouse"
+},
+"T03": {
+"area": "Pewter City",
+"name": "Pewter"
+},
+"T03FS0101": {
+"area": "Pewter City",
+"name": "Pewter Poké Mart"
+},
+"T03GYM0101": {
+"area": "Pewter City",
+"name": "Pewter Gym"
+},
+"T03PC0101": {
+"area": "Pewter City",
+"name": "Pewter Pokémon Center 1F"
+},
+"T03PC0102": {
+"area": "Pewter City",
+"name": "Pewter Pokémon Center B1F"
+},
+"T03R0101": {
+"area": "Pewter City",
+"name": "Pewter Museum of Science"
+},
+"T03R0201": {
+"area": "Pewter City",
+"name": "Pewter Northeast House"
+},
+"T03R0601": {
+"area": "Pewter City",
+"name": "Pewter Southwest House"
+},
+"T04": {
+"area": "Cerulean City",
+"name": "Cerulean"
+},
+"T04FS0101": {
+"area": "Cerulean City",
+"name": "Cerulean Poké Mart"
+},
+"T04GYM0101": {
+"area": "Cerulean City",
+"name": "Cerulean Gym"
+},
+"T04PC0101": {
+"area": "Cerulean City",
+"name": "Cerulean Pokémon Center 1F"
+},
+"T04PC0102": {
+"area": "Cerulean City",
+"name": "Cerulean Pokémon Center B1F"
+},
+"T04R0101": {
+"area": "Cerulean City",
+"name": "Cerulean North House"
+},
+"T04R0201": {
+"area": "Cerulean City",
+"name": "Cerulean East House"
+},
+"T04R0301": {
+"area": "Cerulean City",
+"name": "Cerulean West House"
+},
+"T04R0401": {
+"area": "Cerulean City",
+"name": "Cerulean Bike Maniac House"
+},
+"T05": {
+"area": "Lavender Town",
+"name": "Lavender"
+},
+"T05FS0101": {
+"area": "Lavender Town",
+"name": "Lavender Poké Mart"
+},
+"T05PC0101": {
+"area": "Lavender Town",
+"name": "Lavender Pokémon Center 1F"
+},
+"T05PC0102": {
+"area": "Lavender Town",
+"name": "Lavender Pokémon Center B1F"
+},
+"T05R0201": {
+"area": "Lavender Town",
+"name": "Lavender Volunteer Pokémon House"
+},
+"T05R0301": {
+"area": "Lavender Town",
+"name": "Lavender Southwest House"
+},
+"T05R0401": {
+"area": "Lavender Town",
+"name": "Lavender Name Rater"
+},
+"T05R0601": {
+"area": "Lavender Town",
+"name": "Lavender House of Memories"
+},
+"T05R0701": {
+"area": "Lavender Town",
+"name": "Lavender Radio Station"
+},
+"T06": {
+"area": "Vermilion City",
+"name": "Vermilion"
+},
+"T06FS0101": {
+"area": "Vermilion City",
+"name": "Vermilion Poké Mart"
+},
+"T06GYM0101": {
+"area": "Vermilion City",
+"name": "Vermilion Gym"
+},
+"T06PC0101": {
+"area": "Vermilion City",
+"name": "Vermilion Pokémon Center 1F"
+},
+"T06PC0102": {
+"area": "Vermilion City",
+"name": "Vermilion Pokémon Center B1F"
+},
+"T06R0101": {
+"area": "Vermilion City",
+"name": "Vermilion Fishing Dude House"
+},
+"T06R0301": {
+"area": "Vermilion City",
+"name": "Vermilion Pokémon Fan Club"
+},
+"T06R0401": {
+"area": "Vermilion City",
+"name": "Vermilion Central House"
+},
+"T06R0601": {
+"area": "Vermilion City",
+"name": "Vermilion South House"
+},
+"T07": {
+"area": "Celadon City",
+"name": "Celadon"
+},
+"T07GYM0101": {
+"area": "Celadon City",
+"name": "Celadon Gym"
+},
+"T07PC0101": {
+"area": "Celadon City",
+"name": "Celadon Pokémon Center 1F"
+},
+"T07PC0102": {
+"area": "Celadon City",
+"name": "Celadon Pokémon Center B1F"
+},
+"T07R0101": {
+"area": "Celadon City",
+"name": "Celadon Department Store 1F"
+},
+"T07R0102": {
+"area": "Celadon City",
+"name": "Celadon Department Store 2F"
+},
+"T07R0103": {
+"area": "Celadon City",
+"name": "Celadon Department Store 3F"
+},
+"T07R0104": {
+"area": "Celadon City",
+"name": "Celadon Department Store 4F"
+},
+"T07R0105": {
+"area": "Celadon City",
+"name": "Celadon Department Store 5F"
+},
+"T07R0106": {
+"area": "Celadon City",
+"name": "Celadon Department Store Roof"
+},
+"T07R0107": {
+"area": "Celadon City",
+"name": "Celadon Department Store Elevator"
+},
+"T07R0201": {
+"area": "Celadon City",
+"name": "Celadon Condominiums 1F"
+},
+"T07R0202": {
+"area": "Celadon City",
+"name": "Celadon Condominiums 2F"
+},
+"T07R0203": {
+"area": "Celadon City",
+"name": "Celadon Condominiums 3F"
+},
+"T07R0204": {
+"area": "Celadon City",
+"name": "Celadon Condominiums Roof"
+},
+"T07R0205": {
+"area": "Celadon City",
+"name": "Celadon Condominiums Roof Room"
+},
+"T07R0206": {
+"area": "Celadon City",
+"name": "Celadon Condominiums Left Elevator"
+},
+"T07R0207": {
+"area": "Celadon City",
+"name": "Celadon Condominiums Right Elevator"
+},
+"T07R0401": {
+"area": "Celadon City",
+"name": "Celadon Game Corner Jp"
+},
+"T07R0501": {
+"area": "Celadon City",
+"name": "Celadon Prize Corner"
+},
+"T07R0701": {
+"area": "Celadon City",
+"name": "Celadon Restaurant"
+},
+"T07SP0101": {
+"area": "Celadon City",
+"name": "Celadon Game Corner"
+},
+"T08": {
+"area": "Fuchsia City",
+"name": "Fuchsia"
+},
+"T08FS0101": {
+"area": "Fuchsia City",
+"name": "Fuchsia Poké Mart"
+},
+"T08GYM0101": {
+"area": "Fuchsia City",
+"name": "Fuchsia Gym"
+},
+"T08PC0101": {
+"area": "Fuchsia City",
+"name": "Fuchsia Pokémon Center 1F"
+},
+"T08PC0102": {
+"area": "Fuchsia City",
+"name": "Fuchsia Pokémon Center B1F"
+},
+"T08R0201": {
+"area": "Pal Park",
+"name": "Fuchsia Pal Park Entrance"
+},
+"T08R0401": {
+"area": "Fuchsia City",
+"name": "Fuchsia Southwest House"
+},
+"T08R0601": {
+"area": "Fuchsia City",
+"name": "Fuchsia Safari Zone Warden House"
+},
+"T09": {
+"area": "Cinnabar Island",
+"name": "Cinnabar Island"
+},
+"T09PC0101": {
+"area": "Cinnabar Island",
+"name": "Cinnabar Island Pokémon Center 1F"
+},
+"T09PC0102": {
+"area": "Cinnabar Island",
+"name": "Cinnabar Island Pokémon Center B1F"
+},
+"T10": {
+"area": "Indigo Plateau",
+"name": "Indigo Plateau"
+},
+"T10R0101": {
+"area": "Pokémon League",
+"name": "Pokémon League Entrance"
+},
+"T10R0201": {
+"area": "Pokémon League",
+"name": "Pokémon League Will Room"
+},
+"T10R0301": {
+"area": "Pokémon League",
+"name": "Pokémon League Koga Room"
+},
+"T10R0401": {
+"area": "Pokémon League",
+"name": "Pokémon League Bruno Room"
+},
+"T10R0501": {
+"area": "Pokémon League",
+"name": "Pokémon League Karen Room"
+},
+"T10R0601": {
+"area": "Pokémon League",
+"name": "Pokémon League Lance Room"
+},
+"T10R0701": {
+"area": "Pokémon League",
+"name": "Pokémon League Hall of Fame"
+},
+"T10R0801": {
+"area": "Pokémon League",
+"name": "Pokémon League Entrance Wifi Room"
+},
+"T11": {
+"area": "Saffron City",
+"name": "Saffron"
+},
+"T11FS0101": {
+"area": "Saffron City",
+"name": "Saffron Poké Mart"
+},
+"T11GYM0101": {
+"area": "Saffron City",
+"name": "Saffron Gym"
+},
+"T11PC0101": {
+"area": "Saffron City",
+"name": "Saffron Pokémon Center 1F"
+},
+"T11PC0102": {
+"area": "Saffron City",
+"name": "Saffron Pokémon Center 2F"
+},
+"T11R0101": {
+"area": "Saffron City",
+"name": "Saffron Fighting Dojo"
+},
+"T11R0501": {
+"area": "Saffron City",
+"name": "Saffron Mr Psychic House"
+},
+"T11R0601": {
+"area": "Saffron City",
+"name": "Saffron Magnet Train Station 1F"
+},
+"T11R0602": {
+"area": "Saffron City",
+"name": "Saffron Magnet Train Station 2F"
+},
+"T11R0603": {
+"area": "Saffron City",
+"name": "Saffron Magnet Train Station 2F Empty"
+},
+"T11R0701": {
+"area": "Saffron City",
+"name": "Saffron Silph Co Hq"
+},
+"T11R0702": {
+"area": "Rotoms Room",
+"name": "Saffron Silph Co Rotom Room"
+},
+"T11R0703": {
+"area": "Saffron City",
+"name": "Saffron Silph Co Elevator"
+},
+"T11R0801": {
+"area": "Saffron City",
+"name": "Saffron Copycat House 1F"
+},
+"T11R0802": {
+"area": "Saffron City",
+"name": "Saffron Copycat House 2F"
+},
+"T20": {
+"area": "New Bark Town",
+"name": "New Bark"
+},
+"T20R0101": {
+"area": "New Bark Town",
+"name": "New Bark Elm's Lab 1F"
+},
+"T20R0102": {
+"area": "New Bark Town",
+"name": "New Bark Elm's Lab 2F"
+},
+"T20R0201": {
+"area": "New Bark Town",
+"name": "New Bark Player House 1F"
+},
+"T20R0202": {
+"area": "New Bark Town",
+"name": "New Bark Player House 2F"
+},
+"T20R0301": {
+"area": "New Bark Town",
+"name": "New Bark Southwest House"
+},
+"T20R0401": {
+"area": "New Bark Town",
+"name": "New Bark Rival House 1F"
+},
+"T20R0402": {
+"area": "New Bark Town",
+"name": "New Bark Rival House 2F"
+},
+"T21": {
+"area": "Cherrygrove City",
+"name": "Cherrygrove"
+},
+"T21FS0101": {
+"area": "Cherrygrove City",
+"name": "Cherrygrove Poké Mart"
+},
+"T21PC0101": {
+"area": "Cherrygrove City",
+"name": "Cherrygrove Pokémon Center 1F"
+},
+"T21PC0102": {
+"area": "Cherrygrove City",
+"name": "Cherrygrove Pokémon Center B1F"
+},
+"T21R0301": {
+"area": "Cherrygrove City",
+"name": "Cherrygrove Southwest House"
+},
+"T21R0401": {
+"area": "Cherrygrove City",
+"name": "Cherrygrove Guide Gent House"
+},
+"T21R0501": {
+"area": "Cherrygrove City",
+"name": "Cherrygrove Southeast House"
+},
+"T22": {
+"area": "Violet City",
+"name": "Violet"
+},
+"T22FS0101": {
+"area": "Violet City",
+"name": "Violet Poké Mart"
+},
+"T22GYM0101": {
+"area": "Violet City",
+"name": "Violet Gym"
+},
+"T22PC0101": {
+"area": "Violet City",
+"name": "Violet Pokémon Center 1F"
+},
+"T22PC0102": {
+"area": "Violet City",
+"name": "Violet Pokémon Center B1F"
+},
+"T22R0301": {
+"area": "Violet City",
+"name": "Violet Pokémon School"
+},
+"T22R0401": {
+"area": "Violet City",
+"name": "Violet Northwest House"
+},
+"T22R0601": {
+"area": "Violet City",
+"name": "Violet Bellsprout Onyx Trade House"
+},
+"T22R0701": {
+"area": "Route 36",
+"name": "Violet Route 36 Gatehouse"
+},
+"T23": {
+"area": "Azalea Town",
+"name": "Azalea"
+},
+"T23FS0101": {
+"area": "Azalea Town",
+"name": "Azalea Poké Mart"
+},
+"T23GYM0101": {
+"area": "Azalea Town",
+"name": "Azalea Gym Entrance"
+},
+"T23GYM0102": {
+"area": "Azalea Town",
+"name": "Azalea Gym"
+},
+"T23PC0101": {
+"area": "Azalea Town",
+"name": "Azalea Pokémon Center 1F"
+},
+"T23PC0102": {
+"area": "Azalea Town",
+"name": "Azalea Pokémon Center B1F"
+},
+"T23R0101": {
+"area": "Azalea Town",
+"name": "Azalea Ilex Forest Gatehouse"
+},
+"T23R0201": {
+"area": "Azalea Town",
+"name": "Azalea Charcoal Kiln"
+},
+"T23R0501": {
+"area": "Azalea Town",
+"name": "Azalea Kurt House"
+},
+"T24": {
+"area": "Cianwood City",
+"name": "Cianwood"
+},
+"T24GYM0101": {
+"area": "Cianwood City",
+"name": "Cianwood Gym"
+},
+"T24PC0101": {
+"area": "Cianwood City",
+"name": "Cianwood Pokémon Center 1F"
+},
+"T24PC0102": {
+"area": "Cianwood City",
+"name": "Cianwood Pokémon Center B1F"
+},
+"T24R0201": {
+"area": "Cianwood City",
+"name": "Cianwood Kirks House"
+},
+"T24R0501": {
+"area": "Cianwood City",
+"name": "Cianwood Pharmacy"
+},
+"T24R0601": {
+"area": "Cianwood City",
+"name": "Cianwood Camerons House"
+},
+"T24R0701": {
+"area": "Cianwood City",
+"name": "Cianwood Central House"
+},
+"T24R0801": {
+"area": "Cianwood City",
+"name": "Cianwood North House"
+},
+"T25": {
+"area": "Goldenrod City",
+"name": "Goldenrod"
+},
+"T25GYM0101": {
+"area": "Goldenrod City",
+"name": "Goldenrod Gym"
+},
+"T25PC0101": {
+"area": "Goldenrod City",
+"name": "Goldenrod Pokémon Center 1F"
+},
+"T25PC0102": {
+"area": "Goldenrod City",
+"name": "Goldenrod Pokémon Center B1F"
+},
+"T25R0201": {
+"area": "Goldenrod City",
+"name": "Goldenrod Bike Shop"
+},
+"T25R0301": {
+"area": "Goldenrod City",
+"name": "Goldenrod Friendship Checker House"
+},
+"T25R0401": {
+"area": "Goldenrod City",
+"name": "Goldenrod Bill's House"
+},
+"T25R0501": {
+"area": "Goldenrod City",
+"name": "Goldenrod Magnet Train Station 1F"
+},
+"T25R0502": {
+"area": "Goldenrod City",
+"name": "Goldenrod Magnet Train Station 2F"
+},
+"T25R0503": {
+"area": "Goldenrod City",
+"name": "Goldenrod Magnet Train Station 2F Empty"
+},
+"T25R0601": {
+"area": "Goldenrod City",
+"name": "Goldenrod Flower Shop"
+},
+"T25R0801": {
+"area": "Goldenrod City",
+"name": "Goldenrod Northeast House"
+},
+"T25R0901": {
+"area": "Goldenrod City",
+"name": "Goldenrod Name Rater House"
+},
+"T25R1001": {
+"area": "Goldenrod City",
+"name": "Goldenrod Department Store 1F"
+},
+"T25R1002": {
+"area": "Goldenrod City",
+"name": "Goldenrod Department Store 2F"
+},
+"T25R1003": {
+"area": "Goldenrod City",
+"name": "Goldenrod Department Store 3F"
+},
+"T25R1004": {
+"area": "Goldenrod City",
+"name": "Goldenrod Department Store 4F"
+},
+"T25R1005": {
+"area": "Goldenrod City",
+"name": "Goldenrod Department Store 5F"
+},
+"T25R1006": {
+"area": "Goldenrod City",
+"name": "Goldenrod Department Store 6F"
+},
+"T25R1007": {
+"area": "Goldenrod City",
+"name": "Goldenrod Department Store Elevator"
+},
+"T25R1101": {
+"area": "Goldenrod City",
+"name": "Goldenrod Game Corner Jp"
+},
+"T25R1201": {
+"area": "Global Terminal",
+"name": "Goldenrod Global Terminal 1F"
+},
+"T25R1202": {
+"area": "Global Terminal",
+"name": "Goldenrod Global Terminal 2F"
+},
+"T25R1203": {
+"area": "Global Terminal",
+"name": "Goldenrod Global Terminal 3F"
+},
+"T25SP0101": {
+"area": "Goldenrod City",
+"name": "Goldenrod Game Corner"
+},
+"T26": {
+"area": "Olivine City",
+"name": "Olivine"
+},
+"T26FS0101": {
+"area": "Olivine City",
+"name": "Olivine Poké Mart"
+},
+"T26GYM0101": {
+"area": "Olivine City",
+"name": "Olivine Gym"
+},
+"T26PC0101": {
+"area": "Olivine City",
+"name": "Olivine Pokémon Center 1F"
+},
+"T26PC0102": {
+"area": "Olivine City",
+"name": "Olivine Pokémon Center B1F"
+},
+"T26R0301": {
+"area": "Olivine City",
+"name": "Olivine North House"
+},
+"T26R0501": {
+"area": "Olivine City",
+"name": "Olivine Northeast House"
+},
+"T26R0601": {
+"area": "Olivine City",
+"name": "Olivine Northwest House"
+},
+"T26R0701": {
+"area": "Olivine City",
+"name": "Olivine Cafe"
+},
+"T27": {
+"area": "Ecruteak City",
+"name": "Ecruteak"
+},
+"T27FS0101": {
+"area": "Ecruteak City",
+"name": "Ecruteak Poké Mart"
+},
+"T27GYM0101": {
+"area": "Ecruteak City",
+"name": "Ecruteak Gym"
+},
+"T27PC0101": {
+"area": "Ecruteak City",
+"name": "Ecruteak Pokémon Center 1F"
+},
+"T27PC0102": {
+"area": "Ecruteak City",
+"name": "Ecruteak Pokémon Center Unused 1"
+},
+"T27PC0103": {
+"area": "Ecruteak City",
+"name": "Ecruteak Pokémon Center Unused 2"
+},
+"T27PC0105": {
+"area": "Ecruteak City",
+"name": "Ecruteak Pokémon Center B1F"
+},
+"T27R0101": {
+"area": "Jubilife City",
+"name": "Ecruteak Unused House"
+},
+"T27R0201": {
+"area": "Ecruteak City",
+"name": "Ecruteak Bell Tower Barrier Station"
+},
+"T27R0202": {
+"area": "Ecruteak City",
+"name": "Ecruteak Bell Tower Barrier Station Corridor"
+},
+"T27R0401": {
+"area": "Ecruteak City",
+"name": "Ecruteak Southwest House"
+},
+"T27R0501": {
+"area": "Ecruteak City",
+"name": "Ecruteak Dance Theater"
+},
+"T27R0601": {
+"area": "Jubilife City",
+"name": "Ecruteak Unused Gatehouse"
+},
+"T27R0801": {
+"area": "Ecruteak City",
+"name": "Ecruteak Dowsing Machine House"
+},
+"T28": {
+"area": "Mahogany Town",
+"name": "Mahogany"
+},
+"T28GYM0101": {
+"area": "Mahogany Town",
+"name": "Mahogany Gym Leader Room"
+},
+"T28GYM0102": {
+"area": "Mahogany Town",
+"name": "Mahogany Gym Room 2"
+},
+"T28GYM0103": {
+"area": "Mahogany Town",
+"name": "Mahogany Gym Room 1"
+},
+"T28PC0101": {
+"area": "Mahogany Town",
+"name": "Mahogany Pokémon Center 1F"
+},
+"T28PC0102": {
+"area": "Mahogany Town",
+"name": "Mahogany Pokémon Center B1F"
+},
+"T28R0201": {
+"area": "Mahogany Town",
+"name": "Mahogany East House"
+},
+"T29": {
+"area": "Lake of Rage",
+"name": "Lake of Rage"
+},
+"T29R0101": {
+"area": "Lake of Rage",
+"name": "Lake of Rage Hidden Power House"
+},
+"T29R0201": {
+"area": "Lake of Rage",
+"name": "Lake of Rage Fishing Guru House"
+},
+"T30": {
+"area": "Blackthorn City",
+"name": "Blackthorn"
+},
+"T30FS0101": {
+"area": "Blackthorn City",
+"name": "Blackthorn Poké Mart"
+},
+"T30GYM0101": {
+"area": "Blackthorn City",
+"name": "Blackthorn Gym"
+},
+"T30PC0101": {
+"area": "Blackthorn City",
+"name": "Blackthorn Pokémon Center 1F"
+},
+"T30PC0102": {
+"area": "Blackthorn City",
+"name": "Blackthorn Pokémon Center B1F"
+},
+"T30R0201": {
+"area": "Blackthorn City",
+"name": "Blackthorn West House"
+},
+"T30R0301": {
+"area": "Blackthorn City",
+"name": "Blackthorn East House"
+},
+"T30R0601": {
+"area": "Blackthorn City",
+"name": "Blackthorn Move Tutor House"
+},
+"T31": {
+"area": "Mt. Silver",
+"name": "Mount Silver"
+},
+"T31PC0101": {
+"area": "Mt. Silver",
+"name": "Mount Silver Pokémon Center 1F"
+},
+"T31PC0102": {
+"area": "Mt. Silver",
+"name": "Mount Silver Pokémon Center B1F"
+},
+"UNION": {
+"area": "Mystery Zone",
+"name": "Union"
+},
+"W19": {
+"area": "Route 19",
+"name": "Route 19"
+},
+"W19R0101": {
+"area": "Route 19",
+"name": "Route 19 Fuchsia Gatehouse"
+},
+"W20": {
+"area": "Route 20",
+"name": "Route 20"
+},
+"W21": {
+"area": "Route 21",
+"name": "Route 21"
+},
+"W40": {
+"area": "Route 40",
+"name": "Route 40"
+},
+"W40R0101": {
+"area": "Route 40",
+"name": "Route 40 Battle Frontier Gatehouse"
+},
+"W41": {
+"area": "Route 41",
+"name": "Route 41"
+}
+}

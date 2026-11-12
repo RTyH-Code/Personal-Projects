@@ -1,0 +1,259 @@
+From 34bc60d59239b4e3c25624fd36b7715e92209259 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Tue, 10 Nov 2026 17:44:48 +0000
+Subject: [PATCH] Field moves without teaching them
+
+With FIELD_MOVES_FROM_BAG, Cut, Surf, Strength, Whirlpool, Rock Smash,
+Waterfall and Rock Climb work from the overworld when the HM is in the
+bag, even if no party member knows the move. Fly and Flash are added to
+the party menu of every party member that could learn them, or of the
+first one if none can. The badge requirements are unchanged.
+
+GetIdxOfFirstPartyMonWithMove and ScrCmd_GetPartySlotWithMove fall back
+to a stand-in party member when the machine is owned.
+---
+ hooks             |   5 ++
+ include/config.h  |   5 ++
+ src/field_moves.c | 174 ++++++++++++++++++++++++++++++++++++++++++++++
+ src/party_menu.c  |   5 ++
+ 4 files changed, 189 insertions(+)
+ create mode 100644 src/field_moves.c
+
+diff --git a/hooks b/hooks
+index 810c5aa8b..4319a1dd7 100644
+--- a/hooks
++++ b/hooks
+@@ -580,6 +580,11 @@ arm9 ScrCmd_MartBuy 02048060 1
+ arm9 ScrCmd_SpecialMartBuy 02048158 1
+ #endif
+ 
++#ifdef FIELD_MOVES_FROM_BAG
++arm9 GetIdxOfFirstPartyMonWithMove 020542E8 2
++arm9 ScrCmd_GetPartySlotWithMove 0204D3CC 1
++#endif
++
+ # expand heal blocked moves
+ 0012 BattleContext_CheckMoveHealBlocked 02252DF8 1
+ 
+diff --git a/include/config.h b/include/config.h
+index ef048e393..e8648b7dd 100644
+--- a/include/config.h
++++ b/include/config.h
+@@ -170,6 +170,11 @@
+ // DELETABLE_HMS allows HMs to be forgotten, this also makes their quantity reduce, but the infinite TMs change prevents this.
+ #define DELETABLE_HMS
+ 
++// FIELD_MOVES_FROM_BAG lets the player use Cut, Fly, Surf, Strength, Whirlpool, Rock Smash, Waterfall, Rock Climb and Flash
++// without teaching them, as long as the HM (or the Flash TM) is in the bag.  the badge requirements are unchanged.
++// Fly and Flash are added to the party menu of every party member that could learn them, or of the first one if none can.
++#define FIELD_MOVES_FROM_BAG
++
+ // MART_EXPANSION allows for adding and modifying items to the mart inventories
+ #define MART_EXPANSION
+ 
+diff --git a/src/field_moves.c b/src/field_moves.c
+new file mode 100644
+index 000000000..6659eb31c
+--- /dev/null
++++ b/src/field_moves.c
+@@ -0,0 +1,174 @@
++#include "../include/bag.h"
++#include "../include/config.h"
++#include "../include/constants/file.h"
++#include "../include/constants/item.h"
++#include "../include/constants/moves.h"
++#include "../include/party_menu.h"
++#include "../include/pokemon.h"
++#include "../include/save.h"
++#include "../include/script.h"
++#include "../include/types.h"
++
++#ifdef FIELD_MOVES_FROM_BAG
++
++// field moves that work without a party member knowing them, as long as the machine is in the bag.
++// the badge checks stay where vanilla has them: in the scripts and in the party menu's field move checks.
++static const u16 sBagFieldMoves[][2] = {
++    { MOVE_CUT, ITEM_HM01 },
++    { MOVE_FLY, ITEM_HM02 },
++    { MOVE_SURF, ITEM_HM03 },
++    { MOVE_STRENGTH, ITEM_HM04 },
++    { MOVE_WHIRLPOOL, ITEM_HM05 },
++    { MOVE_ROCK_SMASH, ITEM_HM06 },
++    { MOVE_WATERFALL, ITEM_HM07 },
++    { MOVE_ROCK_CLIMB, ITEM_HM08 },
++    { MOVE_FLASH, ITEM_TM070 },
++};
++
++// field moves that are started from the party menu, so they are added to it
++static const u16 sPartyMenuBagFieldMoves[] = {
++    MOVE_FLY,
++    MOVE_FLASH,
++};
++
++#define NO_PARTY_SLOT (-1)
++
++// the slot value the scripts compare against for "nobody"
++#define SCRIPT_NO_PARTY_SLOT 6
++
++u16 ItemToMachineMoveIndex(u16 itemId);
++BOOL GetMonMachineMoveCompat(struct PartyPokemon *pp, u16 machineMoveIndex);
++
++static BOOL MonKnowsMove(struct PartyPokemon *mon, u16 move)
++{
++    u32 i;
++
++    for (i = 0; i < MAX_MON_MOVES; i++) {
++        if (GetMonData(mon, MON_DATA_MOVE1 + i, NULL) == move) {
++            return TRUE;
++        }
++    }
++    return FALSE;
++}
++
++// the machine for move if it is one of sBagFieldMoves and the player has it, ITEM_NONE otherwise
++static u16 FieldMove_GetOwnedMachine(u16 move)
++{
++    u32 i;
++
++    for (i = 0; i < NELEMS(sBagFieldMoves); i++) {
++        if (sBagFieldMoves[i][0] == move) {
++            if (Bag_HasItem(Sav2_Bag_get(SaveBlock2_get()), sBagFieldMoves[i][1], 1, HEAPID_MAIN_HEAP)) {
++                return sBagFieldMoves[i][1];
++            }
++            return ITEM_NONE;
++        }
++    }
++    return ITEM_NONE;
++}
++
++static int Party_FindMonKnowingMove(struct Party *party, u16 move)
++{
++    int i;
++
++    for (i = 0; i < party->count; i++) {
++        struct PartyPokemon *mon = Party_GetMonByIndex(party, i);
++        if (!GetMonData(mon, MON_DATA_IS_EGG, NULL) && MonKnowsMove(mon, move)) {
++            return i;
++        }
++    }
++    return NO_PARTY_SLOT;
++}
++
++// the party member that stands in for a machine nobody has been taught:
++// the first one that could learn it, or the first that is not an egg if none can
++static int Party_FindStandInForMachine(struct Party *party, u16 machine)
++{
++    int i;
++    int firstMon = NO_PARTY_SLOT;
++    u16 machineIndex = ItemToMachineMoveIndex(machine);
++
++    for (i = 0; i < party->count; i++) {
++        struct PartyPokemon *mon = Party_GetMonByIndex(party, i);
++        if (GetMonData(mon, MON_DATA_IS_EGG, NULL)) {
++            continue;
++        }
++        if (GetMonMachineMoveCompat(mon, machineIndex)) {
++            return i;
++        }
++        if (firstMon == NO_PARTY_SLOT) {
++            firstMon = i;
++        }
++    }
++    return firstMon;
++}
++
++static int Party_FindFieldMoveUser(struct Party *party, u16 move)
++{
++    int slot = Party_FindMonKnowingMove(party, move);
++
++    if (slot == NO_PARTY_SLOT) {
++        u16 machine = FieldMove_GetOwnedMachine(move);
++        if (machine != ITEM_NONE) {
++            slot = Party_FindStandInForMachine(party, machine);
++        }
++    }
++    return slot;
++}
++
++// used by the field for surfing and for the waterfall check
++int GetIdxOfFirstPartyMonWithMove(struct Party *party, u16 move)
++{
++    int slot = Party_FindFieldMoveUser(party, move);
++
++    return slot == NO_PARTY_SLOT ? 0xFF : slot;
++}
++
++// used by the scripts for every field move that is started by facing something and pressing A
++BOOL ScrCmd_GetPartySlotWithMove(SCRIPTCONTEXT *ctx)
++{
++    u16 *slotVar = ScriptGetVarPointer(ctx);
++    u16 move = ScriptGetVar(ctx);
++    int slot = Party_FindFieldMoveUser(SaveData_GetPlayerPartyPtr(ctx->fsys->savedata), move);
++
++    *slotVar = slot == NO_PARTY_SLOT ? SCRIPT_NO_PARTY_SLOT : slot;
++    return FALSE;
++}
++
++// adds the party menu field moves that the selected party member stands in for.
++// called from sub_0207B0B0 after the moves it knows have been added
++u8 PartyMenu_AddBagFieldMoves(struct PartyMenu *partyMenu, u8 *buf, u8 count, u8 fieldMoveIndex)
++{
++    struct Party *party = partyMenu->args->party;
++    struct PartyPokemon *mon = Party_GetMonByIndex(party, partyMenu->partyMonIndex);
++    u32 i;
++
++    for (i = 0; i < NELEMS(sPartyMenuBagFieldMoves) && fieldMoveIndex < MAX_MON_MOVES; i++) {
++        u16 move = sPartyMenuBagFieldMoves[i];
++        u16 machine;
++        u8 fieldEffect;
++
++        if (MonKnowsMove(mon, move)) {
++            continue;
++        }
++        machine = FieldMove_GetOwnedMachine(move);
++        if (machine == ITEM_NONE) {
++            continue;
++        }
++        if (!GetMonMachineMoveCompat(mon, ItemToMachineMoveIndex(machine))
++            && Party_FindStandInForMachine(party, machine) != partyMenu->partyMonIndex) {
++            continue;
++        }
++        fieldEffect = MoveId_GetFieldEffectId(move);
++        if (fieldEffect == 0xFF) {
++            continue;
++        }
++        buf[count] = fieldEffect;
++        ++count;
++        PartyMenu_ContextMenuAddFieldMove(partyMenu, move, fieldMoveIndex);
++        ++fieldMoveIndex;
++    }
++    return count;
++}
++
++#endif // FIELD_MOVES_FROM_BAG
+diff --git a/src/party_menu.c b/src/party_menu.c
+index 808da7e62..5178f733d 100644
+--- a/src/party_menu.c
++++ b/src/party_menu.c
+@@ -25,6 +25,8 @@ u32 LONG_CALL getButtonColorDepressed(int selection);
+ u32 LONG_CALL getButtonColorRaised(int selection);
+ void PartyMenu_ShowRotomCatalogList(struct PartyMenu *partyMenu);
+ 
++u8 PartyMenu_AddBagFieldMoves(struct PartyMenu *partyMenu, u8 *buf, u8 count, u8 fieldMoveIndex);
++
+ u8 LONG_CALL sub_0207B0B0(struct PartyMenu *wk, u8 *buf)
+ {
+     struct PartyPokemon *pp = Party_GetMonByIndex(wk->args->party, wk->partyMonIndex);
+@@ -68,6 +70,9 @@ u8 LONG_CALL sub_0207B0B0(struct PartyMenu *wk, u8 *buf)
+                     ++fieldMoveIndex;
+                 }
+             }
++#ifdef FIELD_MOVES_FROM_BAG
++            count = PartyMenu_AddBagFieldMoves(wk, buf, count, fieldMoveIndex);
++#endif
+         } else {
+             buf[count] = PARTY_MON_CONTEXT_MENU_QUIT;
+             ++count;
+-- 
+2.43.0
+
