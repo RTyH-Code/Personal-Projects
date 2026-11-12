@@ -4,9 +4,32 @@ A quality-of-life, modernization and difficulty hack for Pokémon HeartGold,
 following the same recipe as [FireRed QoL + Hard](../firered-qol-hard/README.md).
 It is built on [hg-engine](https://github.com/BluRosie/hg-engine).
 
-**Status: early.** The build pipeline works and the first config switches
-are set (see below). Trainers, encounters and everything else are still
-unchanged from HeartGold. There is no patch to download.
+**Status: playtest build (v0.1).** Everything described below is in the
+patch. The battles, maps, legendaries, wild Pokémon and shops have been
+checked by automated playtesters, but nobody has played the story from start
+to finish yet. See the [changelog](CHANGELOG.md).
+
+## Playing it
+
+You need your own US Pokémon HeartGold ROM (game code `IPKE`, SHA-1
+`4fcded0e2713dc03929845de631d0932ea2b5a37`). The ROM is not in this
+repository and never will be.
+
+1. Download `HeartGold-QoL-Hard-v0.1.xdelta`.
+2. Apply it to the ROM with an xdelta patcher such as Delta Patcher or
+   xdelta UI, or on a command line:
+
+   ```bash
+   xdelta3 -d -s heartgold-usa.nds HeartGold-QoL-Hard-v0.1.xdelta HeartGold-QoL-Hard.nds
+   ```
+
+3. The patched ROM is 256 MB, twice the original's size, and its SHA-1 is
+   `6106acf7680c406ebf2b042034b32f8217c4b116`. It has been run in DeSmuME;
+   other emulators and flashcarts are untried.
+
+Start a new game: saves from the original game or from other hacks will not
+work properly. The [spoiler guide](guide/README.md) lists where everything
+is.
 
 This hack is free and always will be. hg-engine's terms require that, and
 that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md).
@@ -392,6 +415,9 @@ tools/build.sh /path/to/heartgold-usa.nds
 
 The first build takes several minutes. It clones hg-engine into `build/`,
 applies the patches and writes `build/hg-engine/test.nds`.
+
+The release patch is made from such a build, in a fresh work directory, with
+`tools/make_patch.sh`. v0.1 was built this way from all seventeen patches.
 
 To confirm the result boots, without opening an emulator window:
 
