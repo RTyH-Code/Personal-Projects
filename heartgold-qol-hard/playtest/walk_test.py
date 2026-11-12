@@ -525,8 +525,8 @@ def features(game, state, data, world, names, out_dir, results):
             if not game.added:
                 break
             bought = names_by_id.get(game.added[0][0], str(game.added[0][0]))
-            if index >= 6 and bought == stock[index - 6]:
-                break                        # the arrow stayed on the last page: the list has ended
+            if bought in stock:
+                break                        # an empty slot or a page that did not turn: the list has ended
             stock.append(bought)
         missing = [w for w in wanted if w not in stock]
         early = [l for l in locked if l in stock]
