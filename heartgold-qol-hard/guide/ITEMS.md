@@ -422,34 +422,37 @@ The ordinary counter sells more as you earn badges:
 | Item | Badges needed |
 |---|--:|
 | Poké Ball | 0 |
-| Great Ball | 3 |
-| Ultra Ball | 5 |
+| Great Ball | 2 |
+| Ultra Ball | 4 |
 | Potion | 0 |
 | Super Potion | 1 |
-| Hyper Potion | 5 |
-| Max Potion | 7 |
+| Hyper Potion | 4 |
+| Max Potion | 6 |
 | Full Restore | 8 |
-| Revive | 3 |
+| Revive | 2 |
 | Antidote | 0 |
 | Paralyze Heal | 0 |
 | Awakening | 1 |
 | Burn Heal | 1 |
 | Ice Heal | 1 |
-| Full Heal | 5 |
+| Full Heal | 4 |
 | Escape Rope | 1 |
 | Repel | 1 |
-| Super Repel | 3 |
-| Max Repel | 5 |
+| Super Repel | 2 |
+| Max Repel | 4 |
 
 ### Other counters
+
+Prices are shown for the counters the hack restocks: the Goldenrod Department Store's 3F (berries and PP
+restorers) and 4F (evolution items), and the Celadon Department Store's 4F (held items).
 
 - **Cherrygrove City Mart:** Air Mail, Heal Ball.
 - **Violet City Mart:** Tunnel Mail, Heal Ball, Net Ball.
 - **Azalea City Mart:** Bloom Mail, Heal Ball, Net Ball.
 - **Goldenrod Department Upper 2F:** Potion, Super Potion, Hyper Potion, Max Potion, Revive, Antidote, Paralyze Heal, Burn Heal, Ice Heal, Awakening, Full Heal.
 - **Goldenrod Department Lower 2F:** Poké Ball, Great Ball, Ultra Ball, Escape Rope, Poké Doll, Repel, Super Repel, Max Repel, Grass Mail, Flame Mail, Bubble Mail, Space Mail.
-- **Goldenrod Department 3F:** X Speed, X Attack, X Defense, Guard Spec., Dire Hit, X Accuracy, X Sp. Atk, X Sp. Def.
-- **Goldenrod Department 4F:** Protein, Iron, Calcium, Zinc, Carbos, HP Up, Fire Stone, Water Stone, Thunder Stone, Leaf Stone, Ice Stone, Moon Stone, Sun Stone, Shiny Stone (after the Storm Badge), Dusk Stone, Dawn Stone, Oval Stone, King's Rock, Metal Coat, Dragon Scale, Up-Grade, DeepSeaTooth, DeepSeaScale, Prism Scale, Black Augurite, Peat Block (7 badges), Protector (7 badges), Electirizer (7 badges), Magmarizer (7 badges), Dubious Disc (7 badges), Reaper Cloth (7 badges), Razor Claw (7 badges), Razor Fang (7 badges).
+- **Goldenrod Department 3F:** X Speed (₽1,000), X Attack (₽1,000), X Defense (₽2,000), Guard Spec. (₽1,500), Dire Hit (₽1,000), X Accuracy (₽1,000), X Sp. Atk (₽1,000), X Sp. Def (₽2,000), Oran Berry (₽200), Cheri Berry (₽200), Chesto Berry (₽200), Pecha Berry (₽200), Rawst Berry (₽200), Aspear Berry (₽200), Sitrus Berry (₽500, 4 badges), Lum Berry (₽1,000, 4 badges), Ether (₽1,500, 4 badges), Occa Berry (₽1,000, 6 badges), Passho Berry (₽1,000, 6 badges), Wacan Berry (₽1,000, 6 badges), Rindo Berry (₽1,000, 6 badges), Yache Berry (₽1,000, 6 badges), Chople Berry (₽1,000, 6 badges), Kebia Berry (₽1,000, 6 badges), Shuca Berry (₽1,000, 6 badges), Coba Berry (₽1,000, 6 badges), Payapa Berry (₽1,000, 6 badges), Tanga Berry (₽1,000, 6 badges), Charti Berry (₽1,000, 6 badges), Kasib Berry (₽1,000, 6 badges), Haban Berry (₽1,000, 6 badges), Colbur Berry (₽1,000, 6 badges), Babiri Berry (₽1,000, 6 badges), Chilan Berry (₽1,000, 6 badges), Roseli Berry (₽1,000, 6 badges), Elixir (₽3,000, 6 badges), Max Ether (₽3,000, 8 badges), Max Elixir (₽6,000, 8 badges), Max Revive (₽8,000, 8 badges).
+- **Goldenrod Department 4F:** Protein (₽10,000), Iron (₽10,000), Calcium (₽10,000), Zinc (₽10,000), Carbos (₽10,000), HP Up (₽10,000), Fire Stone (₽3,000), Water Stone (₽3,000), Thunder Stone (₽3,000), Leaf Stone (₽3,000), Ice Stone (₽3,000), Moon Stone (₽3,000), Sun Stone (₽3,000), Shiny Stone (₽3,000, after the Storm Badge), Dusk Stone (₽3,000), Dawn Stone (₽3,000), Oval Stone (₽2,000), King's Rock (₽10,000), Metal Coat (₽3,000), Dragon Scale (₽2,100), Up-Grade (₽2,100), DeepSeaTooth (₽200), DeepSeaScale (₽200), Prism Scale (₽3,000), Black Augurite (₽8,000), Peat Block (₽2,100, 7 badges), Protector (₽2,100, 7 badges), Electirizer (₽2,100, 7 badges), Magmarizer (₽2,100, 7 badges), Dubious Disc (₽2,100, 7 badges), Reaper Cloth (₽4,000, 7 badges), Razor Claw (₽15,000, 7 badges), Razor Fang (₽4,000, 7 badges).
 - **Goldenrod Department 5F:** TM70 Flash, TM17 Protect, TM54 False Swipe, TM83 Natural Gift, TM16 Light Screen, TM33 Reflect, TM22 Solar Beam, TM52 Focus Blast, TM38 Fire Blast, TM25 Thunder, TM14 Blizzard, TM15 Hyper Beam.
 - **Goldenrod Herbs:** Heal Powder, EnergyPowder, Energy Root, Revival Herb.
 - **Ecruteak Mart:** Heart Mail, Heal Ball, Net Ball.
@@ -464,7 +467,7 @@ The ordinary counter sells more as you earn badges:
 - **Celadon Department Upper 2F:** Potion, Super Potion, Hyper Potion, Max Potion, Revive, Antidote, Paralyze Heal, Burn Heal, Ice Heal, Awakening, Full Heal.
 - **Celadon Department Lower 2F:** Poké Ball, Great Ball, Ultra Ball, Escape Rope, Poké Doll, Repel, Super Repel, Max Repel, Grass Mail, Flame Mail, Bubble Mail, Space Mail.
 - **Celadon Department 3F:** TM21 Frustration, TM27 Return, TM87 Swagger, TM78 Captivate, TM12 Taunt, TM41 Torment, TM20 Safeguard, TM28 Dig, TM76 Stealth Rock, TM55 Brine, TM72 Avalanche, TM79 Dark Pulse.
-- **Celadon Department 4F:** Air Mail, Tunnel Mail, Bloom Mail.
+- **Celadon Department 4F:** Air Mail (₽50), Tunnel Mail (₽50), Bloom Mail (₽50), Leftovers (₽25,000), Choice Band (₽25,000), Choice Specs (₽25,000), Choice Scarf (₽25,000), Life Orb (₽25,000), Focus Sash (₽25,000), Expert Belt (₽10,000), Muscle Band (₽10,000), Wise Glasses (₽10,000), Scope Lens (₽10,000), Shell Bell (₽10,000), Light Clay (₽10,000), Black Sludge (₽10,000), Toxic Orb (₽10,000), Flame Orb (₽10,000), White Herb (₽10,000), Power Herb (₽10,000).
 - **Celadon Department Left 5F:** X Speed, X Attack, X Defense, Guard Spec., Dire Hit, X Accuracy, X Sp. Atk, X Sp. Def.
 - **Celadon Department Right 5F:** Protein, Iron, Calcium, Zinc, Carbos, HP Up.
 - **Fuschia Mart:** Steel Mail, Dusk Ball, Quick Ball.

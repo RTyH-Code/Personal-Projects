@@ -98,6 +98,20 @@ that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md
   it; Leafeon uses the Leaf Stone, and Magneton and Nosepass the
   Thunder Stone. The stock, the badge requirement and the prices are a
   first pass and will be revisited when the difficulty is balanced.
+- **Held items for money:** the Celadon Department Store 4F counter also
+  sells seventeen held items from the original games. Leftovers, the three
+  Choice items, Life Orb and Focus Sash cost ₽25,000 and the rest ₽10,000.
+  Celadon is past the Champion, so this is a post-game shop.
+- **Berries and PP restorers:** the Goldenrod Department Store 3F counter
+  also sells Oran and the status berries from the start; Sitrus, Lum and
+  Ether at 4 badges; the type-resist berries and Elixir at 6; Max Ether, Max
+  Elixir and Max Revive at 8.
+- **Poké Marts stock up a badge sooner:** Great Ball, Revive and Super
+  Repel at 2 badges; Hyper Potion, Ultra Ball, Full Heal and Max Repel at 4;
+  Max Potion at 6. Full Restore stays at 8.
+- **Prices:** the game has one price per item, so the items above also sell
+  for half their new price. Lists and prices are in
+  [guide/ITEMS.md](guide/ITEMS.md).
 
 The tutorial skip, the Running Shoes and the Fast text default have been
 checked in the emulator. So have the HM changes, on a save given the HMs
@@ -109,7 +123,8 @@ switches build cleanly but haven't been played through. The National Dex
 change was checked by disassembling the built ROM, not by playing to
 Champion. The trade evolutions were checked in the built data files, not by
 evolving a Pokémon in play. The shop's stock list and badge check are in the built
-ROM, but the shop hasn't been visited in play.
+ROM, and the overworld playtester has since bought every item on the shop's
+list with no badges and with all of them.
 
 ## Difficulty
 
@@ -349,7 +364,7 @@ The FireRed recipe, and where each part comes from here:
 | Trade evolutions without trading | Done: `tools/hack/trade_evos.py` |
 | Evolution item shop | Done, to be rebalanced |
 | Field HMs without teaching them | Done |
-| Held-item shop, berry and consumables stand, mart stock review | To do |
+| Held-item shop, berry and consumables stand, earlier mart stock | Done: `tools/hack/shops.py` |
 | Spoiler guide generated from the data | Done: `tools/spoiler_guide.py` writes [guide/](guide/README.md) |
 | Unattended playtester | Done: battle tester and overworld tester, see [playtest](playtest/README.md). No story playthrough bot. |
 

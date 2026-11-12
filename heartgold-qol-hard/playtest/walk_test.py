@@ -22,8 +22,8 @@ from memory.
                  Pokemon until a few appear, and check each against the
                  hack's encounter tables
 
-    features     use the fossil reviver, buy from the evolution item shop
-                 with no badges and with all of them, and use Surf from
+    features     use the fossil reviver, buy everything on the counters the
+                 hack restocks at different badge counts, and use Surf from
                  the bag
 
 With no test named, all four run. Results go to OUT/walk_results.json and a
@@ -493,18 +493,24 @@ def features(game, state, data, world, names, out_dir, results):
         got = [s for s, _ in game.created]
         record("fossil reviver", None if species["AERODACTYL"] in got else "no Aerodactyl (created: %s)" % game.created[:3])
 
-    # the evolution item shop on the Goldenrod Department Store's fourth floor: buy the item at each position
-    # in the list and see what arrives, with no badges and with all of them
-    wanted = {0: ["FIRE_STONE", "OVAL_STONE"], 16: ["FIRE_STONE", "SHINY_STONE", "PEAT_BLOCK", "RAZOR_FANG"]}
-    locked = {0: ["SHINY_STONE", "PEAT_BLOCK", "RAZOR_FANG"], 16: []}
+    # the counters the hack restocks: buy the item at each position in the list and see what arrives.
+    # (name, map, where to stand, facing, badges, must be on sale, must not be on sale yet)
+    counters = [
+        ("evolution shop, 0 badges", "T25R1004", (21, 7), 3, 0, ["FIRE_STONE", "OVAL_STONE"], ["SHINY_STONE", "PEAT_BLOCK", "RAZOR_FANG"]),
+        ("evolution shop, 16 badges", "T25R1004", (21, 7), 3, 16, ["FIRE_STONE", "SHINY_STONE", "PEAT_BLOCK", "RAZOR_FANG"], []),
+        ("berry stand, 0 badges", "T25R1003", (21, 7), 3, 0, ["X_SPEED", "ORAN_BERRY", "ASPEAR_BERRY"], ["SITRUS_BERRY", "OCCA_BERRY", "MAX_REVIVE"]),
+        ("berry stand, 4 badges", "T25R1003", (21, 7), 3, 4, ["SITRUS_BERRY", "LUM_BERRY", "ETHER"], ["OCCA_BERRY", "ELIXIR", "MAX_REVIVE"]),
+        ("berry stand, 16 badges", "T25R1003", (21, 7), 3, 16, ["OCCA_BERRY", "ROSELI_BERRY", "ELIXIR", "MAX_REVIVE"], []),
+        ("held item counter", "T07R0104", (20, 11), 3, 16, ["AIR_MAIL", "LEFTOVERS", "CHOICE_SCARF", "POWER_HERB"], []),
+    ]
     names_by_id = {v: k for k, v in items.items()}
-    for badges in (0, 16):
+    for label, code, tile, facing, badges, wanted, locked in counters:
         stock = []
-        for index in range(48):
-            p = game.start(state, data, world, "T25R1004", (21, 7), facing=3, badges=badges)
+        for index in range(60):
+            p = game.start(state, data, world, code, tile, facing=facing, badges=badges)
             if p is None:
                 break
-            for _ in range(4):               # talk, his greeting, BUY
+            for _ in range(4):               # talk, the greeting, BUY
                 game.key("a")
             game.run(150)
             # the stock is shown six to a page, in two columns
@@ -522,14 +528,14 @@ def features(game, state, data, world, names, out_dir, results):
             if index >= 6 and bought == stock[index - 6]:
                 break                        # the arrow stayed on the last page: the list has ended
             stock.append(bought)
-        missing = [w for w in wanted[badges] if w not in stock]
-        early = [l for l in locked[badges] if l in stock]
+        missing = [w for w in wanted if w not in stock]
+        early = [l for l in locked if l in stock]
         problem = None
         if not stock:
             problem = "could not buy anything"
         elif missing or early:
             problem = "missing %s, too early %s (stock: %s)" % (missing, early, stock)
-        record("evolution shop, %d badges" % badges, problem)
+        record(label, problem)
         results[-1]["stock"] = stock
 
     # Surf from the bag: with HM03 in the bag and no Pokemon that knows Surf, facing water and pressing A

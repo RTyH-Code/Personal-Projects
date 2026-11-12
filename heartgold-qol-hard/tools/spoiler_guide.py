@@ -443,6 +443,7 @@ def dex_pages(d, found, statics, have, parents, out):
     return "\n".join(index) + "\n"
 
 
+PRICED = {"GoldenrodDepartment3F", "GoldenrodDepartment4F", "CeladonDepartment4F"}
 BOSS = re.compile(r"LEADER_|ELITE_FOUR_|CHAMPION|RIVAL|PKMN_TRAINER_RED|EXECUTIVE|KIMONO_GIRL")
 
 
@@ -530,19 +531,25 @@ def items_page(d):
         lines.append("| %s | %s |" % (title(item), badges))
     locked = dict(re.findall(r"\{ ITEM_(\w+), (\d+) \}", re.search(r"sBadgeLockedMartItems\[\] = \{(.*?)\};", mart, re.S).group(1)))
     specific = re.findall(r"\{ ITEM_(\w+), MART_BADGE_(\w+) \}", re.search(r"sSpecificBadgeLockedMartItems\[\] = \{(.*?)\};", mart, re.S).group(1))
-    lines += ["", "### Other counters", ""]
+    prices = {n: int(v) for n, v in re.findall(r"\[ITEM_(\w+)\] =\n\{\n    ITEM_PRICE\((\d+)\)", d.read("data/itemdata/itemdata.c"))}
+    lines += ["", "### Other counters", "",
+              "Prices are shown for the counters the hack restocks: the Goldenrod Department Store's 3F (berries and PP",
+              "restorers) and 4F (evolution items), and the Celadon Department Store's 4F (held items).", ""]
     for name, body in re.findall(r"^u16 s(\w+)\[\] = \{(.*?)\};", mart, re.S | re.M):
         items = re.findall(r"ITEM_(\w+)", body)
         label = title(re.sub(r"(?<=[a-z])(?=[A-Z0-9])", "_", name).upper())
         shown = []
         for item in items:
             text = item_name(d, item)
-            if name == "GoldenrodDepartment4F" and item in locked:
-                text += " (%s badges)" % locked[item]
+            notes = []
+            if name in PRICED and item in prices:
+                notes.append("₽{:,}".format(prices[item]))
+            if item in locked:
+                notes.append("%s badges" % locked[item])
             for locked_item, badge in specific:
-                if name == "GoldenrodDepartment4F" and item == locked_item:
-                    text += " (after the %s Badge)" % title(badge)
-            shown.append(text)
+                if item == locked_item:
+                    notes.append("after the %s Badge" % title(badge))
+            shown.append(text + (" (%s)" % ", ".join(notes) if notes else ""))
         lines.append("- **%s:** %s." % (label, ", ".join(shown)))
     smash = d.read("src/field/rock_smash_item.c")
     fossils = list(dict.fromkeys(re.findall(r"ITEM_(\w*(?:FOSSIL|AMBER))", smash)))
