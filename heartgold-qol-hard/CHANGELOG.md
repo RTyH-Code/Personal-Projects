@@ -1,8 +1,9 @@
 # Changelog
 
-## Unreleased
+## v0.2 (playtest build)
 
-In the source patches (18 to 21), not yet in a patch file.
+Follow-ups from an audit of v0.1. Saves from v0.1 should carry over, but that
+has not been tried.
 
 - Late-game trainers' Pokémon evolve where their level allows.
 - Wild Pokémon no longer hold items from later games.
