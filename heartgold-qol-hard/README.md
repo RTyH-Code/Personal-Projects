@@ -129,6 +129,14 @@ that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md
   also sells Oran and the status berries from the start; Sitrus, Lum and
   Ether at 4 badges; the type-resist berries and Elixir at 6; Max Ether, Max
   Elixir and Max Revive at 8.
+- **Catching up on levels:** from trainer battles alone a full team of six
+  runs about 3 to 5 levels behind the bosses from Jasmine to the first
+  Elite Four members, and far behind Red. The Goldenrod 3F counter sells the
+  Lucky Egg (₽5,000) from four badges, and the Celadon 4F counter sells Rare
+  Candies (₽3,000).
+- **Hidden abilities:** some boss Pokémon have one, and nothing in the game
+  gave the player any. The Celadon 4F counter sells the Ability Capsule
+  (₽10,000) and the Ability Patch (₽25,000).
 - **Poké Marts stock up a badge sooner:** Great Ball, Revive and Super
   Repel at 2 badges; Hyper Potion, Ultra Ball, Full Heal and Max Repel at 4;
   Max Potion at 6. Full Restore stays at 8.

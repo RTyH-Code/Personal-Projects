@@ -498,10 +498,10 @@ def features(game, state, data, world, names, out_dir, results):
     counters = [
         ("evolution shop, 0 badges", "T25R1004", (21, 7), 3, 0, ["FIRE_STONE", "OVAL_STONE"], ["SHINY_STONE", "PEAT_BLOCK", "RAZOR_FANG"]),
         ("evolution shop, 16 badges", "T25R1004", (21, 7), 3, 16, ["FIRE_STONE", "SHINY_STONE", "PEAT_BLOCK", "RAZOR_FANG"], []),
-        ("berry stand, 0 badges", "T25R1003", (21, 7), 3, 0, ["X_SPEED", "ORAN_BERRY", "ASPEAR_BERRY"], ["SITRUS_BERRY", "OCCA_BERRY", "MAX_REVIVE"]),
-        ("berry stand, 4 badges", "T25R1003", (21, 7), 3, 4, ["SITRUS_BERRY", "LUM_BERRY", "ETHER"], ["OCCA_BERRY", "ELIXIR", "MAX_REVIVE"]),
+        ("berry stand, 0 badges", "T25R1003", (21, 7), 3, 0, ["X_SPEED", "ORAN_BERRY", "ASPEAR_BERRY"], ["SITRUS_BERRY", "OCCA_BERRY", "MAX_REVIVE", "LUCKY_EGG"]),
+        ("berry stand, 4 badges", "T25R1003", (21, 7), 3, 4, ["SITRUS_BERRY", "LUM_BERRY", "ETHER", "LUCKY_EGG"], ["OCCA_BERRY", "ELIXIR", "MAX_REVIVE"]),
         ("berry stand, 16 badges", "T25R1003", (21, 7), 3, 16, ["OCCA_BERRY", "ROSELI_BERRY", "ELIXIR", "MAX_REVIVE"], []),
-        ("held item counter", "T07R0104", (20, 11), 3, 16, ["AIR_MAIL", "LEFTOVERS", "CHOICE_SCARF", "POWER_HERB"], []),
+        ("held item counter", "T07R0104", (20, 11), 3, 16, ["AIR_MAIL", "LEFTOVERS", "CHOICE_SCARF", "POWER_HERB", "RARE_CANDY", "ABILITY_CAPSULE", "ABILITY_PATCH"], []),
     ]
     names_by_id = {v: k for k, v in items.items()}
     for label, code, tile, facing, badges, wanted, locked in counters:
