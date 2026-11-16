@@ -126,7 +126,7 @@ screenshot in `out`. `--maps CODE,CODE` limits a run to some maps.
 | `sweep` | 540 maps: 462 load and can be walked on, 49 start a trainer battle or story scene first, 24 are not maps a player walks on (no events, or nowhere to stand), and 5 load but the player could not step: the four Elite Four rooms and one S.S. Aqua map. Those five are unchanged from the original game and were not looked into further. |
 | `legendaries` | All 21 are absent with their gate closed and start the right battle with it open, from every side. |
 | `wild` | 111 maps: on 103, all three Pokémon met were in the table at the right level. On 4 a trainer stopped the walk (Routes 15 and 27, National Park, Mt. Moon). The other 4 are the Ruins of Alph hall and its copies, where nothing appeared; the Unown there depend on the puzzles. |
-| `features` | The reviver gave an Aerodactyl. The evolution shop sold 24 items with no badges and 33 with sixteen; the berry stand 14, 17 and 39 items with none, four and sixteen badges; the held item counter 20. Each list was exactly the expected one. Surf from the bag worked. |
+| `features` | The reviver gave an Aerodactyl. The evolution shop sold 24 items with no badges and 33 with sixteen; the berry stand 14, 18 and 40 items with none, four and sixteen badges (the Lucky Egg arrives at four); the held item counter 23, with Rare Candy, Ability Capsule and Ability Patch. Each list was exactly the expected one. Surf from the bag worked. |
 
 The first run found one real problem. Cresselia stood just inside the south
 gap of the Mt. Moon Square fence, where it could not be talked to from the
