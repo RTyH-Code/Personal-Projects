@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+In the source patches (18 to 20), not yet in a patch file.
+
+- Late-game trainers' Pokémon evolve where their level allows.
+- Wild Pokémon no longer hold items from later games.
+- An old man in the Ruins of Alph Research Center tells where the added
+  legendary Pokémon are, a tier at a time.
+
 ## v0.1 (playtest build)
 
 The first patch. Everything in the README is in; nothing has been played

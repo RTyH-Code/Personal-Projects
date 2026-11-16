@@ -1,0 +1,251 @@
+From 97b419124f999fc4ef3f0786de35297a6497ab5f Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 16 Nov 2026 01:01:47 +0000
+Subject: [PATCH] A rumor collector in the Ruins of Alph tells where the added
+ legendaries are
+
+---
+ data/eventdata/zone_event/292_D24R0102.json |  17 +++
+ data/scr_seq/include/event_D24R0102.inc     |   2 +
+ data/scr_seq/scr_seq_0038_D24R0102.s        |  30 +++++
+ data/text/custom/073.txt                    |   4 +
+ tools/hack/legend_hints.py                  | 125 ++++++++++++++++++++
+ 5 files changed, 178 insertions(+)
+ create mode 100644 tools/hack/legend_hints.py
+
+diff --git a/data/eventdata/zone_event/292_D24R0102.json b/data/eventdata/zone_event/292_D24R0102.json
+index ac900c494..0ae5089f1 100644
+--- a/data/eventdata/zone_event/292_D24R0102.json
++++ b/data/eventdata/zone_event/292_D24R0102.json
+@@ -95,6 +95,23 @@
+       "x": 11,
+       "z": 4,
+       "y": 0
++    },
++    {
++      "id": "obj_D24R0102_rumors",
++      "graphics_id": "SPRITE_GSOLDMAN1",
++      "movement_type": 15,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_NOTHING",
++      "script": "_EV_scr_seq_D24R0102_007 + 1",
++      "initial_dir": 1,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 2,
++      "z": 10,
++      "y": 0
+     }
+   ],
+   "warp_events": [
+diff --git a/data/scr_seq/include/event_D24R0102.inc b/data/scr_seq/include/event_D24R0102.inc
+index 96bb7c988..2a2ea2dd1 100644
+--- a/data/scr_seq/include/event_D24R0102.inc
++++ b/data/scr_seq/include/event_D24R0102.inc
+@@ -9,10 +9,12 @@
+ .equ _EV_scr_seq_D24R0102_005, 5
+ 
+ .equ _EV_scr_seq_D24R0102_006, 6
++.equ _EV_scr_seq_D24R0102_007, 7
+ 
+ .equ obj_D24R0102_suit, 0
+ .equ obj_D24R0102_gsassistantm, 1
+ .equ obj_D24R0102_gsassistantm_2, 2
+ .equ obj_D24R0102_fossil, 3
++.equ obj_D24R0102_rumors, 4
+ 
+ .endif //SCR_SEQ_D24R0102_H_
+diff --git a/data/scr_seq/scr_seq_0038_D24R0102.s b/data/scr_seq/scr_seq_0038_D24R0102.s
+index fa3befd9d..53acaba81 100644
+--- a/data/scr_seq/scr_seq_0038_D24R0102.s
++++ b/data/scr_seq/scr_seq_0038_D24R0102.s
+@@ -34,6 +34,7 @@ scrdef scr_seq_D24R0102_003
+ scrdef scr_seq_D24R0102_004
+ scrdef scr_seq_D24R0102_005
+ scrdef scr_seq_D24R0102_006
++scrdef scr_seq_D24R0102_007
+ scrdef_end
+ 
+ scr_seq_D24R0102_005:
+@@ -604,3 +605,32 @@ _fossil_0600:
+ 	script_overlay_cmd 2, 1
+ 	releaseall
+ 	end
++
++// the rumor collector (tools/hack/legend_hints.py)
++scr_seq_D24R0102_007:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	goto_if_unset FLAG_GAME_CLEAR, _legend_hints_none
++	goto_if_unset FLAG_UNLOCKED_MT_SILVER, _legend_hints_champion
++	compare VAR_UNK_4131, 0
++	goto_if_eq _legend_hints_badges
++	npc_msg 37
++	goto _legend_hints_end
++
++_legend_hints_none:
++	npc_msg 34
++	goto _legend_hints_end
++
++_legend_hints_champion:
++	npc_msg 35
++	goto _legend_hints_end
++
++_legend_hints_badges:
++	npc_msg 36
++_legend_hints_end:
++	wait_button
++	closemsg
++	releaseall
++	end
++	.balign 4
+diff --git a/data/text/custom/073.txt b/data/text/custom/073.txt
+index ce9674f28..1ebfa6940 100644
+--- a/data/text/custom/073.txt
++++ b/data/text/custom/073.txt
+@@ -32,3 +32,7 @@ Hey!\nYou don’t have any Fossils.\rI heard that sometimes you find Fossils\nwh
+ Do you want to extract a Pokémon\nfrom the {STRVAR_1 8, 0, 0}? {YESNO 0}
+ {STRVAR_1 3, 0, 0} received\nthe {STRVAR_1 0, 1, 0}!
+ Would you like to give a nickname\nto the {STRVAR_1 0, 1, 0} you received? {YESNO 0}
++I collect rumors of legendary\nPokémon.\rThey say such Pokémon only show\nthemselves to a Champion. Come\rback when you are one.
++I collect rumors of legendary\nPokémon.\rBehind three of these ruins’\npuzzle chambers wait golems of\rrock, ice and steel.\rTheir master wakes behind the\nfourth chamber for a Trainer who\rbrings all three.\rThree spirits hover over the\nwater: deep in Union Cave, at the\rLake of Rage and in the Dragon’s\nDen.\rLatias no longer roams Kanto\nalone.\rSomething burns on Cinnabar\nIsland, and something shines by\rthe pond at Mt. Moon Square.\rThe guardian of Ilex Forest is\nback at its shrine. A flower\rPokémon hides in the National\nPark. A prince of the sea swims in\rthe Whirl Islands.\rThere are greater legends, but\nthey wait for a Trainer Professor\rOak has seen all sixteen Badges\non.
++I collect rumors of legendary\nPokémon.\rBehind three of these ruins’\npuzzle chambers wait golems of\rrock, ice and steel.\rTheir master wakes behind the\nfourth chamber for a Trainer who\rbrings all three.\rThree spirits hover over the\nwater: deep in Union Cave, at the\rLake of Rage and in the Dragon’s\nDen.\rLatias no longer roams Kanto\nalone.\rSomething burns on Cinnabar\nIsland, and something shines by\rthe pond at Mt. Moon Square.\rThe guardian of Ilex Forest is\nback at its shrine. A flower\rPokémon hides in the National\nPark. A prince of the sea swims in\rthe Whirl Islands.\rWhere you caught Kyogre, its rival\nwill stand.\rAnd three beings of time, space\nand shadow have come to the hall\rbeneath these ruins.\rThe oldest legends wait for\nwhoever defeats the Trainer on Mt.\rSilver.
++I collect rumors of legendary\nPokémon.\rBehind three of these ruins’\npuzzle chambers wait golems of\rrock, ice and steel.\rTheir master wakes behind the\nfourth chamber for a Trainer who\rbrings all three.\rThree spirits hover over the\nwater: deep in Union Cave, at the\rLake of Rage and in the Dragon’s\nDen.\rLatias no longer roams Kanto\nalone.\rSomething burns on Cinnabar\nIsland, and something shines by\rthe pond at Mt. Moon Square.\rThe guardian of Ilex Forest is\nback at its shrine. A flower\rPokémon hides in the National\nPark. A prince of the sea swims in\rthe Whirl Islands.\rWhere you caught Kyogre, its rival\nwill stand.\rAnd three beings of time, space\nand shadow have come to the hall\rbeneath these ruins.\rYou beat him! Then listen. The\ncreator itself is in the hall\rbelow us.\rA playful ancestor floats at Mt.\nSilver’s summit.\rA wish-maker waits at the cape on\nRoute 25, a visitor from space on\rRoute 3, and a nightmare deep in\nDark Cave.
+diff --git a/tools/hack/legend_hints.py b/tools/hack/legend_hints.py
+new file mode 100644
+index 000000000..59ac3901e
+--- /dev/null
++++ b/tools/hack/legend_hints.py
+@@ -0,0 +1,125 @@
++#!/usr/bin/env python3
++"""An old man in the Ruins of Alph Research Center who tells where the added legendaries are.
++
++legendaries.py puts the missing legendary Pokemon in the overworld without a
++word about it in the game. This adds a man to the Research Center who tells
++the rumours he has collected: nothing before the Champion, then each tier as
++the player reaches it (Champion, sixteen badges, Red).
++
++Run after fossil_reviver.py and legendaries.py, from the hg-engine root; it
++edits the Research Center files that fossil_reviver.py put in the tree:
++    python3 tools/hack/legend_hints.py
++"""
++import json
++import re
++import sys
++import textwrap
++
++SCRIPT = "data/scr_seq/scr_seq_0038_D24R0102.s"
++INCLUDE = "data/scr_seq/include/event_D24R0102.inc"
++EVENTS = "data/eventdata/zone_event/292_D24R0102.json"
++TEXT = "data/text/custom/073.txt"
++POSITION = (2, 10)      # the open corner left of the door; nothing has to pass through it
++WIDTH = 34              # characters that fit on a line of the message box
++
++OPENING = "I collect rumors of legendary Pokémon."
++NOT_YET = "They say such Pokémon only show themselves to a Champion. Come back when you are one."
++CHAMPION = [
++    "Behind three of these ruins' puzzle chambers wait golems of rock, ice and steel.",
++    "Their master wakes behind the fourth chamber for a Trainer who brings all three.",
++    "Three spirits hover over the water: deep in Union Cave, at the Lake of Rage and in the Dragon's Den.",
++    "Latias no longer roams Kanto alone.",
++    "Something burns on Cinnabar Island, and something shines by the pond at Mt. Moon Square.",
++    "The guardian of Ilex Forest is back at its shrine. A flower Pokémon hides in the National Park. A prince of the sea swims in the Whirl Islands.",
++]
++CHAMPION_END = "There are greater legends, but they wait for a Trainer Professor Oak has seen all sixteen Badges on."
++BADGES = [
++    "Where you caught Kyogre, its rival will stand.",
++    "And three beings of time, space and shadow have come to the hall beneath these ruins.",
++]
++BADGES_END = "The oldest legends wait for whoever defeats the Trainer on Mt. Silver."
++RED = [
++    "You beat him! Then listen. The creator itself is in the hall below us.",
++    "A playful ancestor floats at Mt. Silver's summit.",
++    "A wish-maker waits at the cape on Route 25, a visitor from space on Route 3, and a nightmare deep in Dark Cave.",
++]
++
++
++def message(sentences):
++    """Lay sentences out for the message box: two lines a page."""
++    lines = []
++    for sentence in sentences:
++        wrapped = textwrap.wrap(sentence, WIDTH)
++        if len(wrapped) % 2:
++            wrapped.append("")
++        lines += wrapped
++    pages = ["\\n".join(l for l in lines[i:i + 2] if l) for i in range(0, len(lines), 2)]
++    return "\\r".join(pages).replace("'", "\u2019")      # the game's text uses the curly apostrophe
++
++
++def main():
++    read = lambda path: open(path, encoding="utf-8", newline="").read()
++    script, include, text = read(SCRIPT), read(INCLUDE), read(TEXT)
++    if "legend_hints" in script:
++        sys.exit("the rumor collector is already there")
++    events = json.loads(read(EVENTS))
++
++    lines = text.split("\r\n")
++    if lines[-1] == "":
++        lines.pop()
++    first = len(lines)
++    lines += [message([OPENING, NOT_YET]),
++              message([OPENING] + CHAMPION + [CHAMPION_END]),
++              message([OPENING] + CHAMPION + BADGES + [BADGES_END]),
++              message([OPENING] + CHAMPION + BADGES + RED)]
++
++    number = len(re.findall(r"^scrdef scr_seq_D24R0102_\d+$", script, re.M))
++    body = """
++// the rumor collector (tools/hack/legend_hints.py)
++scr_seq_D24R0102_%03d:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	goto_if_unset FLAG_GAME_CLEAR, _legend_hints_none
++	goto_if_unset FLAG_UNLOCKED_MT_SILVER, _legend_hints_champion
++	compare VAR_UNK_4131, 0
++	goto_if_eq _legend_hints_badges
++	npc_msg %d
++	goto _legend_hints_end
++
++_legend_hints_none:
++	npc_msg %d
++	goto _legend_hints_end
++
++_legend_hints_champion:
++	npc_msg %d
++	goto _legend_hints_end
++
++_legend_hints_badges:
++	npc_msg %d
++_legend_hints_end:
++	wait_button
++	closemsg
++	releaseall
++	end
++	.balign 4
++""" % (number, first + 3, first, first + 1, first + 2)
++    script = script.replace("scrdef_end", "scrdef scr_seq_D24R0102_%03d\nscrdef_end" % number, 1).rstrip("\n") + "\n" + body
++    last = ".equ _EV_scr_seq_D24R0102_%03d, %d\n" % (number - 1, number - 1)
++    if last not in include:
++        sys.exit("unexpected include file")
++    include = include.replace(last, last + ".equ _EV_scr_seq_D24R0102_%03d, %d\n" % (number, number), 1)
++    include = include.replace("\n.endif", ".equ obj_D24R0102_rumors, %d\n\n.endif" % len(events["object_events"]), 1)
++    events["object_events"].append({
++        "id": "obj_D24R0102_rumors", "graphics_id": "SPRITE_GSOLDMAN1", "movement_type": 15, "trainer_type": 0,
++        "hidden_flag": "FLAG_NOTHING", "script": "_EV_scr_seq_D24R0102_%03d + 1" % number, "initial_dir": 1,
++        "param0": 0, "param1": 0, "param2": 0, "movement_range_x": 0, "movement_range_z": 0,
++        "x": POSITION[0], "z": POSITION[1], "y": 0})
++    for path, content in ((SCRIPT, script), (INCLUDE, include), (EVENTS, json.dumps(events, indent=2) + "\n"),
++                          (TEXT, "\r\n".join(lines) + "\r\n")):
++        open(path, "w", encoding="utf-8", newline="").write(content)
++    print("added the rumor collector: script %d, messages %d to %d" % (number, first, first + 3))
++
++
++if __name__ == "__main__":
++    main()
+-- 
+2.43.0
+

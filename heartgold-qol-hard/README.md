@@ -245,6 +245,14 @@ The levels, IVs, AI and every boss team are in.
   Leaders, the Elite Four, the Champion, your rival, Red and the Rocket
   bosses have 31.
 - **AI:** every trainer uses the smartest move-choice settings.
+- **Late-game trainers' Pokémon are evolved:** an ordinary trainer's
+  Pokémon of Lv. 50 or more evolves if it is 5 or more levels past a
+  level-up evolution, and takes stone, item and friendship evolutions from
+  the first three generations; at Lv. 75 or more it takes any evolution.
+  148 Pokémon of 108 trainers changed (no more Lv. 78 Metapod). Trainers
+  below Lv. 50 keep their unevolved Pokémon, as in the original.
+- **Wild held items:** thirteen wild Pokémon no longer hold an item from a
+  later game (Air Balloon, Absorb Bulb and the like).
 
 Every boss has been fought in the emulator by the battle playtester; see
 [playtest](playtest/README.md) for how the fights ranked. The built trainer
@@ -355,6 +363,11 @@ Added:
 "16 badges" means after Professor Oak has seen all sixteen. Phione comes
 from breeding Manaphy.
 
+An old man in the Ruins of Alph Research Center collects rumors of these
+Pokémon. He says nothing useful before the Champion, and then tells where
+each group is as you reach it: after the Champion, with sixteen badges, and
+after Red.
+
 The overworld playtester has gone to all of them at their real places: each
 is absent until its condition is met and then starts the right battle at the
 right level. Catching, running away and coming back were tested by hand on a
@@ -417,7 +430,8 @@ The first build takes several minutes. It clones hg-engine into `build/`,
 applies the patches and writes `build/hg-engine/test.nds`.
 
 The release patch is made from such a build, in a fresh work directory, with
-`tools/make_patch.sh`. v0.1 was built this way from all seventeen patches.
+`tools/make_patch.sh`. v0.1 was built this way from the first seventeen
+patches; the later ones are not in a released patch yet.
 
 To confirm the result boots, without opening an emulator window:
 

@@ -207,7 +207,7 @@ not on a map and are not listed here.
 
 ## Route 4
 
-- Picnicker Hope: Flaaffy Lv. 57
+- Picnicker Hope: Ampharos Lv. 57
 - Picnicker Sharon: Furret Lv. 53, Rapidash Lv. 56
 - Bird Keeper Hank: Pidgey Lv. 17, Pidgeot Lv. 57
 
@@ -309,13 +309,13 @@ not on a map and are not listed here.
 
 ## Route 12
 
-- Fisherman Kyle: Goldeen Lv. 51, Qwilfish Lv. 46, Goldeen Lv. 51
+- Fisherman Kyle: Seaking Lv. 51, Qwilfish Lv. 46, Seaking Lv. 51
 - Fisherman Martin: Remoraid Lv. 47, Octillery Lv. 55
 - Bird Keeper Justin: Xatu Lv. 57, Noctowl Lv. 51
 - Young Couple Vic & Tara (double battle): Magmar Lv. 57, Sunflora Lv. 56
 - Fisherman Stephen: Quagsire Lv. 56, Qwilfish Lv. 49, Tentacruel Lv. 49
 - Fisherman Barney: Gyarados Lv. 52, Gyarados Lv. 48, Gyarados Lv. 48
-- Bird Keeper Gail: Fearow Lv. 55, Spearow Lv. 51
+- Bird Keeper Gail: Fearow Lv. 55, Fearow Lv. 51
 - Fisherman Kyler: Magikarp Lv. 23, Magikarp Lv. 23, Magikarp Lv. 23
 
 ## Radio Tower
@@ -418,23 +418,23 @@ not on a map and are not listed here.
 ## Route 13
 
 - Hiker Kenny: Sandslash Lv. 35, Graveler Lv. 38, Golem Lv. 43
-- Young Couple Tim & Sue (double battle): Kadabra Lv. 53, Psyduck Lv. 60
+- Young Couple Tim & Sue (double battle): Alakazam Lv. 53, Golduck Lv. 60
 - Pokefan Joshua: Pikachu Lv. 42, Pikachu Lv. 42, Pikachu Lv. 42, Pikachu Lv. 42, Pikachu Lv. 42, Pikachu Lv. 42
-- Pokefan Alex: Nidoking Lv. 38, Slowking Lv. 38, Magikarp Lv. 85
-- Camper Clark: Buizel Lv. 52
+- Pokefan Alex: Nidoking Lv. 38, Slowking Lv. 38, Gyarados Lv. 85
+- Camper Clark: Floatzel Lv. 52
 - Camper Tanner: Sudowoodo Lv. 49
-- Picnicker Piper: Spoink Lv. 52
-- Picnicker Ginger: Whismur Lv. 53
-- Bird Keeper Bret: Taillow Lv. 53, Fearow Lv. 53
+- Picnicker Piper: Grumpig Lv. 52
+- Picnicker Ginger: Exploud Lv. 53
+- Bird Keeper Bret: Swellow Lv. 53, Fearow Lv. 53
 - Bird Keeper Perry: Farfetch’d Lv. 55
 
 ## Viridian Forest
 
 - Bug Catcher Dane: Beedrill Lv. 57, Butterfree Lv. 62
 - Bug Catcher Dion: Ariados Lv. 65
-- Bug Catcher Stacey: Metapod Lv. 68, Metapod Lv. 73, Metapod Lv. 78
+- Bug Catcher Stacey: Butterfree Lv. 68, Butterfree Lv. 73, Butterfree Lv. 78
 - Bug Catcher Ellis: Weedle Lv. 36, Kakuna Lv. 49, Beedrill Lv. 60
-- Bug Catcher Abner: Butterfree Lv. 57, Beedrill Lv. 57, Pikachu Lv. 57
+- Bug Catcher Abner: Butterfree Lv. 57, Beedrill Lv. 57, Raichu Lv. 57
 
 ## Dragon's Den
 
@@ -454,8 +454,8 @@ not on a map and are not listed here.
 **SS Aqua 1F Northwest Rooms**
 
 - Pokefan Colin: Delibird Lv. 52
-- Twins Meg & Peg (double battle): Teddiursa Lv. 51, Phanpy Lv. 51
-- Super Nerd Shawn: Magnemite Lv. 51, Muk Lv. 53 @ Nugget, Magnemite Lv. 51
+- Twins Meg & Peg (double battle): Ursaring Lv. 51, Donphan Lv. 51
+- Super Nerd Shawn: Magneton Lv. 51, Muk Lv. 53 @ Nugget, Magneton Lv. 51
 - Psychic Rodney: Chingling Lv. 48, Hypno Lv. 53
 - Pokefan Georgia: Sentret Lv. 40, Sentret Lv. 40, Sentret Lv. 40, Furret Lv. 47, Sentret Lv. 40
 - Pokefan Jeremy: Meowth Lv. 47, Meowth Lv. 47, Meowth Lv. 47
@@ -467,23 +467,23 @@ not on a map and are not listed here.
 
 **SS Aqua 1F Southwest Rooms**
 
-- Hiker Noland: Bronzor Lv. 51, Golem Lv. 55
+- Hiker Noland: Bronzong Lv. 51, Golem Lv. 55
 - Ace Trainer Shaye: Jolteon Lv. 56, Tangela Lv. 56, Tauros Lv. 56
 - Ace Trainer Carol: Electrode Lv. 56, Starmie Lv. 56, Ninetales Lv. 56
-- Poke Maniac Morgan: Rhyhorn Lv. 51, Rhydon Lv. 51
+- Poke Maniac Morgan: Rhydon Lv. 51, Rhydon Lv. 51
 
 **SS Aqua B1F**
 
 - Picnicker Debra: Seaking Lv. 53
-- Sailor Jeff: Makuhita Lv. 52, Raticate Lv. 52
+- Sailor Jeff: Hariyama Lv. 52, Raticate Lv. 52
 - Juggler Fritz: Mr. Mime Lv. 48, Magmar Lv. 48, Machoke Lv. 48
 - Fisherman Jonah: Shellder Lv. 43, Octillery Lv. 48, Remoraid Lv. 43, Cloyster Lv. 48
 - Sailor Garrett: Kingler Lv. 55
-- Black Belt Wai: Machoke Lv. 49, Machoke Lv. 52, Meditite Lv. 55
+- Black Belt Wai: Machoke Lv. 49, Machamp Lv. 52, Medicham Lv. 55
 - Sailor Kenneth: Machop Lv. 47, Machop Lv. 47, Poliwrath Lv. 47, Machop Lv. 47
 - School Kid Nate: Ledian Lv. 52, Exeggutor Lv. 52
 - School Kid Ricky: Aipom Lv. 52 @ Hard Stone, Ditto Lv. 52
-- Teacher Shirley: Chatot Lv. 56, Jigglypuff Lv. 56
+- Teacher Shirley: Chatot Lv. 56, Wigglytuff Lv. 56
 
 ## Blackthorn City
 
@@ -497,21 +497,21 @@ not on a map and are not listed here.
 
 ## Route 15
 
-- School Kid Kipp: Voltorb Lv. 47, Magnemite Lv. 47, Voltorb Lv. 52, Magneton Lv. 52
+- School Kid Kipp: Voltorb Lv. 47, Magnemite Lv. 47, Electrode Lv. 52, Magneton Lv. 52
 - School Kid Tommy: Xatu Lv. 53, Alakazam Lv. 56
-- Teacher Hillary: Sunkern Lv. 53, Aipom Lv. 40
+- Teacher Hillary: Sunflora Lv. 53, Aipom Lv. 40
 - Twins Kay & Tia (double battle): Quagsire Lv. 53, Quagsire Lv. 53
 - Pokefan Eleanor: Spinda Lv. 56, Illumise Lv. 53
 - Pokefan Boone: Spinda Lv. 56, Volbeat Lv. 53
-- Teacher Colette: Clefairy Lv. 59
-- School Kid Johnny: Bellsprout Lv. 51, Weepinbell Lv. 52, Victreebel Lv. 55
+- Teacher Colette: Clefable Lv. 59
+- School Kid Johnny: Victreebel Lv. 51, Victreebel Lv. 52, Victreebel Lv. 55
 - School Kid Billy: Parasect Lv. 51, Poliwhirl Lv. 48, Ditto Lv. 46
 
 ## Route 21
 
-- Fisherman Arnold: Shellder Lv. 57
+- Fisherman Arnold: Cloyster Lv. 57
 - Fisherman Murphy: Corsola Lv. 42, Corsola Lv. 44, Corsola Lv. 47, Corsola Lv. 49
-- Fisherman Liam: Seadra Lv. 55
+- Fisherman Liam: Kingdra Lv. 55
 - Fisherman Gideon: Lanturn Lv. 57, Mantine Lv. 52
 - Swimmer Nikki: Seel Lv. 48, Dewgong Lv. 55
 - Swimmer Chelan: Azumarill Lv. 52
@@ -525,9 +525,9 @@ not on a map and are not listed here.
 ## Route 19
 
 - Swimmer Jerome: Seadra Lv. 47, Tentacool Lv. 49, Tentacruel Lv. 52, Goldeen Lv. 49
-- Swimmer Harold: Remoraid Lv. 55, Seadra Lv. 52
-- Swimmer Tucker: Shellder Lv. 52, Cloyster Lv. 57
-- Swimmer Debbie: Clamperl Lv. 60
+- Swimmer Harold: Octillery Lv. 55, Kingdra Lv. 52
+- Swimmer Tucker: Cloyster Lv. 52, Cloyster Lv. 57
+- Swimmer Debbie: Gorebyss Lv. 60
 
 ## Route 2
 
@@ -541,33 +541,33 @@ not on a map and are not listed here.
 ## Route 18
 
 - Bird Keeper Bob: Noctowl Lv. 62
-- Bird Keeper Boris: Doduo Lv. 51, Doduo Lv. 48, Dodrio Lv. 53
-- Biker Charles: Koffing Lv. 53, Charmeleon Lv. 53, Weezing Lv. 55
+- Bird Keeper Boris: Dodrio Lv. 51, Doduo Lv. 48, Dodrio Lv. 53
+- Biker Charles: Weezing Lv. 53, Charizard Lv. 53, Weezing Lv. 55
 
 ## Route 14
 
-- Pokefan Trevor: Psyduck Lv. 55
-- Teacher Clarice: Zigzagoon Lv. 53 @ Sitrus Berry, Roselia Lv. 56
+- Pokefan Trevor: Golduck Lv. 55
+- Teacher Clarice: Linoone Lv. 53 @ Sitrus Berry, Roselia Lv. 56
 - Bird Keeper Roy: Fearow Lv. 49, Fearow Lv. 57
 - Pokefan Carter: Bulbasaur Lv. 49, Charmander Lv. 49, Squirtle Lv. 49
 - Bird Keeper Josh: Fearow Lv. 48
-- School Kid Torin: Sandslash Lv. 53, Golbat Lv. 51
-- School Kid Connor: Zigzagoon Lv. 55 @ Chesto Berry
+- School Kid Torin: Sandslash Lv. 53, Crobat Lv. 51
+- School Kid Connor: Linoone Lv. 55 @ Chesto Berry
 - School Kid Travis: Budew Lv. 55
 
 ## Route 17
 
 - Biker Reese: Weezing Lv. 59
 - Biker Joel: Magmar Lv. 56, Magmar Lv. 56
-- Biker Markey: Skorupi Lv. 61
-- Biker Dale: Gulpin Lv. 61 @ Black Sludge
+- Biker Markey: Drapion Lv. 61
+- Biker Dale: Swalot Lv. 61 @ Black Sludge
 - Biker Jacob: Magmar Lv. 56, Tentacruel Lv. 56
 - Biker Aiden: Tentacruel Lv. 59
-- Biker Dan: Gulpin Lv. 51, Weezing Lv. 48, Weezing Lv. 48
-- Biker Theron: Croagunk Lv. 59
-- Biker Glenn: Koffing Lv. 51, Magmar Lv. 53, Weezing Lv. 56
+- Biker Dan: Swalot Lv. 51, Weezing Lv. 48, Weezing Lv. 48
+- Biker Theron: Toxicroak Lv. 59
+- Biker Glenn: Weezing Lv. 51, Magmar Lv. 53, Weezing Lv. 56
 - Biker Teddy: Seviper Lv. 60
-- Biker Ernest: Teddiursa Lv. 59, Marill Lv. 57
+- Biker Ernest: Ursaring Lv. 59, Azumarill Lv. 57
 
 ## Route 3
 
@@ -576,85 +576,85 @@ not on a map and are not listed here.
 - Youngster Jimmy: Raticate Lv. 55, Arbok Lv. 55, Parasect Lv. 55
 - Double Team Zac & Jen (double battle): Electabuzz Lv. 61, Dugtrio Lv. 61
 - Firebreather Burt: Weezing Lv. 55, Magcargo Lv. 59
-- Hiker Bruce: Graveler Lv. 51, Rhydon Lv. 57, Clefairy Lv. 59
+- Hiker Bruce: Golem Lv. 51, Rhydon Lv. 57, Clefable Lv. 59
 - Black Belt Manford: Poliwrath Lv. 61
-- Black Belt Ander: Primeape Lv. 56, Graveler Lv. 51, Machoke Lv. 57
+- Black Belt Ander: Annihilape Lv. 56, Golem Lv. 51, Machamp Lv. 57
 - Hiker Dwight: Magneton Lv. 57, Steelix Lv. 57
-- Youngster Regis: Golbat Lv. 52, Electrode Lv. 52
+- Youngster Regis: Crobat Lv. 52, Electrode Lv. 52
 
 ## Route 8
 
-- Biker Dwayne: Koffing Lv. 49, Koffing Lv. 51, Koffing Lv. 52, Koffing Lv. 53
+- Biker Dwayne: Koffing Lv. 49, Weezing Lv. 51, Weezing Lv. 52, Weezing Lv. 53
 - Biker Harris: Flareon Lv. 59
-- Biker Zeke: Koffing Lv. 56, Koffing Lv. 56
-- Super Nerd Sam: Grimer Lv. 57, Muk Lv. 57 @ Toxic Orb
-- Super Nerd Tyrone: Magnemite Lv. 52, Magnemite Lv. 52, Magnemite Lv. 52
-- Young Couple Moe & Lulu (double battle): Lotad Lv. 56, Seedot Lv. 56
-- Gentleman Milton: Growlithe Lv. 59
+- Biker Zeke: Weezing Lv. 56, Weezing Lv. 56
+- Super Nerd Sam: Muk Lv. 57, Muk Lv. 57 @ Toxic Orb
+- Super Nerd Tyrone: Magneton Lv. 52, Magneton Lv. 52, Magneton Lv. 52
+- Young Couple Moe & Lulu (double battle): Ludicolo Lv. 56, Shiftry Lv. 56
+- Gentleman Milton: Arcanine Lv. 59
 
 ## Route 20
 
 - Swimmer Frankie: Azumarill Lv. 57
 - Camper Pedro: Linoone Lv. 59 @ Sitrus Berry
-- Picnicker Adrian: Shroomish Lv. 59
-- Picnicker Cheyenne: Shinx Lv. 59
-- Bird Keeper Bert: Wingull Lv. 60, Fearow Lv. 56
-- Bird Keeper Ernie: Starly Lv. 62
-- Swimmer Nicole: Marill Lv. 51, Marill Lv. 51, Lapras Lv. 55
+- Picnicker Adrian: Breloom Lv. 59
+- Picnicker Cheyenne: Luxray Lv. 59
+- Bird Keeper Bert: Pelipper Lv. 60, Fearow Lv. 56
+- Bird Keeper Ernie: Staraptor Lv. 62
+- Swimmer Nicole: Azumarill Lv. 51, Azumarill Lv. 51, Lapras Lv. 55
 - Swimmer Lori: Starmie Lv. 55, Starmie Lv. 55, Starmie Lv. 55
-- Swimmer Elmo: Poliwhirl Lv. 60, Tentacruel Lv. 55
-- Swimmer Luis: Seadra Lv. 60, Quagsire Lv. 55
-- Swimmer Leona: Bidoof Lv. 57
+- Swimmer Elmo: Politoed Lv. 60, Tentacruel Lv. 55
+- Swimmer Luis: Kingdra Lv. 60, Quagsire Lv. 55
+- Swimmer Leona: Bibarel Lv. 57
 - Swimmer Mina: Luvdisc Lv. 49, Luvdisc Lv. 51, Luvdisc Lv. 53
 
 ## Route 25
 
-- School Kid Dudley: Oddish Lv. 59 @ Sitrus Berry
+- School Kid Dudley: Bellossom Lv. 59 @ Sitrus Berry
 - Lass Ellen: Wigglytuff Lv. 52, Granbull Lv. 57
 - School Kid Joe: Tangela Lv. 57 @ Sitrus Berry, Vaporeon Lv. 55
-- Lass Laura: Gloom Lv. 49 @ Sitrus Berry, Pidgeotto Lv. 53, Bellossom Lv. 53
+- Lass Laura: Gloom Lv. 49 @ Sitrus Berry, Pidgeot Lv. 53, Bellossom Lv. 53
 - Lass Shannon: Paras Lv. 49, Paras Lv. 49, Parasect Lv. 55
 - Camper Lloyd: Nidoking Lv. 60
-- Super Nerd Pat: Porygon Lv. 61
+- Super Nerd Pat: Porygon2 Lv. 61
 
 ## Route 11
 
 - Psychic Fidel: Xatu Lv. 56
-- Psychic Herman: Exeggcute Lv. 51, Exeggcute Lv. 51, Exeggutor Lv. 51
-- Youngster Owen: Growlithe Lv. 57
+- Psychic Herman: Exeggutor Lv. 51, Exeggutor Lv. 51, Exeggutor Lv. 51
+- Youngster Owen: Arcanine Lv. 57
 - Youngster Jason: Sandslash Lv. 55, Crobat Lv. 55
 
 ## Route 9
 
-- Camper Sid: Dugtrio Lv. 56, Primeape Lv. 52, Poliwrath Lv. 52
-- Picnicker Edna: Nidorina Lv. 53, Raichu Lv. 59
+- Camper Sid: Dugtrio Lv. 56, Annihilape Lv. 52, Poliwrath Lv. 52
+- Picnicker Edna: Nidoqueen Lv. 53, Raichu Lv. 59
 - Camper Dean: Golduck Lv. 57, Sandslash Lv. 55
-- Hiker Clarke: Onix Lv. 56, Dugtrio Lv. 59
-- Hiker Eoin: Graveler Lv. 55, Graveler Lv. 55, Graveler Lv. 55
-- Picnicker Heidi: Skiploom Lv. 56, Skiploom Lv. 56
+- Hiker Clarke: Steelix Lv. 56, Dugtrio Lv. 59
+- Hiker Eoin: Golem Lv. 55, Golem Lv. 55, Golem Lv. 55
+- Picnicker Heidi: Jumpluff Lv. 56, Jumpluff Lv. 56
 
 ## Route 6
 
-- Camper Virgil: Slakoth Lv. 56
-- Picnicker Selina: Cherubi Lv. 55
+- Camper Virgil: Slaking Lv. 56
+- Picnicker Selina: Cherrim Lv. 55
 - Twins Day & Dani (double battle): Plusle Lv. 53, Minun Lv. 53
 
 ## Saffron City
 
 **Saffron Gym**
 
-- Medium Darcy: Slowpoke Lv. 57, Slowbro Lv. 60
-- Psychic Jared: Mr. Mime Lv. 55, Exeggcute Lv. 55, Exeggcute Lv. 59
-- Medium Rebecca: Bronzor Lv. 59, Hypno Lv. 59
-- Psychic Franklin: Kadabra Lv. 57, Girafarig Lv. 61
+- Medium Darcy: Slowbro Lv. 57, Slowbro Lv. 60
+- Psychic Jared: Mr. Mime Lv. 55, Exeggutor Lv. 55, Exeggutor Lv. 59
+- Medium Rebecca: Bronzong Lv. 59, Hypno Lv. 59
+- Psychic Franklin: Alakazam Lv. 57, Girafarig Lv. 61
 
 ## Vermilion City
 
 **Vermilion Gym**
 
-- Guitarist Vincent: Jolteon Lv. 59, Voltorb Lv. 56, Magnemite Lv. 55
+- Guitarist Vincent: Jolteon Lv. 59, Electrode Lv. 56, Magneton Lv. 55
 - Juggler Horton: Electrode Lv. 56, Electrode Lv. 56, Electrode Lv. 56
-- Gentleman Gregory: Pikachu Lv. 60, Flaaffy Lv. 56, Electrike Lv. 55
+- Gentleman Gregory: Raichu Lv. 60, Ampharos Lv. 56, Manectric Lv. 55
 
 ## Cerulean City
 
@@ -664,7 +664,7 @@ not on a map and are not listed here.
 - Swimmer Joy: Cloyster Lv. 62
 - Swimmer Briana: Seaking Lv. 60, Seaking Lv. 60
 - Sailor Eddie: Azumarill Lv. 62
-- Sailor Parker: Horsea Lv. 56, Seadra Lv. 56
+- Sailor Parker: Kingdra Lv. 56, Kingdra Lv. 56
 
 ## Route 10
 
@@ -675,7 +675,7 @@ not on a map and are not listed here.
 
 ## Route 1
 
-- Ace Trainer Quinn: Ivysaur Lv. 61, Starmie Lv. 61
+- Ace Trainer Quinn: Venusaur Lv. 61, Starmie Lv. 61
 - Ace Trainer French: Absol Lv. 61, Alakazam Lv. 61
 - School Kid Danny: Jynx Lv. 56, Electabuzz Lv. 56, Magmar Lv. 56
 - School Kid Sherman: Furret Lv. 56, Pidgeot Lv. 56
@@ -685,9 +685,9 @@ not on a map and are not listed here.
 **Celadon Gym**
 
 - Twins Jo & Zoe (double battle): Victreebel Lv. 61, Vileplume Lv. 61
-- Lass Michelle: Skiploom Lv. 57, Hoppip Lv. 59, Jumpluff Lv. 60
+- Lass Michelle: Jumpluff Lv. 57, Jumpluff Lv. 59, Jumpluff Lv. 60
 - Picnicker Tanya: Exeggutor Lv. 64
-- Beauty Julia: Paras Lv. 57, Carnivine Lv. 57, Parasect Lv. 61
+- Beauty Julia: Parasect Lv. 57, Carnivine Lv. 57, Parasect Lv. 61
 
 ## Viridian City
 
