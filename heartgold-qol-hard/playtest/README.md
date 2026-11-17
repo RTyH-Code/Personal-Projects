@@ -29,6 +29,11 @@ runs to the end, and roughly how hard it is.
    presses A at the PC and plays the battle by reading the screen.
 
 The test ROM is for testing only. The harness is never part of a release.
+It also short-cuts three story steps the testers can't take, in the test
+build only: Snorlax wakes without the Poké Flute on the radio, the Union Cave
+Lapras stays still instead of swimming about, and the harness can release
+Latias and Latios to roam. The Pokémon and the battles themselves are left
+as they are.
 
 ## The reference party
 
@@ -107,7 +112,7 @@ the items it adds to the bag straight from the emulator's memory.
 SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 playtest/walk_test.py /path/to/test/hg-engine/test.nds /path/to/test/hg-engine /path/to/dumped/hg-engine out --jobs 4
 ```
 
-It has eight tests. The first four run by default; name one or more after `out` to choose.
+It has nine tests. The first four run by default; name one or more after `out` to choose.
 
 | Test | What it does |
 |---|---|
@@ -119,6 +124,7 @@ It has eight tests. The first four run by default; name one or more after `out` 
 | `headbutt` | Headbutts trees on every map that has them, with a lead Pokémon that knows the move, and checks what falls out. |
 | `statics` | Meets the game's own static Pokémon whose level the hack changes. |
 | `fish` | Fishes with each rod, used from the bag, on every map with Pokémon to fish for, and checks the catch against the tables. Slow: the bag only draws properly at normal speed. |
+| `roamers` | Releases Latias and Latios as Steven does, checks both are made at their level, moves them onto Route 1 (in memory, as waiting for them to wander there takes hours) and walks its grass until one appears. |
 
 Results go to `out/walk_results.json`; anything that isn't "ok" gets a
 screenshot in `out`. `--maps CODE,CODE` limits a run to some maps.
@@ -133,15 +139,17 @@ screenshot in `out`. `--maps CODE,CODE` limits a run to some maps.
 | `features` | The reviver gave an Aerodactyl. Every counter sold exactly the expected list at each badge count, and every item cost its listed price: the evolution shop (24 items with no badges, 33 with sixteen), the berry stand (14, 18 and 40 with none, four and sixteen), the held item counter (23, with Rare Candy, Ability Capsule and Ability Patch) and a Poké Mart at 0, 2, 4, 6 and 8 badges. Surf from the bag worked. |
 | `surf` | 72 maps have Pokémon in the water. On 61, all three met were in the table at the right level. 7 have no shore the test can start from, and on 4 the test player left the water or could not start; none of those says anything about the game. |
 | `headbutt` | 60 maps have trees. On 59 everything that fell out was in the table at the right level, including the Kanto trees at their post-game levels. One map has no tree the test can stand beside. |
-| `statics` | Articuno, Zapdos, Moltres, Suicune (65, 65, 65, 60), Kyogre (70), Mewtwo (80), the red Gyarados (34) and Sudowoodo (22) are at their new levels. Lapras appears on a Friday (tested by setting the emulator's clock) but swims about, and the test could not catch up with it; Snorlax needs the Poké Flute, which the test does not give. |
-| `fish` | Tried on 12 maps. On 6, everything caught with the three rods was in the table at the right level; on 3, nothing bit in five casts; 3 have no rod table. |
+| `statics` | All ten are at their new levels: Articuno, Zapdos, Moltres (65), Suicune (60), Kyogre (70), Mewtwo (80), the red Gyarados (34), Sudowoodo (22), Snorlax (65), and Lapras (22, on a Friday, tested by setting the emulator's clock). |
+| `fish` | 71 maps have a rod table. On 36, everything caught was in the table at the right level. 6 have no water (their table is shared with another floor) and 1 has no water's edge to stand on. On the other 28 nothing bit, or the run did not reach them: on Kanto routes with grass almost nothing ever bites under the test, and the unmodified game behaves the same on Route 22, so this is a limit of how the test fishes, not something the hack changed. |
+| `roamers` | Latias and Latios are both made at Lv. 60, and Latios was met at Lv. 60 in the grass of Route 1. |
 
 Other things checked by hand in the emulator: a Lucky Egg gives exactly one
 and a half times the experience against the same trainer; an Ability Patch
 gave Typhlosion Flash Fire, its hidden ability, and an Ability Capsule
 changed Golem from Sturdy to Rock Head; a Lv. 36 Kadabra given a Rare Candy
 became an Alakazam, and a Metal Coat used from the bag turned Onix into
-Steelix; a save made in v0.1 loads in v0.2; the rumor collector's message
+Steelix; a save made in v0.1 loads in v0.2, both one from the very start
+and one from mid-game (in Goldenrod with eight badges and a full team); the rumor collector's message
 was read in all four story states.
 
 The first run found one real problem. Cresselia stood just inside the south

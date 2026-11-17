@@ -16,6 +16,7 @@ With 0x400E set to 1 it instead gives the party, badges, money and up to
 four items, and warps the player, for walk_test.py:
 
     0x400D         how many badges to give (0 to 16, in the game's order)
+    0x400E         2 instead of 1: also release Latias and Latios to roam
     0x4038-0x403B  items to give, five of each (0 = none)
     0x403C         the map to warp to
     0x403D-0x403E  the tile, x and z
@@ -27,6 +28,7 @@ The first tree is a vanilla `make dump_scripts` dump (see
 tools/hack/fossil_reviver.py); the second is a built copy of the hack, which
 then needs `make` run again. Keep that copy for testing only.
 """
+import json
 import os
 import re
 import shutil
@@ -39,7 +41,7 @@ HARNESS = """scr_seq_T20R0202_000:
 	lockall
 	call _harness_party
 	compare 0x400E, 1
-	goto_if_eq _harness_walk
+	goto_if_ge _harness_walk
 	trainer_battle 0x400C, 0, 0, 0
 	check_battle_won VAR_SPECIAL_RESULT
 	copyvar 0x400F, VAR_SPECIAL_RESULT
@@ -48,6 +50,8 @@ HARNESS = """scr_seq_T20R0202_000:
 	end
 
 _harness_walk:
+	compare 0x400E, 2
+	call_if_eq _harness_roamers
 %s	addmoney 500000
 %s	fade_screen 6, 1, 0, RGB_BLACK
 	wait_fade
@@ -59,6 +63,11 @@ _harness_walk:
 
 _harness_party:
 %s	return
+
+_harness_roamers:
+	create_roamer 2
+	create_roamer 3
+	return
 
 """
 ITEM = """	compare 0x40%02X, 0
@@ -77,6 +86,37 @@ _harness_skip_%d:
 """
 
 
+# Story steps the overworld tester cannot take, short-cut in the test build only. The Pokemon itself, and the
+# line that starts the battle, are left as they are.
+SHORTCUTS = [
+    # Snorlax wakes only to the Poke Flute on the Pokegear radio
+    ("data/scr_seq/scr_seq_0197_R11.s", "radio_music_is_playing 5, VAR_SPECIAL_RESULT", "setvar VAR_SPECIAL_RESULT, 1"),
+    ("data/scr_seq/scr_seq_0199_R12.s", "radio_music_is_playing 5, VAR_SPECIAL_RESULT", "setvar VAR_SPECIAL_RESULT, 1"),
+]
+STILL = [("data/eventdata/zone_event/149_D25R0103.json", "obj_D25R0103_rapurasu")]   # Lapras swims about
+
+
+def shortcuts(target):
+    for path, old, new in SHORTCUTS:
+        full = os.path.join(target, path)
+        if not os.path.exists(full):
+            continue                    # a tree without the hack's changes to this map
+        text = open(full, encoding="utf-8", newline="").read()
+        if old in text:
+            open(full, "w", encoding="utf-8", newline="").write(text.replace(old, new))
+        elif new not in text:
+            sys.exit("no '%s' in %s" % (old, path))
+    for path, obj in STILL:
+        full = os.path.join(target, path)
+        if not os.path.exists(full):
+            continue
+        events = json.load(open(full))
+        for e in events["object_events"]:
+            if e["id"] == obj:
+                e["movement_type"] = 15
+        open(full, "w").write(json.dumps(events, indent=2) + "\n")
+
+
 def main():
     dump, target = sys.argv[1], sys.argv[2]
     text = open(os.path.join(dump, SCRIPT), encoding="utf-8", newline="").read()
@@ -93,6 +133,7 @@ def main():
     os.makedirs(os.path.join(target, os.path.dirname(INCLUDE)), exist_ok=True)
     open(os.path.join(target, SCRIPT), "w", encoding="utf-8", newline="").write(text)
     shutil.copy(os.path.join(dump, INCLUDE), os.path.join(target, INCLUDE))
+    shortcuts(target)
     print("wrote the harness into", target)
 
 
