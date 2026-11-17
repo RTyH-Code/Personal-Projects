@@ -32,6 +32,8 @@ from memory.
                  that knows the move, and check what falls out
     statics      meet the game's own static Pokemon whose level the hack
                  changes
+    fish         fish with each rod, used from the bag, on every map with
+                 Pokemon to fish for (slow: it runs at normal speed)
 
 With no test named, the first four run. Results go to OUT/walk_results.json and a
 summary is printed; problems get a screenshot in OUT.
@@ -115,10 +117,21 @@ class World:
                     a, b = surf.get(name, (int(low), int(high)))
                     surf[name] = (min(a, int(low)), max(b, int(high)))
             swarm = re.search(r"\.surfSwarm = SPECIES_(\w+)", body).group(1)
+            rods = {}
+            for rod in ("old", "good", "super"):
+                slots = {}
+                for low, high, name in re.findall(r"\{ (\d+), (\d+), SPECIES_(\w+) \}",
+                                                  re.search(r"\.%sRodSlots = \{(.*?)\n        \}" % rod, body, re.S).group(1)):
+                    if name != "NONE":
+                        a, b = slots.get(name, (int(low), int(high)))
+                        slots[name] = (min(a, int(low)), max(b, int(high)))
+                if int(re.search(r"\.rate%sRod = (\d+)" % rod.capitalize(), body).group(1)):
+                    rods[rod] = slots
+            fish_extra = {re.search(r"\.%s = SPECIES_(\w+)" % k, body).group(1) for k in ("nightFish", "fishSwarm")} - {"NONE"}
             tables.append(dict(name=m.group(1), rate=int(re.search(r"\.rateWalk = (\d+)", body).group(1)),
                                land=land, extra=extra - {"NONE"}, levels=set(levels),
                                surf_rate=int(re.search(r"\.rateSurf = (\d+)", body).group(1)), surf=surf,
-                               surf_extra={swarm} - {"NONE"}))
+                               surf_extra={swarm} - {"NONE"}, rods=rods, fish_extra=fish_extra))
         return tables
 
     @staticmethod
@@ -293,7 +306,7 @@ class Walker(battle_test.Game):
         return image.getextrema()[1] < 16
 
     def start(self, state_path, data, world, name, tile, facing=1, flags=(), variables=(), items=(), party=None,
-              badges=16, lead_moves=None, clear_flags=()):
+              badges=16, lead_moves=None, clear_flags=(), level=100):
         """Load the bedroom state and have the harness warp the player. Returns the position reached or None."""
         self.emu.savestate.load_file(state_path)
         self.vars_pointer = None
@@ -305,7 +318,7 @@ class Walker(battle_test.Game):
         reference = battle_test.reference_party(data, 100)
         for i, (_, species_id, _, moves, item) in enumerate(reference):
             self.set_var(0x4000 + i, (party[i] if party and i < len(party) else species_id))
-            self.set_var(0x4006 + i, 100)
+            self.set_var(0x4006 + i, level)
             self.set_var(0x4010 + i, item)
             for j in range(4):
                 self.set_var(0x4020 + 4 * i + j, moves[j] if j < len(moves) else 0)
@@ -340,6 +353,12 @@ class Walker(battle_test.Game):
         """Hold a direction for about one tile and return the new position."""
         self.key(direction, hold=frames, after=6)
         return self.position()
+
+    def run_every_frame(self, frames):
+        """Run without skipping frames. Menus such as the bag only draw properly this way."""
+        for _ in range(frames):
+            self.emu.cycle(with_joystick=False)
+        self.frames += frames
 
     def text_box(self):
         """Whether a message box is open at the bottom of the top screen."""
@@ -673,16 +692,20 @@ def surf(game, state, data, world, names, out_dir, results):
             continue
         table = world.encounters[bank]
         tiles, occupied, _ = world.tiles(name)
-        shore = None
+        # a tile to stand on with water in front of it; three water tiles in a row are best, as the
+        # player can then pace on the far two without touching the shore
+        shore, deep = None, False
         for (x, z), b in sorted(tiles.items()):
-            if b != 0 or (x, z) in occupied:
+            if b in WATER or (x, z) in occupied:
                 continue
             for d, (dx, dz, _) in DIRS.items():
-                first, second = (x + dx, z + dz), (x + 2 * dx, z + 2 * dz)
-                if tiles.get(first) in WATER and tiles.get(second) in WATER and not {first, second} & occupied:
-                    shore = ((x, z), d, first)
-                    break
-            if shore:
+                run = [(x + k * dx, z + k * dz) for k in (1, 2, 3)]
+                wet = [t for t in run if tiles.get(t) in WATER and t not in occupied]
+                if run[:2] == wet[:2] and (len(wet) == 3 or shore is None):
+                    shore, deep = ((x, z), d, run[0]), len(wet) == 3
+                    if deep:
+                        break
+            if deep:
                 break
         r = dict(test="surf", map=name, table=table["name"], seen=[])
         if shore is None:
@@ -702,16 +725,23 @@ def surf(game, state, data, world, names, out_dir, results):
                     r.update(result="interrupted", note="could not start surfing from %s" % (tile,))
                     game.shot(os.path.join(out_dir, "surf_%s.png" % name))
                 else:
+                    if deep:
+                        game.step(d, 10)
                     met, note = meet(game, d, opposite[d], ENCOUNTERS_WANTED, out_dir, "surf_%s" % name, frames=10)   # surfing is fast
-                    wrong = []
+                    wrong, ashore = [], False
                     for sid, level in met:
                         mon = species_names.get(sid, str(sid))
                         r["seen"].append("%s %d" % (mon, level))
                         if mon in table["surf_extra"]:
                             continue
                         if mon not in table["surf"] or not table["surf"][mon][0] <= level <= table["surf"][mon][1]:
-                            wrong.append((mon, level))
-                    r.update(result="failed" if wrong else "interrupted" if note and met == [] and "walk" in note
+                            if level in table["land"].get(mon, ()):
+                                ashore = True       # a Pokemon of the land: the player drifted off the water
+                            else:
+                                wrong.append((mon, level))
+                    if ashore and not wrong:
+                        note, met = "the test player left the water", []
+                    r.update(result="failed" if wrong else "interrupted" if note and met == [] and ("walk" in note or "left" in note)
                              else "none" if not met else "ok",
                              note="not in the table: %s" % wrong if wrong else note)
         results.append(r)
@@ -782,7 +812,7 @@ STATICS = [("ARTICUNO", 65, "D11R0105", "articuno", []), ("ZAPDOS", 65, "R10", "
            ("MOLTRES", 65, "D41R0105", "moltres", []), ("MEWTWO", 80, "D03R0103", "mewtwo", []),
            ("GYARADOS", 34, "T29", "rgyaradosu", []), ("SUICUNE", 60, "R25", "suicune", []),
            ("KYOGRE", 70, "D52R0102", "kyogre", ["BLUE_ORB"]), ("LAPRAS", 22, "D25R0103", "rapurasu", []),
-           ("SNORLAX", 65, "R11", "snorlax", []), ("SUDOWOODO", 22, "R36", "sudowoodo", [])]
+           ("SNORLAX", 65, "R11", "kabigon", []), ("SUDOWOODO", 22, "R36", "usokky", ["SQUIRT_BOTTLE"])]
 
 
 def statics(game, state, data, world, names, out_dir, results):
@@ -810,14 +840,34 @@ def statics(game, state, data, world, names, out_dir, results):
                     continue
                 game.key(d, hold=2, after=10)
                 game.created = []
-                for _ in range(10):
+                for _ in range(16):         # some speak or cry first
                     game.key("a")
-                    game.run(30)
+                    game.run(40)
                     if game.created:
                         break
+                for _ in range(10):
+                    if game.created:
+                        break
+                    game.run(30)
                 if game.created:
                     met = game.created[0]
                     break
+            if met is None and obj.get("movement_type") not in (0, 15) and sides:
+                # it wanders: wait beside where it started, turning and pressing A until it comes by
+                d, tile = sides[0]
+                if game.start(state, data, world, code, tile, facing=DIRS[d][2], clear_flags=hidden,
+                              items=[data["items"][i] for i in items]) is not None:
+                    game.created = []
+                    for turn in range(120):
+                        game.key(list(DIRS)[turn % 4], hold=2, after=6)
+                        game.key("a", after=20)
+                        if game.created:
+                            break
+                    for _ in range(10):
+                        if game.created:
+                            break
+                        game.run(30)
+                    met = game.created[0] if game.created else None
             if met is None:
                 r.update(result="not met", note="it needs a story step this test does not set up")
                 game.shot(os.path.join(out_dir, "static_%s.png" % name))
@@ -829,8 +879,103 @@ def statics(game, state, data, world, names, out_dir, results):
         print("statics %-10s %-10s %-8s %s" % (code, name, r["result"], r.get("note", "")), flush=True)
 
 
+# the buttons of the start menu need these on a fresh save
+MENU_FLAGS = ["FLAG_GOT_STARTER", "FLAG_GOT_POKEDEX", "FLAG_GOT_BAG", "FLAG_GOT_TRAINER_CARD",
+              "FLAG_GOT_SAVE_BUTTON", "FLAG_GOT_OPTIONS_BUTTON"]
+FISHING_TRIES = 5
+
+
+def fish(game, state, data, world, names, out_dir, results):
+    """Fish with each rod, used from the bag, on every map with Pokemon to fish for. Slow: the bag only
+    works with every frame drawn."""
+    species_names = {v: k for k, v in data["species"].items()}
+    fast = game.run
+    for name in names:
+        bank = world.headers[name]["encounters"]
+        if bank >= len(world.encounters) or not world.encounters[bank]["rods"]:
+            continue
+        table = world.encounters[bank]
+        tiles, occupied, _ = world.tiles(name)
+        shore = None
+        for (x, z), b in sorted(tiles.items()):
+            if b in WATER or (x, z) in occupied:
+                continue
+            for d, (dx, dz, facing) in DIRS.items():
+                if tiles.get((x + dx, z + dz)) in WATER:
+                    shore = ((x, z), d, facing)
+                    break
+            if shore:
+                break
+        r = dict(test="fish", map=name, table=table["name"], seen=[])
+        if shore is None:
+            r.update(result="skipped", note="no water's edge to stand on")
+        else:
+            wrong, loaded = [], True
+            for rod, slots in table["rods"].items():
+                caught = 0
+                for attempt in range(FISHING_TRIES):
+                    if caught >= 2:
+                        break
+                    game.run = fast
+                    if game.start(state, data, world, name, shore[0], facing=shore[2], flags=MENU_FLAGS,
+                                  items=[data["items"][rod.upper() + "_ROD"]]) is None:
+                        loaded = False
+                        break
+                    game.run = game.run_every_frame
+                    game.key(shore[1], hold=2, after=20)
+                    game.run(23 * attempt + 17 * attempt * attempt)   # a different moment each time, for the dice
+                    game.key("x")
+                    game.run(60)
+                    game.touch(44, 116)          # BAG
+                    game.run(220)
+                    game.touch(240, 14)          # the Key Items pocket
+                    game.run(80)
+                    game.touch(64, 50)           # the rod
+                    game.run(80)
+                    game.touch(48, 141)          # USE
+                    game.created = []
+                    game.run(150)
+                    box = (108, 52, 148, 92)     # above the player's head, where the "!" of a bite pops up
+                    before = game.emu.screenshot().crop(box).tobytes()
+                    bite = False
+                    for _ in range(500):
+                        game.run(2)
+                        image = game.emu.screenshot()
+                        if text_box(image):
+                            break                # "Not even a nibble..."
+                        now = image.crop(box).tobytes()
+                        if sum(1 for a, b in zip(now, before) if abs(a - b) > 60) > 150:
+                            bite = True
+                            break
+                    if bite:
+                        for _ in range(60):
+                            game.key("a", hold=3, after=12)
+                            if game.created:
+                                break
+                    if game.created:
+                        caught += 1
+                        sid, level = game.created[0]
+                        mon = species_names.get(sid, str(sid))
+                        r["seen"].append("%s %s %d" % (rod, mon, level))
+                        if mon not in table["fish_extra"] and (mon not in slots or not slots[mon][0] <= level <= slots[mon][1]):
+                            wrong.append((rod, mon, level))
+                if not loaded:
+                    break
+            game.run = fast
+            if wrong:
+                r.update(result="failed", note="not in the table: %s" % wrong)
+            elif not loaded:
+                r.update(result="failed", note="the map did not load")
+            elif not r["seen"]:
+                r.update(result="none", note="nothing bit")
+            else:
+                r.update(result="ok")
+        results.append(r)
+        print("fish %-12s %-8s %s %s" % (name, r["result"], ", ".join(r["seen"]), r.get("note", "")), flush=True)
+
+
 TESTS = {"sweep": sweep, "legendaries": legendaries, "wild": wild, "features": features,
-         "surf": surf, "headbutt": headbutt, "statics": statics}
+         "surf": surf, "headbutt": headbutt, "statics": statics, "fish": fish}
 
 
 # ------------------------------------------------------------------ main
