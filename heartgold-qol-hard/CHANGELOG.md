@@ -2,8 +2,8 @@
 
 ## v0.2 (playtest build)
 
-Follow-ups from an audit of v0.1. Saves from v0.1 should carry over, but that
-has not been tried.
+Follow-ups from an audit of v0.1. A save made in v0.1 at the start of the game
+loads in v0.2.
 
 - Late-game trainers' Pokémon evolve where their level allows.
 - Wild Pokémon no longer hold items from later games.
