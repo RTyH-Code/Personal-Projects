@@ -52,6 +52,8 @@ import battle_test
 PLAYER_AVATAR_GET_X = 0x0205C67C   # PlayerAvatar_GetXCoord(avatar)
 POKE_PARA_SET = 0x0206DE38         # PokeParaSet(mon, species, level, ...): every Pokemon the game creates
 BAG_ADD_ITEM = 0x02078398          # Bag_AddItem(bag, item, quantity, heap)
+APPLY_ROAMER_LOCATION = 0x02067914 # ApplyRoamerLocation(roamerSave, roamer, place, map)
+ROAMER_ROUTE_1 = 16                # Route 1's place in hg-engine's list of places roamers go
 PROFILE_TEST_BADGE = 0x02028F98    # PlayerProfile_TestBadgeFlag(profile, badge); the money is 20 bytes in
 FLAGS_OFFSET = 0x2E0               # the flags, after the variables in the same block
 DIRS = {"up": (0, -1, 0), "down": (0, 1, 1), "left": (-1, 0, 2), "right": (1, 0, 3)}
@@ -306,7 +308,7 @@ class Walker(battle_test.Game):
         return image.getextrema()[1] < 16
 
     def start(self, state_path, data, world, name, tile, facing=1, flags=(), variables=(), items=(), party=None,
-              badges=16, lead_moves=None, clear_flags=(), level=100):
+              badges=16, lead_moves=None, clear_flags=(), level=100, roamers=False):
         """Load the bedroom state and have the harness warp the player. Returns the position reached or None."""
         self.emu.savestate.load_file(state_path)
         self.vars_pointer = None
@@ -326,7 +328,7 @@ class Walker(battle_test.Game):
             self.set_var(0x4020 + j, move)
         for i in range(4):
             self.set_var(0x4038 + i, items[i] if i < len(items) else 0)
-        self.set_var(0x400E, 1)
+        self.set_var(0x400E, 2 if roamers else 1)
         self.set_var(0x400D, badges)
         self.set_var(0x403C, world.map_ids[name])
         self.set_var(0x403D, tile[0])
@@ -345,7 +347,7 @@ class Walker(battle_test.Game):
             # the bedroom is a few tiles across, so being on the target tile means the warp happened
             if p and p[1:3] == tuple(tile) and not self.black() and self.in_field():
                 self.run(180)       # the harness script is still fading the screen in
-                self.created = []
+                self.created_on_the_way, self.created = self.created, []
                 return self.position()
         return None
 
@@ -708,7 +710,9 @@ def surf(game, state, data, world, names, out_dir, results):
             if deep:
                 break
         r = dict(test="surf", map=name, table=table["name"], seen=[])
-        if shore is None:
+        if not any(b in WATER for b in tiles.values()):
+            r.update(result="skipped", note="no water on this map (its table is shared with another)")
+        elif shore is None:
             r.update(result="skipped", note="no shore with open water next to it")
         else:
             tile, d, water = shore
@@ -882,7 +886,7 @@ def statics(game, state, data, world, names, out_dir, results):
 # the buttons of the start menu need these on a fresh save
 MENU_FLAGS = ["FLAG_GOT_STARTER", "FLAG_GOT_POKEDEX", "FLAG_GOT_BAG", "FLAG_GOT_TRAINER_CARD",
               "FLAG_GOT_SAVE_BUTTON", "FLAG_GOT_OPTIONS_BUTTON"]
-FISHING_TRIES = 5
+FISHING_TRIES = int(os.environ.get("WALK_FISHING_TRIES", "5"))   # casts per rod
 
 
 def fish(game, state, data, world, names, out_dir, results):
@@ -896,18 +900,23 @@ def fish(game, state, data, world, names, out_dir, results):
             continue
         table = world.encounters[bank]
         tiles, occupied, _ = world.tiles(name)
-        shore = None
+        # stand facing a real stretch of water (three tiles out from the bank), not a corner of it
+        shore, best = None, -1
         for (x, z), b in sorted(tiles.items()):
             if b in WATER or (x, z) in occupied:
                 continue
             for d, (dx, dz, facing) in DIRS.items():
-                if tiles.get((x + dx, z + dz)) in WATER:
-                    shore = ((x, z), d, facing)
-                    break
-            if shore:
+                if tiles.get((x + dx, z + dz)) not in WATER:
+                    continue
+                depth = sum(1 for k in (1, 2, 3, 4) if tiles.get((x + k * dx, z + k * dz)) in WATER)
+                if depth > best:
+                    shore, best = ((x, z), d, facing), depth
+            if best >= 4:
                 break
         r = dict(test="fish", map=name, table=table["name"], seen=[])
-        if shore is None:
+        if not any(b in WATER for b in tiles.values()):
+            r.update(result="skipped", note="no water on this map (its table is shared with another)")
+        elif shore is None:
             r.update(result="skipped", note="no water's edge to stand on")
         else:
             wrong, loaded = [], True
@@ -974,8 +983,50 @@ def fish(game, state, data, world, names, out_dir, results):
         print("fish %-12s %-8s %s %s" % (name, r["result"], ", ".join(r["seen"]), r.get("note", "")), flush=True)
 
 
+def roamers(game, state, data, world, names, out_dir, results):
+    """Latias and Latios, released together as Steven does in Vermilion City: both are made at their level,
+    and they turn up in the grass of the route they are on. Waiting for one to wander onto the player's route
+    takes hours, so the test moves them there itself (in memory, after release)."""
+    species, names_of = data["species"], {v: k for k, v in data["species"].items()}
+    expected = {species["LATIAS"]: 60, species["LATIOS"]: 60}
+    saves = []
+    hook = lambda address, size: saves.append(game.emu.memory.register_arm9.r0 & 0xFFFFFFFF)
+    game.emu.memory.register_exec(APPLY_ROAMER_LOCATION, hook)
+    r = dict(test="roamers", made=[], met=[])
+    route = "R01"
+    spot = world.landing(route, want=GRASS)
+    saves.clear()
+    p = game.start(state, data, world, route, spot[0], roamers=True)
+    made = [(names_of.get(sid, sid), level) for sid, level in game.created_on_the_way if sid in expected]
+    r["made"] = ["%s %d" % m for m in made]
+    problems = [m for m in made if expected[species[m[0]]] != m[1]]
+    if sorted(n for n, _ in made) != ["LATIAS", "LATIOS"]:
+        problems.append("made %s, not Latias and Latios" % made)
+    if p and saves:
+        # RoamerSaveData: two words of random numbers, two of location history, four 20-byte roamers (each
+        # starting with the map it is on), then each roamer's index in the list of places roamers go
+        base, m = saves[-1], game.emu.memory.unsigned
+        for idx in (2, 3):
+            m[base + 16 + 80 + idx] = ROAMER_ROUTE_1
+            map_id = world.map_ids[route]
+            for k in range(4):
+                m[base + 16 + 20 * idx + k] = (map_id >> (8 * k)) & 0xFF
+        there = spot[1][0]
+        back = {"up": "down", "down": "up", "left": "right", "right": "left"}[there]
+        met, note = meet(game, there, back, 12, out_dir, "roamers")
+        for sid, level in met:
+            if sid in expected:
+                r["met"].append("%s %d" % (names_of[sid], level))
+                if level != expected[sid]:
+                    problems.append("met %s at Lv. %d" % (names_of[sid], level))
+    r.update(result="failed" if problems else "ok" if r["met"] else "not met",
+             note="; ".join(map(str, problems)) or ("" if r["met"] else "made, but not met"))
+    results.append(r)
+    print("roamers made %s, met %s: %s %s" % (", ".join(r["made"]), ", ".join(r["met"]), r["result"], r["note"]), flush=True)
+
+
 TESTS = {"sweep": sweep, "legendaries": legendaries, "wild": wild, "features": features,
-         "surf": surf, "headbutt": headbutt, "statics": statics, "fish": fish}
+         "surf": surf, "headbutt": headbutt, "statics": statics, "fish": fish, "roamers": roamers}
 
 
 # ------------------------------------------------------------------ main
@@ -1023,7 +1074,7 @@ def main():
             names = [m for m in names if m in only.split(",")]
         merged = []
         for test in tests:
-            if test == "features" and k != 0:
+            if test in ("features", "roamers") and k != 0:
                 continue                 # not per map: the first worker does it
             TESTS[test](game, state, data, world, names[k::n], out_dir, merged)
             json.dump(merged, open(os.path.join(out_dir, "walk_results_%d.json" % k), "w"), indent=1)
