@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Overworld playtester for HeartGold QoL + Hard.
 
-    walk_test.py TEST_ROM TREE DUMP OUT [sweep] [legendaries] [wild] [features] [--jobs N] [--maps CODE,CODE]
+    walk_test.py TEST_ROM TREE DUMP OUT [TEST ...] [--jobs N] [--maps CODE,CODE]
 
 TEST_ROM is a build of the hack with the harness from make_harness.py, TREE
 the hg-engine tree it was built from and DUMP a vanilla `make dump_scripts`
@@ -26,7 +26,16 @@ from memory.
                  hack restocks at different badge counts, and use Surf from
                  the bag
 
-With no test named, all four run. Results go to OUT/walk_results.json and a
+    surf         use Surf from the bag on every map with Pokemon in the water and
+                 check what appears against the tables
+    headbutt     headbutt trees on every map that has them, with a lead Pokemon
+                 that knows the move, and check what falls out
+    statics      meet the game's own static Pokemon whose level the hack
+                 changes
+    fish         fish with each rod, used from the bag, on every map with
+                 Pokemon to fish for (slow: it runs at normal speed)
+
+With no test named, the first four run. Results go to OUT/walk_results.json and a
 summary is printed; problems get a screenshot in OUT.
 """
 import glob
@@ -43,6 +52,7 @@ import battle_test
 PLAYER_AVATAR_GET_X = 0x0205C67C   # PlayerAvatar_GetXCoord(avatar)
 POKE_PARA_SET = 0x0206DE38         # PokeParaSet(mon, species, level, ...): every Pokemon the game creates
 BAG_ADD_ITEM = 0x02078398          # Bag_AddItem(bag, item, quantity, heap)
+PROFILE_TEST_BADGE = 0x02028F98    # PlayerProfile_TestBadgeFlag(profile, badge); the money is 20 bytes in
 FLAGS_OFFSET = 0x2E0               # the flags, after the variables in the same block
 DIRS = {"up": (0, -1, 0), "down": (0, 1, 1), "left": (-1, 0, 2), "right": (1, 0, 3)}
 WATER = (0x10, 0x15)
@@ -80,6 +90,10 @@ class World:
                                       events=struct.unpack_from("<H", h, 16)[0])
         self.grids, self.owners = {}, {}
         self.encounters = self.load_encounters(read("data/Encounters.c"))
+        self.headbutt = self.load_headbutt(read("data/Headbutt.c"))
+        self.item_ids = {n: int(v) for n, v in re.findall(r"^#define ITEM_(\w+)\s+(\d+)\b", read("include/constants/item.h"), re.M)}
+        self.prices = {n: int(v) for n, v in re.findall(r"\[ITEM_(\w+)\] =\n\{\n    ITEM_PRICE\((\d+)\)",
+                                                         read("data/itemdata/itemdata.c"))}
 
     @staticmethod
     def load_encounters(text):
@@ -96,9 +110,52 @@ class World:
             for key in ("hoennSoundSpecies", "sinnohSoundSpecies"):
                 extra.update(re.findall(r"SPECIES_(\w+)", re.search(r"\.%s = \{(.*?)\}" % key, body, re.S).group(1)))
             extra.update(re.findall(r"\.landSwarm = SPECIES_(\w+)", body))
+            surf = {}
+            for low, high, name in re.findall(r"\{ (\d+), (\d+), SPECIES_(\w+) \}",
+                                              re.search(r"\.surfSlots = \{(.*?)\n        \}", body, re.S).group(1)):
+                if name != "NONE":
+                    a, b = surf.get(name, (int(low), int(high)))
+                    surf[name] = (min(a, int(low)), max(b, int(high)))
+            swarm = re.search(r"\.surfSwarm = SPECIES_(\w+)", body).group(1)
+            rods = {}
+            for rod in ("old", "good", "super"):
+                slots = {}
+                for low, high, name in re.findall(r"\{ (\d+), (\d+), SPECIES_(\w+) \}",
+                                                  re.search(r"\.%sRodSlots = \{(.*?)\n        \}" % rod, body, re.S).group(1)):
+                    if name != "NONE":
+                        a, b = slots.get(name, (int(low), int(high)))
+                        slots[name] = (min(a, int(low)), max(b, int(high)))
+                if int(re.search(r"\.rate%sRod = (\d+)" % rod.capitalize(), body).group(1)):
+                    rods[rod] = slots
+            fish_extra = {re.search(r"\.%s = SPECIES_(\w+)" % k, body).group(1) for k in ("nightFish", "fishSwarm")} - {"NONE"}
             tables.append(dict(name=m.group(1), rate=int(re.search(r"\.rateWalk = (\d+)", body).group(1)),
-                               land=land, extra=extra - {"NONE"}, levels=set(levels)))
+                               land=land, extra=extra - {"NONE"}, levels=set(levels),
+                               surf_rate=int(re.search(r"\.rateSurf = (\d+)", body).group(1)), surf=surf,
+                               surf_extra={swarm} - {"NONE"}, rods=rods, fish_extra=fish_extra))
         return tables
+
+    @staticmethod
+    def load_headbutt(text):
+        """Headbutt trees by map number: the Pokemon of the area and the tiles of each tree."""
+        numbers = [int(n) for n in re.findall(r"^\} HeadbuttFile_(\d+)_\w+;", text, re.M)]
+        out = {}
+        for number, m in zip(numbers, re.finditer(r"^    \.(\w+) = \{\n(.*?)^    \},\n", text, re.S | re.M)):
+            body = m.group(2)
+            slots = {}
+            for name, low, high in re.findall(r"\{ SPECIES_(\w+), (\d+), (\d+) \}", body):
+                if name != "NONE":
+                    a, b = slots.get(name, (int(low), int(high)))
+                    slots[name] = (min(a, int(low)), max(b, int(high)))
+            trees = []
+            coords = re.search(r"\.treeCoords =\s*\{(.*)\}", body, re.S)
+            if coords:
+                for row in re.findall(r"\{ ((?:\{ -?\d+, -?\d+ \},? ?)+)\}", coords.group(1)):
+                    tiles = [(int(x), int(z)) for x, z in re.findall(r"\{ (-?\d+), (-?\d+) \}", row) if int(x) >= 0]
+                    if tiles:
+                        trees.append(tiles)
+            if slots and trees:
+                out[number] = dict(name=m.group(1), slots=slots, trees=trees)
+        return out
 
     def grid(self, matrix):
         """Tile permissions of a whole map matrix, and for each tile the map it belongs to (if the matrix says)."""
@@ -199,6 +256,8 @@ class Walker(battle_test.Game):
         self.emu.memory.register_exec(POKE_PARA_SET, self._created)
         self.added = []
         self.emu.memory.register_exec(BAG_ADD_ITEM, self._added)
+        self.profile = None
+        self.emu.memory.register_exec(PROFILE_TEST_BADGE, self._profile)
 
     def _avatar(self, address, size):
         self.avatar = self.emu.memory.register_arm9.r0 & 0xFFFFFFFF
@@ -207,6 +266,12 @@ class Walker(battle_test.Game):
     def _created(self, address, size):
         r = self.emu.memory.register_arm9
         self.created.append((r.r1 & 0xFFFF, r.r2 & 0xFF))
+
+    def _profile(self, address, size):
+        self.profile = self.emu.memory.register_arm9.r0 & 0xFFFFFFFF
+
+    def money(self):
+        return self.word(self.profile + 20) if self.profile else None
 
     def _added(self, address, size):
         r = self.emu.memory.register_arm9
@@ -241,7 +306,7 @@ class Walker(battle_test.Game):
         return image.getextrema()[1] < 16
 
     def start(self, state_path, data, world, name, tile, facing=1, flags=(), variables=(), items=(), party=None,
-              badges=16):
+              badges=16, lead_moves=None, clear_flags=(), level=100):
         """Load the bedroom state and have the harness warp the player. Returns the position reached or None."""
         self.emu.savestate.load_file(state_path)
         self.vars_pointer = None
@@ -253,10 +318,12 @@ class Walker(battle_test.Game):
         reference = battle_test.reference_party(data, 100)
         for i, (_, species_id, _, moves, item) in enumerate(reference):
             self.set_var(0x4000 + i, (party[i] if party and i < len(party) else species_id))
-            self.set_var(0x4006 + i, 100)
+            self.set_var(0x4006 + i, level)
             self.set_var(0x4010 + i, item)
             for j in range(4):
                 self.set_var(0x4020 + 4 * i + j, moves[j] if j < len(moves) else 0)
+        for j, move in enumerate(lead_moves or []):
+            self.set_var(0x4020 + j, move)
         for i in range(4):
             self.set_var(0x4038 + i, items[i] if i < len(items) else 0)
         self.set_var(0x400E, 1)
@@ -267,6 +334,8 @@ class Walker(battle_test.Game):
         self.set_var(0x403F, facing)
         for flag in flags:
             self.set_flag(world.flags[flag])
+        for flag in clear_flags:
+            self.set_flag(world.flags[flag], False)
         for var, value in variables:
             self.set_var(world.vars[var], value)
         self.key("a")
@@ -284,6 +353,12 @@ class Walker(battle_test.Game):
         """Hold a direction for about one tile and return the new position."""
         self.key(direction, hold=frames, after=6)
         return self.position()
+
+    def run_every_frame(self, frames):
+        """Run without skipping frames. Menus such as the bag only draw properly this way."""
+        for _ in range(frames):
+            self.emu.cycle(with_joystick=False)
+        self.frames += frames
 
     def text_box(self):
         """Whether a message box is open at the bottom of the top screen."""
@@ -498,14 +573,22 @@ def features(game, state, data, world, names, out_dir, results):
     counters = [
         ("evolution shop, 0 badges", "T25R1004", (21, 7), 3, 0, ["FIRE_STONE", "OVAL_STONE"], ["SHINY_STONE", "PEAT_BLOCK", "RAZOR_FANG"]),
         ("evolution shop, 16 badges", "T25R1004", (21, 7), 3, 16, ["FIRE_STONE", "SHINY_STONE", "PEAT_BLOCK", "RAZOR_FANG"], []),
-        ("berry stand, 0 badges", "T25R1003", (21, 7), 3, 0, ["X_SPEED", "ORAN_BERRY", "ASPEAR_BERRY"], ["SITRUS_BERRY", "OCCA_BERRY", "MAX_REVIVE"]),
-        ("berry stand, 4 badges", "T25R1003", (21, 7), 3, 4, ["SITRUS_BERRY", "LUM_BERRY", "ETHER"], ["OCCA_BERRY", "ELIXIR", "MAX_REVIVE"]),
+        ("berry stand, 0 badges", "T25R1003", (21, 7), 3, 0, ["X_SPEED", "ORAN_BERRY", "ASPEAR_BERRY"], ["SITRUS_BERRY", "OCCA_BERRY", "MAX_REVIVE", "LUCKY_EGG"]),
+        ("berry stand, 4 badges", "T25R1003", (21, 7), 3, 4, ["SITRUS_BERRY", "LUM_BERRY", "ETHER", "LUCKY_EGG"], ["OCCA_BERRY", "ELIXIR", "MAX_REVIVE"]),
         ("berry stand, 16 badges", "T25R1003", (21, 7), 3, 16, ["OCCA_BERRY", "ROSELI_BERRY", "ELIXIR", "MAX_REVIVE"], []),
-        ("held item counter", "T07R0104", (20, 11), 3, 16, ["AIR_MAIL", "LEFTOVERS", "CHOICE_SCARF", "POWER_HERB"], []),
+        ("held item counter", "T07R0104", (20, 11), 3, 16, ["AIR_MAIL", "LEFTOVERS", "CHOICE_SCARF", "POWER_HERB", "RARE_CANDY", "ABILITY_CAPSULE", "ABILITY_PATCH"], []),
+        # an ordinary Poke Mart counter (Cherrygrove City's), whose stock grows with the badges
+        # (no Poke Balls on this save: the game holds them back until the catching lesson, as the original does)
+        ("Poke Mart, 0 badges", "T21FS0101", (4, 6), 2, 0, ["POTION", "ANTIDOTE"], ["GREAT_BALL", "SUPER_POTION", "REVIVE"]),
+        ("Poke Mart, 2 badges", "T21FS0101", (4, 6), 2, 2, ["GREAT_BALL", "REVIVE", "SUPER_REPEL"], ["ULTRA_BALL", "HYPER_POTION"]),
+        ("Poke Mart, 4 badges", "T21FS0101", (4, 6), 2, 4, ["ULTRA_BALL", "HYPER_POTION", "FULL_HEAL", "MAX_REPEL"], ["MAX_POTION", "FULL_RESTORE"]),
+        ("Poke Mart, 6 badges", "T21FS0101", (4, 6), 2, 6, ["MAX_POTION"], ["FULL_RESTORE"]),
+        ("Poke Mart, 8 badges", "T21FS0101", (4, 6), 2, 8, ["FULL_RESTORE"], []),
     ]
     names_by_id = {v: k for k, v in items.items()}
+    names_by_id.update({v: k for k, v in world.item_ids.items() if v not in names_by_id})
     for label, code, tile, facing, badges, wanted, locked in counters:
-        stock = []
+        stock, mispriced = [], []
         for index in range(60):
             p = game.start(state, data, world, code, tile, facing=facing, badges=badges)
             if p is None:
@@ -516,6 +599,7 @@ def features(game, state, data, world, names, out_dir, results):
             # the stock is shown six to a page, in two columns
             for _ in range(index // 6):
                 game.touch(60, 176, after=40)        # the next-page arrow
+            before = game.money()
             game.touch(64 + 126 * (index % 2), 55 + 40 * (index % 6 // 2), after=40)
             game.added = []
             for _ in range(16):              # one of it, yes
@@ -528,6 +612,10 @@ def features(game, state, data, world, names, out_dir, results):
             if bought in stock:
                 break                        # an empty slot or a page that did not turn: the list has ended
             stock.append(bought)
+            game.run(30)
+            paid = before - game.money() if before is not None and game.money() is not None else None
+            if paid != world.prices.get(bought):
+                mispriced.append("%s cost %s, not %s" % (bought, paid, world.prices.get(bought)))
         missing = [w for w in wanted if w not in stock]
         early = [l for l in locked if l in stock]
         problem = None
@@ -535,6 +623,8 @@ def features(game, state, data, world, names, out_dir, results):
             problem = "could not buy anything"
         elif missing or early:
             problem = "missing %s, too early %s (stock: %s)" % (missing, early, stock)
+        elif mispriced:
+            problem = "; ".join(mispriced)
         record(label, problem)
         results[-1]["stock"] = stock
 
@@ -561,7 +651,331 @@ def features(game, state, data, world, names, out_dir, results):
                    "the player is at %s, not on the water at %s" % (p and p[1:3], (shore[0] + 1, shore[1])))
 
 
-TESTS = {"sweep": sweep, "legendaries": legendaries, "wild": wild, "features": features}
+def meet(game, there, back, wanted, out_dir, label, frames=18):
+    """Pace between two tiles until `wanted` wild Pokemon have appeared, running from each.
+    Returns ([(species id, level)], note)."""
+    met, steps, walked = [], 0, 0
+    while len(met) < wanted and steps < STEPS_PER_ENCOUNTER * wanted:
+        game.created = []
+        before = game.position()
+        after = game.step(there if steps % 2 == 0 else back, frames)
+        walked += bool(before and after and before[1:3] != after[1:3])
+        steps += 1
+        if (steps == 12 and walked == 0) or (not game.created and game.text_box()):
+            game.shot(os.path.join(out_dir, "%s.png" % label))
+            return met, "could not walk (a trainer or a story scene took over)"
+        if not game.created:
+            continue
+        for _ in range(100):
+            game.run(20)
+            if battle_test.screen_state(game.emu.screenshot()) == "menu":
+                break
+        met.append(game.created[0])
+        game.touch(128, 178)               # RUN
+        for _ in range(40):
+            game.key("a")
+            if game.in_field():
+                break
+        else:
+            game.shot(os.path.join(out_dir, "%s.png" % label))
+            return met, "could not get back from a battle"
+    return met, "" if met else "no wild Pokemon in %d steps" % steps
+
+
+def surf(game, state, data, world, names, out_dir, results):
+    """Surf (with HM03 used from the bag) on every map with Pokemon in the water and check what appears."""
+    species_names = {v: k for k, v in data["species"].items()}
+    opposite = {"up": "down", "down": "up", "left": "right", "right": "left"}
+    for name in names:
+        bank = world.headers[name]["encounters"]
+        if bank >= len(world.encounters) or world.encounters[bank]["surf_rate"] == 0:
+            continue
+        table = world.encounters[bank]
+        tiles, occupied, _ = world.tiles(name)
+        # a tile to stand on with water in front of it; three water tiles in a row are best, as the
+        # player can then pace on the far two without touching the shore
+        shore, deep = None, False
+        for (x, z), b in sorted(tiles.items()):
+            if b in WATER or (x, z) in occupied:
+                continue
+            for d, (dx, dz, _) in DIRS.items():
+                run = [(x + k * dx, z + k * dz) for k in (1, 2, 3)]
+                wet = [t for t in run if tiles.get(t) in WATER and t not in occupied]
+                if run[:2] == wet[:2] and (len(wet) == 3 or shore is None):
+                    shore, deep = ((x, z), d, run[0]), len(wet) == 3
+                    if deep:
+                        break
+            if deep:
+                break
+        r = dict(test="surf", map=name, table=table["name"], seen=[])
+        if shore is None:
+            r.update(result="skipped", note="no shore with open water next to it")
+        else:
+            tile, d, water = shore
+            p = game.start(state, data, world, name, tile, facing=DIRS[d][2], items=[data["items"]["HM03"]])
+            if p is None:
+                r.update(result="failed", note="the map did not load")
+            else:
+                game.key(d, hold=2, after=10)
+                for _ in range(8):
+                    game.key("a")
+                game.run(120)
+                p = game.position()
+                if not p or p[1:3] != water:
+                    r.update(result="interrupted", note="could not start surfing from %s" % (tile,))
+                    game.shot(os.path.join(out_dir, "surf_%s.png" % name))
+                else:
+                    if deep:
+                        game.step(d, 10)
+                    met, note = meet(game, d, opposite[d], ENCOUNTERS_WANTED, out_dir, "surf_%s" % name, frames=10)   # surfing is fast
+                    wrong, ashore = [], False
+                    for sid, level in met:
+                        mon = species_names.get(sid, str(sid))
+                        r["seen"].append("%s %d" % (mon, level))
+                        if mon in table["surf_extra"]:
+                            continue
+                        if mon not in table["surf"] or not table["surf"][mon][0] <= level <= table["surf"][mon][1]:
+                            if level in table["land"].get(mon, ()):
+                                ashore = True       # a Pokemon of the land: the player drifted off the water
+                            else:
+                                wrong.append((mon, level))
+                    if ashore and not wrong:
+                        note, met = "the test player left the water", []
+                    r.update(result="failed" if wrong else "interrupted" if note and met == [] and ("walk" in note or "left" in note)
+                             else "none" if not met else "ok",
+                             note="not in the table: %s" % wrong if wrong else note)
+        results.append(r)
+        print("surf %-12s %-11s %s %s" % (name, r["result"], ", ".join(r["seen"]), r.get("note", "")), flush=True)
+
+
+def headbutt(game, state, data, world, names, out_dir, results):
+    """Headbutt trees on every map that has them, with a lead Pokemon that knows the move."""
+    species_names = {v: k for k, v in data["species"].items()}
+    move = data["boss_teams"].MOVE_IDS["HEADBUTT"]
+    for name in names:
+        area = world.headbutt.get(world.map_ids[name])
+        if not area:
+            continue
+        tiles, occupied, _ = world.tiles(name)
+        r = dict(test="headbutt", map=name, seen=[], trees=0)
+        wrong = []
+        for tree in area["trees"]:
+            if r["trees"] >= 6 or len(r["seen"]) >= ENCOUNTERS_WANTED:
+                break
+            spot = None
+            for (tx, tz) in tree:
+                if (tx, tz) in occupied:
+                    continue                # somebody stands there: pressing A would talk to them
+                for d, (dx, dz, facing) in DIRS.items():
+                    stand = (tx - dx, tz - dz)
+                    if tiles.get(stand) == 0 and stand not in occupied:
+                        spot = (stand, d, facing)
+                        break
+                if spot:
+                    break
+            if not spot:
+                continue
+            stand, d, facing = spot
+            if game.start(state, data, world, name, stand, facing=facing, lead_moves=[move]) is None:
+                continue
+            game.key(d, hold=2, after=40)
+            if game.text_box():
+                continue                    # a trainer saw the player: not this tree's Pokemon
+            r["trees"] += 1
+            game.created = []
+            for _ in range(12):
+                game.key("a")
+                game.run(30)
+                if game.created:
+                    break
+            if game.created:
+                sid, level = game.created[0]
+                mon = species_names.get(sid, str(sid))
+                r["seen"].append("%s %d" % (mon, level))
+                if mon not in area["slots"] or not area["slots"][mon][0] <= level <= area["slots"][mon][1]:
+                    wrong.append((mon, level))
+        if wrong:
+            r.update(result="failed", note="not in the table: %s" % wrong)
+        elif not r["trees"]:
+            r.update(result="skipped", note="no tree with a tile to stand on beside it")
+        elif not r["seen"]:
+            r.update(result="none", note="nothing fell from %d trees" % r["trees"])
+        else:
+            r.update(result="ok")
+        results.append(r)
+        print("headbutt %-12s %-8s %s %s" % (name, r["result"], ", ".join(r["seen"]), r.get("note", "")), flush=True)
+
+
+# the game's own static Pokemon whose level the hack changes: species, level, map, part of the object's name,
+# items the encounter needs
+STATICS = [("ARTICUNO", 65, "D11R0105", "articuno", []), ("ZAPDOS", 65, "R10", "zapdos", []),
+           ("MOLTRES", 65, "D41R0105", "moltres", []), ("MEWTWO", 80, "D03R0103", "mewtwo", []),
+           ("GYARADOS", 34, "T29", "rgyaradosu", []), ("SUICUNE", 60, "R25", "suicune", []),
+           ("KYOGRE", 70, "D52R0102", "kyogre", ["BLUE_ORB"]), ("LAPRAS", 22, "D25R0103", "rapurasu", []),
+           ("SNORLAX", 65, "R11", "kabigon", []), ("SUDOWOODO", 22, "R36", "usokky", ["SQUIRT_BOTTLE"])]
+
+
+def statics(game, state, data, world, names, out_dir, results):
+    """The game's own static Pokemon at their new levels. Each is shown by clearing the flag that hides it;
+    some also need a story step first and are then reported as not met."""
+    species = data["species"]
+    for name, level, code, part, items in STATICS:
+        if code not in names:
+            continue
+        tiles, occupied, events = world.tiles(code)
+        obj = next((e for e in events.get("object_events", []) if part in e["id"]), None)
+        r = dict(test="statics", map=code, pokemon=name, level=level)
+        if obj is None:
+            r.update(result="skipped", note="no such object on the map")
+        else:
+            at = (obj["x"], obj["z"])
+            sides = [(d, (at[0] - dx, at[1] - dz)) for d, (dx, dz, _) in DIRS.items()]
+            sides = [(d, t) for d, t in sides if t in tiles and t not in occupied]
+            hidden = [obj["hidden_flag"]] if obj["hidden_flag"] in world.flags and obj["hidden_flag"] != "FLAG_NOTHING" else []
+            met = None
+            for d, tile in sides:
+                p = game.start(state, data, world, code, tile, facing=DIRS[d][2], clear_flags=hidden,
+                               items=[data["items"][i] for i in items])
+                if p is None:
+                    continue
+                game.key(d, hold=2, after=10)
+                game.created = []
+                for _ in range(16):         # some speak or cry first
+                    game.key("a")
+                    game.run(40)
+                    if game.created:
+                        break
+                for _ in range(10):
+                    if game.created:
+                        break
+                    game.run(30)
+                if game.created:
+                    met = game.created[0]
+                    break
+            if met is None and obj.get("movement_type") not in (0, 15) and sides:
+                # it wanders: wait beside where it started, turning and pressing A until it comes by
+                d, tile = sides[0]
+                if game.start(state, data, world, code, tile, facing=DIRS[d][2], clear_flags=hidden,
+                              items=[data["items"][i] for i in items]) is not None:
+                    game.created = []
+                    for turn in range(120):
+                        game.key(list(DIRS)[turn % 4], hold=2, after=6)
+                        game.key("a", after=20)
+                        if game.created:
+                            break
+                    for _ in range(10):
+                        if game.created:
+                            break
+                        game.run(30)
+                    met = game.created[0] if game.created else None
+            if met is None:
+                r.update(result="not met", note="it needs a story step this test does not set up")
+                game.shot(os.path.join(out_dir, "static_%s.png" % name))
+            elif met == (species[name], level):
+                r.update(result="ok")
+            else:
+                r.update(result="failed", note="met %s, expected Lv. %d" % (met, level))
+        results.append(r)
+        print("statics %-10s %-10s %-8s %s" % (code, name, r["result"], r.get("note", "")), flush=True)
+
+
+# the buttons of the start menu need these on a fresh save
+MENU_FLAGS = ["FLAG_GOT_STARTER", "FLAG_GOT_POKEDEX", "FLAG_GOT_BAG", "FLAG_GOT_TRAINER_CARD",
+              "FLAG_GOT_SAVE_BUTTON", "FLAG_GOT_OPTIONS_BUTTON"]
+FISHING_TRIES = 5
+
+
+def fish(game, state, data, world, names, out_dir, results):
+    """Fish with each rod, used from the bag, on every map with Pokemon to fish for. Slow: the bag only
+    works with every frame drawn."""
+    species_names = {v: k for k, v in data["species"].items()}
+    fast = game.run
+    for name in names:
+        bank = world.headers[name]["encounters"]
+        if bank >= len(world.encounters) or not world.encounters[bank]["rods"]:
+            continue
+        table = world.encounters[bank]
+        tiles, occupied, _ = world.tiles(name)
+        shore = None
+        for (x, z), b in sorted(tiles.items()):
+            if b in WATER or (x, z) in occupied:
+                continue
+            for d, (dx, dz, facing) in DIRS.items():
+                if tiles.get((x + dx, z + dz)) in WATER:
+                    shore = ((x, z), d, facing)
+                    break
+            if shore:
+                break
+        r = dict(test="fish", map=name, table=table["name"], seen=[])
+        if shore is None:
+            r.update(result="skipped", note="no water's edge to stand on")
+        else:
+            wrong, loaded = [], True
+            for rod, slots in table["rods"].items():
+                caught = 0
+                for attempt in range(FISHING_TRIES):
+                    if caught >= 2:
+                        break
+                    game.run = fast
+                    if game.start(state, data, world, name, shore[0], facing=shore[2], flags=MENU_FLAGS,
+                                  items=[data["items"][rod.upper() + "_ROD"]]) is None:
+                        loaded = False
+                        break
+                    game.run = game.run_every_frame
+                    game.key(shore[1], hold=2, after=20)
+                    game.run(23 * attempt + 17 * attempt * attempt)   # a different moment each time, for the dice
+                    game.key("x")
+                    game.run(60)
+                    game.touch(44, 116)          # BAG
+                    game.run(220)
+                    game.touch(240, 14)          # the Key Items pocket
+                    game.run(80)
+                    game.touch(64, 50)           # the rod
+                    game.run(80)
+                    game.touch(48, 141)          # USE
+                    game.created = []
+                    game.run(150)
+                    box = (108, 52, 148, 92)     # above the player's head, where the "!" of a bite pops up
+                    before = game.emu.screenshot().crop(box).tobytes()
+                    bite = False
+                    for _ in range(500):
+                        game.run(2)
+                        image = game.emu.screenshot()
+                        if text_box(image):
+                            break                # "Not even a nibble..."
+                        now = image.crop(box).tobytes()
+                        if sum(1 for a, b in zip(now, before) if abs(a - b) > 60) > 150:
+                            bite = True
+                            break
+                    if bite:
+                        for _ in range(60):
+                            game.key("a", hold=3, after=12)
+                            if game.created:
+                                break
+                    if game.created:
+                        caught += 1
+                        sid, level = game.created[0]
+                        mon = species_names.get(sid, str(sid))
+                        r["seen"].append("%s %s %d" % (rod, mon, level))
+                        if mon not in table["fish_extra"] and (mon not in slots or not slots[mon][0] <= level <= slots[mon][1]):
+                            wrong.append((rod, mon, level))
+                if not loaded:
+                    break
+            game.run = fast
+            if wrong:
+                r.update(result="failed", note="not in the table: %s" % wrong)
+            elif not loaded:
+                r.update(result="failed", note="the map did not load")
+            elif not r["seen"]:
+                r.update(result="none", note="nothing bit")
+            else:
+                r.update(result="ok")
+        results.append(r)
+        print("fish %-12s %-8s %s %s" % (name, r["result"], ", ".join(r["seen"]), r.get("note", "")), flush=True)
+
+
+TESTS = {"sweep": sweep, "legendaries": legendaries, "wild": wild, "features": features,
+         "surf": surf, "headbutt": headbutt, "statics": statics, "fish": fish}
 
 
 # ------------------------------------------------------------------ main
@@ -579,7 +993,7 @@ def main():
     part = option("--part", None)
     only = option("--maps", None)
     rom, tree, dump, out_dir = args[:4]
-    tests = args[4:] or list(TESTS)
+    tests = args[4:] or ["sweep", "legendaries", "wild", "features"]
     os.makedirs(out_dir, exist_ok=True)
     state = os.path.join(out_dir, "bedroom.dst")
     if "--make-state" in args:

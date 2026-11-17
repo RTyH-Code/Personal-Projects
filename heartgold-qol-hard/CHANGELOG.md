@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.2 (playtest build)
+
+Follow-ups from an audit of v0.1. A save made in v0.1 at the start of the game
+loads in v0.2.
+
+- Late-game trainers' Pokémon evolve where their level allows.
+- Wild Pokémon no longer hold items from later games.
+- An old man in the Ruins of Alph Research Center tells where the added
+  legendary Pokémon are, a tier at a time.
+- The Lucky Egg is sold in Goldenrod from four badges; Rare Candies, the
+  Ability Capsule and the Ability Patch are sold in Celadon.
+
 ## v0.1 (playtest build)
 
 The first patch. Everything in the README is in; nothing has been played

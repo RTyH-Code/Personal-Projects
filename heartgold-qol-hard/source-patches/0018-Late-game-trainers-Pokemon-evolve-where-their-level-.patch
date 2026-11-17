@@ -1,0 +1,1428 @@
+From 67b359aaff83f0abf4aeba106bcf351e207fb42b Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 16 Nov 2026 01:01:47 +0000
+Subject: [PATCH 18/20] Late-game trainers' Pokemon evolve where their level
+ allows
+
+---
+ data/Trainers.c                  | 296 +++++++++++++++----------------
+ tools/hack/trainer_evolutions.py |  96 ++++++++++
+ 2 files changed, 244 insertions(+), 148 deletions(-)
+ create mode 100644 tools/hack/trainer_evolutions.py
+
+diff --git a/data/Trainers.c b/data/Trainers.c
+index 5eb0f51f0..fb7e4b5fa 100644
+--- a/data/Trainers.c
++++ b/data/Trainers.c
+@@ -1924,7 +1924,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 59,
+-                .species = SPECIES_CLEFAIRY,
++                .species = SPECIES_CLEFABLE,
+                 .ballSeal = 0,
+             },
+         },
+@@ -2702,7 +2702,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 57,
+-                .species = SPECIES_SHELLDER,
++                .species = SPECIES_CLOYSTER,
+                 .ballSeal = 0,
+             },
+         },
+@@ -2736,7 +2736,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 51,
+-                .species = SPECIES_GOLDEEN,
++                .species = SPECIES_SEAKING,
+                 .ballSeal = 0,
+             },
+             {
+@@ -2750,7 +2750,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 51,
+-                .species = SPECIES_GOLDEEN,
++                .species = SPECIES_SEAKING,
+                 .ballSeal = 0,
+             },
+         },
+@@ -5894,7 +5894,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 51,
+-                .species = SPECIES_RHYHORN,
++                .species = SPECIES_RHYDON,
+                 .ballSeal = 0,
+             },
+             {
+@@ -5983,14 +5983,14 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 51,
+-                .species = SPECIES_BELLSPROUT,
++                .species = SPECIES_VICTREEBEL,
+                 .ballSeal = 0,
+             },
+             {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 52,
+-                .species = SPECIES_WEEPINBELL,
++                .species = SPECIES_VICTREEBEL,
+                 .ballSeal = 0,
+             },
+             {
+@@ -6031,7 +6031,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 53,
+-                .species = SPECIES_BULBASAUR,
++                .species = SPECIES_VENUSAUR,
+                 .moves = { MOVE_TOXIC, MOVE_SLUDGE_BOMB, MOVE_LEECH_SEED, MOVE_DOUBLE_EDGE },
+                 .ballSeal = 0,
+             },
+@@ -6039,7 +6039,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 56,
+-                .species = SPECIES_IVYSAUR,
++                .species = SPECIES_VENUSAUR,
+                 .moves = { MOVE_TOXIC, MOVE_SLUDGE_BOMB, MOVE_LEECH_SEED, MOVE_DOUBLE_EDGE },
+                 .ballSeal = 0,
+             },
+@@ -6571,7 +6571,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 52,
+-                .species = SPECIES_PRIMEAPE,
++                .species = SPECIES_ANNIHILAPE,
+                 .ballSeal = 0,
+             },
+             {
+@@ -6657,7 +6657,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 57,
+-                .species = SPECIES_FLAAFFY,
++                .species = SPECIES_AMPHAROS,
+                 .ballSeal = 0,
+             },
+         },
+@@ -7569,7 +7569,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 52,
+-                .species = SPECIES_VOLTORB,
++                .species = SPECIES_ELECTRODE,
+                 .ballSeal = 0,
+             },
+             {
+@@ -7702,7 +7702,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 53,
+-                .species = SPECIES_GLOOM,
++                .species = SPECIES_BELLOSSOM,
+                 .moves = { MOVE_TOXIC, MOVE_SLUDGE_BOMB, MOVE_SWEET_SCENT, MOVE_DRAIN_PUNCH },
+                 .ballSeal = 0,
+             },
+@@ -9542,7 +9542,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 57,
+-                .species = SPECIES_KADABRA,
++                .species = SPECIES_ALAKAZAM,
+                 .moves = { MOVE_HEADBUTT, MOVE_SKILL_SWAP, MOVE_PSYCHIC, MOVE_DISABLE },
+                 .ballSeal = 0,
+             },
+@@ -9627,7 +9627,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 56,
+-                .species = SPECIES_VOLTORB,
++                .species = SPECIES_ELECTRODE,
+                 .moves = { MOVE_SHOCK_WAVE, MOVE_SWIFT, MOVE_GYRO_BALL, MOVE_SCREECH },
+                 .ballSeal = 0,
+             },
+@@ -9635,7 +9635,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 55,
+-                .species = SPECIES_MAGNEMITE,
++                .species = SPECIES_MAGNETON,
+                 .moves = { MOVE_SHOCK_WAVE, MOVE_SUPERSONIC, MOVE_THUNDER_WAVE, MOVE_MAGNET_BOMB },
+                 .ballSeal = 0,
+             },
+@@ -9711,21 +9711,21 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 55,
+-                .species = SPECIES_GRAVELER,
++                .species = SPECIES_GOLEM,
+                 .ballSeal = 0,
+             },
+             {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 55,
+-                .species = SPECIES_GRAVELER,
++                .species = SPECIES_GOLEM,
+                 .ballSeal = 0,
+             },
+             {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 55,
+-                .species = SPECIES_GRAVELER,
++                .species = SPECIES_GOLEM,
+                 .ballSeal = 0,
+             },
+         },
+@@ -9759,7 +9759,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 51,
+-                .species = SPECIES_BRONZOR,
++                .species = SPECIES_BRONZONG,
+                 .ballSeal = 0,
+             },
+             {
+@@ -9902,14 +9902,14 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 51,
+-                .species = SPECIES_MACHOP,
++                .species = SPECIES_MACHAMP,
+                 .ballSeal = 0,
+             },
+             {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 53,
+-                .species = SPECIES_MACHOKE,
++                .species = SPECIES_MACHAMP,
+                 .ballSeal = 0,
+             },
+             {
+@@ -9942,7 +9942,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 52,
+-                .species = SPECIES_MAKUHITA,
++                .species = SPECIES_HARIYAMA,
+                 .ballSeal = 0,
+             },
+             {
+@@ -10736,14 +10736,14 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 55,
+-                .species = SPECIES_REMORAID,
++                .species = SPECIES_OCTILLERY,
+                 .ballSeal = 0,
+             },
+             {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 52,
+-                .species = SPECIES_SEADRA,
++                .species = SPECIES_KINGDRA,
+                 .ballSeal = 0,
+             },
+         },
+@@ -13535,7 +13535,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 60,
+-                .species = SPECIES_CLAMPERL,
++                .species = SPECIES_GOREBYSS,
+                 .ballSeal = 0,
+             },
+         },
+@@ -13589,14 +13589,14 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 51,
+-                .species = SPECIES_MARILL,
++                .species = SPECIES_AZUMARILL,
+                 .ballSeal = 0,
+             },
+             {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 51,
+-                .species = SPECIES_MARILL,
++                .species = SPECIES_AZUMARILL,
+                 .ballSeal = 0,
+             },
+             {
+@@ -13909,7 +13909,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 51,
+-                .species = SPECIES_DODUO,
++                .species = SPECIES_DODRIO,
+                 .ballSeal = 0,
+             },
+             {
+@@ -14223,21 +14223,21 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 51,
+-                .species = SPECIES_KOFFING,
++                .species = SPECIES_WEEZING,
+                 .ballSeal = 0,
+             },
+             {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 52,
+-                .species = SPECIES_KOFFING,
++                .species = SPECIES_WEEZING,
+                 .ballSeal = 0,
+             },
+             {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 53,
+-                .species = SPECIES_KOFFING,
++                .species = SPECIES_WEEZING,
+                 .ballSeal = 0,
+             },
+         },
+@@ -14305,14 +14305,14 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 56,
+-                .species = SPECIES_KOFFING,
++                .species = SPECIES_WEEZING,
+                 .ballSeal = 0,
+             },
+             {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 56,
+-                .species = SPECIES_KOFFING,
++                .species = SPECIES_WEEZING,
+                 .ballSeal = 0,
+             },
+         },
+@@ -14346,14 +14346,14 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 53,
+-                .species = SPECIES_KOFFING,
++                .species = SPECIES_WEEZING,
+                 .ballSeal = 0,
+             },
+             {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 53,
+-                .species = SPECIES_CHARMELEON,
++                .species = SPECIES_CHARIZARD,
+                 .ballSeal = 0,
+             },
+             {
+@@ -14473,7 +14473,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 51,
+-                .species = SPECIES_KOFFING,
++                .species = SPECIES_WEEZING,
+                 .ballSeal = 0,
+             },
+             {
+@@ -14521,7 +14521,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 51,
+-                .species = SPECIES_EXEGGCUTE,
++                .species = SPECIES_EXEGGUTOR,
+                 .moves = { MOVE_PSYCHIC, MOVE_HYPNOSIS, MOVE_BARRAGE, MOVE_DREAM_EATER },
+                 .ballSeal = 0,
+             },
+@@ -14529,7 +14529,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 51,
+-                .species = SPECIES_EXEGGCUTE,
++                .species = SPECIES_EXEGGUTOR,
+                 .moves = { MOVE_PSYCHIC, MOVE_HYPNOSIS, MOVE_BARRAGE, MOVE_DREAM_EATER },
+                 .ballSeal = 0,
+             },
+@@ -15088,7 +15088,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 59,
+-                .species = SPECIES_ODDISH,
++                .species = SPECIES_BELLOSSOM,
+                 .item = ITEM_SITRUS_BERRY,
+                 .ballSeal = 0,
+             },
+@@ -15218,14 +15218,14 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 56,
+-                .species = SPECIES_SKIPLOOM,
++                .species = SPECIES_JUMPLUFF,
+                 .ballSeal = 0,
+             },
+             {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 56,
+-                .species = SPECIES_SKIPLOOM,
++                .species = SPECIES_JUMPLUFF,
+                 .ballSeal = 0,
+             },
+         },
+@@ -15259,7 +15259,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 53,
+-                .species = SPECIES_NIDORINA,
++                .species = SPECIES_NIDOQUEEN,
+                 .ballSeal = 0,
+             },
+             {
+@@ -15314,7 +15314,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 51,
+-                .species = SPECIES_IVYSAUR,
++                .species = SPECIES_VENUSAUR,
+                 .ballSeal = 0,
+             },
+         },
+@@ -15408,7 +15408,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 60,
+-                .species = SPECIES_PIKACHU,
++                .species = SPECIES_RAICHU,
+                 .moves = { MOVE_DISCHARGE, MOVE_LIGHT_SCREEN, MOVE_THUNDER_WAVE, MOVE_DOUBLE_TEAM },
+                 .ballSeal = 0,
+             },
+@@ -15416,7 +15416,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 56,
+-                .species = SPECIES_FLAAFFY,
++                .species = SPECIES_AMPHAROS,
+                 .moves = { MOVE_SHOCK_WAVE, MOVE_SIGNAL_BEAM, MOVE_CHARGE_BEAM, MOVE_DOUBLE_TEAM },
+                 .ballSeal = 0,
+             },
+@@ -15424,7 +15424,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 55,
+-                .species = SPECIES_ELECTRIKE,
++                .species = SPECIES_MANECTRIC,
+                 .moves = { MOVE_SHOCK_WAVE, MOVE_ROAR, MOVE_THUNDER_WAVE, MOVE_THUNDER_FANG },
+                 .ballSeal = 0,
+             },
+@@ -15486,14 +15486,14 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 52,
+-                .species = SPECIES_MACHOKE,
++                .species = SPECIES_MACHAMP,
+                 .ballSeal = 0,
+             },
+             {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 55,
+-                .species = SPECIES_MEDITITE,
++                .species = SPECIES_MEDICHAM,
+                 .ballSeal = 0,
+             },
+         },
+@@ -15647,7 +15647,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 57,
+-                .species = SPECIES_PARAS,
++                .species = SPECIES_PARASECT,
+                 .moves = { MOVE_GIGA_DRAIN, MOVE_SPORE, MOVE_SLASH, MOVE_ATTRACT },
+                 .ballSeal = 0,
+             },
+@@ -15869,7 +15869,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 55,
+-                .species = SPECIES_PSYDUCK,
++                .species = SPECIES_GOLDUCK,
+                 .ballSeal = 0,
+             },
+         },
+@@ -15965,7 +15965,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 51,
+-                .species = SPECIES_GOLBAT,
++                .species = SPECIES_CROBAT,
+                 .ballSeal = 0,
+             },
+         },
+@@ -15999,7 +15999,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 53,
+-                .species = SPECIES_PIDGEOTTO,
++                .species = SPECIES_PIDGEOT,
+                 .item = ITEM_NONE,
+                 .ballSeal = 0,
+             },
+@@ -16090,7 +16090,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 57,
+-                .species = SPECIES_SKIPLOOM,
++                .species = SPECIES_JUMPLUFF,
+                 .moves = { MOVE_GIGA_DRAIN, MOVE_U_TURN, MOVE_LEECH_SEED, MOVE_SUNNY_DAY },
+                 .ballSeal = 0,
+             },
+@@ -16098,7 +16098,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 59,
+-                .species = SPECIES_HOPPIP,
++                .species = SPECIES_JUMPLUFF,
+                 .moves = { MOVE_GIGA_DRAIN, MOVE_U_TURN, MOVE_STUN_SPORE, MOVE_BOUNCE },
+                 .ballSeal = 0,
+             },
+@@ -16141,7 +16141,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 56,
+-                .species = SPECIES_ONIX,
++                .species = SPECIES_STEELIX,
+                 .ballSeal = 0,
+             },
+             {
+@@ -16294,7 +16294,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 62,
+-                .species = SPECIES_RHYHORN,
++                .species = SPECIES_RHYDON,
+                 .moves = { MOVE_TAKE_DOWN, MOVE_STONE_EDGE, MOVE_HORN_DRILL, MOVE_EARTHQUAKE },
+                 .ballSeal = 0,
+             },
+@@ -16302,7 +16302,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 60,
+-                .species = SPECIES_CHARMELEON,
++                .species = SPECIES_CHARIZARD,
+                 .moves = { MOVE_FLAMETHROWER, MOVE_SLASH, MOVE_SCARY_FACE, MOVE_AERIAL_ACE },
+                 .ballSeal = 0,
+             },
+@@ -16310,7 +16310,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 60,
+-                .species = SPECIES_WARTORTLE,
++                .species = SPECIES_BLASTOISE,
+                 .moves = { MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_BITE, MOVE_SWAGGER },
+                 .ballSeal = 0,
+             },
+@@ -16345,7 +16345,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 61,
+-                .species = SPECIES_IVYSAUR,
++                .species = SPECIES_VENUSAUR,
+                 .moves = { MOVE_SOLAR_BEAM, MOVE_DOUBLE_EDGE, MOVE_SYNTHESIS, MOVE_SLUDGE_BOMB },
+                 .ballSeal = 0,
+             },
+@@ -16422,7 +16422,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 57,
+-                .species = SPECIES_GRIMER,
++                .species = SPECIES_MUK,
+                 .item = ITEM_NONE,
+                 .ballSeal = 0,
+             },
+@@ -16465,21 +16465,21 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 52,
+-                .species = SPECIES_MAGNEMITE,
++                .species = SPECIES_MAGNETON,
+                 .ballSeal = 0,
+             },
+             {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 52,
+-                .species = SPECIES_MAGNEMITE,
++                .species = SPECIES_MAGNETON,
+                 .ballSeal = 0,
+             },
+             {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 52,
+-                .species = SPECIES_MAGNEMITE,
++                .species = SPECIES_MAGNETON,
+                 .ballSeal = 0,
+             },
+         },
+@@ -16513,7 +16513,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 61,
+-                .species = SPECIES_PORYGON,
++                .species = SPECIES_PORYGON2,
+                 .item = ITEM_NONE,
+                 .moves = { MOVE_CHARGE_BEAM, MOVE_SIGNAL_BEAM, MOVE_ICE_BEAM, MOVE_SOLAR_BEAM },
+                 .ballSeal = 0,
+@@ -16549,7 +16549,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 51,
+-                .species = SPECIES_MAGNEMITE,
++                .species = SPECIES_MAGNETON,
+                 .item = ITEM_NONE,
+                 .ballSeal = 0,
+             },
+@@ -16565,7 +16565,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 51,
+-                .species = SPECIES_MAGNEMITE,
++                .species = SPECIES_MAGNETON,
+                 .item = ITEM_NONE,
+                 .ballSeal = 0,
+             },
+@@ -16600,7 +16600,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 59,
+-                .species = SPECIES_BRONZOR,
++                .species = SPECIES_BRONZONG,
+                 .moves = { MOVE_FEINT_ATTACK, MOVE_SKILL_SWAP, MOVE_SAFEGUARD, MOVE_GYRO_BALL },
+                 .ballSeal = 0,
+             },
+@@ -16643,7 +16643,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 57,
+-                .species = SPECIES_SLOWPOKE,
++                .species = SPECIES_SLOWBRO,
+                 .moves = { MOVE_SKILL_SWAP, MOVE_AMNESIA, MOVE_DISABLE, MOVE_PSYCHIC },
+                 .ballSeal = 0,
+             },
+@@ -16741,7 +16741,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 52,
+-                .species = SPECIES_SHELLDER,
++                .species = SPECIES_CLOYSTER,
+                 .ballSeal = 0,
+             },
+             {
+@@ -17079,7 +17079,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 57,
+-                .species = SPECIES_GROWLITHE,
++                .species = SPECIES_ARCANINE,
+                 .ballSeal = 0,
+             },
+         },
+@@ -17154,7 +17154,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 53,
+-                .species = SPECIES_SUNKERN,
++                .species = SPECIES_SUNFLORA,
+                 .ballSeal = 0,
+             },
+             {
+@@ -18521,7 +18521,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 55,
+-                .species = SPECIES_EXEGGCUTE,
++                .species = SPECIES_EXEGGUTOR,
+                 .moves = { MOVE_SKILL_SWAP, MOVE_PSYCHIC, MOVE_SLEEP_POWDER, MOVE_LEECH_SEED },
+                 .ballSeal = 0,
+             },
+@@ -18529,7 +18529,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 59,
+-                .species = SPECIES_EXEGGCUTE,
++                .species = SPECIES_EXEGGUTOR,
+                 .moves = { MOVE_SKILL_SWAP, MOVE_PSYCHIC, MOVE_HYPNOSIS, MOVE_GRASS_KNOT },
+                 .ballSeal = 0,
+             },
+@@ -18814,7 +18814,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 53,
+-                .species = SPECIES_TAILLOW,
++                .species = SPECIES_SWELLOW,
+                 .ballSeal = 0,
+             },
+             {
+@@ -18979,14 +18979,14 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 51,
+-                .species = SPECIES_TEDDIURSA,
++                .species = SPECIES_URSARING,
+                 .ballSeal = 0,
+             },
+             {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 51,
+-                .species = SPECIES_PHANPY,
++                .species = SPECIES_DONPHAN,
+                 .ballSeal = 0,
+             },
+         },
+@@ -19074,7 +19074,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 56,
+-                .species = SPECIES_JIGGLYPUFF,
++                .species = SPECIES_WIGGLYTUFF,
+                 .ballSeal = 0,
+             },
+         },
+@@ -21908,7 +21908,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 85,
+-                .species = SPECIES_MAGIKARP,
++                .species = SPECIES_GYARADOS,
+                 .ballSeal = 0,
+             },
+         },
+@@ -22741,7 +22741,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 59,
+-                .species = SPECIES_NINCADA,
++                .species = SPECIES_NINJASK,
+                 .moves = { MOVE_DIG, MOVE_METAL_CLAW, MOVE_MUD_SLAP, MOVE_LEECH_LIFE },
+                 .ballSeal = 0,
+             },
+@@ -23083,7 +23083,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 53,
+-                .species = SPECIES_GRAVELER,
++                .species = SPECIES_GOLEM,
+                 .ballSeal = 0,
+             },
+             {
+@@ -23167,7 +23167,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 57,
+-                .species = SPECIES_GRAVELER,
++                .species = SPECIES_GOLEM,
+                 .ballSeal = 0,
+             },
+             {
+@@ -23252,7 +23252,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 52,
+-                .species = SPECIES_VOLTORB,
++                .species = SPECIES_ELECTRODE,
+                 .moves = { MOVE_ROLLOUT, MOVE_SPARK, MOVE_SONIC_BOOM, MOVE_CHARGE },
+                 .ballSeal = 0,
+             },
+@@ -23260,7 +23260,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 52,
+-                .species = SPECIES_VOLTORB,
++                .species = SPECIES_ELECTRODE,
+                 .moves = { MOVE_CHARGE_BEAM, MOVE_CHARGE, MOVE_LIGHT_SCREEN, MOVE_SWIFT },
+                 .ballSeal = 0,
+             },
+@@ -23700,7 +23700,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 59,
+-                .species = SPECIES_PHANPY,
++                .species = SPECIES_DONPHAN,
+                 .ballSeal = 0,
+             },
+         },
+@@ -23734,7 +23734,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 51,
+-                .species = SPECIES_TEDDIURSA,
++                .species = SPECIES_URSARING,
+                 .ballSeal = 0,
+             },
+         },
+@@ -23943,7 +23943,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 51,
+-                .species = SPECIES_GRAVELER,
++                .species = SPECIES_GOLEM,
+                 .ballSeal = 0,
+             },
+             {
+@@ -23957,7 +23957,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 59,
+-                .species = SPECIES_CLEFAIRY,
++                .species = SPECIES_CLEFABLE,
+                 .ballSeal = 0,
+             },
+         },
+@@ -24089,21 +24089,21 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 56,
+-                .species = SPECIES_PRIMEAPE,
++                .species = SPECIES_ANNIHILAPE,
+                 .ballSeal = 0,
+             },
+             {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 51,
+-                .species = SPECIES_GRAVELER,
++                .species = SPECIES_GOLEM,
+                 .ballSeal = 0,
+             },
+             {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 57,
+-                .species = SPECIES_MACHOKE,
++                .species = SPECIES_MACHAMP,
+                 .ballSeal = 0,
+             },
+         },
+@@ -24178,7 +24178,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 52,
+-                .species = SPECIES_GOLBAT,
++                .species = SPECIES_CROBAT,
+                 .ballSeal = 0,
+             },
+             {
+@@ -24219,14 +24219,14 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 56,
+-                .species = SPECIES_LOTAD,
++                .species = SPECIES_LUDICOLO,
+                 .ballSeal = 0,
+             },
+             {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 56,
+-                .species = SPECIES_SEEDOT,
++                .species = SPECIES_SHIFTRY,
+                 .ballSeal = 0,
+             },
+         },
+@@ -24280,7 +24280,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 59,
+-                .species = SPECIES_GROWLITHE,
++                .species = SPECIES_ARCANINE,
+                 .ballSeal = 0,
+             },
+         },
+@@ -24362,7 +24362,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 51,
+-                .species = SPECIES_SPEAROW,
++                .species = SPECIES_FEAROW,
+                 .ballSeal = 0,
+             },
+         },
+@@ -24511,14 +24511,14 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 53,
+-                .species = SPECIES_KADABRA,
++                .species = SPECIES_ALAKAZAM,
+                 .ballSeal = 0,
+             },
+             {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 60,
+-                .species = SPECIES_PSYDUCK,
++                .species = SPECIES_GOLDUCK,
+                 .ballSeal = 0,
+             },
+         },
+@@ -24580,7 +24580,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 52,
+-                .species = SPECIES_BUIZEL,
++                .species = SPECIES_FLOATZEL,
+                 .ballSeal = 0,
+             },
+         },
+@@ -24652,7 +24652,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 52,
+-                .species = SPECIES_SPOINK,
++                .species = SPECIES_GRUMPIG,
+                 .ballSeal = 0,
+             },
+         },
+@@ -24686,7 +24686,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 53,
+-                .species = SPECIES_WHISMUR,
++                .species = SPECIES_EXPLOUD,
+                 .ballSeal = 0,
+             },
+         },
+@@ -24720,7 +24720,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 53,
+-                .species = SPECIES_ZIGZAGOON,
++                .species = SPECIES_LINOONE,
+                 .item = ITEM_SITRUS_BERRY,
+                 .moves = { MOVE_BELLY_DRUM, MOVE_FLAIL, MOVE_RETURN, MOVE_IRON_TAIL },
+                 .ballSeal = 0,
+@@ -24803,7 +24803,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 55,
+-                .species = SPECIES_ZIGZAGOON,
++                .species = SPECIES_LINOONE,
+                 .item = ITEM_CHESTO_BERRY,
+                 .moves = { MOVE_BELLY_DRUM, MOVE_REST, MOVE_FLAIL, MOVE_SECRET_POWER },
+                 .ballSeal = 0,
+@@ -24846,7 +24846,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 51,
+-                .species = SPECIES_GOLBAT,
++                .species = SPECIES_CROBAT,
+                 .ballSeal = 0,
+             },
+         },
+@@ -25072,7 +25072,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 61,
+-                .species = SPECIES_GULPIN,
++                .species = SPECIES_SWALOT,
+                 .item = ITEM_BLACK_SLUDGE,
+                 .ballSeal = 0,
+             },
+@@ -25186,7 +25186,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 51,
+-                .species = SPECIES_GULPIN,
++                .species = SPECIES_SWALOT,
+                 .ballSeal = 0,
+             },
+             {
+@@ -25234,7 +25234,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_HIDDEN,
+                 .level = 59,
+-                .species = SPECIES_CROAGUNK,
++                .species = SPECIES_TOXICROAK,
+                 .ballSeal = 0,
+             },
+         },
+@@ -25268,7 +25268,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 61,
+-                .species = SPECIES_SKORUPI,
++                .species = SPECIES_DRAPION,
+                 .ballSeal = 0,
+             },
+         },
+@@ -25336,14 +25336,14 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 59,
+-                .species = SPECIES_TEDDIURSA,
++                .species = SPECIES_URSARING,
+                 .ballSeal = 0,
+             },
+             {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 57,
+-                .species = SPECIES_MARILL,
++                .species = SPECIES_AZUMARILL,
+                 .ballSeal = 0,
+             },
+         },
+@@ -25417,7 +25417,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 59,
+-                .species = SPECIES_SHROOMISH,
++                .species = SPECIES_BRELOOM,
+                 .ballSeal = 0,
+             },
+         },
+@@ -25451,7 +25451,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 59,
+-                .species = SPECIES_SHINX,
++                .species = SPECIES_LUXRAY,
+                 .ballSeal = 0,
+             },
+         },
+@@ -25485,7 +25485,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 60,
+-                .species = SPECIES_WINGULL,
++                .species = SPECIES_PELIPPER,
+                 .ballSeal = 0,
+             },
+             {
+@@ -25526,7 +25526,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 62,
+-                .species = SPECIES_STARLY,
++                .species = SPECIES_STARAPTOR,
+                 .ballSeal = 0,
+             },
+         },
+@@ -25560,7 +25560,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 60,
+-                .species = SPECIES_POLIWHIRL,
++                .species = SPECIES_POLITOED,
+                 .ballSeal = 0,
+             },
+             {
+@@ -25601,7 +25601,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 60,
+-                .species = SPECIES_SEADRA,
++                .species = SPECIES_KINGDRA,
+                 .ballSeal = 0,
+             },
+             {
+@@ -25642,7 +25642,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 57,
+-                .species = SPECIES_BIDOOF,
++                .species = SPECIES_BIBAREL,
+                 .ballSeal = 0,
+             },
+         },
+@@ -25779,7 +25779,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 55,
+-                .species = SPECIES_SEADRA,
++                .species = SPECIES_KINGDRA,
+                 .ballSeal = 0,
+             },
+         },
+@@ -26171,7 +26171,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 56,
+-                .species = SPECIES_SLAKOTH,
++                .species = SPECIES_SLAKING,
+                 .ballSeal = 0,
+             },
+         },
+@@ -26205,7 +26205,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 55,
+-                .species = SPECIES_CHERUBI,
++                .species = SPECIES_CHERRIM,
+                 .ballSeal = 0,
+             },
+         },
+@@ -26395,7 +26395,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 53,
+-                .species = SPECIES_ONIX,
++                .species = SPECIES_STEELIX,
+                 .ballSeal = 0,
+             },
+             {
+@@ -26409,7 +26409,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 64,
+-                .species = SPECIES_ONIX,
++                .species = SPECIES_STEELIX,
+                 .ballSeal = 0,
+             },
+             {
+@@ -26607,7 +26607,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 51,
+-                .species = SPECIES_PIKACHU,
++                .species = SPECIES_RAICHU,
+                 .ballSeal = 0,
+             },
+             {
+@@ -26871,7 +26871,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 61,
+-                .species = SPECIES_PRIMEAPE,
++                .species = SPECIES_ANNIHILAPE,
+                 .ballSeal = 0,
+             },
+             {
+@@ -27419,7 +27419,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 60,
+-                .species = SPECIES_TEDDIURSA,
++                .species = SPECIES_URSARING,
+                 .ballSeal = 0,
+             },
+             {
+@@ -27452,7 +27452,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 62,
+-                .species = SPECIES_TEDDIURSA,
++                .species = SPECIES_URSARING,
+                 .ballSeal = 0,
+             },
+             {
+@@ -27485,7 +27485,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 75,
+-                .species = SPECIES_URSARING,
++                .species = SPECIES_URSALUNA,
+                 .ballSeal = 0,
+             },
+             {
+@@ -27664,7 +27664,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 61,
+-                .species = SPECIES_POLIWHIRL,
++                .species = SPECIES_POLITOED,
+                 .ballSeal = 0,
+             },
+             {
+@@ -27971,14 +27971,14 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 59,
+-                .species = SPECIES_GOLBAT,
++                .species = SPECIES_CROBAT,
+                 .ballSeal = 0,
+             },
+             {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 53,
+-                .species = SPECIES_VULPIX,
++                .species = SPECIES_NINETALES,
+                 .ballSeal = 0,
+             },
+         },
+@@ -28011,14 +28011,14 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 66,
+-                .species = SPECIES_GOLBAT,
++                .species = SPECIES_CROBAT,
+                 .ballSeal = 0,
+             },
+             {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 62,
+-                .species = SPECIES_VULPIX,
++                .species = SPECIES_NINETALES,
+                 .ballSeal = 0,
+             },
+         },
+@@ -28051,14 +28051,14 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 69,
+-                .species = SPECIES_GOLBAT,
++                .species = SPECIES_CROBAT,
+                 .ballSeal = 0,
+             },
+             {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 68,
+-                .species = SPECIES_VULPIX,
++                .species = SPECIES_NINETALES,
+                 .ballSeal = 0,
+             },
+         },
+@@ -28084,7 +28084,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 59,
+-                .species = SPECIES_KADABRA,
++                .species = SPECIES_ALAKAZAM,
+                 .ballSeal = 0,
+             },
+             {
+@@ -28121,7 +28121,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 62,
+-                .species = SPECIES_KADABRA,
++                .species = SPECIES_ALAKAZAM,
+                 .moves = { MOVE_RECOVER, MOVE_PSYCHIC, MOVE_ROLE_PLAY, MOVE_REFLECT },
+                 .ballSeal = 0,
+             },
+@@ -28267,7 +28267,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 60,
+-                .species = SPECIES_ONIX,
++                .species = SPECIES_STEELIX,
+                 .ballSeal = 0,
+             },
+         },
+@@ -28300,7 +28300,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 57,
+-                .species = SPECIES_GRAVELER,
++                .species = SPECIES_GOLEM,
+                 .ballSeal = 0,
+             },
+             {
+@@ -28387,7 +28387,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 57,
+-                .species = SPECIES_SKIPLOOM,
++                .species = SPECIES_JUMPLUFF,
+                 .ballSeal = 0,
+             },
+         },
+@@ -28514,7 +28514,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 51,
+-                .species = SPECIES_KRABBY,
++                .species = SPECIES_KINGLER,
+                 .ballSeal = 0,
+             },
+         },
+@@ -28932,7 +28932,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 200,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 79,
+-                .species = SPECIES_URSARING,
++                .species = SPECIES_URSALUNA,
+                 .item = ITEM_NONE,
+                 .moves = { MOVE_AVALANCHE, MOVE_SLASH, MOVE_AERIAL_ACE, MOVE_SHADOW_CLAW },
+                 .ballSeal = 0,
+@@ -29139,7 +29139,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 56,
+-                .species = SPECIES_HORSEA,
++                .species = SPECIES_KINGDRA,
+                 .moves = { MOVE_WATER_PULSE, MOVE_FOCUS_ENERGY, MOVE_TWISTER, MOVE_AGILITY },
+                 .ballSeal = 0,
+             },
+@@ -29147,7 +29147,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 56,
+-                .species = SPECIES_SEADRA,
++                .species = SPECIES_KINGDRA,
+                 .moves = { MOVE_WATER_PULSE, MOVE_FOCUS_ENERGY, MOVE_TWISTER, MOVE_AGILITY },
+                 .ballSeal = 0,
+             },
+@@ -29712,7 +29712,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_2,
+                 .level = 69,
+-                .species = SPECIES_NUMEL,
++                .species = SPECIES_CAMERUPT,
+                 .moves = { MOVE_OVERHEAT, MOVE_AMNESIA, MOVE_EARTH_POWER, MOVE_MAGNITUDE },
+                 .ballSeal = 0,
+             },
+@@ -29922,21 +29922,21 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 68,
+-                .species = SPECIES_METAPOD,
++                .species = SPECIES_BUTTERFREE,
+                 .ballSeal = 0,
+             },
+             {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 73,
+-                .species = SPECIES_METAPOD,
++                .species = SPECIES_BUTTERFREE,
+                 .ballSeal = 0,
+             },
+             {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 78,
+-                .species = SPECIES_METAPOD,
++                .species = SPECIES_BUTTERFREE,
+                 .ballSeal = 0,
+             },
+         },
+@@ -30032,7 +30032,7 @@ const TrainerData sTrainerData[] = {
+                 .ivs = 150,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 57,
+-                .species = SPECIES_PIKACHU,
++                .species = SPECIES_RAICHU,
+                 .ballSeal = 0,
+             },
+         },
+diff --git a/tools/hack/trainer_evolutions.py b/tools/hack/trainer_evolutions.py
+new file mode 100644
+index 000000000..dc30d9236
+--- /dev/null
++++ b/tools/hack/trainer_evolutions.py
+@@ -0,0 +1,96 @@
++#!/usr/bin/env python3
++"""Late-game trainers' Pokemon evolve where their level allows.
++
++The level scaling left ordinary trainers with Pokemon far past their
++evolutions: a Lv. 78 Metapod, a Lv. 85 Magikarp. Same rules as the FireRed
++hack:
++
++- Lv. 50 and up: a Pokemon at least 5 levels past a level-up evolution
++  evolves, step by step along its family.
++- Lv. 50 and up: stone, held-item and friendship evolutions between Pokemon
++  of the first three generations happen too (Raichu, Crobat, Scizor).
++- Lv. 75 and up: every other evolution as well (Rhyperior, Magnezone).
++
++Early and mid-game teams keep their unevolved Pokemon, as in the original.
++The hand-built boss teams are not touched. Evolutions that depend on the
++Pokemon's gender are left alone, since a trainer's Pokemon gets its gender
++from the trainer. Where a Pokemon has several evolutions the trainer's
++number picks one, so Eevee does not always become the same thing. Custom
++movesets are kept.
++
++    python3 tools/hack/trainer_evolutions.py
++"""
++import re
++
++TRAINERS = "data/Trainers.c"
++EVOLUTIONS = "data/Evolutions.c"
++SPECIES_H = "include/constants/species.h"
++MIN_LEVEL, GRACE, TOP_LEVEL = 50, 5, 75
++BOSS = re.compile(r"LEADER_|ELITE_FOUR_|CHAMPION|RIVAL|PKMN_TRAINER_RED|EXECUTIVE|KIMONO_GIRL|PKMN_TRAINER_LANCE")
++LEVEL_METHODS = {"EVO_LEVEL", "EVO_LEVEL_ATK_GT_DEF", "EVO_LEVEL_ATK_EQ_DEF", "EVO_LEVEL_ATK_LT_DEF",
++                 "EVO_LEVEL_PID_LO", "EVO_LEVEL_PID_HI", "EVO_LEVEL_NINJASK"}
++SKIP = {"EVO_NONE", "EVO_LEVEL_SHEDINJA", "EVO_LEVEL_MALE", "EVO_LEVEL_FEMALE", "EVO_STONE_MALE", "EVO_STONE_FEMALE"}
++# the later evolutions this hack adds for Johto and Kanto Pokemon
++ADDED = {"KLEAVOR", "URSALUNA", "ANNIHILAPE", "WYRDEER", "FARIGIRAF", "DUDUNSPARCE", "SYLVEON"}
++
++
++def main():
++    ids = {n: int(v) for n, v in re.findall(r"#define SPECIES_(\w+)\s+\(?(\d+)\)?\s*$", open(SPECIES_H).read(), re.M)}
++    in_game = lambda s: ids.get(s, 9999) <= 493 or s in ADDED
++    by_level, classic, other = {}, {}, {}
++    for m in re.finditer(r"^    \[SPECIES_(\w+)\] = \{(.*?)^    \},", open(EVOLUTIONS).read(), re.S | re.M):
++        base = m.group(1)
++        for method, param, target in re.findall(r"\{ (EVO_\w+), (\w+), SPECIES_(\w+) \}", m.group(2)):
++            if method in SKIP or not in_game(target) or not in_game(base):
++                continue
++            if method in LEVEL_METHODS:
++                by_level.setdefault(base, []).append((int(param), target))
++            elif ids[base] <= 386 and ids[target] <= 386:
++                classic.setdefault(base, []).append(target)
++            else:
++                other.setdefault(base, []).append(target)
++
++    def evolve(species, level, pick):
++        for _ in range(3):
++            if species in by_level and level >= min(l for l, _ in by_level[species]) + GRACE:
++                options = [t for l, t in by_level[species] if level >= l + GRACE]
++                species = options[pick % len(options)]
++            elif species in classic:
++                species = classic[species][pick % len(classic[species])]
++            elif species in other and level >= TOP_LEVEL:
++                species = other[species][pick % len(other[species])]
++            else:
++                break
++        return species
++
++    changed = trainers = 0
++
++    def trainer(match):
++        nonlocal changed, trainers
++        number, body = int(match.group(1)), match.group(0)
++        if BOSS.search(re.search(r"\.trainerClass = TRAINERCLASS_(\w+)", body).group(1)):
++            return body
++        before = changed
++
++        def mon(m):
++            nonlocal changed
++            level = int(re.search(r"\.level = (\d+)", m.group(0)).group(1))
++            species = re.search(r"\.species = SPECIES_(\w+)", m.group(0)).group(1)
++            if level < MIN_LEVEL:
++                return m.group(0)
++            new = evolve(species, level, number)
++            if new == species:
++                return m.group(0)
++            changed += 1
++            return m.group(0).replace(".species = SPECIES_%s," % species, ".species = SPECIES_%s," % new)
++        body = re.sub(r"\{\n\s+\.ivs = .*?\n\s+\},", mon, body, flags=re.S)
++        trainers += changed > before
++        return body
++
++    text = re.sub(r"^    \[(\d+)\] = \{\n.*?^    \},\n", trainer, open(TRAINERS).read(), flags=re.S | re.M)
++    open(TRAINERS, "w").write(text)
++    print("%d Pokemon of %d trainers evolved" % (changed, trainers))
++
++
++if __name__ == "__main__":
++    main()
+-- 
+2.43.0
+

@@ -4,7 +4,7 @@ A quality-of-life, modernization and difficulty hack for Pokémon HeartGold,
 following the same recipe as [FireRed QoL + Hard](../firered-qol-hard/README.md).
 It is built on [hg-engine](https://github.com/BluRosie/hg-engine).
 
-**Status: playtest build (v0.1).** Everything described below is in the
+**Status: playtest build (v0.2).** Everything described below is in the
 patch. The battles, maps, legendaries, wild Pokémon and shops have been
 checked by automated playtesters, but nobody has played the story from start
 to finish yet. See the [changelog](CHANGELOG.md).
@@ -15,16 +15,16 @@ You need your own US Pokémon HeartGold ROM (game code `IPKE`, SHA-1
 `4fcded0e2713dc03929845de631d0932ea2b5a37`). The ROM is not in this
 repository and never will be.
 
-1. Download `HeartGold-QoL-Hard-v0.1.xdelta`.
+1. Download `HeartGold-QoL-Hard-v0.2.xdelta`.
 2. Apply it to the ROM with an xdelta patcher such as Delta Patcher or
    xdelta UI, or on a command line:
 
    ```bash
-   xdelta3 -d -s heartgold-usa.nds HeartGold-QoL-Hard-v0.1.xdelta HeartGold-QoL-Hard.nds
+   xdelta3 -d -s heartgold-usa.nds HeartGold-QoL-Hard-v0.2.xdelta HeartGold-QoL-Hard.nds
    ```
 
 3. The patched ROM is 256 MB, twice the original's size, and its SHA-1 is
-   `6106acf7680c406ebf2b042034b32f8217c4b116`. It has been run in DeSmuME;
+   `142a8b7eabf6e2bbe7a0e9518692b632c922468f`. It has been run in DeSmuME;
    other emulators and flashcarts are untried.
 
 Start a new game: saves from the original game or from other hacks will not
@@ -129,6 +129,14 @@ that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md
   also sells Oran and the status berries from the start; Sitrus, Lum and
   Ether at 4 badges; the type-resist berries and Elixir at 6; Max Ether, Max
   Elixir and Max Revive at 8.
+- **Catching up on levels:** from trainer battles alone a full team of six
+  runs about 3 to 5 levels behind the bosses from Jasmine to the first
+  Elite Four members, and far behind Red. The Goldenrod 3F counter sells the
+  Lucky Egg (₽5,000) from four badges, and the Celadon 4F counter sells Rare
+  Candies (₽3,000).
+- **Hidden abilities:** some boss Pokémon have one, and nothing in the game
+  gave the player any. The Celadon 4F counter sells the Ability Capsule
+  (₽10,000) and the Ability Patch (₽25,000).
 - **Poké Marts stock up a badge sooner:** Great Ball, Revive and Super
   Repel at 2 badges; Hyper Potion, Ultra Ball, Full Heal and Max Repel at 4;
   Max Potion at 6. Full Restore stays at 8.
@@ -245,6 +253,14 @@ The levels, IVs, AI and every boss team are in.
   Leaders, the Elite Four, the Champion, your rival, Red and the Rocket
   bosses have 31.
 - **AI:** every trainer uses the smartest move-choice settings.
+- **Late-game trainers' Pokémon are evolved:** an ordinary trainer's
+  Pokémon of Lv. 50 or more evolves if it is 5 or more levels past a
+  level-up evolution, and takes stone, item and friendship evolutions from
+  the first three generations; at Lv. 75 or more it takes any evolution.
+  148 Pokémon of 108 trainers changed (no more Lv. 78 Metapod). Trainers
+  below Lv. 50 keep their unevolved Pokémon, as in the original.
+- **Wild held items:** thirteen wild Pokémon no longer hold an item from a
+  later game (Air Balloon, Absorb Bulb and the like).
 
 Every boss has been fought in the emulator by the battle playtester; see
 [playtest](playtest/README.md) for how the fights ranked. The built trainer
@@ -355,6 +371,11 @@ Added:
 "16 badges" means after Professor Oak has seen all sixteen. Phione comes
 from breeding Manaphy.
 
+An old man in the Ruins of Alph Research Center collects rumors of these
+Pokémon. He says nothing useful before the Champion, and then tells where
+each group is as you reach it: after the Champion, with sixteen badges, and
+after Red.
+
 The overworld playtester has gone to all of them at their real places: each
 is absent until its condition is met and then starts the right battle at the
 right level. Catching, running away and coming back were tested by hand on a
@@ -417,7 +438,7 @@ The first build takes several minutes. It clones hg-engine into `build/`,
 applies the patches and writes `build/hg-engine/test.nds`.
 
 The release patch is made from such a build, in a fresh work directory, with
-`tools/make_patch.sh`. v0.1 was built this way from all seventeen patches.
+`tools/make_patch.sh`. v0.2 was built this way from all twenty-one patches.
 
 To confirm the result boots, without opening an emulator window:
 

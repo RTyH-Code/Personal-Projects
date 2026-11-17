@@ -1,0 +1,146 @@
+From 03fd7535982e93642a0bde9edc1e31b0f573fe88 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 16 Nov 2026 01:23:08 +0000
+Subject: [PATCH] Lucky Egg in Goldenrod; Rare Candy, Ability Capsule and
+ Ability Patch in Celadon
+
+---
+ data/itemdata/itemdata.c |  8 +++----
+ src/field/mart.c         |  7 ++++--
+ tools/hack/catch_up.py   | 52 ++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 61 insertions(+), 6 deletions(-)
+ create mode 100644 tools/hack/catch_up.py
+
+diff --git a/data/itemdata/itemdata.c b/data/itemdata/itemdata.c
+index 2f3999eff..e5dffaba6 100644
+--- a/data/itemdata/itemdata.c
++++ b/data/itemdata/itemdata.c
+@@ -3263,7 +3263,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_RARE_CANDY] =
+ {
+-    ITEM_PRICE(10000),
++    ITEM_PRICE(3000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -15028,7 +15028,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_LUCKY_EGG] =
+ {
+-    ITEM_PRICE(10000),
++    ITEM_PRICE(5000),
+     .holdEffect = HOLD_EFFECT_EXP_UP,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -41938,7 +41938,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_ABILITY_CAPSULE] =
+ {
+-    ITEM_PRICE(100000),
++    ITEM_PRICE(10000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -104403,7 +104403,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_ABILITY_PATCH] =
+ {
+-    ITEM_PRICE(500000),
++    ITEM_PRICE(25000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+diff --git a/src/field/mart.c b/src/field/mart.c
+index a85678fab..f6a6eb509 100644
+--- a/src/field/mart.c
++++ b/src/field/mart.c
+@@ -72,7 +72,8 @@ u16 sGoldenrodDepartment3F[] = {
+     ITEM_RINDO_BERRY, ITEM_YACHE_BERRY, ITEM_CHOPLE_BERRY, ITEM_KEBIA_BERRY, ITEM_SHUCA_BERRY, ITEM_COBA_BERRY,
+     ITEM_PAYAPA_BERRY, ITEM_TANGA_BERRY, ITEM_CHARTI_BERRY, ITEM_KASIB_BERRY, ITEM_HABAN_BERRY, ITEM_COLBUR_BERRY,
+     ITEM_BABIRI_BERRY, ITEM_CHILAN_BERRY, ITEM_ROSELI_BERRY, ITEM_ELIXIR, ITEM_MAX_ETHER, ITEM_MAX_ELIXIR,
+-    ITEM_MAX_REVIVE, 0xFFFF
++    ITEM_MAX_REVIVE,
++    ITEM_LUCKY_EGG, 0xFFFF
+ };
+ 
+ // the evolution items are added by the hack.  the ones in sBadgeLockedMartItems only show up once the player has enough badges
+@@ -147,7 +148,8 @@ u16 sCeladonDepartment4F[] = {
+     ITEM_AIR_MAIL, ITEM_TUNNEL_MAIL, ITEM_BLOOM_MAIL,
+     ITEM_LEFTOVERS, ITEM_CHOICE_BAND, ITEM_CHOICE_SPECS, ITEM_CHOICE_SCARF, ITEM_LIFE_ORB, ITEM_FOCUS_SASH,
+     ITEM_EXPERT_BELT, ITEM_MUSCLE_BAND, ITEM_WISE_GLASSES, ITEM_SCOPE_LENS, ITEM_SHELL_BELL, ITEM_LIGHT_CLAY,
+-    ITEM_BLACK_SLUDGE, ITEM_TOXIC_ORB, ITEM_FLAME_ORB, ITEM_WHITE_HERB, ITEM_POWER_HERB, 0xFFFF
++    ITEM_BLACK_SLUDGE, ITEM_TOXIC_ORB, ITEM_FLAME_ORB, ITEM_WHITE_HERB, ITEM_POWER_HERB,
++    ITEM_RARE_CANDY, ITEM_ABILITY_CAPSULE, ITEM_ABILITY_PATCH, 0xFFFF
+ };
+ 
+ u16 sCeladonDepartmentLeft5F[] = {
+@@ -211,6 +213,7 @@ BOOL ScrCmd_MartBuy(SCRIPTCONTEXT *ctx)
+ 
+ // items that the special marts (every mart with its own stock list above) only sell once the player has this many badges
+ const struct BadgeMartItems sBadgeLockedMartItems[] = {
++    { ITEM_LUCKY_EGG, 4 },
+     { ITEM_SITRUS_BERRY, 4 },
+     { ITEM_LUM_BERRY, 4 },
+     { ITEM_ETHER, 4 },
+diff --git a/tools/hack/catch_up.py b/tools/hack/catch_up.py
+new file mode 100644
+index 000000000..ee3f28fb9
+--- /dev/null
++++ b/tools/hack/catch_up.py
+@@ -0,0 +1,52 @@
++#!/usr/bin/env python3
++"""Catching up on levels, and hidden abilities for the player.
++
++From trainer battles alone a full team of six is a few levels short of the
++bosses from Jasmine to the Elite Four and far short of Red, and nothing in
++the game gives the player a hidden ability although some bosses have one.
++
++- Goldenrod Department Store 3F sells the Lucky Egg from four badges.
++- Celadon Department Store 4F, which is past the Champion, sells Rare
++  Candies, the Ability Capsule and the Ability Patch.
++
++Run after shops.py, from the hg-engine root:
++    python3 tools/hack/catch_up.py
++"""
++import re
++import sys
++
++MART = "src/field/mart.c"
++ITEMS = "data/itemdata/itemdata.c"
++GOLDENROD = [("LUCKY_EGG", 5000, 4)]                       # item, price, badges needed
++CELADON = [("RARE_CANDY", 3000), ("ABILITY_CAPSULE", 10000), ("ABILITY_PATCH", 25000)]
++
++
++def main():
++    mart, items = open(MART).read(), open(ITEMS).read()
++    if "ITEM_RARE_CANDY" in re.search(r"sCeladonDepartment4F\[\] = \{(.*?)\};", mart, re.S).group(1):
++        sys.exit("already done")
++
++    def extend(text, array, names):
++        m = re.search(r"(u16 %s\[\] = \{\n.*?)(, 0xFFFF\n\};)" % array, text, re.S)
++        if not m:
++            sys.exit("no " + array)
++        return text.replace(m.group(0), m.group(1) + ",\n    " + ", ".join("ITEM_" + n for n in names) + m.group(2))
++
++    mart = extend(mart, "sGoldenrodDepartment3F", [n for n, _, _ in GOLDENROD])
++    mart = extend(mart, "sCeladonDepartment4F", [n for n, _ in CELADON])
++    head = "const struct BadgeMartItems sBadgeLockedMartItems[] = {\n"
++    if head not in mart:
++        sys.exit("no sBadgeLockedMartItems")
++    mart = mart.replace(head, head + "".join("    { ITEM_%s, %d },\n" % (n, b) for n, _, b in GOLDENROD))
++    for name, price in [(n, p) for n, p, _ in GOLDENROD] + CELADON:
++        items, n = re.subn(r"(\[ITEM_%s\] =\n\{\n    ITEM_PRICE\()\d+(\))" % name,
++                           lambda m: m.group(1) + str(price) + m.group(2), items)
++        if n != 1:
++            sys.exit("no price for " + name)
++    open(MART, "w").write(mart)
++    open(ITEMS, "w").write(items)
++    print("Goldenrod 3F: %s; Celadon 4F: %s" % (", ".join(n for n, _, _ in GOLDENROD), ", ".join(n for n, _ in CELADON)))
++
++
++if __name__ == "__main__":
++    main()
+-- 
+2.43.0
+

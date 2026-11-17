@@ -1,0 +1,185 @@
+From 58046e6c4d27cec6cde13f56368cea7ce737846c Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 16 Nov 2026 01:01:47 +0000
+Subject: [PATCH 19/20] Wild Pokemon don't hold items from later games
+
+---
+ data/Species.c           | 26 ++++++++++++------------
+ tools/hack/wild_items.py | 44 ++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 57 insertions(+), 13 deletions(-)
+ create mode 100644 tools/hack/wild_items.py
+
+diff --git a/data/Species.c b/data/Species.c
+index ff137acc6..6ef668b8b 100644
+--- a/data/Species.c
++++ b/data/Species.c
+@@ -2482,7 +2482,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
+             },
+             .wildHeldItems = {
+                 .common = ITEM_NONE,
+-                .rare = ITEM_ABSORB_BULB,
++                .rare = ITEM_NONE,
+             },
+             .genderRatio = 127,
+             .hatchCycles = 20,
+@@ -2539,7 +2539,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
+             },
+             .wildHeldItems = {
+                 .common = ITEM_NONE,
+-                .rare = ITEM_ABSORB_BULB,
++                .rare = ITEM_NONE,
+             },
+             .genderRatio = 127,
+             .hatchCycles = 20,
+@@ -2596,7 +2596,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
+             },
+             .wildHeldItems = {
+                 .common = ITEM_NONE,
+-                .rare = ITEM_ABSORB_BULB,
++                .rare = ITEM_NONE,
+             },
+             .genderRatio = 127,
+             .hatchCycles = 20,
+@@ -5845,7 +5845,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
+             },
+             .wildHeldItems = {
+                 .common = ITEM_NONE,
+-                .rare = ITEM_PSYCHIC_SEED,
++                .rare = ITEM_NONE,
+             },
+             .genderRatio = 127,
+             .hatchCycles = 20,
+@@ -10405,7 +10405,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
+             },
+             .wildHeldItems = {
+                 .common = ITEM_NONE,
+-                .rare = ITEM_ABSORB_BULB,
++                .rare = ITEM_NONE,
+             },
+             .genderRatio = 127,
+             .hatchCycles = 20,
+@@ -15876,7 +15876,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
+                 .speed = 1,
+             },
+             .wildHeldItems = {
+-                .common = ITEM_PRETTY_FEATHER,
++                .common = ITEM_NONE,
+                 .rare = ITEM_NONE,
+             },
+             .genderRatio = 127,
+@@ -15933,7 +15933,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
+                 .speed = 0,
+             },
+             .wildHeldItems = {
+-                .common = ITEM_PRETTY_FEATHER,
++                .common = ITEM_NONE,
+                 .rare = ITEM_LUCKY_EGG,
+             },
+             .genderRatio = 127,
+@@ -17758,7 +17758,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
+             },
+             .wildHeldItems = {
+                 .common = ITEM_NONE,
+-                .rare = ITEM_CELL_BATTERY,
++                .rare = ITEM_NONE,
+             },
+             .genderRatio = 127,
+             .hatchCycles = 20,
+@@ -17815,7 +17815,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
+             },
+             .wildHeldItems = {
+                 .common = ITEM_NONE,
+-                .rare = ITEM_CELL_BATTERY,
++                .rare = ITEM_NONE,
+             },
+             .genderRatio = 127,
+             .hatchCycles = 20,
+@@ -17985,7 +17985,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
+                 .speed = 0,
+             },
+             .wildHeldItems = {
+-                .common = ITEM_ABSORB_BULB,
++                .common = ITEM_NONE,
+                 .rare = ITEM_POISON_BARB,
+             },
+             .genderRatio = 127,
+@@ -20607,7 +20607,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
+                 .speed = 0,
+             },
+             .wildHeldItems = {
+-                .common = ITEM_SNOWBALL,
++                .common = ITEM_NONE,
+                 .rare = ITEM_BABIRI_BERRY,
+             },
+             .genderRatio = 127,
+@@ -23229,7 +23229,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
+                 .speed = 0,
+             },
+             .wildHeldItems = {
+-                .common = ITEM_ABSORB_BULB,
++                .common = ITEM_NONE,
+                 .rare = ITEM_POISON_BARB,
+             },
+             .genderRatio = 127,
+@@ -24313,7 +24313,7 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
+             },
+             .wildHeldItems = {
+                 .common = ITEM_NONE,
+-                .rare = ITEM_AIR_BALLOON,
++                .rare = ITEM_NONE,
+             },
+             .genderRatio = 127,
+             .hatchCycles = 30,
+diff --git a/tools/hack/wild_items.py b/tools/hack/wild_items.py
+new file mode 100644
+index 000000000..77d4b9eee
+--- /dev/null
++++ b/tools/hack/wild_items.py
+@@ -0,0 +1,44 @@
++#!/usr/bin/env python3
++"""Wild Pokemon don't hold items from later games.
++
++hg-engine gives wild Pokemon their newest games' held items, so a wild
++Drifblim can hold an Air Balloon and a wild Oddish an Absorb Bulb. For every
++Pokemon of the first four generations, a held item that is newer than
++HeartGold is removed (that slot holds nothing, as it did in HeartGold in
++nearly every case). Items that HeartGold had are left where hg-engine puts
++them.
++
++    python3 tools/hack/wild_items.py
++"""
++import re
++
++SPECIES = "data/Species.c"
++LAST_GEN_4_ITEM = 536   # Enigma Stone; everything after it is from a later game
++LAST_GEN_4_SPECIES = 493
++
++
++def main():
++    ids = lambda path, prefix: {n: int(v) for n, v in re.findall(
++        r"#define %s_(\w+)\s+\(?(\d+)\)?\s*$" % prefix, open(path).read(), re.M)}
++    items, species = ids("include/constants/item.h", "ITEM"), ids("include/constants/species.h", "SPECIES")
++    removed = []
++
++    def entry(match):
++        name = match.group(1)
++        if species.get(name, 9999) > LAST_GEN_4_SPECIES:
++            return match.group(0)
++
++        def slot(m):
++            if m.group(2) != "NONE" and items[m.group(2)] > LAST_GEN_4_ITEM:
++                removed.append((name, m.group(2)))
++                return m.group(1) + "ITEM_NONE"
++            return m.group(0)
++        return re.sub(r"(\.(?:common|rare) = )ITEM_(\w+)", slot, match.group(0))
++
++    text = re.sub(r"^    \[SPECIES_(\w+)\] = \{\n.*?^    \},\n", entry, open(SPECIES).read(), flags=re.S | re.M)
++    open(SPECIES, "w").write(text)
++    print("removed %d held items: %s" % (len(removed), ", ".join("%s (%s)" % r for r in removed)))
++
++
++if __name__ == "__main__":
++    main()
+-- 
+2.43.0
+
