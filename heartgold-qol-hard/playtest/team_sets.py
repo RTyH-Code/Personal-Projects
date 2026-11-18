@@ -72,7 +72,7 @@ SETS = {
                                MEDITITE=["FORCE_PALM", "PSYBEAM", "ROCK_TOMB", "CALM_MIND"],
                                GEODUDE=["ROCK_TOMB", "DIG", "SMACK_DOWN", "PROTECT"],
                                KADABRA=["PSYBEAM", "DISABLE", "REFLECT", "PROTECT"])),
-    # Morty's five Ghosts (Lv. 26-29: Duskull, Haunter, Drifblim, Gengar, Mismagius) hit hard with coverage
+    # used from the Burned Tower's rival on. Morty's five Ghosts (Lv. 26-29: Duskull, Haunter, Drifblim, Gengar, Mismagius) hit hard with coverage
     # (Icy Wind, Giga Drain, Air Cutter, Shock Wave, Sludge Bomb, Power Gem, Mystical Fire): Dark types that
     # resist Ghost, a Normal type that Ghost moves pass through, and Dark moves all round; three Intimidates
     "morty": dict(level=29, badges=3, places=ECRUTEAK, ways=TREES,

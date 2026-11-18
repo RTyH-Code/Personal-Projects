@@ -296,8 +296,10 @@ BURNED_TOWER = "D18R0101"
 
 
 def burned_tower(bot):
-    # Eusine and Morty wait inside, and the rival picks a fight; then down through the hole in the floor, where
-    # the three beasts wake and run. After that Morty goes back to his gym
+    # the Morty set from Ecruteak's Pokemon Center (the rival here is the first boss it meets); then Eusine and
+    # Morty wait inside, and the rival picks a fight; then down through the hole in the floor, where the three
+    # beasts wake and run. After that Morty goes back to his gym
+    heal(bot, "T27PC0101", team="morty")
     bot.travel(BURNED_TOWER)
     bot.walk(BURNED_TOWER, [(19, 23)])          # Eusine and Morty
     bot.settle()
@@ -318,8 +320,8 @@ MORTY_DROPS = {(11, 12), (9, 12), (9, 21), (8, 29), (9, 30), (12, 31), (15, 30),
 
 
 def morty_gym(bot):
-    # the Morty set from the Pokemon Center, then along the hidden path, past four Mediums, to Morty
-    heal(bot, "T27PC0101", team="morty")
+    # a heal, then along the hidden path, past four Mediums, to Morty
+    heal(bot, "T27PC0101")
     bot.travel(MORTY_GYM)
     bot.talk(MORTY_GYM, 1, never=MORTY_DROPS)
     bot.expect("FLAG_GOT_TM30_FROM_MORTY", "beating Morty")
