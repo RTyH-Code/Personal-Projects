@@ -309,10 +309,14 @@ def burned_tower(bot):
     bot.settle()
     bot.go_through(BURNED_TOWER, 1)             # the hole
     bot.settle()
-    # the beasts wake when the player steps onto (20, 16) or (20, 17); the drop can land on them, so step off and on
-    bot.walk("D18R0102", [(21, 16), (21, 17)])
-    bot.step("left")
-    bot.settle()
+    # the beasts wake when the player steps onto (20, 16) or (20, 17). The drop can land the player on them, and
+    # the walking Pokemon can be in the way, so step off to either side and back on until they do
+    for _ in range(5):
+        if bot.flag("FLAG_UNK_247"):
+            break
+        side = bot.walk("D18R0102", [(19, 16), (19, 17), (21, 16), (21, 17)])
+        bot.step("right" if side[0] == 19 else "left")
+        bot.settle()
     bot.expect("FLAG_UNK_247", "the beasts waking in the Burned Tower")
 
 
