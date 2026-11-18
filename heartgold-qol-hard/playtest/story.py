@@ -181,6 +181,13 @@ def azalea_gym(bot):
     ride(bot, (3, 17), (9, 9))       # stop 6, with both switches on, to Bugsy's section (stop 10)
     bot.talk(GYM, 5)
     bot.expect("FLAG_GOT_TM89_FROM_BUGSY", "beating Bugsy")
+    # and back out the same way: the carts now wait at stops 1, 2, 4 and 10
+    ride(bot, (9, 9), (3, 18))       # stop 10, both switches on, to the middle floor's left section
+    bot.talk(GYM, (2, 18))           # switch 1 off
+    ride(bot, (3, 17), (3, 9))       # stop 6 to the top floor's left section
+    bot.talk(GYM, (4, 7))            # switch 0 off
+    ride(bot, (3, 9), (9, 17))       # stop 9 to the middle floor's middle section
+    ride(bot, (9, 24), (3, 32))      # stop 4 to the ground floor
 
 
 ILEX = "D36R0101"
