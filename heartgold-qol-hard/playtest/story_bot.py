@@ -621,7 +621,13 @@ class Bot:
             g.run(1)
         toggle, frames, menus = 0, 0, 0
         white = 0
+        money = g.money()
         while not g.in_field() and frames < 60 * 60 * 20:
+            # losing costs half the player's money, and nothing else in a battle takes money away
+            now = g.money()
+            if money and now is not None and now < money:
+                self.battling = False
+                self.stuck("lost a battle by %s: the team whited out (money %d -> %d)" % (start, money, now))
             image = g.emu.screenshot()
             # a battle lost fades both screens to white before the player wakes at a Pokemon Center
             if all(min(image.getpixel(p)[:3]) > 235 for p in ((20, 20), (128, 96), (236, 170), (128, 300))):
@@ -665,6 +671,10 @@ class Bot:
                 toggle += 1
                 g.key("a" if toggle % 3 else "b", after=30)
                 frames += 36
+        here = self.where()
+        if money and g.money() is not None and g.money() < money or (here and start and here[0] != start[0]):
+            self.battling = False
+            self.stuck("lost a battle by %s: the team whited out" % (start,))
         if not g.in_field():
             self.stuck("a battle did not end")
         self.battling = False
