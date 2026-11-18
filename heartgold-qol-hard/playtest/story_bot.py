@@ -46,6 +46,7 @@ OBJECT_SIZE = 0x12C                 # LocalMapObject: flags, flags2, id, ..., cu
 SURF = {0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x19, 0x2A, 0x50, 0x51, 0x52, 0x53, 0x73, 0x78, 0x7C}
 LEDGES = {0x38: "right", 0x39: "left", 0x3A: "up", 0x3B: "down"}
 LADDERS = {0x3C: "up", 0x3D: "down", 0x3E: "down"}
+NO_BUTTON = (128, 120)  # "No" of the touch-screen Yes/No buttons
 COUNTER = 0x80          # a shop or reception counter: people behind it are talked to across it
 EDGES = {0x6C: "right", 0x6D: "left", 0x6E: "up", 0x6F: "down", 0x62: "right", 0x63: "left",    # warp edges,
          0x64: "up", 0x65: "down", 0x69: "up", 0x5E: "right", 0x5F: "left"}                     # doors, stairs
@@ -227,7 +228,11 @@ class Bot:
             if g.in_field():
                 if text_box(g.emu.screenshot()):
                     calm = 0
-                    g.key(answers.pop(0) if answers and self.question() else "a", after=20)
+                    answer = answers.pop(0) if answers and self.question() else "a"
+                    if answer == "b":
+                        g.touch(*NO_BUTTON, after=20)     # the Yes/No buttons are on the touch screen
+                    else:
+                        g.key("a", after=20)
                     frames += 26
                     continue
                 calm += 1
