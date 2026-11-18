@@ -46,6 +46,8 @@ OBJECT_SIZE = 0x12C                 # LocalMapObject: flags, flags2, id, ..., cu
 SURF = {0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x19, 0x2A, 0x50, 0x51, 0x52, 0x53, 0x73, 0x78, 0x7C}
 LEDGES = {0x38: "right", 0x39: "left", 0x3A: "up", 0x3B: "down"}
 LADDERS = {0x3C: "up", 0x3D: "down", 0x3E: "down"}
+EDGES = {0x6C: "right", 0x6D: "left", 0x6E: "up", 0x6F: "down", 0x62: "right", 0x63: "left",    # warp edges,
+         0x64: "up", 0x65: "down", 0x69: "up", 0x5E: "right", 0x5F: "left"}                     # doors, stairs
 OPPOSITE = {"up": "down", "down": "up", "left": "right", "right": "left"}
 
 # The trainer AI. Each battler gets six controller handlers when a battle opens (overlay 12, 0x02260EA4, called
@@ -351,14 +353,17 @@ class Bot:
         warp = self.world.events(code)["warp_events"][index]
         tile = (warp["x"], warp["z"])
         grid, _ = self.world.grid(self.world.headers[code]["matrix"])
-        into = {0x6C: "right", 0x6D: "left", 0x6E: "up", 0x6F: "down", 0x62: "right", 0x63: "left",
-                0x64: "up", 0x65: "down", 0x69: "up", 0x5E: "right", 0x5F: "left"}.get(grid.get(tile, 0) & 0xFF)
+        into = EDGES.get(grid.get(tile, 0) & 0xFF)
         if into:
             dx, dz, _ = DIRS[into]
             return (tile[0] - dx, tile[1] - dz), into
         ladder = LADDERS.get(grid.get(tile, 0) & 0xFF)
         if ladder:
             return tile, ladder                  # stand on the ladder and climb it
+        # some maps put the warp on the plain tile in front of a doorway: walk on into the doorway from it
+        for d, (dx, dz, _) in DIRS.items():
+            if EDGES.get(grid.get((tile[0] + dx, tile[1] + dz), 0) & 0xFF) == d:
+                return tile, d
         return tile, None
 
     def reach(self, code, start):
