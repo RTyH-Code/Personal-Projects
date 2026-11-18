@@ -60,6 +60,7 @@ OPPOSITE = {"up": "down", "down": "up", "left": "right", "right": "left"}
 BATTLER_SETUP = 0x02260EA4
 AI_SELECT_MOVE = 0x0221BEF4     # overlay 10: the trainer AI choosing a move for battler r1; counted for the report
 AI_HANDLERS = (0x0225E105, 0x0225E405, 0x0225E6FD, 0x0225F3A5, 0x0225F8AD)    # an opponent's, as set up there
+BATTLE_TRAINER_IDS = 0xA0     # BattleSystem.trainerId[4]: who each battler belongs to (0 for a wild Pokemon)
 BATTLE_CONTEXT, BATTLE_MONS, BATTLE_MON_SIZE, BATTLE_MON_HP = 0x30, 0x2D40, 0xC0, 0x4C   # who is out, HP left
 BATTLER_ID, BATTLER_IS_AI = 0x194, 0x196          # in OpponentData, after the six handlers at 0
 BATTLE_TRAINERS, TRAINER_SIZE, TRAINER_AI_FLAGS = 0xAC, 0x34, 0x0C      # BattleSystem.trainers[4]
@@ -639,6 +640,22 @@ class Bot:
                                                          names.get(foe[0], foe[0]) if foe else "nobody"), flush=True)
         return now or last
 
+    def record_battle(self, start, result, frames, moves, kos):
+        """Append the battle to OUT/battles.jsonl: who, where, with which team, the result and every KO. The file
+        grows over runs, for working out later how hard each boss is (and how many Pokemon a win costs)."""
+        g = self.game
+        ids = []
+        if self.bsys:
+            ids = [g.emu.memory.unsigned[self.bsys + BATTLE_TRAINER_IDS + 2 * b]
+                   | g.emu.memory.unsigned[self.bsys + BATTLE_TRAINER_IDS + 2 * b + 1] << 8 for b in (1, 3)]
+        trainers = [dict(id=i, name=self.data["trainers"].get(i, {}).get("name"),
+                         cls=self.data["trainers"].get(i, {}).get("cls")) for i in ids if i]
+        entry = dict(at=list(start) if start else None, trainers=trainers, wild=not trainers, team=self.team,
+                     result=result, game_minutes=round(frames / 3600, 2), ai_moves=moves,
+                     kos=[dict(side=side, fainted=who, by=by) for _, side, who, by in kos])
+        with open(os.path.join(self.out, "battles.jsonl"), "a") as f:
+            f.write(json.dumps(entry) + "\n")
+
     def battle(self):
         """Fight until the battle ends. The game's own trainer AI picks the player's moves and replacements
         (see hand_to_ai); the bot only moves the text on. Should a menu still show, it falls back to the first
@@ -656,11 +673,13 @@ class Bot:
         white = 0
         money = g.money()
         mons = {}
+        first_ko, began = len(self.kos), g.frames
         while not g.in_field() and frames < 60 * 60 * 20:
             mons = self.watch_kos(start, mons)
             # losing costs half the player's money, and nothing else in a battle takes money away
             now = g.money()
             if money and now is not None and now < money:
+                self.record_battle(start, "lost", g.frames - began, self.ai_moves - moves, self.kos[first_ko:])
                 self.battling = False
                 self.stuck("lost a battle by %s: the team whited out (money %d -> %d)" % (start, money, now))
             image = g.emu.screenshot()
@@ -675,9 +694,11 @@ class Bot:
             # on; and on the way there every Pokemon of the party has no HP left
             here = self.where()
             if here and start and here[0] != start[0]:
+                self.record_battle(start, "lost", g.frames - began, self.ai_moves - moves, self.kos[first_ko:])
                 self.battling = False
                 self.stuck("lost a battle by %s: the team whited out" % (start,))
             if toggle % 5 == 0 and self.party_fainted():
+                self.record_battle(start, "lost", g.frames - began, self.ai_moves - moves, self.kos[first_ko:])
                 self.battling = False
                 self.stuck("lost a battle by %s: every Pokemon fainted" % (start,))
             state = battle_test.screen_state(image)
@@ -708,11 +729,13 @@ class Bot:
                 frames += 36
         here = self.where()
         if money and g.money() is not None and g.money() < money or (here and start and here[0] != start[0]):
+            self.record_battle(start, "lost", g.frames - began, self.ai_moves - moves, self.kos[first_ko:])
             self.battling = False
             self.stuck("lost a battle by %s: the team whited out" % (start,))
         if not g.in_field():
             self.stuck("a battle did not end")
         self.battling = False
+        self.record_battle(start, "won", g.frames - began, self.ai_moves - moves, self.kos[first_ko:])
         self.log.append(dict(at=self.where(), ai=ai, menus=menus))
         print("  battle over: %d AI moves, %d menus, now at %s" % (self.ai_moves - moves, menus, self.where()), flush=True)
 
