@@ -136,7 +136,16 @@ def ride(bot, stop, lands):
     edge of each floor: 0-2 on the ground floor at x = 3, 9, 15, 3-5 and 6-8 at the foot and head of the middle
     floor, 9-11 on the top floor. Where a cart goes from the middle and top floors depends on the gym's two
     switches; carts only wait at four stops at a time (at first 0, 1, 2 and 7) and move to where they end up."""
-    bot.walk(GYM, [stop])
+    # walk up to the stop and take the last step by hand: the ride starts the moment the player steps on
+    step = "up" if stop[1] in (32, 17) else "down"
+    bot.walk(GYM, [(stop[0], stop[1] + (1 if step == "up" else -1))])
+    bot.step(step)
+    # the ride takes a while, and the player's tile only changes when it ends
+    for _ in range(100):
+        bot.game.run(20)
+        here = bot.where()
+        if here and here[1] == lands[0] and abs(here[2] - lands[1]) <= 1:
+            break
     bot.settle()
     here = bot.where()
     if not here or abs(here[1] - lands[0]) > 0 or abs(here[2] - lands[1]) > 1:
