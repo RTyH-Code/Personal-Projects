@@ -52,6 +52,7 @@ OPPOSITE = {"up": "down", "down": "up", "left": "right", "right": "left"}
 # and the flags every trainer in the hack has, so the game itself chooses the player's moves and switches.
 BATTLER_SETUP = 0x02260EA4
 AI_SELECT_MOVE = 0x0221BEF4     # overlay 10: the trainer AI choosing a move for battler r1; counted for the report
+AI_HANDLERS = (0x0225E105, 0x0225E405, 0x0225E6FD, 0x0225F3A5, 0x0225F8AD)    # an opponent's, as set up there
 BATTLER_ID, BATTLER_IS_AI = 0x194, 0x196          # in OpponentData, after the six handlers at 0
 BATTLE_TRAINERS, TRAINER_SIZE, TRAINER_AI_FLAGS = 0xAC, 0x34, 0x0C      # BattleSystem.trainers[4]
 # The AI cannot answer "Will you switch your Pokemon?", so the bot plays with the Set battle style, as a player can
@@ -79,6 +80,8 @@ class Bot:
         self.game.emu.memory.register_exec(BATTLER_SETUP, self._battler_setup)
         self.game.emu.memory.register_exec(OPTIONS_GET_BATTLE_STYLE, self._set_style)
         self.ai_moves = 0           # moves the AI chose for the player's side
+        self.ai_battles = self.handed = 0
+        self.battling = False
         self.game.emu.memory.register_exec(AI_SELECT_MOVE, self._ai_move)
 
     # ------------------------------------------------------------ reading the game
@@ -476,6 +479,9 @@ class Bot:
     # ------------------------------------------------------------- battles
 
     def in_battle(self):
+        # a battle has set up its battlers since the last one ended; with the AI playing, no menu need show
+        if self.battling and not self.game.in_field():
+            return True
         return battle_test.screen_state(self.game.emu.screenshot()) != "other" or self.battle_screen()
 
     def battle_screen(self):
@@ -485,8 +491,14 @@ class Bot:
 
     def _battler_setup(self, address, size):
         r = self.game.emu.memory.register_arm9
-        self.battlers[self.game.emu.memory.unsigned[(r.r1 & 0xFFFFFFFF) + BATTLER_ID]] = (r.r0 & 0xFFFFFFFF,
-                                                                                         r.r1 & 0xFFFFFFFF)
+        battler = self.game.emu.memory.unsigned[(r.r1 & 0xFFFFFFFF) + BATTLER_ID]
+        self.battling = True
+        self.battlers[battler] = (r.r0 & 0xFFFFFFFF, r.r1 & 0xFFFFFFFF)
+        # the game sets up battlers in order, so when an opponent's turn comes, the player's battler before it
+        # is done: hand it to the AI now, before the first turn's menu exists
+        if battler & 1 and battler - 1 in self.battlers:
+            self.give_ai(*self.battlers[battler - 1], battler - 1)
+            self.battlers.pop(battler - 1)
 
     def _ai_move(self, address, size):
         if self.game.emu.memory.register_arm9.r1 & 0xFF in (0, 2):
@@ -499,23 +511,30 @@ class Bot:
     def hand_to_ai(self):
         """Give the player's battlers the trainer AI: an opposing battler's handlers, and the expert AI flags."""
         g, mem = self.game, self.game.emu.memory.unsigned
+        if self.ai_battles != self.handed:
+            self.handed = self.ai_battles
+            self.battlers = {}
+            return True
         if 0 not in self.battlers or 1 not in self.battlers:
             return False
         for mine, theirs in ((0, 1), (2, 3)):
             if mine in self.battlers and theirs in self.battlers:
-                bsys, od = self.battlers[mine]
-                # the first five: commands, moves, targets, items, replacements. The sixth, the player's yes/no
-                # (forget a move to learn a new one?), stays the player's: the AI's never answers it
-                for i in range(5):
-                    value = g.word(self.battlers[theirs][1] + 4 * i)
-                    for j in range(4):
-                        mem[od + 4 * i + j] = (value >> (8 * j)) & 0xFF
-                mem[od + BATTLER_IS_AI] = 1
-                at = bsys + BATTLE_TRAINERS + TRAINER_SIZE * mine + TRAINER_AI_FLAGS
-                for j in range(4):
-                    mem[at + j] = (EXPERT_AI >> (8 * j)) & 0xFF
+                self.give_ai(*self.battlers[mine], mine)
         self.battlers = {}
         return True
+
+    def give_ai(self, bsys, od, battler):
+        mem = self.game.emu.memory.unsigned
+        # the first five handlers: commands, moves, targets, items, replacements. The sixth, the player's yes/no
+        # (forget a move to learn a new one?), stays the player's: the AI's never answers it
+        for i, value in enumerate(AI_HANDLERS):
+            for j in range(4):
+                mem[od + 4 * i + j] = (value >> (8 * j)) & 0xFF
+        mem[od + BATTLER_IS_AI] = 1
+        at = bsys + BATTLE_TRAINERS + TRAINER_SIZE * battler + TRAINER_AI_FLAGS
+        for j in range(4):
+            mem[at + j] = (EXPERT_AI >> (8 * j)) & 0xFF
+        self.ai_battles += 1
 
     def battle(self):
         """Fight until the battle ends. The game's own trainer AI picks the player's moves and replacements
@@ -541,6 +560,11 @@ class Bot:
                     self.stuck("lost a battle: the team whited out")
             else:
                 white = 0
+            # after a loss the player wakes at a Pokemon Center: on a map again, but not the one the battle began on
+            here = self.where()
+            if here and start and here[0] != start[0]:
+                self.battling = False
+                self.stuck("lost a battle by %s: the team whited out" % (start,))
             state = battle_test.screen_state(image)
             if state in ("menu", "moves", "party"):
                 menus += 1
@@ -569,6 +593,7 @@ class Bot:
                 frames += 36
         if not g.in_field():
             self.stuck("a battle did not end")
+        self.battling = False
         self.log.append(dict(at=self.where(), ai=ai, menus=menus))
         print("  battle over: %d AI moves, %d menus, now at %s" % (self.ai_moves - moves, menus, self.where()), flush=True)
 

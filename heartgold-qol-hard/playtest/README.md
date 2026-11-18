@@ -202,7 +202,8 @@ How it plays:
   opponent's AI controller onto the player's battlers and gives the player
   the AI flags every trainer in the hack has, bosses included
   (`F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_EXPERT_ATTACKS`).
-  So the game chooses the player's moves, and its replacement when one
+  This happens as the opponent's battler is set up, before the first turn,
+  so the game chooses the player's moves, and its replacement when one
   faints, exactly as it does for Falkner. The AI can't answer "Will you
   switch your Pokémon?", so the bot plays with the Set battle style, as a
   player may choose in Options. Should a battle menu still show, the bot
@@ -234,5 +235,6 @@ played from the route table in the decompiled gym code: stop 0 up to the
 middle floor, stop 7 to the top floor's left section, switch 0, back down to
 the middle floor's left section, switch 1, then stop 6 to Bugsy.
 
-Bugsy can beat the bot: two of the three runs with the AI lost in his gym,
-the first of them without a heal beforehand.
+Bugsy can beat the bot: of five runs at his gym with the AI, it won two and
+lost three (the first loss without a heal beforehand). A loss stops the run
+as "lost a battle ... the team whited out".
