@@ -573,7 +573,13 @@ class Bot:
                 options[(near[0] - dx, near[1] - dz)] = d     # across a counter
         tiles = self.tiles(code)
         options = {t: d for t, d in options.items() if t in tiles}
-        pos = self.walk(code, options, avoid={target}, never=never)
+        for _ in range(5):
+            pos = self.walk(code, options, avoid={target}, never=never)
+            # a wild Pokemon can jump out on the last step: see it off, and make sure the player is still there
+            self.settle()
+            here = self.where()
+            if here and (here[1], here[2]) == pos:
+                break
         self.game.key(options[pos], hold=2, after=10)
         self.game.key("a", after=30)
         self.settle(answers)
