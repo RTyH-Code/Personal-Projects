@@ -175,11 +175,51 @@ pond.
 
 `story_bot.py` plays the story itself, in order, from the player's bedroom.
 It walks every step, takes every scene, phone call and forced battle, and
-fights every trainer that spots it. The one help it gets is a team: at the
-bedroom PC the harness gives it four Lv. 16 Pokémon (the battle tester's
-reference families: Quilava, Flaaffy, Geodude and Kadabra), so it doesn't
-have to catch and train. Its own starter from Professor Elm joins them, and
-the Mystery Egg fills the last slot.
+fights every trainer that spots it. The one help it gets is its teams, so
+it doesn't have to catch and train:
+
+- From the bedroom to Violet City it uses four Lv. 16 Pokémon the harness
+  gives at the bedroom PC (the battle tester's reference families: Quilava,
+  Flaaffy, Geodude and Kadabra), with its starter from Professor Elm.
+- Before each boss it heals at the Pokémon Center and swaps its party for
+  that boss's set, which it then carries on until the next boss.
+
+## Boss team sets
+
+`team_sets.py` holds one set per boss: the team a player could reasonably
+have by then. Run it to check every set and print the moves:
+
+```bash
+python3 playtest/team_sets.py /path/to/test/hg-engine /path/to/dumped/hg-engine
+```
+
+- **Pokémon:** caught by walking (later also with the Old Rod and from
+  Headbutt trees) on the maps the story has passed, in the hack's
+  encounter tables, or the starter; evolved by level up to the set's level.
+  The check proves this for every Pokémon of every set.
+- **Moves:** the hack's boss team tool chooses them (the best move of each
+  of its types, a coverage move, a status or set-up move), but only from
+  level-up moves and the TMs the player can have found by then.
+- **Level:** the boss's strongest Pokémon's level.
+- **EVs:** what a player who battles a lot but never trains on purpose might
+  have: 128 in all at no badges, 64 more for each badge, 510 from six
+  badges; half in the stat it attacks with, half in Speed. IVs are all 15
+  and natures neutral, so runs can be repeated.
+- **Items:** Oran Berries for now.
+
+| Set | Used for | Level | Team |
+|---|---|---|---|
+| `falkner` | Falkner | 14 | Chikorita, Geodude, Pachirisu, Sableye, Pidgey (five, so the Mystery Egg fits) |
+| `bugsy` | Proton, Bugsy, the rival in Azalea | 19 | Bayleef, Geodude, Onix, Flaaffy, Spearow, Natu |
+| `whitney` | Whitney | 24 | Bayleef, Heracross, Meditite, Geodude, Flaaffy, Gastly |
+
+The swap doesn't go through the PC's box screens. The bot writes the set
+into the party in memory (`pkm.py` reads and writes the game's encrypted
+Pokémon data), using one of the player's own Pokémon as the template, so
+each new Pokémon carries the player's name and trainer ID and obeys. The old
+party is not kept. The swap waits for a moment when the game isn't
+rewriting the lead Pokémon, which it does every few frames for the Pokémon
+walking behind the player.
 
 ```bash
 SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 playtest/story_bot.py /path/to/test/hg-engine/test.nds /path/to/test/hg-engine /path/to/dumped/hg-engine out
