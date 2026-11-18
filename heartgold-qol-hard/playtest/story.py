@@ -1,4 +1,4 @@
-"""The story, stage by stage, for story_bot.py: New Bark Town to Morty's badge.
+"""The story, stage by stage, for story_bot.py: New Bark Town to Chuck's badge.
 
 Each stage is a function of the bot. Places are map codes (see
 tools/data/map_names.json) and tiles; warps are numbered as in the map's
@@ -338,8 +338,40 @@ def morty_gym(bot):
     bot.expect("FLAG_GOT_TM30_FROM_MORTY", "beating Morty")
 
 
+def surf(bot):
+    # a heal after the gym; then at the Dance Theater a Rocket Grunt is bothering a Kimono Girl. Beat him, and
+    # on the way out the gentleman gives HM03 (the hack lets the player Surf from the bag with the Fog Badge)
+    heal(bot, "T27PC0101")
+    bot.travel("T27R0501")
+    bot.talk("T27R0501", 9)
+    bot.walk("T27R0501", [(3, 8), (11, 8)])
+    bot.settle()
+    bot.expect("FLAG_GOT_HM03", "getting HM03 at the Dance Theater")
+    bot.go_through("T27R0501", 0)
+
+
+def to_olivine(bot):
+    # west along Routes 38 and 39 to Olivine City
+    bot.travel("T26")
+
+
+def to_cianwood(bot):
+    # a heal, then by water down Routes 40 and 41, past the Whirl Islands, to Cianwood City
+    heal(bot, "T26PC0101")
+    bot.travel("T24")
+
+
+def chuck_gym(bot):
+    # the Chuck set from the Pokemon Center, then past four Black Belts to Chuck
+    heal(bot, "T24PC0101", team="chuck")
+    bot.travel("T24GYM0101")
+    bot.talk("T24GYM0101", 0)
+    bot.expect("FLAG_GOT_TM01_FROM_CHUCK", "beating Chuck")
+
+
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
           back_to_elm, stolen_pokemon, to_violet, sprout_tower,
           violet_gym, mystery_egg, to_azalea, kurt, slowpoke_well, azalea_gym, to_ilex, farfetchd,
           to_goldenrod, radio_card, whitney_gym, squirt_bottle, sudowoodo,
-          to_ecruteak, burned_tower, morty_gym]
+          to_ecruteak, burned_tower, morty_gym, surf, to_olivine, to_cianwood,
+          chuck_gym]

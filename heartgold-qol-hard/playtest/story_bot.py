@@ -95,6 +95,7 @@ class Bot:
         self.fs = None
         self.log = []
         self.last_place = None
+        self.surfable = None        # True once the player has Surf
         self.walls = set()          # (matrix or map, tile, direction) found blocked though the tiles say open
         self.battlers = {}          # battler id -> (BattleSystem, OpponentData) for the battle being opened
         self.game.emu.memory.register_exec(BATTLER_SETUP, self._battler_setup)
@@ -188,6 +189,7 @@ class Bot:
         angles. Whichever way the player comes onto one, it leaves the same way, so the search keeps, for a
         bridge tile, the axis it was entered along."""
         tiles = self.tiles(code)
+        surf = self.can_surf()
         matrix = self.world.headers[code]["matrix"] or code
         warps = {(w["x"], w["z"]) for m in self.region_maps(code) for w in self.world.events(m).get("warp_events", [])}
         # don't walk into a warp on the way; a goal tile someone stands on (or was in the way at) can't be reached
@@ -215,7 +217,7 @@ class Bot:
                     continue                       # found not to be passable (a drop the tiles don't show)
                 nxt = (here[0] + dx, here[1] + dz)
                 b = tiles.get(nxt)
-                if b is None or b in SURF or nxt in blocked:
+                if b is None or (b in SURF and not surf) or nxt in blocked:
                     continue
                 if b in LEDGES:
                     if LEDGES[b] != d:
@@ -346,6 +348,10 @@ class Bot:
             if route is None:
                 self.stuck("no path on %s from %s to %s" % (here[0], pos, sorted(goals)[:4]))
             for d in route:
+                if self.surf_needed(here[0], d):
+                    if not self.start_surf(d):
+                        break
+                    continue
                 if not self.step(d):
                     if not self.free():
                         break                     # something happened: deal with it and plan again
@@ -423,6 +429,41 @@ class Bot:
                 return tile, d
         return tile, None
 
+    def can_surf(self):
+        """Whether the player can surf: with the hack, HM03 in the bag is enough once the Fog Badge is won."""
+        if self.surfable is None:
+            try:
+                self.surfable = self.flag("FLAG_GOT_HM03")
+            except (KeyError, TypeError):
+                return False
+            if not self.surfable:
+                self.surfable = None
+                return False
+        return True
+
+    def surf_needed(self, code, d):
+        """Whether stepping that way goes from land onto water (which takes Surf, not a step)."""
+        p = self.game.position()
+        if not p or not self.can_surf():
+            return False
+        tiles = self.tiles(code)
+        dx, dz, _ = DIRS[d]
+        return tiles.get((p[1], p[2])) not in SURF and tiles.get((p[1] + dx, p[2] + dz)) in SURF
+
+    def start_surf(self, d):
+        """Face the water, press A and say Yes to Surf; the player hops onto the water."""
+        g = self.game
+        before = g.position()
+        g.key(d, hold=2, after=10)
+        g.key("a", after=30)
+        self.settle(["a"])
+        for _ in range(30):
+            p = g.position()
+            if p and before and p[1:3] != before[1:3]:
+                return True
+            g.run(10)
+        return False
+
     def obstacles(self, code):
         """Tiles of the map's Cut trees, Rock Smash rocks and Strength boulders that are there now."""
         here = self.where()
@@ -438,6 +479,7 @@ class Bot:
     def reach(self, code, start):
         """Every tile of the map (or outdoor region) the player can walk to from start, with its distance."""
         tiles = self.tiles(code)
+        surf = self.can_surf()
         blocked = self.obstacles(code)
         seen = {start: 0}
         queue = deque([start])
@@ -446,7 +488,7 @@ class Bot:
             for d, (dx, dz, _) in DIRS.items():
                 nxt = (here[0] + dx, here[1] + dz)
                 b = tiles.get(nxt)
-                if b is None or b in SURF or nxt in blocked:
+                if b is None or (b in SURF and not surf) or nxt in blocked:
                     continue
                 if b in LEDGES:
                     if LEDGES[b] != d:

@@ -46,6 +46,8 @@ VIOLET = ["Route 29", "Route 30", "Route 31", "Violet City", "Sprout Tower 2F", 
 AZALEA = VIOLET + ["Route 32", "Union Cave 1F", "Route 33", "Slowpoke Well B1F"]
 GOLDENROD = AZALEA + ["Ilex Forest", "Route 34", "Route 35", "Route 36", "National Park"]
 ECRUTEAK = GOLDENROD + ["Route 37", "Ecruteak City", "Burned Tower 1F", "Burned Tower B1F"]
+CIANWOOD = ECRUTEAK + ["Route 38", "Route 39", "Olivine City", "Route 40", "Route 41", "Cianwood City"]
+WATER = ("walking", "old rod", "Headbutt", "surfing", "good rod")
 
 SETS = {
     # Falkner's birds (Lv. 11-14): Rock, Electric and a Ghost from the caves and routes before Violet City
@@ -83,6 +85,14 @@ SETS = {
                   moves=dict(MIGHTYENA=["CRUNCH", "BITE", "ICE_FANG", "FIRE_FANG"],
                              RATICATE=["CRUNCH", "SUCKER_PUNCH", "SWORDS_DANCE", "U_TURN"],
                              MAWILE=["CRUNCH", "SUCKER_PUNCH", "IRON_DEFENSE", "ROCK_TOMB"])),
+    # Chuck's Fighting types (Lv. 31-34: Primeape, Hitmontop, Machoke, Poliwrath, Heracross) carry Poison Jab,
+    # Night Slash, Shadow Claw, Rock Slide and Aerial Ace: Psychic, Flying and Fairy, a Ghost that Fighting moves
+    # miss, a Steel type for the Poison moves, and Intimidate on Gyarados
+    "chuck": dict(level=34, badges=4, places=CIANWOOD, ways=WATER,
+                  tms=["FLASH", "ROOST", "BULLET_SEED", "ROCK_TOMB", "U_TURN", "DIG", "PAYBACK", "EMBARGO",
+                       "PROTECT", "LIGHT_SCREEN", "REFLECT", "ATTRACT"],
+                  item="ORAN_BERRY",
+                  team=["GARDEVOIR", "XATU", "DRIFBLIM", "GYARADOS", "BRONZONG", "HYPNO"]),
 }
 STARTERS = {"CHIKORITA", "CYNDAQUIL", "TOTODILE"}
 EV_TOTAL = {0: 128, 1: 192, 2: 256, 3: 320, 4: 384, 5: 448}       # by badges held; 510 from 6 badges on
