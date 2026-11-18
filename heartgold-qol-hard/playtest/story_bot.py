@@ -48,6 +48,7 @@ LEDGES = {0x38: "right", 0x39: "left", 0x3A: "up", 0x3B: "down"}
 LADDERS = {0x3C: "up", 0x3D: "down", 0x3E: "down"}
 NO_BUTTON = (128, 120)  # "No" of the touch-screen Yes/No buttons
 BRIDGE = 0x2E           # an arch: a walkway over it one way, a path under it the other
+FIELD_OBSTACLES = {"std_field_cut", "std_field_rock_smash", "std_field_strength"}
 COUNTER = 0x80          # a shop or reception counter: people behind it are talked to across it
 EDGES = {0x6C: "right", 0x6D: "left", 0x6E: "up", 0x6F: "down", 0x62: "right", 0x63: "left",    # warp edges,
          0x64: "up", 0x65: "down", 0x69: "up", 0x5E: "right", 0x5F: "left"}                     # doors, stairs
@@ -416,9 +417,22 @@ class Bot:
                 return tile, d
         return tile, None
 
+    def obstacles(self, code):
+        """Tiles of the map's Cut trees, Rock Smash rocks and Strength boulders that are there now."""
+        here = self.where()
+        if not here or here[0] != code and not self.same_region(here[0], code):
+            return set()
+        events = self.world.events(here[0]).get("object_events", [])
+        out = set()
+        for i, pos in self.objects().items():
+            if i < len(events) and str(events[i].get("script")) in FIELD_OBSTACLES:
+                out.add(pos)
+        return out
+
     def reach(self, code, start):
         """Every tile of the map (or outdoor region) the player can walk to from start, with its distance."""
         tiles = self.tiles(code)
+        blocked = self.obstacles(code)
         seen = {start: 0}
         queue = deque([start])
         while queue:
@@ -426,7 +440,7 @@ class Bot:
             for d, (dx, dz, _) in DIRS.items():
                 nxt = (here[0] + dx, here[1] + dz)
                 b = tiles.get(nxt)
-                if b is None or b in SURF:
+                if b is None or b in SURF or nxt in blocked:
                     continue
                 if b in LEDGES:
                     if LEDGES[b] != d:
