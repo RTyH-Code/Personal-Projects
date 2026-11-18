@@ -213,7 +213,7 @@ The story is a list of stages in `story.py`. After each stage the bot saves a
 save state (`out/stage_NAME.dst`), so `--from NAME` starts a later run from
 there and `--until NAME` stops after it. Key stages check that the story flag
 they should set is set (the starter, the Pokégear, the Pokédex, the Sprout
-Tower Elder, Falkner's TM). When the bot gets stuck, or a check fails, it
+Tower Elder, Falkner's TM, the Mystery Egg, Proton, Bugsy's TM). When the bot gets stuck, or a check fails, it
 stops and writes `out/stuck.png`, `out/stuck.dst` and the reason; results go
 to `out/story.json`.
 
@@ -225,11 +225,14 @@ Mr. Pokémon's house for the Pokédex, Elm's phone call, the rival battle in
 Cherrygrove, the police scene in the lab, Lyra's catching lesson, Routes 30
 and 31 to Violet City, Sprout Tower to the Elder, and Falkner's gym.
 
-A full run from the bedroom to Falkner's badge passed every stage and every
-check: 14 stages, 33 battles (wild Pokémon, trainers who spotted the bot, the
-rival, the Sprout Tower Sages and Elder, Falkner and his Bird Keepers), about
-51 minutes of game time.
+Then the Mystery Egg from Elm's aide in the Violet Poké Mart (needed: a man
+on Route 32 turns the player back without it, and the aide won't give it to
+a full party), Route 32, Union Cave and Route 33 to Azalea Town, Kurt, the
+Slowpoke Well to Proton (needed: until then a Grunt blocks the gym door), a
+heal at the Pokémon Center, and Bugsy's gym. The gym's Spinarak carts are
+played from the route table in the decompiled gym code: stop 0 up to the
+middle floor, stop 7 to the top floor's left section, switch 0, back down to
+the middle floor's left section, switch 1, then stop 6 to Bugsy.
 
-Sprout Tower turns out to be required: until the Elder is beaten, the gym
-guide stands on the lift in Falkner's gym and blocks it.
-
+Bugsy can beat the bot: two of the three runs with the AI lost in his gym,
+the first of them without a heal beforehand.
