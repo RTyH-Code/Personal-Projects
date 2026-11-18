@@ -499,7 +499,9 @@ class Bot:
         for mine, theirs in ((0, 1), (2, 3)):
             if mine in self.battlers and theirs in self.battlers:
                 bsys, od = self.battlers[mine]
-                for i in range(6):
+                # the first five: commands, moves, targets, items, replacements. The sixth, the player's yes/no
+                # (forget a move to learn a new one?), stays the player's: the AI's never answers it
+                for i in range(5):
                     value = g.word(self.battlers[theirs][1] + 4 * i)
                     for j in range(4):
                         mem[od + 4 * i + j] = (value >> (8 * j)) & 0xFF
