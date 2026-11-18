@@ -60,6 +60,7 @@ OPPOSITE = {"up": "down", "down": "up", "left": "right", "right": "left"}
 BATTLER_SETUP = 0x02260EA4
 AI_SELECT_MOVE = 0x0221BEF4     # overlay 10: the trainer AI choosing a move for battler r1; counted for the report
 AI_HANDLERS = (0x0225E105, 0x0225E405, 0x0225E6FD, 0x0225F3A5, 0x0225F8AD)    # an opponent's, as set up there
+BATTLE_CONTEXT, BATTLE_MONS, BATTLE_MON_SIZE, BATTLE_MON_HP = 0x30, 0x2D40, 0xC0, 0x4C   # who is out, HP left
 BATTLER_ID, BATTLER_IS_AI = 0x194, 0x196          # in OpponentData, after the six handlers at 0
 BATTLE_TRAINERS, TRAINER_SIZE, TRAINER_AI_FLAGS = 0xAC, 0x34, 0x0C      # BattleSystem.trainers[4]
 # The AI cannot answer "Will you switch your Pokemon?", so the bot plays with the Set battle style, as a player can
@@ -83,6 +84,7 @@ class Bot:
         self.world = walk_test.World(rom, tree, dump)
         self.data = battle_test.load(tree)
         self.sets = team_sets.Data(tree, dump)
+        self.species_names = {v: k for k, v in self.data["species"].items()}
         self.party_at = None
         self.team = None
         self.game = walk_test.Walker(rom)
@@ -563,6 +565,7 @@ class Bot:
         r = self.game.emu.memory.register_arm9
         battler = self.game.emu.memory.unsigned[(r.r1 & 0xFFFFFFFF) + BATTLER_ID]
         self.battling = True
+        self.bsys = r.r0 & 0xFFFFFFFF
         self.battlers[battler] = (r.r0 & 0xFFFFFFFF, r.r1 & 0xFFFFFFFF)
         # the game sets up battlers in order, so when an opponent's turn comes, the player's battler before it
         # is done: hand it to the AI now, before the first turn's menu exists
@@ -606,6 +609,36 @@ class Bot:
             mem[at + j] = (EXPERT_AI >> (8 * j)) & 0xFF
         self.ai_battles += 1
 
+    def battle_mons(self):
+        """{battler: (species, HP)} of the Pokemon out in the battle now, or {}."""
+        g = self.game
+        if not self.bsys:
+            return {}
+        ctx = g.word(self.bsys + BATTLE_CONTEXT)
+        if not 0x02000000 <= ctx < 0x02400000:
+            return {}
+        out = {}
+        for b in range(4):
+            at = ctx + BATTLE_MONS + BATTLE_MON_SIZE * b
+            species = g.emu.memory.unsigned[at] | g.emu.memory.unsigned[at + 1] << 8
+            if species:
+                out[b] = (species, g.word(at + BATTLE_MON_HP))
+        return out
+
+    def watch_kos(self, start, last):
+        """Note each Pokemon that has just fainted, and the opposing Pokemon that was out when it did."""
+        now = self.battle_mons()
+        names = self.species_names
+        for b, (species, hp) in now.items():
+            before = last.get(b)
+            if before and before[0] == species and before[1] > 0 and hp == 0:
+                foe = now.get(b ^ 1) or last.get(b ^ 1)
+                side = "player" if b % 2 == 0 else "opponent"
+                self.kos.append((start, side, names.get(species, species), names.get(foe[0], foe[0]) if foe else None))
+                print("  KO: %s's %s fainted, %s out" % (side, names.get(species, species),
+                                                         names.get(foe[0], foe[0]) if foe else "nobody"), flush=True)
+        return now or last
+
     def battle(self):
         """Fight until the battle ends. The game's own trainer AI picks the player's moves and replacements
         (see hand_to_ai); the bot only moves the text on. Should a menu still show, it falls back to the first
@@ -622,7 +655,9 @@ class Bot:
         toggle, frames, menus = 0, 0, 0
         white = 0
         money = g.money()
+        mons = {}
         while not g.in_field() and frames < 60 * 60 * 20:
+            mons = self.watch_kos(start, mons)
             # losing costs half the player's money, and nothing else in a battle takes money away
             now = g.money()
             if money and now is not None and now < money:
