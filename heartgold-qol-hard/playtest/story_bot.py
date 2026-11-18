@@ -47,6 +47,7 @@ SURF = {0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x19, 0x2A, 0x50, 0x51, 0x52, 0x53, 
 LEDGES = {0x38: "right", 0x39: "left", 0x3A: "up", 0x3B: "down"}
 LADDERS = {0x3C: "up", 0x3D: "down", 0x3E: "down"}
 NO_BUTTON = (128, 120)  # "No" of the touch-screen Yes/No buttons
+BRIDGE = 0x2E           # an arch: a walkway over it one way, a path under it the other
 COUNTER = 0x80          # a shop or reception counter: people behind it are talked to across it
 EDGES = {0x6C: "right", 0x6D: "left", 0x6E: "up", 0x6F: "down", 0x62: "right", 0x63: "left",    # warp edges,
          0x64: "up", 0x65: "down", 0x69: "up", 0x5E: "right", 0x5F: "left"}                     # doors, stairs
@@ -173,40 +174,53 @@ class Bot:
         return {(e["x"], e["z"]) for e in self.world.events(code).get("object_events", [])}
 
     def path(self, code, start, goals, avoid=frozenset()):
-        """Shortest list of directions from start to any goal tile, or None."""
+        """Shortest list of directions from start to any goal tile, or None.
+
+        An arch (BRIDGE tile) is two places at once: the walkway over it and the path beneath it, at right
+        angles. Whichever way the player comes onto one, it leaves the same way, so the search keeps, for a
+        bridge tile, the axis it was entered along."""
         tiles = self.tiles(code)
         matrix = self.world.headers[code]["matrix"] or code
         warps = {(w["x"], w["z"]) for m in self.region_maps(code) for w in self.world.events(m).get("warp_events", [])}
         # don't walk into a warp on the way; a goal tile someone stands on (or was in the way at) can't be reached
         blocked = self.people(code) | set(avoid) | (warps - set(goals))
         on_ladder = LADDERS.get(tiles.get(start))
-        seen = {start: None}
-        queue = deque([start])
+        axis = lambda d: "h" if d in ("left", "right") else "v"
+        first = (start, None)
+        seen = {first: None}
+        queue = deque([first])
         while queue:
-            here = queue.popleft()
+            state = queue.popleft()
+            here, along = state
             if here in goals:
                 steps = []
-                while seen[here]:
-                    here, d = seen[here]
+                while seen[state]:
+                    state, d = seen[state]
                     steps.append(d)
                 return steps[::-1]
             for d, (dx, dz, _) in DIRS.items():
                 if here == start and d == on_ladder:
                     continue                       # that would climb the ladder just arrived by
+                if along and axis(d) != along:
+                    continue                       # on an arch: over it or under it, never off the side
                 if (matrix, here, d) in self.walls:
                     continue                       # found not to be passable (a drop the tiles don't show)
                 nxt = (here[0] + dx, here[1] + dz)
                 b = tiles.get(nxt)
-                if b is None or b in SURF or nxt in blocked or nxt in seen:
+                if b is None or b in SURF or nxt in blocked:
                     continue
                 if b in LEDGES:
                     if LEDGES[b] != d:
                         continue
                     nxt = (nxt[0] + dx, nxt[1] + dz)   # a ledge is jumped in one move
-                    if nxt in seen or tiles.get(nxt) is None:
+                    if tiles.get(nxt) is None:
                         continue
-                seen[nxt] = (here, d)
-                queue.append(nxt)
+                    b = tiles.get(nxt)
+                state2 = (nxt, axis(d) if b == BRIDGE else None)
+                if state2 in seen:
+                    continue
+                seen[state2] = (state, d)
+                queue.append(state2)
         return None
 
     # ------------------------------------------------------------- moving
@@ -324,7 +338,7 @@ class Bot:
                         ahead = (cur[1] + dx, cur[2] + dz)
                         if ahead in self.people(cur[0]):
                             avoid.add(ahead)                  # someone in the way
-                        else:
+                        elif self.tiles(cur[0]).get((cur[1], cur[2])) != BRIDGE:
                             # nobody there, yet the step fails: the floor changes height where the tiles
                             # don't say so (a raised walkway). Remember it and find another way
                             self.walls.add((self.world.headers[cur[0]]["matrix"] or cur[0], (cur[1], cur[2]), d))
