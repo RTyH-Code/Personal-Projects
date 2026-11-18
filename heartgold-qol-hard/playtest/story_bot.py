@@ -99,6 +99,9 @@ class Bot:
         self.game.emu.memory.register_exec(OPTIONS_GET_BATTLE_STYLE, self._set_style)
         self.ai_moves = 0           # moves the AI chose for the player's side
         self.ai_battles = self.handed = 0
+        self.bsys = None
+        self.trainer_ids = []
+        self.kos = []               # (battle began by, side that fainted, the Pokemon, the opposing Pokemon out)
         self.battling = False
         self.game.emu.memory.register_exec(AI_SELECT_MOVE, self._ai_move)
 
@@ -644,10 +647,7 @@ class Bot:
         """Append the battle to OUT/battles.jsonl: who, where, with which team, the result and every KO. The file
         grows over runs, for working out later how hard each boss is (and how many Pokemon a win costs)."""
         g = self.game
-        ids = []
-        if self.bsys:
-            ids = [g.emu.memory.unsigned[self.bsys + BATTLE_TRAINER_IDS + 2 * b]
-                   | g.emu.memory.unsigned[self.bsys + BATTLE_TRAINER_IDS + 2 * b + 1] << 8 for b in (1, 3)]
+        ids = self.trainer_ids
         trainers = [dict(id=i, name=self.data["trainers"].get(i, {}).get("name"),
                          cls=self.data["trainers"].get(i, {}).get("cls")) for i in ids if i]
         entry = dict(at=list(start) if start else None, trainers=trainers, wild=not trainers, team=self.team,
@@ -674,6 +674,12 @@ class Bot:
         money = g.money()
         mons = {}
         first_ko, began = len(self.kos), g.frames
+        # who the opponents are, read now: the battle's memory is gone once it ends
+        self.trainer_ids = []
+        if self.bsys:
+            mem = g.emu.memory.unsigned
+            self.trainer_ids = [mem[self.bsys + BATTLE_TRAINER_IDS + 2 * b] | mem[self.bsys + BATTLE_TRAINER_IDS + 2 * b + 1] << 8
+                                for b in (1, 3)]
         while not g.in_field() and frames < 60 * 60 * 20:
             mons = self.watch_kos(start, mons)
             # losing costs half the player's money, and nothing else in a battle takes money away
