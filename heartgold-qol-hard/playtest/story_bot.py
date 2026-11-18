@@ -9,7 +9,7 @@ tree. It needs py-desmume and ndspy.
 
 The bot plays the real story, with every step walked and every scene and
 forced battle taken as a player would. The only help it gets is a team: at
-the start, the harness gives five level-appropriate Pokemon from the bedroom
+the start, the harness gives four level-appropriate Pokemon from the bedroom
 PC, so the bot does not have to catch and train. Its own starter from
 Professor Elm joins them.
 
@@ -35,6 +35,7 @@ import walk_test
 from walk_test import DIRS, text_box
 
 TEAM_LEVEL = 16
+TEAM = (0, 1, 2, 4)          # of battle_test.REFERENCE: Cyndaquil, Mareep, Geodude and Abra, evolved to the level
 FIELD_SYSTEM_AVATAR = 0x40          # FieldSystem.playerAvatar
 FIELD_SYSTEM_LOCATION = 0x20        # FieldSystem.location -> {mapId, warpId, x, y, direction}
 FIELD_SYSTEM_OBJECTS = 0x3C         # FieldSystem.mapObjectManager -> {flags, objectCount, ..., objects at 0x124}
@@ -43,6 +44,19 @@ SURF = {0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x19, 0x2A, 0x50, 0x51, 0x52, 0x53, 
 LEDGES = {0x38: "right", 0x39: "left", 0x3A: "up", 0x3B: "down"}
 LADDERS = {0x3C: "up", 0x3D: "down", 0x3E: "down"}
 OPPOSITE = {"up": "down", "down": "up", "left": "right", "right": "left"}
+
+# The trainer AI. Each battler gets six controller handlers when a battle opens (overlay 12, 0x02260EA4, called
+# with the BattleSystem and the battler's OpponentData): the player's read the touch screen, every other
+# battler's run the trainer AI with its trainer's AI flags. The bot hands the player's side the same AI handlers
+# and the flags every trainer in the hack has, so the game itself chooses the player's moves and switches.
+BATTLER_SETUP = 0x02260EA4
+AI_SELECT_MOVE = 0x0221BEF4     # overlay 10: the trainer AI choosing a move for battler r1; counted for the report
+BATTLER_ID, BATTLER_IS_AI = 0x194, 0x196          # in OpponentData, after the six handlers at 0
+BATTLE_TRAINERS, TRAINER_SIZE, TRAINER_AI_FLAGS = 0xAC, 0x34, 0x0C      # BattleSystem.trainers[4]
+# The AI cannot answer "Will you switch your Pokemon?", so the bot plays with the Set battle style, as a player can
+# choose in Options: whenever the game reads the style (Options_GetBattleStyle), the bit is set first.
+OPTIONS_GET_BATTLE_STYLE, BATTLE_STYLE_SET = 0x0202AD90, 0x40
+EXPERT_AI = 0x7                 # F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_EXPERT_ATTACKS
 
 
 class Stuck(Exception):
@@ -59,6 +73,11 @@ class Bot:
         self.names = {v: k for k, v in self.world.map_ids.items()}
         self.fs = None
         self.log = []
+        self.battlers = {}          # battler id -> (BattleSystem, OpponentData) for the battle being opened
+        self.game.emu.memory.register_exec(BATTLER_SETUP, self._battler_setup)
+        self.game.emu.memory.register_exec(OPTIONS_GET_BATTLE_STYLE, self._set_style)
+        self.ai_moves = 0           # moves the AI chose for the player's side
+        self.game.emu.memory.register_exec(AI_SELECT_MOVE, self._ai_move)
 
     # ------------------------------------------------------------ reading the game
 
@@ -357,6 +376,7 @@ class Bot:
         here = self.where()
         start = (here[0], (here[1], here[2]))
         best, queue, done = {start: (0, [])}, [(0, 0, start)], set()
+        areas = []
         counter = 0
         while queue:
             cost, _, node = heapq.heappop(queue)
@@ -364,17 +384,24 @@ class Bot:
                 continue
             done.add(node)
             code, pos = node
-            if code == target or (self.same_region(code, target) if code in self.world.headers and target in self.world.headers else False):
+            if code == target:
                 return best[node][1]
-            if len(done) > 200:
+            if len(done) > 2000:
                 break
-            dist = self.reach(code, pos)
+            # one flood fill for each walkable stretch: outdoors, many doors lead back to the same one
+            key = self.world.headers[code]["matrix"] or code if code in self.world.headers else code
+            dist = next((d for k, d in areas if k == key and pos in d), None)
+            if dist is None:
+                dist = self.reach(code, pos)
+                areas.append((key, dist))
+            if self.region_tiles(code, target, dist):
+                return best[node][1]
             for m in self.region_maps(code):
                 for i, warp in enumerate(self.world.events(m).get("warp_events", [])):
                     entry, _ = self.warp_entry(m, i)
                     if entry not in dist and (warp["x"], warp["z"]) != pos:
                         continue
-                    dest = warp["dest_header_id"].replace("MAP_", "")
+                    dest = str(warp["dest_header_id"]).replace("MAP_", "")
                     if dest not in self.world.headers:
                         continue
                     arrivals = self.world.events(dest).get("warp_events", [])
@@ -389,14 +416,28 @@ class Bot:
                         heapq.heappush(queue, (c, counter, nxt))
         self.stuck("no way found to %s" % target)
 
+    def region_tiles(self, code, target, dist):
+        """Of the tiles in dist, those of the target map, when code and target share the outdoor map."""
+        if code not in self.world.headers or target not in self.world.headers or not self.same_region(code, target):
+            return []
+        owner = self.world.grid(0)[1]
+        want = self.world.map_ids[target]
+        return [p for p in dist if owner.get(p) == want]
+
     def travel(self, target):
-        """Go to the target map by whatever warps lead there."""
+        """Go to the target map by whatever warps lead there; outdoors, on until the player stands in it."""
         for _ in range(3):
             steps = self.route(target)
             for code, index in steps:
                 self.go_through(code, index)
             here = self.where()
-            if here and (here[0] == target or self.same_region(here[0], target)):
+            if here and here[0] != target:
+                dist = self.reach(here[0], (here[1], here[2]))
+                goals = self.region_tiles(here[0], target, dist)
+                if goals:
+                    self.walk(target, [min(goals, key=dist.get)])
+                    here = self.where()
+            if here and here[0] == target:
                 return
         self.stuck("did not get to %s" % target)
 
@@ -437,14 +478,55 @@ class Bot:
         r, g, b = image.getpixel((128, 192 + 55))[:3]
         return r > 190 and g < 110 and b < 120
 
+    def _battler_setup(self, address, size):
+        r = self.game.emu.memory.register_arm9
+        self.battlers[self.game.emu.memory.unsigned[(r.r1 & 0xFFFFFFFF) + BATTLER_ID]] = (r.r0 & 0xFFFFFFFF,
+                                                                                         r.r1 & 0xFFFFFFFF)
+
+    def _ai_move(self, address, size):
+        if self.game.emu.memory.register_arm9.r1 & 0xFF in (0, 2):
+            self.ai_moves += 1
+
+    def _set_style(self, address, size):
+        options = self.game.emu.memory.register_arm9.r0 & 0xFFFFFFFF
+        self.game.emu.memory.unsigned[options] |= BATTLE_STYLE_SET
+
+    def hand_to_ai(self):
+        """Give the player's battlers the trainer AI: an opposing battler's handlers, and the expert AI flags."""
+        g, mem = self.game, self.game.emu.memory.unsigned
+        if 0 not in self.battlers or 1 not in self.battlers:
+            return False
+        for mine, theirs in ((0, 1), (2, 3)):
+            if mine in self.battlers and theirs in self.battlers:
+                bsys, od = self.battlers[mine]
+                for i in range(6):
+                    value = g.word(self.battlers[theirs][1] + 4 * i)
+                    for j in range(4):
+                        mem[od + 4 * i + j] = (value >> (8 * j)) & 0xFF
+                mem[od + BATTLER_IS_AI] = 1
+                at = bsys + BATTLE_TRAINERS + TRAINER_SIZE * mine + TRAINER_AI_FLAGS
+                for j in range(4):
+                    mem[at + j] = (EXPERT_AI >> (8 * j)) & 0xFF
+        self.battlers = {}
+        return True
+
     def battle(self):
-        """Fight until the battle ends: the strongest move each turn, the next Pokemon when one faints."""
+        """Fight until the battle ends. The game's own trainer AI picks the player's moves and replacements
+        (see hand_to_ai); the bot only moves the text on. Should a menu still show, it falls back to the first
+        move and the next healthy Pokemon."""
         g = self.game
-        order = list(range(6))
-        pending, toggle, frames = 0, 0, 0
+        ai = False
+        for i in range(600):
+            if self.hand_to_ai():
+                ai = True
+                break
+            g.run(1)
+        toggle, frames, menus = 0, 0, 0
         while not g.in_field() and frames < 60 * 60 * 20:
             image = g.emu.screenshot()
             state = battle_test.screen_state(image)
+            if state in ("menu", "moves", "party"):
+                menus += 1
             if state == "menu":
                 g.touch(128, 73, after=40)
                 g.touch(*battle_test.MOVE_BUTTONS[0], after=90)
@@ -459,7 +541,6 @@ class Bot:
                 if choice is None:
                     g.key("b")
                 else:
-                    pending = choice
                     g.touch(*battle_test.PARTY_SLOTS[choice], after=40)
                 frames += 40
             elif state == "confirm":
@@ -471,7 +552,7 @@ class Bot:
                 frames += 36
         if not g.in_field():
             self.stuck("a battle did not end")
-        self.log.append(("battle", self.where()))
+        self.log.append(dict(at=self.where(), ai=ai, menus=menus))
 
     # ------------------------------------------------------------- the run
 
@@ -486,7 +567,10 @@ class Bot:
         g.emu.savestate.load_file(state)
         g.vars_pointer = None
         g.run(40)
-        team = battle_test.reference_party(self.data, TEAM_LEVEL)[:5]
+        # four of the reference families (not Magikarp, which only splashes at this level): with the starter
+        # and the Mystery Egg from Elm's aide in Violet City, that fills the party
+        party = battle_test.reference_party(self.data, TEAM_LEVEL)
+        team = [party[i] for i in TEAM]
         for i in range(6):
             mon = team[i] if i < len(team) else None
             g.set_var(0x4000 + i, mon[1] if mon else 0)
@@ -567,7 +651,7 @@ def run():
     json.dump(results, open(os.path.join(out, "story.json"), "w"))
     for stage in stages[begin:end]:
         frames = bot.game.frames
-        battles = len(bot.log)
+        battles, ai_moves = len(bot.log), bot.ai_moves
         try:
             stage(bot)
         except Stuck as e:
@@ -578,10 +662,11 @@ def run():
         bot.save(os.path.join(out, "stage_%s.dst" % stage.__name__))
         minutes = (bot.game.frames - frames) / 3600
         results.append(dict(stage=stage.__name__, result="ok", at=bot.where(), game_minutes=round(minutes, 1),
-                            battles=len(bot.log) - battles))
+                            battles=len(bot.log) - battles, ai_moves=bot.ai_moves - ai_moves,
+                            menu_screens=sum(b["menus"] for b in bot.log[battles:])))
         json.dump(results, open(os.path.join(out, "story.json"), "w"), indent=1)
-        print("%-24s ok     at %-28s %5.1f game minutes, %d battles" % (stage.__name__, bot.where(), minutes,
-                                                                        len(bot.log) - battles), flush=True)
+        print("%-24s ok     at %-28s %5.1f game minutes, %d battles, %d AI moves" % (
+            stage.__name__, bot.where(), minutes, len(bot.log) - battles, bot.ai_moves - ai_moves), flush=True)
     json.dump(results, open(os.path.join(out, "story.json"), "w"), indent=1)
 
 

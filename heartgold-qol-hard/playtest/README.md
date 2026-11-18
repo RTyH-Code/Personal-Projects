@@ -176,9 +176,10 @@ pond.
 `story_bot.py` plays the story itself, in order, from the player's bedroom.
 It walks every step, takes every scene, phone call and forced battle, and
 fights every trainer that spots it. The one help it gets is a team: at the
-bedroom PC the harness gives it five Lv. 16 Pokémon (the battle tester's
-reference families), so it doesn't have to catch and train. Its own starter
-from Professor Elm joins them.
+bedroom PC the harness gives it four Lv. 16 Pokémon (the battle tester's
+reference families: Quilava, Flaaffy, Geodude and Kadabra), so it doesn't
+have to catch and train. Its own starter from Professor Elm joins them, and
+the Mystery Egg fills the last slot.
 
 ```bash
 SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 playtest/story_bot.py /path/to/test/hg-engine/test.nds /path/to/test/hg-engine /path/to/dumped/hg-engine out
@@ -194,8 +195,19 @@ How it plays:
 - **Scenes:** it presses through messages and story scenes until the player
   can move again, closes the Pokégear after a phone call, and on a naming
   screen types a name and confirms it.
-- **Battles:** each turn its lead uses its first move; when one faints, the
-  next comes in.
+- **Battles:** the game's own trainer AI plays the player's side. When a
+  battle opens, every battler is given its controller (overlay 12,
+  `0x02260EA4`): the player's reads the touch screen, every other battler's
+  runs the trainer AI with its trainer's AI flags. The bot copies an
+  opponent's AI controller onto the player's battlers and gives the player
+  the AI flags every trainer in the hack has, bosses included
+  (`F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_EXPERT_ATTACKS`).
+  So the game chooses the player's moves, and its replacement when one
+  faints, exactly as it does for Falkner. The AI can't answer "Will you
+  switch your Pokémon?", so the bot plays with the Set battle style, as a
+  player may choose in Options. Should a battle menu still show, the bot
+  falls back to the first move and the next healthy Pokémon; `story.json`
+  counts the AI's moves and any menus touched.
 
 The story is a list of stages in `story.py`. After each stage the bot saves a
 save state (`out/stage_NAME.dst`), so `--from NAME` starts a later run from
