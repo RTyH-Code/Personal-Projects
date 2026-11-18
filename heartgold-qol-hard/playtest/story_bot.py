@@ -46,6 +46,7 @@ OBJECT_SIZE = 0x12C                 # LocalMapObject: flags, flags2, id, ..., cu
 SURF = {0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x19, 0x2A, 0x50, 0x51, 0x52, 0x53, 0x73, 0x78, 0x7C}
 LEDGES = {0x38: "right", 0x39: "left", 0x3A: "up", 0x3B: "down"}
 LADDERS = {0x3C: "up", 0x3D: "down", 0x3E: "down"}
+COUNTER = 0x80          # a shop or reception counter: people behind it are talked to across it
 EDGES = {0x6C: "right", 0x6D: "left", 0x6E: "up", 0x6F: "down", 0x62: "right", 0x63: "left",    # warp edges,
          0x64: "up", 0x65: "down", 0x69: "up", 0x5E: "right", 0x5F: "left"}                     # doors, stairs
 OPPOSITE = {"up": "down", "down": "up", "left": "right", "right": "left"}
@@ -494,8 +495,12 @@ class Bot:
                 self.stuck("person %d is not on %s" % (target, code))
             target = people[target]
         options = {}
+        grid = self.world.grid(self.world.headers[code]["matrix"])[0]
         for d, (dx, dz, _) in DIRS.items():
-            options[(target[0] - dx, target[1] - dz)] = d
+            near = (target[0] - dx, target[1] - dz)
+            options[near] = d
+            if grid.get(near, 0) & 0xFF == COUNTER:
+                options[(near[0] - dx, near[1] - dz)] = d     # across a counter
         tiles = self.tiles(code)
         options = {t: d for t, d in options.items() if t in tiles}
         pos = self.walk(code, options, avoid={target})
