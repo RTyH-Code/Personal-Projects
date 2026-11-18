@@ -161,7 +161,7 @@ def azalea_gym(bot):
     ride(bot, (3, 32), (9, 24))      # stop 0 to the middle floor's middle section (stop 4)
     ride(bot, (9, 17), (3, 9))       # stop 7 to the top floor's left section (stop 9), past a Bug Catcher
     bot.talk(GYM, (4, 7))            # switch 0 on, by the Twins
-    ride(bot, (3, 9), (3, 16))       # stop 9, now to the middle floor's left section (stop 6)
+    ride(bot, (3, 9), (3, 18))       # stop 9, now to the middle floor's left section (stop 6; off the cart at its foot)
     bot.talk(GYM, (2, 18))           # switch 1 on
     ride(bot, (3, 17), (9, 9))       # stop 6, with both switches on, to Bugsy's section (stop 10)
     bot.talk(GYM, 5)
