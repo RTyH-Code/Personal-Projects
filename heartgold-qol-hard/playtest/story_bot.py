@@ -74,6 +74,7 @@ class Bot:
         self.names = {v: k for k, v in self.world.map_ids.items()}
         self.fs = None
         self.log = []
+        self.last_place = None
         self.battlers = {}          # battler id -> (BattleSystem, OpponentData) for the battle being opened
         self.game.emu.memory.register_exec(BATTLER_SETUP, self._battler_setup)
         self.game.emu.memory.register_exec(OPTIONS_GET_BATTLE_STYLE, self._set_style)
@@ -108,7 +109,8 @@ class Bot:
         if not p or not fs:
             return None
         map_id = self.game.word(self.game.word(fs + FIELD_SYSTEM_LOCATION))
-        return self.names.get(map_id, str(map_id)), p[1], p[2]
+        self.last_place = self.names.get(map_id, str(map_id)), p[1], p[2]
+        return self.last_place
 
     def objects(self):
         """The people and things on the map now: {object id: (x, z)}. The id is the object's place in the map's
@@ -521,6 +523,8 @@ class Bot:
         move and the next healthy Pokemon."""
         g = self.game
         ai = False
+        start, moves = self.last_place, self.ai_moves
+        print("  battle by %s" % (start,), flush=True)
         for i in range(600):
             if self.hand_to_ai():
                 ai = True
@@ -566,6 +570,7 @@ class Bot:
         if not g.in_field():
             self.stuck("a battle did not end")
         self.log.append(dict(at=self.where(), ai=ai, menus=menus))
+        print("  battle over: %d AI moves, %d menus, now at %s" % (self.ai_moves - moves, menus, self.where()), flush=True)
 
     # ------------------------------------------------------------- the run
 
