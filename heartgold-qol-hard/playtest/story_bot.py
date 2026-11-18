@@ -37,6 +37,7 @@ import walk_test
 from walk_test import DIRS, text_box
 
 TEAM_LEVEL = 16
+RETRIES = 3                  # a stage is played again after a lost battle, as a player would, this many times
 TEAM = (0, 1, 2, 4)          # of battle_test.REFERENCE: Cyndaquil, Mareep, Geodude and Abra, evolved to the level
 FIELD_SYSTEM_AVATAR = 0x40          # FieldSystem.playerAvatar
 FIELD_SYSTEM_LOCATION = 0x20        # FieldSystem.location -> {mapId, warpId, x, y, direction}
@@ -954,8 +955,23 @@ def run():
     for stage in stages[begin:end]:
         frames = bot.game.frames
         battles, ai_moves = len(bot.log), bot.ai_moves
+        before = os.path.join(out, "before_%s.dst" % stage.__name__)
+        bot.save(before)
+        losses = 0
         try:
-            stage(bot)
+            while True:
+                try:
+                    stage(bot)
+                    break
+                except Stuck as e:
+                    # a player who loses tries again: back to the start of the stage, up to RETRIES times
+                    if not str(e).startswith("lost a battle") or losses >= RETRIES:
+                        raise
+                    losses += 1
+                    print("%-24s lost   %s; trying again (%d)" % (stage.__name__, e, losses), flush=True)
+                    bot.game.emu.savestate.load_file(before)
+                    bot.game.run(60)
+                    bot.battling = False
         except Stuck as e:
             results.append(dict(stage=stage.__name__, result="stuck", note=str(e)))
             json.dump(results, open(os.path.join(out, "story.json"), "w"), indent=1)
@@ -963,7 +979,7 @@ def run():
             break
         bot.save(os.path.join(out, "stage_%s.dst" % stage.__name__))
         minutes = (bot.game.frames - frames) / 3600
-        results.append(dict(stage=stage.__name__, result="ok", at=bot.where(), game_minutes=round(minutes, 1),
+        results.append(dict(stage=stage.__name__, result="ok", at=bot.where(), losses=losses, game_minutes=round(minutes, 1),
                             battles=len(bot.log) - battles, ai_moves=bot.ai_moves - ai_moves,
                             menu_screens=sum(b["menus"] for b in bot.log[battles:])))
         json.dump(results, open(os.path.join(out, "story.json"), "w"), indent=1)
