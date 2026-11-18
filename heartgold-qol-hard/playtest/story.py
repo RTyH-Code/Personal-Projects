@@ -309,7 +309,9 @@ def burned_tower(bot):
     bot.settle()
     bot.go_through(BURNED_TOWER, 1)             # the hole
     bot.settle()
-    bot.walk("D18R0102", [(20, 16), (20, 17)])  # the beasts
+    # the beasts wake when the player steps onto (20, 16) or (20, 17); the drop can land on them, so step off and on
+    bot.walk("D18R0102", [(21, 16), (21, 17)])
+    bot.step("left")
     bot.settle()
     bot.expect("FLAG_UNK_247", "the beasts waking in the Burned Tower")
 
