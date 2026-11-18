@@ -39,6 +39,7 @@ TEAM = (0, 1, 2, 4)          # of battle_test.REFERENCE: Cyndaquil, Mareep, Geod
 FIELD_SYSTEM_AVATAR = 0x40          # FieldSystem.playerAvatar
 FIELD_SYSTEM_LOCATION = 0x20        # FieldSystem.location -> {mapId, warpId, x, y, direction}
 FIELD_SYSTEM_OBJECTS = 0x3C         # FieldSystem.mapObjectManager -> {flags, objectCount, ..., objects at 0x124}
+FOLLOWER = 253                      # object id of the Pokemon that walks behind the player
 OBJECT_SIZE = 0x12C                 # LocalMapObject: flags, flags2, id, ..., currentX at 0x64, currentZ at 0x6C
 SURF = {0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x19, 0x2A, 0x50, 0x51, 0x52, 0x53, 0x73, 0x78, 0x7C}
 LEDGES = {0x38: "right", 0x39: "left", 0x3A: "up", 0x3B: "down"}
@@ -148,7 +149,8 @@ class Bot:
     def people(self, code):
         here = self.where()
         if here and here[0] == code:
-            return set(self.objects().values())
+            # the walking Pokemon behind the player is no obstacle: the player swaps places with it
+            return {p for i, p in self.objects().items() if i != FOLLOWER}
         return {(e["x"], e["z"]) for e in self.world.events(code).get("object_events", [])}
 
     def path(self, code, start, goals, avoid=frozenset()):
