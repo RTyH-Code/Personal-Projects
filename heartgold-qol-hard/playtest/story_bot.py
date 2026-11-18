@@ -692,7 +692,11 @@ class Bot:
             g.run(1)
         toggle, frames, menus = 0, 0, 0
         white = 0
-        money = g.money()
+        # the player's money, at the address it has now: a scripted battle (Lyra's catching lesson) reads
+        # another trainer's profile, and the game's latest profile is then not the player's
+        money_at = g.profile + 20 if g.profile else None
+        cash = lambda: g.word(money_at) if money_at else None
+        money = cash()
         mons = {}
         first_ko, began = len(self.kos), g.frames
         # who the opponents are, read now: the battle's memory is gone once it ends
@@ -704,7 +708,7 @@ class Bot:
         while not g.in_field() and frames < 60 * 60 * 20:
             mons = self.watch_kos(start, mons)
             # losing costs half the player's money, and nothing else in a battle takes money away
-            now = g.money()
+            now = cash()
             if money and now is not None and now < money:
                 self.record_battle(start, "lost", g.frames - began, self.ai_moves - moves, self.kos[first_ko:])
                 self.battling = False
@@ -755,7 +759,7 @@ class Bot:
                 g.key("a" if toggle % 3 else "b", after=30)
                 frames += 36
         here = self.where()
-        if money and g.money() is not None and g.money() < money or (here and start and here[0] != start[0]):
+        if money and cash() is not None and cash() < money or (here and start and here[0] != start[0]):
             self.record_battle(start, "lost", g.frames - began, self.ai_moves - moves, self.kos[first_ko:])
             self.battling = False
             self.stuck("lost a battle by %s: the team whited out" % (start,))
