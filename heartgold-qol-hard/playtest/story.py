@@ -102,6 +102,7 @@ def violet_gym(bot):
 def mystery_egg(bot):
     # Elm's aide waits in the Violet Poke Mart with the Mystery Egg; without it, a man on Route 32 sends the
     # player back
+    heal(bot, "T22PC0101")                      # after the gym
     bot.travel("T22FS0101")
     bot.talk("T22FS0101", 4)
     bot.expect("FLAG_UNK_070", "getting the Mystery Egg")
@@ -269,7 +270,9 @@ def whitney_gym(bot):
 
 
 def squirt_bottle(bot):
-    # with the Plain Badge, the Goldenrod Flower Shop's owner gives the SquirtBottle, for the odd tree on Route 36
+    # a heal after the gym; then, with the Plain Badge, the Goldenrod Flower Shop's owner gives the SquirtBottle,
+    # for the odd tree on Route 36
+    heal(bot, "T25PC0101")
     bot.travel("T25R0601")
     bot.talk("T25R0601", 0)
     bot.expect_item("SQUIRT_BOTTLE", "getting the SquirtBottle")
