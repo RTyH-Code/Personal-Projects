@@ -206,12 +206,21 @@ python3 playtest/team_sets.py /path/to/test/hg-engine /path/to/dumped/hg-engine
   badges; half in the stat it attacks with, half in Speed. IVs are all 15
   and natures neutral, so runs can be repeated.
 - **Items:** Oran Berries for now.
+- **For a matchup:** a set may name its moves, and ask for female Pokémon
+  where the species allows (Attract only works on the other gender), as a
+  player building against a boss would. The check holds named moves to the
+  same rule.
 
 | Set | Used for | Level | Team |
 |---|---|---|---|
 | `falkner` | Falkner | 14 | Chikorita, Geodude, Pachirisu, Sableye, Pidgey (five, so the Mystery Egg fits) |
 | `bugsy` | Proton, Bugsy, the rival in Azalea | 19 | Bayleef, Geodude, Onix, Flaaffy, Spearow, Natu |
-| `whitney` | Whitney | 24 | Bayleef, Heracross, Meditite, Geodude, Flaaffy, Gastly |
+| `whitney` | Whitney | 24 | Bronzor, Mawile, Heracross, Meditite, Geodude, Kadabra, all female where they can be, moves picked for her team |
+
+The first Whitney set (Bayleef, Heracross, Meditite, Geodude, Flaaffy,
+Gastly) lost both its tries: the hack gives her answers to the usual picks
+(Scrappy Miltank hits Ghosts, Intimidate Stantler, Brick Break and Shadow
+Claw on Furret). The set above was built against that team; see Results.
 
 The swap doesn't go through the PC's box screens. The bot writes the set
 into the party in memory (`pkm.py` reads and writes the game's encrypted
@@ -229,9 +238,16 @@ How it plays:
 
 - **Finding its way:** it plans paths on the maps' collision data, with
   ledges jumped one way only and water left alone, and a route planner picks
-  the warps (doors, stairs, ladders, gatehouses) that lead to the next map.
+  the warps (doors, stairs, ladders, gatehouses, wide doorways and warps in
+  front of a doorway) that lead to the next map, across the whole of Johto.
   It reads which map the player is on, and where each person stands, from
-  the game's memory.
+  the game's memory. People behind a counter are talked to across it; the
+  Pokémon walking behind the player is walked through. Arches (tile
+  behaviour `0x2E`) are a walkway over and a path under at right angles, so
+  the player leaves one the way it came on. Where the floor changes height
+  without the collision data saying so, a step that fails with nobody in the
+  way is remembered and the bot goes round. If a scene takes the player to
+  another map on the way (Lyra and the Day-Care), it plans again from there.
 - **Scenes:** it presses through messages and story scenes until the player
   can move again, closes the Pokégear after a phone call, and on a naming
   screen types a name and confirms it.
@@ -248,13 +264,21 @@ How it plays:
   switch your Pokémon?", so the bot plays with the Set battle style, as a
   player may choose in Options. Should a battle menu still show, the bot
   falls back to the first move and the next healthy Pokémon; `story.json`
-  counts the AI's moves and any menus touched.
+  counts the AI's moves and any menus touched. Yes/No questions are answered
+  on the touch screen.
+- **Losing:** a lost battle (seen by the money it costs) stops the run as
+  "lost a battle ... the team whited out".
+- **Records:** every battle is added to `out/battles.jsonl`: the trainer,
+  where, the team set, won or lost, game time, the AI's moves and every KO
+  on both sides with the Pokémon that was out against it. Kept runs are in
+  `results/battles.jsonl`.
 
 The story is a list of stages in `story.py`. After each stage the bot saves a
 save state (`out/stage_NAME.dst`), so `--from NAME` starts a later run from
 there and `--until NAME` stops after it. Key stages check that the story flag
 they should set is set (the starter, the Pokégear, the Pokédex, the Sprout
-Tower Elder, Falkner's TM, the Mystery Egg, Proton, Bugsy's TM). When the bot gets stuck, or a check fails, it
+Tower Elder, Falkner's TM, the Mystery Egg, Proton, Bugsy's TM, HM01, the
+Radio Card, Whitney's TM). When the bot gets stuck, or a check fails, it
 stops and writes `out/stuck.png`, `out/stuck.dst` and the reason; results go
 to `out/story.json`.
 
@@ -275,6 +299,37 @@ played from the route table in the decompiled gym code: stop 0 up to the
 middle floor, stop 7 to the top floor's left section, switch 0, back down to
 the middle floor's left section, switch 1, then stop 6 to Bugsy.
 
-Bugsy can beat the bot: of five runs at his gym with the AI, it won two and
-lost three (the first loss without a heal beforehand). A loss stops the run
-as "lost a battle ... the team whited out".
+After the gym the carts take the player back out. Then a heal, the rival at
+Azalea's west gatehouse, and Ilex Forest: both Farfetch'd, from the forest's
+script (the first: step on the twigs south of it, then talk to it from the
+north; the second: talk to it from the south so it runs to (49, 54), step on
+the twigs east of it, then talk to it from the west), which brings HM01; the
+Cut tree (the hack lets the player Cut from the bag with the Hive Badge);
+Route 34, where Lyra takes the player into the Day-Care; Goldenrod City; the
+Radio Tower quiz (Yes to start, then Yes, Yes, No, Yes, No), without which a
+woman stands in Whitney's gym doorway and Whitney is away; and Whitney's
+gym: up the west stairs to the raised ring, round it, down the stairs on the
+east side and under the arch to her. After she loses, a step onto (13, 11)
+starts a girl's scene, and Whitney then hands over the badge and TM45.
+
+# Results
+
+From `results/battles.jsonl`.
+
+**Bugsy**, with the Lv. 16 reference team before the boss sets: two wins in
+five runs. With the `bugsy` set: two wins in two.
+
+**Whitney**, with the `whitney` set: six wins in ten runs. Our Pokémon
+fainted 2, 5, 2 and 4 times in the four wins with KO records, 5 and 6 times
+in the two losses. KOs scored by her team, over those six battles (credited
+to the Pokémon of hers that was out when ours fainted):
+
+| Her Pokémon | KOs | Whose |
+|---|---|---|
+| Dunsparce (Serene Grace: Rock Slide, Glare, Shock Wave, Water Pulse) | 8 | Geodude 4, Mawile 3, Meditite 1 |
+| Stantler (Intimidate, Hypnosis) | 6 | Heracross 4, Meditite 2 |
+| Miltank (Scrappy, Rollout, Attract) | 6 | Heracross 2, Kadabra 2, Mawile 1, Meditite 1 |
+| Furret | 4 | Bronzor 4 |
+
+Dunsparce is the one to look at; Serene Grace doubles Rock Slide's flinch and
+Glare's paralysis.
