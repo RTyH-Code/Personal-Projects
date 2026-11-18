@@ -228,6 +228,8 @@ class Bot:
             if g.in_field():
                 if text_box(g.emu.screenshot()):
                     calm = 0
+                    if answers and not self.question():
+                        g.run_every_frame(30)               # the Yes/No buttons may be about to appear
                     answer = answers.pop(0) if answers and self.question() else "a"
                     if answer == "b":
                         g.touch(*NO_BUTTON, after=20)     # the Yes/No buttons are on the touch screen
