@@ -243,6 +243,17 @@ def to_goldenrod(bot):
     bot.travel("T25")
 
 
+def radio_card(bot):
+    # Whitney is at the Radio Tower, and a woman stands in her gym's doorway until the player takes the tower's
+    # quiz on the first floor: Yes to start it, then Yes, Yes, No, Yes, No (the answers in the tower's script).
+    # The prize is the Radio Card; Whitney then hurries back to her gym
+    bot.travel("D23R0101")
+    bot.talk("D23R0101", 2, answers=["a", "a", "a", "b", "a", "b"])
+    bot.expect("FLAG_GOT_RADIO_CARD", "winning the Radio Tower quiz")
+    bot.expect("FLAG_UNK_318", "Whitney going back to her gym")
+    bot.go_through("D23R0101", 0)
+
+
 def whitney_gym(bot):
     # the Whitney set from the Pokemon Center, then through the gym's maze to Whitney. She cries when she loses;
     # a girl by the entrance has a word, and then Whitney hands over the badge
@@ -258,4 +269,4 @@ def whitney_gym(bot):
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
           back_to_elm, stolen_pokemon, to_violet, sprout_tower,
           violet_gym, mystery_egg, to_azalea, kurt, slowpoke_well, azalea_gym, to_ilex, farfetchd,
-          to_goldenrod, whitney_gym]
+          to_goldenrod, radio_card, whitney_gym]
