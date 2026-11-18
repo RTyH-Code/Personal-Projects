@@ -13,6 +13,9 @@ the start, the harness gives five level-appropriate Pokemon from the bedroom
 PC, so the bot does not have to catch and train. Its own starter from
 Professor Elm joins them.
 
+The emulator now and then crashes on its own; the run then carries on from the
+last stage that finished.
+
 The story is a list of stages. After each one the bot saves a save state
 (OUT/stage_NAME.dst), so a later run can start from any stage with --from.
 When the bot is stuck (it cannot reach a place, a scene does not end, a
@@ -38,6 +41,7 @@ FIELD_SYSTEM_OBJECTS = 0x3C         # FieldSystem.mapObjectManager -> {flags, ob
 OBJECT_SIZE = 0x12C                 # LocalMapObject: flags, flags2, id, ..., currentX at 0x64, currentZ at 0x6C
 SURF = {0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x19, 0x2A, 0x50, 0x51, 0x52, 0x53, 0x73, 0x78, 0x7C}
 LEDGES = {0x38: "right", 0x39: "left", 0x3A: "up", 0x3B: "down"}
+LADDERS = {0x3C: "up", 0x3D: "down", 0x3E: "down"}
 OPPOSITE = {"up": "down", "down": "up", "left": "right", "right": "left"}
 
 
@@ -101,6 +105,16 @@ class Bot:
                 out[g.word(obj + 8)] = (g.word(obj + 0x64), g.word(obj + 0x6C))
         return out
 
+    def flag(self, name):
+        g = self.game
+        f = self.world.flags[name]
+        return bool(g.emu.memory.unsigned[g.vars_pointer + walk_test.FLAGS_OFFSET + f // 8] >> (f % 8) & 1)
+
+    def expect(self, name, what):
+        """Stop if a story flag that the stage should have set is not set."""
+        if not self.flag(name):
+            self.stuck("%s did not happen (%s is not set)" % (what, name))
+
     def facing(self):
         p = self.game.position()
         return {0: "up", 1: "down", 2: "left", 3: "right"}.get(p[3]) if p else None
@@ -121,7 +135,9 @@ class Bot:
     def path(self, code, start, goals, avoid=frozenset()):
         """Shortest list of directions from start to any goal tile, or None."""
         tiles = self.tiles(code)
-        blocked = (self.people(code) | set(avoid)) - set(goals)
+        warps = {(w["x"], w["z"]) for m in self.region_maps(code) for w in self.world.events(m).get("warp_events", [])}
+        blocked = (self.people(code) | set(avoid) | warps) - set(goals)   # don't walk into a warp on the way
+        on_ladder = LADDERS.get(tiles.get(start))
         seen = {start: None}
         queue = deque([start])
         while queue:
@@ -133,6 +149,8 @@ class Bot:
                     steps.append(d)
                 return steps[::-1]
             for d, (dx, dz, _) in DIRS.items():
+                if here == start and d == on_ladder:
+                    continue                       # that would climb the ladder just arrived by
                 nxt = (here[0] + dx, here[1] + dz)
                 b = tiles.get(nxt)
                 if b is None or b in SURF or nxt in blocked or nxt in seen:
@@ -164,6 +182,7 @@ class Bot:
         answers = list(answers)
         frames = 0
         calm = 0
+        presses = 0
         while frames < limit:
             g = self.game
             if g.in_field():
@@ -182,9 +201,22 @@ class Bot:
             if self.in_battle():
                 self.battle()
                 continue
-            g.key("a", after=20)
+            if self.in_pokegear():
+                # a phone call: B to the end of it, then the bar at the foot of the Pokegear closes it
+                g.key("b", after=30)
+                g.key("b", after=30)
+                g.touch(128, 175, after=60)
+                frames += 140
+                continue
+            presses += 1
+            # A for messages; on a naming screen A types letters and START jumps to OK
+            g.key("start" if presses % 12 == 0 else "a", after=20)
             frames += 26
         self.stuck("a scene did not end")
+
+    def in_pokegear(self):
+        image = self.game.emu.screenshot()
+        return image.getpixel((128, 8))[:3] == (40, 64, 240) and max(image.getpixel((20, 60))[:3]) < 110
 
     def question(self):
         """A yes/no question waiting for an answer: the two big buttons on the touch screen."""
@@ -203,8 +235,9 @@ class Bot:
             self.game.run(4)
         return False
 
-    def walk(self, code, goals, avoid=(), face=None):
-        """Walk to one of the goal tiles of the map, dealing with whatever happens on the way."""
+    def walk(self, code, goals, avoid=(), face=None, leave_ok=False):
+        """Walk to one of the goal tiles of the map, dealing with whatever happens on the way. With leave_ok,
+        reaching another map instead (a warp on the goal tile) also ends the walk, returning None."""
         goals = {tuple(g) for g in goals}
         avoid = set(avoid)
         for attempt in range(60):
@@ -213,6 +246,8 @@ class Bot:
             if not here:
                 continue
             if here[0] != code and not self.same_region(here[0], code):
+                if leave_ok:
+                    return None
                 self.stuck("on %s, not %s" % (here[0], code))
             pos = (here[1], here[2])
             if pos in goals:
@@ -248,11 +283,17 @@ class Bot:
         walking `into` it. Waits until the next map has loaded."""
         warp = self.world.events(code)["warp_events"][warp_index]
         tile = (warp["x"], warp["z"])
-        grid, _ = self.world.grid(self.world.headers[code]["matrix"])
+        entry, found = self.warp_entry(code, warp_index)   # a door is a blocked tile with the door behaviour
         if into is None:
-            behaviour = grid.get(tile, 0) & 0xFF     # a door is a blocked tile with the door behaviour
-            into = {0x6C: "right", 0x6D: "left", 0x6E: "up", 0x6F: "down", 0x62: "right", 0x63: "left",
-                    0x64: "up", 0x65: "down", 0x69: "up", 0x5E: "right", 0x5F: "left"}.get(behaviour)
+            into = found
+        if into and entry == tile:                          # a ladder
+            if self.walk(code, [tile], leave_ok=True) is None or self.arrived(code, frames=60):
+                return                                      # a ladder down is taken by stepping onto it
+            for _ in range(3):
+                self.game.key(into, hold=16, after=4)
+                if self.arrived(code):
+                    return
+            self.stuck("ladder %d of %s did not work" % (warp_index, code))
         if into:
             dx, dz, _ = DIRS[into]
             self.walk(code, [(tile[0] - dx, tile[1] - dz)])
@@ -266,8 +307,101 @@ class Bot:
                 return
         self.stuck("warp %d of %s did not work" % (warp_index, code))
 
-    def arrived(self, old):
-        for _ in range(40):
+    def warp_entry(self, code, index):
+        """(tile to stand on, direction to walk into it or None) for a warp of the map."""
+        warp = self.world.events(code)["warp_events"][index]
+        tile = (warp["x"], warp["z"])
+        grid, _ = self.world.grid(self.world.headers[code]["matrix"])
+        into = {0x6C: "right", 0x6D: "left", 0x6E: "up", 0x6F: "down", 0x62: "right", 0x63: "left",
+                0x64: "up", 0x65: "down", 0x69: "up", 0x5E: "right", 0x5F: "left"}.get(grid.get(tile, 0) & 0xFF)
+        if into:
+            dx, dz, _ = DIRS[into]
+            return (tile[0] - dx, tile[1] - dz), into
+        ladder = LADDERS.get(grid.get(tile, 0) & 0xFF)
+        if ladder:
+            return tile, ladder                  # stand on the ladder and climb it
+        return tile, None
+
+    def reach(self, code, start):
+        """Every tile of the map (or outdoor region) the player can walk to from start, with its distance."""
+        tiles = self.tiles(code)
+        seen = {start: 0}
+        queue = deque([start])
+        while queue:
+            here = queue.popleft()
+            for d, (dx, dz, _) in DIRS.items():
+                nxt = (here[0] + dx, here[1] + dz)
+                b = tiles.get(nxt)
+                if b is None or b in SURF:
+                    continue
+                if b in LEDGES:
+                    if LEDGES[b] != d:
+                        continue
+                    nxt = (nxt[0] + dx, nxt[1] + dz)
+                    if tiles.get(nxt) is None:
+                        continue
+                if nxt not in seen:
+                    seen[nxt] = seen[here] + 1
+                    queue.append(nxt)
+        return seen
+
+    def region_maps(self, code):
+        if self.world.headers[code]["matrix"] != 0:
+            return [code]
+        return [m for m in self.world.map_ids if m in self.world.headers and self.world.headers[m]["matrix"] == 0
+                and self.world.events(m).get("warp_events")]
+
+    def route(self, target):
+        """The warps to take, [(map, warp index)], to get from here to the target map, fewest steps first."""
+        import heapq
+        here = self.where()
+        start = (here[0], (here[1], here[2]))
+        best, queue, done = {start: (0, [])}, [(0, 0, start)], set()
+        counter = 0
+        while queue:
+            cost, _, node = heapq.heappop(queue)
+            if node in done:
+                continue
+            done.add(node)
+            code, pos = node
+            if code == target or (self.same_region(code, target) if code in self.world.headers and target in self.world.headers else False):
+                return best[node][1]
+            if len(done) > 200:
+                break
+            dist = self.reach(code, pos)
+            for m in self.region_maps(code):
+                for i, warp in enumerate(self.world.events(m).get("warp_events", [])):
+                    entry, _ = self.warp_entry(m, i)
+                    if entry not in dist and (warp["x"], warp["z"]) != pos:
+                        continue
+                    dest = warp["dest_header_id"].replace("MAP_", "")
+                    if dest not in self.world.headers:
+                        continue
+                    arrivals = self.world.events(dest).get("warp_events", [])
+                    if warp["dest_warp_id"] >= len(arrivals):
+                        continue
+                    a = arrivals[warp["dest_warp_id"]]
+                    nxt = (dest, (a["x"], a["z"]))
+                    c = cost + dist.get(entry, 0) + 10
+                    if nxt not in best or c < best[nxt][0]:
+                        best[nxt] = (c, best[node][1] + [(m, i)])
+                        counter += 1
+                        heapq.heappush(queue, (c, counter, nxt))
+        self.stuck("no way found to %s" % target)
+
+    def travel(self, target):
+        """Go to the target map by whatever warps lead there."""
+        for _ in range(3):
+            steps = self.route(target)
+            for code, index in steps:
+                self.go_through(code, index)
+            here = self.where()
+            if here and (here[0] == target or self.same_region(here[0], target)):
+                return
+        self.stuck("did not get to %s" % target)
+
+    def arrived(self, old, frames=400):
+        for _ in range(frames // 10):
             self.game.run(10)
             here = self.where()
             if here and here[0] != old and self.free():
@@ -366,6 +500,40 @@ class Bot:
 
 
 def main():
+    """Run the stages in a child process. The emulator now and then crashes (most often right after loading a
+    save state); then the run carries on from the last stage that finished, up to three times."""
+    if "--child" in sys.argv:
+        sys.argv.remove("--child")
+        return run()
+    args = sys.argv[1:]
+    positional = [a for i, a in enumerate(args)
+                  if not a.startswith("--") and (i == 0 or args[i - 1] not in ("--from", "--until"))]
+    out = positional[3]
+    names = [s.__name__ for s in __import__("story").STAGES]
+    done = []
+    for attempt in range(4):
+        child = subprocess.run([sys.executable, "-X", "faulthandler", __file__] + args + ["--child"])
+        results = json.load(open(os.path.join(out, "story.json"))) if os.path.exists(os.path.join(out, "story.json")) else []
+        done += results
+        last = results[-1] if results else None
+        if child.returncode >= 0 or (last and last["result"] != "ok"):
+            break
+        # crashed: start again after the last stage that finished
+        finished = [r["stage"] for r in done if r["result"] == "ok"]
+        if not finished:
+            continue
+        nxt = names.index(finished[-1]) + 1
+        if nxt >= len(names):
+            break
+        if "--from" in args:
+            args[args.index("--from") + 1] = names[nxt]
+        else:
+            args += ["--from", names[nxt]]
+        print("the emulator crashed; carrying on from %s" % names[nxt], flush=True)
+    json.dump(done, open(os.path.join(out, "story.json"), "w"), indent=1)
+
+
+def run():
     args = sys.argv[1:]
 
     def option(name, default):
@@ -396,17 +564,24 @@ def main():
         bot.game.emu.savestate.load_file(os.path.join(out, "stage_%s.dst" % names[begin - 1]))
         bot.game.run(60)
     results = []
+    json.dump(results, open(os.path.join(out, "story.json"), "w"))
     for stage in stages[begin:end]:
         frames = bot.game.frames
+        battles = len(bot.log)
         try:
             stage(bot)
         except Stuck as e:
             results.append(dict(stage=stage.__name__, result="stuck", note=str(e)))
+            json.dump(results, open(os.path.join(out, "story.json"), "w"), indent=1)
             print("%-24s STUCK  %s" % (stage.__name__, e), flush=True)
             break
         bot.save(os.path.join(out, "stage_%s.dst" % stage.__name__))
-        results.append(dict(stage=stage.__name__, result="ok", at=bot.where(), frames=bot.game.frames - frames))
-        print("%-24s ok     at %s" % (stage.__name__, bot.where()), flush=True)
+        minutes = (bot.game.frames - frames) / 3600
+        results.append(dict(stage=stage.__name__, result="ok", at=bot.where(), game_minutes=round(minutes, 1),
+                            battles=len(bot.log) - battles))
+        json.dump(results, open(os.path.join(out, "story.json"), "w"), indent=1)
+        print("%-24s ok     at %-28s %5.1f game minutes, %d battles" % (stage.__name__, bot.where(), minutes,
+                                                                        len(bot.log) - battles), flush=True)
     json.dump(results, open(os.path.join(out, "story.json"), "w"), indent=1)
 
 

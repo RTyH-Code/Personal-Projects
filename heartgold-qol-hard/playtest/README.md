@@ -1,6 +1,6 @@
 # HeartGold playtesters
 
-Two unattended testers for [HeartGold QoL + Hard](../README.md). Both play
+Three unattended testers for [HeartGold QoL + Hard](../README.md). All play
 the real game in an emulator on a test build of the hack.
 
 - `battle_test.py` fights trainers and reports which battles were won, lost
@@ -8,9 +8,8 @@ the real game in an emulator on a test build of the hack.
 - `walk_test.py` goes to every map, to every legendary the hack adds and
   into the grass of every area, and uses the hack's new features. See
   [The overworld tester](#the-overworld-tester).
-
-Neither plays the story from start to finish, so neither proves that the
-game can be completed.
+- `story_bot.py` plays the story from the bedroom on. So far it gets as far
+  as Falkner's badge. See [The story bot](#the-story-bot).
 
 # The battle tester
 
@@ -171,3 +170,54 @@ pond.
   speed a save completes in a few seconds.
 - The legendary gates are opened by setting their flags, not by beating
   the Champion or Red.
+
+# The story bot
+
+`story_bot.py` plays the story itself, in order, from the player's bedroom.
+It walks every step, takes every scene, phone call and forced battle, and
+fights every trainer that spots it. The one help it gets is a team: at the
+bedroom PC the harness gives it five Lv. 16 Pokémon (the battle tester's
+reference families), so it doesn't have to catch and train. Its own starter
+from Professor Elm joins them.
+
+```bash
+SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 playtest/story_bot.py /path/to/test/hg-engine/test.nds /path/to/test/hg-engine /path/to/dumped/hg-engine out
+```
+
+How it plays:
+
+- **Finding its way:** it plans paths on the maps' collision data, with
+  ledges jumped one way only and water left alone, and a route planner picks
+  the warps (doors, stairs, ladders, gatehouses) that lead to the next map.
+  It reads which map the player is on, and where each person stands, from
+  the game's memory.
+- **Scenes:** it presses through messages and story scenes until the player
+  can move again, closes the Pokégear after a phone call, and on a naming
+  screen types a name and confirms it.
+- **Battles:** each turn its lead uses its first move; when one faints, the
+  next comes in.
+
+The story is a list of stages in `story.py`. After each stage the bot saves a
+save state (`out/stage_NAME.dst`), so `--from NAME` starts a later run from
+there and `--until NAME` stops after it. Key stages check that the story flag
+they should set is set (the starter, the Pokégear, the Pokédex, the Sprout
+Tower Elder, Falkner's TM). When the bot gets stuck, or a check fails, it
+stops and writes `out/stuck.png`, `out/stuck.dst` and the reason; results go
+to `out/story.json`.
+
+## Stages so far
+
+From the bedroom: Mom's scene, Elm's lab and the starter, the Pokégear from
+Mom, Routes 29 and 30 and Cherrygrove City (with the Guide Gent's tour) to
+Mr. Pokémon's house for the Pokédex, Elm's phone call, the rival battle in
+Cherrygrove, the police scene in the lab, Lyra's catching lesson, Routes 30
+and 31 to Violet City, Sprout Tower to the Elder, and Falkner's gym.
+
+A full run from the bedroom to Falkner's badge passed every stage and every
+check: 14 stages, 33 battles (wild Pokémon, trainers who spotted the bot, the
+rival, the Sprout Tower Sages and Elder, Falkner and his Bird Keepers), about
+51 minutes of game time.
+
+Sprout Tower turns out to be required: until the Elder is beaten, the gym
+guide stands on the lift in Falkner's gym and blocks it.
+
