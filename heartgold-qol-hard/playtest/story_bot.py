@@ -304,6 +304,7 @@ class Bot:
         reaching another map instead (a warp on the goal tile) also ends the walk, returning None."""
         goals = {tuple(g) for g in goals}
         avoid = set(avoid)
+        forgets = 0
         for attempt in range(250):
             self.settle()
             here = self.where()
@@ -321,6 +322,12 @@ class Bot:
             route = self.path(here[0], pos, goals, avoid)
             if route is None and avoid:
                 avoid = set()                 # whoever was in the way may have moved on
+                route = self.path(here[0], pos, goals, avoid)
+            key = self.world.headers[here[0]]["matrix"] or here[0]
+            if route is None and forgets < 3 and any(w[0] == key for w in self.walls):
+                # a step can fail for other reasons (a trainer about to come over): forget what was learned
+                forgets += 1
+                self.walls = {w for w in self.walls if w[0] != key}
                 route = self.path(here[0], pos, goals, avoid)
             if route is None:
                 self.stuck("no path on %s from %s to %s" % (here[0], pos, sorted(goals)[:4]))
