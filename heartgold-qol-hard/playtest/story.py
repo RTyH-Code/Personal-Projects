@@ -202,8 +202,9 @@ def twigs_but(*keep):
 
 
 def to_ilex(bot):
-    # west out of Azalea Town, where the rival picks a fight at the gatehouse, into Ilex Forest; the Charcoal
-    # Kiln's apprentice has lost his master's two Farfetch'd
+    # a heal after the gym, then west out of Azalea Town, where the rival picks a fight at the gatehouse, into
+    # Ilex Forest; the Charcoal Kiln's apprentice has lost his master's two Farfetch'd
+    heal(bot, "T23PC0101")
     bot.travel(ILEX)
     bot.settle()
 

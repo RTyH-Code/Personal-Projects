@@ -565,11 +565,15 @@ class Bot:
                     self.stuck("lost a battle: the team whited out")
             else:
                 white = 0
-            # after a loss the player wakes at a Pokemon Center: on a map again, but not the one the battle began on
+            # after a loss the player wakes at a Pokemon Center: on a map again, but not the one the battle began
+            # on; and on the way there every Pokemon of the party has no HP left
             here = self.where()
             if here and start and here[0] != start[0]:
                 self.battling = False
                 self.stuck("lost a battle by %s: the team whited out" % (start,))
+            if toggle % 5 == 0 and self.party_fainted():
+                self.battling = False
+                self.stuck("lost a battle by %s: every Pokemon fainted" % (start,))
             state = battle_test.screen_state(image)
             if state in ("menu", "moves", "party"):
                 menus += 1
@@ -633,6 +637,14 @@ class Bot:
         mem = self.game.emu.memory.unsigned
         return [pkm.Mon(bytes(mem[at + 8 + pkm.PARTY_SIZE * i:at + 8 + pkm.PARTY_SIZE * (i + 1)]))
                 for i in range(self.game.word(at + 4))]
+
+    def party_fainted(self):
+        """Whether every Pokemon of the party (not counting eggs) has no HP left."""
+        try:
+            mons = [m for m in self.party_mons() if m.valid() and not m.is_egg]
+        except Stuck:
+            return False
+        return bool(mons) and all(struct.unpack_from("<H", m.stats, 6)[0] == 0 for m in mons)
 
     def swap_team(self, name):
         """At a Pokemon Center: box the party and take out the boss's set (team_sets.py), healthy."""
