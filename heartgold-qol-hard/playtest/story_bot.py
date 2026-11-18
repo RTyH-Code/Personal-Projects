@@ -527,8 +527,16 @@ class Bot:
                 break
             g.run(1)
         toggle, frames, menus = 0, 0, 0
+        white = 0
         while not g.in_field() and frames < 60 * 60 * 20:
             image = g.emu.screenshot()
+            # a battle lost fades both screens to white before the player wakes at a Pokemon Center
+            if all(min(image.getpixel(p)[:3]) > 235 for p in ((20, 20), (128, 96), (236, 170), (128, 300))):
+                white += 1
+                if white > 30:
+                    self.stuck("lost a battle: the team whited out")
+            else:
+                white = 0
             state = battle_test.screen_state(image)
             if state in ("menu", "moves", "party"):
                 menus += 1

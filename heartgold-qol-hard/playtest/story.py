@@ -106,6 +106,15 @@ def mystery_egg(bot):
     bot.expect("FLAG_UNK_070", "getting the Mystery Egg")
 
 
+def heal(bot, pc):
+    # at a Pokemon Center: the nurse is across the counter, at (8, 11); "Shall we heal your Pokemon?" Yes
+    bot.travel(pc)
+    bot.walk(pc, [(8, 13)], face="up")
+    bot.game.key("a", after=30)
+    bot.settle()
+    bot.go_through(pc, 0)
+
+
 def to_azalea(bot):
     # south down Route 32, through Union Cave and along Route 33 to Azalea Town, where Team Rocket has taken over
     # the Slowpoke Well
@@ -122,6 +131,7 @@ def kurt(bot):
 def slowpoke_well(bot):
     # down the well, past the Grunts, to Proton; after him Kurt takes the player home. Until then a Grunt
     # stands in front of the gym door
+    heal(bot, "T23PC0101")
     bot.travel("D26R0102")
     bot.talk("D26R0102", 4)
     bot.settle()
@@ -157,6 +167,7 @@ def azalea_gym(bot):
     # which only the carts reach: switch 0 (top floor, and the middle floor's middle section) and switch 1 (the
     # middle floor's left section) flip their ends. With both switches off:
     bot.go_through("T23R0501", 0)
+    heal(bot, "T23PC0101")
     bot.travel(GYM)
     ride(bot, (3, 32), (9, 24))      # stop 0 to the middle floor's middle section (stop 4)
     ride(bot, (9, 17), (3, 9))       # stop 7 to the top floor's left section (stop 9), past a Bug Catcher
