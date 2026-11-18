@@ -45,6 +45,7 @@ VIOLET = ["Route 29", "Route 30", "Route 31", "Violet City", "Sprout Tower 2F", 
           "Dark Cave Route 31 Side", "Ruins of Alph"]
 AZALEA = VIOLET + ["Route 32", "Union Cave 1F", "Route 33", "Slowpoke Well B1F"]
 GOLDENROD = AZALEA + ["Ilex Forest", "Route 34", "Route 35", "Route 36", "National Park"]
+ECRUTEAK = GOLDENROD + ["Route 37", "Ecruteak City", "Burned Tower 1F", "Burned Tower B1F"]
 
 SETS = {
     # Falkner's birds (Lv. 11-14): Rock, Electric and a Ghost from the caves and routes before Violet City
@@ -71,6 +72,17 @@ SETS = {
                                MEDITITE=["FORCE_PALM", "PSYBEAM", "ROCK_TOMB", "CALM_MIND"],
                                GEODUDE=["ROCK_TOMB", "DIG", "SMACK_DOWN", "PROTECT"],
                                KADABRA=["PSYBEAM", "DISABLE", "REFLECT", "PROTECT"])),
+    # Morty's five Ghosts (Lv. 26-29: Duskull, Haunter, Drifblim, Gengar, Mismagius) hit hard with coverage
+    # (Icy Wind, Giga Drain, Air Cutter, Shock Wave, Sludge Bomb, Power Gem, Mystical Fire): Dark types that
+    # resist Ghost, a Normal type that Ghost moves pass through, and Dark moves all round; three Intimidates
+    "morty": dict(level=29, badges=3, places=ECRUTEAK, ways=TREES,
+                  tms=["FLASH", "ROOST", "BULLET_SEED", "ROCK_TOMB", "U_TURN", "DIG", "PAYBACK", "EMBARGO",
+                       "PROTECT", "LIGHT_SCREEN", "REFLECT", "ATTRACT"],
+                  item="ORAN_BERRY",
+                  team=["HOUNDOOM", "MIGHTYENA", "RATICATE", "GYARADOS", "SABLEYE", "MAWILE"],
+                  moves=dict(MIGHTYENA=["CRUNCH", "BITE", "ICE_FANG", "FIRE_FANG"],
+                             RATICATE=["CRUNCH", "SUCKER_PUNCH", "SWORDS_DANCE", "U_TURN"],
+                             MAWILE=["CRUNCH", "SUCKER_PUNCH", "IRON_DEFENSE", "ROCK_TOMB"])),
 }
 STARTERS = {"CHIKORITA", "CYNDAQUIL", "TOTODILE"}
 EV_TOTAL = {0: 128, 1: 192, 2: 256, 3: 320, 4: 384, 5: 448}       # by badges held; 510 from 6 badges on

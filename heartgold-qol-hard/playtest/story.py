@@ -1,4 +1,4 @@
-"""The story, stage by stage, for story_bot.py: New Bark Town to Whitney's badge.
+"""The story, stage by stage, for story_bot.py: New Bark Town to Morty's badge.
 
 Each stage is a function of the bot. Places are map codes (see
 tools/data/map_names.json) and tiles; warps are numbered as in the map's
@@ -268,7 +268,62 @@ def whitney_gym(bot):
     bot.expect("FLAG_GOT_TM45_FROM_WHITNEY", "beating Whitney")
 
 
+def squirt_bottle(bot):
+    # with the Plain Badge, the Goldenrod Flower Shop's owner gives the SquirtBottle, for the odd tree on Route 36
+    bot.travel("T25R0601")
+    bot.talk("T25R0601", 0)
+    bot.expect_item("SQUIRT_BOTTLE", "getting the SquirtBottle")
+    bot.go_through("T25R0601", 0)
+
+
+def sudowoodo(bot):
+    # the tree on Route 36 is a Sudowoodo: water it (Yes) and it fights
+    bot.travel("R36")
+    bot.talk("R36", 4)
+    bot.settle()
+    bot.expect("FLAG_HIDE_ROUTE_36_SUDOWOODO", "moving the Sudowoodo")
+
+
+def to_ecruteak(bot):
+    # north up Route 37 to Ecruteak City
+    bot.travel("T27")
+
+
+BURNED_TOWER = "D18R0101"
+
+
+def burned_tower(bot):
+    # Eusine and Morty wait inside, and the rival picks a fight; then down through the hole in the floor, where
+    # the three beasts wake and run. After that Morty goes back to his gym
+    bot.travel(BURNED_TOWER)
+    bot.walk(BURNED_TOWER, [(19, 23)])          # Eusine and Morty
+    bot.settle()
+    bot.walk(BURNED_TOWER, [(22, 19)])          # the rival
+    bot.settle()
+    bot.go_through(BURNED_TOWER, 1)             # the hole
+    bot.settle()
+    bot.walk("D18R0102", [(20, 16), (20, 17)])  # the beasts
+    bot.settle()
+    bot.expect("FLAG_UNK_247", "the beasts waking in the Burned Tower")
+
+
+MORTY_GYM = "T27GYM0101"
+# Morty's gym is dark: the floor is a hidden path, and stepping off it (these tiles) sends the player back to
+# the door
+MORTY_DROPS = {(11, 12), (9, 12), (9, 21), (8, 29), (9, 30), (12, 31), (15, 30), (13, 38), (12, 19), (12, 21),
+               (14, 20), (12, 24), (21, 29), (20, 32), (17, 40)}
+
+
+def morty_gym(bot):
+    # the Morty set from the Pokemon Center, then along the hidden path, past four Mediums, to Morty
+    heal(bot, "T27PC0101", team="morty")
+    bot.travel(MORTY_GYM)
+    bot.talk(MORTY_GYM, 1, never=MORTY_DROPS)
+    bot.expect("FLAG_GOT_TM30_FROM_MORTY", "beating Morty")
+
+
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
           back_to_elm, stolen_pokemon, to_violet, sprout_tower,
           violet_gym, mystery_egg, to_azalea, kurt, slowpoke_well, azalea_gym, to_ilex, farfetchd,
-          to_goldenrod, radio_card, whitney_gym]
+          to_goldenrod, radio_card, whitney_gym, squirt_bottle, sudowoodo,
+          to_ecruteak, burned_tower, morty_gym]

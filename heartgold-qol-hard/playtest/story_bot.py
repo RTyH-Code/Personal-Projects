@@ -305,7 +305,7 @@ class Bot:
             self.game.run(4)
         return False
 
-    def walk(self, code, goals, avoid=(), face=None, leave_ok=False):
+    def walk(self, code, goals, avoid=(), face=None, leave_ok=False, never=()):
         """Walk to one of the goal tiles of the map, dealing with whatever happens on the way. With leave_ok,
         reaching another map instead (a warp on the goal tile) also ends the walk, returning None."""
         goals = {tuple(g) for g in goals}
@@ -325,16 +325,17 @@ class Bot:
                 if face and self.facing() != face:
                     self.game.key(face, hold=2, after=10)
                 return pos
-            route = self.path(here[0], pos, goals, avoid)
+            never = set(never)                # tiles never to step on (a drop in a dark gym)
+            route = self.path(here[0], pos, goals, avoid | never)
             if route is None and avoid:
                 avoid = set()                 # whoever was in the way may have moved on
-                route = self.path(here[0], pos, goals, avoid)
+                route = self.path(here[0], pos, goals, never)
             key = self.world.headers[here[0]]["matrix"] or here[0]
             if route is None and forgets < 3 and any(w[0] == key for w in self.walls):
                 # a step can fail for other reasons (a trainer about to come over): forget what was learned
                 forgets += 1
                 self.walls = {w for w in self.walls if w[0] != key}
-                route = self.path(here[0], pos, goals, avoid)
+                route = self.path(here[0], pos, goals, avoid | never)
             if route is None:
                 self.stuck("no path on %s from %s to %s" % (here[0], pos, sorted(goals)[:4]))
             for d in route:
@@ -529,7 +530,13 @@ class Bot:
                 return True
         return False
 
-    def talk(self, code, target, answers=()):
+    def expect_item(self, name, what):
+        """Stop if an item that the stage should have put in the bag never went in."""
+        item = self.data["items"][name]
+        if not any(i == item for i, _ in self.game.added):
+            self.stuck("%s did not happen (no %s went into the bag)" % (what, name))
+
+    def talk(self, code, target, answers=(), never=()):
         """Stand next to a person or thing and press A facing it; then see the scene through. `target` is a tile
         (x, z), or the number of a person in the map's list of object events, wherever they now stand."""
         if isinstance(target, int):
@@ -547,7 +554,7 @@ class Bot:
                 options[(near[0] - dx, near[1] - dz)] = d     # across a counter
         tiles = self.tiles(code)
         options = {t: d for t, d in options.items() if t in tiles}
-        pos = self.walk(code, options, avoid={target})
+        pos = self.walk(code, options, avoid={target}, never=never)
         self.game.key(options[pos], hold=2, after=10)
         self.game.key("a", after=30)
         self.settle(answers)
