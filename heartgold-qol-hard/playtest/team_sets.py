@@ -14,7 +14,9 @@ built from what a player could have by then:
   for every Pokemon in every set.
 - Moves: chosen by the hack's boss team tool (the best move of each of the
   Pokemon's types, a coverage move, a status or set-up move), but only from
-  its level-up moves and the TMs the player can have picked up by then.
+  its level-up moves and the TMs the player can have picked up by then. A
+  set can instead name the moves for a matchup, as a player would; the
+  checker holds those to the same rule.
 - Level: the boss's strongest Pokemon's level.
 - EVs: what a player who battles a lot but never trains on purpose might
   have: a total that grows with the badges, half in the stat the Pokemon
@@ -52,11 +54,23 @@ SETS = {
     # to the box with the old team
     "bugsy": dict(level=19, badges=1, places=AZALEA, ways=ROD, tms=["FLASH", "ROOST", "BULLET_SEED", "ROCK_TOMB"],
                   item="ORAN_BERRY", team=["BAYLEEF", "GEODUDE", "ONIX", "FLAAFFY", "SPEAROW", "NATU"]),
-    # Whitney's Normal types (Lv. 21-24, Miltank last): Fighting, a Ghost, Rock and Electric
+    # Whitney's team in the hack answers the usual picks: Furret has Brick Break and Shadow Claw, Stantler
+    # Intimidate, and Miltank Scrappy (her Normal moves hit Ghosts), Rollout and Attract. So: Steel types that
+    # take Normal and Rock moves (Bronzor; Mawile, with Intimidate of its own), Fighting (Heracross, Meditite),
+    # Rock and Ground (Geodude) and a special attacker past Intimidate (Kadabra). All female where the species
+    # can be (Miltank is female, and Attract only works on the other gender); Bronzor has no gender
     "whitney": dict(level=24, badges=2, places=GOLDENROD, ways=TREES,
                     tms=["FLASH", "ROOST", "BULLET_SEED", "ROCK_TOMB", "U_TURN", "DIG", "PAYBACK", "EMBARGO",
-                         "PROTECT"],
-                    item="ORAN_BERRY", team=["BAYLEEF", "HERACROSS", "MEDITITE", "GEODUDE", "FLAAFFY", "GASTLY"]),
+                         "PROTECT", "LIGHT_SCREEN", "REFLECT"],
+                    item="ORAN_BERRY", female=True,
+                    team=["BRONZOR", "MAWILE", "HERACROSS", "MEDITITE", "GEODUDE", "KADABRA"],
+                    # chosen for the matchup, as a player would; the check holds them to what can be learned
+                    moves=dict(BRONZOR=["GYRO_BALL", "CONFUSION", "HYPNOSIS", "REFLECT"],
+                               MAWILE=["SUCKER_PUNCH", "BITE", "ROCK_TOMB", "IRON_DEFENSE"],
+                               HERACROSS=["DIG", "HORN_ATTACK", "ROCK_TOMB", "ARM_THRUST"],
+                               MEDITITE=["FORCE_PALM", "PSYBEAM", "ROCK_TOMB", "CALM_MIND"],
+                               GEODUDE=["ROCK_TOMB", "DIG", "SMACK_DOWN", "PROTECT"],
+                               KADABRA=["PSYBEAM", "DISABLE", "REFLECT", "PROTECT"])),
 }
 STARTERS = {"CHIKORITA", "CYNDAQUIL", "TOTODILE"}
 EV_TOTAL = {0: 128, 1: 192, 2: 256, 3: 320, 4: 384, 5: 448}       # by badges held; 510 from 6 badges on
@@ -175,11 +189,23 @@ class Data:
                 problems.append("%s: no member of its line is caught on the way (%s)" % (
                     name, ", ".join(sorted({"%s %s" % (p, h) for stage, _, _ in line
                                            for p, h in self.found.get(stage, [])}))[:200] or "nowhere"))
+            if name in spec.get("moves", {}):
+                saved = self.bt.MACHINES
+                self.bt.MACHINES = set(spec["tms"])
+                try:
+                    legal = self.bt.legal_moves(name, spec["level"], False)
+                finally:
+                    self.bt.MACHINES = saved
+                for move in spec["moves"][name]:
+                    if move not in legal:
+                        problems.append("%s cannot have %s by Lv. %d with the set's TMs" % (name, move, spec["level"]))
         return problems
 
     def moves(self, name, spec):
         """The set's moves for a Pokemon: the boss team tool's choice from its level-up moves and the set's TMs."""
         bt = self.bt
+        if name in spec.get("moves", {}):
+            return list(spec["moves"][name])
         saved = bt.MACHINES
         bt.MACHINES = set(spec["tms"])
         try:
@@ -214,7 +240,10 @@ class Data:
         tid, sid = mon.u16(0x04), mon.u16(0x06)
         # a personality value with a neutral nature that is not shiny; it also sets gender and ability slot
         pid = (self.species_ids[name] * 2654435761) & 0xFFFFFFFF
-        while pid % 25 != NEUTRAL or ((pid >> 16) ^ (pid & 0xFFFF) ^ tid ^ sid) < 8:
+        ratio = sp["gender"]
+        want_female = spec.get("female") and ratio not in (0, 255)
+        while (pid % 25 != NEUTRAL or ((pid >> 16) ^ (pid & 0xFFFF) ^ tid ^ sid) < 8
+               or (want_female and ratio != 254 and (pid & 0xFF) >= ratio)):
             pid = (pid + 1) & 0xFFFFFFFF
         mon.pid = pid
         mon.set_u16(0x00, self.species_ids[name])
@@ -232,7 +261,6 @@ class Data:
             mon.blocks[0x2C + i] = 0
         ivs = sum(15 << (5 * i) for i in range(6))            # all 15; not an egg, not nicknamed
         mon.set_u32(0x30, ivs)
-        ratio = sp["gender"]
         female = ratio == 254 or (ratio not in (0, 255) and (pid & 0xFF) < ratio)
         mon.blocks[0x38] = (mon.blocks[0x38] & 1) | (2 if female else 0) | (4 if ratio == 255 else 0)  # form 0
         for i, code in enumerate(self.nickname(name)):
