@@ -328,7 +328,14 @@ class Bot:
             self.stuck("ladder %d of %s did not work" % (warp_index, code))
         if into:
             dx, dz, _ = DIRS[into]
-            self.walk(code, [(tile[0] - dx, tile[1] - dz)])
+            # a wide doorway is several warps to the same place: stand before whichever is easiest to reach
+            goals = [(tile[0] - dx, tile[1] - dz)]
+            for i, other in enumerate(self.world.events(code)["warp_events"]):
+                if i != warp_index and other["dest_header_id"] == warp["dest_header_id"]:
+                    e, d = self.warp_entry(code, i)
+                    if d == into and e != (other["x"], other["z"]):
+                        goals.append(e)
+            self.walk(code, goals)
             for _ in range(3):
                 self.game.key(into, hold=16, after=4)
                 if self.arrived(code):
