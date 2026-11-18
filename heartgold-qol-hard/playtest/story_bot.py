@@ -155,7 +155,8 @@ class Bot:
         """Shortest list of directions from start to any goal tile, or None."""
         tiles = self.tiles(code)
         warps = {(w["x"], w["z"]) for m in self.region_maps(code) for w in self.world.events(m).get("warp_events", [])}
-        blocked = (self.people(code) | set(avoid) | warps) - set(goals)   # don't walk into a warp on the way
+        # don't walk into a warp on the way; a goal tile someone stands on (or was in the way at) can't be reached
+        blocked = self.people(code) | set(avoid) | (warps - set(goals))
         on_ladder = LADDERS.get(tiles.get(start))
         seen = {start: None}
         queue = deque([start])
