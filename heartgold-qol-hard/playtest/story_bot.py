@@ -89,6 +89,7 @@ class Bot:
         self.fs = None
         self.log = []
         self.last_place = None
+        self.walls = set()          # (matrix or map, tile, direction) found blocked though the tiles say open
         self.battlers = {}          # battler id -> (BattleSystem, OpponentData) for the battle being opened
         self.game.emu.memory.register_exec(BATTLER_SETUP, self._battler_setup)
         self.game.emu.memory.register_exec(OPTIONS_GET_BATTLE_STYLE, self._set_style)
@@ -174,6 +175,7 @@ class Bot:
     def path(self, code, start, goals, avoid=frozenset()):
         """Shortest list of directions from start to any goal tile, or None."""
         tiles = self.tiles(code)
+        matrix = self.world.headers[code]["matrix"] or code
         warps = {(w["x"], w["z"]) for m in self.region_maps(code) for w in self.world.events(m).get("warp_events", [])}
         # don't walk into a warp on the way; a goal tile someone stands on (or was in the way at) can't be reached
         blocked = self.people(code) | set(avoid) | (warps - set(goals))
@@ -191,6 +193,8 @@ class Bot:
             for d, (dx, dz, _) in DIRS.items():
                 if here == start and d == on_ladder:
                     continue                       # that would climb the ladder just arrived by
+                if (matrix, here, d) in self.walls:
+                    continue                       # found not to be passable (a drop the tiles don't show)
                 nxt = (here[0] + dx, here[1] + dz)
                 b = tiles.get(nxt)
                 if b is None or b in SURF or nxt in blocked or nxt in seen:
@@ -286,7 +290,7 @@ class Bot:
         reaching another map instead (a warp on the goal tile) also ends the walk, returning None."""
         goals = {tuple(g) for g in goals}
         avoid = set(avoid)
-        for attempt in range(60):
+        for attempt in range(250):
             self.settle()
             here = self.where()
             if not here:
@@ -317,7 +321,13 @@ class Bot:
                     dx, dz, _ = DIRS[d]
                     cur = self.where()
                     if cur:
-                        avoid.add((cur[1] + dx, cur[2] + dz))   # someone in the way
+                        ahead = (cur[1] + dx, cur[2] + dz)
+                        if ahead in self.people(cur[0]):
+                            avoid.add(ahead)                  # someone in the way
+                        else:
+                            # nobody there, yet the step fails: the floor changes height where the tiles
+                            # don't say so (a raised walkway). Remember it and find another way
+                            self.walls.add((self.world.headers[cur[0]]["matrix"] or cur[0], (cur[1], cur[2]), d))
                     break
         self.stuck("could not reach %s on %s" % (sorted(goals)[:4], code))
 
