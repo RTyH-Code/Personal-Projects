@@ -69,6 +69,10 @@ class Stuck(Exception):
     pass
 
 
+class Moved(Stuck):
+    """A scene took the player to another map on the way."""
+
+
 class Bot:
     def __init__(self, rom, tree, dump, out_dir):
         self.out = out_dir
@@ -282,7 +286,7 @@ class Bot:
             if here[0] != code and not self.same_region(here[0], code):
                 if leave_ok:
                     return None
-                self.stuck("on %s, not %s" % (here[0], code))
+                raise Moved("on %s, not %s" % (here[0], code))
             pos = (here[1], here[2])
             if pos in goals:
                 if face and self.facing() != face:
@@ -451,16 +455,22 @@ class Bot:
 
     def travel(self, target):
         """Go to the target map by whatever warps lead there; outdoors, on until the player stands in it."""
-        for _ in range(3):
+        for _ in range(6):
             steps = self.route(target)
-            for code, index in steps:
-                self.go_through(code, index)
+            try:
+                for code, index in steps:
+                    self.go_through(code, index)
+            except Moved:
+                continue                    # plan again from where the scene left the player
             here = self.where()
             if here and here[0] != target:
                 dist = self.reach(here[0], (here[1], here[2]))
                 goals = self.region_tiles(here[0], target, dist)
                 if goals:
-                    self.walk(target, [min(goals, key=dist.get)])
+                    try:
+                        self.walk(target, [min(goals, key=dist.get)])
+                    except Moved:
+                        continue
                     here = self.where()
             if here and here[0] == target:
                 return
