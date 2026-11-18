@@ -208,6 +208,8 @@ def to_ilex(bot):
     # a heal after the gym, then west out of Azalea Town, where the rival picks a fight at the gatehouse, into
     # Ilex Forest; the Charcoal Kiln's apprentice has lost his master's two Farfetch'd
     heal(bot, "T23PC0101")
+    bot.travel("T23R0101")                  # the rival stops the player on the way to the gatehouse
+    heal(bot, "T23PC0101")                  # and a heal after him, before the forest
     bot.travel(ILEX)
     bot.settle()
 
@@ -321,17 +323,18 @@ def burned_tower(bot):
 
 
 MORTY_GYM = "T27GYM0101"
-# Morty's gym is dark: the floor is a hidden path, and stepping off it (these tiles) sends the player back to
-# the door
-MORTY_DROPS = {(11, 12), (9, 12), (9, 21), (8, 29), (9, 30), (12, 31), (15, 30), (13, 38), (12, 19), (12, 21),
-               (14, 20), (12, 24), (21, 29), (20, 32), (17, 40)}
+# Morty's gym is dark: the floor is a hidden path, and stepping off it (onto the gym's trigger areas) spins the
+# player back to the door
+def morty_drops(bot):
+    return {(c["x"] + i, c["z"] + j) for c in bot.world.events(MORTY_GYM)["coord_events"]
+            for i in range(c["width"]) for j in range(c["length"])}
 
 
 def morty_gym(bot):
     # a heal, then along the hidden path, past four Mediums, to Morty
     heal(bot, "T27PC0101")
     bot.travel(MORTY_GYM)
-    bot.talk(MORTY_GYM, 1, never=MORTY_DROPS)
+    bot.talk(MORTY_GYM, 1, never=morty_drops(bot))
     bot.expect("FLAG_GOT_TM30_FROM_MORTY", "beating Morty")
 
 
