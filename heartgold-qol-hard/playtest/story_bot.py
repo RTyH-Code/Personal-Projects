@@ -31,6 +31,8 @@ from collections import deque
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import battle_test
+import pkm
+import team_sets
 import walk_test
 from walk_test import DIRS, text_box
 
@@ -71,6 +73,9 @@ class Bot:
         os.makedirs(out_dir, exist_ok=True)
         self.world = walk_test.World(rom, tree, dump)
         self.data = battle_test.load(tree)
+        self.sets = team_sets.Data(tree, dump)
+        self.party_at = None
+        self.team = None
         self.game = walk_test.Walker(rom)
         self.names = {v: k for k, v in self.world.map_ids.items()}
         self.fs = None
@@ -596,6 +601,73 @@ class Bot:
         self.battling = False
         self.log.append(dict(at=self.where(), ai=ai, menus=menus))
         print("  battle over: %d AI moves, %d menus, now at %s" % (self.ai_moves - moves, menus, self.where()), flush=True)
+
+    # ------------------------------------------------------------- the team
+
+    def party(self):
+        """Address of the party in RAM: {max 6, count, six 236-byte Pokemon}, found by its first valid Pokemon."""
+        g = self.game
+        def ok(at):
+            count = g.word(at) == 6 and g.word(at + 4)
+            if not count or count > 6:
+                return False
+            # any Pokemon will do: the game may be part way through rewriting one
+            for i in range(count):
+                mon = pkm.Mon(bytes(g.emu.memory.unsigned[at + 8 + pkm.PARTY_SIZE * i:at + 8 + pkm.PARTY_SIZE * (i + 1)]))
+                if mon.valid() and mon.species and 0 < mon.level <= 100:
+                    return True
+            return False
+        if self.party_at and ok(self.party_at):
+            return self.party_at
+        ram = bytes(g.emu.memory.unsigned[0x02000000:0x02400000])
+        at = ram.find(struct.pack("<I", 6))
+        while at >= 0:
+            if at % 4 == 0 and ok(0x02000000 + at):
+                self.party_at = 0x02000000 + at
+                return self.party_at
+            at = ram.find(struct.pack("<I", 6), at + 1)
+        self.stuck("could not find the party in memory")
+
+    def party_mons(self):
+        at = self.party()
+        mem = self.game.emu.memory.unsigned
+        return [pkm.Mon(bytes(mem[at + 8 + pkm.PARTY_SIZE * i:at + 8 + pkm.PARTY_SIZE * (i + 1)]))
+                for i in range(self.game.word(at + 4))]
+
+    def swap_team(self, name):
+        """At a Pokemon Center: box the party and take out the boss's set (team_sets.py), healthy."""
+        spec = team_sets.SETS[name]
+        at = self.party()
+        mons = self.party_mons()
+        template = next(m for m in mons if m.valid() and not m.is_egg)
+        built = [self.sets.build(template, species, spec) for species in spec["team"]]
+        data = b"".join(mon.encode() for mon, _, _ in built)
+        data += bytes(pkm.PARTY_SIZE * (6 - len(built)))
+        mem = self.game.emu.memory.unsigned
+        g = self.game
+        lead = lambda: pkm.Mon(bytes(mem[at + 8:at + 8 + pkm.PARTY_SIZE]))
+        # the game keeps decrypting the lead in place for a few frames at a time (the walking Pokemon reads it)
+        # and encrypts it again after; data written in that window comes out scrambled. So write when the lead
+        # reads whole, and check over the next frames that it stays the Pokemon written
+        for attempt in range(10):
+            for _ in range(60):
+                if lead().valid():
+                    break
+                g.run_every_frame(1)
+            for i, b in enumerate(struct.pack("<I", len(built)) + data):
+                mem[at + 4 + i] = b
+            seen = []
+            for _ in range(40):
+                g.run_every_frame(1)
+                m = lead()
+                seen.append(m.valid() and m.species == built[0][0].species)
+            if any(seen) and all(m.valid() for m in self.party_mons()[1:]):
+                break
+        else:
+            self.stuck("the %s set did not go into the party" % name)
+        self.team = name
+        print("  team: %s set, %s" % (name, ", ".join("%s Lv. %d" % (s, spec["level"]) for s in spec["team"])),
+              flush=True)
 
     # ------------------------------------------------------------- the run
 

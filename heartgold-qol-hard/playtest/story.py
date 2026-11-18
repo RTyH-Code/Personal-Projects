@@ -1,4 +1,4 @@
-"""The story, stage by stage, for story_bot.py: New Bark Town to Bugsy's badge.
+"""The story, stage by stage, for story_bot.py: New Bark Town to Whitney's badge.
 
 Each stage is a function of the bot. Places are map codes (see
 tools/data/map_names.json) and tiles; warps are numbered as in the map's
@@ -90,7 +90,8 @@ def sprout_tower(bot):
 
 
 def violet_gym(bot):
-    # up through Falkner's gym, past his two Bird Keepers, to Falkner
+    # the Falkner set from the Pokemon Center, then up through his gym, past two Bird Keepers, to Falkner
+    heal(bot, "T22PC0101", team="falkner")
     bot.travel("T22GYM0101")
     bot.walk("T22GYM0101", [(15, 20)])      # the lift: it carries the player up to the walkways
     bot.settle()
@@ -106,12 +107,15 @@ def mystery_egg(bot):
     bot.expect("FLAG_UNK_070", "getting the Mystery Egg")
 
 
-def heal(bot, pc):
-    # at a Pokemon Center: the nurse is across the counter, at (8, 11); "Shall we heal your Pokemon?" Yes
+def heal(bot, pc, team=None):
+    # at a Pokemon Center: the nurse is across the counter, at (8, 11); "Shall we heal your Pokemon?" Yes. With
+    # a team, the party is then boxed and the boss's set (team_sets.py) taken out
     bot.travel(pc)
     bot.walk(pc, [(8, 13)], face="up")
     bot.game.key("a", after=30)
     bot.settle()
+    if team:
+        bot.swap_team(team)
     bot.go_through(pc, 0)
 
 
@@ -131,7 +135,7 @@ def kurt(bot):
 def slowpoke_well(bot):
     # down the well, past the Grunts, to Proton; after him Kurt takes the player home. Until then a Grunt
     # stands in front of the gym door
-    heal(bot, "T23PC0101")
+    heal(bot, "T23PC0101", team="bugsy")
     bot.travel("D26R0102")
     bot.talk("D26R0102", 4)
     bot.settle()
@@ -179,6 +183,71 @@ def azalea_gym(bot):
     bot.expect("FLAG_GOT_TM89_FROM_BUGSY", "beating Bugsy")
 
 
+ILEX = "D36R0101"
+# the twig patches round the two lost Farfetch'd: stepping on one makes a noise that turns or moves a bird
+TWIGS = {name: {(x + i, z + j) for i in range(2) for j in range(2)}
+         for name, (x, z) in dict(first=(25, 66), first_b=(28, 63), second_a=(50, 49), second=(52, 53),
+                                  second_c=(46, 64), second_d=(45, 53)).items()}
+
+
+def twigs_but(*keep):
+    return set().union(*(t for name, t in TWIGS.items() if name not in keep))
+
+
+def to_ilex(bot):
+    # west out of Azalea Town, where the rival picks a fight at the gatehouse, into Ilex Forest; the Charcoal
+    # Kiln's apprentice has lost his master's two Farfetch'd
+    bot.travel(ILEX)
+    bot.settle()
+
+
+def farfetchd(bot):
+    # From the forest's script. The first bird, at (25, 62), is caught by stepping on the twigs south of it and
+    # then talking to it from the north. The second, at (41, 54), runs east to (49, 54) when talked to from the
+    # south; there it is caught by stepping on the twigs east of it and then talking to it from the west. The
+    # other twig patches would undo that, so the bot keeps off them. With both found the master gives HM01.
+    people = bot.objects()
+    if people.get(0) != (25, 62) or people.get(2) != (41, 54):
+        bot.stuck("the Farfetch'd are not where they start: %s, %s" % (people.get(0), people.get(2)))
+    bot.walk(ILEX, sorted(TWIGS["first"]), avoid=twigs_but("first"))
+    bot.settle()
+    bot.walk(ILEX, [(25, 61)], avoid=twigs_but(), face="down")
+    bot.game.key("a", after=30)
+    bot.settle()
+    bot.expect("FLAG_FOUND_FIRST_FARFETCHD", "catching the first Farfetch'd")
+    bot.walk(ILEX, [(41, 55)], avoid=twigs_but(), face="up")
+    bot.game.key("a", after=30)
+    bot.settle()
+    if bot.objects().get(2) != (49, 54):
+        bot.stuck("the second Farfetch'd did not run to (49, 54): %s" % (bot.objects().get(2),))
+    bot.walk(ILEX, sorted(TWIGS["second"]), avoid=twigs_but("second"))
+    bot.settle()
+    bot.walk(ILEX, [(48, 54)], avoid=twigs_but(), face="right")
+    bot.game.key("a", after=30)
+    bot.settle()
+    bot.expect("FLAG_GOT_HM01", "getting HM01 from the Charcoal Kiln's master")
+
+
+def to_goldenrod(bot):
+    # Cut the tree (the hack lets the player use Cut from the bag with the Hive Badge), then north out of the
+    # forest and up Route 34 to Goldenrod City
+    bot.talk(ILEX, 5)
+    bot.travel("T25")
+
+
+def whitney_gym(bot):
+    # the Whitney set from the Pokemon Center, then through the gym's maze to Whitney. She cries when she loses;
+    # a girl by the entrance has a word, and then Whitney hands over the badge
+    heal(bot, "T25PC0101", team="whitney")
+    bot.travel("T25GYM0101")
+    bot.talk("T25GYM0101", 0)
+    bot.walk("T25GYM0101", [(13, 11)])
+    bot.settle()
+    bot.talk("T25GYM0101", 0)
+    bot.expect("FLAG_GOT_TM45_FROM_WHITNEY", "beating Whitney")
+
+
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
           back_to_elm, stolen_pokemon, to_violet, sprout_tower,
-          violet_gym, mystery_egg, to_azalea, kurt, slowpoke_well, azalea_gym]
+          violet_gym, mystery_egg, to_azalea, kurt, slowpoke_well, azalea_gym, to_ilex, farfetchd,
+          to_goldenrod, whitney_gym]
