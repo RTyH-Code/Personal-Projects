@@ -97,6 +97,8 @@ def violet_gym(bot):
     bot.settle()
     bot.talk("T22GYM0101", 0)
     bot.expect("FLAG_GOT_TM51_FROM_FALKNER", "beating Falkner")
+    bot.walk("T22GYM0101", [(15, 20)])      # and the lift back down
+    bot.settle()
 
 
 def mystery_egg(bot):
