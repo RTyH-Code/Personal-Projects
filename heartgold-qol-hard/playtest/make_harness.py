@@ -17,6 +17,8 @@ four items, and warps the player, for walk_test.py:
 
     0x400D         how many badges to give (0 to 16, in the game's order)
     0x400E         2 instead of 1: also release Latias and Latios to roam
+
+With 0x400E set to 3 it only gives the party, for story_bot.py.
     0x4038-0x403B  items to give, five of each (0 = none)
     0x403C         the map to warp to
     0x403D-0x403E  the tile, x and z
@@ -40,6 +42,8 @@ INCLUDE = "data/scr_seq/include/event_T20R0202.inc"
 HARNESS = """scr_seq_T20R0202_000:
 	lockall
 	call _harness_party
+	compare 0x400E, 3
+	goto_if_eq _harness_story
 	compare 0x400E, 1
 	goto_if_ge _harness_walk
 	trainer_battle 0x400C, 0, 0, 0
@@ -58,6 +62,10 @@ _harness_walk:
 	warp 0x403C, 0, 0x403D, 0x403E, 0x403F
 	fade_screen 6, 1, 1, RGB_BLACK
 	wait_fade
+	releaseall
+	end
+
+_harness_story:
 	releaseall
 	end
 
