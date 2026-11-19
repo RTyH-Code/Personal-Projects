@@ -605,8 +605,7 @@ def underground_door(bot):
     heal(bot, "T25PC0101")
     bot.travel(UNDERGROUND, near=(25, 31))
     bot.talk(UNDERGROUND, 11)
-    if 11 in bot.objects():
-        bot.stuck("the Basement Key did not open the Underground door")
+    bot.expect("FLAG_UNK_1C0", "the Basement Key opening the Underground door")    # the shutter rolls up
 
 
 SWITCHES = [(8, 8), (9, 8), (10, 8)]
@@ -648,8 +647,7 @@ def card_key(bot):
     heal(bot, "T25PC0101")
     bot.travel(RADIO_3F, near=(22, 12))
     bot.talk(RADIO_3F, (22, 11))
-    if 7 in bot.objects():
-        bot.stuck("the Card Key did not open the 3F shutter")
+    bot.expect("FLAG_UNK_090", "the Card Key opening the 3F shutter")
 
 
 def archer(bot):
