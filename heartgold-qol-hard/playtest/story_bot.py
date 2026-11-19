@@ -185,6 +185,70 @@ class Bot:
             return {p for i, p in self.objects().items() if i != FOLLOWER}
         return {(e["x"], e["z"]) for e in self.world.events(code).get("object_events", [])}
 
+    def ice_blocks(self, code):
+        """{object id: tile} of the ice blocks on the map now (Pryce's gym): the player pushes them by sliding
+        into them."""
+        here = self.where()
+        if not here or here[0] != code:
+            return {}
+        events = self.world.events(code).get("object_events", [])
+        return {i: pos for i, pos in self.objects().items()
+                if i < len(events) and "_ice" in str(events[i].get("id")) and "TRAINER" not in str(events[i].get("script"))}
+
+    def ice_path(self, code, start, goals, blocked, blocks):
+        """Like path, on an ice floor with ice blocks: the player slides until something stops them, and
+        sliding into a block pushes it along until it hits something (the player stops where they are). The
+        search keeps where the blocks are."""
+        tiles = self.tiles(code)
+        def free(t, bl):
+            b = tiles.get(t)
+            return b is not None and b not in SURF and t not in blocked and t not in bl
+        first = (start, frozenset(blocks))
+        seen = {first: None}
+        queue = deque([first])
+        while queue:
+            state = queue.popleft()
+            here, bl = state
+            if here in goals:
+                steps = []
+                while seen[state]:
+                    state, d = seen[state]
+                    steps.append(d)
+                return steps[::-1]
+            for d, (dx, dz, _) in DIRS.items():
+                pos, nbl = here, bl
+                nxt = (pos[0] + dx, pos[1] + dz)
+                if nxt in nbl:
+                    if tiles.get(pos) != ICE and tiles.get(nxt) != ICE:
+                        continue
+                    end = nxt                     # push it: it slides until something is in the way
+                    while free((end[0] + dx, end[1] + dz), nbl) and tiles.get(end) == ICE:
+                        end = (end[0] + dx, end[1] + dz)
+                    if end == nxt:
+                        continue
+                    nbl = (nbl - {nxt}) | {end}
+                elif free(nxt, nbl):
+                    pos = nxt
+                    while tiles.get(pos) == ICE:
+                        n2 = (pos[0] + dx, pos[1] + dz)
+                        if n2 in nbl:
+                            end = n2
+                            while free((end[0] + dx, end[1] + dz), nbl) and tiles.get(end) == ICE:
+                                end = (end[0] + dx, end[1] + dz)
+                            if end != n2:
+                                nbl = (nbl - {n2}) | {end}
+                            break
+                        if not free(n2, nbl):
+                            break
+                        pos = n2
+                else:
+                    continue
+                state2 = (pos, nbl)
+                if state2 not in seen:
+                    seen[state2] = (state, d)
+                    queue.append(state2)
+        return None
+
     def path(self, code, start, goals, avoid=frozenset()):
         """Shortest list of directions from start to any goal tile, or None.
 
@@ -199,6 +263,9 @@ class Bot:
         # and keep off any tiles a stage has ruled out on this map (forbid)
         blocked = self.people(code) | set(avoid) | (warps - set(goals)) | self.forbidden.get(code, set())
         on_ladder = LADDERS.get(tiles.get(start))
+        blocks = self.ice_blocks(code)
+        if blocks and any(b == ICE for b in tiles.values()):
+            return self.ice_path(code, start, set(goals), blocked - set(blocks.values()), blocks.values())
         axis = lambda d: "h" if d in ("left", "right") else "v"
         first = (start, None)
         seen = {first: None}
