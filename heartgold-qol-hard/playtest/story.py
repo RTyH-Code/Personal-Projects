@@ -766,8 +766,11 @@ GYM_TRAPS = [(5, 9), (23, 41), (3, 62)]      # spin the player back to the door
 
 
 def platform_layout(bot):
+    # the platforms, and the part of the gym the player can walk in (where exactly they stand in it doesn't
+    # matter)
     here = bot.where()
-    return (tuple(tuple(sorted(p["floor"])) for p in bot.platforms()), (here[1], here[2]) if here else None)
+    area = min(bot.reach(BLACKTHORN_GYM, (here[1], here[2]))) if here else None
+    return (tuple(tuple(sorted(p["floor"])) for p in bot.platforms()), area)
 
 
 def clair_gym(bot):
