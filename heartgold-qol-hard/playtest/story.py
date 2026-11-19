@@ -114,9 +114,12 @@ def heal(bot, pc, team=None):
     # at a Pokemon Center: the nurse is across the counter, at (8, 11); "Shall we heal your Pokemon?" Yes. With
     # a team, the party is then boxed and the boss's set (team_sets.py) taken out
     bot.travel(pc)
-    bot.walk(pc, [(8, 13)], face="up")
-    bot.game.key("a", after=30)
-    bot.settle()
+    for _ in range(3):
+        bot.talk(pc, (8, 11))                   # across the counter, facing her
+        if bot.party_healthy():
+            break
+    else:
+        bot.stuck("the nurse at %s did not heal the party" % pc)
     if team:
         bot.swap_team(team)
     bot.go_through(pc, 0)

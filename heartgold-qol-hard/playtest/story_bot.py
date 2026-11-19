@@ -893,6 +893,12 @@ class Bot:
         return [pkm.Mon(bytes(mem[at + 8 + pkm.PARTY_SIZE * i:at + 8 + pkm.PARTY_SIZE * (i + 1)]))
                 for i in range(self.game.word(at + 4))]
 
+    def party_healthy(self):
+        """Whether every Pokemon of the party (not counting eggs) has all its HP."""
+        mons = [m for m in self.party_mons() if m.valid() and not m.is_egg]
+        return bool(mons) and all(struct.unpack_from("<HH", m.stats, 6)[0] == struct.unpack_from("<HH", m.stats, 6)[1]
+                                  for m in mons)
+
     def party_fainted(self):
         """Whether every Pokemon of the party (not counting eggs) has no HP left."""
         try:
