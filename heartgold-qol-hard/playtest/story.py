@@ -1,4 +1,4 @@
-"""The story, stage by stage, for story_bot.py: New Bark Town into the Team Rocket Hideout.
+"""The story, stage by stage, for story_bot.py: New Bark Town to Pryce's badge.
 
 Each stage is a function of the bot. Places are map codes (see
 tools/data/map_names.json) and tiles; warps are numbered as in the map's
@@ -541,10 +541,19 @@ def hideout_end(bot):
     bot.expect("FLAG_UNK_1F9", "clearing Team Rocket out of the Hideout")
 
 
+def pryce_gym(bot):
+    # the Pryce set from the Pokemon Center, then three rooms of ice floors (the player slides until
+    # something stops them) to Pryce
+    heal(bot, "T28PC0101", team="pryce")
+    bot.travel("T28GYM0101")
+    bot.talk("T28GYM0101", 0)
+    bot.expect("FLAG_GOT_TM07_FROM_PRYCE", "beating Pryce")
+
+
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
           back_to_elm, stolen_pokemon, to_violet, sprout_tower,
           violet_gym, mystery_egg, to_azalea, kurt, slowpoke_well, azalea_gym, to_ilex, farfetchd,
           to_goldenrod, radio_card, whitney_gym, squirt_bottle, sudowoodo,
           to_ecruteak, burned_tower, morty_gym, surf, to_olivine, to_cianwood,
           chuck_gym, lighthouse, secret_potion, ampharos, jasmine_gym,
-          to_mahogany, red_gyarados, lance, into_hideout, hideout_b1f, hideout_b2f, hideout_b3f, hideout_end]
+          to_mahogany, red_gyarados, lance, into_hideout, hideout_b1f, hideout_b2f, hideout_b3f, hideout_end, pryce_gym]

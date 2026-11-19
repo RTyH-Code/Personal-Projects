@@ -48,6 +48,7 @@ SURF = {0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x19, 0x2A, 0x50, 0x51, 0x52, 0x53, 
 LEDGES = {0x38: "right", 0x39: "left", 0x3A: "up", 0x3B: "down"}
 LADDERS = {0x3C: "up", 0x3D: "down", 0x3E: "down"}
 NO_BUTTON = (128, 120)  # "No" of the touch-screen Yes/No buttons
+ICE = 0x20              # the player slides across it until something stops them
 BRIDGE = 0x2E           # an arch: a walkway over it one way, a path under it the other
 FIELD_OBSTACLES = {"std_field_cut", "std_field_rock_smash", "std_field_strength"}
 COUNTER = 0x80          # a shop or reception counter: people behind it are talked to across it
@@ -229,6 +230,15 @@ class Bot:
                     if tiles.get(nxt) is None:
                         continue
                     b = tiles.get(nxt)
+                if b == ICE:
+                    # on ice the player slides on until a wall, someone, or plain floor stops them
+                    while tiles.get(nxt) == ICE:
+                        n2 = (nxt[0] + dx, nxt[1] + dz)
+                        b2 = tiles.get(n2)
+                        if b2 is None or b2 in SURF or n2 in blocked:
+                            break
+                        nxt = n2
+                    b = tiles.get(nxt)
                 state2 = (nxt, axis(d) if b == BRIDGE else None)
                 if state2 in seen:
                     continue
@@ -350,7 +360,21 @@ class Bot:
                 continue
             if route is None:
                 self.stuck("no path on %s from %s to %s" % (here[0], pos, sorted(goals)[:4]))
+            tiles_here = self.tiles(here[0])
             for d in route:
+                p = self.game.position()
+                dx, dz, _ = DIRS[d]
+                if p and ICE in (tiles_here.get((p[1], p[2])), tiles_here.get((p[1] + dx, p[2] + dz))):
+                    # a slide: one move, wait for the player to stop, and plan again from wherever that is
+                    self.game.key(d, hold=6, after=10)
+                    last = None
+                    for _ in range(60):
+                        q = self.game.position()
+                        if q and last and q[1:3] == last[1:3]:
+                            break
+                        last = q
+                        self.game.run(8)
+                    break
                 if self.surf_needed(here[0], d):
                     if not self.start_surf(d):
                         break

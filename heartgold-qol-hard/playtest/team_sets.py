@@ -47,6 +47,8 @@ AZALEA = VIOLET + ["Route 32", "Union Cave 1F", "Route 33", "Slowpoke Well B1F"]
 GOLDENROD = AZALEA + ["Ilex Forest", "Route 34", "Route 35", "Route 36", "National Park"]
 ECRUTEAK = GOLDENROD + ["Route 37", "Ecruteak City", "Burned Tower 1F", "Burned Tower B1F"]
 CIANWOOD = ECRUTEAK + ["Route 38", "Route 39", "Olivine City", "Route 40", "Route 41", "Cianwood City"]
+MAHOGANY = CIANWOOD + ["Whirl Islands 1F", "Route 42", "Mount Mortar 1F Entrance", "Mount Mortar 1F Back",
+                       "Mount Mortar 2F", "Mount Mortar B1F", "Mahogany Town", "Route 43", "Lake of Rage"]
 WATER = ("walking", "old rod", "Headbutt", "surfing", "good rod")
 
 SETS = {
@@ -101,6 +103,15 @@ SETS = {
                          "PROTECT", "LIGHT_SCREEN", "REFLECT", "ATTRACT", "FOCUS_PUNCH"],
                     item="ORAN_BERRY",
                     team=["MAGMAR", "TORKOAL", "HOUNDOOM", "CLAYDOL", "GASTRODON", "QUAGSIRE"]),
+    # Pryce's Ice types (Lv. 38-42: Delibird, Sneasel, Jynx, Dewgong, Lapras, Mamoswine): Fighting for all of
+    # them (Sneasel four times over), Fire for Jynx, Delibird and Mamoswine, Electric for Lapras and Dewgong
+    "pryce": dict(level=42, badges=6, places=MAHOGANY, ways=WATER,
+                  tms=["FLASH", "ROOST", "BULLET_SEED", "ROCK_TOMB", "U_TURN", "DIG", "PAYBACK", "EMBARGO",
+                       "PROTECT", "LIGHT_SCREEN", "REFLECT", "ATTRACT", "FOCUS_PUNCH", "CALM_MIND"],
+                  item="ORAN_BERRY",
+                  team=["MACHAMP", "HERACROSS", "TOXICROAK", "MAGMAR", "LUXRAY", "HOUNDOOM"],
+                  # Low Kick hits harder the heavier the target: Lapras and Mamoswine are very heavy
+                  moves=dict(TOXICROAK=["LOW_KICK", "POISON_JAB", "SUCKER_PUNCH", "DIG"])),
 }
 STARTERS = {"CHIKORITA", "CYNDAQUIL", "TOTODILE"}
 EV_TOTAL = {0: 128, 1: 192, 2: 256, 3: 320, 4: 384, 5: 448}       # by badges held; 510 from 6 badges on
