@@ -913,6 +913,8 @@ def answer_quiz(bot, picks, limit=8000):
     while frames < limit:
         if g.in_field() and walk_test.text_box(g.emu.screenshot()):
             calm = 0
+            # the answers come up a moment after the question (an A before then is "Huh? I didn't catch that")
+            g.run_every_frame(40)
             if answers_shown(bot) and picks:
                 g.touch(*QUIZ_BUTTONS[picks.pop(0)], after=30)
             else:
