@@ -442,8 +442,12 @@ def red_gyarados(bot):
     # (Lv. 30); after it, the Red Scale, and Lance on the shore
     heal(bot, "T28PC0101")
     bot.travel("T29")
-    bot.talk("T29", 3)
-    bot.settle()
+    # a battle that ends some other way than a win (it can end in a run) leaves the Gyarados there to try again
+    for _ in range(4):
+        bot.talk("T29", 3)
+        bot.settle()
+        if bot.flag("FLAG_GOT_RED_SCALE"):
+            break
     bot.expect("FLAG_GOT_RED_SCALE", "the red Gyarados")
 
 
