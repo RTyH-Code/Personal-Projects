@@ -763,6 +763,11 @@ def to_blackthorn(bot):
 
 
 GYM_TRAPS = [(5, 9), (23, 41), (3, 62)]      # spin the player back to the door
+# the buttons, in order, that the search found to get across Clair's gym (23 presses): a run starts with these,
+# and searches only if they don't lead to her
+CLAIR_ROUTE = [(12, 75), (8, 75), (8, 75), (9, 75), (9, 57), (9, 54), (10, 54), (13, 54), (13, 54), (14, 54),
+               (13, 32), (9, 32), (9, 32), (10, 32), (14, 32), (14, 31), (14, 26), (14, 21), (14, 17), (15, 17),
+               (19, 17), (19, 16), (19, 11)]
 
 
 def platform_layout(bot):
@@ -812,8 +817,8 @@ def clair_gym(bot):
     # rotate or slide when the player steps on one of their buttons (each has a rotate button and two to move
     # it). The bot reads the platforms from memory and searches over which buttons to step on, the layouts that
     # let it walk furthest north (towards Clair) first: from a save state of each new layout it tries every
-    # button, until it can walk to Clair. The buttons that got it there are kept (out/clair_route.json), so a
-    # retry after a loss, or a later run, just steps on them again
+    # button, until it can walk to Clair. The buttons that got it there are kept (out/clair_route.json, and
+    # CLAIR_ROUTE above from the first search), so a retry after a loss, or a later run, just steps on them again
     import heapq
     import json
     import os
@@ -823,7 +828,7 @@ def clair_gym(bot):
     bot.forbid(BLACKTHORN_GYM, set(GYM_TRAPS))
     clair = (12, 4)                          # the tile in front of her
     route_file = os.path.join(bot.out, "clair_route.json")
-    route = [tuple(b) for b in json.load(open(route_file))] if os.path.exists(route_file) else None
+    route = [tuple(b) for b in json.load(open(route_file))] if os.path.exists(route_file) else CLAIR_ROUTE
     if route:
         for b in route:
             press_gym_button(bot, b)
