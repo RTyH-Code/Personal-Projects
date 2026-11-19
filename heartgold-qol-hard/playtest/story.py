@@ -497,10 +497,42 @@ def hideout_b3f(bot):
         bot.talk(HIDEOUT_B3F, 9)              # the Murkrow, inside the room
 
 
+# where the Hideout's next scene starts, by the value of VAR_UNK_40AC (the scripts move it on as each one ends)
+HIDEOUT_SCENES = {2: (HIDEOUT_B3F, (20, 17)), 3: (HIDEOUT_B3F, (23, 12)), 4: (HIDEOUT_B2F, (11, 4)),
+                  5: (HIDEOUT_B3F, (50, 4)), 6: (HIDEOUT_B2F, (50, 29)), 7: (HIDEOUT_B2F, (29, 27)),
+                  8: (HIDEOUT_B2F, (30, 19))}
+
+
+def hideout_end(bot):
+    # the rest of the Hideout is a chain of scenes (Lance, Ariana and a Grunt in a double battle, the
+    # generator room); then the three Electrode that power the radio signal, each a battle. The last one
+    # ends it, and the man at Pryce's door goes
+    for _ in range(16):
+        if bot.flag("FLAG_UNK_1F9"):
+            break
+        stage = bot.game.get_var(0x40AC)
+        if stage in HIDEOUT_SCENES:
+            code, tile = HIDEOUT_SCENES[stage]
+            bot.travel(code, near=tile)
+            bot.walk(code, [tile])
+            bot.settle()
+            if bot.game.get_var(0x40AC) == stage:     # stood on it already: step off and on again
+                side = bot.walk(code, [(tile[0] + dx, tile[1] + dz) for dx, dz in ((1, 0), (-1, 0), (0, 1), (0, -1))])
+                bot.walk(code, [tile])
+                bot.settle()
+        else:
+            bot.travel(HIDEOUT_B2F, near=(22, 14))
+            for electrode in (9, 10, 11):
+                if electrode in bot.objects():
+                    bot.talk(HIDEOUT_B2F, electrode)
+                    bot.settle()
+    bot.expect("FLAG_UNK_1F9", "clearing Team Rocket out of the Hideout")
+
+
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
           back_to_elm, stolen_pokemon, to_violet, sprout_tower,
           violet_gym, mystery_egg, to_azalea, kurt, slowpoke_well, azalea_gym, to_ilex, farfetchd,
           to_goldenrod, radio_card, whitney_gym, squirt_bottle, sudowoodo,
           to_ecruteak, burned_tower, morty_gym, surf, to_olivine, to_cianwood,
           chuck_gym, lighthouse, secret_potion, ampharos, jasmine_gym,
-          to_mahogany, red_gyarados, lance, into_hideout, hideout_b1f, hideout_b2f, hideout_b3f]
+          to_mahogany, red_gyarados, lance, into_hideout, hideout_b1f, hideout_b2f, hideout_b3f, hideout_end]
