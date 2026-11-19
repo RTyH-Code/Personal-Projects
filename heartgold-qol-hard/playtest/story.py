@@ -701,6 +701,12 @@ def archer(bot):
     if not bot.where() or bot.where()[0] != DIRECTORS_OFFICE:
         bot.stuck("the Radio Tower elevator did not go up to the Observation Deck")
     bot.talk(DIRECTORS_OFFICE, 0)
+    # after the battle the screen fades out and in (Archer goes) before the Director's scene: the wait for
+    # the scene to end can stop at the fade
+    for _ in range(3):
+        if bot.flag("FLAG_BEAT_RADIO_TOWER_ROCKETS"):
+            break
+        bot.settle()
     bot.expect("FLAG_BEAT_RADIO_TOWER_ROCKETS", "beating Archer")
 
 
