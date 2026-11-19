@@ -1,4 +1,4 @@
-"""The story, stage by stage, for story_bot.py: New Bark Town to Pryce's badge.
+"""The story, stage by stage, for story_bot.py: New Bark Town to the Radio Tower.
 
 Each stage is a function of the bot. Places are map codes (see
 tools/data/map_names.json) and tiles; warps are numbered as in the map's
@@ -609,30 +609,45 @@ def underground_door(bot):
 
 
 SWITCHES = [(8, 8), (9, 8), (10, 8)]
+SWITCH_ROOM_EXIT, WAREHOUSE_DOOR = (27, 4), (26, 14)
+
+
+def through_switch_room(bot, goal):
+    # three switches on the wall at (8, 8), (9, 8) and (10, 8) each open some of the room's shutters and close
+    # others. Each flips its own set, so what is open depends only on which switches have been pressed an odd
+    # number of times; and the shutters are put back as they were whenever the player comes in. The bot tries
+    # each choice from a save state (pressing a switch only if it can get to it then) until the goal can be
+    # reached, then walks there
+    import os
+    state = os.path.join(bot.out, "switch_room.dst")
+    bot.save(state)
+    beside = {(goal[0] + dx, goal[1] + dz) for dx, dz in ((1, 0), (-1, 0), (0, 1), (0, -1))}
+    for n in range(8):
+        if n:
+            bot.game.emu.savestate.load_file(state)
+            bot.game.run(60)
+        pick = [sw for i, sw in enumerate(SWITCHES) if n >> i & 1]
+        try:
+            for sw in pick:
+                here = bot.where()
+                if (sw[0], sw[1] + 1) not in bot.reach(SWITCH_ROOM, (here[1], here[2])):
+                    raise LookupError("switch out of reach")
+                bot.talk(SWITCH_ROOM, sw)
+        except LookupError:
+            continue
+        here = bot.where()
+        if beside & set(bot.reach(SWITCH_ROOM, (here[1], here[2]))):
+            bot.walk(SWITCH_ROOM, [goal])
+            bot.settle()
+            return
+    bot.stuck("no choice of switches opened the way to %s" % (goal,))
 
 
 def switch_room(bot):
-    # the room behind the door: the rival waits just inside (a battle), then three switches on the wall at
-    # (8, 8), (9, 8) and (10, 8), each opening some of the shutters and closing others, stand between the
-    # player and the warehouse door (26, 14). Each switch flips its own set of shutters, so what is open depends
-    # only on which switches have been pressed an odd number of times: the bot tries each choice until the door
-    # can be reached
+    # the room behind the door: the rival waits just inside (a battle), then the switches, to the warehouse
     bot.travel(SWITCH_ROOM)
     bot.settle()
-    door = (26, 14)
-    for n in range(8):
-        pick = [s for i, s in enumerate(SWITCHES) if n >> i & 1]
-        for s in pick:
-            bot.talk(SWITCH_ROOM, s)
-        here = bot.where()
-        if any((door[0] + dx, door[1] + dz) in bot.reach(SWITCH_ROOM, (here[1], here[2]))
-               for dx, dz in ((1, 0), (-1, 0), (0, 1), (0, -1))):
-            break
-        for s in pick:                        # flip them back
-            bot.talk(SWITCH_ROOM, s)
-    else:
-        bot.stuck("no choice of switches opened the way to the warehouse")
-    bot.travel(WAREHOUSE)
+    through_switch_room(bot, WAREHOUSE_DOOR)
 
 
 def warehouse(bot):
@@ -642,8 +657,12 @@ def warehouse(bot):
 
 
 def card_key(bot):
-    # a heal, then the Card Key in the slot by the 3F shutter (22, 11), which opens the way up the tower's
-    # east side to 4F (Proton) and 5F (Ariana)
+    # back through the switch room (its shutters are as they first were again), a heal, then the Card Key in
+    # the slot by the 3F shutter (22, 11), which opens the way up the tower's east side to 4F (Proton) and 5F
+    # (Ariana)
+    bot.travel(SWITCH_ROOM)
+    bot.settle()
+    through_switch_room(bot, SWITCH_ROOM_EXIT)
     heal(bot, "T25PC0101")
     bot.travel(RADIO_3F, near=(22, 12))
     bot.talk(RADIO_3F, (22, 11))
