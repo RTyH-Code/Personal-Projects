@@ -471,7 +471,19 @@ class Bot:
 
     def go_through(self, code, warp_index, into=None):
         """Use a warp of the map: walk onto it (a door or stairs) and, for warps at the edge of a room, keep
-        walking `into` it. Waits until the next map has loaded."""
+        walking `into` it. Waits until the next map has loaded. A trainer who spots the player on the last step
+        (Proton at the Radio Tower's 4F stairs) stops the warp: the scene and battle are seen through, and the
+        warp is tried again."""
+        for attempt in range(3):
+            try:
+                return self._go_through(code, warp_index, into)
+            except Stuck:
+                here = self.where()
+                if attempt == 2 or not here or here[0] != code:
+                    raise
+                self.settle()
+
+    def _go_through(self, code, warp_index, into=None):
         warp = self.world.events(code)["warp_events"][warp_index]
         tile = (warp["x"], warp["z"])
         entry, found = self.warp_entry(code, warp_index)   # a door is a blocked tile with the door behaviour
