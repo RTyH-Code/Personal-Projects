@@ -930,6 +930,14 @@ def answer_quiz(bot, picks, limit=6000):
 def dragons_den(bot):
     # Clair holds back the badge until the player has passed the Dragon Shrine's test: a heal, the Den behind
     # the gym, across its water to the shrine, where the elder asks five questions as the player walks in
+    here = bot.where()
+    if here and here[0] == BLACKTHORN_GYM:
+        # the platforms are left where they took the player to Clair, which is no way back: the spin trap on her
+        # island (5, 9) sends the player to the door
+        bot.walk(BLACKTHORN_GYM, [(6, 9)])
+        bot.step("left")
+        bot.settle()
+        bot.forbidden.pop(BLACKTHORN_GYM, None)
     heal(bot, "T30PC0101")
     bot.travel(DEN, near=(28, 48))
     # through the shrine door by hand: the quiz starts as the player walks in, and the route planner's own
