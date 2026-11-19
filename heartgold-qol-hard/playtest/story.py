@@ -821,6 +821,9 @@ def clair_gym(bot):
             bot.game.run(300)                # the platform moves, taking the player with it
             bot.settle()
             layout = platform_layout(bot)
+            print("  gym: from %s pressed %s, now at %s, platforms at %s%s" % (
+                pos, b, bot.where()[1:3], [min(p["floor"]) for p in bot.platforms()],
+                " (seen)" if layout in seen else ""), flush=True)
             if layout in seen:
                 continue
             seen.add(layout)
