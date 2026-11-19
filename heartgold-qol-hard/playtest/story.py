@@ -793,14 +793,17 @@ def clair_gym(bot):
             bot.walk(BLACKTHORN_GYM, [clair])
             bot.talk(BLACKTHORN_GYM, 0)
             break
-        buttons = [b for p in bot.platforms() for b in (p["rotate"], p["left"], p["right"]) if b != pos]
+        buttons = [b for p in bot.platforms() for b in (p["rotate"], p["left"], p["right"])]
         for b in buttons:
+            if b == pos:
+                continue
             bot.game.emu.savestate.load_file(state)
             bot.game.run(60)
-            if bot.path(BLACKTHORN_GYM, pos, {b}) is None:
+            others = set(buttons) - {b}       # stepping on another button on the way would set it off
+            if bot.path(BLACKTHORN_GYM, pos, {b}, avoid=others) is None:
                 continue
             try:
-                bot.walk(BLACKTHORN_GYM, [b])
+                bot.walk(BLACKTHORN_GYM, [b], never=others)
             except Exception as e:
                 if type(e).__name__ != "Stuck" or str(e).startswith("lost a battle"):
                     raise
