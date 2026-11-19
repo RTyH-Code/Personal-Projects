@@ -73,6 +73,9 @@ OPTIONS_GET_BATTLE_STYLE, BATTLE_STYLE_SET = 0x0202AD90, 0x40
 EXPERT_AI = 0x7                 # F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_EXPERT_ATTACKS
 
 
+TRAINER_FLAG_BASE = 0x550
+
+
 class Stuck(Exception):
     pass
 
@@ -158,9 +161,14 @@ class Bot:
         return out
 
     def flag(self, name):
+        """A story flag, by name or number."""
         g = self.game
-        f = self.world.flags[name]
+        f = self.world.flags[name] if isinstance(name, str) else name
         return bool(g.emu.memory.unsigned[g.vars_pointer + walk_test.FLAGS_OFFSET + f // 8] >> (f % 8) & 1)
+
+    def beaten(self, trainer):
+        """Whether a trainer (by number) has been beaten: the game keeps a flag for each, from 0x550."""
+        return self.flag(TRAINER_FLAG_BASE + trainer)
 
     def expect(self, name, what):
         """Stop if a story flag that the stage should have set is not set."""
