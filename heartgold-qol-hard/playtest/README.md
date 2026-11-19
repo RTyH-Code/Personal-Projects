@@ -218,7 +218,8 @@ python3 playtest/team_sets.py /path/to/test/hg-engine /path/to/dumped/hg-engine
 | `whitney` | Whitney | 24 | Bronzor, Mawile, Heracross, Meditite, Geodude, Kadabra, all female where they can be, moves picked for her team |
 | `morty` | the rival in the Burned Tower, Morty | 29 | Houndoom, Mightyena, Raticate, Gyarados, Sableye, Mawile (Dark moves all round) |
 | `chuck` | Chuck | 34 | Gardevoir, Xatu, Drifblim, Gyarados, Bronzong, Hypno |
-| `jasmine` | Jasmine | 38 | Magmar, Torkoal, Houndoom, Claydol, Gastrodon, Quagsire |
+| `jasmine` | Jasmine, then Lake of Rage and the Rocket Hideout | 38 | Magmar, Torkoal, Houndoom, Claydol, Gastrodon, Quagsire |
+| `pryce` | Pryce | 42 | Machamp, Heracross, Toxicroak (Low Kick, Poison Jab, Sucker Punch, Dig), Magmar, Luxray, Houndoom |
 
 The first Whitney set (Bayleef, Heracross, Meditite, Geodude, Flaaffy,
 Gastly) lost both its tries: the hack gives her answers to the usual picks
@@ -283,9 +284,9 @@ they should set is set (the starter, the Pokégear, the Pokédex, the Sprout
 Tower Elder, Falkner's TM, the Mystery Egg, Proton, Bugsy's TM, HM01, the
 Radio Card, Whitney's TM, the SquirtBottle, the Sudowoodo, the Burned Tower's
 beasts, Morty's TM, HM03, Chuck's TM, the Lighthouse visit, the SecretPotion,
-Ampharos cured, Jasmine's TM). After a lost battle the bot plays the
+Ampharos cured, Jasmine's TM, Lance at the Lake of Rage, the Hideout's last Electrode, Pryce's TM). After a lost battle the bot plays the
 stage again from its start, as a player would, up to three times (each loss
-is still recorded).. When the bot gets stuck, or a check fails, it
+is still recorded). When the bot gets stuck, or a check fails, it
 stops and writes `out/stuck.png`, `out/stuck.dst` and the reason; results go
 to `out/story.json`.
 
@@ -338,6 +339,24 @@ warps don't list), whose door leads back in to the stairs up. Down again by
 the Light Room's elevator. Then the SecretPotion from Cianwood's pharmacy,
 up the Lighthouse once more to cure Ampharos, the Jasmine set, and her gym.
 
+Then Route 42 and Mt. Mortar's water to Mahogany Town, Route 43 to the Lake
+of Rage, the red Gyarados (talked to until it battles, and caught or
+beaten), Lance, and the Rocket Hideout under the souvenir shop with him:
+B1F (keeping off the trap floor, whose alarms call out Grunts and wore the
+team down to a whiteout in an early run), B2F and B3F, whose maps are split
+by walls into parts a warp reaches only from one side (the planner learns a
+warp that leads nowhere useful and goes another way), the two Grunts with
+the password, the door they open, Petrel, the Murkrow, and on B2F Ariana's
+double battle with Lance and the three Electrodes. The bot follows the
+Hideout's story variable through those scenes.
+
+Then a heal, the Pryce set, and Pryce's gym. Its floor is ice: the player
+slides until something stops it, and some of the ice blocks can be pushed
+one tile (found by trying: they are the objects named `_ice`). The bot plans
+on the ice with a search over the player's tile and every block's place, so
+it pushes blocks where they make a stop, and slides to each trainer and
+then to Pryce.
+
 The bot surfs once it has HM03: water counts as walkable, and a step from
 land onto water is Surf (face it, A, Yes). It heals after every gym, and
 after the Azalea rival.
@@ -373,6 +392,34 @@ in two runs, losing three and none.
 
 **Jasmine**, with the `jasmine` set: won the one run, with three fainted
 (Magmar to Steelix, Torkoal to Magneton, Gastrodon to Scizor).
+
+**Lake of Rage and the Hideout**, still on the `jasmine` set: 67 battles,
+59 won. Petrel won with five of ours fainted. Ariana and her Grunt, with
+Lance's Dragonite beside us, beat us four times in a row: those were runs
+where the B1F traps had already worn the team down and the bot had not
+healed, so one KO on Houndoom ended each; the bot now heals at the Hideout's
+end, and the next two tries won. Four "lost" wild battles on B1F are the same
+thing (Houndoom last standing, a wild Geodude). With a healed team the
+Hideout is fine.
+
+**Pryce**, with the `pryce` set: one win in three tries (37.5 game minutes
+for the stage). Each try met Patton and Jill on the ice first, and won both.
+KOs scored by his team (credited as above):
+
+| His Pokémon | Try 1 (lost) | Try 2 (lost) | Try 3 (won) |
+|---|---|---|---|
+| Jynx (Ice Beam, Psychic, Energy Ball, Lovely Kiss; Wise Glasses) | 6: the whole team | 1 (Machamp) | 2 (Machamp, Magmar) |
+| Dewgong | – | 2 (Magmar, Luxray) | 1 (Houndoom) |
+| Mamoswine | – | 3 (Heracross, Houndoom, Toxicroak) | 1 (Luxray) |
+| Lapras | – | – | 1 (Heracross) |
+| Delibird, Sneasel | – | – | – |
+
+Jynx is the one to look at: it opened all three battles after Delibird and
+took nine of the seventeen KOs, sweeping the whole team once. Lovely Kiss
+puts a Pokémon to sleep, and with Wise Glasses Ice Beam and Psychic between
+them hit most of a team that has to bring Fighting types for the rest of
+his. Sucker Punch on Toxicroak and Houndoom's Dark moves are the set's
+answers, but they rarely got to act before Jynx did.
 
 **The clean run** from the bedroom to Whitney, with every stage in order:
 83 battles, 78 won. The losses: the Azalea rival twice and Whitney once
