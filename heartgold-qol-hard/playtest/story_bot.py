@@ -31,6 +31,7 @@ from collections import deque
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import battle_test
+import boulders as boulders_plan
 import pkm
 import team_sets
 import walk_test
@@ -272,7 +273,7 @@ class Bot:
         blocked = self.people(code) | set(avoid) | (warps - set(goals)) | self.forbidden.get(code, set())
         on_ladder = LADDERS.get(tiles.get(start))
         blocks = self.ice_blocks(code)
-        if blocks and any(b == ICE for b in tiles.values()):
+        if any(b == ICE for b in tiles.values()):     # slides (and, in Pryce's gym, ice blocks pushed)
             return self.ice_path(code, start, set(goals), blocked - set(blocks.values()), blocks.values())
         axis = lambda d: "h" if d in ("left", "right") else "v"
         first = (start, None)
@@ -473,6 +474,63 @@ class Bot:
                             self.walls.add((self.world.headers[cur[0]]["matrix"] or cur[0], (cur[1], cur[2]), d))
                     break
         self.stuck("could not reach %s on %s" % (sorted(goals)[:4], code))
+
+    def boulders(self, code):
+        """{object id: tile} of the Strength boulders on the map now."""
+        events = self.world.events(code).get("object_events", [])
+        return {i: pos for i, pos in self.objects().items()
+                if i < len(events) and events[i].get("script") == "std_field_strength"}
+
+    def drop_boulders(self, code, holes, goals=None):
+        """Push every Strength boulder the player can get to into one of the holes (boulders.py plans it),
+        then walk to one of the goals. The first push uses Strength (A at the boulder, then Yes); after each
+        move the bot checks the game against the plan, and plans again from wherever things are."""
+        holes = set(holes)
+        strength = False
+        for attempt in range(40):
+            self.settle()
+            here = self.where()
+            if not here or here[0] != code:
+                self.stuck("left %s while pushing boulders" % code)
+            pos = (here[1], here[2])
+            people = self.people(code)
+            boulders = set(self.boulders(code).values())
+            warps = {(w["x"], w["z"]) for w in self.world.events(code).get("warp_events", [])}
+            floor = set(self.tiles(code)) - holes - warps - (people - boulders) | set(goals or ())
+            # only the boulders next to where the player can walk
+            area = self.reach(code, pos)
+            mine = {b for b in boulders if any((b[0] + dx, b[1] + dz) in area for dx, dz, _ in DIRS.values())}
+            moves = boulders_plan.plan_one_by_one(floor - (boulders - mine), pos, mine, holes, goals)
+            if moves is None:
+                self.stuck("no way to push the boulders on %s into the holes" % code)
+            if not moves:
+                return
+            for d in moves:
+                p = self.where()
+                dx, dz, _ = DIRS[d]
+                ahead = (p[1] + dx, p[2] + dz)
+                if ahead in set(self.boulders(code).values()):
+                    if not strength:
+                        # face it and press A: "This boulder looks like it can be pushed... use Strength?"
+                        for hold in (2, 3, 4):
+                            self.game.key(d, hold=hold, after=10)
+                            if self.facing() == d:
+                                break
+                        self.game.key("a", after=30)
+                        self.settle(["a"])
+                        strength = True
+                    before = set(self.boulders(code).values())
+                    self.game.key(d, hold=16, after=40)
+                    self.settle()
+                    if set(self.boulders(code).values()) == before:
+                        break                 # it didn't move: plan again
+                elif not self.step(d):
+                    break                     # a wild Pokemon, or someone in the way: plan again
+                if self.where() is None or (self.where()[1], self.where()[2]) != (ahead if self.where()[0] == code else None):
+                    break
+            else:
+                return
+        self.stuck("could not push the boulders on %s" % code)
 
     def same_region(self, a, b):
         return self.world.headers[a]["matrix"] == self.world.headers[b]["matrix"] == 0

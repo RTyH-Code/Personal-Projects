@@ -1,4 +1,4 @@
-"""The story, stage by stage, for story_bot.py: New Bark Town to the Radio Tower.
+"""The story, stage by stage, for story_bot.py: New Bark Town to Blackthorn City.
 
 Each stage is a function of the bot. Places are map codes (see
 tools/data/map_names.json) and tiles; warps are numbered as in the map's
@@ -710,6 +710,46 @@ def archer(bot):
     bot.expect("FLAG_BEAT_RADIO_TOWER_ROCKETS", "beating Archer")
 
 
+# ---------------------------------------------------------------- the Ice Path to Blackthorn
+
+ICE_1F, ICE_B1F = "D39R0101", "D39R0102"
+
+
+def ice_path_holes(bot):
+    # B1F's holes: stepping on one drops the player to B2F (a coord event on each)
+    return {(c["x"], c["z"]) for c in bot.world.events(ICE_B1F)["coord_events"] if c["var"] == "VAR_UNK_40AA"}
+
+
+def to_ice_path(bot):
+    # down from the Observation Deck by its elevator, a heal, then back east to Mahogany (the hiker on
+    # Route 42 gave HM04 on the way there the first time) and on along Route 44 to the Ice Path
+    bot.go_through(DIRECTORS_OFFICE, 0)
+    bot.settle()
+    bot.go_through(RADIO_ELEVATOR, 0)
+    bot.settle()
+    heal(bot, "T25PC0101")
+    bot.travel("T28")
+    heal(bot, "T28PC0101")
+    bot.travel(ICE_1F)
+
+
+def ice_path_boulders(bot):
+    # 1F's ice to the stairs down; on B1F four Strength boulders and four holes. Each boulder pushed into a
+    # hole lands on B2F's ice, where it is something to stop against on the way across. The hack lets the
+    # player use Strength from the bag (HM04, and the Plain Badge). boulders.py plans the pushes
+    bot.forbid(ICE_B1F, ice_path_holes(bot))
+    bot.travel(ICE_B1F, near=(7, 19))
+    bot.drop_boulders(ICE_B1F, ice_path_holes(bot), goals=[(25, 9)])
+
+
+def to_blackthorn(bot):
+    # down to B2F by the stairs past the holes, across its ice (sliding to the fallen boulders) to B3F, back
+    # up to B2F's east side, B1F and 1F, and out to Blackthorn City
+    bot.forbid(ICE_B1F, ice_path_holes(bot))
+    bot.travel("T30")
+    heal(bot, "T30PC0101")
+
+
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
           back_to_elm, stolen_pokemon, to_violet, sprout_tower,
           violet_gym, mystery_egg, to_azalea, kurt, slowpoke_well, azalea_gym, to_ilex, farfetchd,
@@ -718,4 +758,5 @@ STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokege
           chuck_gym, lighthouse, secret_potion, ampharos, jasmine_gym,
           to_mahogany, red_gyarados, lance, into_hideout, hideout_b1f, hideout_b2f, hideout_b3f, hideout_end, pryce_gym,
           to_goldenrod_takeover, rocket_disguise, radio_tower_rival, fake_director,
-          underground_door, switch_room, warehouse, card_key, proton, ariana, archer]
+          underground_door, switch_room, warehouse, card_key, proton, ariana, archer,
+          to_ice_path, ice_path_boulders, to_blackthorn]
