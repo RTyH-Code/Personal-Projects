@@ -734,9 +734,13 @@ def to_ice_path(bot):
 
 
 def ice_path_boulders(bot):
-    # 1F's ice to the stairs down; on B1F four Strength boulders and four holes. Each boulder pushed into a
+    # 1F's ice to the stairs down (HM07 on the way); on B1F four Strength boulders and four holes. Each boulder pushed into a
     # hole lands on B2F's ice, where it is something to stop against on the way across. The hack lets the
     # player use Strength from the bag (HM04, and the Plain Badge). boulders.py plans the pushes
+    # first HM07 (Waterfall), an item ball on 1F's ice at (47, 10): until it is picked up, a man by the stairs
+    # down turns the player back
+    if 0 in bot.objects():
+        bot.talk(ICE_1F, 0)
     bot.forbid(ICE_B1F, ice_path_holes(bot))
     bot.travel(ICE_B1F, near=(7, 19))
     bot.drop_boulders(ICE_B1F, ice_path_holes(bot), goals=[(25, 9)])
