@@ -216,6 +216,8 @@ python3 playtest/team_sets.py /path/to/test/hg-engine /path/to/dumped/hg-engine
 | `falkner` | Falkner | 14 | Chikorita, Geodude, Pachirisu, Sableye, Pidgey (five, so the Mystery Egg fits) |
 | `bugsy` | Proton, Bugsy, the rival in Azalea | 19 | Bayleef, Geodude, Onix, Flaaffy, Spearow, Natu |
 | `whitney` | Whitney | 24 | Bronzor, Mawile, Heracross, Meditite, Geodude, Kadabra, all female where they can be, moves picked for her team |
+| `morty` | the rival in the Burned Tower, Morty | 29 | Houndoom, Mightyena, Raticate, Gyarados, Sableye, Mawile (Dark moves all round) |
+| `chuck` | Chuck | 34 | Gardevoir, Xatu, Drifblim, Gyarados, Bronzong, Hypno |
 
 The first Whitney set (Bayleef, Heracross, Meditite, Geodude, Flaaffy,
 Gastly) lost both its tries: the hack gives her answers to the usual picks
@@ -278,7 +280,10 @@ save state (`out/stage_NAME.dst`), so `--from NAME` starts a later run from
 there and `--until NAME` stops after it. Key stages check that the story flag
 they should set is set (the starter, the Pokégear, the Pokédex, the Sprout
 Tower Elder, Falkner's TM, the Mystery Egg, Proton, Bugsy's TM, HM01, the
-Radio Card, Whitney's TM). When the bot gets stuck, or a check fails, it
+Radio Card, Whitney's TM, the SquirtBottle, the Sudowoodo, the Burned Tower's
+beasts, Morty's TM, HM03, Chuck's TM). After a lost battle the bot plays the
+stage again from its start, as a player would, up to three times (each loss
+is still recorded).. When the bot gets stuck, or a check fails, it
 stops and writes `out/stuck.png`, `out/stuck.dst` and the reason; results go
 to `out/story.json`.
 
@@ -312,6 +317,22 @@ gym: up the west stairs to the raised ring, round it, down the stairs on the
 east side and under the arch to her. After she loses, a step onto (13, 11)
 starts a girl's scene, and Whitney then hands over the badge and TM45.
 
+Then a heal, the SquirtBottle from the Goldenrod Flower Shop, the Sudowoodo
+on Route 36, Route 37 to Ecruteak City, the Morty set at the Pokémon Center
+(Bill stands at the counter for a moment there), the Burned Tower (Eusine
+and Morty, the rival, and the drop to the basement where the beasts wake:
+needed, since a man stands in Morty's gym until then), and Morty's dark gym,
+keeping off its trigger areas, which spin the player back to the door.
+After a heal: the Rocket Grunt in the Dance Theater, after whom the
+gentleman gives HM03 (the hack lets the player Surf from the bag with the
+Fog Badge), Routes 38 and 39 to Olivine City, then by water along Routes 40
+and 41 to Cianwood City, and Chuck's gym, where the winch at the back has
+to stop his waterfall before he will fight.
+
+The bot surfs once it has HM03: water counts as walkable, and a step from
+land onto water is Surf (face it, A, Yes). It heals after every gym, and
+after the Azalea rival.
+
 # Results
 
 From `results/battles.jsonl`.
@@ -333,3 +354,16 @@ to the Pokémon of hers that was out when ours fainted):
 
 Dunsparce is the one to look at; Serene Grace doubles Rock Slide's flinch and
 Glare's paralysis.
+
+**Morty**, with the `morty` set: won the one run, with five of our six
+fainted (Drifblim took three). The same set beat the Burned Tower's rival
+in two runs, losing three and none.
+
+**Chuck**, with the `chuck` set: won the one run, with four fainted
+(Poliwrath, Heracross twice, Machoke).
+
+**The clean run** from the bedroom to Whitney, with every stage in order:
+83 battles, 78 won. The losses: the Azalea rival twice and Whitney once
+(each won on a retry), a policeman on Route 34 before the bot healed after
+the rival, and one false loss in Lyra's catching lesson from before the
+money check was fixed.
