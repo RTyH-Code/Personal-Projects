@@ -97,6 +97,7 @@ class Bot:
         self.last_place = None
         self.surfable = None        # True once the player has Surf
         self.forbidden = {}         # map -> tiles a stage has said never to step on
+        self.shut = set()           # (map, warp, from tile) found unreachable where a route expected it; per stage
         self.walls = set()          # (matrix or map, tile, direction) found blocked though the tiles say open
         self.battlers = {}          # battler id -> (BattleSystem, OpponentData) for the battle being opened
         self.game.emu.memory.register_exec(BATTLER_SETUP, self._battler_setup)
@@ -478,7 +479,9 @@ class Bot:
         here = self.where()
         stands = lambda script: script in FIELD_OBSTACLES or "trainer" not in script
         if not here or here[0] != code and not self.same_region(here[0], code):
-            # another map: from its event data, leaving out those its hide flags say are gone
+            # another map: only its Cut trees, rocks and boulders are sure to be there. Doors and people come and
+            # go by script (the Hideout's password door), so the event data can't say; a route that turns out
+            # to be shut is learnt when walked (see travel)
             out = set()
             for e in self.world.events(code).get("object_events", []):
                 flag = e.get("hidden_flag")
@@ -487,11 +490,9 @@ class Bot:
                         continue
                 except (KeyError, TypeError):
                     pass
-                if stands(str(e.get("script"))):
+                if str(e.get("script")) in FIELD_OBSTACLES:
                     out.add((e["x"], e["z"]))
-            # scripts also hide people without a flag (the shady salesman on the Mahogany shop's stairs), so
-            # never let event data close a warp: nobody stands on a staircase for good
-            return out - {(w["x"], w["z"]) for w in self.world.events(code).get("warp_events", [])}
+            return out
         events = self.world.events(here[0]).get("object_events", [])
         out = set()
         for i, pos in self.objects().items():
@@ -564,6 +565,8 @@ class Bot:
                 return best[node][1]
             for m in self.region_maps(code):
                 for i, warp in enumerate(self.world.events(m).get("warp_events", [])):
+                    if (m, i, pos) in self.shut:
+                        continue                # tried from here, and this side of the map does not lead there
                     entry, _ = self.warp_entry(m, i)
                     if entry not in dist and (warp["x"], warp["z"]) != pos:
                         continue
@@ -600,7 +603,15 @@ class Bot:
             steps = self.route(target, near)
             try:
                 for code, index in steps:
-                    self.go_through(code, index)
+                    here = self.where()
+                    try:
+                        self.go_through(code, index)
+                    except Stuck as e:
+                        if isinstance(e, Moved) or "no path" not in str(e):
+                            raise
+                        # the warp can't be reached from here after all (a door shut by script): plan round it
+                        self.shut.add((code, index, (here[1], here[2]) if here else None))
+                        raise Moved(str(e))
             except Moved:
                 continue                    # plan again from where the scene left the player
             here = self.where()
@@ -1040,6 +1051,7 @@ def run():
     for stage in stages[begin:end]:
         frames = bot.game.frames
         battles, ai_moves = len(bot.log), bot.ai_moves
+        bot.shut = set()        # doors open as the story goes on
         before = os.path.join(out, "before_%s.dst" % stage.__name__)
         bot.save(before)
         losses = 0
