@@ -799,8 +799,6 @@ def clair_gym(bot):
             break
         buttons = [b for p in bot.platforms() for b in (p["rotate"], p["left"], p["right"])]
         for b in buttons:
-            if b == pos:
-                continue
             bot.game.emu.savestate.load_file(state)
             bot.game.run(60)
             others = set(buttons) - {b}       # stepping on another button on the way would set it off
@@ -809,7 +807,19 @@ def clair_gym(bot):
             tiles = bot.tiles(BLACKTHORN_GYM)
             beside = {(b[0] - dx, b[1] - dz): d for d, (dx, dz, _) in DIRS.items()
                       if (b[0] - dx, b[1] - dz) in tiles and (b[0] - dx, b[1] - dz) not in buttons}
-            if not beside or bot.path(BLACKTHORN_GYM, pos, set(beside), avoid=set(buttons)) is None:
+            if not beside:
+                continue
+            if b == pos:
+                # standing on it already (a platform stops with the player on its next button): step off
+                # and back on
+                d = next(iter(beside.values()))
+                dx, dz, _ = DIRS[d]
+                off = (b[0] - dx, b[1] - dz)
+                back = {"up": "down", "down": "up", "left": "right", "right": "left"}[d]
+                if not bot.step(back):
+                    continue
+                beside = {off: d}
+            elif bot.path(BLACKTHORN_GYM, pos, set(beside), avoid=set(buttons)) is None:
                 continue
             try:
                 at = bot.walk(BLACKTHORN_GYM, list(beside), never=set(buttons))
