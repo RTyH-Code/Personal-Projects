@@ -471,14 +471,19 @@ class Bot:
         return False
 
     def obstacles(self, code):
-        """Tiles of the map's Cut trees, Rock Smash rocks and Strength boulders that are there now."""
+        """Tiles of the map's objects that are there now and stand in the way: everything but trainers."""
         here = self.where()
         if not here or here[0] != code and not self.same_region(here[0], code):
             return set()
         events = self.world.events(here[0]).get("object_events", [])
         out = set()
         for i, pos in self.objects().items():
-            if i < len(events) and str(events[i].get("script")) in FIELD_OBSTACLES:
+            if i >= len(events):
+                continue
+            script = str(events[i].get("script"))
+            # Cut trees, rocks and boulders; and anything else that is not a trainer (trainers come to the
+            # player): doors like the Hideout's password doors, item balls, people standing in the way
+            if script in FIELD_OBSTACLES or "trainer" not in script:
                 out.add(pos)
         return out
 
