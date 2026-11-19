@@ -465,10 +465,22 @@ def into_hideout(bot):
     bot.settle()
 
 
+HIDEOUT_B1F, HIDEOUT_B2F, HIDEOUT_B3F = "D35R0102", "D35R0103", "D35R0104"
+
+
+def hideout_b1f(bot):
+    # B1F: Persian statues sound the alarm (and call two Grunts) when the player walks past in front of them,
+    # and one tile near the stairs (16, 28) sends the player back to the start of the floor; keep off all of
+    # those, and down the stairs to B2F. The floor of traps on the way only starts wild battles
+    statues = {(x, z) for x, z0 in ((44, 4), (18, 4), (44, 11), (44, 29), (18, 29)) for z in (z0, z0 + 1)}
+    bot.forbid(HIDEOUT_B1F, statues | {(16, 28)})
+    bot.travel(HIDEOUT_B2F)
+
+
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
           back_to_elm, stolen_pokemon, to_violet, sprout_tower,
           violet_gym, mystery_egg, to_azalea, kurt, slowpoke_well, azalea_gym, to_ilex, farfetchd,
           to_goldenrod, radio_card, whitney_gym, squirt_bottle, sudowoodo,
           to_ecruteak, burned_tower, morty_gym, surf, to_olivine, to_cianwood,
           chuck_gym, lighthouse, secret_potion, ampharos, jasmine_gym,
-          to_mahogany, red_gyarados, lance, into_hideout]
+          to_mahogany, red_gyarados, lance, into_hideout, hideout_b1f]

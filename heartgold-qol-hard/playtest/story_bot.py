@@ -96,6 +96,7 @@ class Bot:
         self.log = []
         self.last_place = None
         self.surfable = None        # True once the player has Surf
+        self.forbidden = {}         # map -> tiles a stage has said never to step on
         self.walls = set()          # (matrix or map, tile, direction) found blocked though the tiles say open
         self.battlers = {}          # battler id -> (BattleSystem, OpponentData) for the battle being opened
         self.game.emu.memory.register_exec(BATTLER_SETUP, self._battler_setup)
@@ -192,8 +193,9 @@ class Bot:
         surf = self.can_surf()
         matrix = self.world.headers[code]["matrix"] or code
         warps = {(w["x"], w["z"]) for m in self.region_maps(code) for w in self.world.events(m).get("warp_events", [])}
-        # don't walk into a warp on the way; a goal tile someone stands on (or was in the way at) can't be reached
-        blocked = self.people(code) | set(avoid) | (warps - set(goals))
+        # don't walk into a warp on the way; a goal tile someone stands on (or was in the way at) can't be reached;
+        # and keep off any tiles a stage has ruled out on this map (forbid)
+        blocked = self.people(code) | set(avoid) | (warps - set(goals)) | self.forbidden.get(code, set())
         on_ladder = LADDERS.get(tiles.get(start))
         axis = lambda d: "h" if d in ("left", "right") else "v"
         first = (start, None)
@@ -428,6 +430,10 @@ class Bot:
             if EDGES.get(grid.get((tile[0] + dx, tile[1] + dz), 0) & 0xFF) == d:
                 return tile, d
         return tile, None
+
+    def forbid(self, code, tiles):
+        """Never step on these tiles of the map, on any walk from now on (alarms, drops)."""
+        self.forbidden.setdefault(code, set()).update(tiles)
 
     def can_surf(self):
         """Whether the player can surf: with the hack, HM03 in the bag is enough once the Fog Badge is won."""
