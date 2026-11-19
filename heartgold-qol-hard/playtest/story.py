@@ -1,4 +1,4 @@
-"""The story, stage by stage, for story_bot.py: New Bark Town to Chuck's badge.
+"""The story, stage by stage, for story_bot.py: New Bark Town to Jasmine's badge.
 
 Each stage is a function of the bot. Places are map codes (see
 tools/data/map_names.json) and tiles; warps are numbered as in the map's
@@ -371,9 +371,44 @@ def chuck_gym(bot):
     bot.expect("FLAG_GOT_TM01_FROM_CHUCK", "beating Chuck")
 
 
+LIGHT_ROOM = "D27R0107"
+
+
+def lighthouse(bot):
+    # a heal after the gym, back across the water to Olivine, and up the Lighthouse to Jasmine, who is nursing
+    # the sick Ampharos that lights it. She asks for medicine from Cianwood
+    heal(bot, "T24PC0101")
+    bot.travel(LIGHT_ROOM)
+    bot.talk(LIGHT_ROOM, 1)
+    bot.expect("FLAG_UNK_1D8", "Jasmine asking for medicine")
+
+
+def secret_potion(bot):
+    # back to Cianwood, where the pharmacist, told of the Ampharos, hands over the SecretPotion
+    bot.travel("T24R0501")
+    bot.talk("T24R0501", 0)
+    bot.expect("FLAG_GOT_SECRETPOTION", "getting the SecretPotion")
+    bot.go_through("T24R0501", 0)
+
+
+def ampharos(bot):
+    # and up the Lighthouse once more: the medicine cures Ampharos, and Jasmine goes back to her gym
+    bot.travel(LIGHT_ROOM)
+    bot.talk(LIGHT_ROOM, 1)
+    bot.expect("FLAG_UNK_96A", "curing the Lighthouse's Ampharos")
+
+
+def jasmine_gym(bot):
+    # the Jasmine set from the Pokemon Center, and Jasmine
+    heal(bot, "T26PC0101", team="jasmine")
+    bot.travel("T26GYM0101")
+    bot.talk("T26GYM0101", 0)
+    bot.expect("FLAG_GOT_TM23_FROM_JASMINE", "beating Jasmine")
+
+
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
           back_to_elm, stolen_pokemon, to_violet, sprout_tower,
           violet_gym, mystery_egg, to_azalea, kurt, slowpoke_well, azalea_gym, to_ilex, farfetchd,
           to_goldenrod, radio_card, whitney_gym, squirt_bottle, sudowoodo,
           to_ecruteak, burned_tower, morty_gym, surf, to_olivine, to_cianwood,
-          chuck_gym]
+          chuck_gym, lighthouse, secret_potion, ampharos, jasmine_gym]

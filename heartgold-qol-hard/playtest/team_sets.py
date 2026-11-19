@@ -93,6 +93,14 @@ SETS = {
                        "PROTECT", "LIGHT_SCREEN", "REFLECT", "ATTRACT"],
                   item="ORAN_BERRY",
                   team=["GARDEVOIR", "XATU", "DRIFBLIM", "GYARADOS", "BRONZONG", "HYPNO"]),
+    # Jasmine's six Steel types (Lv. 35-38: Mawile, Magneton, Forretress, Skarmory, Scizor, Steelix): Fire for
+    # most of them (Scizor and Forretress four times over), Ground for Magneton and Steelix, and Levitate on
+    # Claydol against Steelix's Earthquake
+    "jasmine": dict(level=38, badges=5, places=CIANWOOD + ["Whirl Islands 1F"], ways=WATER,
+                    tms=["FLASH", "ROOST", "BULLET_SEED", "ROCK_TOMB", "U_TURN", "DIG", "PAYBACK", "EMBARGO",
+                         "PROTECT", "LIGHT_SCREEN", "REFLECT", "ATTRACT", "FOCUS_PUNCH"],
+                    item="ORAN_BERRY",
+                    team=["MAGMAR", "TORKOAL", "HOUNDOOM", "CLAYDOL", "GASTRODON", "QUAGSIRE"]),
 }
 STARTERS = {"CHIKORITA", "CYNDAQUIL", "TOTODILE"}
 EV_TOTAL = {0: 128, 1: 192, 2: 256, 3: 320, 4: 384, 5: 448}       # by badges held; 510 from 6 badges on
