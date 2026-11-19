@@ -875,6 +875,9 @@ def clair_gym(bot):
         else:
             bot.stuck("no way across Clair's gym found (%d layouts tried)" % len(seen))
     bot.walk(BLACKTHORN_GYM, [clair])
+    # the gym's five Ace Trainers stand between the door and her, and there is nowhere to heal inside: a
+    # player would use potions here, which the bot can't. So the harness heals the party where it stands
+    bot.restore_party("before Clair, after her gym's trainers")
     bot.talk(BLACKTHORN_GYM, 0)
     # she won't hand over the badge yet: the Dragon's Den comes first (FLAG_UNK_0D1: beaten, the Den's guard
     # steps aside)

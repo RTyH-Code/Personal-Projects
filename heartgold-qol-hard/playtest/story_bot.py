@@ -1138,33 +1138,56 @@ class Bot:
         mons = self.party_mons()
         template = next(m for m in mons if m.valid() and not m.is_egg)
         built = [self.sets.build(template, species, spec) for species in spec["team"]]
-        data = b"".join(mon.encode() for mon, _, _ in built)
-        data += bytes(pkm.PARTY_SIZE * (6 - len(built)))
+        if not self.write_party([mon for mon, _, _ in built]):
+            self.stuck("the %s set did not go into the party" % name)
+        self.team = name
+        print("  team: %s set, %s" % (name, ", ".join("%s Lv. %d" % (s, spec["level"]) for s in spec["team"])),
+              flush=True)
+
+    def write_party(self, mons):
+        """Put these Pokemon in the party, in RAM. The game keeps decrypting the lead in place for a few frames
+        at a time (the walking Pokemon reads it) and encrypts it again after; data written in that window comes
+        out scrambled. So write when the lead reads whole, and check over the next frames that it stays the
+        Pokemon written."""
+        at = self.party()
+        data = b"".join(mon.encode() for mon in mons) + bytes(pkm.PARTY_SIZE * (6 - len(mons)))
         mem = self.game.emu.memory.unsigned
         g = self.game
         lead = lambda: pkm.Mon(bytes(mem[at + 8:at + 8 + pkm.PARTY_SIZE]))
-        # the game keeps decrypting the lead in place for a few frames at a time (the walking Pokemon reads it)
-        # and encrypts it again after; data written in that window comes out scrambled. So write when the lead
-        # reads whole, and check over the next frames that it stays the Pokemon written
         for attempt in range(10):
             for _ in range(60):
                 if lead().valid():
                     break
                 g.run_every_frame(1)
-            for i, b in enumerate(struct.pack("<I", len(built)) + data):
+            for i, b in enumerate(struct.pack("<I", len(mons)) + data):
                 mem[at + 4 + i] = b
             seen = []
             for _ in range(40):
                 g.run_every_frame(1)
                 m = lead()
-                seen.append(m.valid() and m.species == built[0][0].species)
+                seen.append(m.valid() and m.species == mons[0].species)
             if any(seen) and all(m.valid() for m in self.party_mons()[1:]):
-                break
-        else:
-            self.stuck("the %s set did not go into the party" % name)
-        self.team = name
-        print("  team: %s set, %s" % (name, ", ".join("%s Lv. %d" % (s, spec["level"]) for s in spec["team"])),
-              flush=True)
+                return True
+        return False
+
+    def restore_party(self, why):
+        """TEST HARNESS ONLY: heal the party where it stands (all HP, no status, all PP), in place of the
+        potions a player would use. The bot can't use items, so a boss behind a gym full of trainers would
+        otherwise be fought with whatever the trainers left."""
+        names = {v: k for k, v in self.sets.move_ids.items()}
+        mons = []
+        for m in self.party_mons():
+            if m.valid() and not m.is_egg:
+                struct.pack_into("<I", m.stats, 0, 0)                          # status
+                struct.pack_into("<H", m.stats, 6, struct.unpack_from("<H", m.stats, 8)[0])   # HP
+                for i in range(4):
+                    move = m.u16(0x20 + 2 * i)
+                    if move:
+                        m.blocks[0x28 + i] = self.sets.pp.get(names.get(move), m.blocks[0x28 + i])
+            mons.append(m)
+        if not self.write_party(mons):
+            self.stuck("could not heal the party (%s)" % why)
+        print("  heal: party restored in place (%s), standing in for potions" % why, flush=True)
 
     # ------------------------------------------------------------- the run
 
