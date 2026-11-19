@@ -712,7 +712,7 @@ def archer(bot):
 
 # ---------------------------------------------------------------- the Ice Path to Blackthorn
 
-ICE_1F, ICE_B1F = "D39R0101", "D39R0102"
+ICE_1F, ICE_B1F, BLACKTHORN_GYM = "D39R0101", "D39R0102", "T30GYM0101"
 
 
 def ice_path_holes(bot):
@@ -750,6 +750,69 @@ def to_blackthorn(bot):
     heal(bot, "T30PC0101")
 
 
+GYM_TRAPS = [(5, 9), (23, 41), (3, 62)]      # spin the player back to the door
+
+
+def platform_layout(bot):
+    here = bot.where()
+    return (tuple(tuple(sorted(p["floor"])) for p in bot.platforms()), (here[1], here[2]) if here else None)
+
+
+def clair_gym(bot):
+    # the Clair set from the Pokemon Center, then the gym: islands in lava, joined by three platforms that
+    # rotate or slide when the player steps on one of their buttons (each has a rotate button and two to move
+    # it). The bot reads the platforms from memory and searches, breadth first, over which buttons to step on:
+    # from a save state of each new layout it tries every button it can walk to, until it can walk to Clair
+    import os
+    heal(bot, "T30PC0101", team="clair")
+    bot.travel(BLACKTHORN_GYM)
+    bot.settle()
+    bot.forbid(BLACKTHORN_GYM, set(GYM_TRAPS))
+    clair = (12, 4)                          # the tile in front of her
+    first = os.path.join(bot.out, "gym_0.dst")
+    bot.save(first)
+    queue, seen, n = [first], {platform_layout(bot)}, 0
+    while queue:
+        state = queue.pop(0)
+        bot.game.emu.savestate.load_file(state)
+        bot.game.run(60)
+        here = bot.where()
+        pos = (here[1], here[2])
+        if bot.path(BLACKTHORN_GYM, pos, {clair}) is not None:
+            bot.walk(BLACKTHORN_GYM, [clair])
+            bot.talk(BLACKTHORN_GYM, 0)
+            break
+        buttons = [b for p in bot.platforms() for b in (p["rotate"], p["left"], p["right"]) if b != pos]
+        for b in buttons:
+            bot.game.emu.savestate.load_file(state)
+            bot.game.run(60)
+            if bot.path(BLACKTHORN_GYM, pos, {b}) is None:
+                continue
+            try:
+                bot.walk(BLACKTHORN_GYM, [b])
+            except Exception as e:
+                if type(e).__name__ != "Stuck" or str(e).startswith("lost a battle"):
+                    raise
+                continue
+            bot.game.run(300)                # the platform moves, taking the player with it
+            bot.settle()
+            layout = platform_layout(bot)
+            if layout in seen:
+                continue
+            seen.add(layout)
+            n += 1
+            nxt = os.path.join(bot.out, "gym_%d.dst" % n)
+            bot.save(nxt)
+            queue.append(nxt)
+        if n > 200:
+            break
+    else:
+        bot.stuck("no way across Clair's gym found (%d layouts tried)" % len(seen))
+    # she won't hand over the badge yet: the Dragon's Den comes first (FLAG_UNK_0D1: beaten, the Den's guard
+    # steps aside)
+    bot.expect("FLAG_UNK_0D1", "beating Clair")
+
+
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
           back_to_elm, stolen_pokemon, to_violet, sprout_tower,
           violet_gym, mystery_egg, to_azalea, kurt, slowpoke_well, azalea_gym, to_ilex, farfetchd,
@@ -759,4 +822,4 @@ STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokege
           to_mahogany, red_gyarados, lance, into_hideout, hideout_b1f, hideout_b2f, hideout_b3f, hideout_end, pryce_gym,
           to_goldenrod_takeover, rocket_disguise, radio_tower_rival, fake_director,
           underground_door, switch_room, warehouse, card_key, proton, ariana, archer,
-          to_ice_path, ice_path_boulders, to_blackthorn]
+          to_ice_path, ice_path_boulders, to_blackthorn, clair_gym]

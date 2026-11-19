@@ -75,6 +75,7 @@ EXPERT_AI = 0x7                 # F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTA
 
 
 TRAINER_FLAG_BASE = 0x550
+BLACKTHORN_GYM, MAGMA = "T30GYM0101", 0x2C     # Clair's gym, and its lava's tile behaviour
 
 
 class Stuck(Exception):
@@ -183,9 +184,37 @@ class Bot:
     # ------------------------------------------------------------- the map
 
     def tiles(self, code):
-        """Walkable tiles of the matrix the map is in: {(x, z): behaviour}. Outdoors this is the whole region."""
+        """Walkable tiles of the matrix the map is in: {(x, z): behaviour}. Outdoors this is the whole region.
+        In Clair's gym the lava is not walkable, but the floors of its three platforms, wherever they are now,
+        are."""
         grid, _ = self.world.grid(self.world.headers[code]["matrix"])
-        return {p: v & 0xFF for p, v in grid.items() if not v & 0x8000}
+        out = {p: v & 0xFF for p, v in grid.items() if not v & 0x8000}
+        if code == BLACKTHORN_GYM:
+            here = self.where()
+            out = {p: b for p, b in out.items() if b != MAGMA}
+            if here and here[0] == code:
+                for platform in self.platforms():
+                    for t in platform["floor"]:
+                        out[t] = 0
+        return out
+
+    def platforms(self):
+        """Clair's gym's three platforms, from the game's memory (src/field/gymmick/blackthorn.c in the
+        decompilation): each one's 18 floor tiles and its three buttons (rotate, move one way, the other)."""
+        g, fs = self.game, self.field_system()
+        if not fs:
+            return []
+        local = g.word(g.word(fs + 4) + 0x24)
+        if not local:
+            return []
+        s32 = lambda a: struct.unpack("<i", struct.pack("<I", g.word(a)))[0]
+        point = lambda a: (s32(a), s32(a + 4))
+        out = []
+        for i in range(3):
+            base = local + 4 + 0x270 * i
+            out.append(dict(rotate=point(base + 8), left=point(base + 0x10), right=point(base + 0x18),
+                            floor=[point(base + 0x1E0 + 8 * j) for j in range(18)]))
+        return out
 
     def people(self, code):
         here = self.where()
