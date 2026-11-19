@@ -469,11 +469,11 @@ HIDEOUT_B1F, HIDEOUT_B2F, HIDEOUT_B3F = "D35R0102", "D35R0103", "D35R0104"
 
 
 def hideout_b1f(bot):
-    # B1F: Persian statues sound the alarm (and call two Grunts) when the player walks past in front of them,
-    # and one tile near the stairs (16, 28) sends the player back to the start of the floor; keep off all of
-    # those, and down the stairs to B2F. The floor of traps on the way only starts wild battles
-    statues = {(x, z) for x, z0 in ((44, 4), (18, 4), (44, 11), (44, 29), (18, 29)) for z in (z0, z0 + 1)}
-    bot.forbid(HIDEOUT_B1F, statues | {(16, 28)})
+    # B1F: Persian statues stand across the corridors and sound the alarm, which calls two Grunts to fight,
+    # when the player walks past; there is no way round them, so the bot takes the fights. One tile near the
+    # stairs (16, 28) sends the player back to the start of the floor: keep off it. The floor of traps on the
+    # way only starts wild battles. Then down the stairs to B2F
+    bot.forbid(HIDEOUT_B1F, {(16, 28)})
     bot.travel(HIDEOUT_B2F)
 
 
