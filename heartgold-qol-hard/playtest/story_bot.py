@@ -489,7 +489,9 @@ class Bot:
                     pass
                 if stands(str(e.get("script"))):
                     out.add((e["x"], e["z"]))
-            return out
+            # scripts also hide people without a flag (the shady salesman on the Mahogany shop's stairs), so
+            # never let event data close a warp: nobody stands on a staircase for good
+            return out - {(w["x"], w["z"]) for w in self.world.events(code).get("warp_events", [])}
         events = self.world.events(here[0]).get("object_events", [])
         out = set()
         for i, pos in self.objects().items():
