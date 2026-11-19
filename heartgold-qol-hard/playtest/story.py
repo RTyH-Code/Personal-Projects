@@ -550,10 +550,120 @@ def pryce_gym(bot):
     bot.expect("FLAG_GOT_TM07_FROM_PRYCE", "beating Pryce")
 
 
+# ---------------------------------------------------------------- the Radio Tower takeover
+
+TAKEOVER = 0x4077       # VAR_SCENE_ROCKET_TAKEOVER: 1 after Pryce, 2 once the Rockets hold the Radio Tower, 3 in
+                        # the Rocket disguise, 4 after the rival on 1F, 5 once Archer is beaten
+RADIO_1F, RADIO_3F, RADIO_5F, DIRECTORS_OFFICE = "D23R0101", "D23R0103", "D23R0105", "D23R0106"
+UNDERGROUND, SWITCH_ROOM, WAREHOUSE = "D37R0102", "D37R0104", "D37R0105"
+
+
+def expect_takeover(bot, value, what):
+    if bot.game.get_var(TAKEOVER) < value:
+        bot.stuck("%s did not happen (the takeover is at %d)" % (what, bot.game.get_var(TAKEOVER)))
+
+
+def to_goldenrod_takeover(bot):
+    # leaving Pryce's gym, Elm's aide calls: the Rockets have taken over the Radio Tower. A heal, then back
+    # west over Mt. Mortar's water, through Ecruteak and down Routes 37, 36 and 35 to Goldenrod, and the
+    # Radio Tower set at its Pokemon Center
+    heal(bot, "T28PC0101")
+    expect_takeover(bot, 2, "the Rockets taking the Radio Tower")
+    heal(bot, "T25PC0101", team="radio_tower")
+
+
+def rocket_disguise(bot):
+    # a Grunt guards the Radio Tower's stairs. In the Goldenrod Underground, a Rocket by the shops (the strip
+    # x = 15, z = 7 to 13) mistakes the player for a recruit and hands over a uniform
+    bot.travel(UNDERGROUND, near=(16, 10))
+    bot.walk(UNDERGROUND, [(15, z) for z in range(7, 14)])
+    bot.settle()
+    expect_takeover(bot, 3, "getting the Rocket disguise")
+
+
+def radio_tower_rival(bot):
+    # in the disguise, the Grunt at the 1F stairs lets the player by; at the foot of the stairs (23, 5) the
+    # rival arrives and battles
+    bot.travel(RADIO_1F, near=(23, 6))
+    bot.walk(RADIO_1F, [(23, 5)])
+    bot.settle()
+    expect_takeover(bot, 4, "the rival in the Radio Tower")
+
+
+def fake_director(bot):
+    # a heal, then up to 5F, where the "Director" is Petrel in disguise: he battles and hands over the
+    # Basement Key, and the real Director is said to be held in the Underground warehouse
+    heal(bot, "T25PC0101")
+    bot.travel(RADIO_5F)
+    bot.talk(RADIO_5F, 0)
+    bot.expect_item("BASEMENT_KEY", "Petrel giving the Basement Key")
+
+
+def underground_door(bot):
+    # a heal, then the locked door at the Underground's east end (25, 30), which the Basement Key opens
+    heal(bot, "T25PC0101")
+    bot.travel(UNDERGROUND, near=(25, 31))
+    bot.talk(UNDERGROUND, 11)
+    if 11 in bot.objects():
+        bot.stuck("the Basement Key did not open the Underground door")
+
+
+SWITCHES = [(8, 8), (9, 8), (10, 8)]
+
+
+def switch_room(bot):
+    # the room behind the door: the rival waits just inside (a battle), then three switches on the wall at
+    # (8, 8), (9, 8) and (10, 8), each opening some of the shutters and closing others, stand between the
+    # player and the warehouse door (26, 14). Each switch flips its own set of shutters, so what is open depends
+    # only on which switches have been pressed an odd number of times: the bot tries each choice until the door
+    # can be reached
+    bot.travel(SWITCH_ROOM)
+    bot.settle()
+    door = (26, 14)
+    for n in range(8):
+        pick = [s for i, s in enumerate(SWITCHES) if n >> i & 1]
+        for s in pick:
+            bot.talk(SWITCH_ROOM, s)
+        here = bot.where()
+        if any((door[0] + dx, door[1] + dz) in bot.reach(SWITCH_ROOM, (here[1], here[2]))
+               for dx, dz in ((1, 0), (-1, 0), (0, 1), (0, -1))):
+            break
+        for s in pick:                        # flip them back
+            bot.talk(SWITCH_ROOM, s)
+    else:
+        bot.stuck("no choice of switches opened the way to the warehouse")
+    bot.travel(WAREHOUSE)
+
+
+def warehouse(bot):
+    # the warehouse: Grunts, and the real Director tied up at the back, who hands over the Card Key
+    bot.talk(WAREHOUSE, 3)
+    bot.expect_item("CARD_KEY_JOHTO", "the Director giving the Card Key")
+
+
+def card_key(bot):
+    # a heal, then the Card Key in the slot by the 3F shutter (22, 11), which opens the way up the tower's
+    # east side to 4F (Proton) and 5F (Ariana)
+    heal(bot, "T25PC0101")
+    bot.travel(RADIO_3F, near=(22, 12))
+    bot.talk(RADIO_3F, (22, 11))
+    if 7 in bot.objects():
+        bot.stuck("the Card Key did not open the 3F shutter")
+
+
+def archer(bot):
+    # up past Proton and Ariana to the Director's office, where Archer battles. Beating him ends the takeover
+    bot.travel(DIRECTORS_OFFICE)
+    bot.talk(DIRECTORS_OFFICE, 0)
+    bot.expect("FLAG_BEAT_RADIO_TOWER_ROCKETS", "beating Archer")
+
+
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
           back_to_elm, stolen_pokemon, to_violet, sprout_tower,
           violet_gym, mystery_egg, to_azalea, kurt, slowpoke_well, azalea_gym, to_ilex, farfetchd,
           to_goldenrod, radio_card, whitney_gym, squirt_bottle, sudowoodo,
           to_ecruteak, burned_tower, morty_gym, surf, to_olivine, to_cianwood,
           chuck_gym, lighthouse, secret_potion, ampharos, jasmine_gym,
-          to_mahogany, red_gyarados, lance, into_hideout, hideout_b1f, hideout_b2f, hideout_b3f, hideout_end, pryce_gym]
+          to_mahogany, red_gyarados, lance, into_hideout, hideout_b1f, hideout_b2f, hideout_b3f, hideout_end, pryce_gym,
+          to_goldenrod_takeover, rocket_disguise, radio_tower_rival, fake_director,
+          underground_door, switch_room, warehouse, card_key, archer]

@@ -112,6 +112,16 @@ SETS = {
                   team=["MACHAMP", "HERACROSS", "TOXICROAK", "MAGMAR", "LUXRAY", "HOUNDOOM"],
                   # Low Kick hits harder the heavier the target: Lapras and Mamoswine are very heavy
                   moves=dict(TOXICROAK=["LOW_KICK", "POISON_JAB", "SUCKER_PUNCH", "DIG"])),
+    # the Radio Tower and the Goldenrod Underground (Lv. 41-46): Proton, Petrel, Ariana and Archer, mostly
+    # Poison types (Koffing and Weezing with Levitate, so Ground moves miss them), Golbat and Crobat, Houndoom,
+    # Honchkrow and Sneasel, and the rival (Ampharos, Golbat, Sneasel, Mismagius, Pupitar, Typhlosion).
+    # Psychic for the Poison types, a Steel type with Levitate that their moves can't touch, Electric for the
+    # birds, Water for the Fire types, and Dark moves for Mismagius
+    "radio_tower": dict(level=46, badges=7, places=MAHOGANY, ways=WATER,
+                        tms=["FLASH", "ROOST", "BULLET_SEED", "ROCK_TOMB", "U_TURN", "DIG", "PAYBACK", "EMBARGO",
+                             "PROTECT", "LIGHT_SCREEN", "REFLECT", "ATTRACT", "FOCUS_PUNCH", "CALM_MIND", "HAIL"],
+                        item="ORAN_BERRY",
+                        team=["ALAKAZAM", "BRONZONG", "CLAYDOL", "LUXRAY", "GYARADOS", "HOUNDOOM"]),
 }
 STARTERS = {"CHIKORITA", "CYNDAQUIL", "TOTODILE"}
 EV_TOTAL = {0: 128, 1: 192, 2: 256, 3: 320, 4: 384, 5: 448}       # by badges held; 510 from 6 badges on
