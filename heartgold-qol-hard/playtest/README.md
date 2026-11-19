@@ -505,6 +505,14 @@ is left. The bot can't use potions (it heals only at Pokémon Centers), so a
 gym that has to be crossed before its leader is harder for it than for a
 player.
 
+So the harness now heals the party where it stands in front of Clair, after
+her trainers (`restore_party` in `story_bot.py`, test harness only), in place
+of the potions a player would use. With that, both sets beat her on the first
+try: the `clair` set with three of ours fainted (Granbull finished Kingdra and
+Gyarados), and the first set (`clair_first`, Piloswine for Luxray, run with
+`STORY_TEAM_CLAIR=clair_first`) with four. Clair herself is a fair fight; what
+made her a wall for the bot was her gym's trainers, fought without healing.
+
 **The clean run** from the bedroom to Whitney, with every stage in order:
 83 battles, 78 won. The losses: the Azalea rival twice and Whitney once
 (each won on a retry), a policeman on Route 34 before the bot healed after
