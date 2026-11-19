@@ -454,7 +454,7 @@ def red_gyarados(bot):
 def lance(bot):
     # Lance asks the player to help him look into Mahogany (Yes); he goes ahead to the souvenir shop
     bot.talk("T29", 8, answers=["a"])
-    bot.expect("FLAG_UNK_0C3", "agreeing to help Lance")
+    bot.expect("FLAG_HIDE_LAKE_OF_RAGE_LANCE", "agreeing to help Lance")
 
 
 def into_hideout(bot):
