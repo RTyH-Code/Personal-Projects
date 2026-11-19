@@ -629,7 +629,11 @@ class Bot:
             here = self.where()
             if here and (here[1], here[2]) == pos:
                 break
-        self.game.key(options[pos], hold=2, after=10)
+        # turn to face it: a short press turns without stepping, but now and then it does not register
+        for hold in (2, 3, 4, 4):
+            self.game.key(options[pos], hold=hold, after=10)
+            if self.facing() == options[pos]:
+                break
         self.game.key("a", after=30)
         self.settle(answers)
 
