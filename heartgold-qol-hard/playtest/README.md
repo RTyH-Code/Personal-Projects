@@ -221,6 +221,7 @@ python3 playtest/team_sets.py /path/to/test/hg-engine /path/to/dumped/hg-engine
 | `jasmine` | Jasmine, then Lake of Rage and the Rocket Hideout | 38 | Magmar, Torkoal, Houndoom, Claydol, Gastrodon, Quagsire |
 | `pryce` | Pryce | 42 | Machamp, Heracross, Toxicroak (Low Kick, Poison Jab, Sucker Punch, Dig), Magmar, Luxray, Houndoom |
 | `radio_tower` | the Radio Tower takeover: Petrel, the rival in the Underground, Proton, Ariana, Archer | 46 | Alakazam, Bronzong, Claydol, Luxray, Gyarados, Houndoom |
+| `clair` | Clair | 47 | Luxray, Dewgong, Jynx (Ice Punch, Psychic, Lovely Kiss, Avalanche), Gardevoir, Granbull, Bronzong (Piloswine before Luxray) |
 
 The first Whitney set (Bayleef, Heracross, Meditite, Geodude, Flaaffy,
 Gastly) lost both its tries: the hack gives her answers to the usual picks
@@ -374,6 +375,31 @@ Observation Deck (its door leads wherever it went, a warp the planner can't
 follow), where Archer battles. The bot heals at the Pokémon Center before each
 of the three Executives, as a player with potions would.
 
+Then back east to the Ice Path along Route 44. On 1F, HM07 first (an item
+ball on the ice: until it is picked up, a man by the stairs down turns the
+player back). On B1F, four Strength boulders and four holes: each boulder
+pushed into a hole lands on B2F's ice as something to stop against.
+`boulders.py` plans the pushes (one boulder at a time, each into a hole near
+it, with a full search over all of them to fall back on); the bot uses
+Strength from the bag on the first push, checks the game after every move and
+plans again whenever it differs (a wild Pokémon, a push that leaves the player
+elsewhere). The bot now plans slides on every icy map. Across B2F to B3F and
+back up the east side to 1F, where a Kimono Girl stands on the last slope:
+talked to from above, she asks if the player is in a hurry, and Yes sends her
+off. Then Blackthorn City.
+
+Clair's gym is islands in lava joined by three platforms that slide or rotate
+when the player steps on one of their buttons (`src/field/gymmick/blackthorn.c`
+in the decompilation); three tiles spin the player back to the door. The bot
+reads the platforms' floors and buttons from the game's memory (lava is
+otherwise not walkable), and searches from save states over which buttons to
+step on, trying first the layouts that let it walk furthest north. It walks
+to the tile beside a button and takes the last step itself (the platform
+moves off with the player), keeps off every other button on the way, and
+steps off and back on to press one it stands on. The search found a way
+across in 23 presses; `CLAIR_ROUTE` in `story.py` keeps them, so later runs
+just step on them, and search only if that stops working.
+
 The bot surfs once it has HM03: water counts as walkable, and a step from
 land onto water is Surf (face it, A, Yes). It heals after every gym, and
 after the Azalea rival.
@@ -454,6 +480,30 @@ between them; Honchkrow took five of those KOs too. Honchkrow (Lv. 45, Super
 Luck with a Scope Lens: Foul Play, Brave Bird, Psychic, Roost) is the one to
 look at, as Jynx is for Pryce: its critical hits get through even the
 Electric type brought for it. Archer is a fair fight for this set.
+
+**The Ice Path** needed no battles worth noting (wild Pokémon only).
+
+**Clair**, with the `clair` set: no wins in nine. Her gym's five Ace Trainers
+(Dratini, Horsea, Seadra, Dragonair) have to be fought on the way to her, and
+there is nowhere to heal inside. With Piloswine in the set (five tries) it
+fainted to a Seadra every time before reaching her, and Dewgong took on most
+of the trainers alone; with Luxray instead (four tries) Luxray or Dewgong
+fell to them as often. She still had 1 to 4 of her six left at the end of
+each loss. KOs on our Pokémon in the nine battles with her:
+
+| Her Pokémon | KOs |
+|---|---|
+| Gyarados (Intimidate, Dragon Dance; Aqua Tail, Earthquake, Crunch; Wacan Berry) | **15** |
+| Gabite | 8 |
+| Dragonair | 7 |
+| Flygon | 6 |
+| Kingdra | 5 |
+| Altaria | 3 |
+
+Gyarados is the one to look at: once it has a Dragon Dance in, it sweeps what
+is left. The bot can't use potions (it heals only at Pokémon Centers), so a
+gym that has to be crossed before its leader is harder for it than for a
+player.
 
 **The clean run** from the bedroom to Whitney, with every stage in order:
 83 battles, 78 won. The losses: the Azalea rival twice and Whitney once
