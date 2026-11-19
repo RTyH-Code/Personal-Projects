@@ -438,7 +438,7 @@ them hit most of a team that has to bring Fighting types for the rest of
 his. Sucker Punch on Toxicroak and Houndoom's Dark moves are the set's
 answers, but they rarely got to act before Jynx did.
 
-**The Radio Tower**, with the `radio_tower` set: 36 battles, 29 won. The
+**The Radio Tower**, with the `radio_tower` set: 36 battles, 30 won. The
 Grunts, the scientists and Petrel (six Poison types) fell to Alakazam or
 Bronzong alone, none of ours fainting. The rival in the Underground won with
 two fainted.
