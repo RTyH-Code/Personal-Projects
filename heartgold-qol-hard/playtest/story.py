@@ -362,9 +362,11 @@ def to_cianwood(bot):
 
 
 def chuck_gym(bot):
-    # the Chuck set from the Pokemon Center, then past four Black Belts to Chuck
+    # the Chuck set from the Pokemon Center, then past four Black Belts to the winch and Chuck
     heal(bot, "T24PC0101", team="chuck")
     bot.travel("T24GYM0101")
+    # Chuck trains under a waterfall and won't fight until the winch at the back stops it (Yes)
+    bot.talk("T24GYM0101", (10, 2))
     bot.talk("T24GYM0101", 0)
     bot.expect("FLAG_GOT_TM01_FROM_CHUCK", "beating Chuck")
 
