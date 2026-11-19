@@ -554,7 +554,7 @@ def pryce_gym(bot):
 
 TAKEOVER = 0x4077       # VAR_SCENE_ROCKET_TAKEOVER: 1 after Pryce, 2 once the Rockets hold the Radio Tower, 3 in
                         # the Rocket disguise, 4 after the rival on 1F, 5 once Archer is beaten
-RADIO_1F, RADIO_3F, RADIO_5F, DIRECTORS_OFFICE = "D23R0101", "D23R0103", "D23R0105", "D23R0106"
+RADIO_1F, RADIO_3F, RADIO_5F, DIRECTORS_OFFICE, RADIO_ELEVATOR = "D23R0101", "D23R0103", "D23R0105", "D23R0106", "D23R0107"
 UNDERGROUND, SWITCH_ROOM, WAREHOUSE = "D37R0102", "D37R0104", "D37R0105"
 
 
@@ -670,8 +670,16 @@ def card_key(bot):
 
 
 def archer(bot):
-    # up past Proton and Ariana to the Director's office, where Archer battles. Beating him ends the takeover
-    bot.travel(DIRECTORS_OFFICE)
+    # up past Proton (4F) and Ariana (5F) to the elevator at the top of 5F (13, 2): stepping in, it rides by
+    # itself between 5F and the Observation Deck, and its door then leads to whichever floor it went to (a
+    # warp the route planner can't follow). On the deck, Archer battles; beating him ends the takeover
+    bot.travel(RADIO_5F, near=(13, 3))
+    bot.go_through(RADIO_5F, 1)
+    bot.settle()
+    bot.go_through(RADIO_ELEVATOR, 0)
+    bot.settle()
+    if not bot.where() or bot.where()[0] != DIRECTORS_OFFICE:
+        bot.stuck("the Radio Tower elevator did not go up to the Observation Deck")
     bot.talk(DIRECTORS_OFFICE, 0)
     bot.expect("FLAG_BEAT_RADIO_TOWER_ROCKETS", "beating Archer")
 
