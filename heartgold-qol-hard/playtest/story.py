@@ -1,4 +1,4 @@
-"""The story, stage by stage, for story_bot.py: New Bark Town to Jasmine's badge.
+"""The story, stage by stage, for story_bot.py: New Bark Town into the Team Rocket Hideout.
 
 Each stage is a function of the bot. Places are map codes (see
 tools/data/map_names.json) and tiles; warps are numbered as in the map's
@@ -430,9 +430,41 @@ def jasmine_gym(bot):
     bot.expect("FLAG_GOT_TM23_FROM_JASMINE", "beating Jasmine")
 
 
+def to_mahogany(bot):
+    # a heal after the gym, then back to Ecruteak and east along Route 42, round and over Mt. Mortar, to
+    # Mahogany Town
+    heal(bot, "T26PC0101")
+    bot.travel("T28")
+
+
+def red_gyarados(bot):
+    # a heal, then north up Route 43 to the Lake of Rage, out on the water to the red Gyarados, and its battle
+    # (Lv. 30); after it, the Red Scale, and Lance on the shore
+    heal(bot, "T28PC0101")
+    bot.travel("T29")
+    bot.talk("T29", 3)
+    bot.settle()
+    bot.expect("FLAG_GOT_RED_SCALE", "the red Gyarados")
+
+
+def lance(bot):
+    # Lance asks the player to help him look into Mahogany (Yes); he goes ahead to the souvenir shop
+    bot.talk("T29", 8, answers=["a"])
+    bot.expect("FLAG_UNK_0C3", "agreeing to help Lance")
+
+
+def into_hideout(bot):
+    # a heal in Mahogany, then the souvenir shop, where Lance has seen off the shady salesman and opened the
+    # stairs down to Team Rocket's hideout
+    heal(bot, "T28PC0101")
+    bot.travel("D35R0102")
+    bot.settle()
+
+
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
           back_to_elm, stolen_pokemon, to_violet, sprout_tower,
           violet_gym, mystery_egg, to_azalea, kurt, slowpoke_well, azalea_gym, to_ilex, farfetchd,
           to_goldenrod, radio_card, whitney_gym, squirt_bottle, sudowoodo,
           to_ecruteak, burned_tower, morty_gym, surf, to_olivine, to_cianwood,
-          chuck_gym, lighthouse, secret_potion, ampharos, jasmine_gym]
+          chuck_gym, lighthouse, secret_potion, ampharos, jasmine_gym,
+          to_mahogany, red_gyarados, lance, into_hideout]
