@@ -471,12 +471,18 @@ def into_hideout(bot):
 HIDEOUT_B1F, HIDEOUT_B2F, HIDEOUT_B3F = "D35R0102", "D35R0103", "D35R0104"
 
 
+def hideout_traps(bot):
+    # B1F's trap tiles: each starts a battle with a Voltorb, Geodude or Koffing (which explode)
+    return {(c["x"], c["z"]) for c in bot.world.events(HIDEOUT_B1F)["coord_events"]
+            if c["var"].startswith("VAR_ROCKET_TRAP")}
+
+
 def hideout_b1f(bot):
     # B1F: Persian statues stand across the corridors and sound the alarm, which calls two Grunts to fight,
     # when the player walks past; there is no way round them, so the bot takes the fights. One tile near the
-    # stairs (16, 28) sends the player back to the start of the floor: keep off it. The floor of traps on the
-    # way only starts wild battles. Then down the stairs to B2F
-    bot.forbid(HIDEOUT_B1F, {(16, 28)})
+    # stairs (16, 28) sends the player back to the start of the floor: keep off it, and off the floor of traps
+    # (wild battles with Pokemon that explode). Then down the stairs to B2F
+    bot.forbid(HIDEOUT_B1F, {(16, 28)} | hideout_traps(bot))
     bot.travel(HIDEOUT_B2F)
 
 
@@ -510,6 +516,8 @@ def hideout_end(bot):
     # the rest of the Hideout is a chain of scenes (Lance, Ariana and a Grunt in a double battle, the
     # generator room); then the three Electrode that power the radio signal, each a battle. The last one
     # ends it, and the man at Pryce's door goes. First, out to Mahogany's Pokemon Center to heal after Petrel
+    # (keeping off B1F's traps: the team is worn down)
+    bot.forbid(HIDEOUT_B1F, {(16, 28)} | hideout_traps(bot))
     heal(bot, "T28PC0101")
     for _ in range(16):
         if bot.flag("FLAG_UNK_1F9"):
