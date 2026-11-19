@@ -596,11 +596,18 @@ class Bot:
     def travel(self, target, near=None):
         """Go to the target map by whatever warps lead there; outdoors, on until the player stands in it. With
         near, to the part of the map that tile is in (a map can be in parts joined only through other maps)."""
-        for _ in range(6):
+        for attempt in range(6):
             here = self.where()
             if near and here and here[0] == target and near in self.reach(target, (here[1], here[2])):
                 return
-            steps = self.route(target, near)
+            try:
+                steps = self.route(target, near)
+            except Stuck:
+                if attempt >= 2:
+                    raise
+                # just after a map loads, its people and doors are still being set out: look again shortly
+                self.game.run(60)
+                continue
             try:
                 for code, index in steps:
                     here = self.where()
