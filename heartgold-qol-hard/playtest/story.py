@@ -750,6 +750,13 @@ def to_blackthorn(bot):
     # down to B2F by the stairs past the holes, across its ice (sliding to the fallen boulders) to B3F, back
     # up to B2F's east side, B1F and 1F, and out to Blackthorn City
     bot.forbid(ICE_B1F, ice_path_holes(bot))
+    bot.travel(ICE_1F, near=(55, 21))      # 1F's east side, from B1F
+    # a Kimono Girl stands on the last ice slope (55, 29). Talked to from above, she asks whether the player
+    # is in a hurry: Yes, and she leaves
+    if 2 in bot.objects():
+        bot.walk(ICE_1F, [(55, 28)])
+        bot.talk(ICE_1F, 2, answers=["a"])
+        bot.expect("FLAG_UNK_239", "the Kimono Girl on the Ice Path moving aside")
     bot.travel("T30")
     heal(bot, "T30PC0101")
 
