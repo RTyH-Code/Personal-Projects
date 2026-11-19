@@ -773,84 +773,104 @@ def platform_layout(bot):
     return (tuple(tuple(sorted(p["floor"])) for p in bot.platforms()), area)
 
 
+def press_gym_button(bot, b):
+    # walk to a tile beside a platform button, keeping off the others, then step onto it: the platform then
+    # moves, taking the player with it, so the walk must not be the one to arrive. Whether it worked is for the
+    # caller to see
+    here = bot.where()
+    pos = (here[1], here[2])
+    buttons = {t for p in bot.platforms() for t in (p["rotate"], p["left"], p["right"])}
+    tiles = bot.tiles(BLACKTHORN_GYM)
+    beside = {(b[0] - dx, b[1] - dz): d for d, (dx, dz, _) in DIRS.items()
+              if (b[0] - dx, b[1] - dz) in tiles and (b[0] - dx, b[1] - dz) not in buttons}
+    if not beside:
+        return False
+    if b == pos:
+        # standing on it already (a platform stops with the player on its next button): step off and back on
+        d = next(iter(beside.values()))
+        dx, dz, _ = DIRS[d]
+        back = {"up": "down", "down": "up", "left": "right", "right": "left"}[d]
+        if not bot.step(back):
+            return False
+        beside = {(b[0] - dx, b[1] - dz): d}
+    elif bot.path(BLACKTHORN_GYM, pos, set(beside), avoid=buttons) is None:
+        return False
+    try:
+        at = bot.walk(BLACKTHORN_GYM, list(beside), never=buttons)
+    except Exception as e:
+        if type(e).__name__ != "Stuck" or str(e).startswith("lost a battle"):
+            raise
+        return False
+    bot.step(beside[at])
+    bot.game.run(300)
+    bot.settle()
+    return True
+
+
 def clair_gym(bot):
     # the Clair set from the Pokemon Center, then the gym: islands in lava, joined by three platforms that
     # rotate or slide when the player steps on one of their buttons (each has a rotate button and two to move
-    # it). The bot reads the platforms from memory and searches over which buttons to step on, nearest Clair first:
-    # from a save state of each new layout it tries every button it can walk to, until it can walk to Clair
+    # it). The bot reads the platforms from memory and searches over which buttons to step on, the layouts that
+    # let it walk furthest north (towards Clair) first: from a save state of each new layout it tries every
+    # button, until it can walk to Clair. The buttons that got it there are kept (out/clair_route.json), so a
+    # retry after a loss, or a later run, just steps on them again
+    import heapq
+    import json
     import os
     heal(bot, "T30PC0101", team="clair")
     bot.travel(BLACKTHORN_GYM)
     bot.settle()
     bot.forbid(BLACKTHORN_GYM, set(GYM_TRAPS))
     clair = (12, 4)                          # the tile in front of her
-    first = os.path.join(bot.out, "gym_0.dst")
-    bot.save(first)
-    import heapq
-
-    def northmost(bot):
-        # how far north (towards Clair, at the top) the player can walk now: smaller is better
+    route_file = os.path.join(bot.out, "clair_route.json")
+    route = [tuple(b) for b in json.load(open(route_file))] if os.path.exists(route_file) else None
+    if route:
+        for b in route:
+            press_gym_button(bot, b)
         here = bot.where()
-        return min(z for _, z in bot.reach(BLACKTHORN_GYM, (here[1], here[2])))
-    queue, seen, n = [(northmost(bot), 0, first)], {platform_layout(bot)}, 0
-    while queue:
-        _, _, state = heapq.heappop(queue)
-        bot.game.emu.savestate.load_file(state)
-        bot.game.run(60)
-        here = bot.where()
-        pos = (here[1], here[2])
-        if bot.path(BLACKTHORN_GYM, pos, {clair}) is not None:
-            bot.walk(BLACKTHORN_GYM, [clair])
-            bot.talk(BLACKTHORN_GYM, 0)
-            break
-        buttons = [b for p in bot.platforms() for b in (p["rotate"], p["left"], p["right"])]
-        for b in buttons:
+        if bot.path(BLACKTHORN_GYM, (here[1], here[2]), {clair}) is None:
+            route = None                     # it didn't work out the same: search after all
+            bot.travel("T30")
+            bot.travel(BLACKTHORN_GYM)
+            bot.settle()
+    if not route:
+        def northmost():
+            here = bot.where()
+            return min(z for _, z in bot.reach(BLACKTHORN_GYM, (here[1], here[2])))
+        first = os.path.join(bot.out, "gym_0.dst")
+        bot.save(first)
+        queue, seen, n = [(northmost(), 0, first, [])], {platform_layout(bot)}, 0
+        while queue:
+            _, _, state, presses = heapq.heappop(queue)
             bot.game.emu.savestate.load_file(state)
             bot.game.run(60)
-            others = set(buttons) - {b}       # stepping on another button on the way would set it off
-            # walk to a tile beside the button, then step onto it: the platform then moves, taking the player
-            # with it, so the walk must not be the one to arrive
-            tiles = bot.tiles(BLACKTHORN_GYM)
-            beside = {(b[0] - dx, b[1] - dz): d for d, (dx, dz, _) in DIRS.items()
-                      if (b[0] - dx, b[1] - dz) in tiles and (b[0] - dx, b[1] - dz) not in buttons}
-            if not beside:
-                continue
-            if b == pos:
-                # standing on it already (a platform stops with the player on its next button): step off
-                # and back on
-                d = next(iter(beside.values()))
-                dx, dz, _ = DIRS[d]
-                off = (b[0] - dx, b[1] - dz)
-                back = {"up": "down", "down": "up", "left": "right", "right": "left"}[d]
-                if not bot.step(back):
+            here = bot.where()
+            if bot.path(BLACKTHORN_GYM, (here[1], here[2]), {clair}) is not None:
+                json.dump(presses, open(route_file, "w"))
+                print("  gym: way to Clair, by the buttons %s" % presses, flush=True)
+                break
+            for b in [t for p in bot.platforms() for t in (p["rotate"], p["left"], p["right"])]:
+                bot.game.emu.savestate.load_file(state)
+                bot.game.run(60)
+                if not press_gym_button(bot, b):
                     continue
-                beside = {off: d}
-            elif bot.path(BLACKTHORN_GYM, pos, set(beside), avoid=set(buttons)) is None:
-                continue
-            try:
-                at = bot.walk(BLACKTHORN_GYM, list(beside), never=set(buttons))
-            except Exception as e:
-                if type(e).__name__ != "Stuck" or str(e).startswith("lost a battle"):
-                    raise
-                continue
-            bot.step(beside[at])
-            bot.game.run(300)                # the platform moves, taking the player with it
-            bot.settle()
-            layout = platform_layout(bot)
-            print("  gym: from %s pressed %s, now at %s, platforms at %s%s" % (
-                pos, b, bot.where()[1:3], [min(p["floor"]) for p in bot.platforms()],
-                " (seen)" if layout in seen else ""), flush=True)
-            if layout in seen:
-                continue
-            seen.add(layout)
-            n += 1
-            nxt = os.path.join(bot.out, "gym_%d.dst" % n)
-            bot.save(nxt)
-            heapq.heappush(queue, (northmost(bot), n, nxt))
-        if n > 200:
-            break
-    else:
-        bot.stuck("no way across Clair's gym found (%d layouts tried)" % len(seen))
+                layout = platform_layout(bot)
+                print("  gym: pressed %s, now at %s, platforms at %s%s" % (
+                    b, bot.where()[1:3], [min(p["floor"]) for p in bot.platforms()],
+                    " (seen)" if layout in seen else ""), flush=True)
+                if layout in seen:
+                    continue
+                seen.add(layout)
+                n += 1
+                nxt = os.path.join(bot.out, "gym_%d.dst" % n)
+                bot.save(nxt)
+                heapq.heappush(queue, (northmost(), n, nxt, presses + [list(b)]))
+            if n > 300:
+                break
+        else:
+            bot.stuck("no way across Clair's gym found (%d layouts tried)" % len(seen))
+    bot.walk(BLACKTHORN_GYM, [clair])
+    bot.talk(BLACKTHORN_GYM, 0)
     # she won't hand over the badge yet: the Dragon's Den comes first (FLAG_UNK_0D1: beaten, the Den's guard
     # steps aside)
     bot.expect("FLAG_UNK_0D1", "beating Clair")
