@@ -4,6 +4,7 @@ Each stage is a function of the bot. Places are map codes (see
 tools/data/map_names.json) and tiles; warps are numbered as in the map's
 event file.
 """
+from walk_test import DIRS
 
 
 def leave_bedroom(bot):
@@ -800,14 +801,20 @@ def clair_gym(bot):
             bot.game.emu.savestate.load_file(state)
             bot.game.run(60)
             others = set(buttons) - {b}       # stepping on another button on the way would set it off
-            if bot.path(BLACKTHORN_GYM, pos, {b}, avoid=others) is None:
+            # walk to a tile beside the button, then step onto it: the platform then moves, taking the player
+            # with it, so the walk must not be the one to arrive
+            tiles = bot.tiles(BLACKTHORN_GYM)
+            beside = {(b[0] - dx, b[1] - dz): d for d, (dx, dz, _) in DIRS.items()
+                      if (b[0] - dx, b[1] - dz) in tiles and (b[0] - dx, b[1] - dz) not in buttons}
+            if not beside or bot.path(BLACKTHORN_GYM, pos, set(beside), avoid=set(buttons)) is None:
                 continue
             try:
-                bot.walk(BLACKTHORN_GYM, [b], never=others)
+                at = bot.walk(BLACKTHORN_GYM, list(beside), never=set(buttons))
             except Exception as e:
                 if type(e).__name__ != "Stuck" or str(e).startswith("lost a battle"):
                     raise
                 continue
+            bot.step(beside[at])
             bot.game.run(300)                # the platform moves, taking the player with it
             bot.settle()
             layout = platform_layout(bot)
