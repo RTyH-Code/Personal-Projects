@@ -506,7 +506,8 @@ HIDEOUT_SCENES = {2: (HIDEOUT_B3F, (20, 17)), 3: (HIDEOUT_B3F, (23, 12)), 4: (HI
 def hideout_end(bot):
     # the rest of the Hideout is a chain of scenes (Lance, Ariana and a Grunt in a double battle, the
     # generator room); then the three Electrode that power the radio signal, each a battle. The last one
-    # ends it, and the man at Pryce's door goes
+    # ends it, and the man at Pryce's door goes. First, out to Mahogany's Pokemon Center to heal after Petrel
+    heal(bot, "T28PC0101")
     for _ in range(16):
         if bot.flag("FLAG_UNK_1F9"):
             break
