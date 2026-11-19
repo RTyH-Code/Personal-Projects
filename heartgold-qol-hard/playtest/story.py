@@ -776,7 +776,7 @@ def platform_layout(bot):
 def clair_gym(bot):
     # the Clair set from the Pokemon Center, then the gym: islands in lava, joined by three platforms that
     # rotate or slide when the player steps on one of their buttons (each has a rotate button and two to move
-    # it). The bot reads the platforms from memory and searches, breadth first, over which buttons to step on:
+    # it). The bot reads the platforms from memory and searches over which buttons to step on, nearest Clair first:
     # from a save state of each new layout it tries every button it can walk to, until it can walk to Clair
     import os
     heal(bot, "T30PC0101", team="clair")
@@ -786,9 +786,15 @@ def clair_gym(bot):
     clair = (12, 4)                          # the tile in front of her
     first = os.path.join(bot.out, "gym_0.dst")
     bot.save(first)
-    queue, seen, n = [first], {platform_layout(bot)}, 0
+    import heapq
+
+    def northmost(bot):
+        # how far north (towards Clair, at the top) the player can walk now: smaller is better
+        here = bot.where()
+        return min(z for _, z in bot.reach(BLACKTHORN_GYM, (here[1], here[2])))
+    queue, seen, n = [(northmost(bot), 0, first)], {platform_layout(bot)}, 0
     while queue:
-        state = queue.pop(0)
+        _, _, state = heapq.heappop(queue)
         bot.game.emu.savestate.load_file(state)
         bot.game.run(60)
         here = bot.where()
@@ -840,7 +846,7 @@ def clair_gym(bot):
             n += 1
             nxt = os.path.join(bot.out, "gym_%d.dst" % n)
             bot.save(nxt)
-            queue.append(nxt)
+            heapq.heappush(queue, (northmost(bot), n, nxt))
         if n > 200:
             break
     else:
