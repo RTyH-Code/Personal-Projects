@@ -483,10 +483,22 @@ def hideout_b2f(bot):
     bot.settle()
 
 
+def hideout_b3f(bot):
+    # B3F: the door to the boss's room opens once the two Grunts who know the password are beaten (the woman
+    # at (38, 15), the man at (15, 25)); the Murkrow by the boss's room says it too. Through the door, the
+    # boss turns out to be Petrel in disguise, and fights
+    bot.talk(HIDEOUT_B3F, 4)                  # the Grunt at (38, 15)
+    bot.talk(HIDEOUT_B3F, 3)                  # the Grunt at (15, 25)
+    bot.talk(HIDEOUT_B3F, 9)                  # the Murkrow
+    bot.talk(HIDEOUT_B3F, 10)                 # the door
+    bot.walk(HIDEOUT_B3F, [(23, 12), (24, 12)])
+    bot.settle()
+
+
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
           back_to_elm, stolen_pokemon, to_violet, sprout_tower,
           violet_gym, mystery_egg, to_azalea, kurt, slowpoke_well, azalea_gym, to_ilex, farfetchd,
           to_goldenrod, radio_card, whitney_gym, squirt_bottle, sudowoodo,
           to_ecruteak, burned_tower, morty_gym, surf, to_olivine, to_cianwood,
           chuck_gym, lighthouse, secret_potion, ampharos, jasmine_gym,
-          to_mahogany, red_gyarados, lance, into_hideout, hideout_b1f, hideout_b2f]
+          to_mahogany, red_gyarados, lance, into_hideout, hideout_b1f, hideout_b2f, hideout_b3f]
