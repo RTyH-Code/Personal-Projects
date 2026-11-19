@@ -582,9 +582,10 @@ def rocket_disguise(bot):
 
 
 def radio_tower_rival(bot):
-    # in the disguise, the Grunt at the 1F stairs lets the player by; at the foot of the stairs (23, 5) the
+    # the Grunt stands on the 1F stairs (23, 5); talked to in the disguise, he steps aside. On the stairs the
     # rival arrives and battles
-    bot.travel(RADIO_1F, near=(23, 6))
+    bot.travel(RADIO_1F, near=(23, 7))
+    bot.talk(RADIO_1F, 6)
     bot.walk(RADIO_1F, [(23, 5)])
     bot.settle()
     expect_takeover(bot, 4, "the rival in the Radio Tower")
