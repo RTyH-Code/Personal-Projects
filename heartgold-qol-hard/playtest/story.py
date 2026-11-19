@@ -4,6 +4,7 @@ Each stage is a function of the bot. Places are map codes (see
 tools/data/map_names.json) and tiles; warps are numbered as in the map's
 event file.
 """
+import walk_test
 from walk_test import DIRS
 
 
@@ -888,6 +889,57 @@ def clair_gym(bot):
     bot.expect("FLAG_UNK_0D1", "beating Clair")
 
 
+# ---------------------------------------------------------------- the Dragon's Den
+
+DEN, SHRINE = "D44R0102", "D44R0103"
+# the elder's five questions, three answers each: the script marks the wrong ones, so these are the right
+# answers' places in each list (0 = the first)
+SHRINE_QUIZ = [0, 0, 1, 0, 1]
+
+
+def menu_open(bot):
+    # a list menu in the top left of the top screen (menu_init_std_gmm 1, 1): a mostly white box there
+    band = bot.game.emu.screenshot().crop((10, 10, 90, 60)).convert("L")
+    return sum(1 for v in band.getdata() if v > 225) > 0.6 * band.size[0] * band.size[1]
+
+
+def answer_quiz(bot, picks, limit=6000):
+    # press through the scene; at each menu, move down to the right answer and take it
+    picks = list(picks)
+    g, frames, calm = bot.game, 0, 0
+    while frames < limit:
+        if g.in_field() and walk_test.text_box(g.emu.screenshot()):
+            calm = 0
+            if menu_open(bot) and picks:
+                for _ in range(picks.pop(0)):
+                    g.key("down", after=10)
+                g.key("a", after=30)
+            else:
+                g.key("a", after=20)
+            frames += 30
+            continue
+        calm += 1
+        if calm >= 10:
+            break
+        g.run(20)
+        frames += 20
+    bot.settle()
+    return not picks
+
+
+def dragons_den(bot):
+    # Clair holds back the badge until the player has passed the Dragon Shrine's test: a heal, the Den behind
+    # the gym, across its water to the shrine, where the elder asks five questions as the player walks in
+    heal(bot, "T30PC0101")
+    bot.travel(DEN, near=(28, 48))
+    # through the shrine door by hand: the quiz starts as the player walks in, and the route planner's own
+    # pressing through messages would answer it
+    bot.go_through(DEN, 2)
+    if not answer_quiz(bot, SHRINE_QUIZ):
+        bot.stuck("the shrine's quiz did not run to its end")
+    bot.expect("FLAG_UNK_0EA", "passing the Dragon Shrine's test (and the Rising Badge)")
+
+
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
           back_to_elm, stolen_pokemon, to_violet, sprout_tower,
           violet_gym, mystery_egg, to_azalea, kurt, slowpoke_well, azalea_gym, to_ilex, farfetchd,
@@ -897,4 +949,4 @@ STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokege
           to_mahogany, red_gyarados, lance, into_hideout, hideout_b1f, hideout_b2f, hideout_b3f, hideout_end, pryce_gym,
           to_goldenrod_takeover, rocket_disguise, radio_tower_rival, fake_director,
           underground_door, switch_room, warehouse, card_key, proton, ariana, archer,
-          to_ice_path, ice_path_boulders, to_blackthorn, clair_gym]
+          to_ice_path, ice_path_boulders, to_blackthorn, clair_gym, dragons_den]
