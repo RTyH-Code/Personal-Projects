@@ -523,7 +523,7 @@ class Bot:
             code, pos = node
             if code == target:
                 return best[node][1]
-            if len(done) > 2000:
+            if len(done) > 8000:
                 break
             # one flood fill for each walkable stretch: outdoors, many doors lead back to the same one
             key = self.world.headers[code]["matrix"] or code if code in self.world.headers else code

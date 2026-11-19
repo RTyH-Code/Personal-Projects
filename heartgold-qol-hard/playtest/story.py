@@ -374,11 +374,23 @@ def chuck_gym(bot):
 LIGHT_ROOM = "D27R0107"
 
 
+def climb_lighthouse(bot):
+    # the 4F stairs from 3F arrive in a part of 4F with no way up; out of its east side (15, 9), onto the
+    # ledge outside (a way the map's warps don't list), whose door leads back in to the stairs up
+    bot.travel("D27R0105")
+    bot.walk("D27R0105", [(15, 9)])
+    bot.game.key("right", hold=16, after=30)
+    bot.settle()
+    if not bot.where() or bot.where()[0] != "D27R0103":
+        bot.stuck("did not get out onto the Lighthouse's ledge")
+    bot.travel(LIGHT_ROOM)
+
+
 def lighthouse(bot):
     # a heal after the gym, back across the water to Olivine, and up the Lighthouse to Jasmine, who is nursing
     # the sick Ampharos that lights it. She asks for medicine from Cianwood
     heal(bot, "T24PC0101")
-    bot.travel(LIGHT_ROOM)
+    climb_lighthouse(bot)
     bot.talk(LIGHT_ROOM, 1)
     bot.expect("FLAG_UNK_1D8", "Jasmine asking for medicine")
 
@@ -393,7 +405,7 @@ def secret_potion(bot):
 
 def ampharos(bot):
     # and up the Lighthouse once more: the medicine cures Ampharos, and Jasmine goes back to her gym
-    bot.travel(LIGHT_ROOM)
+    climb_lighthouse(bot)
     bot.talk(LIGHT_ROOM, 1)
     bot.expect("FLAG_UNK_96A", "curing the Lighthouse's Ampharos")
 
