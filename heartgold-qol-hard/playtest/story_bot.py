@@ -513,8 +513,9 @@ class Bot:
         return [m for m in self.world.map_ids if m in self.world.headers and self.world.headers[m]["matrix"] == 0
                 and self.world.events(m).get("warp_events")]
 
-    def route(self, target):
-        """The warps to take, [(map, warp index)], to get from here to the target map, fewest steps first."""
+    def route(self, target, near=None):
+        """The warps to take, [(map, warp index)], to get from here to the target map, fewest steps first. With
+        near (a tile of the target map), to the part of the map from which that tile can be walked to."""
         import heapq
         here = self.where()
         start = (here[0], (here[1], here[2]))
@@ -527,7 +528,7 @@ class Bot:
                 continue
             done.add(node)
             code, pos = node
-            if code == target:
+            if code == target and (near is None or near in self.reach(code, pos)):
                 return best[node][1]
             if len(done) > 8000:
                 break
@@ -567,10 +568,14 @@ class Bot:
         want = self.world.map_ids[target]
         return [p for p in dist if owner.get(p) == want]
 
-    def travel(self, target):
-        """Go to the target map by whatever warps lead there; outdoors, on until the player stands in it."""
+    def travel(self, target, near=None):
+        """Go to the target map by whatever warps lead there; outdoors, on until the player stands in it. With
+        near, to the part of the map that tile is in (a map can be in parts joined only through other maps)."""
         for _ in range(6):
-            steps = self.route(target)
+            here = self.where()
+            if near and here and here[0] == target and near in self.reach(target, (here[1], here[2])):
+                return
+            steps = self.route(target, near)
             try:
                 for code, index in steps:
                     self.go_through(code, index)
@@ -586,7 +591,7 @@ class Bot:
                     except Moved:
                         continue
                     here = self.where()
-            if here and here[0] == target:
+            if here and here[0] == target and (near is None or near in self.reach(target, (here[1], here[2]))):
                 return
         self.stuck("did not get to %s" % target)
 

@@ -489,6 +489,7 @@ def hideout_b3f(bot):
     # fights; the Murkrow in the room says the password too
     bot.talk(HIDEOUT_B3F, 4)                  # the Grunt at (38, 15)
     bot.talk(HIDEOUT_B3F, 3)                  # the Grunt at (15, 25)
+    bot.travel(HIDEOUT_B3F, near=(23, 16))    # the door's side of B3F is reached by the west stairs from B2F
     bot.talk(HIDEOUT_B3F, 10)                 # the door
     bot.walk(HIDEOUT_B3F, [(23, 12), (24, 12)])
     bot.settle()
