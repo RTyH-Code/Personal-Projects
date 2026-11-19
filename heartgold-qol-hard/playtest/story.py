@@ -112,6 +112,10 @@ def mystery_egg(bot):
 
 
 def heal(bot, pc, team=None):
+    # STORY_TEAM_<SET>=<other set> runs a stage with another set in place of its own (to compare sets)
+    import os
+    if team:
+        team = os.environ.get("STORY_TEAM_" + team.upper(), team)
     # at a Pokemon Center: the nurse is across the counter, at (8, 11); "Shall we heal your Pokemon?" Yes. With
     # a team, the party is then boxed and the boss's set (team_sets.py) taken out
     bot.travel(pc)

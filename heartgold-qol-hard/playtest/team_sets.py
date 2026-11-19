@@ -137,6 +137,16 @@ SETS = {
                   team=["LUXRAY", "DEWGONG", "JYNX", "GARDEVOIR", "GRANBULL", "BRONZONG"],
                   moves=dict(JYNX=["ICE_PUNCH", "PSYCHIC", "LOVELY_KISS", "AVALANCHE"],
                              LUXRAY=["DISCHARGE", "SPARK", "CRUNCH", "THUNDER_WAVE"])),
+    # the first Clair set, kept to try again with the heal before her (run with STORY_TEAM_CLAIR=clair_first)
+    "clair_first": dict(level=47, badges=7, places=MAHOGANY + ["Route 44", "Ice Path 1F", "Ice Path B1F", "Ice Path B2F",
+                                                              "Ice Path B3F"], ways=WATER,
+                        tms=["FLASH", "ROOST", "BULLET_SEED", "ROCK_TOMB", "U_TURN", "DIG", "PAYBACK", "EMBARGO",
+                             "PROTECT", "LIGHT_SCREEN", "REFLECT", "ATTRACT", "FOCUS_PUNCH", "CALM_MIND", "HAIL",
+                             "AVALANCHE"],
+                        item="ORAN_BERRY",
+                        team=["PILOSWINE", "DEWGONG", "JYNX", "GARDEVOIR", "GRANBULL", "BRONZONG"],
+                        moves=dict(JYNX=["ICE_PUNCH", "PSYCHIC", "LOVELY_KISS", "AVALANCHE"],
+                                   PILOSWINE=["AVALANCHE", "EARTHQUAKE", "ICE_FANG", "ROCK_TOMB"])),
 }
 STARTERS = {"CHIKORITA", "CYNDAQUIL", "TOTODILE"}
 EV_TOTAL = {0: 128, 1: 192, 2: 256, 3: 320, 4: 384, 5: 448}       # by badges held; 510 from 6 badges on
