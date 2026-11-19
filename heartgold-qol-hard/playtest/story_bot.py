@@ -46,6 +46,7 @@ FIELD_SYSTEM_OBJECTS = 0x3C         # FieldSystem.mapObjectManager -> {flags, ob
 FOLLOWER = 253                      # object id of the Pokemon that walks behind the player
 OBJECT_SIZE = 0x12C                 # LocalMapObject: flags, flags2, id, ..., currentX at 0x64, currentZ at 0x6C
 SURF = {0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x19, 0x2A, 0x50, 0x51, 0x52, 0x53, 0x73, 0x78, 0x7C}
+WHIRLPOOL = 0x11        # blocked to a step; Whirlpool (HM05, from the bag in the hack) takes the player through
 LEDGES = {0x38: "right", 0x39: "left", 0x3A: "up", 0x3B: "down"}
 LADDERS = {0x3C: "up", 0x3D: "down", 0x3E: "down"}
 NO_BUTTON = (128, 120)  # "No" of the touch-screen Yes/No buttons
@@ -188,7 +189,7 @@ class Bot:
         In Clair's gym the lava is not walkable, but the floors of its three platforms, wherever they are now,
         are."""
         grid, _ = self.world.grid(self.world.headers[code]["matrix"])
-        out = {p: v & 0xFF for p, v in grid.items() if not v & 0x8000}
+        out = {p: v & 0xFF for p, v in grid.items() if not v & 0x8000 or v & 0xFF == WHIRLPOOL}
         if code == BLACKTHORN_GYM:
             here = self.where()
             out = {p: b for p, b in out.items() if b != MAGMA}
@@ -479,6 +480,12 @@ class Bot:
                             break
                         last = q
                         self.game.run(8)
+                    break
+                if p and tiles_here.get((p[1] + dx, p[2] + dz)) == WHIRLPOOL:
+                    # a whirlpool: face it, A, and Yes to Whirlpool; then plan again from wherever it leaves us
+                    self.game.key(d, hold=2, after=10)
+                    self.game.key("a", after=30)
+                    self.settle(["a"])
                     break
                 if self.surf_needed(here[0], d):
                     if not self.start_surf(d):
