@@ -220,6 +220,7 @@ python3 playtest/team_sets.py /path/to/test/hg-engine /path/to/dumped/hg-engine
 | `chuck` | Chuck | 34 | Gardevoir, Xatu, Drifblim, Gyarados, Bronzong, Hypno |
 | `jasmine` | Jasmine, then Lake of Rage and the Rocket Hideout | 38 | Magmar, Torkoal, Houndoom, Claydol, Gastrodon, Quagsire |
 | `pryce` | Pryce | 42 | Machamp, Heracross, Toxicroak (Low Kick, Poison Jab, Sucker Punch, Dig), Magmar, Luxray, Houndoom |
+| `radio_tower` | the Radio Tower takeover: Petrel, the rival in the Underground, Proton, Ariana, Archer | 46 | Alakazam, Bronzong, Claydol, Luxray, Gyarados, Houndoom |
 
 The first Whitney set (Bayleef, Heracross, Meditite, Geodude, Flaaffy,
 Gastly) lost both its tries: the hack gives her answers to the usual picks
@@ -284,7 +285,7 @@ they should set is set (the starter, the Pokégear, the Pokédex, the Sprout
 Tower Elder, Falkner's TM, the Mystery Egg, Proton, Bugsy's TM, HM01, the
 Radio Card, Whitney's TM, the SquirtBottle, the Sudowoodo, the Burned Tower's
 beasts, Morty's TM, HM03, Chuck's TM, the Lighthouse visit, the SecretPotion,
-Ampharos cured, Jasmine's TM, Lance at the Lake of Rage, the Hideout's last Electrode, Pryce's TM). After a lost battle the bot plays the
+Ampharos cured, Jasmine's TM, Lance at the Lake of Rage, the Hideout's last Electrode, Pryce's TM, each step of the Radio Tower takeover, the Basement Key, the Card Key, Archer). After a lost battle the bot plays the
 stage again from its start, as a player would, up to three times (each loss
 is still recorded). When the bot gets stuck, or a check fails, it
 stops and writes `out/stuck.png`, `out/stuck.dst` and the reason; results go
@@ -357,6 +358,22 @@ on the ice with a search over the player's tile and every block's place, so
 it pushes blocks where they make a stop, and slides to each trainer and
 then to Pryce.
 
+Then the Radio Tower takeover. Leaving Pryce's gym, a call: the Rockets have
+taken the tower. Back west to Goldenrod and the Radio Tower set; in the
+Goldenrod Underground a Rocket hands over a uniform; in it, the Grunt on the
+tower's 1F stairs, talked to, steps aside, and the rival appears; up to 5F,
+where the "Director" is Petrel, who battles and gives the Basement Key. Then
+the Underground's locked door, the switch room behind it (the rival battles),
+and the warehouse, where the real Director gives the Card Key. The switch room
+has three switches that each flip their own set of shutters, and an emergency
+switch by the warehouse door; the shutters reset whenever the player comes in.
+The bot tries each choice of switches from a save state until the way is open,
+going in and coming back out. Then the Card Key in the 3F slot, Proton on 4F,
+Ariana on 5F, and the elevator at the top of 5F, which rides by itself to the
+Observation Deck (its door leads wherever it went, a warp the planner can't
+follow), where Archer battles. The bot heals at the Pokémon Center before each
+of the three Executives, as a player with potions would.
+
 The bot surfs once it has HM03: water counts as walkable, and a step from
 land onto water is Surf (face it, A, Yes). It heals after every gym, and
 after the Azalea rival.
@@ -420,6 +437,23 @@ puts a Pokémon to sleep, and with Wise Glasses Ice Beam and Psychic between
 them hit most of a team that has to bring Fighting types for the rest of
 his. Sucker Punch on Toxicroak and Houndoom's Dark moves are the set's
 answers, but they rarely got to act before Jynx did.
+
+**The Radio Tower**, with the `radio_tower` set: 36 battles, 29 won. The
+Grunts, the scientists and Petrel (six Poison types) fell to Alakazam or
+Bronzong alone, none of ours fainting. The rival in the Underground won with
+two fainted.
+
+| Boss | Result | Ours fainted | KOs by their Pokémon |
+|---|---|---|---|
+| Proton | 4 wins in 4 | 3, 4, 3, 4 | Houndoom 5 (Alakazam 4), Weezing 4 (Gyarados 3), Muk 3, Qwilfish 2 |
+| Ariana, healed first | 1 win in 2 | 6, then 2 | **Honchkrow 6** (the whole team in the loss), Ariados 1, Crobat 1 |
+| Archer | 2 wins in 4 | 3, 6, 6, 2 | Crobat 5 (always last, finishing Claydol and Luxray), Houndoom 4 (all Bronzong), Sneasel 4, Persian 2, Weezing 2 |
+
+Three more losses to Ariana came straight after Proton, before the bot healed
+between them; Honchkrow took five of those KOs too. Honchkrow (Lv. 45, Super
+Luck with a Scope Lens: Foul Play, Brave Bird, Psychic, Roost) is the one to
+look at, as Jynx is for Pryce: its critical hits get through even the
+Electric type brought for it. Archer is a fair fight for this set.
 
 **The clean run** from the bedroom to Whitney, with every stage in order:
 83 battles, 78 won. The losses: the Azalea rival twice and Whitney once
