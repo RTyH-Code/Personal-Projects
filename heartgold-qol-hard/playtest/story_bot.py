@@ -398,7 +398,10 @@ class Bot:
             # a wide doorway is several warps to the same place: stand before whichever is easiest to reach
             goals = [(tile[0] - dx, tile[1] - dz)]
             for i, other in enumerate(self.world.events(code)["warp_events"]):
-                if i != warp_index and other["dest_header_id"] == warp["dest_header_id"]:
+                # only the warps beside this one (a doorway two tiles wide): a map can have other ways to the
+                # same map that lead somewhere else in it
+                if (i != warp_index and other["dest_header_id"] == warp["dest_header_id"]
+                        and abs(other["x"] - warp["x"]) + abs(other["z"] - warp["z"]) <= 2):
                     e, d = self.warp_entry(code, i)
                     if d == into and e != (other["x"], other["z"]):
                         goals.append(e)
