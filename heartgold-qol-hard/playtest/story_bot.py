@@ -473,8 +473,20 @@ class Bot:
     def obstacles(self, code):
         """Tiles of the map's objects that are there now and stand in the way: everything but trainers."""
         here = self.where()
+        stands = lambda script: script in FIELD_OBSTACLES or "trainer" not in script
         if not here or here[0] != code and not self.same_region(here[0], code):
-            return set()
+            # another map: from its event data, leaving out those its hide flags say are gone
+            out = set()
+            for e in self.world.events(code).get("object_events", []):
+                flag = e.get("hidden_flag")
+                try:
+                    if flag and flag != "FLAG_NOTHING" and self.flag(flag):
+                        continue
+                except (KeyError, TypeError):
+                    pass
+                if stands(str(e.get("script"))):
+                    out.add((e["x"], e["z"]))
+            return out
         events = self.world.events(here[0]).get("object_events", [])
         out = set()
         for i, pos in self.objects().items():
@@ -483,7 +495,7 @@ class Bot:
             script = str(events[i].get("script"))
             # Cut trees, rocks and boulders; and anything else that is not a trainer (trainers come to the
             # player): doors like the Hideout's password doors, item balls, people standing in the way
-            if script in FIELD_OBSTACLES or "trainer" not in script:
+            if stands(script):
                 out.add(pos)
         return out
 
