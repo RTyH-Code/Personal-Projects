@@ -477,10 +477,16 @@ def hideout_b1f(bot):
     bot.travel(HIDEOUT_B2F)
 
 
+def hideout_b2f(bot):
+    # B2F: on to the stairs down to B3F
+    bot.travel(HIDEOUT_B3F)
+    bot.settle()
+
+
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
           back_to_elm, stolen_pokemon, to_violet, sprout_tower,
           violet_gym, mystery_egg, to_azalea, kurt, slowpoke_well, azalea_gym, to_ilex, farfetchd,
           to_goldenrod, radio_card, whitney_gym, squirt_bottle, sudowoodo,
           to_ecruteak, burned_tower, morty_gym, surf, to_olivine, to_cianwood,
           chuck_gym, lighthouse, secret_potion, ampharos, jasmine_gym,
-          to_mahogany, red_gyarados, lance, into_hideout, hideout_b1f]
+          to_mahogany, red_gyarados, lance, into_hideout, hideout_b1f, hideout_b2f]
