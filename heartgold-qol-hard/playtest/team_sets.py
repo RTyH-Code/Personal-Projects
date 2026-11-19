@@ -124,16 +124,19 @@ SETS = {
                         team=["ALAKAZAM", "BRONZONG", "CLAYDOL", "LUXRAY", "GYARADOS", "HOUNDOOM"]),
     # Clair's six Dragon types (Lv. 44-47: Dragonair, Altaria, Gabite, Gyarados, Flygon, Kingdra), with Outrage
     # and Earthquake all round: Ice for all but Gyarados and Kingdra (Altaria, Gabite and Flygon four times
-    # over), Fairy types that Outrage can't touch, and a Steel type with Levitate that takes neither
+    # over), Fairy types that Outrage can't touch, a Steel type with Levitate that takes neither, and Electric
     "clair": dict(level=47, badges=7, places=MAHOGANY + ["Route 44", "Ice Path 1F", "Ice Path B1F", "Ice Path B2F",
                                                         "Ice Path B3F"], ways=WATER,
                   tms=["FLASH", "ROOST", "BULLET_SEED", "ROCK_TOMB", "U_TURN", "DIG", "PAYBACK", "EMBARGO",
                        "PROTECT", "LIGHT_SCREEN", "REFLECT", "ATTRACT", "FOCUS_PUNCH", "CALM_MIND", "HAIL",
                        "AVALANCHE"],
                   item="ORAN_BERRY",
-                  team=["PILOSWINE", "DEWGONG", "JYNX", "GARDEVOIR", "GRANBULL", "BRONZONG"],
+                  # Piloswine was first: it fainted to the gym's Seadra every time before Clair, and her Gyarados
+                  # (Intimidate, Dragon Dance) took 9 of her KOs in five losses. Luxray: Electric for Gyarados and
+                  # Kingdra, and Intimidate of its own against her physical Dragons
+                  team=["LUXRAY", "DEWGONG", "JYNX", "GARDEVOIR", "GRANBULL", "BRONZONG"],
                   moves=dict(JYNX=["ICE_PUNCH", "PSYCHIC", "LOVELY_KISS", "AVALANCHE"],
-                             PILOSWINE=["AVALANCHE", "EARTHQUAKE", "ICE_FANG", "ROCK_TOMB"])),
+                             LUXRAY=["DISCHARGE", "SPARK", "CRUNCH", "THUNDER_WAVE"])),
 }
 STARTERS = {"CHIKORITA", "CYNDAQUIL", "TOTODILE"}
 EV_TOTAL = {0: 128, 1: 192, 2: 256, 3: 320, 4: 384, 5: 448}       # by badges held; 510 from 6 badges on
