@@ -516,8 +516,16 @@ class Bot:
         move the bot checks the game against the plan, and plans again from wherever things are."""
         holes = set(holes)
         strength = False
-        for attempt in range(40):
+        # every wild Pokemon, and every push that leaves the player somewhere the plan didn't expect, means a
+        # new plan: give up only when many plans in a row get nowhere
+        progress, idle = None, 0
+        for attempt in range(1000):
             self.settle()
+            now = (self.where(), tuple(sorted(self.boulders(code).values())))
+            idle = idle + 1 if now == progress else 0
+            progress = now
+            if idle >= 30:
+                break
             here = self.where()
             if not here or here[0] != code:
                 self.stuck("left %s while pushing boulders" % code)
