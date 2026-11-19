@@ -386,6 +386,16 @@ def climb_lighthouse(bot):
     bot.travel(LIGHT_ROOM)
 
 
+def leave_lighthouse(bot):
+    # down in the Light Room's elevator: it takes the player to the floor they did not come from (1F)
+    bot.go_through(LIGHT_ROOM, 1)
+    bot.settle()
+    bot.go_through("D27R0108", 0)
+    bot.settle()
+    if not bot.where() or bot.where()[0] != "D27R0101":
+        bot.stuck("the Lighthouse elevator did not go down to 1F")
+
+
 def lighthouse(bot):
     # a heal after the gym, back across the water to Olivine, and up the Lighthouse to Jasmine, who is nursing
     # the sick Ampharos that lights it. She asks for medicine from Cianwood
@@ -393,6 +403,7 @@ def lighthouse(bot):
     climb_lighthouse(bot)
     bot.talk(LIGHT_ROOM, 1)
     bot.expect("FLAG_UNK_1D8", "Jasmine asking for medicine")
+    leave_lighthouse(bot)
 
 
 def secret_potion(bot):
@@ -408,6 +419,7 @@ def ampharos(bot):
     climb_lighthouse(bot)
     bot.talk(LIGHT_ROOM, 1)
     bot.expect("FLAG_UNK_96A", "curing the Lighthouse's Ampharos")
+    leave_lighthouse(bot)
 
 
 def jasmine_gym(bot):
