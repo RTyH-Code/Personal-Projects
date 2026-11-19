@@ -533,7 +533,7 @@ def hideout_end(bot):
                 bot.walk(code, [tile])
                 bot.settle()
         else:
-            bot.travel(HIDEOUT_B2F, near=(22, 14))
+            bot.travel(HIDEOUT_B2F, near=(20, 14))     # the floor beside the three Electrode
             for electrode in (9, 10, 11):
                 if electrode in bot.objects():
                     bot.talk(HIDEOUT_B2F, electrode)
