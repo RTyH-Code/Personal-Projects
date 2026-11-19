@@ -608,13 +608,13 @@ def underground_door(bot):
     bot.expect("FLAG_UNK_1C0", "the Basement Key opening the Underground door")    # the shutter rolls up
 
 
-SWITCHES = [(8, 8), (9, 8), (10, 8)]
+SWITCHES = [(8, 8), (9, 8), (10, 8), (23, 14)]
 SWITCH_ROOM_EXIT, WAREHOUSE_DOOR = (27, 4), (26, 14)
 
 
 def through_switch_room(bot, goal):
     # three switches on the wall at (8, 8), (9, 8) and (10, 8) each open some of the room's shutters and close
-    # others. Each flips its own set, so what is open depends only on which switches have been pressed an odd
+    # others; an emergency switch by the warehouse door (23, 14) opens the shutter beside it, for the way back. Each flips its own set, so what is open depends only on which switches have been pressed an odd
     # number of times; and the shutters are put back as they were whenever the player comes in. The bot tries
     # each choice from a save state (pressing a switch only if it can get to it then) until the goal can be
     # reached, then walks there
@@ -622,7 +622,7 @@ def through_switch_room(bot, goal):
     state = os.path.join(bot.out, "switch_room.dst")
     bot.save(state)
     beside = {(goal[0] + dx, goal[1] + dz) for dx, dz in ((1, 0), (-1, 0), (0, 1), (0, -1))}
-    for n in range(8):
+    for n in range(16):
         if n:
             bot.game.emu.savestate.load_file(state)
             bot.game.run(60)
