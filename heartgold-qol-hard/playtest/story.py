@@ -485,14 +485,15 @@ def hideout_b2f(bot):
 
 def hideout_b3f(bot):
     # B3F: the door to the boss's room opens once the two Grunts who know the password are beaten (the woman
-    # at (38, 15), the man at (15, 25)); the Murkrow by the boss's room says it too. Through the door, the
-    # boss turns out to be Petrel in disguise, and fights
+    # at (38, 15), the man at (15, 25)). Through the door, the boss turns out to be Petrel in disguise, and
+    # fights; the Murkrow in the room says the password too
     bot.talk(HIDEOUT_B3F, 4)                  # the Grunt at (38, 15)
     bot.talk(HIDEOUT_B3F, 3)                  # the Grunt at (15, 25)
-    bot.talk(HIDEOUT_B3F, 9)                  # the Murkrow
     bot.talk(HIDEOUT_B3F, 10)                 # the door
     bot.walk(HIDEOUT_B3F, [(23, 12), (24, 12)])
     bot.settle()
+    if 9 in bot.objects():
+        bot.talk(HIDEOUT_B3F, 9)              # the Murkrow, inside the room
 
 
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
