@@ -939,7 +939,7 @@ def dragons_den(bot):
         bot.settle()
         bot.forbidden.pop(BLACKTHORN_GYM, None)
     heal(bot, "T30PC0101")
-    bot.travel(DEN, near=(28, 48))
+    bot.travel(DEN, near=(28, 51))          # the shrine door is entered from the south
     # through the shrine door by hand: the quiz starts as the player walks in, and the route planner's own
     # pressing through messages would answer it
     bot.go_through(DEN, 2)
