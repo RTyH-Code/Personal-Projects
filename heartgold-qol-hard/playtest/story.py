@@ -1146,9 +1146,13 @@ def elite_four_member(bot, room, beaten, name):
     # it stands and gives back berries used up. That makes each room's fight start the same way however the
     # one before went, so a loss is retried from this room (in the game a loss sends the player out, to start
     # again from Will)
+    import random
     bot.travel(room)
     bot.settle()
     bot.restore_party("before %s" % name, refill=REFILL_BERRIES)
+    # a retry starts from the same save state, and with the same random numbers the battle would play out
+    # move for move the same: wait a different while first (the game's random numbers move on every frame)
+    bot.game.run(random.randint(1, 600))
     bot.talk(room, 0)
     for _ in range(5):
         if bot.flag(beaten):
@@ -1178,6 +1182,8 @@ def champion(bot):
     bot.travel(LANCE_ROOM)
     bot.settle()
     bot.restore_party("before Lance", refill=REFILL_BERRIES)
+    import random
+    bot.game.run(random.randint(1, 600))          # as for the Elite Four: a retry plays out differently
     bot.walk(LANCE_ROOM, [(6, 10)])
     for _ in range(60):
         if bot.flag("FLAG_UNK_97E"):
