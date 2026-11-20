@@ -1,6 +1,9 @@
 """Boss balance summary from the story bot's battle records.
 
-    python3 balance.py [results/battles.jsonl]
+    python3 balance.py [results/battles.jsonl] [--run PREFIX] [--exclude PREFIX]
+
+--run keeps only the records whose run label starts with PREFIX (for example rebalance-0022); --exclude
+drops them, which leaves the records from before.
 
 Prints a Markdown table: for each boss fight (trainer and map), the battles
 fought, the wins, how many of ours fainted in a win, and which of the boss's
@@ -49,4 +52,15 @@ def markdown(rows):
 
 
 if __name__ == "__main__":
-    print(markdown(summary(load(sys.argv[1] if len(sys.argv) > 1 else "results/battles.jsonl"))))
+    import argparse
+    p = argparse.ArgumentParser()
+    p.add_argument("path", nargs="?", default="results/battles.jsonl")
+    p.add_argument("--run", action="append", default=[])
+    p.add_argument("--exclude", action="append", default=[])
+    a = p.parse_args()
+    records = load(a.path)
+    if a.run:
+        records = [r for r in records if str(r.get("run")).startswith(tuple(a.run))]
+    if a.exclude:
+        records = [r for r in records if not str(r.get("run")).startswith(tuple(a.exclude))]
+    print(markdown(summary(records)))
