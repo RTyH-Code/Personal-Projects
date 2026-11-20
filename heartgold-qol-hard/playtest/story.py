@@ -1046,9 +1046,9 @@ ELITE_FOUR = [("T10R0201", "FLAG_DEFEATED_WILL", "Will"), ("T10R0301", "FLAG_DEF
                                                  # their rooms, and the flags their scripts set when beaten
 LANCE_ROOM, HALL_OF_FAME, LANCE = "T10R0601", "T10R0701", 244
 # whether the heal between the Elite Four rooms also gives back berries used up (a player carries several);
-# off for now. STORY_REFILL_BERRIES=1 turns it on
+# on (STORY_REFILL_BERRIES=0 turns it off)
 import os as _os
-REFILL_BERRIES = _os.environ.get("STORY_REFILL_BERRIES") == "1"
+REFILL_BERRIES = _os.environ.get("STORY_REFILL_BERRIES", "1") == "1"
 
 
 VICTORY_ROAD = ["D43R0101", "D43R0102", "D43R0103"]
@@ -1130,26 +1130,47 @@ def victory_road(bot):
     if bot.where()[0] != LEAGUE_ENTRANCE:
         bot.travel(LEAGUE_ENTRANCE)
 
-def elite_four(bot):
-    # a heal from the nurse in the entrance hall; the guard at the counter steps aside when talked to; then the
-    # four rooms in turn, each door opening once its trainer is beaten. There is nowhere to heal between them:
-    # a player would use potions, so (as before Clair) the harness heals the party where it stands before each
+def league(bot):
+    # a heal from the nurse in the entrance hall, the Elite Four set from the PC there, and the guard at the
+    # counter, who steps aside when talked to
     import os
     bot.travel(LEAGUE_ENTRANCE)
     bot.talk(LEAGUE_ENTRANCE, 0, answers=["a"])
     bot.swap_team(os.environ.get("STORY_TEAM_ELITE_FOUR", "elite_four"))     # from the PC there, as set now
     bot.talk(LEAGUE_ENTRANCE, 8)
-    for room, beaten, name in ELITE_FOUR:
-        bot.travel(room)
-        bot.settle()
-        bot.restore_party("before %s" % name, refill=REFILL_BERRIES)
-        bot.talk(room, 0)
-        for _ in range(5):
-            if bot.flag(beaten):
-                break
-            bot.settle()
-        bot.expect(beaten, "beating %s" % name)
 
+
+def elite_four_member(bot, room, beaten, name):
+    # one of the four rooms; its door opens once its trainer is beaten. There is nowhere to heal between them:
+    # a player would use potions, and carry more than one of each berry, so the harness heals the party where
+    # it stands and gives back berries used up. That makes each room's fight start the same way however the
+    # one before went, so a loss is retried from this room (in the game a loss sends the player out, to start
+    # again from Will)
+    bot.travel(room)
+    bot.settle()
+    bot.restore_party("before %s" % name, refill=REFILL_BERRIES)
+    bot.talk(room, 0)
+    for _ in range(5):
+        if bot.flag(beaten):
+            break
+        bot.settle()
+    bot.expect(beaten, "beating %s" % name)
+
+
+def will(bot):
+    elite_four_member(bot, *ELITE_FOUR[0])
+
+
+def koga(bot):
+    elite_four_member(bot, *ELITE_FOUR[1])
+
+
+def bruno(bot):
+    elite_four_member(bot, *ELITE_FOUR[2])
+
+
+def karen(bot):
+    elite_four_member(bot, *ELITE_FOUR[3])
 
 def champion(bot):
     # Lance, in the last room: the battle starts as the player walks up to him (5-7, 10). After it, the Hall of
@@ -1181,4 +1202,4 @@ STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokege
           underground_door, switch_room, warehouse, card_key, proton, ariana, archer,
           to_ice_path, ice_path_boulders, to_blackthorn, clair_gym, dragons_den,
           elms_news, kimono_girls, ho_oh, to_victory_road,
-          victory_road, elite_four, champion]
+          victory_road, league, will, koga, bruno, karen, champion]
