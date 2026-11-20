@@ -154,7 +154,10 @@ SETS = {
                        # Golem was first: Karen beat the team six times running (Gengar, which Levitate keeps
                        # out of Earthquake's way, and Weavile with Swords Dance); Machamp is a second Fighting
                        # type for her Dark types, with Bronzong now covering Golem's work against Koga
-                       team=["GARDEVOIR", "BRONZONG", "JYNX", "LUXRAY", "MACHAMP", "HERACROSS"],
+                       # and Heracross was in the last slot until Lance's Charizard swept four of ours in three of
+                       # four battles (13 of his 23 KOs): Gyarados, with Intimidate and Water moves, for it and for
+                       # Karen's Houndoom and Tyranitar
+                       team=["GARDEVOIR", "BRONZONG", "JYNX", "LUXRAY", "MACHAMP", "GYARADOS"],
                        moves=dict(JYNX=["ICE_PUNCH", "PSYCHIC", "LOVELY_KISS", "AVALANCHE"],
                                   BRONZONG=["GYRO_BALL", "EXTRASENSORY", "ROCK_TOMB", "REFLECT"]),
                        # held items a player has by now (every Elite Four Pokemon holds one): the Goldenrod
@@ -162,7 +165,7 @@ SETS = {
                        # from six) and the NeverMeltIce on Ice Path B3F. Berries used up are not replaced between
                        # the rooms, as for a player
                        items=dict(GARDEVOIR="SITRUS_BERRY", BRONZONG="LUM_BERRY", JYNX="NEVER_MELT_ICE",
-                                  LUXRAY="SHUCA_BERRY", MACHAMP="SITRUS_BERRY", HERACROSS="COBA_BERRY")),
+                                  LUXRAY="SHUCA_BERRY", MACHAMP="SITRUS_BERRY", GYARADOS="WACAN_BERRY")),
     # the first Clair set, kept to try again with the heal before her (run with STORY_TEAM_CLAIR=clair_first)
     "clair_first": dict(level=47, badges=7, places=MAHOGANY + ["Route 44", "Ice Path 1F", "Ice Path B1F", "Ice Path B2F",
                                                               "Ice Path B3F"], ways=WATER,
