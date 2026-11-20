@@ -16,8 +16,9 @@ turn; the post-game teams keep them.
 - Ariana's Honchkrow in the Radio Tower holds a Sharp Beak in place of a
   Scope Lens.
 - Pryce's Jynx has Fake Out in place of Lovely Kiss.
-- Proton in the Slowpoke Well and Petrel in the Radio Tower are a little
-  stronger.
+- Proton in the Slowpoke Well has a Rattata and is a level higher.
+- Petrel in the Radio Tower is a level higher, leads with Weezing (Shadow
+  Ball), and one Koffing holds a Focus Sash; Protect is gone for Pain Split.
 - The boss guide's tables are fixed where an item name ran into the moves.
 
 ## v0.2 (playtest build)

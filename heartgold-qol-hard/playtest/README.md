@@ -461,8 +461,10 @@ Bruno, Ampharos then Machamp for Karen, Ampharos for Lance.
 
 Settings, all environment variables: `STORY_RETRIES` (tries per stage before
 it stops, default 3), `STORY_REFILL_BERRIES` (`0` stops the berry refill
-between rooms) and `STORY_TEAM_<SET>` (swap in another set where that one is
-due, such as `STORY_TEAM_CLAIR=clair_first`).
+between rooms), `STORY_TEAM_<SET>` (swap in another set where that one is
+due, such as `STORY_TEAM_CLAIR=clair_first`) and `STORY_JITTER` (up to this
+many frames of random waiting after a stage's save loads, default 0; without
+it, two runs from the same save play every battle out the same way).
 
 The bot surfs once it has HM03: water counts as walkable, and a step from
 land onto water is Surf (face it, A, Yes). It heals after every gym, and

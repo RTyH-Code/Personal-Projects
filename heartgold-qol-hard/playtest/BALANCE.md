@@ -3,10 +3,10 @@
 The story bot has played the whole story, from the bedroom to the Hall of
 Fame, using boss team sets: a team built for each boss from what a player can
 catch and teach by then (`team_sets.py`). This page brings its boss results
-together and lists ways to fix the fights that came out too hard. Nothing
-here has been changed in the hack yet.
+together and lists ways to fix the fights that came out too hard. The fixes
+picked are in source patch 0022; the next section shows how they played.
 
-The table comes from `python3 balance.py`, run over `results/battles.jsonl`.
+The tables come from `python3 balance.py`, run over `results/battles.jsonl`.
 
 ## How to read the numbers
 
@@ -23,9 +23,55 @@ The table comes from `python3 balance.py`, run over `results/battles.jsonl`.
   across many battles, with the same Pokémon doing the damage each time, is
   the signal to trust.
 
+## What patch 0022 changed, and how it played
+
+The aim: story bosses are a challenge, not a headache. Each keeps its
+threats but loses the combo that turned the fight on one setup turn. The
+post-game second rounds and rematches keep the hard combos.
+
+Each stage was played four times on the new teams, from the same save as
+before, with one retry after a loss. Pryce, Proton and Petrel were also
+played with `STORY_JITTER=600`, a random wait after the save loads. Without
+it, those tries replayed the same battle move for move.
+
+| Boss | What changed | Before | After | Ours fainted per win |
+|---|---|---|---|---|
+| Lance | Aerodactyl leads (Crunch for Curse); Gyarados fourth with a Sitrus Berry | 6 of 30 | 3 of 6 | 4.0 |
+| Karen | Tyranitar: Ice Punch for Dragon Dance. Weavile: Razor Claw for Focus Sash | 3 of 26 | 2 of 6 | 5.0 |
+| Clair | Gyarados and Kingdra get their own sets; Gabite loses Swords Dance | 2 of 11 | 2 of 6 | 3.5 |
+| Koga | Ariados: Black Sludge for Focus Sash | 7 of 13 | 4 of 4 | 2.0 |
+| Ariana, Radio Tower | Honchkrow: Sharp Beak for Scope Lens | 1 of 5 | 4 of 6 | 3.5 |
+| Pryce | Jynx: Fake Out for Lovely Kiss | 1 of 3 | 8 of 8 | 3.2 |
+| Proton, Slowpoke Well | A level higher; a Rattata added | 0 fainted | 4 of 4 | 1.2 |
+| Petrel, Radio Tower | A level higher; Weezing leads; a Koffing with a Focus Sash | 0 fainted | 4 of 4 | 0.2 |
+
+The before column counts every battle recorded before; the samples after
+are small. Run `python3 balance.py --run rebalance` for the after table, or
+`--exclude rebalance` for before. The records labelled `rebalance-0022-rocket`
+are the final Proton and Petrel teams. The other `rebalance-0022` records for
+those two come from a first draft that only raised levels.
+
+What it shows:
+
+- **Lance, Ariana, Pryce and Koga** now turn on the whole team, not on one
+  Pokémon's first turn.
+- **Karen and Clair** are still the hardest story fights, and still lose
+  more than they win against the bot. Neither has one Pokémon sweeping any
+  more: Tyranitar takes two of ours per battle, Gengar two or three. Clair's
+  Gyarados and Altaria (Outrage, Sing) share the damage. The bot never
+  switches or uses items, so a player should find both fair. If they need
+  one more step: Gengar's Wise Glasses for a Black Sludge, and Altaria's
+  Sing for Dragon Breath.
+- **Proton in the Slowpoke Well** now takes one or two of ours.
+- **Petrel** is still easy for a team with a Psychic type. The bot's
+  Alakazam, or its Claydol, outspeeds every Koffing and knocks each out in
+  one hit. Only a Pokémon that isn't Poison type would change that, at the
+  cost of his all-Koffing gimmick.
+- **The Kimono Girls** are left as they are, story flavour, not bosses.
+
 ## Results
 
-Each row is one boss fight. "Ours fainted per win" counts how many of our
+These are the records from before patch 0022. Each row is one boss fight. "Ours fainted per win" counts how many of our
 Pokémon fainted in the battles the bot won. The last column counts which of
 the boss's Pokémon knocked ours out, over every battle of that fight.
 
@@ -193,8 +239,8 @@ call than the ones above.
 ## Maybe too easy
 
 - **The Kimono Girls** were all won at the first try, and three of them
-  without one of ours fainting. Each has one Eeveelution. They could each
-  have two Pokémon, or held items.
+  without one of ours fainting. They are story flavour for the Eeveelution
+  theme, not serious bosses, so they stay as they are.
 - **Petrel in the Radio Tower** fainted none of ours.
 - **Proton in the Slowpoke Well** also fainted none of ours.
 
@@ -204,7 +250,6 @@ a small sample.
 
 ## Something else found
 
-In `guide/BOSSES.md`, Pryce's Mamoswine row is broken. Its item, moves and
-nature run together, and the ability column shows "—" where it should say
-Oblivious, Adamant. The team itself is fine in the game. The guide's report
-writer mishandles a set with no moves given (`None`).
+In `guide/BOSSES.md`, a few rows were broken: the item, moves and nature ran
+together. The guide's report writer gave the item 14 characters, and Never
+Melt Ice has 15. That is fixed, and the tables regenerated.

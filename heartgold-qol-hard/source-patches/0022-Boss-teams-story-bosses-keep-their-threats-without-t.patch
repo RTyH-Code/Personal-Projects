@@ -1,4 +1,4 @@
-From 39d869ed59a071d7999324f67bcfc24e3fdd5165 Mon Sep 17 00:00:00 2001
+From 572bcbffae841a292c7b1127dcda89bc85d4a034 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Fri, 20 Nov 2026 16:29:10 +0000
 Subject: [PATCH] Boss teams: story bosses keep their threats without the
@@ -13,12 +13,12 @@ and Pryce's Jynx has Fake Out for Lovely Kiss. Proton in the Slowpoke
 Well and Petrel in the Radio Tower get a little stronger. The post-game
 teams keep the full combos.
 ---
- data/Trainers.c          | 72 ++++++++++++++++++++--------------------
- tools/hack/boss_teams.py | 36 ++++++++++----------
- 2 files changed, 54 insertions(+), 54 deletions(-)
+ data/Trainers.c          | 101 +++++++++++++++++++++------------------
+ tools/hack/boss_teams.py |  37 +++++++-------
+ 2 files changed, 74 insertions(+), 64 deletions(-)
 
 diff --git a/data/Trainers.c b/data/Trainers.c
-index fb7e4b5fa..e8927a711 100644
+index fb7e4b5fa..91a0a9c11 100644
 --- a/data/Trainers.c
 +++ b/data/Trainers.c
 @@ -1461,7 +1461,7 @@ const TrainerData sTrainerData[] = {
@@ -150,45 +150,61 @@ index fb7e4b5fa..e8927a711 100644
                  .moves = { MOVE_FOUL_PLAY, MOVE_BRAVE_BIRD, MOVE_PSYCHIC, MOVE_ROOST },
                  .ability = ABILITY_SUPER_LUCK,
                  .setIvs = { 31, 31, 31, 31, 31, 31 },
-@@ -21356,16 +21356,16 @@ const TrainerData sTrainerData[] = {
+@@ -21356,16 +21356,25 @@ const TrainerData sTrainerData[] = {
              {
                  .ivs = 255,
                  .abilitySlot = TRAINER_POKEMON_ABILITY_1,
 -                .level = 13,
-+                .level = 14,
++                .level = 15,
                  .species = SPECIES_ZUBAT,
 -                .item = ITEM_NONE,
+-                .moves = { MOVE_AERIAL_ACE, MOVE_ASTONISH, MOVE_ABSORB, MOVE_NONE },
 +                .item = ITEM_ORAN_BERRY,
-                 .moves = { MOVE_AERIAL_ACE, MOVE_ASTONISH, MOVE_ABSORB, MOVE_NONE },
++                .moves = { MOVE_POISON_FANG, MOVE_AERIAL_ACE, MOVE_ASTONISH, MOVE_ABSORB },
                  .ballSeal = 0,
              },
              {
                  .ivs = 255,
                  .abilitySlot = TRAINER_POKEMON_ABILITY_1,
--                .level = 15,
-+                .level = 16,
+                 .level = 15,
++                .species = SPECIES_RATTATA,
++                .item = ITEM_ORAN_BERRY,
++                .moves = { MOVE_CUT, MOVE_BITE, MOVE_ROCK_SMASH, MOVE_SHOCK_WAVE },
++                .ballSeal = 0,
++            },
++            {
++                .ivs = 255,
++                .abilitySlot = TRAINER_POKEMON_ABILITY_1,
++                .level = 17,
                  .species = SPECIES_KOFFING,
                  .item = ITEM_ORAN_BERRY,
                  .moves = { MOVE_CLEAR_SMOG, MOVE_SHOCK_WAVE, MOVE_SMOG, MOVE_TACKLE },
-@@ -21374,7 +21374,7 @@ const TrainerData sTrainerData[] = {
+@@ -21374,7 +21383,7 @@ const TrainerData sTrainerData[] = {
              {
                  .ivs = 255,
                  .abilitySlot = TRAINER_POKEMON_ABILITY_1,
 -                .level = 16,
-+                .level = 17,
++                .level = 18,
                  .species = SPECIES_HOUNDOUR,
                  .item = ITEM_ORAN_BERRY,
                  .moves = { MOVE_BITE, MOVE_EMBER, MOVE_ROCK_SMASH, MOVE_SMOG },
-@@ -21410,7 +21410,7 @@ const TrainerData sTrainerData[] = {
+@@ -21410,45 +21419,45 @@ const TrainerData sTrainerData[] = {
              {
                  .ivs = 255,
                  .abilitySlot = TRAINER_POKEMON_ABILITY_1,
 -                .level = 42,
+-                .species = SPECIES_KOFFING,
 +                .level = 43,
-                 .species = SPECIES_KOFFING,
++                .species = SPECIES_WEEZING,
                  .item = ITEM_SITRUS_BERRY,
-                 .moves = { MOVE_SLUDGE_BOMB, MOVE_FLAMETHROWER, MOVE_WILL_O_WISP, MOVE_EXPLOSION },
-@@ -21422,10 +21422,10 @@ const TrainerData sTrainerData[] = {
+-                .moves = { MOVE_SLUDGE_BOMB, MOVE_FLAMETHROWER, MOVE_WILL_O_WISP, MOVE_EXPLOSION },
++                .moves = { MOVE_SLUDGE_BOMB, MOVE_SHADOW_BALL, MOVE_THUNDERBOLT, MOVE_EXPLOSION },
+                 .setIvs = { 31, 31, 31, 31, 31, 31 },
+-                .setEvs = { 252, 0, 0, 0, 252, 4 },
++                .setEvs = { 4, 0, 0, 252, 252, 0 },
+                 .nature = NATURE_MODEST,
+                 .ballSeal = 0,
+             },
              {
                  .ivs = 255,
                  .abilitySlot = TRAINER_POKEMON_ABILITY_1,
@@ -197,20 +213,42 @@ index fb7e4b5fa..e8927a711 100644
                  .species = SPECIES_KOFFING,
                  .item = ITEM_SITRUS_BERRY,
 -                .moves = { MOVE_SLUDGE_BOMB, MOVE_THUNDERBOLT, MOVE_TOXIC, MOVE_PROTECT },
++                .moves = { MOVE_SLUDGE_BOMB, MOVE_FLAMETHROWER, MOVE_WILL_O_WISP, MOVE_EXPLOSION },
+                 .setIvs = { 31, 31, 31, 31, 31, 31 },
+-                .setEvs = { 252, 0, 252, 0, 0, 4 },
+-                .nature = NATURE_BOLD,
++                .setEvs = { 252, 0, 0, 0, 252, 4 },
++                .nature = NATURE_MODEST,
+                 .ballSeal = 0,
+             },
+             {
+                 .ivs = 255,
+                 .abilitySlot = TRAINER_POKEMON_ABILITY_1,
+                 .level = 43,
+-                .species = SPECIES_WEEZING,
++                .species = SPECIES_KOFFING,
+                 .item = ITEM_SITRUS_BERRY,
+-                .moves = { MOVE_SLUDGE_BOMB, MOVE_SHADOW_BALL, MOVE_THUNDERBOLT, MOVE_EXPLOSION },
 +                .moves = { MOVE_SLUDGE_BOMB, MOVE_THUNDERBOLT, MOVE_TOXIC, MOVE_PAIN_SPLIT },
                  .setIvs = { 31, 31, 31, 31, 31, 31 },
-                 .setEvs = { 252, 0, 252, 0, 0, 4 },
-                 .nature = NATURE_BOLD,
-@@ -21446,7 +21446,7 @@ const TrainerData sTrainerData[] = {
+-                .setEvs = { 4, 0, 0, 252, 252, 0 },
+-                .nature = NATURE_MODEST,
++                .setEvs = { 252, 0, 252, 0, 0, 4 },
++                .nature = NATURE_BOLD,
+                 .ballSeal = 0,
+             },
              {
                  .ivs = 255,
                  .abilitySlot = TRAINER_POKEMON_ABILITY_1,
 -                .level = 42,
 +                .level = 43,
                  .species = SPECIES_KOFFING,
-                 .item = ITEM_SITRUS_BERRY,
+-                .item = ITEM_SITRUS_BERRY,
++                .item = ITEM_FOCUS_SASH,
                  .moves = { MOVE_SLUDGE_BOMB, MOVE_DARK_PULSE, MOVE_WILL_O_WISP, MOVE_EXPLOSION },
-@@ -21458,10 +21458,10 @@ const TrainerData sTrainerData[] = {
+                 .setIvs = { 31, 31, 31, 31, 31, 31 },
+                 .setEvs = { 252, 0, 0, 0, 252, 4 },
+@@ -21458,10 +21467,10 @@ const TrainerData sTrainerData[] = {
              {
                  .ivs = 255,
                  .abilitySlot = TRAINER_POKEMON_ABILITY_1,
@@ -224,7 +262,7 @@ index fb7e4b5fa..e8927a711 100644
                  .setEvs = { 252, 0, 252, 0, 0, 4 },
                  .nature = NATURE_BOLD,
 diff --git a/tools/hack/boss_teams.py b/tools/hack/boss_teams.py
-index 8598cda0d..a35acc294 100644
+index 8598cda0d..2cf5bf363 100644
 --- a/tools/hack/boss_teams.py
 +++ b/tools/hack/boss_teams.py
 @@ -322,7 +322,7 @@ TEAMS = {
@@ -259,7 +297,7 @@ index 8598cda0d..a35acc294 100644
          ("QWILFISH", 50, "POISON_BARB", None, {"ability": "INTIMIDATE"}),
          ("FORRETRESS", 51, "LEFTOVERS", ["TOXIC_SPIKES", "SPIKES", "GYRO_BALL", "EXPLOSION"], {"spread": "wall"}),
          ("WEEZING", 51, "BLACK_SLUDGE", None, {"spread": "wall"}),
-@@ -362,25 +362,25 @@ TEAMS = {
+@@ -362,25 +362,26 @@ TEAMS = {
      ]),
      246: ("Karen", [EXTRA, TUNED], [
          ("HONCHKROW", 53, "SHARP_BEAK", ["NIGHT_SLASH", "BRAVE_BIRD", "SUCKER_PUNCH", "ROOST"], {}),
@@ -286,29 +324,30 @@ index 8598cda0d..a35acc294 100644
 -        ("ZUBAT", 13, "NONE", None, {}),
 -        ("KOFFING", 15, "ORAN_BERRY", None, {}),
 -        ("HOUNDOUR", 16, "ORAN_BERRY", None, {}),
-+        ("ZUBAT", 14, "ORAN_BERRY", None, {}),
-+        ("KOFFING", 16, "ORAN_BERRY", None, {}),
-+        ("HOUNDOUR", 17, "ORAN_BERRY", None, {}),
++        ("ZUBAT", 15, "ORAN_BERRY", None, {}),
++        ("RATTATA", 15, "ORAN_BERRY", None, {}),
++        ("KOFFING", 17, "ORAN_BERRY", None, {}),
++        ("HOUNDOUR", 18, "ORAN_BERRY", None, {}),
      ]),
      488: ("Petrel, Rocket HQ", [EXTRA, TUNED], [
          ("KOFFING", 36, "SITRUS_BERRY", None, {}),
-@@ -402,11 +402,11 @@ TEAMS = {
+@@ -402,11 +403,11 @@ TEAMS = {
          ("WEEZING", 43, "BLACK_SLUDGE", None, {"spread": "wall"}),
      ]),
      487: ("Petrel, Radio Tower", [EXTRA, TUNED], [
 -        ("KOFFING", 42, "SITRUS_BERRY", ["SLUDGE_BOMB", "FLAMETHROWER", "WILL_O_WISP", "EXPLOSION"], {"spread": "bulky"}),
 -        ("KOFFING", 42, "SITRUS_BERRY", ["SLUDGE_BOMB", "THUNDERBOLT", "TOXIC", "PROTECT"], {"spread": "wall"}),
-+        ("KOFFING", 43, "SITRUS_BERRY", ["SLUDGE_BOMB", "FLAMETHROWER", "WILL_O_WISP", "EXPLOSION"], {"spread": "bulky"}),
-+        ("KOFFING", 43, "SITRUS_BERRY", ["SLUDGE_BOMB", "THUNDERBOLT", "TOXIC", "PAIN_SPLIT"], {"spread": "wall"}),
          ("WEEZING", 43, "SITRUS_BERRY", ["SLUDGE_BOMB", "SHADOW_BALL", "THUNDERBOLT", "EXPLOSION"], {}),
 -        ("KOFFING", 42, "SITRUS_BERRY", ["SLUDGE_BOMB", "DARK_PULSE", "WILL_O_WISP", "EXPLOSION"], {"spread": "bulky"}),
 -        ("KOFFING", 42, "SITRUS_BERRY", ["SLUDGE_BOMB", "FIRE_BLAST", "TOXIC", "PROTECT"], {"spread": "wall"}),
-+        ("KOFFING", 43, "SITRUS_BERRY", ["SLUDGE_BOMB", "DARK_PULSE", "WILL_O_WISP", "EXPLOSION"], {"spread": "bulky"}),
++        ("KOFFING", 43, "SITRUS_BERRY", ["SLUDGE_BOMB", "FLAMETHROWER", "WILL_O_WISP", "EXPLOSION"], {"spread": "bulky"}),
++        ("KOFFING", 43, "SITRUS_BERRY", ["SLUDGE_BOMB", "THUNDERBOLT", "TOXIC", "PAIN_SPLIT"], {"spread": "wall"}),
++        ("KOFFING", 43, "FOCUS_SASH", ["SLUDGE_BOMB", "DARK_PULSE", "WILL_O_WISP", "EXPLOSION"], {"spread": "bulky"}),
 +        ("KOFFING", 43, "SITRUS_BERRY", ["SLUDGE_BOMB", "FIRE_BLAST", "TOXIC", "PAIN_SPLIT"], {"spread": "wall"}),
          ("WEEZING", 44, "BLACK_SLUDGE", None, {"spread": "wall"}),
      ]),
      478: ("Ariana, Radio Tower", [EXTRA, TUNED], [
-@@ -414,7 +414,7 @@ TEAMS = {
+@@ -414,7 +415,7 @@ TEAMS = {
          ("ARIADOS", 43, "FOCUS_SASH", None, {}),
          ("VILEPLUME", 44, "BLACK_SLUDGE", None, {}),
          ("CROBAT", 44, "SITRUS_BERRY", None, {}),
@@ -317,7 +356,7 @@ index 8598cda0d..a35acc294 100644
      ]),
      485: ("Archer, Radio Tower", [EXTRA, TUNED], [
          ("PERSIAN", 43, "SILK_SCARF", None, {"ability": "TECHNICIAN"}),
-@@ -643,7 +643,7 @@ def describe(label, built, warnings):
+@@ -643,7 +644,7 @@ def describe(label, built, warnings):
              extra.append(m["ability"].replace("_", " ").title())
          if m["nature"]:
              extra.append(m["nature"].title())

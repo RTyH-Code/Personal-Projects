@@ -142,9 +142,10 @@ All boss Pokémon have perfect IVs. From Chuck onward they also have a nature an
 
 | Pokémon | Lv. | Item | Moves | Ability, nature |
 |---|---|---|---|---|
-| Zubat | 14 | Oran Berry | Aerial Ace, Astonish, Absorb | — |
-| Koffing | 16 | Oran Berry | Clear Smog, Shock Wave, Smog, Tackle | — |
-| Houndour | 17 | Oran Berry | Bite, Ember, Rock Smash, Smog | — |
+| Zubat | 15 | Oran Berry | Poison Fang, Aerial Ace, Astonish, Absorb | — |
+| Rattata | 15 | Oran Berry | Cut, Bite, Rock Smash, Shock Wave | — |
+| Koffing | 17 | Oran Berry | Clear Smog, Shock Wave, Smog, Tackle | — |
+| Houndour | 18 | Oran Berry | Bite, Ember, Rock Smash, Smog | — |
 ### Petrel, Rocket HQ
 
 | Pokémon | Lv. | Item | Moves | Ability, nature |
@@ -174,10 +175,10 @@ All boss Pokémon have perfect IVs. From Chuck onward they also have a nature an
 
 | Pokémon | Lv. | Item | Moves | Ability, nature |
 |---|---|---|---|---|
+| Weezing | 43 | Sitrus Berry | Sludge Bomb, Shadow Ball, Thunderbolt, Explosion | Modest |
 | Koffing | 43 | Sitrus Berry | Sludge Bomb, Flamethrower, Will O Wisp, Explosion | Modest |
 | Koffing | 43 | Sitrus Berry | Sludge Bomb, Thunderbolt, Toxic, Pain Split | Bold |
-| Weezing | 43 | Sitrus Berry | Sludge Bomb, Shadow Ball, Thunderbolt, Explosion | Modest |
-| Koffing | 43 | Sitrus Berry | Sludge Bomb, Dark Pulse, Will O Wisp, Explosion | Modest |
+| Koffing | 43 | Focus Sash | Sludge Bomb, Dark Pulse, Will O Wisp, Explosion | Modest |
 | Koffing | 43 | Sitrus Berry | Sludge Bomb, Fire Blast, Toxic, Pain Split | Bold |
 | Weezing | 44 | Black Sludge | Sludge Bomb, Fire Blast, Will O Wisp, Thunderbolt | Bold |
 ### Ariana, Radio Tower
