@@ -1052,7 +1052,9 @@ class Bot:
             # after a loss the player wakes at a Pokemon Center: on a map again, but not the one the battle began
             # on; and on the way there every Pokemon of the party has no HP left
             here = self.where()
-            if here and start and here[0] != start[0]:
+            # (a change between two outdoor maps is no whiteout: those wake the player indoors, at a Pokemon
+            # Center; and the map read at the start can lag a step behind, on the edge of two routes)
+            if here and start and here[0] != start[0] and not self.same_region(here[0], start[0]):
                 self.record_battle(start, "lost", g.frames - began, self.ai_moves - moves, self.kos[first_ko:])
                 self.battling = False
                 self.stuck("lost a battle by %s: the team whited out" % (start,))
@@ -1087,7 +1089,8 @@ class Bot:
                 g.key("a" if toggle % 3 else "b", after=30)
                 frames += 36
         here = self.where()
-        if money and cash() is not None and cash() < money or (here and start and here[0] != start[0]):
+        if money and cash() is not None and cash() < money or (here and start and here[0] != start[0]
+                                                               and not self.same_region(here[0], start[0])):
             self.record_battle(start, "lost", g.frames - began, self.ai_moves - moves, self.kos[first_ko:])
             self.battling = False
             self.stuck("lost a battle by %s: the team whited out" % (start,))
