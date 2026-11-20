@@ -1043,6 +1043,10 @@ def to_victory_road(bot):
 LEAGUE_ENTRANCE = "T10R0101"
 ELITE_FOUR = [("T10R0201", "FLAG_DEFEATED_WILL", "Will"), ("T10R0301", "FLAG_DEFEATED_KOGA", "Koga"),
               ("T10R0401", "FLAG_DEFEATED_BRUNO", "Bruno"), ("T10R0501", "FLAG_DEFEATED_KAREN", "Karen")]
+# who to put at the front of the party for each, as a player would (the Elite Four set's names; one not in
+# the party is passed over): Dark moves for Will's Psychic types, a Steel type for Koga's Poison types,
+# Psychic and Fairy for Bruno, Fighting for Karen's Tyranitar and Dark types, Electric for Lance's Gyarados
+LEADS = {"Will": "GYARADOS", "Koga": "BRONZONG", "Bruno": "GARDEVOIR", "Karen": "MACHAMP", "Lance": "AMPHAROS"}
                                                  # their rooms, and the flags their scripts set when beaten
 LANCE_ROOM, HALL_OF_FAME, LANCE = "T10R0601", "T10R0701", 244
 # whether the heal between the Elite Four rooms also gives back berries used up (a player carries several);
@@ -1149,7 +1153,7 @@ def elite_four_member(bot, room, beaten, name):
     import random
     bot.travel(room)
     bot.settle()
-    bot.restore_party("before %s" % name, refill=REFILL_BERRIES)
+    bot.restore_party("before %s" % name, refill=REFILL_BERRIES, lead=LEADS.get(name))
     # a retry starts from the same save state, and with the same random numbers the battle would play out
     # move for move the same: wait a different while first (the game's random numbers move on every frame)
     bot.game.run(random.randint(1, 600))
@@ -1181,7 +1185,7 @@ def champion(bot):
     # Fame (FLAG_UNK_97E is set just before the credits), the credits, and the player back in the overworld
     bot.travel(LANCE_ROOM)
     bot.settle()
-    bot.restore_party("before Lance", refill=REFILL_BERRIES)
+    bot.restore_party("before Lance", refill=REFILL_BERRIES, lead=LEADS["Lance"])
     import random
     bot.game.run(random.randint(1, 600))          # as for the Elite Four: a retry plays out differently
     try:

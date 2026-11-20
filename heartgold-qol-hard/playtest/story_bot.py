@@ -1220,7 +1220,7 @@ class Bot:
                 return True
         return False
 
-    def restore_party(self, why, refill=False):
+    def restore_party(self, why, refill=False, lead=None):
         """TEST HARNESS ONLY: heal the party where it stands (all HP, no status, all PP), in place of the
         potions a player would use. The bot can't use items, so a boss behind a gym full of trainers would
         otherwise be fought with whatever the trainers left. With refill, a berry used up is given back too
@@ -1250,6 +1250,10 @@ class Bot:
                     if move:
                         m.blocks[0x28 + i] = self.sets.pp.get(names.get(move), m.blocks[0x28 + i])
             mons.append(m)
+        if lead:
+            # a player puts the Pokemon they want out first at the front of the party between battles
+            first = [m for m in mons if species.get(m.species) == lead]
+            mons = first + [m for m in mons if m not in first]
         if not self.write_party(mons):
             self.stuck("could not heal the party (%s)" % why)
         print("  heal: party restored in place (%s), standing in for potions" % why, flush=True)
