@@ -1042,6 +1042,8 @@ class Bot:
         g = self.game
         ai = False
         start, moves = self.last_place, self.ai_moves
+        if start and start[0] == "T10R0701":    # the Hall of Fame scene draws like a battle screen; it is none
+            return
         print("  battle by %s" % (start,), flush=True)
         for i in range(600):
             if self.hand_to_ai():

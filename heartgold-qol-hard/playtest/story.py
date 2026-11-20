@@ -1208,10 +1208,7 @@ def hall_of_fame(bot):
     for _ in range(120):
         if flag_set():
             break
-        if bot.game.in_field():
-            bot.settle()
-        else:
-            bot.game.key("a", after=60)
+        bot.game.key("a", after=60)      # no settle(): it would take the Hall of Fame scene for a battle
         bot.game.run(120)
     bot.expect("FLAG_UNK_97E", "beating Lance and the Hall of Fame")
     for _ in range(200):           # the credits
