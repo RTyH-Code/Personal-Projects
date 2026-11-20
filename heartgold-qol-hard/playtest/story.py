@@ -1,4 +1,4 @@
-"""The story, stage by stage, for story_bot.py: New Bark Town to Blackthorn City.
+"""The story, stage by stage, for story_bot.py: New Bark Town to the Hall of Fame.
 
 Each stage is a function of the bot. Places are map codes (see
 tools/data/map_names.json) and tiles; warps are numbered as in the map's
@@ -1040,6 +1040,57 @@ def to_victory_road(bot):
     bot.travel(VICTORY_ROAD_1F)
 
 
+LEAGUE_ENTRANCE = "T10R0101"
+ELITE_FOUR = [("T10R0201", 245, "Will"), ("T10R0301", 247, "Koga"), ("T10R0401", 418, "Bruno"),
+              ("T10R0501", 246, "Karen")]        # their rooms and trainer numbers, in order
+LANCE_ROOM, HALL_OF_FAME, LANCE = "T10R0601", "T10R0701", 244
+
+
+def victory_road(bot):
+    # up through Victory Road's three floors (the rival battles on 3F) to Indigo Plateau, and into the Pokemon
+    # League's entrance hall
+    bot.travel(LEAGUE_ENTRANCE)
+
+
+def elite_four(bot):
+    # a heal from the nurse in the entrance hall; the guard at the counter steps aside when talked to; then the
+    # four rooms in turn, each door opening once its trainer is beaten. There is nowhere to heal between them:
+    # a player would use potions, so (as before Clair) the harness heals the party where it stands before each
+    bot.travel(LEAGUE_ENTRANCE)
+    bot.talk(LEAGUE_ENTRANCE, 0, answers=["a"])
+    bot.talk(LEAGUE_ENTRANCE, 8)
+    for room, trainer, name in ELITE_FOUR:
+        bot.travel(room)
+        bot.settle()
+        bot.restore_party("before %s" % name)
+        bot.talk(room, 0)
+        for _ in range(5):
+            if bot.beaten(trainer):
+                break
+            bot.settle()
+        if not bot.beaten(trainer):
+            bot.stuck("%s was not beaten" % name)
+
+
+def champion(bot):
+    # Lance, in the last room: the battle starts as the player walks up to him (5-7, 10). After it, the Hall of
+    # Fame (FLAG_UNK_97E is set just before the credits), the credits, and the player back in the overworld
+    bot.travel(LANCE_ROOM)
+    bot.settle()
+    bot.restore_party("before Lance")
+    bot.walk(LANCE_ROOM, [(6, 10)])
+    for _ in range(60):
+        if bot.flag("FLAG_UNK_97E"):
+            break
+        bot.settle()
+        bot.game.run(120)
+    bot.expect("FLAG_UNK_97E", "beating Lance and the Hall of Fame")
+    for _ in range(200):           # the credits
+        if bot.game.in_field() and bot.free():
+            break
+        bot.game.key("a", after=60)
+
+
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
           back_to_elm, stolen_pokemon, to_violet, sprout_tower,
           violet_gym, mystery_egg, to_azalea, kurt, slowpoke_well, azalea_gym, to_ilex, farfetchd,
@@ -1050,4 +1101,5 @@ STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokege
           to_goldenrod_takeover, rocket_disguise, radio_tower_rival, fake_director,
           underground_door, switch_room, warehouse, card_key, proton, ariana, archer,
           to_ice_path, ice_path_boulders, to_blackthorn, clair_gym, dragons_den,
-          elms_news, kimono_girls, ho_oh, to_victory_road]
+          elms_news, kimono_girls, ho_oh, to_victory_road,
+          victory_road, elite_four, champion]
