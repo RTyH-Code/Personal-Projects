@@ -191,7 +191,10 @@ class Bot:
         In Clair's gym the lava is not walkable, but the floors of its three platforms, wherever they are now,
         are."""
         grid, _ = self.world.grid(self.world.headers[code]["matrix"])
-        out = {p: v & 0xFF for p, v in grid.items() if not v & 0x8000 or v & 0xFF in FIELD_MOVE_WATER}
+        # whirlpools and waterfalls are blocked to a step but crossed with a field move; and some ledges (Route
+        # 45's) carry the blocked bit too, though they are jumped like any other
+        out = {p: v & 0xFF for p, v in grid.items()
+               if not v & 0x8000 or v & 0xFF in FIELD_MOVE_WATER or v & 0xFF in LEDGES}
         if code == BLACKTHORN_GYM:
             here = self.where()
             out = {p: b for p, b in out.items() if b != MAGMA}
