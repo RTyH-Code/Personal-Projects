@@ -24,6 +24,7 @@ Results go to OUT/story.json.
 """
 import json
 import os
+import random
 import struct
 import subprocess
 import sys
@@ -39,6 +40,9 @@ from walk_test import DIRS, text_box
 
 TEAM_LEVEL = 16
 RETRIES = int(os.environ.get("STORY_RETRIES", "3"))                  # a stage is played again after a lost battle, as a player would, this many times
+# up to this many frames of waiting after a stage's start state is loaded. The game's random numbers move on
+# every frame, so without it two runs from the same save play every battle out move for move the same
+JITTER = int(os.environ.get("STORY_JITTER", "0"))
 TEAM = (0, 1, 2, 4)          # of battle_test.REFERENCE: Cyndaquil, Mareep, Geodude and Abra, evolved to the level
 FIELD_SYSTEM_AVATAR = 0x40          # FieldSystem.playerAvatar
 FIELD_SYSTEM_LOCATION = 0x20        # FieldSystem.location -> {mapId, warpId, x, y, direction}
@@ -1354,7 +1358,7 @@ def run():
     else:
         bot.game.run(400)        # the emulator can crash when a state is loaded before it has run a little
         bot.game.emu.savestate.load_file(os.path.join(out, "stage_%s.dst" % names[begin - 1]))
-        bot.game.run(60)
+        bot.game.run(60 + (random.randint(0, JITTER) if JITTER else 0))
     results = []
     json.dump(results, open(os.path.join(out, "story.json"), "w"))
     for stage in stages[begin:end]:
@@ -1376,7 +1380,7 @@ def run():
                     losses += 1
                     print("%-24s lost   %s; trying again (%d)" % (stage.__name__, e, losses), flush=True)
                     bot.game.emu.savestate.load_file(before)
-                    bot.game.run(60)
+                    bot.game.run(60 + (random.randint(0, JITTER) if JITTER else 0))
                     bot.battling = False
         except Stuck as e:
             results.append(dict(stage=stage.__name__, result="stuck", note=str(e)))

@@ -30,8 +30,9 @@ def summary(records):
     rows = []
     for (name, where), battles in fights.items():
         won = [b for b in battles if b["result"] == "won"]
-        fainted = [sum(k["side"] == "player" for k in b["kos"]) for b in won]
-        by = Counter(k["by"] for b in battles for k in b["kos"] if k["side"] == "player" and k.get("by"))
+        # a few records name a Pokemon by a large number, a misread after the battle: count only named ones
+        fainted = [sum(k["side"] == "player" and isinstance(k["fainted"], str) for k in b["kos"]) for b in won]
+        by = Counter(k["by"] for b in battles for k in b["kos"] if k["side"] == "player" and isinstance(k.get("by"), str) and k["by"])
         rows.append(dict(name=name, where=where, battles=len(battles), won=len(won),
                          fainted=sum(fainted) / len(fainted) if fainted else None, by=by))
     return rows
