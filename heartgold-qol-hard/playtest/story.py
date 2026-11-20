@@ -1013,6 +1013,10 @@ def ho_oh(bot):
     # a heal, then up the Bell Tower to its roof: there the Kimono Girls dance (15, 20) and Ho-Oh comes down, a
     # battle (Lv. 52 in the hack). Beating it does (only losing or running doesn't); then Lyra lets the player go
     heal(bot, "T27PC0101")
+    # the monk in the Bell Tower's barrier station stands in the way until talked to (with the Fog Badge he
+    # steps aside, until the map is next loaded)
+    bot.travel("T27R0201")
+    bot.talk("T27R0201", 0)
     bot.travel(BELL_TOWER_ROOF, near=(15, 21))
     bot.walk(BELL_TOWER_ROOF, [(15, 20)])
     bot.settle()
