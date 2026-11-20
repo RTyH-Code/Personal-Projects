@@ -1,0 +1,210 @@
+# Boss balance: what the story bot found
+
+The story bot has played the whole story, from the bedroom to the Hall of
+Fame, using boss team sets: a team built for each boss from what a player can
+catch and teach by then (`team_sets.py`). This page brings its boss results
+together and lists ways to fix the fights that came out too hard. Nothing
+here has been changed in the hack yet.
+
+The table comes from `python3 balance.py`, run over `results/battles.jsonl`.
+
+## How to read the numbers
+
+- **The bot plays worse than a player.** The game's own trainer AI picks its
+  moves. It never switches out of a bad matchup, never uses items in battle,
+  and lets a Swords Dance or Dragon Dance user set up freely. Setup sweepers
+  and sleep look stronger here than they will against a person.
+- **The bot also gets help a player wouldn't.** Before Clair, the rival on
+  Victory Road and every League room, the harness heals the party where it
+  stands, standing in for potions. Between League rooms it also gives back
+  used berries.
+- **The samples are small and mixed.** Most fights were played a handful of
+  times. The records span several team versions and bot fixes. A low rate
+  across many battles, with the same Pokémon doing the damage each time, is
+  the signal to trust.
+
+## Results
+
+Each row is one boss fight. "Ours fainted per win" counts how many of our
+Pokémon fainted in the battles the bot won. The last column counts which of
+the boss's Pokémon knocked ours out, over every battle of that fight.
+
+| Boss | Where | Won | Ours fainted per win | Knocked ours out |
+|---|---|---|---|---|
+| Falkner | Violet Gym | 2 of 2 | 1.0 | Natu 2 |
+| Silver | Azalea | 2 of 4 | 4.0 | Bayleef 15, Flaaffy 3 |
+| Proton | Slowpoke Well | 1 of 1 | 0.0 | — |
+| Bugsy | Azalea Gym | 1 of 1 | 4.0 | one each |
+| Whitney | Goldenrod Gym | 4 of 7 | 3.0 | Dunsparce 11, Stantler 8, Miltank 6 |
+| Silver | Burned Tower | 3 of 4 | 2.0 | Misdreavus 4, Sneasel 3 |
+| Morty | Ecruteak Gym | 1 of 1 | 5.0 | Drifblim 3 |
+| Chuck | Cianwood Gym | 1 of 1 | 4.0 | Heracross 2 |
+| Jasmine | Olivine Gym | 1 of 1 | 3.0 | one each |
+| Petrel | Rocket Hideout | 1 of 1 | 5.0 | Raticate 2 |
+| Ariana | Rocket Hideout | 2 of 6 * | 1.5 | Ariados 4, Arbok 2 |
+| Pryce | Mahogany Gym | 1 of 3 | 5.0 | Jynx 9, Mamoswine 4, Dewgong 3 |
+| Proton | Radio Tower | 4 of 4 | 3.5 | Houndoom 5, Weezing 4 |
+| Petrel | Radio Tower | 1 of 1 | 0.0 | — |
+| Ariana | Radio Tower | 1 of 5 | 2.0 | Honchkrow 11 |
+| Archer | Radio Tower | 2 of 4 | 2.5 | Crobat 5, Houndoom 4, Sneasel 4 |
+| Silver | Goldenrod Underground | 1 of 1 | 2.0 | — |
+| Clair | Blackthorn Gym | 2 of 11 | 3.5 | Gyarados 16, Gabite 8, Dragonair 8, Flygon 7 |
+| Kimono Girls | Ecruteak dance theatre | 10 of 10 | 0.4 | Jolteon 2, Vaporeon 2 |
+| Silver | Victory Road | 1 of 3 | 3.0 | Ampharos 3, Crobat 3 |
+| Will | League | 15 of 19 | 2.7 | Espeon 15, Wobbuffet 12, Slowking 12 |
+| Koga | League | 7 of 13 | 2.3 | Ariados 14, Crobat 14, Qwilfish 8 |
+| Bruno | League | 6 of 8 | 3.3 | Annihilape 14 |
+| Karen | League | 3 of 26 | 3.7 | Tyranitar 55, Gengar 35, Weavile 24, Houndoom 15 |
+| Lance | League | 6 of 30 | 3.8 | Gyarados 49, Aerodactyl 41, Charizard 34, Dragonite 26 |
+
+\* Four of the six Hideout Ariana battles are recorded as losses with only one
+of ours fainted. That is the double battle beside Lance, from before the bot's
+loss check was fixed. Read it as about even.
+
+Some fights don't point at the boss:
+
+- **The two Victory Road losses** came after the whole cave with no heal.
+- **The Azalea rival's Bayleef** swept a party of Rock and Ground types. That
+  says more about the party the bot had caught than about the rival.
+
+## The fights to look at
+
+Five fights stand out, ordered by how sure the data is. Two patterns explain
+most of it:
+
+- **A guaranteed setup turn.** A Focus Sash on a Swords Dance user, or
+  Intimidate on a Dragon Dance user, lets it boost before anything can stop
+  it.
+- **The same set appearing twice.** Clair's Gyarados and Kingdra are Lance's,
+  move for move, ten levels sooner.
+
+### Lance: 6 of 30
+
+**What happens:** Gyarados (Intimidate, Dragon Dance, Wacan Berry) leads. In
+most losses it Dragon Danced and knocked out three or four of ours before
+anything else of his moved. After that come:
+
+- Aerodactyl, with Focus Sash and Curse, which is a second setup user.
+- Charizard.
+- The two Dragonites.
+
+**Options, mildest first:**
+
+1. Move Gyarados out of the lead, for example to fourth. He then can't set up
+   on whatever leads against him, and the player has seen part of his team
+   before it comes out.
+2. Give Gyarados a Sitrus Berry in place of the Wacan Berry. Electric moves,
+   the plain answer to it, then knock it out in one hit again.
+3. Replace Dragon Dance with Thunder Wave or Ice Fang. Gyarados stays
+   dangerous but stops snowballing.
+4. Replace Aerodactyl's Curse with Rock Slide or Ice Fang. Keep the Sash or
+   the setup move, not both.
+
+My pick is 1 + 2. Lance keeps his signature Gyarados, and the fight no longer
+turns on its first turn.
+
+### Karen: 3 of 26
+
+**What happens:** Tyranitar (Dragon Dance, Stone Edge, Crunch, Earthquake,
+Chople Berry) did the most damage of any single Pokémon in the data: 55 of
+ours. The Chople Berry takes the edge off a Fighting move, which is the usual
+answer to it. After a Dragon Dance it outspeeds and knocks out everything.
+Karen's other threats are:
+
+- Gengar (Wise Glasses, Hypnosis).
+- Weavile (Focus Sash, Swords Dance), another guaranteed setup.
+
+**Options:**
+
+1. Tyranitar: replace Dragon Dance with Pursuit or Ice Punch, and keep the
+   Chople Berry. It is then a strong wall, not a sweeper.
+2. Or keep Dragon Dance and swap the Chople Berry for Leftovers. A Fighting
+   or Water move then knocks it out.
+3. Weavile: replace the Focus Sash with Life Orb or Razor Claw, so a fast hit
+   stops it before it sets up.
+4. Gengar: Hypnosis to Destiny Bond or Thunderbolt, or keep Hypnosis and drop
+   the Wise Glasses for a Black Sludge or Spell Tag.
+
+My pick is 1 + 3.
+
+### Clair: 2 of 11, before the heal
+
+**What happens:** Clair's Gyarados and Kingdra are exactly Lance's sets.
+Gyarados (Intimidate, Dragon Dance, Wacan Berry) did most of the damage: 16
+of ours. Flygon and Gabite also carry setup moves (Dragon Dance and Swords
+Dance). The bot lost all nine battles until the harness healed the party
+before her, standing in for the potions a player would use after her gym
+trainers. With the heal both teams won.
+
+**Options:**
+
+1. Give her Gyarados its own set, so the Champion's signature isn't seen ten
+   levels early: Waterfall, Crunch, Ice Fang, Thunder Wave, and a Sitrus
+   Berry. Do the same for Kingdra: drop Rain Dance for Dragon Pulse or Surf.
+2. Keep one setup user in the team (Flygon's Dragon Dance), not three: Gabite
+   loses Swords Dance for Fire Fang or Dragon Claw.
+
+My pick is both: 1 and 2.
+
+### Ariana in the Radio Tower: 1 of 5
+
+**What happens:** Honchkrow (Super Luck, Scope Lens, Foul Play, Brave Bird)
+knocked out 11 of ours. Super Luck and Scope Lens together add two critical
+hit stages, so about half its hits are critical. That ignores our defence
+boosts and its own attack drops, so the fight comes down to luck. The same
+Pokémon at Lv. 40 (a Murkrow, Hideout) was fine.
+
+**Options:**
+
+1. Swap the Scope Lens for a Sitrus Berry or Sharp Beak. Its critical rate
+   drops back to one stage.
+2. Or change its ability from Super Luck to Insomnia.
+
+My pick is 1.
+
+### Pryce: 1 of 3
+
+**What happens:** Jynx (Lovely Kiss, Wise Glasses, Ice Beam, Psychic) knocked
+out 9 of ours. In one loss it took out all five of ours that were left. It
+outspeeds most of a Lv. 42 party and puts the one that can hurt it to sleep.
+Mamoswine (Curse) finishes the rest.
+
+**Options:**
+
+1. Replace Lovely Kiss with Fake Out or Ice Shard. Sleep then stays with
+   Lapras's Sing, which is less accurate.
+2. Or keep Lovely Kiss and swap the Wise Glasses for a Sitrus Berry.
+
+My pick is 1. Three battles is a thin sample, though, so this is a lighter
+call than the ones above.
+
+## Worth watching
+
+- **Koga, 7 of 13.** Ariados (Focus Sash, Swords Dance) and Crobat (Hypnosis)
+  did most of it. It got much better once the team had held items and
+  Bronzong. If Karen's Weavile loses its Sash, Ariados could lose its Sash
+  too, to Black Sludge, for the same reason.
+- **Whitney, 4 of 7.** Dunsparce (Serene Grace with Rock Slide and Glare)
+  flinches or paralyses most of the time: 11 of ours. It is meant to be the
+  gym's hard Pokémon, and 4 of 7 is a fair fight for the third gym. If it
+  should be softer, swap Rock Slide for Ancient Power or Shock Wave.
+- **Archer, 2 of 4.** Within range.
+
+## Maybe too easy
+
+- **The Kimono Girls** were all won at the first try, and three of them
+  without one of ours fainting. Each has one Eeveelution. They could each
+  have two Pokémon, or held items.
+- **Petrel in the Radio Tower** fainted none of ours.
+- **Proton in the Slowpoke Well** also fainted none of ours.
+
+The rest of the gyms each have one win in one battle, with three to five of
+ours fainted. That is about the hard-mode feel wanted, but one battle each is
+a small sample.
+
+## Something else found
+
+In `guide/BOSSES.md`, Pryce's Mamoswine row is broken. Its item, moves and
+nature run together, and the ability column shows "—" where it should say
+Oblivious, Adamant. The team itself is fine in the game. The guide's report
+writer mishandles a set with no moves given (`None`).

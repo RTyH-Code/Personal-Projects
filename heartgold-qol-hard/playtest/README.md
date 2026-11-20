@@ -470,6 +470,10 @@ after the Azalea rival.
 
 # Results
 
+The boss results, brought together with ways to fix the hard fights, are in
+[BALANCE.md](BALANCE.md) (`python3 balance.py` rebuilds its table).
+
+
 From `results/battles.jsonl`.
 
 **Bugsy**, with the Lv. 16 reference team before the boss sets: two wins in

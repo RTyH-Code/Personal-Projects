@@ -1,0 +1,51 @@
+"""Boss balance summary from the story bot's battle records.
+
+    python3 balance.py [results/battles.jsonl]
+
+Prints a Markdown table: for each boss fight (trainer and map), the battles
+fought, the wins, how many of ours fainted in a win, and which of the boss's
+Pokemon knocked ours out. The records come from every run kept, with
+different team sets and bot fixes along the way, so read a rate as a rough
+signal, not a measurement.
+"""
+import json
+import sys
+from collections import Counter, OrderedDict
+
+BOSS_CLASSES = ("LEADER", "ELITE_FOUR", "CHAMPION", "EXECUTIVE", "RIVAL", "KIMONO")
+
+
+def load(path):
+    with open(path) as f:
+        return [json.loads(line) for line in f if line.strip()]
+
+
+def summary(records):
+    fights = OrderedDict()
+    for r in records:
+        if not r["trainers"] or not r["trainers"][0]["cls"].startswith(BOSS_CLASSES):
+            continue
+        t = r["trainers"][0]
+        fights.setdefault((t["name"], r["at"][0]), []).append(r)
+    rows = []
+    for (name, where), battles in fights.items():
+        won = [b for b in battles if b["result"] == "won"]
+        fainted = [sum(k["side"] == "player" for k in b["kos"]) for b in won]
+        by = Counter(k["by"] for b in battles for k in b["kos"] if k["side"] == "player" and k.get("by"))
+        rows.append(dict(name=name, where=where, battles=len(battles), won=len(won),
+                         fainted=sum(fainted) / len(fainted) if fainted else None, by=by))
+    return rows
+
+
+def markdown(rows):
+    out = ["| Boss | Map | Won | Ours fainted per win | Knocked ours out |", "|---|---|---|---|---|"]
+    for r in rows:
+        rate = "%d of %d (%d%%)" % (r["won"], r["battles"], round(100 * r["won"] / r["battles"]))
+        fainted = "%.1f" % r["fainted"] if r["fainted"] is not None else "—"
+        by = ", ".join("%s %d" % (s.title(), n) for s, n in r["by"].most_common(4)) or "—"
+        out.append("| %s | %s | %s | %s | %s |" % (r["name"], r["where"], rate, fainted, by))
+    return "\n".join(out)
+
+
+if __name__ == "__main__":
+    print(markdown(summary(load(sys.argv[1] if len(sys.argv) > 1 else "results/battles.jsonl"))))
