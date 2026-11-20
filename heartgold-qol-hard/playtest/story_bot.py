@@ -1008,11 +1008,15 @@ class Bot:
         """Note each Pokemon that has just fainted, and the opposing Pokemon that was out when it did."""
         now = self.battle_mons()
         names = self.species_names
+        done = {(k[1], k[2]) for k in self.kos[getattr(self, "first_ko", 0):]}
         for b, (species, hp) in now.items():
             before = last.get(b)
-            if before and before[0] == species and before[1] > 0 and hp == 0:
+            side = "player" if b % 2 == 0 else "opponent"
+            # fainted since the last look: seen with HP left; or sent out and knocked out before the next look
+            # (seen fainted, not seen alive, and not yet counted)
+            if hp == 0 and (before and before[0] == species and before[1] > 0
+                            or (not before or before[0] != species) and (side, names.get(species, species)) not in done):
                 foe = now.get(b ^ 1) or last.get(b ^ 1)
-                side = "player" if b % 2 == 0 else "opponent"
                 self.kos.append((start, side, names.get(species, species), names.get(foe[0], foe[0]) if foe else None))
                 print("  KO: %s's %s fainted, %s out" % (side, names.get(species, species),
                                                          names.get(foe[0], foe[0]) if foe else "nobody"), flush=True)
@@ -1053,6 +1057,7 @@ class Bot:
         money = cash()
         mons = {}
         first_ko, began = len(self.kos), g.frames
+        self.first_ko = first_ko
         # who the opponents are, read now: the battle's memory is gone once it ends
         self.trainer_ids = []
         if self.bsys:
