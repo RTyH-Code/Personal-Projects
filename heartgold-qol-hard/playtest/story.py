@@ -1051,48 +1051,57 @@ VICTORY_ROAD = ["D43R0101", "D43R0102", "D43R0103"]
 
 def victory_road(bot):
     # up through Victory Road's three floors (the rival battles on 3F) to Indigo Plateau, and into the Pokemon
-    # League's entrance hall. Strength boulders stand in the way: where the route planner finds no way on, the
-    # boulder planner pushes them aside towards an exit (the League first, then the floors above)
-    for _ in range(12):
+    # League's entrance hall. Strength boulders stand in the way, and some stairs lead to parts of a floor with no
+    # way on: where the route planner finds no way, the boulder planner pushes them aside towards stairs up (the
+    # League first), from a save state, and if that part of the cave goes nowhere the bot loads it and tries the
+    # next stairs
+    import os
+
+    def onward(depth):
         here = bot.where()
         if here[0] not in VICTORY_ROAD:
-            break
+            return here[0] in (INDIGO, LEAGUE_ENTRANCE)
         code, pos = here[0], (here[1], here[2])
         try:
             bot.travel(LEAGUE_ENTRANCE)
-            return
+            return True
         except Exception as e:
             if type(e).__name__ != "Stuck" or not str(e).startswith("no way found"):
                 raise
-        rank = lambda w: (0 if "T10" in str(w[1]["dest_header_id"]) else 1,
-                          -VICTORY_ROAD.index(str(w[1]["dest_header_id"]).replace("MAP_", ""))
-                          if str(w[1]["dest_header_id"]).replace("MAP_", "") in VICTORY_ROAD else 0)
+        if depth > 4:
+            return False
         dest = lambda w: str(w["dest_header_id"]).replace("MAP_", "")
-        # on to the floors above, or out to Indigo Plateau; never back down, or out the way in
-        exits = sorted(((i, w) for i, w in enumerate(bot.world.events(code)["warp_events"])
-                        if dest(w) == INDIGO or dest(w) in VICTORY_ROAD
-                        and VICTORY_ROAD.index(dest(w)) > VICTORY_ROAD.index(code)), key=rank)
-        warps = {(w["x"], w["z"]) for w in bot.world.events(code)["warp_events"]}
-        for i, w in exits:
+        events = bot.world.events(code)["warp_events"]
+        warps = {(w["x"], w["z"]) for w in events}
+        exits = [(i, w) for i, w in enumerate(events)
+                 if dest(w) == INDIGO or dest(w) in VICTORY_ROAD and VICTORY_ROAD.index(dest(w)) > VICTORY_ROAD.index(code)]
+        exits.sort(key=lambda e: 0 if dest(e[1]) == INDIGO else 1)
+        state = os.path.join(bot.out, "victory_road_%d.dst" % depth)
+        bot.save(state)
+        for n, (i, w) in enumerate(exits):
+            if n:
+                bot.game.emu.savestate.load_file(state)
+                bot.game.run(60)
             entry, into = bot.warp_entry(code, i)
             if entry in warps and into:
                 dx, dz, _ = DIRS[into]
                 entry = (entry[0] - dx, entry[1] - dz)     # stairs: the tile in front of them
-            if entry == pos:
-                continue
             try:
                 bot.drop_boulders(code, set(), goals=[entry], need_all=False)
+                bot.go_through(code, i)
+                bot.settle()
             except Exception as e:
                 if type(e).__name__ != "Stuck" or str(e).startswith("lost a battle"):
                     raise
                 continue
-            bot.go_through(code, i)
-            bot.settle()
-            break
-        else:
-            bot.stuck("no way on from %s, even pushing boulders" % code)
-    bot.travel(LEAGUE_ENTRANCE)
+            if onward(depth + 1):
+                return True
+        return False
 
+    if not onward(0):
+        bot.stuck("no way through Victory Road found")
+    if bot.where()[0] != LEAGUE_ENTRANCE:
+        bot.travel(LEAGUE_ENTRANCE)
 
 def elite_four(bot):
     # a heal from the nurse in the entrance hall; the guard at the counter steps aside when talked to; then the
