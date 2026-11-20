@@ -1041,8 +1041,9 @@ def to_victory_road(bot):
 
 
 LEAGUE_ENTRANCE = "T10R0101"
-ELITE_FOUR = [("T10R0201", 245, "Will"), ("T10R0301", 247, "Koga"), ("T10R0401", 418, "Bruno"),
-              ("T10R0501", 246, "Karen")]        # their rooms and trainer numbers, in order
+ELITE_FOUR = [("T10R0201", "FLAG_DEFEATED_WILL", "Will"), ("T10R0301", "FLAG_DEFEATED_KOGA", "Koga"),
+              ("T10R0401", "FLAG_DEFEATED_BRUNO", "Bruno"), ("T10R0501", "FLAG_DEFEATED_KAREN", "Karen")]
+                                                 # their rooms, and the flags their scripts set when beaten
 LANCE_ROOM, HALL_OF_FAME, LANCE = "T10R0601", "T10R0701", 244
 
 
@@ -1132,17 +1133,16 @@ def elite_four(bot):
     bot.travel(LEAGUE_ENTRANCE)
     bot.talk(LEAGUE_ENTRANCE, 0, answers=["a"])
     bot.talk(LEAGUE_ENTRANCE, 8)
-    for room, trainer, name in ELITE_FOUR:
+    for room, beaten, name in ELITE_FOUR:
         bot.travel(room)
         bot.settle()
         bot.restore_party("before %s" % name)
         bot.talk(room, 0)
         for _ in range(5):
-            if bot.beaten(trainer):
+            if bot.flag(beaten):
                 break
             bot.settle()
-        if not bot.beaten(trainer):
-            bot.stuck("%s was not beaten" % name)
+        bot.expect(beaten, "beating %s" % name)
 
 
 def champion(bot):
