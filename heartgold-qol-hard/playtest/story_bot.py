@@ -38,7 +38,7 @@ import walk_test
 from walk_test import DIRS, text_box
 
 TEAM_LEVEL = 16
-RETRIES = 3                  # a stage is played again after a lost battle, as a player would, this many times
+RETRIES = int(os.environ.get("STORY_RETRIES", "3"))                  # a stage is played again after a lost battle, as a player would, this many times
 TEAM = (0, 1, 2, 4)          # of battle_test.REFERENCE: Cyndaquil, Mareep, Geodude and Abra, evolved to the level
 FIELD_SYSTEM_AVATAR = 0x40          # FieldSystem.playerAvatar
 FIELD_SYSTEM_LOCATION = 0x20        # FieldSystem.location -> {mapId, warpId, x, y, direction}
