@@ -221,7 +221,7 @@ python3 playtest/team_sets.py /path/to/test/hg-engine /path/to/dumped/hg-engine
 | `jasmine` | Jasmine, then Lake of Rage and the Rocket Hideout | 38 | Magmar, Torkoal, Houndoom, Claydol, Gastrodon, Quagsire |
 | `pryce` | Pryce | 42 | Machamp, Heracross, Toxicroak (Low Kick, Poison Jab, Sucker Punch, Dig), Magmar, Luxray, Houndoom |
 | `radio_tower` | the Radio Tower takeover: Petrel, the rival in the Underground, Proton, Ariana, Archer | 46 | Alakazam, Bronzong, Claydol, Luxray, Gyarados, Houndoom |
-| `elite_four` | from Elm's news on: the Kimono Girls, Ho-Oh, the rival on Victory Road, the Elite Four and Lance | 58 | Gardevoir, Bronzong (Gyro Ball), Jynx (Ice Punch, Psychic, Lovely Kiss, Avalanche), Luxray, Machamp, Gyarados, each holding an item (see Results) |
+| `elite_four` | from Elm's news on: the Kimono Girls, Ho-Oh, the rival on Victory Road, the Elite Four and Lance | 58 | Ampharos, Gardevoir, Bronzong (Gyro Ball), Jynx (Ice Punch, Psychic, Lovely Kiss, Avalanche), Machamp, Gyarados, each holding an item (see Results); the lead is chosen per room |
 | `clair` | Clair | 47 | Luxray, Dewgong, Jynx (Ice Punch, Psychic, Lovely Kiss, Avalanche), Gardevoir, Granbull, Bronzong (Piloswine before Luxray) |
 
 The first Whitney set (Bayleef, Heracross, Meditite, Geodude, Flaaffy,
@@ -450,7 +450,19 @@ before went, so a loss is retried from that room (in the game it sends the
 player back to Will). A retry starts from the same save state, so the bot waits
 a random while first; otherwise the battle plays out move for move the same.
 Beating Lance takes the player to the Hall of Fame part way through the walk up
-to him, which the stage allows for.
+to him, which the stage allows for. The Hall of Fame scene draws much like a
+battle screen, so the bot only presses A through it and the credits (once it
+took the scene for a battle and called it a whiteout) and ends back in the
+player's bedroom, saved as `stage_champion.dst`: the end of the story.
+
+Each room has its own lead (`LEADS` in `story.py`), as a player would reorder
+the party at the heal: Gyarados for Will, Bronzong for Koga, Gardevoir for
+Bruno, Ampharos then Machamp for Karen, Ampharos for Lance.
+
+Settings, all environment variables: `STORY_RETRIES` (tries per stage before
+it stops, default 3), `STORY_REFILL_BERRIES` (`0` stops the berry refill
+between rooms) and `STORY_TEAM_<SET>` (swap in another set where that one is
+due, such as `STORY_TEAM_CLAIR=clair_first`).
 
 The bot surfs once it has HM03: water counts as walkable, and a step from
 land onto water is Surf (face it, A, Yes). It heals after every gym, and
@@ -588,8 +600,15 @@ disadvantage (a Swords Dance or Dragon Dance user that gets going sweeps):
    Lance's Charizard swept four of ours in three of four battles.
 5. Gyarados (Wacan Berry) for Heracross, for Charizard: the four Elite Four
    beaten at the first try each, and Lance once.
+6. Ampharos (Shuca Berry) for Luxray, and a lead chosen for each room. Will,
+   Koga and Bruno fell within two tries each. Karen won 14 times with
+   Ampharos alone in front (her Tyranitar knocked out 49 of ours over those
+   battles, Gengar 16); with Ampharos then Machamp she fell at the first try.
+   Lance was beaten 5 times out of 8, Gardevoir finishing his Dragonites and
+   Kingdra each time, and the run went on through the Hall of Fame and the
+   credits.
 
-Over the whole stretch (all five versions, from the first team on):
+Over the first five versions:
 
 | Boss | Won |
 |---|---|
@@ -599,12 +618,17 @@ Over the whole stretch (all five versions, from the first team on):
 | Karen | 2 of 11 |
 | Lance | 1 of 22 |
 
+With the sixth version (run `ampharos-league` in `results/battles.jsonl`):
+Will 1 of 1, Koga 1 of 2, Bruno 1 of 2, Karen 1 of 15, Lance 5 of 8. In
+Lance's battles Aerodactyl knocked out 12 of ours, Gyarados 8, Charizard and
+Kingdra 6 each, Dragonite 4.
+
 Lance is the one to look at. His Gyarados (Intimidate, Dragon Dance, Wacan
-Berry) leads, and in most battles has swept three or four of ours before
+Berry) leads, and before the sixth version in most battles has swept three or four of ours before
 anything else of his has to move; Aerodactyl, Charizard and the two
 Dragonites finish the rest. KOs on our Pokémon over the 22 battles: Gyarados
 41, Aerodactyl 29, Charizard 28, Dragonite 22, Kingdra 11. Koga's Ariados and
-Karen's Gengar and Weavile are next.
+Karen's Tyranitar, Gengar and Weavile are next.
 
 Two bugs found on the way, both fixed: the in-place heal could read the
 Pokémon walking behind the player while the game had it decrypted, and write
