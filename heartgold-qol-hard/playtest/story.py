@@ -966,21 +966,57 @@ def dragons_den(bot):
 
 # ---------------------------------------------------------------- Victory Road and the Pokemon League
 
-VICTORY_ROAD_1F, INDIGO = "D43R0101", "T10"
+VICTORY_ROAD_1F, INDIGO, BELL_TOWER_ROOF = "D43R0101", "T10", "D17R0110"
+
+
+def var(bot, name):
+    return bot.game.get_var(bot.world.vars[name])
+
+
+def elms_news(bot):
+    # out of the shrine, a heal in Blackthorn and the Elite Four set (taken from here on), then south along
+    # Routes 45 and 46 to New Bark Town: Mom stops the player at its east edge until they have seen Elm, who has
+    # news of the legendary Pokemon (VAR_SCENE_NEW_BARK_EAST_EXIT goes from 1 to 2)
+    heal(bot, "T30PC0101", team="elite_four")
+    if var(bot, "VAR_SCENE_NEW_BARK_EAST_EXIT") == 1:
+        bot.travel("T20R0101")
+        bot.talk("T20R0101", 0)
+    if var(bot, "VAR_SCENE_NEW_BARK_EAST_EXIT") != 2:
+        bot.stuck("Elm's news after the Dragon's Den did not happen")
+
+
+def kimono_girls(bot):
+    # then Lyra waits at the east edge instead, until the player has met Ho-Oh. West to Ecruteak: by its Pokemon
+    # Center the rival appears (VAR_UNK_4079 = 3), and the five Kimono Girls are called to the Dance Theater.
+    # Walking in starts their five battles, in a row; after them, the Clear Bell
+    heal(bot, "T27PC0101")
+    if var(bot, "VAR_UNK_4079") == 3:
+        bot.travel("T27", near=(397, 175))
+        bot.walk("T27", [(397, 174)])
+        bot.settle()
+    bot.travel("T27R0501")
+    bot.settle()
+    bot.expect("FLAG_UNK_103", "the Kimono Girls' battles and the Clear Bell")
+
+
+def ho_oh(bot):
+    # a heal, then up the Bell Tower to its roof: there the Kimono Girls dance (15, 20) and Ho-Oh comes down, a
+    # battle (Lv. 52 in the hack). Beating it does (only losing or running doesn't); then Lyra lets the player go
+    heal(bot, "T27PC0101")
+    bot.travel(BELL_TOWER_ROOF, near=(15, 21))
+    bot.walk(BELL_TOWER_ROOF, [(15, 20)])
+    bot.settle()
+    if 5 in bot.objects():
+        bot.talk(BELL_TOWER_ROOF, 5)
+        bot.settle()
+    if var(bot, "VAR_SCENE_NEW_BARK_EAST_EXIT") != 3:
+        bot.stuck("meeting Ho-Oh did not happen")
 
 
 def to_victory_road(bot):
-    # out of the shrine, a heal in Blackthorn and the Elite Four set (taken from here on), then south along
-    # Routes 45 and 46 to New Bark Town and Elm, east over the water of Route 27, up Tohjo Falls (Waterfall, from the bag),
-    # Route 26, and the Pokemon League gate, whose guards check the eight badges, to Victory Road
-    heal(bot, "T30PC0101", team="elite_four")
-    # after the Den, Mom turns the player back at New Bark's east edge until they have seen Elm, who has news
-    # (VAR_SCENE_NEW_BARK_EAST_EXIT goes from 1 to 2 when he has told it)
-    if bot.game.get_var(bot.world.vars["VAR_SCENE_NEW_BARK_EAST_EXIT"]) == 1:
-        bot.travel("T20R0101")
-        bot.talk("T20R0101", 0)
-        if bot.game.get_var(bot.world.vars["VAR_SCENE_NEW_BARK_EAST_EXIT"]) != 2:
-            bot.stuck("Elm's news after the Dragon's Den did not happen")
+    # a heal, then east from New Bark over the water of Route 27, up Tohjo Falls (Waterfall, from the bag), Route
+    # 26, and the Pokemon League gate, whose guards check the eight badges, to Victory Road
+    heal(bot, "T27PC0101")
     bot.travel(VICTORY_ROAD_1F)
 
 
@@ -994,4 +1030,4 @@ STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokege
           to_goldenrod_takeover, rocket_disguise, radio_tower_rival, fake_director,
           underground_door, switch_room, warehouse, card_key, proton, ariana, archer,
           to_ice_path, ice_path_boulders, to_blackthorn, clair_gym, dragons_den,
-          to_victory_road]
+          elms_news, kimono_girls, ho_oh, to_victory_road]
