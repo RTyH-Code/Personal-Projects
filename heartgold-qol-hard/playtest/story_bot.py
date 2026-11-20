@@ -558,31 +558,37 @@ class Bot:
                 self.stuck("no way to push the boulders on %s into the holes" % code)
             if not moves:
                 return
+            # the plan's first push: where to stand and which way. The walking between pushes is left to walk(),
+            # which knows the arches and bridges the plan's flood fill doesn't
+            at, push = pos, None
             for d in moves:
-                p = self.where()
                 dx, dz, _ = DIRS[d]
-                ahead = (p[1] + dx, p[2] + dz)
-                if ahead in set(self.boulders(code).values()):
-                    if not strength:
-                        # face it and press A: "This boulder looks like it can be pushed... use Strength?"
-                        for hold in (2, 3, 4):
-                            self.game.key(d, hold=hold, after=10)
-                            if self.facing() == d:
-                                break
-                        self.game.key("a", after=30)
-                        self.settle(["a"])
-                        strength = True
-                    before = set(self.boulders(code).values())
-                    self.game.key(d, hold=16, after=40)
-                    self.settle()
-                    if set(self.boulders(code).values()) == before:
-                        break                 # it didn't move: plan again
-                elif not self.step(d):
-                    break                     # a wild Pokemon, or someone in the way: plan again
-                if self.where() is None or (self.where()[1], self.where()[2]) != (ahead if self.where()[0] == code else None):
+                nxt = (at[0] + dx, at[1] + dz)
+                if nxt in mine:
+                    push = d
                     break
-            else:
+                at = nxt
+            if push is None:
+                self.walk(code, list(goals) if goals else [at])
                 return
+            if at != pos:
+                try:
+                    self.walk(code, [at])
+                except Stuck as e:
+                    if str(e).startswith("lost a battle"):
+                        raise
+                    continue
+            if not strength:
+                # face it and press A: "This boulder looks like it can be pushed... use Strength?"
+                for hold in (2, 3, 4):
+                    self.game.key(push, hold=hold, after=10)
+                    if self.facing() == push:
+                        break
+                self.game.key("a", after=30)
+                self.settle(["a"])
+                strength = True
+            self.game.key(push, hold=16, after=40)
+            self.settle()
         self.stuck("could not push the boulders on %s" % code)
 
     def same_region(self, a, b):
