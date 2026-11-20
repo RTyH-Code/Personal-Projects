@@ -1,5 +1,25 @@
 # Changelog
 
+## Unreleased
+
+From the story bot's playthrough (see `playtest/BALANCE.md`). Story bosses
+keep their threats but lose the combos that turned a fight on one setup
+turn; the post-game teams keep them.
+
+- Lance leads with Aerodactyl (Crunch in place of Curse) and brings Gyarados
+  fourth, holding a Sitrus Berry.
+- Karen's Tyranitar has Ice Punch in place of Dragon Dance; her Weavile
+  holds a Razor Claw in place of a Focus Sash.
+- Clair's Gyarados and Kingdra have their own sets instead of Lance's, and
+  her Gabite loses Swords Dance.
+- Koga's Ariados holds Black Sludge in place of a Focus Sash.
+- Ariana's Honchkrow in the Radio Tower holds a Sharp Beak in place of a
+  Scope Lens.
+- Pryce's Jynx has Fake Out in place of Lovely Kiss.
+- Proton in the Slowpoke Well and Petrel in the Radio Tower are a little
+  stronger.
+- The boss guide's tables are fixed where an item name ran into the moves.
+
 ## v0.2 (playtest build)
 
 Follow-ups from an audit of v0.1. A save made in v0.1 at the start of the game

@@ -70,20 +70,20 @@ All boss Pokémon have perfect IVs. From Chuck onward they also have a nature an
 |---|---|---|---|---|
 | Delibird | 38 | Focus Sash | Ice Beam, Drill Peck, Signal Beam, Toxic | Modest |
 | Sneasel | 40 | Razor Claw | Knock Off, Ice Punch, Poison Jab, Swords Dance | Jolly |
-| Jynx | 40 | Wise Glasses | Ice Beam, Psychic, Energy Ball, Lovely Kiss | Timid |
+| Jynx | 40 | Wise Glasses | Ice Beam, Psychic, Energy Ball, Fake Out | Timid |
 | Dewgong | 40 | Leftovers | Surf, Ice Beam, Iron Tail, Toxic | Thick Fat, Modest |
 | Lapras | 41 | Sitrus Berry | Surf, Ice Beam, Thunderbolt, Sing | Modest |
-| Mamoswine | 42 | Never Melt Ice Ice Fang, Earthquake, Iron Head, Curse | [Adamant] | — |
+| Mamoswine | 42 | Never Melt Ice | Ice Fang, Earthquake, Iron Head, Curse | Adamant |
 ### Clair
 
 | Pokémon | Lv. | Item | Moves | Ability, nature |
 |---|---|---|---|---|
 | Dragonair | 44 | Sitrus Berry | Outrage, Aqua Tail, Agility, Fire Blast | Shed Skin, Adamant |
 | Altaria | 45 | Leftovers | Outrage, Aerial Ace, Earthquake, Sing | Adamant |
-| Gabite | 45 | Soft Sand | Outrage, Earthquake, Iron Head, Swords Dance | Adamant |
-| Gyarados | 45 | Wacan Berry | Aqua Tail, Earthquake, Dragon Dance, Crunch | Intimidate, Adamant |
+| Gabite | 45 | Soft Sand | Dragon Claw, Earthquake, Iron Head, Rock Slide | Adamant |
+| Gyarados | 45 | Sitrus Berry | Waterfall, Crunch, Ice Fang, Thunder Wave | Intimidate, Adamant |
 | Flygon | 46 | Expert Belt | Earthquake, Outrage, Crunch, Dragon Dance | Jolly |
-| Kingdra | 47 | Haban Berry | Rain Dance, Waterfall, Outrage, Ice Beam | Swift Swim, Adamant |
+| Kingdra | 47 | Haban Berry | Surf, Dragon Pulse, Ice Beam, Smokescreen | Sniper, Modest |
 ## Elite Four and Champion
 
 ### Will
@@ -100,7 +100,7 @@ All boss Pokémon have perfect IVs. From Chuck onward they also have a nature an
 
 | Pokémon | Lv. | Item | Moves | Ability, nature |
 |---|---|---|---|---|
-| Ariados | 50 | Focus Sash | Megahorn, Poison Jab, Night Slash, Swords Dance | Adamant |
+| Ariados | 50 | Black Sludge | Megahorn, Poison Jab, Night Slash, Swords Dance | Adamant |
 | Qwilfish | 50 | Poison Barb | Aqua Tail, Poison Jab, Ice Beam, Swords Dance | Intimidate, Adamant |
 | Forretress | 51 | Leftovers | Toxic Spikes, Spikes, Gyro Ball, Explosion | Impish |
 | Weezing | 51 | Black Sludge | Sludge Bomb, Fire Blast, Will O Wisp, Thunderbolt | Bold |
@@ -121,19 +121,19 @@ All boss Pokémon have perfect IVs. From Chuck onward they also have a nature an
 | Pokémon | Lv. | Item | Moves | Ability, nature |
 |---|---|---|---|---|
 | Honchkrow | 53 | Sharp Beak | Night Slash, Brave Bird, Sucker Punch, Roost | Adamant |
-| Weavile | 53 | Focus Sash | Knock Off, Ice Punch, Poison Jab, Swords Dance | Jolly |
+| Weavile | 53 | Razor Claw | Knock Off, Ice Punch, Poison Jab, Swords Dance | Jolly |
 | Gengar | 53 | Wise Glasses | Shadow Ball, Sludge Bomb, Energy Ball, Hypnosis | Timid |
 | Umbreon | 54 | Leftovers | Payback, Toxic, Moonlight, Confuse Ray | Careful |
-| Tyranitar | 55 | Chople Berry | Stone Edge, Crunch, Earthquake, Dragon Dance | Adamant |
+| Tyranitar | 55 | Chople Berry | Stone Edge, Crunch, Earthquake, Ice Punch | Adamant |
 | Houndoom | 55 | Charcoal | Dark Pulse, Fire Blast, Sludge Bomb, Nasty Plot | Flash Fire, Timid |
 ### Lance
 
 | Pokémon | Lv. | Item | Moves | Ability, nature |
 |---|---|---|---|---|
-| Gyarados | 55 | Wacan Berry | Aqua Tail, Earthquake, Dragon Dance, Crunch | Intimidate, Adamant |
-| Aerodactyl | 56 | Focus Sash | Stone Edge, Aerial Ace, Earthquake, Curse | Jolly |
+| Aerodactyl | 56 | Focus Sash | Stone Edge, Aerial Ace, Earthquake, Crunch | Jolly |
 | Charizard | 56 | Charcoal | Flamethrower, Air Slash, Dragon Pulse, Roost | Timid |
 | Kingdra | 56 | Haban Berry | Rain Dance, Waterfall, Outrage, Ice Beam | Swift Swim, Adamant |
+| Gyarados | 55 | Sitrus Berry | Aqua Tail, Earthquake, Dragon Dance, Crunch | Intimidate, Adamant |
 | Dragonite | 57 | Yache Berry | Thunderbolt, Ice Beam, Flamethrower, Roost | Modest |
 | Dragonite | 58 | Leftovers | Dragon Dance, Outrage, Earthquake, Fire Punch | Adamant |
 ## Team Rocket
@@ -142,9 +142,9 @@ All boss Pokémon have perfect IVs. From Chuck onward they also have a nature an
 
 | Pokémon | Lv. | Item | Moves | Ability, nature |
 |---|---|---|---|---|
-| Zubat | 13 | — | Aerial Ace, Astonish, Absorb | — |
-| Koffing | 15 | Oran Berry | Clear Smog, Shock Wave, Smog, Tackle | — |
-| Houndour | 16 | Oran Berry | Bite, Ember, Rock Smash, Smog | — |
+| Zubat | 14 | Oran Berry | Aerial Ace, Astonish, Absorb | — |
+| Koffing | 16 | Oran Berry | Clear Smog, Shock Wave, Smog, Tackle | — |
+| Houndour | 17 | Oran Berry | Bite, Ember, Rock Smash, Smog | — |
 ### Petrel, Rocket HQ
 
 | Pokémon | Lv. | Item | Moves | Ability, nature |
@@ -174,11 +174,11 @@ All boss Pokémon have perfect IVs. From Chuck onward they also have a nature an
 
 | Pokémon | Lv. | Item | Moves | Ability, nature |
 |---|---|---|---|---|
-| Koffing | 42 | Sitrus Berry | Sludge Bomb, Flamethrower, Will O Wisp, Explosion | Modest |
-| Koffing | 42 | Sitrus Berry | Sludge Bomb, Thunderbolt, Toxic, Protect | Bold |
+| Koffing | 43 | Sitrus Berry | Sludge Bomb, Flamethrower, Will O Wisp, Explosion | Modest |
+| Koffing | 43 | Sitrus Berry | Sludge Bomb, Thunderbolt, Toxic, Pain Split | Bold |
 | Weezing | 43 | Sitrus Berry | Sludge Bomb, Shadow Ball, Thunderbolt, Explosion | Modest |
-| Koffing | 42 | Sitrus Berry | Sludge Bomb, Dark Pulse, Will O Wisp, Explosion | Modest |
-| Koffing | 42 | Sitrus Berry | Sludge Bomb, Fire Blast, Toxic, Protect | Bold |
+| Koffing | 43 | Sitrus Berry | Sludge Bomb, Dark Pulse, Will O Wisp, Explosion | Modest |
+| Koffing | 43 | Sitrus Berry | Sludge Bomb, Fire Blast, Toxic, Pain Split | Bold |
 | Weezing | 44 | Black Sludge | Sludge Bomb, Fire Blast, Will O Wisp, Thunderbolt | Bold |
 ### Ariana, Radio Tower
 
@@ -188,7 +188,7 @@ All boss Pokémon have perfect IVs. From Chuck onward they also have a nature an
 | Ariados | 43 | Focus Sash | Megahorn, Poison Jab, Night Slash, Swords Dance | Adamant |
 | Vileplume | 44 | Black Sludge | Petal Dance, Sludge Bomb, Moonblast, Sleep Powder | Modest |
 | Crobat | 44 | Sitrus Berry | Cross Poison, Brave Bird, X Scissor, Hypnosis | Jolly |
-| Honchkrow | 45 | Scope Lens | Foul Play, Brave Bird, Psychic, Roost | Super Luck, Adamant |
+| Honchkrow | 45 | Sharp Beak | Foul Play, Brave Bird, Psychic, Roost | Super Luck, Adamant |
 ### Archer, Radio Tower
 
 | Pokémon | Lv. | Item | Moves | Ability, nature |
@@ -243,7 +243,7 @@ All boss Pokémon have perfect IVs. From Chuck onward they also have a nature an
 |---|---|---|---|---|
 | Mr Mime | 63 | Focus Sash | Psychic, Dazzling Gleam, Energy Ball, Hypnosis | Timid |
 | Hypno | 63 | Twisted Spoon | Psychic, Focus Blast, Hypnosis, Shadow Ball | Modest |
-| Jynx | 64 | Never Melt Ice Ice Beam, Psychic, Energy Ball, Lovely Kiss | [Timid] | — |
+| Jynx | 64 | Never Melt Ice | Ice Beam, Psychic, Energy Ball, Lovely Kiss | Timid |
 | Slowbro | 64 | Mystic Water | Surf, Psychic, Fire Blast, Calm Mind | Modest |
 | Espeon | 65 | Twisted Spoon | Psychic, Shadow Ball, Calm Mind, Signal Beam | Timid |
 | Alakazam | 66 | Leftovers | Psychic, Energy Ball, Calm Mind, Focus Blast | Timid |
@@ -409,7 +409,7 @@ All boss Pokémon have perfect IVs. From Chuck onward they also have a nature an
 |---|---|---|---|---|
 | Drifblim | 76 | Focus Sash | Shadow Ball, Air Cutter, Psychic, Hypnosis | Modest |
 | Dusknoir | 76 | Spell Tag | Shadow Punch, Earthquake, Curse, Brick Break | Impish |
-| Froslass | 77 | Never Melt Ice Ice Beam, Shadow Ball, Psychic, Thunder Wave | [Timid] | — |
+| Froslass | 77 | Never Melt Ice | Ice Beam, Shadow Ball, Psychic, Thunder Wave | Timid |
 | Spiritomb | 77 | Spell Tag | Shadow Ball, Dark Pulse, Psychic, Hypnosis | Modest |
 | Gengar | 78 | Spell Tag | Shadow Ball, Sludge Bomb, Energy Ball, Hypnosis | Timid |
 | Mismagius | 79 | Leftovers | Shadow Ball, Energy Ball, Calm Mind, Thunderbolt | Timid |
@@ -439,9 +439,9 @@ All boss Pokémon have perfect IVs. From Chuck onward they also have a nature an
 |---|---|---|---|---|
 | Abomasnow | 78 | Focus Sash | Wood Hammer, Ice Beam, Earthquake, Swords Dance | Adamant |
 | Weavile | 78 | Black Glasses | Night Slash, Ice Punch, Poison Jab, Swords Dance | Jolly |
-| Walrein | 79 | Never Melt Ice Ice Beam, Surf, Earthquake, Toxic | [Modest] | — |
+| Walrein | 79 | Never Melt Ice | Ice Beam, Surf, Earthquake, Toxic | Modest |
 | Lapras | 79 | Mystic Water | Surf, Ice Beam, Earthquake, Sing | Modest |
-| Glaceon | 80 | Never Melt Ice Ice Beam, Shadow Ball, Calm Mind, Signal Beam | [Modest] | — |
+| Glaceon | 80 | Never Melt Ice | Ice Beam, Shadow Ball, Calm Mind, Signal Beam | Modest |
 | Mamoswine | 81 | Leftovers | Ice Fang, Earthquake, Iron Head, Curse | Adamant |
 ### Clair, rematch
 
