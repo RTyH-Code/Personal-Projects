@@ -1067,6 +1067,10 @@ def victory_road(bot):
         if here[0] not in VICTORY_ROAD:
             return here[0] in (INDIGO, LEAGUE_ENTRANCE)
         code, pos = here[0], (here[1], here[2])
+        if code == VICTORY_ROAD[2] and var(bot, "VAR_UNK_40C5") == 0:
+            # the rival waits on 3F's way to the exit, after the whole cave's trainers and wild Pokemon: a
+            # player would use potions, so (as before Clair) the harness heals the party where it stands
+            bot.restore_party("before the rival on Victory Road")
         try:
             bot.travel(LEAGUE_ENTRANCE)
             return True
