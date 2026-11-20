@@ -1130,8 +1130,10 @@ def elite_four(bot):
     # a heal from the nurse in the entrance hall; the guard at the counter steps aside when talked to; then the
     # four rooms in turn, each door opening once its trainer is beaten. There is nowhere to heal between them:
     # a player would use potions, so (as before Clair) the harness heals the party where it stands before each
+    import os
     bot.travel(LEAGUE_ENTRANCE)
     bot.talk(LEAGUE_ENTRANCE, 0, answers=["a"])
+    bot.swap_team(os.environ.get("STORY_TEAM_ELITE_FOUR", "elite_four"))     # from the PC there, as set now
     bot.talk(LEAGUE_ENTRANCE, 8)
     for room, beaten, name in ELITE_FOUR:
         bot.travel(room)
