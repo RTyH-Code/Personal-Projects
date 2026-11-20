@@ -1251,8 +1251,10 @@ class Bot:
                         m.blocks[0x28 + i] = self.sets.pp.get(names.get(move), m.blocks[0x28 + i])
             mons.append(m)
         if lead:
-            # a player puts the Pokemon they want out first at the front of the party between battles
-            first = [m for m in mons if species.get(m.species) == lead]
+            # a player puts the Pokemon they want out first at the front of the party between battles; a list
+            # gives the front of the party in order
+            order = [lead] if isinstance(lead, str) else list(lead)
+            first = [m for name in order for m in mons if species.get(m.species) == name]
             mons = first + [m for m in mons if m not in first]
         if not self.write_party(mons):
             self.stuck("could not heal the party (%s)" % why)

@@ -1046,7 +1046,9 @@ ELITE_FOUR = [("T10R0201", "FLAG_DEFEATED_WILL", "Will"), ("T10R0301", "FLAG_DEF
 # who to put at the front of the party for each, as a player would (the Elite Four set's names; one not in
 # the party is passed over): Dark moves for Will's Psychic types, a Steel type for Koga's Poison types,
 # Psychic and Fairy for Bruno, Fighting for Karen's Tyranitar and Dark types, Electric for Lance's Gyarados
-LEADS = {"Will": "GYARADOS", "Koga": "BRONZONG", "Bruno": "GARDEVOIR", "Karen": "MACHAMP", "Lance": "AMPHAROS"}
+# Karen leads with Honchkrow, whose Brave Bird beats Machamp: Ampharos first for it, Machamp next for Tyranitar
+LEADS = {"Will": "GYARADOS", "Koga": "BRONZONG", "Bruno": "GARDEVOIR", "Karen": ["AMPHAROS", "MACHAMP"],
+         "Lance": "AMPHAROS"}
                                                  # their rooms, and the flags their scripts set when beaten
 LANCE_ROOM, HALL_OF_FAME, LANCE = "T10R0601", "T10R0701", 244
 # whether the heal between the Elite Four rooms also gives back berries used up (a player carries several);
