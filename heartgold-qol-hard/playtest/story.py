@@ -1019,14 +1019,13 @@ def ho_oh(bot):
     bot.talk("T27R0201", 0)
     bot.travel(BELL_TOWER_ROOF, near=(15, 21))
     bot.walk(BELL_TOWER_ROOF, [(15, 20)])
-    bot.settle()
-    for _ in range(3):
-        if var(bot, "VAR_UNK_40FA") != 1:
-            break
-        # the dance starts as the player steps onto (15, 20): arriving another way doesn't count
-        bot.walk(BELL_TOWER_ROOF, [(15, 21)])
-        bot.step("up")
+    # a long cutscene (the Clear Bell, the dance, Ho-Oh flying in) with long stretches and no message, which
+    # can look like the end of it: wait until Ho-Oh is there
+    for _ in range(40):
         bot.settle()
+        if not bot.flag("FLAG_HIDE_BELL_TOWER_HO_OH") and 5 in bot.objects():
+            break
+        bot.game.run(120)
     if 5 in bot.objects():
         bot.talk(BELL_TOWER_ROOF, 5)
         bot.settle()
