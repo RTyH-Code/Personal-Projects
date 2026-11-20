@@ -916,7 +916,16 @@ def answer_quiz(bot, picks, limit=8000):
             # the answers come up a moment after the question (an A before then is "Huh? I didn't catch that")
             g.run_every_frame(40)
             if answers_shown(bot) and picks:
-                g.touch(*QUIZ_BUTTONS[picks.pop(0)], after=30)
+                # a touch held a few frames longer than usual, every frame run (a short one is often missed);
+                # the answer counts once its buttons have gone
+                g.emu.input.touch_set_pos(*QUIZ_BUTTONS[picks[0]])
+                g.run_every_frame(12)
+                g.emu.input.touch_release()
+                for _ in range(10):
+                    g.run_every_frame(10)
+                    if not answers_shown(bot):
+                        picks.pop(0)
+                        break
             else:
                 g.key("a", after=20)
             frames += 30
