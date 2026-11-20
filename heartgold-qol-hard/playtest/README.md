@@ -221,6 +221,7 @@ python3 playtest/team_sets.py /path/to/test/hg-engine /path/to/dumped/hg-engine
 | `jasmine` | Jasmine, then Lake of Rage and the Rocket Hideout | 38 | Magmar, Torkoal, Houndoom, Claydol, Gastrodon, Quagsire |
 | `pryce` | Pryce | 42 | Machamp, Heracross, Toxicroak (Low Kick, Poison Jab, Sucker Punch, Dig), Magmar, Luxray, Houndoom |
 | `radio_tower` | the Radio Tower takeover: Petrel, the rival in the Underground, Proton, Ariana, Archer | 46 | Alakazam, Bronzong, Claydol, Luxray, Gyarados, Houndoom |
+| `elite_four` | from Elm's news on: the Kimono Girls, Ho-Oh, the rival on Victory Road, the Elite Four and Lance | 58 | Gardevoir, Bronzong (Gyro Ball), Jynx (Ice Punch, Psychic, Lovely Kiss, Avalanche), Luxray, Machamp, Gyarados, each holding an item (see Results) |
 | `clair` | Clair | 47 | Luxray, Dewgong, Jynx (Ice Punch, Psychic, Lovely Kiss, Avalanche), Gardevoir, Granbull, Bronzong (Piloswine before Luxray) |
 
 The first Whitney set (Bayleef, Heracross, Meditite, Geodude, Flaaffy,
@@ -415,6 +416,42 @@ them to show, moves the cursor down to the answer with the keypad and presses
 A, and counts it only once the buttons have gone. Then Clair hands over the
 Rising Badge.
 
+Then the way to the League, which HeartGold holds back twice. At New Bark's
+east edge Mom turns the player back until they have seen Elm, and then Lyra
+does until they have met Ho-Oh. So: Routes 45 and 46 (some of Route 45's
+ledges carry the blocked bit, and are jumped all the same) to Elm; back to
+Ecruteak, where the rival appears and the five Kimono Girls are called to the
+Dance Theater, and their five battles one after another (the scene pauses
+between them, so the bot keeps on until the Clear Bell is given); the monk in
+the Bell Tower's barrier station, who steps aside when talked to; up the
+tower to the roof, where the long cutscene of the dance brings Ho-Oh down
+(Lv. 52 in the hack), a battle that has to be won. Then east over Route 27 and
+up Tohjo Falls (the bot now uses Waterfall from the bag, as it uses
+Whirlpool), Route 26 and the League gate to Victory Road.
+
+Victory Road is three floors of Strength boulders, stairs that lead to parts
+of a floor with no way on, and holes on 3F that drop to parts of 2F its stairs
+don't reach. The holes are in a script, not the warp lists, so the route planner
+was given them (`HOLES` in `story_bot.py`). The boulder planner now also pushes
+boulders out of the way, not only into holes, and leaves the walking between
+pushes to the bot's walk, which knows bridges. Where the planner finds no way,
+the stage tries each set of stairs up and each hole from a save state until
+one leads on: up to the 2F stairs at (51, 39), down 3F's hole at (55, 42), the
+boulder at (50, 28), up again at (56, 22), down the hole at (26, 38), and up the
+stairs at (27, 44) to the exit. The rival waits on 3F.
+
+At the League: the nurse, the Elite Four set from the PC there, the guard at
+the counter, and one stage for each room and for Lance. There is nowhere to
+heal between the rooms, so (as for Clair, and the rival on Victory Road after
+the whole cave) the harness heals the party where it stands before each, HP,
+status and PP, and gives back berries used up, as a player carrying potions
+and spare berries would. With that, each room starts the same however the one
+before went, so a loss is retried from that room (in the game it sends the
+player back to Will). A retry starts from the same save state, so the bot waits
+a random while first; otherwise the battle plays out move for move the same.
+Beating Lance takes the player to the Hall of Fame part way through the walk up
+to him, which the stage allows for.
+
 The bot surfs once it has HM03: water counts as walkable, and a step from
 land onto water is Surf (face it, A, Yes). It heals after every gym, and
 after the Azalea rival.
@@ -527,6 +564,53 @@ try: the `clair` set with three of ours fainted (Granbull finished Kingdra and
 Gyarados), and the first set (`clair_first`, Piloswine for Luxray, run with
 `STORY_TEAM_CLAIR=clair_first`) with four. Clair herself is a fair fight; what
 made her a wall for the bot was her gym's trainers, fought without healing.
+
+**From Elm's news to Lance**, with the `elite_four` set: the five Kimono Girls
+won at the first try each (one Pokémon each, an Eeveelution), and Ho-Oh beaten
+by Gardevoir alone. The rival on Victory Road won two battles against a team
+the cave had worn down; healed first, the bot beat him with three of ours
+fainted.
+
+The Elite Four set changed as the data came in. A player's single team has to
+cover five type specialists, and the bot's battle AI never switches out at a
+disadvantage (a Swords Dance or Dragon Dance user that gets going sweeps):
+
+1. Gardevoir, Houndoom, Jynx, Luxray, Golem, Heracross, holding Oran Berries.
+   Koga beat it three times out of four.
+2. Bronzong for Houndoom (Poison moves can't touch it), still without held
+   items: Koga's Ariados (Focus Sash, Swords Dance) swept three.
+3. Held items a player has by now: Sitrus and Lum Berries and the type-resist
+   berries from the Goldenrod Department Store, and the NeverMeltIce from the
+   Ice Path. Koga fell (Bronzong knocked out five of his six), but Karen won
+   every battle: Honchkrow, Gengar (Levitate, Hypnosis) and Weavile (Focus
+   Sash, Swords Dance).
+4. Machamp for Golem, a second Fighting type: Karen beaten at last, then
+   Lance's Charizard swept four of ours in three of four battles.
+5. Gyarados (Wacan Berry) for Heracross, for Charizard: the four Elite Four
+   beaten at the first try each, and Lance once.
+
+Over the whole stretch (all five versions, from the first team on):
+
+| Boss | Won |
+|---|---|
+| Will | 14 of 18 |
+| Koga | 6 of 11 |
+| Bruno | 5 of 6 |
+| Karen | 2 of 11 |
+| Lance | 1 of 22 |
+
+Lance is the one to look at. His Gyarados (Intimidate, Dragon Dance, Wacan
+Berry) leads, and in most battles has swept three or four of ours before
+anything else of his has to move; Aerodactyl, Charizard and the two
+Dragonites finish the rest. KOs on our Pokémon over the 22 battles: Gyarados
+41, Aerodactyl 29, Charizard 28, Dragonite 22, Kingdra 11. Koga's Ariados and
+Karen's Gengar and Weavile are next.
+
+Two bugs found on the way, both fixed: the in-place heal could read the
+Pokémon walking behind the player while the game had it decrypted, and write
+the garbage back (the battles fought before the fix, up to the fifth version's
+first run, may have had a damaged Pokémon in them); and the KO records missed a
+Pokémon sent out and knocked out between two of the bot's looks at the battle.
 
 **The clean run** from the bedroom to Whitney, with every stage in order:
 83 battles, 78 won. The losses: the Azalea rival twice and Whitney once
