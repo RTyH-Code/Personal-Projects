@@ -1201,9 +1201,12 @@ class Bot:
         mem = self.game.emu.memory.unsigned
         g = self.game
         lead = lambda: pkm.Mon(bytes(mem[at + 8:at + 8 + pkm.PARTY_SIZE]))
+        # the Pokemon walking behind the player (the first that hasn't fainted, not always the lead) is the one
+        # the game decrypts in place: write only at a moment when every one reads whole
+        whole = lambda: all(m.valid() for m in self.party_mons())
         for attempt in range(10):
-            for _ in range(60):
-                if lead().valid():
+            for _ in range(120):
+                if whole():
                     break
                 g.run_every_frame(1)
             for i, b in enumerate(struct.pack("<I", len(mons)) + data):
@@ -1226,7 +1229,16 @@ class Bot:
         species = {v: k for k, v in self.sets.species_ids.items()}
         held = team_sets.SETS.get(self.team, {}).get("items", {}) if refill and self.team else {}
         mons = []
-        for m in self.party_mons():
+        # read the party at a moment when every Pokemon reads whole (see write_party): one read half way
+        # through the game's own rewriting would be written back as garbage
+        for _ in range(240):
+            party = self.party_mons()
+            if all(m.valid() for m in party):
+                break
+            self.game.run_every_frame(1)
+        else:
+            self.stuck("the party never read whole (%s)" % why)
+        for m in party:
             if m.valid() and not m.is_egg:
                 item = held.get(species.get(m.species))
                 if item and not m.u16(0x02):
