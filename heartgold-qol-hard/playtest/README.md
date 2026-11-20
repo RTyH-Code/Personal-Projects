@@ -286,7 +286,7 @@ they should set is set (the starter, the Pokégear, the Pokédex, the Sprout
 Tower Elder, Falkner's TM, the Mystery Egg, Proton, Bugsy's TM, HM01, the
 Radio Card, Whitney's TM, the SquirtBottle, the Sudowoodo, the Burned Tower's
 beasts, Morty's TM, HM03, Chuck's TM, the Lighthouse visit, the SecretPotion,
-Ampharos cured, Jasmine's TM, Lance at the Lake of Rage, the Hideout's last Electrode, Pryce's TM, each step of the Radio Tower takeover, the Basement Key, the Card Key, Archer). After a lost battle the bot plays the
+Ampharos cured, Jasmine's TM, Lance at the Lake of Rage, the Hideout's last Electrode, Pryce's TM, each step of the Radio Tower takeover, the Basement Key, the Card Key, Archer, the Ice Path Kimono Girl, Clair, the Dragon Shrine's test). After a lost battle the bot plays the
 stage again from its start, as a player would, up to three times (each loss
 is still recorded). When the bot gets stuck, or a check fails, it
 stops and writes `out/stuck.png`, `out/stuck.dst` and the reason; results go
@@ -399,6 +399,21 @@ moves off with the player), keeps off every other button on the way, and
 steps off and back on to press one it stands on. The search found a way
 across in 23 presses; `CLAIR_ROUTE` in `story.py` keeps them, so later runs
 just step on them, and search only if that stops working.
+
+Clair holds back the badge until the player passes the Dragon Shrine's test.
+The platforms are left where they took the player to her, which is no way
+back, so the bot leaves by the spin trap on her island (it sends the player to
+the door). The Dragon's Den is reached by water behind the gym; its lower
+lake, where the shrine stands, is below a whirlpool, which the bot crosses
+with Whirlpool from the bag (HM05, from Lance in the Rocket Hideout): it
+plans across whirlpool tiles as water, and facing one presses A and answers
+Yes, as for Surf. The shrine door is entered from the south. Walking in starts
+the elder's five questions, whose three answers each are on the touch screen;
+the script marks the wrong ones, so the right ones are the 1st, 1st, 2nd, 1st
+and 2nd. Touches on those buttons don't always take, so the bot waits for
+them to show, moves the cursor down to the answer with the keypad and presses
+A, and counts it only once the buttons have gone. Then Clair hands over the
+Rising Badge.
 
 The bot surfs once it has HM03: water counts as walkable, and a step from
 land onto water is Surf (face it, A, Yes). It heals after every gym, and
