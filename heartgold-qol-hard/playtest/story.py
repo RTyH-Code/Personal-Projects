@@ -1184,7 +1184,16 @@ def champion(bot):
     bot.restore_party("before Lance", refill=REFILL_BERRIES)
     import random
     bot.game.run(random.randint(1, 600))          # as for the Elite Four: a retry plays out differently
-    bot.walk(LANCE_ROOM, [(6, 10)])
+    try:
+        bot.walk(LANCE_ROOM, [(6, 10)])
+    except Exception as e:
+        # after the battle the scene takes the player on to the Hall of Fame, part way through the walk
+        if type(e).__name__ != "Moved":
+            raise
+    hall_of_fame(bot)
+
+
+def hall_of_fame(bot):
     for _ in range(60):
         if bot.flag("FLAG_UNK_97E"):
             break
