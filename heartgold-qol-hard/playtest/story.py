@@ -1049,6 +1049,11 @@ LANCE_ROOM, HALL_OF_FAME, LANCE = "T10R0601", "T10R0701", 244
 VICTORY_ROAD = ["D43R0101", "D43R0102", "D43R0103"]
 
 
+def story_bot_holes():
+    import sys
+    return sys.modules["__main__"].HOLES if hasattr(sys.modules["__main__"], "HOLES") else __import__("story_bot").HOLES
+
+
 def victory_road(bot):
     # up through Victory Road's three floors (the rival battles on 3F) to Indigo Plateau, and into the Pokemon
     # League's entrance hall. Strength boulders stand in the way, and some stairs lead to parts of a floor with no
@@ -1068,7 +1073,7 @@ def victory_road(bot):
         except Exception as e:
             if type(e).__name__ != "Stuck" or not str(e).startswith("no way found"):
                 raise
-        if depth > 4:
+        if depth > 6:
             return False
         dest = lambda w: str(w["dest_header_id"]).replace("MAP_", "")
         events = bot.world.events(code)["warp_events"]
@@ -1076,12 +1081,25 @@ def victory_road(bot):
         exits = [(i, w) for i, w in enumerate(events)
                  if dest(w) == INDIGO or dest(w) in VICTORY_ROAD and VICTORY_ROAD.index(dest(w)) > VICTORY_ROAD.index(code)]
         exits.sort(key=lambda e: 0 if dest(e[1]) == INDIGO else 1)
+        # and the holes on this floor, down to parts of the floor below that its stairs don't reach
+        exits += [(("hole", t), None) for (m, t) in story_bot_holes() if m == code]
         state = os.path.join(bot.out, "victory_road_%d.dst" % depth)
         bot.save(state)
         for n, (i, w) in enumerate(exits):
             if n:
                 bot.game.emu.savestate.load_file(state)
                 bot.game.run(60)
+            if isinstance(i, tuple):
+                try:
+                    bot.walk(code, [i[1]], leave_ok=True)
+                    bot.settle()
+                except Exception as e:
+                    if type(e).__name__ != "Stuck" or str(e).startswith("lost a battle"):
+                        raise
+                    continue
+                if onward(depth + 1):
+                    return True
+                continue
             entry, into = bot.warp_entry(code, i)
             if entry in warps and into:
                 dx, dz, _ = DIRS[into]
