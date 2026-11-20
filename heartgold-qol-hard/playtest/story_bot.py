@@ -523,7 +523,7 @@ class Bot:
         return {i: pos for i, pos in self.objects().items()
                 if i < len(events) and events[i].get("script") == "std_field_strength"}
 
-    def drop_boulders(self, code, holes, goals=None):
+    def drop_boulders(self, code, holes, goals=None, need_all=True):
         """Push every Strength boulder the player can get to into one of the holes (boulders.py plans it),
         then walk to one of the goals. The first push uses Strength (A at the boulder, then Yes); after each
         move the bot checks the game against the plan, and plans again from wherever things are."""
@@ -550,7 +550,10 @@ class Bot:
             # only the boulders next to where the player can walk
             area = self.reach(code, pos)
             mine = {b for b in boulders if any((b[0] + dx, b[1] + dz) in area for dx, dz, _ in DIRS.values())}
-            moves = boulders_plan.plan_one_by_one(floor - (boulders - mine), pos, mine, holes, goals)
+            if need_all:
+                moves = boulders_plan.plan_one_by_one(floor - (boulders - mine), pos, mine, holes, goals)
+            else:
+                moves = boulders_plan.plan(floor - (boulders - mine), pos, mine, holes, goals, need_all=False)
             if moves is None:
                 self.stuck("no way to push the boulders on %s into the holes" % code)
             if not moves:

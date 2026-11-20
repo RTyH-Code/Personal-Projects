@@ -4,9 +4,9 @@ from collections import deque
 DIRS = {"up": (0, -1), "down": (0, 1), "left": (-1, 0), "right": (1, 0)}
 
 
-def plan(floor, start, boulders, holes, goals=None, limit=3_000_000):
+def plan(floor, start, boulders, holes, goals=None, limit=3_000_000, need_all=True):
     """The shortest list of moves (directions) from start that drops every boulder into a hole and, with goals,
-    ends on one of them. `floor` is the set of tiles the player and boulders can stand on (no holes, walls or
+    ends on one of them (or, without need_all, that just gets to a goal, pushing boulders out of the way). `floor` is the set of tiles the player and boulders can stand on (no holes, walls or
     people); a boulder pushed onto a hole falls through and is gone, and the player never steps on a hole.
     Pushes are searched over; the walking between them is found by a flood fill."""
     holes = frozenset(holes)
@@ -32,7 +32,9 @@ def plan(floor, start, boulders, holes, goals=None, limit=3_000_000):
 
     # the tiles a boulder can still be pushed into a hole from, leaving the others round it out of the way:
     # pushing one anywhere else (into a corner, against a wall it can't come off) can never help
-    live, grew = set(holes), True
+    live, grew = set(holes), bool(holes)
+    if not holes:
+        live = set(floor)        # nothing to drop them into: anywhere the player could push one is fine
     while grew:
         grew = False
         for t in floor:
@@ -53,7 +55,7 @@ def plan(floor, start, boulders, holes, goals=None, limit=3_000_000):
         if key in known:
             continue
         known.add(key)
-        if not bl and (goals is None or any(g in seen for g in goals)):
+        if (not bl or not need_all) and (goals is None or any(g in seen for g in goals)):
             moves = walk(seen, next(g for g in goals if g in seen)) if goals else []
             while came[state]:
                 state, steps = came[state]

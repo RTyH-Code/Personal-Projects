@@ -1046,9 +1046,44 @@ ELITE_FOUR = [("T10R0201", 245, "Will"), ("T10R0301", 247, "Koga"), ("T10R0401",
 LANCE_ROOM, HALL_OF_FAME, LANCE = "T10R0601", "T10R0701", 244
 
 
+VICTORY_ROAD = ["D43R0101", "D43R0102", "D43R0103"]
+
+
 def victory_road(bot):
     # up through Victory Road's three floors (the rival battles on 3F) to Indigo Plateau, and into the Pokemon
-    # League's entrance hall
+    # League's entrance hall. Strength boulders stand in the way: where the route planner finds no way on, the
+    # boulder planner pushes them aside towards an exit (the League first, then the floors above)
+    for _ in range(12):
+        here = bot.where()
+        if here[0] not in VICTORY_ROAD:
+            break
+        code, pos = here[0], (here[1], here[2])
+        try:
+            bot.travel(LEAGUE_ENTRANCE)
+            return
+        except Exception as e:
+            if type(e).__name__ != "Stuck" or not str(e).startswith("no way found"):
+                raise
+        rank = lambda w: (0 if "T10" in str(w[1]["dest_header_id"]) else 1,
+                          -VICTORY_ROAD.index(str(w[1]["dest_header_id"]).replace("MAP_", ""))
+                          if str(w[1]["dest_header_id"]).replace("MAP_", "") in VICTORY_ROAD else 0)
+        exits = sorted(((i, w) for i, w in enumerate(bot.world.events(code)["warp_events"])
+                        if str(w["dest_header_id"]).replace("MAP_", "") != code), key=rank)
+        for i, w in exits:
+            entry, _ = bot.warp_entry(code, i)
+            if entry == (w["x"], w["z"]) or entry == pos:
+                continue
+            try:
+                bot.drop_boulders(code, set(), goals=[entry], need_all=False)
+            except Exception as e:
+                if type(e).__name__ != "Stuck" or str(e).startswith("lost a battle"):
+                    raise
+                continue
+            bot.go_through(code, i)
+            bot.settle()
+            break
+        else:
+            bot.stuck("no way on from %s, even pushing boulders" % code)
     bot.travel(LEAGUE_ENTRANCE)
 
 
