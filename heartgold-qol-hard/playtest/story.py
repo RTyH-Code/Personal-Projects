@@ -1194,10 +1194,18 @@ def champion(bot):
 
 
 def hall_of_fame(bot):
-    for _ in range(60):
-        if bot.flag("FLAG_UNK_97E"):
+    def flag_set():
+        try:
+            return bot.flag("FLAG_UNK_97E")
+        except TypeError:           # mid-scene the game's flags aren't where the bot reads them from yet
+            return False
+    for _ in range(120):
+        if flag_set():
             break
-        bot.settle()
+        if bot.game.in_field():
+            bot.settle()
+        else:
+            bot.game.key("a", after=60)
         bot.game.run(120)
     bot.expect("FLAG_UNK_97E", "beating Lance and the Hall of Fame")
     for _ in range(200):           # the credits
