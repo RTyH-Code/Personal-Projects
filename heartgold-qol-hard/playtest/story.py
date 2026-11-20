@@ -999,8 +999,13 @@ def kimono_girls(bot):
     door = next(i for i, w in enumerate(bot.world.events("T27")["warp_events"]) if w["dest_header_id"] == "MAP_T27R0501")
     bot.go_through("T27", door)
     bot.settle(["a"])
-    if not bot.flag("FLAG_UNK_103") and 10 in bot.objects():
-        bot.talk("T27R0501", 10, answers=["a"])     # she asks again
+    # five battles, with dances and long talks between them: the scene can seem over in a pause, so keep on
+    # until the Clear Bell is given
+    for _ in range(20):
+        if bot.flag("FLAG_UNK_103"):
+            break
+        bot.game.run(60)
+        bot.settle()
     bot.expect("FLAG_UNK_103", "the Kimono Girls' battles and the Clear Bell")
 
 
