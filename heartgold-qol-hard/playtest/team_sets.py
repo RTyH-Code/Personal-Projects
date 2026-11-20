@@ -151,7 +151,10 @@ SETS = {
                        # Houndoom was first: Koga beat it three times running, his Poison types having Gardevoir and
                        # nothing else to fear; Bronzong (Steel/Psychic) can't be touched by them and resists Will's
                        # and Lance's moves too. Heracross's Throat Chop still covers Will
-                       team=["GARDEVOIR", "BRONZONG", "JYNX", "LUXRAY", "GOLEM", "HERACROSS"],
+                       # Golem was first: Karen beat the team six times running (Gengar, which Levitate keeps
+                       # out of Earthquake's way, and Weavile with Swords Dance); Machamp is a second Fighting
+                       # type for her Dark types, with Bronzong now covering Golem's work against Koga
+                       team=["GARDEVOIR", "BRONZONG", "JYNX", "LUXRAY", "MACHAMP", "HERACROSS"],
                        moves=dict(JYNX=["ICE_PUNCH", "PSYCHIC", "LOVELY_KISS", "AVALANCHE"],
                                   BRONZONG=["GYRO_BALL", "EXTRASENSORY", "ROCK_TOMB", "REFLECT"]),
                        # held items a player has by now (every Elite Four Pokemon holds one): the Goldenrod
@@ -159,7 +162,7 @@ SETS = {
                        # from six) and the NeverMeltIce on Ice Path B3F. Berries used up are not replaced between
                        # the rooms, as for a player
                        items=dict(GARDEVOIR="SITRUS_BERRY", BRONZONG="LUM_BERRY", JYNX="NEVER_MELT_ICE",
-                                  LUXRAY="SHUCA_BERRY", GOLEM="PASSHO_BERRY", HERACROSS="COBA_BERRY")),
+                                  LUXRAY="SHUCA_BERRY", MACHAMP="SITRUS_BERRY", HERACROSS="COBA_BERRY")),
     # the first Clair set, kept to try again with the heal before her (run with STORY_TEAM_CLAIR=clair_first)
     "clair_first": dict(level=47, badges=7, places=MAHOGANY + ["Route 44", "Ice Path 1F", "Ice Path B1F", "Ice Path B2F",
                                                               "Ice Path B3F"], ways=WATER,
