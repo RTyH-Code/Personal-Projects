@@ -1212,14 +1212,20 @@ class Bot:
                 return True
         return False
 
-    def restore_party(self, why):
+    def restore_party(self, why, refill=False):
         """TEST HARNESS ONLY: heal the party where it stands (all HP, no status, all PP), in place of the
         potions a player would use. The bot can't use items, so a boss behind a gym full of trainers would
-        otherwise be fought with whatever the trainers left."""
+        otherwise be fought with whatever the trainers left. With refill, a berry used up is given back too
+        (the team set's item for that Pokemon), as a player carrying several would."""
         names = {v: k for k, v in self.sets.move_ids.items()}
+        species = {v: k for k, v in self.sets.species_ids.items()}
+        held = team_sets.SETS.get(self.team, {}).get("items", {}) if refill and self.team else {}
         mons = []
         for m in self.party_mons():
             if m.valid() and not m.is_egg:
+                item = held.get(species.get(m.species))
+                if item and not m.u16(0x02):
+                    m.set_u16(0x02, self.sets.item_ids[item])
                 struct.pack_into("<I", m.stats, 0, 0)                          # status
                 struct.pack_into("<H", m.stats, 6, struct.unpack_from("<H", m.stats, 8)[0])   # HP
                 for i in range(4):

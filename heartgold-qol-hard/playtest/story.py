@@ -1045,6 +1045,10 @@ ELITE_FOUR = [("T10R0201", "FLAG_DEFEATED_WILL", "Will"), ("T10R0301", "FLAG_DEF
               ("T10R0401", "FLAG_DEFEATED_BRUNO", "Bruno"), ("T10R0501", "FLAG_DEFEATED_KAREN", "Karen")]
                                                  # their rooms, and the flags their scripts set when beaten
 LANCE_ROOM, HALL_OF_FAME, LANCE = "T10R0601", "T10R0701", 244
+# whether the heal between the Elite Four rooms also gives back berries used up (a player carries several);
+# off for now. STORY_REFILL_BERRIES=1 turns it on
+import os as _os
+REFILL_BERRIES = _os.environ.get("STORY_REFILL_BERRIES") == "1"
 
 
 VICTORY_ROAD = ["D43R0101", "D43R0102", "D43R0103"]
@@ -1138,7 +1142,7 @@ def elite_four(bot):
     for room, beaten, name in ELITE_FOUR:
         bot.travel(room)
         bot.settle()
-        bot.restore_party("before %s" % name)
+        bot.restore_party("before %s" % name, refill=REFILL_BERRIES)
         bot.talk(room, 0)
         for _ in range(5):
             if bot.flag(beaten):
@@ -1152,7 +1156,7 @@ def champion(bot):
     # Fame (FLAG_UNK_97E is set just before the credits), the credits, and the player back in the overworld
     bot.travel(LANCE_ROOM)
     bot.settle()
-    bot.restore_party("before Lance")
+    bot.restore_party("before Lance", refill=REFILL_BERRIES)
     bot.walk(LANCE_ROOM, [(6, 10)])
     for _ in range(60):
         if bot.flag("FLAG_UNK_97E"):
