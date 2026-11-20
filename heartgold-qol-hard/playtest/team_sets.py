@@ -148,8 +148,12 @@ SETS = {
                             "PROTECT", "LIGHT_SCREEN", "REFLECT", "ATTRACT", "FOCUS_PUNCH", "CALM_MIND", "HAIL",
                             "AVALANCHE", "DRAGON_PULSE"],
                        item="ORAN_BERRY",
-                       team=["GARDEVOIR", "HOUNDOOM", "JYNX", "LUXRAY", "GOLEM", "HERACROSS"],
-                       moves=dict(JYNX=["ICE_PUNCH", "PSYCHIC", "LOVELY_KISS", "AVALANCHE"])),
+                       # Houndoom was first: Koga beat it three times running, his Poison types having Gardevoir and
+                       # nothing else to fear; Bronzong (Steel/Psychic) can't be touched by them and resists Will's
+                       # and Lance's moves too. Heracross's Throat Chop still covers Will
+                       team=["GARDEVOIR", "BRONZONG", "JYNX", "LUXRAY", "GOLEM", "HERACROSS"],
+                       moves=dict(JYNX=["ICE_PUNCH", "PSYCHIC", "LOVELY_KISS", "AVALANCHE"],
+                                  BRONZONG=["GYRO_BALL", "EXTRASENSORY", "ROCK_TOMB", "REFLECT"])),
     # the first Clair set, kept to try again with the heal before her (run with STORY_TEAM_CLAIR=clair_first)
     "clair_first": dict(level=47, badges=7, places=MAHOGANY + ["Route 44", "Ice Path 1F", "Ice Path B1F", "Ice Path B2F",
                                                               "Ice Path B3F"], ways=WATER,
