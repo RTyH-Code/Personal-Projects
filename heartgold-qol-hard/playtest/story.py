@@ -1020,6 +1020,13 @@ def ho_oh(bot):
     bot.travel(BELL_TOWER_ROOF, near=(15, 21))
     bot.walk(BELL_TOWER_ROOF, [(15, 20)])
     bot.settle()
+    for _ in range(3):
+        if var(bot, "VAR_UNK_40FA") != 1:
+            break
+        # the dance starts as the player steps onto (15, 20): arriving another way doesn't count
+        bot.walk(BELL_TOWER_ROOF, [(15, 21)])
+        bot.step("up")
+        bot.settle()
     if 5 in bot.objects():
         bot.talk(BELL_TOWER_ROOF, 5)
         bot.settle()
