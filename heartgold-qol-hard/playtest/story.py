@@ -994,8 +994,13 @@ def kimono_girls(bot):
         bot.travel("T27", near=(397, 175))
         bot.walk("T27", [(397, 174)])
         bot.settle()
-    bot.travel("T27R0501")
-    bot.settle()
+    # through the theater door by hand: walking in, a Kimono Girl asks if the player is ready, and the route
+    # planner's pressing through messages can answer before the Yes/No shows (which is No: they wait)
+    door = next(i for i, w in enumerate(bot.world.events("T27")["warp_events"]) if w["dest_header_id"] == "MAP_T27R0501")
+    bot.go_through("T27", door)
+    bot.settle(["a"])
+    if not bot.flag("FLAG_UNK_103") and 10 in bot.objects():
+        bot.talk("T27R0501", 10, answers=["a"])     # she asks again
     bot.expect("FLAG_UNK_103", "the Kimono Girls' battles and the Clear Bell")
 
 
