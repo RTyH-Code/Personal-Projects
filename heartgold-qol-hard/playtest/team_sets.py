@@ -137,6 +137,19 @@ SETS = {
                   team=["LUXRAY", "DEWGONG", "JYNX", "GARDEVOIR", "GRANBULL", "BRONZONG"],
                   moves=dict(JYNX=["ICE_PUNCH", "PSYCHIC", "LOVELY_KISS", "AVALANCHE"],
                              LUXRAY=["DISCHARGE", "SPARK", "CRUNCH", "THUNDER_WAVE"])),
+    # the rival on Victory Road (Lv. 48-50) and the Elite Four (Lv. 49-58), one team for all five, as a player
+    # would bring: Dark and Bug for Will's Psychic types, Ground and Psychic for Koga's Poison types, Psychic and
+    # Fairy for Bruno's Fighting types, Fighting and Fairy for Karen's Dark types, Ice and Fairy for Lance's
+    # Dragons, Electric for his Gyarados and Dragonite
+    "elite_four": dict(level=58, badges=8, places=MAHOGANY + ["Route 44", "Ice Path 1F", "Ice Path B1F", "Ice Path B2F",
+                                                             "Ice Path B3F", "Route 45", "Route 46", "Route 27",
+                                                             "Route 26"], ways=WATER,
+                       tms=["FLASH", "ROOST", "BULLET_SEED", "ROCK_TOMB", "U_TURN", "DIG", "PAYBACK", "EMBARGO",
+                            "PROTECT", "LIGHT_SCREEN", "REFLECT", "ATTRACT", "FOCUS_PUNCH", "CALM_MIND", "HAIL",
+                            "AVALANCHE", "DRAGON_PULSE"],
+                       item="ORAN_BERRY",
+                       team=["GARDEVOIR", "HOUNDOOM", "JYNX", "LUXRAY", "GOLEM", "HERACROSS"],
+                       moves=dict(JYNX=["ICE_PUNCH", "PSYCHIC", "LOVELY_KISS", "AVALANCHE"])),
     # the first Clair set, kept to try again with the heal before her (run with STORY_TEAM_CLAIR=clair_first)
     "clair_first": dict(level=47, badges=7, places=MAHOGANY + ["Route 44", "Ice Path 1F", "Ice Path B1F", "Ice Path B2F",
                                                               "Ice Path B3F"], ways=WATER,

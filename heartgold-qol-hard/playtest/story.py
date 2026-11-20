@@ -964,6 +964,19 @@ def dragons_den(bot):
     bot.expect("FLAG_UNK_0EA", "passing the Dragon Shrine's test (and the Rising Badge)")
 
 
+# ---------------------------------------------------------------- Victory Road and the Pokemon League
+
+VICTORY_ROAD_1F, INDIGO = "D43R0101", "T10"
+
+
+def to_victory_road(bot):
+    # out of the shrine, a heal in Blackthorn and the Elite Four set (taken from here on), then south along
+    # Routes 45 and 46 to New Bark Town, east over the water of Route 27, up Tohjo Falls (Waterfall, from the bag),
+    # Route 26, and the Pokemon League gate, whose guards check the eight badges, to Victory Road
+    heal(bot, "T30PC0101", team="elite_four")
+    bot.travel(VICTORY_ROAD_1F)
+
+
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
           back_to_elm, stolen_pokemon, to_violet, sprout_tower,
           violet_gym, mystery_egg, to_azalea, kurt, slowpoke_well, azalea_gym, to_ilex, farfetchd,
@@ -973,4 +986,5 @@ STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokege
           to_mahogany, red_gyarados, lance, into_hideout, hideout_b1f, hideout_b2f, hideout_b3f, hideout_end, pryce_gym,
           to_goldenrod_takeover, rocket_disguise, radio_tower_rival, fake_director,
           underground_door, switch_room, warehouse, card_key, proton, ariana, archer,
-          to_ice_path, ice_path_boulders, to_blackthorn, clair_gym, dragons_den]
+          to_ice_path, ice_path_boulders, to_blackthorn, clair_gym, dragons_den,
+          to_victory_road]
