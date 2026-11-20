@@ -1067,11 +1067,18 @@ def victory_road(bot):
         rank = lambda w: (0 if "T10" in str(w[1]["dest_header_id"]) else 1,
                           -VICTORY_ROAD.index(str(w[1]["dest_header_id"]).replace("MAP_", ""))
                           if str(w[1]["dest_header_id"]).replace("MAP_", "") in VICTORY_ROAD else 0)
+        dest = lambda w: str(w["dest_header_id"]).replace("MAP_", "")
+        # on to the floors above, or out to Indigo Plateau; never back down, or out the way in
         exits = sorted(((i, w) for i, w in enumerate(bot.world.events(code)["warp_events"])
-                        if str(w["dest_header_id"]).replace("MAP_", "") != code), key=rank)
+                        if dest(w) == INDIGO or dest(w) in VICTORY_ROAD
+                        and VICTORY_ROAD.index(dest(w)) > VICTORY_ROAD.index(code)), key=rank)
+        warps = {(w["x"], w["z"]) for w in bot.world.events(code)["warp_events"]}
         for i, w in exits:
-            entry, _ = bot.warp_entry(code, i)
-            if entry == (w["x"], w["z"]) or entry == pos:
+            entry, into = bot.warp_entry(code, i)
+            if entry in warps and into:
+                dx, dz, _ = DIRS[into]
+                entry = (entry[0] - dx, entry[1] - dz)     # stairs: the tile in front of them
+            if entry == pos:
                 continue
             try:
                 bot.drop_boulders(code, set(), goals=[entry], need_all=False)
