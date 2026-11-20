@@ -59,6 +59,11 @@ COUNTER = 0x80          # a shop or reception counter: people behind it are talk
 EDGES = {0x6C: "right", 0x6D: "left", 0x6E: "up", 0x6F: "down", 0x62: "right", 0x63: "left",    # warp edges,
          0x64: "up", 0x65: "down", 0x69: "up", 0x5E: "right", 0x5F: "left"}                     # doors, stairs
 OPPOSITE = {"up": "down", "down": "up", "left": "right", "right": "left"}
+# holes the player drops through to the floor below, by script (not in the maps' warp lists): (map, tile) ->
+# (map, tile landed on). Victory Road 3F's five, from its script (scr_seq_D43R0103_002 to _006)
+HOLES = {("D43R0103", (55, 42)): ("D43R0102", (57, 42)), ("D43R0103", (26, 38)): ("D43R0102", (28, 38)),
+         ("D43R0103", (29, 44)): ("D43R0102", (31, 44)), ("D43R0103", (20, 18)): ("D43R0102", (22, 17)),
+         ("D43R0103", (56, 28)): ("D43R0102", (58, 28))}
 
 # The trainer AI. Each battler gets six controller handlers when a battle opens (overlay 12, 0x02260EA4, called
 # with the BattleSystem and the battler's OpponentData): the player's read the touch screen, every other
@@ -306,6 +311,7 @@ class Bot:
         # don't walk into a warp on the way; a goal tile someone stands on (or was in the way at) can't be reached;
         # and keep off any tiles a stage has ruled out on this map (forbid)
         blocked = self.people(code) | set(avoid) | (warps - set(goals)) | self.forbidden.get(code, set())
+        blocked |= {t for (m, t) in HOLES if m == code} - set(goals)      # never drop through one by accident
         on_ladder = LADDERS.get(tiles.get(start))
         blocks = self.ice_blocks(code)
         if any(b == ICE for b in tiles.values()):     # slides (and, in Pryce's gym, ice blocks pushed)
@@ -791,6 +797,13 @@ class Bot:
                 areas.append((key, dist))
             if self.region_tiles(code, target, dist):
                 return best[node][1]
+            for (m, tile), landing in HOLES.items():
+                if m == code and tile in dist:
+                    c = cost + dist[tile] + 10
+                    if landing not in best or c < best[landing][0]:
+                        best[landing] = (c, best[node][1] + [(m, tile)])
+                        counter += 1
+                        heapq.heappush(queue, (c, counter, landing))
             for m in self.region_maps(code):
                 for i, warp in enumerate(self.world.events(m).get("warp_events", [])):
                     if (m, i, pos) in self.shut:
@@ -839,6 +852,10 @@ class Bot:
             try:
                 for code, index in steps:
                     here = self.where()
+                    if isinstance(index, tuple):        # a hole: walk onto it and drop
+                        self.walk(code, [index], leave_ok=True)
+                        self.settle()
+                        continue
                     try:
                         self.go_through(code, index)
                     except Stuck as e:
