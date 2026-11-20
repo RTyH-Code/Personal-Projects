@@ -971,9 +971,16 @@ VICTORY_ROAD_1F, INDIGO = "D43R0101", "T10"
 
 def to_victory_road(bot):
     # out of the shrine, a heal in Blackthorn and the Elite Four set (taken from here on), then south along
-    # Routes 45 and 46 to New Bark Town, east over the water of Route 27, up Tohjo Falls (Waterfall, from the bag),
+    # Routes 45 and 46 to New Bark Town and Elm, east over the water of Route 27, up Tohjo Falls (Waterfall, from the bag),
     # Route 26, and the Pokemon League gate, whose guards check the eight badges, to Victory Road
     heal(bot, "T30PC0101", team="elite_four")
+    # after the Den, Mom turns the player back at New Bark's east edge until they have seen Elm, who has news
+    # (VAR_SCENE_NEW_BARK_EAST_EXIT goes from 1 to 2 when he has told it)
+    if bot.game.get_var(bot.world.vars["VAR_SCENE_NEW_BARK_EAST_EXIT"]) == 1:
+        bot.travel("T20R0101")
+        bot.talk("T20R0101", 0)
+        if bot.game.get_var(bot.world.vars["VAR_SCENE_NEW_BARK_EAST_EXIT"]) != 2:
+            bot.stuck("Elm's news after the Dragon's Den did not happen")
     bot.travel(VICTORY_ROAD_1F)
 
 
