@@ -1484,6 +1484,11 @@ def janine_gym(bot):
     # south from Lavender down Routes 12 to 15 to Fuchsia City, the Janine set, then her gym: invisible walls
     # (in the map's collision, which the planner reads) and four trainers dressed as Janine. The real one is
     # at (7, 16)
+    # (by Lavender and Route 12: the planner would take Cycling Road from Celadon, whose gate guard turns back
+    # anyone not on a bicycle, and the bot doesn't ride one)
+    if not bot.where()[0].startswith(("T08", "R12", "R13", "R14", "R15")):
+        bot.travel("T05")
+        bot.travel("R12")
     heal(bot, "T08PC0101", team="janine")
     bot.travel(FUCHSIA_GYM)
     bot.talk(FUCHSIA_GYM, 2, boss="Janine")
