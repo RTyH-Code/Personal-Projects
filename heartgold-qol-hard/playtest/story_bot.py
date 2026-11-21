@@ -990,13 +990,15 @@ class Bot:
                     try:
                         self.go_through(code, index)
                     except Stuck as e:
-                        if isinstance(e, Moved) or "no path" not in str(e):
+                        if isinstance(e, Moved):
                             raise
                         # a Cut tree may stand in the way (Route 2): cut what can be reached and plan again
                         cur = self.where()
                         if not cut and cur and self.cut_trees(cur[0]):
                             cut = True
                             raise Moved(str(e))
+                        if "no path" not in str(e):
+                            raise
                         # the warp can't be reached from here after all (a door shut by script): plan round it
                         self.shut.add((code, index, (here[1], here[2]) if here else None))
                         raise Moved(str(e))
@@ -1021,15 +1023,19 @@ class Bot:
         once HM01 and the Hive Badge are had). True if any was cut."""
         events = self.world.events(code).get("object_events", [])
         done = False
-        for i, pos in sorted(self.objects().items()):
-            if i < len(events) and str(events[i].get("script")) == "std_field_cut":
+        while True:             # each tree cut can open the way to another (Route 2 has three in a row)
+            progress = False
+            for i in [i for i in sorted(self.objects())
+                      if i < len(events) and str(events[i].get("script")) == "std_field_cut"]:
                 try:
                     self.talk(code, i)
-                    done = True
                 except Stuck as e:
                     if "no path" not in str(e) and "could not reach" not in str(e):
                         raise
-        return done
+                if i not in self.objects():
+                    done = progress = True
+            if not progress:
+                return done
 
     def arrived(self, old, frames=400):
         for _ in range(frames // 10):
