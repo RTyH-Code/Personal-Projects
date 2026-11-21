@@ -459,12 +459,24 @@ Each room has its own lead (`LEADS` in `story.py`), as a player would reorder
 the party at the heal: Gyarados for Will, Bronzong for Koga, Gardevoir for
 Bruno, Ampharos then Machamp for Karen, Ampharos for Lance.
 
+**A heal before every boss.** Every Gym Leader and Rocket executive the bot
+talks into a battle, from Falkner on, now starts with the party healed where
+the player stands beside them (`talk(..., boss=NAME)`). Without it the bot
+kept meeting bosses worn down by their gyms' trainers, which a player would
+have patched up with potions. Lt. Surge was the clearest case: his gym's
+trainers took three of the team every time, and he won four tries running.
+Results recorded before this change (all of `results/battles.jsonl` up to
+the `rebalance-0022` runs) had heals only before Clair, the Victory Road
+rival and the League. Fights that start from a scene, such as the rival and
+Ariana's double battle in the Hideout, are not covered.
+
 Settings, all environment variables: `STORY_RETRIES` (tries per stage before
 it stops, default 3), `STORY_REFILL_BERRIES` (`0` stops the berry refill
 between rooms), `STORY_TEAM_<SET>` (swap in another set where that one is
 due, such as `STORY_TEAM_CLAIR=clair_first`) and `STORY_JITTER` (up to this
 many frames of random waiting after a stage's save loads, default 0; without
-it, two runs from the same save play every battle out the same way).
+it, two runs from the same save play every battle out the same way) and
+`STORY_BOSS_HEAL` (`0` turns off the heal before each boss).
 
 The bot surfs once it has HM03: water counts as walkable, and a step from
 land onto water is Surf (face it, A, Yes). It heals after every gym, and

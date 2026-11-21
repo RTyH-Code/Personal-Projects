@@ -17,7 +17,9 @@ The tables come from `python3 balance.py`, run over `results/battles.jsonl`.
 - **The bot also gets help a player wouldn't.** Before Clair, the rival on
   Victory Road and every League room, the harness heals the party where it
   stands, standing in for potions. Between League rooms it also gives back
-  used berries.
+  used berries. From the Kanto runs on, it heals before every Gym Leader and
+  Rocket executive too (see the playtest README), so later records start
+  boss fights at full health where earlier ones may not have.
 - **The samples are small and mixed.** Most fights were played a handful of
   times. The records span several team versions and bot fixes. A low rate
   across many battles, with the same Pokémon doing the damage each time, is

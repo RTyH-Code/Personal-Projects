@@ -43,6 +43,8 @@ RETRIES = int(os.environ.get("STORY_RETRIES", "3"))                  # a stage i
 # up to this many frames of waiting after a stage's start state is loaded. The game's random numbers move on
 # every frame, so without it two runs from the same save play every battle out move for move the same
 JITTER = int(os.environ.get("STORY_JITTER", "0"))
+# heal the party before every boss, standing in for a player's potions (STORY_BOSS_HEAL=0 for the old way)
+BOSS_HEAL = os.environ.get("STORY_BOSS_HEAL", "1") != "0"
 TEAM = (0, 1, 2, 4)          # of battle_test.REFERENCE: Cyndaquil, Mareep, Geodude and Abra, evolved to the level
 FIELD_SYSTEM_AVATAR = 0x40          # FieldSystem.playerAvatar
 FIELD_SYSTEM_LOCATION = 0x20        # FieldSystem.location -> {mapId, warpId, x, y, direction}
@@ -926,9 +928,11 @@ class Bot:
         if not any(i == item for i, _ in self.game.added):
             self.stuck("%s did not happen (no %s went into the bag)" % (what, name))
 
-    def talk(self, code, target, answers=(), never=()):
+    def talk(self, code, target, answers=(), never=(), boss=None):
         """Stand next to a person or thing and press A facing it; then see the scene through. `target` is a tile
-        (x, z), or the number of a person in the map's list of object events, wherever they now stand."""
+        (x, z), or the number of a person in the map's list of object events, wherever they now stand. With
+        boss (a name), the harness heals the party once the player stands by them, before A: a player would use
+        potions before a boss, and the bot can't (BOSS_HEAL=0 turns it off)"""
         if isinstance(target, int):
             self.settle()
             people = self.objects()
@@ -951,6 +955,8 @@ class Bot:
             here = self.where()
             if here and (here[1], here[2]) == pos:
                 break
+        if boss and BOSS_HEAL:
+            self.restore_party("before %s" % boss)
         # turn to face it: a short press turns without stepping, but now and then it does not register
         for hold in (2, 3, 4, 4):
             self.game.key(options[pos], hold=hold, after=10)

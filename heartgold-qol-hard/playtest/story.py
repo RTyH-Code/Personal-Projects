@@ -97,7 +97,7 @@ def violet_gym(bot):
     bot.travel("T22GYM0101")
     bot.walk("T22GYM0101", [(15, 20)])      # the lift: it carries the player up to the walkways
     bot.settle()
-    bot.talk("T22GYM0101", 0)
+    bot.talk("T22GYM0101", 0, boss="Falkner")
     bot.expect("FLAG_GOT_TM51_FROM_FALKNER", "beating Falkner")
     bot.walk("T22GYM0101", [(15, 20)])      # and the lift back down
     bot.settle()
@@ -149,7 +149,7 @@ def slowpoke_well(bot):
     # stands in front of the gym door
     heal(bot, "T23PC0101", team="bugsy")
     bot.travel("D26R0102")
-    bot.talk("D26R0102", 4)
+    bot.talk("D26R0102", 4, boss="Proton")
     bot.settle()
     bot.expect("FLAG_BEAT_AZALEA_ROCKETS", "beating Proton in the Slowpoke Well")
 
@@ -191,7 +191,7 @@ def azalea_gym(bot):
     ride(bot, (3, 9), (3, 18))       # stop 9, now to the middle floor's left section (stop 6; off the cart at its foot)
     bot.talk(GYM, (2, 18))           # switch 1 on
     ride(bot, (3, 17), (9, 9))       # stop 6, with both switches on, to Bugsy's section (stop 10)
-    bot.talk(GYM, 5)
+    bot.talk(GYM, 5, boss="Bugsy")
     bot.expect("FLAG_GOT_TM89_FROM_BUGSY", "beating Bugsy")
     # and back out the same way: the carts now wait at stops 1, 2, 4 and 10
     ride(bot, (9, 9), (3, 18))       # stop 10, both switches on, to the middle floor's left section
@@ -273,7 +273,7 @@ def whitney_gym(bot):
     # a girl by the entrance has a word, and then Whitney hands over the badge
     heal(bot, "T25PC0101", team="whitney")
     bot.travel("T25GYM0101")
-    bot.talk("T25GYM0101", 0)
+    bot.talk("T25GYM0101", 0, boss="Whitney")
     # one step onto (13, 11) starts the girl's scene, which ends with the player stepped back to (13, 10)
     bot.walk("T25GYM0101", [(13, 10)])
     bot.step("down")
@@ -343,7 +343,7 @@ def morty_gym(bot):
     # a heal, then along the hidden path, past four Mediums, to Morty
     heal(bot, "T27PC0101")
     bot.travel(MORTY_GYM)
-    bot.talk(MORTY_GYM, 1, never=morty_drops(bot))
+    bot.talk(MORTY_GYM, 1, never=morty_drops(bot), boss="Morty")
     bot.expect("FLAG_GOT_TM30_FROM_MORTY", "beating Morty")
 
 
@@ -376,7 +376,7 @@ def chuck_gym(bot):
     bot.travel("T24GYM0101")
     # Chuck trains under a waterfall and won't fight until the winch at the back stops it (Yes)
     bot.talk("T24GYM0101", (10, 2))
-    bot.talk("T24GYM0101", 0)
+    bot.talk("T24GYM0101", 0, boss="Chuck")
     bot.expect("FLAG_GOT_TM01_FROM_CHUCK", "beating Chuck")
 
 
@@ -435,7 +435,7 @@ def jasmine_gym(bot):
     # the Jasmine set from the Pokemon Center, and Jasmine
     heal(bot, "T26PC0101", team="jasmine")
     bot.travel("T26GYM0101")
-    bot.talk("T26GYM0101", 0)
+    bot.talk("T26GYM0101", 0, boss="Jasmine")
     bot.expect("FLAG_GOT_TM23_FROM_JASMINE", "beating Jasmine")
 
 
@@ -505,7 +505,7 @@ def hideout_b3f(bot):
     bot.talk(HIDEOUT_B3F, 4)                  # the Grunt at (38, 15)
     bot.talk(HIDEOUT_B3F, 3)                  # the Grunt at (15, 25)
     bot.travel(HIDEOUT_B3F, near=(23, 16))    # the door's side of B3F is reached by the west stairs from B2F
-    bot.talk(HIDEOUT_B3F, 10)                 # the door
+    bot.talk(HIDEOUT_B3F, 10, boss="Petrel")     # the door
     bot.walk(HIDEOUT_B3F, [(23, 12), (24, 12)])
     bot.settle()
     if 9 in bot.objects():
@@ -552,7 +552,7 @@ def pryce_gym(bot):
     # something stops them) to Pryce
     heal(bot, "T28PC0101", team="pryce")
     bot.travel("T28GYM0101")
-    bot.talk("T28GYM0101", 0)
+    bot.talk("T28GYM0101", 0, boss="Pryce")
     bot.expect("FLAG_GOT_TM07_FROM_PRYCE", "beating Pryce")
 
 
@@ -603,7 +603,7 @@ def fake_director(bot):
     # Basement Key, and the real Director is said to be held in the Underground warehouse
     heal(bot, "T25PC0101")
     bot.travel(RADIO_5F)
-    bot.talk(RADIO_5F, 0)
+    bot.talk(RADIO_5F, 0, boss="Petrel")
     bot.expect_item("BASEMENT_KEY", "Petrel giving the Basement Key")
 
 
@@ -680,7 +680,7 @@ def proton(bot):
     # a heal, then up the east side to 4F, where Proton battles (Golbat, Qwilfish, Houndoom, Muk, Weezing)
     heal(bot, "T25PC0101")
     bot.travel(RADIO_4F, near=(23, 9))
-    bot.talk(RADIO_4F, 3)
+    bot.talk(RADIO_4F, 3, boss="Proton")
     if not bot.beaten(PROTON):
         bot.stuck("Proton was not beaten")
 
@@ -689,7 +689,7 @@ def ariana(bot):
     # back to the Pokemon Center to heal (a player could use potions instead), then 5F, where Ariana battles
     heal(bot, "T25PC0101")
     bot.travel(RADIO_5F, near=(11, 5))
-    bot.talk(RADIO_5F, 1)
+    bot.talk(RADIO_5F, 1, boss="Ariana")
     if not bot.beaten(ARIANA):
         bot.stuck("Ariana was not beaten")
 
@@ -706,7 +706,7 @@ def archer(bot):
     bot.settle()
     if not bot.where() or bot.where()[0] != DIRECTORS_OFFICE:
         bot.stuck("the Radio Tower elevator did not go up to the Observation Deck")
-    bot.talk(DIRECTORS_OFFICE, 0)
+    bot.talk(DIRECTORS_OFFICE, 0, boss="Archer")
     # after the battle the screen fades out and in (Archer goes) before the Director's scene: the wait for
     # the scene to end can stop at the fade
     for _ in range(3):
@@ -880,10 +880,9 @@ def clair_gym(bot):
         else:
             bot.stuck("no way across Clair's gym found (%d layouts tried)" % len(seen))
     bot.walk(BLACKTHORN_GYM, [clair])
-    # the gym's five Ace Trainers stand between the door and her, and there is nowhere to heal inside: a
-    # player would use potions here, which the bot can't. So the harness heals the party where it stands
-    bot.restore_party("before Clair, after her gym's trainers")
-    bot.talk(BLACKTHORN_GYM, 0)
+    # the gym's five Ace Trainers stand between the door and her, and there is nowhere to heal inside: as
+    # before every boss, the harness heals the party where it stands (talk's boss=)
+    bot.talk(BLACKTHORN_GYM, 0, boss="Clair")
     # she won't hand over the badge yet: the Dragon's Den comes first (FLAG_UNK_0D1: beaten, the Den's guard
     # steps aside)
     bot.expect("FLAG_UNK_0D1", "beating Clair")
@@ -1349,10 +1348,7 @@ def surge_gym(bot):
                         break
                 break
     bot.expect("FLAG_SYS_SOLVED_LT_SURGE_GYM", "opening the locks in Lt. Surge's gym")
-    # as before Clair: a player would use potions after the gym's trainers (here a double battle whose
-    # Electrodes explode), so the harness heals the party where it stands. Every Kanto leader gets the same
-    bot.restore_party("before Lt. Surge, after his gym's trainers")
-    bot.talk(VERMILION_GYM, 9)
+    bot.talk(VERMILION_GYM, 9, boss="Lt. Surge")
     bot.expect("FLAG_GOT_TM34_FROM_LT_SURGE", "beating Lt. Surge")
 
 
