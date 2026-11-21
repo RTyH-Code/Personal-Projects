@@ -1539,7 +1539,26 @@ def blaine_gym(bot):
     heal_first(bot)
     heal(bot, "T09PC0101", team="blaine")
     bot.travel(SEAFOAM_GYM)
-    bot.talk(SEAFOAM_GYM, 0, boss="Blaine")
+    # the gym's six scientists (objects 2-7) each stand in a passage until beaten, then step aside: battle
+    # whichever the player can reach until there's a way to Blaine
+    for _ in range(8):
+        try:
+            bot.talk(SEAFOAM_GYM, 0, boss="Blaine")
+            break
+        except Exception as e:
+            if type(e).__name__ != "Stuck" or "no path" not in str(e):
+                raise
+        for i in range(2, 8):
+            if i not in bot.objects():
+                continue
+            try:
+                bot.talk(SEAFOAM_GYM, i)
+                break
+            except Exception as e:
+                if type(e).__name__ != "Stuck" or "no path" not in str(e):
+                    raise
+        else:
+            bot.stuck("no way to Blaine past his gym's scientists")
     bot.expect("FLAG_GOT_TM50_FROM_BLAINE", "beating Blaine")
 
 
