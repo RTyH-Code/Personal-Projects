@@ -524,7 +524,10 @@ class Bot:
                 if p and tiles_here.get((p[1] + dx, p[2] + dz)) in FIELD_MOVE_WATER:
                     # a whirlpool or a waterfall: face it, A, and Yes to Whirlpool or Waterfall; then plan again
                     # from wherever it leaves us
-                    self.game.key(d, hold=2, after=10)
+                    for hold in (2, 4, 8):        # a short press may not turn the player (in tall grass)
+                        self.game.key(d, hold=hold, after=10)
+                        if self.facing() == d:
+                            break
                     self.game.key("a", after=30)
                     self.settle(["a"])
                     break
