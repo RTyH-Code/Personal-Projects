@@ -1618,8 +1618,11 @@ def league_2(bot):
     if var(bot, "VAR_UNK_4135") < 8:
         bot.stuck("the Elite Four's second round needs the eight Kanto badges (VAR_UNK_4135 is %d)"
                   % var(bot, "VAR_UNK_4135"))
+    # by land from Viridian: Route 22, the League gate, and up Victory Road as the first time (Fly would do, but
+    # the Indigo Plateau's pin moves on the Kanto map with what's been visited, and is easily missed)
     heal_first(bot)
-    bot.fly("T10")
+    bot.travel(VICTORY_ROAD_1F)
+    victory_road(bot)
     league(bot, team="elite_four_2")
 
 
