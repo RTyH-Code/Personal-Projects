@@ -9,9 +9,11 @@ built from what a player could have by then:
 
 - Pokemon: caught by walking in grass or caves (or with the Old Rod, or
   from Headbutt trees, once the player has them) on the maps the story has
-  passed through, as in the hack's encounter tables, or the starter. Each
-  is evolved by level up to the set's level. The checker below proves this
-  for every Pokemon in every set.
+  passed through, as in the hack's encounter tables, or the starter, or (in
+  the Kanto sets) a gift. Each is evolved by level up to the set's level,
+  or (from the Kanto sets on) with friendship, a move it knows, or an item
+  the player can buy by then. The checker below proves this for every
+  Pokemon in every set.
 - Moves: chosen by the hack's boss team tool (the best move of each of the
   Pokemon's types, a coverage move, a status or set-up move), but only from
   its level-up moves and the TMs the player can have picked up by then. A
@@ -63,12 +65,42 @@ PEWTER_K = FUCHSIA_K + ["Diglett Cave", "Route 2", "Viridian Forest", "Route 3",
 SEAFOAM_K = PEWTER_K + ["Route 19", "Route 20", "Seafoam Islands 1F", "Seafoam Islands B1F", "Seafoam Islands B2F",
                         "Seafoam Islands B3F", "Seafoam Islands B4F"]
 VIRIDIAN_K = SEAFOAM_K + ["Cinnabar Island", "Route 21", "Pallet Town", "Route 1", "Viridian City", "Route 22"]
-# moves chosen where the boss tool's pick is a poor one for a player: Bronzong's Steel move, Donphan's coverage
-KANTO_MOVES = dict(BRONZONG=["GYRO_BALL", "EXTRASENSORY", "ROCK_TOMB", "REFLECT"],
-                   DONPHAN=["EARTHQUAKE", "KNOCK_OFF", "FIRE_FANG", "ROCK_TOMB"],
-                   JYNX=["ICE_PUNCH", "PSYCHIC", "LOVELY_KISS", "AVALANCHE"])
-KANTO_TMS = ["FLASH", "ROOST", "BULLET_SEED", "ROCK_TOMB", "U_TURN", "DIG", "PAYBACK", "EMBARGO", "PROTECT",
-             "LIGHT_SCREEN", "REFLECT", "ATTRACT", "FOCUS_PUNCH", "CALM_MIND", "HAIL", "AVALANCHE", "DRAGON_PULSE"]
+# the TMs a player has by Kanto: the Johto gyms', those picked up along the story's path (Victory Road's
+# Earthquake and Dark Pulse among them), and the Goldenrod Department Store 5F's (Fire Blast, Thunder, Blizzard,
+# Solar Beam, Focus Blast). Kanto's own are added as the route passes them
+JOHTO_TMS = ["FLASH", "ROOST", "U_TURN", "ATTRACT", "SHADOW_BALL", "FOCUS_PUNCH", "IRON_TAIL", "HAIL", "DRAGON_PULSE",
+             "BULLET_SEED", "ROCK_TOMB", "DIG", "PAYBACK", "EMBARGO", "TAUNT", "AVALANCHE", "AERIAL_ACE", "SHADOW_CLAW",
+             "DRAIN_PUNCH", "CHARGE_BEAM", "RAIN_DANCE", "SWAGGER", "PLUCK", "SECRET_POWER", "DRAGON_CLAW",
+             "EARTHQUAKE", "DARK_PULSE", "CALM_MIND", "PROTECT", "LIGHT_SCREEN", "REFLECT", "SOLAR_BEAM",
+             "FOCUS_BLAST", "FIRE_BLAST", "THUNDER", "BLIZZARD", "HYPER_BEAM"]
+KANTO_TMS = {"VERMILION_K": ["SHOCK_WAVE", "GRASS_KNOT"], "SAFFRON_K": ["SILVER_WIND", "SKILL_SWAP", "TORMENT"],
+             "CELADON_K": ["RETURN", "FRUSTRATION", "STEALTH_ROCK", "RECYCLE"],
+             "CERULEAN_K": ["FLASH_CANNON", "ROCK_POLISH", "FLING"], "FUCHSIA_K": [], "PEWTER_K": ["PSYCH_UP"],
+             "SEAFOAM_K": ["ICE_BEAM", "BRINE"], "VIRIDIAN_K": []}
+KANTO_ORDER = ["VERMILION_K", "SAFFRON_K", "CELADON_K", "CERULEAN_K", "FUCHSIA_K", "PEWTER_K", "SEAFOAM_K",
+               "VIRIDIAN_K"]
+# moves a player would pick where the boss tool's choice is a poor one: Blissey's recovery, and no Rain Dance
+# on Tyranitar and Donphan (it washes away Tyranitar's own sandstorm)
+KANTO_MOVES = dict(BLISSEY=["SOFT_BOILED", "FIRE_BLAST", "BLIZZARD", "THUNDER"],
+                   TYRANITAR=["STONE_EDGE", "CRUNCH", "EARTHQUAKE", "IRON_TAIL"],
+                   DONPHAN=["EARTHQUAKE", "IRON_TAIL", "KNOCK_OFF", "ROCK_TOMB"])
+# gift Pokemon a player has by then: Bill's Eevee, Elm's Togepi, the Lapras in Union Cave, the Dragon's Den
+# Dratini, Tyrogue, Sudowoodo, the red Gyarados, and the Bug-Catching Contest's Scyther and Pinsir
+GIFTS = ["EEVEE", "TOGEPI", "LAPRAS", "DRATINI", "TYROGUE", "SUDOWOODO", "GYARADOS", "SCYTHER", "PINSIR"]
+
+
+def kanto(level, badges, places, team, **extra):
+    """A Kanto set: its places are the League's and Kanto's up to `places` (a name above), every evolution item
+    (the Goldenrod Department Store sells them all from 7 badges), the gifts, and the TMs had by then. Held
+    items: Leftovers for the bulky core (Celadon's Department Store sells them), Sitrus Berries for the rest."""
+    upto = KANTO_ORDER[:KANTO_ORDER.index(places) + 1]
+    tms = JOHTO_TMS + [tm for p in upto for tm in KANTO_TMS[p]]
+    items = {n: "LEFTOVERS" for n in team if n in ("SNORLAX", "BLISSEY", "TYRANITAR", "SKARMORY", "STEELIX")}
+    items.update(extra.pop("items", {}))
+    moves = {n: m for n, m in KANTO_MOVES.items() if n in team}
+    moves.update(extra.pop("moves", {}))
+    return dict(level=level, badges=badges, places=LEAGUE + globals()[places], ways=WATER, tms=tms,
+                item="SITRUS_BERRY", evo_items="all", gifts=GIFTS, team=team, items=items, moves=moves, **extra)
 
 SETS = {
     # Falkner's birds (Lv. 11-14): Rock, Electric and a Ghost from the caves and routes before Violet City
@@ -188,40 +220,26 @@ SETS = {
                        # the rooms, as for a player
                        items=dict(GARDEVOIR="SITRUS_BERRY", BRONZONG="LUM_BERRY", JYNX="NEVER_MELT_ICE",
                                   AMPHAROS="SHUCA_BERRY", MACHAMP="SITRUS_BERRY", GYARADOS="WACAN_BERRY")),
-    # ---- Kanto, in the order the bot takes the gyms from Vermilion. Each set adds the Kanto places passed by
-    # then; the Elite Four team is the core, swapped about for each leader's type
-    "surge": dict(level=64, badges=8, places=LEAGUE + VERMILION_K, ways=WATER, tms=KANTO_TMS, item="ORAN_BERRY", moves=KANTO_MOVES,
-                  # Electric types: Ground for them, Bronzong and Ampharos to take their hits
-                  team=["DONPHAN", "QUAGSIRE", "AMPHAROS", "GARDEVOIR", "BRONZONG", "MACHAMP"],
-                  items=dict(DONPHAN="SITRUS_BERRY", QUAGSIRE="SITRUS_BERRY", BRONZONG="LUM_BERRY")),
-    "sabrina": dict(level=66, badges=9, places=LEAGUE + SAFFRON_K, ways=WATER, tms=KANTO_TMS, item="ORAN_BERRY", moves=KANTO_MOVES,
-                    # Psychic types: Dark and Bug, Steel to wall them
-                    team=["HOUNDOOM", "HERACROSS", "BRONZONG", "GYARADOS", "AMPHAROS", "ARIADOS"],
-                    items=dict(HOUNDOOM="SITRUS_BERRY", HERACROSS="SITRUS_BERRY", BRONZONG="LUM_BERRY")),
-    "erika": dict(level=66, badges=10, places=LEAGUE + CELADON_K, ways=WATER, tms=KANTO_TMS, item="ORAN_BERRY", moves=KANTO_MOVES,
-                  # Grass types: Fire, Flying, Ice and Poison
-                  team=["HOUNDOOM", "PIDGEOT", "JYNX", "BRONZONG", "ARIADOS", "AMPHAROS"],
-                  items=dict(HOUNDOOM="SITRUS_BERRY", JYNX="NEVER_MELT_ICE", BRONZONG="LUM_BERRY")),
-    "misty": dict(level=68, badges=11, places=LEAGUE + CERULEAN_K, ways=WATER, tms=KANTO_TMS, item="ORAN_BERRY", moves=KANTO_MOVES,
-                  # Water types: Electric and Grass
-                  team=["AMPHAROS", "LANTURN", "JUMPLUFF", "GARDEVOIR", "BRONZONG", "MACHAMP"],
-                  items=dict(AMPHAROS="SITRUS_BERRY", JUMPLUFF="SITRUS_BERRY", BRONZONG="LUM_BERRY")),
-    "janine": dict(level=68, badges=12, places=LEAGUE + FUCHSIA_K, ways=WATER, tms=KANTO_TMS, item="ORAN_BERRY", moves=KANTO_MOVES,
-                   # Poison types: Ground and Psychic, Steel to wall them
-                   team=["DONPHAN", "QUAGSIRE", "GARDEVOIR", "BRONZONG", "XATU", "AMPHAROS"],
-                   items=dict(DONPHAN="SITRUS_BERRY", GARDEVOIR="SITRUS_BERRY", BRONZONG="LUM_BERRY")),
-    "brock": dict(level=70, badges=13, places=LEAGUE + PEWTER_K, ways=WATER, tms=KANTO_TMS, item="ORAN_BERRY", moves=KANTO_MOVES,
-                  # Rock and Ground types: Water, Grass, Fighting
-                  team=["GYARADOS", "QUAGSIRE", "MACHAMP", "JUMPLUFF", "BRONZONG", "HERACROSS"],
-                  items=dict(GYARADOS="SITRUS_BERRY", MACHAMP="SITRUS_BERRY", BRONZONG="LUM_BERRY")),
-    "blaine": dict(level=72, badges=14, places=LEAGUE + SEAFOAM_K, ways=WATER, tms=KANTO_TMS, item="ORAN_BERRY", moves=KANTO_MOVES,
-                   # Fire types: Water, Ground and Rock
-                   team=["GYARADOS", "QUAGSIRE", "DONPHAN", "LANTURN", "GARDEVOIR", "AMPHAROS"],
-                   items=dict(GYARADOS="SITRUS_BERRY", QUAGSIRE="SITRUS_BERRY", DONPHAN="SITRUS_BERRY")),
-    "blue": dict(level=76, badges=15, places=LEAGUE + VIRIDIAN_K, ways=WATER, tms=KANTO_TMS, item="ORAN_BERRY", moves=KANTO_MOVES,
-                 # a mixed team: Exeggutor, Arcanine, Rhydon, Gyarados, Machamp, Pidgeot
-                 team=["GYARADOS", "AMPHAROS", "GARDEVOIR", "DONPHAN", "HOUNDOOM", "MACHAMP"],
-                 items=dict(GYARADOS="WACAN_BERRY", AMPHAROS="SITRUS_BERRY", GARDEVOIR="SITRUS_BERRY")),
+    # ---- Kanto, in the order the bot takes the gyms from Vermilion. Built as a player would by now: a bulky core
+    # that takes hits and hits back hard for neutral damage (Snorlax and Blissey from Route 44's Munchlax and
+    # Chansey, Tyranitar from Mt. Mortar's Larvitar, Scizor, Kingdra and Steelix by the items the Goldenrod
+    # Department Store sells), then answers to each leader's type that don't bring a weakness of their own
+    # into the fight (a Bug for Psychic types that is also Fighting or Poison, say)
+    "surge": kanto(64, 8, "VERMILION_K", ["QUAGSIRE", "DONPHAN", "STEELIX", "BLISSEY", "SNORLAX", "TYRANITAR"]),
+    # Psychic types, all special attackers: Dark and Steel, and the special wall
+    "sabrina": kanto(66, 9, "SAFFRON_K", ["TYRANITAR", "UMBREON", "SCIZOR", "BLISSEY", "SNORLAX", "HOUNDOOM"]),
+    # Grass types (and Sleep Powder): Fire, Flying, Steel
+    "erika": kanto(66, 10, "CELADON_K", ["ARCANINE", "CROBAT", "SCIZOR", "SKARMORY", "SNORLAX", "BLISSEY"]),
+    # Water types: Electric and Grass, Blissey for the special ones, Kingdra resists them all
+    "misty": kanto(68, 11, "CERULEAN_K", ["AMPHAROS", "BELLOSSOM", "LANTURN", "BLISSEY", "SNORLAX", "KINGDRA"]),
+    # Poison types: Ground, Psychic and Steel
+    "janine": kanto(68, 12, "FUCHSIA_K", ["STEELIX", "ALAKAZAM", "DONPHAN", "SKARMORY", "SNORLAX", "TYRANITAR"]),
+    # Rock and Ground types, physical: Water, Grass, Fighting and Steel
+    "brock": kanto(70, 13, "PEWTER_K", ["KINGDRA", "POLIWRATH", "BELLOSSOM", "SCIZOR", "QUAGSIRE", "SNORLAX"]),
+    # Fire types: Water, Rock and Ground
+    "blaine": kanto(72, 14, "SEAFOAM_K", ["KINGDRA", "TYRANITAR", "QUAGSIRE", "GYARADOS", "LAPRAS", "BLISSEY"]),
+    # a mixed team (Exeggutor, Arcanine, Rhydon, Gyarados, Machamp, Pidgeot)
+    "blue": kanto(76, 15, "VIRIDIAN_K", ["TYRANITAR", "SCIZOR", "KINGDRA", "AMPHAROS", "SNORLAX", "ALAKAZAM"]),
     # the first Clair set, kept to try again with the heal before her (run with STORY_TEAM_CLAIR=clair_first)
     "clair_first": dict(level=47, badges=7, places=MAHOGANY + ["Route 44", "Ice Path 1F", "Ice Path B1F", "Ice Path B2F",
                                                               "Ice Path B3F"], ways=WATER,
@@ -234,6 +252,14 @@ SETS = {
                                    PILOSWINE=["AVALANCHE", "EARTHQUAKE", "ICE_FANG", "ROCK_TOMB"])),
 }
 STARTERS = {"CHIKORITA", "CYNDAQUIL", "TOTODILE"}
+# how a Pokemon in a set may have evolved. By level (up to the set's level); with friendship, or knowing a move,
+# which a player gets in time; or with an item (this hack turns each trade evolution into using an item), once
+# the set says the player can have it: "all" from 7 badges, when the Goldenrod Department Store 4F sells every one
+LEVEL_EVOS = {"EVO_LEVEL", "EVO_LEVEL_DAY", "EVO_LEVEL_NIGHT", "EVO_LEVEL_MALE", "EVO_LEVEL_FEMALE",
+              "EVO_LEVEL_ATK_GT_DEF", "EVO_LEVEL_ATK_EQ_DEF", "EVO_LEVEL_ATK_LT_DEF", "EVO_LEVEL_PID_LO",
+              "EVO_LEVEL_PID_HI", "EVO_LEVEL_NINJASK"}
+FREE_EVOS = {"EVO_FRIENDSHIP", "EVO_FRIENDSHIP_DAY", "EVO_FRIENDSHIP_NIGHT", "EVO_HAS_MOVE"}
+ITEM_EVOS = {"EVO_STONE", "EVO_STONE_MALE", "EVO_STONE_FEMALE", "EVO_ITEM_DAY", "EVO_ITEM_NIGHT"}
 EV_TOTAL = {0: 128, 1: 192, 2: 256, 3: 320, 4: 384, 5: 448}       # by badges held; 510 from 6 badges on
 NEUTRAL = 12            # Serious: no stat raised or lowered
 GROWTH = ["MEDIUM_FAST", "ERRATIC", "FLUCTUATING", "MEDIUM_SLOW", "FAST", "SLOW"]
@@ -339,14 +365,22 @@ class Data:
         problems = []
         for name in spec["team"]:
             line = self.line(name)
+            items = spec.get("evo_items", ())
             for stage, method, param in line[:-1]:
-                if method != "EVO_LEVEL":
-                    problems.append("%s evolves by %s, not by level" % (stage, method))
-                elif int(param) > spec["level"]:
-                    problems.append("%s evolves at Lv. %s, above the set's %d" % (stage, param, spec["level"]))
+                if method in LEVEL_EVOS:
+                    if int(param) > spec["level"]:
+                        problems.append("%s evolves at Lv. %s, above the set's %d" % (stage, param, spec["level"]))
+                elif method in FREE_EVOS:
+                    pass
+                elif method in ITEM_EVOS:
+                    if items != "all" and param.replace("ITEM_", "") not in items:
+                        problems.append("%s evolves with %s, which the set doesn't have" % (stage, param))
+                else:
+                    problems.append("%s evolves by %s, which the sets don't allow" % (stage, method))
             ways = [(place, how) for stage, _, _ in line for place, how in self.found.get(stage, [])
                     if place in spec["places"] and how in spec["ways"]]
-            if not ways and not any(stage in STARTERS for stage, _, _ in line):
+            gifts = [stage for stage, _, _ in line if stage in spec.get("gifts", ())]
+            if not ways and not gifts and not any(stage in STARTERS for stage, _, _ in line):
                 problems.append("%s: no member of its line is caught on the way (%s)" % (
                     name, ", ".join(sorted({"%s %s" % (p, h) for stage, _, _ in line
                                            for p, h in self.found.get(stage, [])}))[:200] or "nowhere"))

@@ -20,6 +20,16 @@ The tables come from `python3 balance.py`, run over `results/battles.jsonl`.
   used berries. From the Kanto runs on, it heals before every Gym Leader and
   Rocket executive too (see the playtest README), so later records start
   boss fights at full health where earlier ones may not have.
+- **The bot's teams are not a player's.** The Johto and League sets only
+  used Pokémon caught and evolved by level, and a short list of TMs (not the
+  Goldenrod Department Store's Fire Blast, Thunder, Blizzard or Focus Blast,
+  nor Victory Road's Earthquake). They leaned on type matchups, such as Bugs
+  against Psychic types that are also weak to them through their second type
+  (Heracross, Ariados). A player would more likely bring bulky Pokémon that
+  take hits and hit back hard for neutral damage: Snorlax, Blissey,
+  Tyranitar, Umbreon, Scizor, all of which the hack makes available by the
+  League. So a hard result here can be the set's fault as much as the
+  boss's. The Kanto sets are built the player's way.
 - **The samples are small and mixed.** Most fights were played a handful of
   times. The records span several team versions and bot fixes. A low rate
   across many battles, with the same Pokémon doing the damage each time, is
