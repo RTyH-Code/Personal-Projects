@@ -1229,8 +1229,59 @@ def ss_ticket(bot):
 
 
 def to_olivine_port(bot):
-    # back west to Olivine City (Routes 29 to 39) and down to its port
+    # Fly to Olivine City, then down to its port. (Walking it, the bot went astray across the Johto map's
+    # many wild Pokemon; a player who has Fly uses it)
+    bot.travel("T20")
+    bot.fly("T26")
     bot.travel("P01R0101")
+
+
+def ss_aqua(bot):
+    # The sailor at the gate takes the ticket. Aboard, VAR_UNK_40CB follows a lost girl: stepping along the
+    # corridor (22-26, 14) a gentleman asks the player to find his granddaughter (2); a sailor on the lower
+    # deck (P01R0307, 38, 17 or 19) says Sailor Stanly saw her (FLAG_UNK_0ED); Stanly fights in his cabin
+    # (P01R0303) and then tells where (3); she is with the captain (P01R0302) and runs off (4), down to the
+    # lower deck's west end (5), whence she is led back to her grandfather's cabin (P01R0306), who gives a
+    # Metal Coat as the ship comes in (6, FLAG_BOAT_ARRIVED). The sailor by the stairs then lets the player
+    # off (7) at Vermilion
+    v = lambda: var(bot, "VAR_UNK_40CB")
+    bot.talk("P01R0101", 0)
+    for _ in range(4):                          # past the sailor and out onto the pier: the way out is a step
+        if bot.where()[0] != "P01R0101":        # south onto the warp and one more against it
+            break
+        bot.game.key("down", hold=8, after=30)
+    bot.settle()
+    bot.talk("P01R0102", 0)                     # the sailor at the gangway walks the player aboard
+    bot.travel("P01R0301")
+    if v() < 2:
+        bot.walk("P01R0301", [(24, 14)])
+        bot.settle()
+    if v() < 2:
+        bot.stuck("the gentleman on the S.S. Aqua did not ask for his granddaughter")
+    if v() < 3 and not bot.flag("FLAG_UNK_0ED"):
+        bot.travel("P01R0307")
+        bot.walk("P01R0307", [(38, 17), (38, 19)])        # either side of the sailor, who stands at (38, 18)
+        bot.settle()
+    if v() < 3:
+        bot.travel("P01R0303")
+        bot.talk("P01R0303", 0)
+    if v() < 3:
+        bot.stuck("Sailor Stanly did not say where the girl went")
+    if v() < 4:
+        bot.travel("P01R0302")
+        bot.talk("P01R0302", 1)
+    if v() < 5:
+        bot.travel("P01R0307")
+        bot.talk("P01R0307", 0)
+    for _ in range(5):
+        if bot.flag("FLAG_BOAT_ARRIVED"):
+            break
+        bot.settle()
+    bot.expect("FLAG_BOAT_ARRIVED", "the S.S. Aqua coming in to Vermilion")
+    bot.travel("P01R0301")
+    if v() < 7:
+        bot.talk("P01R0301", 1)
+    bot.travel("T06")
 
 
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
@@ -1245,4 +1296,4 @@ STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokege
           to_ice_path, ice_path_boulders, to_blackthorn, clair_gym, dragons_den,
           elms_news, kimono_girls, ho_oh, to_victory_road,
           victory_road, league, will, koga, bruno, karen, champion,
-          ss_ticket, to_olivine_port]
+          ss_ticket, to_olivine_port, ss_aqua]

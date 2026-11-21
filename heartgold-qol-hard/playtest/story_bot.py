@@ -838,6 +838,34 @@ class Bot:
         want = self.world.map_ids[target]
         return [p for p in dist if owner.get(p) == want]
 
+    # where each town's pin is on the Fly map's touch screen (Johto view), by the town's map code
+    FLY_PINS = {"T20": (152, 116), "T21": (120, 116), "T22": (103, 78), "T23": (88, 132), "T25": (68, 103),
+                "T27": (80, 55), "T26": (55, 78), "T24": (30, 105), "T28": (116, 60), "T29": (116, 30),
+                "T30": (152, 55)}
+
+    def fly(self, town):
+        """Fly to a town visited before, as a player would: the start menu, POKEMON, the lead's Fly (this hack
+        shows it on every Pokemon once HM02 and the Storm Badge are had), then the town's pin on the map."""
+        if town not in self.FLY_PINS:
+            self.stuck("no Fly map pin is known for %s" % town)
+        old = self.where()
+        self.settle()
+        g = self.game
+        g.key("x", after=40)
+        g.touch(36, 72, after=90)          # POKEMON, by touch: the menu's cursor is wherever it was left
+        g.key("a", after=40)               # the lead
+        g.touch(64, 32, after=150)         # Fly, the first of its field moves, at the top left
+        g.touch(*self.FLY_PINS[town], after=40)
+        g.key("a", after=60)
+        for _ in range(60):
+            g.run(10)
+            here = self.where()
+            if here and here[0] == town and g.in_field() and self.free():
+                self.settle()
+                return
+        g.shot(os.path.join(self.out, "fly.png"))
+        self.stuck("Fly from %s to %s did not get there" % (old and old[0], town))
+
     def travel(self, target, near=None):
         """Go to the target map by whatever warps lead there; outdoors, on until the player stands in it. With
         near, to the part of the map that tile is in (a map can be in parts joined only through other maps)."""
