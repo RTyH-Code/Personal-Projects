@@ -1349,6 +1349,9 @@ def surge_gym(bot):
                         break
                 break
     bot.expect("FLAG_SYS_SOLVED_LT_SURGE_GYM", "opening the locks in Lt. Surge's gym")
+    # as before Clair: a player would use potions after the gym's trainers (here a double battle whose
+    # Electrodes explode), so the harness heals the party where it stands. Every Kanto leader gets the same
+    bot.restore_party("before Lt. Surge, after his gym's trainers")
     bot.talk(VERMILION_GYM, 9)
     bot.expect("FLAG_GOT_TM34_FROM_LT_SURGE", "beating Lt. Surge")
 
