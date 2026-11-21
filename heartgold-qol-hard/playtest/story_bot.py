@@ -59,6 +59,10 @@ LEDGES = {0x38: "right", 0x39: "left", 0x3A: "up", 0x3B: "down"}
 LADDERS = {0x3C: "up", 0x3D: "down", 0x3E: "down"}
 NO_BUTTON = (128, 120)  # "No" of the touch-screen Yes/No buttons
 ICE = 0x20              # the player slides across it until something stops them
+# Blue's gym floor: arrows that carry the player on, over plain floor and turning at each arrow met, until a
+# stop tile or something in the way
+ARROWS = {0x40: "right", 0x41: "left", 0x42: "up", 0x43: "down"}
+ARROW_STOP = 0x4D
 BRIDGE = 0x2E           # an arch: a walkway over it one way, a path under it the other
 FLAT_BRIDGES = {"T07GYM0101"}   # where the same tile is a wooden walk the player steps off any side (Erika's gym)
 FIELD_OBSTACLES = {"std_field_cut", "std_field_rock_smash", "std_field_strength"}
@@ -363,6 +367,22 @@ class Bot:
                             break
                         nxt = n2
                     b = tiles.get(nxt)
+                if b in ARROWS:
+                    way, moves = ARROWS[b], 0
+                    while moves < 200:
+                        moves += 1
+                        ax, az, _ = DIRS[way]
+                        n2 = (nxt[0] + ax, nxt[1] + az)
+                        b2 = tiles.get(n2)
+                        if b2 is None or n2 in blocked:
+                            break
+                        nxt = n2
+                        if b2 == ARROW_STOP:
+                            break
+                        way = ARROWS.get(b2, way)
+                    if moves >= 200:
+                        continue                   # round and round: never stops
+                    b = tiles.get(nxt)
                 state2 = (nxt, axis(d) if b == BRIDGE and code not in FLAT_BRIDGES else None)
                 if state2 in seen:
                     continue
@@ -488,7 +508,8 @@ class Bot:
             for d in route:
                 p = self.game.position()
                 dx, dz, _ = DIRS[d]
-                if p and ICE in (tiles_here.get((p[1], p[2])), tiles_here.get((p[1] + dx, p[2] + dz))):
+                if p and (ICE in (tiles_here.get((p[1], p[2])), tiles_here.get((p[1] + dx, p[2] + dz)))
+                          or tiles_here.get((p[1] + dx, p[2] + dz)) in ARROWS):
                     # a slide: one move, wait for the player to stop, and plan again from wherever that is
                     self.game.key(d, hold=6, after=10)
                     last = None
