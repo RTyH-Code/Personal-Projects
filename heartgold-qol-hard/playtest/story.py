@@ -1369,20 +1369,16 @@ CELADON_GYM = "T07GYM0101"
 
 def erika_gym(bot):
     # west along Route 7 to Celadon City, the Erika set, then her gym: a small tree just inside the door
-    # (7, 42) is cut (A, and Yes to Cut: the hack lets the HM work untaught), and two more stand in the garden
-    # (1, 15) and (7, 16), cut only if the way to Erika (7, 3) needs it
+    # (7, 42) and two more in the garden (1, 15) and (7, 16): whichever the player can reach is cut (A, and Yes
+    # to Cut: the hack lets the HM work untaught) until there is a way to Erika (7, 3)
     heal(bot, "T07PC0101", team="erika")
     bot.travel(CELADON_GYM)
-    if 0 in bot.objects():
-        bot.talk(CELADON_GYM, 0)
-    for tree in (None, 2, 1):
-        if tree is not None and tree in bot.objects():
-            bot.talk(CELADON_GYM, tree)
+    for _ in range(4):
         try:
             bot.talk(CELADON_GYM, 8, boss="Erika")
             break
         except Exception as e:
-            if type(e).__name__ != "Stuck" or "no path" not in str(e):
+            if type(e).__name__ != "Stuck" or "no path" not in str(e) or not bot.cut_trees(CELADON_GYM):
                 raise
     bot.expect("FLAG_GOT_TM19_FROM_ERIKA", "beating Erika")
 

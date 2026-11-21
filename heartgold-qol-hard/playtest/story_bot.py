@@ -60,6 +60,7 @@ LADDERS = {0x3C: "up", 0x3D: "down", 0x3E: "down"}
 NO_BUTTON = (128, 120)  # "No" of the touch-screen Yes/No buttons
 ICE = 0x20              # the player slides across it until something stops them
 BRIDGE = 0x2E           # an arch: a walkway over it one way, a path under it the other
+FLAT_BRIDGES = {"T07GYM0101"}   # where the same tile is a wooden walk the player steps off any side (Erika's gym)
 FIELD_OBSTACLES = {"std_field_cut", "std_field_rock_smash", "std_field_strength"}
 COUNTER = 0x80          # a shop or reception counter: people behind it are talked to across it
 EDGES = {0x6C: "right", 0x6D: "left", 0x6E: "up", 0x6F: "down", 0x62: "right", 0x63: "left",    # warp edges,
@@ -362,7 +363,7 @@ class Bot:
                             break
                         nxt = n2
                     b = tiles.get(nxt)
-                state2 = (nxt, axis(d) if b == BRIDGE else None)
+                state2 = (nxt, axis(d) if b == BRIDGE and code not in FLAT_BRIDGES else None)
                 if state2 in seen:
                     continue
                 seen[state2] = (state, d)
