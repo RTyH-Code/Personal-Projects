@@ -1442,6 +1442,7 @@ def run():
                     bot.game.emu.savestate.load_file(before)
                     bot.game.run(60 + (random.randint(0, JITTER) if JITTER else 0))
                     bot.battling = False
+                    bot.shut = set()        # doors the first try found shut may be open from the stage's start
         except Stuck as e:
             results.append(dict(stage=stage.__name__, result="stuck", note=str(e)))
             json.dump(results, open(os.path.join(out, "story.json"), "w"), indent=1)
