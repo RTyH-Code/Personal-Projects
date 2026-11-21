@@ -1541,6 +1541,7 @@ def blaine_gym(bot):
     bot.travel(SEAFOAM_GYM)
     # the gym's six scientists (objects 2-7) each stand in a passage until beaten, then step aside: battle
     # whichever the player can reach until there's a way to Blaine
+    talked = set()          # once beaten a scientist steps aside but stays (talking again starts nothing)
     for _ in range(8):
         try:
             bot.talk(SEAFOAM_GYM, 0, boss="Blaine")
@@ -1549,10 +1550,11 @@ def blaine_gym(bot):
             if type(e).__name__ != "Stuck" or "no path" not in str(e):
                 raise
         for i in range(2, 8):
-            if i not in bot.objects():
+            if i not in bot.objects() or i in talked:
                 continue
             try:
                 bot.talk(SEAFOAM_GYM, i)
+                talked.add(i)
                 break
             except Exception as e:
                 if type(e).__name__ != "Stuck" or "no path" not in str(e):
