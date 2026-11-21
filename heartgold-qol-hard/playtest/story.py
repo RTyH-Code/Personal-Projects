@@ -1568,9 +1568,15 @@ VIRIDIAN_GYM = "T02GYM0101"
 
 
 def blue_gym(bot):
-    # back by sea up Route 21 to Pallet Town and north to Viridian City, the Blue set at its Pokemon Center, and
-    # through his gym's Ace Trainers to Blue at (5, 4), the last Kanto leader
+    # Blue waits on Cinnabar Island (1036, 494); with seven Kanto badges he goes home to Viridian and unlocks his
+    # gym (FLAG_UNK_25A, and the old man at its door steps aside). Then back by sea up Route 21 to Pallet Town and
+    # north to Viridian City, the Blue set at its Pokemon Center, and through his gym's Ace Trainers to Blue at
+    # (5, 4), the last Kanto leader
     heal_first(bot)
+    if not bot.flag("FLAG_UNK_25A"):
+        bot.travel("T09")
+        bot.talk("T09", 0)
+        bot.expect("FLAG_UNK_25A", "Blue going home from Cinnabar Island")
     heal(bot, "T02PC0101", team="blue")
     bot.travel(VIRIDIAN_GYM)
     bot.talk(VIRIDIAN_GYM, 5, boss="Blue")
