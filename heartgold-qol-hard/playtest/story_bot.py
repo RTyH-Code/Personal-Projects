@@ -624,6 +624,36 @@ class Bot:
     def _go_through(self, code, warp_index, into=None):
         warp = self.world.events(code)["warp_events"][warp_index]
         tile = (warp["x"], warp["z"])
+        # a warp to somewhere else on the same map (Diglett's Cave's ladders): the map doesn't change, so it has
+        # worked once the player stands at (or just off) the warp it leads to
+        if warp["dest_header_id"] == "MAP_" + code:
+            dest = self.world.events(code)["warp_events"][warp["dest_warp_id"]]
+            dest = (dest["x"], dest["z"])
+            arrived = self.arrived
+
+            def same_map_arrived(old, frames=400):
+                for _ in range(frames // 10):
+                    self.game.run(10)
+                    here = self.where()
+                    if here and here[0] == code and abs(here[1] - dest[0]) + abs(here[2] - dest[1]) <= 1:
+                        self.settle()
+                        return True
+                return arrived(old, frames) if frames > 0 else False
+            self.arrived = same_map_arrived
+            try:
+                return self._go_through_warp(code, warp_index, into, warp, tile)
+            except Stuck:
+                # the walk onto it can end in a "no path" once the warp has moved the player on: that's success
+                here = self.where()
+                if here and here[0] == code and abs(here[1] - dest[0]) + abs(here[2] - dest[1]) <= 1:
+                    self.settle()
+                    return
+                raise
+            finally:
+                self.arrived = arrived
+        return self._go_through_warp(code, warp_index, into, warp, tile)
+
+    def _go_through_warp(self, code, warp_index, into, warp, tile):
         entry, found = self.warp_entry(code, warp_index)   # a door is a blocked tile with the door behaviour
         if into is None:
             into = found
@@ -962,6 +992,11 @@ class Bot:
                     except Stuck as e:
                         if isinstance(e, Moved) or "no path" not in str(e):
                             raise
+                        # a Cut tree may stand in the way (Route 2): cut what can be reached and plan again
+                        cur = self.where()
+                        if not cut and cur and self.cut_trees(cur[0]):
+                            cut = True
+                            raise Moved(str(e))
                         # the warp can't be reached from here after all (a door shut by script): plan round it
                         self.shut.add((code, index, (here[1], here[2]) if here else None))
                         raise Moved(str(e))
