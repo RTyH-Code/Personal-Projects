@@ -1564,6 +1564,19 @@ def blaine_gym(bot):
     bot.expect("FLAG_GOT_TM50_FROM_BLAINE", "beating Blaine")
 
 
+VIRIDIAN_GYM = "T02GYM0101"
+
+
+def blue_gym(bot):
+    # back by sea up Route 21 to Pallet Town and north to Viridian City, the Blue set at its Pokemon Center, and
+    # through his gym's Ace Trainers to Blue at (5, 4), the last Kanto leader
+    heal_first(bot)
+    heal(bot, "T02PC0101", team="blue")
+    bot.travel(VIRIDIAN_GYM)
+    bot.talk(VIRIDIAN_GYM, 5, boss="Blue")
+    bot.expect("FLAG_GOT_TM92_FROM_BLUE", "beating Blue")
+
+
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
           back_to_elm, stolen_pokemon, to_violet, sprout_tower,
           violet_gym, mystery_egg, to_azalea, kurt, slowpoke_well, azalea_gym, to_ilex, farfetchd,
@@ -1578,4 +1591,4 @@ STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokege
           victory_road, league, will, koga, bruno, karen, champion,
           ss_ticket, to_olivine_port, ss_aqua, surge_gym,
           sabrina_gym, erika_gym, power_plant, machine_part, restore_power, misty_gym,
-          janine_gym, wake_snorlax, brock_gym, blaine_gym]
+          janine_gym, wake_snorlax, brock_gym, blaine_gym, blue_gym]
