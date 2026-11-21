@@ -1506,6 +1506,34 @@ def janine_gym(bot):
     bot.expect("FLAG_GOT_TM84_FROM_JANINE", "beating Janine")
 
 
+PEWTER_GYM = "T03GYM0101"
+SEAFOAM_GYM = "D11R0106"
+
+
+def brock_gym(bot):
+    # Pewter City is far off by land: Route 11's Snorlax sleeps across Diglett's Cave, and Seafoam's two halves
+    # join only through its boulder and current puzzle. So Fly to the Indigo Plateau and walk down through
+    # Victory Road and the League gate to Route 22, Viridian City, and north through Viridian Forest to Pewter.
+    # The Brock set there, and his gym's two trainers to Brock at (7, 4)
+    heal_first(bot)
+    bot.fly("T10")
+    heal(bot, "T03PC0101", team="brock")
+    bot.travel(PEWTER_GYM)
+    bot.talk(PEWTER_GYM, 1, boss="Brock")
+    bot.expect("FLAG_GOT_TM80_FROM_BROCK", "beating Brock")
+
+
+def blaine_gym(bot):
+    # south from Viridian to Pallet Town, by water down Route 21 to Cinnabar Island (the Blaine set at its
+    # Pokemon Center), and east along Route 20 to Seafoam's east entrance: Blaine's gym moved into the cave
+    # after the volcano. Blaine at (13, 12)
+    heal_first(bot)
+    heal(bot, "T09PC0101", team="blaine")
+    bot.travel(SEAFOAM_GYM)
+    bot.talk(SEAFOAM_GYM, 0, boss="Blaine")
+    bot.expect("FLAG_GOT_TM50_FROM_BLAINE", "beating Blaine")
+
+
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
           back_to_elm, stolen_pokemon, to_violet, sprout_tower,
           violet_gym, mystery_egg, to_azalea, kurt, slowpoke_well, azalea_gym, to_ilex, farfetchd,
@@ -1520,4 +1548,4 @@ STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokege
           victory_road, league, will, koga, bruno, karen, champion,
           ss_ticket, to_olivine_port, ss_aqua, surge_gym,
           sabrina_gym, erika_gym, power_plant, machine_part, restore_power, misty_gym,
-          janine_gym]
+          janine_gym, brock_gym, blaine_gym]
