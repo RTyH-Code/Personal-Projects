@@ -872,9 +872,21 @@ class Bot:
                     "SPECIES_" + names.get(m.species, ""), {}).get("MachineMoves", []):
                 slot = i
                 break
-        g.run(30)
-        g.key("x", after=70)               # the menu slides in: a touch too soon lands on the wrong icon
-        g.touch(36, 72, after=150)         # POKEMON, by touch: the menu's cursor is wherever it was left
+        for _ in range(4):
+            g.run(30)
+            g.key("x", after=70)           # the menu slides in: a touch too soon lands on the wrong icon
+            g.touch(36, 72, after=150)     # POKEMON, by touch: the menu's cursor is wherever it was left
+            # the party screen's background is a pale cyan at its left edge; anything else (the Bag, say), back
+            # out to the field and try again
+            r, gr, b = g.emu.screenshot().convert("RGB").getpixel((5, 192 + 100))
+            if r < 190 and gr > 190 and b > 200:
+                break
+            for _ in range(4):
+                if g.in_field() and self.free():
+                    break
+                g.key("b", after=40)
+        else:
+            self.stuck("the party screen did not open for Fly")
         # the party sits in two columns of three, the right one a little lower: touch the Pokemon's
         # panel (the first touch picks it out, a second opens its menu)
         panel = (64 if slot % 2 == 0 else 190, 30 + 48 * (slot // 2) + 10 * (slot % 2))
