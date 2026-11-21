@@ -1383,15 +1383,20 @@ def erika_gym(bot):
     bot.expect("FLAG_GOT_TM19_FROM_ERIKA", "beating Erika")
 
 
-POWER_PLANT = "R10R0202"
+POWER_PLANT = "R10R0201"         # Route 10's door leads here; with the power out the game puts the player in
+                                 # R10R0202, the same building and people: talk to whichever the player is in
+
+
+def plant_manager(bot):
+    bot.travel(POWER_PLANT)
+    bot.talk(bot.where()[0], 6)
 CERULEAN_GYM = "T04GYM0101"
 
 
 def power_plant(bot):
     # east by Route 8 to Lavender Town and north up Route 10 to the Power Plant, whose manager (13, 8) tells of
     # the stolen Machine Part (FLAG_GOT_POWER_PLANT_MANAGERS_STORY)
-    bot.travel(POWER_PLANT)
-    bot.talk(POWER_PLANT, 6)
+    plant_manager(bot)
     bot.expect("FLAG_GOT_POWER_PLANT_MANAGERS_STORY", "the Power Plant manager's story")
 
 
@@ -1422,8 +1427,7 @@ def machine_part(bot):
 
 def restore_power(bot):
     # back to the Power Plant: the manager takes the part and the power comes back (FLAG_RESTORED_POWER)
-    bot.travel(POWER_PLANT)
-    bot.talk(POWER_PLANT, 6)
+    plant_manager(bot)
     bot.expect("FLAG_RESTORED_POWER", "giving the Machine Part back")
 
 
