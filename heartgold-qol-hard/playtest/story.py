@@ -1517,7 +1517,7 @@ def wake_snorlax(bot):
     heal_first(bot)
     if not bot.flag("FLAG_HIDE_ROUTE_11_SNORLAX"):
         bot.travel("R11")
-        bot.talk("R11", 4)
+        bot.talk("R11", 9)          # its four tiles are four objects: this one, (1355, 304), faces the way in
         bot.settle()
     bot.expect("FLAG_HIDE_ROUTE_11_SNORLAX", "waking the Snorlax on Route 11")
 
