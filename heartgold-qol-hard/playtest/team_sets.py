@@ -238,8 +238,11 @@ SETS = {
     "brock": kanto(70, 13, "PEWTER_K", ["KINGDRA", "POLIWRATH", "BELLOSSOM", "SCIZOR", "QUAGSIRE", "SNORLAX"]),
     # Fire types: Water, Rock and Ground
     "blaine": kanto(72, 14, "SEAFOAM_K", ["KINGDRA", "TYRANITAR", "QUAGSIRE", "GYARADOS", "LAPRAS", "BLISSEY"]),
-    # a mixed team (Exeggutor, Arcanine, Rhydon, Gyarados, Machamp, Pidgeot)
-    "blue": kanto(76, 15, "VIRIDIAN_K", ["TYRANITAR", "SCIZOR", "KINGDRA", "AMPHAROS", "SNORLAX", "ALAKAZAM"]),
+    # a mixed team (Exeggutor, Arcanine, Rhydon, Gyarados, Machamp, Pidgeot). Ampharos was fourth: Blue's
+    # Gyarados (Intimidate, Dragon Dance) came in on whatever had beaten Rhydon and swept five of ours in four
+    # losses out of four. The bot never switches, so the second in line meets Rhydon and then Gyarados: Lanturn
+    # (Water and Electric) washes Rhydon away and hits Gyarados hard, and takes its Waterfalls
+    "blue": kanto(76, 15, "VIRIDIAN_K", ["TYRANITAR", "LANTURN", "KINGDRA", "SCIZOR", "SNORLAX", "ALAKAZAM"]),
     # the first Clair set, kept to try again with the heal before her (run with STORY_TEAM_CLAIR=clair_first)
     "clair_first": dict(level=47, badges=7, places=MAHOGANY + ["Route 44", "Ice Path 1F", "Ice Path B1F", "Ice Path B2F",
                                                               "Ice Path B3F"], ways=WATER,
