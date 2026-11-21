@@ -875,19 +875,23 @@ class Bot:
         for _ in range(4):
             g.run(30)
             g.key("x", after=70)           # the menu slides in: a touch too soon lands on the wrong icon
-            # POKEMON, by touch (the menu's cursor is wherever it was left): the first touch can only pick it
-            # out, a second opens it (if the first did, the second lands on the party screen and picks a panel)
-            g.touch(36, 72, after=40)
-            g.touch(36, 72, after=30)
-            # the party screen (it takes a few seconds to come up) has a pale cyan background at its left edge;
-            # anything else (the Bag, say), back out to the field and try again
-            opened = False
-            for _ in range(40):
-                g.run(10)
+            # POKEMON, by touch (the menu's cursor is wherever it was left). A touch can only pick it out, so
+            # touch again if the party screen (a pale cyan background at its left edge, which takes a few seconds
+            # to come up) hasn't started to show. Anything else (the Bag, say): back out and try again
+            def party_screen():
                 r, gr, b = g.emu.screenshot().convert("RGB").getpixel((5, 192 + 100))
-                if r < 190 and gr > 170 and b > 180:
-                    opened = True
-                    break
+                return r < 190 and gr > 170 and b > 180
+            def wait_party(frames):
+                for _ in range(frames // 10):
+                    g.run(10)
+                    if party_screen():
+                        return True
+                return False
+            g.touch(36, 72, after=10)
+            opened = wait_party(100)
+            if not opened and g.in_field():     # still the menu, with POKEMON only picked out
+                g.touch(36, 72, after=10)
+            opened = opened or wait_party(400)
             if opened:
                 g.run(30)
                 break
@@ -897,15 +901,24 @@ class Bot:
                 g.key("b", after=40)
         else:
             self.stuck("the party screen did not open for Fly")
-        # the party sits in two columns of three, the right one a little lower: touch the Pokemon's
-        # panel (the first touch picks it out, a second opens its menu)
+        # the party sits in two columns of three, the right one a little lower: touch the Pokemon's panel, then
+        # Fly, the first of its field moves, at the top left of its menu. A touch while a screen is still coming
+        # up only picks a button out, so each is touched until the next screen shows: the menu by its orange Fly
+        # button at (40, 30), the map by that button being gone
+        def fly_button():
+            r, gr, b = g.emu.screenshot().convert("RGB").getpixel((40, 192 + 30))
+            return r > 220 and 160 <= gr <= 220 and b < 100
         panel = (64 if slot % 2 == 0 else 190, 30 + 48 * (slot // 2) + 10 * (slot % 2))
-        g.touch(*panel, after=30)
-        g.touch(*panel, after=60)
-        # Fly, the first of its field moves, at the top left. The first touch can only pick it out; a second
-        # chooses it (if the first did, the second lands on the map, off any town, and does nothing)
-        g.touch(64, 32, after=30)
-        g.touch(64, 32, after=150)
+        for step, want in ((panel, True), ((64, 32), False)):
+            for _ in range(3):
+                g.touch(*step, after=10)
+                for _ in range(20):
+                    g.run(10)
+                    if fly_button() == want:
+                        break
+                if fly_button() == want:
+                    break
+        g.run(60)
         g.touch(*pins[town], after=40)
         g.key("a", after=60)
         for _ in range(60):
