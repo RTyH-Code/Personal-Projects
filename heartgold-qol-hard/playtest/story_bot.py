@@ -840,24 +840,50 @@ class Bot:
         want = self.world.map_ids[target]
         return [p for p in dist if owner.get(p) == want]
 
-    # where each town's pin is on the Fly map's touch screen (Johto view), by the town's map code
+    # where each town's pin is on the Fly map's touch screen, by the town's map code. The map shows the region
+    # the player is in: Johto, or Kanto (towns T01-T11, routes R01-R28)
+    KANTO_PINS = {"T01": (116, 107), "T02": (112, 80), "T03": (120, 38), "T04": (183, 45), "T05": (212, 75),
+                  "T06": (182, 97), "T07": (160, 80), "T08": (160, 118), "T09": (116, 139), "T10": (84, 68),
+                  "T11": (183, 72)}
     FLY_PINS = {"T20": (152, 116), "T21": (120, 116), "T22": (103, 78), "T23": (88, 132), "T25": (68, 103),
                 "T27": (80, 55), "T26": (55, 78), "T24": (30, 105), "T28": (116, 60), "T29": (116, 30),
                 "T30": (152, 55)}
 
     def fly(self, town):
-        """Fly to a town visited before, as a player would: the start menu, POKEMON, the lead's Fly (this hack
-        shows it on every Pokemon once HM02 and the Storm Badge are had), then the town's pin on the map."""
-        if town not in self.FLY_PINS:
-            self.stuck("no Fly map pin is known for %s" % town)
+        """Fly to a town visited before, as a player would: the start menu, POKEMON, a Pokemon's Fly (this hack
+        shows it without the move taught, once HM02 and the Storm Badge are had), then the town's pin on the
+        map. Only towns visited have a pin."""
         old = self.where()
+        kanto = lambda code: code[:1] in "TR" and code[1:3].isdigit() and int(code[1:3]) <= (11 if code[0] == "T" else 28)
+        pins = self.KANTO_PINS if old and kanto(old[0]) else self.FLY_PINS
+        if town not in pins:
+            self.stuck("no Fly map pin is known for %s on the %s map" % (town, "Kanto" if pins is self.KANTO_PINS
+                                                                       else "Johto"))
         self.settle()
         g = self.game
-        g.key("x", after=40)
-        g.touch(36, 72, after=90)          # POKEMON, by touch: the menu's cursor is wherever it was left
-        g.key("a", after=40)               # the lead
-        g.touch(64, 32, after=150)         # Fly, the first of its field moves, at the top left
-        g.touch(*self.FLY_PINS[town], after=40)
+        # which Pokemon the menu shows Fly on: the first that could learn it, or else the first in the party
+        # (even fainted). A Pokemon that can't be read is taken not to learn it
+        names = {v: k for k, v in self.sets.species_ids.items()}
+        learnsets = self.sets.bt.LEARNSETS
+        slot = 0
+        for i, m in enumerate(self.party_mons()):
+            if m.valid() and not m.is_egg and "MOVE_FLY" in learnsets.get(
+                    "SPECIES_" + names.get(m.species, ""), {}).get("MachineMoves", []):
+                slot = i
+                break
+        g.run(30)
+        g.key("x", after=70)               # the menu slides in: a touch too soon lands on the wrong icon
+        g.touch(36, 72, after=150)         # POKEMON, by touch: the menu's cursor is wherever it was left
+        # the party sits in two columns of three, the right one a little lower: touch the Pokemon's
+        # panel (the first touch picks it out, a second opens its menu)
+        panel = (64 if slot % 2 == 0 else 190, 30 + 48 * (slot // 2) + 10 * (slot % 2))
+        g.touch(*panel, after=30)
+        g.touch(*panel, after=60)
+        # Fly, the first of its field moves, at the top left. The first touch can only pick it out; a second
+        # chooses it (if the first did, the second lands on the map, off any town, and does nothing)
+        g.touch(64, 32, after=30)
+        g.touch(64, 32, after=150)
+        g.touch(*pins[town], after=40)
         g.key("a", after=60)
         for _ in range(60):
             g.run(10)

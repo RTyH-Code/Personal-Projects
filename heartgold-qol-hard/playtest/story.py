@@ -1352,6 +1352,18 @@ def surge_gym(bot):
     bot.expect("FLAG_GOT_TM34_FROM_LT_SURGE", "beating Lt. Surge")
 
 
+SAFFRON_GYM = "T11GYM0101"
+
+
+def sabrina_gym(bot):
+    # north up Route 6 to Saffron City, the Sabrina set from its Pokemon Center, then across her gym's rooms by
+    # their teleport pads (warps within the map, which the route planner follows) to Sabrina at (15, 13)
+    heal(bot, "T11PC0101", team="sabrina")
+    bot.travel(SAFFRON_GYM, near=(15, 14))
+    bot.talk(SAFFRON_GYM, 5, boss="Sabrina")
+    bot.expect("FLAG_GOT_TM48_FROM_SABRINA", "beating Sabrina")
+
+
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
           back_to_elm, stolen_pokemon, to_violet, sprout_tower,
           violet_gym, mystery_egg, to_azalea, kurt, slowpoke_well, azalea_gym, to_ilex, farfetchd,
@@ -1364,4 +1376,5 @@ STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokege
           to_ice_path, ice_path_boulders, to_blackthorn, clair_gym, dragons_den,
           elms_news, kimono_girls, ho_oh, to_victory_road,
           victory_road, league, will, koga, bruno, karen, champion,
-          ss_ticket, to_olivine_port, ss_aqua, surge_gym]
+          ss_ticket, to_olivine_port, ss_aqua, surge_gym,
+          sabrina_gym]
