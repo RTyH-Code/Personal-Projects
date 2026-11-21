@@ -243,6 +243,12 @@ SETS = {
     # losses out of four. The bot never switches, so the second in line meets Rhydon and then Gyarados: Lanturn
     # (Water and Electric) washes Rhydon away and hits Gyarados hard, and takes its Waterfalls
     "blue": kanto(76, 15, "VIRIDIAN_K", ["TYRANITAR", "LANTURN", "KINGDRA", "SCIZOR", "SNORLAX", "ALAKAZAM"]),
+    # ---- the Elite Four's second round (Lv. 80-84) and Lance (88), after the eight Kanto badges. Dark and Steel
+    # for Will's Psychic types, Steel and Psychic for Koga's Poison types, Fairy and Psychic for Bruno's Fighting
+    # types, Fairy, Bug and Rock for Karen's Dark types, Ice and Fairy for Lance's Dragons; Snorlax to take hits
+    "elite_four_2": kanto(88, 16, "VIRIDIAN_K", ["TYRANITAR", "SCIZOR", "TOGEKISS", "LAPRAS", "ALAKAZAM", "SNORLAX"],
+                          items=dict(TOGEKISS="SITRUS_BERRY", LAPRAS="SITRUS_BERRY"),
+                          moves=dict(TOGEKISS=["AIR_SLASH", "AURA_SPHERE", "FIRE_BLAST", "ROOST"])),
     # the first Clair set, kept to try again with the heal before her (run with STORY_TEAM_CLAIR=clair_first)
     "clair_first": dict(level=47, badges=7, places=MAHOGANY + ["Route 44", "Ice Path 1F", "Ice Path B1F", "Ice Path B2F",
                                                               "Ice Path B3F"], ways=WATER,

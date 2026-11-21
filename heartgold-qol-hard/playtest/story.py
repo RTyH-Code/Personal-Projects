@@ -1135,17 +1135,17 @@ def victory_road(bot):
     if bot.where()[0] != LEAGUE_ENTRANCE:
         bot.travel(LEAGUE_ENTRANCE)
 
-def league(bot):
+def league(bot, team="elite_four"):
     # a heal from the nurse in the entrance hall, the Elite Four set from the PC there, and the guard at the
     # counter, who steps aside when talked to
     import os
     bot.travel(LEAGUE_ENTRANCE)
     bot.talk(LEAGUE_ENTRANCE, 0, answers=["a"])
-    bot.swap_team(os.environ.get("STORY_TEAM_ELITE_FOUR", "elite_four"))     # from the PC there, as set now
+    bot.swap_team(os.environ.get("STORY_TEAM_" + team.upper(), team))     # from the PC there, as set now
     bot.talk(LEAGUE_ENTRANCE, 8)
 
 
-def elite_four_member(bot, room, beaten, name):
+def elite_four_member(bot, room, beaten, name, leads=None):
     # one of the four rooms; its door opens once its trainer is beaten. There is nowhere to heal between them:
     # a player would use potions, and carry more than one of each berry, so the harness heals the party where
     # it stands and gives back berries used up. That makes each room's fight start the same way however the
@@ -1154,7 +1154,7 @@ def elite_four_member(bot, room, beaten, name):
     import random
     bot.travel(room)
     bot.settle()
-    bot.restore_party("before %s" % name, refill=REFILL_BERRIES, lead=LEADS.get(name))
+    bot.restore_party("before %s" % name, refill=REFILL_BERRIES, lead=(leads or LEADS).get(name))
     # a retry starts from the same save state, and with the same random numbers the battle would play out
     # move for move the same: wait a different while first (the game's random numbers move on every frame)
     bot.game.run(random.randint(1, 600))
@@ -1181,12 +1181,12 @@ def bruno(bot):
 def karen(bot):
     elite_four_member(bot, *ELITE_FOUR[3])
 
-def champion(bot):
+def champion(bot, leads=None):
     # Lance, in the last room: the battle starts as the player walks up to him (5-7, 10). After it, the Hall of
     # Fame (FLAG_UNK_97E is set just before the credits), the credits, and the player back in the overworld
     bot.travel(LANCE_ROOM)
     bot.settle()
-    bot.restore_party("before Lance", refill=REFILL_BERRIES, lead=LEADS["Lance"])
+    bot.restore_party("before Lance", refill=REFILL_BERRIES, lead=(leads or LEADS)["Lance"])
     import random
     bot.game.run(random.randint(1, 600))          # as for the Elite Four: a retry plays out differently
     try:
@@ -1195,7 +1195,29 @@ def champion(bot):
         # after the battle the scene takes the player on to the Hall of Fame, part way through the walk
         if type(e).__name__ != "Moved":
             raise
-    hall_of_fame(bot)
+    if leads is LEADS_2:
+        hall_of_fame_again(bot)
+    else:
+        hall_of_fame(bot)
+
+
+def hall_of_fame_again(bot):
+    # a second time, FLAG_UNK_97E is already set: wait to be in the Hall of Fame, then press on through it and
+    # the credits until the player is free somewhere else
+    for _ in range(120):
+        here = bot.where()
+        if here and here[0] == HALL_OF_FAME:
+            break
+        bot.game.key("a", after=60)
+        bot.game.run(120)
+    else:
+        bot.stuck("beating Lance again did not lead to the Hall of Fame")
+    for _ in range(300):
+        here = bot.where()
+        if here and here[0] not in (HALL_OF_FAME, LANCE_ROOM) and bot.game.in_field() and bot.free():
+            return
+        bot.game.key("a", after=60)
+    bot.stuck("the Hall of Fame and credits did not end")
 
 
 def hall_of_fame(bot):
@@ -1583,6 +1605,44 @@ def blue_gym(bot):
     bot.expect("FLAG_GOT_TM92_FROM_BLUE", "beating Blue")
 
 
+# ---------------------------------------------------------------- the Elite Four's second round
+
+# With the eight Kanto badges (VAR_UNK_4135 8) the Elite Four and Lance field their second teams. The League's
+# entrance hall clears the beaten flags, so the same rooms and stages serve, with the second-round set and these
+# leads: Tyranitar for Will's Bronzong, Scizor for Koga's Skuntank and Karen's Weavile, Togekiss for Bruno's
+# Hitmontop, Lapras for Lance's Aerodactyl
+LEADS_2 = {"Will": "TYRANITAR", "Koga": "SCIZOR", "Bruno": "TOGEKISS", "Karen": "SCIZOR", "Lance": "LAPRAS"}
+
+
+def league_2(bot):
+    if var(bot, "VAR_UNK_4135") < 8:
+        bot.stuck("the Elite Four's second round needs the eight Kanto badges (VAR_UNK_4135 is %d)"
+                  % var(bot, "VAR_UNK_4135"))
+    heal_first(bot)
+    bot.fly("T10")
+    league(bot, team="elite_four_2")
+
+
+def will_2(bot):
+    elite_four_member(bot, *ELITE_FOUR[0], leads=LEADS_2)
+
+
+def koga_2(bot):
+    elite_four_member(bot, *ELITE_FOUR[1], leads=LEADS_2)
+
+
+def bruno_2(bot):
+    elite_four_member(bot, *ELITE_FOUR[2], leads=LEADS_2)
+
+
+def karen_2(bot):
+    elite_four_member(bot, *ELITE_FOUR[3], leads=LEADS_2)
+
+
+def champion_2(bot):
+    champion(bot, leads=LEADS_2)
+
+
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
           back_to_elm, stolen_pokemon, to_violet, sprout_tower,
           violet_gym, mystery_egg, to_azalea, kurt, slowpoke_well, azalea_gym, to_ilex, farfetchd,
@@ -1597,4 +1657,5 @@ STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokege
           victory_road, league, will, koga, bruno, karen, champion,
           ss_ticket, to_olivine_port, ss_aqua, surge_gym,
           sabrina_gym, erika_gym, power_plant, machine_part, restore_power, misty_gym,
-          janine_gym, wake_snorlax, brock_gym, blaine_gym, blue_gym]
+          janine_gym, wake_snorlax, brock_gym, blaine_gym, blue_gym,
+          league_2, will_2, koga_2, bruno_2, karen_2, champion_2]
