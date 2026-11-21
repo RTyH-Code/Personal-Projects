@@ -1477,6 +1477,19 @@ def misty_gym(bot):
     bot.expect("FLAG_GOT_TM03_FROM_MISTY", "beating Misty")
 
 
+FUCHSIA_GYM = "T08GYM0101"
+
+
+def janine_gym(bot):
+    # south from Lavender down Routes 12 to 15 to Fuchsia City, the Janine set, then her gym: invisible walls
+    # (in the map's collision, which the planner reads) and four trainers dressed as Janine. The real one is
+    # at (7, 16)
+    heal(bot, "T08PC0101", team="janine")
+    bot.travel(FUCHSIA_GYM)
+    bot.talk(FUCHSIA_GYM, 2, boss="Janine")
+    bot.expect("FLAG_GOT_TM84_FROM_JANINE", "beating Janine")
+
+
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
           back_to_elm, stolen_pokemon, to_violet, sprout_tower,
           violet_gym, mystery_egg, to_azalea, kurt, slowpoke_well, azalea_gym, to_ilex, farfetchd,
@@ -1490,4 +1503,5 @@ STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokege
           elms_news, kimono_girls, ho_oh, to_victory_road,
           victory_road, league, will, koga, bruno, karen, champion,
           ss_ticket, to_olivine_port, ss_aqua, surge_gym,
-          sabrina_gym, erika_gym, power_plant, machine_part, restore_power, misty_gym]
+          sabrina_gym, erika_gym, power_plant, machine_part, restore_power, misty_gym,
+          janine_gym]
