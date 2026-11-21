@@ -1286,7 +1286,71 @@ def ss_aqua(bot):
     bot.travel("P01R0301")
     if v() < 7:
         bot.talk("P01R0301", 1)
+    # off the ship into Vermilion's port building, where the sailor at its gate (7, 9) stands aside for a
+    # passenger who speaks to him from below (the planner can't see past him)
+    bot.travel("P01R0104")
+    for _ in range(4):                  # the way on is from (12, 13) a step north onto the
+        # warp (12, 12) and one more against it
+        if bot.where()[0] != "P01R0104":
+            break
+        bot.game.key("up", hold=8, after=30)
+    bot.settle()
+    bot.talk("P01R0103", 0)
     bot.travel("T06")
+
+
+VERMILION_GYM = "T06GYM0101"
+CANS = [(x, z) for z in (13, 15, 17) for x in (2, 4, 6, 8, 10)]       # the fifteen trash cans, row by row
+
+
+def check_can(bot, i):
+    """Look in trash can i; True if the message is "...Oh, you found a switch", False for "Nope! Nothing
+    here" (which also starts the reset message after a wrong second can). The first box is read from the screen:
+    a one-line message has nothing in the box's lower half."""
+    g = bot.game
+    target = CANS[i]
+    options = {(target[0] - dx, target[1] - dz): d for d, (dx, dz, _) in DIRS.items()}
+    tiles = bot.tiles(VERMILION_GYM)
+    options = {t: d for t, d in options.items() if t in tiles}
+    pos = bot.walk(VERMILION_GYM, options, avoid={target})
+    bot.settle()                    # a gym trainer may have seen the player on the way
+    pos = bot.walk(VERMILION_GYM, options, avoid={target})
+    for hold in (2, 3, 4, 4):
+        g.key(options[pos], hold=hold, after=10)
+        if bot.facing() == options[pos]:
+            break
+    g.key("a", after=10)
+    for _ in range(60):
+        g.run(5)
+        if walk_test.text_box(g.emu.screenshot()):
+            break
+    g.run(40)
+    band = g.emu.screenshot().crop((12, 169, 236, 186)).convert("L")
+    found = sum(1 for v in band.getdata() if v < 100) > 100
+    bot.settle()
+    return found
+
+
+def surge_gym(bot):
+    # Lt. Surge's door is shut by two electric locks, switches hidden in two neighbouring trash cans that move
+    # whenever the player gets the second one wrong. Look in each can in turn; at the first switch, try its
+    # neighbours; a wrong one resets both, so start again (FLAG_SYS_SOLVED_LT_SURGE_GYM once both are found)
+    heal(bot, "T06PC0101", team="surge")
+    bot.travel(VERMILION_GYM)
+    for _ in range(12):
+        if bot.flag("FLAG_SYS_SOLVED_LT_SURGE_GYM"):
+            break
+        for i in range(len(CANS)):
+            if check_can(bot, i):
+                x, z = CANS[i]
+                for j, (x2, z2) in enumerate(CANS):
+                    if abs(x2 - x) + abs(z2 - z) == 2 and abs(x2 - x) in (0, 2) and abs(z2 - z) in (0, 2):
+                        check_can(bot, j)
+                        break
+                break
+    bot.expect("FLAG_SYS_SOLVED_LT_SURGE_GYM", "opening the locks in Lt. Surge's gym")
+    bot.talk(VERMILION_GYM, 9)
+    bot.expect("FLAG_GOT_TM34_FROM_LT_SURGE", "beating Lt. Surge")
 
 
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
@@ -1301,4 +1365,4 @@ STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokege
           to_ice_path, ice_path_boulders, to_blackthorn, clair_gym, dragons_den,
           elms_news, kimono_girls, ho_oh, to_victory_road,
           victory_road, league, will, koga, bruno, karen, champion,
-          ss_ticket, to_olivine_port, ss_aqua]
+          ss_ticket, to_olivine_port, ss_aqua, surge_gym]
