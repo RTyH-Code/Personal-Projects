@@ -1383,6 +1383,11 @@ def erika_gym(bot):
     bot.expect("FLAG_GOT_TM19_FROM_ERIKA", "beating Erika")
 
 
+def story_bot_heal():
+    import story_bot
+    return story_bot.BOSS_HEAL
+
+
 POWER_PLANT = "R10R0201"         # Route 10's door leads here; with the power out the game puts the player in
                                  # R10R0202, the same building and people: talk to whichever the player is in
 
@@ -1437,7 +1442,7 @@ def restore_power(bot):
 
 def misty_gym(bot):
     # Misty is out at the end of Route 25 with her boyfriend; walking up to them (1418, 40-42) breaks up the
-    # date (VAR_UNK_4088 2) and she goes back to her gym. Then her gym's pool, swum across, to Misty at (10, 1)
+    # date (VAR_UNK_4088 2) and she goes back to her gym
     # The Misty set comes first, at Cerulean's Pokemon Center: Route 25's trainers stand between it and her
     heal(bot, "T04PC0101", team="misty")
     if var(bot, "VAR_UNK_4088") < 2:
@@ -1455,7 +1460,20 @@ def misty_gym(bot):
         bot.stuck("Misty's date on Route 25 did not end")
     heal(bot, "T04PC0101")
     bot.travel(CERULEAN_GYM)
-    bot.talk(CERULEAN_GYM, 6, boss="Misty")
+    # she stands atop a diving tower at (10, 1), its stairs climbed from the front (10, 5): from below the pool
+    # side the tiles look flat, but beside the tower the player is under it. So from (10, 6) straight up the
+    # stairs to (10, 2), facing her
+    bot.walk(CERULEAN_GYM, [(10, 6)])
+    for _ in range(6):
+        if bot.where()[1:] == (10, 2):
+            break
+        bot.game.key("up", hold=8, after=20)
+    if bot.where()[1:] != (10, 2):
+        bot.stuck("did not get up Misty's tower")
+    if story_bot_heal():
+        bot.restore_party("before Misty")
+    bot.game.key("a", after=30)
+    bot.settle()
     bot.expect("FLAG_GOT_TM03_FROM_MISTY", "beating Misty")
 
 
