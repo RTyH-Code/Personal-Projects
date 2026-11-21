@@ -1510,13 +1510,22 @@ PEWTER_GYM = "T03GYM0101"
 SEAFOAM_GYM = "D11R0106"
 
 
-def brock_gym(bot):
-    # Pewter City is far off by land: Route 11's Snorlax sleeps across Diglett's Cave, and Seafoam's two halves
-    # join only through its boulder and current puzzle. So Fly to the Indigo Plateau and walk down through
-    # Victory Road and the League gate to Route 22, Viridian City, and north through Viridian Forest to Pewter.
-    # The Brock set there, and his gym's two trainers to Brock at (7, 4)
+def wake_snorlax(bot):
+    # Snorlax sleeps across Diglett's Cave on Route 11 (1354-1355, 303-304), the way to Pewter City. The
+    # Poke Flute channel wakes it: the harness stands in for tuning the radio (the Expansion Card comes from
+    # Lavender's radio tower once the power is back), so talking to it starts the battle
     heal_first(bot)
-    bot.fly("T10")
+    if not bot.flag("FLAG_HIDE_ROUTE_11_SNORLAX"):
+        bot.travel("R11")
+        bot.talk("R11", 4)
+        bot.settle()
+    bot.expect("FLAG_HIDE_ROUTE_11_SNORLAX", "waking the Snorlax on Route 11")
+
+
+def brock_gym(bot):
+    # through Diglett's Cave and up Route 2 to Pewter City (by land the only other ways are Seafoam's boulder and
+    # current puzzle, or down Victory Road, whose boulders the bot only pushes going up), the Brock set there, and
+    # his gym's two trainers to Brock at (7, 4)
     heal(bot, "T03PC0101", team="brock")
     bot.travel(PEWTER_GYM)
     bot.talk(PEWTER_GYM, 1, boss="Brock")
@@ -1548,4 +1557,4 @@ STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokege
           victory_road, league, will, koga, bruno, karen, champion,
           ss_ticket, to_olivine_port, ss_aqua, surge_gym,
           sabrina_gym, erika_gym, power_plant, machine_part, restore_power, misty_gym,
-          janine_gym, brock_gym, blaine_gym]
+          janine_gym, wake_snorlax, brock_gym, blaine_gym]
