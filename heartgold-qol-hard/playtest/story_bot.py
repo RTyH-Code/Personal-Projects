@@ -878,11 +878,18 @@ class Bot:
             # POKEMON, by touch (the menu's cursor is wherever it was left): the first touch can only pick it
             # out, a second opens it (if the first did, the second lands on the party screen and picks a panel)
             g.touch(36, 72, after=40)
-            g.touch(36, 72, after=150)
-            # the party screen's background is a pale cyan at its left edge; anything else (the Bag, say), back
-            # out to the field and try again
-            r, gr, b = g.emu.screenshot().convert("RGB").getpixel((5, 192 + 100))
-            if r < 190 and gr > 190 and b > 200:
+            g.touch(36, 72, after=30)
+            # the party screen (it takes a few seconds to come up) has a pale cyan background at its left edge;
+            # anything else (the Bag, say), back out to the field and try again
+            opened = False
+            for _ in range(40):
+                g.run(10)
+                r, gr, b = g.emu.screenshot().convert("RGB").getpixel((5, 192 + 100))
+                if r < 190 and gr > 170 and b > 180:
+                    opened = True
+                    break
+            if opened:
+                g.run(30)
                 break
             for _ in range(4):
                 if g.in_field() and self.free():
