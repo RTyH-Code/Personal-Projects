@@ -1437,15 +1437,23 @@ def restore_power(bot):
 
 def misty_gym(bot):
     # Misty is out at the end of Route 25 with her boyfriend; walking up to them (1418, 40-42) breaks up the
-    # date (VAR_UNK_4088 2) and she goes back to her gym. Then the Misty set at Cerulean's Pokemon Center, and her
-    # gym's pool, swum across, to Misty at (10, 1)
+    # date (VAR_UNK_4088 2) and she goes back to her gym. Then her gym's pool, swum across, to Misty at (10, 1)
+    # The Misty set comes first, at Cerulean's Pokemon Center: Route 25's trainers stand between it and her
+    heal(bot, "T04PC0101", team="misty")
     if var(bot, "VAR_UNK_4088") < 2:
         bot.travel("R25")
-        bot.walk("R25", [(1418, z) for z in (40, 41, 42)])
+        cape = [(1418, z) for z in (40, 41, 42)]
+        for _ in range(3):
+            try:
+                bot.walk("R25", cape)
+                break
+            except Exception as e:      # a Cut tree on the way (1388, 40)
+                if type(e).__name__ != "Stuck" or "no path" not in str(e) or not bot.cut_trees("R25"):
+                    raise
         bot.settle()
     if var(bot, "VAR_UNK_4088") < 2:
         bot.stuck("Misty's date on Route 25 did not end")
-    heal(bot, "T04PC0101", team="misty")
+    heal(bot, "T04PC0101")
     bot.travel(CERULEAN_GYM)
     bot.talk(CERULEAN_GYM, 6, boss="Misty")
     bot.expect("FLAG_GOT_TM03_FROM_MISTY", "beating Misty")
