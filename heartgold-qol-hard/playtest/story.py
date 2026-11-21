@@ -1486,10 +1486,11 @@ def janine_gym(bot):
     # at (7, 16)
     # (by Lavender and Route 12: the planner would take Cycling Road from Celadon, whose gate guard turns back
     # anyone not on a bicycle, and the bot doesn't ride one)
-    if not bot.where()[0].startswith(("T08", "R12", "R13", "R14", "R15")):
-        bot.travel("T05")
-        bot.travel("R12")
-    heal(bot, "T08PC0101", team="janine")
+    # The Janine set comes at Lavender's Pokemon Center, before the trainers of Routes 8 and 12 to 15 (carrying
+    # on from Misty, the old set whited out on them four times)
+    heal(bot, "T05PC0101", team="janine")
+    bot.travel("R12")
+    heal(bot, "T08PC0101")
     bot.travel(FUCHSIA_GYM)
     bot.talk(FUCHSIA_GYM, 2, boss="Janine")
     bot.expect("FLAG_GOT_TM84_FROM_JANINE", "beating Janine")
