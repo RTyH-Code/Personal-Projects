@@ -1646,6 +1646,33 @@ def champion_2(bot):
     champion(bot, leads=LEADS_2)
 
 
+# ---------------------------------------------------------------- Red
+
+RED_ROOM = "D41R0108"
+
+
+def oak_permission(bot):
+    # with all sixteen badges Professor Oak, in his lab in Pallet Town, gives HM08 and lets the player onto
+    # Mt. Silver (FLAG_UNLOCKED_MT_SILVER: the League gate's guard to Route 28 stands aside)
+    heal_first(bot)
+    bot.travel("T01R0301")
+    bot.talk("T01R0301", 0)
+    bot.expect("FLAG_UNLOCKED_MT_SILVER", "Oak's permission to climb Mt. Silver")
+
+
+def red(bot):
+    # the Red set at Viridian's Pokemon Center, then west by Route 22, the League gate and Route 28 into
+    # Mt. Silver, up to its summit, and Red at (30, 11). Beating him (FLAG_UNK_25F) rolls the credits
+    heal(bot, "T02PC0101", team="red")
+    bot.travel(RED_ROOM)
+    bot.talk(RED_ROOM, 0, boss="Red")
+    for _ in range(300):
+        if bot.flag("FLAG_UNK_25F") and bot.game.in_field() and bot.free():
+            break
+        bot.game.key("a", after=60)
+    bot.expect("FLAG_UNK_25F", "beating Red")
+
+
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
           back_to_elm, stolen_pokemon, to_violet, sprout_tower,
           violet_gym, mystery_egg, to_azalea, kurt, slowpoke_well, azalea_gym, to_ilex, farfetchd,
@@ -1661,4 +1688,5 @@ STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokege
           ss_ticket, to_olivine_port, ss_aqua, surge_gym,
           sabrina_gym, erika_gym, power_plant, machine_part, restore_power, misty_gym,
           janine_gym, wake_snorlax, brock_gym, blaine_gym, blue_gym,
-          league_2, will_2, koga_2, bruno_2, karen_2, champion_2]
+          league_2, will_2, koga_2, bruno_2, karen_2, champion_2,
+          oak_permission, red]

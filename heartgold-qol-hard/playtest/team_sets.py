@@ -249,6 +249,13 @@ SETS = {
     "elite_four_2": kanto(88, 16, "VIRIDIAN_K", ["TYRANITAR", "SCIZOR", "TOGEKISS", "LAPRAS", "ALAKAZAM", "SNORLAX"],
                           items=dict(TOGEKISS="SITRUS_BERRY", LAPRAS="SITRUS_BERRY"),
                           moves=dict(TOGEKISS=["AIR_SLASH", "AURA_SPHERE", "FIRE_BLAST", "ROOST"])),
+    # ---- Red at Mt. Silver (Lv. 92-95): Lapras, Snorlax, Venusaur, Charizard, Blastoise, Pikachu, in that order.
+    # The bot never switches, so the set is in the order it meets them: Lucario (Fighting, resists Ice) for Lapras
+    # and Snorlax, Salamence (Intimidate) for Venusaur, Tyranitar for Charizard, Electivire for Blastoise, Gliscor
+    # (Ground) for the Light Ball Pikachu, and Blissey to take the special hits
+    "red": kanto(95, 16, "VIRIDIAN_K", ["LUCARIO", "SALAMENCE", "TYRANITAR", "ELECTIVIRE", "GLISCOR", "BLISSEY"],
+                 items=dict(LUCARIO="SITRUS_BERRY", SALAMENCE="SITRUS_BERRY", GLISCOR="SITRUS_BERRY"),
+                 moves=dict(LUCARIO=["AURA_SPHERE", "CLOSE_COMBAT", "FLASH_CANNON", "EARTHQUAKE"])),
     # the first Clair set, kept to try again with the heal before her (run with STORY_TEAM_CLAIR=clair_first)
     "clair_first": dict(level=47, badges=7, places=MAHOGANY + ["Route 44", "Ice Path 1F", "Ice Path B1F", "Ice Path B2F",
                                                               "Ice Path B3F"], ways=WATER,
