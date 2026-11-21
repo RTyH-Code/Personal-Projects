@@ -1388,7 +1388,11 @@ POWER_PLANT = "R10R0201"         # Route 10's door leads here; with the power ou
 
 
 def plant_manager(bot):
-    bot.travel(POWER_PLANT)
+    try:
+        bot.travel(POWER_PLANT)
+    except Exception as e:
+        if type(e).__name__ != "Stuck" or bot.where()[0] != "R10R0202":
+            raise
     bot.talk(bot.where()[0], 6)
 CERULEAN_GYM = "T04GYM0101"
 
