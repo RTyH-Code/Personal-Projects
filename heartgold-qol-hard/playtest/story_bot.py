@@ -897,6 +897,7 @@ class Bot:
     def travel(self, target, near=None):
         """Go to the target map by whatever warps lead there; outdoors, on until the player stands in it. With
         near, to the part of the map that tile is in (a map can be in parts joined only through other maps)."""
+        cut = False
         for attempt in range(6):
             here = self.where()
             if near and here and here[0] == target and near in self.reach(target, (here[1], here[2])):
@@ -904,6 +905,10 @@ class Bot:
             try:
                 steps = self.route(target, near)
             except Stuck:
+                # a Cut tree may stand in the way (Celadon's gym): cut those the player can get to, and look again
+                if not cut and here and self.cut_trees(here[0]):
+                    cut = True
+                    continue
                 if attempt >= 2:
                     raise
                 # just after a map loads, its people and doors are still being set out: look again shortly
@@ -939,6 +944,21 @@ class Bot:
             if here and here[0] == target and (near is None or near in self.reach(target, (here[1], here[2]))):
                 return
         self.stuck("did not get to %s" % target)
+
+    def cut_trees(self, code):
+        """Cut every Cut tree on this map the player can walk up to (A, and Yes: this hack lets Cut work untaught
+        once HM01 and the Hive Badge are had). True if any was cut."""
+        events = self.world.events(code).get("object_events", [])
+        done = False
+        for i, pos in sorted(self.objects().items()):
+            if i < len(events) and str(events[i].get("script")) == "std_field_cut":
+                try:
+                    self.talk(code, i)
+                    done = True
+                except Stuck as e:
+                    if "no path" not in str(e) and "could not reach" not in str(e):
+                        raise
+        return done
 
     def arrived(self, old, frames=400):
         for _ in range(frames // 10):
