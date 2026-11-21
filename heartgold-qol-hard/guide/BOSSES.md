@@ -305,7 +305,7 @@ All boss Pokémon have perfect IVs. From Chuck onward they also have a nature an
 | Exeggutor | 73 | Focus Sash | Energy Ball, Psychic, Sludge Bomb, Sleep Powder | Modest |
 | Arcanine | 73 | Charcoal | Flare Blitz, Play Rough, Morning Sun, Crunch | Jolly |
 | Rhydon | 74 | Soft Sand | Earthquake, Stone Edge, Megahorn, Swords Dance | Adamant |
-| Gyarados | 74 | Mystic Water | Aqua Tail, Earthquake, Dragon Dance, Crunch | Intimidate, Adamant |
+| Gyarados | 74 | Sitrus Berry | Aqua Tail, Earthquake, Ice Fang, Crunch | Intimidate, Adamant |
 | Machamp | 75 | Black Belt | Cross Chop, Earthquake, Bulk Up, Poison Jab | No Guard, Adamant |
 | Pidgeot | 76 | Leftovers | Double Edge, Brave Bird, Heat Wave, Roost | Jolly |
 ## Post-game: Red

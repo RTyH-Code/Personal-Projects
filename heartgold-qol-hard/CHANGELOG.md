@@ -16,6 +16,10 @@ turn; the post-game teams keep them.
 - Ariana's Honchkrow in the Radio Tower holds a Sharp Beak in place of a
   Scope Lens.
 - Pryce's Jynx has Fake Out in place of Lovely Kiss.
+- Blue's Gyarados holds a Sitrus Berry in place of a Mystic Water and has
+  Ice Fang in place of Dragon Dance (patch 0023). He is the eighth Kanto
+  badge, before the Elite Four's second round and Red; his rematch is
+  unchanged.
 - Proton in the Slowpoke Well has a Rattata and is a level higher.
 - Petrel in the Radio Tower is a level higher, leads with Weezing (Shadow
   Ball), and one Koffing holds a Focus Sash; Protect is gone for Pain Split.
