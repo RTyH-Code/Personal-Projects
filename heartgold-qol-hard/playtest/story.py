@@ -1383,6 +1383,15 @@ def erika_gym(bot):
     bot.expect("FLAG_GOT_TM19_FROM_ERIKA", "beating Erika")
 
 
+def heal_first(bot):
+    """At a stage's start, if the party is worn down from the last one, heal at this town's Pokemon Center (a
+    player would, before setting off; carrying on hurt, the bot lost to route trainers)."""
+    here = bot.where()
+    pc = here and here[0][:3] + "PC0101"
+    if pc in bot.world.headers and not bot.party_healthy():
+        heal(bot, pc)
+
+
 def story_bot_heal():
     import story_bot
     return story_bot.BOSS_HEAL
@@ -1488,6 +1497,7 @@ def janine_gym(bot):
     # anyone not on a bicycle, and the bot doesn't ride one)
     # The Janine set comes at Lavender's Pokemon Center, before the trainers of Routes 8 and 12 to 15 (carrying
     # on from Misty, the old set whited out on them four times)
+    heal_first(bot)
     heal(bot, "T05PC0101", team="janine")
     bot.travel("R12")
     heal(bot, "T08PC0101")
