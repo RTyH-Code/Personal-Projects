@@ -51,6 +51,25 @@ MAHOGANY = CIANWOOD + ["Whirl Islands 1F", "Route 42", "Mount Mortar 1F Entrance
                        "Mount Mortar 2F", "Mount Mortar B1F", "Mahogany Town", "Route 43", "Lake of Rage"]
 WATER = ("walking", "old rod", "Headbutt", "surfing", "good rod")
 
+LEAGUE = MAHOGANY + ["Route 44", "Ice Path 1F", "Ice Path B1F", "Ice Path B2F", "Ice Path B3F", "Route 45", "Route 46",
+                     "Route 27", "Route 26"]
+VERMILION_K = ["Vermilion City", "Route 6", "Route 11"]
+SAFFRON_K = VERMILION_K + ["Route 5", "Route 7", "Route 8"]
+CELADON_K = SAFFRON_K + ["Celadon City", "Route 16 East"]
+CERULEAN_K = CELADON_K + ["Route 9", "Route 10", "Rock Tunnel 1F", "Rock Tunnel B1F", "Cerulean City", "Route 24",
+                          "Route 25"]
+FUCHSIA_K = CERULEAN_K + ["Route 12", "Route 13", "Route 14", "Route 15", "Fuchsia City"]
+PEWTER_K = FUCHSIA_K + ["Diglett Cave", "Route 2", "Viridian Forest", "Route 3", "Mount Moon", "Route 4"]
+SEAFOAM_K = PEWTER_K + ["Route 19", "Route 20", "Seafoam Islands 1F", "Seafoam Islands B1F", "Seafoam Islands B2F",
+                        "Seafoam Islands B3F", "Seafoam Islands B4F"]
+VIRIDIAN_K = SEAFOAM_K + ["Cinnabar Island", "Route 21", "Pallet Town", "Route 1", "Viridian City", "Route 22"]
+# moves chosen where the boss tool's pick is a poor one for a player: Bronzong's Steel move, Donphan's coverage
+KANTO_MOVES = dict(BRONZONG=["GYRO_BALL", "EXTRASENSORY", "ROCK_TOMB", "REFLECT"],
+                   DONPHAN=["EARTHQUAKE", "KNOCK_OFF", "FIRE_FANG", "ROCK_TOMB"],
+                   JYNX=["ICE_PUNCH", "PSYCHIC", "LOVELY_KISS", "AVALANCHE"])
+KANTO_TMS = ["FLASH", "ROOST", "BULLET_SEED", "ROCK_TOMB", "U_TURN", "DIG", "PAYBACK", "EMBARGO", "PROTECT",
+             "LIGHT_SCREEN", "REFLECT", "ATTRACT", "FOCUS_PUNCH", "CALM_MIND", "HAIL", "AVALANCHE", "DRAGON_PULSE"]
+
 SETS = {
     # Falkner's birds (Lv. 11-14): Rock, Electric and a Ghost from the caves and routes before Violet City
     "falkner": dict(level=14, badges=0, places=VIOLET, ways=WALK, tms=["FLASH"], item="ORAN_BERRY",
@@ -169,6 +188,40 @@ SETS = {
                        # the rooms, as for a player
                        items=dict(GARDEVOIR="SITRUS_BERRY", BRONZONG="LUM_BERRY", JYNX="NEVER_MELT_ICE",
                                   AMPHAROS="SHUCA_BERRY", MACHAMP="SITRUS_BERRY", GYARADOS="WACAN_BERRY")),
+    # ---- Kanto, in the order the bot takes the gyms from Vermilion. Each set adds the Kanto places passed by
+    # then; the Elite Four team is the core, swapped about for each leader's type
+    "surge": dict(level=64, badges=8, places=LEAGUE + VERMILION_K, ways=WATER, tms=KANTO_TMS, item="ORAN_BERRY", moves=KANTO_MOVES,
+                  # Electric types: Ground for them, Bronzong and Ampharos to take their hits
+                  team=["DONPHAN", "QUAGSIRE", "AMPHAROS", "GARDEVOIR", "BRONZONG", "MACHAMP"],
+                  items=dict(DONPHAN="SITRUS_BERRY", QUAGSIRE="SITRUS_BERRY", BRONZONG="LUM_BERRY")),
+    "sabrina": dict(level=66, badges=9, places=LEAGUE + SAFFRON_K, ways=WATER, tms=KANTO_TMS, item="ORAN_BERRY", moves=KANTO_MOVES,
+                    # Psychic types: Dark and Bug, Steel to wall them
+                    team=["HOUNDOOM", "HERACROSS", "BRONZONG", "GYARADOS", "AMPHAROS", "ARIADOS"],
+                    items=dict(HOUNDOOM="SITRUS_BERRY", HERACROSS="SITRUS_BERRY", BRONZONG="LUM_BERRY")),
+    "erika": dict(level=66, badges=10, places=LEAGUE + CELADON_K, ways=WATER, tms=KANTO_TMS, item="ORAN_BERRY", moves=KANTO_MOVES,
+                  # Grass types: Fire, Flying, Ice and Poison
+                  team=["HOUNDOOM", "PIDGEOT", "JYNX", "BRONZONG", "ARIADOS", "AMPHAROS"],
+                  items=dict(HOUNDOOM="SITRUS_BERRY", JYNX="NEVER_MELT_ICE", BRONZONG="LUM_BERRY")),
+    "misty": dict(level=68, badges=11, places=LEAGUE + CERULEAN_K, ways=WATER, tms=KANTO_TMS, item="ORAN_BERRY", moves=KANTO_MOVES,
+                  # Water types: Electric and Grass
+                  team=["AMPHAROS", "LANTURN", "JUMPLUFF", "GARDEVOIR", "BRONZONG", "MACHAMP"],
+                  items=dict(AMPHAROS="SITRUS_BERRY", JUMPLUFF="SITRUS_BERRY", BRONZONG="LUM_BERRY")),
+    "janine": dict(level=68, badges=12, places=LEAGUE + FUCHSIA_K, ways=WATER, tms=KANTO_TMS, item="ORAN_BERRY", moves=KANTO_MOVES,
+                   # Poison types: Ground and Psychic, Steel to wall them
+                   team=["DONPHAN", "QUAGSIRE", "GARDEVOIR", "BRONZONG", "XATU", "AMPHAROS"],
+                   items=dict(DONPHAN="SITRUS_BERRY", GARDEVOIR="SITRUS_BERRY", BRONZONG="LUM_BERRY")),
+    "brock": dict(level=70, badges=13, places=LEAGUE + PEWTER_K, ways=WATER, tms=KANTO_TMS, item="ORAN_BERRY", moves=KANTO_MOVES,
+                  # Rock and Ground types: Water, Grass, Fighting
+                  team=["GYARADOS", "QUAGSIRE", "MACHAMP", "JUMPLUFF", "BRONZONG", "HERACROSS"],
+                  items=dict(GYARADOS="SITRUS_BERRY", MACHAMP="SITRUS_BERRY", BRONZONG="LUM_BERRY")),
+    "blaine": dict(level=72, badges=14, places=LEAGUE + SEAFOAM_K, ways=WATER, tms=KANTO_TMS, item="ORAN_BERRY", moves=KANTO_MOVES,
+                   # Fire types: Water, Ground and Rock
+                   team=["GYARADOS", "QUAGSIRE", "DONPHAN", "LANTURN", "GARDEVOIR", "AMPHAROS"],
+                   items=dict(GYARADOS="SITRUS_BERRY", QUAGSIRE="SITRUS_BERRY", DONPHAN="SITRUS_BERRY")),
+    "blue": dict(level=76, badges=15, places=LEAGUE + VIRIDIAN_K, ways=WATER, tms=KANTO_TMS, item="ORAN_BERRY", moves=KANTO_MOVES,
+                 # a mixed team: Exeggutor, Arcanine, Rhydon, Gyarados, Machamp, Pidgeot
+                 team=["GYARADOS", "AMPHAROS", "GARDEVOIR", "DONPHAN", "HOUNDOOM", "MACHAMP"],
+                 items=dict(GYARADOS="WACAN_BERRY", AMPHAROS="SITRUS_BERRY", GARDEVOIR="SITRUS_BERRY")),
     # the first Clair set, kept to try again with the heal before her (run with STORY_TEAM_CLAIR=clair_first)
     "clair_first": dict(level=47, badges=7, places=MAHOGANY + ["Route 44", "Ice Path 1F", "Ice Path B1F", "Ice Path B2F",
                                                               "Ice Path B3F"], ways=WATER,

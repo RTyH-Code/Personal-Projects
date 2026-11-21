@@ -1260,8 +1260,13 @@ def ss_aqua(bot):
         bot.stuck("the gentleman on the S.S. Aqua did not ask for his granddaughter")
     if v() < 3 and not bot.flag("FLAG_UNK_0ED"):
         bot.travel("P01R0307")
-        bot.walk("P01R0307", [(38, 17), (38, 19)])        # either side of the sailor, who stands at (38, 18)
+        try:            # either side of the sailor, who stands at (38, 18); his scene walks the player back off it
+            bot.walk("P01R0307", [(38, 17), (38, 19)])
+        except Exception as e:
+            if type(e).__name__ not in ("Stuck", "Moved") or str(e).startswith("lost a battle"):
+                raise
         bot.settle()
+        bot.expect("FLAG_UNK_0ED", "the sailor on the lower deck telling of Sailor Stanly")
     if v() < 3:
         bot.travel("P01R0303")
         bot.talk("P01R0303", 0)
