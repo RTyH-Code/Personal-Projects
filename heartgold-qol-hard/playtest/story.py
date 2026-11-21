@@ -1364,6 +1364,89 @@ def sabrina_gym(bot):
     bot.expect("FLAG_GOT_TM48_FROM_SABRINA", "beating Sabrina")
 
 
+CELADON_GYM = "T07GYM0101"
+
+
+def erika_gym(bot):
+    # west along Route 7 to Celadon City, the Erika set, then her gym: a small tree just inside the door
+    # (7, 42) is cut (A, and Yes to Cut: the hack lets the HM work untaught), and two more stand in the garden
+    # (1, 15) and (7, 16), cut only if the way to Erika (7, 3) needs it
+    heal(bot, "T07PC0101", team="erika")
+    bot.travel(CELADON_GYM)
+    if 0 in bot.objects():
+        bot.talk(CELADON_GYM, 0)
+    for tree in (None, 2, 1):
+        if tree is not None and tree in bot.objects():
+            bot.talk(CELADON_GYM, tree)
+        try:
+            bot.talk(CELADON_GYM, 8, boss="Erika")
+            break
+        except Exception as e:
+            if type(e).__name__ != "Stuck" or "no path" not in str(e):
+                raise
+    bot.expect("FLAG_GOT_TM19_FROM_ERIKA", "beating Erika")
+
+
+POWER_PLANT = "R10R0202"
+CERULEAN_GYM = "T04GYM0101"
+
+
+def power_plant(bot):
+    # east by Route 8 to Lavender Town and north up Route 10 to the Power Plant, whose manager (13, 8) tells of
+    # the stolen Machine Part (FLAG_GOT_POWER_PLANT_MANAGERS_STORY)
+    bot.travel(POWER_PLANT)
+    bot.talk(POWER_PLANT, 6)
+    bot.expect("FLAG_GOT_POWER_PLANT_MANAGERS_STORY", "the Power Plant manager's story")
+
+
+def machine_part(bot):
+    # In Cerulean's gym a Rocket Grunt bumps into the player and runs off (VAR_SCENE_ROUTE_24_ROCKET 1, and
+    # Misty goes on a date to Route 25). North on Route 24 a step into the bridge (x 1325-1328, z 76-85) has
+    # him caught by a couple; he battles, and blurts out that the part is in the gym's pool (3). It is there, at
+    # (3, 10) (4)
+    v = lambda: var(bot, "VAR_SCENE_ROUTE_24_ROCKET")
+    if v() < 1:
+        bot.travel(CERULEAN_GYM)
+        bot.settle()
+    if v() < 1:
+        bot.stuck("the Rocket Grunt in Cerulean's gym did not show")
+    if v() < 3:
+        bot.travel("R24")
+        if v() < 2:
+            bot.walk("R24", [(1326, z) for z in range(76, 86)])
+            bot.settle()
+        bot.talk("R24", 2)
+    if v() < 3:
+        bot.stuck("the Rocket Grunt on Route 24 was not beaten")
+    if v() < 4:
+        bot.travel(CERULEAN_GYM)
+        bot.talk(CERULEAN_GYM, 8)
+    bot.expect_item("MACHINE_PART", "finding the Machine Part in Cerulean's gym")
+
+
+def restore_power(bot):
+    # back to the Power Plant: the manager takes the part and the power comes back (FLAG_RESTORED_POWER)
+    bot.travel(POWER_PLANT)
+    bot.talk(POWER_PLANT, 6)
+    bot.expect("FLAG_RESTORED_POWER", "giving the Machine Part back")
+
+
+def misty_gym(bot):
+    # Misty is out at the end of Route 25 with her boyfriend; walking up to them (1418, 40-42) breaks up the
+    # date (VAR_UNK_4088 2) and she goes back to her gym. Then the Misty set at Cerulean's Pokemon Center, and her
+    # gym's pool, swum across, to Misty at (10, 1)
+    if var(bot, "VAR_UNK_4088") < 2:
+        bot.travel("R25")
+        bot.walk("R25", [(1418, z) for z in (40, 41, 42)])
+        bot.settle()
+    if var(bot, "VAR_UNK_4088") < 2:
+        bot.stuck("Misty's date on Route 25 did not end")
+    heal(bot, "T04PC0101", team="misty")
+    bot.travel(CERULEAN_GYM)
+    bot.talk(CERULEAN_GYM, 6, boss="Misty")
+    bot.expect("FLAG_GOT_TM03_FROM_MISTY", "beating Misty")
+
+
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
           back_to_elm, stolen_pokemon, to_violet, sprout_tower,
           violet_gym, mystery_egg, to_azalea, kurt, slowpoke_well, azalea_gym, to_ilex, farfetchd,
@@ -1377,4 +1460,4 @@ STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokege
           elms_news, kimono_girls, ho_oh, to_victory_road,
           victory_road, league, will, koga, bruno, karen, champion,
           ss_ticket, to_olivine_port, ss_aqua, surge_gym,
-          sabrina_gym]
+          sabrina_gym, erika_gym, power_plant, machine_part, restore_power, misty_gym]
