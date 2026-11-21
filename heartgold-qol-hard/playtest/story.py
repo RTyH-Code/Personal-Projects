@@ -1217,6 +1217,22 @@ def hall_of_fame(bot):
         bot.game.key("a", after=60)
 
 
+# ------------------------------------------------------------------ after the Hall of Fame: on to Kanto
+
+def ss_ticket(bot):
+    # the player wakes at home; downstairs Mom says Elm has something for them. In his lab Elm gives the
+    # S.S. Ticket (FLAG_UNK_0F2 is set as he does)
+    bot.travel("T20R0101")
+    bot.talk("T20R0101", 0)
+    bot.expect("FLAG_UNK_0F2", "Elm giving the S.S. Ticket")
+    bot.expect_item("SS_TICKET", "Elm giving the S.S. Ticket")
+
+
+def to_olivine_port(bot):
+    # back west to Olivine City (Routes 29 to 39) and down to its port
+    bot.travel("P01R0101")
+
+
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,
           back_to_elm, stolen_pokemon, to_violet, sprout_tower,
           violet_gym, mystery_egg, to_azalea, kurt, slowpoke_well, azalea_gym, to_ilex, farfetchd,
@@ -1228,4 +1244,5 @@ STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokege
           underground_door, switch_room, warehouse, card_key, proton, ariana, archer,
           to_ice_path, ice_path_boulders, to_blackthorn, clair_gym, dragons_den,
           elms_news, kimono_girls, ho_oh, to_victory_road,
-          victory_road, league, will, koga, bruno, karen, champion]
+          victory_road, league, will, koga, bruno, karen, champion,
+          ss_ticket, to_olivine_port]
