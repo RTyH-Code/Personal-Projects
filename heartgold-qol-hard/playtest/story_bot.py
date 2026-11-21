@@ -875,7 +875,10 @@ class Bot:
         for _ in range(4):
             g.run(30)
             g.key("x", after=70)           # the menu slides in: a touch too soon lands on the wrong icon
-            g.touch(36, 72, after=150)     # POKEMON, by touch: the menu's cursor is wherever it was left
+            # POKEMON, by touch (the menu's cursor is wherever it was left): the first touch can only pick it
+            # out, a second opens it (if the first did, the second lands on the party screen and picks a panel)
+            g.touch(36, 72, after=40)
+            g.touch(36, 72, after=150)
             # the party screen's background is a pale cyan at its left edge; anything else (the Bag, say), back
             # out to the field and try again
             r, gr, b = g.emu.screenshot().convert("RGB").getpixel((5, 192 + 100))
