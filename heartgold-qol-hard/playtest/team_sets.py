@@ -256,6 +256,83 @@ SETS = {
     "red": kanto(95, 16, "VIRIDIAN_K", ["LUCARIO", "SALAMENCE", "TYRANITAR", "ELECTIVIRE", "GLISCOR", "BLISSEY"],
                  items=dict(LUCARIO="SITRUS_BERRY", SALAMENCE="SITRUS_BERRY", GLISCOR="SITRUS_BERRY"),
                  moves=dict(LUCARIO=["AURA_SPHERE", "CLOSE_COMBAT", "FLASH_CANNON", "EARTHQUAKE"])),
+    # ---- the Johto sets again, built the player's way as the Kanto ones are (run with STORY_TEAM_<SET>=<set>_v2):
+    # a bulky core that grows with the game (Quagsire and Gyarados from Goldenrod, Lanturn from Cianwood,
+    # Bronzong, Hariyama, Snorlax later) and hits back for neutral damage, then answers to the boss's type that
+    # don't bring a weakness of their own into the fight. Sitrus Berries from four badges (Goldenrod 3F)
+    # Falkner's birds: Rock types that take Flying moves, Electric, and a bulky Normal type
+    "falkner_v2": dict(level=14, badges=0, places=VIOLET, ways=WALK, tms=["FLASH"], item="ORAN_BERRY",
+                       team=["GEODUDE", "PACHIRISU", "SOLROCK", "DUNSPARCE", "LUNATONE", "CHIKORITA"]),
+    # Bugsy's bugs (Rock Tomb on Pineco): Rock and Ground, Fire, Electric for Yanma and Scyther
+    "bugsy_v2": dict(level=19, badges=1, places=AZALEA, ways=ROD, tms=["FLASH", "ROOST", "BULLET_SEED", "ROCK_TOMB"],
+                     item="ORAN_BERRY", team=["GEODUDE", "QUILAVA", "FLAAFFY", "ONIX", "DUNSPARCE", "BAYLEEF"]),
+    # Whitney's Normal types (Rollout, Rock Slide, Brick Break, Shadow Claw; Attract): Rock, Steel and Ground
+    # types that take Normal and Rock moves, and Gyarados's Intimidate. Female, against Attract
+    "whitney_v2": dict(level=24, badges=2, places=GOLDENROD, ways=TREES,
+                       tms=["FLASH", "ROOST", "BULLET_SEED", "ROCK_TOMB", "U_TURN", "DIG", "PAYBACK", "EMBARGO",
+                            "PROTECT", "LIGHT_SCREEN", "REFLECT"],
+                       item="ORAN_BERRY", female=True,
+                       team=["SUDOWOODO", "MAWILE", "QUAGSIRE", "SANDSLASH", "GYARADOS", "BAYLEEF"]),
+    # Morty's Ghosts (Icy Wind, Giga Drain, Sludge Bomb, Shock Wave, Hypnosis): Dark types, Kecleon (Normal,
+    # very high Special Defense, and Ghost moves of its own), Swalot to take the special hits
+    "morty_v2": dict(level=29, badges=3, places=ECRUTEAK, ways=TREES,
+                     tms=["FLASH", "ROOST", "BULLET_SEED", "ROCK_TOMB", "U_TURN", "DIG", "PAYBACK", "EMBARGO",
+                          "PROTECT", "LIGHT_SCREEN", "REFLECT", "ATTRACT"],
+                     item="ORAN_BERRY",
+                     team=["HOUNDOOM", "KECLEON", "MIGHTYENA", "GYARADOS", "QUAGSIRE", "SWALOT"],
+                     moves=dict(KECLEON=["SHADOW_SNEAK", "THIEF", "ANCIENT_POWER", "SLASH"])),
+    # Chuck's Fighting types (Poison Jab, Seed Bomb, Rock Slide, Night Slash, Shadow Claw, Fire Punch):
+    # Crobat (a quarter from Fighting, resists Poison), Fairy, Noctowl (neutral and bulky), Ampharos for
+    # Poliwrath, Gyarados, and Bronzong that Poison moves can't touch
+    "chuck_v2": dict(level=34, badges=4, places=CIANWOOD, ways=WATER,
+                     tms=["FLASH", "ROOST", "BULLET_SEED", "ROCK_TOMB", "U_TURN", "DIG", "PAYBACK", "EMBARGO",
+                          "PROTECT", "LIGHT_SCREEN", "REFLECT", "ATTRACT"],
+                     item="SITRUS_BERRY",
+                     team=["CROBAT", "GARDEVOIR", "NOCTOWL", "AMPHAROS", "GYARADOS", "BRONZONG"]),
+    # Jasmine's Steel types (Thunderbolt, Earthquake, Brick Break): Fire, Ground types that Electric moves miss,
+    # Claydol with Levitate, Torkoal's Defense, and Gyarados's Intimidate
+    "jasmine_v2": dict(level=38, badges=5, places=CIANWOOD + ["Whirl Islands 1F"], ways=WATER,
+                       tms=["FLASH", "ROOST", "BULLET_SEED", "ROCK_TOMB", "U_TURN", "DIG", "PAYBACK", "EMBARGO",
+                            "PROTECT", "LIGHT_SCREEN", "REFLECT", "ATTRACT", "FOCUS_PUNCH"],
+                       item="SITRUS_BERRY",
+                       team=["TYPHLOSION", "QUAGSIRE", "GASTRODON", "CLAYDOL", "TORKOAL", "GYARADOS"]),
+    # Pryce's Ice types (Psychic, Energy Ball, Surf, Thunderbolt, Earthquake): Hariyama (Thick Fat, very high
+    # HP), Fire, Lanturn (resists Ice, Electric for Lapras and Dewgong), Bronzong (Steel, Levitate), Muk
+    "pryce_v2": dict(level=42, badges=6, places=MAHOGANY, ways=WATER,
+                     tms=["FLASH", "ROOST", "BULLET_SEED", "ROCK_TOMB", "U_TURN", "DIG", "PAYBACK", "EMBARGO",
+                          "PROTECT", "LIGHT_SCREEN", "REFLECT", "ATTRACT", "FOCUS_PUNCH", "CALM_MIND"],
+                     item="SITRUS_BERRY",
+                     team=["HARIYAMA", "TYPHLOSION", "LANTURN", "BRONZONG", "MACHAMP", "MUK"],
+                     moves=dict(BRONZONG=["GYRO_BALL", "EXTRASENSORY", "ROCK_TOMB", "HYPNOSIS"])),
+    # the Radio Tower (Poison types, bats, Dark types; the rival): Bronzong that Poison moves can't touch,
+    # Lanturn for the bats, Muk to take hits, Fire for Ariados and Vileplume, Gyarados and Slowbro
+    "radio_tower_v2": dict(level=46, badges=7, places=MAHOGANY, ways=WATER,
+                           tms=["FLASH", "ROOST", "BULLET_SEED", "ROCK_TOMB", "U_TURN", "DIG", "PAYBACK", "EMBARGO",
+                                "PROTECT", "LIGHT_SCREEN", "REFLECT", "ATTRACT", "FOCUS_PUNCH", "CALM_MIND", "HAIL"],
+                           item="SITRUS_BERRY",
+                           team=["BRONZONG", "LANTURN", "MUK", "TYPHLOSION", "GYARADOS", "SLOWBRO"]),
+    # Clair's Dragons: Walrein (Ice and Water, Thick Fat), Snorlax from Route 44, Azumarill (Fairy, takes
+    # Outrage), Bronzong, Granbull, Lanturn for Gyarados and Kingdra
+    "clair_v2": dict(level=47, badges=7, places=MAHOGANY + ["Route 44", "Ice Path 1F", "Ice Path B1F", "Ice Path B2F",
+                                                           "Ice Path B3F"], ways=WATER,
+                     tms=["FLASH", "ROOST", "BULLET_SEED", "ROCK_TOMB", "U_TURN", "DIG", "PAYBACK", "EMBARGO",
+                          "PROTECT", "LIGHT_SCREEN", "REFLECT", "ATTRACT", "FOCUS_PUNCH", "CALM_MIND", "HAIL",
+                          "AVALANCHE"],
+                     item="SITRUS_BERRY",
+                     team=["WALREIN", "SNORLAX", "AZUMARILL", "BRONZONG", "GRANBULL", "LANTURN"],
+                     moves=dict(BRONZONG=["GYRO_BALL", "EXTRASENSORY", "ROCK_TOMB", "HYPNOSIS"])),
+    # the Elite Four: Snorlax, Tyranitar (Will, Karen), Gardevoir (Bruno, Lance), Bronzong (Koga, Will),
+    # Walrein (Lance), Lanturn (Karen's Honchkrow, Lance's Gyarados and Dragonite). Leads per member in story.py
+    "elite_four_v2": dict(level=58, badges=8, places=MAHOGANY + ["Route 44", "Ice Path 1F", "Ice Path B1F",
+                                                                "Ice Path B2F", "Ice Path B3F", "Route 45", "Route 46",
+                                                                "Route 27", "Route 26"], ways=WATER,
+                          tms=["FLASH", "ROOST", "BULLET_SEED", "ROCK_TOMB", "U_TURN", "DIG", "PAYBACK", "EMBARGO",
+                               "PROTECT", "LIGHT_SCREEN", "REFLECT", "ATTRACT", "FOCUS_PUNCH", "CALM_MIND", "HAIL",
+                               "AVALANCHE", "DRAGON_PULSE"],
+                          item="SITRUS_BERRY",
+                          team=["SNORLAX", "TYRANITAR", "GARDEVOIR", "BRONZONG", "WALREIN", "LANTURN"],
+                          items=dict(BRONZONG="LUM_BERRY", WALREIN="NEVER_MELT_ICE", TYRANITAR="SITRUS_BERRY"),
+                          moves=dict(BRONZONG=["GYRO_BALL", "EXTRASENSORY", "ROCK_TOMB", "HYPNOSIS"])),
     # the first Clair set, kept to try again with the heal before her (run with STORY_TEAM_CLAIR=clair_first)
     "clair_first": dict(level=47, badges=7, places=MAHOGANY + ["Route 44", "Ice Path 1F", "Ice Path B1F", "Ice Path B2F",
                                                               "Ice Path B3F"], ways=WATER,
@@ -386,6 +463,18 @@ class Data:
                 if method in LEVEL_EVOS:
                     if int(param) > spec["level"]:
                         problems.append("%s evolves at Lv. %s, above the set's %d" % (stage, param, spec["level"]))
+                elif method == "EVO_HAS_MOVE":
+                    # it evolves once it knows the move: the move must be one it can have by the set's level
+                    move, pre = param.replace("MOVE_", ""), line[line.index((stage, method, param)) + 1][0]
+                    saved = self.bt.MACHINES
+                    self.bt.MACHINES = set(spec.get("tms", ()))
+                    try:
+                        legal = self.bt.legal_moves(pre, spec["level"], False)
+                    finally:
+                        self.bt.MACHINES = saved
+                    if move not in legal:
+                        problems.append("%s evolves knowing %s, which %s can't have by Lv. %d" % (
+                            pre, move, pre, spec["level"]))
                 elif method in FREE_EVOS:
                     pass
                 elif method in ITEM_EVOS:

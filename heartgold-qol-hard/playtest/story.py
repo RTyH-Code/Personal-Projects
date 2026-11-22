@@ -1048,6 +1048,15 @@ ELITE_FOUR = [("T10R0201", "FLAG_DEFEATED_WILL", "Will"), ("T10R0301", "FLAG_DEF
 # Karen leads with Honchkrow, whose Brave Bird beats Machamp: Ampharos first for it, Machamp next for Tyranitar
 LEADS = {"Will": "GYARADOS", "Koga": "BRONZONG", "Bruno": "GARDEVOIR", "Karen": ["AMPHAROS", "MACHAMP"],
          "Lance": "AMPHAROS"}
+# the same for the Elite Four set built the player's way (STORY_TEAM_ELITE_FOUR=elite_four_v2): Tyranitar,
+# which Psychic moves can't touch, for Will; Bronzong for Koga; Gardevoir for Bruno; Lanturn for Karen's
+# Honchkrow, then Tyranitar; Snorlax, neutral to all and bulky, for Lance's Aerodactyl
+LEADS_V2 = {"Will": "TYRANITAR", "Koga": "BRONZONG", "Bruno": "GARDEVOIR", "Karen": ["LANTURN", "TYRANITAR"],
+            "Lance": "SNORLAX"}
+
+
+def first_round_leads():
+    return LEADS_V2 if _os.environ.get("STORY_TEAM_ELITE_FOUR") == "elite_four_v2" else LEADS
                                                  # their rooms, and the flags their scripts set when beaten
 LANCE_ROOM, HALL_OF_FAME, LANCE = "T10R0601", "T10R0701", 244
 # whether the heal between the Elite Four rooms also gives back berries used up (a player carries several);
@@ -1154,7 +1163,7 @@ def elite_four_member(bot, room, beaten, name, leads=None):
     import random
     bot.travel(room)
     bot.settle()
-    bot.restore_party("before %s" % name, refill=REFILL_BERRIES, lead=(leads or LEADS).get(name))
+    bot.restore_party("before %s" % name, refill=REFILL_BERRIES, lead=(leads or first_round_leads()).get(name))
     # a retry starts from the same save state, and with the same random numbers the battle would play out
     # move for move the same: wait a different while first (the game's random numbers move on every frame)
     bot.game.run(random.randint(1, 600))
@@ -1186,7 +1195,7 @@ def champion(bot, leads=None):
     # Fame (FLAG_UNK_97E is set just before the credits), the credits, and the player back in the overworld
     bot.travel(LANCE_ROOM)
     bot.settle()
-    bot.restore_party("before Lance", refill=REFILL_BERRIES, lead=(leads or LEADS)["Lance"])
+    bot.restore_party("before Lance", refill=REFILL_BERRIES, lead=(leads or first_round_leads())["Lance"])
     import random
     bot.game.run(random.randint(1, 600))          # as for the Elite Four: a retry plays out differently
     try:
