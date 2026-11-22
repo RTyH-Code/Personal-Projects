@@ -487,6 +487,9 @@ after the Azalea rival.
 The boss results, brought together with ways to fix the hard fights, are in
 [BALANCE.md](BALANCE.md) (`python3 balance.py` rebuilds its table).
 
+What level a player's team reaches by each boss without grinding, worked out
+from the game's data with `level_curve.py`, is in [LEVEL_CURVE.md](LEVEL_CURVE.md).
+
 
 From `results/battles.jsonl`.
 
