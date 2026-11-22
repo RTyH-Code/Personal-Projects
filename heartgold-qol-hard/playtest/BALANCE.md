@@ -393,6 +393,30 @@ changed is the level. A player who doesn't grind will find most Johto
 bosses a wall, and needs the 600 to 1,000 wild KOs `LEVEL_CURVE.md` counts
 to get past them.
 
+### The bulky sets at a player's levels
+
+The same runs with the sets built the player's way (`*_v2`), at the same
+levels (`player-levels-v2`). Most taught moves drop out at these levels, so
+the sets fight with their level-up moves, and the League's Tyranitar is a
+Pupitar.
+
+| Boss | Player's level | Type-matchup sets | Bulky sets | Took the most of ours |
+|---|---|---|---|---|
+| Falkner | 8 | 0 of 5 | first try | |
+| Bugsy | 14 | 1 of 3 | first try | |
+| Whitney | 18 | 0 of 5 | 0 of 5 | Miltank 17, Dunsparce 8 |
+| Morty | 25 | first try | first try | |
+| Chuck | 31 | 0 of 5 | 0 of 5 | Heracross 16, Poliwrath 8 |
+| Jasmine | 32 | 1 of 3 | 0 of 5 | Skarmory 9, Steelix 8, Scizor 6 |
+| Pryce | 37 | 0 of 5 | 0 of 5 | Mamoswine 15, Dewgong 5 |
+| Radio Tower | 42 | stuck before Archer | every boss first try | |
+| Clair | 45 | 0 of 5 | 1 of 5 | Flygon 11, Gyarados 4 |
+| Will | 51 | 0 of 5 | 0 of 5 | Exeggutor 9, Espeon 7 |
+
+**Bulk carried Falkner, Bugsy, the Radio Tower and (just) Clair.** Whitney,
+Chuck, Jasmine, Pryce and Will still won every time. Their aces hit hard
+enough to sweep a team a few levels down, however it's built.
+
 ## Something else found
 
 In `guide/BOSSES.md`, a few rows were broken: the item, moves and nature ran
