@@ -351,6 +351,48 @@ needs. Dragon Dance was not the cause. Lance stays as he is now: winning about o
 with a type-matchup team seems fair for the last story boss, and a player who
 switches and uses items should do better than the bot.
 
+## The bosses at a player's levels
+
+Every run above swapped in a team at the boss's top level. `LEVEL_CURVE.md`
+shows that a player who beats every trainer on the way, but doesn't grind,
+arrives lower, even with double experience. So each Johto boss and Will were
+played again with the team set to the even team's level (medium fast, the
+low end) from that table. The bot's `STORY_LEVEL_<SET>=<level>` setting
+devolves anything that evolves above that level, and drops moves it couldn't
+know yet. These are the earlier type-matchup sets, from the same saves as
+before, healing before each boss, with up to five tries and
+`STORY_JITTER=600`. The records are `player-levels` in
+`results/battles.jsonl`, with the team's level as `team_level`.
+
+| Boss | Set's level before | Player's level | Before | At the player's level | Took the most of ours |
+|---|---|---|---|---|---|
+| Falkner | 14 | 8 | 2 of 2 | 0 of 5 | Natu 16, Murkrow 9 |
+| Bugsy | 19 | 14 | first try | 1 of 3 | Scyther 7, Pineco 6 |
+| Whitney | 24 | 18 | 4 of 7 | 0 of 5 | Miltank 13, Stantler 6, Dunsparce 6 |
+| Morty | 29 | 25 | first try | first try | |
+| Chuck | 34 | 31 | first try | 0 of 5 | Heracross 12, Hitmontop 7 |
+| Jasmine | 38 | 32 | first try | 1 of 3 | Scizor 6 |
+| Pryce | 42 | 37 | 8 of 8 | 0 of 5 | Mamoswine 13, Dewgong 8 |
+| Radio Tower | 46 | 42 | Ariana 4 of 6 | stuck before Archer | a Koffing grunt in the Underground warehouse, 5 times |
+| Clair | 47 | 45 | 2 of 6 | 0 of 5 | Altaria 11, Gyarados 9 |
+| Will | 58 | 51 | 15 of 19 | 0 of 5 | Farigiraf 10, Espeon 9 |
+
+**At the levels a player gets to, the bot loses almost every boss.** Only
+Morty fell on the first try. Bugsy and Jasmine took three tries, and the rest
+won five of five. The gap matters more than its size suggests. Chuck at 3
+levels down and Clair at 2 went from wins to 0 of 5, because their teams'
+aces (Heracross, Altaria and Gyarados) now outspeed and take two or three of
+ours each. Before Falkner the gap is 6 levels, which no team of starters and
+early catches makes up.
+
+Some of this is the bot. It never switches out of a bad matchup and never
+uses items in battle, and these sets were picked for the top level, not
+for 3 to 7 levels under. But the same bot with the same sets won all but
+Pryce, Clair and the League's harder fights at the top level, so what
+changed is the level. A player who doesn't grind will find most Johto
+bosses a wall, and needs the 600 to 1,000 wild KOs `LEVEL_CURVE.md` counts
+to get past them.
+
 ## Something else found
 
 In `guide/BOSSES.md`, a few rows were broken: the item, moves and nature ran
