@@ -532,6 +532,32 @@ class Data:
         evs["speed"] = min(252, total - evs[main])
         return evs
 
+    def at_level(self, spec, level):
+        """The set as a player would have it at another (lower) level: each Pokemon back to the stage its line
+        has reached by then (level-up evolutions only), and moves of the set's own that it can't have yet left
+        to the boss team tool's choice."""
+        spec = dict(spec, level=level)
+        team, moves = [], {}
+        for name in spec["team"]:
+            line = self.line(name)                          # newest first
+            keep = name
+            for stage, method, param in line[:-1]:
+                if method in LEVEL_EVOS and int(param) > level:
+                    keep = line[line.index((stage, method, param)) + 1][0]
+            team.append(keep)
+            if keep == name and name in spec.get("moves", {}):
+                saved = self.bt.MACHINES
+                self.bt.MACHINES = set(spec["tms"])
+                try:
+                    legal = self.bt.legal_moves(name, level, False)
+                finally:
+                    self.bt.MACHINES = saved
+                if all(m in legal for m in spec["moves"][name]):
+                    moves[name] = spec["moves"][name]
+        spec["team"], spec["moves"] = team, moves
+        spec["items"] = {name: item for name, item in spec.get("items", {}).items() if name in team}
+        return spec
+
     # ------------------------------------------------------------- building
 
     def nickname(self, name):
