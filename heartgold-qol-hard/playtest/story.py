@@ -1662,15 +1662,17 @@ def oak_permission(bot):
 
 def red(bot):
     # the Red set at Viridian's Pokemon Center, then west by Route 22, the League gate and Route 28 into
-    # Mt. Silver, up to its summit, and Red at (30, 11). Beating him (FLAG_UNK_25F) rolls the credits
+    # Mt. Silver, up to its summit, and Red at (30, 11). Beating him rolls the credits, which end at home in
+    # the bedroom (New Bark, T20R0202); the flag his script sets (FLAG_UNK_25F) is cleared again on the way
     heal(bot, "T02PC0101", team="red")
     bot.travel(RED_ROOM)
     bot.talk(RED_ROOM, 0, boss="Red")
     for _ in range(300):
-        if bot.flag("FLAG_UNK_25F") and bot.game.in_field() and bot.free():
-            break
+        here = bot.where()
+        if here and here[0] == "T20R0202" and bot.game.in_field() and bot.free():
+            return
         bot.game.key("a", after=60)
-    bot.expect("FLAG_UNK_25F", "beating Red")
+    bot.stuck("beating Red did not end at home after the credits")
 
 
 STAGES = [leave_bedroom, meet_mom, elms_lab, choose_starter, elms_errand, pokegear, to_mr_pokemon, mr_pokemon, elms_call,

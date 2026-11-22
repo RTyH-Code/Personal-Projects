@@ -260,6 +260,30 @@ The rest of the gyms each have one win in one battle, with three to five of
 ours fainted. That is about the hard-mode feel wanted, but one battle each is
 a small sample.
 
+## Post-game: Kanto, the second round, and Red
+
+The bot healed before each of these fights and used the Kanto sets
+(`team_sets.py`). These are one run each (`postgame-kanto` and `postgame-red`
+in `results/battles.jsonl`).
+
+| Fight | Tries | Ours fainted in the win | Note |
+|---|---|---|---|
+| Lt. Surge | 1 | 2 | |
+| Sabrina | 1 | 4 | |
+| Erika | 1 | 3 | |
+| Misty | 1 | 4 | |
+| Janine | 1 | 1 | |
+| Brock | 1 | 1 | |
+| Blaine | 1 | 2 | |
+| Blue | 3 | | Softened after 8 losses: Gyarados has a Sitrus Berry and Ice Fang, not Mystic Water and Dragon Dance (patch 0023) |
+| Will, Koga, Bruno, Karen (second round) | 1 each | | |
+| Lance (second round) | lost 4 of 4 | | A peak fight: his combos stay on purpose |
+| Red | 1 | 5 | Blissey was the last one standing |
+
+Red's team, for the record of who fainted what: Lucario took Lapras, Tyranitar
+took Charizard, Electivire took Blastoise, Salamence took Snorlax and Pikachu,
+and Blissey took Venusaur after Gliscor fell.
+
 ## Something else found
 
 In `guide/BOSSES.md`, a few rows were broken: the item, moves and nature ran
