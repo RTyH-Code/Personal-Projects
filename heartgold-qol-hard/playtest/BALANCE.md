@@ -328,8 +328,26 @@ better.** The bosses that had needed several tries went down on the first.
 cover all five members the way a type-matchup team does: Bruno wants Fairy and
 Psychic, and Lance wants Electric and Ice. As before, the bot never switches out
 of a bad matchup and never uses items in battle, so a player would do better
-here than these League numbers suggest. Whether to soften Lance's first round, as was done
-for Blue, is still open.
+here than these League numbers suggest.
+
+### Lance softened (patch 0024)
+
+As with Blue, Lance's Gyarados lost Dragon Dance for Ice Fang. His last
+Dragonite lost it for Thunder Punch, and holds a Sitrus Berry in place of
+Leftovers. His second round is unchanged. The League was played again on the
+new build from the Victory Road save (`lance-0024` in `results/battles.jsonl`):
+
+| Set | Lance before | Lance after |
+|---|---|---|
+| The earlier League set (Ampharos, Gardevoir, Bronzong, Jynx, Machamp, Gyarados) | 3 of 6 | 3 of 8 |
+| The player's-way set | 0 of 10 | 0 of 7 |
+
+The change made little difference. With no Dragon Dance, the rebuilt team
+still lost each battle in 12 to 16 of Lance's moves. That is about one and a
+half moves per KO, and Gyarados and the Dragonites took 2 or 3 of ours each. The earlier
+set, built around type matchups, still wins about one in three. So the
+rebuilt set lacks the damage and the Electric and Ice coverage this fight
+needs. Dragon Dance was not the cause.
 
 ## Something else found
 
