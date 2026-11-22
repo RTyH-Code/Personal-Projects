@@ -297,12 +297,14 @@ SETS = {
                        item="SITRUS_BERRY",
                        team=["TYPHLOSION", "QUAGSIRE", "GASTRODON", "CLAYDOL", "TORKOAL", "GYARADOS"]),
     # Pryce's Ice types (Psychic, Energy Ball, Surf, Thunderbolt, Earthquake): Hariyama (Thick Fat, very high
-    # HP), Fire, Lanturn (resists Ice, Electric for Lapras and Dewgong), Bronzong (Steel, Levitate), Muk
+    # HP), Fire, Lanturn (resists Ice, Electric for Lapras and Dewgong), Bronzong (Steel, Levitate). Muk was
+    # last: Mamoswine (Earthquake, Ice Fang) finished the team in two losses of three; Gyarados, which
+    # Earthquake can't touch and whose Intimidate blunts it, is there for it
     "pryce_v2": dict(level=42, badges=6, places=MAHOGANY, ways=WATER,
                      tms=["FLASH", "ROOST", "BULLET_SEED", "ROCK_TOMB", "U_TURN", "DIG", "PAYBACK", "EMBARGO",
                           "PROTECT", "LIGHT_SCREEN", "REFLECT", "ATTRACT", "FOCUS_PUNCH", "CALM_MIND"],
                      item="SITRUS_BERRY",
-                     team=["HARIYAMA", "TYPHLOSION", "LANTURN", "BRONZONG", "MACHAMP", "MUK"],
+                     team=["HARIYAMA", "TYPHLOSION", "LANTURN", "BRONZONG", "MACHAMP", "GYARADOS"],
                      moves=dict(BRONZONG=["GYRO_BALL", "EXTRASENSORY", "ROCK_TOMB", "HYPNOSIS"])),
     # the Radio Tower (Poison types, bats, Dark types; the rival): Bronzong that Poison moves can't touch,
     # Lanturn for the bats, Muk to take hits, Fire for Ariados and Vileplume, Gyarados and Slowbro
