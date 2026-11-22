@@ -644,7 +644,7 @@ def through_switch_room(bot, goal):
             continue
         here = bot.where()
         if beside & set(bot.reach(SWITCH_ROOM, (here[1], here[2]))):
-            bot.walk(SWITCH_ROOM, [goal])
+            bot.walk(SWITCH_ROOM, [goal], leave_ok=True)     # the door warps on into the next room
             bot.settle()
             return
     bot.stuck("no choice of switches opened the way to %s" % (goal,))

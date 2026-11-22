@@ -308,11 +308,14 @@ SETS = {
                      moves=dict(BRONZONG=["GYRO_BALL", "EXTRASENSORY", "ROCK_TOMB", "HYPNOSIS"])),
     # the Radio Tower (Poison types, bats, Dark types; the rival): Bronzong that Poison moves can't touch,
     # Lanturn for the bats, Muk to take hits, Fire for Ariados and Vileplume, Gyarados and Slowbro
-    "radio_tower_v2": dict(level=46, badges=7, places=MAHOGANY, ways=WATER,
+    # Muk first: the rival in the Underground (Mismagius, Meganium) won 4 of 5. Snorlax from Route 44 instead:
+    # Ghost moves don't touch it, Crunch for Mismagius, and the special bulk for Ampharos and Meganium
+    "radio_tower_v2": dict(level=46, badges=7, places=MAHOGANY + ["Route 44"], ways=WATER,
                            tms=["FLASH", "ROOST", "BULLET_SEED", "ROCK_TOMB", "U_TURN", "DIG", "PAYBACK", "EMBARGO",
                                 "PROTECT", "LIGHT_SCREEN", "REFLECT", "ATTRACT", "FOCUS_PUNCH", "CALM_MIND", "HAIL"],
                            item="SITRUS_BERRY",
-                           team=["BRONZONG", "LANTURN", "MUK", "TYPHLOSION", "GYARADOS", "SLOWBRO"]),
+                           team=["BRONZONG", "LANTURN", "SNORLAX", "TYPHLOSION", "GYARADOS", "SLOWBRO"],
+                           moves=dict(BRONZONG=["GYRO_BALL", "EXTRASENSORY", "ROCK_TOMB", "HYPNOSIS"])),
     # Clair's Dragons: Walrein (Ice and Water, Thick Fat), Snorlax from Route 44, Azumarill (Fairy, takes
     # Outrage), Bronzong, Granbull, Lanturn for Gyarados and Kingdra
     "clair_v2": dict(level=47, badges=7, places=MAHOGANY + ["Route 44", "Ice Path 1F", "Ice Path B1F", "Ice Path B2F",
