@@ -284,6 +284,53 @@ Red's team, for the record of who fainted what: Lucario took Lapras, Tyranitar
 took Charizard, Electivire took Blastoise, Salamence took Snorlax and Pikachu,
 and Blissey took Venusaur after Gliscor fell.
 
+## Johto and the League again, with teams built the player's way
+
+The Johto and League sets were rebuilt the way the Kanto ones were: bulky
+Pokémon that hit hard for neutral damage (Snorlax, Tyranitar, Gyarados,
+Lanturn, Bronzong, Gardevoir) in place of the type-matchup picks
+(`*_v2` in `team_sets.py`, chosen with `STORY_TEAM_<BOSS>=<boss>_v2`). The
+checker now also makes sure a set's evolved Pokémon could have learned its
+moves before evolving. Each stretch was run from the same saves as before,
+healing before each boss, with up to five tries per stage and
+`STORY_JITTER=600`. The records are `johto-v2` (the sets as they stand) and
+`johto-v2-first` (the versions they replaced) in `results/battles.jsonl`.
+
+| Boss | Before (the earlier sets, after patch 0022 where it changed them) | Player's-way sets | Changed on the way |
+|---|---|---|---|
+| Falkner, Bugsy, Whitney, Morty, Chuck, Jasmine | first try each | first try each | |
+| Pryce | 8 of 8 | first try | Gyarados for Muk: with Muk, won on try 3, Mamoswine finishing both losses |
+| Clair | 2 of 6 | first try | |
+| Radio Tower and the Underground | Ariana 4 of 6 | every stage first try | Snorlax for Muk: the Underground rival's Mismagius beat the Muk set 4 of 5 |
+| Will | 15 of 19 | first try in all 4 runs | |
+| Koga | 4 of 4 | first try in all 4 runs | |
+| Bruno | 6 of 8 | 1 of 5 | 0 of 5, 0 of 5 and 1 of 3 with the earlier versions |
+| Karen | 2 of 6 | 1 of 3 | 1 of 2 with the version before |
+| Lance | 3 of 6 | 0 of 5 | 0 of 5 with the version before |
+
+The League set is now Snorlax, Tyranitar, Gardevoir, Lanturn, Azumarill and
+Slowbro. It got there one swap at a time:
+
+1. **Slowbro for Lanturn.** Bruno's Hitmonlee and Annihilape swept everyone
+   but Gardevoir, and Bruno won 5 of 5.
+2. **Azumarill for Walrein.** Annihilape, Ghost and Fighting with a Spell Tag,
+   still won 5 of 5, since Slowbro doesn't resist its Ghost moves. With
+   Azumarill Bruno fell on try 3, but with no Ice or Electric left Lance won 5
+   of 5.
+3. **Lanturn back, for Bronzong.** Lance still won 5 of 5, and Bruno fell
+   only on try 5.
+
+**Through Clair, the player's-way sets do as well as the type-matchup ones or
+better.** The bosses that had needed several tries went down on the first.
+
+**The League is the other way round.** Over Lance's ten losses, Dragonite took
+22 of ours, Gyarados 19, Aerodactyl 11 and Kingdra 7. One bulky team can't
+cover all five members the way a type-matchup team does: Bruno wants Fairy and
+Psychic, and Lance wants Electric and Ice. As before, the bot never switches out
+of a bad matchup and never uses items in battle, so a player would do better
+here than these League numbers suggest. Whether to soften Lance's first round, as was done
+for Blue, is still open.
+
 ## Something else found
 
 In `guide/BOSSES.md`, a few rows were broken: the item, moves and nature ran
