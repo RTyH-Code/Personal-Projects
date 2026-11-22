@@ -10,8 +10,9 @@ counted, except in the grind column.
 
 Experience follows the hack's formula (hg-engine's scaled one, src/battle/battle_script_commands.c): beating a
 Pokemon of level L with base experience b gives b*L/5 * ((2L+10)/(L+Lp+10))^2.5 to a Pokemon of level Lp
-(square roots rounded down), and half as much again from a trainer's Pokemon. Checked against the game: a Violet
-Gym trainer's Spearow and Falkner's team, beaten in the emulator, gave within 1% of this.
+(square roots rounded down), half as much again from a trainer's Pokemon, and since patch 0025 all of it doubled.
+Checked against the game: before patch 0025, a Violet Gym trainer's Spearow and Falkner's team, beaten in the
+emulator, gave within 1% of this.
 
 Ways of sharing it out:
 
@@ -19,7 +20,8 @@ Ways of sharing it out:
 - carry: one Pokemon takes every KO (the upper bound for a player's strongest)
 
 each for the two common growth rates (medium fast, and medium slow, which the starters use). A second table shows
-the even team with experience given out more freely, as possible fixes.
+the even team as it was before patch 0025, and with a modern Exp. Share instead (the rest of the party getting
+half as much), for comparison.
 """
 import os
 import re
@@ -66,9 +68,10 @@ GROWTH = {
     "medium fast": lambda n: n ** 3,
     "medium slow": lambda n: int(1.2 * n ** 3 - 15 * n ** 2 + 100 * n - 140) if n > 1 else 0,
 }
-# possible fixes: the even team with experience given out more freely
-FIXES = [("Modern Exp. Share", dict(share=True)), ("Double experience", dict(boost=2)),
-         ("1.5x experience", dict(boost=1.5))]
+# the hack's experience multiplier (patch 0025)
+MULTIPLIER = 2
+# the even team under other rules, for comparison
+OTHERS = [("Before patch 0025", dict(boost=1)), ("Modern Exp. Share instead", dict(boost=1, share=True))]
 
 
 def exp_gain(base, level, lp, trainer=True):
@@ -117,7 +120,7 @@ def stretches(d):
     return out
 
 
-def run(plan, base, curve, mode, grind=False, share=False, boost=1):
+def run(plan, base, curve, mode, grind=False, share=False, boost=MULTIPLIER):
     """For each boss: (label, lowest, highest level of the team on arrival, trainers on the way, wild KOs).
     With grind, wild Pokemon of the stretch's grass (each worth the slots' average) are beaten until the team's
     lowest is at the boss's average level."""
@@ -137,7 +140,7 @@ def run(plan, base, curve, mode, grind=False, share=False, boost=1):
 
     def wild(m, pool):
         total = sum(odds for _, _, odds in pool)
-        return sum(odds * exp_gain(base.get(s, 0), lv, m.level, trainer=False) for lv, s, odds in pool) // total
+        return sum(odds * exp_gain(base.get(s, 0), lv, m.level, trainer=False) for lv, s, odds in pool) * boost // total
 
     for label, boss, way, pool in plan:
         for party in way:
@@ -179,12 +182,12 @@ def main():
     for g in GROWTH:
         print("wild KOs in all, %s: %d" % (g, sum(r[4] for r in grinds[g])))
     print()
-    print("| Boss | Their average | " + " | ".join("%s, %s" % (f, g) for f, _ in FIXES for g in GROWTH) + " |")
-    print("|---|---|" + "---|" * (len(FIXES) * len(GROWTH)))
-    fixed = {(f, g): run(plan, base, GROWTH[g], "even", **kw) for f, kw in FIXES for g in GROWTH}
+    print("| Boss | Their average | " + " | ".join("%s, %s" % (f, g) for f, _ in OTHERS for g in GROWTH) + " |")
+    print("|---|---|" + "---|" * (len(OTHERS) * len(GROWTH)))
+    fixed = {(f, g): run(plan, base, GROWTH[g], "even", **kw) for f, kw in OTHERS for g in GROWTH}
     for i, (label, boss, way, pool) in enumerate(plan):
         avg = sum(p["level"] for p in boss) / len(boss)
-        print("| %s | %.0f | %s |" % (label, avg, " | ".join(span(fixed[(f, g)][i]) for f, _ in FIXES for g in GROWTH)))
+        print("| %s | %.0f | %s |" % (label, avg, " | ".join(span(fixed[(f, g)][i]) for f, _ in OTHERS for g in GROWTH)))
 
 
 if __name__ == "__main__":

@@ -1,0 +1,27 @@
+From f21d2d06c63a76e3bfdc5ae1c5b5566474b71158 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 22 Nov 2026 07:17:32 +0000
+Subject: [PATCH] Double experience
+
+---
+ src/battle/battle_script_commands.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/src/battle/battle_script_commands.c b/src/battle/battle_script_commands.c
+index c61e84725..adc30b0d1 100644
+--- a/src/battle/battle_script_commands.c
++++ b/src/battle/battle_script_commands.c
+@@ -1431,6 +1431,10 @@ void Task_DistributeExp_Extend(void *arg0, void *work)
+                 totalexp /= bottom;
+             }
+ 
++            // HeartGold QoL + Hard: double experience, so a team of six rotated through the story keeps close
++            // to the bosses' levels without grinding (playtest/LEVEL_CURVE.md)
++            totalexp *= 2;
++
+             // debug_printf("[Task_DistributeExp_Extend] L = %d, Lp = %d, b = %d, top = %d, bottom = %d, exp = %d\n", level, Lp, base, top, bottom, totalexp);
+ 
+             if (monCountFromItem) {
+-- 
+2.43.0
+
