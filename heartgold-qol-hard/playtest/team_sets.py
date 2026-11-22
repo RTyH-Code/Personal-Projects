@@ -327,7 +327,8 @@ SETS = {
                      team=["WALREIN", "SNORLAX", "AZUMARILL", "BRONZONG", "GRANBULL", "LANTURN"],
                      moves=dict(BRONZONG=["GYRO_BALL", "EXTRASENSORY", "ROCK_TOMB", "HYPNOSIS"])),
     # the Elite Four: Snorlax, Tyranitar (Will, Karen), Gardevoir (Bruno, Lance), Bronzong (Koga, Will),
-    # Walrein (Lance), Lanturn (Karen's Honchkrow, Lance's Gyarados and Dragonite). Leads per member in story.py
+    # Walrein (Lance), Slowbro (Bruno). Lanturn was first in Slowbro's place: Bruno won 5 of 5, Hitmonlee and
+    # Annihilape sweeping all but Gardevoir; Slowbro resists Fighting (and Fire, Ice, Water). Leads in story.py
     "elite_four_v2": dict(level=58, badges=8, places=MAHOGANY + ["Route 44", "Ice Path 1F", "Ice Path B1F",
                                                                 "Ice Path B2F", "Ice Path B3F", "Route 45", "Route 46",
                                                                 "Route 27", "Route 26"], ways=WATER,
@@ -335,9 +336,10 @@ SETS = {
                                "PROTECT", "LIGHT_SCREEN", "REFLECT", "ATTRACT", "FOCUS_PUNCH", "CALM_MIND", "HAIL",
                                "AVALANCHE", "DRAGON_PULSE"],
                           item="SITRUS_BERRY",
-                          team=["SNORLAX", "TYRANITAR", "GARDEVOIR", "BRONZONG", "WALREIN", "LANTURN"],
+                          team=["SNORLAX", "TYRANITAR", "GARDEVOIR", "BRONZONG", "WALREIN", "SLOWBRO"],
                           items=dict(BRONZONG="LUM_BERRY", WALREIN="NEVER_MELT_ICE", TYRANITAR="SITRUS_BERRY"),
-                          moves=dict(BRONZONG=["GYRO_BALL", "EXTRASENSORY", "ROCK_TOMB", "HYPNOSIS"])),
+                          moves=dict(BRONZONG=["GYRO_BALL", "EXTRASENSORY", "ROCK_TOMB", "HYPNOSIS"],
+                                     SLOWBRO=["SURF", "PSYCHIC", "CALM_MIND", "SLACK_OFF"])),
     # the first Clair set, kept to try again with the heal before her (run with STORY_TEAM_CLAIR=clair_first)
     "clair_first": dict(level=47, badges=7, places=MAHOGANY + ["Route 44", "Ice Path 1F", "Ice Path B1F", "Ice Path B2F",
                                                               "Ice Path B3F"], ways=WATER,

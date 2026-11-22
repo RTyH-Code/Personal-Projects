@@ -1055,9 +1055,9 @@ ELITE_FOUR = [("T10R0201", "FLAG_DEFEATED_WILL", "Will"), ("T10R0301", "FLAG_DEF
 LEADS = {"Will": "GYARADOS", "Koga": "BRONZONG", "Bruno": "GARDEVOIR", "Karen": ["AMPHAROS", "MACHAMP"],
          "Lance": "AMPHAROS"}
 # the same for the Elite Four set built the player's way (STORY_TEAM_ELITE_FOUR=elite_four_v2): Tyranitar,
-# which Psychic moves can't touch, for Will; Bronzong for Koga; Gardevoir for Bruno; Lanturn for Karen's
-# Honchkrow, then Tyranitar; Snorlax, neutral to all and bulky, for Lance's Aerodactyl
-LEADS_V2 = {"Will": "TYRANITAR", "Koga": "BRONZONG", "Bruno": "GARDEVOIR", "Karen": ["LANTURN", "TYRANITAR"],
+# which Psychic moves can't touch, for Will; Bronzong for Koga; Gardevoir for Bruno; Tyranitar for Karen's
+# Honchkrow and Dark types; Snorlax, neutral to all and bulky, for Lance's Aerodactyl
+LEADS_V2 = {"Will": "TYRANITAR", "Koga": "BRONZONG", "Bruno": "GARDEVOIR", "Karen": "TYRANITAR",
             "Lance": "SNORLAX"}
 
 
