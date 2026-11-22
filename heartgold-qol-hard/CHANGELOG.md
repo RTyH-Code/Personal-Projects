@@ -1,6 +1,10 @@
 # Changelog
 
-## Unreleased
+## v0.3 (playtest build)
+
+Boss teams only (patches 0022 to 0024). These change trainer data and
+nothing kept in a save, so a v0.2 save should carry on, though that has not
+been tried.
 
 From the story bot's playthrough (see `playtest/BALANCE.md`). Story bosses
 keep their threats but lose the combos that turned a fight on one setup
