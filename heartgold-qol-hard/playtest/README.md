@@ -490,6 +490,13 @@ The boss results, brought together with ways to fix the hard fights, are in
 What level a player's team reaches by each boss without grinding, worked out
 from the game's data with `level_curve.py`, is in [LEVEL_CURVE.md](LEVEL_CURVE.md).
 
+**Save states and code changes.** A save state holds the game's code as it
+was loaded in memory. After a patch that changes data only (trainer teams,
+say), saves from an earlier build still work. After one that changes code
+(such as patch 0025, double experience), they freeze at the next battle:
+start again from a fresh boot (no `--from`), which makes a new
+`bedroom.dst` with the new build.
+
 
 From `results/battles.jsonl`.
 

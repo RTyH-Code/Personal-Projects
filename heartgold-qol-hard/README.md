@@ -49,7 +49,10 @@ that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md
 - Battles run at 60 fps.
 - Held items used in battle come back afterwards, except berries.
 - Friendship evolutions trigger at 160 friendship instead of 220.
-- The Exp. formula scales with level difference, as in recent games.
+- The Exp. formula scales with level difference, as in recent games, and every
+  battle gives double experience, so a team of six rotated through the story keeps
+  close to the bosses' levels without grinding (see
+  [playtest/LEVEL_CURVE.md](playtest/LEVEL_CURVE.md)).
 - Mega Evolution, Primal Reversion and critical captures are switched off.
 - **National Dex from the start.** The Pokédex has its National mode from
   the first moment, and Professor Oak rates the national count over the
