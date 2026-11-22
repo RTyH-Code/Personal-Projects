@@ -1,14 +1,15 @@
 # Changelog
 
-## Unreleased
+## v0.4 (playtest build)
 
 - Every battle gives double experience (patch 0025). Beating every trainer on
   the way, a team of six used in turn was 4 to 7 levels under each Johto boss's
   average and 11 to 12 under by the Elite Four; now it is within about 3 levels
   all the way (`playtest/LEVEL_CURVE.md`). This changes game code, not just
   data, so an emulator save state made with an earlier version freezes at the
-  next battle. Use the in-game save to carry on instead; that should work, but
-  hasn't been tried yet.
+  next battle. Carry on from the in-game save instead. A save made in v0.3 on
+  Route 29 loaded in v0.4 at the same spot; two wild battles were won from it,
+  and the game saved again.
 
 ## v0.3 (playtest build)
 
