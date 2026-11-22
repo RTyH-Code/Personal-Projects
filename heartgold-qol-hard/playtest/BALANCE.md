@@ -347,7 +347,9 @@ still lost each battle in 12 to 16 of Lance's moves. That is about one and a
 half moves per KO, and Gyarados and the Dragonites took 2 or 3 of ours each. The earlier
 set, built around type matchups, still wins about one in three. So the
 rebuilt set lacks the damage and the Electric and Ice coverage this fight
-needs. Dragon Dance was not the cause.
+needs. Dragon Dance was not the cause. Lance stays as he is now: winning about one in three
+with a type-matchup team seems fair for the last story boss, and a player who
+switches and uses items should do better than the bot.
 
 ## Something else found
 
