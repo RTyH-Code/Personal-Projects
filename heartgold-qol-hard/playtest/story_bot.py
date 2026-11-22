@@ -1445,7 +1445,13 @@ class Bot:
             first = [m for name in order for m in mons if species.get(m.species) == name]
             mons = first + [m for m in mons if m not in first]
         if not self.write_party(mons):
-            self.stuck("could not heal the party (%s)" % why)
+            # once, after two losses to Lance, the start menu was open and the write never checked out: close
+            # whatever is open and try once more
+            for _ in range(3):
+                self.game.key("b", after=20)
+            self.settle()
+            if not self.write_party(mons):
+                self.stuck("could not heal the party (%s)" % why)
         print("  heal: party restored in place (%s), standing in for potions" % why, flush=True)
 
     # ------------------------------------------------------------- the run
