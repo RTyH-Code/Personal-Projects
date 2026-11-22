@@ -7,7 +7,10 @@ keep their threats but lose the combos that turned a fight on one setup
 turn; the post-game teams keep them.
 
 - Lance leads with Aerodactyl (Crunch in place of Curse) and brings Gyarados
-  fourth, holding a Sitrus Berry.
+  fourth, holding a Sitrus Berry. His Gyarados has Ice Fang and his last
+  Dragonite Thunder Punch, both in place of Dragon Dance, and that Dragonite
+  holds a Sitrus Berry in place of Leftovers (patch 0024). His second round is
+  unchanged.
 - Karen's Tyranitar has Ice Punch in place of Dragon Dance; her Weavile
   holds a Razor Claw in place of a Focus Sash.
 - Clair's Gyarados and Kingdra have their own sets instead of Lance's, and

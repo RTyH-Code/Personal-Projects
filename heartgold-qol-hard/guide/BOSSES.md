@@ -133,9 +133,9 @@ All boss Pokémon have perfect IVs. From Chuck onward they also have a nature an
 | Aerodactyl | 56 | Focus Sash | Stone Edge, Aerial Ace, Earthquake, Crunch | Jolly |
 | Charizard | 56 | Charcoal | Flamethrower, Air Slash, Dragon Pulse, Roost | Timid |
 | Kingdra | 56 | Haban Berry | Rain Dance, Waterfall, Outrage, Ice Beam | Swift Swim, Adamant |
-| Gyarados | 55 | Sitrus Berry | Aqua Tail, Earthquake, Dragon Dance, Crunch | Intimidate, Adamant |
+| Gyarados | 55 | Sitrus Berry | Aqua Tail, Earthquake, Ice Fang, Crunch | Intimidate, Adamant |
 | Dragonite | 57 | Yache Berry | Thunderbolt, Ice Beam, Flamethrower, Roost | Modest |
-| Dragonite | 58 | Leftovers | Dragon Dance, Outrage, Earthquake, Fire Punch | Adamant |
+| Dragonite | 58 | Sitrus Berry | Outrage, Earthquake, Fire Punch, Thunder Punch | Adamant |
 ## Team Rocket
 
 ### Proton, Slowpoke Well
