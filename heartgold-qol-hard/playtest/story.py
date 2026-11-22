@@ -654,6 +654,12 @@ def switch_room(bot):
     # the room behind the door: the rival waits just inside (a battle), then the switches, to the warehouse
     bot.travel(SWITCH_ROOM)
     bot.settle()
+    # the rival steps in on the player's first move, and a Grunt watches the corridor at (17, 5): have both
+    # battles before through_switch_room saves its state, or every choice of switches it tries fights them again
+    here = bot.where()
+    if (17, 5) in bot.reach(SWITCH_ROOM, (here[1], here[2])):
+        bot.walk(SWITCH_ROOM, [(17, 5)])
+        bot.settle()
     through_switch_room(bot, WAREHOUSE_DOOR)
 
 
