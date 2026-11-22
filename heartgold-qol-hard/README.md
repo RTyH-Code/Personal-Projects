@@ -4,7 +4,7 @@ A quality-of-life, modernization and difficulty hack for Pokémon HeartGold,
 following the same recipe as [FireRed QoL + Hard](../firered-qol-hard/README.md).
 It is built on [hg-engine](https://github.com/BluRosie/hg-engine).
 
-**Status: playtest build (v0.3).** Everything described below is in the
+**Status: playtest build (v0.4).** Everything described below is in the
 patch. The battles, maps, legendaries, wild Pokémon and shops have been
 checked by automated playtesters, and a story bot has played from the bedroom
 to Red (see [playtest/BALANCE.md](playtest/BALANCE.md)), but no person has
@@ -16,16 +16,16 @@ You need your own US Pokémon HeartGold ROM (game code `IPKE`, SHA-1
 `4fcded0e2713dc03929845de631d0932ea2b5a37`). The ROM is not in this
 repository and never will be.
 
-1. Download `HeartGold-QoL-Hard-v0.3.xdelta`.
+1. Download `HeartGold-QoL-Hard-v0.4.xdelta`.
 2. Apply it to the ROM with an xdelta patcher such as Delta Patcher or
    xdelta UI, or on a command line:
 
    ```bash
-   xdelta3 -d -s heartgold-usa.nds HeartGold-QoL-Hard-v0.3.xdelta HeartGold-QoL-Hard.nds
+   xdelta3 -d -s heartgold-usa.nds HeartGold-QoL-Hard-v0.4.xdelta HeartGold-QoL-Hard.nds
    ```
 
 3. The patched ROM is 256 MB, twice the original's size, and its SHA-1 is
-   `92ecdd394fa4a15fdb623e706bfa12f22d6f9886`. It has been run in DeSmuME;
+   `c2a7d0147fd77f91d4957b0845be2e3408b5b7ab`. It has been run in DeSmuME;
    other emulators and flashcarts are untried.
 
 Start a new game: saves from the original game or from other hacks will not
@@ -49,7 +49,10 @@ that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md
 - Battles run at 60 fps.
 - Held items used in battle come back afterwards, except berries.
 - Friendship evolutions trigger at 160 friendship instead of 220.
-- The Exp. formula scales with level difference, as in recent games.
+- The Exp. formula scales with level difference, as in recent games, and every
+  battle gives double experience, so a team of six rotated through the story keeps
+  close to the bosses' levels without grinding (see
+  [playtest/LEVEL_CURVE.md](playtest/LEVEL_CURVE.md)).
 - Mega Evolution, Primal Reversion and critical captures are switched off.
 - **National Dex from the start.** The Pokédex has its National mode from
   the first moment, and Professor Oak rates the national count over the
@@ -439,7 +442,7 @@ The first build takes several minutes. It clones hg-engine into `build/`,
 applies the patches and writes `build/hg-engine/test.nds`.
 
 The release patch is made from such a build, in a fresh work directory, with
-`tools/make_patch.sh`. v0.3 was built this way from all twenty-four patches.
+`tools/make_patch.sh`. v0.4 was built this way from all twenty-five patches.
 
 To confirm the result boots, without opening an emulator window:
 
