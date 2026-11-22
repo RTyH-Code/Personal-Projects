@@ -1,5 +1,37 @@
 # Changelog
 
+## v0.3 (playtest build)
+
+Boss teams only (patches 0022 to 0024). These change trainer data and
+nothing kept in a save, so a v0.2 save should carry on, though that has not
+been tried.
+
+From the story bot's playthrough (see `playtest/BALANCE.md`). Story bosses
+keep their threats but lose the combos that turned a fight on one setup
+turn; the post-game teams keep them.
+
+- Lance leads with Aerodactyl (Crunch in place of Curse) and brings Gyarados
+  fourth, holding a Sitrus Berry. His Gyarados has Ice Fang and his last
+  Dragonite Thunder Punch, both in place of Dragon Dance, and that Dragonite
+  holds a Sitrus Berry in place of Leftovers (patch 0024). His second round is
+  unchanged.
+- Karen's Tyranitar has Ice Punch in place of Dragon Dance; her Weavile
+  holds a Razor Claw in place of a Focus Sash.
+- Clair's Gyarados and Kingdra have their own sets instead of Lance's, and
+  her Gabite loses Swords Dance.
+- Koga's Ariados holds Black Sludge in place of a Focus Sash.
+- Ariana's Honchkrow in the Radio Tower holds a Sharp Beak in place of a
+  Scope Lens.
+- Pryce's Jynx has Fake Out in place of Lovely Kiss.
+- Blue's Gyarados holds a Sitrus Berry in place of a Mystic Water and has
+  Ice Fang in place of Dragon Dance (patch 0023). He is the eighth Kanto
+  badge, before the Elite Four's second round and Red; his rematch is
+  unchanged.
+- Proton in the Slowpoke Well has a Rattata and is a level higher.
+- Petrel in the Radio Tower is a level higher, leads with Weezing (Shadow
+  Ball), and one Koffing holds a Focus Sash; Protect is gone for Pain Split.
+- The boss guide's tables are fixed where an item name ran into the moves.
+
 ## v0.2 (playtest build)
 
 Follow-ups from an audit of v0.1. A save made in v0.1 at the start of the game
