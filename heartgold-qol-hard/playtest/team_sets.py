@@ -326,10 +326,12 @@ SETS = {
                      item="SITRUS_BERRY",
                      team=["WALREIN", "SNORLAX", "AZUMARILL", "BRONZONG", "GRANBULL", "LANTURN"],
                      moves=dict(BRONZONG=["GYRO_BALL", "EXTRASENSORY", "ROCK_TOMB", "HYPNOSIS"])),
-    # the Elite Four: Snorlax, Tyranitar (Will, Karen), Gardevoir (Bruno, Lance), Bronzong (Koga, Will),
-    # Azumarill (Bruno, Lance: Fairy, which Fighting and Dragon moves do little to), Slowbro (Bruno). First tries:
-    # Walrein and Lanturn, and Bruno won 5 of 5, Hitmonlee and Annihilape sweeping all but Gardevoir; then
-    # Slowbro for Lanturn, and Annihilape (Ghost moves, a Spell Tag) still won 5 of 5. Leads in story.py
+    # the Elite Four: Snorlax, Tyranitar (Will, Karen), Gardevoir (Bruno, Lance), Slowbro (Koga, Bruno),
+    # Azumarill (Bruno, Lance: Fairy, which Fighting and Dragon moves do little to), Lanturn (Electric for Lance's
+    # Aerodactyl, Charizard, Gyarados and Dragonite). Earlier tries, Bruno and Lance each 5 tries a run:
+    # Walrein and Lanturn for Slowbro and Azumarill, Bruno won 5 of 5 (Hitmonlee, Annihilape); Slowbro for
+    # Lanturn, Bruno 5 of 5 (Annihilape: Ghost moves, a Spell Tag); Azumarill for Walrein, Bruno beaten on try 3
+    # and Karen on try 2, but with no Electric or Ice Lance won 5 of 5; then Lanturn for Bronzong. Leads in story.py
     "elite_four_v2": dict(level=58, badges=8, places=MAHOGANY + ["Route 44", "Ice Path 1F", "Ice Path B1F",
                                                                 "Ice Path B2F", "Ice Path B3F", "Route 45", "Route 46",
                                                                 "Route 27", "Route 26"], ways=WATER,
@@ -337,10 +339,9 @@ SETS = {
                                "PROTECT", "LIGHT_SCREEN", "REFLECT", "ATTRACT", "FOCUS_PUNCH", "CALM_MIND", "HAIL",
                                "AVALANCHE", "DRAGON_PULSE"],
                           item="SITRUS_BERRY",
-                          team=["SNORLAX", "TYRANITAR", "GARDEVOIR", "BRONZONG", "AZUMARILL", "SLOWBRO"],
-                          items=dict(BRONZONG="LUM_BERRY", TYRANITAR="SITRUS_BERRY"),
-                          moves=dict(BRONZONG=["GYRO_BALL", "EXTRASENSORY", "ROCK_TOMB", "HYPNOSIS"],
-                                     SLOWBRO=["SURF", "PSYCHIC", "CALM_MIND", "SLACK_OFF"])),
+                          team=["SNORLAX", "TYRANITAR", "GARDEVOIR", "LANTURN", "AZUMARILL", "SLOWBRO"],
+                          items=dict(TYRANITAR="SITRUS_BERRY"),
+                          moves=dict(SLOWBRO=["SURF", "PSYCHIC", "CALM_MIND", "SLACK_OFF"])),
     # the first Clair set, kept to try again with the heal before her (run with STORY_TEAM_CLAIR=clair_first)
     "clair_first": dict(level=47, badges=7, places=MAHOGANY + ["Route 44", "Ice Path 1F", "Ice Path B1F", "Ice Path B2F",
                                                               "Ice Path B3F"], ways=WATER,
