@@ -1521,7 +1521,8 @@ class Bot:
                 # B moves the text on as A does, but does nothing on the command menu, which the bot must see
                 # before anything picks Fight on it (STORY_SMART)
                 bottom = image.getpixel((128, 247))[:3]
-                forget = all(image.getpixel(xy)[:3] == (216, 104, 88) for xy in ((60, 362), (128, 362)))
+                # the move-to-forget list and the move's page share a purple band across the top of the screen
+                forget = all(image.getpixel(xy)[:3] == (168, 104, 240) for xy in ((8, 206), (240, 206)))
                 if SMART and forget:
                     g.touch(238, 172, after=60)     # "which move should be forgotten?": back, to keep the set
                 elif SMART and bottom not in ((248, 168, 176), (232, 56, 56)):
