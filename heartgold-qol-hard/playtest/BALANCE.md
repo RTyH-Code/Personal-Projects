@@ -576,6 +576,28 @@ and Ice coverage his Gyarados and Dragonites call for, and Lv. 53 is two
 under his lowest (55). A player picking a team for Lance would bring that
 coverage, so this is a test of the set more than of Lance.
 
+**With the type-matchup League set (Ampharos, Gardevoir, Bronzong, Jynx,
+Machamp, Gyarados), Lance still wins.** The same League at Lv. 53, smart
+turns:
+
+| Boss | Type-matchup set | Bulky set (above) | Took the most of ours (type-matchup) |
+|---|---|---|---|
+| Will | first try | 1 of 2 | |
+| Koga | first try | 1 of 3 | |
+| Bruno | first try | first try | |
+| Karen | 1 of 4 | first try | Gengar 15 |
+| Lance | 0 of 5 | 0 of 5 | Gyarados 11, Aerodactyl 7, Dragonite 7 |
+
+Against Lance the type-matchup set knocked out two or three of his six each
+time, though it used 23 potions over the five battles. (Its first run
+stalled at Karen on a move to learn after a level-up, a bot gap since
+fixed, and Karen and Lance were played again from the save after Bruno.)
+The plain bot with this set at Lv. 58, his top level, won 3 of 8. So at the
+level a short grind brings, both sets lose every time to Lance, and he is
+the one boss the numbers still put out of line. Getting to Lv. 58 before
+him is about 170 wild battles on top of the trainers, by `level_curve.py`'s
+model with patch 0026.
+
 Whitney at 1 of 5 is harder than the plain bot's first-try win at the same
 level. That was one run, with `STORY_JITTER` changing every battle, so
 neither result says much alone; Stantler and Miltank remain her threats.
