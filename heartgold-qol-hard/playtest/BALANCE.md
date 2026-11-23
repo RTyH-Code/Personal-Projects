@@ -596,7 +596,8 @@ The plain bot with this set at Lv. 58, his top level, won 3 of 8. So at the
 level a short grind brings, both sets lose every time to Lance, and he is
 the one boss the numbers still put out of line. Getting to Lv. 58 before
 him is about 170 wild battles on top of the trainers, by `level_curve.py`'s
-model with patch 0026.
+model with patch 0026. Lance stays as he is: he is meant to be the hardest story boss,
+and he is beatable after that longer grind.
 
 Whitney at 1 of 5 is harder than the plain bot's first-try win at the same
 level. That was one run, with `STORY_JITTER` changing every battle, so
