@@ -78,15 +78,15 @@ Also, on the water: surfing swarm: Tentacool; fishing at night: Staryu; fishing 
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Pidgey | 2–4 | 40% | 40% | — |
-| Caterpie | 3–4 | 30% | 35% | — |
-| Rattata | 3–4 | — | — | 40% |
-| Weedle | 4 | 10% | 10% | 10% |
-| Spinarak | 2 | — | — | 30% |
-| Metapod | 4 | 10% | 15% | — |
-| Ledyba | 4 | 10% | — | — |
-| Kricketot | 4 | — | — | 10% |
-| Hoothoot | 4 | — | — | 10% |
+| Pidgey | 7–9 | 40% | 40% | — |
+| Caterpie | 8–9 | 30% | 35% | — |
+| Rattata | 8–9 | — | — | 40% |
+| Weedle | 9 | 10% | 10% | 10% |
+| Spinarak | 7 | — | — | 30% |
+| Metapod | 9 | 10% | 15% | — |
+| Ledyba | 9 | 10% | — | — |
+| Kricketot | 9 | — | — | 10% |
+| Hoothoot | 9 | — | — | 10% |
 
 Also, walking: swarm: Pidgey; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buizel, Bidoof.
 
@@ -116,17 +116,17 @@ Also, on the water: surfing swarm: Poliwag; fishing at night: Poliwag; fishing s
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Pidgey | 3 | 30% | 30% | — |
-| Caterpie | 4–5 | 25% | 35% | — |
-| Weedle | 3–4 | 10% | 10% | 10% |
-| Bellsprout | 3 | 10% | 10% | 10% |
-| Spinarak | 3 | — | — | 30% |
-| Rattata | 4–5 | — | — | 25% |
-| Metapod | 5 | 10% | 10% | — |
-| Pachirisu | 5 | 5% | 5% | 5% |
-| Ledyba | 3 | 10% | — | — |
-| Kricketot | 4 | — | — | 10% |
-| Hoothoot | 5 | — | — | 10% |
+| Pidgey | 8 | 30% | 30% | — |
+| Caterpie | 9 | 25% | 35% | — |
+| Weedle | 8–9 | 10% | 10% | 10% |
+| Bellsprout | 8 | 10% | 10% | 10% |
+| Spinarak | 8 | — | — | 30% |
+| Rattata | 9 | — | — | 25% |
+| Metapod | 9 | 10% | 10% | — |
+| Pachirisu | 9 | 5% | 5% | 5% |
+| Ledyba | 8 | 10% | — | — |
+| Kricketot | 9 | — | — | 10% |
+| Hoothoot | 9 | — | — | 10% |
 
 Also, walking: swarm: Pidgey; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buizel, Bidoof.
 
@@ -180,9 +180,9 @@ Also, on the water: surfing swarm: Poliwag; fishing at night: Poliwag; fishing s
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Rattata | 3–6 | 95% | 95% | 10% |
-| Gastly | 3–6 | — | — | 85% |
-| Chingling | 3 | 5% | 5% | 5% |
+| Rattata | 8–10 | 95% | 95% | 10% |
+| Gastly | 8–10 | — | — | 85% |
+| Chingling | 8 | 5% | 5% | 5% |
 
 Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Chatot, Meditite.
 
@@ -190,9 +190,9 @@ Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Cha
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Rattata | 3–6 | 95% | 95% | 10% |
-| Gastly | 3–6 | — | — | 85% |
-| Chingling | 3 | 5% | 5% | 5% |
+| Rattata | 8–10 | 95% | 95% | 10% |
+| Gastly | 8–10 | — | — | 85% |
+| Chingling | 8 | 5% | 5% | 5% |
 
 Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Chatot, Meditite.
 
@@ -200,16 +200,16 @@ Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Cha
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Rattata | 4–6 | 25% | 30% | 20% |
-| Bellsprout | 6 | 20% | 20% | 10% |
-| Ekans | 6 | 10% | 10% | 10% |
-| Wingull | 4 | 10% | 10% | 10% |
-| Poochyena | 6 | 10% | 10% | 10% |
-| Mareep | 6 | 10% | 10% | 5% |
-| Wooper | 6 | — | — | 25% |
-| Surskit | 6 | 5% | 5% | 5% |
-| Hoppip | 6 | 5% | 5% | — |
-| Zubat | 4 | 5% | — | 5% |
+| Rattata | 13 | 25% | 30% | 20% |
+| Bellsprout | 13 | 20% | 20% | 10% |
+| Ekans | 13 | 10% | 10% | 10% |
+| Wingull | 13 | 10% | 10% | 10% |
+| Poochyena | 13 | 10% | 10% | 10% |
+| Mareep | 13 | 10% | 10% | 5% |
+| Wooper | 13 | — | — | 25% |
+| Surskit | 13 | 5% | 5% | 5% |
+| Hoppip | 13 | 5% | 5% | — |
+| Zubat | 13 | 5% | — | 5% |
 
 Also, walking: swarm: Bellsprout; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buizel, Bidoof.
 
@@ -313,12 +313,12 @@ Also, walking: swarm: Unown; Hoenn Sound: Unown; Sinnoh Sound: Unown.
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Geodude | 6 | 30% | 30% | 30% |
-| Sandshrew | 6 | 30% | 30% | 30% |
-| Zubat | 5–7 | 25% | 25% | 25% |
-| Rattata | 4 | 5% | 5% | 5% |
-| Mawile | 4 | 5% | 5% | 5% |
-| Onix | 6 | 5% | 5% | 5% |
+| Geodude | 13 | 30% | 30% | 30% |
+| Sandshrew | 13 | 30% | 30% | 30% |
+| Zubat | 13–14 | 25% | 25% | 25% |
+| Rattata | 13 | 5% | 5% | 5% |
+| Mawile | 13 | 5% | 5% | 5% |
+| Onix | 13 | 5% | 5% | 5% |
 
 Also, walking: swarm: Geodude; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor, Chingling.
 
@@ -350,12 +350,12 @@ Also, on the water: surfing swarm: Wooper; fishing at night: Goldeen; fishing sw
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Geodude | 8 | 30% | 30% | 30% |
-| Sandshrew | 8 | 30% | 30% | 30% |
-| Zubat | 7–9 | 25% | 25% | 25% |
-| Onix | 8 | 5% | 5% | 5% |
-| Cubone | 8 | 5% | 5% | 5% |
-| Rattata | 6 | 5% | 5% | 5% |
+| Geodude | 14 | 30% | 30% | 30% |
+| Sandshrew | 14 | 30% | 30% | 30% |
+| Zubat | 14 | 25% | 25% | 25% |
+| Onix | 14 | 5% | 5% | 5% |
+| Cubone | 14 | 5% | 5% | 5% |
+| Rattata | 13 | 5% | 5% | 5% |
 
 Also, walking: swarm: Geodude; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor, Chingling.
 
@@ -424,12 +424,12 @@ Also, on the water: surfing swarm: Tentacool; fishing at night: Staryu; fishing 
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Rattata | 4–7 | 35% | 40% | 45% |
-| Hoppip | 6–8 | 35% | 35% | — |
-| Zubat | 4–8 | 5% | — | 40% |
-| Nincada | 6 | 10% | 10% | 10% |
-| Spearow | 6 | 10% | 10% | — |
-| Meditite | 6 | 5% | 5% | 5% |
+| Rattata | 13–14 | 35% | 40% | 45% |
+| Hoppip | 13–14 | 35% | 35% | — |
+| Zubat | 13–14 | 5% | — | 40% |
+| Nincada | 13 | 10% | 10% | 10% |
+| Spearow | 13 | 10% | 10% | — |
+| Meditite | 13 | 5% | 5% | 5% |
 
 Also, walking: swarm: Hoppip; Hoenn Sound: Plusle, Minun; Sinnoh Sound: Shinx.
 
@@ -437,8 +437,8 @@ Also, walking: swarm: Hoppip; Hoenn Sound: Plusle, Minun; Sinnoh Sound: Shinx.
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Zubat | 5–8 | 85% | 85% | 85% |
-| Slowpoke | 6–8 | 15% | 15% | 15% |
+| Zubat | 13–14 | 85% | 85% | 85% |
+| Slowpoke | 13–14 | 15% | 15% | 15% |
 
 Also, walking: swarm: Zubat; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor, Chingling.
 
@@ -501,16 +501,16 @@ Also, on the water: surfing swarm: Slowpoke; fishing at night: Goldeen; fishing 
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Caterpie | 5–6 | 40% | 60% | — |
-| Oddish | 5–6 | — | — | 60% |
-| Metapod | 6 | 30% | 10% | — |
-| Budew | 6 | 10% | 10% | 10% |
-| Zubat | 5–6 | 5% | 5% | 11% |
-| Pikachu | 5 | 5% | 5% | 5% |
-| Kecleon | 5 | 5% | 5% | 5% |
-| Paras | 6 | 5% | 5% | 1% |
-| Volbeat | 5 | — | — | 4% |
-| Illumise | 6 | — | — | 4% |
+| Caterpie | 16 | 40% | 60% | — |
+| Oddish | 16 | — | — | 60% |
+| Metapod | 16 | 30% | 10% | — |
+| Budew | 16 | 10% | 10% | 10% |
+| Zubat | 16 | 5% | 5% | 11% |
+| Pikachu | 16 | 5% | 5% | 5% |
+| Kecleon | 16 | 5% | 5% | 5% |
+| Paras | 16 | 5% | 5% | 1% |
+| Volbeat | 16 | — | — | 4% |
+| Illumise | 16 | — | — | 4% |
 
 Also, walking: swarm: Caterpie; Hoenn Sound: Spoink, Numel; Sinnoh Sound: Budew, Carnivine.
 
@@ -540,15 +540,15 @@ Also, on the water: surfing swarm: Psyduck; fishing at night: Poliwag; fishing s
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Rattata | 11–14 | 31% | 31% | 31% |
-| Drowzee | 10 | 30% | 30% | 30% |
-| Glameow | 13 | 10% | 10% | 10% |
-| Skitty | 13 | 10% | 10% | 10% |
-| Abra | 10 | 5% | 5% | 5% |
-| Shellos | 10 | 5% | 5% | 5% |
-| Jigglypuff | 14 | 4% | 4% | 4% |
-| Ralts | 10 | 4% | 4% | 4% |
-| Ditto | 10 | 1% | 1% | 1% |
+| Rattata | 18–19 | 31% | 31% | 31% |
+| Drowzee | 18 | 30% | 30% | 30% |
+| Glameow | 19 | 10% | 10% | 10% |
+| Skitty | 19 | 10% | 10% | 10% |
+| Abra | 18 | 5% | 5% | 5% |
+| Shellos | 18 | 5% | 5% | 5% |
+| Jigglypuff | 19 | 4% | 4% | 4% |
+| Ralts | 18 | 4% | 4% | 4% |
+| Ditto | 18 | 1% | 1% | 1% |
 
 Also, walking: swarm: Ralts; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buizel, Bidoof.
 
@@ -581,18 +581,18 @@ Also, on the water: surfing swarm: Tentacool; fishing at night: Staryu; fishing 
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Nidoran♂ | 13 | 30% | 30% | 30% |
-| Nidoran♀ | 13 | 20% | 20% | 20% |
-| Gulpin | 13 | 10% | 10% | 10% |
-| Drowzee | 15 | 10% | 10% | 10% |
-| Stunky | 15 | 10% | 10% | 10% |
-| Abra | 10 | 5% | 5% | 5% |
-| Chatot | 10 | 5% | 5% | 5% |
-| Lotad | 15 | 4% | 4% | 4% |
-| Ditto | 10 | 4% | 4% | 4% |
-| Yanma | 13 | 1% | 1% | 1% |
-| Pidgey | 15 | 1% | 1% | — |
-| Hoothoot | 15 | — | — | 1% |
+| Nidoran♂ | 22 | 30% | 30% | 30% |
+| Nidoran♀ | 22 | 20% | 20% | 20% |
+| Gulpin | 22 | 10% | 10% | 10% |
+| Drowzee | 23 | 10% | 10% | 10% |
+| Stunky | 23 | 10% | 10% | 10% |
+| Abra | 21 | 5% | 5% | 5% |
+| Chatot | 21 | 5% | 5% | 5% |
+| Lotad | 23 | 4% | 4% | 4% |
+| Ditto | 21 | 4% | 4% | 4% |
+| Yanma | 22 | 1% | 1% | 1% |
+| Pidgey | 23 | 1% | 1% | — |
+| Hoothoot | 23 | — | — | 1% |
 
 Also, walking: swarm: Yanma; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buizel, Bidoof.
 
@@ -622,13 +622,13 @@ Also, on the water: surfing swarm: Psyduck; fishing at night: Poliwag; fishing s
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Hoothoot | 10–15 | — | — | 85% |
-| Caterpie | 10–13 | 40% | 30% | — |
-| Metapod | 10 | 30% | 30% | — |
-| Buneary | 13 | 10% | 10% | 10% |
-| Pidgey | 10–15 | 15% | 10% | — |
-| Carnivine | 13 | 5% | 5% | 5% |
-| Sunkern | 10–13 | — | 15% | — |
+| Hoothoot | 21–23 | — | — | 85% |
+| Caterpie | 21–22 | 40% | 30% | — |
+| Metapod | 21 | 30% | 30% | — |
+| Buneary | 22 | 10% | 10% | 10% |
+| Pidgey | 21–23 | 15% | 10% | — |
+| Carnivine | 22 | 5% | 5% | 5% |
+| Sunkern | 21–22 | — | 15% | — |
 
 Also, walking: swarm: Caterpie; Hoenn Sound: Plusle, Minun; Sinnoh Sound: Shinx.
 
@@ -636,7 +636,7 @@ Also, walking: swarm: Caterpie; Hoenn Sound: Plusle, Minun; Sinnoh Sound: Shinx.
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Caterpie | 10–15 | 100% | 100% | 100% |
+| Caterpie | 21–23 | 100% | 100% | 100% |
 
 Also, walking: swarm: Caterpie; Hoenn Sound: Caterpie; Sinnoh Sound: Caterpie.
 
@@ -644,16 +644,16 @@ Also, walking: swarm: Caterpie; Hoenn Sound: Caterpie; Sinnoh Sound: Caterpie.
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Nidoran♂ | 13 | 30% | 30% | 30% |
-| Nidoran♀ | 13 | 30% | 20% | 30% |
-| Shinx | 13–14 | 10% | 10% | 10% |
-| Vulpix | 14 | 10% | 10% | 10% |
-| Growlithe | 14–17 | 5% | 5% | 5% |
-| Bonsly | 14 | 5% | 5% | 5% |
-| Stantler | 14 | 5% | 5% | 5% |
-| Plusle | 14–17 | 4% | 5% | 4% |
-| Pidgey | 14–17 | 1% | 10% | — |
-| Hoothoot | 17 | — | — | 1% |
+| Nidoran♂ | 22 | 30% | 30% | 30% |
+| Nidoran♀ | 22 | 30% | 20% | 30% |
+| Shinx | 22–23 | 10% | 10% | 10% |
+| Vulpix | 23 | 10% | 10% | 10% |
+| Growlithe | 23–24 | 5% | 5% | 5% |
+| Bonsly | 23 | 5% | 5% | 5% |
+| Stantler | 23 | 5% | 5% | 5% |
+| Plusle | 23–24 | 4% | 5% | 4% |
+| Pidgey | 23–24 | 1% | 10% | — |
+| Hoothoot | 24 | — | — | 1% |
 
 Also, walking: swarm: Nidoran♂; Hoenn Sound: Plusle, Minun; Sinnoh Sound: Shinx.
 
@@ -661,17 +661,17 @@ Also, walking: swarm: Nidoran♂; Hoenn Sound: Plusle, Minun; Sinnoh Sound: Shin
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Stantler | 17 | 30% | 30% | 20% |
-| Pidgey | 14–17 | 36% | 30% | — |
-| Spinarak | 14–17 | — | — | 32% |
-| Electrike | 17 | 10% | 10% | 10% |
-| Vulpix | 17 | 10% | 10% | 10% |
-| Growlithe | 15–17 | 5% | 6% | 5% |
-| Minun | 15 | 5% | 5% | 5% |
-| Cyndaquil | 17 | 4% | 4% | 4% |
-| Hoothoot | 17 | — | — | 10% |
-| Pidgeotto | 17 | — | 5% | — |
-| Houndour | 17 | — | — | 4% |
+| Stantler | 24 | 30% | 30% | 20% |
+| Pidgey | 23–24 | 36% | 30% | — |
+| Spinarak | 23–24 | — | — | 32% |
+| Electrike | 24 | 10% | 10% | 10% |
+| Vulpix | 24 | 10% | 10% | 10% |
+| Growlithe | 23–24 | 5% | 6% | 5% |
+| Minun | 23 | 5% | 5% | 5% |
+| Cyndaquil | 24 | 4% | 4% | 4% |
+| Hoothoot | 24 | — | — | 10% |
+| Pidgeotto | 24 | — | 5% | — |
+| Houndour | 24 | — | — | 4% |
 
 Also, walking: swarm: Pidgey; Hoenn Sound: Plusle, Minun; Sinnoh Sound: Shinx.
 
@@ -703,13 +703,13 @@ Also, on the water: surfing swarm: Poliwag; fishing at night: Poliwag; fishing s
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Rattata | 14–17 | 40% | 40% | 40% |
-| Koffing | 15–18 | 35% | 35% | 35% |
-| Shuppet | 17 | 10% | 10% | 10% |
-| Zubat | 15 | 5% | 5% | 5% |
-| Drifloon | 15 | 5% | 5% | 5% |
-| Raticate | 17 | 5% | 5% | 1% |
-| Murkrow | 17 | — | — | 4% |
+| Rattata | 23–24 | 40% | 40% | 40% |
+| Koffing | 23–24 | 35% | 35% | 35% |
+| Shuppet | 24 | 10% | 10% | 10% |
+| Zubat | 23 | 5% | 5% | 5% |
+| Drifloon | 23 | 5% | 5% | 5% |
+| Raticate | 24 | 5% | 5% | 1% |
+| Murkrow | 24 | — | — | 4% |
 
 Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Chatot, Meditite.
 
@@ -717,14 +717,14 @@ Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Cha
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Koffing | 15–18 | 40% | 40% | 40% |
-| Rattata | 15 | 30% | 30% | 30% |
-| Slugma | 18 | 10% | 10% | 10% |
-| Duskull | 18 | 5% | 5% | 5% |
-| Zubat | 17 | 5% | 5% | 5% |
-| Torkoal | 15–18 | 5% | 4% | 5% |
-| Magmar | 15–18 | 4% | 5% | 4% |
-| Rotom | 15 | 1% | 1% | 1% |
+| Koffing | 23–24 | 40% | 40% | 40% |
+| Rattata | 23 | 30% | 30% | 30% |
+| Slugma | 24 | 10% | 10% | 10% |
+| Duskull | 24 | 5% | 5% | 5% |
+| Zubat | 24 | 5% | 5% | 5% |
+| Torkoal | 23–24 | 5% | 4% | 5% |
+| Magmar | 23–24 | 4% | 5% | 4% |
+| Rotom | 23 | 1% | 1% | 1% |
 
 Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Chatot, Meditite.
 
@@ -812,16 +812,16 @@ Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Cha
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Rattata | 18 | 30% | 30% | 35% |
-| Raticate | 18 | 30% | 30% | 30% |
-| Magnemite | 18 | 10% | 10% | 10% |
-| Meowth | 18 | 10% | 10% | 10% |
-| Spoink | 18 | 5% | 5% | 5% |
-| Chikorita | 14 | 4% | 4% | 4% |
-| Tauros | 14 | 4% | 4% | 4% |
-| Farfetch’d | 18 | 5% | 5% | — |
-| Miltank | 14 | 1% | 1% | 1% |
-| Snubbull | 14 | 1% | 1% | 1% |
+| Rattata | 28 | 30% | 30% | 35% |
+| Raticate | 28 | 30% | 30% | 30% |
+| Magnemite | 28 | 10% | 10% | 10% |
+| Meowth | 28 | 10% | 10% | 10% |
+| Spoink | 28 | 5% | 5% | 5% |
+| Chikorita | 26 | 4% | 4% | 4% |
+| Tauros | 26 | 4% | 4% | 4% |
+| Farfetch’d | 28 | 5% | 5% | — |
+| Miltank | 26 | 1% | 1% | 1% |
+| Snubbull | 26 | 1% | 1% | 1% |
 
 Also, walking: swarm: Snubbull; Hoenn Sound: Plusle, Minun; Sinnoh Sound: Shinx.
 
@@ -829,16 +829,16 @@ Also, walking: swarm: Snubbull; Hoenn Sound: Plusle, Minun; Sinnoh Sound: Shinx.
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Rattata | 18 | 30% | 30% | 35% |
-| Raticate | 19 | 30% | 30% | 30% |
-| Magnemite | 18 | 10% | 10% | 10% |
-| Meowth | 18 | 10% | 10% | 10% |
-| Zangoose | 18 | 5% | 5% | 5% |
-| Kangaskhan | 17 | 4% | 4% | 4% |
-| Totodile | 17 | 4% | 4% | 4% |
-| Farfetch’d | 18 | 5% | 5% | — |
-| Miltank | 17 | 1% | 1% | 1% |
-| Tauros | 17 | 1% | 1% | 1% |
+| Rattata | 28 | 30% | 30% | 35% |
+| Raticate | 29 | 30% | 30% | 30% |
+| Magnemite | 28 | 10% | 10% | 10% |
+| Meowth | 28 | 10% | 10% | 10% |
+| Zangoose | 28 | 5% | 5% | 5% |
+| Kangaskhan | 28 | 4% | 4% | 4% |
+| Totodile | 28 | 4% | 4% | 4% |
+| Farfetch’d | 28 | 5% | 5% | — |
+| Miltank | 28 | 1% | 1% | 1% |
+| Tauros | 28 | 1% | 1% | 1% |
 
 Also, walking: swarm: Rattata; Hoenn Sound: Plusle, Minun; Sinnoh Sound: Shinx.
 
@@ -1060,14 +1060,14 @@ Also, on the water: surfing swarm: Tentacool; fishing at night: Staryu; fishing 
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Mankey | 17 | 30% | 30% | 30% |
-| Mareep | 14 | 30% | 30% | 30% |
-| Spearow | 15–18 | 15% | 15% | — |
-| Numel | 15 | 10% | 10% | 10% |
-| Flaaffy | 17–19 | 6% | 6% | 6% |
-| Seviper | 18 | 5% | 5% | 5% |
-| Zubat | 15–18 | — | — | 15% |
-| Bulbasaur | 19 | 4% | 4% | 4% |
+| Mankey | 32 | 30% | 30% | 30% |
+| Mareep | 30 | 30% | 30% | 30% |
+| Spearow | 31–33 | 15% | 15% | — |
+| Numel | 31 | 10% | 10% | 10% |
+| Flaaffy | 32–34 | 6% | 6% | 6% |
+| Seviper | 33 | 5% | 5% | 5% |
+| Zubat | 31–33 | — | — | 15% |
+| Bulbasaur | 34 | 4% | 4% | 4% |
 
 Also, walking: swarm: Mankey; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buizel, Bidoof.
 
@@ -1099,11 +1099,11 @@ Also, on the water: surfing swarm: Goldeen; fishing at night: Goldeen; fishing s
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Zubat | 14–17 | 60% | 60% | 60% |
-| Machop | 15 | 20% | 20% | 20% |
-| Rattata | 15–18 | 14% | 14% | 14% |
-| Geodude | 15 | 5% | 5% | 5% |
-| Marill | 17 | 1% | 1% | 1% |
+| Zubat | 30–32 | 60% | 60% | 60% |
+| Machop | 31 | 20% | 20% | 20% |
+| Rattata | 31–33 | 14% | 14% | 14% |
+| Geodude | 31 | 5% | 5% | 5% |
+| Marill | 32 | 1% | 1% | 1% |
 
 Also, walking: swarm: Marill; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor, Chingling.
 
@@ -1134,13 +1134,13 @@ Also, on the water: surfing swarm: Goldeen; fishing at night: Goldeen; fishing s
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Machop | 14–17 | 35% | 35% | 35% |
-| Geodude | 14 | 30% | 30% | 30% |
-| Whismur | 17 | 10% | 10% | 10% |
-| Makuhita | 17 | 10% | 10% | 10% |
-| Rattata | 15 | 5% | 5% | 5% |
-| Clefairy | 15 | 5% | 5% | 5% |
-| Zubat | 15 | 5% | 5% | 5% |
+| Machop | 30–32 | 35% | 35% | 35% |
+| Geodude | 30 | 30% | 30% | 30% |
+| Whismur | 32 | 10% | 10% | 10% |
+| Makuhita | 32 | 10% | 10% | 10% |
+| Rattata | 31 | 5% | 5% | 5% |
+| Clefairy | 31 | 5% | 5% | 5% |
+| Zubat | 31 | 5% | 5% | 5% |
 
 Also, walking: swarm: Geodude; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor, Chingling.
 
@@ -1186,14 +1186,14 @@ Also, on the water: surfing swarm: Goldeen; fishing at night: Goldeen; fishing s
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Zubat | 17–19 | 60% | 60% | 60% |
-| Rattata | 18 | 20% | 20% | 20% |
-| Machop | 18 | 5% | 5% | 5% |
-| Croagunk | 18 | 5% | 5% | 5% |
-| Aron | 18 | 4% | 4% | 4% |
-| Grimer | 18 | 4% | 4% | 4% |
-| Geodude | 18 | 1% | 1% | 1% |
-| Raticate | 18 | 1% | 1% | 1% |
+| Zubat | 32–34 | 60% | 60% | 60% |
+| Rattata | 33 | 20% | 20% | 20% |
+| Machop | 33 | 5% | 5% | 5% |
+| Croagunk | 33 | 5% | 5% | 5% |
+| Aron | 33 | 4% | 4% | 4% |
+| Grimer | 33 | 4% | 4% | 4% |
+| Geodude | 33 | 1% | 1% | 1% |
+| Raticate | 33 | 1% | 1% | 1% |
 
 Also, walking: swarm: Zubat; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor, Chingling.
 
@@ -1224,16 +1224,16 @@ Also, on the water: surfing swarm: Goldeen; fishing at night: Goldeen; fishing s
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Flaaffy | 17–18 | 30% | 31% | 30% |
-| Girafarig | 17 | 30% | 30% | 30% |
-| Pidgeotto | 19 | 20% | 20% | — |
-| Noctowl | 19 | — | — | 20% |
-| Castform | 17 | 5% | 5% | 5% |
-| Mime Jr. | 18 | 4% | 4% | 4% |
-| Charmander | 19 | 4% | 4% | 4% |
-| Mareep | 17–18 | 5% | 5% | 1% |
-| Venonat | 17–18 | 1% | — | 5% |
-| Porygon | 19 | 1% | 1% | 1% |
+| Flaaffy | 32–33 | 30% | 31% | 30% |
+| Girafarig | 32 | 30% | 30% | 30% |
+| Pidgeotto | 34 | 20% | 20% | — |
+| Noctowl | 34 | — | — | 20% |
+| Castform | 32 | 5% | 5% | 5% |
+| Mime Jr. | 33 | 4% | 4% | 4% |
+| Charmander | 34 | 4% | 4% | 4% |
+| Mareep | 32–33 | 5% | 5% | 1% |
+| Venonat | 32–33 | 1% | — | 5% |
+| Porygon | 34 | 1% | 1% | 1% |
 
 Also, walking: swarm: Flaaffy; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buizel, Bidoof.
 
@@ -1286,14 +1286,14 @@ Also, on the water: surfing swarm: Magikarp; fishing at night: Gyarados; fishing
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Weepinbell | 25–28 | 31% | 31% | 31% |
-| Tangela | 26 | 30% | 30% | 30% |
-| Bellsprout | 25 | 20% | 20% | 20% |
-| Lickitung | 28 | 5% | 5% | 5% |
-| Elekid | 28 | 5% | 5% | 5% |
-| Munchlax | 28 | 4% | 4% | 4% |
-| Squirtle | 30 | 4% | 4% | 4% |
-| Chansey | 30 | 1% | 1% | 1% |
+| Weepinbell | 35–37 | 31% | 31% | 31% |
+| Tangela | 35 | 30% | 30% | 30% |
+| Bellsprout | 35 | 20% | 20% | 20% |
+| Lickitung | 37 | 5% | 5% | 5% |
+| Elekid | 37 | 5% | 5% | 5% |
+| Munchlax | 37 | 4% | 4% | 4% |
+| Squirtle | 38 | 4% | 4% | 4% |
+| Chansey | 38 | 1% | 1% | 1% |
 
 Also, walking: swarm: Tangela; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buizel, Bidoof.
 
@@ -1325,12 +1325,12 @@ Also, on the water: surfing swarm: Poliwag; fishing at night: Poliwag; fishing s
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Swinub | 24–26 | 40% | 40% | 40% |
-| Golbat | 25 | 30% | 20% | 30% |
-| Snorunt | 25 | 10% | 10% | 10% |
-| Delibird | 25 | 10% | 10% | 10% |
-| Zubat | 25 | 5% | 10% | 5% |
-| Jynx | 25 | 5% | 10% | 5% |
+| Swinub | 34–35 | 40% | 40% | 40% |
+| Golbat | 35 | 30% | 20% | 30% |
+| Snorunt | 35 | 10% | 10% | 10% |
+| Delibird | 35 | 10% | 10% | 10% |
+| Zubat | 35 | 5% | 10% | 5% |
+| Jynx | 35 | 5% | 10% | 5% |
 
 Also, walking: swarm: Swinub; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor, Chingling.
 
@@ -1338,12 +1338,12 @@ Also, walking: swarm: Swinub; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzo
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Swinub | 24–26 | 35% | 35% | 35% |
-| Golbat | 25 | 30% | 30% | 30% |
-| Zubat | 25 | 15% | 10% | 15% |
-| Snover | 25 | 10% | 10% | 10% |
-| Jynx | 25 | 5% | 10% | 5% |
-| Sneasel | 26 | 5% | 5% | 5% |
+| Swinub | 34–35 | 35% | 35% | 35% |
+| Golbat | 35 | 30% | 30% | 30% |
+| Zubat | 35 | 15% | 10% | 15% |
+| Snover | 35 | 10% | 10% | 10% |
+| Jynx | 35 | 5% | 10% | 5% |
+| Sneasel | 35 | 5% | 5% | 5% |
 
 Also, walking: swarm: Swinub; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor, Chingling.
 
@@ -1351,12 +1351,12 @@ Also, walking: swarm: Swinub; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzo
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Swinub | 25–28 | 35% | 35% | 35% |
-| Golbat | 26 | 30% | 30% | 30% |
-| Zubat | 26 | 15% | 10% | 15% |
-| Snorunt | 26 | 10% | 10% | 10% |
-| Jynx | 26 | 5% | 10% | 5% |
-| Spheal | 28 | 5% | 5% | 5% |
+| Swinub | 35–37 | 35% | 35% | 35% |
+| Golbat | 35 | 30% | 30% | 30% |
+| Zubat | 35 | 15% | 10% | 15% |
+| Snorunt | 35 | 10% | 10% | 10% |
+| Jynx | 35 | 5% | 10% | 5% |
+| Spheal | 37 | 5% | 5% | 5% |
 
 Also, walking: swarm: Swinub; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor, Chingling.
 
@@ -1364,13 +1364,13 @@ Also, walking: swarm: Swinub; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzo
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Swinub | 25 | 30% | 30% | 30% |
-| Golbat | 26 | 30% | 30% | 30% |
-| Zubat | 26 | 15% | 10% | 15% |
-| Snover | 26 | 10% | 10% | 10% |
-| Jynx | 26 | 5% | 10% | 5% |
-| Delibird | 28 | 5% | 5% | 5% |
-| Sneasel | 28 | 5% | 5% | 5% |
+| Swinub | 35 | 30% | 30% | 30% |
+| Golbat | 35 | 30% | 30% | 30% |
+| Zubat | 35 | 15% | 10% | 15% |
+| Snover | 35 | 10% | 10% | 10% |
+| Jynx | 35 | 5% | 10% | 5% |
+| Delibird | 37 | 5% | 5% | 5% |
+| Sneasel | 37 | 5% | 5% | 5% |
 
 Also, walking: swarm: Swinub; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor, Chingling.
 
@@ -1475,10 +1475,10 @@ Also, walking: swarm: Geodude; Hoenn Sound: Plusle, Minun; Sinnoh Sound: Shinx.
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Geodude | 2–4 | 55% | 55% | 55% |
-| Zubat | 2–4 | 39% | 39% | 39% |
-| Sableye | 4 | 5% | 5% | 5% |
-| Dunsparce | 4 | 1% | 1% | 1% |
+| Geodude | 7–9 | 55% | 55% | 55% |
+| Zubat | 7–9 | 39% | 39% | 39% |
+| Sableye | 9 | 5% | 5% | 5% |
+| Dunsparce | 9 | 1% | 1% | 1% |
 
 Also, walking: swarm: Dunsparce; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor, Chingling.
 

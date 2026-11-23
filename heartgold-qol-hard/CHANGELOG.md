@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased
+
+- Wild Pokémon in the grass and caves on Johto's main path are a little
+  under the boss after them (patch 0027): Routes 30 and 31 are Lv. 7-9, up
+  from 2-5, Route 34 is 18-19, Routes 42 and 43 are 30-34, Route 44 and the
+  Ice Path 34-38. Keeping a team at each boss's average took about 180 wild
+  battles before Falkner and 160 before Jasmine; now no stretch needs more
+  than about 60 (`playtest/LEVEL_CURVE.md`). Route 29, Route 46, surfing,
+  fishing and the optional areas (Bell Tower, Whirl Islands, the lower floors
+  of Union Cave and Slowpoke Well) are unchanged.
+
 ## v0.5 (playtest build)
 
 - Wild Pokémon on Routes 26 and 27, at Tohjo Falls and in Victory Road are

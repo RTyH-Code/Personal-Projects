@@ -31,19 +31,19 @@ need to beat to have all six at the boss's average level on arrival.
 
 | Boss | Their levels | Trainers on the way | Even team, medium fast | Even team, medium slow | One carry, medium fast | One carry, medium slow | Wild KOs to reach their average, medium fast | The same, medium slow |
 |---|---|---|---|---|---|---|---|---|
-| Falkner | 11-14 (avg 12) | 12 | 8 | 9-10 | 12 | 14 | 183 | 76 |
-| Proton, Slowpoke Well | 15-18 (avg 16) | 17 | 13-14 | 14-16 | 20 | 21 | 107 | 18 |
-| Bugsy | 16-19 (avg 18) | 4 | 14-16 | 16-18 | 23 | 24 | 116 | 61 |
-| Rival, Azalea | 18-21 (avg 19) | 0 | 15-16 | 17-18 | 24 | 25 | 81 | 43 |
-| Whitney | 21-24 (avg 22) | 14 | 18-19 | 20-21 | 29 | 30 | 56 | 23 |
+| Falkner | 11-14 (avg 12) | 12 | 8 | 9-10 | 12 | 14 | 46 | 21 |
+| Proton, Slowpoke Well | 15-18 (avg 16) | 17 | 13-14 | 14-16 | 20 | 21 | 23 | 4 |
+| Bugsy | 16-19 (avg 18) | 4 | 14-16 | 16-18 | 23 | 24 | 21 | 11 |
+| Rival, Azalea | 18-21 (avg 19) | 0 | 15-16 | 17-18 | 24 | 25 | 14 | 8 |
+| Whitney | 21-24 (avg 22) | 14 | 18-19 | 20-21 | 29 | 30 | 22 | 10 |
 | Rival, Burned Tower | 24-27 (avg 25) | 21 | 23 | 25 | 36 | 37 | 0 | 0 |
-| Morty | 26-29 (avg 28) | 4 | 25 | 26-27 | 39 | 40 | 72 | 23 |
+| Morty | 26-29 (avg 28) | 4 | 25 | 26-27 | 39 | 40 | 27 | 10 |
 | Chuck | 31-34 (avg 32) | 36 | 31-32 | 32-33 | 47 | 48 | 0 | 0 |
-| Jasmine | 35-38 (avg 36) | 0 | 32-33 | 33-34 | 49 | 49 | 163 | 130 |
+| Jasmine | 35-38 (avg 36) | 0 | 32-33 | 33-34 | 49 | 49 | 58 | 46 |
 | Petrel, Rocket HQ | 36-39 (avg 37) | 20 | 35 | 36 | 53 | 54 | 0 | 0 |
 | Ariana, Rocket HQ | 37-40 (avg 38) | 4 | 36 | 37 | 55 | 55 | 0 | 0 |
-| Pryce | 38-42 (avg 40) | 5 | 37-38 | 38 | 57 | 57 | 22 | 10 |
-| Proton, Radio Tower | 41-43 (avg 42) | 11 | 39-40 | 40-41 | 60 | 60 | 9 | 4 |
+| Pryce | 38-42 (avg 40) | 5 | 37-38 | 38 | 57 | 57 | 5 | 2 |
+| Proton, Radio Tower | 41-43 (avg 42) | 11 | 39-40 | 40-41 | 60 | 60 | 2 | 1 |
 | Petrel, Radio Tower | 43-44 (avg 43) | 1 | 41-42 | 42-43 | 63 | 63 | 0 | 0 |
 | Rival, Goldenrod Tunnel | 41-44 (avg 42) | 6 | 42 | 43 | 64 | 64 | 0 | 0 |
 | Ariana, Radio Tower | 43-45 (avg 44) | 3 | 43-44 | 44 | 66 | 66 | 0 | 0 |
@@ -53,15 +53,20 @@ need to beat to have all six at the boss's average level on arrival.
 | Will | 49-51 (avg 50) | 0 | 50 | 50-51 | 76 | 75 | 0 | 0 |
 | Koga | 50-52 (avg 51) | 0 | 50-51 | 51 | 77 | 76 | 0 | 0 |
 | Bruno | 51-53 (avg 52) | 0 | 51-52 | 51-52 | 78 | 77 | 0 | 0 |
-| Karen | 53-55 (avg 54) | 0 | 52-53 | 52-53 | 79 | 78 | 21 | 23 |
-| Lance | 55-58 (avg 56) | 0 | 53 | 53-54 | 80 | 79 | 46 | 46 |
-wild KOs in all, medium fast: 876
-wild KOs in all, medium slow: 457
+| Karen | 53-55 (avg 54) | 0 | 52-53 | 52-53 | 79 | 78 | 21 | 21 |
+| Lance | 55-58 (avg 56) | 0 | 53 | 53-54 | 80 | 79 | 45 | 48 |
+wild KOs in all, medium fast: 284
+wild KOs in all, medium slow: 182
 
 **An even team of six stays within about 3 levels under each boss's average all the way.** It falls furthest
 behind early on, 3 to 4 levels at Falkner, and by the League it is 2 to 3 under. Wild battles met on the way
-make up most of that. Having all six right at every boss's average takes about 450 to 900 wild KOs over the
-whole game, most of them before Falkner, Bugsy and Jasmine.
+make up most of that. Having all six right at every boss's average takes about 180 to 280 wild KOs over the
+whole game. No stretch needs more than about 60: the most are before Jasmine, Falkner and Lance.
+
+Until patch 0027 it was about 630 to 1,040. The grass and caves on Johto's main path kept HeartGold's own
+levels, Lv. 2-5 before Falkner and 14-19 before Pryce, so before Falkner it took about 180 wild KOs, before
+Bugsy about 120 and before Jasmine about 160. Patch 0027 puts each of those areas a little under the boss
+after it (55-80% of his average before Falkner, 75-85% after).
 
 The League's share was larger until patch 0026. The grass on Routes 26 and 27 and in Victory Road was Lv. 23
 to 41, far enough under a team at 50 that the scaled formula gave little for it: about 160 wild KOs to bring
