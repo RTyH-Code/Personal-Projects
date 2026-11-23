@@ -12,12 +12,6 @@ No. 111 · Ground / Rock · catch rate 120
 
 - Into [Rhydon](0112-rhydon.md) at Lv. 42.
 
-## Where
-
-- Victory Road 1F (walking)
-- Victory Road 2F (walking)
-- Victory Road 3F (walking)
-
 ## Moves by level
 
 | Lv. | Move |

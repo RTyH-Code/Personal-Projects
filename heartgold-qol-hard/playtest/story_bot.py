@@ -1369,6 +1369,10 @@ class Bot:
     def swap_team(self, name):
         """At a Pokemon Center: box the party and take out the boss's set (team_sets.py), healthy."""
         spec = team_sets.SETS[name]
+        # STORY_LEVEL_<SET>=N: the set at another level, as a player would have it then (LEVEL_CURVE.md)
+        level = os.environ.get("STORY_LEVEL_" + name.upper())
+        if level:
+            spec = self.sets.at_level(spec, int(level))
         at = self.party()
         mons = self.party_mons()
         template = next(m for m in mons if m.valid() and not m.is_egg)

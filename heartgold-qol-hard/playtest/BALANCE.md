@@ -351,6 +351,108 @@ needs. Dragon Dance was not the cause. Lance stays as he is now: winning about o
 with a type-matchup team seems fair for the last story boss, and a player who
 switches and uses items should do better than the bot.
 
+## The bosses at a player's levels
+
+Every run above swapped in a team at the boss's top level. `LEVEL_CURVE.md`
+shows that a player who beats every trainer on the way, but doesn't grind,
+arrives lower, even with double experience. So each Johto boss and Will were
+played again with the team set to the even team's level (medium fast, the
+low end) from that table. The bot's `STORY_LEVEL_<SET>=<level>` setting
+devolves anything that evolves above that level, and drops moves it couldn't
+know yet. These are the earlier type-matchup sets, from the same saves as
+before, healing before each boss, with up to five tries and
+`STORY_JITTER=600`. The records are `player-levels` in
+`results/battles.jsonl`, with the team's level as `team_level`.
+
+| Boss | Set's level before | Player's level | Before | At the player's level | Took the most of ours |
+|---|---|---|---|---|---|
+| Falkner | 14 | 8 | 2 of 2 | 0 of 5 | Natu 16, Murkrow 9 |
+| Bugsy | 19 | 14 | first try | 1 of 3 | Scyther 7, Pineco 6 |
+| Whitney | 24 | 18 | 4 of 7 | 0 of 5 | Miltank 13, Stantler 6, Dunsparce 6 |
+| Morty | 29 | 25 | first try | first try | |
+| Chuck | 34 | 31 | first try | 0 of 5 | Heracross 12, Hitmontop 7 |
+| Jasmine | 38 | 32 | first try | 1 of 3 | Scizor 6 |
+| Pryce | 42 | 37 | 8 of 8 | 0 of 5 | Mamoswine 13, Dewgong 8 |
+| Radio Tower | 46 | 42 | Ariana 4 of 6 | stuck before Archer | a Koffing grunt in the Underground warehouse, 5 times |
+| Clair | 47 | 45 | 2 of 6 | 0 of 5 | Altaria 11, Gyarados 9 |
+| Will | 58 | 51 | 15 of 19 | 0 of 5 | Farigiraf 10, Espeon 9 |
+
+**At the levels a player gets to, the bot loses almost every boss.** Only
+Morty fell on the first try. Bugsy and Jasmine took three tries, and the rest
+won five of five. The gap matters more than its size suggests. Chuck at 3
+levels down and Clair at 2 went from wins to 0 of 5, because their teams'
+aces (Heracross, Altaria and Gyarados) now outspeed and take two or three of
+ours each. Before Falkner the gap is 6 levels, which no team of starters and
+early catches makes up.
+
+Some of this is the bot. It never switches out of a bad matchup and never
+uses items in battle, and these sets were picked for the top level, not
+for 3 to 7 levels under. But the same bot with the same sets won all but
+Pryce, Clair and the League's harder fights at the top level, so what
+changed is the level. A player who doesn't grind will find most Johto
+bosses a wall, and needs the 600 to 1,000 wild KOs `LEVEL_CURVE.md` counts
+to get past them.
+
+### The bulky sets at a player's levels
+
+The same runs with the sets built the player's way (`*_v2`), at the same
+levels (`player-levels-v2`). Most taught moves drop out at these levels, so
+the sets fight with their level-up moves, and the League's Tyranitar is a
+Pupitar.
+
+| Boss | Player's level | Type-matchup sets | Bulky sets | Took the most of ours |
+|---|---|---|---|---|
+| Falkner | 8 | 0 of 5 | first try | |
+| Bugsy | 14 | 1 of 3 | first try | |
+| Whitney | 18 | 0 of 5 | 0 of 5 | Miltank 17, Dunsparce 8 |
+| Morty | 25 | first try | first try | |
+| Chuck | 31 | 0 of 5 | 0 of 5 | Heracross 16, Poliwrath 8 |
+| Jasmine | 32 | 1 of 3 | 0 of 5 | Skarmory 9, Steelix 8, Scizor 6 |
+| Pryce | 37 | 0 of 5 | 0 of 5 | Mamoswine 15, Dewgong 5 |
+| Radio Tower | 42 | stuck before Archer | every boss first try | |
+| Clair | 45 | 0 of 5 | 1 of 5 | Flygon 11, Gyarados 4 |
+| Will | 51 | 0 of 5 | 0 of 5 | Exeggutor 9, Espeon 7 |
+
+**Bulk carried Falkner, Bugsy, the Radio Tower and (just) Clair.** Whitney,
+Chuck, Jasmine, Pryce and Will still won every time. Their aces hit hard
+enough to sweep a team a few levels down, however it's built.
+
+### How far up the bulky sets need to be
+
+Those five, and Clair, were played again with the bulky sets a level or two
+higher (`player-levels-ladder`). The wild KOs are what `level_curve.py`'s
+model says an even team of six (medium fast; medium slow in brackets) needs
+on top of every trainer on the way, grinding in the stretch's grass.
+
+| Boss | Their average | Lowest level won | Tries there | Wild KOs to get there |
+|---|---|---|---|---|
+| Whitney | 22 | 21 | first try | 95 (10) |
+| Chuck | 32 | 32 | 1 of 5; first try at 33 | 54 (15) to 33 |
+| Jasmine | 36 | 35 | 1 of 2 | 77 (67) |
+| Pryce | 40 | 39 | 1 of 3 | 1 (0) |
+| Clair | 45 | 46 | 1 of 4; first try at 47 | 0 |
+| Will | 50 | 55 | first try; 0 of 5 at 53 | 439 (440) |
+| Koga | 51 | 55 | 1 of 5 | |
+| Bruno | 52 | not at 55 | 0 of 5 | |
+
+**Through Clair the grind is fair.** The bot wins at or a level under each
+boss's average, which costs at most about 100 wild KOs before a gym, and
+none for Pryce and Clair.
+
+**The League is the exception.** The bot needed 55, five over Will's average,
+and still lost to Bruno there, as it did with this set at 58. Getting from
+50 to 55 takes about 440 wild KOs. Most of that is because the
+grass before the League is low: Routes 26 and 27 have Pokémon at 32 to 37,
+which give a team at 50 little under the scaled formula. Some of it is the
+bot: the League is where not switching costs it most.
+
+**So the wild Pokémon before the League were raised (patch 0026).** Routes 26
+and 27, Tohjo Falls and Victory Road go from Lv. 17-41 to 45-50, keeping
+their order, with Pokémon past a level-up evolution appearing evolved. By
+the same model, bringing a team from 50 to 55 there now takes about 145
+wild KOs in place of about 490, and to Lance's average about 45 in place of
+160. The Elite Four are unchanged.
+
 ## Something else found
 
 In `guide/BOSSES.md`, a few rows were broken: the item, moves and nature ran

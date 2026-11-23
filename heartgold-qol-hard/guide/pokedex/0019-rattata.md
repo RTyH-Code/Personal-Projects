@@ -60,7 +60,6 @@ No. 19 · Normal · catch rate 255
 - Safari Zone Entrance Exterior (swarm)
 - Route 7 (swarm)
 - Route 22 (swarm)
-- Tohjo Falls (walking)
 
 ## Moves by level
 

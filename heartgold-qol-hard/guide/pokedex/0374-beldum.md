@@ -12,11 +12,6 @@ No. 374 · Steel / Psychic · catch rate 3
 
 - Into [Metang](0375-metang.md) at Lv. 20.
 
-## Where
-
-- Victory Road 1F (walking)
-- Victory Road 2F (walking)
-
 ## Moves by level
 
 | Lv. | Move |

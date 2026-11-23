@@ -83,7 +83,6 @@ No. 118 · Water · catch rate 225
 - Route 24 (fishing at night)
 - Route 25 (swarm)
 - Route 25 (fishing at night)
-- Tohjo Falls (surfing)
 - Tohjo Falls (old rod)
 - Tohjo Falls (good rod)
 - Tohjo Falls (super rod)

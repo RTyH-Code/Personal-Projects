@@ -12,10 +12,6 @@ No. 387 · Grass · catch rate 45
 
 - Into [Grotle](0388-grotle.md) at Lv. 18.
 
-## Where
-
-- Route 26 (walking)
-
 ## Moves by level
 
 | Lv. | Move |

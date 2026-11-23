@@ -13,6 +13,12 @@ No. 112 · Ground / Rock · catch rate 60
 - From [Rhyhorn](0111-rhyhorn.md) at Lv. 42.
 - Into [Rhyperior](0464-rhyperior.md) with a Protector.
 
+## Where
+
+- Victory Road 1F (walking)
+- Victory Road 2F (walking)
+- Victory Road 3F (walking)
+
 ## Moves by level
 
 | Lv. | Move |

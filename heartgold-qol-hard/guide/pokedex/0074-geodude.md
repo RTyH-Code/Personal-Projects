@@ -33,7 +33,6 @@ No. 74 · Rock / Ground · catch rate 255
 - Dark Cave Route 45 Side (walking)
 - Dark Cave Route 45 Side (swarm)
 - Cliff Cave (walking)
-- Victory Road 3F (rock smash)
 
 ## Moves by level
 

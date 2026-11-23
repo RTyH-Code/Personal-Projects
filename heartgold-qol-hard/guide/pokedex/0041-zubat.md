@@ -46,7 +46,6 @@ No. 41 · Poison / Flying · catch rate 255
 - Cliff Cave (walking)
 - Mount Moon (swarm)
 - Mount Moon Square Entrance (swarm)
-- Tohjo Falls (walking)
 - Tohjo Falls (swarm)
 
 ## Moves by level

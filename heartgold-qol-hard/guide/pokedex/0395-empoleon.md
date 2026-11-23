@@ -12,6 +12,10 @@ No. 395 · Water / Steel · catch rate 45
 
 - From [Prinplup](0394-prinplup.md) at Lv. 36.
 
+## Where
+
+- Route 27 (walking)
+
 ## Moves by level
 
 | Lv. | Move |

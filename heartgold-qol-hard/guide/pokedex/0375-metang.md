@@ -13,6 +13,11 @@ No. 375 · Steel / Psychic · catch rate 3
 - From [Beldum](0374-beldum.md) at Lv. 20.
 - Into [Metagross](0376-metagross.md) at Lv. 45.
 
+## Where
+
+- Victory Road 1F (walking)
+- Victory Road 2F (walking)
+
 ## Moves by level
 
 | Lv. | Move |

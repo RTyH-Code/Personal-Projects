@@ -14,9 +14,7 @@ No. 84 · Normal / Flying · catch rate 190
 
 ## Where
 
-- Route 26 (walking)
 - Route 26 (swarm)
-- Route 27 (walking)
 - Route 27 (swarm)
 
 ## Moves by level

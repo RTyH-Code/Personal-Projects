@@ -53,19 +53,23 @@ need to beat to have all six at the boss's average level on arrival.
 | Will | 49-51 (avg 50) | 0 | 50 | 50-51 | 76 | 75 | 0 | 0 |
 | Koga | 50-52 (avg 51) | 0 | 50-51 | 51 | 77 | 76 | 0 | 0 |
 | Bruno | 51-53 (avg 52) | 0 | 51-52 | 51-52 | 78 | 77 | 0 | 0 |
-| Karen | 53-55 (avg 54) | 0 | 52-53 | 52-53 | 79 | 78 | 69 | 72 |
-| Lance | 55-58 (avg 56) | 0 | 53 | 53-54 | 80 | 79 | 158 | 167 |
-wild KOs in all, medium fast: 1036
-wild KOs in all, medium slow: 627
+| Karen | 53-55 (avg 54) | 0 | 52-53 | 52-53 | 79 | 78 | 21 | 23 |
+| Lance | 55-58 (avg 56) | 0 | 53 | 53-54 | 80 | 79 | 46 | 46 |
+wild KOs in all, medium fast: 876
+wild KOs in all, medium slow: 457
 
 **An even team of six stays within about 3 levels under each boss's average all the way.** It falls furthest
 behind early on, 3 to 4 levels at Falkner, and by the League it is 2 to 3 under. Wild battles met on the way
-make up most of that. Having all six right at every boss's average takes about 600 to 1,000 wild KOs over the
-whole game, most of them before Whitney, before Jasmine and before Lance.
+make up most of that. Having all six right at every boss's average takes about 450 to 900 wild KOs over the
+whole game, most of them before Falkner, Bugsy and Jasmine.
+
+The League's share was larger until patch 0026. The grass on Routes 26 and 27 and in Victory Road was Lv. 23
+to 41, far enough under a team at 50 that the scaled formula gave little for it: about 160 wild KOs to bring
+the team to Lance's average, and about 490 to the Lv. 55 the story bot needed to get past Will. With those
+areas at Lv. 45-50 it is about 45 to Lance's average and about 145 to 55.
 
 The story bot's test teams (`team_sets.py`) were set at each boss's top level. A player who doesn't grind
-arrives a few levels below that, so the bosses will be a little harder than `BALANCE.md` suggests. That's
-about right for a hard mode.
+arrives a few levels below that. `BALANCE.md` has the bosses played again at these levels.
 
 ## Before patch 0025, and with a modern Exp. Share instead
 

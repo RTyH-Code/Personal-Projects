@@ -16,6 +16,8 @@ No. 80 · Water / Psychic · catch rate 75
 
 - Slowpoke Well B2F (surfing)
 - Seafoam Islands B4F (surfing)
+- Tohjo Falls (walking)
+- Tohjo Falls (surfing)
 
 ## Moves by level
 

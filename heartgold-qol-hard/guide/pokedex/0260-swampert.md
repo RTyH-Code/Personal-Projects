@@ -12,6 +12,10 @@ No. 260 · Water / Ground · catch rate 45
 
 - From [Marshtomp](0259-marshtomp.md) at Lv. 36.
 
+## Where
+
+- Tohjo Falls (walking)
+
 ## Moves by level
 
 | Lv. | Move |
