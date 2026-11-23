@@ -86,12 +86,25 @@ AI_SELECT_MOVE = 0x0221BEF4     # overlay 10: the trainer AI choosing a move for
 AI_HANDLERS = (0x0225E105, 0x0225E405, 0x0225E6FD, 0x0225F3A5, 0x0225F8AD)    # an opponent's, as set up there
 BATTLE_TRAINER_IDS = 0xA0     # BattleSystem.trainerId[4]: who each battler belongs to (0 for a wild Pokemon)
 BATTLE_CONTEXT, BATTLE_MONS, BATTLE_MON_SIZE, BATTLE_MON_HP = 0x30, 0x2D40, 0xC0, 0x4C   # who is out, HP left
+BATTLE_MON_MAX_HP, BATTLE_MON_TYPES = 0x50, 0x24    # and its max HP and two types (moves are four u16 at 0x0C)
 BATTLER_ID, BATTLER_IS_AI = 0x194, 0x196          # in OpponentData, after the six handlers at 0
 BATTLE_TRAINERS, TRAINER_SIZE, TRAINER_AI_FLAGS = 0xAC, 0x34, 0x0C      # BattleSystem.trainers[4]
 # The AI cannot answer "Will you switch your Pokemon?", so the bot plays with the Set battle style, as a player can
 # choose in Options: whenever the game reads the style (Options_GetBattleStyle), the bit is set first.
 OPTIONS_GET_BATTLE_STYLE, BATTLE_STYLE_SET = 0x0202AD90, 0x40
 EXPERT_AI = 0x7                 # F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_EXPERT_ATTACKS
+TRAINER_ITEMS = 0x04            # Trainer.items[4], after type, class, sprite and party size
+# STORY_BATTLE_ITEMS=HYPER_POTION,FULL_HEAL,...: up to four items the player's side carries into each trainer battle,
+# as a player carries potions. They go in the player's trainer item slots, which the trainer AI uses by its own
+# rules (an opponent trainer's items work the same way); each is used once. Off by default
+BATTLE_ITEMS = [i for i in os.environ.get("STORY_BATTLE_ITEMS", "").split(",") if i][:4]
+# STORY_SMART=1: the bot plays its own turns as a player would (smart.py): it keeps the player's own command menu,
+# party screen and bag, and on each turn fights, switches to a better matchup or uses a potion; once it picks Fight,
+# the trainer AI picks the move. Off by default, so earlier results stay comparable.
+SMART = os.environ.get("STORY_SMART", "0") == "1"
+# the AI handlers left to the player there: commands, the party screen (a switch) and replacements after a faint
+SMART_KEEP = [int(x) for x in os.environ.get("STORY_SMART_KEEP", "0,3,4").split(",")]
+SMART_POTIONS = int(os.environ.get("STORY_SMART_POTIONS", "6"))
 
 
 TRAINER_FLAG_BASE = 0x550
@@ -114,6 +127,7 @@ class Bot:
         self.data = battle_test.load(tree)
         self.sets = team_sets.Data(tree, dump)
         self.species_names = {v: k for k, v in self.data["species"].items()}
+        self.move_names = {v: k for k, v in self.data["boss_teams"].MOVE_IDS.items()}
         self.party_at = None
         self.team = None
         self.game = walk_test.Walker(rom)
@@ -1166,12 +1180,20 @@ class Bot:
         # the first five handlers: commands, moves, targets, items, replacements. The sixth, the player's yes/no
         # (forget a move to learn a new one?), stays the player's: the AI's never answers it
         for i, value in enumerate(AI_HANDLERS):
+            if SMART and i in SMART_KEEP:
+                continue                    # the command menu stays the player's: the bot chooses there
             for j in range(4):
                 mem[od + 4 * i + j] = (value >> (8 * j)) & 0xFF
         mem[od + BATTLER_IS_AI] = 1
         at = bsys + BATTLE_TRAINERS + TRAINER_SIZE * battler + TRAINER_AI_FLAGS
         for j in range(4):
             mem[at + j] = (EXPERT_AI >> (8 * j)) & 0xFF
+        if BATTLE_ITEMS and any(mem[bsys + BATTLE_TRAINER_IDS + 2 * b] | mem[bsys + BATTLE_TRAINER_IDS + 2 * b + 1]
+                                for b in (1, 3)):
+            at = bsys + BATTLE_TRAINERS + TRAINER_SIZE * battler + TRAINER_ITEMS
+            for k in range(4):
+                item = self.data["items"][BATTLE_ITEMS[k]] if k < len(BATTLE_ITEMS) else 0
+                mem[at + 2 * k], mem[at + 2 * k + 1] = item & 0xFF, item >> 8
         self.ai_battles += 1
 
     def battle_mons(self):
@@ -1198,11 +1220,17 @@ class Bot:
         for b, (species, hp) in now.items():
             before = last.get(b)
             side = "player" if b % 2 == 0 else "opponent"
+            # the player's Pokemon changed while the one before still had HP: a switch, not a replacement
+            if side == "player" and before and before[0] != species and before[1] > 0 and hp > 0:
+                self.switches.append((names.get(before[0], before[0]), names.get(species, species)))
+                print("  switch: %s out, %s in" % self.switches[-1], flush=True)
             # fainted since the last look: seen with HP left; or sent out and knocked out before the next look
             # (seen fainted, not seen alive, and not yet counted)
             if hp == 0 and (before and before[0] == species and before[1] > 0
                             or (not before or before[0] != species) and (side, names.get(species, species)) not in done):
                 foe = now.get(b ^ 1) or last.get(b ^ 1)
+                if side == "player":
+                    self.smart_hp[names.get(species, species)] = 0
                 self.kos.append((start, side, names.get(species, species), names.get(foe[0], foe[0]) if foe else None))
                 print("  KO: %s's %s fainted, %s out" % (side, names.get(species, species),
                                                          names.get(foe[0], foe[0]) if foe else "nobody"), flush=True)
@@ -1217,9 +1245,167 @@ class Bot:
                          cls=self.data["trainers"].get(i, {}).get("cls")) for i in ids if i]
         entry = dict(at=list(start) if start else None, trainers=trainers, wild=not trainers, team=self.team,
                      result=result, game_minutes=round(frames / 3600, 2), ai_moves=moves,
-                     kos=[dict(side=side, fainted=who, by=by) for _, side, who, by in kos])
+                     kos=[dict(side=side, fainted=who, by=by) for _, side, who, by in kos],
+                     switches=[list(x) for x in getattr(self, "switches", [])],
+                     choices=getattr(self, "choices", []) if SMART else None,
+                     items=BATTLE_ITEMS, items_used=getattr(self, "items_used", None))
         with open(os.path.join(self.out, "battles.jsonl"), "a") as f:
             f.write(json.dumps(entry) + "\n")
+
+    def stock_potions(self):
+        """The bag's first potion becomes STORY_SMART_POTIONS of the potion a player would have by the party's level,
+        in each copy of the bag in memory (the save's and the battle's). Test harness only, like the heal before a
+        boss."""
+        mem, items = self.game.emu.memory.unsigned, self.data["items"]
+        ram = bytes(mem[0x02000000:0x02400000])
+        found = 0
+        level = max([m.level for m in self.party_mons() if m.valid()] or [1])
+        # what a player would have bought by then: Potions at first, Super Potions from Goldenrod, Hyper Potions late
+        kind = "POTION" if level < 15 else "SUPER_POTION" if level < 35 else "HYPER_POTION"
+
+        def entry(ram, at):         # a bag slot: empty, or an item number and a count
+            item, count = struct.unpack_from("<HH", ram, at)
+            return (item, count) == (0, 0) or 0 < item < 1000 and 0 < count < 1000
+        for item in ("POTION", "SUPER_POTION", "HYPER_POTION"):
+            for count in range(1, 100):
+                pat = struct.pack("<HH", items[item], count)
+                at = ram.find(pat)
+                while at >= 0:
+                    if at % 4 == 0 and all(entry(ram, at + 4 * k) for k in (-2, -1, 1, 2)):
+                        new = struct.pack("<HH", items[kind], SMART_POTIONS)
+                        for k in range(4):
+                            mem[0x02000000 + at + k] = new[k]
+                        found += 1
+                    at = ram.find(pat, at + 1)
+        return found
+
+    def smart_mon(self, b):
+        """Battler b's Pokemon as smart.py wants it, from the battle's own data."""
+        import smart
+        g, mem, bt = self.game, self.game.emu.memory.unsigned, self.data["boss_teams"]
+        at = g.word(self.bsys + BATTLE_CONTEXT) + BATTLE_MONS + BATTLE_MON_SIZE * b
+        u16 = lambda o: mem[at + o] | mem[at + o + 1] << 8
+        moves = [self.move_names.get(u16(0x0C + 2 * k)) for k in range(4)]
+        return dict(key=u16(0), name=self.species_names.get(u16(0), u16(0)),
+                    types=[smart.TYPES[mem[at + BATTLE_MON_TYPES + k]] for k in range(2)
+                           if mem[at + BATTLE_MON_TYPES + k] < len(smart.TYPES)],
+                    moves=[bt.MOVES[m]["type"] for m in moves if m and bt.MOVES.get(m, {}).get("power")],
+                    hp=u16(BATTLE_MON_HP), max_hp=u16(BATTLE_MON_MAX_HP))
+
+    def smart_bench(self, active):
+        """The party in the order the battle's party screen shows it, slot 0 being the Pokemon out: [dict(slot,
+        name, types, moves, hp, max_hp)]. The order starts as the party's and follows each switch and replacement
+        (smart_order); HP comes from the party, which the battle keeps up to date."""
+        bt, names = self.data["boss_teams"], self.species_names
+        mons = [m for m in self.party_mons() if m.valid() and not m.is_egg]
+        if not getattr(self, "smart_order", None) or len(self.smart_order) != len(mons):
+            self.smart_order = list(range(len(mons)))
+        if active is not None and mons[self.smart_order[0]].species != active:
+            # slot 0 is the Pokemon out: a switch that did not go through leaves the order as it was
+            k = next((k for k, i in enumerate(self.smart_order) if mons[i].species == active), None)
+            if k is not None:
+                self.smart_send(k)
+        # the party above is the save's, whose HP the battle leaves alone until it ends; so HP is tracked here:
+        # what each Pokemon had when last seen out (smart_hp), and 0 once it fainted. Nothing heals the bench
+        seen = getattr(self, "smart_hp", {})
+        hp_now = lambda m: seen.get(self.species_names.get(m.species), struct.unpack_from("<HH", m.stats, 6)[0])
+        out = []
+        for slot, i in enumerate(self.smart_order):
+            m = mons[i]
+            hp, top = hp_now(m), struct.unpack_from("<HH", m.stats, 6)[1]
+            moves = [self.move_names.get(m.u16(0x20 + 2 * k)) for k in range(4)]
+            out.append(dict(slot=slot, name=names.get(m.species), types=bt.SPECIES.get(names.get(m.species), {}).get("types", []),
+                            moves=[bt.MOVES[x]["type"] for x in moves if x and bt.MOVES.get(x, {}).get("power")],
+                            hp=hp, max_hp=top))
+        return out
+
+    def smart_party(self, image):
+        """A party screen after a faint (STORY_SMART): on the list, send in the best against the foe of those still
+        standing (by the HP the bot has tracked); on the Shift screen that follows, shift. Returns frames used."""
+        import smart
+        g = self.game
+        green = lambda xy: (lambda c: c[1] > 130 and c[0] < 120 and c[2] < 150)(image.getpixel(xy)[:3])
+        if green((128, 215)) and green((128, 250)):          # the Shift screen: one wide green button
+            if self.smart_party_slot is not None and not self.smart_party_fresh:
+                g.touch(128, 100, after=90)
+            else:
+                g.key("b", after=40)                        # not one the bot chose: back to the list
+            return 90
+        if self.smart_party_fresh:
+            party = self.smart_bench(self.smart_mon(0)["key"])     # the one that fainted is still in slot 0
+            alive = [b for b in party[1:] if b["hp"] > 0]
+            if not alive:
+                g.key("b", after=40)
+                return 40
+            best = alive[smart.pick(self.smart_mon(1), alive)]
+            self.smart_send(best["slot"])
+            self.smart_party_fresh, self.smart_party_slot = False, best["slot"]
+            print("  in: %s" % best["name"], flush=True)
+        g.touch(*battle_test.PARTY_SLOTS[self.smart_party_slot], after=60)
+        return 60
+
+    def smart_send(self, slot):
+        """slot comes in (on the party screen): note the new order."""
+        o = self.smart_order
+        o[0], o[slot] = o[slot], o[0]
+
+    def smart_turn(self, image, n):
+        """The player's command menu is up (STORY_SMART): fight, switch or heal, by smart.choose. On Fight the AI
+        picks the move; a switch and a heal (a Hyper Potion from the bag) the bot does through the menus."""
+        import smart
+        g = self.game
+        if not self.smart_fresh:                # the same turn's menu, not gone yet
+            if self.smart_last == "fight":
+                g.touch(128, 73, after=60)
+            else:
+                g.key("b", after=30)            # a switch or heal that did not go through: back to the menu
+                self.smart_fresh = True
+            return 60
+        self.smart_fresh = False
+        if not self.smart_state.get("stocked"):
+            self.smart_state["stocked"] = self.stock_potions()
+        me, foe = self.smart_mon(0), self.smart_mon(1)
+        self.smart_hp[me["name"]] = me["hp"]
+        party = self.smart_bench(me["key"])
+        bench = [b for b in party[1:] if b["hp"] > 0]
+        self.smart_state["items"] = SMART_POTIONS - sum(self.smart_state.get("heals", {}).values())
+        choice = smart.choose(me, foe, bench, self.smart_state)
+        if os.environ.get("STORY_SMART_DEBUG"):
+            print("  [turn: me %s %d/%d, order %s, party %s]" % (me["name"], me["hp"], me["max_hp"], self.smart_order,
+                  [(b["name"], b["hp"]) for b in party]), flush=True)
+        self.choices.append(choice)
+        self.smart_last = choice
+        if choice == "fight":
+            g.touch(128, 73, after=60)
+            return 60
+        if choice == "heal":
+            print("  heal: a potion on %s (%d/%d HP) against %s" % (me["name"], me["hp"], me["max_hp"], foe["name"]),
+                  flush=True)
+            def until(test, frames):            # wait for a screen, up to so many frames
+                for _ in range(frames // 20):
+                    if test(g.emu.screenshot()):
+                        return True
+                    g.run(20)
+                return False
+            party_up = lambda im: battle_test.screen_state(im) == "party"
+            for xy, wait in (((36, 172), 200), ((64, 50), 150), ((64, 40), 200), ((110, 172), 60)):
+                g.touch(*xy, after=wait)
+            until(party_up, 400)
+            for _ in range(3):                  # "Use on which Pokemon?": the one out, in the first slot
+                g.touch(*battle_test.PARTY_SLOTS[0], after=120)
+                if not until(party_up, 60):
+                    break
+            return 800
+        target = bench[smart.pick(foe, bench)]
+        print("  switch: %s (%d/%d HP) out for %s against %s" % (me["name"], me["hp"], me["max_hp"], target["name"],
+                                                                  foe["name"]), flush=True)
+        for xy, wait in (((220, 172), 200), (battle_test.PARTY_SLOTS[target["slot"]], 120), ((128, 100), 90)):
+            g.touch(*xy, after=wait)
+        # should the Shift screen still show, the party screen code shifts this one
+        self.smart_party_fresh, self.smart_party_slot = False, target["slot"]
+
+        self.smart_send(target["slot"])
+        return 410
 
     def battle(self):
         """Fight until the battle ends. The game's own trainer AI picks the player's moves and replacements
@@ -1246,6 +1432,10 @@ class Bot:
         mons = {}
         first_ko, began = len(self.kos), g.frames
         self.first_ko = first_ko
+        self.switches, self.choices, self.smart_state = [], [], {}
+        self.smart_fresh, self.smart_last, self.smart_order = True, None, None
+        self.smart_party_fresh, self.smart_party_slot, self.smart_hp = True, None, {}
+        items_left, items_most, self.items_used = None, 0, 0
         # who the opponents are, read now: the battle's memory is gone once it ends
         self.trainer_ids = []
         if self.bsys:
@@ -1254,6 +1444,17 @@ class Bot:
                                 for b in (1, 3)]
         while not g.in_field() and frames < 60 * 60 * 20:
             mons = self.watch_kos(start, mons)
+            if BATTLE_ITEMS and self.bsys:          # how many of the player's items are left, while the battle lasts
+                at = self.bsys + BATTLE_TRAINERS + TRAINER_ITEMS
+                left = sum(1 for k in range(4) if g.emu.memory.unsigned[at + 2 * k] | g.emu.memory.unsigned[at + 2 * k + 1] << 8)
+                if items_left is None or left != items_left:
+                    print("  player's items: %s" % [g.emu.memory.unsigned[at + 2 * k] | g.emu.memory.unsigned[at + 2 * k + 1] << 8
+                                                    for k in range(4)], flush=True)
+                if items_left is not None and left < items_left:
+                    print("  item used: %d left" % left, flush=True)
+                items_left = left
+                items_most = max(items_most, left)         # once the slots are filled
+                self.items_used = items_most - left
             # losing costs half the player's money, and nothing else in a battle takes money away
             now = cash()
             if money and now is not None and now < money:
@@ -1282,9 +1483,18 @@ class Bot:
                 self.battling = False
                 self.stuck("lost a battle by %s: every Pokemon fainted" % (start,))
             state = battle_test.screen_state(image)
+            if SMART and state == "other" and all(max(image.getpixel(p)[:3]) < 90 for p in ((36, 364), (220, 364))) \
+                    and image.getpixel((128, 247))[:3] == (248, 168, 176):
+                state = "menu"      # the command menu with its cursor showing: Fight pink, the labels dark
+            if state != "menu":
+                self.smart_fresh = True            # the next command menu is a new turn
+            if state not in ("party", "confirm"):
+                self.smart_party_fresh = True      # and the next party screen a new choice
             if state in ("menu", "moves", "party"):
                 menus += 1
-            if state == "menu":
+            if state == "menu" and SMART:
+                frames += self.smart_turn(image, menus)
+            elif state == "menu":
                 g.touch(128, 73, after=40)
                 g.touch(*battle_test.MOVE_BUTTONS[0], after=90)
                 frames += 130
@@ -1295,6 +1505,9 @@ class Bot:
             elif state == "party":
                 slots = [battle_test.party_slot(image, i) for i in range(6)]
                 choice = next((i for i in range(1, 6) if slots[i] == "alive"), None)
+                if SMART:
+                    frames += self.smart_party(image)
+                    continue
                 if choice is None:
                     g.key("b")
                 else:
@@ -1305,7 +1518,17 @@ class Bot:
                 frames += 90
             else:
                 toggle += 1
-                g.key("a" if toggle % 3 else "b", after=30)
+                # B moves the text on as A does, but does nothing on the command menu, which the bot must see
+                # before anything picks Fight on it (STORY_SMART)
+                bottom = image.getpixel((128, 247))[:3]
+                # the move-to-forget list and the move's page share a purple band across the top of the screen
+                forget = all(image.getpixel(xy)[:3] == (168, 104, 240) for xy in ((8, 206), (240, 206)))
+                if SMART and forget:
+                    g.touch(238, 172, after=60)     # "which move should be forgotten?": back, to keep the set
+                elif SMART and bottom not in ((248, 168, 176), (232, 56, 56)):
+                    g.key("a", after=30)            # not the battle menu's screen (learning a move, yes or no)
+                else:
+                    g.key("b" if SMART or not toggle % 3 else "a", after=30)
                 frames += 36
         here = self.where()
         if money and cash() is not None and cash() < money or (here and start and here[0] != start[0]

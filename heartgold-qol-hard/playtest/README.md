@@ -475,8 +475,15 @@ it stops, default 3), `STORY_REFILL_BERRIES` (`0` stops the berry refill
 between rooms), `STORY_TEAM_<SET>` (swap in another set where that one is
 due, such as `STORY_TEAM_CLAIR=clair_first`) and `STORY_JITTER` (up to this
 many frames of random waiting after a stage's save loads, default 0; without
-it, two runs from the same save play every battle out the same way) and
-`STORY_BOSS_HEAL` (`0` turns off the heal before each boss).
+it, two runs from the same save play every battle out the same way),
+`STORY_BOSS_HEAL` (`0` turns off the heal before each boss),
+`STORY_LEVEL_<SET>` (play a set at another level, devolved and with the
+moves it could know then, as a player would have it; see `LEVEL_CURVE.md`)
+and `STORY_SMART` (`1` has the bot play its own turns: it switches to a
+better matchup, uses potions at 40% HP, and picks who comes in after a
+faint, by `smart.py`; `STORY_SMART_POTIONS` sets how many potions it carries,
+default 6). `STORY_BATTLE_ITEMS` puts items in the player's trainer item
+slots for the game's AI, which in practice never uses them (`BALANCE.md`).
 
 The bot surfs once it has HM03: water counts as walkable, and a step from
 land onto water is Surf (face it, A, Yes). It heals after every gym, and
