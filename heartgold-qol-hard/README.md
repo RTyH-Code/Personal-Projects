@@ -4,7 +4,7 @@ A quality-of-life, modernization and difficulty hack for Pokémon HeartGold,
 following the same recipe as [FireRed QoL + Hard](../firered-qol-hard/README.md).
 It is built on [hg-engine](https://github.com/BluRosie/hg-engine).
 
-**Status: playtest build (v0.4).** Everything described below is in the
+**Status: playtest build (v0.5).** Everything described below is in the
 patch. The battles, maps, legendaries, wild Pokémon and shops have been
 checked by automated playtesters, and a story bot has played from the bedroom
 to Red (see [playtest/BALANCE.md](playtest/BALANCE.md)), but no person has
@@ -16,16 +16,16 @@ You need your own US Pokémon HeartGold ROM (game code `IPKE`, SHA-1
 `4fcded0e2713dc03929845de631d0932ea2b5a37`). The ROM is not in this
 repository and never will be.
 
-1. Download `HeartGold-QoL-Hard-v0.4.xdelta`.
+1. Download `HeartGold-QoL-Hard-v0.5.xdelta`.
 2. Apply it to the ROM with an xdelta patcher such as Delta Patcher or
    xdelta UI, or on a command line:
 
    ```bash
-   xdelta3 -d -s heartgold-usa.nds HeartGold-QoL-Hard-v0.4.xdelta HeartGold-QoL-Hard.nds
+   xdelta3 -d -s heartgold-usa.nds HeartGold-QoL-Hard-v0.5.xdelta HeartGold-QoL-Hard.nds
    ```
 
 3. The patched ROM is 256 MB, twice the original's size, and its SHA-1 is
-   `c2a7d0147fd77f91d4957b0845be2e3408b5b7ab`. It has been run in DeSmuME;
+   `ccdf1c3f00a7272212b3f1b9cdff996a0a99123f`. It has been run in DeSmuME;
    other emulators and flashcarts are untried.
 
 Start a new game: saves from the original game or from other hacks will not
@@ -179,6 +179,10 @@ The levels, IVs, AI and every boss team are in.
 
   With their hand-built teams (below) Whitney, Chuck, Jasmine and Pryce
   sit at 24, 34, 38 and 42, so the gyms rise in the intended order.
+- **Before the League,** the wild Pokémon on Routes 26 and 27, at Tohjo
+  Falls and in Victory Road are Lv. 45-50, close to the trainers there, so a
+  team short of the Elite Four's levels can catch up there in about 150
+  battles ([playtest/BALANCE.md](playtest/BALANCE.md)).
 - **Boss teams.** Every boss from Falkner to Red has a new team: the Johto
   and Kanto Gym Leaders, your rival, the Team Rocket executives, the Kimono
   Girls, both Elite Four rounds, Lance, Blue, Red and the Gym Leader
@@ -407,7 +411,7 @@ The FireRed recipe, and where each part comes from here:
 | Trainer levels, IVs and AI | Done: `tools/hack/difficulty.py` |
 | Johto and League boss teams | Done: `tools/hack/boss_teams.py` |
 | Kanto leaders, Blue, Red, second Elite Four round and rematch teams | Done: `tools/hack/boss_teams.py` |
-| Johto wild levels | Done: `tools/hack/wild_levels.py` |
+| Johto wild levels | Done: `tools/hack/wild_levels.py`, `tools/hack/league_wild.py` |
 | Kanto wild levels | Done: `tools/hack/kanto_wild.py`, `tools/hack/kanto_headbutt.py` |
 | Every non-legendary Pokémon obtainable in Johto | Done: `tools/hack/encounters.py`, `tools/hack/fossil_reviver.py` |
 | Legendary encounters | Done: `tools/hack/legendaries.py` |
@@ -442,7 +446,7 @@ The first build takes several minutes. It clones hg-engine into `build/`,
 applies the patches and writes `build/hg-engine/test.nds`.
 
 The release patch is made from such a build, in a fresh work directory, with
-`tools/make_patch.sh`. v0.4 was built this way from all twenty-five patches.
+`tools/make_patch.sh`. v0.5 was built this way from all twenty-six patches.
 
 To confirm the result boots, without opening an emulator window:
 

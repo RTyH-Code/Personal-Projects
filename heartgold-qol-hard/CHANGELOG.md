@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v0.5 (playtest build)
 
 - Wild Pokémon on Routes 26 and 27, at Tohjo Falls and in Victory Road are
   Lv. 45-50, up from 17-41 (patch 0026). A team arrives there at about 50,
@@ -9,6 +9,9 @@
   (`playtest/BALANCE.md`). Pokémon past a level-up evolution appear
   evolved there, as in Kanto: Rapidash, Dodrio, Rhydon, Metang, and the
   Sinnoh and Hoenn starters fully evolved. Fishing is unchanged.
+
+This changes encounter data only. A save made in v0.4 on Route 29 loaded in
+v0.5; two wild battles were won from it, and the game saved again.
 
 ## v0.4 (playtest build)
 
