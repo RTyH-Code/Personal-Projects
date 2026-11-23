@@ -1520,7 +1520,14 @@ class Bot:
                 toggle += 1
                 # B moves the text on as A does, but does nothing on the command menu, which the bot must see
                 # before anything picks Fight on it (STORY_SMART)
-                g.key("b" if SMART or not toggle % 3 else "a", after=30)
+                bottom = image.getpixel((128, 247))[:3]
+                forget = all(image.getpixel(xy)[:3] == (216, 104, 88) for xy in ((60, 362), (128, 362)))
+                if SMART and forget:
+                    g.touch(238, 172, after=60)     # "which move should be forgotten?": back, to keep the set
+                elif SMART and bottom not in ((248, 168, 176), (232, 56, 56)):
+                    g.key("a", after=30)            # not the battle menu's screen (learning a move, yes or no)
+                else:
+                    g.key("b" if SMART or not toggle % 3 else "a", after=30)
                 frames += 36
         here = self.where()
         if money and cash() is not None and cash() < money or (here and start and here[0] != start[0]
