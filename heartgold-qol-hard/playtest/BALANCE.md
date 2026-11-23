@@ -549,6 +549,37 @@ So the losses at a player's levels were mostly the bot's, not the bosses'. A
 player who heals beats most bosses at the level they arrive at, and needs a
 short grind for Whitney and the League.
 
+### Whitney and the League after a short grind
+
+Both again with smart turns: Whitney at Lv. 21, about 22 wild battles away
+since patch 0027, and the League at Lv. 53, about 75 wild battles away
+since patch 0026.
+
+| Boss | Team's level | Smart turns | Took the most of ours |
+|---|---|---|---|
+| Whitney | 21 | 1 of 5 | Stantler 11, Miltank 7 |
+| Will | 53 | 1 of 2 | Exeggutor 4 |
+| Koga | 53 | 1 of 3 | Muk 5, Qwilfish 4 |
+| Bruno | 53 | first try | |
+| Karen | 53 | first try | |
+| Lance | 53 | 0 of 5 | Gyarados 14, Dragonite 10, Aerodactyl 4 |
+
+**After a short grind the Elite Four fall, and Whitney does on the last of
+five tries.** Lance doesn't. The first run reached him, but a switch that
+didn't go through left the bot's party order wrong, and it stalled there.
+After that fix, Lance was played five times from the save after Karen and
+won every one.
+
+That matches the bulky League set's record against him: 0 of 10 at Lv. 58
+(above), against 3 of 8 for the type-matchup set. The set lacks the Electric
+and Ice coverage his Gyarados and Dragonites call for, and Lv. 53 is three
+under his lowest. A player picking a team for Lance would bring that
+coverage, so this is a test of the set more than of Lance.
+
+Whitney at 1 of 5 is harder than the plain bot's first-try win at the same
+level. That was one run, with `STORY_JITTER` changing every battle, so
+neither result says much alone; Stantler and Miltank remain her threats.
+
 ## Something else found
 
 In `guide/BOSSES.md`, a few rows were broken: the item, moves and nature ran
