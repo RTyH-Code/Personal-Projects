@@ -417,6 +417,35 @@ Pupitar.
 Chuck, Jasmine, Pryce and Will still won every time. Their aces hit hard
 enough to sweep a team a few levels down, however it's built.
 
+### How far up the bulky sets need to be
+
+Those five, and Clair, were played again with the bulky sets a level or two
+higher (`player-levels-ladder`). The wild KOs are what `level_curve.py`'s
+model says an even team of six (medium fast; medium slow in brackets) needs
+on top of every trainer on the way, grinding in the stretch's grass.
+
+| Boss | Their average | Lowest level won | Tries there | Wild KOs to get there |
+|---|---|---|---|---|
+| Whitney | 22 | 21 | first try | 95 (10) |
+| Chuck | 32 | 32 | 1 of 5; first try at 33 | 54 (15) to 33 |
+| Jasmine | 36 | 35 | 1 of 2 | 77 (67) |
+| Pryce | 40 | 39 | 1 of 3 | 1 (0) |
+| Clair | 45 | 46 | 1 of 4; first try at 47 | 0 |
+| Will | 50 | 55 | first try; 0 of 5 at 53 | 439 (440) |
+| Koga | 51 | 55 | 1 of 5 | |
+| Bruno | 52 | not at 55 | 0 of 5 | |
+
+**Through Clair the grind is fair.** The bot wins at or a level under each
+boss's average, which costs at most about 100 wild KOs before a gym, and
+none for Pryce and Clair.
+
+**The League is the exception.** The bot needed 55, five over Will's average,
+and still lost to Bruno there, as it did with this set at 58. Getting from
+50 to 55 takes about 440 wild KOs. Most of that is because the
+grass before the League is low: Routes 26 and 27 have Pokémon at 32 to 37,
+which give a team at 50 little under the scaled formula. Some of it is the
+bot: the League is where not switching costs it most.
+
 ## Something else found
 
 In `guide/BOSSES.md`, a few rows were broken: the item, moves and nature ran
