@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v0.6 (playtest build)
 
 - Wild Pokémon in the grass and caves on Johto's main path are a little
   under the boss after them (patch 0027): Routes 30 and 31 are Lv. 7-9, up
@@ -10,6 +10,9 @@
   than about 60 (`playtest/LEVEL_CURVE.md`). Route 29, Route 46, surfing,
   fishing and the optional areas (Bell Tower, Whirl Islands, the lower floors
   of Union Cave and Slowpoke Well) are unchanged.
+
+This changes encounter data only. A save made in v0.5 on Route 29 loaded in
+v0.6; two wild battles were won from it, and the game saved again.
 
 ## v0.5 (playtest build)
 
