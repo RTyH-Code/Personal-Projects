@@ -1316,6 +1316,31 @@ class Bot:
                             hp=hp, max_hp=top))
         return out
 
+    def smart_party(self, image):
+        """A party screen after a faint (STORY_SMART): on the list, send in the best against the foe of those still
+        standing (by the HP the bot has tracked); on the Shift screen that follows, shift. Returns frames used."""
+        import smart
+        g = self.game
+        green = lambda xy: (lambda c: c[1] > 130 and c[0] < 120 and c[2] < 150)(image.getpixel(xy)[:3])
+        if green((128, 215)) and green((128, 250)):          # the Shift screen: one wide green button
+            if self.smart_party_slot is not None and not self.smart_party_fresh:
+                g.touch(128, 100, after=90)
+            else:
+                g.key("b", after=40)                        # not one the bot chose: back to the list
+            return 90
+        if self.smart_party_fresh:
+            party = self.smart_bench(None)
+            alive = [b for b in party[1:] if b["hp"] > 0]
+            if not alive:
+                g.key("b", after=40)
+                return 40
+            best = alive[smart.pick(self.smart_mon(1), alive)]
+            self.smart_send(best["slot"])
+            self.smart_party_fresh, self.smart_party_slot = False, best["slot"]
+            print("  in: %s" % best["name"], flush=True)
+        g.touch(*battle_test.PARTY_SLOTS[self.smart_party_slot], after=60)
+        return 60
+
     def smart_send(self, slot):
         """slot comes in (on the party screen): note the new order."""
         o = self.smart_order
@@ -1475,18 +1500,9 @@ class Bot:
             elif state == "party":
                 slots = [battle_test.party_slot(image, i) for i in range(6)]
                 choice = next((i for i in range(1, 6) if slots[i] == "alive"), None)
-                if SMART and choice is not None and not self.smart_party_fresh:
-                    choice = self.smart_party_slot      # the same party screen: the same choice
-                elif SMART and choice is not None:       # who comes in after a faint: the best against the foe
-                    import smart
-                    party = self.smart_bench(None)
-                    alive = [b for b in party[1:] if b["slot"] < 6 and slots[b["slot"]] == "alive"]
-                    if alive:
-                        best = alive[smart.pick(self.smart_mon(1), alive)]
-                        choice = best["slot"]
-                    self.smart_send(choice)
-                    self.smart_party_fresh, self.smart_party_slot = False, choice
-                    print("  in: %s" % party[choice]["name"], flush=True)
+                if SMART:
+                    frames += self.smart_party(image)
+                    continue
                 if choice is None:
                     g.key("b")
                 else:
