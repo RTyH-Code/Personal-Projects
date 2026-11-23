@@ -572,8 +572,8 @@ won every one.
 
 That matches the bulky League set's record against him: 0 of 10 at Lv. 58
 (above), against 3 of 8 for the type-matchup set. The set lacks the Electric
-and Ice coverage his Gyarados and Dragonites call for, and Lv. 53 is three
-under his lowest. A player picking a team for Lance would bring that
+and Ice coverage his Gyarados and Dragonites call for, and Lv. 53 is two
+under his lowest (55). A player picking a team for Lance would bring that
 coverage, so this is a test of the set more than of Lance.
 
 Whitney at 1 of 5 is harder than the plain bot's first-try win at the same
