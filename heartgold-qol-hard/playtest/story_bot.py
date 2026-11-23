@@ -1396,8 +1396,10 @@ class Bot:
         target = bench[smart.pick(foe, bench)]
         print("  switch: %s (%d/%d HP) out for %s against %s" % (me["name"], me["hp"], me["max_hp"], target["name"],
                                                                   foe["name"]), flush=True)
-        for k, (xy, wait) in enumerate((((220, 172), 200), (battle_test.PARTY_SLOTS[target["slot"]], 120), ((128, 70), 90))):
+        for xy, wait in (((220, 172), 200), (battle_test.PARTY_SLOTS[target["slot"]], 120), ((128, 100), 90)):
             g.touch(*xy, after=wait)
+        # should the Shift screen still show, the party screen code shifts this one
+        self.smart_party_fresh, self.smart_party_slot = False, target["slot"]
 
         self.smart_send(target["slot"])
         return 410

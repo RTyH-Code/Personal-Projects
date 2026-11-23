@@ -493,6 +493,62 @@ switches or heals, and the League numbers above are harsher than a
 player's would be. To change that, the bot has to make those choices
 itself, through the battle menus.
 
+## The bot playing its own turns
+
+So now the bot does. With `STORY_SMART=1` it keeps the player's own command
+menu, party screen and bag instead of handing them to the AI. Each turn it
+reads both Pokémon from the battle's data, and `smart.py` chooses one of
+three things:
+
+- **Heal:** at 40% HP or under it uses a potion from the bag, at most twice
+  on each Pokémon. The bag's potion is stocked to six of what a player would
+  have by then: Potions under Lv. 15, Super Potions under 35, Hyper Potions
+  after. This is test harness only, like the heal before a boss.
+- **Switch:** it switches when the foe's types hit its Pokémon super
+  effectively, none of its moves hit back super effectively, and a teammate
+  takes the foe's types for half or less. That teammate comes in; it never
+  switches two turns running, and at most three times a battle.
+- **Fight:** otherwise it picks Fight, and the trainer AI picks the move as
+  before.
+
+After a faint it sends in the teammate the foe hurts least. Everything else
+is as before: the same saves, the bulky sets at a player's levels, a heal
+before each boss, up to five tries, and `STORY_JITTER=600`. The records are
+`player-levels-smart` in `results/battles.jsonl`.
+
+| Boss | Team's level | Plain turns (the AI's) | Smart turns | Took the most of ours |
+|---|---|---|---|---|
+| Whitney | 18 | 0 of 5 | 0 of 5 | Miltank 21, Furret 6 |
+| Chuck | 31 | 0 of 5 | 1 of 4 | Heracross 10, Poliwrath 7 |
+| Jasmine | 32 | 0 of 5 | first try | |
+| Pryce | 37 | 0 of 5 | first try | |
+| Clair | 45 | 1 of 5 | first try | |
+| Will | 51 | 0 of 5 | 0 of 5 | Espeon 11, Exeggutor 6 |
+| Bruno | 55 | 0 of 15 | first try | |
+
+**Playing its own turns, the bot beats five of the seven.** Pryce, Clair and
+Bruno fell on the first try, and Chuck on the fourth. Jasmine fell on the
+first try after one fix: in an earlier run the bot's own switch pressed just
+above the Shift button and stalled after three losses. Almost all of the
+gain is from potions, which the bot used two to four times in each win. It
+switched once in all these battles, Gyarados out for Quagsire against
+Jasmine's Magneton. With these teams a teammate that resists the foe's types
+is rarely left.
+
+**Two still win every time.**
+- **Whitney:** at Lv. 18 the team is six under her top level. The heals
+  bought little: her Miltank took 21 of ours over five battles, and the team
+  knocked out at most two of hers. At Lv. 21 the plain bot already beat her
+  on the first try (above). Patch 0027 makes those levels about 22 wild
+  battles away, so the fair test is the level after a short grind.
+- **Will:** at Lv. 51 his Espeon and Exeggutor still swept the team. The plain
+  bot needed Lv. 55 for him, and patch 0026 puts that about 145 wild battles
+  from where the team arrives.
+
+So the losses at a player's levels were mostly the bot's, not the bosses'. A
+player who heals beats most bosses at the level they arrive at, and needs a
+short grind for Whitney and the League.
+
 ## Something else found
 
 In `guide/BOSSES.md`, a few rows were broken: the item, moves and nature ran
