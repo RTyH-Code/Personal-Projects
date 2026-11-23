@@ -68,6 +68,12 @@ levels, Lv. 2-5 before Falkner and 14-19 before Pryce, so before Falkner it took
 Bugsy about 120 and before Jasmine about 160. Patch 0027 puts each of those areas a little under the boss
 after it (55-80% of his average before Falkner, 75-85% after).
 
+Checked in the game with `walk_test.py` on the build with the test harness: on 17 of the 20 areas tried, every
+wild Pokémon met matched the new tables (Route 30 Spinarak 7 and Rattata 9, Route 32 Wooper and Mareep 13,
+Ilex Forest Oddish 16, Route 34 Glameow 19, Route 37 Stantler 24, Route 39 Raticate 29, Mt. Mortar Makuhita
+32, Route 44 Munchlax 37, the Ice Path Swinub 34-35, and so on). Route 42 matched for the two met before a
+trainer stepped in; on Route 43 and in the National Park a trainer or the park's scene took over first.
+
 The League's share was larger until patch 0026. The grass on Routes 26 and 27 and in Victory Road was Lv. 23
 to 41, far enough under a team at 50 that the scaled formula gave little for it: about 160 wild KOs to bring
 the team to Lance's average, and about 490 to the Lv. 55 the story bot needed to get past Will. With those
