@@ -15,6 +15,8 @@ No. 78 · Fire · catch rate 60
 ## Where
 
 - Mount Silver (walking)
+- Route 26 (walking)
+- Route 27 (walking)
 - Route 28 (walking)
 - Route 22 (walking)
 

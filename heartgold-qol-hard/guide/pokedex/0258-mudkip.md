@@ -15,7 +15,6 @@ No. 258 · Water · catch rate 45
 ## Where
 
 - from Steven after beating Red (one of three)
-- Tohjo Falls (walking)
 
 ## Moves by level
 

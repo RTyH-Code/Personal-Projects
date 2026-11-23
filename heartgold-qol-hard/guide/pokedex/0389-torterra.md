@@ -12,6 +12,10 @@ No. 389 · Grass / Ground · catch rate 45
 
 - From [Grotle](0388-grotle.md) at Lv. 32.
 
+## Where
+
+- Route 26 (walking)
+
 ## Moves by level
 
 | Lv. | Move |

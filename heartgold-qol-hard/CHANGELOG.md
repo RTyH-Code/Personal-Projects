@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+- Wild Pokémon on Routes 26 and 27, at Tohjo Falls and in Victory Road are
+  Lv. 45-50, up from 17-41 (patch 0026). A team arrives there at about 50,
+  and the old levels gave so little experience that catching up to the
+  Elite Four took around 500 wild battles; now it takes about 150
+  (`playtest/BALANCE.md`). Pokémon past a level-up evolution appear
+  evolved there, as in Kanto: Rapidash, Dodrio, Rhydon, Metang, and the
+  Sinnoh and Hoenn starters fully evolved. Fishing is unchanged.
+
 ## v0.4 (playtest build)
 
 - Every battle gives double experience (patch 0025). Beating every trainer on

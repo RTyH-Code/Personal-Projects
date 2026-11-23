@@ -12,10 +12,6 @@ No. 393 · Water · catch rate 45
 
 - Into [Prinplup](0394-prinplup.md) at Lv. 16.
 
-## Where
-
-- Route 27 (walking)
-
 ## Moves by level
 
 | Lv. | Move |

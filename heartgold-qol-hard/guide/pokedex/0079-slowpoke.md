@@ -21,8 +21,6 @@ No. 79 · Water / Psychic · catch rate 190
 - Slowpoke Well B2F (walking)
 - Slowpoke Well B2F (surfing)
 - Slowpoke Well B2F (swarm)
-- Tohjo Falls (walking)
-- Tohjo Falls (surfing)
 
 ## Moves by level
 

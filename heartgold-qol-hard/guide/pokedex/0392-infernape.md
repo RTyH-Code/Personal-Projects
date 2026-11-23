@@ -12,6 +12,10 @@ No. 392 · Fire / Fighting · catch rate 45
 
 - From [Monferno](0391-monferno.md) at Lv. 36.
 
+## Where
+
+- Route 26 (walking)
+
 ## Moves by level
 
 | Lv. | Move |

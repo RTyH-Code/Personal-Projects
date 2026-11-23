@@ -12,10 +12,6 @@ No. 390 · Fire · catch rate 45
 
 - Into [Monferno](0391-monferno.md) at Lv. 14.
 
-## Where
-
-- Route 26 (walking)
-
 ## Moves by level
 
 | Lv. | Move |

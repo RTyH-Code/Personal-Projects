@@ -16,6 +16,7 @@ No. 85 · Normal / Flying · catch rate 45
 
 - Mount Silver (walking)
 - Route 26 (walking)
+- Route 27 (walking)
 - Route 28 (walking)
 - Route 22 (walking)
 

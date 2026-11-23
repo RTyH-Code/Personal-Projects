@@ -25,7 +25,7 @@ the [Pokédex](POKEDEX.md) for each Pokémon's page.
 | 16 | [Pidgey](pokedex/0016-pidgey.md) | wild: Route 29, Route 30, Route 31, Route 35, National Park, Route 36 and 3 more |
 | 17 | [Pidgeotto](pokedex/0017-pidgeotto.md) | wild: Route 37, Route 43, Route 8 |
 | 18 | [Pidgeot](pokedex/0018-pidgeot.md) | wild: Route 1, Route 2, Route 5, Route 6, Route 8, Route 13 and 5 more |
-| 19 | [Rattata](pokedex/0019-rattata.md) | wild: Route 29, Route 30, Route 31, Sprout Tower 2F, Sprout Tower 3F, Route 32 and 26 more |
+| 19 | [Rattata](pokedex/0019-rattata.md) | wild: Route 29, Route 30, Route 31, Sprout Tower 2F, Sprout Tower 3F, Route 32 and 25 more |
 | 20 | [Raticate](pokedex/0020-raticate.md) | wild: Union Cave B2F, Burned Tower 1F, Route 38, Route 39, Mount Mortar 2F, Mount Mortar B1F and 12 more |
 | 21 | [Spearow](pokedex/0021-spearow.md) | Kenya, from the guard on Route 35; wild: Route 33, Route 42, Route 46, Route 47, Route 4, Route 10 and 3 more |
 | 22 | [Fearow](pokedex/0022-fearow.md) | wild: Route 47, Route 48, Route 3, Route 4, Route 7, Route 9 and 10 more |
@@ -80,18 +80,18 @@ the [Pokédex](POKEDEX.md) for each Pokémon's page.
 | 71 | [Victreebel](pokedex/0071-victreebel.md) | evolve Weepinbell with a Leaf Stone |
 | 72 | [Tentacool](pokedex/0072-tentacool.md) | wild: New Bark Town, Cherrygrove City, Route 32, Union Cave B2F, Route 34, Olivine City and 13 more |
 | 73 | [Tentacruel](pokedex/0073-tentacruel.md) | wild: New Bark Town, Cherrygrove City, Route 32, Union Cave B2F, Route 34, Olivine City and 16 more |
-| 74 | [Geodude](pokedex/0074-geodude.md) | wild: Ruins of Alph, Union Cave 1F, Union Cave B1F, Union Cave B2F, Mount Mortar 1F Entrance, Mount Mortar 1F Back and 8 more |
+| 74 | [Geodude](pokedex/0074-geodude.md) | wild: Ruins of Alph, Union Cave 1F, Union Cave B1F, Union Cave B2F, Mount Mortar 1F Entrance, Mount Mortar 1F Back and 7 more |
 | 75 | [Graveler](pokedex/0075-graveler.md) | wild: Mount Mortar 2F, Route 45, Dark Cave Route 45 Side, Cliff Cave, Mount Silver Cave 1F, Mount Moon and 8 more |
 | 76 | [Golem](pokedex/0076-golem.md) | evolve Graveler at Lv. 37; with a Linking Cord |
-| 77 | [Ponyta](pokedex/0077-ponyta.md) | wild: Route 26, Route 27 |
-| 78 | [Rapidash](pokedex/0078-rapidash.md) | wild: Mount Silver, Route 28, Route 22 |
-| 79 | [Slowpoke](pokedex/0079-slowpoke.md) | wild: Slowpoke Well B1F, Slowpoke Well B2F, Tohjo Falls |
-| 80 | [Slowbro](pokedex/0080-slowbro.md) | wild: Slowpoke Well B2F, Seafoam Islands B4F |
+| 77 | [Ponyta](pokedex/0077-ponyta.md) | breed Rapidash |
+| 78 | [Rapidash](pokedex/0078-rapidash.md) | wild: Mount Silver, Route 26, Route 27, Route 28, Route 22 |
+| 79 | [Slowpoke](pokedex/0079-slowpoke.md) | wild: Slowpoke Well B1F, Slowpoke Well B2F |
+| 80 | [Slowbro](pokedex/0080-slowbro.md) | wild: Slowpoke Well B2F, Seafoam Islands B4F, Tohjo Falls |
 | 81 | [Magnemite](pokedex/0081-magnemite.md) | wild: Route 38, Route 39 |
 | 82 | [Magneton](pokedex/0082-magneton.md) | wild: Route 6, Route 11, Cerulean Cave 1F, Cerulean Cave 2F, Cerulean Cave B1F |
 | 83 | [Farfetch’d](pokedex/0083-farfetchd.md) | wild: Route 38, Route 39, Route 47, Route 48 |
 | 84 | [Doduo](pokedex/0084-doduo.md) | wild: Route 26, Route 27 |
-| 85 | [Dodrio](pokedex/0085-dodrio.md) | wild: Mount Silver, Route 26, Route 28, Route 22 |
+| 85 | [Dodrio](pokedex/0085-dodrio.md) | wild: Mount Silver, Route 26, Route 27, Route 28, Route 22 |
 | 86 | [Seel](pokedex/0086-seel.md) | wild: Whirl Islands 1F, Whirl Islands B1F, Whirl Islands B2F, Whirl Islands B3F, Route 47, Seafoam Islands B1F and 2 more |
 | 87 | [Dewgong](pokedex/0087-dewgong.md) | wild: Seafoam Islands B1F, Seafoam Islands B2F, Seafoam Islands B3F, Seafoam Islands B4F |
 | 88 | [Grimer](pokedex/0088-grimer.md) | wild: Mount Mortar B1F, Celadon City, Route 16 East, Route 18 |
@@ -117,8 +117,8 @@ the [Pokédex](POKEDEX.md) for each Pokémon's page.
 | 108 | [Lickitung](pokedex/0108-lickitung.md) | wild: Route 44 |
 | 109 | [Koffing](pokedex/0109-koffing.md) | wild: Burned Tower 1F, Burned Tower B1F |
 | 110 | [Weezing](pokedex/0110-weezing.md) | evolve Koffing at Lv. 35 |
-| 111 | [Rhyhorn](pokedex/0111-rhyhorn.md) | wild: Victory Road 1F, Victory Road 2F, Victory Road 3F |
-| 112 | [Rhydon](pokedex/0112-rhydon.md) | evolve Rhyhorn at Lv. 42 |
+| 111 | [Rhyhorn](pokedex/0111-rhyhorn.md) | breed Rhydon |
+| 112 | [Rhydon](pokedex/0112-rhydon.md) | wild: Victory Road 1F, Victory Road 2F, Victory Road 3F |
 | 113 | [Chansey](pokedex/0113-chansey.md) | wild: Route 44, Route 13, Route 14, Route 15 |
 | 114 | [Tangela](pokedex/0114-tangela.md) | wild: Route 44, Mount Silver, Route 28, Route 21, Route 12, Route 13 and 4 more |
 | 115 | [Kangaskhan](pokedex/0115-kangaskhan.md) | wild: Route 39, Rock Tunnel B1F |
@@ -264,9 +264,9 @@ the [Pokédex](POKEDEX.md) for each Pokémon's page.
 | 255 | [Torchic](pokedex/0255-torchic.md) | from Steven after beating Red (one of three); wild: Route 45 |
 | 256 | [Combusken](pokedex/0256-combusken.md) | evolve Torchic at Lv. 16 |
 | 257 | [Blaziken](pokedex/0257-blaziken.md) | evolve Combusken at Lv. 36 |
-| 258 | [Mudkip](pokedex/0258-mudkip.md) | from Steven after beating Red (one of three); wild: Tohjo Falls |
+| 258 | [Mudkip](pokedex/0258-mudkip.md) | from Steven after beating Red (one of three) |
 | 259 | [Marshtomp](pokedex/0259-marshtomp.md) | evolve Mudkip at Lv. 16 |
-| 260 | [Swampert](pokedex/0260-swampert.md) | evolve Marshtomp at Lv. 36 |
+| 260 | [Swampert](pokedex/0260-swampert.md) | wild: Tohjo Falls |
 | 261 | [Poochyena](pokedex/0261-poochyena.md) | wild: Route 32, Route 1 |
 | 262 | [Mightyena](pokedex/0262-mightyena.md) | evolve Poochyena at Lv. 18 |
 | 263 | [Zigzagoon](pokedex/0263-zigzagoon.md) | wild: Route 29, Sprout Tower 2F, Sprout Tower 3F, Burned Tower 1F, Burned Tower B1F, Bell Tower 2F and 9 more |
@@ -380,8 +380,8 @@ the [Pokédex](POKEDEX.md) for each Pokémon's page.
 | 371 | [Bagon](pokedex/0371-bagon.md) | wild: Route 45 |
 | 372 | [Shelgon](pokedex/0372-shelgon.md) | evolve Bagon at Lv. 30 |
 | 373 | [Salamence](pokedex/0373-salamence.md) | evolve Shelgon at Lv. 50 |
-| 374 | [Beldum](pokedex/0374-beldum.md) | wild: Victory Road 1F, Victory Road 2F |
-| 375 | [Metang](pokedex/0375-metang.md) | evolve Beldum at Lv. 20 |
+| 374 | [Beldum](pokedex/0374-beldum.md) | breed Metang |
+| 375 | [Metang](pokedex/0375-metang.md) | wild: Victory Road 1F, Victory Road 2F |
 | 376 | [Metagross](pokedex/0376-metagross.md) | evolve Metang at Lv. 45 |
 | 377 | [Regirock](pokedex/0377-regirock.md) | Ruins of Alph Northeast Entrance Second Room, Lv. 60, after the Champion |
 | 378 | [Regice](pokedex/0378-regice.md) | Ruins of Alph Southeast Entrance Second Room, Lv. 60, after the Champion |
@@ -393,15 +393,15 @@ the [Pokédex](POKEDEX.md) for each Pokémon's page.
 | 384 | [Rayquaza](pokedex/0384-rayquaza.md) | Embedded Tower, with Groudon and Kyogre |
 | 385 | [Jirachi](pokedex/0385-jirachi.md) | Route 25, Lv. 80, after beating Red |
 | 386 | [Deoxys](pokedex/0386-deoxys.md) | Route 3, Lv. 80, after beating Red |
-| 387 | [Turtwig](pokedex/0387-turtwig.md) | wild: Route 26 |
+| 387 | [Turtwig](pokedex/0387-turtwig.md) | breed Grotle |
 | 388 | [Grotle](pokedex/0388-grotle.md) | evolve Turtwig at Lv. 18 |
-| 389 | [Torterra](pokedex/0389-torterra.md) | evolve Grotle at Lv. 32 |
-| 390 | [Chimchar](pokedex/0390-chimchar.md) | wild: Route 26 |
+| 389 | [Torterra](pokedex/0389-torterra.md) | wild: Route 26 |
+| 390 | [Chimchar](pokedex/0390-chimchar.md) | breed Monferno |
 | 391 | [Monferno](pokedex/0391-monferno.md) | evolve Chimchar at Lv. 14 |
-| 392 | [Infernape](pokedex/0392-infernape.md) | evolve Monferno at Lv. 36 |
-| 393 | [Piplup](pokedex/0393-piplup.md) | wild: Route 27 |
+| 392 | [Infernape](pokedex/0392-infernape.md) | wild: Route 26 |
+| 393 | [Piplup](pokedex/0393-piplup.md) | breed Prinplup |
 | 394 | [Prinplup](pokedex/0394-prinplup.md) | evolve Piplup at Lv. 16 |
-| 395 | [Empoleon](pokedex/0395-empoleon.md) | evolve Prinplup at Lv. 36 |
+| 395 | [Empoleon](pokedex/0395-empoleon.md) | wild: Route 27 |
 | 396 | [Starly](pokedex/0396-starly.md) | breed Staravia |
 | 397 | [Staravia](pokedex/0397-staravia.md) | evolve Starly at Lv. 14 |
 | 398 | [Staraptor](pokedex/0398-staraptor.md) | wild: Pewter City |

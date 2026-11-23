@@ -2283,21 +2283,19 @@ Also, walking: swarm: Tauros; Hoenn Sound: Plusle, Minun; Sinnoh Sound: Shinx.
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Sandslash | 32 | 30% | 30% | 30% |
-| Doduo | 32–35 | 40% | 40% | — |
-| Ponyta | 37 | 20% | 20% | 20% |
-| Raticate | 32–35 | 1% | 1% | 40% |
-| Chimchar | 35 | 4% | 4% | 4% |
-| Turtwig | 35 | 4% | 4% | 4% |
-| Dodrio | 35 | 1% | 1% | — |
-| Quagsire | 35 | — | — | 2% |
+| Sandslash | 48 | 30% | 30% | 30% |
+| Dodrio | 48–49 | 41% | 41% | — |
+| Rapidash | 49 | 20% | 20% | 20% |
+| Raticate | 48–49 | 1% | 1% | 40% |
+| Infernape | 49 | 4% | 4% | 4% |
+| Torterra | 49 | 4% | 4% | 4% |
+| Quagsire | 49 | — | — | 2% |
 
 Also, walking: swarm: Doduo; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buizel, Bidoof.
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Tentacool | 29–35 | 90% |
-| Tentacruel | 35 | 10% |
+| Tentacruel | 48–49 | 100% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -2324,19 +2322,18 @@ Also, on the water: surfing swarm: Tentacool; fishing at night: Shellder; fishin
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Raticate | 32–35 | 40% | 40% | 40% |
-| Doduo | 32–35 | 50% | 50% | — |
-| Quagsire | 32–35 | — | — | 50% |
-| Ponyta | 37 | 5% | 5% | 5% |
-| Piplup | 35 | 4% | 4% | 4% |
-| Sandslash | 35 | 1% | 1% | 1% |
+| Raticate | 48–49 | 40% | 40% | 40% |
+| Dodrio | 48–49 | 50% | 50% | — |
+| Quagsire | 48–49 | — | — | 50% |
+| Rapidash | 49 | 5% | 5% | 5% |
+| Empoleon | 49 | 4% | 4% | 4% |
+| Sandslash | 49 | 1% | 1% | 1% |
 
 Also, walking: swarm: Doduo; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buizel, Bidoof.
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Tentacool | 17–23 | 90% |
-| Tentacruel | 23 | 10% |
+| Tentacruel | 45–46 | 100% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -2447,12 +2444,12 @@ Also, walking: swarm: Cubone; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzo
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Graveler | 37 | 30% | 30% | 30% |
-| Golbat | 37 | 30% | 30% | 30% |
-| Donphan | 38 | 20% | 20% | 20% |
-| Onix | 39–41 | 15% | 15% | 15% |
-| Beldum | 40 | 4% | 4% | 4% |
-| Rhyhorn | 40 | 1% | 1% | 1% |
+| Graveler | 49 | 30% | 30% | 30% |
+| Golbat | 49 | 30% | 30% | 30% |
+| Donphan | 49 | 20% | 20% | 20% |
+| Onix | 50 | 15% | 15% | 15% |
+| Metang | 50 | 4% | 4% | 4% |
+| Rhydon | 50 | 1% | 1% | 1% |
 
 Also, walking: swarm: Graveler; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor, Chingling.
 
@@ -2894,20 +2891,17 @@ Also, on the water: surfing swarm: Goldeen; fishing at night: Goldeen; fishing s
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Zubat | 25 | 30% | 30% | 30% |
-| Raticate | 25 | 30% | 30% | 30% |
-| Golbat | 25 | 20% | 20% | 20% |
-| Slowpoke | 24–26 | 11% | 11% | 11% |
-| Rattata | 23 | 5% | 5% | 5% |
-| Mudkip | 26 | 4% | 4% | 4% |
+| Golbat | 47 | 50% | 50% | 50% |
+| Raticate | 46–47 | 35% | 35% | 35% |
+| Slowbro | 46–47 | 11% | 11% | 11% |
+| Swampert | 47 | 4% | 4% | 4% |
 
 Also, walking: swarm: Zubat; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor, Chingling.
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 23 | 60% |
-| Slowpoke | 23 | 30% |
-| Seaking | 23 | 10% |
+| Seaking | 46 | 70% |
+| Slowbro | 46 | 30% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -2939,12 +2933,12 @@ Also, walking: swarm: Diglett; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronz
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Graveler | 37 | 30% | 30% | 30% |
-| Golbat | 37 | 30% | 30% | 30% |
-| Donphan | 38 | 20% | 20% | 20% |
-| Onix | 39–41 | 15% | 15% | 15% |
-| Beldum | 40 | 4% | 4% | 4% |
-| Rhyhorn | 40 | 1% | 1% | 1% |
+| Graveler | 49 | 30% | 30% | 30% |
+| Golbat | 49 | 30% | 30% | 30% |
+| Donphan | 49 | 20% | 20% | 20% |
+| Onix | 50 | 15% | 15% | 15% |
+| Metang | 50 | 4% | 4% | 4% |
+| Rhydon | 50 | 1% | 1% | 1% |
 
 Also, walking: swarm: Graveler; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor, Chingling.
 
@@ -2952,18 +2946,17 @@ Also, walking: swarm: Graveler; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bron
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Graveler | 37 | 30% | 30% | 30% |
-| Golbat | 37 | 30% | 30% | 30% |
-| Donphan | 38 | 20% | 20% | 20% |
-| Onix | 39–41 | 15% | 15% | 15% |
-| Rhyhorn | 40 | 5% | 5% | 5% |
+| Graveler | 49 | 30% | 30% | 30% |
+| Golbat | 49 | 30% | 30% | 30% |
+| Donphan | 49 | 20% | 20% | 20% |
+| Onix | 50 | 15% | 15% | 15% |
+| Rhydon | 50 | 5% | 5% | 5% |
 
 Also, walking: swarm: Graveler; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor, Chingling.
 
 | Rock Smash | Lv. | Chance |
 |---|---|--:|
-| Geodude | 28–37 | 90% |
-| Graveler | 35–38 | 10% |
+| Graveler | 47–49 | 100% |
 
 ## Route 2 East
 

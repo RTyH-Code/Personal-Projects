@@ -446,6 +446,13 @@ grass before the League is low: Routes 26 and 27 have Pokémon at 32 to 37,
 which give a team at 50 little under the scaled formula. Some of it is the
 bot: the League is where not switching costs it most.
 
+**So the wild Pokémon before the League were raised (patch 0026).** Routes 26
+and 27, Tohjo Falls and Victory Road go from Lv. 17-41 to 45-50, keeping
+their order, with Pokémon past a level-up evolution appearing evolved. By
+the same model, bringing a team from 50 to 55 there now takes about 145
+wild KOs in place of about 490, and to Lance's average about 45 in place of
+160. The Elite Four are unchanged.
+
 ## Something else found
 
 In `guide/BOSSES.md`, a few rows were broken: the item, moves and nature ran

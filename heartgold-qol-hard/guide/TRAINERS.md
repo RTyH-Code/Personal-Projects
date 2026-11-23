@@ -342,7 +342,7 @@ not on a map and are not listed here.
 
 **Goldenrod Radio Tower 5F**
 
-- Executive Ariana Ariana: Arbok Lv. 43 @ Poison Barb, Ariados Lv. 43 @ Focus Sash, Vileplume Lv. 44 @ Black Sludge, Crobat Lv. 44 @ Sitrus Berry, Honchkrow Lv. 45 @ Scope Lens ([boss team](BOSSES.md))
+- Executive Ariana Ariana: Arbok Lv. 43 @ Poison Barb, Ariados Lv. 43 @ Focus Sash, Vileplume Lv. 44 @ Black Sludge, Crobat Lv. 44 @ Sitrus Berry, Honchkrow Lv. 45 @ Sharp Beak ([boss team](BOSSES.md))
 
 ## Lake of Rage
 
