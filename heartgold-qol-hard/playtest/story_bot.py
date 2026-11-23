@@ -1300,8 +1300,11 @@ class Bot:
         mons = [m for m in self.party_mons() if m.valid() and not m.is_egg]
         if not getattr(self, "smart_order", None) or len(self.smart_order) != len(mons):
             self.smart_order = list(range(len(mons)))
-        if mons[0].species == active and mons[self.smart_order[0]].species != active:
-            self.smart_order = list(range(len(mons)))       # the game reorders the party itself
+        if active is not None and mons[self.smart_order[0]].species != active:
+            # slot 0 is the Pokemon out: a switch that did not go through leaves the order as it was
+            k = next((k for k, i in enumerate(self.smart_order) if mons[i].species == active), None)
+            if k is not None:
+                self.smart_send(k)
         # the party above is the save's, whose HP the battle leaves alone until it ends; so HP is tracked here:
         # what each Pokemon had when last seen out (smart_hp), and 0 once it fainted. Nothing heals the bench
         seen = getattr(self, "smart_hp", {})
@@ -1329,7 +1332,7 @@ class Bot:
                 g.key("b", after=40)                        # not one the bot chose: back to the list
             return 90
         if self.smart_party_fresh:
-            party = self.smart_bench(None)
+            party = self.smart_bench(self.smart_mon(0)["key"])     # the one that fainted is still in slot 0
             alive = [b for b in party[1:] if b["hp"] > 0]
             if not alive:
                 g.key("b", after=40)
