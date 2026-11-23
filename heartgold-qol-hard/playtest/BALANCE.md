@@ -474,6 +474,25 @@ grind numbers above hold in the game. A longer grind there wasn't
 measured: the harness's party fainted to a Lv. 48 Quagsire, and it can't
 send in the next Pokémon.
 
+## Does the bot switch or use items?
+
+The bot gives the player's side the game's own trainer AI, with the expert
+flags. That AI can switch, and it uses items from its trainer's four item
+slots. The player's slots are empty, so `STORY_BATTLE_ITEMS` now fills them
+before each trainer battle. Each battle's record also lists the player's
+switches and the items used.
+
+Bruno was played with the bulky League set at Lv. 55, from the save after
+Koga: ten battles carrying nothing, and seven carrying three Hyper Potions
+and a Full Heal. **The AI never switched and never used an item.** All 17
+were lost. Its switching is the original game's, which acts only in
+corner cases. Its items, by the Gen 4 rules, are only used at a quarter of
+the Pokémon's HP or less, a window our Pokémon at these levels mostly skip
+from one hit to the next. So the bot still plays like a player who never
+switches or heals, and the League numbers above are harsher than a
+player's would be. To change that, the bot has to make those choices
+itself, through the battle menus.
+
 ## Something else found
 
 In `guide/BOSSES.md`, a few rows were broken: the item, moves and nature ran
