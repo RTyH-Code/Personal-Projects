@@ -453,6 +453,27 @@ the same model, bringing a team from 50 to 55 there now takes about 145
 wild KOs in place of about 490, and to Lance's average about 45 in place of
 160. The Elite Four are unchanged.
 
+**Checked in the game on v0.5.** From a fresh boot of the v0.5 build with the
+test harness, `walk_test.py`'s wild and surf checks were run on the six
+areas, ten wild Pokémon each:
+
+| Area | Met | Matches the table |
+|---|---|---|
+| Route 26, walking | Sandslash 48, Raticate 48, Rapidash 49, Infernape 49 (8 met) | yes |
+| Route 26, surfing | Tentacruel 48-49 | yes |
+| Route 27, surfing | Tentacruel 46 | yes |
+| Tohjo Falls, walking | Golbat 47, Raticate 47, Swampert 47 | yes |
+| Victory Road 1F and 2F | Golbat 49, Graveler 49, Donphan 49, Metang 50, Onix 50 | yes |
+
+On Route 27's grass and Victory Road 3F a trainer saw the player where the
+test landed, and Tohjo Falls' water couldn't be reached from the bank it
+tried; 3F has the same levels as 1F and 2F in the ROM's data. A party at
+Lv. 50 on Route 27's grass, away from its trainers, beat a Lv. 48 Raticate
+for 2,680 experience, exactly what `level_curve.py`'s formula gives, so the
+grind numbers above hold in the game. A longer grind there wasn't
+measured: the harness's party fainted to a Lv. 48 Quagsire, and it can't
+send in the next Pokémon.
+
 ## Something else found
 
 In `guide/BOSSES.md`, a few rows were broken: the item, moves and nature ran
