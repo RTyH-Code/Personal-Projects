@@ -92,6 +92,11 @@ BATTLE_TRAINERS, TRAINER_SIZE, TRAINER_AI_FLAGS = 0xAC, 0x34, 0x0C      # Battle
 # choose in Options: whenever the game reads the style (Options_GetBattleStyle), the bit is set first.
 OPTIONS_GET_BATTLE_STYLE, BATTLE_STYLE_SET = 0x0202AD90, 0x40
 EXPERT_AI = 0x7                 # F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_EXPERT_ATTACKS
+TRAINER_ITEMS = 0x04            # Trainer.items[4], after type, class, sprite and party size
+# STORY_BATTLE_ITEMS=HYPER_POTION,FULL_HEAL,...: up to four items the player's side carries into each trainer battle,
+# as a player carries potions. They go in the player's trainer item slots, which the trainer AI uses by its own
+# rules (an opponent trainer's items work the same way); each is used once. Off by default
+BATTLE_ITEMS = [i for i in os.environ.get("STORY_BATTLE_ITEMS", "").split(",") if i][:4]
 
 
 TRAINER_FLAG_BASE = 0x550
@@ -1172,6 +1177,12 @@ class Bot:
         at = bsys + BATTLE_TRAINERS + TRAINER_SIZE * battler + TRAINER_AI_FLAGS
         for j in range(4):
             mem[at + j] = (EXPERT_AI >> (8 * j)) & 0xFF
+        if BATTLE_ITEMS and any(mem[bsys + BATTLE_TRAINER_IDS + 2 * b] | mem[bsys + BATTLE_TRAINER_IDS + 2 * b + 1]
+                                for b in (1, 3)):
+            at = bsys + BATTLE_TRAINERS + TRAINER_SIZE * battler + TRAINER_ITEMS
+            for k in range(4):
+                item = self.data["items"][BATTLE_ITEMS[k]] if k < len(BATTLE_ITEMS) else 0
+                mem[at + 2 * k], mem[at + 2 * k + 1] = item & 0xFF, item >> 8
         self.ai_battles += 1
 
     def battle_mons(self):
@@ -1198,6 +1209,10 @@ class Bot:
         for b, (species, hp) in now.items():
             before = last.get(b)
             side = "player" if b % 2 == 0 else "opponent"
+            # the player's Pokemon changed while the one before still had HP: a switch, not a replacement
+            if side == "player" and before and before[0] != species and before[1] > 0 and hp > 0:
+                self.switches.append((names.get(before[0], before[0]), names.get(species, species)))
+                print("  switch: %s out, %s in" % self.switches[-1], flush=True)
             # fainted since the last look: seen with HP left; or sent out and knocked out before the next look
             # (seen fainted, not seen alive, and not yet counted)
             if hp == 0 and (before and before[0] == species and before[1] > 0
@@ -1217,7 +1232,9 @@ class Bot:
                          cls=self.data["trainers"].get(i, {}).get("cls")) for i in ids if i]
         entry = dict(at=list(start) if start else None, trainers=trainers, wild=not trainers, team=self.team,
                      result=result, game_minutes=round(frames / 3600, 2), ai_moves=moves,
-                     kos=[dict(side=side, fainted=who, by=by) for _, side, who, by in kos])
+                     kos=[dict(side=side, fainted=who, by=by) for _, side, who, by in kos],
+                     switches=[list(x) for x in getattr(self, "switches", [])],
+                     items=BATTLE_ITEMS, items_used=getattr(self, "items_used", None))
         with open(os.path.join(self.out, "battles.jsonl"), "a") as f:
             f.write(json.dumps(entry) + "\n")
 
@@ -1246,6 +1263,8 @@ class Bot:
         mons = {}
         first_ko, began = len(self.kos), g.frames
         self.first_ko = first_ko
+        self.switches = []
+        items_left, items_most, self.items_used = None, 0, 0
         # who the opponents are, read now: the battle's memory is gone once it ends
         self.trainer_ids = []
         if self.bsys:
@@ -1254,6 +1273,17 @@ class Bot:
                                 for b in (1, 3)]
         while not g.in_field() and frames < 60 * 60 * 20:
             mons = self.watch_kos(start, mons)
+            if BATTLE_ITEMS and self.bsys:          # how many of the player's items are left, while the battle lasts
+                at = self.bsys + BATTLE_TRAINERS + TRAINER_ITEMS
+                left = sum(1 for k in range(4) if g.emu.memory.unsigned[at + 2 * k] | g.emu.memory.unsigned[at + 2 * k + 1] << 8)
+                if items_left is None or left != items_left:
+                    print("  player's items: %s" % [g.emu.memory.unsigned[at + 2 * k] | g.emu.memory.unsigned[at + 2 * k + 1] << 8
+                                                    for k in range(4)], flush=True)
+                if items_left is not None and left < items_left:
+                    print("  item used: %d left" % left, flush=True)
+                items_left = left
+                items_most = max(items_most, left)         # once the slots are filled
+                self.items_used = items_most - left
             # losing costs half the player's money, and nothing else in a battle takes money away
             now = cash()
             if money and now is not None and now < money:
