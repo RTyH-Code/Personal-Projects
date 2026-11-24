@@ -1233,6 +1233,8 @@ class Bot:
         now = self.battle_mons()
         names = self.species_names
         done = {(k[1], k[2]) for k in self.kos[getattr(self, "first_ko", 0):]}
+        # as a battle ends its memory is let go, and what is read there after is no Pokemon: only real species count
+        now = {b: v for b, v in now.items() if v[0] in names}
         for b, (species, hp) in now.items():
             before = last.get(b)
             side = "player" if b % 2 == 0 else "opponent"
