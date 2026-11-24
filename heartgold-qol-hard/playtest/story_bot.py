@@ -1297,7 +1297,9 @@ class Bot:
         name, types, moves, hp, max_hp)]. The order starts as the party's and follows each switch and replacement
         (smart_order); HP comes from the party, which the battle keeps up to date."""
         bt, names = self.data["boss_teams"], self.species_names
-        mons = [m for m in self.party_mons() if m.valid() and not m.is_egg]
+        # every slot, so that slot numbers stay those of the party screen; one that doesn't read (scrambled) or is
+        # an egg can't come in, and counts as fainted below
+        mons = self.party_mons()
         if not getattr(self, "smart_order", None) or len(self.smart_order) != len(mons):
             self.smart_order = list(range(len(mons)))
         if active is not None and mons[self.smart_order[0]].species != active:
@@ -1312,6 +1314,9 @@ class Bot:
         out = []
         for slot, i in enumerate(self.smart_order):
             m = mons[i]
+            if not m.valid() or m.is_egg:
+                out.append(dict(slot=slot, name=None, types=[], moves=[], hp=0, max_hp=1))
+                continue
             hp, top = hp_now(m), struct.unpack_from("<HH", m.stats, 6)[1]
             moves = [self.move_names.get(m.u16(0x20 + 2 * k)) for k in range(4)]
             out.append(dict(slot=slot, name=names.get(m.species), types=bt.SPECIES.get(names.get(m.species), {}).get("types", []),
@@ -1626,12 +1631,17 @@ class Bot:
                 g.run_every_frame(1)
             for i, b in enumerate(struct.pack("<I", len(mons)) + data):
                 mem[at + 4 + i] = b
-            seen = []
-            for _ in range(40):
+            # a write that landed while the game had the walking Pokemon decrypted is scrambled when the game
+            # encrypts it again, a few frames on: so every slot must read as the Pokemon written, steadily, over
+            # the last frames of the wait
+            want = [m.species for m in mons]
+            steady = 0
+            for _ in range(60):
                 g.run_every_frame(1)
-                m = lead()
-                seen.append(m.valid() and m.species == mons[0].species)
-            if any(seen) and all(m.valid() for m in self.party_mons()[1:]):
+                now = self.party_mons()
+                ok = len(now) >= len(want) and all(m.valid() and m.species == w for m, w in zip(now, want))
+                steady = steady + 1 if ok else 0
+            if steady >= 10:
                 return True
         return False
 
