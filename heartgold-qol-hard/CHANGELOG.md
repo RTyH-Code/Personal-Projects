@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v0.9 (playtest build)
 
 - Routes 47 and 48 and Cliff Cave follow Chuck, like the rest of the land
   around Cianwood (patch 0030). v0.7 and v0.8 left them out as post-game
@@ -9,6 +9,9 @@
   now Lv. 27-29 (was 23-29), Cliff Cave 26-28 (was 21-26), and Route 47's
   water 26-29 (was 10-29). Route 47's grass (36-46) and the Cliff Edge Gate's
   water were already above and stay.
+
+This changes encounter data only. A save made in v0.8 on Route 29 loaded in
+v0.9, won two wild battles, and the game saved again (`playtest/save_carry.py`).
 
 ## v0.8 (playtest build)
 
