@@ -436,7 +436,13 @@ class Bot:
         while frames < limit:
             g = self.game
             if g.in_field():
-                if text_box(g.emu.screenshot()):
+                image = g.emu.screenshot()
+                if self.flash(image):
+                    calm = 0                    # the screen fading to or from white: a scene going on
+                    g.run(20)
+                    frames += 20
+                    continue
+                if text_box(image):
                     calm = 0
                     if answers and not self.question():
                         g.run_every_frame(30)               # the Yes/No buttons may be about to appear
@@ -1296,6 +1302,13 @@ class Bot:
             if os.path.exists(path) and self._bag_looks_right(json.load(open(path))):
                 self.bag = json.load(open(path))
         return self.bag
+
+    @staticmethod
+    def flash(image):
+        """Whether the top screen is almost all white: a scene fading to or from white (the Lighthouse's Ampharos
+        cured), which text_box, wanting a message box's border, no longer takes for a message."""
+        top = image.crop((0, 0, 256, 192)).convert("L")
+        return sum(1 for v in top.getdata() if v > 240) > 0.95 * 256 * 192
 
     def has_pokemon(self):
         """Whether the party has a Pokemon yet (before the starter there is no party to find)."""
