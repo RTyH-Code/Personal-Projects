@@ -187,8 +187,10 @@ The levels, IVs, AI and every boss team are in.
   ([playtest/LEVEL_CURVE.md](playtest/LEVEL_CURVE.md)). Side areas a player
   passes on the way are in line with the route beside them: the Ruins of
   Alph's chambers at Lv. 14, the Bell Tower and Whirl Islands at 34-38, Route
-  45 and Dark Cave's Route 45 side at 37-42. Route 29, surfing, fishing and
-  the post-game routes keep their levels.
+  45 and Dark Cave's Route 45 side at 37-42. Pokémon met surfing follow the
+  same bands, from where a player can first surf (Morty gives Surf, so the
+  water before him is in Chuck's band, Lv. 26-31). Route 29, fishing and the
+  post-game routes keep their levels.
 - **Boss teams.** Every boss from Falkner to Red has a new team: the Johto
   and Kanto Gym Leaders, your rival, the Team Rocket executives, the Kimono
   Girls, both Elite Four rounds, Lance, Blue, Red and the Gym Leader
@@ -417,7 +419,7 @@ The FireRed recipe, and where each part comes from here:
 | Trainer levels, IVs and AI | Done: `tools/hack/difficulty.py` |
 | Johto and League boss teams | Done: `tools/hack/boss_teams.py` |
 | Kanto leaders, Blue, Red, second Elite Four round and rematch teams | Done: `tools/hack/boss_teams.py` |
-| Johto wild levels | Done: `tools/hack/wild_levels.py`, `tools/hack/johto_wild.py`, `tools/hack/side_wild.py`, `tools/hack/league_wild.py` |
+| Johto wild levels | Done: `tools/hack/wild_levels.py`, `tools/hack/johto_wild.py`, `tools/hack/side_wild.py`, `tools/hack/surf_wild.py`, `tools/hack/league_wild.py` |
 | Kanto wild levels | Done: `tools/hack/kanto_wild.py`, `tools/hack/kanto_headbutt.py` |
 | Every non-legendary Pokémon obtainable in Johto | Done: `tools/hack/encounters.py`, `tools/hack/fossil_reviver.py` |
 | Legendary encounters | Done: `tools/hack/legendaries.py` |

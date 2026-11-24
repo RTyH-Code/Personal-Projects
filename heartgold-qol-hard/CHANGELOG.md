@@ -1,5 +1,17 @@
 # Changelog
 
+## Unreleased
+
+- Pokémon met surfing in Johto are in line with the land beside them (patch
+  0029). The water had kept HeartGold's own levels, Lv. 10-29 at most towns
+  and routes, 5-23 at the Lake of Rage, 2-23 at Blackthorn. Each water table
+  now follows the boss a player faces next when they can first surf there:
+  before Morty, who gives Surf, and on to Cianwood it is 26-31 (Chuck's
+  band); Route 42, Mt. Mortar, Route 43 and the Lake of Rage 30-36; Route 44,
+  Blackthorn, Dragon's Den and the Whirl Islands 34-40; Route 45 and Dark
+  Cave's Route 45 side 37-42. Fishing, Rock Smash and the post-game areas are
+  unchanged.
+
 ## v0.7 (playtest build)
 
 - Wild Pokémon in Johto's side areas are in line with the main path beside

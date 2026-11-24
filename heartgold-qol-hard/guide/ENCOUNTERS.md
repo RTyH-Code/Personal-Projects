@@ -11,8 +11,8 @@ gives from the start.
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Tentacool | 10–29 | 90% |
-| Tentacruel | 17–29 | 10% |
+| Tentacool | 27–29 | 90% |
+| Tentacruel | 28–29 | 10% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -52,8 +52,8 @@ Also, walking: swarm: Pidgey; Hoenn Sound: Plusle, Minun; Sinnoh Sound: Shinx.
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Tentacool | 10–29 | 90% |
-| Tentacruel | 17–29 | 10% |
+| Tentacool | 27–29 | 90% |
+| Tentacruel | 28–29 | 10% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -92,8 +92,8 @@ Also, walking: swarm: Pidgey; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buize
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 10–29 | 90% |
-| Poliwhirl | 17–37 | 10% |
+| Poliwag | 27–29 | 90% |
+| Poliwhirl | 28–31 | 10% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -132,8 +132,8 @@ Also, walking: swarm: Pidgey; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buize
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 10–29 | 90% |
-| Poliwhirl | 17–37 | 10% |
+| Poliwag | 27–29 | 90% |
+| Poliwhirl | 28–31 | 10% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -156,8 +156,8 @@ Also, on the water: surfing swarm: Poliwag; fishing at night: Poliwag; fishing s
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 10–29 | 90% |
-| Poliwhirl | 17–29 | 10% |
+| Poliwag | 27–29 | 90% |
+| Poliwhirl | 28–29 | 10% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -215,9 +215,9 @@ Also, walking: swarm: Bellsprout; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: B
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Tentacool | 10–23 | 60% |
-| Quagsire | 17–29 | 30% |
-| Tentacruel | 17–41 | 10% |
+| Tentacool | 27–28 | 60% |
+| Quagsire | 28–29 | 30% |
+| Tentacruel | 28–31 | 10% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -253,8 +253,8 @@ Also, walking: swarm: Natu; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buizel,
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Wooper | 10–23 | 60% |
-| Quagsire | 10–29 | 40% |
+| Wooper | 27–28 | 60% |
+| Quagsire | 27–29 | 40% |
 
 | Rock Smash | Lv. | Chance |
 |---|---|--:|
@@ -324,8 +324,8 @@ Also, walking: swarm: Geodude; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronz
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Wooper | 10–23 | 60% |
-| Quagsire | 10–29 | 40% |
+| Wooper | 27–28 | 60% |
+| Quagsire | 27–29 | 40% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -361,8 +361,8 @@ Also, walking: swarm: Geodude; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronz
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Wooper | 10–23 | 60% |
-| Quagsire | 10–29 | 40% |
+| Wooper | 27–28 | 60% |
+| Quagsire | 27–29 | 40% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -397,9 +397,9 @@ Also, walking: swarm: Zubat; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Tentacool | 10–23 | 60% |
-| Quagsire | 17–29 | 30% |
-| Tentacruel | 17–29 | 10% |
+| Tentacool | 27–28 | 60% |
+| Quagsire | 28–29 | 30% |
+| Tentacruel | 28–29 | 10% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -444,7 +444,7 @@ Also, walking: swarm: Zubat; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Slowpoke | 5–29 | 100% |
+| Slowpoke | 26–29 | 100% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -476,8 +476,8 @@ Also, walking: swarm: Zubat; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Slowpoke | 10–29 | 90% |
-| Slowbro | 17–35 | 10% |
+| Slowpoke | 27–29 | 90% |
+| Slowbro | 28–31 | 10% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -516,8 +516,8 @@ Also, walking: swarm: Caterpie; Hoenn Sound: Spoink, Numel; Sinnoh Sound: Budew,
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Psyduck | 5–23 | 90% |
-| Golduck | 10–23 | 10% |
+| Psyduck | 26–28 | 90% |
+| Golduck | 27–28 | 10% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -554,8 +554,8 @@ Also, walking: swarm: Ralts; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buizel
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Tentacool | 10–29 | 90% |
-| Tentacruel | 17–33 | 10% |
+| Tentacool | 27–29 | 90% |
+| Tentacruel | 28–31 | 10% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -598,8 +598,8 @@ Also, walking: swarm: Yanma; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buizel
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Psyduck | 10–29 | 90% |
-| Golduck | 17–36 | 10% |
+| Psyduck | 27–29 | 90% |
+| Golduck | 28–31 | 10% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -679,8 +679,8 @@ Also, walking: swarm: Pidgey; Hoenn Sound: Plusle, Minun; Sinnoh Sound: Shinx.
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 10–29 | 90% |
-| Poliwhirl | 17–29 | 10% |
+| Poliwag | 27–29 | 90% |
+| Poliwhirl | 28–29 | 10% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -846,8 +846,8 @@ Also, walking: swarm: Rattata; Hoenn Sound: Plusle, Minun; Sinnoh Sound: Shinx.
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Tentacool | 10–29 | 90% |
-| Tentacruel | 17–29 | 10% |
+| Tentacool | 27–29 | 90% |
+| Tentacruel | 28–29 | 10% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -872,9 +872,9 @@ Also, on the water: surfing swarm: Tentacool; fishing at night: Staryu; fishing 
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Tentacool | 10–29 | 90% |
-| Wailmer | 17–29 | 5% |
-| Tentacruel | 17–29 | 5% |
+| Tentacool | 27–29 | 90% |
+| Wailmer | 28–29 | 5% |
+| Tentacruel | 28–29 | 5% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -900,10 +900,10 @@ Also, on the water: surfing swarm: Tentacool; fishing at night: Staryu; fishing 
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Tentacool | 17–29 | 60% |
-| Tentacruel | 17–29 | 30% |
-| Carvanha | 17–29 | 5% |
-| Mantine | 17–29 | 5% |
+| Tentacool | 28–29 | 60% |
+| Tentacruel | 28–29 | 30% |
+| Carvanha | 28–29 | 5% |
+| Mantine | 28–29 | 5% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -940,9 +940,9 @@ Also, walking: swarm: Krabby; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzo
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Tentacool | 17–29 | 60% |
-| Horsea | 10–23 | 30% |
-| Tentacruel | 17–29 | 10% |
+| Tentacool | 36–37 | 60% |
+| Horsea | 35–37 | 30% |
+| Tentacruel | 36–37 | 10% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -989,9 +989,9 @@ Also, walking: swarm: Krabby; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzo
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Horsea | 17–29 | 60% |
-| Tentacruel | 17–29 | 30% |
-| Seadra | 17–35 | 10% |
+| Horsea | 36–37 | 60% |
+| Tentacruel | 36–37 | 30% |
+| Seadra | 36–40 | 10% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -1028,8 +1028,8 @@ Also, walking: swarm: Krabby; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzo
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Tentacool | 10–29 | 90% |
-| Tentacruel | 17–29 | 10% |
+| Tentacool | 27–29 | 90% |
+| Tentacruel | 28–29 | 10% |
 
 | Rock Smash | Lv. | Chance |
 |---|---|--:|
@@ -1073,9 +1073,9 @@ Also, walking: swarm: Mankey; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buize
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 10–29 | 90% |
-| Buizel | 17–29 | 5% |
-| Seaking | 17–29 | 5% |
+| Goldeen | 31–33 | 90% |
+| Buizel | 32–33 | 5% |
+| Seaking | 32–33 | 5% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -1109,8 +1109,8 @@ Also, walking: swarm: Marill; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzo
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 10–29 | 90% |
-| Seaking | 17–29 | 10% |
+| Goldeen | 31–33 | 90% |
+| Seaking | 32–33 | 10% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -1161,8 +1161,8 @@ Also, walking: swarm: Graveler; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bron
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 17–35 | 90% |
-| Seaking | 23–35 | 10% |
+| Goldeen | 32–34 | 90% |
+| Seaking | 32–34 | 10% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -1199,8 +1199,8 @@ Also, walking: swarm: Zubat; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 10–29 | 90% |
-| Seaking | 17–29 | 10% |
+| Goldeen | 31–33 | 90% |
+| Seaking | 32–33 | 10% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -1239,7 +1239,7 @@ Also, walking: swarm: Flaaffy; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buiz
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Magikarp | 5–58 | 100% |
+| Magikarp | 30–36 | 100% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -1262,8 +1262,8 @@ Also, on the water: surfing swarm: Magikarp; fishing at night: Poliwag; fishing 
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Magikarp | 5–23 | 90% |
-| Gyarados | 10–23 | 10% |
+| Magikarp | 30–32 | 90% |
+| Gyarados | 31–32 | 10% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -1299,8 +1299,8 @@ Also, walking: swarm: Tangela; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buiz
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 17–35 | 90% |
-| Poliwhirl | 23–35 | 10% |
+| Poliwag | 36–38 | 90% |
+| Poliwhirl | 37–38 | 10% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -1378,7 +1378,7 @@ Also, walking: swarm: Swinub; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzo
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Magikarp | 2–23 | 100% |
+| Magikarp | 34–37 | 100% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -1401,8 +1401,8 @@ Also, on the water: surfing swarm: Magikarp; fishing at night: Poliwag; fishing 
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Magikarp | 5–23 | 90% |
-| Dratini | 5–17 | 10% |
+| Magikarp | 34–37 | 90% |
+| Dratini | 34–36 | 10% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -1441,7 +1441,7 @@ Also, walking: swarm: Swablu; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buize
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Magikarp | 2–29 | 100% |
+| Magikarp | 37–42 | 100% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -1484,7 +1484,7 @@ Also, walking: swarm: Dunsparce; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bro
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Magikarp | 2–23 | 100% |
+| Magikarp | 26–28 | 100% |
 
 | Rock Smash | Lv. | Chance |
 |---|---|--:|
@@ -1525,7 +1525,7 @@ Also, walking: swarm: Geodude; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronz
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Magikarp | 2–23 | 100% |
+| Magikarp | 37–41 | 100% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
