@@ -1589,11 +1589,11 @@ class Bot:
             return False
         return bool(mons) and all(struct.unpack_from("<H", m.stats, 6)[0] == 0 for m in mons)
 
-    def swap_team(self, name):
+    def swap_team(self, name, level=None):
         """At a Pokemon Center: box the party and take out the boss's set (team_sets.py), healthy."""
         spec = team_sets.SETS[name]
         # STORY_LEVEL_<SET>=N: the set at another level, as a player would have it then (LEVEL_CURVE.md)
-        level = os.environ.get("STORY_LEVEL_" + name.upper())
+        level = level or os.environ.get("STORY_LEVEL_" + name.upper())
         if level:
             spec = self.sets.at_level(spec, int(level))
         at = self.party()
@@ -1780,6 +1780,12 @@ def run():
         frames = bot.game.frames
         battles, ai_moves = len(bot.log), bot.ai_moves
         bot.shut = set()        # doors open as the story goes on
+        # STORY_SWAP_<STAGE>=set:level: before the stage, the party becomes that set at that level, standing in
+        # for a short grind a player would do (the sets otherwise change only at the heals that swap them)
+        swap = os.environ.get("STORY_SWAP_" + stage.__name__.upper())
+        if swap:
+            name, _, level = swap.partition(":")
+            bot.swap_team(name, int(level) if level else None)
         before = os.path.join(out, "before_%s.dst" % stage.__name__)
         bot.save(before)
         losses = 0
