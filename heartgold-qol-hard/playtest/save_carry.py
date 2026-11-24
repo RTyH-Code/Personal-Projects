@@ -85,7 +85,7 @@ def main():
                 g.key("b")
             else:
                 g.key("a", after=30)
-                if not battle_test.screen_state(g.emu.screenshot()) and g.in_field() and g.in_field():
+                if g.in_field() and g.in_field():       # back on the map: the battle is over
                     break
             g.run(20)
         battles += 1

@@ -20,7 +20,9 @@ wild Pokemon there, as a player grinding would:
 
 Each battle goes to OUT/grind.jsonl: the wild Pokemon and its level, the
 turns, the party's experience gained against level_curve.py's formula for
-the Pokemon out at the end, faints, and the party's levels. A summary is
+the lead at its level before the battle, faints, and the party's levels.
+The formula is checked exactly for the lead; when another Pokemon took part
+too, the party's gain runs over the lead's alone. A summary is
 printed: battles won, experience measured against predicted, levels gained.
 The grind stops early if the party whites out.
 """
@@ -127,7 +129,7 @@ def fight(g):
             g.touch(238, 172, after=60)         # which move to forget: back, keep the set
         else:
             g.key("a", after=30)
-            if not battle_test.screen_state(g.emu.screenshot()) and g.in_field() and g.in_field():
+            if g.in_field() and g.in_field():       # back on the map: the battle is over
                 break
         g.run(20)
     here = g.position()
@@ -166,6 +168,7 @@ def main():
         wild, wild_level = names.get(g.created[0][0], str(g.created[0][0])), g.created[0][1]
         _, before = party(g)
         exp_before = {m.pid: m.u32(0x08) for m in before}
+        lead_level = before[0].level if before else level       # the formula takes the level before the battle
         for _ in range(100):                    # the battle's first menu
             g.run(20)
             if battle_test.screen_state(g.emu.screenshot()) == "menu":
@@ -173,7 +176,6 @@ def main():
         turns, faints, whited = fight(g)
         _, after = party(g)
         gain = sum(m.u32(0x08) - exp_before.get(m.pid, m.u32(0x08)) for m in after) if before and after else None
-        lead_level = after[0].level if after else level
         expect = level_curve.exp_gain(base.get(wild, 0), wild_level, lead_level, trainer=False) * \
             level_curve.MULTIPLIER
         record = dict(map=name, wild=wild, level=wild_level, turns=turns, faints=faints, exp=gain,
