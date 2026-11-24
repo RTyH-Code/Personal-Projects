@@ -1265,7 +1265,7 @@ class Bot:
     def _bag_seen(self, address, size):
         """A bag function was called: its first argument is the bag, if the pockets look right there (medicine
         slots empty or an item and a count, berry slots empty or a berry)."""
-        if self.bag:
+        if self.bag or self.battling:      # in battle the bag functions may be given the battle's own copy
             return
         bag = self.game.emu.memory.register_arm9.r0 & 0xFFFFFFFF
         if not 0x02000000 <= bag < 0x023F0000:
@@ -1304,9 +1304,15 @@ class Bot:
         g.key("x", after=60)
         g.touch(46, 118, after=120)             # BAG
         g.run(60)
-        for _ in range(4):
-            g.key("b", after=40)
-        g.run(60)
+        # back out of the bag to the field (the touch-screen menu stays up after, as it does for a player; it
+        # doesn't stop the player walking)
+        for _ in range(8):
+            if g.in_field():
+                break
+            g.key("b", after=60)
+            g.run(30)
+        if not g.in_field():
+            self.stuck("could not get back to the field after looking in the bag")
         if self.bag:
             print("  the bag is at %08x" % self.bag, flush=True)
         return self.bag
