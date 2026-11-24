@@ -92,6 +92,13 @@ BATTLE_TRAINERS, TRAINER_SIZE, TRAINER_AI_FLAGS = 0xAC, 0x34, 0x0C      # Battle
 # The AI cannot answer "Will you switch your Pokemon?", so the bot plays with the Set battle style, as a player can
 # choose in Options: whenever the game reads the style (Options_GetBattleStyle), the bit is set first.
 OPTIONS_GET_BATTLE_STYLE, BATTLE_STYLE_SET = 0x0202AD90, 0x40
+# hg-engine's own bag functions (build/rom_gen_battle.ld), each called with the bag as its first argument: the bot
+# learns where the bag is from them (Bag_GetRegisteredItemSlot1, Bag_GetItemPocket, Bag_GetItemSlotForAdd,
+# Bag_GetItemSlotForRemove, Bag_HasItem, Bag_GetQuantity, Bag_AddItem, Bag_GetPocketSlotN)
+BAG_FUNCS = (0x023D80BC, 0x023D8128, 0x023D8200, 0x023D8298, 0x023D82BA, 0x023D8344, 0x023D8532, 0x023D8600)
+# where the medicine pocket starts in the bag (include/bag.h): items (165 + 32 + 48 Mega Stones), key items (50 + 42),
+# TMs and HMs (101) and mail (12), four bytes a slot; 40 slots of medicine, then 64 of berries
+BAG_MEDICINE, BAG_MEDICINE_SLOTS, BAG_BERRIES_SLOTS = (245 + 92 + 101 + 12) * 4, 40, 64
 EXPERT_AI = 0x7                 # F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_EXPERT_ATTACKS
 TRAINER_ITEMS = 0x04            # Trainer.items[4], after type, class, sprite and party size
 # STORY_BATTLE_ITEMS=HYPER_POTION,FULL_HEAL,...: up to four items the player's side carries into each trainer battle,
@@ -142,6 +149,9 @@ class Bot:
         self.battlers = {}          # battler id -> (BattleSystem, OpponentData) for the battle being opened
         self.game.emu.memory.register_exec(BATTLER_SETUP, self._battler_setup)
         self.game.emu.memory.register_exec(OPTIONS_GET_BATTLE_STYLE, self._set_style)
+        self.bag = None
+        for address in BAG_FUNCS:
+            self.game.emu.memory.register_exec(address, self._bag_seen)
         self.ai_moves = 0           # moves the AI chose for the player's side
         self.ai_battles = self.handed = 0
         self.bsys = None
@@ -1252,32 +1262,80 @@ class Bot:
         with open(os.path.join(self.out, "battles.jsonl"), "a") as f:
             f.write(json.dumps(entry) + "\n")
 
-    def stock_potions(self):
-        """The bag's first potion becomes STORY_SMART_POTIONS of the potion a player would have by the party's level,
-        in each copy of the bag in memory (the save's and the battle's). Test harness only, like the heal before a
-        boss."""
-        mem, items = self.game.emu.memory.unsigned, self.data["items"]
-        ram = bytes(mem[0x02000000:0x02400000])
-        found = 0
-        level = max([m.level for m in self.party_mons() if m.valid()] or [1])
-        # what a player would have bought by then: Potions at first, Super Potions from Goldenrod, Hyper Potions late
-        kind = "POTION" if level < 15 else "SUPER_POTION" if level < 35 else "HYPER_POTION"
+    def _bag_seen(self, address, size):
+        """A bag function was called: its first argument is the bag, if the pockets look right there (medicine
+        slots empty or an item and a count, berry slots empty or a berry)."""
+        if self.bag:
+            return
+        bag = self.game.emu.memory.register_arm9.r0 & 0xFFFFFFFF
+        if not 0x02000000 <= bag < 0x023F0000:
+            return
+        mem = self.game.emu.memory.unsigned
+        slot = lambda a: (mem[a] | mem[a + 1] << 8, mem[a + 2] | mem[a + 3] << 8)
+        med = [slot(bag + BAG_MEDICINE + 4 * k) for k in range(BAG_MEDICINE_SLOTS)]
+        ber = [slot(bag + BAG_MEDICINE + 4 * (BAG_MEDICINE_SLOTS + k)) for k in range(BAG_BERRIES_SLOTS)]
+        if all(s == (0, 0) or 0 < s[0] < 1000 and 0 < s[1] < 1000 for s in med) and \
+                all(s == (0, 0) or 149 <= s[0] <= 212 and 0 < s[1] < 1000 for s in ber) and any(s != (0, 0) for s in med + ber):
+            self.bag = bag
 
-        def entry(ram, at):         # a bag slot: empty, or an item number and a count
-            item, count = struct.unpack_from("<HH", ram, at)
-            return (item, count) == (0, 0) or 0 < item < 1000 and 0 < count < 1000
-        for item in ("POTION", "SUPER_POTION", "HYPER_POTION"):
-            for count in range(1, 100):
-                pat = struct.pack("<HH", items[item], count)
-                at = ram.find(pat)
-                while at >= 0:
-                    if at % 4 == 0 and all(entry(ram, at + 4 * k) for k in (-2, -1, 1, 2)):
-                        new = struct.pack("<HH", items[kind], SMART_POTIONS)
-                        for k in range(4):
-                            mem[0x02000000 + at + k] = new[k]
-                        found += 1
-                    at = ram.find(pat, at + 1)
-        return found
+    def has_pokemon(self):
+        """Whether the party has a Pokemon yet (before the starter there is no party to find)."""
+        # by the count, not by reading a Pokemon: the game keeps the one walking behind the player decrypted in
+        # place much of the time, and early on it is the only one
+        try:
+            return self.game.word(self.party() + 4) > 0
+        except Stuck:
+            return False
+
+    def find_bag(self):
+        """In the field: if the bag's address isn't known yet, open the bag from the menu and close it again, which
+        calls the bag functions that tell it (see _bag_seen)."""
+        if self.bag:
+            return self.bag
+        g = self.game
+        # only free in the field: X over a conversation opens the menu on top of it, and B would answer a prompt;
+        # a stage often ends on a scene, so give it two seconds to settle
+        for _ in range(6):
+            if g.in_field() and not walk_test.text_box(g.emu.screenshot()):
+                break
+            g.run(20)
+        else:
+            return None
+        g.key("x", after=60)
+        g.touch(46, 118, after=120)             # BAG
+        g.run(60)
+        for _ in range(4):
+            g.key("b", after=40)
+        g.run(60)
+        if self.bag:
+            print("  the bag is at %08x" % self.bag, flush=True)
+        return self.bag
+
+    def restock_field(self):
+        """Keep the bag stocked with STORY_SMART_POTIONS of the potion a player would have by then (STORY_SMART), in
+        the medicine pocket of the bag the game itself uses (find_bag), never anywhere else: a potion slot is set
+        to that, or with none, the first empty slot. Test harness only, like the heal before a boss. Returns the
+        number of potions in stock, 0 if the bag isn't known."""
+        bag = self.bag
+        if not bag:
+            return 0
+        mem, items = self.game.emu.memory.unsigned, self.data["items"]
+        potions = {items[k] for k in ("POTION", "SUPER_POTION", "HYPER_POTION")}
+        kind = items[self._potion_kind()]
+        slots = [bag + BAG_MEDICINE + 4 * k for k in range(BAG_MEDICINE_SLOTS)]
+        read = lambda a: (mem[a] | mem[a + 1] << 8, mem[a + 2] | mem[a + 3] << 8)
+        target = next((a for a in slots if read(a)[0] in potions), None) or \
+            next((a for a in slots if read(a) == (0, 0)), None)
+        if target is None:
+            return 0
+        for k, b in enumerate(struct.pack("<HH", kind, SMART_POTIONS)):
+            mem[target + k] = b
+        return SMART_POTIONS
+
+    def _potion_kind(self):
+        """What a player would have bought by the party's level: Potions, Super Potions from Goldenrod, then Hyper."""
+        level = max([m.level for m in self.party_mons() if m.valid()] or [1])
+        return "POTION" if level < 15 else "SUPER_POTION" if level < 35 else "HYPER_POTION"
 
     def smart_mon(self, b):
         """Battler b's Pokemon as smart.py wants it, from the battle's own data."""
@@ -1367,13 +1425,14 @@ class Bot:
                 self.smart_fresh = True
             return 60
         self.smart_fresh = False
-        if not self.smart_state.get("stocked"):
-            self.smart_state["stocked"] = self.stock_potions()
+        if "stocked" not in self.smart_state:
+            self.smart_state["stocked"] = bool(self.bag)   # the field restock filled the bag before the battle
         me, foe = self.smart_mon(0), self.smart_mon(1)
         self.smart_hp[me["name"]] = me["hp"]
         party = self.smart_bench(me["key"])
         bench = [b for b in party[1:] if b["hp"] > 0]
-        self.smart_state["items"] = SMART_POTIONS - sum(self.smart_state.get("heals", {}).values())
+        self.smart_state["items"] = SMART_POTIONS - sum(self.smart_state.get("heals", {}).values()) \
+            if self.smart_state["stocked"] else 0             # no potion found to stock: no heals
         choice = smart.choose(me, foe, bench, self.smart_state)
         if os.environ.get("STORY_SMART_DEBUG"):
             print("  [turn: me %s %d/%d, order %s, party %s]" % (me["name"], me["hp"], me["max_hp"], self.smart_order,
@@ -1544,6 +1603,8 @@ class Bot:
         if not g.in_field():
             self.stuck("a battle did not end")
         self.battling = False
+        if SMART and self.find_bag():
+            self.restock_field()                # the potions used, back in the bag before the next battle
         self.record_battle(start, "won", g.frames - began, self.ai_moves - moves, self.kos[first_ko:])
         self.log.append(dict(at=self.where(), ai=ai, menus=menus))
         print("  battle over: %d AI moves, %d menus, now at %s" % (self.ai_moves - moves, menus, self.where()), flush=True)
@@ -1795,6 +1856,8 @@ def run():
         bot.shut = set()        # doors open as the story goes on
         # STORY_SWAP_<STAGE>=set:level: before the stage, the party becomes that set at that level, standing in
         # for a short grind a player would do (the sets otherwise change only at the heals that swap them)
+        if SMART and bot.has_pokemon() and bot.find_bag():
+            bot.restock_field()     # (with a Pokemon in the party, the menu has its Bag)
         swap = os.environ.get("STORY_SWAP_" + stage.__name__.upper())
         if swap:
             name, _, level = swap.partition(":")
