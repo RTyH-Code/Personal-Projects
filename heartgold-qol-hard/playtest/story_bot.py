@@ -1262,21 +1262,40 @@ class Bot:
         with open(os.path.join(self.out, "battles.jsonl"), "a") as f:
             f.write(json.dumps(entry) + "\n")
 
-    def _bag_seen(self, address, size):
-        """A bag function was called: its first argument is the bag, if the pockets look right there (medicine
-        slots empty or an item and a count, berry slots empty or a berry)."""
-        if self.bag or self.battling:      # in battle the bag functions may be given the battle's own copy
-            return
-        bag = self.game.emu.memory.register_arm9.r0 & 0xFFFFFFFF
+    def _bag_looks_right(self, bag):
+        """Whether the pockets look right at this address: medicine slots empty or an item and a count, berry
+        slots empty or a berry, and something in one of them."""
         if not 0x02000000 <= bag < 0x023F0000:
-            return
+            return False
         mem = self.game.emu.memory.unsigned
         slot = lambda a: (mem[a] | mem[a + 1] << 8, mem[a + 2] | mem[a + 3] << 8)
         med = [slot(bag + BAG_MEDICINE + 4 * k) for k in range(BAG_MEDICINE_SLOTS)]
         ber = [slot(bag + BAG_MEDICINE + 4 * (BAG_MEDICINE_SLOTS + k)) for k in range(BAG_BERRIES_SLOTS)]
-        if all(s == (0, 0) or 0 < s[0] < 1000 and 0 < s[1] < 1000 for s in med) and \
-                all(s == (0, 0) or 149 <= s[0] <= 212 and 0 < s[1] < 1000 for s in ber) and any(s != (0, 0) for s in med + ber):
+        return all(s == (0, 0) or 0 < s[0] < 1000 and 0 < s[1] < 1000 for s in med) and \
+            all(s == (0, 0) or 149 <= s[0] <= 212 and 0 < s[1] < 1000 for s in ber) and \
+            any(s != (0, 0) for s in med + ber)
+
+    def _bag_seen(self, address, size):
+        """A bag function was called outside battle (in battle they may be given the battle's own copy of the
+        bag): its first argument is the bag, if the pockets look right there. Kept in OUT/bag.json for a later
+        run from this run's saves."""
+        if self.bag or self.battling:
+            return
+        bag = self.game.emu.memory.register_arm9.r0 & 0xFFFFFFFF
+        if self._bag_looks_right(bag):
             self.bag = bag
+            json.dump(bag, open(os.path.join(self.out, "bag.json"), "w"))
+            print("  the bag is at %08x" % bag, flush=True)
+
+    def find_bag(self):
+        """The bag's address: as the game showed it (_bag_seen), or as an earlier run from these saves found it,
+        if the pockets still look right there. The bot doesn't open the bag itself: pressing through the field
+        menu goes wrong in too many places (a conversation, surfing). Until it is known, the bot has no potions."""
+        if not self.bag:
+            path = os.path.join(self.out, "bag.json")
+            if os.path.exists(path) and self._bag_looks_right(json.load(open(path))):
+                self.bag = json.load(open(path))
+        return self.bag
 
     def has_pokemon(self):
         """Whether the party has a Pokemon yet (before the starter there is no party to find)."""
@@ -1286,36 +1305,6 @@ class Bot:
             return self.game.word(self.party() + 4) > 0
         except Stuck:
             return False
-
-    def find_bag(self):
-        """In the field: if the bag's address isn't known yet, open the bag from the menu and close it again, which
-        calls the bag functions that tell it (see _bag_seen)."""
-        if self.bag:
-            return self.bag
-        g = self.game
-        # only free in the field: X over a conversation opens the menu on top of it, and B would answer a prompt;
-        # a stage often ends on a scene, so give it two seconds to settle
-        for _ in range(6):
-            if g.in_field() and not walk_test.text_box(g.emu.screenshot()):
-                break
-            g.run(20)
-        else:
-            return None
-        g.key("x", after=60)
-        g.touch(46, 118, after=120)             # BAG
-        g.run(60)
-        # back out of the bag to the field (the touch-screen menu stays up after, as it does for a player; it
-        # doesn't stop the player walking)
-        for _ in range(8):
-            if g.in_field():
-                break
-            g.key("b", after=60)
-            g.run(30)
-        if not g.in_field():
-            self.stuck("could not get back to the field after looking in the bag")
-        if self.bag:
-            print("  the bag is at %08x" % self.bag, flush=True)
-        return self.bag
 
     def restock_field(self):
         """Keep the bag stocked with STORY_SMART_POTIONS of the potion a player would have by then (STORY_SMART), in
