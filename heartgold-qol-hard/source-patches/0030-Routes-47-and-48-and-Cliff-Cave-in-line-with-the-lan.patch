@@ -1,0 +1,97 @@
+From 35e61628fc2182a568c994b6b04758fdfad8f24d Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Tue, 24 Nov 2026 04:14:44 +0000
+Subject: [PATCH] Routes 47 and 48 and Cliff Cave in line with the land around
+ Cianwood
+
+side_wild.py and surf_wild.py had left these out as post-game areas, but
+Cliff Edge Gate opens off Cianwood, which a player reaches by surfing
+before Chuck, and Route 47's trainers are Lv. 22-29. By the same rule they
+follow Chuck: Route 48 and Cliff Cave walking (were 23-29 and 21-26) and
+Route 47 surfing (was 10-29) move into his band. Route 47's walking levels
+and the Cliff Edge Gate's water are already above it and stay. Generated
+by tools/hack/cianwood_wild.py.
+---
+ data/Encounters.c           | 14 +++++++-------
+ tools/hack/cianwood_wild.py | 30 ++++++++++++++++++++++++++++++
+ 2 files changed, 37 insertions(+), 7 deletions(-)
+ create mode 100644 tools/hack/cianwood_wild.py
+
+diff --git a/data/Encounters.c b/data/Encounters.c
+index 02f038777..5618ffe4f 100644
+--- a/data/Encounters.c
++++ b/data/Encounters.c
+@@ -7169,11 +7169,11 @@ const EncounterData __data[] =
+             SPECIES_BIDOOF,
+         },
+         .surfSlots = {
+-            { 17, 29, SPECIES_TENTACOOL },
+-            { 10, 23, SPECIES_SEEL },
+-            { 17, 29, SPECIES_STARYU },
+-            { 17, 29, SPECIES_STARYU },
+-            { 17, 29, SPECIES_STARYU },
++            { 27, 29, SPECIES_TENTACOOL },
++            { 26, 28, SPECIES_SEEL },
++            { 27, 29, SPECIES_STARYU },
++            { 27, 29, SPECIES_STARYU },
++            { 27, 29, SPECIES_STARYU },
+         },
+         .rockSmashSlots = {
+             { 0, 0, SPECIES_NONE },
+@@ -8315,7 +8315,7 @@ const EncounterData __data[] =
+         .rateSuperRod = 0,
+         .landSlots = {
+             .levels = {
+-                25, 22, 23, 25, 22, 23, 21, 23, 23, 25, 26, 26
++                28, 26, 27, 28, 26, 27, 26, 27, 27, 28, 28, 28
+             },
+             .speciesMorning = {
+                 SPECIES_GOLBAT,
+@@ -10215,7 +10215,7 @@ const EncounterData __data[] =
+         .rateSuperRod = 0,
+         .landSlots = {
+             .levels = {
+-                29, 23, 23, 24, 25, 28, 24, 23, 23, 25, 25, 28
++                29, 27, 27, 27, 28, 29, 27, 27, 27, 28, 28, 29
+             },
+             .speciesMorning = {
+                 SPECIES_FARFETCHD,
+diff --git a/tools/hack/cianwood_wild.py b/tools/hack/cianwood_wild.py
+new file mode 100644
+index 000000000..4daf30e50
+--- /dev/null
++++ b/tools/hack/cianwood_wild.py
+@@ -0,0 +1,30 @@
++#!/usr/bin/env python3
++"""Routes 47 and 48 and Cliff Cave in line with the land around Cianwood.
++
++side_wild.py and surf_wild.py left these out as post-game areas, but they are
++not: Cliff Edge Gate opens off Cianwood, which a player reaches by surfing
++before Chuck, and Route 47's trainers are Lv. 22-29. So, by the same rule as
++those two, they follow Chuck (34) and move into his band, 75-85% of his
++average:
++    Route 48 and Cliff Cave, walking   (were Lv. 23-29 and 21-26)
++    Route 47, surfing                  (was 10-29)
++Route 47's walking levels (36-46) and the Cliff Edge Gate's water (23-46)
++are already above the band and stay, as other areas above their neighbours
++do. The Safari Zone has its own tables and is unchanged.
++
++Run once from the hg-engine root, after surf_wild.py:
++    python3 tools/hack/cianwood_wild.py
++"""
++import side_wild
++import surf_wild
++
++
++def main():
++    side_wild.GROUPS = [(34, ["R48_ROUTE_48", "D50R0101_CLIFF_CAVE"])]
++    side_wild.main()
++    surf_wild.GROUPS = [(34, ["R47_ROUTE_47"])]
++    surf_wild.main()
++
++
++if __name__ == "__main__":
++    main()
+-- 
+2.43.0
+

@@ -1564,9 +1564,9 @@ Also, walking: swarm: Ditto; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buizel
 
 | Surfing | Lv. | Chance |
 |---|---|--:|
-| Tentacool | 17–29 | 60% |
-| Seel | 10–23 | 30% |
-| Staryu | 17–29 | 10% |
+| Tentacool | 27–29 | 60% |
+| Seel | 26–28 | 30% |
+| Staryu | 27–29 | 10% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -1842,20 +1842,20 @@ Also, on the water: surfing swarm: Wooper; fishing at night: Magikarp; fishing s
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Golbat | 25 | 20% | 20% | 20% |
-| Geodude | 22 | 20% | 20% | 20% |
-| Krabby | 23 | 10% | 10% | 10% |
-| Kingler | 25 | 10% | 10% | 10% |
-| Machop | 22 | 10% | 10% | 10% |
-| Onix | 23 | 10% | 10% | 10% |
-| Machoke | 25 | 4% | 4% | 4% |
-| Wooper | 21 | 5% | 5% | — |
-| Quagsire | 23 | 5% | 5% | — |
-| Graveler | 23 | 4% | 4% | — |
-| Nosepass | 23–26 | 1% | 1% | 4% |
-| Zubat | 21 | — | — | 5% |
-| Misdreavus | 23 | — | — | 5% |
-| Steelix | 26 | 1% | 1% | 2% |
+| Golbat | 28 | 20% | 20% | 20% |
+| Geodude | 26 | 20% | 20% | 20% |
+| Krabby | 27 | 10% | 10% | 10% |
+| Kingler | 28 | 10% | 10% | 10% |
+| Machop | 26 | 10% | 10% | 10% |
+| Onix | 27 | 10% | 10% | 10% |
+| Machoke | 28 | 4% | 4% | 4% |
+| Wooper | 26 | 5% | 5% | — |
+| Quagsire | 27 | 5% | 5% | — |
+| Graveler | 27 | 4% | 4% | — |
+| Nosepass | 27–28 | 1% | 1% | 4% |
+| Zubat | 26 | — | — | 5% |
+| Misdreavus | 27 | — | — | 5% |
+| Steelix | 28 | 1% | 1% | 2% |
 
 Also, walking: swarm: Golbat; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor, Chingling.
 
@@ -2266,16 +2266,16 @@ Also, on the water: surfing swarm: Tentacool; fishing at night: Shellder; fishin
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Tauros | 23–28 | 20% | 20% | 21% |
-| Gloom | 25–28 | 20% | 20% | 20% |
+| Tauros | 27–29 | 20% | 20% | 21% |
+| Gloom | 28–29 | 20% | 20% | 20% |
 | Farfetch’d | 29 | 20% | 20% | — |
-| Hoppip | 23–25 | 11% | 11% | 11% |
-| Fearow | 24 | 10% | 10% | 10% |
-| Growlithe | 25–29 | 4% | 4% | 20% |
-| Tropius | 24 | 5% | 5% | 5% |
-| Girafarig | 23 | 5% | 5% | 5% |
-| Diglett | 23 | 4% | 4% | 4% |
-| Cacnea | 25–28 | 1% | 1% | 4% |
+| Hoppip | 27–28 | 11% | 11% | 11% |
+| Fearow | 27 | 10% | 10% | 10% |
+| Growlithe | 28–29 | 4% | 4% | 20% |
+| Tropius | 27 | 5% | 5% | 5% |
+| Girafarig | 27 | 5% | 5% | 5% |
+| Diglett | 27 | 4% | 4% | 4% |
+| Cacnea | 28–29 | 1% | 1% | 4% |
 
 Also, walking: swarm: Tauros; Hoenn Sound: Plusle, Minun; Sinnoh Sound: Shinx.
 

@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+- Routes 47 and 48 and Cliff Cave follow Chuck, like the rest of the land
+  around Cianwood (patch 0030). v0.7 and v0.8 left them out as post-game
+  areas, but Cliff Edge Gate opens off Cianwood, which a player reaches by
+  surfing before Chuck, and Route 47's trainers are Lv. 22-29. Route 48 is
+  now Lv. 27-29 (was 23-29), Cliff Cave 26-28 (was 21-26), and Route 47's
+  water 26-29 (was 10-29). Route 47's grass (36-46) and the Cliff Edge Gate's
+  water were already above and stay.
+
 ## v0.8 (playtest build)
 
 - Pokémon met surfing in Johto are in line with the land beside them (patch

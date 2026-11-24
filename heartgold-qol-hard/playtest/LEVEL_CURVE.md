@@ -81,6 +81,10 @@ Magikarp 31-32 and Gyarados 31, Route 44 Poliwag 37-38, Route 45 Magikarp 37-41.
 in 750 steps, on Route 40 a Swimmer stepped in, and at Blackthorn the test couldn't start surfing from the bank it
 tried. Run as one batch the check stopped without an error after loading; one area at a time, each ran through.
 
+Patch 0030 brings Routes 47 and 48 and Cliff Cave into Chuck's band, as they open off Cianwood. Checked the same
+way: Route 48 Growlithe 28, Hoppip and Girafarig 27; Cliff Cave Machoke 28, Onix 27, Wooper 26; Route 47's water
+Seel 27, Staryu 27-28.
+
 The League's share was larger until patch 0026. The grass on Routes 26 and 27 and in Victory Road was Lv. 23
 to 41, far enough under a team at 50 that the scaled formula gave little for it: about 160 wild KOs to bring
 the team to Lance's average, and about 490 to the Lv. 55 the story bot needed to get past Will. With those
