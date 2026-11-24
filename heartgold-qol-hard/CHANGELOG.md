@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v0.8 (playtest build)
 
 - Pokémon met surfing in Johto are in line with the land beside them (patch
   0029). The water had kept HeartGold's own levels, Lv. 10-29 at most towns
@@ -11,6 +11,9 @@
   Blackthorn, Dragon's Den and the Whirl Islands 34-40; Route 45 and Dark
   Cave's Route 45 side 37-42. Fishing, Rock Smash and the post-game areas are
   unchanged.
+
+This changes encounter data only. A save made in v0.7 on Route 29 loaded in
+v0.8, won a wild battle, and the game saved again.
 
 ## v0.7 (playtest build)
 
