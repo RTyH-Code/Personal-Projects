@@ -85,6 +85,22 @@ Patch 0030 brings Routes 47 and 48 and Cliff Cave into Chuck's band, as they ope
 way: Route 48 Growlithe 28, Hoppip and Girafarig 27; Cliff Cave Machoke 28, Onix 27, Wooper 26; Route 47's water
 Seel 27, Staryu 27-28.
 
+## A grind measured in the game
+
+`grind_test.py` grinds in one area on the build with the test harness, as a player would: the first move with
+PP left, the next Pokémon in after a faint, moves to learn turned down, a heal between battles. Thirty battles
+on Route 27 with the harness's party at Lv. 50 (its lead a Typhlosion, medium slow), against the area's Lv.
+48-49 Pokémon since patch 0026:
+
+- **All 30 won.** Three had a faint, and the test sent in the next Pokémon each time.
+- **The formula holds.** In 26 of the 27 battles the lead fought alone, the experience it gained was exactly
+  `level_curve.py`'s figure for its level. The other one matched the figure for the level before, so the read
+  lagged a level-up. Over all 30, the party gained 87,936 against 87,422 predicted.
+- **The model is a little quick.** The lead reached Lv. 55 on the 18th battle and 58 on the 29th; for one
+  Pokémon on Route 27's daytime odds, the model says the 15th and the 26th. The game met as many Raticate as
+  Dodrio (12 each) and fewer of the Rapidash that give more, and the three battles with a faint shared their
+  experience. So the wild-battle counts above may run 10-20% short of what a player needs.
+
 The League's share was larger until patch 0026. The grass on Routes 26 and 27 and in Victory Road was Lv. 23
 to 41, far enough under a team at 50 that the scaled formula gave little for it: about 160 wild KOs to bring
 the team to Lance's average, and about 490 to the Lv. 55 the story bot needed to get past Will. With those
