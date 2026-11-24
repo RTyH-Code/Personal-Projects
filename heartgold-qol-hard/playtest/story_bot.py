@@ -1632,16 +1632,19 @@ class Bot:
             for i, b in enumerate(struct.pack("<I", len(mons)) + data):
                 mem[at + 4 + i] = b
             # a write that landed while the game had the walking Pokemon decrypted is scrambled when the game
-            # encrypts it again, a few frames on: so every slot must read as the Pokemon written, steadily, over
-            # the last frames of the wait
+            # encrypts it again, a few frames on
+            # each slot, judged on its own: it must read as the Pokemon written at least once over the 60 frames
+            # after the write (the walking one reads only between the game's decryptions), and never read as
+            # anything else; a scrambled slot never reads again
             want = [m.species for m in mons]
-            steady = 0
+            good, bad = [False] * len(want), False
             for _ in range(60):
                 g.run_every_frame(1)
-                now = self.party_mons()
-                ok = len(now) >= len(want) and all(m.valid() and m.species == w for m, w in zip(now, want))
-                steady = steady + 1 if ok else 0
-            if steady >= 10:
+                for k, m in enumerate(self.party_mons()[:len(want)]):
+                    if m.valid():
+                        good[k] = good[k] or m.species == want[k]
+                        bad = bad or m.species != want[k]
+            if all(good) and not bad:
                 return True
         return False
 
