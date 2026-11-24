@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.7 (playtest build)
+
+- Wild Pokémon in Johto's side areas are in line with the main path beside
+  them (patch 0028): the Ruins of Alph's chambers at Lv. 14 (were 5), the
+  Bell Tower at 34-37 and the Whirl Islands at 35-38 (were 23-29), Route 45
+  and Dark Cave's Route 45 side at 37-42 (were 23-31). Each follows the boss
+  a player faces next when going there, in the same band as patch 0027.
+
+This changes encounter data only. A save made in v0.6 on Route 29 loaded in
+v0.7 and won a wild battle; a save from v0.4 at the same spot loaded, won
+two, and the game saved again.
+
 ## v0.6 (playtest build)
 
 - Wild Pokémon in the grass and caves on Johto's main path are a little

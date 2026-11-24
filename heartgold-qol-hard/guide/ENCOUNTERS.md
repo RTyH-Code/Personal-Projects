@@ -281,7 +281,7 @@ Also, on the water: surfing swarm: Wooper; fishing at night: Poliwag; fishing sw
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Unown | 5 | 100% | 100% | 100% |
+| Unown | 14 | 100% | 100% | 100% |
 
 Also, walking: swarm: Unown; Hoenn Sound: Unown; Sinnoh Sound: Unown.
 
@@ -289,7 +289,7 @@ Also, walking: swarm: Unown; Hoenn Sound: Unown; Sinnoh Sound: Unown.
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Unown | 5 | 100% | 100% | 100% |
+| Unown | 14 | 100% | 100% | 100% |
 
 Also, walking: swarm: Unown; Hoenn Sound: Unown; Sinnoh Sound: Unown.
 
@@ -297,7 +297,7 @@ Also, walking: swarm: Unown; Hoenn Sound: Unown; Sinnoh Sound: Unown.
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Unown | 5 | 100% | 100% | 100% |
+| Unown | 14 | 100% | 100% | 100% |
 
 Also, walking: swarm: Unown; Hoenn Sound: Unown; Sinnoh Sound: Unown.
 
@@ -305,7 +305,7 @@ Also, walking: swarm: Unown; Hoenn Sound: Unown; Sinnoh Sound: Unown.
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Unown | 5 | 100% | 100% | 100% |
+| Unown | 14 | 100% | 100% | 100% |
 
 Also, walking: swarm: Unown; Hoenn Sound: Unown; Sinnoh Sound: Unown.
 
@@ -732,9 +732,9 @@ Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Cha
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Rattata | 23–28 | 99% | 99% | 19% |
-| Gastly | 23–25 | — | — | 80% |
-| Spiritomb | 28 | 1% | 1% | 1% |
+| Rattata | 34–37 | 99% | 99% | 19% |
+| Gastly | 34–35 | — | — | 80% |
+| Spiritomb | 37 | 1% | 1% | 1% |
 
 Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Chatot, Meditite.
 
@@ -742,9 +742,9 @@ Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Cha
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Rattata | 23–28 | 99% | 99% | 19% |
-| Gastly | 23–25 | — | — | 80% |
-| Spiritomb | 28 | 1% | 1% | 1% |
+| Rattata | 34–37 | 99% | 99% | 19% |
+| Gastly | 34–35 | — | — | 80% |
+| Spiritomb | 37 | 1% | 1% | 1% |
 
 Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Chatot, Meditite.
 
@@ -752,9 +752,9 @@ Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Cha
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Rattata | 23–28 | 99% | 99% | 19% |
-| Gastly | 23–25 | — | — | 80% |
-| Spiritomb | 28 | 1% | 1% | 1% |
+| Rattata | 34–37 | 99% | 99% | 19% |
+| Gastly | 34–35 | — | — | 80% |
+| Spiritomb | 37 | 1% | 1% | 1% |
 
 Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Chatot, Meditite.
 
@@ -762,9 +762,9 @@ Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Cha
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Rattata | 23–28 | 99% | 99% | 19% |
-| Gastly | 23–25 | — | — | 80% |
-| Spiritomb | 28 | 1% | 1% | 1% |
+| Rattata | 34–37 | 99% | 99% | 19% |
+| Gastly | 34–35 | — | — | 80% |
+| Spiritomb | 37 | 1% | 1% | 1% |
 
 Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Chatot, Meditite.
 
@@ -772,9 +772,9 @@ Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Cha
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Rattata | 23–28 | 99% | 99% | 19% |
-| Gastly | 23–25 | — | — | 80% |
-| Spiritomb | 28 | 1% | 1% | 1% |
+| Rattata | 34–37 | 99% | 99% | 19% |
+| Gastly | 34–35 | — | — | 80% |
+| Spiritomb | 37 | 1% | 1% | 1% |
 
 Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Chatot, Meditite.
 
@@ -782,9 +782,9 @@ Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Cha
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Rattata | 23–28 | 99% | 99% | 19% |
-| Gastly | 23–25 | — | — | 80% |
-| Spiritomb | 28 | 1% | 1% | 1% |
+| Rattata | 34–37 | 99% | 99% | 19% |
+| Gastly | 34–35 | — | — | 80% |
+| Spiritomb | 37 | 1% | 1% | 1% |
 
 Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Chatot, Meditite.
 
@@ -792,9 +792,9 @@ Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Cha
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Rattata | 23–28 | 99% | 99% | 19% |
-| Gastly | 23–25 | — | — | 80% |
-| Spiritomb | 28 | 1% | 1% | 1% |
+| Rattata | 34–37 | 99% | 99% | 19% |
+| Gastly | 34–35 | — | — | 80% |
+| Spiritomb | 37 | 1% | 1% | 1% |
 
 Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Chatot, Meditite.
 
@@ -802,9 +802,9 @@ Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Cha
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Rattata | 23–28 | 99% | 99% | 19% |
-| Gastly | 23–25 | — | — | 80% |
-| Spiritomb | 28 | 1% | 1% | 1% |
+| Rattata | 34–37 | 99% | 99% | 19% |
+| Gastly | 34–35 | — | — | 80% |
+| Spiritomb | 37 | 1% | 1% | 1% |
 
 Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Chatot, Meditite.
 
@@ -931,10 +931,10 @@ Also, on the water: surfing swarm: Tentacool; fishing at night: Shellder; fishin
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Krabby | 25–28 | 50% | 50% | 50% |
-| Zubat | 26 | 30% | 30% | 30% |
-| Seel | 25–28 | 15% | 15% | 15% |
-| Golbat | 26 | 5% | 5% | 5% |
+| Krabby | 35–37 | 50% | 50% | 50% |
+| Zubat | 36 | 30% | 30% | 30% |
+| Seel | 35–37 | 15% | 15% | 15% |
+| Golbat | 36 | 5% | 5% | 5% |
 
 Also, walking: swarm: Krabby; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor, Chingling.
 
@@ -969,10 +969,10 @@ Also, on the water: surfing swarm: Tentacool; fishing at night: Horsea; fishing 
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Krabby | 25–28 | 50% | 50% | 50% |
-| Zubat | 26 | 30% | 30% | 30% |
-| Seel | 25–28 | 15% | 15% | 15% |
-| Golbat | 26 | 5% | 5% | 5% |
+| Krabby | 35–37 | 50% | 50% | 50% |
+| Zubat | 36 | 30% | 30% | 30% |
+| Seel | 35–37 | 15% | 15% | 15% |
+| Golbat | 36 | 5% | 5% | 5% |
 
 Also, walking: swarm: Krabby; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor, Chingling.
 
@@ -980,10 +980,10 @@ Also, walking: swarm: Krabby; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzo
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Krabby | 25–28 | 50% | 50% | 50% |
-| Zubat | 26 | 30% | 30% | 30% |
-| Seel | 25–28 | 15% | 15% | 15% |
-| Golbat | 26 | 5% | 5% | 5% |
+| Krabby | 35–37 | 50% | 50% | 50% |
+| Zubat | 36 | 30% | 30% | 30% |
+| Seel | 35–37 | 15% | 15% | 15% |
+| Golbat | 36 | 5% | 5% | 5% |
 
 Also, walking: swarm: Krabby; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor, Chingling.
 
@@ -1017,10 +1017,10 @@ Also, on the water: surfing swarm: Horsea; fishing at night: Horsea; fishing swa
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Krabby | 26–29 | 50% | 50% | 50% |
-| Zubat | 28 | 30% | 30% | 30% |
-| Seel | 26–29 | 15% | 15% | 15% |
-| Golbat | 28 | 5% | 5% | 5% |
+| Krabby | 36–38 | 50% | 50% | 50% |
+| Zubat | 37 | 30% | 30% | 30% |
+| Seel | 36–38 | 15% | 15% | 15% |
+| Golbat | 37 | 5% | 5% | 5% |
 
 Also, walking: swarm: Krabby; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor, Chingling.
 
@@ -1425,17 +1425,17 @@ Also, on the water: surfing swarm: Magikarp; fishing at night: Dratini; fishing 
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Geodude | 26 | 30% | 30% | 30% |
-| Graveler | 26 | 20% | 20% | 20% |
-| Swablu | 26 | 10% | 10% | 10% |
-| Gligar | 28 | 10% | 10% | 10% |
-| Hippopotas | 28 | 10% | 10% | 10% |
-| Phanpy | 23 | 5% | 5% | 5% |
-| Skarmory | 23 | 5% | 5% | 5% |
-| Torchic | 29 | 4% | 4% | 4% |
-| Treecko | 31 | 4% | 4% | 4% |
-| Absol | 29 | 1% | 1% | 1% |
-| Bagon | 31 | 1% | 1% | 1% |
+| Geodude | 39 | 30% | 30% | 30% |
+| Graveler | 39 | 20% | 20% | 20% |
+| Swablu | 39 | 10% | 10% | 10% |
+| Gligar | 40 | 10% | 10% | 10% |
+| Hippopotas | 40 | 10% | 10% | 10% |
+| Phanpy | 37 | 5% | 5% | 5% |
+| Skarmory | 37 | 5% | 5% | 5% |
+| Torchic | 41 | 4% | 4% | 4% |
+| Treecko | 42 | 4% | 4% | 4% |
+| Absol | 41 | 1% | 1% | 1% |
+| Bagon | 42 | 1% | 1% | 1% |
 
 Also, walking: swarm: Swablu; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buizel, Bidoof.
 
@@ -1513,13 +1513,13 @@ Also, on the water: surfing swarm: Magikarp; fishing at night: Goldeen; fishing 
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Geodude | 26 | 30% | 30% | 30% |
-| Zubat | 26 | 30% | 30% | 30% |
-| Wobbuffet | 23–29 | 15% | 15% | 15% |
-| Graveler | 29 | 10% | 10% | 10% |
-| Teddiursa | 29 | 10% | 10% | 10% |
-| Golbat | 26 | 4% | 4% | 4% |
-| Gible | 26 | 1% | 1% | 1% |
+| Geodude | 39 | 30% | 30% | 30% |
+| Zubat | 39 | 30% | 30% | 30% |
+| Wobbuffet | 37–41 | 15% | 15% | 15% |
+| Graveler | 41 | 10% | 10% | 10% |
+| Teddiursa | 41 | 10% | 10% | 10% |
+| Golbat | 39 | 4% | 4% | 4% |
+| Gible | 39 | 1% | 1% | 1% |
 
 Also, walking: swarm: Geodude; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor, Chingling.
 
@@ -1868,9 +1868,9 @@ Also, walking: swarm: Golbat; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzo
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Rattata | 23–28 | 99% | 99% | 19% |
-| Gastly | 23–25 | — | — | 80% |
-| Spiritomb | 28 | 1% | 1% | 1% |
+| Rattata | 34–37 | 99% | 99% | 19% |
+| Gastly | 34–35 | — | — | 80% |
+| Spiritomb | 37 | 1% | 1% | 1% |
 
 Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Chatot, Meditite.
 
