@@ -639,6 +639,8 @@ gives after a short grind, Chuck at 34, his top level, rather than 32. Two place
   four to seven over Jasmine's set at 32. A player coming from Jasmine meets him well under, with only the
   Lake of Rage and Route 43 to grind on. One under his average, he fell first try.
 
+Both stay as they are: a little levelling gets past each, and that is what a player would do.
+
 The run stopped before Victory Road: on the way there, the bot's route planner failed to find a way across
 Route 26 and then wandered back across Johto. That is the bot, not the game; the League with smart turns is
 above (Lv. 53).
