@@ -603,6 +603,51 @@ Whitney at 1 of 5 is harder than the plain bot's first-try win at the same
 level. That was one run, with `STORY_JITTER` changing every battle, so
 neither result says much alone; Stantler and Miltank remain her threats.
 
+## The whole story with smart turns
+
+On the v0.9 build with the test harness, from a fresh boot, the bot played the story with smart turns and
+the bulky sets at the levels a short grind brings each boss to (falkner_v2 8, bugsy_v2 14, whitney_v2 21,
+morty_v2 25, chuck_v2 34, jasmine_v2 32, pryce_v2 37, radio_tower_v2 42, clair_v2 45). Its potions are six of
+what a player would have by then, kept in the bag. The sets change only at the heals before bosses, so two
+story fights in between met the last boss's set at that boss's level; for those the run re-levelled the
+party first (`STORY_SWAP_<STAGE>=set:level`): the Azalea rival met the Bugsy set at 18 and Petrel in the
+Rocket Hideout the Pryce set at 36, each one under the opponent's average. It ran up to Ho-Oh, 301 battles
+and 292 won. Records: run label `full-story-smart`.
+
+| Fight | Team's level | Result | Took the most of ours |
+|---|---|---|---|
+| Falkner, Proton (Slowpoke Well), Bugsy | 8, 14, 14 | each first try | |
+| Rival, Azalea | 18 | first try | |
+| Whitney | 21 | first try | |
+| Rival, Burned Tower | 25 | second try | Sneasel, Golbat, Misdreavus |
+| Morty | 25 | second try | Gengar |
+| Chuck | 32 | 0 of 5 | Heracross, Poliwrath |
+| Chuck | 34 | first try | |
+| Jasmine | 32 | first try | |
+| Petrel, Rocket Hideout | 32 (the Jasmine set) | 0 of 5 | Raticate 11, Weezing 9, Golbat 7 |
+| Petrel, Rocket Hideout | 36 | first try | |
+| Pryce | 37 | third try | Mamoswine, Jynx |
+| Radio Tower: rival, Petrel, Proton, Ariana, Archer | 42 | each first try | |
+| Clair | 45 | first try | |
+
+**A player who heals and grinds a little should get through Johto.** Every gym fell at the levels the model
+gives after a short grind, Chuck at 34, his top level, rather than 32. Two places stand out:
+
+- **Chuck** won every time at 32 and none at 34. His Heracross and Poliwrath are the hardest pair in mid-Johto
+  for these sets; a player wants Flying or Psychic for them, or two more levels.
+- **Petrel in the Rocket Hideout** won every time against a team at the last gym's level: his team (36-39) is
+  four to seven over Jasmine's set at 32. A player coming from Jasmine meets him well under, with only the
+  Lake of Rage and Route 43 to grind on. One under his average, he fell first try.
+
+The run stopped before Victory Road: on the way there, the bot's route planner failed to find a way across
+Route 26 and then wandered back across Johto. That is the bot, not the game; the League with smart turns is
+above (Lv. 53).
+
+Bot gaps found and fixed on the way: room for the Mystery Egg with a party of six; party writes that came out
+scrambled (a Bad Egg in battle); potions stocked only in the game's own bag (an earlier search through memory
+was writing to anything shaped like a bag slot, and corrupted memory); Cianwood's sand read as a message box;
+a screen fading to white during a scene; KOs logged from a battle's memory after it was let go.
+
 ## Something else found
 
 In `guide/BOSSES.md`, a few rows were broken: the item, moves and nature ran
