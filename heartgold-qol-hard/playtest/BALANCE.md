@@ -633,7 +633,7 @@ and 292 won. Records: run label `full-story-smart`.
 **A player who heals and grinds a little should get through Johto.** Every gym fell at the levels the model
 gives after a short grind, Chuck at 34, his top level, rather than 32. Two places stand out:
 
-- **Chuck** won every time at 32 and none at 34. His Heracross and Poliwrath are the hardest pair in mid-Johto
+- **Chuck** beat the bot all five times at 32 and lost on the first try at 34. His Heracross and Poliwrath are the hardest pair in mid-Johto
   for these sets; a player wants Flying or Psychic for them, or two more levels.
 - **Petrel in the Rocket Hideout** won every time against a team at the last gym's level: his team (36-39) is
   four to seven over Jasmine's set at 32. A player coming from Jasmine meets him well under, with only the
