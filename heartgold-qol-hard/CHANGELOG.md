@@ -1,5 +1,33 @@
 # Changelog
 
+## v0.9 (playtest build)
+
+- Routes 47 and 48 and Cliff Cave follow Chuck, like the rest of the land
+  around Cianwood (patch 0030). v0.7 and v0.8 left them out as post-game
+  areas, but Cliff Edge Gate opens off Cianwood, which a player reaches by
+  surfing before Chuck, and Route 47's trainers are Lv. 22-29. Route 48 is
+  now Lv. 27-29 (was 23-29), Cliff Cave 26-28 (was 21-26), and Route 47's
+  water 26-29 (was 10-29). Route 47's grass (36-46) and the Cliff Edge Gate's
+  water were already above and stay.
+
+This changes encounter data only. A save made in v0.8 on Route 29 loaded in
+v0.9, won two wild battles, and the game saved again (`playtest/save_carry.py`).
+
+## v0.8 (playtest build)
+
+- Pokémon met surfing in Johto are in line with the land beside them (patch
+  0029). The water had kept HeartGold's own levels, Lv. 10-29 at most towns
+  and routes, 5-23 at the Lake of Rage, 2-23 at Blackthorn. Each water table
+  now follows the boss a player faces next when they can first surf there:
+  before Morty, who gives Surf, and on to Cianwood it is 26-31 (Chuck's
+  band); Route 42, Mt. Mortar, Route 43 and the Lake of Rage 30-36; Route 44,
+  Blackthorn, Dragon's Den and the Whirl Islands 34-40; Route 45 and Dark
+  Cave's Route 45 side 37-42. Fishing, Rock Smash and the post-game areas are
+  unchanged.
+
+This changes encounter data only. A save made in v0.7 on Route 29 loaded in
+v0.8, won a wild battle, and the game saved again.
+
 ## v0.7 (playtest build)
 
 - Wild Pokémon in Johto's side areas are in line with the main path beside

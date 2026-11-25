@@ -470,6 +470,27 @@ the `rebalance-0022` runs) had heals only before Clair, the Victory Road
 rival and the League. Fights that start from a scene, such as the rival and
 Ariana's double battle in the Hideout, are not covered.
 
+`grind_test.py` grinds in one area with the harness's party at a set level and
+logs each battle's experience against `level_curve.py`'s formula; it sends
+in the next Pokémon after a faint and passes over moves with no PP left
+(`LEVEL_CURVE.md`, "A grind measured in the game").
+
+```bash
+SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 playtest/grind_test.py /path/to/test/hg-engine/test.nds /path/to/test/hg-engine /path/to/dumped/hg-engine out R27 50 30
+```
+
+`save_carry.py` checks that a save from the last release carries on in a new
+one: it continues the game from that save, wins two wild battles and saves
+again.
+
+```bash
+SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 playtest/save_carry.py /path/to/new/release.nds /path/to/last/release.dsv out
+```
+
+The old save is copied, never written, so the same one can be checked again;
+`out/next.dsv` is the new release's save, for the release after. Each battle
+uses the first move that still has PP.
+
 Settings, all environment variables: `STORY_RETRIES` (tries per stage before
 it stops, default 3), `STORY_REFILL_BERRIES` (`0` stops the berry refill
 between rooms), `STORY_TEAM_<SET>` (swap in another set where that one is

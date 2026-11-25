@@ -107,6 +107,11 @@ def mystery_egg(bot):
     # Elm's aide waits in the Violet Poke Mart with the Mystery Egg; without it, a man on Route 32 sends the
     # player back
     heal(bot, "T22PC0101")                      # after the gym
+    # the aide has no room to give the egg to a party of six (a set of six, such as falkner_v2): set the last one
+    # aside, as a player would box it (the harness writes the party; the next team swap fills it again)
+    mons = [m for m in bot.party_mons() if m.valid()]
+    if len(mons) >= 6 and not bot.write_party(mons[:5]):
+        bot.stuck("could not make room in the party for the Mystery Egg")
     bot.travel("T22FS0101")
     bot.talk("T22FS0101", 4)
     bot.expect("FLAG_UNK_070", "getting the Mystery Egg")

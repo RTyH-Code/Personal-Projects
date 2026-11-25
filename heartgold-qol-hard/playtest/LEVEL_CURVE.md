@@ -74,6 +74,33 @@ Ilex Forest Oddish 16, Route 34 Glameow 19, Route 37 Stantler 24, Route 39 Ratic
 32, Route 44 Munchlax 37, the Ice Path Swinub 34-35, and so on). Route 42 matched for the two met before a
 trainer stepped in; on Route 43 and in the National Park a trainer or the park's scene took over first.
 
+Patch 0029 puts the water in the same bands, from where a player can first surf. `walk_test.py`'s surf check on
+the build with the test harness met only Pokémon in the new tables on seven of ten areas: Route 34 Tentacool
+27-29, Route 41 Tentacruel 29, Route 42 Goldeen and Seaking 32, Route 43 Magikarp 32-33, the Lake of Rage
+Magikarp 31-32 and Gyarados 31, Route 44 Poliwag 37-38, Route 45 Magikarp 37-41. In New Bark Town nothing appeared
+in 750 steps, on Route 40 a Swimmer stepped in, and at Blackthorn the test couldn't start surfing from the bank it
+tried. Run as one batch the check stopped without an error after loading; one area at a time, each ran through.
+
+Patch 0030 brings Routes 47 and 48 and Cliff Cave into Chuck's band, as they open off Cianwood. Checked the same
+way: Route 48 Growlithe 28, Hoppip and Girafarig 27; Cliff Cave Machoke 28, Onix 27, Wooper 26; Route 47's water
+Seel 27, Staryu 27-28.
+
+## A grind measured in the game
+
+`grind_test.py` grinds in one area on the build with the test harness, as a player would: the first move with
+PP left, the next Pokémon in after a faint, moves to learn turned down, a heal between battles. Thirty battles
+on Route 27 with the harness's party at Lv. 50 (its lead a Typhlosion, medium slow), against the area's Lv.
+48-49 Pokémon since patch 0026:
+
+- **All 30 won.** Three had a faint, and the test sent in the next Pokémon each time.
+- **The formula holds.** In 26 of the 27 battles the lead fought alone, the experience it gained was exactly
+  `level_curve.py`'s figure for its level. The other one matched the figure for the level before, so the read
+  lagged a level-up. Over all 30, the party gained 87,936 against 87,422 predicted.
+- **The model is a little quick.** The lead reached Lv. 55 on the 18th battle and 58 on the 29th; for one
+  Pokémon on Route 27's daytime odds, the model says the 15th and the 26th. The game met as many Raticate as
+  Dodrio (12 each) and fewer of the Rapidash that give more, and the three battles with a faint shared their
+  experience. So the wild-battle counts above may run 10-20% short of what a player needs.
+
 The League's share was larger until patch 0026. The grass on Routes 26 and 27 and in Victory Road was Lv. 23
 to 41, far enough under a team at 50 that the scaled formula gave little for it: about 160 wild KOs to bring
 the team to Lance's average, and about 490 to the Lv. 55 the story bot needed to get past Will. With those

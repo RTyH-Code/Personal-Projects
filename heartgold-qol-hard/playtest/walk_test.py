@@ -239,10 +239,17 @@ class World:
 # -------------------------------------------------------------- emulator
 
 def text_box(image):
-    """Whether a message box is open at the bottom of the top screen: a wide, mostly white band."""
-    band = image.crop((12, 152, 236, 186)).convert("L")
+    """Whether a message box is open at the bottom of the top screen: a wide, mostly white band under the box's
+    dark top border. (The border tells it from pale ground: Cianwood's sand fills the band almost as white, but
+    has no dark line across its top.)"""
+    grey = image.convert("L")
+    band = grey.crop((12, 152, 236, 186))
     white = sum(1 for v in band.getdata() if v > 225)
-    return white > 0.6 * band.size[0] * band.size[1]
+    if white <= 0.6 * band.size[0] * band.size[1]:
+        return False
+    xs = range(20, 236, 8)
+    border = sum(1 for x in xs if min(grey.getpixel((x, y)) for y in range(144, 152)) < 120)
+    return border >= 0.95 * len(xs)
 
 
 class Walker(battle_test.Game):
