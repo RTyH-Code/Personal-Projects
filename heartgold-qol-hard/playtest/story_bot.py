@@ -1516,11 +1516,16 @@ class Bot:
                     g.run(20)
                 return False
             party_up = lambda im: battle_test.screen_state(im) == "party"
+            shot = (lambda tag: g.emu.screenshot().save(os.path.join(self.out, "heal_%07d_%s.png" % (g.frames, tag)))) \
+                if os.environ.get("STORY_SMART_DEBUG") else (lambda tag: None)
             for xy, wait in (((36, 172), 200), ((64, 50), 150), ((64, 40), 200), ((110, 172), 60)):
                 g.touch(*xy, after=wait)
+                shot("%d_%d" % xy)
             until(party_up, 400)
+            shot("party")
             for _ in range(3):                  # "Use on which Pokemon?": the one out, in the first slot
                 g.touch(*battle_test.PARTY_SLOTS[0], after=120)
+                shot("slot0")
                 if not until(party_up, 60):
                     break
             return 800

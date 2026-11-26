@@ -1258,14 +1258,25 @@ def hall_of_fame(bot):
         bot.game.key("a", after=60)
 
 
+
+def talk_for(bot, code, target, flag, what, tries=3):
+    """Talk to someone until the story flag their scene sets is set: now and then the A that should start it
+    doesn't (the touch screen's menu left open can take it), and a second go does."""
+    for _ in range(tries):
+        bot.talk(code, target)
+        if bot.flag(flag):
+            return
+        bot.game.key("b", after=30)
+        bot.settle()
+    bot.expect(flag, what)
+
 # ------------------------------------------------------------------ after the Hall of Fame: on to Kanto
 
 def ss_ticket(bot):
     # the player wakes at home; downstairs Mom says Elm has something for them. In his lab Elm gives the
     # S.S. Ticket (FLAG_UNK_0F2 is set as he does)
     bot.travel("T20R0101")
-    bot.talk("T20R0101", 0)
-    bot.expect("FLAG_UNK_0F2", "Elm giving the S.S. Ticket")
+    talk_for(bot, "T20R0101", 0, "FLAG_UNK_0F2", "Elm giving the S.S. Ticket")
     bot.expect_item("SS_TICKET", "Elm giving the S.S. Ticket")
 
 
@@ -1682,8 +1693,7 @@ def oak_permission(bot):
     # Mt. Silver (FLAG_UNLOCKED_MT_SILVER: the League gate's guard to Route 28 stands aside)
     heal_first(bot)
     bot.travel("T01R0301")
-    bot.talk("T01R0301", 0)
-    bot.expect("FLAG_UNLOCKED_MT_SILVER", "Oak's permission to climb Mt. Silver")
+    talk_for(bot, "T01R0301", 0, "FLAG_UNLOCKED_MT_SILVER", "Oak's permission to climb Mt. Silver")
 
 
 def red(bot):
