@@ -1581,6 +1581,10 @@ def blaine_gym(bot):
     # Pokemon Center), and east along Route 20 to Seafoam's east entrance: Blaine's gym moved into the cave
     # after the volcano. Blaine at (13, 12)
     heal_first(bot)
+    # from Pewter's Pokemon Center the planner takes the gate to Route 2's eastern strip, which has no way on south
+    # to Viridian, and goes back and forth through it; Viridian Forest is the way
+    if bot.where()[0] in ("T03", "R02R0101"):
+        bot.travel("D46R0101")
     heal(bot, "T09PC0101", team="blaine")
     bot.travel(SEAFOAM_GYM)
     # the gym's six scientists (objects 2-7) each stand in a passage until beaten, then step aside: battle
