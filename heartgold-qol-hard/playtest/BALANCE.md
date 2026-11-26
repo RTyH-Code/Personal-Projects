@@ -607,12 +607,12 @@ neither result says much alone; Stantler and Miltank remain her threats.
 
 On the v0.9 build with the test harness, from a fresh boot, the bot played the story with smart turns and
 the bulky sets at the levels a short grind brings each boss to (falkner_v2 8, bugsy_v2 14, whitney_v2 21,
-morty_v2 25, chuck_v2 34, jasmine_v2 32, pryce_v2 37, radio_tower_v2 42, clair_v2 45). Its potions are six of
+morty_v2 25, chuck_v2 34, jasmine_v2 32, pryce_v2 37, radio_tower_v2 42, clair_v2 45, elite_four_v2 53). Its potions are six of
 what a player would have by then, kept in the bag. The sets change only at the heals before bosses, so two
 story fights in between met the last boss's set at that boss's level; for those the run re-levelled the
 party first (`STORY_SWAP_<STAGE>=set:level`): the Azalea rival met the Bugsy set at 18 and Petrel in the
-Rocket Hideout the Pryce set at 36, each one under the opponent's average. It ran up to Ho-Oh, 301 battles
-and 292 won. Records: run label `full-story-smart`.
+Rocket Hideout the Pryce set at 36, each one under the opponent's average. It played through to Lance,
+346 battles and 324 won. Records: run label `full-story-smart` (League fights carry the team's `level`).
 
 | Fight | Team's level | Result | Took the most of ours |
 |---|---|---|---|
@@ -629,6 +629,13 @@ and 292 won. Records: run label `full-story-smart`.
 | Pryce | 37 | third try | Mamoswine, Jynx |
 | Radio Tower: rival, Petrel, Proton, Ariana, Archer | 42 | each first try | |
 | Clair | 45 | first try | |
+| Rival, Victory Road | 53 | first try | |
+| Will | 53 | first try | |
+| Koga | 53 | second try | Muk, Crobat |
+| Bruno | 53 | 0 of 5 | Hitmonlee, Annihilape |
+| Bruno | 55 | second try | Annihilape, Machamp |
+| Karen | 55 | second try | Houndoom |
+| Lance | 55 | 0 of 5 | Dragonite 13, Gyarados 10, Aerodactyl 4 |
 
 **A player who heals and grinds a little should get through Johto.** Every gym fell at the levels the model
 gives after a short grind, Chuck at 34, his top level, rather than 32. Two places stand out:
@@ -641,9 +648,22 @@ gives after a short grind, Chuck at 34, his top level, rather than 32. Two place
 
 Both stay as they are: a little levelling gets past each, and that is what a player would do.
 
-The run stopped before Victory Road: on the way there, the bot's route planner failed to find a way across
-Route 26 and then wandered back across Johto. That is the bot, not the game; the League with smart turns is
-above (Lv. 53).
+**The League goes as it did when played on its own, except Bruno.** Will and Koga fell at 53, as before.
+Bruno, a first-try win at 53 when the League was played alone, won all five here: his Hitmonlee and
+Annihilape swept the set each time, and the bot spent 15 potions over the five. That earlier win came before
+the bot's potion stocking was fixed (see below), which may have affected it, so this result is the one to
+go by. His team is Lv. 51-53, so the set lost five times at his top level. Two levels over it, at 55
+(Pupitar has evolved into Tyranitar there), he fell on the second try. Karen then fell on the second, and
+Lance won all five at 55, as he did at 53, with Dragonite and Gyarados taking most of the team.
+
+So Bruno is the hardest of the four for this set, harder than Chuck: Chuck fell at his own top level,
+Bruno only two over his. Hitmonlee (Focus Sash, Swords Dance) and Annihilape (Fighting and Ghost, so Slowbro
+resists only half of it) are why; a player would bring Psychic or Flying for them. Lance is still the one
+boss well out of reach after a short grind; that was decided earlier, and he stays as he is.
+
+The first try at the League stopped before Victory Road: a current at Tohjo Falls pushed the player back,
+and the bot tried the same move forever. The bot now walls off a move that keeps putting it back where it
+was, and slides down waterfalls by surfing into them.
 
 Bot gaps found and fixed on the way: room for the Mystery Egg with a party of six; party writes that came out
 scrambled (a Bad Egg in battle); potions stocked only in the game's own bag (an earlier search through memory
