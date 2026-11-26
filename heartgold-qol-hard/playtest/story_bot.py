@@ -502,7 +502,8 @@ class Bot:
         reaching another map instead (a warp on the goal tile) also ends the walk, returning None."""
         goals = {tuple(g) for g in goals}
         avoid = set(avoid)
-        forgets = waits = 0
+        forgets = waits = repeats = 0
+        last_try = None
         for attempt in range(250):
             self.settle()
             here = self.where()
@@ -536,6 +537,16 @@ class Bot:
             if route is None:
                 self.stuck("no path on %s from %s to %s" % (here[0], pos, sorted(goals)[:4]))
             tiles_here = self.tiles(here[0])
+            # the same first move from the same tile, planned again and again, is going nowhere though each step
+            # seems to work (a current carries the player back, as above Tohjo Falls): after three, take it as
+            # blocked and find another way
+            tried = (pos, route[0]) if route else None
+            repeats = repeats + 1 if tried and tried == last_try else 0
+            last_try = tried
+            if tried and repeats >= 2:
+                self.walls.add((key, pos, route[0]))
+                repeats, last_try = 0, None
+                continue
             for d in route:
                 p = self.game.position()
                 dx, dz, _ = DIRS[d]
@@ -550,6 +561,16 @@ class Bot:
                             break
                         last = q
                         self.game.run(8)
+                    break
+                if p and d == "down" and tiles_here.get((p[1] + dx, p[2] + dz)) == WATERFALL:
+                    # down a waterfall: no field move, the player just surfs into it and slides to the foot (A
+                    # facing it from the top does nothing); wait for the slide, then plan again from there
+                    self.game.key(d, hold=16, after=20)
+                    for _ in range(40):
+                        self.game.run(10)
+                        q = self.game.position()
+                        if q and q[1:3] != p[1:3] and self.free():
+                            break
                     break
                 if p and tiles_here.get((p[1] + dx, p[2] + dz)) in FIELD_MOVE_WATER:
                     # a whirlpool or a waterfall: face it, A, and Yes to Whirlpool or Waterfall; then plan again
