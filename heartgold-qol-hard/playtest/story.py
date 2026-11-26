@@ -1330,6 +1330,8 @@ def ss_aqua(bot):
     # off the ship into Vermilion's port building, where the sailor at its gate (7, 9) stands aside for a
     # passenger who speaks to him from below (the planner can't see past him)
     bot.travel("P01R0104")
+    if bot.where()[1:] != (12, 13):     # off the gangway the player can land at (23, 21), across the room
+        bot.walk("P01R0104", [(12, 13)])
     for _ in range(4):                  # the way on is from (12, 13) a step north onto the
         # warp (12, 12) and one more against it
         if bot.where()[0] != "P01R0104":
