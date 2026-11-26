@@ -658,7 +658,8 @@ Lance won all five at 55, as he did at 53, with Dragonite and Gyarados taking mo
 
 So Bruno is the hardest of the four for this set, harder than Chuck: Chuck fell at his own top level,
 Bruno only two over his. Hitmonlee (Focus Sash, Swords Dance) and Annihilape (Fighting and Ghost, so Slowbro
-resists only half of it) are why; a player would bring Psychic or Flying for them. Lance is still the one
+resists only half of it) are why; a player would bring Psychic or Flying for them. Bruno stays as he is: two
+levels gets past him, as a little levelling does for Chuck and Petrel. Lance is still the one
 boss well out of reach after a short grind; that was decided earlier, and he stays as he is.
 
 The first try at the League stopped before Victory Road: a current at Tohjo Falls pushed the player back,
