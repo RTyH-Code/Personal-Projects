@@ -160,9 +160,9 @@ class Game:
 def screen_state(image):
     """Which battle screen is showing, from a few pixels of the screenshot (bottom screen starts at y=192)."""
     px = lambda x, y: image.getpixel((x, y))[:3]
-    r, g, b = px(128, 192 + 55)
-    if r > 190 and g < 110 and b < 120:
-        return "menu"                      # the red FIGHT button
+    red = lambda c: c[0] > 190 and c[1] < 110 and c[2] < 120
+    if all(red(px(x, 192 + 55)) for x in (60, 128, 196)):
+        return "menu"                      # the red FIGHT button (across it: the party list's cursor is red too)
     blue = lambda c: 170 < c[2] < 225 and c[0] < 70 and 120 < c[1] < 165   # not the lighter blue of the shift screen
     if blue(px(30, 355)) and blue(px(225, 355)):
         return "moves"                     # the wide blue CANCEL button under the four moves
