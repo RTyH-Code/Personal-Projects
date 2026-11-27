@@ -4,7 +4,7 @@ A quality-of-life, modernization and difficulty hack for Pokémon HeartGold,
 following the same recipe as [FireRed QoL + Hard](../firered-qol-hard/README.md).
 It is built on [hg-engine](https://github.com/BluRosie/hg-engine).
 
-**Status: v1.1.** Everything described below is in the
+**Status: v1.2.** Everything described below is in the
 patch. The battles, maps, legendaries, wild Pokémon and shops have been
 checked by automated playtesters, and a story bot has played from the bedroom
 to Red (see [playtest/BALANCE.md](playtest/BALANCE.md)), but no person has
@@ -16,16 +16,16 @@ You need your own US Pokémon HeartGold ROM (game code `IPKE`, SHA-1
 `4fcded0e2713dc03929845de631d0932ea2b5a37`). The ROM is not in this
 repository and never will be.
 
-1. Download `HeartGold-QoL-Hard-v1.1.xdelta`.
+1. Download `HeartGold-QoL-Hard-v1.2.xdelta`.
 2. Apply it to the ROM with an xdelta patcher such as Delta Patcher or
    xdelta UI, or on a command line:
 
    ```bash
-   xdelta3 -d -s heartgold-usa.nds HeartGold-QoL-Hard-v1.1.xdelta HeartGold-QoL-Hard.nds
+   xdelta3 -d -s heartgold-usa.nds HeartGold-QoL-Hard-v1.2.xdelta HeartGold-QoL-Hard.nds
    ```
 
 3. The patched ROM is 256 MB, twice the original's size, and its SHA-1 is
-   `8d3e66142df282b556f87f44a8d47058764d42cf`. It has been run in DeSmuME;
+   `23000cf7b62cd3fda2d59bd49ea48fa39cc7105f`. It has been run in DeSmuME;
    other emulators and flashcarts are untried.
 
 Start a new game: saves from the original game or from other hacks will not
@@ -115,16 +115,22 @@ that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md
   every evolution item alongside the vitamins. The original ways of
   getting them are all still there.
 
-  | When | Items |
-  |---|---|
-  | From the start | Fire, Water, Thunder, Leaf, Ice, Moon, Sun, Dusk and Dawn Stones, Oval Stone, King's Rock, Metal Coat, Dragon Scale, Up-Grade, Deep Sea Tooth, Deep Sea Scale, Prism Scale, Black Augurite |
-  | After beating Chuck | Shiny Stone |
-  | With seven badges | Peat Block, Protector, Electirizer, Magmarizer, Dubious Disc, Reaper Cloth, Razor Claw, Razor Fang |
+  | When | Items | Price |
+  |---|---|---|
+  | From the start (Goldenrod, two badges) | Moon, Sun and Oval Stones, Deep Sea Tooth, Deep Sea Scale | ₽3,000 |
+  | With four badges | Fire, Water, Thunder, Leaf and Ice Stones, King's Rock, Up-Grade, Prism Scale | ₽3,000 |
+  | With six badges | Metal Coat, Dragon Scale, Dusk, Dawn and Shiny Stones | ₽3,000 |
+  | With six badges | Black Augurite | ₽5,000 |
+  | With seven badges | Peat Block, Protector, Electirizer, Magmarizer, Dubious Disc, Reaper Cloth, Razor Claw, Razor Fang | ₽5,000 |
+
+  Each tier comes in at about the point where final evolutions of its kind
+  come by level: with all of them on sale at Goldenrod, a team could have
+  Steelix from Union Cave's Onix, Exeggutor, Starmie and Bill's Eevee as
+  Vaporeon, Jolteon or Flareon before Whitney.
 
   The Ice Stone is there because hg-engine evolves Eevee into Glaceon with
   it; Leafeon uses the Leaf Stone, and Magneton and Nosepass the
-  Thunder Stone. The stock, the badge requirement and the prices are a
-  first pass and will be revisited when the difficulty is balanced.
+  Thunder Stone.
 - **Held items for money:** the Celadon Department Store 4F counter also
   sells seventeen held items from the original games. Leftovers, the three
   Choice items, Life Orb and Focus Sash cost ₽25,000 and the rest ₽10,000.
@@ -429,7 +435,7 @@ The FireRed recipe, and where each part comes from here:
 | Every non-legendary Pokémon obtainable in Johto | Done: `tools/hack/encounters.py`, `tools/hack/fossil_reviver.py` |
 | Legendary encounters | Done: `tools/hack/legendaries.py` |
 | Trade evolutions without trading | Done: `tools/hack/trade_evos.py` |
-| Evolution item shop | Done, to be rebalanced |
+| Evolution item shop | Done |
 | Field HMs without teaching them | Done |
 | Held-item shop, berry and consumables stand, earlier mart stock | Done: `tools/hack/shops.py` |
 | Spoiler guide generated from the data | Done: `tools/spoiler_guide.py` writes [guide/](guide/README.md) |
@@ -459,7 +465,7 @@ The first build takes several minutes. It clones hg-engine into `build/`,
 applies the patches and writes `build/hg-engine/test.nds`.
 
 The release patch is made from such a build, in a fresh work directory, with
-`tools/make_patch.sh`. v1.1 was built this way from all thirty-two patches.
+`tools/make_patch.sh`. v1.2 was built this way from all thirty-three patches.
 
 To confirm the result boots, without opening an emulator window:
 

@@ -1,0 +1,204 @@
+From 1ee6a86519d73491a1164960889d2a8422e97ea0 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Fri, 27 Nov 2026 05:45:10 +0000
+Subject: [PATCH] Evolution items sold in four badge tiers, at even prices
+
+---
+ data/itemdata/itemdata.c | 30 +++++++++++++++---------------
+ src/field/mart.c         | 27 ++++++++++++++++-----------
+ 2 files changed, 31 insertions(+), 26 deletions(-)
+
+diff --git a/data/itemdata/itemdata.c b/data/itemdata/itemdata.c
+index e5dffaba6..725b4e705 100644
+--- a/data/itemdata/itemdata.c
++++ b/data/itemdata/itemdata.c
+@@ -7163,7 +7163,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_OVAL_STONE] =
+ {
+-    ITEM_PRICE(2000),
++    ITEM_PRICE(3000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -14378,7 +14378,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_KINGS_ROCK] =
+ {
+-    ITEM_PRICE(10000),
++    ITEM_PRICE(3000),
+     .holdEffect = HOLD_EFFECT_SOMETIMES_FLINCH,
+     .holdEffectParam = 10,
+     .pluckEffect = 0,
+@@ -14703,7 +14703,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_DEEP_SEA_TOOTH] =
+ {
+-    ITEM_PRICE(200),
++    ITEM_PRICE(3000),
+     .holdEffect = HOLD_EFFECT_CLAMPERL_SPATK,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -14768,7 +14768,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_DEEP_SEA_SCALE] =
+ {
+-    ITEM_PRICE(200),
++    ITEM_PRICE(3000),
+     .holdEffect = HOLD_EFFECT_CLAMPERL_SPDEF,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -15288,7 +15288,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_DRAGON_SCALE] =
+ {
+-    ITEM_PRICE(2100),
++    ITEM_PRICE(3000),
+     .holdEffect = HOLD_EFFECT_EVOLVE_SEADRA,
+     .holdEffectParam = 10,
+     .pluckEffect = 0,
+@@ -16393,7 +16393,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_UP_GRADE] =
+ {
+-    ITEM_PRICE(2100),
++    ITEM_PRICE(3000),
+     .holdEffect = HOLD_EFFECT_EVOLVE_PORYGON,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -20878,7 +20878,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_PROTECTOR] =
+ {
+-    ITEM_PRICE(2100),
++    ITEM_PRICE(5000),
+     .holdEffect = HOLD_EFFECT_EVOLVE_RHYDON,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -20943,7 +20943,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_ELECTIRIZER] =
+ {
+-    ITEM_PRICE(2100),
++    ITEM_PRICE(5000),
+     .holdEffect = HOLD_EFFECT_EVOLVE_ELECTABUZZ,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -21008,7 +21008,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_MAGMARIZER] =
+ {
+-    ITEM_PRICE(2100),
++    ITEM_PRICE(5000),
+     .holdEffect = HOLD_EFFECT_EVOLVE_MAGMAR,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -21073,7 +21073,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_DUBIOUS_DISC] =
+ {
+-    ITEM_PRICE(2100),
++    ITEM_PRICE(5000),
+     .holdEffect = HOLD_EFFECT_EVOLVE_PORYGON2,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -21138,7 +21138,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_REAPER_CLOTH] =
+ {
+-    ITEM_PRICE(4000),
++    ITEM_PRICE(5000),
+     .holdEffect = HOLD_EFFECT_EVOLVE_DUSCLOPS,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -21203,7 +21203,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_RAZOR_CLAW] =
+ {
+-    ITEM_PRICE(15000),
++    ITEM_PRICE(5000),
+     .holdEffect = HOLD_EFFECT_CRITRATE_UP,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -21268,7 +21268,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_RAZOR_FANG] =
+ {
+-    ITEM_PRICE(4000),
++    ITEM_PRICE(5000),
+     .holdEffect = HOLD_EFFECT_SOMETIMES_FLINCH,
+     .holdEffectParam = 10,
+     .pluckEffect = 0,
+@@ -109928,7 +109928,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_BLACK_AUGURITE] =
+ {
+-    ITEM_PRICE(8000),
++    ITEM_PRICE(5000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -109993,7 +109993,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_PEAT_BLOCK] =
+ {
+-    ITEM_PRICE(2100),
++    ITEM_PRICE(5000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+diff --git a/src/field/mart.c b/src/field/mart.c
+index f6a6eb509..300d48b13 100644
+--- a/src/field/mart.c
++++ b/src/field/mart.c
+@@ -239,6 +239,22 @@ const struct BadgeMartItems sBadgeLockedMartItems[] = {
+     { ITEM_MAX_ETHER, 8 },
+     { ITEM_MAX_ELIXIR, 8 },
+     { ITEM_MAX_REVIVE, 8 },
++    // the evolution items in tiers, each from about when a final evolution of its kind comes by level: the
++    // Moon, Sun and Oval Stones and the Deep Sea items are there from the start (Goldenrod, two badges)
++    { ITEM_FIRE_STONE, 4 },
++    { ITEM_WATER_STONE, 4 },
++    { ITEM_THUNDER_STONE, 4 },
++    { ITEM_LEAF_STONE, 4 },
++    { ITEM_ICE_STONE, 4 },
++    { ITEM_KINGS_ROCK, 4 },
++    { ITEM_UP_GRADE, 4 },
++    { ITEM_PRISM_SCALE, 4 },
++    { ITEM_METAL_COAT, 6 },
++    { ITEM_DRAGON_SCALE, 6 },
++    { ITEM_DUSK_STONE, 6 },
++    { ITEM_DAWN_STONE, 6 },
++    { ITEM_SHINY_STONE, 6 },
++    { ITEM_BLACK_AUGURITE, 6 },
+     { ITEM_PEAT_BLOCK, 7 },
+     { ITEM_PROTECTOR, 7 },
+     { ITEM_ELECTIRIZER, 7 },
+@@ -249,11 +265,6 @@ const struct BadgeMartItems sBadgeLockedMartItems[] = {
+     { ITEM_RAZOR_FANG, 7 },
+ };
+ 
+-// items that the special marts only sell once the player has one particular badge
+-#define MART_BADGE_STORM 4 // Chuck's, in PlayerProfile_TestBadgeFlag's numbering
+-const struct BadgeMartItems sSpecificBadgeLockedMartItems[] = {
+-    { ITEM_SHINY_STONE, MART_BADGE_STORM },
+-};
+ 
+ #define SPECIAL_MART_STOCK_TABLE ((const u16 **)0x0210FA3C)
+ #define SPECIAL_MART_MAX_ITEMS 63
+@@ -281,12 +292,6 @@ BOOL ScrCmd_SpecialMartBuy(SCRIPTCONTEXT *ctx)
+                 break;
+             }
+         }
+-        for (j = 0; j < NELEMS(sSpecificBadgeLockedMartItems) && !locked; j++) {
+-            if (stock[i] == sSpecificBadgeLockedMartItems[j].item_id
+-                && !PlayerProfile_TestBadgeFlag(Sav2_PlayerData_GetProfileAddr(ctx->fsys->savedata), sSpecificBadgeLockedMartItems[j].required_badges)) {
+-                locked = TRUE;
+-            }
+-        }
+         if (!locked) {
+             items[index] = stock[i];
+             index++;
+-- 
+2.43.0
+
