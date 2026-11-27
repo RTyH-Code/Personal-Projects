@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v1.1
 
 - Fishing, Rock Smash and Headbutt in Johto follow the same bands as the
   walking and surfing levels (patch 0032), each from where a player can first
@@ -17,6 +17,12 @@
     are two levels over their area's band.
   The Old Rod (Lv. 10, had before Falkner) and the Super Rod (Lv. 40, a
   post-game item from Kanto) are unchanged.
+
+This changes encounter and Headbutt data only. A save made in v0.9 on Route
+29 loaded in v1.1, won two wild battles, and the game saved again
+(`playtest/save_carry.py`). The save v1.0's check left lost its second battle's
+count there, taking 36 turns, and did the same on v1.0: most likely its Pokemon's
+strongest move had run out of PP over the earlier checks.
 
 ## v1.0
 
