@@ -19,6 +19,10 @@ four items, and warps the player, for walk_test.py:
     0x400E         2 instead of 1: also release Latias and Latios to roam
 
 With 0x400E set to 3 it only gives the party, for story_bot.py.
+With 0x400E set to 4 it starts a tag battle (multi_battle) instead, the
+player and a partner against two trainers, as in Dragon's Den:
+    0x4040         the partner
+    0x4041-0x4042  the two trainers to fight
     0x4038-0x403B  items to give, five of each (0 = none)
     0x403C         the map to warp to
     0x403D-0x403E  the tile, x and z
@@ -44,9 +48,12 @@ HARNESS = """scr_seq_T20R0202_000:
 	call _harness_party
 	compare 0x400E, 3
 	goto_if_eq _harness_story
+	compare 0x400E, 4
+	goto_if_eq _harness_multi
 	compare 0x400E, 1
 	goto_if_ge _harness_walk
 	trainer_battle 0x400C, 0, 0, 0
+_harness_result:
 	check_battle_won VAR_SPECIAL_RESULT
 	copyvar 0x400F, VAR_SPECIAL_RESULT
 	addvar 0x400F, 1
@@ -68,6 +75,10 @@ _harness_walk:
 _harness_story:
 	releaseall
 	end
+
+_harness_multi:
+	multi_battle 0x4040, 0x4041, 0x4042, 1
+	goto _harness_result
 
 _harness_party:
 %s	return
