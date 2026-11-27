@@ -188,3 +188,11 @@ None of these counts:
 - the Lucky Egg (Goldenrod, from four badges)
 - the Rare Candies sold in Celadon in the post-game
 - trainers met again by phone
+
+**The Rare Candies are a way past the post-game grind, and meant as one.** Celadon's Department Store sells
+them for ₽3,000. Taking a team of six from 74, where Kanto's trainers leave it after Blue, to the second
+round's Lance (86) is 72 Rare Candies, about ₽216,000, and on to Red (93) 42 more, about ₽126,000. The
+story bot, which buys nothing and loses half its money at each whiteout, had about ₽195,000 by the Elite
+Four and ₽460,000 after Kanto. So a player can pay instead of the roughly 580 wild battles on Mt. Silver, or
+do some of each. Celadon's other held items (₽10,000 to ₽25,000) are well within that money and stay as
+they are.
