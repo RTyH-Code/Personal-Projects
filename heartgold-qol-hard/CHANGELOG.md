@@ -1,5 +1,24 @@
 # Changelog
 
+## Unreleased
+
+- The Goldenrod Department Store's 4F sells the evolution items in tiers by
+  badges, each from about where final evolutions of its kind come by level
+  (patch 0033). Before, every stone and older trade item was on sale from
+  Goldenrod, at two badges, which put Steelix, Exeggutor, Starmie and the
+  Eeveelutions in reach before Whitney:
+  - from the start: Moon, Sun and Oval Stones, the Deep Sea Tooth and Scale;
+  - with four badges: Fire, Water, Thunder, Leaf and Ice Stones, King's
+    Rock, Up-Grade, Prism Scale;
+  - with six: Metal Coat, Dragon Scale, Dusk, Dawn and Shiny Stones (the
+    Shiny Stone was sold after Chuck's badge), Black Augurite;
+  - with seven, as before: the Peat Block, Protector, Electirizer,
+    Magmarizer, Dubious Disc, Reaper Cloth, Razor Claw and Razor Fang.
+  Prices are even: ₽3,000 for the stones and older items (King's Rock was
+  ₽10,000, the Deep Sea items ₽200), ₽5,000 for the newer ones (the Razor
+  Claw was ₽15,000). Selling them back gives half, as for any item. The
+  original ways of getting each are unchanged.
+
 ## v1.1
 
 - Fishing, Rock Smash and Headbutt in Johto follow the same bands as the

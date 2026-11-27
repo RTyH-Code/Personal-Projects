@@ -491,6 +491,15 @@ The old save is copied, never written, so the same one can be checked again;
 `out/next.dsv` is the new release's save, for the release after. Each battle
 uses the first move that still has PP.
 
+`shop_test.py` shows what the Goldenrod Department Store's 4F clerk sells at
+each badge count (by default 2, 4, 6 and 7, the evolution items' tiers): it
+puts the player at the counter with that many badges, opens Buy and saves
+every page of the list side by side in `out/list_<badges>.png`.
+
+```bash
+SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 playtest/shop_test.py /path/to/test.nds /path/to/hack/hg-engine /path/to/original/hg-engine out
+```
+
 Settings, all environment variables: `STORY_RETRIES` (tries per stage before
 it stops, default 3), `STORY_REFILL_BERRIES` (`0` stops the berry refill
 between rooms), `STORY_TEAM_<SET>` (swap in another set where that one is

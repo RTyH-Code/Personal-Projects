@@ -115,16 +115,22 @@ that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md
   every evolution item alongside the vitamins. The original ways of
   getting them are all still there.
 
-  | When | Items |
-  |---|---|
-  | From the start | Fire, Water, Thunder, Leaf, Ice, Moon, Sun, Dusk and Dawn Stones, Oval Stone, King's Rock, Metal Coat, Dragon Scale, Up-Grade, Deep Sea Tooth, Deep Sea Scale, Prism Scale, Black Augurite |
-  | After beating Chuck | Shiny Stone |
-  | With seven badges | Peat Block, Protector, Electirizer, Magmarizer, Dubious Disc, Reaper Cloth, Razor Claw, Razor Fang |
+  | When | Items | Price |
+  |---|---|---|
+  | From the start (Goldenrod, two badges) | Moon, Sun and Oval Stones, Deep Sea Tooth, Deep Sea Scale | ₽3,000 |
+  | With four badges | Fire, Water, Thunder, Leaf and Ice Stones, King's Rock, Up-Grade, Prism Scale | ₽3,000 |
+  | With six badges | Metal Coat, Dragon Scale, Dusk, Dawn and Shiny Stones | ₽3,000 |
+  | With six badges | Black Augurite | ₽5,000 |
+  | With seven badges | Peat Block, Protector, Electirizer, Magmarizer, Dubious Disc, Reaper Cloth, Razor Claw, Razor Fang | ₽5,000 |
+
+  Each tier comes in at about the point where final evolutions of its kind
+  come by level: with all of them on sale at Goldenrod, a team could have
+  Steelix from Union Cave's Onix, Exeggutor, Starmie and Bill's Eevee as
+  Vaporeon, Jolteon or Flareon before Whitney.
 
   The Ice Stone is there because hg-engine evolves Eevee into Glaceon with
   it; Leafeon uses the Leaf Stone, and Magneton and Nosepass the
-  Thunder Stone. The stock, the badge requirement and the prices are a
-  first pass and will be revisited when the difficulty is balanced.
+  Thunder Stone.
 - **Held items for money:** the Celadon Department Store 4F counter also
   sells seventeen held items from the original games. Leftovers, the three
   Choice items, Life Orb and Focus Sash cost ₽25,000 and the rest ₽10,000.
@@ -429,7 +435,7 @@ The FireRed recipe, and where each part comes from here:
 | Every non-legendary Pokémon obtainable in Johto | Done: `tools/hack/encounters.py`, `tools/hack/fossil_reviver.py` |
 | Legendary encounters | Done: `tools/hack/legendaries.py` |
 | Trade evolutions without trading | Done: `tools/hack/trade_evos.py` |
-| Evolution item shop | Done, to be rebalanced |
+| Evolution item shop | Done |
 | Field HMs without teaching them | Done |
 | Held-item shop, berry and consumables stand, earlier mart stock | Done: `tools/hack/shops.py` |
 | Spoiler guide generated from the data | Done: `tools/spoiler_guide.py` writes [guide/](guide/README.md) |
