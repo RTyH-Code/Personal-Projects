@@ -22,6 +22,7 @@ When the bot is stuck (it cannot reach a place, a scene does not end, a
 battle is lost) it stops and writes OUT/stuck.png, OUT/stuck.dst and a note.
 Results go to OUT/story.json.
 """
+import collections
 import json
 import os
 import random
@@ -543,9 +544,15 @@ class Bot:
             tried = (pos, route[0]) if route else None
             repeats = repeats + 1 if tried and tried == last_try else 0
             last_try = tried
-            if tried and repeats >= 2:
+            # and the same, three times among the last dozen legs, even with others between (wild Pokemon on the
+            # water interrupting, the bot went back and forth between two tiles on Route 27): kept across walks
+            recent = self.__dict__.setdefault("recent_tries", collections.deque(maxlen=12))
+            if tried:
+                recent.append((key, tried))
+            if tried and (repeats >= 2 or recent.count((key, tried)) >= 3):
                 self.walls.add((key, pos, route[0]))
                 repeats, last_try = 0, None
+                recent.clear()
                 continue
             for d in route:
                 p = self.game.position()
@@ -1419,15 +1426,48 @@ class Bot:
         import smart
         g = self.game
         green = lambda xy: (lambda c: c[1] > 130 and c[0] < 120 and c[2] < 150)(image.getpixel(xy)[:3])
+        if os.environ.get("STORY_SMART_DEBUG"):
+            o = self.smart_mon(0)
+            print("  [party screen: shift %s, fresh %s, slot %s, out %s %d, order %s, refused %s, frame %d]" % (
+                green((128, 215)) and green((128, 250)), self.smart_party_fresh, self.smart_party_slot, o["name"],
+                o["hp"], self.smart_order, sorted(self.smart_refused), g.frames), flush=True)
+            image.save(os.path.join(self.out, "party_%07d.png" % g.frames))
         if green((128, 215)) and green((128, 250)):          # the Shift screen: one wide green button
-            if self.smart_party_slot is not None and not self.smart_party_fresh:
+            self.smart_shifts = getattr(self, "smart_shifts", 0) + 1
+            if self.smart_party_slot is not None and not self.smart_party_fresh and self.smart_shifts <= 2:
                 g.touch(128, 100, after=90)
             else:
-                g.key("b", after=40)                        # not one the bot chose: back to the list
+                # not one the bot chose, or Shift twice did nothing: the one chosen is the one already out, and
+                # this list was the offer to switch as the opponent sends in its next (the battle's own record of
+                # who is out can lag). Its order, as noted when it was chosen, is right; back out and keep it
+                if self.smart_party_slot is not None and self.smart_shifts > 2:
+                    print("  shift refused for slot %d: it is out already; keeping it" % self.smart_party_slot,
+                          flush=True)
+                    self.smart_refused.add(self.smart_party_slot)
+                    self.smart_party_fresh, self.smart_party_slot = True, None
+                self.smart_shifts = 0
+                g.key("b", after=40)
             return 90
+        self.smart_shifts = 0
         if self.smart_party_fresh:
-            party = self.smart_bench(self.smart_mon(0)["key"])     # the one that fainted is still in slot 0
-            alive = [b for b in party[1:] if b["hp"] > 0]
+            out = self.smart_mon(0)
+            standing = out["hp"] > 0 or bool(self.smart_refused)
+            self.smart_keeps = getattr(self, "smart_keeps", 0) + 1 if standing else 0
+            if standing and self.smart_keeps <= 3:
+                # the one out is still standing: the offer to switch as the opponent sends in its next (the Shift
+                # battle style). Keep it, if the list can be left: the bot's own switches come from the command menu
+                g.key("b", after=40)
+                return 40
+            # a faint (the one that fainted is still in slot 0), or a list that can't be left: someone else comes in
+            self.smart_keeps = 0
+            party = self.smart_bench(out["key"])
+            # the screen marks the fainted too: the party's HP can lag (one taken by an Explosion read as healthy)
+            shown = [battle_test.party_slot(image, i) for i in range(6)]
+            for m in party:         # and the bot's own HP record learns it, for its switches later on
+                if m["name"] and shown[m["slot"]] == "fainted":
+                    self.smart_hp[m["name"]] = 0
+            alive = [b for b in party[1:] if b["hp"] > 0 and b["slot"] not in self.smart_refused
+                     and shown[b["slot"]] != "fainted"]
             if not alive:
                 g.key("b", after=40)
                 return 40
@@ -1483,11 +1523,16 @@ class Bot:
                     g.run(20)
                 return False
             party_up = lambda im: battle_test.screen_state(im) == "party"
+            shot = (lambda tag: g.emu.screenshot().save(os.path.join(self.out, "heal_%07d_%s.png" % (g.frames, tag)))) \
+                if os.environ.get("STORY_SMART_DEBUG") else (lambda tag: None)
             for xy, wait in (((36, 172), 200), ((64, 50), 150), ((64, 40), 200), ((110, 172), 60)):
                 g.touch(*xy, after=wait)
+                shot("%d_%d" % xy)
             until(party_up, 400)
+            shot("party")
             for _ in range(3):                  # "Use on which Pokemon?": the one out, in the first slot
                 g.touch(*battle_test.PARTY_SLOTS[0], after=120)
+                shot("slot0")
                 if not until(party_up, 60):
                     break
             return 800
@@ -1530,6 +1575,7 @@ class Bot:
         self.switches, self.choices, self.smart_state = [], [], {}
         self.smart_fresh, self.smart_last, self.smart_order = True, None, None
         self.smart_party_fresh, self.smart_party_slot, self.smart_hp = True, None, {}
+        self.smart_refused = set()          # party slots whose Shift did nothing this battle
         items_left, items_most, self.items_used = None, 0, 0
         # who the opponents are, read now: the battle's memory is gone once it ends
         self.trainer_ids = []
@@ -1585,6 +1631,8 @@ class Bot:
                 self.smart_fresh = True            # the next command menu is a new turn
             if state not in ("party", "confirm"):
                 self.smart_party_fresh = True      # and the next party screen a new choice
+                self.smart_refused = set()
+                self.smart_keeps = 0
             if state in ("menu", "moves", "party"):
                 menus += 1
             if state == "menu" and SMART:

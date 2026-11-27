@@ -1258,14 +1258,25 @@ def hall_of_fame(bot):
         bot.game.key("a", after=60)
 
 
+
+def talk_for(bot, code, target, flag, what, tries=3):
+    """Talk to someone until the story flag their scene sets is set: now and then the A that should start it
+    doesn't (the touch screen's menu left open can take it), and a second go does."""
+    for _ in range(tries):
+        bot.talk(code, target)
+        if bot.flag(flag):
+            return
+        bot.game.key("b", after=30)
+        bot.settle()
+    bot.expect(flag, what)
+
 # ------------------------------------------------------------------ after the Hall of Fame: on to Kanto
 
 def ss_ticket(bot):
     # the player wakes at home; downstairs Mom says Elm has something for them. In his lab Elm gives the
     # S.S. Ticket (FLAG_UNK_0F2 is set as he does)
     bot.travel("T20R0101")
-    bot.talk("T20R0101", 0)
-    bot.expect("FLAG_UNK_0F2", "Elm giving the S.S. Ticket")
+    talk_for(bot, "T20R0101", 0, "FLAG_UNK_0F2", "Elm giving the S.S. Ticket")
     bot.expect_item("SS_TICKET", "Elm giving the S.S. Ticket")
 
 
@@ -1330,6 +1341,8 @@ def ss_aqua(bot):
     # off the ship into Vermilion's port building, where the sailor at its gate (7, 9) stands aside for a
     # passenger who speaks to him from below (the planner can't see past him)
     bot.travel("P01R0104")
+    if bot.where()[1:] != (12, 13):     # off the gangway the player can land at (23, 21), across the room
+        bot.walk("P01R0104", [(12, 13)])
     for _ in range(4):                  # the way on is from (12, 13) a step north onto the
         # warp (12, 12) and one more against it
         if bot.where()[0] != "P01R0104":
@@ -1579,6 +1592,10 @@ def blaine_gym(bot):
     # Pokemon Center), and east along Route 20 to Seafoam's east entrance: Blaine's gym moved into the cave
     # after the volcano. Blaine at (13, 12)
     heal_first(bot)
+    # from Pewter's Pokemon Center the planner takes the gate to Route 2's eastern strip, which has no way on south
+    # to Viridian, and goes back and forth through it; Viridian Forest is the way
+    if bot.where()[0] in ("T03", "R02R0101"):
+        bot.travel("D46R0101")
     heal(bot, "T09PC0101", team="blaine")
     bot.travel(SEAFOAM_GYM)
     # the gym's six scientists (objects 2-7) each stand in a passage until beaten, then step aside: battle
@@ -1676,8 +1693,7 @@ def oak_permission(bot):
     # Mt. Silver (FLAG_UNLOCKED_MT_SILVER: the League gate's guard to Route 28 stands aside)
     heal_first(bot)
     bot.travel("T01R0301")
-    bot.talk("T01R0301", 0)
-    bot.expect("FLAG_UNLOCKED_MT_SILVER", "Oak's permission to climb Mt. Silver")
+    talk_for(bot, "T01R0301", 0, "FLAG_UNLOCKED_MT_SILVER", "Oak's permission to climb Mt. Silver")
 
 
 def red(bot):

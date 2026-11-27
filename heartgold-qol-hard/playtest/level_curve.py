@@ -31,6 +31,7 @@ from math import isqrt
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(os.path.dirname(HERE), "tools"))
 
+MT_SILVER = ["D41R0101", "D41R0102", "D41R0103", "D41R0104", "D41R0105", "D41R0106", "D41R0107"]
 # the story in order: (boss trainer id, label, maps passed on the way). A rival is fought as the
 # Cyndaquil-starter version; the teams are the same levels whichever starter was picked
 STRETCHES = [
@@ -58,6 +59,23 @@ STRETCHES = [
     (418, "Bruno", []),
     (246, "Karen", []),
     (244, "Lance", []),
+    # the post-game, in the order the story bot plays it (from Vermilion off the S.S. Aqua)
+    (255, "Lt. Surge", ["R06", "R11", "T06GYM0101"]),
+    (258, "Sabrina", ["R05", "R08", "T11GYM0101"]),
+    (256, "Erika", ["R07", "T07GYM0101"]),
+    (254, "Misty", ["R10", "R09", "R24", "R25", "T04GYM0101"]),
+    (257, "Janine", ["R12", "R13", "R14", "R15", "T08GYM0101"]),
+    (253, "Brock", ["D01R0101", "R02", "R03", "T03GYM0101"]),
+    (259, "Blaine", ["R19", "R20", "D11R0101", "D11R0102", "D11R0103", "D11R0104", "D11R0105"]),
+    (261, "Blue", ["R21", "R01", "R22", "T02GYM0101"]),
+    # Mt. Silver opens with the sixteen badges, so it is where a player grinds for the second round (its wild
+    # Pokemon give the most there); the second round's members inherit its grass, as Red does
+    (702, "Will, second round", MT_SILVER),
+    (703, "Koga, second round", []),
+    (704, "Bruno, second round", []),
+    (705, "Karen, second round", []),
+    (701, "Lance, second round", []),
+    (260, "Red", ["R28"] + MT_SILVER),
 ]
 # a trainer on a stretch's maps more than this many levels above the stretch's boss belongs to later
 SLACK = 3
@@ -179,8 +197,10 @@ def main():
                 ["%d" % grinds[g][i][4] for g in GROWTH]
         print("| %s | %d-%d (avg %.0f) | %d | %s |" % (label, min(levels), max(levels), sum(levels) / len(levels),
                                                     len(way), " | ".join(cells)))
+    story = [label for _, label, _ in STRETCHES].index("Lance") + 1       # the first Hall of Fame
     for g in GROWTH:
-        print("wild KOs in all, %s: %d" % (g, sum(r[4] for r in grinds[g])))
+        print("wild KOs in all, %s: %d to the first Hall of Fame, %d in the post-game" % (
+            g, sum(r[4] for r in grinds[g][:story]), sum(r[4] for r in grinds[g][story:])))
     print()
     print("| Boss | Their average | " + " | ".join("%s, %s" % (f, g) for f, _ in OTHERS for g in GROWTH) + " |")
     print("|---|---|" + "---|" * (len(OTHERS) * len(GROWTH)))

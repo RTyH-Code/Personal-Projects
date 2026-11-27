@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.0
+
+- Lance's second-round Garchomp has Crunch in place of Swords Dance (patch
+  0031). Played with smart turns, his second round beat the bot's sets in all
+  fifteen battles, at Lv. 88 and at 95 with two different sets, Garchomp
+  taking three or four Pokemon each time, which put him above Red. The rest
+  of his team keeps its combos.
+
+This changes trainer data only. A save made in v0.9 on Route 29 loaded in
+v1.0, won two wild battles, and the game saved again (`playtest/save_carry.py`).
+
 ## v0.9 (playtest build)
 
 - Routes 47 and 48 and Cliff Cave follow Chuck, like the rest of the land

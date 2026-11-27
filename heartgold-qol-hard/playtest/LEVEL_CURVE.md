@@ -53,10 +53,10 @@ need to beat to have all six at the boss's average level on arrival.
 | Will | 49-51 (avg 50) | 0 | 50 | 50-51 | 76 | 75 | 0 | 0 |
 | Koga | 50-52 (avg 51) | 0 | 50-51 | 51 | 77 | 76 | 0 | 0 |
 | Bruno | 51-53 (avg 52) | 0 | 51-52 | 51-52 | 78 | 77 | 0 | 0 |
-| Karen | 53-55 (avg 54) | 0 | 52-53 | 52-53 | 79 | 78 | 21 | 21 |
-| Lance | 55-58 (avg 56) | 0 | 53 | 53-54 | 80 | 79 | 45 | 48 |
-wild KOs in all, medium fast: 284
-wild KOs in all, medium slow: 182
+| Karen | 53-55 (avg 54) | 0 | 52-53 | 52-53 | 79 | 78 | 20 | 20 |
+| Lance | 55-58 (avg 56) | 0 | 53 | 53-54 | 80 | 79 | 41 | 43 |
+
+Wild KOs in all to the first Hall of Fame: 279 (medium fast), 176 (medium slow).
 
 **An even team of six stays within about 3 levels under each boss's average all the way.** It falls furthest
 behind early on, 3 to 4 levels at Falkner, and by the League it is 2 to 3 under. Wild battles met on the way
@@ -84,6 +84,44 @@ tried. Run as one batch the check stopped without an error after loading; one ar
 Patch 0030 brings Routes 47 and 48 and Cliff Cave into Chuck's band, as they open off Cianwood. Checked the same
 way: Route 48 Growlithe 28, Hoppip and Girafarig 27; Cliff Cave Machoke 28, Onix 27, Wooper 26; Route 47's water
 Seel 27, Staryu 27-28.
+
+## The post-game
+
+The same model carried on into Kanto, in the order the story bot plays it (from Vermilion off the S.S.
+Aqua), with the second round and Red after the eight Kanto badges:
+
+| Boss | Their levels | Trainers on the way | Even team, medium fast | Even team, medium slow | One carry, medium fast | One carry, medium slow | Wild KOs to reach their average, medium fast | The same, medium slow |
+|---|---|---|---|---|---|---|---|---|
+| Lt. Surge | 61-64 (avg 62) | 10 | 56-57 | 56-57 | 85 | 84 | 72 | 78 |
+| Sabrina | 63-66 (avg 64) | 11 | 59-60 | 59-60 | 90 | 89 | 0 | 0 |
+| Erika | 63-66 (avg 64) | 4 | 61 | 61 | 93 | 91 | 0 | 0 |
+| Misty | 65-68 (avg 66) | 18 | 64-65 | 64 | 98 | 96 | 0 | 0 |
+| Janine | 65-68 (avg 66) | 34 | 68 | 67-68 | 100 | 100 | 0 | 0 |
+| Brock | 67-70 (avg 68) | 14 | 70 | 69-70 | 100 | 100 | 0 | 0 |
+| Blaine | 69-72 (avg 70) | 3 | 71 | 70 | 100 | 100 | 0 | 0 |
+| Blue | 73-76 (avg 74) | 8 | 72 | 72 | 100 | 100 | 0 | 0 |
+| Will, second round | 77-80 (avg 78) | 0 | 73 | 72-73 | 100 | 100 | 61 | 85 |
+| Koga, second round | 78-81 (avg 79) | 0 | 73-74 | 73 | 100 | 100 | 16 | 16 |
+| Bruno, second round | 79-82 (avg 80) | 0 | 74-75 | 73-74 | 100 | 100 | 15 | 19 |
+| Karen, second round | 81-84 (avg 82) | 0 | 74-75 | 74 | 100 | 100 | 51 | 55 |
+| Lance, second round | 85-88 (avg 86) | 0 | 75-76 | 74-75 | 100 | 100 | 133 | 146 |
+| Red | 92-95 (avg 93) | 0 | 76-77 | 75-76 | 100 | 100 | 304 | 335 |
+
+Wild KOs in all in the post-game: 652 (medium fast), 734 (medium slow), with the second round's grind on
+Mt. Silver.
+
+**Kanto's gyms are paced by their trainers.** A team arriving from the League at 53 is six under Lt. Surge;
+about 75 wild battles on Routes 6 and 11 make that up, and from there Kanto's trainers alone keep it at or
+above each leader's average, Blue included.
+
+**The second round and Red are a long grind, and stay one.** No trainers stand between Blue and the
+Indigo Plateau, so the team arrives at the second round at about 73, five under Will and thirteen under
+Lance (85-88). Getting there takes about 280 wild battles, and Red (92-95) about 300 more. Mt. Silver
+(Lv. 62-70) is the quickest place for it, and the grass a player passes on the way (Viridian, Route 22,
+Lv. 46-48) takes half as long again. Raising Mt. Silver's levels wouldn't change much: the hack's scaled
+formula gives less for a wild Pokémon well under the team, but not much more for one nearer it, so 12
+levels more would cut the grind by only about 30%. These are the game's peak fights, and they stay as they
+are.
 
 ## A grind measured in the game
 

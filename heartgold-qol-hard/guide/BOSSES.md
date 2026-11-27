@@ -369,7 +369,7 @@ All boss Pokémon have perfect IVs. From Chuck onward they also have a nature an
 | Aerodactyl | 85 | Focus Sash | Stone Edge, Aerial Ace, Earthquake, Curse | Jolly |
 | Kingdra | 85 | Mystic Water | Rain Dance, Waterfall, Outrage, Ice Beam | Swift Swim, Adamant |
 | Charizard | 86 | Charcoal | Fire Blast, Air Slash, Dragon Pulse, Roost | Timid |
-| Garchomp | 86 | Dragon Fang | Outrage, Earthquake, Aqua Tail, Swords Dance | Jolly |
+| Garchomp | 86 | Dragon Fang | Outrage, Earthquake, Aqua Tail, Crunch | Jolly |
 | Salamence | 87 | Dragon Fang | Outrage, Aerial Ace, Earthquake, Roost | Intimidate, Jolly |
 | Dragonite | 88 | Leftovers | Dragon Dance, Outrage, Earthquake, Fire Punch | Adamant |
 ## Post-game: Gym Leader rematches
