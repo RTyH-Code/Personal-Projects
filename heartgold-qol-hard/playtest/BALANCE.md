@@ -760,7 +760,7 @@ player picks a team for each leader, and this set is the same against all sixtee
 **Clair, Sabrina and Misty beat it at their top level too.** Clair's Garchomp has the set Lance's second-round
 Garchomp had before patch 0031 (Swords Dance, Outrage with a Dragon Fang), and with Kingdra it took most of
 the team. Sabrina's Gallade (Sacred Sword through Tyranitar and Snorlax) and Hypnosis on five of her six
-did the same, and Misty's Milotic, Gyarados and Politoed outlast a set with no Grass or Electric move.
+did the same, and Misty's Milotic, Gyarados and Politoed took most of it in her fights.
 
 ## Something else found
 
