@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v1.2
 
 - The Goldenrod Department Store's 4F sells the evolution items in tiers by
   badges, each from about where final evolutions of its kind come by level
@@ -18,6 +18,11 @@
   ₽10,000, the Deep Sea items ₽200), ₽5,000 for the newer ones (the Razor
   Claw was ₽15,000). Selling them back gives half, as for any item. The
   original ways of getting each are unchanged.
+
+This changes the shop and item prices only. A save made in v0.9 on Route 29
+loaded in v1.2, won two wild battles, and the game saved again
+(`playtest/save_carry.py`). As in v1.1, the save the last check left took
+over 30 turns on one battle, on v1.1 as on v1.2.
 
 ## v1.1
 
