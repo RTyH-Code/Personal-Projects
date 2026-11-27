@@ -22,6 +22,7 @@ When the bot is stuck (it cannot reach a place, a scene does not end, a
 battle is lost) it stops and writes OUT/stuck.png, OUT/stuck.dst and a note.
 Results go to OUT/story.json.
 """
+import collections
 import json
 import os
 import random
@@ -543,9 +544,15 @@ class Bot:
             tried = (pos, route[0]) if route else None
             repeats = repeats + 1 if tried and tried == last_try else 0
             last_try = tried
-            if tried and repeats >= 2:
+            # and the same, three times among the last dozen legs, even with others between (wild Pokemon on the
+            # water interrupting, the bot went back and forth between two tiles on Route 27): kept across walks
+            recent = self.__dict__.setdefault("recent_tries", collections.deque(maxlen=12))
+            if tried:
+                recent.append((key, tried))
+            if tried and (repeats >= 2 or recent.count((key, tried)) >= 3):
                 self.walls.add((key, pos, route[0]))
                 repeats, last_try = 0, None
+                recent.clear()
                 continue
             for d in route:
                 p = self.game.position()
