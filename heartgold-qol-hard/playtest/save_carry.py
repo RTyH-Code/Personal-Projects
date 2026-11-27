@@ -13,8 +13,9 @@ it, two wild battles are fought, each with the first move that still has PP
 (a move the game refuses is passed over), and the game is saved again from
 the menu.
 
-It passes when the save loads into the field, both battles are won and the
-save file changes. OUT_DIR gets the new save (next.dsv, for the next
+It passes when the save loads into the field, both battles are won (the
+player is back in the field on the same map, not whited out to a Pokemon
+Center, however many turns it took) and the save file changes. OUT_DIR gets the new save (next.dsv, for the next
 release's check) and carry.png, a strip of screenshots.
 """
 import hashlib
@@ -89,7 +90,11 @@ def main():
                     break
             g.run(20)
         battles += 1
-        won += turns < 30 and g.in_field()
+        # won: back in the field on the same map. Losing whites out to a Pokemon Center; a long battle is still
+        # a win (a save checked release after release has spent its strongest move's PP, and fights on with
+        # weaker ones)
+        here = g.position()
+        won += bool(g.in_field() and here and where and here[0] == where[0])
         shots.append(g.emu.screenshot().copy())
         print("battle %d over after %d turns, in the field at %s" % (battles, turns, g.position()))
         if battles == 2:

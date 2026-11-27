@@ -30,6 +30,8 @@ from memory.
                  check what appears against the tables
     headbutt     headbutt trees on every map that has them, with a lead Pokemon
                  that knows the move, and check what falls out
+    rocksmash    smash the breakable rocks on every map with Pokemon in them,
+                 and check what comes out against the tables
     statics      meet the game's own static Pokemon whose level the hack
                  changes
     fish         fish with each rod, used from the bag, on every map with
@@ -129,11 +131,18 @@ class World:
                         slots[name] = (min(a, int(low)), max(b, int(high)))
                 if int(re.search(r"\.rate%sRod = (\d+)" % rod.capitalize(), body).group(1)):
                     rods[rod] = slots
+            rock = {}
+            for low, high, name in re.findall(r"\{ (\d+), (\d+), SPECIES_(\w+) \}",
+                                              re.search(r"\.rockSmashSlots = \{(.*?)\n        \}", body, re.S).group(1)):
+                if name != "NONE":
+                    a, b = rock.get(name, (int(low), int(high)))
+                    rock[name] = (min(a, int(low)), max(b, int(high)))
             fish_extra = {re.search(r"\.%s = SPECIES_(\w+)" % k, body).group(1) for k in ("nightFish", "fishSwarm")} - {"NONE"}
             tables.append(dict(name=m.group(1), rate=int(re.search(r"\.rateWalk = (\d+)", body).group(1)),
                                land=land, extra=extra - {"NONE"}, levels=set(levels),
                                surf_rate=int(re.search(r"\.rateSurf = (\d+)", body).group(1)), surf=surf,
-                               surf_extra={swarm} - {"NONE"}, rods=rods, fish_extra=fish_extra))
+                               surf_extra={swarm} - {"NONE"}, rods=rods, fish_extra=fish_extra,
+                               rock=rock))
         return tables
 
     @staticmethod
@@ -817,6 +826,66 @@ def headbutt(game, state, data, world, names, out_dir, results):
         print("headbutt %-12s %-8s %s %s" % (name, r["result"], ", ".join(r["seen"]), r.get("note", "")), flush=True)
 
 
+ROCK_SMASHES = int(os.environ.get("WALK_ROCK_SMASHES", "16"))     # rocks smashed per map, at most
+
+
+def rocksmash(game, state, data, world, names, out_dir, results):
+    """Smash the breakable rocks on every map whose table has Rock Smash Pokemon: each time the harness puts
+    the player beside one (which brings every rock back), A, and yes to "Use Rock Smash?"."""
+    species_names = {v: k for k, v in data["species"].items()}
+    for name in names:
+        bank = world.headers[name]["encounters"]
+        if bank >= len(world.encounters) or not world.encounters[bank].get("rock"):
+            continue
+        table = world.encounters[bank]["rock"]
+        tiles, occupied, events = world.tiles(name)
+        rocks = [(e["x"], e["z"]) for e in events.get("object_events", []) if e.get("graphics_id") == "SPRITE_BREAKROCK"]
+        # each rock hides behind a temporary flag once smashed, which the harness's warp doesn't clear
+        hidden = sorted({e["hidden_flag"] for e in events.get("object_events", [])
+                         if e.get("graphics_id") == "SPRITE_BREAKROCK" and e.get("hidden_flag") in world.flags})
+        spots = []
+        for rx, rz in rocks:
+            for d, (dx, dz, facing) in DIRS.items():
+                stand = (rx - dx, rz - dz)
+                if stand in tiles and stand not in occupied:
+                    spots.append((stand, d, facing))
+                    break
+        r = dict(test="rocksmash", map=name, seen=[], smashed=0)
+        wrong = []
+        for k in range(ROCK_SMASHES if spots else 0):
+            if len(r["seen"]) >= ENCOUNTERS_WANTED:
+                break
+            stand, d, facing = spots[k % len(spots)]
+            # Rock Smash is used without being taught, but only with HM06 in the bag
+            if game.start(state, data, world, name, stand, facing=facing, clear_flags=hidden,
+                          items=[data["items"]["HM06"]]) is None:
+                continue
+            game.key(d, hold=2, after=40)
+            game.created = []
+            for _ in range(14):
+                game.key("a")
+                game.run(30)
+                if game.created:
+                    break
+            r["smashed"] += 1
+            if game.created:
+                sid, level = game.created[0]
+                mon = species_names.get(sid, str(sid))
+                r["seen"].append("%s %d" % (mon, level))
+                if mon not in table or not table[mon][0] <= level <= table[mon][1]:
+                    wrong.append((mon, level))
+        if wrong:
+            r.update(result="failed", note="not in the table: %s" % wrong)
+        elif not spots:
+            r.update(result="skipped", note="no rock with a tile to stand on beside it")
+        elif not r["seen"]:
+            r.update(result="none", note="nothing came out of %d rocks" % r["smashed"])
+        else:
+            r.update(result="ok")
+        results.append(r)
+        print("rocksmash %-12s %-8s %s %s" % (name, r["result"], ", ".join(r["seen"]), r.get("note", "")), flush=True)
+
+
 # the game's own static Pokemon whose level the hack changes: species, level, map, part of the object's name,
 # items the encounter needs
 STATICS = [("ARTICUNO", 65, "D11R0105", "articuno", []), ("ZAPDOS", 65, "R10", "zapdos", []),
@@ -1033,7 +1102,7 @@ def roamers(game, state, data, world, names, out_dir, results):
 
 
 TESTS = {"sweep": sweep, "legendaries": legendaries, "wild": wild, "features": features,
-         "surf": surf, "headbutt": headbutt, "statics": statics, "fish": fish, "roamers": roamers}
+         "surf": surf, "headbutt": headbutt, "rocksmash": rocksmash, "statics": statics, "fish": fish, "roamers": roamers}
 
 
 # ------------------------------------------------------------------ main

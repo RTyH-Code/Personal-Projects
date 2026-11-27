@@ -491,6 +491,14 @@ The old save is copied, never written, so the same one can be checked again;
 `out/next.dsv` is the new release's save, for the release after. Each battle
 uses the first move that still has PP.
 
+`rematch_test.py` fights any trainer with a team set, played by the story bot (with smart turns when
+`STORY_SMART=1`): the harness starts the battle from the bedroom PC after the bot writes the set over the
+party. It is how the Gym Leader rematches are played, which the story bot has no stages for.
+
+```bash
+STORY_SMART=1 SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 playtest/rematch_test.py /path/to/test.nds /path/to/hack/hg-engine /path/to/original/hg-engine out elite_four_2 80 5 712
+```
+
 `shop_test.py` shows what the Goldenrod Department Store's 4F clerk sells at
 each badge count (by default 2, 4, 6 and 7, the evolution items' tiers): it
 puts the player at the counter with that many badges, opens Buy and saves

@@ -733,6 +733,59 @@ read); a Pokemon an Explosion knocked out read as healthy; the offer to switch a
 next; Route 2's eastern strip, which has no way south; Elm's and Oak's scenes now and then not starting with
 the menu left open; and the bot going back and forth on Route 27's water.
 
+## The Gym Leader rematches
+
+The sixteen rematch teams (Lv. 75-86) had never been played. The game holds them at the Fighting Dojo on
+given days once each leader's number is in the Pokégear, which the story bot has no stages for, so
+`rematch_test.py` starts each battle from the harness instead, with the second-round set (`elite_four_2`:
+Tyranitar, Scizor, Togekiss, Lapras, Alakazam, Snorlax) written over the party as before a boss, smart turns,
+and up to five tries. First at each team's average level, then, for those that won all five, at its top
+level. 80 battles, 13 won. Records: run label `rematches-smart`, each with the team's `level`.
+
+| Leader | Their levels | At their average | At their top | Took the most of ours |
+|---|---|---|---|---|
+| Whitney, Erika, Janine, Blaine | 76-83 | first try each | | |
+| Jasmine, Brock | 77-83 | second try | | |
+| Bugsy | 75-78 | fourth try | | Kleavor 15 |
+| Falkner | 75-78 | 0 of 5 | first try | Staraptor, Gliscor, Togekiss |
+| Pryce, Chuck, Lt. Surge, Blue | 77-86 | 0 of 5 | first try each | Walrein; Poliwrath, Lucario; Electivire; Rhyperior, Tyranitar |
+| Morty | 76-79 | 0 of 5 | third try | Gengar, Mismagius |
+| Clair | 79-82 | 0 of 5 | 0 of 5 | Garchomp 26, Kingdra 24 |
+| Sabrina | 79-82 | 0 of 5 | 0 of 5 | Gallade 29, Gardevoir, Slowking |
+| Misty | 80-83 | 0 of 5 | 0 of 5 | Milotic 19, Gyarados 14, Politoed 13 |
+
+**Thirteen of the sixteen fall to the one set by their top level**, as the second round's members do. A
+player picks a team for each leader, and this set is the same against all sixteen, so it is a hard test.
+
+**Clair, Sabrina and Misty beat it at their top level too.** Clair's Garchomp has the set Lance's second-round
+Garchomp had before patch 0031 (Swords Dance, Outrage with a Dragon Fang), and with Kingdra it took most of
+the team. Sabrina's Gallade (Sacred Sword through Tyranitar and Snorlax) and Hypnosis on three of her six
+did the same, and Misty's Milotic, Gyarados and Politoed took most of it in her fights.
+
+### The three without the piece that carried them (patch 0034)
+
+Clair's Garchomp has Crunch in place of Swords Dance; Sabrina's Gardevoir has Calm Mind and her Gallade Night
+Slash in place of Hypnosis; Misty's Milotic has Recover in place of Hypnosis and her Gyarados Ice Fang in
+place of Dragon Dance. Played again the same way (records: `rematches-0034`):
+
+| Leader | Team's level | Before | After |
+|---|---|---|---|
+| Sabrina | 82 (her top) | 0 of 5 | second try |
+| Misty | 83 (her top) | 0 of 5 | first try |
+| Clair | 82 (her top) | 0 of 5 | 0 of 5, Garchomp 9, Kingdra 7, Salamence 5 |
+| Clair | 84 | | 0 of 5, Garchomp 11, Kingdra 9, Salamence 5 |
+
+Sabrina and Misty are now in line with the rest. Clair still beat the set two levels over her: her team is
+all Dragons, two of them (Flygon, Dragonite) with Dragon Dance and Kingdra with Rain Dance and Swift Swim.
+
+So her Flygon has Stone Edge and her Dragonite Fire Punch in place of Dragon Dance too (also patch 0034).
+At her top level (82) she still won all five (records: `rematches-0034-clair`), and the set got no
+further into her team: two to four of her six down a battle, against three to five before. Kingdra (Rain
+Dance, Swift Swim, Leftovers, her ace) took the most, 10, then Dragonite 7 and Garchomp 6.
+
+Clair stays as she is now, the hardest of the rematches: the one set here has no answer to Dragons, a player
+can bring Ice moves for her, and the rematches are optional.
+
 ## Something else found
 
 In `guide/BOSSES.md`, a few rows were broken: the item, moves and nature ran

@@ -449,10 +449,10 @@ All boss Pokémon have perfect IVs. From Chuck onward they also have a nature an
 | Pokémon | Lv. | Item | Moves | Ability, nature |
 |---|---|---|---|---|
 | Altaria | 79 | Focus Sash | Outrage, Aerial Ace, Earthquake, Sing | Adamant |
-| Flygon | 79 | Soft Sand | Earthquake, Outrage, Crunch, Dragon Dance | Jolly |
-| Garchomp | 80 | Dragon Fang | Outrage, Earthquake, Aqua Tail, Swords Dance | Jolly |
+| Flygon | 79 | Soft Sand | Earthquake, Outrage, Crunch, Stone Edge | Jolly |
+| Garchomp | 80 | Dragon Fang | Outrage, Earthquake, Aqua Tail, Crunch | Jolly |
 | Salamence | 80 | Dragon Fang | Outrage, Aerial Ace, Earthquake, Roost | Jolly |
-| Dragonite | 81 | Dragon Fang | Outrage, Aerial Ace, Earthquake, Dragon Dance | Adamant |
+| Dragonite | 81 | Dragon Fang | Outrage, Aerial Ace, Earthquake, Fire Punch | Adamant |
 | Kingdra | 82 | Leftovers | Rain Dance, Waterfall, Outrage, Ice Beam | Swift Swim, Adamant |
 ### Lt. Surge, rematch
 
@@ -469,8 +469,8 @@ All boss Pokémon have perfect IVs. From Chuck onward they also have a nature an
 | Pokémon | Lv. | Item | Moves | Ability, nature |
 |---|---|---|---|---|
 | Mr Mime | 79 | Focus Sash | Psychic, Dazzling Gleam, Energy Ball, Hypnosis | Timid |
-| Gardevoir | 79 | Twisted Spoon | Psychic, Moonblast, Energy Ball, Hypnosis | Modest |
-| Gallade | 80 | Twisted Spoon | Zen Headbutt, Sacred Sword, Earthquake, Hypnosis | Adamant |
+| Gardevoir | 79 | Twisted Spoon | Psychic, Moonblast, Energy Ball, Calm Mind | Modest |
+| Gallade | 80 | Twisted Spoon | Zen Headbutt, Sacred Sword, Earthquake, Night Slash | Adamant |
 | Slowking | 80 | Mystic Water | Surf, Psychic, Fire Blast, Nasty Plot | Modest |
 | Espeon | 81 | Twisted Spoon | Psychic, Shadow Ball, Calm Mind, Signal Beam | Timid |
 | Alakazam | 82 | Leftovers | Psychic, Energy Ball, Calm Mind, Focus Blast | Timid |
@@ -500,8 +500,8 @@ All boss Pokémon have perfect IVs. From Chuck onward they also have a nature an
 |---|---|---|---|---|
 | Politoed | 80 | Focus Sash | Surf, Earth Power, Hypnosis, Ice Beam | Modest |
 | Lanturn | 80 | Mystic Water | Surf, Thunderbolt, Ice Beam, Thunder Wave | Modest |
-| Milotic | 81 | Mystic Water | Surf, Ice Beam, Hypnosis, Dragon Pulse | Modest |
-| Gyarados | 81 | Mystic Water | Aqua Tail, Earthquake, Dragon Dance, Crunch | Adamant |
+| Milotic | 81 | Mystic Water | Surf, Ice Beam, Recover, Dragon Pulse | Modest |
+| Gyarados | 81 | Mystic Water | Aqua Tail, Earthquake, Ice Fang, Crunch | Adamant |
 | Lapras | 82 | Mystic Water | Surf, Ice Beam, Earthquake, Sing | Modest |
 | Starmie | 83 | Leftovers | Surf, Psychic, Ice Beam, Recover | Timid |
 ### Brock, rematch

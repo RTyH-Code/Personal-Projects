@@ -4,7 +4,7 @@ A quality-of-life, modernization and difficulty hack for Pokémon HeartGold,
 following the same recipe as [FireRed QoL + Hard](../firered-qol-hard/README.md).
 It is built on [hg-engine](https://github.com/BluRosie/hg-engine).
 
-**Status: v1.2.** Everything described below is in the
+**Status: v1.3.** Everything described below is in the
 patch. The battles, maps, legendaries, wild Pokémon and shops have been
 checked by automated playtesters, and a story bot has played from the bedroom
 to Red (see [playtest/BALANCE.md](playtest/BALANCE.md)), but no person has
@@ -16,16 +16,16 @@ You need your own US Pokémon HeartGold ROM (game code `IPKE`, SHA-1
 `4fcded0e2713dc03929845de631d0932ea2b5a37`). The ROM is not in this
 repository and never will be.
 
-1. Download `HeartGold-QoL-Hard-v1.2.xdelta`.
+1. Download `HeartGold-QoL-Hard-v1.3.xdelta`.
 2. Apply it to the ROM with an xdelta patcher such as Delta Patcher or
    xdelta UI, or on a command line:
 
    ```bash
-   xdelta3 -d -s heartgold-usa.nds HeartGold-QoL-Hard-v1.2.xdelta HeartGold-QoL-Hard.nds
+   xdelta3 -d -s heartgold-usa.nds HeartGold-QoL-Hard-v1.3.xdelta HeartGold-QoL-Hard.nds
    ```
 
 3. The patched ROM is 256 MB, twice the original's size, and its SHA-1 is
-   `23000cf7b62cd3fda2d59bd49ea48fa39cc7105f`. It has been run in DeSmuME;
+   `08e466392bfb1b4cb106458154486e8dbd7f6f76`. It has been run in DeSmuME;
    other emulators and flashcarts are untried.
 
 Start a new game: saves from the original game or from other hacks will not
@@ -465,7 +465,7 @@ The first build takes several minutes. It clones hg-engine into `build/`,
 applies the patches and writes `build/hg-engine/test.nds`.
 
 The release patch is made from such a build, in a fresh work directory, with
-`tools/make_patch.sh`. v1.2 was built this way from all thirty-three patches.
+`tools/make_patch.sh`. v1.3 was built this way from all thirty-four patches.
 
 To confirm the result boots, without opening an emulator window:
 
