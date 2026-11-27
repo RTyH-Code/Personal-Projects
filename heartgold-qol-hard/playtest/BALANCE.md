@@ -733,6 +733,35 @@ read); a Pokemon an Explosion knocked out read as healthy; the offer to switch a
 next; Route 2's eastern strip, which has no way south; Elm's and Oak's scenes now and then not starting with
 the menu left open; and the bot going back and forth on Route 27's water.
 
+## The Gym Leader rematches
+
+The sixteen rematch teams (Lv. 75-86) had never been played. The game holds them at the Fighting Dojo on
+given days once each leader's number is in the Pokégear, which the story bot has no stages for, so
+`rematch_test.py` starts each battle from the harness instead, with the second-round set (`elite_four_2`:
+Tyranitar, Scizor, Togekiss, Lapras, Alakazam, Snorlax) written over the party as before a boss, smart turns,
+and up to five tries. First at each team's average level, then, for those that won all five, at its top
+level. 80 battles, 13 won. Records: run label `rematches-smart`, each with the team's `level`.
+
+| Leader | Their levels | At their average | At their top | Took the most of ours |
+|---|---|---|---|---|
+| Whitney, Erika, Janine, Blaine | 76-83 | first try each | | |
+| Jasmine, Brock | 77-83 | second try | | |
+| Bugsy | 75-78 | fourth try | | Kleavor 15 |
+| Falkner | 75-78 | 0 of 5 | first try | Staraptor, Gliscor, Togekiss |
+| Pryce, Chuck, Lt. Surge, Blue | 77-86 | 0 of 5 | first try each | Walrein; Poliwrath, Lucario; Electivire; Rhyperior, Tyranitar |
+| Morty | 76-79 | 0 of 5 | third try | Gengar, Mismagius |
+| Clair | 79-82 | 0 of 5 | 0 of 5 | Garchomp 26, Kingdra 24 |
+| Sabrina | 79-82 | 0 of 5 | 0 of 5 | Gallade 29, Gardevoir, Slowking |
+| Misty | 80-83 | 0 of 5 | 0 of 5 | Milotic 19, Gyarados 14, Politoed 13 |
+
+**Thirteen of the sixteen fall to the one set by their top level**, as the second round's members do. A
+player picks a team for each leader, and this set is the same against all sixteen, so it is a hard test.
+
+**Clair, Sabrina and Misty beat it at their top level too.** Clair's Garchomp has the set Lance's second-round
+Garchomp had before patch 0031 (Swords Dance, Outrage with a Dragon Fang), and with Kingdra it took most of
+the team. Sabrina's Gallade (Sacred Sword through Tyranitar and Snorlax) and Hypnosis on five of her six
+did the same, and Misty's Milotic, Gyarados and Politoed outlast a set with no Grass or Electric move.
+
 ## Something else found
 
 In `guide/BOSSES.md`, a few rows were broken: the item, moves and nature ran
