@@ -856,9 +856,10 @@ def rocksmash(game, state, data, world, names, out_dir, results):
             if len(r["seen"]) >= ENCOUNTERS_WANTED:
                 break
             stand, d, facing = spots[k % len(spots)]
-            # Rock Smash is used without being taught, but only with HM06 in the bag
+            # Rock Smash is used without being taught, but only with HM06 in the bag; and Cliff Cave's map
+            # script moves its rocks aside until the Champion is beaten (FLAG_GAME_CLEAR, patch 0002)
             if game.start(state, data, world, name, stand, facing=facing, clear_flags=hidden,
-                          items=[data["items"]["HM06"]]) is None:
+                          flags=["FLAG_GAME_CLEAR"], items=[data["items"]["HM06"]]) is None:
                 continue
             game.key(d, hold=2, after=40)
             game.created = []
