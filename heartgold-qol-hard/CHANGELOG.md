@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v1.3
 
 - Three Gym Leader rematches lose the piece that carried them (patch 0034).
   Played with smart turns, every rematch fell to the second-round set by its
@@ -12,6 +12,15 @@
     place of Hypnosis (her lead, Mr. Mime, keeps it);
   - Misty's Milotic has Recover in place of Hypnosis, and her Gyarados Ice
     Fang in place of Dragon Dance, as Blue's and Lance's Gyarados.
+
+  Sabrina now falls on the second try at her top level and Misty on the
+  first. Clair still beats the set there and stays the hardest rematch: a
+  player can bring Ice moves for her, and the rematches are optional.
+
+This changes three trainers' teams only. A save made in v1.2 on Route 29
+loaded in v1.3, won two wild battles, and the game saved again
+(`playtest/save_carry.py`, which now counts a battle as won when it ends on
+the same map, however many turns it took).
 
 ## v1.2
 
