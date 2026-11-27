@@ -671,6 +671,54 @@ scrambled (a Bad Egg in battle); potions stocked only in the game's own bag (an 
 was writing to anything shaped like a bag slot, and corrupted memory); Cianwood's sand read as a message box;
 a screen fading to white during a scene; KOs logged from a battle's memory after it was let go.
 
+## The post-game at a player's levels, with smart turns
+
+The post-game, played on from the save before Lance in the run above, with smart turns and the Kanto sets
+(`team_sets.py`) at the levels `level_curve.py` gives (LEVEL_CURVE.md, "The post-game"): the gyms after
+the short grind before Lt. Surge, and the second round and Red at each one's average, the levels the long
+grind on Mt. Silver brings. Where a fight was lost five times, it was played again a step higher, as for
+Chuck and Bruno. 199 battles, 161 won. Records: run label `kanto-smart`, each fight with the team's
+`level`.
+
+| Fight | Team's level | Result | Took the most of ours |
+|---|---|---|---|
+| Lance (to get into the post-game), type-matchup League set | 58 | 0 of 5 | Gyarados 11, Dragonite 6, Charizard 5 |
+| Lt. Surge, Sabrina, Erika | 62, 64, 65 | each first try | |
+| Misty, Janine, Brock, Blaine | 68, 71, 72, 73 | each first try | |
+| Blue | 74 | second try | |
+| Will, second round | 78 | fifth try | Xatu 18 |
+| Koga, second round | 79 | second try | |
+| Bruno, second round | 80 | 0 of 5 | Machamp 16, Hitmonlee 7, Annihilape 6 |
+| Bruno, second round | 82 | first try | |
+| Karen, second round | 82 | 0 of 5 | Umbreon 11, Tyranitar 7, Spiritomb 5 |
+| Karen, second round | 84 | second try | |
+| Lance, second round | 88 | 0 of 5 | Garchomp 18, Dragonite 5 |
+| Lance, second round | 95 | 0 of 5 | Garchomp 10, Dragonite 7, Salamence 7 |
+| Lance, second round, with the Red set | 95 | 0 of 5 | Garchomp 19, Aerodactyl 5 |
+| Red | 93 | second try | |
+
+**Kanto's gyms are where they should be.** All eight fell at the levels Kanto's own trainers bring a team
+to, seven on the first try and Blue on the second.
+
+**The second round is a step up, as meant.** At each member's average Will fell on the fifth try and Koga on
+the second, and Bruno and Karen won every time; at their top levels (82, 84) both fell, Bruno first try.
+That is the same pattern as Chuck and Johto's Bruno: a little more levelling gets past them.
+
+**Lance's second round is out of line.** He won all fifteen: at his top level (88), and at 95 with both the
+second-round set and the Red set, seven levels over him. His Garchomp (Swords Dance, Outrage with a Dragon
+Fang, Jolly) took three or four of ours in most of them. To go on to Red, the bot was let past him at 100.
+His team is meant as a peak fight, but Red, played at his average (93), fell on the second try,
+so the second-round Lance is now harder than Red.
+
+**Lance in the first round, at his top level (58), won all five against the type-matchup set too**, where
+the plain bot had won three of eight. Lance stays as he is (above); at 62 the set beat him first try.
+
+Bot gaps found and fixed on the way: off the S.S. Aqua the player can land across the port building from its
+door; a party list that reads as the command menu (its red cursor sits where the Fight button's red is
+read); a Pokemon an Explosion knocked out read as healthy; the offer to switch as the opponent sends in its
+next; Route 2's eastern strip, which has no way south; Elm's and Oak's scenes now and then not starting with
+the menu left open; and the bot going back and forth on Route 27's water.
+
 ## Something else found
 
 In `guide/BOSSES.md`, a few rows were broken: the item, moves and nature ran
