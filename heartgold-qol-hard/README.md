@@ -198,10 +198,11 @@ The levels, IVs, AI and every boss team are in.
   water before him is in Chuck's band, Lv. 26-31). Routes 47 and 48 and Cliff
   Cave, which open off Cianwood, follow Chuck too. The Good Rod (had after
   Surf) meets each water's surfing levels, Rock Smash follows Morty by the
-  Ruins of Alph and Dark Cave and Chuck in Cianwood (Cliff Cave's rocks are post-game and keep their levels), and Headbutt trees
+  Ruins of Alph and Dark Cave and Chuck in Cianwood, and Headbutt trees
   follow Whitney up to Ilex Forest, where Headbutt is had, and the walking
-  band of their area after it. Route 29, the Old Rod (Lv. 10) and the Super
-  Rod (Lv. 40, a post-game item) keep their levels.
+  band of their area after it. Route 29, the Old Rod (Lv. 10), the Super
+  Rod (Lv. 40, a post-game item) and Cliff Cave's Rock Smash rocks (there
+  only once the Champion is beaten) keep their levels.
 - **Boss teams.** Every boss from Falkner to Red has a new team: the Johto
   and Kanto Gym Leaders, your rival, the Team Rocket executives, the Kimono
   Girls, both Elite Four rounds, Lance, Blue, Red and the Gym Leader
