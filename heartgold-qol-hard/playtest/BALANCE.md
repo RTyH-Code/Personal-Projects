@@ -775,8 +775,13 @@ place of Dragon Dance. Played again the same way (records: `rematches-0034`):
 | Clair | 82 (her top) | 0 of 5 | 0 of 5, Garchomp 9, Kingdra 7, Salamence 5 |
 | Clair | 84 | | 0 of 5, Garchomp 11, Kingdra 9, Salamence 5 |
 
-Sabrina and Misty are now in line with the rest. Clair still beats the set two levels over her: her team is
+Sabrina and Misty are now in line with the rest. Clair still beat the set two levels over her: her team is
 all Dragons, two of them (Flygon, Dragonite) with Dragon Dance and Kingdra with Rain Dance and Swift Swim.
+
+So her Flygon has Stone Edge and her Dragonite Fire Punch in place of Dragon Dance too (also patch 0034).
+At her top level (82) she still won all five (records: `rematches-0034-clair`), and the set got no
+further into her team: two to four of her six down a battle, against three to five before. Kingdra (Rain
+Dance, Swift Swim, Leftovers, her ace) took the most, 10, then Dragonite 7 and Garchomp 6.
 
 ## Something else found
 

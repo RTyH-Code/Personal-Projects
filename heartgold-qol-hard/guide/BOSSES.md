@@ -449,10 +449,10 @@ All boss Pokémon have perfect IVs. From Chuck onward they also have a nature an
 | Pokémon | Lv. | Item | Moves | Ability, nature |
 |---|---|---|---|---|
 | Altaria | 79 | Focus Sash | Outrage, Aerial Ace, Earthquake, Sing | Adamant |
-| Flygon | 79 | Soft Sand | Earthquake, Outrage, Crunch, Dragon Dance | Jolly |
+| Flygon | 79 | Soft Sand | Earthquake, Outrage, Crunch, Stone Edge | Jolly |
 | Garchomp | 80 | Dragon Fang | Outrage, Earthquake, Aqua Tail, Crunch | Jolly |
 | Salamence | 80 | Dragon Fang | Outrage, Aerial Ace, Earthquake, Roost | Jolly |
-| Dragonite | 81 | Dragon Fang | Outrage, Aerial Ace, Earthquake, Dragon Dance | Adamant |
+| Dragonite | 81 | Dragon Fang | Outrage, Aerial Ace, Earthquake, Fire Punch | Adamant |
 | Kingdra | 82 | Leftovers | Rain Dance, Waterfall, Outrage, Ice Beam | Swift Swim, Adamant |
 ### Lt. Surge, rematch
 

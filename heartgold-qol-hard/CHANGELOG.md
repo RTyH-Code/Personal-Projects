@@ -6,7 +6,8 @@
   Played with smart turns, every rematch fell to the second-round set by its
   top level but these three:
   - Clair's Garchomp has Crunch in place of Swords Dance, as Lance's did in
-    v1.0;
+    v1.0, and her Flygon Stone Edge and Dragonite Fire Punch, both in place
+    of Dragon Dance;
   - Sabrina's Gardevoir has Calm Mind and her Gallade Night Slash, both in
     place of Hypnosis (her lead, Mr. Mime, keeps it);
   - Misty's Milotic has Recover in place of Hypnosis, and her Gyarados Ice

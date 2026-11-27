@@ -1,18 +1,27 @@
-From 419c91596ec0bcb5e8abcf2bf1fbcc8e690a1d5e Mon Sep 17 00:00:00 2001
+From d18d9a8a65b2be08f24343229dbb5b21096a23f3 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Fri, 27 Nov 2026 10:24:18 +0000
 Subject: [PATCH] Boss teams: Clair's, Sabrina's and Misty's rematches without
  the piece that carried them
 
 ---
- data/Trainers.c          | 10 +++++-----
- tools/hack/boss_teams.py | 15 ++++++++++++---
- 2 files changed, 17 insertions(+), 8 deletions(-)
+ data/Trainers.c          | 14 +++++++-------
+ tools/hack/boss_teams.py | 18 +++++++++++++++---
+ 2 files changed, 22 insertions(+), 10 deletions(-)
 
 diff --git a/data/Trainers.c b/data/Trainers.c
-index f75bfe88f..82f6b7efb 100644
+index f75bfe88f..249effddd 100644
 --- a/data/Trainers.c
 +++ b/data/Trainers.c
+@@ -31571,7 +31571,7 @@ const TrainerData sTrainerData[] = {
+                 .level = 79,
+                 .species = SPECIES_FLYGON,
+                 .item = ITEM_SOFT_SAND,
+-                .moves = { MOVE_EARTHQUAKE, MOVE_OUTRAGE, MOVE_CRUNCH, MOVE_DRAGON_DANCE },
++                .moves = { MOVE_EARTHQUAKE, MOVE_OUTRAGE, MOVE_CRUNCH, MOVE_STONE_EDGE },
+                 .ability = ABILITY_LEVITATE,
+                 .setIvs = { 31, 31, 31, 31, 31, 31 },
+                 .setEvs = { 4, 252, 0, 252, 0, 0 },
 @@ -31584,7 +31584,7 @@ const TrainerData sTrainerData[] = {
                  .level = 80,
                  .species = SPECIES_GARCHOMP,
@@ -20,6 +29,15 @@ index f75bfe88f..82f6b7efb 100644
 -                .moves = { MOVE_OUTRAGE, MOVE_EARTHQUAKE, MOVE_AQUA_TAIL, MOVE_SWORDS_DANCE },
 +                .moves = { MOVE_OUTRAGE, MOVE_EARTHQUAKE, MOVE_AQUA_TAIL, MOVE_CRUNCH },
                  .ability = ABILITY_SAND_VEIL,
+                 .setIvs = { 31, 31, 31, 31, 31, 31 },
+                 .setEvs = { 4, 252, 0, 252, 0, 0 },
+@@ -31610,7 +31610,7 @@ const TrainerData sTrainerData[] = {
+                 .level = 81,
+                 .species = SPECIES_DRAGONITE,
+                 .item = ITEM_DRAGON_FANG,
+-                .moves = { MOVE_OUTRAGE, MOVE_AERIAL_ACE, MOVE_EARTHQUAKE, MOVE_DRAGON_DANCE },
++                .moves = { MOVE_OUTRAGE, MOVE_AERIAL_ACE, MOVE_EARTHQUAKE, MOVE_FIRE_PUNCH },
+                 .ability = ABILITY_INNER_FOCUS,
                  .setIvs = { 31, 31, 31, 31, 31, 31 },
                  .setEvs = { 4, 252, 0, 252, 0, 0 },
 @@ -31786,7 +31786,7 @@ const TrainerData sTrainerData[] = {
@@ -59,21 +77,24 @@ index f75bfe88f..82f6b7efb 100644
                  .setEvs = { 4, 252, 0, 252, 0, 0 },
                  .nature = NATURE_ADAMANT,
 diff --git a/tools/hack/boss_teams.py b/tools/hack/boss_teams.py
-index 0d6f8daa5..ec6fe5efb 100644
+index 0d6f8daa5..0bcc0a851 100644
 --- a/tools/hack/boss_teams.py
 +++ b/tools/hack/boss_teams.py
-@@ -516,14 +516,23 @@ POSTGAME = {
+@@ -516,14 +516,26 @@ POSTGAME = {
      717: quick("Jasmine, rematch", 80, ["SKARMORY", "BRONZONG", "MAGNEZONE", "SCIZOR", "METAGROSS", "STEELIX"],
                 options={"SKARMORY": {"spread": "wall"}, "BRONZONG": {"spread": "wall"}, "STEELIX": {"spread": "bulky"}}),
      716: quick("Pryce, rematch", 81, ["ABOMASNOW", "WEAVILE", "WALREIN", "LAPRAS", "GLACEON", "MAMOSWINE"]),
 +    # the three rematches that beat the second-round set even at their top level (playtest/BALANCE.md), each
-+    # without the piece that carried it: Clair's Garchomp without Swords Dance (as Lance's, patch 0031),
++    # without the piece that carried it: Clair's Garchomp without Swords Dance (as Lance's, patch 0031) and
++    # her Flygon and Dragonite without Dragon Dance,
 +    # Sabrina's Gardevoir and Gallade without Hypnosis (her lead Mr. Mime keeps it), Misty's Milotic without
 +    # Hypnosis and her Gyarados without Dragon Dance (as Blue's and Lance's)
      719: quick("Clair, rematch", 82, ["ALTARIA", "FLYGON", "GARCHOMP", "SALAMENCE", "DRAGONITE", "KINGDRA"],
 -               moves={"KINGDRA": ["RAIN_DANCE", "WATERFALL", "OUTRAGE", "ICE_BEAM"]},
 +               moves={"KINGDRA": ["RAIN_DANCE", "WATERFALL", "OUTRAGE", "ICE_BEAM"],
-+                      "GARCHOMP": ["OUTRAGE", "EARTHQUAKE", "AQUA_TAIL", "CRUNCH"]},
++                      "GARCHOMP": ["OUTRAGE", "EARTHQUAKE", "AQUA_TAIL", "CRUNCH"],
++                      "FLYGON": ["EARTHQUAKE", "OUTRAGE", "CRUNCH", "STONE_EDGE"],
++                      "DRAGONITE": ["OUTRAGE", "AERIAL_ACE", "EARTHQUAKE", "FIRE_PUNCH"]},
                 options={"KINGDRA": {"ability": "SWIFT_SWIM", "nature": "ADAMANT"}}),
      722: quick("Lt. Surge, rematch", 82, ["ELECTRODE", "MANECTRIC", "JOLTEON", "MAGNEZONE", "ELECTIVIRE", "RAICHU"]),
 -    725: quick("Sabrina, rematch", 82, ["MR_MIME", "GARDEVOIR", "GALLADE", "SLOWKING", "ESPEON", "ALAKAZAM"]),
