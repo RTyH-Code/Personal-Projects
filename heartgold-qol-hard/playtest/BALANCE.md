@@ -710,6 +710,20 @@ Fang, Jolly) took three or four of ours in most of them. To go on to Red, the bo
 His team is meant as a peak fight, but Red, played at his average (93), fell on the second try,
 so the second-round Lance is now harder than Red.
 
+### Lance's second-round Garchomp without Swords Dance (patch 0031)
+
+Garchomp has Crunch in its place. Played again from the save after Karen, with the second-round set and smart
+turns (records: `lance2-garchomp`):
+
+| Team's level | Before | After |
+|---|---|---|
+| 88 (his top) | 0 of 5, Garchomp taking 18 of ours | 0 of 5, Garchomp 9, Kingdra 8, Charizard 7 |
+| 95 | 0 of 5 | first try |
+
+At his own top level he still wins, now with his whole team rather than one Pokémon; a few levels over him,
+which the long grind on Mt. Silver brings on the way to Red (93), he falls. That puts him back under Red,
+as the peak before the last fight.
+
 **Lance in the first round, at his top level (58), won all five against the type-matchup set too**, where
 the plain bot had won three of eight. Lance stays as he is (above); at 62 the set beat him first try.
 

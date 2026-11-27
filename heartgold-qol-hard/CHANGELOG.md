@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- Lance's second-round Garchomp has Crunch in place of Swords Dance (patch
+  0031). Played with smart turns, his second round beat the bot's sets in all
+  fifteen battles, at Lv. 88 and at 95 with two different sets, Garchomp
+  taking three or four Pokemon each time, which put him above Red. The rest
+  of his team keeps its combos.
+
 ## v0.9 (playtest build)
 
 - Routes 47 and 48 and Cliff Cave follow Chuck, like the rest of the land

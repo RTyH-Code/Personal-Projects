@@ -1,0 +1,43 @@
+From 1cd3f1c281a525fa3ab9fc7e2a3c0b3d3ba8d7c5 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Fri, 27 Nov 2026 01:24:29 +0000
+Subject: [PATCH] Boss teams: Lance's second-round Garchomp without Swords
+ Dance
+
+---
+ data/Trainers.c          | 2 +-
+ tools/hack/boss_teams.py | 3 +++
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/data/Trainers.c b/data/Trainers.c
+index 2ac440db8..f75bfe88f 100644
+--- a/data/Trainers.c
++++ b/data/Trainers.c
+@@ -30179,7 +30179,7 @@ const TrainerData sTrainerData[] = {
+                 .level = 86,
+                 .species = SPECIES_GARCHOMP,
+                 .item = ITEM_DRAGON_FANG,
+-                .moves = { MOVE_OUTRAGE, MOVE_EARTHQUAKE, MOVE_AQUA_TAIL, MOVE_SWORDS_DANCE },
++                .moves = { MOVE_OUTRAGE, MOVE_EARTHQUAKE, MOVE_AQUA_TAIL, MOVE_CRUNCH },
+                 .ability = ABILITY_SAND_VEIL,
+                 .setIvs = { 31, 31, 31, 31, 31, 31 },
+                 .setEvs = { 4, 252, 0, 252, 0, 0 },
+diff --git a/tools/hack/boss_teams.py b/tools/hack/boss_teams.py
+index 79375123d..0d6f8daa5 100644
+--- a/tools/hack/boss_teams.py
++++ b/tools/hack/boss_teams.py
+@@ -495,8 +495,11 @@ POSTGAME = {
+                moves={"UMBREON": ["PAYBACK", "TOXIC", "MOONLIGHT", "CONFUSE_RAY"],
+                       "HONCHKROW": ["NIGHT_SLASH", "BRAVE_BIRD", "SUCKER_PUNCH", "ROOST"]},
+                options={"UMBREON": {"spread": "wall"}, "TYRANITAR": {"spread": "bulky"}, "SPIRITOMB": {"spread": "bulky"}}),
++    # Garchomp without Swords Dance: with smart turns it beat sets at Lv. 88 and 95 in all fifteen battles,
++    # taking three or four each time, which put him above Red
+     701: quick("Lance, second round", 88, ["AERODACTYL", "KINGDRA", "CHARIZARD", "GARCHOMP", "SALAMENCE", "DRAGONITE"],
+                moves={"KINGDRA": ["RAIN_DANCE", "WATERFALL", "OUTRAGE", "ICE_BEAM"],
++                      "GARCHOMP": ["OUTRAGE", "EARTHQUAKE", "AQUA_TAIL", "CRUNCH"],
+                       "DRAGONITE": ["DRAGON_DANCE", "OUTRAGE", "EARTHQUAKE", "FIRE_PUNCH"]},
+                options={"KINGDRA": {"ability": "SWIFT_SWIM", "nature": "ADAMANT"}, "SALAMENCE": {"ability": "INTIMIDATE"}}),
+     # ---- Gym Leader rematches: anything that fits the theme
+-- 
+2.43.0
+
