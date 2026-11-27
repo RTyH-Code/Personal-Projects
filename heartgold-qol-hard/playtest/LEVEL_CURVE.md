@@ -82,6 +82,8 @@ at the new levels everywhere (Route 30 Magikarp 28, Olivine Krabby 27, Lake of R
 of Alph (Geodude 24), Dark Cave (Dunsparce 22), Cianwood (Krabby 26, Shuckle 29) and Cliff Cave (Krabby 26,
 Kingler 29). Cliff Cave's map script moves its rocks aside until the Champion is beaten (`FLAG_GAME_CLEAR`,
 the post-game gate patch 0002 sets up), so its Rock Smash Pokémon are post-game; the test sets the flag.
+Patch 0035 puts them back at their levels before patch 0032 (Krabby 23-30, Kingler 32-36), checked in the
+game the same way: Krabby 26, Kingler 36.
 
 Patch 0029 puts the water in the same bands, from where a player can first surf. `walk_test.py`'s surf check on
 the build with the test harness met only Pokémon in the new tables on seven of ten areas: Route 34 Tentacool

@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- Cliff Cave's Rock Smash Pokémon are back at the levels they had before
+  v1.1, Krabby Lv. 23-30 and Kingler 32-36 (patch 0035). v1.1 put them in
+  Chuck's band (26-29), but the cave's map script moves its rocks aside
+  until the Champion is beaten, so they are post-game, like the Super Rod,
+  which kept its levels.
+
 ## v1.3
 
 - Three Gym Leader rematches lose the piece that carried them (patch 0034).
