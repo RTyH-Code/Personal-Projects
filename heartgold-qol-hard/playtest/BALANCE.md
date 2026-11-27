@@ -810,6 +810,10 @@ battles. Records: run label `rival-postgame-smart`.
 Cyndaquil: his Feraligatr (Swords Dance, Aqua Tail with Mystic Water) beat the Blue set at his top level too,
 where the other two versions, with Meganium and Typhlosion, fell.
 
+So his Feraligatr, at Mt. Moon and Indigo Plateau, has Ice Punch in place of Swords Dance (patch 0036), as the
+other bosses' set-up moves came off. Played again with the Blue set (records: `rival-0036`), he fell on the
+first try at his average (74) and on the third at his top (76).
+
 ## Something else found
 
 In `guide/BOSSES.md`, a few rows were broken: the item, moves and nature ran

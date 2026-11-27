@@ -1,0 +1,60 @@
+From ef63c757ac59e5a155b4422dba84b0c52cb84fb8 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Fri, 27 Nov 2026 13:39:07 +0000
+Subject: [PATCH] Boss teams: the rival's post-game Feraligatr without Swords
+ Dance
+
+---
+ data/Trainers.c          | 4 ++--
+ tools/hack/boss_teams.py | 7 +++++--
+ 2 files changed, 7 insertions(+), 4 deletions(-)
+
+diff --git a/data/Trainers.c b/data/Trainers.c
+index 249effddd..647750968 100644
+--- a/data/Trainers.c
++++ b/data/Trainers.c
+@@ -13240,7 +13240,7 @@ const TrainerData sTrainerData[] = {
+                 .level = 66,
+                 .species = SPECIES_FERALIGATR,
+                 .item = ITEM_MYSTIC_WATER,
+-                .moves = { MOVE_AQUA_TAIL, MOVE_EARTHQUAKE, MOVE_SWORDS_DANCE, MOVE_CRUNCH },
++                .moves = { MOVE_AQUA_TAIL, MOVE_EARTHQUAKE, MOVE_ICE_PUNCH, MOVE_CRUNCH },
+                 .setIvs = { 31, 31, 31, 31, 31, 31 },
+                 .setEvs = { 4, 252, 0, 252, 0, 0 },
+                 .nature = NATURE_ADAMANT,
+@@ -21862,7 +21862,7 @@ const TrainerData sTrainerData[] = {
+                 .level = 76,
+                 .species = SPECIES_FERALIGATR,
+                 .item = ITEM_MYSTIC_WATER,
+-                .moves = { MOVE_AQUA_TAIL, MOVE_EARTHQUAKE, MOVE_SWORDS_DANCE, MOVE_CRUNCH },
++                .moves = { MOVE_AQUA_TAIL, MOVE_EARTHQUAKE, MOVE_ICE_PUNCH, MOVE_CRUNCH },
+                 .setIvs = { 31, 31, 31, 31, 31, 31 },
+                 .setEvs = { 4, 252, 0, 252, 0, 0 },
+                 .nature = NATURE_ADAMANT,
+diff --git a/tools/hack/boss_teams.py b/tools/hack/boss_teams.py
+index 0bcc0a851..02e3307ca 100644
+--- a/tools/hack/boss_teams.py
++++ b/tools/hack/boss_teams.py
+@@ -563,14 +563,17 @@ def rival(stage, starter):
+         return [("AMPHAROS", 48, "MAGNET", None, {}), ("WEAVILE", 48, "FOCUS_SASH", None, {}),
+                 ("CROBAT", 49, "SITRUS_BERRY", None, {}), ("MISMAGIUS", 49, "WISE_GLASSES", None, {}),
+                 ("PUPITAR", 49, "HARD_STONE", None, {}), (s3, 50, "SITRUS_BERRY", None, {})]
++    # his post-game Feraligatr without Swords Dance: at Indigo Plateau it beat a set at his top level in all
++    # ten battles, where his Meganium and Typhlosion fell (playtest/BALANCE.md)
++    ace_moves = ["AQUA_TAIL", "EARTHQUAKE", "ICE_PUNCH", "CRUNCH"] if s3 == "FERALIGATR" else None
+     if stage == "mt. moon":
+         return [("AMPHAROS", 63, "MAGNET", None, {}), ("WEAVILE", 63, "FOCUS_SASH", None, {}),
+                 ("MISMAGIUS", 64, "WISE_GLASSES", None, {}), ("CROBAT", 64, "SITRUS_BERRY", None, {}),
+-                ("TYRANITAR", 65, "CHOPLE_BERRY", None, {"spread": "bulky"}), (s3, 66, seed, None, {})]
++                ("TYRANITAR", 65, "CHOPLE_BERRY", None, {"spread": "bulky"}), (s3, 66, seed, ace_moves, {})]
+     if stage == "indigo plateau":
+         return [("AMPHAROS", 73, "MAGNET", None, {}), ("WEAVILE", 73, "FOCUS_SASH", None, {}),
+                 ("MISMAGIUS", 74, "WISE_GLASSES", None, {}), ("CROBAT", 74, "BLACK_SLUDGE", None, {}),
+-                ("TYRANITAR", 75, "LEFTOVERS", None, {"spread": "bulky"}), (s3, 76, seed, None, {})]
++                ("TYRANITAR", 75, "LEFTOVERS", None, {"spread": "bulky"}), (s3, 76, seed, ace_moves, {})]
+     if stage == "tag battle":
+         return [(s3, 69, seed, None, {}), ("CROBAT", 67, "SITRUS_BERRY", None, {}), ("WEAVILE", 64, "FOCUS_SASH", None, {})]
+     sys.exit("unknown rival stage " + stage)
+-- 
+2.43.0
+
