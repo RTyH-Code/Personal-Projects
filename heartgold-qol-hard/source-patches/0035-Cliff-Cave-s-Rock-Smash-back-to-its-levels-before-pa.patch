@@ -1,0 +1,56 @@
+From 44467a720120ac4b528d436b37ffdbda63c380a4 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Fri, 27 Nov 2026 11:51:54 +0000
+Subject: [PATCH] Cliff Cave's Rock Smash back to its levels before patch 0032
+
+---
+ data/Encounters.c        |  4 ++--
+ tools/hack/extra_wild.py | 10 +++++++---
+ 2 files changed, 9 insertions(+), 5 deletions(-)
+
+diff --git a/data/Encounters.c b/data/Encounters.c
+index ad7f6efb2..8c1996417 100644
+--- a/data/Encounters.c
++++ b/data/Encounters.c
+@@ -8376,8 +8376,8 @@ const EncounterData __data[] =
+             { 0, 0, SPECIES_NONE },
+         },
+         .rockSmashSlots = {
+-            { 26, 28, SPECIES_KRABBY },
+-            { 28, 29, SPECIES_KINGLER },
++            { 23, 30, SPECIES_KRABBY },
++            { 32, 36, SPECIES_KINGLER },
+         },
+         .oldRodSlots = {
+             { 0, 0, SPECIES_NONE },
+diff --git a/tools/hack/extra_wild.py b/tools/hack/extra_wild.py
+index 2e5f62f93..5d18fd99e 100644
+--- a/tools/hack/extra_wild.py
++++ b/tools/hack/extra_wild.py
+@@ -13,8 +13,12 @@ into the band 75-85% of that boss's average, keeping its order:
+                                     comes after Surf, so wherever it can be
+                                     used the surfing levels already apply
+     Rock Smash (Route 36)           the Ruins of Alph and Dark Cave's Route
+-                                    31 side follow Morty (28); Cianwood and
+-                                    Cliff Cave follow Chuck (34)
++                                    31 side follow Morty (28); Cianwood
++                                    follows Chuck (34). Cliff Cave's rocks
++                                    stay aside until the Champion is beaten
++                                    (patch 0002), so they keep the levels
++                                    they had before (Lv. 23-36), post-game
++                                    as the Super Rod is
+     Headbutt (Ilex Forest)          trees passed before Ilex Forest follow
+                                     Whitney (22); later ones follow the
+                                     walking band of their area's group, and
+@@ -49,7 +53,7 @@ GOOD_ROD = ["T20_NEW_BARK_TOWN", "T21_CHERRYGROVE_CITY", "R30_ROUTE_30", "R31_RO
+             "D42R0101_DARK_CAVE_ROUTE_45_ENTRANCE", "R26_ROUTE_26", "R27_ROUTE_27", "D45R0101_TOHJO_FALLS",
+             "R47_ROUTE_47"]
+ ROCK_SMASH = [(28, ["D24R0101_RUINS_OF_ALPH_OUTSIDE", "D42R0102_DARK_CAVE_ROUTE_31_ENTRANCE"]),
+-              (34, ["T24_CIANWOOD_CITY", "D50R0101_CLIFF_CAVE"])]
++              (34, ["T24_CIANWOOD_CITY"])]
+ # (the boss's average, or "league" for league_wild.py's band, and the Headbutt areas that follow it)
+ HEADBUTT_GROUPS = [
+     (22, ["newBarkTown", "route29", "cherrygroveCity", "route30", "route31", "violetCity", "route32", "route33",
+-- 
+2.43.0
+
