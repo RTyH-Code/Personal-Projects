@@ -786,6 +786,34 @@ Dance, Swift Swim, Leftovers, her ace) took the most, 10, then Dragonite 7 and G
 Clair stays as she is now, the hardest of the rematches: the one set here has no answer to Dragons, a player
 can bring Ice moves for her, and the rematches are optional.
 
+## The rival in the post-game
+
+His Mt. Moon fight (Lv. 63-66) and his Indigo Plateau rematch (73-76), each in three versions by the
+player's starter, and the tag battle in Dragon's Den, where he and the player take on Lance and Clair, had
+never been played. `rematch_test.py` played them with smart turns, up to five tries: Mt. Moon with the Brock
+set at his average (64), Indigo Plateau with the Blue set at his average (74), and the tag battle with the
+second-round set at 81, the average of Lance's tag team (the harness's new tag-battle mode starts it). 24
+battles. Records: run label `rival-postgame-smart`.
+
+| Fight | His ace (your starter) | Team's level | Result | Took the most of ours |
+|---|---|---|---|---|
+| Mt. Moon | Meganium (Totodile) | 64 | first try | |
+| Mt. Moon | Typhlosion (Chikorita) | 64 | second try | |
+| Mt. Moon | Feraligatr (Cyndaquil) | 64 | second try | |
+| Indigo Plateau | Meganium (Totodile) | 74 | second try | |
+| Indigo Plateau | Typhlosion (Chikorita) | 74 | fourth try | Tyranitar, Crobat |
+| Indigo Plateau | Feraligatr (Cyndaquil) | 74 | 0 of 5 | Ampharos 10, Mismagius 7 |
+| Indigo Plateau | Feraligatr (Cyndaquil) | 76 (his top) | 0 of 5 | Feraligatr 13 |
+| Dragon's Den, with each of his three teams | | 81 | first try each | |
+
+**All but one fall where they should.** The exception is the Indigo Plateau rival for a player who chose
+Cyndaquil: his Feraligatr (Swords Dance, Aqua Tail with Mystic Water) beat the Blue set at his top level too,
+where the other two versions, with Meganium and Typhlosion, fell.
+
+So his Feraligatr, at Mt. Moon and Indigo Plateau, has Ice Punch in place of Swords Dance (patch 0036), as the
+other bosses' set-up moves came off. Played again with the Blue set (records: `rival-0036`), he fell on the
+first try at his average (74) and on the third at his top (76).
+
 ## Something else found
 
 In `guide/BOSSES.md`, a few rows were broken: the item, moves and nature ran

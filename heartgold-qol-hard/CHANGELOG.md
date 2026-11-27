@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.5
+
+- The rival's Feraligatr at Mt. Moon and Indigo Plateau (for a player who
+  chose Cyndaquil) has Ice Punch in place of Swords Dance (patch 0036). Played
+  with smart turns, the Indigo Plateau rival with Feraligatr beat the Blue set
+  in all ten battles at his average and top levels, where his versions with
+  Meganium and Typhlosion fell.
+
+This changes two trainers' teams only. A save made in v1.4 on Route 29
+loaded in v1.5, won two wild battles, and the game saved again
+(`playtest/save_carry.py`).
+
 ## v1.4
 
 - Cliff Cave's Rock Smash Pokémon are back at the levels they had before

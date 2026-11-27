@@ -2,6 +2,7 @@
 """Fight any trainer with a team set from team_sets.py, played by the story bot.
 
     rematch_test.py TEST_ROM TREE DUMP OUT SET LEVEL TRIES TRAINER_ID...
+    rematch_test.py TEST_ROM TREE DUMP OUT SET LEVEL TRIES --tag PARTNER FOE FOE
 
 TEST_ROM, TREE and DUMP are as for walk_test.py (a build with the test
 harness). For each trainer, TRIES times: from a save state at the bedroom PC
@@ -16,6 +17,9 @@ Fighting Dojo on given days once each leader's number is in the Pokegear.
 Each battle goes to OUT/battles.jsonl as in the story bot, and a line per
 trainer is printed: wins out of tries, and which of theirs took the most of
 ours.
+
+With --tag, it is one tag battle instead (the harness's multi_battle): the player and PARTNER against
+the two FOEs, as Dragon's Den's post-game battle with the rival against Lance and Clair.
 """
 import collections
 import json
@@ -53,8 +57,13 @@ def fight(bot, state, trainer):
     # then the battle, with no Pokemon given: the party is the set
     for i in range(6):
         g.set_var(0x4000 + i, 0)
-    g.set_var(0x400E, 0)
-    g.set_var(0x400C, trainer)
+    if isinstance(trainer, tuple):              # a tag battle: partner, foe, foe
+        g.set_var(0x400E, 4)
+        for k, t in enumerate(trainer):
+            g.set_var(0x4040 + k, t)
+    else:
+        g.set_var(0x400E, 0)
+        g.set_var(0x400C, trainer)
     g.set_var(0x400F, 0)
     g.key("a", after=60)
     try:
@@ -69,7 +78,8 @@ def fight(bot, state, trainer):
 
 def main():
     rom, tree, dump, out, name, level, tries = sys.argv[1:8]
-    trainers = [int(x) for x in sys.argv[8:]]
+    rest = sys.argv[8:]
+    trainers = [tuple(int(x) for x in rest[1:4])] if rest[:1] == ["--tag"] else [int(x) for x in rest]
     os.makedirs(out, exist_ok=True)
     state = os.path.join(out, "bedroom.dst")
     if not os.path.exists(state):
@@ -89,10 +99,11 @@ def main():
         if os.path.exists(os.path.join(out, "battles.jsonl")):
             for line in list(open(os.path.join(out, "battles.jsonl")))[start:]:
                 r = json.loads(line)
-                if r["result"] == "lost":
+                if r["result"] == "lost":     # (in a tag battle, the partner's Pokemon count among ours)
                     took.update(k["by"] for k in r["kos"] if k["side"] == "player")
-        t = data.get(trainer, {})
-        print("%3d %-12s %s: %s%s" % (trainer, t.get("name"), name, results,
+        label = "+".join(str(x) for x in trainer) if isinstance(trainer, tuple) else str(trainer)
+        t = data.get(trainer[1] if isinstance(trainer, tuple) else trainer, {})
+        print("%s %-12s %s: %s%s" % (label, t.get("name"), name, results,
                                      "  took the most: %s" % took.most_common(3) if took else ""), flush=True)
 
 

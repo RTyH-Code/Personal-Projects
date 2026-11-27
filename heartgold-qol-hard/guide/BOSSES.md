@@ -676,7 +676,7 @@ All boss Pokémon have perfect IVs. From Chuck onward they also have a nature an
 | Mismagius | 64 | Wise Glasses | Shadow Ball, Energy Ball, Calm Mind, Thunderbolt | Timid |
 | Crobat | 64 | Sitrus Berry | Cross Poison, Brave Bird, Leech Life, Hypnosis | Jolly |
 | Tyranitar | 65 | Chople Berry | Stone Edge, Crunch, Earthquake, Dragon Dance | Adamant |
-| Feraligatr | 66 | Mystic Water | Aqua Tail, Earthquake, Swords Dance, Crunch | Adamant |
+| Feraligatr | 66 | Mystic Water | Aqua Tail, Earthquake, Ice Punch, Crunch | Adamant |
 ### Rival, Indigo Plateau (you chose Totodile)
 
 | Pokémon | Lv. | Item | Moves | Ability, nature |
@@ -706,7 +706,7 @@ All boss Pokémon have perfect IVs. From Chuck onward they also have a nature an
 | Mismagius | 74 | Wise Glasses | Shadow Ball, Energy Ball, Calm Mind, Thunderbolt | Timid |
 | Crobat | 74 | Black Sludge | Cross Poison, Brave Bird, Leech Life, Hypnosis | Jolly |
 | Tyranitar | 75 | Leftovers | Stone Edge, Crunch, Earthquake, Dragon Dance | Adamant |
-| Feraligatr | 76 | Mystic Water | Aqua Tail, Earthquake, Swords Dance, Crunch | Adamant |
+| Feraligatr | 76 | Mystic Water | Aqua Tail, Earthquake, Ice Punch, Crunch | Adamant |
 ### Rival, tag battle with Lance and Clair (you chose Totodile)
 
 | Pokémon | Lv. | Item | Moves | Ability, nature |
