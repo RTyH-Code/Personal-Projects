@@ -783,6 +783,9 @@ At her top level (82) she still won all five (records: `rematches-0034-clair`), 
 further into her team: two to four of her six down a battle, against three to five before. Kingdra (Rain
 Dance, Swift Swim, Leftovers, her ace) took the most, 10, then Dragonite 7 and Garchomp 6.
 
+Clair stays as she is now, the hardest of the rematches: the one set here has no answer to Dragons, a player
+can bring Ice moves for her, and the rematches are optional.
+
 ## Something else found
 
 In `guide/BOSSES.md`, a few rows were broken: the item, moves and nature ran
