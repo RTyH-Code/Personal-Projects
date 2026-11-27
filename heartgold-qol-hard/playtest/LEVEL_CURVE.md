@@ -74,6 +74,14 @@ Ilex Forest Oddish 16, Route 34 Glameow 19, Route 37 Stantler 24, Route 39 Ratic
 32, Route 44 Munchlax 37, the Ice Path Swinub 34-35, and so on). Route 42 matched for the two met before a
 trainer stepped in; on Route 43 and in the National Park a trainer or the park's scene took over first.
 
+Fishing, Rock Smash and Headbutt (patch 0032) were checked the same way. Headbutt on 20 Johto maps: every
+Pokémon at the new levels (Route 30 Hoothoot 16-17, Route 43 Hoothoot 33, Route 26 Pineco 45 and Spinarak
+49; Route 38's one exception was Lass Dana's Flaaffy, a trainer who walked up). Fishing on 10: the Good Rod
+at the new levels everywhere (Route 30 Magikarp 28, Olivine Krabby 27, Lake of Rage 32, Route 44 Poliwag
+36-37, Route 26 Tentacool 48-49), the Old Rod at 10 and the Super Rod at 40 as before. Rock Smash: the Ruins
+of Alph (Geodude 24), Dark Cave (Dunsparce 22) and Cianwood (Krabby 26, Shuckle 29). Cliff Cave's rocks never
+showed in the test, so its table is checked against the data only.
+
 Patch 0029 puts the water in the same bands, from where a player can first surf. `walk_test.py`'s surf check on
 the build with the test harness met only Pokémon in the new tables on seven of ten areas: Route 34 Tentacool
 27-29, Route 41 Tentacruel 29, Route 42 Goldeen and Seaking 32, Route 43 Magikarp 32-33, the Lake of Rage
