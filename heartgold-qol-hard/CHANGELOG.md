@@ -1,5 +1,17 @@
 # Changelog
 
+## Unreleased
+
+- Three Gym Leader rematches lose the piece that carried them (patch 0034).
+  Played with smart turns, every rematch fell to the second-round set by its
+  top level but these three:
+  - Clair's Garchomp has Crunch in place of Swords Dance, as Lance's did in
+    v1.0;
+  - Sabrina's Gardevoir has Calm Mind and her Gallade Night Slash, both in
+    place of Hypnosis (her lead, Mr. Mime, keeps it);
+  - Misty's Milotic has Recover in place of Hypnosis, and her Gyarados Ice
+    Fang in place of Dragon Dance, as Blue's and Lance's Gyarados.
+
 ## v1.2
 
 - The Goldenrod Department Store's 4F sells the evolution items in tiers by

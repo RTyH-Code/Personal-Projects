@@ -759,8 +759,24 @@ player picks a team for each leader, and this set is the same against all sixtee
 
 **Clair, Sabrina and Misty beat it at their top level too.** Clair's Garchomp has the set Lance's second-round
 Garchomp had before patch 0031 (Swords Dance, Outrage with a Dragon Fang), and with Kingdra it took most of
-the team. Sabrina's Gallade (Sacred Sword through Tyranitar and Snorlax) and Hypnosis on five of her six
+the team. Sabrina's Gallade (Sacred Sword through Tyranitar and Snorlax) and Hypnosis on three of her six
 did the same, and Misty's Milotic, Gyarados and Politoed took most of it in her fights.
+
+### The three without the piece that carried them (patch 0034)
+
+Clair's Garchomp has Crunch in place of Swords Dance; Sabrina's Gardevoir has Calm Mind and her Gallade Night
+Slash in place of Hypnosis; Misty's Milotic has Recover in place of Hypnosis and her Gyarados Ice Fang in
+place of Dragon Dance. Played again the same way (records: `rematches-0034`):
+
+| Leader | Team's level | Before | After |
+|---|---|---|---|
+| Sabrina | 82 (her top) | 0 of 5 | second try |
+| Misty | 83 (her top) | 0 of 5 | first try |
+| Clair | 82 (her top) | 0 of 5 | 0 of 5, Garchomp 9, Kingdra 7, Salamence 5 |
+| Clair | 84 | | 0 of 5, Garchomp 11, Kingdra 9, Salamence 5 |
+
+Sabrina and Misty are now in line with the rest. Clair still beats the set two levels over her: her team is
+all Dragons, two of them (Flygon, Dragonite) with Dragon Dance and Kingdra with Rain Dance and Swift Swim.
 
 ## Something else found
 
