@@ -1294,7 +1294,10 @@ class Bot:
                      kos=[dict(side=side, fainted=who, by=by) for _, side, who, by in kos],
                      switches=[list(x) for x in getattr(self, "switches", [])],
                      choices=getattr(self, "choices", []) if SMART else None,
-                     items=BATTLE_ITEMS, items_used=getattr(self, "items_used", None))
+                     items=BATTLE_ITEMS,
+                     # with smart turns, the potions the bot used from the bag (the count from the trainer's item
+                     # slots below is the older STORY_BATTLE_ITEMS mechanism, and stays 0 for these)
+                     items_used=getattr(self, "choices", []).count("heal") if SMART else getattr(self, "items_used", None))
         with open(os.path.join(self.out, "battles.jsonl"), "a") as f:
             f.write(json.dumps(entry) + "\n")
 
@@ -1414,6 +1417,11 @@ class Bot:
                 out.append(dict(slot=slot, name=None, types=[], moves=[], hp=0, max_hp=1))
                 continue
             hp, top = hp_now(m), struct.unpack_from("<HH", m.stats, 6)[1]
+            if not 0 < top < 1000 or hp > top:
+                # a party copy whose battle stats read as nonsense (a Togekiss once had 60,889 HP): trust only
+                # what was seen in battle, else take it as standing with its HP unknown
+                top = top if 0 < top < 1000 else max(hp if hp < 1000 else 1, 1)
+                hp = min(hp, top) if hp < 1000 else top
             moves = [self.move_names.get(m.u16(0x20 + 2 * k)) for k in range(4)]
             out.append(dict(slot=slot, name=names.get(m.species), types=bt.SPECIES.get(names.get(m.species), {}).get("types", []),
                             moves=[bt.MOVES[x]["type"] for x in moves if x and bt.MOVES.get(x, {}).get("power")],
