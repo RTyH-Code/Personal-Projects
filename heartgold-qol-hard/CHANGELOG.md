@@ -1,5 +1,29 @@
 # Changelog
 
+## v1.1
+
+- Fishing, Rock Smash and Headbutt in Johto follow the same bands as the
+  walking and surfing levels (patch 0032), each from where a player can first
+  use it:
+  - the Good Rod, had in Olivine after Surf, meets each water's surfing
+    levels (was Lv. 20 everywhere; now 26-29 up to Cianwood, 30-34 for Pryce,
+    34-38 for Clair, 37-42 on Route 45, 45-49 before the League);
+  - Rock Smash by the Ruins of Alph and Dark Cave follows Morty, Lv. 21-24
+    (was 3-15), and Cianwood's and Cliff Cave's follow Chuck, 26-29 (were
+    17-32 and 23-36);
+  - Headbutt trees up to Ilex Forest, where Headbutt is had, follow Whitney,
+    Lv. 16-19 (were 2-12); later ones follow their area's walking band, as
+    far as Routes 26 and 27 at 45-50 (were 28-32). The rarer special trees
+    are two levels over their area's band.
+  The Old Rod (Lv. 10, had before Falkner) and the Super Rod (Lv. 40, a
+  post-game item from Kanto) are unchanged.
+
+This changes encounter and Headbutt data only. A save made in v0.9 on Route
+29 loaded in v1.1, won two wild battles, and the game saved again
+(`playtest/save_carry.py`). The save v1.0's check left lost its second battle's
+count there, taking 36 turns, and did the same on v1.0: most likely its Pokemon's
+strongest move had run out of PP over the earlier checks.
+
 ## v1.0
 
 - Lance's second-round Garchomp has Crunch in place of Swords Dance (patch

@@ -4,7 +4,7 @@ A quality-of-life, modernization and difficulty hack for Pokémon HeartGold,
 following the same recipe as [FireRed QoL + Hard](../firered-qol-hard/README.md).
 It is built on [hg-engine](https://github.com/BluRosie/hg-engine).
 
-**Status: v1.0.** Everything described below is in the
+**Status: v1.1.** Everything described below is in the
 patch. The battles, maps, legendaries, wild Pokémon and shops have been
 checked by automated playtesters, and a story bot has played from the bedroom
 to Red (see [playtest/BALANCE.md](playtest/BALANCE.md)), but no person has
@@ -16,16 +16,16 @@ You need your own US Pokémon HeartGold ROM (game code `IPKE`, SHA-1
 `4fcded0e2713dc03929845de631d0932ea2b5a37`). The ROM is not in this
 repository and never will be.
 
-1. Download `HeartGold-QoL-Hard-v1.0.xdelta`.
+1. Download `HeartGold-QoL-Hard-v1.1.xdelta`.
 2. Apply it to the ROM with an xdelta patcher such as Delta Patcher or
    xdelta UI, or on a command line:
 
    ```bash
-   xdelta3 -d -s heartgold-usa.nds HeartGold-QoL-Hard-v1.0.xdelta HeartGold-QoL-Hard.nds
+   xdelta3 -d -s heartgold-usa.nds HeartGold-QoL-Hard-v1.1.xdelta HeartGold-QoL-Hard.nds
    ```
 
 3. The patched ROM is 256 MB, twice the original's size, and its SHA-1 is
-   `89632a6a9672035eafb28613953f2b3fee0e3eb1`. It has been run in DeSmuME;
+   `8d3e66142df282b556f87f44a8d47058764d42cf`. It has been run in DeSmuME;
    other emulators and flashcarts are untried.
 
 Start a new game: saves from the original game or from other hacks will not
@@ -190,8 +190,12 @@ The levels, IVs, AI and every boss team are in.
   45 and Dark Cave's Route 45 side at 37-42. Pokémon met surfing follow the
   same bands, from where a player can first surf (Morty gives Surf, so the
   water before him is in Chuck's band, Lv. 26-31). Routes 47 and 48 and Cliff
-  Cave, which open off Cianwood, follow Chuck too. Route 29, fishing and Rock
-  Smash keep their levels.
+  Cave, which open off Cianwood, follow Chuck too. The Good Rod (had after
+  Surf) meets each water's surfing levels, Rock Smash follows Morty by the
+  Ruins of Alph and Dark Cave and Chuck around Cianwood, and Headbutt trees
+  follow Whitney up to Ilex Forest, where Headbutt is had, and the walking
+  band of their area after it. Route 29, the Old Rod (Lv. 10) and the Super
+  Rod (Lv. 40, a post-game item) keep their levels.
 - **Boss teams.** Every boss from Falkner to Red has a new team: the Johto
   and Kanto Gym Leaders, your rival, the Team Rocket executives, the Kimono
   Girls, both Elite Four rounds, Lance, Blue, Red and the Gym Leader
@@ -264,8 +268,8 @@ The levels, IVs, AI and every boss team are in.
   Raticate on Route 1, not a Lv. 46 Pidgey). Stone, held-item and
   friendship evolutions are left as they were, and Larvitar's line stops
   at Pupitar, so there is no wild Tyranitar.
-- Johto fishing, Johto's Headbutt trees and the Safari Zone are unchanged.
-  Routes 26 and 27 count as Johto here, as they do for the other wild levels.
+- The Safari Zone is unchanged. Routes 26 and 27 count as Johto here, as
+  they do for the other wild levels.
 - **IVs:** every trainer Pokémon has at least about 18 in each stat; Gym
   Leaders, the Elite Four, the Champion, your rival, Red and the Rocket
   bosses have 31.
@@ -420,7 +424,7 @@ The FireRed recipe, and where each part comes from here:
 | Trainer levels, IVs and AI | Done: `tools/hack/difficulty.py` |
 | Johto and League boss teams | Done: `tools/hack/boss_teams.py` |
 | Kanto leaders, Blue, Red, second Elite Four round and rematch teams | Done: `tools/hack/boss_teams.py` |
-| Johto wild levels | Done: `tools/hack/wild_levels.py`, `tools/hack/johto_wild.py`, `tools/hack/side_wild.py`, `tools/hack/surf_wild.py`, `tools/hack/cianwood_wild.py`, `tools/hack/league_wild.py` |
+| Johto wild levels | Done: `tools/hack/wild_levels.py`, `tools/hack/johto_wild.py`, `tools/hack/side_wild.py`, `tools/hack/surf_wild.py`, `tools/hack/cianwood_wild.py`, `tools/hack/extra_wild.py`, `tools/hack/league_wild.py` |
 | Kanto wild levels | Done: `tools/hack/kanto_wild.py`, `tools/hack/kanto_headbutt.py` |
 | Every non-legendary Pokémon obtainable in Johto | Done: `tools/hack/encounters.py`, `tools/hack/fossil_reviver.py` |
 | Legendary encounters | Done: `tools/hack/legendaries.py` |
@@ -455,7 +459,7 @@ The first build takes several minutes. It clones hg-engine into `build/`,
 applies the patches and writes `build/hg-engine/test.nds`.
 
 The release patch is made from such a build, in a fresh work directory, with
-`tools/make_patch.sh`. v1.0 was built this way from all thirty-one patches.
+`tools/make_patch.sh`. v1.1 was built this way from all thirty-two patches.
 
 To confirm the result boots, without opening an emulator window:
 

@@ -1,0 +1,1851 @@
+From c1651eed9c7256f3bcf4da442b2bdca1cc7e7aca Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Fri, 27 Nov 2026 03:13:10 +0000
+Subject: [PATCH] Fishing, Rock Smash and Headbutt in Johto in line with the
+ land and water
+
+---
+ data/Encounters.c        | 396 ++++++++++-----------
+ data/Headbutt.c          | 744 +++++++++++++++++++--------------------
+ tools/hack/extra_wild.py | 172 +++++++++
+ 3 files changed, 742 insertions(+), 570 deletions(-)
+ create mode 100644 tools/hack/extra_wild.py
+
+diff --git a/data/Encounters.c b/data/Encounters.c
+index 5618ffe4f..ad7f6efb2 100644
+--- a/data/Encounters.c
++++ b/data/Encounters.c
+@@ -87,11 +87,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_TENTACOOL },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_TENTACOOL },
+-            { 20, 20, SPECIES_CHINCHOU },
+-            { 20, 20, SPECIES_SHELLDER },
+-            { 20, 20, SPECIES_CHINCHOU },
++            { 27, 29, SPECIES_MAGIKARP },
++            { 27, 29, SPECIES_TENTACOOL },
++            { 27, 29, SPECIES_CHINCHOU },
++            { 27, 29, SPECIES_SHELLDER },
++            { 27, 29, SPECIES_CHINCHOU },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_CHINCHOU },
+@@ -287,11 +287,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_KRABBY },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_KRABBY },
+-            { 20, 20, SPECIES_KRABBY },
+-            { 20, 20, SPECIES_CORSOLA },
+-            { 20, 20, SPECIES_KRABBY },
++            { 27, 29, SPECIES_MAGIKARP },
++            { 27, 29, SPECIES_KRABBY },
++            { 27, 29, SPECIES_KRABBY },
++            { 27, 29, SPECIES_CORSOLA },
++            { 27, 29, SPECIES_KRABBY },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_KRABBY },
+@@ -387,11 +387,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_POLIWAG },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
++            { 27, 29, SPECIES_MAGIKARP },
++            { 27, 29, SPECIES_POLIWAG },
++            { 27, 29, SPECIES_POLIWAG },
++            { 27, 29, SPECIES_POLIWAG },
++            { 27, 29, SPECIES_POLIWAG },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_POLIWAG },
+@@ -487,11 +487,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_POLIWAG },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
++            { 27, 29, SPECIES_MAGIKARP },
++            { 27, 29, SPECIES_POLIWAG },
++            { 27, 29, SPECIES_POLIWAG },
++            { 27, 29, SPECIES_POLIWAG },
++            { 27, 29, SPECIES_POLIWAG },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_POLIWAG },
+@@ -587,11 +587,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_POLIWAG },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
++            { 27, 29, SPECIES_MAGIKARP },
++            { 27, 29, SPECIES_POLIWAG },
++            { 27, 29, SPECIES_POLIWAG },
++            { 27, 29, SPECIES_POLIWAG },
++            { 27, 29, SPECIES_POLIWAG },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_POLIWAG },
+@@ -887,11 +887,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_TENTACOOL },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_TENTACOOL },
+-            { 20, 20, SPECIES_TENTACOOL },
+-            { 20, 20, SPECIES_TENTACOOL },
+-            { 20, 20, SPECIES_QWILFISH },
++            { 27, 29, SPECIES_MAGIKARP },
++            { 27, 29, SPECIES_TENTACOOL },
++            { 27, 29, SPECIES_TENTACOOL },
++            { 27, 29, SPECIES_TENTACOOL },
++            { 27, 29, SPECIES_QWILFISH },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_TENTACOOL },
+@@ -976,8 +976,8 @@ const EncounterData __data[] =
+             { 27, 28, SPECIES_QUAGSIRE },
+         },
+         .rockSmashSlots = {
+-            { 8, 15, SPECIES_GEODUDE },
+-            { 3, 6, SPECIES_GEODUDE },
++            { 22, 24, SPECIES_GEODUDE },
++            { 21, 22, SPECIES_GEODUDE },
+         },
+         .oldRodSlots = {
+             { 10, 10, SPECIES_MAGIKARP },
+@@ -987,11 +987,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_POLIWAG },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
++            { 27, 29, SPECIES_MAGIKARP },
++            { 27, 29, SPECIES_POLIWAG },
++            { 27, 29, SPECIES_POLIWAG },
++            { 27, 29, SPECIES_POLIWAG },
++            { 27, 29, SPECIES_POLIWAG },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_POLIWAG },
+@@ -1487,11 +1487,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_BARBOACH },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
++            { 27, 29, SPECIES_MAGIKARP },
++            { 27, 29, SPECIES_GOLDEEN },
++            { 27, 29, SPECIES_GOLDEEN },
++            { 27, 29, SPECIES_GOLDEEN },
++            { 27, 29, SPECIES_GOLDEEN },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_GOLDEEN },
+@@ -1587,11 +1587,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_GOLDEEN },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
++            { 27, 29, SPECIES_MAGIKARP },
++            { 27, 29, SPECIES_GOLDEEN },
++            { 27, 29, SPECIES_GOLDEEN },
++            { 27, 29, SPECIES_GOLDEEN },
++            { 27, 29, SPECIES_GOLDEEN },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_GOLDEEN },
+@@ -1687,11 +1687,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_KRABBY },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_KRABBY },
+-            { 20, 20, SPECIES_KRABBY },
+-            { 20, 20, SPECIES_CORSOLA },
+-            { 20, 20, SPECIES_KRABBY },
++            { 27, 29, SPECIES_MAGIKARP },
++            { 27, 29, SPECIES_KRABBY },
++            { 27, 29, SPECIES_KRABBY },
++            { 27, 29, SPECIES_CORSOLA },
++            { 27, 29, SPECIES_KRABBY },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_KRABBY },
+@@ -1887,11 +1887,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_GOLDEEN },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
++            { 26, 29, SPECIES_MAGIKARP },
++            { 26, 29, SPECIES_GOLDEEN },
++            { 26, 29, SPECIES_GOLDEEN },
++            { 26, 29, SPECIES_GOLDEEN },
++            { 26, 29, SPECIES_GOLDEEN },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_GOLDEEN },
+@@ -1987,11 +1987,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_GOLDEEN },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
++            { 27, 29, SPECIES_MAGIKARP },
++            { 27, 29, SPECIES_GOLDEEN },
++            { 27, 29, SPECIES_GOLDEEN },
++            { 27, 29, SPECIES_GOLDEEN },
++            { 27, 29, SPECIES_GOLDEEN },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_GOLDEEN },
+@@ -2087,11 +2087,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_POLIWAG },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
++            { 26, 28, SPECIES_MAGIKARP },
++            { 26, 28, SPECIES_POLIWAG },
++            { 26, 28, SPECIES_POLIWAG },
++            { 26, 28, SPECIES_POLIWAG },
++            { 26, 28, SPECIES_POLIWAG },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_POLIWAG },
+@@ -2187,11 +2187,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_CORPHISH },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_KRABBY },
+-            { 20, 20, SPECIES_KRABBY },
+-            { 20, 20, SPECIES_CORSOLA },
+-            { 20, 20, SPECIES_KRABBY },
++            { 27, 29, SPECIES_MAGIKARP },
++            { 27, 29, SPECIES_KRABBY },
++            { 27, 29, SPECIES_KRABBY },
++            { 27, 29, SPECIES_CORSOLA },
++            { 27, 29, SPECIES_KRABBY },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_KRABBY },
+@@ -2287,11 +2287,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_POLIWAG },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
++            { 27, 29, SPECIES_MAGIKARP },
++            { 27, 29, SPECIES_POLIWAG },
++            { 27, 29, SPECIES_POLIWAG },
++            { 27, 29, SPECIES_POLIWAG },
++            { 27, 29, SPECIES_POLIWAG },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_POLIWAG },
+@@ -2787,11 +2787,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_POLIWAG },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
++            { 27, 29, SPECIES_MAGIKARP },
++            { 27, 29, SPECIES_POLIWAG },
++            { 27, 29, SPECIES_POLIWAG },
++            { 27, 29, SPECIES_POLIWAG },
++            { 27, 29, SPECIES_POLIWAG },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_POLIWAG },
+@@ -4087,11 +4087,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_KRABBY },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_KRABBY },
+-            { 20, 20, SPECIES_KRABBY },
+-            { 20, 20, SPECIES_CORSOLA },
+-            { 20, 20, SPECIES_KRABBY },
++            { 27, 29, SPECIES_MAGIKARP },
++            { 27, 29, SPECIES_KRABBY },
++            { 27, 29, SPECIES_KRABBY },
++            { 27, 29, SPECIES_CORSOLA },
++            { 27, 29, SPECIES_KRABBY },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_KRABBY },
+@@ -4187,11 +4187,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_KRABBY },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_KRABBY },
+-            { 20, 20, SPECIES_KRABBY },
+-            { 20, 20, SPECIES_CORSOLA },
+-            { 20, 20, SPECIES_FINNEON },
++            { 27, 29, SPECIES_MAGIKARP },
++            { 27, 29, SPECIES_KRABBY },
++            { 27, 29, SPECIES_KRABBY },
++            { 27, 29, SPECIES_CORSOLA },
++            { 27, 29, SPECIES_FINNEON },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_KRABBY },
+@@ -4287,11 +4287,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_TENTACOOL },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_TENTACOOL },
+-            { 20, 20, SPECIES_CHINCHOU },
+-            { 20, 20, SPECIES_SHELLDER },
+-            { 20, 20, SPECIES_CLAMPERL },
++            { 28, 29, SPECIES_MAGIKARP },
++            { 28, 29, SPECIES_TENTACOOL },
++            { 28, 29, SPECIES_CHINCHOU },
++            { 28, 29, SPECIES_SHELLDER },
++            { 28, 29, SPECIES_CLAMPERL },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_CHINCHOU },
+@@ -4387,11 +4387,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_KRABBY },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_KRABBY },
+-            { 20, 20, SPECIES_KRABBY },
+-            { 20, 20, SPECIES_HORSEA },
+-            { 20, 20, SPECIES_RELICANTH },
++            { 35, 37, SPECIES_MAGIKARP },
++            { 35, 37, SPECIES_KRABBY },
++            { 35, 37, SPECIES_KRABBY },
++            { 35, 37, SPECIES_HORSEA },
++            { 35, 37, SPECIES_RELICANTH },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_KRABBY },
+@@ -4687,11 +4687,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_KRABBY },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_KRABBY },
+-            { 20, 20, SPECIES_KRABBY },
+-            { 20, 20, SPECIES_HORSEA },
+-            { 20, 20, SPECIES_KRABBY },
++            { 36, 37, SPECIES_MAGIKARP },
++            { 36, 37, SPECIES_KRABBY },
++            { 36, 37, SPECIES_KRABBY },
++            { 36, 37, SPECIES_HORSEA },
++            { 36, 37, SPECIES_KRABBY },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_KRABBY },
+@@ -5176,8 +5176,8 @@ const EncounterData __data[] =
+             { 28, 29, SPECIES_TENTACRUEL },
+         },
+         .rockSmashSlots = {
+-            { 17, 28, SPECIES_KRABBY },
+-            { 26, 32, SPECIES_SHUCKLE },
++            { 26, 28, SPECIES_KRABBY },
++            { 28, 29, SPECIES_SHUCKLE },
+         },
+         .oldRodSlots = {
+             { 10, 10, SPECIES_MAGIKARP },
+@@ -5187,11 +5187,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_KRABBY },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_KRABBY },
+-            { 20, 20, SPECIES_KRABBY },
+-            { 20, 20, SPECIES_CORSOLA },
+-            { 20, 20, SPECIES_LUVDISC },
++            { 27, 29, SPECIES_MAGIKARP },
++            { 27, 29, SPECIES_KRABBY },
++            { 27, 29, SPECIES_KRABBY },
++            { 27, 29, SPECIES_CORSOLA },
++            { 27, 29, SPECIES_LUVDISC },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_KRABBY },
+@@ -5287,11 +5287,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_GOLDEEN },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
++            { 31, 33, SPECIES_MAGIKARP },
++            { 31, 33, SPECIES_GOLDEEN },
++            { 31, 33, SPECIES_GOLDEEN },
++            { 31, 33, SPECIES_GOLDEEN },
++            { 31, 33, SPECIES_GOLDEEN },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_GOLDEEN },
+@@ -5387,11 +5387,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_GOLDEEN },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
++            { 31, 33, SPECIES_MAGIKARP },
++            { 31, 33, SPECIES_GOLDEEN },
++            { 31, 33, SPECIES_GOLDEEN },
++            { 31, 33, SPECIES_GOLDEEN },
++            { 31, 33, SPECIES_GOLDEEN },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_GOLDEEN },
+@@ -5587,11 +5587,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_GOLDEEN },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
++            { 32, 34, SPECIES_MAGIKARP },
++            { 32, 34, SPECIES_GOLDEEN },
++            { 32, 34, SPECIES_GOLDEEN },
++            { 32, 34, SPECIES_GOLDEEN },
++            { 32, 34, SPECIES_GOLDEEN },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_GOLDEEN },
+@@ -5687,11 +5687,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_GOLDEEN },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
++            { 31, 33, SPECIES_MAGIKARP },
++            { 31, 33, SPECIES_GOLDEEN },
++            { 31, 33, SPECIES_GOLDEEN },
++            { 31, 33, SPECIES_GOLDEEN },
++            { 31, 33, SPECIES_GOLDEEN },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_GOLDEEN },
+@@ -5787,11 +5787,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_POLIWAG },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
++            { 30, 33, SPECIES_MAGIKARP },
++            { 30, 33, SPECIES_POLIWAG },
++            { 30, 33, SPECIES_POLIWAG },
++            { 30, 33, SPECIES_POLIWAG },
++            { 30, 33, SPECIES_POLIWAG },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_POLIWAG },
+@@ -5887,11 +5887,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_MAGIKARP },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_GYARADOS },
+-            { 20, 20, SPECIES_FEEBAS },
++            { 30, 32, SPECIES_MAGIKARP },
++            { 30, 32, SPECIES_MAGIKARP },
++            { 30, 32, SPECIES_MAGIKARP },
++            { 30, 32, SPECIES_GYARADOS },
++            { 30, 32, SPECIES_FEEBAS },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_MAGIKARP },
+@@ -5987,11 +5987,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_POLIWAG },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_REMORAID },
++            { 36, 38, SPECIES_MAGIKARP },
++            { 36, 38, SPECIES_POLIWAG },
++            { 36, 38, SPECIES_POLIWAG },
++            { 36, 38, SPECIES_POLIWAG },
++            { 36, 38, SPECIES_REMORAID },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_POLIWAG },
+@@ -6587,11 +6587,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_POLIWAG },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
++            { 34, 37, SPECIES_MAGIKARP },
++            { 34, 37, SPECIES_POLIWAG },
++            { 34, 37, SPECIES_POLIWAG },
++            { 34, 37, SPECIES_POLIWAG },
++            { 34, 37, SPECIES_POLIWAG },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_POLIWAG },
+@@ -6687,11 +6687,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_MAGIKARP },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_DRATINI },
+-            { 20, 20, SPECIES_MAGIKARP },
++            { 34, 37, SPECIES_MAGIKARP },
++            { 34, 37, SPECIES_MAGIKARP },
++            { 34, 37, SPECIES_MAGIKARP },
++            { 34, 37, SPECIES_DRATINI },
++            { 34, 37, SPECIES_MAGIKARP },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_MAGIKARP },
+@@ -6787,11 +6787,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_POLIWAG },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
+-            { 20, 20, SPECIES_POLIWAG },
++            { 37, 42, SPECIES_MAGIKARP },
++            { 37, 42, SPECIES_POLIWAG },
++            { 37, 42, SPECIES_POLIWAG },
++            { 37, 42, SPECIES_POLIWAG },
++            { 37, 42, SPECIES_POLIWAG },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_POLIWAG },
+@@ -6976,8 +6976,8 @@ const EncounterData __data[] =
+             { 26, 27, SPECIES_MAGIKARP },
+         },
+         .rockSmashSlots = {
+-            { 4, 8, SPECIES_DUNSPARCE },
+-            { 8, 15, SPECIES_GEODUDE },
++            { 21, 22, SPECIES_DUNSPARCE },
++            { 22, 24, SPECIES_GEODUDE },
+         },
+         .oldRodSlots = {
+             { 10, 10, SPECIES_MAGIKARP },
+@@ -6987,11 +6987,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_GOLDEEN },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
++            { 26, 28, SPECIES_MAGIKARP },
++            { 26, 28, SPECIES_GOLDEEN },
++            { 26, 28, SPECIES_GOLDEEN },
++            { 26, 28, SPECIES_GOLDEEN },
++            { 26, 28, SPECIES_GOLDEEN },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_GOLDEEN },
+@@ -7087,11 +7087,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_GOLDEEN },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
++            { 37, 41, SPECIES_MAGIKARP },
++            { 37, 41, SPECIES_GOLDEEN },
++            { 37, 41, SPECIES_GOLDEEN },
++            { 37, 41, SPECIES_GOLDEEN },
++            { 37, 41, SPECIES_GOLDEEN },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_GOLDEEN },
+@@ -7187,11 +7187,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_TENTACOOL },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_TENTACOOL },
+-            { 20, 20, SPECIES_CHINCHOU },
+-            { 20, 20, SPECIES_SHELLDER },
+-            { 20, 20, SPECIES_CHINCHOU },
++            { 26, 29, SPECIES_MAGIKARP },
++            { 26, 29, SPECIES_TENTACOOL },
++            { 26, 29, SPECIES_CHINCHOU },
++            { 26, 29, SPECIES_SHELLDER },
++            { 26, 29, SPECIES_CHINCHOU },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_CHINCHOU },
+@@ -8376,8 +8376,8 @@ const EncounterData __data[] =
+             { 0, 0, SPECIES_NONE },
+         },
+         .rockSmashSlots = {
+-            { 23, 30, SPECIES_KRABBY },
+-            { 32, 36, SPECIES_KINGLER },
++            { 26, 28, SPECIES_KRABBY },
++            { 28, 29, SPECIES_KINGLER },
+         },
+         .oldRodSlots = {
+             { 0, 0, SPECIES_NONE },
+@@ -10387,11 +10387,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_TENTACOOL },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_TENTACOOL },
+-            { 20, 20, SPECIES_CHINCHOU },
+-            { 20, 20, SPECIES_SHELLDER },
+-            { 20, 20, SPECIES_CHINCHOU },
++            { 48, 49, SPECIES_MAGIKARP },
++            { 48, 49, SPECIES_TENTACOOL },
++            { 48, 49, SPECIES_CHINCHOU },
++            { 48, 49, SPECIES_SHELLDER },
++            { 48, 49, SPECIES_CHINCHOU },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_CHINCHOU },
+@@ -10487,11 +10487,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_TENTACOOL },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_TENTACOOL },
+-            { 20, 20, SPECIES_CHINCHOU },
+-            { 20, 20, SPECIES_SHELLDER },
+-            { 20, 20, SPECIES_CHINCHOU },
++            { 45, 46, SPECIES_MAGIKARP },
++            { 45, 46, SPECIES_TENTACOOL },
++            { 45, 46, SPECIES_CHINCHOU },
++            { 45, 46, SPECIES_SHELLDER },
++            { 45, 46, SPECIES_CHINCHOU },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_CHINCHOU },
+@@ -13287,11 +13287,11 @@ const EncounterData __data[] =
+             { 10, 10, SPECIES_GOLDEEN },
+         },
+         .goodRodSlots = {
+-            { 20, 20, SPECIES_MAGIKARP },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
+-            { 20, 20, SPECIES_GOLDEEN },
++            { 46, 46, SPECIES_MAGIKARP },
++            { 46, 46, SPECIES_GOLDEEN },
++            { 46, 46, SPECIES_GOLDEEN },
++            { 46, 46, SPECIES_GOLDEEN },
++            { 46, 46, SPECIES_GOLDEEN },
+         },
+         .superRodSlots = {
+             { 40, 40, SPECIES_GOLDEEN },
+diff --git a/data/Headbutt.c b/data/Headbutt.c
+index df70dfeff..6c4a97fb9 100644
+--- a/data/Headbutt.c
++++ b/data/Headbutt.c
+@@ -4753,18 +4753,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 28, 29 },
+-            { SPECIES_PINECO, 28, 29 },
+-            { SPECIES_PINECO, 28, 29 },
+-            { SPECIES_EXEGGCUTE, 28, 29 },
+-            { SPECIES_EXEGGCUTE, 28, 29 },
+-            { SPECIES_EXEGGCUTE, 28, 29 },
+-            { SPECIES_HOOTHOOT, 31, 32 },
+-            { SPECIES_SPINARAK, 31, 32 },
+-            { SPECIES_SPINARAK, 31, 32 },
+-            { SPECIES_EXEGGCUTE, 31, 32 },
+-            { SPECIES_EXEGGCUTE, 31, 32 },
+-            { SPECIES_EXEGGCUTE, 31, 32 },
++            { SPECIES_HOOTHOOT, 45, 46 },
++            { SPECIES_PINECO, 45, 46 },
++            { SPECIES_PINECO, 45, 46 },
++            { SPECIES_EXEGGCUTE, 45, 46 },
++            { SPECIES_EXEGGCUTE, 45, 46 },
++            { SPECIES_EXEGGCUTE, 45, 46 },
++            { SPECIES_HOOTHOOT, 49, 50 },
++            { SPECIES_SPINARAK, 49, 50 },
++            { SPECIES_SPINARAK, 49, 50 },
++            { SPECIES_EXEGGCUTE, 49, 50 },
++            { SPECIES_EXEGGCUTE, 49, 50 },
++            { SPECIES_EXEGGCUTE, 49, 50 },
+         },
+         .specialSlots =
+         {
+@@ -4802,18 +4802,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 28, 29 },
+-            { SPECIES_PINECO, 28, 29 },
+-            { SPECIES_PINECO, 28, 29 },
+-            { SPECIES_EXEGGCUTE, 28, 29 },
+-            { SPECIES_EXEGGCUTE, 28, 29 },
+-            { SPECIES_EXEGGCUTE, 28, 29 },
+-            { SPECIES_HOOTHOOT, 31, 32 },
+-            { SPECIES_SPINARAK, 31, 32 },
+-            { SPECIES_SPINARAK, 31, 32 },
+-            { SPECIES_EXEGGCUTE, 31, 32 },
+-            { SPECIES_EXEGGCUTE, 31, 32 },
+-            { SPECIES_EXEGGCUTE, 31, 32 },
++            { SPECIES_HOOTHOOT, 45, 46 },
++            { SPECIES_PINECO, 45, 46 },
++            { SPECIES_PINECO, 45, 46 },
++            { SPECIES_EXEGGCUTE, 45, 46 },
++            { SPECIES_EXEGGCUTE, 45, 46 },
++            { SPECIES_EXEGGCUTE, 45, 46 },
++            { SPECIES_HOOTHOOT, 49, 50 },
++            { SPECIES_SPINARAK, 49, 50 },
++            { SPECIES_SPINARAK, 49, 50 },
++            { SPECIES_EXEGGCUTE, 49, 50 },
++            { SPECIES_EXEGGCUTE, 49, 50 },
++            { SPECIES_EXEGGCUTE, 49, 50 },
+         },
+         .specialSlots =
+         {
+@@ -4898,18 +4898,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 2, 3 },
+-            { SPECIES_PINECO, 2, 3 },
+-            { SPECIES_PINECO, 2, 3 },
+-            { SPECIES_EXEGGCUTE, 2, 3 },
+-            { SPECIES_EXEGGCUTE, 2, 3 },
+-            { SPECIES_EXEGGCUTE, 2, 3 },
+-            { SPECIES_HOOTHOOT, 4, 5 },
+-            { SPECIES_SPINARAK, 4, 5 },
+-            { SPECIES_SPINARAK, 4, 5 },
+-            { SPECIES_EXEGGCUTE, 4, 5 },
+-            { SPECIES_EXEGGCUTE, 4, 5 },
+-            { SPECIES_EXEGGCUTE, 4, 5 },
++            { SPECIES_HOOTHOOT, 16, 16 },
++            { SPECIES_PINECO, 16, 16 },
++            { SPECIES_PINECO, 16, 16 },
++            { SPECIES_EXEGGCUTE, 16, 16 },
++            { SPECIES_EXEGGCUTE, 16, 16 },
++            { SPECIES_EXEGGCUTE, 16, 16 },
++            { SPECIES_HOOTHOOT, 17, 17 },
++            { SPECIES_SPINARAK, 17, 17 },
++            { SPECIES_SPINARAK, 17, 17 },
++            { SPECIES_EXEGGCUTE, 17, 17 },
++            { SPECIES_EXEGGCUTE, 17, 17 },
++            { SPECIES_EXEGGCUTE, 17, 17 },
+         },
+         .specialSlots =
+         {
+@@ -4965,18 +4965,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 2, 3 },
+-            { SPECIES_PINECO, 2, 3 },
+-            { SPECIES_PINECO, 2, 3 },
+-            { SPECIES_EXEGGCUTE, 2, 3 },
+-            { SPECIES_EXEGGCUTE, 2, 3 },
+-            { SPECIES_EXEGGCUTE, 2, 3 },
+-            { SPECIES_HOOTHOOT, 4, 5 },
+-            { SPECIES_SPINARAK, 4, 5 },
+-            { SPECIES_SPINARAK, 4, 5 },
+-            { SPECIES_EXEGGCUTE, 4, 5 },
+-            { SPECIES_EXEGGCUTE, 4, 5 },
+-            { SPECIES_EXEGGCUTE, 4, 5 },
++            { SPECIES_HOOTHOOT, 16, 16 },
++            { SPECIES_PINECO, 16, 16 },
++            { SPECIES_PINECO, 16, 16 },
++            { SPECIES_EXEGGCUTE, 16, 16 },
++            { SPECIES_EXEGGCUTE, 16, 16 },
++            { SPECIES_EXEGGCUTE, 16, 16 },
++            { SPECIES_HOOTHOOT, 17, 17 },
++            { SPECIES_SPINARAK, 17, 17 },
++            { SPECIES_SPINARAK, 17, 17 },
++            { SPECIES_EXEGGCUTE, 17, 17 },
++            { SPECIES_EXEGGCUTE, 17, 17 },
++            { SPECIES_EXEGGCUTE, 17, 17 },
+         },
+         .specialSlots =
+         {
+@@ -5027,18 +5027,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 3, 4 },
+-            { SPECIES_PINECO, 3, 4 },
+-            { SPECIES_PINECO, 3, 4 },
+-            { SPECIES_EXEGGCUTE, 3, 4 },
+-            { SPECIES_EXEGGCUTE, 3, 4 },
+-            { SPECIES_EXEGGCUTE, 3, 4 },
+-            { SPECIES_HOOTHOOT, 5, 6 },
+-            { SPECIES_SPINARAK, 5, 6 },
+-            { SPECIES_SPINARAK, 5, 6 },
+-            { SPECIES_EXEGGCUTE, 5, 6 },
+-            { SPECIES_EXEGGCUTE, 5, 6 },
+-            { SPECIES_EXEGGCUTE, 5, 6 },
++            { SPECIES_HOOTHOOT, 16, 17 },
++            { SPECIES_PINECO, 16, 17 },
++            { SPECIES_PINECO, 16, 17 },
++            { SPECIES_EXEGGCUTE, 16, 17 },
++            { SPECIES_EXEGGCUTE, 16, 17 },
++            { SPECIES_EXEGGCUTE, 16, 17 },
++            { SPECIES_HOOTHOOT, 17, 17 },
++            { SPECIES_SPINARAK, 17, 17 },
++            { SPECIES_SPINARAK, 17, 17 },
++            { SPECIES_EXEGGCUTE, 17, 17 },
++            { SPECIES_EXEGGCUTE, 17, 17 },
++            { SPECIES_EXEGGCUTE, 17, 17 },
+         },
+         .specialSlots =
+         {
+@@ -5074,18 +5074,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 4, 5 },
+-            { SPECIES_PINECO, 4, 5 },
+-            { SPECIES_PINECO, 4, 5 },
+-            { SPECIES_EXEGGCUTE, 4, 5 },
+-            { SPECIES_EXEGGCUTE, 4, 5 },
+-            { SPECIES_EXEGGCUTE, 4, 5 },
+-            { SPECIES_HOOTHOOT, 6, 7 },
+-            { SPECIES_HOOTHOOT, 6, 7 },
+-            { SPECIES_HOOTHOOT, 6, 7 },
+-            { SPECIES_EXEGGCUTE, 6, 7 },
+-            { SPECIES_EXEGGCUTE, 6, 7 },
+-            { SPECIES_EXEGGCUTE, 6, 7 },
++            { SPECIES_HOOTHOOT, 17, 17 },
++            { SPECIES_PINECO, 17, 17 },
++            { SPECIES_PINECO, 17, 17 },
++            { SPECIES_EXEGGCUTE, 17, 17 },
++            { SPECIES_EXEGGCUTE, 17, 17 },
++            { SPECIES_EXEGGCUTE, 17, 17 },
++            { SPECIES_HOOTHOOT, 17, 18 },
++            { SPECIES_HOOTHOOT, 17, 18 },
++            { SPECIES_HOOTHOOT, 17, 18 },
++            { SPECIES_EXEGGCUTE, 17, 18 },
++            { SPECIES_EXEGGCUTE, 17, 18 },
++            { SPECIES_EXEGGCUTE, 17, 18 },
+         },
+         .specialSlots =
+         {
+@@ -5141,18 +5141,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_SPEAROW, 3, 5 },
+-            { SPECIES_HERACROSS, 3, 5 },
+-            { SPECIES_HERACROSS, 3, 5 },
+-            { SPECIES_AIPOM, 3, 5 },
+-            { SPECIES_AIPOM, 3, 5 },
+-            { SPECIES_AIPOM, 3, 5 },
+-            { SPECIES_SPEAROW, 6, 8 },
+-            { SPECIES_SPEAROW, 6, 8 },
+-            { SPECIES_SPEAROW, 6, 8 },
+-            { SPECIES_AIPOM, 6, 8 },
+-            { SPECIES_AIPOM, 6, 8 },
+-            { SPECIES_AIPOM, 6, 8 },
++            { SPECIES_SPEAROW, 16, 17 },
++            { SPECIES_HERACROSS, 16, 17 },
++            { SPECIES_HERACROSS, 16, 17 },
++            { SPECIES_AIPOM, 16, 17 },
++            { SPECIES_AIPOM, 16, 17 },
++            { SPECIES_AIPOM, 16, 17 },
++            { SPECIES_SPEAROW, 17, 18 },
++            { SPECIES_SPEAROW, 17, 18 },
++            { SPECIES_SPEAROW, 17, 18 },
++            { SPECIES_AIPOM, 17, 18 },
++            { SPECIES_AIPOM, 17, 18 },
++            { SPECIES_AIPOM, 17, 18 },
+         },
+         .specialSlots =
+         {
+@@ -5177,18 +5177,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 9, 10 },
+-            { SPECIES_PINECO, 9, 10 },
+-            { SPECIES_PINECO, 9, 10 },
+-            { SPECIES_EXEGGCUTE, 9, 10 },
+-            { SPECIES_EXEGGCUTE, 9, 10 },
+-            { SPECIES_EXEGGCUTE, 9, 10 },
+-            { SPECIES_HOOTHOOT, 11, 12 },
+-            { SPECIES_SPINARAK, 11, 12 },
+-            { SPECIES_SPINARAK, 11, 12 },
+-            { SPECIES_EXEGGCUTE, 11, 12 },
+-            { SPECIES_EXEGGCUTE, 11, 12 },
+-            { SPECIES_EXEGGCUTE, 11, 12 },
++            { SPECIES_HOOTHOOT, 18, 18 },
++            { SPECIES_PINECO, 18, 18 },
++            { SPECIES_PINECO, 18, 18 },
++            { SPECIES_EXEGGCUTE, 18, 18 },
++            { SPECIES_EXEGGCUTE, 18, 18 },
++            { SPECIES_EXEGGCUTE, 18, 18 },
++            { SPECIES_HOOTHOOT, 19, 19 },
++            { SPECIES_SPINARAK, 19, 19 },
++            { SPECIES_SPINARAK, 19, 19 },
++            { SPECIES_EXEGGCUTE, 19, 19 },
++            { SPECIES_EXEGGCUTE, 19, 19 },
++            { SPECIES_EXEGGCUTE, 19, 19 },
+         },
+         .specialSlots =
+         {
+@@ -5224,18 +5224,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 10, 11 },
+-            { SPECIES_PINECO, 10, 11 },
+-            { SPECIES_PINECO, 10, 11 },
+-            { SPECIES_EXEGGCUTE, 10, 11 },
+-            { SPECIES_EXEGGCUTE, 10, 11 },
+-            { SPECIES_EXEGGCUTE, 10, 11 },
+-            { SPECIES_HOOTHOOT, 13, 14 },
+-            { SPECIES_SPINARAK, 13, 14 },
+-            { SPECIES_SPINARAK, 13, 14 },
+-            { SPECIES_EXEGGCUTE, 13, 14 },
+-            { SPECIES_EXEGGCUTE, 13, 14 },
+-            { SPECIES_EXEGGCUTE, 13, 14 },
++            { SPECIES_HOOTHOOT, 22, 23 },
++            { SPECIES_PINECO, 22, 23 },
++            { SPECIES_PINECO, 22, 23 },
++            { SPECIES_EXEGGCUTE, 22, 23 },
++            { SPECIES_EXEGGCUTE, 22, 23 },
++            { SPECIES_EXEGGCUTE, 22, 23 },
++            { SPECIES_HOOTHOOT, 23, 23 },
++            { SPECIES_SPINARAK, 23, 23 },
++            { SPECIES_SPINARAK, 23, 23 },
++            { SPECIES_EXEGGCUTE, 23, 23 },
++            { SPECIES_EXEGGCUTE, 23, 23 },
++            { SPECIES_EXEGGCUTE, 23, 23 },
+         },
+         .specialSlots =
+         {
+@@ -5270,18 +5270,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 4, 5 },
+-            { SPECIES_PINECO, 4, 5 },
+-            { SPECIES_PINECO, 4, 5 },
+-            { SPECIES_EXEGGCUTE, 4, 5 },
+-            { SPECIES_EXEGGCUTE, 4, 5 },
+-            { SPECIES_EXEGGCUTE, 4, 5 },
+-            { SPECIES_HOOTHOOT, 6, 7 },
+-            { SPECIES_SPINARAK, 6, 7 },
+-            { SPECIES_SPINARAK, 6, 7 },
+-            { SPECIES_EXEGGCUTE, 6, 7 },
+-            { SPECIES_EXEGGCUTE, 6, 7 },
+-            { SPECIES_EXEGGCUTE, 6, 7 },
++            { SPECIES_HOOTHOOT, 21, 21 },
++            { SPECIES_PINECO, 21, 21 },
++            { SPECIES_PINECO, 21, 21 },
++            { SPECIES_EXEGGCUTE, 21, 21 },
++            { SPECIES_EXEGGCUTE, 21, 21 },
++            { SPECIES_EXEGGCUTE, 21, 21 },
++            { SPECIES_HOOTHOOT, 21, 22 },
++            { SPECIES_SPINARAK, 21, 22 },
++            { SPECIES_SPINARAK, 21, 22 },
++            { SPECIES_EXEGGCUTE, 21, 22 },
++            { SPECIES_EXEGGCUTE, 21, 22 },
++            { SPECIES_EXEGGCUTE, 21, 22 },
+         },
+         .specialSlots =
+         {
+@@ -5328,18 +5328,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 12, 14 },
+-            { SPECIES_PINECO, 12, 14 },
+-            { SPECIES_PINECO, 12, 14 },
+-            { SPECIES_EXEGGCUTE, 12, 14 },
+-            { SPECIES_EXEGGCUTE, 12, 14 },
+-            { SPECIES_EXEGGCUTE, 12, 14 },
+-            { SPECIES_HOOTHOOT, 15, 17 },
+-            { SPECIES_SPINARAK, 15, 17 },
+-            { SPECIES_SPINARAK, 15, 17 },
+-            { SPECIES_EXEGGCUTE, 15, 17 },
+-            { SPECIES_EXEGGCUTE, 15, 17 },
+-            { SPECIES_EXEGGCUTE, 15, 17 },
++            { SPECIES_HOOTHOOT, 23, 23 },
++            { SPECIES_PINECO, 23, 23 },
++            { SPECIES_PINECO, 23, 23 },
++            { SPECIES_EXEGGCUTE, 23, 23 },
++            { SPECIES_EXEGGCUTE, 23, 23 },
++            { SPECIES_EXEGGCUTE, 23, 23 },
++            { SPECIES_HOOTHOOT, 24, 24 },
++            { SPECIES_SPINARAK, 24, 24 },
++            { SPECIES_SPINARAK, 24, 24 },
++            { SPECIES_EXEGGCUTE, 24, 24 },
++            { SPECIES_EXEGGCUTE, 24, 24 },
++            { SPECIES_EXEGGCUTE, 24, 24 },
+         },
+         .specialSlots =
+         {
+@@ -5373,27 +5373,27 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 1,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 13, 14 },
+-            { SPECIES_PINECO, 13, 14 },
+-            { SPECIES_PINECO, 13, 14 },
+-            { SPECIES_EXEGGCUTE, 13, 14 },
+-            { SPECIES_EXEGGCUTE, 13, 14 },
+-            { SPECIES_EXEGGCUTE, 13, 14 },
+-            { SPECIES_HOOTHOOT, 15, 16 },
+-            { SPECIES_SPINARAK, 15, 16 },
+-            { SPECIES_SPINARAK, 15, 16 },
+-            { SPECIES_EXEGGCUTE, 15, 16 },
+-            { SPECIES_EXEGGCUTE, 15, 16 },
+-            { SPECIES_EXEGGCUTE, 15, 16 },
++            { SPECIES_HOOTHOOT, 26, 27 },
++            { SPECIES_PINECO, 26, 27 },
++            { SPECIES_PINECO, 26, 27 },
++            { SPECIES_EXEGGCUTE, 26, 27 },
++            { SPECIES_EXEGGCUTE, 26, 27 },
++            { SPECIES_EXEGGCUTE, 26, 27 },
++            { SPECIES_HOOTHOOT, 27, 28 },
++            { SPECIES_SPINARAK, 27, 28 },
++            { SPECIES_SPINARAK, 27, 28 },
++            { SPECIES_EXEGGCUTE, 27, 28 },
++            { SPECIES_EXEGGCUTE, 27, 28 },
++            { SPECIES_EXEGGCUTE, 27, 28 },
+         },
+         .specialSlots =
+         {
+-            { SPECIES_EXEGGCUTE, 18, 25 },
+-            { SPECIES_EXEGGCUTE, 18, 25 },
+-            { SPECIES_BURMY, 18, 20 },
+-            { SPECIES_BURMY, 18, 20 },
+-            { SPECIES_BURMY, 18, 20 },
+-            { SPECIES_BURMY, 21, 25 },
++            { SPECIES_EXEGGCUTE, 31, 31 },
++            { SPECIES_EXEGGCUTE, 31, 31 },
++            { SPECIES_BURMY, 31, 31 },
++            { SPECIES_BURMY, 31, 31 },
++            { SPECIES_BURMY, 31, 31 },
++            { SPECIES_BURMY, 31, 31 },
+         },
+         .treeCoords =
+         {
+@@ -5419,18 +5419,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 14, 15 },
+-            { SPECIES_PINECO, 14, 15 },
+-            { SPECIES_PINECO, 14, 15 },
+-            { SPECIES_EXEGGCUTE, 14, 15 },
+-            { SPECIES_EXEGGCUTE, 14, 15 },
+-            { SPECIES_EXEGGCUTE, 14, 15 },
+-            { SPECIES_HOOTHOOT, 16, 17 },
+-            { SPECIES_SPINARAK, 16, 17 },
+-            { SPECIES_SPINARAK, 16, 17 },
+-            { SPECIES_EXEGGCUTE, 16, 17 },
+-            { SPECIES_EXEGGCUTE, 16, 17 },
+-            { SPECIES_EXEGGCUTE, 16, 17 },
++            { SPECIES_HOOTHOOT, 27, 27 },
++            { SPECIES_PINECO, 27, 27 },
++            { SPECIES_PINECO, 27, 27 },
++            { SPECIES_EXEGGCUTE, 27, 27 },
++            { SPECIES_EXEGGCUTE, 27, 27 },
++            { SPECIES_EXEGGCUTE, 27, 27 },
++            { SPECIES_HOOTHOOT, 28, 28 },
++            { SPECIES_SPINARAK, 28, 28 },
++            { SPECIES_SPINARAK, 28, 28 },
++            { SPECIES_EXEGGCUTE, 28, 28 },
++            { SPECIES_EXEGGCUTE, 28, 28 },
++            { SPECIES_EXEGGCUTE, 28, 28 },
+         },
+         .specialSlots =
+         {
+@@ -5454,18 +5454,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_SPEAROW, 13, 14 },
+-            { SPECIES_HERACROSS, 13, 14 },
+-            { SPECIES_HERACROSS, 13, 14 },
+-            { SPECIES_AIPOM, 13, 14 },
+-            { SPECIES_AIPOM, 13, 14 },
+-            { SPECIES_AIPOM, 13, 14 },
+-            { SPECIES_SPEAROW, 15, 16 },
+-            { SPECIES_SPEAROW, 15, 16 },
+-            { SPECIES_SPEAROW, 15, 16 },
+-            { SPECIES_AIPOM, 15, 16 },
+-            { SPECIES_AIPOM, 15, 16 },
+-            { SPECIES_AIPOM, 15, 16 },
++            { SPECIES_SPEAROW, 30, 31 },
++            { SPECIES_HERACROSS, 30, 31 },
++            { SPECIES_HERACROSS, 30, 31 },
++            { SPECIES_AIPOM, 30, 31 },
++            { SPECIES_AIPOM, 30, 31 },
++            { SPECIES_AIPOM, 30, 31 },
++            { SPECIES_SPEAROW, 31, 32 },
++            { SPECIES_SPEAROW, 31, 32 },
++            { SPECIES_SPEAROW, 31, 32 },
++            { SPECIES_AIPOM, 31, 32 },
++            { SPECIES_AIPOM, 31, 32 },
++            { SPECIES_AIPOM, 31, 32 },
+         },
+         .specialSlots =
+         {
+@@ -5496,18 +5496,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 15, 16 },
+-            { SPECIES_PINECO, 15, 16 },
+-            { SPECIES_PINECO, 15, 16 },
+-            { SPECIES_EXEGGCUTE, 15, 16 },
+-            { SPECIES_EXEGGCUTE, 15, 16 },
+-            { SPECIES_EXEGGCUTE, 15, 16 },
+-            { SPECIES_HOOTHOOT, 17, 18 },
+-            { SPECIES_VENONAT, 17, 18 },
+-            { SPECIES_HOOTHOOT, 17, 18 },
+-            { SPECIES_EXEGGCUTE, 17, 18 },
+-            { SPECIES_EXEGGCUTE, 17, 18 },
+-            { SPECIES_EXEGGCUTE, 17, 18 },
++            { SPECIES_HOOTHOOT, 31, 32 },
++            { SPECIES_PINECO, 31, 32 },
++            { SPECIES_PINECO, 31, 32 },
++            { SPECIES_EXEGGCUTE, 31, 32 },
++            { SPECIES_EXEGGCUTE, 31, 32 },
++            { SPECIES_EXEGGCUTE, 31, 32 },
++            { SPECIES_HOOTHOOT, 33, 33 },
++            { SPECIES_VENONAT, 33, 33 },
++            { SPECIES_HOOTHOOT, 33, 33 },
++            { SPECIES_EXEGGCUTE, 33, 33 },
++            { SPECIES_EXEGGCUTE, 33, 33 },
++            { SPECIES_EXEGGCUTE, 33, 33 },
+         },
+         .specialSlots =
+         {
+@@ -5545,18 +5545,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_SPEAROW, 21, 22 },
+-            { SPECIES_HERACROSS, 21, 22 },
+-            { SPECIES_HERACROSS, 21, 22 },
+-            { SPECIES_AIPOM, 21, 22 },
+-            { SPECIES_AIPOM, 21, 22 },
+-            { SPECIES_AIPOM, 21, 22 },
+-            { SPECIES_SPEAROW, 23, 24 },
+-            { SPECIES_SPEAROW, 23, 24 },
+-            { SPECIES_SPEAROW, 23, 24 },
+-            { SPECIES_AIPOM, 23, 24 },
+-            { SPECIES_AIPOM, 23, 24 },
+-            { SPECIES_AIPOM, 23, 24 },
++            { SPECIES_SPEAROW, 34, 35 },
++            { SPECIES_HERACROSS, 34, 35 },
++            { SPECIES_HERACROSS, 34, 35 },
++            { SPECIES_AIPOM, 34, 35 },
++            { SPECIES_AIPOM, 34, 35 },
++            { SPECIES_AIPOM, 34, 35 },
++            { SPECIES_SPEAROW, 37, 38 },
++            { SPECIES_SPEAROW, 37, 38 },
++            { SPECIES_SPEAROW, 37, 38 },
++            { SPECIES_AIPOM, 37, 38 },
++            { SPECIES_AIPOM, 37, 38 },
++            { SPECIES_AIPOM, 37, 38 },
+         },
+         .specialSlots =
+         {
+@@ -5591,18 +5591,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_SPEAROW, 23, 24 },
+-            { SPECIES_HERACROSS, 23, 24 },
+-            { SPECIES_HERACROSS, 23, 25 },
+-            { SPECIES_AIPOM, 23, 24 },
+-            { SPECIES_AIPOM, 23, 24 },
+-            { SPECIES_AIPOM, 23, 24 },
+-            { SPECIES_SPEAROW, 26, 27 },
+-            { SPECIES_SPEAROW, 26, 27 },
+-            { SPECIES_SPEAROW, 26, 27 },
+-            { SPECIES_AIPOM, 26, 27 },
+-            { SPECIES_AIPOM, 26, 27 },
+-            { SPECIES_AIPOM, 26, 27 },
++            { SPECIES_SPEAROW, 37, 38 },
++            { SPECIES_HERACROSS, 37, 38 },
++            { SPECIES_HERACROSS, 37, 40 },
++            { SPECIES_AIPOM, 37, 38 },
++            { SPECIES_AIPOM, 37, 38 },
++            { SPECIES_AIPOM, 37, 38 },
++            { SPECIES_SPEAROW, 41, 42 },
++            { SPECIES_SPEAROW, 41, 42 },
++            { SPECIES_SPEAROW, 41, 42 },
++            { SPECIES_AIPOM, 41, 42 },
++            { SPECIES_AIPOM, 41, 42 },
++            { SPECIES_AIPOM, 41, 42 },
+         },
+         .specialSlots =
+         {
+@@ -5626,18 +5626,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_SPEAROW, 2, 3 },
+-            { SPECIES_HERACROSS, 2, 3 },
+-            { SPECIES_HERACROSS, 2, 3 },
+-            { SPECIES_AIPOM, 2, 3 },
+-            { SPECIES_AIPOM, 2, 3 },
+-            { SPECIES_AIPOM, 2, 3 },
+-            { SPECIES_SPEAROW, 4, 5 },
+-            { SPECIES_SPEAROW, 4, 5 },
+-            { SPECIES_SPEAROW, 4, 5 },
+-            { SPECIES_AIPOM, 4, 5 },
+-            { SPECIES_AIPOM, 4, 5 },
+-            { SPECIES_AIPOM, 4, 5 },
++            { SPECIES_SPEAROW, 16, 16 },
++            { SPECIES_HERACROSS, 16, 16 },
++            { SPECIES_HERACROSS, 16, 16 },
++            { SPECIES_AIPOM, 16, 16 },
++            { SPECIES_AIPOM, 16, 16 },
++            { SPECIES_AIPOM, 16, 16 },
++            { SPECIES_SPEAROW, 17, 17 },
++            { SPECIES_SPEAROW, 17, 17 },
++            { SPECIES_SPEAROW, 17, 17 },
++            { SPECIES_AIPOM, 17, 17 },
++            { SPECIES_AIPOM, 17, 17 },
++            { SPECIES_AIPOM, 17, 17 },
+         },
+         .specialSlots =
+         {
+@@ -6044,18 +6044,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 2, 3 },
+-            { SPECIES_PINECO, 2, 3 },
+-            { SPECIES_PINECO, 2, 3 },
+-            { SPECIES_EXEGGCUTE, 2, 3 },
+-            { SPECIES_EXEGGCUTE, 2, 3 },
+-            { SPECIES_EXEGGCUTE, 2, 3 },
+-            { SPECIES_HOOTHOOT, 4, 5 },
+-            { SPECIES_SPINARAK, 4, 5 },
+-            { SPECIES_SPINARAK, 4, 5 },
+-            { SPECIES_EXEGGCUTE, 4, 5 },
+-            { SPECIES_EXEGGCUTE, 4, 5 },
+-            { SPECIES_EXEGGCUTE, 4, 5 },
++            { SPECIES_HOOTHOOT, 16, 16 },
++            { SPECIES_PINECO, 16, 16 },
++            { SPECIES_PINECO, 16, 16 },
++            { SPECIES_EXEGGCUTE, 16, 16 },
++            { SPECIES_EXEGGCUTE, 16, 16 },
++            { SPECIES_EXEGGCUTE, 16, 16 },
++            { SPECIES_HOOTHOOT, 17, 17 },
++            { SPECIES_SPINARAK, 17, 17 },
++            { SPECIES_SPINARAK, 17, 17 },
++            { SPECIES_EXEGGCUTE, 17, 17 },
++            { SPECIES_EXEGGCUTE, 17, 17 },
++            { SPECIES_EXEGGCUTE, 17, 17 },
+         },
+         .specialSlots =
+         {
+@@ -6117,27 +6117,27 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 4,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 2, 3 },
+-            { SPECIES_PINECO, 2, 3 },
+-            { SPECIES_PINECO, 2, 3 },
+-            { SPECIES_EXEGGCUTE, 2, 3 },
+-            { SPECIES_EXEGGCUTE, 2, 3 },
+-            { SPECIES_EXEGGCUTE, 2, 3 },
+-            { SPECIES_HOOTHOOT, 4, 5 },
+-            { SPECIES_SPINARAK, 4, 5 },
+-            { SPECIES_SPINARAK, 4, 5 },
+-            { SPECIES_EXEGGCUTE, 4, 5 },
+-            { SPECIES_EXEGGCUTE, 4, 5 },
+-            { SPECIES_EXEGGCUTE, 4, 5 },
++            { SPECIES_HOOTHOOT, 16, 16 },
++            { SPECIES_PINECO, 16, 16 },
++            { SPECIES_PINECO, 16, 16 },
++            { SPECIES_EXEGGCUTE, 16, 16 },
++            { SPECIES_EXEGGCUTE, 16, 16 },
++            { SPECIES_EXEGGCUTE, 16, 16 },
++            { SPECIES_HOOTHOOT, 17, 17 },
++            { SPECIES_SPINARAK, 17, 17 },
++            { SPECIES_SPINARAK, 17, 17 },
++            { SPECIES_EXEGGCUTE, 17, 17 },
++            { SPECIES_EXEGGCUTE, 17, 17 },
++            { SPECIES_EXEGGCUTE, 17, 17 },
+         },
+         .specialSlots =
+         {
+-            { SPECIES_EXEGGCUTE, 18, 20 },
+-            { SPECIES_EXEGGCUTE, 18, 20 },
+-            { SPECIES_TAILLOW, 18, 20 },
+-            { SPECIES_TAILLOW, 18, 20 },
+-            { SPECIES_TAILLOW, 18, 20 },
+-            { SPECIES_TAILLOW, 21, 25 },
++            { SPECIES_EXEGGCUTE, 21, 21 },
++            { SPECIES_EXEGGCUTE, 21, 21 },
++            { SPECIES_TAILLOW, 21, 21 },
++            { SPECIES_TAILLOW, 21, 21 },
++            { SPECIES_TAILLOW, 21, 21 },
++            { SPECIES_TAILLOW, 21, 21 },
+         },
+         .treeCoords =
+         {
+@@ -6185,18 +6185,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 2, 3 },
+-            { SPECIES_PINECO, 10, 10 },
+-            { SPECIES_PINECO, 10, 10 },
+-            { SPECIES_EXEGGCUTE, 10, 10 },
+-            { SPECIES_EXEGGCUTE, 10, 10 },
+-            { SPECIES_EXEGGCUTE, 10, 10 },
+-            { SPECIES_HOOTHOOT, 4, 5 },
+-            { SPECIES_HOOTHOOT, 10, 10 },
+-            { SPECIES_HOOTHOOT, 10, 10 },
+-            { SPECIES_EXEGGCUTE, 10, 10 },
+-            { SPECIES_EXEGGCUTE, 10, 10 },
+-            { SPECIES_EXEGGCUTE, 10, 10 },
++            { SPECIES_HOOTHOOT, 16, 16 },
++            { SPECIES_PINECO, 18, 18 },
++            { SPECIES_PINECO, 18, 18 },
++            { SPECIES_EXEGGCUTE, 18, 18 },
++            { SPECIES_EXEGGCUTE, 18, 18 },
++            { SPECIES_EXEGGCUTE, 18, 18 },
++            { SPECIES_HOOTHOOT, 17, 17 },
++            { SPECIES_HOOTHOOT, 18, 18 },
++            { SPECIES_HOOTHOOT, 18, 18 },
++            { SPECIES_EXEGGCUTE, 18, 18 },
++            { SPECIES_EXEGGCUTE, 18, 18 },
++            { SPECIES_EXEGGCUTE, 18, 18 },
+         },
+         .specialSlots =
+         {
+@@ -6244,18 +6244,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_SPEAROW, 3, 5 },
+-            { SPECIES_HERACROSS, 3, 5 },
+-            { SPECIES_HERACROSS, 3, 5 },
+-            { SPECIES_AIPOM, 3, 5 },
+-            { SPECIES_AIPOM, 3, 5 },
+-            { SPECIES_AIPOM, 3, 5 },
+-            { SPECIES_SPEAROW, 6, 8 },
+-            { SPECIES_SPEAROW, 6, 8 },
+-            { SPECIES_SPEAROW, 6, 8 },
+-            { SPECIES_AIPOM, 6, 8 },
+-            { SPECIES_AIPOM, 6, 8 },
+-            { SPECIES_AIPOM, 6, 8 },
++            { SPECIES_SPEAROW, 16, 17 },
++            { SPECIES_HERACROSS, 16, 17 },
++            { SPECIES_HERACROSS, 16, 17 },
++            { SPECIES_AIPOM, 16, 17 },
++            { SPECIES_AIPOM, 16, 17 },
++            { SPECIES_AIPOM, 16, 17 },
++            { SPECIES_SPEAROW, 17, 18 },
++            { SPECIES_SPEAROW, 17, 18 },
++            { SPECIES_SPEAROW, 17, 18 },
++            { SPECIES_AIPOM, 17, 18 },
++            { SPECIES_AIPOM, 17, 18 },
++            { SPECIES_AIPOM, 17, 18 },
+         },
+         .specialSlots =
+         {
+@@ -6306,18 +6306,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 12, 14 },
+-            { SPECIES_PINECO, 12, 14 },
+-            { SPECIES_PINECO, 12, 14 },
+-            { SPECIES_EXEGGCUTE, 12, 14 },
+-            { SPECIES_EXEGGCUTE, 12, 14 },
+-            { SPECIES_EXEGGCUTE, 12, 14 },
+-            { SPECIES_HOOTHOOT, 15, 17 },
+-            { SPECIES_SPINARAK, 15, 17 },
+-            { SPECIES_SPINARAK, 15, 17 },
+-            { SPECIES_EXEGGCUTE, 15, 17 },
+-            { SPECIES_EXEGGCUTE, 15, 17 },
+-            { SPECIES_EXEGGCUTE, 15, 17 },
++            { SPECIES_HOOTHOOT, 23, 23 },
++            { SPECIES_PINECO, 23, 23 },
++            { SPECIES_PINECO, 23, 23 },
++            { SPECIES_EXEGGCUTE, 23, 23 },
++            { SPECIES_EXEGGCUTE, 23, 23 },
++            { SPECIES_EXEGGCUTE, 23, 23 },
++            { SPECIES_HOOTHOOT, 24, 24 },
++            { SPECIES_SPINARAK, 24, 24 },
++            { SPECIES_SPINARAK, 24, 24 },
++            { SPECIES_EXEGGCUTE, 24, 24 },
++            { SPECIES_EXEGGCUTE, 24, 24 },
++            { SPECIES_EXEGGCUTE, 24, 24 },
+         },
+         .specialSlots =
+         {
+@@ -6401,18 +6401,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 14, 16 },
+-            { SPECIES_PINECO, 14, 16 },
+-            { SPECIES_PINECO, 14, 16 },
+-            { SPECIES_EXEGGCUTE, 14, 16 },
+-            { SPECIES_EXEGGCUTE, 14, 16 },
+-            { SPECIES_EXEGGCUTE, 14, 16 },
+-            { SPECIES_HOOTHOOT, 17, 19 },
+-            { SPECIES_VENONAT, 17, 19 },
+-            { SPECIES_HOOTHOOT, 17, 19 },
+-            { SPECIES_EXEGGCUTE, 17, 19 },
+-            { SPECIES_EXEGGCUTE, 17, 19 },
+-            { SPECIES_EXEGGCUTE, 17, 19 },
++            { SPECIES_HOOTHOOT, 31, 32 },
++            { SPECIES_PINECO, 31, 32 },
++            { SPECIES_PINECO, 31, 32 },
++            { SPECIES_EXEGGCUTE, 31, 32 },
++            { SPECIES_EXEGGCUTE, 31, 32 },
++            { SPECIES_EXEGGCUTE, 31, 32 },
++            { SPECIES_HOOTHOOT, 33, 34 },
++            { SPECIES_VENONAT, 33, 34 },
++            { SPECIES_HOOTHOOT, 33, 34 },
++            { SPECIES_EXEGGCUTE, 33, 34 },
++            { SPECIES_EXEGGCUTE, 33, 34 },
++            { SPECIES_EXEGGCUTE, 33, 34 },
+         },
+         .specialSlots =
+         {
+@@ -6552,27 +6552,27 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 5,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 10, 12 },
+-            { SPECIES_PINECO, 10, 12 },
+-            { SPECIES_PINECO, 10, 12 },
+-            { SPECIES_EXEGGCUTE, 10, 12 },
+-            { SPECIES_EXEGGCUTE, 10, 12 },
+-            { SPECIES_EXEGGCUTE, 10, 12 },
+-            { SPECIES_HOOTHOOT, 13, 15 },
+-            { SPECIES_SPINARAK, 13, 15 },
+-            { SPECIES_SPINARAK, 13, 15 },
+-            { SPECIES_EXEGGCUTE, 13, 15 },
+-            { SPECIES_EXEGGCUTE, 13, 15 },
+-            { SPECIES_EXEGGCUTE, 13, 15 },
++            { SPECIES_HOOTHOOT, 22, 23 },
++            { SPECIES_PINECO, 22, 23 },
++            { SPECIES_PINECO, 22, 23 },
++            { SPECIES_EXEGGCUTE, 22, 23 },
++            { SPECIES_EXEGGCUTE, 22, 23 },
++            { SPECIES_EXEGGCUTE, 22, 23 },
++            { SPECIES_HOOTHOOT, 23, 24 },
++            { SPECIES_SPINARAK, 23, 24 },
++            { SPECIES_SPINARAK, 23, 24 },
++            { SPECIES_EXEGGCUTE, 23, 24 },
++            { SPECIES_EXEGGCUTE, 23, 24 },
++            { SPECIES_EXEGGCUTE, 23, 24 },
+         },
+         .specialSlots =
+         {
+-            { SPECIES_EXEGGCUTE, 18, 20 },
+-            { SPECIES_EXEGGCUTE, 18, 20 },
+-            { SPECIES_CHERUBI, 18, 20 },
+-            { SPECIES_CHERUBI, 18, 20 },
+-            { SPECIES_CHERUBI, 18, 20 },
+-            { SPECIES_CHERUBI, 21, 25 },
++            { SPECIES_EXEGGCUTE, 26, 26 },
++            { SPECIES_EXEGGCUTE, 26, 26 },
++            { SPECIES_CHERUBI, 26, 26 },
++            { SPECIES_CHERUBI, 26, 26 },
++            { SPECIES_CHERUBI, 26, 26 },
++            { SPECIES_CHERUBI, 26, 26 },
+         },
+         .treeCoords =
+         {
+@@ -6711,18 +6711,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 3, 5 },
+-            { SPECIES_CATERPIE, 3, 5 },
+-            { SPECIES_CATERPIE, 3, 5 },
+-            { SPECIES_HOOTHOOT, 3, 5 },
+-            { SPECIES_METAPOD, 3, 5 },
+-            { SPECIES_METAPOD, 3, 5 },
+-            { SPECIES_HOOTHOOT, 6, 8 },
+-            { SPECIES_PINECO, 6, 8 },
+-            { SPECIES_PINECO, 6, 8 },
+-            { SPECIES_NOCTOWL, 6, 8 },
+-            { SPECIES_BUTTERFREE, 6, 8 },
+-            { SPECIES_BUTTERFREE, 6, 8 },
++            { SPECIES_HOOTHOOT, 16, 17 },
++            { SPECIES_CATERPIE, 16, 17 },
++            { SPECIES_CATERPIE, 16, 17 },
++            { SPECIES_HOOTHOOT, 16, 17 },
++            { SPECIES_METAPOD, 16, 17 },
++            { SPECIES_METAPOD, 16, 17 },
++            { SPECIES_HOOTHOOT, 17, 18 },
++            { SPECIES_PINECO, 17, 18 },
++            { SPECIES_PINECO, 17, 18 },
++            { SPECIES_NOCTOWL, 17, 18 },
++            { SPECIES_BUTTERFREE, 17, 18 },
++            { SPECIES_BUTTERFREE, 17, 18 },
+         },
+         .specialSlots =
+         {
+@@ -7015,27 +7015,27 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 4,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 15, 16 },
+-            { SPECIES_PINECO, 15, 16 },
+-            { SPECIES_PINECO, 15, 16 },
+-            { SPECIES_EXEGGCUTE, 15, 16 },
+-            { SPECIES_EXEGGCUTE, 15, 16 },
+-            { SPECIES_EXEGGCUTE, 15, 16 },
+-            { SPECIES_HOOTHOOT, 17, 18 },
+-            { SPECIES_SPINARAK, 17, 18 },
+-            { SPECIES_SPINARAK, 17, 18 },
+-            { SPECIES_EXEGGCUTE, 17, 18 },
+-            { SPECIES_EXEGGCUTE, 17, 18 },
+-            { SPECIES_EXEGGCUTE, 17, 18 },
++            { SPECIES_HOOTHOOT, 27, 28 },
++            { SPECIES_PINECO, 27, 28 },
++            { SPECIES_PINECO, 27, 28 },
++            { SPECIES_EXEGGCUTE, 27, 28 },
++            { SPECIES_EXEGGCUTE, 27, 28 },
++            { SPECIES_EXEGGCUTE, 27, 28 },
++            { SPECIES_HOOTHOOT, 28, 29 },
++            { SPECIES_SPINARAK, 28, 29 },
++            { SPECIES_SPINARAK, 28, 29 },
++            { SPECIES_EXEGGCUTE, 28, 29 },
++            { SPECIES_EXEGGCUTE, 28, 29 },
++            { SPECIES_EXEGGCUTE, 28, 29 },
+         },
+         .specialSlots =
+         {
+-            { SPECIES_METAPOD, 25, 28 },
+-            { SPECIES_BUTTERFREE, 25, 28 },
+-            { SPECIES_BUTTERFREE, 25, 28 },
+-            { SPECIES_HERACROSS, 25, 28 },
+-            { SPECIES_HERACROSS, 25, 28 },
+-            { SPECIES_HERACROSS, 27, 30 },
++            { SPECIES_METAPOD, 31, 31 },
++            { SPECIES_BUTTERFREE, 31, 31 },
++            { SPECIES_BUTTERFREE, 31, 31 },
++            { SPECIES_HERACROSS, 31, 31 },
++            { SPECIES_HERACROSS, 31, 31 },
++            { SPECIES_HERACROSS, 31, 31 },
+         },
+         .treeCoords =
+         {
+@@ -7061,18 +7061,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 15, 16 },
+-            { SPECIES_PINECO, 15, 16 },
+-            { SPECIES_PINECO, 15, 16 },
+-            { SPECIES_EXEGGCUTE, 15, 16 },
+-            { SPECIES_EXEGGCUTE, 15, 16 },
+-            { SPECIES_EXEGGCUTE, 15, 16 },
+-            { SPECIES_HOOTHOOT, 17, 18 },
+-            { SPECIES_SPINARAK, 17, 18 },
+-            { SPECIES_SPINARAK, 17, 18 },
+-            { SPECIES_EXEGGCUTE, 17, 18 },
+-            { SPECIES_EXEGGCUTE, 17, 18 },
+-            { SPECIES_EXEGGCUTE, 17, 18 },
++            { SPECIES_HOOTHOOT, 27, 28 },
++            { SPECIES_PINECO, 27, 28 },
++            { SPECIES_PINECO, 27, 28 },
++            { SPECIES_EXEGGCUTE, 27, 28 },
++            { SPECIES_EXEGGCUTE, 27, 28 },
++            { SPECIES_EXEGGCUTE, 27, 28 },
++            { SPECIES_HOOTHOOT, 28, 29 },
++            { SPECIES_SPINARAK, 28, 29 },
++            { SPECIES_SPINARAK, 28, 29 },
++            { SPECIES_EXEGGCUTE, 28, 29 },
++            { SPECIES_EXEGGCUTE, 28, 29 },
++            { SPECIES_EXEGGCUTE, 28, 29 },
+         },
+         .specialSlots =
+         {
+@@ -7204,18 +7204,18 @@ const HeadbuttArchiveData __data =
+         .specialTreeCount = 0,
+         .normalSlots =
+         {
+-            { SPECIES_HOOTHOOT, 14, 16 },
+-            { SPECIES_PINECO, 14, 16 },
+-            { SPECIES_PINECO, 14, 16 },
+-            { SPECIES_EXEGGCUTE, 14, 16 },
+-            { SPECIES_EXEGGCUTE, 14, 16 },
+-            { SPECIES_EXEGGCUTE, 14, 16 },
+-            { SPECIES_HOOTHOOT, 17, 19 },
+-            { SPECIES_SPINARAK, 17, 19 },
+-            { SPECIES_SPINARAK, 17, 19 },
+-            { SPECIES_EXEGGCUTE, 17, 19 },
+-            { SPECIES_EXEGGCUTE, 17, 19 },
+-            { SPECIES_EXEGGCUTE, 17, 19 },
++            { SPECIES_HOOTHOOT, 27, 28 },
++            { SPECIES_PINECO, 27, 28 },
++            { SPECIES_PINECO, 27, 28 },
++            { SPECIES_EXEGGCUTE, 27, 28 },
++            { SPECIES_EXEGGCUTE, 27, 28 },
++            { SPECIES_EXEGGCUTE, 27, 28 },
++            { SPECIES_HOOTHOOT, 28, 29 },
++            { SPECIES_SPINARAK, 28, 29 },
++            { SPECIES_SPINARAK, 28, 29 },
++            { SPECIES_EXEGGCUTE, 28, 29 },
++            { SPECIES_EXEGGCUTE, 28, 29 },
++            { SPECIES_EXEGGCUTE, 28, 29 },
+         },
+         .specialSlots =
+         {
+diff --git a/tools/hack/extra_wild.py b/tools/hack/extra_wild.py
+new file mode 100644
+index 000000000..2e5f62f93
+--- /dev/null
++++ b/tools/hack/extra_wild.py
+@@ -0,0 +1,172 @@
++#!/usr/bin/env python3
++"""Fishing, Rock Smash and Headbutt in Johto in line with the land and water.
++
++The walking and surfing levels were moved into a band under each boss
++(johto_wild.py, side_wild.py, surf_wild.py, cianwood_wild.py, league_wild.py),
++but the other ways to meet a wild Pokemon kept HeartGold's own levels: the
++Good Rod at Lv. 20 everywhere, Rock Smash at 3-15 by the Ruins of Alph, and
++Headbutt trees at 2-8 up to Azalea and 13-18 as far as Route 43. As there,
++each is tied to the boss a player faces next once they can use it, and moves
++into the band 75-85% of that boss's average, keeping its order:
++
++    Good Rod (Olivine, after Surf)  each water table's surfing band: the rod
++                                    comes after Surf, so wherever it can be
++                                    used the surfing levels already apply
++    Rock Smash (Route 36)           the Ruins of Alph and Dark Cave's Route
++                                    31 side follow Morty (28); Cianwood and
++                                    Cliff Cave follow Chuck (34)
++    Headbutt (Ilex Forest)          trees passed before Ilex Forest follow
++                                    Whitney (22); later ones follow the
++                                    walking band of their area's group, and
++                                    Routes 26 and 27 league_wild.py's
++
++A Headbutt area's special trees (a few rarer Pokemon) sit two levels over its
++band, as surf_wild.py's rare slot does. The Old Rod (Lv. 10) is had before
++Falkner and already fits there; the Super Rod (Lv. 40) is a post-game item
++from Kanto; Kanto's trees were set with its post-game levels. Those stay.
++
++Run once from the hg-engine root, after cianwood_wild.py:
++    python3 tools/hack/extra_wild.py
++"""
++import re
++
++import league_wild
++from johto_wild import LATER
++
++ENCOUNTERS = "data/Encounters.c"
++HEADBUTT = "data/Headbutt.c"
++SLOT = r"\{ (\d+), (\d+), SPECIES_(\w+) \}"
++HB_SLOT = r"\{ SPECIES_(\w+), (\d+), (\d+) \}"
++
++GOOD_ROD = ["T20_NEW_BARK_TOWN", "T21_CHERRYGROVE_CITY", "R30_ROUTE_30", "R31_ROUTE_31", "T22_VIOLET_CITY",
++            "R32_ROUTE_32", "D24R0101_RUINS_OF_ALPH_OUTSIDE", "D25R0101_UNION_CAVE_1F", "D25R0102_UNION_CAVE_B1F",
++            "D25R0103_UNION_CAVE_B2F", "D26R0102_SLOWPOKE_WELL_1F", "D26R0103_SLOWPOKE_WELL_B2F",
++            "D36R0101_ILEX_FOREST", "R34_ROUTE_34", "R35_ROUTE_35", "T27_ECRUTEAK_CITY", "T26_OLIVINE_CITY",
++            "W40_ROUTE_40", "W41_ROUTE_41", "T24_CIANWOOD_CITY", "D42R0102_DARK_CAVE_ROUTE_31_ENTRANCE",
++            "R42_ROUTE_42", "D38R0101_MT_MORTAR_WATERFALL_ROOM", "D38R0103_MT_MORTAR_ROOM_ABOVE_WATERFALL",
++            "D38R0104_MT_MORTAR_B1F", "R43_ROUTE_43", "T29_LAKE_OF_RAGE", "R44_ROUTE_44", "T30_BLACKTHORN_CITY",
++            "D44R0102_DRAGONS_DEN", "D40R0101_WHIRL_ISLANDS_1F", "D40R0104_WHIRL_ISLANDS_B2F", "R45_ROUTE_45",
++            "D42R0101_DARK_CAVE_ROUTE_45_ENTRANCE", "R26_ROUTE_26", "R27_ROUTE_27", "D45R0101_TOHJO_FALLS",
++            "R47_ROUTE_47"]
++ROCK_SMASH = [(28, ["D24R0101_RUINS_OF_ALPH_OUTSIDE", "D42R0102_DARK_CAVE_ROUTE_31_ENTRANCE"]),
++              (34, ["T24_CIANWOOD_CITY", "D50R0101_CLIFF_CAVE"])]
++# (the boss's average, or "league" for league_wild.py's band, and the Headbutt areas that follow it)
++HEADBUTT_GROUPS = [
++    (22, ["newBarkTown", "route29", "cherrygroveCity", "route30", "route31", "violetCity", "route32", "route33",
++          "azaleaTown", "ilexForest", "route34", "route46"]),
++    (28, ["route35", "nationalPark", "route36", "route37", "ecruteakCity"]),
++    (34, ["route38", "route39", "route47", "route48", "safariZoneGateOutside"]),
++    (40, ["route42", "route43", "lakeOfRage"]),
++    (45, ["route44"]),
++    (49, ["route45"]),
++    ("league", ["route26", "route27"]),
++]
++
++
++def band(average):
++    if average == "league":
++        return league_wild.LOW, league_wild.HIGH
++    return round(average * LATER[0]), round(average * LATER[1])
++
++
++def scaler(lo, hi, low, high):
++    """lo..hi onto low..high, keeping order, rounded to the nearest."""
++    def scale(level):
++        level = min(max(level, lo), hi)
++        return high if hi == lo else low + ((level - lo) * (high - low) * 2 + (hi - lo)) // ((hi - lo) * 2)
++    return scale
++
++
++def table(text, name):
++    m = re.search(r"^    \[ENCDATA_%s\] = \{\n.*?^    \},\n" % name, text, re.S | re.M)
++    assert m, name
++    return m
++
++
++def field(block, key):
++    f = re.search(r"\.%s = \{.*?\n        \}," % key, block, re.S)
++    assert f, key
++    return f
++
++
++def span(slots):
++    real = [(a, b) for a, b, s in slots if s != "NONE"]
++    return "%d-%d" % (min(a for a, b in real), max(b for a, b in real)) if real else "-"
++
++
++def encounters(done):
++    text = open(ENCOUNTERS).read()
++    edits = []                  # (start, end, new text)
++    for name in GOOD_ROD:
++        m = table(text, name)
++        surf = [(int(a), int(b), s) for a, b, s in re.findall(SLOT, field(m.group(0), "surfSlots").group(0))]
++        real = [(a, b) for a, b, s in surf[:4] if s != "NONE"]
++        low, high = min(a for a, b in real), max(b for a, b in real)
++        rod = field(m.group(0), "goodRodSlots")
++        old = [(int(a), int(b), s) for a, b, s in re.findall(SLOT, rod.group(0))]
++        new = [(a, b, s) if s == "NONE" else (low, high, s) for a, b, s in old]
++        it = iter(new)
++        edits.append((m.start() + rod.start(), m.start() + rod.end(),
++                      re.sub(SLOT, lambda x: "{ %d, %d, SPECIES_%s }" % next(it), rod.group(0))))
++        done.append(("Good Rod", name, span(old), span(new)))
++    for average, names in ROCK_SMASH:
++        low, high = band(average)
++        for name in names:
++            m = table(text, name)
++            rs = field(m.group(0), "rockSmashSlots")
++            old = [(int(a), int(b), s) for a, b, s in re.findall(SLOT, rs.group(0))]
++            real = [x for a, b, s in old if s != "NONE" for x in (a, b)]
++            scale = scaler(min(real), max(real), low, high)
++            new = [(a, b, s) if s == "NONE" else (scale(a), scale(b), s) for a, b, s in old]
++            it = iter(new)
++            edits.append((m.start() + rs.start(), m.start() + rs.end(),
++                          re.sub(SLOT, lambda x: "{ %d, %d, SPECIES_%s }" % next(it), rs.group(0))))
++            done.append(("Rock Smash", name, span(old), span(new)))
++    for start, end, new in sorted(edits, reverse=True):     # from the end, so earlier offsets still hold
++        text = text[:start] + new + text[end:]
++    open(ENCOUNTERS, "w").write(text)
++
++
++def headbutt(done):
++    text = open(HEADBUTT).read()
++    edits = []
++    for average, areas in HEADBUTT_GROUPS:
++        low, high = band(average)
++        found = {}
++        for area in areas:
++            m = re.search(r"^    \.%s = \{\n.*?^    \},\n" % area, text, re.S | re.M)
++            assert m, area
++            normal = re.search(r"\.normalSlots =\s*\{.*?\n        \},", m.group(0), re.S)
++            special = re.search(r"\.specialSlots =\s*\{.*?\n        \},", m.group(0), re.S)
++            found[area] = (m, normal, special)
++        # the scale runs over the normal trees of the whole group, as surf_wild.py's over its tables
++        every = [int(x) for _, normal, _ in found.values() for s, a, b in re.findall(HB_SLOT, normal.group(0))
++                 if s != "NONE" for x in (a, b)]
++        scale = scaler(min(every), max(every), low, high)
++        for area, (m, normal, special) in found.items():
++            for part, rare in ((normal, False), (special, True)):
++                old = [(s, int(a), int(b)) for s, a, b in re.findall(HB_SLOT, part.group(0))]
++                if not any(s != "NONE" for s, a, b in old):
++                    continue
++                new = [(s, a, b) if s == "NONE" else (s, high + 2, high + 2) if rare else (s, scale(a), scale(b))
++                       for s, a, b in old]
++                it = iter(new)
++                edits.append((m.start() + part.start(), m.start() + part.end(),
++                              re.sub(HB_SLOT, lambda x: "{ SPECIES_%s, %d, %d }" % next(it), part.group(0))))
++                flip = lambda xs: [(a, b, s) for s, a, b in xs]
++                done.append(("Headbutt" + (" (special)" if rare else ""), area, span(flip(old)), span(flip(new))))
++    for start, end, new in sorted(edits, reverse=True):
++        text = text[:start] + new + text[end:]
++    open(HEADBUTT, "w").write(text)
++
++
++def main():
++    done = []
++    encounters(done)
++    headbutt(done)
++    for kind, name, old, new in done:
++        print("%-20s %-42s Lv. %-6s -> %s" % (kind, name, old, new))
++
++
++if __name__ == "__main__":
++    main()
+-- 
+2.43.0
+
