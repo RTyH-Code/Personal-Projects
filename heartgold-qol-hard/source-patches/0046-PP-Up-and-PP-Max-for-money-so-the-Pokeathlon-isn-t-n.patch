@@ -1,0 +1,123 @@
+From b629b777af72d0a1692dee8bacc6456dfb395ca3 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 28 Nov 2026 07:22:00 +0000
+Subject: [PATCH] PP Up and PP Max for money, so the Pokeathlon isn't needed
+ for anything
+
+The Pokeathlon Dome's prize exchange was the only repeatable source of PP Ups;
+everything else it offers is sold or found elsewhere. Goldenrod Department
+Store 4F now sells PP Up from four badges (P9,800) and PP Max from eight
+(P24,800). Made by tools/hack/pp_shop.py.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEYSk2h6k1E1jWo3cHd
+---
+ data/itemdata/itemdata.c |  4 ++--
+ src/field/mart.c         |  7 +++++-
+ tools/hack/pp_shop.py    | 47 ++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 55 insertions(+), 3 deletions(-)
+ create mode 100644 tools/hack/pp_shop.py
+
+diff --git a/data/itemdata/itemdata.c b/data/itemdata/itemdata.c
+index 73b7feb97..e762fe8b3 100644
+--- a/data/itemdata/itemdata.c
++++ b/data/itemdata/itemdata.c
+@@ -3328,7 +3328,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_PP_UP] =
+ {
+-    ITEM_PRICE(10000),
++    ITEM_PRICE(9800),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -3458,7 +3458,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_PP_MAX] =
+ {
+-    ITEM_PRICE(10000),
++    ITEM_PRICE(24800),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+diff --git a/src/field/mart.c b/src/field/mart.c
+index 10008b605..5936c3d26 100644
+--- a/src/field/mart.c
++++ b/src/field/mart.c
+@@ -87,7 +87,9 @@ u16 sGoldenrodDepartment4F[] = {
+     ITEM_BLACK_AUGURITE,
+     ITEM_PEAT_BLOCK, ITEM_PROTECTOR, ITEM_ELECTIRIZER, ITEM_MAGMARIZER, ITEM_DUBIOUS_DISC, ITEM_REAPER_CLOTH, ITEM_RAZOR_CLAW, ITEM_RAZOR_FANG,
+     // training items (tools/hack/training_items.py)
+-    ITEM_POWER_WEIGHT, ITEM_POWER_BRACER, ITEM_POWER_BELT, ITEM_POWER_LENS, ITEM_POWER_BAND, ITEM_POWER_ANKLET, 0xFFFF
++    ITEM_POWER_WEIGHT, ITEM_POWER_BRACER, ITEM_POWER_BELT, ITEM_POWER_LENS, ITEM_POWER_BAND, ITEM_POWER_ANKLET,
++    // PP Up and PP Max (tools/hack/pp_shop.py)
++    ITEM_PP_UP, ITEM_PP_MAX, 0xFFFF
+ };
+ 
+ u16 sGoldenrodDepartment5F[] = {
+@@ -221,6 +223,9 @@ BOOL ScrCmd_MartBuy(SCRIPTCONTEXT *ctx)
+ 
+ // items that the special marts (every mart with its own stock list above) only sell once the player has this many badges
+ const struct BadgeMartItems sBadgeLockedMartItems[] = {
++    // PP Up and PP Max (tools/hack/pp_shop.py)
++    { ITEM_PP_UP, 4 },
++    { ITEM_PP_MAX, 8 },
+     // training items (tools/hack/training_items.py)
+     { ITEM_POWER_WEIGHT, 4 },
+     { ITEM_POWER_BRACER, 4 },
+diff --git a/tools/hack/pp_shop.py b/tools/hack/pp_shop.py
+new file mode 100644
+index 000000000..55c086128
+--- /dev/null
++++ b/tools/hack/pp_shop.py
+@@ -0,0 +1,47 @@
++#!/usr/bin/env python3
++"""PP Up and PP Max for money, so the Pokeathlon isn't needed for anything.
++
++The Pokeathlon Dome's prize exchange is the original game's only repeatable source of PP Ups. Everything else
++it trades for Athlete Points the hack already sells or the game gives elsewhere (evolution items and King's Rock
++on Goldenrod 4F, Rare Candy on Celadon 4F, Full Restores in the Poke Marts, Moomoo Milk at the farm, Apricorns
++on the trees), and Heart Scales are no longer needed now the Move Reminders are free. This adds PP Up (from
++four badges, P9,800) and PP Max (from eight, P24,800) to the Goldenrod Department Store 4F, next to the
++vitamins.
++
++    python3 tools/hack/pp_shop.py
++"""
++import re
++import sys
++
++MART = "src/field/mart.c"
++ITEMS = "data/itemdata/itemdata.c"
++STOCK = [("PP_UP", 9800, 4), ("PP_MAX", 24800, 8)]
++
++
++def main():
++    mart, items = open(MART).read(), open(ITEMS).read()
++    m = re.search(r"(u16 sGoldenrodDepartment4F\[\] = \{\n)([^}]*?)(,\s*0xFFFF\n\};)", mart)
++    if not m:
++        sys.exit("no sGoldenrodDepartment4F")
++    if "ITEM_PP_UP" in m.group(2):         # (the Pokeathlon's own prize lists, further down, have it too)
++        sys.exit("already stocked")
++    added = ", ".join("ITEM_" + n for n, _, _ in STOCK)
++    mart = mart.replace(m.group(0), "%s%s,\n    // PP Up and PP Max (tools/hack/pp_shop.py)\n    %s, 0xFFFF\n};" % (
++        m.group(1), m.group(2), added))
++    head = "const struct BadgeMartItems sBadgeLockedMartItems[] = {\n"
++    if head not in mart:
++        sys.exit("no sBadgeLockedMartItems")
++    mart = mart.replace(head, head + "    // PP Up and PP Max (tools/hack/pp_shop.py)\n"
++                        + "".join("    { ITEM_%s, %d },\n" % (n, b) for n, _, b in STOCK))
++    for name, price, _ in STOCK:
++        m = re.search(r"\n\[ITEM_%s\] =\n\{\n    ITEM_PRICE\(\d+\)" % name, items)
++        if not m:
++            sys.exit("no item data for " + name)
++        items = items[:m.start()] + re.sub(r"ITEM_PRICE\(\d+\)", "ITEM_PRICE(%d)" % price, m.group(0)) + items[m.end():]
++    open(MART, "w").write(mart)
++    open(ITEMS, "w").write(items)
++    print("stocked", ", ".join(n for n, _, _ in STOCK), "on Goldenrod 4F")
++
++
++if __name__ == "__main__":
++    main()
+-- 
+2.43.0
+
