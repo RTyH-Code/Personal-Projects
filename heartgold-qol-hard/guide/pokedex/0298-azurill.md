@@ -12,6 +12,10 @@ No. 298 · Normal / Fairy · catch rate 150
 
 - Into [Marill](0183-marill.md) with high friendship.
 
+## Where
+
+- Route 32 (walking)
+
 ## Moves by level
 
 | Lv. | Move |

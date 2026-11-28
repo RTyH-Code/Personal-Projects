@@ -12,6 +12,10 @@ No. 77 · Fire · catch rate 190
 
 - Into [Rapidash](0078-rapidash.md) at Lv. 40.
 
+## Where
+
+- Route 36 (walking)
+
 ## Moves by level
 
 | Lv. | Move |

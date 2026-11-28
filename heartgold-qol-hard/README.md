@@ -446,7 +446,7 @@ The FireRed recipe, and where each part comes from here:
 | Evolution item shop | Done |
 | Field HMs without teaching them | Done |
 | Held-item shop, berry and consumables stand, earlier mart stock | Done: `tools/hack/shops.py` |
-| Spoiler guide generated from the data | Done: `tools/spoiler_guide.py` writes [guide/](guide/README.md) |
+| Spoiler guide generated from the data | Done: `tools/spoiler_guide.py` writes [guide/](guide/README.md), and `tools/boss_guide.py` its boss teams page |
 | Unattended playtester | Done: battle tester and overworld tester, see [playtest](playtest/README.md). No story playthrough bot. |
 
 ## Building from source

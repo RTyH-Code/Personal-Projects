@@ -12,6 +12,10 @@ No. 111 · Ground / Rock · catch rate 120
 
 - Into [Rhydon](0112-rhydon.md) at Lv. 42.
 
+## Where
+
+- Mount Mortar 1F Back (walking)
+
 ## Moves by level
 
 | Lv. | Move |
