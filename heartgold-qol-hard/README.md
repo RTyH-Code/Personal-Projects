@@ -4,7 +4,7 @@ A quality-of-life, modernization and difficulty hack for Pokémon HeartGold,
 following the same recipe as [FireRed QoL + Hard](../firered-qol-hard/README.md).
 It is built on [hg-engine](https://github.com/BluRosie/hg-engine).
 
-**Status: v1.7.** Everything described below is in the
+**Status: v1.8.** Everything described below is in the
 patch. The battles, maps, legendaries, wild Pokémon and shops have been
 checked by automated playtesters, and a story bot has played from the bedroom
 to Red (see [playtest/BALANCE.md](playtest/BALANCE.md)), but no person has
@@ -16,21 +16,23 @@ You need your own US Pokémon HeartGold ROM (game code `IPKE`, SHA-1
 `4fcded0e2713dc03929845de631d0932ea2b5a37`). The ROM is not in this
 repository and never will be.
 
-1. Download `HeartGold-QoL-Hard-v1.7.xdelta`.
+1. Download `HeartGold-QoL-Hard-v1.8.xdelta`.
 2. Apply it to the ROM with an xdelta patcher such as Delta Patcher or
    xdelta UI, or on a command line:
 
    ```bash
-   xdelta3 -d -s heartgold-usa.nds HeartGold-QoL-Hard-v1.7.xdelta HeartGold-QoL-Hard.nds
+   xdelta3 -d -s heartgold-usa.nds HeartGold-QoL-Hard-v1.8.xdelta HeartGold-QoL-Hard.nds
    ```
 
 3. The patched ROM is 256 MB, twice the original's size, and its SHA-1 is
-   `268595112906d7074dc6639d2f971ba58cd22e93`. It has been run in DeSmuME;
+   `f5f240187b28a0d001eb652df0cb7a99b788b72d`. It has been run in DeSmuME;
    other emulators and flashcarts are untried.
 
 Start a new game: saves from the original game or from other hacks will not
-work properly. The [spoiler guide](guide/README.md) lists where everything
-is.
+work properly. [Playing HeartGold QoL + Hard](guide/PLAYING.md) is a short
+guide for a first run: what plays differently, the shops, and the levels to
+be at for each boss. The [spoiler guide](guide/README.md) lists where
+everything is.
 
 This hack is free and always will be. hg-engine's terms require that, and
 that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md).
@@ -54,6 +56,23 @@ that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md
   close to the bosses' levels without grinding (see
   [playtest/LEVEL_CURVE.md](playtest/LEVEL_CURVE.md)).
 - Mega Evolution, Primal Reversion and critical captures are switched off.
+- **Challenge rules you can turn on and off.** A woman downstairs in your
+  house in New Bark Town keeps two optional rules, and you can go back to
+  her at any time to change them (patch 0039, `tools/hack/challenge_rules.py`):
+  - a **level cap** at the strongest level on the next boss's team: the
+    lowest top level of the Johto Gym Leaders you haven't beaten (Falkner's
+    14 up to Clair's 47), then Lance's 58 until you are Champion, then the
+    lowest of the Kanto Gym Leaders you haven't beaten (Lt. Surge's 64 up to
+    Blue's 76), and Red's 95 with all sixteen badges. A Pokémon at the cap
+    gains no experience and Rare Candies stop there too;
+  - **no items in trainer battles**, for you and for your opponents.
+
+  Both are off in a new game. For Set mode, choose Battle Style: Set in the
+  game's own Options. In the emulator, the woman turned the level cap on and
+  off again; a Lv. 14 Pokémon with no badges gained no experience from a wild
+  battle with the cap on and 6 with it off; and with no items on, a Potion
+  chosen from the bag in a trainer battle didn't get as far as choosing a
+  Pokémon (`playtest/challenge_test.py`).
 - **National Dex from the start.** The Pokédex has its National mode from
   the first moment, and Professor Oak rates the national count over the
   phone. What HeartGold unlocks along with the National Dex now waits until
@@ -434,7 +453,7 @@ The FireRed recipe, and where each part comes from here:
 | Fairy type, hidden abilities, later moves, abilities and Pokémon | hg-engine |
 | Reusable TMs, forgettable HMs, modern Exp. formula, EV/IV viewer | Done: hg-engine config switches |
 | National Dex from the start, with its unlocks moved to a Champion check | Done |
-| Set mode, level cap and no-items rules as player options | Undecided: hg-engine only offers them as fixed rules |
+| Set mode, level cap and no-items rules as player options | Done: `tools/hack/challenge_rules.py`; Set mode is the game's own Battle Style option |
 | Trainer levels, IVs and AI | Done: `tools/hack/difficulty.py` |
 | Johto and League boss teams | Done: `tools/hack/boss_teams.py` |
 | Kanto leaders, Blue, Red, second Elite Four round and rematch teams | Done: `tools/hack/boss_teams.py` |
@@ -446,7 +465,7 @@ The FireRed recipe, and where each part comes from here:
 | Evolution item shop | Done |
 | Field HMs without teaching them | Done |
 | Held-item shop, berry and consumables stand, earlier mart stock | Done: `tools/hack/shops.py` |
-| Spoiler guide generated from the data | Done: `tools/spoiler_guide.py` writes [guide/](guide/README.md) |
+| Spoiler guide generated from the data | Done: `tools/spoiler_guide.py` writes [guide/](guide/README.md), and `tools/boss_guide.py` its boss teams page |
 | Unattended playtester | Done: battle tester and overworld tester, see [playtest](playtest/README.md). No story playthrough bot. |
 
 ## Building from source
@@ -473,7 +492,7 @@ The first build takes several minutes. It clones hg-engine into `build/`,
 applies the patches and writes `build/hg-engine/test.nds`.
 
 The release patch is made from such a build, in a fresh work directory, with
-`tools/make_patch.sh`. v1.7 was built this way from all thirty-eight patches.
+`tools/make_patch.sh`. v1.8 was built this way from all thirty-nine patches.
 
 To confirm the result boots, without opening an emulator window:
 

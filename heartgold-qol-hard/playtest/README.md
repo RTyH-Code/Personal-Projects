@@ -508,6 +508,15 @@ every page of the list side by side in `out/list_<badges>.png`.
 SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 playtest/shop_test.py /path/to/test.nds /path/to/hack/hg-engine /path/to/original/hg-engine out
 ```
 
+`challenge_test.py` checks the challenge rules: that the woman in the player's house turns the level
+cap on and off again; that with no badges a Lv. 14 party leader gains no experience from a wild battle
+on Route 29 with the cap on, and some with it off; and that with no items on, a Potion from the bag in a
+trainer battle doesn't get as far as choosing a Pokémon, though it does with the rule off.
+
+```bash
+SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 playtest/challenge_test.py /path/to/test.nds /path/to/hack/hg-engine /path/to/original/hg-engine out
+```
+
 Settings, all environment variables: `STORY_RETRIES` (tries per stage before
 it stops, default 3), `STORY_REFILL_BERRIES` (`0` stops the berry refill
 between rooms), `STORY_TEAM_<SET>` (swap in another set where that one is

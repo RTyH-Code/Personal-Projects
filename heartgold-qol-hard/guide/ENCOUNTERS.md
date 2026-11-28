@@ -21,17 +21,17 @@ gives from the start.
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Magikarp | 20 | 40% |
-| Tentacool | 20 | 30% |
-| Chinchou | 20 | 20% |
-| Shellder | 20 | 10% |
+| Magikarp | 27–29 | 40% |
+| Tentacool | 27–29 | 30% |
+| Chinchou | 27–29 | 20% |
+| Shellder | 27–29 | 10% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Chinchou | 40 | 40% |
-| Shellder | 40 | 30% |
-| Tentacruel | 40 | 20% |
-| Lanturn | 40 | 10% |
+| Chinchou | 62 | 40% |
+| Shellder | 62 | 30% |
+| Tentacruel | 62 | 20% |
+| Lanturn | 62 | 10% |
 
 Also, on the water: surfing swarm: Tentacool; fishing at night: Shellder; fishing swarm: Magikarp.
 
@@ -62,15 +62,15 @@ Also, walking: swarm: Pidgey; Hoenn Sound: Plusle, Minun; Sinnoh Sound: Shinx.
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Krabby | 20 | 50% |
-| Magikarp | 20 | 40% |
-| Corsola | 20 | 10% |
+| Krabby | 27–29 | 50% |
+| Magikarp | 27–29 | 40% |
+| Corsola | 27–29 | 10% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Krabby | 40 | 60% |
-| Corsola | 40 | 30% |
-| Kingler | 40 | 10% |
+| Krabby | 62 | 60% |
+| Corsola | 62 | 30% |
+| Kingler | 62 | 10% |
 
 Also, on the water: surfing swarm: Tentacool; fishing at night: Staryu; fishing swarm: Magikarp.
 
@@ -102,13 +102,13 @@ Also, walking: swarm: Pidgey; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buize
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 20 | 60% |
-| Magikarp | 20 | 40% |
+| Poliwag | 27–29 | 60% |
+| Magikarp | 27–29 | 40% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 40 | 80% |
-| Magikarp | 40 | 20% |
+| Poliwag | 62 | 80% |
+| Magikarp | 62 | 20% |
 
 Also, on the water: surfing swarm: Poliwag; fishing at night: Poliwag; fishing swarm: Magikarp.
 
@@ -142,13 +142,13 @@ Also, walking: swarm: Pidgey; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buize
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 20 | 60% |
-| Magikarp | 20 | 40% |
+| Poliwag | 27–29 | 60% |
+| Magikarp | 27–29 | 40% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 40 | 80% |
-| Magikarp | 40 | 20% |
+| Poliwag | 62 | 80% |
+| Magikarp | 62 | 20% |
 
 Also, on the water: surfing swarm: Poliwag; fishing at night: Poliwag; fishing swarm: Magikarp.
 
@@ -166,13 +166,13 @@ Also, on the water: surfing swarm: Poliwag; fishing at night: Poliwag; fishing s
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 20 | 60% |
-| Magikarp | 20 | 40% |
+| Poliwag | 27–29 | 60% |
+| Magikarp | 27–29 | 40% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 40 | 80% |
-| Magikarp | 40 | 20% |
+| Poliwag | 62 | 80% |
+| Magikarp | 62 | 20% |
 
 Also, on the water: surfing swarm: Poliwag; fishing at night: Poliwag; fishing swarm: Whiscash.
 
@@ -200,7 +200,7 @@ Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Cha
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Rattata | 13 | 25% | 30% | 20% |
+| Rattata | 13 | 25% | 26% | 20% |
 | Bellsprout | 13 | 20% | 20% | 10% |
 | Ekans | 13 | 10% | 10% | 10% |
 | Wingull | 13 | 10% | 10% | 10% |
@@ -208,8 +208,9 @@ Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Cha
 | Mareep | 13 | 10% | 10% | 5% |
 | Wooper | 13 | — | — | 25% |
 | Surskit | 13 | 5% | 5% | 5% |
+| Azurill | 13 | 4% | 4% | 4% |
 | Hoppip | 13 | 5% | 5% | — |
-| Zubat | 13 | 5% | — | 5% |
+| Zubat | 13 | 1% | — | 1% |
 
 Also, walking: swarm: Bellsprout; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buizel, Bidoof.
 
@@ -226,15 +227,15 @@ Also, walking: swarm: Bellsprout; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: B
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Tentacool | 20 | 55% |
-| Magikarp | 20 | 40% |
-| Qwilfish | 20 | 5% |
+| Tentacool | 27–29 | 55% |
+| Magikarp | 27–29 | 40% |
+| Qwilfish | 27–29 | 5% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Tentacool | 40 | 70% |
-| Magikarp | 40 | 20% |
-| Qwilfish | 40 | 10% |
+| Tentacool | 62 | 70% |
+| Magikarp | 62 | 20% |
+| Qwilfish | 62 | 10% |
 
 Also, on the water: surfing swarm: Tentacool; fishing at night: Tentacool; fishing swarm: Qwilfish.
 
@@ -258,7 +259,7 @@ Also, walking: swarm: Natu; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buizel,
 
 | Rock Smash | Lv. | Chance |
 |---|---|--:|
-| Geodude | 3–15 | 100% |
+| Geodude | 21–24 | 100% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -267,13 +268,13 @@ Also, walking: swarm: Natu; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buizel,
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 20 | 60% |
-| Magikarp | 20 | 40% |
+| Poliwag | 27–29 | 60% |
+| Magikarp | 27–29 | 40% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 40 | 80% |
-| Magikarp | 40 | 20% |
+| Poliwag | 62 | 80% |
+| Magikarp | 62 | 20% |
 
 Also, on the water: surfing swarm: Wooper; fishing at night: Poliwag; fishing swarm: Magikarp.
 
@@ -335,14 +336,14 @@ Also, walking: swarm: Geodude; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronz
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 20 | 60% |
-| Magikarp | 20 | 40% |
+| Goldeen | 27–29 | 60% |
+| Magikarp | 27–29 | 40% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 40 | 70% |
-| Magikarp | 40 | 20% |
-| Seaking | 40 | 10% |
+| Goldeen | 62 | 70% |
+| Magikarp | 62 | 20% |
+| Seaking | 62 | 10% |
 
 Also, on the water: surfing swarm: Wooper; fishing at night: Goldeen; fishing swarm: Magikarp.
 
@@ -371,14 +372,14 @@ Also, walking: swarm: Geodude; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronz
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 20 | 60% |
-| Magikarp | 20 | 40% |
+| Goldeen | 27–29 | 60% |
+| Magikarp | 27–29 | 40% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 40 | 70% |
-| Magikarp | 40 | 20% |
-| Seaking | 40 | 10% |
+| Goldeen | 62 | 70% |
+| Magikarp | 62 | 20% |
+| Seaking | 62 | 10% |
 
 Also, on the water: surfing swarm: Wooper; fishing at night: Goldeen; fishing swarm: Magikarp.
 
@@ -408,15 +409,15 @@ Also, walking: swarm: Zubat; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Krabby | 20 | 50% |
-| Magikarp | 20 | 40% |
-| Corsola | 20 | 10% |
+| Krabby | 27–29 | 50% |
+| Magikarp | 27–29 | 40% |
+| Corsola | 27–29 | 10% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Krabby | 40 | 60% |
-| Corsola | 40 | 30% |
-| Kingler | 40 | 10% |
+| Krabby | 62 | 60% |
+| Corsola | 62 | 30% |
+| Kingler | 62 | 10% |
 
 Also, on the water: surfing swarm: Tentacool; fishing at night: Staryu; fishing swarm: Magikarp.
 
@@ -453,14 +454,14 @@ Also, walking: swarm: Zubat; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 20 | 60% |
-| Magikarp | 20 | 40% |
+| Goldeen | 26–29 | 60% |
+| Magikarp | 26–29 | 40% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 40 | 70% |
-| Magikarp | 40 | 20% |
-| Seaking | 40 | 10% |
+| Goldeen | 62 | 70% |
+| Magikarp | 62 | 20% |
+| Seaking | 62 | 10% |
 
 Also, on the water: surfing swarm: Slowpoke; fishing at night: Goldeen; fishing swarm: Magikarp.
 
@@ -486,14 +487,14 @@ Also, walking: swarm: Zubat; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 20 | 60% |
-| Magikarp | 20 | 40% |
+| Goldeen | 27–29 | 60% |
+| Magikarp | 27–29 | 40% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 40 | 70% |
-| Magikarp | 40 | 20% |
-| Seaking | 40 | 10% |
+| Goldeen | 62 | 70% |
+| Magikarp | 62 | 20% |
+| Seaking | 62 | 10% |
 
 Also, on the water: surfing swarm: Slowpoke; fishing at night: Goldeen; fishing swarm: Magikarp.
 
@@ -501,13 +502,15 @@ Also, on the water: surfing swarm: Slowpoke; fishing at night: Goldeen; fishing 
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Caterpie | 16 | 40% | 60% | — |
-| Oddish | 16 | — | — | 60% |
-| Metapod | 16 | 30% | 10% | — |
+| Caterpie | 16 | 30% | 40% | — |
+| Oddish | 16 | — | — | 50% |
+| Metapod | 16 | 20% | 10% | — |
+| Shroomish | 16 | 10% | 10% | 10% |
+| Seedot | 16 | 10% | 10% | 10% |
 | Budew | 16 | 10% | 10% | 10% |
-| Zubat | 16 | 5% | 5% | 11% |
 | Pikachu | 16 | 5% | 5% | 5% |
 | Kecleon | 16 | 5% | 5% | 5% |
+| Zubat | 16 | 5% | 5% | 1% |
 | Paras | 16 | 5% | 5% | 1% |
 | Volbeat | 16 | — | — | 4% |
 | Illumise | 16 | — | — | 4% |
@@ -526,13 +529,13 @@ Also, walking: swarm: Caterpie; Hoenn Sound: Spoink, Numel; Sinnoh Sound: Budew,
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 20 | 60% |
-| Magikarp | 20 | 40% |
+| Poliwag | 26–28 | 60% |
+| Magikarp | 26–28 | 40% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 40 | 80% |
-| Magikarp | 40 | 20% |
+| Poliwag | 62 | 80% |
+| Magikarp | 62 | 20% |
 
 Also, on the water: surfing swarm: Psyduck; fishing at night: Poliwag; fishing swarm: Magikarp.
 
@@ -565,15 +568,15 @@ Also, walking: swarm: Ralts; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buizel
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Krabby | 20 | 50% |
-| Magikarp | 20 | 40% |
-| Corsola | 20 | 10% |
+| Krabby | 27–29 | 50% |
+| Magikarp | 27–29 | 40% |
+| Corsola | 27–29 | 10% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Krabby | 40 | 60% |
-| Corsola | 40 | 30% |
-| Kingler | 40 | 10% |
+| Krabby | 62 | 60% |
+| Corsola | 62 | 30% |
+| Kingler | 62 | 10% |
 
 Also, on the water: surfing swarm: Tentacool; fishing at night: Staryu; fishing swarm: Magikarp.
 
@@ -608,13 +611,13 @@ Also, walking: swarm: Yanma; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buizel
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 20 | 60% |
-| Magikarp | 20 | 40% |
+| Poliwag | 27–29 | 60% |
+| Magikarp | 27–29 | 40% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 40 | 80% |
-| Magikarp | 40 | 20% |
+| Poliwag | 62 | 80% |
+| Magikarp | 62 | 20% |
 
 Also, on the water: surfing swarm: Psyduck; fishing at night: Poliwag; fishing swarm: Magikarp.
 
@@ -644,8 +647,9 @@ Also, walking: swarm: Caterpie; Hoenn Sound: Caterpie; Sinnoh Sound: Caterpie.
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Nidoran♂ | 22 | 30% | 30% | 30% |
-| Nidoran♀ | 22 | 30% | 20% | 30% |
+| Nidoran♂ | 22 | 30% | 20% | 30% |
+| Nidoran♀ | 22 | 20% | 20% | 20% |
+| Ponyta | 22 | 10% | 10% | 10% |
 | Shinx | 22–23 | 10% | 10% | 10% |
 | Vulpix | 23 | 10% | 10% | 10% |
 | Growlithe | 23–24 | 5% | 5% | 5% |
@@ -662,13 +666,14 @@ Also, walking: swarm: Nidoran♂; Hoenn Sound: Plusle, Minun; Sinnoh Sound: Shin
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
 | Stantler | 24 | 30% | 30% | 20% |
-| Pidgey | 23–24 | 36% | 30% | — |
-| Spinarak | 23–24 | — | — | 32% |
+| Pidgey | 23–24 | 32% | 30% | — |
+| Spinarak | 23–24 | — | — | 31% |
 | Electrike | 24 | 10% | 10% | 10% |
 | Vulpix | 24 | 10% | 10% | 10% |
-| Growlithe | 23–24 | 5% | 6% | 5% |
 | Minun | 23 | 5% | 5% | 5% |
 | Cyndaquil | 24 | 4% | 4% | 4% |
+| Growlithe | 23–24 | 5% | 1% | 5% |
+| Voltorb | 23–24 | 4% | 5% | 1% |
 | Hoothoot | 24 | — | — | 10% |
 | Pidgeotto | 24 | — | 5% | — |
 | Houndour | 24 | — | — | 4% |
@@ -689,13 +694,13 @@ Also, walking: swarm: Pidgey; Hoenn Sound: Plusle, Minun; Sinnoh Sound: Shinx.
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 20 | 60% |
-| Magikarp | 20 | 40% |
+| Poliwag | 27–29 | 60% |
+| Magikarp | 27–29 | 40% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 40 | 80% |
-| Magikarp | 40 | 20% |
+| Poliwag | 62 | 80% |
+| Magikarp | 62 | 20% |
 
 Also, on the water: surfing swarm: Poliwag; fishing at night: Poliwag; fishing swarm: Magikarp.
 
@@ -856,15 +861,15 @@ Also, walking: swarm: Rattata; Hoenn Sound: Plusle, Minun; Sinnoh Sound: Shinx.
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Krabby | 20 | 50% |
-| Magikarp | 20 | 40% |
-| Corsola | 20 | 10% |
+| Krabby | 27–29 | 50% |
+| Magikarp | 27–29 | 40% |
+| Corsola | 27–29 | 10% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Krabby | 40 | 60% |
-| Corsola | 40 | 30% |
-| Kingler | 40 | 10% |
+| Krabby | 62 | 60% |
+| Corsola | 62 | 30% |
+| Kingler | 62 | 10% |
 
 Also, on the water: surfing swarm: Tentacool; fishing at night: Staryu; fishing swarm: Magikarp.
 
@@ -883,16 +888,16 @@ Also, on the water: surfing swarm: Tentacool; fishing at night: Staryu; fishing 
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Krabby | 20 | 45% |
-| Magikarp | 20 | 40% |
-| Corsola | 20 | 10% |
-| Finneon | 20 | 5% |
+| Krabby | 27–29 | 45% |
+| Magikarp | 27–29 | 40% |
+| Corsola | 27–29 | 10% |
+| Finneon | 27–29 | 5% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Krabby | 40 | 60% |
-| Corsola | 40 | 30% |
-| Kingler | 40 | 10% |
+| Krabby | 62 | 60% |
+| Corsola | 62 | 30% |
+| Kingler | 62 | 10% |
 
 Also, on the water: surfing swarm: Tentacool; fishing at night: Staryu; fishing swarm: Magikarp.
 
@@ -912,18 +917,18 @@ Also, on the water: surfing swarm: Tentacool; fishing at night: Staryu; fishing 
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Magikarp | 20 | 40% |
-| Tentacool | 20 | 30% |
-| Chinchou | 20 | 15% |
-| Shellder | 20 | 10% |
-| Clamperl | 20 | 5% |
+| Magikarp | 28–29 | 40% |
+| Tentacool | 28–29 | 30% |
+| Chinchou | 28–29 | 15% |
+| Shellder | 28–29 | 10% |
+| Clamperl | 28–29 | 5% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Chinchou | 40 | 40% |
-| Shellder | 40 | 30% |
-| Tentacruel | 40 | 20% |
-| Lanturn | 40 | 10% |
+| Chinchou | 62 | 40% |
+| Shellder | 62 | 30% |
+| Tentacruel | 62 | 20% |
+| Lanturn | 62 | 10% |
 
 Also, on the water: surfing swarm: Tentacool; fishing at night: Shellder; fishing swarm: Magikarp.
 
@@ -951,17 +956,17 @@ Also, walking: swarm: Krabby; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzo
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Krabby | 20 | 45% |
-| Magikarp | 20 | 40% |
-| Horsea | 20 | 10% |
-| Relicanth | 20 | 5% |
+| Krabby | 35–37 | 45% |
+| Magikarp | 35–37 | 40% |
+| Horsea | 35–37 | 10% |
+| Relicanth | 35–37 | 5% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Krabby | 40 | 40% |
-| Horsea | 40 | 30% |
-| Kingler | 40 | 20% |
-| Seadra | 40 | 10% |
+| Krabby | 62 | 40% |
+| Horsea | 62 | 30% |
+| Kingler | 62 | 20% |
+| Seadra | 62 | 10% |
 
 Also, on the water: surfing swarm: Tentacool; fishing at night: Horsea; fishing swarm: Magikarp.
 
@@ -1000,16 +1005,16 @@ Also, walking: swarm: Krabby; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzo
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Krabby | 20 | 50% |
-| Magikarp | 20 | 40% |
-| Horsea | 20 | 10% |
+| Krabby | 36–37 | 50% |
+| Magikarp | 36–37 | 40% |
+| Horsea | 36–37 | 10% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Krabby | 40 | 40% |
-| Horsea | 40 | 30% |
-| Kingler | 40 | 20% |
-| Seadra | 40 | 10% |
+| Krabby | 62 | 40% |
+| Horsea | 62 | 30% |
+| Kingler | 62 | 20% |
+| Seadra | 62 | 10% |
 
 Also, on the water: surfing swarm: Horsea; fishing at night: Horsea; fishing swarm: Magikarp.
 
@@ -1033,8 +1038,8 @@ Also, walking: swarm: Krabby; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzo
 
 | Rock Smash | Lv. | Chance |
 |---|---|--:|
-| Krabby | 17–28 | 90% |
-| Shuckle | 26–32 | 10% |
+| Krabby | 26–28 | 90% |
+| Shuckle | 28–29 | 10% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -1043,16 +1048,16 @@ Also, walking: swarm: Krabby; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzo
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Krabby | 20 | 45% |
-| Magikarp | 20 | 40% |
-| Corsola | 20 | 10% |
-| Luvdisc | 20 | 5% |
+| Krabby | 27–29 | 45% |
+| Magikarp | 27–29 | 40% |
+| Corsola | 27–29 | 10% |
+| Luvdisc | 27–29 | 5% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Krabby | 40 | 60% |
-| Corsola | 40 | 30% |
-| Kingler | 40 | 10% |
+| Krabby | 62 | 60% |
+| Corsola | 62 | 30% |
+| Kingler | 62 | 10% |
 
 Also, on the water: surfing swarm: Tentacool; fishing at night: Staryu; fishing swarm: Magikarp.
 
@@ -1084,14 +1089,14 @@ Also, walking: swarm: Mankey; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buize
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 20 | 60% |
-| Magikarp | 20 | 40% |
+| Goldeen | 31–33 | 60% |
+| Magikarp | 31–33 | 40% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 40 | 70% |
-| Magikarp | 40 | 20% |
-| Seaking | 40 | 10% |
+| Goldeen | 62 | 70% |
+| Magikarp | 62 | 20% |
+| Seaking | 62 | 10% |
 
 Also, on the water: surfing swarm: Goldeen; fishing at night: Goldeen; fishing swarm: Magikarp.
 
@@ -1119,14 +1124,14 @@ Also, walking: swarm: Marill; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzo
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 20 | 60% |
-| Magikarp | 20 | 40% |
+| Goldeen | 31–33 | 60% |
+| Magikarp | 31–33 | 40% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 40 | 70% |
-| Magikarp | 40 | 20% |
-| Seaking | 40 | 10% |
+| Goldeen | 62 | 70% |
+| Magikarp | 62 | 20% |
+| Seaking | 62 | 10% |
 
 Also, on the water: surfing swarm: Goldeen; fishing at night: Goldeen; fishing swarm: Magikarp.
 
@@ -1140,7 +1145,8 @@ Also, on the water: surfing swarm: Goldeen; fishing at night: Goldeen; fishing s
 | Makuhita | 32 | 10% | 10% | 10% |
 | Rattata | 31 | 5% | 5% | 5% |
 | Clefairy | 31 | 5% | 5% | 5% |
-| Zubat | 31 | 5% | 5% | 5% |
+| Rhyhorn | 31 | 4% | 4% | 4% |
+| Zubat | 31 | 1% | 1% | 1% |
 
 Also, walking: swarm: Geodude; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor, Chingling.
 
@@ -1171,14 +1177,14 @@ Also, walking: swarm: Graveler; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bron
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 20 | 60% |
-| Magikarp | 20 | 40% |
+| Goldeen | 32–34 | 60% |
+| Magikarp | 32–34 | 40% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 40 | 70% |
-| Magikarp | 40 | 20% |
-| Seaking | 40 | 10% |
+| Goldeen | 62 | 70% |
+| Magikarp | 62 | 20% |
+| Seaking | 62 | 10% |
 
 Also, on the water: surfing swarm: Goldeen; fishing at night: Goldeen; fishing swarm: Magikarp.
 
@@ -1209,14 +1215,14 @@ Also, walking: swarm: Zubat; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 20 | 60% |
-| Magikarp | 20 | 40% |
+| Goldeen | 31–33 | 60% |
+| Magikarp | 31–33 | 40% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 40 | 70% |
-| Magikarp | 40 | 20% |
-| Seaking | 40 | 10% |
+| Goldeen | 62 | 70% |
+| Magikarp | 62 | 20% |
+| Seaking | 62 | 10% |
 
 Also, on the water: surfing swarm: Goldeen; fishing at night: Goldeen; fishing swarm: Magikarp.
 
@@ -1248,13 +1254,13 @@ Also, walking: swarm: Flaaffy; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buiz
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 20 | 60% |
-| Magikarp | 20 | 40% |
+| Poliwag | 30–33 | 60% |
+| Magikarp | 30–33 | 40% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 40 | 80% |
-| Magikarp | 40 | 20% |
+| Poliwag | 62 | 80% |
+| Magikarp | 62 | 20% |
 
 Also, on the water: surfing swarm: Magikarp; fishing at night: Poliwag; fishing swarm: Magikarp.
 
@@ -1271,14 +1277,14 @@ Also, on the water: surfing swarm: Magikarp; fishing at night: Poliwag; fishing 
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Magikarp | 20 | 85% |
-| Gyarados | 20 | 10% |
-| Feebas | 20 | 5% |
+| Magikarp | 30–32 | 85% |
+| Gyarados | 30–32 | 10% |
+| Feebas | 30–32 | 5% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Magikarp | 40 | 70% |
-| Gyarados | 40 | 30% |
+| Magikarp | 62 | 70% |
+| Gyarados | 62 | 30% |
 
 Also, on the water: surfing swarm: Magikarp; fishing at night: Gyarados; fishing swarm: Magikarp.
 
@@ -1309,15 +1315,15 @@ Also, walking: swarm: Tangela; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buiz
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 20 | 55% |
-| Magikarp | 20 | 40% |
-| Remoraid | 20 | 5% |
+| Poliwag | 36–38 | 55% |
+| Magikarp | 36–38 | 40% |
+| Remoraid | 36–38 | 5% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 40 | 70% |
-| Magikarp | 40 | 20% |
-| Remoraid | 40 | 10% |
+| Poliwag | 62 | 70% |
+| Magikarp | 62 | 20% |
+| Remoraid | 62 | 10% |
 
 Also, on the water: surfing swarm: Poliwag; fishing at night: Poliwag; fishing swarm: Remoraid.
 
@@ -1387,13 +1393,13 @@ Also, walking: swarm: Swinub; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzo
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 20 | 60% |
-| Magikarp | 20 | 40% |
+| Poliwag | 34–37 | 60% |
+| Magikarp | 34–37 | 40% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 40 | 80% |
-| Magikarp | 40 | 20% |
+| Poliwag | 62 | 80% |
+| Magikarp | 62 | 20% |
 
 Also, on the water: surfing swarm: Magikarp; fishing at night: Poliwag; fishing swarm: Magikarp.
 
@@ -1410,14 +1416,14 @@ Also, on the water: surfing swarm: Magikarp; fishing at night: Poliwag; fishing 
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Magikarp | 20 | 90% |
-| Dratini | 20 | 10% |
+| Magikarp | 34–37 | 90% |
+| Dratini | 34–37 | 10% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Magikarp | 40 | 60% |
-| Dratini | 40 | 30% |
-| Dragonair | 40 | 10% |
+| Magikarp | 62 | 60% |
+| Dratini | 62 | 30% |
+| Dragonair | 62 | 10% |
 
 Also, on the water: surfing swarm: Magikarp; fishing at night: Dratini; fishing swarm: Magikarp.
 
@@ -1450,13 +1456,13 @@ Also, walking: swarm: Swablu; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buize
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 20 | 60% |
-| Magikarp | 20 | 40% |
+| Poliwag | 37–42 | 60% |
+| Magikarp | 37–42 | 40% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Poliwag | 40 | 80% |
-| Magikarp | 40 | 20% |
+| Poliwag | 62 | 80% |
+| Magikarp | 62 | 20% |
 
 Also, on the water: surfing swarm: Magikarp; fishing at night: Poliwag; fishing swarm: Magikarp.
 
@@ -1488,8 +1494,8 @@ Also, walking: swarm: Dunsparce; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bro
 
 | Rock Smash | Lv. | Chance |
 |---|---|--:|
-| Dunsparce | 4–8 | 90% |
-| Geodude | 8–15 | 10% |
+| Dunsparce | 21–22 | 90% |
+| Geodude | 22–24 | 10% |
 
 | Old Rod | Lv. | Chance |
 |---|---|--:|
@@ -1498,14 +1504,14 @@ Also, walking: swarm: Dunsparce; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bro
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 20 | 60% |
-| Magikarp | 20 | 40% |
+| Goldeen | 26–28 | 60% |
+| Magikarp | 26–28 | 40% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 40 | 70% |
-| Magikarp | 40 | 20% |
-| Seaking | 40 | 10% |
+| Goldeen | 62 | 70% |
+| Magikarp | 62 | 20% |
+| Seaking | 62 | 10% |
 
 Also, on the water: surfing swarm: Magikarp; fishing at night: Goldeen; fishing swarm: Magikarp.
 
@@ -1515,9 +1521,10 @@ Also, on the water: surfing swarm: Magikarp; fishing at night: Goldeen; fishing 
 |---|---|--:|--:|--:|
 | Geodude | 39 | 30% | 30% | 30% |
 | Zubat | 39 | 30% | 30% | 30% |
-| Wobbuffet | 37–41 | 15% | 15% | 15% |
+| Wobbuffet | 37–41 | 11% | 11% | 11% |
 | Graveler | 41 | 10% | 10% | 10% |
 | Teddiursa | 41 | 10% | 10% | 10% |
+| Beldum | 41 | 4% | 4% | 4% |
 | Golbat | 39 | 4% | 4% | 4% |
 | Gible | 39 | 1% | 1% | 1% |
 
@@ -1534,14 +1541,14 @@ Also, walking: swarm: Geodude; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronz
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 20 | 60% |
-| Magikarp | 20 | 40% |
+| Goldeen | 37–41 | 60% |
+| Magikarp | 37–41 | 40% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 40 | 70% |
-| Magikarp | 40 | 20% |
-| Seaking | 40 | 10% |
+| Goldeen | 62 | 70% |
+| Magikarp | 62 | 20% |
+| Seaking | 62 | 10% |
 
 Also, on the water: surfing swarm: Magikarp; fishing at night: Goldeen; fishing swarm: Magikarp.
 
@@ -1575,17 +1582,17 @@ Also, walking: swarm: Ditto; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buizel
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Magikarp | 20 | 40% |
-| Tentacool | 20 | 30% |
-| Chinchou | 20 | 20% |
-| Shellder | 20 | 10% |
+| Magikarp | 26–29 | 40% |
+| Tentacool | 26–29 | 30% |
+| Chinchou | 26–29 | 20% |
+| Shellder | 26–29 | 10% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Chinchou | 40 | 40% |
-| Shellder | 40 | 30% |
-| Tentacruel | 40 | 20% |
-| Lanturn | 40 | 10% |
+| Chinchou | 62 | 40% |
+| Shellder | 62 | 30% |
+| Tentacruel | 62 | 20% |
+| Lanturn | 62 | 10% |
 
 Also, on the water: surfing swarm: Tentacool; fishing at night: Shellder; fishing swarm: Magikarp.
 
@@ -1833,8 +1840,8 @@ Also, on the water: surfing swarm: Seaking; fishing at night: Goldeen; fishing s
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Magikarp | 40 | 70% |
-| Poliwag | 40 | 30% |
+| Magikarp | 62 | 70% |
+| Poliwag | 62 | 30% |
 
 Also, on the water: surfing swarm: Wooper; fishing at night: Magikarp; fishing swarm: Magikarp.
 
@@ -2304,17 +2311,17 @@ Also, walking: swarm: Doduo; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buizel
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Magikarp | 20 | 40% |
-| Tentacool | 20 | 30% |
-| Chinchou | 20 | 20% |
-| Shellder | 20 | 10% |
+| Magikarp | 48–49 | 40% |
+| Tentacool | 48–49 | 30% |
+| Chinchou | 48–49 | 20% |
+| Shellder | 48–49 | 10% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Chinchou | 40 | 40% |
-| Shellder | 40 | 30% |
-| Tentacruel | 40 | 20% |
-| Lanturn | 40 | 10% |
+| Chinchou | 62 | 40% |
+| Shellder | 62 | 30% |
+| Tentacruel | 62 | 20% |
+| Lanturn | 62 | 10% |
 
 Also, on the water: surfing swarm: Tentacool; fishing at night: Shellder; fishing swarm: Magikarp.
 
@@ -2342,17 +2349,17 @@ Also, walking: swarm: Doduo; Hoenn Sound: Whismur, Linoone; Sinnoh Sound: Buizel
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Magikarp | 20 | 40% |
-| Tentacool | 20 | 30% |
-| Chinchou | 20 | 20% |
-| Shellder | 20 | 10% |
+| Magikarp | 45–46 | 40% |
+| Tentacool | 45–46 | 30% |
+| Chinchou | 45–46 | 20% |
+| Shellder | 45–46 | 10% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Chinchou | 40 | 40% |
-| Shellder | 40 | 30% |
-| Tentacruel | 40 | 20% |
-| Lanturn | 40 | 10% |
+| Chinchou | 62 | 40% |
+| Shellder | 62 | 30% |
+| Tentacruel | 62 | 20% |
+| Lanturn | 62 | 10% |
 
 Also, on the water: surfing swarm: Luvdisc; fishing at night: Shellder; fishing swarm: Magikarp.
 
@@ -2910,14 +2917,14 @@ Also, walking: swarm: Zubat; Hoenn Sound: Absol, Makuhita; Sinnoh Sound: Bronzor
 
 | Good Rod | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 20 | 60% |
-| Magikarp | 20 | 40% |
+| Goldeen | 46 | 60% |
+| Magikarp | 46 | 40% |
 
 | Super Rod | Lv. | Chance |
 |---|---|--:|
-| Goldeen | 40 | 70% |
-| Magikarp | 40 | 20% |
-| Seaking | 40 | 10% |
+| Goldeen | 62 | 70% |
+| Magikarp | 62 | 20% |
+| Seaking | 62 | 10% |
 
 Also, on the water: surfing swarm: Goldeen; fishing at night: Goldeen; fishing swarm: Magikarp.
 
@@ -3171,11 +3178,11 @@ Some trees in an area are special trees with their own Pokémon; which trees dep
 
 ## Route 26
 
-- Ordinary trees: Hoothoot (Lv. 28–32), Pineco (Lv. 28–29), Exeggcute (Lv. 28–32), Spinarak (Lv. 31–32).
+- Ordinary trees: Hoothoot (Lv. 45–50), Pineco (Lv. 45–46), Exeggcute (Lv. 45–50), Spinarak (Lv. 49–50).
 
 ## Route 27
 
-- Ordinary trees: Hoothoot (Lv. 28–32), Pineco (Lv. 28–29), Exeggcute (Lv. 28–32), Spinarak (Lv. 31–32).
+- Ordinary trees: Hoothoot (Lv. 45–50), Pineco (Lv. 45–46), Exeggcute (Lv. 45–50), Spinarak (Lv. 49–50).
 
 ## Route 28
 
@@ -3183,68 +3190,68 @@ Some trees in an area are special trees with their own Pokémon; which trees dep
 
 ## Route 29
 
-- Ordinary trees: Hoothoot (Lv. 2–5), Pineco (Lv. 2–3), Exeggcute (Lv. 2–5), Spinarak (Lv. 4–5).
+- Ordinary trees: Hoothoot (Lv. 16–17), Pineco (Lv. 16), Exeggcute (Lv. 16–17), Spinarak (Lv. 17).
 
 ## Route 30
 
-- Ordinary trees: Hoothoot (Lv. 2–5), Pineco (Lv. 2–3), Exeggcute (Lv. 2–5), Spinarak (Lv. 4–5).
+- Ordinary trees: Hoothoot (Lv. 16–17), Pineco (Lv. 16), Exeggcute (Lv. 16–17), Spinarak (Lv. 17).
 
 ## Route 31
 
-- Ordinary trees: Hoothoot (Lv. 3–6), Pineco (Lv. 3–4), Exeggcute (Lv. 3–6), Spinarak (Lv. 5–6).
+- Ordinary trees: Hoothoot (Lv. 16–17), Pineco (Lv. 16–17), Exeggcute (Lv. 16–17), Spinarak (Lv. 17).
 
 ## Route 32
 
-- Ordinary trees: Hoothoot (Lv. 4–7), Pineco (Lv. 4–5), Exeggcute (Lv. 4–7).
+- Ordinary trees: Hoothoot (Lv. 17–18), Pineco (Lv. 17), Exeggcute (Lv. 17–18).
 
 ## Route 33
 
-- Ordinary trees: Spearow (Lv. 3–8), Heracross (Lv. 3–5), Aipom (Lv. 3–8).
+- Ordinary trees: Spearow (Lv. 16–18), Heracross (Lv. 16–17), Aipom (Lv. 16–18).
 
 ## Route 34
 
-- Ordinary trees: Hoothoot (Lv. 9–12), Pineco (Lv. 9–10), Exeggcute (Lv. 9–12), Spinarak (Lv. 11–12).
+- Ordinary trees: Hoothoot (Lv. 18–19), Pineco (Lv. 18), Exeggcute (Lv. 18–19), Spinarak (Lv. 19).
 
 ## Route 35
 
-- Ordinary trees: Hoothoot (Lv. 10–14), Pineco (Lv. 10–11), Exeggcute (Lv. 10–14), Spinarak (Lv. 13–14).
+- Ordinary trees: Hoothoot (Lv. 22–23), Pineco (Lv. 22–23), Exeggcute (Lv. 22–23), Spinarak (Lv. 23).
 
 ## Route 36
 
-- Ordinary trees: Hoothoot (Lv. 4–7), Pineco (Lv. 4–5), Exeggcute (Lv. 4–7), Spinarak (Lv. 6–7).
+- Ordinary trees: Hoothoot (Lv. 21–22), Pineco (Lv. 21), Exeggcute (Lv. 21–22), Spinarak (Lv. 21–22).
 
 ## Route 37
 
-- Ordinary trees: Hoothoot (Lv. 12–17), Pineco (Lv. 12–14), Exeggcute (Lv. 12–17), Spinarak (Lv. 15–17).
+- Ordinary trees: Hoothoot (Lv. 23–24), Pineco (Lv. 23), Exeggcute (Lv. 23–24), Spinarak (Lv. 24).
 
 ## Route 38
 
-- Ordinary trees: Hoothoot (Lv. 13–16), Pineco (Lv. 13–14), Exeggcute (Lv. 13–16), Spinarak (Lv. 15–16).
-- Special trees: Exeggcute (Lv. 18–25), Burmy (Lv. 18–25).
+- Ordinary trees: Hoothoot (Lv. 26–28), Pineco (Lv. 26–27), Exeggcute (Lv. 26–28), Spinarak (Lv. 27–28).
+- Special trees: Exeggcute (Lv. 31), Burmy (Lv. 31).
 
 ## Route 39
 
-- Ordinary trees: Hoothoot (Lv. 14–17), Pineco (Lv. 14–15), Exeggcute (Lv. 14–17), Spinarak (Lv. 16–17).
+- Ordinary trees: Hoothoot (Lv. 27–28), Pineco (Lv. 27), Exeggcute (Lv. 27–28), Spinarak (Lv. 28).
 
 ## Route 42
 
-- Ordinary trees: Spearow (Lv. 13–16), Heracross (Lv. 13–14), Aipom (Lv. 13–16).
+- Ordinary trees: Spearow (Lv. 30–32), Heracross (Lv. 30–31), Aipom (Lv. 30–32).
 
 ## Route 43
 
-- Ordinary trees: Hoothoot (Lv. 15–18), Pineco (Lv. 15–16), Exeggcute (Lv. 15–18), Venonat (Lv. 17–18).
+- Ordinary trees: Hoothoot (Lv. 31–33), Pineco (Lv. 31–32), Exeggcute (Lv. 31–33), Venonat (Lv. 33).
 
 ## Route 44
 
-- Ordinary trees: Spearow (Lv. 21–24), Heracross (Lv. 21–22), Aipom (Lv. 21–24).
+- Ordinary trees: Spearow (Lv. 34–38), Heracross (Lv. 34–35), Aipom (Lv. 34–38).
 
 ## Route 45
 
-- Ordinary trees: Spearow (Lv. 23–27), Heracross (Lv. 23–25), Aipom (Lv. 23–27).
+- Ordinary trees: Spearow (Lv. 37–42), Heracross (Lv. 37–40), Aipom (Lv. 37–42).
 
 ## Route 46
 
-- Ordinary trees: Spearow (Lv. 2–5), Heracross (Lv. 2–3), Aipom (Lv. 2–5).
+- Ordinary trees: Spearow (Lv. 16–17), Heracross (Lv. 16), Aipom (Lv. 16–17).
 
 ## Pallet Town
 
@@ -3277,28 +3284,28 @@ Some trees in an area are special trees with their own Pokémon; which trees dep
 
 ## New Bark Town
 
-- Ordinary trees: Hoothoot (Lv. 2–5), Pineco (Lv. 2–3), Exeggcute (Lv. 2–5), Spinarak (Lv. 4–5).
+- Ordinary trees: Hoothoot (Lv. 16–17), Pineco (Lv. 16), Exeggcute (Lv. 16–17), Spinarak (Lv. 17).
 
 ## Cherrygrove City
 
-- Ordinary trees: Hoothoot (Lv. 2–5), Pineco (Lv. 2–3), Exeggcute (Lv. 2–5), Spinarak (Lv. 4–5).
-- Special trees: Exeggcute (Lv. 18–20), Taillow (Lv. 18–25).
+- Ordinary trees: Hoothoot (Lv. 16–17), Pineco (Lv. 16), Exeggcute (Lv. 16–17), Spinarak (Lv. 17).
+- Special trees: Exeggcute (Lv. 21), Taillow (Lv. 21).
 
 ## Violet City
 
-- Ordinary trees: Hoothoot (Lv. 2–10), Pineco (Lv. 10), Exeggcute (Lv. 10).
+- Ordinary trees: Hoothoot (Lv. 16–18), Pineco (Lv. 18), Exeggcute (Lv. 18).
 
 ## Azalea Town
 
-- Ordinary trees: Spearow (Lv. 3–8), Heracross (Lv. 3–5), Aipom (Lv. 3–8).
+- Ordinary trees: Spearow (Lv. 16–18), Heracross (Lv. 16–17), Aipom (Lv. 16–18).
 
 ## Ecruteak City
 
-- Ordinary trees: Hoothoot (Lv. 12–17), Pineco (Lv. 12–14), Exeggcute (Lv. 12–17), Spinarak (Lv. 15–17).
+- Ordinary trees: Hoothoot (Lv. 23–24), Pineco (Lv. 23), Exeggcute (Lv. 23–24), Spinarak (Lv. 24).
 
 ## Lake of Rage
 
-- Ordinary trees: Hoothoot (Lv. 14–19), Pineco (Lv. 14–16), Exeggcute (Lv. 14–19), Venonat (Lv. 17–19).
+- Ordinary trees: Hoothoot (Lv. 31–34), Pineco (Lv. 31–32), Exeggcute (Lv. 31–34), Venonat (Lv. 33–34).
 
 ## Mt. Silver
 
@@ -3310,12 +3317,12 @@ Some trees in an area are special trees with their own Pokémon; which trees dep
 
 ## National Park
 
-- Ordinary trees: Hoothoot (Lv. 10–15), Pineco (Lv. 10–12), Exeggcute (Lv. 10–15), Spinarak (Lv. 13–15).
-- Special trees: Exeggcute (Lv. 18–20), Cherubi (Lv. 18–25).
+- Ordinary trees: Hoothoot (Lv. 22–24), Pineco (Lv. 22–23), Exeggcute (Lv. 22–24), Spinarak (Lv. 23–24).
+- Special trees: Exeggcute (Lv. 26), Cherubi (Lv. 26).
 
 ## Ilex Forest
 
-- Ordinary trees: Hoothoot (Lv. 3–8), Caterpie (Lv. 3–5), Metapod (Lv. 3–5), Pineco (Lv. 6–8), Noctowl (Lv. 6–8), Butterfree (Lv. 6–8).
+- Ordinary trees: Hoothoot (Lv. 16–18), Caterpie (Lv. 16–17), Metapod (Lv. 16–17), Pineco (Lv. 17–18), Noctowl (Lv. 17–18), Butterfree (Lv. 17–18).
 
 ## Viridian Forest
 
@@ -3323,16 +3330,16 @@ Some trees in an area are special trees with their own Pokémon; which trees dep
 
 ## Route 47
 
-- Ordinary trees: Hoothoot (Lv. 15–18), Pineco (Lv. 15–16), Exeggcute (Lv. 15–18), Spinarak (Lv. 17–18).
-- Special trees: Metapod (Lv. 25–28), Butterfree (Lv. 25–28), Heracross (Lv. 25–30).
+- Ordinary trees: Hoothoot (Lv. 27–29), Pineco (Lv. 27–28), Exeggcute (Lv. 27–29), Spinarak (Lv. 28–29).
+- Special trees: Metapod (Lv. 31), Butterfree (Lv. 31), Heracross (Lv. 31).
 
 ## Route 48
 
-- Ordinary trees: Hoothoot (Lv. 15–18), Pineco (Lv. 15–16), Exeggcute (Lv. 15–18), Spinarak (Lv. 17–18).
+- Ordinary trees: Hoothoot (Lv. 27–29), Pineco (Lv. 27–28), Exeggcute (Lv. 27–29), Spinarak (Lv. 28–29).
 
 ## Safari Zone Gate Outside
 
-- Ordinary trees: Hoothoot (Lv. 14–19), Pineco (Lv. 14–16), Exeggcute (Lv. 14–19), Spinarak (Lv. 17–19).
+- Ordinary trees: Hoothoot (Lv. 27–29), Pineco (Lv. 27–28), Exeggcute (Lv. 27–29), Spinarak (Lv. 28–29).
 
 ## Route 2414
 

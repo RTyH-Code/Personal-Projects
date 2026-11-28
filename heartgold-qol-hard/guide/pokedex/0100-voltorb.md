@@ -12,6 +12,10 @@ No. 100 · Electric · catch rate 190
 
 - Into [Electrode](0101-electrode.md) at Lv. 30.
 
+## Where
+
+- Route 37 (walking)
+
 ## Moves by level
 
 | Lv. | Move |

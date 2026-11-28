@@ -530,7 +530,9 @@ def items_page(d):
     for item, badges in re.findall(r"\{ ITEM_(\w+), (\d+) \}", block):
         lines.append("| %s | %s |" % (title(item), badges))
     locked = dict(re.findall(r"\{ ITEM_(\w+), (\d+) \}", re.search(r"sBadgeLockedMartItems\[\] = \{(.*?)\};", mart, re.S).group(1)))
-    specific = re.findall(r"\{ ITEM_(\w+), MART_BADGE_(\w+) \}", re.search(r"sSpecificBadgeLockedMartItems\[\] = \{(.*?)\};", mart, re.S).group(1))
+    # items locked to one particular badge (the Shiny Stone, until patch 0033 put it in the badge-count tiers)
+    one_badge = re.search(r"sSpecificBadgeLockedMartItems\[\] = \{(.*?)\};", mart, re.S)
+    specific = re.findall(r"\{ ITEM_(\w+), MART_BADGE_(\w+) \}", one_badge.group(1)) if one_badge else []
     prices = {n: int(v) for n, v in re.findall(r"\[ITEM_(\w+)\] =\n\{\n    ITEM_PRICE\((\d+)\)", d.read("data/itemdata/itemdata.c"))}
     lines += ["", "### Other counters", "",
               "Prices are shown for the counters the hack restocks: the Goldenrod Department Store's 3F (berries and PP",

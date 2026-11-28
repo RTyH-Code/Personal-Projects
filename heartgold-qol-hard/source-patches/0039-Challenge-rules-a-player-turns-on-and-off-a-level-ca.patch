@@ -1,0 +1,967 @@
+From 71a51cfcac9de32ff04cc740b314d9f411a95209 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 28 Nov 2026 01:46:14 +0000
+Subject: [PATCH] Challenge rules a player turns on and off: a level cap and no
+ items
+
+A woman in the player's house sets them, kept in VAR_UNK_416F: 1 caps levels at the strongest level on the
+next boss's team (Rare Candies included), 2 turns off items in trainer battles. Made by
+tools/hack/challenge_rules.py.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEYSk2h6k1E1jWo3cHd
+---
+ data/eventdata/zone_event/060_T20R0201.json |  98 +++++
+ data/scr_seq/include/event_T20R0201.inc     |  18 +
+ data/scr_seq/scr_seq_0845_T20R0201.s        | 448 ++++++++++++++++++++
+ data/text/custom/545.txt                    |  48 +++
+ include/config.h                            |   8 +-
+ src/battle/battle_controller_player.c       |   6 +-
+ src/pokemon.c                               |  32 +-
+ tools/hack/challenge_rules.py               | 207 +++++++++
+ 8 files changed, 858 insertions(+), 7 deletions(-)
+ create mode 100644 data/eventdata/zone_event/060_T20R0201.json
+ create mode 100644 data/scr_seq/include/event_T20R0201.inc
+ create mode 100644 data/scr_seq/scr_seq_0845_T20R0201.s
+ create mode 100644 data/text/custom/545.txt
+ create mode 100644 tools/hack/challenge_rules.py
+
+diff --git a/data/eventdata/zone_event/060_T20R0201.json b/data/eventdata/zone_event/060_T20R0201.json
+new file mode 100644
+index 000000000..8c0050a64
+--- /dev/null
++++ b/data/eventdata/zone_event/060_T20R0201.json
+@@ -0,0 +1,98 @@
++{
++  "header": "data/scr_seq/include/event_T20R0201.inc",
++  "eventId": "060",
++  "bg_events": [
++    {
++      "script": "_EV_scr_seq_T20R0201_002 + 1",
++      "type": 0,
++      "x": 5,
++      "z": 3,
++      "y": 0,
++      "player_facing_dir": 0
++    },
++    {
++      "script": "_EV_scr_seq_T20R0201_002 + 1",
++      "type": 0,
++      "x": 6,
++      "z": 3,
++      "y": 0,
++      "player_facing_dir": 0
++    },
++    {
++      "script": "_EV_scr_seq_T20R0201_004 + 1",
++      "type": 0,
++      "x": 8,
++      "z": 3,
++      "y": 0,
++      "player_facing_dir": 0
++    },
++    {
++      "script": "_EV_scr_seq_T20R0201_003 + 1",
++      "type": 0,
++      "x": 9,
++      "z": 3,
++      "y": 0,
++      "player_facing_dir": 0
++    },
++    {
++      "script": "_EV_scr_seq_T20R0201_005 + 1",
++      "type": 0,
++      "x": 11,
++      "z": 3,
++      "y": 0,
++      "player_facing_dir": 0
++    }
++  ],
++  "object_events": [
++    {
++      "id": "obj_T20R0201_gsmama",
++      "graphics_id": "SPRITE_GSMAMA",
++      "movement_type": 0,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_NOTHING",
++      "script": "_EV_scr_seq_T20R0201_001 + 1",
++      "initial_dir": 3,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 6,
++      "z": 7,
++      "y": 0
++    },
++    {
++      "id": "obj_T20R0201_rules",
++      "graphics_id": "SPRITE_GSOLDWOMAN1",
++      "movement_type": 15,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_NOTHING",
++      "script": "_EV_scr_seq_T20R0201_007 + 1",
++      "initial_dir": 2,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 11,
++      "z": 7,
++      "y": 0
++    }
++  ],
++  "warp_events": [
++    {
++      "x": 3,
++      "z": 10,
++      "dest_header_id": "MAP_T20",
++      "dest_warp_id": 1,
++      "y": 0
++    },
++    {
++      "x": 3,
++      "z": 3,
++      "dest_header_id": "MAP_T20R0202",
++      "dest_warp_id": 0,
++      "y": 0
++    }
++  ]
++}
+diff --git a/data/scr_seq/include/event_T20R0201.inc b/data/scr_seq/include/event_T20R0201.inc
+new file mode 100644
+index 000000000..8c58d27f0
+--- /dev/null
++++ b/data/scr_seq/include/event_T20R0201.inc
+@@ -0,0 +1,18 @@
++.ifndef SCR_SEQ_T20R0201_H_
++.definelabel SCR_SEQ_T20R0201_H_, 0
++
++.equ _EV_scr_seq_T20R0201_000, 0
++.equ _EV_scr_seq_T20R0201_001, 1
++.equ _EV_scr_seq_T20R0201_002, 2
++.equ _EV_scr_seq_T20R0201_003, 3
++.equ _EV_scr_seq_T20R0201_004, 4
++.equ _EV_scr_seq_T20R0201_005, 5
++.equ _EV_scr_seq_T20R0201_006, 6
++
++.equ _EV_scr_seq_T20R0201_007, 7
++
++.equ obj_T20R0201_gsmama, 0
++
++.equ obj_T20R0201_rules, 1
++
++.endif //SCR_SEQ_T20R0201_H_
+diff --git a/data/scr_seq/scr_seq_0845_T20R0201.s b/data/scr_seq/scr_seq_0845_T20R0201.s
+new file mode 100644
+index 000000000..dac418a61
+--- /dev/null
++++ b/data/scr_seq/scr_seq_0845_T20R0201.s
+@@ -0,0 +1,448 @@
++.include "asm/include/interop_macros.inc"
++
++.include "asm/include/scriptmacros.inc"
++.include "asm/include/flags.inc"
++.include "asm/include/soundeffects.inc"
++.include "asm/include/vars.inc"
++
++.include "asm/include/events.inc"
++.include "asm/include/game_stats.inc"
++.include "asm/include/maps.inc"
++.include "asm/include/map_sections.inc"
++.include "asm/include/movements.inc"
++.include "asm/include/rankings.inc"
++.include "asm/include/spawns.inc"
++.include "asm/include/std_scripts.inc"
++.include "asm/include/trainers.inc"
++
++#include "constants/item.h"
++#include "constants/moves.h"
++#include "constants/species.h"
++
++.include "data/scr_seq/include/event_T20R0201.inc"
++
++
++// text archive to grab from: 545.txt
++
++.data
++
++
++scrdef scr_seq_T20R0201_000
++scrdef scr_seq_T20R0201_001
++scrdef scr_seq_T20R0201_002
++scrdef scr_seq_T20R0201_003
++scrdef scr_seq_T20R0201_004
++scrdef scr_seq_T20R0201_005
++scrdef scr_seq_T20R0201_006
++scrdef scr_seq_T20R0201_007
++scrdef_end
++
++scr_seq_T20R0201_000:
++	scrcmd_609
++	lockall
++	apply_movement obj_player, _00A4
++	apply_movement obj_T20R0201_gsmama, _00B0
++	wait_movement
++	callstd std_play_mom_music
++	wait 30, VAR_SPECIAL_RESULT
++	apply_movement obj_T20R0201_gsmama, _00B8
++	wait_movement
++	buffer_players_name 0
++	gender_msgbox 0, 1
++	setflag FLAG_GOT_BAG
++	play_fanfare SEQ_SE_PL_KIRAKIRA
++	wait_fanfare
++	npc_msg 2
++	setflag FLAG_GOT_TRAINER_CARD
++	play_fanfare SEQ_SE_PL_KIRAKIRA
++	wait_fanfare
++	npc_msg 3
++	setflag FLAG_GOT_SAVE_BUTTON
++	play_fanfare SEQ_SE_PL_KIRAKIRA
++	wait_fanfare
++	npc_msg 4
++	setflag FLAG_GOT_OPTIONS_BUTTON
++	play_fanfare SEQ_SE_PL_KIRAKIRA
++	wait_fanfare
++	npc_msg 5
++	closemsg
++	wait 15, VAR_SPECIAL_RESULT
++	apply_movement obj_T20R0201_gsmama, _00C8
++	wait_movement
++	callstd std_fade_end_mom_music
++	setvar VAR_SCENE_PLAYERS_HOUSE_1F, 1
++	releaseall
++	end
++
++	.byte 0x00
++	.balign 4
++_00A4:
++
++	step 62, 1
++	step 33, 1
++	step_end
++	.balign 4
++_00B0:
++
++	step 32, 1
++	step_end
++	.balign 4
++_00B8:
++
++	step 12, 2
++	step 14, 3
++	step 12, 1
++	step_end
++	.balign 4
++_00C8:
++
++	step 33, 1
++	step 13, 3
++	step 15, 3
++	step 32, 1
++	step_end
++scr_seq_T20R0201_006:
++	scrcmd_609
++	lockall
++	apply_movement obj_player, _00A4
++	apply_movement obj_T20R0201_gsmama, _00B0
++	wait_movement
++	callstd std_play_mom_music
++	wait 30, VAR_SPECIAL_RESULT
++	apply_movement obj_T20R0201_gsmama, _00B8
++	wait_movement
++	buffer_players_name 0
++	npc_msg 33
++	closemsg
++	apply_movement obj_T20R0201_gsmama, _00C8
++	wait_movement
++	callstd std_fade_end_mom_music
++	setvar VAR_SCENE_PLAYERS_HOUSE_1F, 4
++	releaseall
++	end
++
++scr_seq_T20R0201_001:
++	goto_if_set FLAG_GAME_CLEAR, _015C
++	compare VAR_SCENE_ELMS_LAB, 4
++	goto_if_ge _0205
++	goto_if_set FLAG_GOT_STARTER, _0179
++	simple_npc_msg 6
++	end
++
++_015C:
++	hasitem ITEM_SS_TICKET, 1, VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _01F2
++	goto _0205
++
++	.byte 0x02, 0x00
++_0179:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	goto_if_set FLAG_GOT_POKEGEAR, _01D4
++	buffer_players_name 0
++	npc_msg 7
++	buffer_players_name 0
++	npc_msg 8
++	setflag FLAG_GOT_POKEGEAR
++	play_fanfare SEQ_ME_ITEM
++	wait_fanfare
++	npc_msg 9
++	npc_msg 10
++	touchscreen_menu_hide
++	getmenuchoice VAR_SPECIAL_RESULT
++	touchscreen_menu_show
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_ne _01C6
++	npc_msg 11
++	goto _01C9
++
++_01C6:
++	npc_msg 12
++_01C9:
++	npc_msg 13
++	wait_button_or_dpad
++	closemsg
++	releaseall
++	end
++
++_01D4:
++	npc_msg 14
++	wait_button
++	closemsg
++	releaseall
++	end
++
++	.byte 0x49
++	.byte 0x00, 0xdc, 0x05, 0x60, 0x00, 0x68, 0x00, 0x2d, 0x00, 0x07, 0x32, 0x00, 0x35, 0x00, 0x61, 0x00
++	.byte 0x02, 0x00
++_01F2:
++	simple_npc_msg 34
++	end
++
++_0205:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	goto_if_set FLAG_TALKED_TO_MOM_AFTER_NAMING_RIVAL, _0275
++	check_badge BADGE_ZEPHYR, VAR_TEMP_x4000
++	compare VAR_TEMP_x4000, 0
++	goto_if_ne _0234
++	npc_msg 15
++	goto _023A
++
++_0234:
++	buffer_players_name 0
++	npc_msg 16
++_023A:
++	setflag FLAG_TALKED_TO_MOM_AFTER_NAMING_RIVAL
++	setvar VAR_SCENE_ROUTE_30_PHONE_CALL, 0
++	touchscreen_menu_hide
++	getmenuchoice VAR_SPECIAL_RESULT
++	touchscreen_menu_show
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_ne _0266
++	npc_msg 17
++	setflag FLAG_SYS_MOMS_SAVINGS
++	goto _026D
++
++_0266:
++	npc_msg 18
++	clearflag FLAG_SYS_MOMS_SAVINGS
++_026D:
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_0275:
++	npc_msg 20
++	scrcmd_795 1, 1
++	touchscreen_menu_hide
++	menu_init 1, 1, 0, 1, VAR_SPECIAL_RESULT
++	menu_item_add 29, 255, 0
++	menu_item_add 30, 255, 1
++	menu_item_add 31, 255, 2
++	menu_item_add 32, 255, 3
++	menu_exec
++	switch VAR_SPECIAL_RESULT
++	case 0, _02DF
++	case 1, _0335
++	case 2, _0398
++	goto _03D1
++
++	.byte 0x02, 0x00
++_02DF:
++	bank_or_wallet_is_full 1, VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 1
++	goto_if_eq _043A
++	check_bank_balance VAR_SPECIAL_RESULT, 1
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _041C
++	bank_transaction 1, VAR_SPECIAL_RESULT
++	scrcmd_796
++	touchscreen_menu_show
++	switch VAR_SPECIAL_RESULT
++	case 0, _03E0
++	case 1, _0411
++	releaseall
++	end
++
++_0335:
++	bank_or_wallet_is_full 0, VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 1
++	goto_if_eq _042B
++	hasenoughmoneyvar VAR_SPECIAL_RESULT, 1
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _0389
++	bank_transaction 0, VAR_SPECIAL_RESULT
++	scrcmd_796
++	touchscreen_menu_show
++	switch VAR_SPECIAL_RESULT
++	case 0, _03FA
++	case 1, _0411
++	releaseall
++	end
++
++_0389:
++	touchscreen_menu_show
++	scrcmd_796
++	npc_msg 26
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_0398:
++	npc_msg 25
++	touchscreen_menu_hide
++	getmenuchoice VAR_SPECIAL_RESULT
++	touchscreen_menu_show
++	scrcmd_796
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_ne _03C2
++	buffer_players_name 0
++	npc_msg 17
++	setflag FLAG_SYS_MOMS_SAVINGS
++	goto _03C9
++
++_03C2:
++	npc_msg 18
++	clearflag FLAG_SYS_MOMS_SAVINGS
++_03C9:
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_03D1:
++	scrcmd_796
++	touchscreen_menu_show
++	npc_msg 21
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_03E0:
++	closemsg
++	wait 8, VAR_SPECIAL_RESULT
++	play_se SEQ_SE_GS_OKOZUKAI
++	buffer_players_name 0
++	npc_msg 24
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_03FA:
++	closemsg
++	wait 8, VAR_SPECIAL_RESULT
++	play_se SEQ_SE_GS_OKOZUKAI
++	npc_msg 23
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_0411:
++	npc_msg 21
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_041C:
++	touchscreen_menu_show
++	scrcmd_796
++	npc_msg 22
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_042B:
++	touchscreen_menu_show
++	scrcmd_796
++	npc_msg 27
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_043A:
++	touchscreen_menu_show
++	scrcmd_796
++	npc_msg 28
++	wait_button
++	closemsg
++	releaseall
++	end
++
++scr_seq_T20R0201_002:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	npc_msg 35
++	wait_button
++	closemsg
++	releaseall
++	end
++
++scr_seq_T20R0201_003:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	npc_msg 36
++	wait_button
++	closemsg
++	releaseall
++	end
++
++scr_seq_T20R0201_004:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	npc_msg 37
++	wait_button
++	closemsg
++	releaseall
++	end
++
++scr_seq_T20R0201_005:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	npc_msg 38
++	wait_button
++	closemsg
++	releaseall
++	end
++	.balign 4
++
++// challenge rules (tools/hack/challenge_rules.py): VAR_UNK_416F holds them, 1 the level cap and 2 no items
++scr_seq_T20R0201_007:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	npc_msg 39
++_rules_menu:
++	touchscreen_menu_hide
++	menu_init 1, 1, 0, 1, VAR_SPECIAL_RESULT
++	menu_item_add 40, 255, 0
++	menu_item_add 41, 255, 1
++	menu_item_add 42, 255, 2
++	menu_exec
++	touchscreen_menu_show
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _rules_cap
++	compare VAR_SPECIAL_RESULT, 1
++	goto_if_eq _rules_items
++	npc_msg 47
++	wait_button_or_walk_away
++	closemsg
++	releaseall
++	end
++
++_rules_cap:
++	compare VAR_UNK_416F, 1
++	goto_if_eq _rules_cap_off
++	compare VAR_UNK_416F, 3
++	goto_if_eq _rules_cap_off
++	addvar VAR_UNK_416F, 1
++	npc_msg 43
++	goto _rules_menu
++
++_rules_cap_off:
++	subvar VAR_UNK_416F, 1
++	npc_msg 44
++	goto _rules_menu
++
++_rules_items:
++	compare VAR_UNK_416F, 2
++	goto_if_ge _rules_items_off
++	addvar VAR_UNK_416F, 2
++	npc_msg 45
++	goto _rules_menu
++
++_rules_items_off:
++	subvar VAR_UNK_416F, 2
++	npc_msg 46
++	goto _rules_menu
+diff --git a/data/text/custom/545.txt b/data/text/custom/545.txt
+new file mode 100644
+index 000000000..b33ab742d
+--- /dev/null
++++ b/data/text/custom/545.txt
+@@ -0,0 +1,48 @@
++Hi, {STRVAR_1 3, 0, 0}!\nYou’re finally awake.\fYour friend Lyra was just here.\rShe was playing hide-and-seek with\nher MARILL.\rOh, I almost forgot! Our acquaintance,\nProfessor Elm, was looking for you.\rHe said he had a favor to ask of you.\rYou know where the lab is, right?\nIt’s right next door to us.\rBy the way, do you have everything\nyou need to go out?\fHere, use this Bag to carry things...\r
++Hi, {STRVAR_1 3, 0, 0}!\nYou’re finally awake.\fYour friend Ethan was just here.\rHe was playing hide-and-seek with\nhis MARILL.\rOh, I almost forgot! Our acquaintance,\nProfessor Elm, was looking for you.\rHe said he had a favor to ask of you.\rYou know where the lab is, right?\nIt’s right next door to us.\rBy the way, do you have everything\nyou need to go out?\fHere, use this Bag to carry things...\r
++This is your Trainer Card...\r
++Here you can save a record of\nyour progress...\r
++These are also rather helpful...\r
++Just try touching the buttons, and\nyou’ll know what to do in no time.\r
++Professor Elm has been waiting for\nyou, dear. Please, go and help him.
++Oh! {STRVAR_1 3, 0, 0}!\nThat’s a cute Pokémon you have.\rProfessor Elm must have given it\nto you?\rOh, Professor Elm has a task for you,\nyou say?\fWhat kind of task?\r...\rI see. That sounds a little difficult.\rBut when someone makes that kind of\nrequest of you, it must be important!\rOh, that’s right!\nI completely forgot!\rYour Pokégear came back from the\nrepair shop!\rHere you go!\r
++{STRVAR_1 3, 0, 0} received\nthe Pokégear!\r
++The Pokémon Gear...\nor Pokégear, as it’s often called,\fis what every Trainer should have.\r
++Guess what?\nYou can use the Pokégear to make a\fphone call, too.\fDo you remember how? {YESNO 0}
++Just power on the Pokégear and\ntouch the telephone button, OK?\r
++Select the POKéGEAR button on the\nTouch Screen. Then select the\ftelephone button.\r
++The names of the people you can call\nare automatically registered.\rJust select one to give him or her\na call.\rWow, I can’t believe it’s so easy\nto make a phone call!
++What’s wrong?\rDid you forget how to get to\nMr. Pokémon’s house?\rGo north on Route 30.\nTake care, dear.
++...\nSo, you’re leaving on an adventure...\rOK! I’ll help, too.\nBut what can I do for you?\rI know!\nEvery time you receive prize money,\fI’ll save some of it for you.\rOn a long journey, money’s important.\rDo you want me to save\nyour money for you? {YESNO 0}
++I want to support you on your\nadventure, {STRVAR_1 3, 0, 0}.\fOK! I’ll help, too.\fBut what can I do for you?\rI know!\rEvery time you receive prize money,\nI’ll save some of it for you.\rOn a long journey, money’s important.\nDo you want me to save\fyour money for you? {YESNO 0}
++OK, I’ll take care of your money.\rBe careful.\rPokémon are your friends.\nWhen you work as a team,\fyou can accomplish anything!\fNow, go on!
++OK, but be careful out there.\rPokémon are your friends.\nWhen you work as a team,\fyou can accomplish anything!\fNow, go on!
++{STRVAR_1 3, 0, 0}, stand firm!\nI’m always there for you!
++Hi! Welcome home!\nYou’re doing fine, I see.\rI’ve kept your room tidy and clean.\nOr...\fIs this about your money? {YESNO 0}
++Just do what you can.
++Oh!\nYou have no money saved.
++Your money’s safe here!\nTake care of yourself!
++{STRVAR_1 3, 0, 0}\nYou should think hard how you spend it!
++Do you want to save some money? {YESNO 0}
++Oh!\nYou have no money left to save.\rDon’t waste your money on\nfrivolous things, OK?\rI know you are sensible like me\nand that I can count on you!
++I have saved so much.\nI can’t save any more.
++You have so much money already.\nI can’t let you have any more.
++WITHDRAW
++DEPOSIT MONEY
++CHANGE
++EXIT
++Hi, {STRVAR_1 3, 0, 0}!\nProfessor Elm told me that\fhe has something to give you!\r
++Professor Elm told me that\nhe has something to give you.\fWhy don’t you visit his lab?
++The TV is playing a movie!\rTwo boys are in a cave searching\nfor treasure!\rI better get going...
++Cinnabar Volcano Burger!\nMom’s specialty!
++A squeaky-clean sink!\nMom loves having it clean.
++What’s in the fridge...?\rLots of drinking water and\nsweeeet lemonade!
++Hello, dear. I keep the challenge\nrules for trainers who want them.\rWhich rule would you like to change?
++Level cap
++No items in battle
++That’s all
++The level cap is on.\rYour Pokémon won’t grow past the\nstrongest of the next boss’s team.
++The level cap is off.
++Items are off in trainer battles,\nfor you and for your opponents.
++Items are back on in trainer battles.
++Come back if you change your mind.\nGood luck out there!
+diff --git a/include/config.h b/include/config.h
+index 6a3c2a895..a88d907ca 100644
+--- a/include/config.h
++++ b/include/config.h
+@@ -86,8 +86,12 @@
+ // uncommenting IMPLEMENT_LEVEL_CAP enables the level cap system.  make sure to also uncomment LEVEL_CAP_VARIABLE in the process
+ // uncommenting UNCAP_CANDIES_FROM_LEVEL_CAP will allow for rare candies to not be capped by the level cap even with the level cap in place, like run & bun
+ // uncommenting ALLOW_LEVEL_CAP_EVOLVE will allow for rare candies to evolve pokemon already at the level cap that can evolve at that level already
+-// #define IMPLEMENT_LEVEL_CAP
+-// #define LEVEL_CAP_VARIABLE 0x416F
++#define IMPLEMENT_LEVEL_CAP
++#define LEVEL_CAP_VARIABLE 0x416F
++// the hack's challenge rules, which a player turns on and off (tools/hack/challenge_rules.py)
++#define CHALLENGE_RULES_VARIABLE 0x416F
++#define CHALLENGE_RULE_LEVEL_CAP 1
++#define CHALLENGE_RULE_NO_ITEMS 2
+ // #define UNCAP_CANDIES_FROM_LEVEL_CAP
+ // #define ALLOW_LEVEL_CAP_EVOLVE
+ 
+diff --git a/src/battle/battle_controller_player.c b/src/battle/battle_controller_player.c
+index 5680e3b86..c1789bb11 100644
+--- a/src/battle/battle_controller_player.c
++++ b/src/battle/battle_controller_player.c
+@@ -15,7 +15,7 @@
+ #include "test_battle.h"
+ #endif // DEBUG_BATTLE_SCENARIOS
+ 
+-#if defined(DISABLE_ITEMS_IN_TRAINER_BATTLE)
++#if defined(DISABLE_ITEMS_IN_TRAINER_BATTLE) || defined(CHALLENGE_RULES_VARIABLE)
+ void overrideItemUsage(struct BattleSystem *bsys, struct BattleStruct *ctx)
+ {
+     BattleMessage msg;
+@@ -110,6 +110,10 @@ BOOL LONG_CALL BattleContext_Main(struct BattleSystem *bsys, struct BattleStruct
+ #endif
+ #if defined(DISABLE_ITEMS_IN_TRAINER_BATTLE)
+     overrideItemUsage(bsys, ctx);
++#elif defined(CHALLENGE_RULES_VARIABLE)
++    if (GetScriptVar(CHALLENGE_RULES_VARIABLE) & CHALLENGE_RULE_NO_ITEMS) {  // the no-items challenge rule
++        overrideItemUsage(bsys, ctx);
++    }
+ #endif
+     overrideRunButton(bsys, ctx);
+ 
+diff --git a/src/pokemon.c b/src/pokemon.c
+index e7e2f80ce..8c4be5615 100644
+--- a/src/pokemon.c
++++ b/src/pokemon.c
+@@ -1728,11 +1728,35 @@ u32 LONG_CALL GetLevelCap(void)
+     return 0;
+ #else
+ #ifdef IMPLEMENT_LEVEL_CAP
+-    u32 levelCap = GetScriptVar(LEVEL_CAP_VARIABLE);
+-    if (levelCap > 100 || levelCap == 0) {
+-        levelCap = 100;
++    // the hack's challenge rules (tools/hack/challenge_rules.py): with the level cap on, the strongest level on
++    // the next boss's team.  the lowest top level of the Gym Leaders not yet beaten, Johto's first; Lance's
++    // until the Champion is beaten; Red's once all sixteen badges are had
++    static const u8 johtoCaps[8] = { 14, 19, 24, 29, 34, 38, 42, 47 };  // Falkner, Bugsy, Whitney, Morty, Chuck, Jasmine, Pryce, Clair
++    static const u8 kantoCaps[8] = { 70, 68, 64, 66, 68, 66, 72, 76 };  // Brock, Misty, Lt. Surge, Erika, Janine, Sabrina, Blaine, Blue
++    struct PlayerProfile *profile;
++    u32 levelCap = 0, i;
++
++    if (!(GetScriptVar(CHALLENGE_RULES_VARIABLE) & CHALLENGE_RULE_LEVEL_CAP)) {
++        return 100;
++    }
++    profile = Sav2_PlayerData_GetProfileAddr(SaveBlock2_get());
++    for (i = 0; i < 8; i++) {
++        if (!PlayerProfile_TestBadgeFlag(profile, i) && (levelCap == 0 || johtoCaps[i] < levelCap)) {
++            levelCap = johtoCaps[i];
++        }
++    }
++    if (levelCap) {
++        return levelCap;
++    }
++    if (!CheckScriptFlag(2404)) {   // FLAG_GAME_CLEAR
++        return 58;
++    }
++    for (i = 0; i < 8; i++) {
++        if (!PlayerProfile_TestBadgeFlag(profile, 8 + i) && (levelCap == 0 || kantoCaps[i] < levelCap)) {
++            levelCap = kantoCaps[i];
++        }
+     }
+-    return levelCap;
++    return levelCap ? levelCap : 95;
+ #else
+     return 100;
+ #endif // IMPLEMENT_LEVEL_CAP
+diff --git a/tools/hack/challenge_rules.py b/tools/hack/challenge_rules.py
+new file mode 100644
+index 000000000..487028993
+--- /dev/null
++++ b/tools/hack/challenge_rules.py
+@@ -0,0 +1,207 @@
++#!/usr/bin/env python3
++"""Challenge rules a player can turn on and off: a level cap and no items in trainer battles.
++
++hg-engine has both only as rules fixed when the ROM is built (IMPLEMENT_LEVEL_CAP, read from a script
++variable, and DISABLE_ITEMS_IN_TRAINER_BATTLE). This makes them choices instead, kept in one script
++variable, CHALLENGE_RULES_VARIABLE (0x416F, which the game itself never uses): 1 turns on the level cap,
++2 turns off items in trainer battles, for the player and the opponents alike. A woman in the player's house
++in New Bark Town, downstairs to the right, sets them, and can be asked again at any time to change them.
++
++The level cap, when on, is the strongest level on the next boss's team: the lowest top level of the Johto
++Gym Leaders not yet beaten (Falkner's 14 up to Clair's 47); with all eight Johto badges, Lance's 58 until
++the Champion is beaten; then the lowest top level of the Kanto Gym Leaders not yet beaten (Lt. Surge's 64
++up to Blue's 76); and with all sixteen badges, Red's 95 (the second round's Lance needed more than his own
++88 in the playtests). A Pokemon at the cap gains no experience, and Rare Candies stop there too. Set mode
++needs nothing: it is the game's own Battle Style option.
++
++It needs the vanilla dump of the player's house (make dump_scripts, as for fossil_reviver.py):
++    python3 tools/hack/challenge_rules.py /path/to/dumped/hg-engine
++"""
++import json
++import os
++import re
++import sys
++
++HOUSE_SCRIPT = "data/scr_seq/scr_seq_0845_T20R0201.s"
++HOUSE_INCLUDE = "data/scr_seq/include/event_T20R0201.inc"
++HOUSE_EVENTS = "data/eventdata/zone_event/060_T20R0201.json"
++HOUSE_TEXT = "data/text/custom/545.txt"
++NEW_SCRIPT = 7                   # the house has scripts 0-6
++NEW_OBJECT = 1                   # and Mom, object 0
++POSITION = (11, 7)               # the right-hand side of the room, clear of the stairs, the door and Mom's walk
++
++# in the text archive's own escapes: \n a new line, \r the next box
++MESSAGES = [
++    r"Hello, dear. I keep the challenge\nrules for trainers who want them.\rWhich rule would you like to change?",
++    r"Level cap",
++    r"No items in battle",
++    r"That’s all",
++    r"The level cap is on.\rYour Pokémon won’t grow past the\nstrongest of the next boss’s team.",
++    r"The level cap is off.",
++    r"Items are off in trainer battles,\nfor you and for your opponents.",
++    r"Items are back on in trainer battles.",
++    r"Come back if you change your mind.\nGood luck out there!",
++]
++
++SCRIPT = """
++// challenge rules (tools/hack/challenge_rules.py): VAR_UNK_416F holds them, 1 the level cap and 2 no items
++scr_seq_T20R0201_{n:03d}:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	npc_msg {m0}
++_rules_menu:
++	touchscreen_menu_hide
++	menu_init 1, 1, 0, 1, VAR_SPECIAL_RESULT
++	menu_item_add {m1}, 255, 0
++	menu_item_add {m2}, 255, 1
++	menu_item_add {m3}, 255, 2
++	menu_exec
++	touchscreen_menu_show
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _rules_cap
++	compare VAR_SPECIAL_RESULT, 1
++	goto_if_eq _rules_items
++	npc_msg {m8}
++	wait_button_or_walk_away
++	closemsg
++	releaseall
++	end
++
++_rules_cap:
++	compare VAR_UNK_416F, 1
++	goto_if_eq _rules_cap_off
++	compare VAR_UNK_416F, 3
++	goto_if_eq _rules_cap_off
++	addvar VAR_UNK_416F, 1
++	npc_msg {m4}
++	goto _rules_menu
++
++_rules_cap_off:
++	subvar VAR_UNK_416F, 1
++	npc_msg {m5}
++	goto _rules_menu
++
++_rules_items:
++	compare VAR_UNK_416F, 2
++	goto_if_ge _rules_items_off
++	addvar VAR_UNK_416F, 2
++	npc_msg {m6}
++	goto _rules_menu
++
++_rules_items_off:
++	subvar VAR_UNK_416F, 2
++	npc_msg {m7}
++	goto _rules_menu
++"""
++
++CONFIG = "include/config.h"
++POKEMON = "src/pokemon.c"
++CONTROLLER = "src/battle/battle_controller_player.c"
++
++LEVEL_CAP = '''#ifdef IMPLEMENT_LEVEL_CAP
++    u32 levelCap = GetScriptVar(LEVEL_CAP_VARIABLE);
++    if (levelCap > 100 || levelCap == 0) {
++        levelCap = 100;
++    }
++    return levelCap;
++#else'''
++CHALLENGE_CAP = '''#ifdef IMPLEMENT_LEVEL_CAP
++    // the hack's challenge rules (tools/hack/challenge_rules.py): with the level cap on, the strongest level on
++    // the next boss's team.  the lowest top level of the Gym Leaders not yet beaten, Johto's first; Lance's
++    // until the Champion is beaten; Red's once all sixteen badges are had
++    static const u8 johtoCaps[8] = { 14, 19, 24, 29, 34, 38, 42, 47 };  // Falkner, Bugsy, Whitney, Morty, Chuck, Jasmine, Pryce, Clair
++    static const u8 kantoCaps[8] = { 70, 68, 64, 66, 68, 66, 72, 76 };  // Brock, Misty, Lt. Surge, Erika, Janine, Sabrina, Blaine, Blue
++    struct PlayerProfile *profile;
++    u32 levelCap = 0, i;
++
++    if (!(GetScriptVar(CHALLENGE_RULES_VARIABLE) & CHALLENGE_RULE_LEVEL_CAP)) {
++        return 100;
++    }
++    profile = Sav2_PlayerData_GetProfileAddr(SaveBlock2_get());
++    for (i = 0; i < 8; i++) {
++        if (!PlayerProfile_TestBadgeFlag(profile, i) && (levelCap == 0 || johtoCaps[i] < levelCap)) {
++            levelCap = johtoCaps[i];
++        }
++    }
++    if (levelCap) {
++        return levelCap;
++    }
++    if (!CheckScriptFlag(2404)) {   // FLAG_GAME_CLEAR
++        return 58;
++    }
++    for (i = 0; i < 8; i++) {
++        if (!PlayerProfile_TestBadgeFlag(profile, 8 + i) && (levelCap == 0 || kantoCaps[i] < levelCap)) {
++            levelCap = kantoCaps[i];
++        }
++    }
++    return levelCap ? levelCap : 95;
++#else'''
++
++
++def edit(path, old, new):
++    text = open(path, encoding="utf-8").read()
++    if old not in text:
++        sys.exit("not found in %s: %s" % (path, old[:60]))
++    open(path, "w", encoding="utf-8").write(text.replace(old, new, 1))
++
++
++def main():
++    dump = sys.argv[1]
++    read = lambda path: open(os.path.join(dump, path), encoding="utf-8", newline="").read()
++
++    text = read(HOUSE_TEXT).split("\r\n")
++    if text[-1] == "":
++        text.pop()
++    first = len(text)
++    text += MESSAGES
++    numbers = {"m%d" % k: first + k for k in range(len(MESSAGES))}
++
++    script = read(HOUSE_SCRIPT)
++    script = script.replace("scrdef_end", "scrdef scr_seq_T20R0201_%03d\nscrdef_end" % NEW_SCRIPT, 1)
++    script = script.rstrip("\n") + "\n" + SCRIPT.format(n=NEW_SCRIPT, **numbers)
++
++    include = read(HOUSE_INCLUDE)
++    include = include.replace("\n.equ obj_T20R0201_gsmama",
++                              "\n.equ _EV_scr_seq_T20R0201_%03d, %d\n\n.equ obj_T20R0201_gsmama" % (NEW_SCRIPT, NEW_SCRIPT), 1)
++    include = include.replace("\n.endif", "\n.equ obj_T20R0201_rules, %d\n\n.endif" % NEW_OBJECT, 1)
++
++    events = json.loads(read(HOUSE_EVENTS))
++    if len(events["object_events"]) != NEW_OBJECT:
++        sys.exit("unexpected number of objects in the player's house")
++    events["object_events"].append({
++        "id": "obj_T20R0201_rules",
++        "graphics_id": "SPRITE_GSOLDWOMAN1",
++        "movement_type": 15,
++        "trainer_type": 0,
++        "hidden_flag": "FLAG_NOTHING",
++        "script": "_EV_scr_seq_T20R0201_%03d + 1" % NEW_SCRIPT,
++        "initial_dir": 2,      # facing left, into the room
++        "param0": 0, "param1": 0, "param2": 0,
++        "movement_range_x": 0, "movement_range_z": 0,
++        "x": POSITION[0], "z": POSITION[1], "y": 0,
++    })
++
++    for path, content in ((HOUSE_SCRIPT, script), (HOUSE_INCLUDE, include),
++                          (HOUSE_EVENTS, json.dumps(events, indent=2) + "\n"),
++                          (HOUSE_TEXT, "\r\n".join(text) + "\r\n")):
++        os.makedirs(os.path.dirname(path), exist_ok=True)
++        open(path, "w", encoding="utf-8", newline="").write(content)
++        print("wrote", path)
++
++    edit(CONFIG, "// #define IMPLEMENT_LEVEL_CAP\n// #define LEVEL_CAP_VARIABLE 0x416F",
++         "#define IMPLEMENT_LEVEL_CAP\n#define LEVEL_CAP_VARIABLE 0x416F\n"
++         "// the hack's challenge rules, which a player turns on and off (tools/hack/challenge_rules.py)\n"
++         "#define CHALLENGE_RULES_VARIABLE 0x416F\n#define CHALLENGE_RULE_LEVEL_CAP 1\n#define CHALLENGE_RULE_NO_ITEMS 2")
++    edit(POKEMON, LEVEL_CAP, CHALLENGE_CAP)
++    edit(CONTROLLER, "#if defined(DISABLE_ITEMS_IN_TRAINER_BATTLE)\nvoid overrideItemUsage",
++         "#if defined(DISABLE_ITEMS_IN_TRAINER_BATTLE) || defined(CHALLENGE_RULES_VARIABLE)\nvoid overrideItemUsage")
++    edit(CONTROLLER, "#if defined(DISABLE_ITEMS_IN_TRAINER_BATTLE)\n    overrideItemUsage(bsys, ctx);\n#endif",
++         "#if defined(DISABLE_ITEMS_IN_TRAINER_BATTLE)\n    overrideItemUsage(bsys, ctx);\n"
++         "#elif defined(CHALLENGE_RULES_VARIABLE)\n    if (GetScriptVar(CHALLENGE_RULES_VARIABLE) & CHALLENGE_RULE_NO_ITEMS) {  // the no-items challenge rule\n"
++         "        overrideItemUsage(bsys, ctx);\n    }\n#endif")
++    print("edited", CONFIG, POKEMON, CONTROLLER)
++
++
++if __name__ == "__main__":
++    main()
+-- 
+2.43.0
+

@@ -83,7 +83,7 @@ the [Pokédex](POKEDEX.md) for each Pokémon's page.
 | 74 | [Geodude](pokedex/0074-geodude.md) | wild: Ruins of Alph, Union Cave 1F, Union Cave B1F, Union Cave B2F, Mount Mortar 1F Entrance, Mount Mortar 1F Back and 7 more |
 | 75 | [Graveler](pokedex/0075-graveler.md) | wild: Mount Mortar 2F, Route 45, Dark Cave Route 45 Side, Cliff Cave, Mount Silver Cave 1F, Mount Moon and 8 more |
 | 76 | [Golem](pokedex/0076-golem.md) | evolve Graveler at Lv. 37; with a Linking Cord |
-| 77 | [Ponyta](pokedex/0077-ponyta.md) | breed Rapidash |
+| 77 | [Ponyta](pokedex/0077-ponyta.md) | wild: Route 36 |
 | 78 | [Rapidash](pokedex/0078-rapidash.md) | wild: Mount Silver, Route 26, Route 27, Route 28, Route 22 |
 | 79 | [Slowpoke](pokedex/0079-slowpoke.md) | wild: Slowpoke Well B1F, Slowpoke Well B2F |
 | 80 | [Slowbro](pokedex/0080-slowbro.md) | wild: Slowpoke Well B2F, Seafoam Islands B4F, Tohjo Falls |
@@ -106,7 +106,7 @@ the [Pokédex](POKEDEX.md) for each Pokémon's page.
 | 97 | [Hypno](pokedex/0097-hypno.md) | wild: Route 11 |
 | 98 | [Krabby](pokedex/0098-krabby.md) | wild: Cherrygrove City, Union Cave B2F, Route 34, Olivine City, Route 40, Whirl Islands 1F and 5 more |
 | 99 | [Kingler](pokedex/0099-kingler.md) | wild: Cherrygrove City, Union Cave B2F, Route 34, Olivine City, Route 40, Whirl Islands 1F and 5 more |
-| 100 | [Voltorb](pokedex/0100-voltorb.md) | breed Electrode |
+| 100 | [Voltorb](pokedex/0100-voltorb.md) | wild: Route 37 |
 | 101 | [Electrode](pokedex/0101-electrode.md) | Team Rocket HQ; wild: Route 10, Cerulean Cave 1F, Cerulean Cave 2F, Cerulean Cave B1F |
 | 102 | [Exeggcute](pokedex/0102-exeggcute.md) | wild: Route 26, Route 27, Route 29, Route 30, Route 31, Route 32 and 16 more |
 | 103 | [Exeggutor](pokedex/0103-exeggutor.md) | evolve Exeggcute with a Leaf Stone |
@@ -117,7 +117,7 @@ the [Pokédex](POKEDEX.md) for each Pokémon's page.
 | 108 | [Lickitung](pokedex/0108-lickitung.md) | wild: Route 44 |
 | 109 | [Koffing](pokedex/0109-koffing.md) | wild: Burned Tower 1F, Burned Tower B1F |
 | 110 | [Weezing](pokedex/0110-weezing.md) | evolve Koffing at Lv. 35 |
-| 111 | [Rhyhorn](pokedex/0111-rhyhorn.md) | breed Rhydon |
+| 111 | [Rhyhorn](pokedex/0111-rhyhorn.md) | wild: Mount Mortar 1F Back |
 | 112 | [Rhydon](pokedex/0112-rhydon.md) | wild: Victory Road 1F, Victory Road 2F, Victory Road 3F |
 | 113 | [Chansey](pokedex/0113-chansey.md) | wild: Route 44, Route 13, Route 14, Route 15 |
 | 114 | [Tangela](pokedex/0114-tangela.md) | wild: Route 44, Mount Silver, Route 28, Route 21, Route 12, Route 13 and 4 more |
@@ -279,7 +279,7 @@ the [Pokédex](POKEDEX.md) for each Pokémon's page.
 | 270 | [Lotad](pokedex/0270-lotad.md) | wild: Route 35 |
 | 271 | [Lombre](pokedex/0271-lombre.md) | evolve Lotad at Lv. 14 |
 | 272 | [Ludicolo](pokedex/0272-ludicolo.md) | evolve Lombre with a Water Stone |
-| 273 | [Seedot](pokedex/0273-seedot.md) | breed Nuzleaf |
+| 273 | [Seedot](pokedex/0273-seedot.md) | wild: Ilex Forest |
 | 274 | [Nuzleaf](pokedex/0274-nuzleaf.md) | wild: Viridian Forest |
 | 275 | [Shiftry](pokedex/0275-shiftry.md) | evolve Nuzleaf with a Leaf Stone |
 | 276 | [Taillow](pokedex/0276-taillow.md) | wild: Cherrygrove City |
@@ -291,7 +291,7 @@ the [Pokédex](POKEDEX.md) for each Pokémon's page.
 | 282 | [Gardevoir](pokedex/0282-gardevoir.md) | evolve Kirlia at Lv. 30 |
 | 283 | [Surskit](pokedex/0283-surskit.md) | wild: Route 32 |
 | 284 | [Masquerain](pokedex/0284-masquerain.md) | evolve Surskit at Lv. 22 |
-| 285 | [Shroomish](pokedex/0285-shroomish.md) | breed Breloom |
+| 285 | [Shroomish](pokedex/0285-shroomish.md) | wild: Ilex Forest |
 | 286 | [Breloom](pokedex/0286-breloom.md) | wild: Viridian Forest |
 | 287 | [Slakoth](pokedex/0287-slakoth.md) | breed Vigoroth |
 | 288 | [Vigoroth](pokedex/0288-vigoroth.md) | evolve Slakoth at Lv. 18 |
@@ -304,7 +304,7 @@ the [Pokédex](POKEDEX.md) for each Pokémon's page.
 | 295 | [Exploud](pokedex/0295-exploud.md) | evolve Loudred at Lv. 40 |
 | 296 | [Makuhita](pokedex/0296-makuhita.md) | wild: Union Cave 1F, Union Cave B1F, Union Cave B2F, Slowpoke Well B1F, Slowpoke Well B2F, Whirl Islands 1F and 38 more |
 | 297 | [Hariyama](pokedex/0297-hariyama.md) | evolve Makuhita at Lv. 24 |
-| 298 | [Azurill](pokedex/0298-azurill.md) | breed Marill |
+| 298 | [Azurill](pokedex/0298-azurill.md) | wild: Route 32 |
 | 299 | [Nosepass](pokedex/0299-nosepass.md) | wild: Cliff Cave |
 | 300 | [Skitty](pokedex/0300-skitty.md) | wild: Route 34 |
 | 301 | [Delcatty](pokedex/0301-delcatty.md) | evolve Skitty with a Moon Stone |
@@ -380,7 +380,7 @@ the [Pokédex](POKEDEX.md) for each Pokémon's page.
 | 371 | [Bagon](pokedex/0371-bagon.md) | wild: Route 45 |
 | 372 | [Shelgon](pokedex/0372-shelgon.md) | evolve Bagon at Lv. 30 |
 | 373 | [Salamence](pokedex/0373-salamence.md) | evolve Shelgon at Lv. 50 |
-| 374 | [Beldum](pokedex/0374-beldum.md) | breed Metang |
+| 374 | [Beldum](pokedex/0374-beldum.md) | wild: Dark Cave Route 45 Side |
 | 375 | [Metang](pokedex/0375-metang.md) | wild: Victory Road 1F, Victory Road 2F |
 | 376 | [Metagross](pokedex/0376-metagross.md) | evolve Metang at Lv. 45 |
 | 377 | [Regirock](pokedex/0377-regirock.md) | Ruins of Alph Northeast Entrance Second Room, Lv. 60, after the Champion |
