@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v1.7
 
 - The seven Pokémon that could only be had by breeding are wild in Johto
   (patch 0038), so none needs the Day Care: Azurill on Route 32; Seedot and
@@ -13,6 +13,10 @@
   Ponyta (22), Rhyhorn (31) and Beldum (41). Voltorb didn't turn up in 100 on
   Route 37: its slot there is 4-5% by morning and day but 1% at night, the
   only one free in that table.
+
+This changes encounter data only. A save made in v1.6 on Route 29 loaded in
+v1.7, won two wild battles, and the game saved again
+(`playtest/save_carry.py`).
 
 ## v1.6
 
