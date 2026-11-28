@@ -589,11 +589,16 @@ def features(game, state, data, world, names, out_dir, results):
     # the counters the hack restocks: buy the item at each position in the list and see what arrives.
     # (name, map, where to stand, facing, badges, must be on sale, must not be on sale yet)
     counters = [
-        ("evolution shop, 0 badges", "T25R1004", (21, 7), 3, 0, ["FIRE_STONE", "OVAL_STONE"], ["SHINY_STONE", "PEAT_BLOCK", "RAZOR_FANG"]),
-        ("evolution shop, 16 badges", "T25R1004", (21, 7), 3, 16, ["FIRE_STONE", "SHINY_STONE", "PEAT_BLOCK", "RAZOR_FANG"], []),
-        ("berry stand, 0 badges", "T25R1003", (21, 7), 3, 0, ["X_SPEED", "ORAN_BERRY", "ASPEAR_BERRY"], ["SITRUS_BERRY", "OCCA_BERRY", "MAX_REVIVE", "LUCKY_EGG"]),
+        ("evolution shop, 0 badges", "T25R1004", (21, 7), 3, 0, ["MOON_STONE", "OVAL_STONE"], ["FIRE_STONE", "SHINY_STONE", "PEAT_BLOCK", "RAZOR_FANG", "POWER_WEIGHT"]),
+        ("evolution shop, 4 badges", "T25R1004", (21, 7), 3, 4, ["FIRE_STONE", "POWER_WEIGHT", "POWER_ANKLET"], ["SHINY_STONE", "PEAT_BLOCK"]),
+        ("evolution shop, 16 badges", "T25R1004", (21, 7), 3, 16, ["FIRE_STONE", "SHINY_STONE", "PEAT_BLOCK", "RAZOR_FANG", "POWER_WEIGHT", "POWER_ANKLET"], []),
+        ("berry stand, 0 badges", "T25R1003", (21, 7), 3, 0, ["X_SPEED", "ORAN_BERRY", "ASPEAR_BERRY", "POMEG_BERRY", "TAMATO_BERRY"], ["SITRUS_BERRY", "OCCA_BERRY", "MAX_REVIVE", "LUCKY_EGG"]),
         ("berry stand, 4 badges", "T25R1003", (21, 7), 3, 4, ["SITRUS_BERRY", "LUM_BERRY", "ETHER", "LUCKY_EGG"], ["OCCA_BERRY", "ELIXIR", "MAX_REVIVE"]),
         ("berry stand, 16 badges", "T25R1003", (21, 7), 3, 16, ["OCCA_BERRY", "ROSELI_BERRY", "ELIXIR", "MAX_REVIVE"], []),
+        # the TM counter, with the mints from four badges and the Bottle Caps from eight (training_items.py)
+        ("TM counter, 3 badges", "T25R1005", (21, 7), 3, 3, ["TM070", "TM015"], ["ADAMANT_MINT", "BOTTLE_CAP"]),
+        ("TM counter, 4 badges", "T25R1005", (21, 7), 3, 4, ["TM015", "LONELY_MINT", "ADAMANT_MINT", "SERIOUS_MINT"], ["BOTTLE_CAP", "GOLD_BOTTLE_CAP"]),
+        ("TM counter, 8 badges", "T25R1005", (21, 7), 3, 8, ["SERIOUS_MINT", "BOTTLE_CAP", "GOLD_BOTTLE_CAP"], []),
         ("held item counter", "T07R0104", (20, 11), 3, 16, ["AIR_MAIL", "LEFTOVERS", "CHOICE_SCARF", "POWER_HERB", "RARE_CANDY", "ABILITY_CAPSULE", "ABILITY_PATCH"], []),
         # an ordinary Poke Mart counter (Cherrygrove City's), whose stock grows with the badges
         # (no Poke Balls on this save: the game holds them back until the catching lesson, as the original does)
@@ -605,9 +610,13 @@ def features(game, state, data, world, names, out_dir, results):
     ]
     names_by_id = {v: k for k, v in items.items()}
     names_by_id.update({v: k for k, v in world.item_ids.items() if v not in names_by_id})
+    # e.g. "TM counter,berry stand": only the counters with one of these in their name
+    only = [o for o in os.environ.get("WALK_COUNTERS", "").split(",") if o]
     for label, code, tile, facing, badges, wanted, locked in counters:
+        if only and not any(o in label for o in only):
+            continue
         stock, mispriced = [], []
-        for index in range(60):
+        for index in range(70):
             p = game.start(state, data, world, code, tile, facing=facing, badges=badges)
             if p is None:
                 break

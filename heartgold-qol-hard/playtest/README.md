@@ -517,6 +517,38 @@ trainer battle doesn't get as far as choosing a Pokémon, though it does with th
 SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 playtest/challenge_test.py /path/to/test.nds /path/to/hack/hg-engine /path/to/original/hg-engine out
 ```
 
+`hm_test.py` tries each field move from the bag (Rock Smash, Cut, Strength, Surf, Whirlpool, Waterfall and
+Rock Climb), with a party that knows only Tackle: with the HM and its badge it must ask to use it and then
+work (the rock or tree goes, the boulder moves, the player gets on, through or up); one badge short of it,
+or without the HM, it must not ask. It finds a place for each in the map data, and names after `out` limit
+it to some moves (such as `Surf Rock_Climb`).
+
+```bash
+SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 playtest/hm_test.py /path/to/test.nds /path/to/hack/hg-engine /path/to/original/hg-engine out
+```
+
+`champion_test.py` checks two of the post-game unlocks that wait for the Champion (FLAG_GAME_CLEAR), with the
+flag clear and set: Cliff Cave's Rock Smash rocks (moved aside before), and the Bug-Catching Contest's own
+check, read as it runs when the player enters the contest at the Route 36 gate. The contest is only held on
+Tuesdays, Thursdays and Saturdays, and the emulator keeps the computer's date, so on other days that check is
+skipped.
+
+```bash
+SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 playtest/champion_test.py /path/to/test.nds /path/to/hack/hg-engine /path/to/original/hg-engine out
+```
+
+`qol_test.py` plays the free Move Reminders (Cherrygrove's and Blackthorn's, with no Heart Scale), a Bottle
+Cap, a Gold Bottle Cap and an Adamant Mint used from the bag, a King's Rock evolving a Slowpoke, a Rare Candy
+evolving a Lv. 36 Kadabra, and Voltorb among 60 wild Pokemon on Route 38. Names after `out` (such as
+`bottle_cap mint`) run only those.
+
+```bash
+SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 playtest/qol_test.py /path/to/test.nds /path/to/hack/hg-engine /path/to/original/hg-engine out
+```
+
+`walk_test.py`'s `features` test buys through the restocked counters; `WALK_COUNTERS` (comma-separated parts
+of their names, such as `TM counter,berry stand`) limits it to some of them.
+
 Settings, all environment variables: `STORY_RETRIES` (tries per stage before
 it stops, default 3), `STORY_REFILL_BERRIES` (`0` stops the berry refill
 between rooms), `STORY_TEAM_<SET>` (swap in another set where that one is

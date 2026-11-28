@@ -15,6 +15,7 @@ No. 100 · Electric · catch rate 190
 ## Where
 
 - Route 37 (walking)
+- Route 38 (walking)
 
 ## Moves by level
 

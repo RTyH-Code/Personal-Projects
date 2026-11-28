@@ -4,7 +4,7 @@ A quality-of-life, modernization and difficulty hack for Pokémon HeartGold,
 following the same recipe as [FireRed QoL + Hard](../firered-qol-hard/README.md).
 It is built on [hg-engine](https://github.com/BluRosie/hg-engine).
 
-**Status: v1.8.** Everything described below is in the
+**Status: v1.9.** Everything described below is in the
 patch. The battles, maps, legendaries, wild Pokémon and shops have been
 checked by automated playtesters, and a story bot has played from the bedroom
 to Red (see [playtest/BALANCE.md](playtest/BALANCE.md)), but no person has
@@ -16,16 +16,16 @@ You need your own US Pokémon HeartGold ROM (game code `IPKE`, SHA-1
 `4fcded0e2713dc03929845de631d0932ea2b5a37`). The ROM is not in this
 repository and never will be.
 
-1. Download `HeartGold-QoL-Hard-v1.8.xdelta`.
+1. Download `HeartGold-QoL-Hard-v1.9.xdelta`.
 2. Apply it to the ROM with an xdelta patcher such as Delta Patcher or
    xdelta UI, or on a command line:
 
    ```bash
-   xdelta3 -d -s heartgold-usa.nds HeartGold-QoL-Hard-v1.8.xdelta HeartGold-QoL-Hard.nds
+   xdelta3 -d -s heartgold-usa.nds HeartGold-QoL-Hard-v1.9.xdelta HeartGold-QoL-Hard.nds
    ```
 
 3. The patched ROM is 256 MB, twice the original's size, and its SHA-1 is
-   `f5f240187b28a0d001eb652df0cb7a99b788b72d`. It has been run in DeSmuME;
+   `6b5203e7160f8c4fdbebd9525d09650a2b1eb07c`. It has been run in DeSmuME;
    other emulators and flashcarts are untried.
 
 Start a new game: saves from the original game or from other hacks will not
@@ -166,6 +166,23 @@ that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md
 - **Hidden abilities:** some boss Pokémon have one, and nothing in the game
   gave the player any. The Celadon 4F counter sells the Ability Capsule
   (₽10,000) and the Ability Patch (₽25,000).
+- **Training items** (patch 0042, `tools/hack/training_items.py`), all in
+  the Goldenrod Department Store:
+  - 3F: the six EV-lowering berries (Pomeg, Kelpsy, Qualot, Hondew, Grepa,
+    Tamato) from the start, ₽500;
+  - 4F: the six Power items, for training one stat's EVs, from four badges,
+    ₽5,000;
+  - 5F: the 21 nature mints from four badges, ₽5,000 (the Pokémon's stats
+    follow the mint's nature; hg-engine already supports them), and from
+    eight badges the Bottle Cap (₽20,000) and Gold Bottle Cap (₽60,000).
+    Use a Bottle Cap from the bag on a Pokémon to make its lowest IV 31
+    (the first of the lowest, in the order HP, Attack, Defense, Speed,
+    Sp. Atk, Sp. Def); the Gold Bottle Cap makes all six 31. Neither is used
+    up on a Pokémon whose IVs are all 31 already.
+- **Free Move Reminders** (patch 0041, `tools/hack/move_reminder.py`):
+  Blackthorn City's Move Maniac no longer asks for a Heart Scale, and a
+  second reminder, a woman in Cherrygrove City's Pokémon Center, does the
+  same from the first town on.
 - **Poké Marts stock up a badge sooner:** Great Ball, Revive and Super
   Repel at 2 badges; Hyper Potion, Ultra Ball, Full Heal and Max Repel at 4;
   Max Potion at 6. Full Restore stays at 8.
@@ -174,15 +191,22 @@ that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md
   [guide/ITEMS.md](guide/ITEMS.md).
 
 The tutorial skip, the Running Shoes and the Fast text default have been
-checked in the emulator. So have the HM changes, on a save given the HMs
-and badges: Surf (on a Chikorita), Fly and Flash in the party menu, Fly
-opening the map, and Fly being refused without the badge. Cut, Strength,
-Whirlpool, Rock Smash, Waterfall and Rock Climb use the same code but
-haven't been tried in play. The other
+checked in the emulator. So have the HM changes: Fly and Flash in the party
+menu, Fly opening the map, and Fly being refused without the badge; and
+Rock Smash, Cut, Strength, Surf, Whirlpool, Waterfall and Rock Climb each
+used from the bag by a party that knows only Tackle, and each refused one
+badge short of the one it needs or without the HM
+(`playtest/hm_test.py`). The other
 switches build cleanly but haven't been played through. The National Dex
-change was checked by disassembling the built ROM, not by playing to
-Champion. The trade evolutions were checked in the built data files, not by
-evolving a Pokémon in play. The shop's stock list and badge check are in the built
+change was checked by disassembling the built ROM, and two of its checks
+in play: Cliff Cave's rocks are moved aside before the Champion and back
+after, and the Bug-Catching Contest's own check, run on entering it, says
+no before and yes after (`playtest/champion_test.py`). The radio shows,
+Baoba's calls and the Pokéathlon lists use the same check but haven't been
+tried in play. In play, a King's Rock used on a Slowpoke evolved it into
+Slowking and a Rare Candy took a Lv. 36 Kadabra to 37 and Alakazam
+(`playtest/qol_test.py`, which also tries both reminders, a Bottle Cap, a
+Gold Bottle Cap and a mint). The shop's stock list and badge check are in the built
 ROM, and the overworld playtester has since bought every item on the shop's
 list with no badges and with all of them.
 
@@ -334,7 +358,7 @@ an area was removed; the new Pokémon take slots that repeated a species.
 | | Ilex Forest | Kecleon, Pikachu, Budew, Seedot, Shroomish, Illumise and Volbeat (night) |
 | Badges 2–4 | Route 34 | Skitty, Glameow, Shellos, Jigglypuff, Ralts, Corphish (Old Rod) |
 | | Route 35, National Park | Stunky, Gulpin, Chatot, Lotad, Buneary, Carnivine |
-| | Routes 36–37 | Vulpix, Shinx, Electrike, Ponyta, Voltorb, Bonsly, Plusle, Minun, Houndour (night), Cyndaquil |
+| | Routes 36–38 | Vulpix, Shinx, Electrike, Ponyta, Voltorb, Bonsly, Plusle, Minun, Houndour (night), Cyndaquil |
 | | Burned Tower | Shuppet, Drifloon, Murkrow (night), Slugma, Duskull, Torkoal, Rotom |
 | Badges 4–6 | Routes 38–39 | Meowth, Spoink, Zangoose, Kangaskhan, Chikorita, Totodile |
 | | Routes 40–41, Cianwood, Whirl Islands | Wailmer, Carvanha (surfing); Finneon, Clamperl, Luvdisc, Relicanth (Good Rod) |
@@ -351,7 +375,7 @@ an area was removed; the new Pokémon take slots that repeated a species.
 
 The starters, Kangaskhan, Munchlax, Trapinch, Riolu, Larvitar and Beldum
 are 4% encounters (Victory Road's Beldum appears as Metang, at the League's
-levels; Voltorb on Route 37 is 1% at night); Rotom, Porygon, Chansey, Bagon, Gible, Spiritomb,
+levels; Voltorb on Route 37 is 1% at night, and 10% on Route 38 at any time, since patch 0040); Rotom, Porygon, Chansey, Bagon, Gible, Spiritomb,
 Skorupi and Absol are 1%. The rest are 4–10%. Eevee, Togepi, Tyrogue, Lapras, Sudowoodo and the Bug-Catching
 Contest's Scyther and Pinsir are where HeartGold already had them.
 
@@ -465,6 +489,8 @@ The FireRed recipe, and where each part comes from here:
 | Evolution item shop | Done |
 | Field HMs without teaching them | Done |
 | Held-item shop, berry and consumables stand, earlier mart stock | Done: `tools/hack/shops.py` |
+| Training items: mints, EV-lowering berries, Power items, Bottle Caps | Done: `tools/hack/training_items.py` |
+| Free Move Reminders, one from the first town | Done: `tools/hack/move_reminder.py` |
 | Spoiler guide generated from the data | Done: `tools/spoiler_guide.py` writes [guide/](guide/README.md), and `tools/boss_guide.py` its boss teams page |
 | Unattended playtester | Done: battle tester and overworld tester, see [playtest](playtest/README.md). No story playthrough bot. |
 
@@ -492,7 +518,7 @@ The first build takes several minutes. It clones hg-engine into `build/`,
 applies the patches and writes `build/hg-engine/test.nds`.
 
 The release patch is made from such a build, in a fresh work directory, with
-`tools/make_patch.sh`. v1.8 was built this way from all thirty-nine patches.
+`tools/make_patch.sh`. v1.9 was built this way from all forty-two patches.
 
 To confirm the result boots, without opening an emulator window:
 
