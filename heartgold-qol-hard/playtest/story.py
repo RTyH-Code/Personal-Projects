@@ -236,9 +236,15 @@ def farfetchd(bot):
     people = bot.objects()
     if people.get(0) != (25, 62) or people.get(2) != (41, 54):
         bot.stuck("the Farfetch'd are not where they start: %s, %s" % (people.get(0), people.get(2)))
-    bot.walk(ILEX, sorted(TWIGS["first"]), avoid=twigs_but("first"))
-    bot.settle()
-    bot.walk(ILEX, [(25, 61)], avoid=twigs_but(), face="down")
+    # stepping on the twigs startles the bird (VAR_TEMP_x4002 = 1) and it is caught from the north while that
+    # holds; a wild battle on the way back reloads the forest, whose script clears the temporary variables, so
+    # (as a player would) the bot steps on the twigs again until it reaches the bird with the bird still startled
+    for _ in range(6):
+        bot.walk(ILEX, sorted(TWIGS["first"]), avoid=twigs_but("first"))
+        bot.settle()
+        bot.walk(ILEX, [(25, 61)], avoid=twigs_but(), face="down")
+        if bot.temp_var(0x4002) == 1:
+            break
     bot.game.key("a", after=30)
     bot.settle()
     bot.expect("FLAG_FOUND_FIRST_FARFETCHD", "catching the first Farfetch'd")
@@ -247,9 +253,12 @@ def farfetchd(bot):
     bot.settle()
     if bot.objects().get(2) != (49, 54):
         bot.stuck("the second Farfetch'd did not run to (49, 54): %s" % (bot.objects().get(2),))
-    bot.walk(ILEX, sorted(TWIGS["second"]), avoid=twigs_but("second"))
-    bot.settle()
-    bot.walk(ILEX, [(48, 54)], avoid=twigs_but(), face="right")
+    for _ in range(6):                      # likewise for the second bird, startled by these twigs (VAR_TEMP_x4003)
+        bot.walk(ILEX, sorted(TWIGS["second"]), avoid=twigs_but("second"))
+        bot.settle()
+        bot.walk(ILEX, [(48, 54)], avoid=twigs_but(), face="right")
+        if bot.temp_var(0x4003) == 1:
+            break
     bot.game.key("a", after=30)
     bot.settle()
     bot.expect("FLAG_GOT_HM01", "getting HM01 from the Charcoal Kiln's master")

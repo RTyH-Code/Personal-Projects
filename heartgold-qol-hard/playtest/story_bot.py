@@ -213,6 +213,11 @@ class Bot:
         f = self.world.flags[name] if isinstance(name, str) else name
         return bool(g.emu.memory.unsigned[g.vars_pointer + walk_test.FLAGS_OFFSET + f // 8] >> (f % 8) & 1)
 
+    def temp_var(self, var):
+        """A script variable (0x4000 up) as it is now."""
+        m, at = self.game.emu.memory.unsigned, self.game.vars_pointer + 2 * (var - 0x4000)
+        return m[at] | m[at + 1] << 8
+
     def beaten(self, trainer):
         """Whether a trainer (by number) has been beaten: the game keeps a flag for each, from 0x550."""
         return self.flag(TRAINER_FLAG_BASE + trainer)
