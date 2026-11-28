@@ -1,0 +1,232 @@
+From bc303965266d96a8f0cd926470a96a9f2c40ba7f Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 28 Nov 2026 01:05:23 +0000
+Subject: [PATCH] The Pokemon that could only be bred, wild in Johto
+
+---
+ data/Encounters.c           | 42 ++++++++++++++++++-------------------
+ tools/hack/breeding_wild.py | 40 +++++++++++++++++++++++++++++++++++
+ 2 files changed, 61 insertions(+), 21 deletions(-)
+ create mode 100644 tools/hack/breeding_wild.py
+
+diff --git a/data/Encounters.c b/data/Encounters.c
+index b7be33a12..100922959 100644
+--- a/data/Encounters.c
++++ b/data/Encounters.c
+@@ -827,7 +827,7 @@ const EncounterData __data[] =
+                 SPECIES_HOPPIP,
+                 SPECIES_SURSKIT,
+                 SPECIES_RATTATA,
+-                SPECIES_ZUBAT,
++                SPECIES_AZURILL,
+                 SPECIES_RATTATA,
+                 SPECIES_ZUBAT,
+             },
+@@ -841,7 +841,7 @@ const EncounterData __data[] =
+                 SPECIES_HOPPIP,
+                 SPECIES_SURSKIT,
+                 SPECIES_RATTATA,
+-                SPECIES_RATTATA,
++                SPECIES_AZURILL,
+                 SPECIES_RATTATA,
+                 SPECIES_RATTATA,
+             },
+@@ -855,7 +855,7 @@ const EncounterData __data[] =
+                 SPECIES_MAREEP,
+                 SPECIES_SURSKIT,
+                 SPECIES_WOOPER,
+-                SPECIES_ZUBAT,
++                SPECIES_AZURILL,
+                 SPECIES_WOOPER,
+                 SPECIES_ZUBAT,
+             },
+@@ -2021,8 +2021,8 @@ const EncounterData __data[] =
+                 SPECIES_CATERPIE,
+                 SPECIES_METAPOD,
+                 SPECIES_CATERPIE,
+-                SPECIES_METAPOD,
+-                SPECIES_CATERPIE,
++                SPECIES_SHROOMISH,
++                SPECIES_SEEDOT,
+                 SPECIES_BUDEW,
+                 SPECIES_PIKACHU,
+                 SPECIES_KECLEON,
+@@ -2034,8 +2034,8 @@ const EncounterData __data[] =
+             .speciesDay = {
+                 SPECIES_CATERPIE,
+                 SPECIES_CATERPIE,
+-                SPECIES_CATERPIE,
+-                SPECIES_CATERPIE,
++                SPECIES_SHROOMISH,
++                SPECIES_SEEDOT,
+                 SPECIES_METAPOD,
+                 SPECIES_BUDEW,
+                 SPECIES_PIKACHU,
+@@ -2049,8 +2049,8 @@ const EncounterData __data[] =
+                 SPECIES_ODDISH,
+                 SPECIES_ODDISH,
+                 SPECIES_ODDISH,
+-                SPECIES_ODDISH,
+-                SPECIES_ZUBAT,
++                SPECIES_SHROOMISH,
++                SPECIES_SEEDOT,
+                 SPECIES_BUDEW,
+                 SPECIES_PIKACHU,
+                 SPECIES_KECLEON,
+@@ -2521,7 +2521,7 @@ const EncounterData __data[] =
+                 SPECIES_NIDORAN_M,
+                 SPECIES_NIDORAN_F,
+                 SPECIES_NIDORAN_M,
+-                SPECIES_NIDORAN_F,
++                SPECIES_PONYTA,
+                 SPECIES_SHINX,
+                 SPECIES_VULPIX,
+                 SPECIES_GROWLITHE,
+@@ -2534,7 +2534,7 @@ const EncounterData __data[] =
+             .speciesDay = {
+                 SPECIES_NIDORAN_M,
+                 SPECIES_NIDORAN_F,
+-                SPECIES_NIDORAN_M,
++                SPECIES_PONYTA,
+                 SPECIES_SHINX,
+                 SPECIES_PIDGEY,
+                 SPECIES_VULPIX,
+@@ -2549,7 +2549,7 @@ const EncounterData __data[] =
+                 SPECIES_NIDORAN_M,
+                 SPECIES_NIDORAN_F,
+                 SPECIES_NIDORAN_M,
+-                SPECIES_NIDORAN_F,
++                SPECIES_PONYTA,
+                 SPECIES_SHINX,
+                 SPECIES_VULPIX,
+                 SPECIES_GROWLITHE,
+@@ -2626,7 +2626,7 @@ const EncounterData __data[] =
+                 SPECIES_VULPIX,
+                 SPECIES_GROWLITHE,
+                 SPECIES_MINUN,
+-                SPECIES_PIDGEY,
++                SPECIES_VOLTORB,
+                 SPECIES_CYNDAQUIL,
+                 SPECIES_PIDGEY,
+                 SPECIES_PIDGEY,
+@@ -2638,7 +2638,7 @@ const EncounterData __data[] =
+                 SPECIES_STANTLER,
+                 SPECIES_ELECTRIKE,
+                 SPECIES_VULPIX,
+-                SPECIES_GROWLITHE,
++                SPECIES_VOLTORB,
+                 SPECIES_MINUN,
+                 SPECIES_PIDGEOTTO,
+                 SPECIES_CYNDAQUIL,
+@@ -2657,7 +2657,7 @@ const EncounterData __data[] =
+                 SPECIES_HOUNDOUR,
+                 SPECIES_CYNDAQUIL,
+                 SPECIES_SPINARAK,
+-                SPECIES_SPINARAK,
++                SPECIES_VOLTORB,
+             },
+         },
+         .hoennSoundSpecies = {
+@@ -5427,7 +5427,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_CLEFAIRY,
+                 SPECIES_MACHOP,
+-                SPECIES_ZUBAT,
++                SPECIES_RHYHORN,
+                 SPECIES_MACHOP,
+                 SPECIES_ZUBAT,
+             },
+@@ -5441,7 +5441,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_CLEFAIRY,
+                 SPECIES_MACHOP,
+-                SPECIES_ZUBAT,
++                SPECIES_RHYHORN,
+                 SPECIES_MACHOP,
+                 SPECIES_ZUBAT,
+             },
+@@ -5455,7 +5455,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_CLEFAIRY,
+                 SPECIES_MACHOP,
+-                SPECIES_ZUBAT,
++                SPECIES_RHYHORN,
+                 SPECIES_MACHOP,
+                 SPECIES_ZUBAT,
+             },
+@@ -7026,7 +7026,7 @@ const EncounterData __data[] =
+                 SPECIES_TEDDIURSA,
+                 SPECIES_WOBBUFFET,
+                 SPECIES_WOBBUFFET,
+-                SPECIES_WOBBUFFET,
++                SPECIES_BELDUM,
+                 SPECIES_GOLBAT,
+                 SPECIES_WOBBUFFET,
+                 SPECIES_GIBLE,
+@@ -7040,7 +7040,7 @@ const EncounterData __data[] =
+                 SPECIES_TEDDIURSA,
+                 SPECIES_WOBBUFFET,
+                 SPECIES_WOBBUFFET,
+-                SPECIES_WOBBUFFET,
++                SPECIES_BELDUM,
+                 SPECIES_GOLBAT,
+                 SPECIES_WOBBUFFET,
+                 SPECIES_GIBLE,
+@@ -7054,7 +7054,7 @@ const EncounterData __data[] =
+                 SPECIES_TEDDIURSA,
+                 SPECIES_WOBBUFFET,
+                 SPECIES_WOBBUFFET,
+-                SPECIES_WOBBUFFET,
++                SPECIES_BELDUM,
+                 SPECIES_GOLBAT,
+                 SPECIES_WOBBUFFET,
+                 SPECIES_GIBLE,
+diff --git a/tools/hack/breeding_wild.py b/tools/hack/breeding_wild.py
+new file mode 100644
+index 000000000..c55f001b2
+--- /dev/null
++++ b/tools/hack/breeding_wild.py
+@@ -0,0 +1,40 @@
++#!/usr/bin/env python3
++"""The Pokemon that could only be bred, wild in Johto.
++
++encounters.py gave every family a Johto source, but seven base forms were
++left to breeding from an evolved form caught wild, once the Safari Zone,
++which has them, became something a player can skip: Azurill, Seedot,
++Shroomish, Ponyta, Voltorb, Rhyhorn and Beldum (league_wild.py evolved
++Victory Road's Beldum to Metang). Each is placed by encounters.py's rules
++(only a slot whose species fills another slot too, at that slot's level, no
++more common than asked), where its kind fits and before any later pass
++could evolve it:
++    Route 32           Azurill (rare)
++    Ilex Forest        Seedot, Shroomish (uncommon)
++    Route 36           Ponyta (uncommon)
++    Route 37           Voltorb (rare)
++    Mt. Mortar's central room   Rhyhorn (rare)
++    Dark Cave, Route 45 side   Beldum (very rare), with Gible
++
++Run once from the hg-engine root, after super_rod.py:
++    python3 tools/hack/breeding_wild.py
++"""
++import encounters
++
++LAND = {
++    "ROUTE_32": [("AZURILL", "R", "")],
++    "ILEX_FOREST": [("SEEDOT", "U", ""), ("SHROOMISH", "U", "")],
++    "ROUTE_36": [("PONYTA", "U", "")],
++    "ROUTE_37": [("VOLTORB", "R", "")],
++    "MT_MORTAR_CENTRAL_ROOM": [("RHYHORN", "R", "")],
++    "DARK_CAVE_ROUTE_45_ENTRANCE": [("BELDUM", "V", "")],
++}
++
++
++def main():
++    encounters.LAND, encounters.WATER = LAND, {}
++    encounters.main()
++
++
++if __name__ == "__main__":
++    main()
+-- 
+2.43.0
+
