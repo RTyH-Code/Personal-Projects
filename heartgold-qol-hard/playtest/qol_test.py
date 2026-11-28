@@ -99,6 +99,7 @@ class Tester:
         g.touch(*LEAD, after=30)
         for _ in range(wait // 20):
             g.run_every_frame(20)
+        self.after = self.lead()            # still on the party screen, where the party reads reliably
         for _ in range(6):
             g.key(leave, after=40)
         return before
@@ -224,7 +225,7 @@ class Tester:
         before = self.use_on_lead("medicine")
         if before and before.pid % 25 == 3 and mint == "ADAMANT_MINT":        # 3 is Adamant
             return False, "the lead is Adamant already: run with QOL_MINT=MODEST_MINT"
-        after = self.lead()
+        after = self.after or self.lead()
         if not before or not after:
             return False, "no party"
         (ba, bs), (aa, as_) = (stats(before)[1], stats(before)[4]), (stats(after)[1], stats(after)[4])
