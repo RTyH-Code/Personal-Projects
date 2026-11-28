@@ -1,0 +1,137 @@
+From 179d8e3e1988781a74455392399228c3bd9d9b2e Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 28 Nov 2026 06:58:28 +0000
+Subject: [PATCH 43/45] Faster breeding: eggs hatch in half the steps, and
+ every Day Care check makes one
+
+GetEggCyclesToSubtract takes 2 egg cycles at a time (4 with Flame Body or Magma
+Armor), and HandleDaycareStep's egg chance no longer rolls, so any pair that can
+breed has an egg at every 256-step check. An armips patch under FASTER_BREEDING,
+made by tools/hack/faster_breeding.py.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEYSk2h6k1E1jWo3cHd
+---
+ armips/asm/user_config.s      | 20 +++++++++++
+ armips/include/config.s       |  4 +++
+ tools/hack/faster_breeding.py | 65 +++++++++++++++++++++++++++++++++++
+ 3 files changed, 89 insertions(+)
+ create mode 100644 tools/hack/faster_breeding.py
+
+diff --git a/armips/asm/user_config.s b/armips/asm/user_config.s
+index b682bc359..1f70374b7 100644
+--- a/armips/asm/user_config.s
++++ b/armips/asm/user_config.s
+@@ -165,3 +165,23 @@ HasBecomeChampion: // BOOL HasBecomeChampion(void), the argument the callers pas
+ 
+ .close
+ 
++
++.if FASTER_BREEDING
++
++.open "base/arm9.bin", 0x02000000
++
++// GetEggCyclesToSubtract (tools/hack/faster_breeding.py): 2 egg cycles at a time, 4 with Flame Body or Magma Armor
++.org 0x0206CB76 // movs r0, #2: Flame Body or Magma Armor in the party
++    mov r0, #4
++
++.org 0x0206CB84 // movs r0, #1: otherwise
++    mov r0, #2
++
++// HandleDaycareStep: compatibility > LCRandom() * 100 / 0xFFFF decides whether there is an egg; times 0 instead,
++// so every compatible pair has one at each check
++.org 0x0206CD86 // movs r1, #100
++    mov r1, #0
++
++.close
++
++.endif
+diff --git a/armips/include/config.s b/armips/include/config.s
+index 0840049f1..d4110ca1a 100644
+--- a/armips/include/config.s
++++ b/armips/include/config.s
+@@ -42,6 +42,10 @@ ALWAYS_HAVE_NATIONAL_DEX equ 0
+ // leave ALWAYS_HAVE_NATIONAL_DEX at 0 when this is 1, as both rewrite the same function.
+ NATIONAL_DEX_FROM_START equ 1
+ 
++// FASTER_BREEDING halves the steps every egg takes to hatch (a quarter with Flame Body or Magma Armor in the party),
++// and has the Day Care make an egg at every check for any pair that can breed (tools/hack/faster_breeding.py).
++FASTER_BREEDING equ 1
++
+ // RUNNING_SHOES_FROM_START gives new save files the running shoes straight away, instead of after the Cherrygrove City tour.
+ RUNNING_SHOES_FROM_START equ 1
+ 
+diff --git a/tools/hack/faster_breeding.py b/tools/hack/faster_breeding.py
+new file mode 100644
+index 000000000..7cc3dca23
+--- /dev/null
++++ b/tools/hack/faster_breeding.py
+@@ -0,0 +1,65 @@
++#!/usr/bin/env python3
++"""Faster breeding: eggs hatch in half the steps, and the Day Care always has an egg at its check.
++
++Two small changes to the game's own code (pret/pokeheartgold src/get_egg.c), as an armips patch under the
++FASTER_BREEDING switch in armips/include/config.s:
++
++- GetEggCyclesToSubtract takes 2 egg cycles off each egg every 255 steps instead of 1, and 4 instead of 2 with a
++  Flame Body or Magma Armor Pokemon in the party: every egg hatches in half the steps it did, a quarter with
++  one of those abilities along.
++- HandleDaycareStep, every 255 steps with two Pokemon in the Day Care and no egg waiting, makes one if
++  compatibility (0, 20, 50 or 70) beats LCRandom() * 100 / 0xFFFF. The 100 is made 0, so any pair that can
++  breed at all has an egg at every check. A pair that can't (compatibility 0) still never does.
++
++    python3 tools/hack/faster_breeding.py
++"""
++import sys
++
++USER_CONFIG = "armips/asm/user_config.s"
++CONFIG = "armips/include/config.s"
++
++PATCH = """
++
++.if FASTER_BREEDING
++
++.open "base/arm9.bin", 0x02000000
++
++// GetEggCyclesToSubtract (tools/hack/faster_breeding.py): 2 egg cycles at a time, 4 with Flame Body or Magma Armor
++.org 0x0206CB76 // movs r0, #2: Flame Body or Magma Armor in the party
++    mov r0, #4
++
++.org 0x0206CB84 // movs r0, #1: otherwise
++    mov r0, #2
++
++// HandleDaycareStep: compatibility > LCRandom() * 100 / 0xFFFF decides whether there is an egg; times 0 instead,
++// so every compatible pair has one at each check
++.org 0x0206CD86 // movs r1, #100
++    mov r1, #0
++
++.close
++
++.endif
++"""
++
++SWITCH = """
++// FASTER_BREEDING halves the steps every egg takes to hatch (a quarter with Flame Body or Magma Armor in the party),
++// and has the Day Care make an egg at every check for any pair that can breed (tools/hack/faster_breeding.py).
++FASTER_BREEDING equ 1
++"""
++
++
++def main():
++    text = open(USER_CONFIG).read()
++    if "FASTER_BREEDING" in text:
++        sys.exit("already patched")
++    open(USER_CONFIG, "w").write(text.rstrip("\n") + "\n" + PATCH)
++    config = open(CONFIG).read()
++    anchor = "NATIONAL_DEX_FROM_START equ 1\n"
++    if anchor not in config:
++        sys.exit("no NATIONAL_DEX_FROM_START in " + CONFIG)
++    open(CONFIG, "w").write(config.replace(anchor, anchor + SWITCH, 1))
++    print("edited", USER_CONFIG, CONFIG)
++
++
++if __name__ == "__main__":
++    main()
+-- 
+2.43.0
+

@@ -8,8 +8,9 @@ A short guide for a first run. It has no story spoilers beyond what bosses you w
 - Patch a US HeartGold ROM and start a new game (see the [README](../README.md)). Old saves won't work.
 - Text is Fast by default and battles run at 60 fps. Running Shoes work from the start (hold B).
 - **Optional challenge rules:** the woman downstairs in your house keeps a level cap (at the strongest level
-  on the next boss's team; Rare Candies stop there too) and a no-items rule for trainer battles. Both start
-  off; talk to her again any time to change them. For Set mode, choose Battle Style: Set in Options.
+  on the next boss's team; Rare Candies stop there too), a no-items rule for trainer battles, and a
+  party-wide Exp. Share (the Pokémon that didn't battle get half the experience). All start off; talk to her
+  again any time to change them. For Set mode, choose Battle Style: Set in Options.
 - The Pokédex is in National mode from the beginning. A few extras the original unlocks with the National
   Dex (the Hoenn and Sinnoh radio, the wider Bug-Catching Contest, the Supreme Cup) open when you become
   Champion instead.
@@ -30,6 +31,8 @@ A short guide for a first run. It has no story spoilers beyond what bosses you w
 - **HMs work without being taught**, as long as the HM is in your bag and you have the badge. HM moves can
   be forgotten any time. TMs are reusable.
 - **Friendship evolutions** happen at 160 friendship instead of 220.
+- **Breeding is quicker:** eggs hatch in half the steps, and two Pokémon that can breed always have an egg
+  waiting when the Day Care checks, every 256 steps.
 - **Moves can be remembered for free:** a woman in Cherrygrove City's Pokémon Center, and the Move Maniac in
   Blackthorn City, make a Pokémon remember any move it could have learned by level, as often as you like.
 
@@ -51,7 +54,8 @@ A short guide for a first run. It has no story spoilers beyond what bosses you w
 
 - **Goldenrod Department Store, training items:** the EV-lowering berries on 3F from the start (₽500); the
   Power items on 4F from four badges (₽5,000); on 5F the nature mints from four badges (₽5,000), and the Bottle
-  Cap (₽20,000: the lowest IV to 31) and Gold Bottle Cap (₽60,000: every IV to 31) from eight.
+  Cap (₽20,000) and Gold Bottle Cap (₽60,000) from eight. The man by the 5F counter takes a Bottle Cap to make
+  the IV you pick 31, or a Gold Bottle Cap for all six.
 - **Celadon Department Store 4F** (after the Elite Four): Leftovers, the Choice items, Life Orb and Focus
   Sash (₽25,000), other held items (₽10,000), Rare Candies (₽3,000), the Ability Capsule and Ability Patch.
 

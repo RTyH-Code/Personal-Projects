@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Check this round's quality-of-life changes in the emulator: the free Move Reminders (move_reminder.py), the
-training items used from the bag (training_items.py), the trade evolutions by item and at Lv. 37
+training items used from the bag (training_items.py, hyper_training.py), the trade evolutions by item and at Lv. 37
 (trade_evos.py) and Voltorb on Route 38 (voltorb_wild.py).
 
     qol_test.py TEST_ROM TREE DUMP OUT [CHECK ...]
@@ -10,14 +10,16 @@ TEST_ROM, TREE and DUMP are as for walk_test.py (a build with the test harness).
 - reminder: the woman in Cherrygrove City's Pokemon Center makes a Pokemon that knows only Tackle remember a
   move, with no Heart Scale in the bag;
 - maniac: Blackthorn City's Move Maniac does the same, on first meeting him, with no Heart Scale;
-- bottle cap: a Bottle Cap makes the lead's lowest IV 31 and leaves the others, and its stat goes up;
-- gold bottle cap: a Gold Bottle Cap makes all six IVs 31;
+- hyper speed: the hyper trainer on Goldenrod 5F (hyper_training.py), for a Bottle Cap, makes the lead's Speed IV
+  31 and leaves the others;
+- hyper maxed: asked again for Speed, now 31, he changes nothing;
+- hyper all: for a Gold Bottle Cap, "Every stat" makes all six IVs 31;
 - mint: an Adamant Mint (a Modest Mint if the lead is Adamant already) raises Attack or lowers Sp. Atk, or both;
 - king's rock: used on a Slowpoke, it evolves into Slowking;
 - level 37: a Rare Candy on a Lv. 36 Kadabra evolves it into Alakazam;
 - voltorb: Voltorb is among the first 60 wild Pokemon on Route 38.
 
-CHECK names some of them (such as bottle_cap). Prints PASS or FAIL for each, with screenshots in OUT.
+CHECK names some of them (such as hyper_all). Prints PASS or FAIL for each, with screenshots in OUT.
 """
 import os
 import subprocess
@@ -32,6 +34,11 @@ import walk_test as w
 MENU, BAG_ICON = (84, 8), (44, 113)                 # the touch screen's MENU tab, and the Bag in it
 POCKETS = {"items": (14, 16), "medicine": (46, 16)}     # the tabs along the top of the touch screen
 FIRST_SLOT, USE, LEAD = (64, 56), (48, 142), (60, 32)
+# the hyper trainer's stat menu, two columns on the touch screen: the keys to each button
+# (with the D-pad from HP, top left, as a touch right after the menu opens can be missed)
+STAT_BUTTONS = {"HP": (), "Attack": ("right",), "Defense": ("down",), "Sp. Atk": ("right", "down"),
+                "Sp. Def": ("down", "down"), "Speed": ("right", "down", "down"), "Every stat": ("down", "down", "down"),
+                "Never mind": ("right", "down", "down", "down")}
 STAT_NAMES = ["HP", "Attack", "Defense", "Speed", "Sp. Atk", "Sp. Def"]
 
 
@@ -92,6 +99,7 @@ class Tester:
         g.touch(*LEAD, after=30)
         for _ in range(wait // 20):
             g.run_every_frame(20)
+        self.after = self.lead()            # still on the party screen, where the party reads reliably
         for _ in range(6):
             g.key(leave, after=40)
         return before
@@ -127,29 +135,86 @@ class Tester:
     def check_maniac(self):
         return self.relearn("T30R0601", (3, 5), 0, "up", "maniac")
 
-    def check_bottle_cap(self):
-        self.start("R29", self.world.landing("R29")[0], items=["BOTTLE_CAP"])
-        before = self.use_on_lead("items")
-        after = self.lead()
+    def hyper_train(self, button, items):
+        """Ask the hyper trainer on Goldenrod 5F to train the lead: talk, the lead, then a button of the stat menu.
+        Returns the lead before and after."""
+        self.start("T25R1005", (21, 5), facing=0, items=items)
+        self.g.key("up", hold=2, after=20)
+        before = None
+        for _ in range(12):                      # through his lines to the party, the lead, to the stat menu
+            self.g.key("a", after=50)
+            self.g.run_every_frame(30)
+            if before is None:
+                _, mons = grind_test.party(self.g)
+                before = mons[0] if mons else None
+            if self.menu_open():
+                break
+        self.g.run_every_frame(30)
+        for key in button + ("a",):
+            self.press(key)
+        for _ in range(8):
+            self.g.run_every_frame(40)
+            self.g.key("a", after=40)
+        return before, self.lead()
+
+    def press(self, key):
+        """A key press with every frame run: this menu misses presses made while frames are skipped."""
+        self.g.emu.input.keypad_add_key(self.g.keys[key])
+        self.g.run_every_frame(6)
+        self.g.emu.input.keypad_rm_key(self.g.keys[key])
+        self.g.run_every_frame(24)
+
+    def menu_open(self):
+        """The stat menu: eight pale buttons in two columns on the touch screen."""
+        image = self.g.emu.screenshot()
+        light = lambda x, y: min(image.getpixel((x, 192 + y))[:3]) > 180
+        return all(light(x, y) for x in (40, 166) for y in (24, 72, 120, 168))
+
+    def check_hyper_speed(self):
+        before, after = self.hyper_train(STAT_BUTTONS["Speed"], ["BOTTLE_CAP"])
         if not before or not after:
             return False, "no party"
         b, a = ivs(before), ivs(after)
-        low = b.index(min(b))
-        expect = [31 if i == low else v for i, v in enumerate(b)]
-        ok = a == expect and stats(after)[low] > stats(before)[low]
+        expect = [31 if i == 3 else v for i, v in enumerate(b)]           # Speed is the fourth IV
+        ok = a == expect and (b[3] == 31 or stats(after)[3] > stats(before)[3])
         if not ok:
-            self.shot("bottle_cap")
-        return ok, "IVs %s -> %s; %s %d -> %d" % (b, a, STAT_NAMES[low], stats(before)[low], stats(after)[low])
+            self.shot("hyper_speed")
+        return ok, "IVs %s -> %s; Speed %d -> %d" % (b, a, stats(before)[3], stats(after)[3])
 
-    def check_gold_bottle_cap(self):
-        self.start("R29", self.world.landing("R29")[0], items=["GOLD_BOTTLE_CAP"])
-        before = self.use_on_lead("items")
-        after = self.lead()
+    def check_hyper_maxed(self):
+        # a stat at 31 already: nothing changes (the trainer says so and keeps the cap)
+        before, after = self.hyper_train(STAT_BUTTONS["Speed"], ["BOTTLE_CAP"])
+        if not before or not after:
+            return False, "no party"
+        before2, after2 = self.hyper_train_again(STAT_BUTTONS["Speed"])
+        ok = after2 is not None and ivs(after2) == ivs(after)
+        if not ok:
+            self.shot("hyper_maxed")
+        return ok, "a second try at Speed: IVs %s -> %s" % (ivs(after), ivs(after2) if after2 else None)
+
+    def hyper_train_again(self, button):
+        """Talk to him again without reloading (so a stat maxed a moment ago is still 31)."""
+        self.g.key("up", hold=2, after=20)
+        for _ in range(12):
+            self.g.key("a", after=50)
+            self.g.run_every_frame(30)
+            if self.menu_open():
+                break
+        self.g.run_every_frame(30)
+        for key in button + ("a",):
+            self.press(key)
+        for _ in range(8):
+            self.g.run_every_frame(40)
+            self.g.key("a", after=40)
+        return None, self.lead()
+
+    def check_hyper_all(self):
+        before, after = self.hyper_train(STAT_BUTTONS["Every stat"], ["GOLD_BOTTLE_CAP"])
         if not before or not after:
             return False, "no party"
         ok = ivs(after) == [31] * 6
         if not ok:
-            self.shot("gold_bottle_cap")
+            self.shot("hyper_all")
         return ok, "IVs %s -> %s" % (ivs(before), ivs(after))
 
     def check_mint(self):
@@ -160,7 +225,7 @@ class Tester:
         before = self.use_on_lead("medicine")
         if before and before.pid % 25 == 3 and mint == "ADAMANT_MINT":        # 3 is Adamant
             return False, "the lead is Adamant already: run with QOL_MINT=MODEST_MINT"
-        after = self.lead()
+        after = self.after or self.lead()
         if not before or not after:
             return False, "no party"
         (ba, bs), (aa, as_) = (stats(before)[1], stats(before)[4]), (stats(after)[1], stats(after)[4])
@@ -208,7 +273,7 @@ class Tester:
         return bool(voltorb), "%d of %d were Voltorb (Lv. %s) %s" % (len(voltorb), len(seen), sorted(set(voltorb)), note)
 
 
-CHECKS = ["reminder", "maniac", "bottle_cap", "gold_bottle_cap", "mint", "kings_rock", "level_37", "voltorb"]
+CHECKS = ["reminder", "maniac", "hyper_speed", "hyper_maxed", "hyper_all", "mint", "kings_rock", "level_37", "voltorb"]
 
 
 def main():

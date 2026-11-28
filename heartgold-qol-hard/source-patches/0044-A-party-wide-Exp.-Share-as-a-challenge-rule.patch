@@ -1,0 +1,365 @@
+From f47456bf00e834ae38091a9577c07aa01ce58420 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 28 Nov 2026 06:58:28 +0000
+Subject: [PATCH 44/45] A party-wide Exp. Share as a challenge rule
+
+The rules woman in the player's house gets a third choice, Share experience,
+kept in VAR_UNK_416E and off in a new game. With it on, Pokemon that didn't
+battle get half the experience they would have had for beating the foe alone,
+as in the games since X and Y. Made by tools/hack/party_exp_share.py.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEYSk2h6k1E1jWo3cHd
+---
+ data/scr_seq/scr_seq_0845_T20R0201.s |  16 +++
+ data/text/custom/545.txt             |   3 +
+ include/config.h                     |   2 +
+ src/battle/battle_script_commands.c  |  53 +++++++-
+ tools/hack/party_exp_share.py        | 174 +++++++++++++++++++++++++++
+ 5 files changed, 246 insertions(+), 2 deletions(-)
+ create mode 100644 tools/hack/party_exp_share.py
+
+diff --git a/data/scr_seq/scr_seq_0845_T20R0201.s b/data/scr_seq/scr_seq_0845_T20R0201.s
+index dac418a61..16b78aeac 100644
+--- a/data/scr_seq/scr_seq_0845_T20R0201.s
++++ b/data/scr_seq/scr_seq_0845_T20R0201.s
+@@ -408,6 +408,7 @@ _rules_menu:
+ 	menu_init 1, 1, 0, 1, VAR_SPECIAL_RESULT
+ 	menu_item_add 40, 255, 0
+ 	menu_item_add 41, 255, 1
++	menu_item_add 48, 255, 3
+ 	menu_item_add 42, 255, 2
+ 	menu_exec
+ 	touchscreen_menu_show
+@@ -415,6 +416,8 @@ _rules_menu:
+ 	goto_if_eq _rules_cap
+ 	compare VAR_SPECIAL_RESULT, 1
+ 	goto_if_eq _rules_items
++	compare VAR_SPECIAL_RESULT, 3
++	goto_if_eq _rules_share
+ 	npc_msg 47
+ 	wait_button_or_walk_away
+ 	closemsg
+@@ -446,3 +449,16 @@ _rules_items_off:
+ 	subvar VAR_UNK_416F, 2
+ 	npc_msg 46
+ 	goto _rules_menu
++
++// the party-wide exp share (tools/hack/party_exp_share.py), in VAR_UNK_416E
++_rules_share:
++	compare VAR_UNK_416E, 0
++	goto_if_ne _rules_share_off
++	setvar VAR_UNK_416E, 1
++	npc_msg 49
++	goto _rules_menu
++
++_rules_share_off:
++	setvar VAR_UNK_416E, 0
++	npc_msg 50
++	goto _rules_menu
+diff --git a/data/text/custom/545.txt b/data/text/custom/545.txt
+index b33ab742d..d1744c7d2 100644
+--- a/data/text/custom/545.txt
++++ b/data/text/custom/545.txt
+@@ -46,3 +46,6 @@ The level cap is off.
+ Items are off in trainer battles,\nfor you and for your opponents.
+ Items are back on in trainer battles.
+ Come back if you change your mind.\nGood luck out there!
++Share experience
++Experience is shared now.\rPokémon that didn’t battle get half\nof what they would have earned.
++Experience isn’t shared any more.
+diff --git a/include/config.h b/include/config.h
+index a88d907ca..42b2e5063 100644
+--- a/include/config.h
++++ b/include/config.h
+@@ -92,6 +92,8 @@
+ #define CHALLENGE_RULES_VARIABLE 0x416F
+ #define CHALLENGE_RULE_LEVEL_CAP 1
+ #define CHALLENGE_RULE_NO_ITEMS 2
++// the party-wide exp share, the third challenge rule, in a variable of its own (tools/hack/party_exp_share.py)
++#define PARTY_EXP_SHARE_VARIABLE 0x416E
+ // #define UNCAP_CANDIES_FROM_LEVEL_CAP
+ // #define ALLOW_LEVEL_CAP_EVOLVE
+ 
+diff --git a/src/battle/battle_script_commands.c b/src/battle/battle_script_commands.c
+index adc30b0d1..253aa153e 100644
+--- a/src/battle/battle_script_commands.c
++++ b/src/battle/battle_script_commands.c
+@@ -1340,6 +1340,38 @@ u8 ALIGN4 scratchpad[4] = { 0, 0, 0, 0 };
+ #define monCountFromItem     scratchpad[1]
+ #define trackPartyExperience scratchpad[2]
+ 
++#ifdef PARTY_EXP_SHARE_VARIABLE
++// party-wide exp share (tools/hack/party_exp_share.py): who really fought the foe whose experience is being handed
++// out, once every Pokemon still standing has been marked as having fought it (bit 31 of the flags says so)
++u32 ALIGN4 sPartyExpShareFought = 0;
++#define PARTY_EXP_SHARE_MARKED 0x80000000
++#define FOUGHT_FLAGS(sp, side) (((sp)->obtained_exp_right_flag[side] & PARTY_EXP_SHARE_MARKED) ? sPartyExpShareFought : (sp)->obtained_exp_right_flag[side])
++
++/**
++ *  @brief with the rule on, mark every Pokemon in the party still standing as having fought the fainted foe, once
++ *         per foe (the game resets the flags when the next one comes in)
++ */
++static void PartyExpShare_MarkAll(struct EXP_CALCULATOR *expcalc)
++{
++    u32 *flags = &expcalc->sp->obtained_exp_right_flag[(expcalc->sp->fainting_client >> 1) & 1];
++
++    if (!GetScriptVar(PARTY_EXP_SHARE_VARIABLE) || (*flags & PARTY_EXP_SHARE_MARKED)) {
++        return;
++    }
++    sPartyExpShareFought = *flags;
++    for (int i = 0; i < BattleWorkPokeCountGet(expcalc->bw, 0); i++) {
++        struct PartyPokemon *mon = BattleWorkPokemonParamGet(expcalc->bw, 0, i);
++        if (mon != NULL && GetMonData(mon, MON_DATA_SPECIES, NULL) && !GetMonData(mon, MON_DATA_IS_EGG, NULL)
++            && GetMonData(mon, MON_DATA_HP, NULL)) {
++            *flags |= No2Bit(i);
++        }
++    }
++    *flags |= PARTY_EXP_SHARE_MARKED;
++}
++#else
++#define FOUGHT_FLAGS(sp, side) ((sp)->obtained_exp_right_flag[side])
++#endif
++
+ /**
+  *  @brief task to distribute experience
+  *
+@@ -1359,6 +1391,10 @@ void Task_DistributeExp_Extend(void *arg0, void *work)
+ 
+     client_no = (sp->fainting_client >> 1) & 1;
+ 
++#ifdef PARTY_EXP_SHARE_VARIABLE
++    PartyExpShare_MarkAll(expcalc);
++#endif
++
+     if (expcalc->seq_no < 37) {
+         // grab the pokémon that is actually gaining the experience
+         for (sel_mons_no = expcalc->work[6]; sel_mons_no < BattleWorkPokeCountGet(expcalc->bw, exp_client_no); sel_mons_no++) {
+@@ -1388,7 +1424,7 @@ void Task_DistributeExp_Extend(void *arg0, void *work)
+         for (int i = 0; i < party->count; i++) {
+             struct PartyPokemon *pploop = BattleWorkPokemonParamGet(expcalc->bw, exp_client_no, i);
+             if ((GetMonData(pploop, MON_DATA_SPECIES, NULL)) && (GetMonData(pploop, MON_DATA_HP, NULL))) {
+-                if (sp->obtained_exp_right_flag[client_no /*(sp->fainting_client >> 1) & 1*/] & No2Bit(i)) {
++                if (FOUGHT_FLAGS(sp, client_no) & No2Bit(i)) {
+                     monCount++;
+                 }
+ 
+@@ -1453,6 +1489,15 @@ void Task_DistributeExp_Extend(void *arg0, void *work)
+                 }
+                 sp->exp_share_obtained_exp = 0;
+             }
++#ifdef PARTY_EXP_SHARE_VARIABLE
++            // a Pokemon that only shares (it didn't battle) gets half of what beating the foe alone would give
++            if ((sp->obtained_exp_right_flag[client_no] & PARTY_EXP_SHARE_MARKED) && !(sPartyExpShareFought & No2Bit(sel_mons_no))) {
++                sp->obtained_exp = totalexp / 2;
++                if (sp->obtained_exp == 0) {
++                    sp->obtained_exp = 1;
++                }
++            }
++#endif
+         }
+     }
+ 
+@@ -1479,7 +1524,7 @@ void Task_DistributeExp_Extend(void *arg0, void *work)
+             for (int i = 0; i < party->count; i++) {
+                 struct PartyPokemon *pploop = BattleWorkPokemonParamGet(expcalc->bw, exp_client_no, i);
+                 if ((GetMonData(pploop, MON_DATA_SPECIES, NULL)) && (GetMonData(pploop, MON_DATA_HP, NULL))) {
+-                    if (sp->obtained_exp_right_flag[client_no /*(sp->fainting_client >> 1) & 1*/] & No2Bit(i)) {
++                    if (FOUGHT_FLAGS(sp, client_no) & No2Bit(i)) {
+                         monCount++;
+                     }
+ 
+@@ -1581,6 +1626,10 @@ BOOL Task_DistributeExp_capture_experience(void *arg0, void *work, u32 get_clien
+         int sel_mons_no, item, eqp;
+         struct PartyPokemon *pp;
+ 
++#ifdef PARTY_EXP_SHARE_VARIABLE
++        PartyExpShare_MarkAll(expcalc);
++#endif
++
+         // grab the pokémon that is actually gaining the experience, factor in experience share here because i don't want to expose the whole main task
+         for (sel_mons_no = 0; sel_mons_no < BattleWorkPokeCountGet(expcalc->bw, 0); sel_mons_no++) {
+             if (!(trackPartyExperience & No2Bit(sel_mons_no))) // if party index has not already been looped over
+diff --git a/tools/hack/party_exp_share.py b/tools/hack/party_exp_share.py
+new file mode 100644
+index 000000000..b71417079
+--- /dev/null
++++ b/tools/hack/party_exp_share.py
+@@ -0,0 +1,174 @@
++#!/usr/bin/env python3
++"""A party-wide Exp. Share, as a challenge rule the player turns on (off in a new game).
++
++The rules woman in the player's house (challenge_rules.py) gets a third choice, "Share experience", kept in its
++own script variable, PARTY_EXP_SHARE_VARIABLE (0x416E, which the game never uses). With it on, as in the
++games since X and Y, every Pokemon in the party that didn't battle gets half the experience it would have had
++for beating the foe alone; those that battled get theirs as before. A held Exp. Share still works as it does.
++
++How: before experience is handed out for a fainted foe (in Task_DistributeExp_Extend, and where the capture
++experience picks who gets it), every Pokemon still standing is marked as having
++fought it (obtained_exp_right_flag), with bit 31 set to say so and sPartyExpShareFought keeping who really
++did. The count that splits the experience among those who fought uses the real list, and a Pokemon that only
++got the mark gets half of the whole.
++
++Run after challenge_rules.py:
++    python3 tools/hack/party_exp_share.py
++"""
++import sys
++
++CONFIG = "include/config.h"
++BATTLE = "src/battle/battle_script_commands.c"
++SCRIPT = "data/scr_seq/scr_seq_0845_T20R0201.s"
++TEXT = "data/text/custom/545.txt"
++
++MESSAGES = [
++    r"Share experience",
++    r"Experience is shared now.\rPokémon that didn’t battle get half\nof what they would have earned.",
++    r"Experience isn’t shared any more.",
++]
++
++MARK = '''
++#ifdef PARTY_EXP_SHARE_VARIABLE
++// party-wide exp share (tools/hack/party_exp_share.py): who really fought the foe whose experience is being handed
++// out, once every Pokemon still standing has been marked as having fought it (bit 31 of the flags says so)
++u32 ALIGN4 sPartyExpShareFought = 0;
++#define PARTY_EXP_SHARE_MARKED 0x80000000
++#define FOUGHT_FLAGS(sp, side) (((sp)->obtained_exp_right_flag[side] & PARTY_EXP_SHARE_MARKED) ? sPartyExpShareFought : (sp)->obtained_exp_right_flag[side])
++
++/**
++ *  @brief with the rule on, mark every Pokemon in the party still standing as having fought the fainted foe, once
++ *         per foe (the game resets the flags when the next one comes in)
++ */
++static void PartyExpShare_MarkAll(struct EXP_CALCULATOR *expcalc)
++{
++    u32 *flags = &expcalc->sp->obtained_exp_right_flag[(expcalc->sp->fainting_client >> 1) & 1];
++
++    if (!GetScriptVar(PARTY_EXP_SHARE_VARIABLE) || (*flags & PARTY_EXP_SHARE_MARKED)) {
++        return;
++    }
++    sPartyExpShareFought = *flags;
++    for (int i = 0; i < BattleWorkPokeCountGet(expcalc->bw, 0); i++) {
++        struct PartyPokemon *mon = BattleWorkPokemonParamGet(expcalc->bw, 0, i);
++        if (mon != NULL && GetMonData(mon, MON_DATA_SPECIES, NULL) && !GetMonData(mon, MON_DATA_IS_EGG, NULL)
++            && GetMonData(mon, MON_DATA_HP, NULL)) {
++            *flags |= No2Bit(i);
++        }
++    }
++    *flags |= PARTY_EXP_SHARE_MARKED;
++}
++#else
++#define FOUGHT_FLAGS(sp, side) ((sp)->obtained_exp_right_flag[side])
++#endif
++
++/**
++ *  @brief task to distribute experience'''
++
++# the capture-experience path picks who gets experience itself, before the task runs
++MARK_ALL = '''        int sel_mons_no, item, eqp;
++        struct PartyPokemon *pp;
++
++#ifdef PARTY_EXP_SHARE_VARIABLE
++        PartyExpShare_MarkAll(expcalc);
++#endif
++'''
++
++# and the task picks each Pokemon in turn by the same flags
++MARK_TASK = '''    client_no = (sp->fainting_client >> 1) & 1;
++
++#ifdef PARTY_EXP_SHARE_VARIABLE
++    PartyExpShare_MarkAll(expcalc);
++#endif
++'''
++
++HALF = '''            } else {
++                sp->obtained_exp = totalexp / monCount;
++                if (sp->obtained_exp == 0) {
++                    sp->obtained_exp = 1;
++                }
++                sp->exp_share_obtained_exp = 0;
++            }
++#ifdef PARTY_EXP_SHARE_VARIABLE
++            // a Pokemon that only shares (it didn't battle) gets half of what beating the foe alone would give
++            if ((sp->obtained_exp_right_flag[client_no] & PARTY_EXP_SHARE_MARKED) && !(sPartyExpShareFought & No2Bit(sel_mons_no))) {
++                sp->obtained_exp = totalexp / 2;
++                if (sp->obtained_exp == 0) {
++                    sp->obtained_exp = 1;
++                }
++            }
++#endif
++        }
++    }
++
++#ifdef DEBUG_PRINT_EXPERIENCE_VALUES
++    u8 buf[128];
++    sprintf(buf, "[Task_DistributeExp_Extend] Scaled Rate'''
++
++
++def edit(path, old, new, count=1):
++    text = open(path, encoding="utf-8", newline="").read()
++    if text.count(old) != count:
++        sys.exit("expected %d of this in %s: %r" % (count, path, old[:70]))
++    open(path, "w", encoding="utf-8", newline="").write(text.replace(old, new))
++
++
++def main():
++    edit(CONFIG, "#define CHALLENGE_RULE_NO_ITEMS 2",
++         "#define CHALLENGE_RULE_NO_ITEMS 2\n"
++         "// the party-wide exp share, the third challenge rule, in a variable of its own (tools/hack/party_exp_share.py)\n"
++         "#define PARTY_EXP_SHARE_VARIABLE 0x416E")
++
++    edit(BATTLE, "\n/**\n *  @brief task to distribute experience", MARK)
++    edit(BATTLE, "        int sel_mons_no, item, eqp;\n        struct PartyPokemon *pp;\n", MARK_ALL)
++    edit(BATTLE, "    client_no = (sp->fainting_client >> 1) & 1;\n", MARK_TASK)
++    # the counts of who fought: the real list, not the marks (both experience formulas count the same way)
++    edit(BATTLE, "if (sp->obtained_exp_right_flag[client_no /*(sp->fainting_client >> 1) & 1*/] & No2Bit(i)) {",
++         "if (FOUGHT_FLAGS(sp, client_no) & No2Bit(i)) {", count=2)
++    edit(BATTLE, '''            } else {
++                sp->obtained_exp = totalexp / monCount;
++                if (sp->obtained_exp == 0) {
++                    sp->obtained_exp = 1;
++                }
++                sp->exp_share_obtained_exp = 0;
++            }
++        }
++    }
++
++#ifdef DEBUG_PRINT_EXPERIENCE_VALUES
++    u8 buf[128];
++    sprintf(buf, "[Task_DistributeExp_Extend] Scaled Rate''', HALF)
++
++    raw = open(TEXT, encoding="utf-8", newline="").read()
++    lines = raw.split("\r\n")
++    if lines[-1] == "":
++        lines.pop()
++    first = len(lines)
++    lines += MESSAGES
++    open(TEXT, "w", encoding="utf-8", newline="").write("\r\n".join(lines) + "\r\n")
++
++    edit(SCRIPT, "\tmenu_item_add 42, 255, 2\n",
++         "\tmenu_item_add %d, 255, 3\n\tmenu_item_add 42, 255, 2\n" % first)
++    edit(SCRIPT, "\tcompare VAR_SPECIAL_RESULT, 1\n\tgoto_if_eq _rules_items\n",
++         "\tcompare VAR_SPECIAL_RESULT, 1\n\tgoto_if_eq _rules_items\n"
++         "\tcompare VAR_SPECIAL_RESULT, 3\n\tgoto_if_eq _rules_share\n")
++    script = open(SCRIPT, encoding="utf-8", newline="").read()
++    script = script.rstrip("\n") + "\n" + '''
++// the party-wide exp share (tools/hack/party_exp_share.py), in VAR_UNK_416E
++_rules_share:
++	compare VAR_UNK_416E, 0
++	goto_if_ne _rules_share_off
++	setvar VAR_UNK_416E, 1
++	npc_msg %d
++	goto _rules_menu
++
++_rules_share_off:
++	setvar VAR_UNK_416E, 0
++	npc_msg %d
++	goto _rules_menu
++''' % (first + 1, first + 2)
++    open(SCRIPT, "w", encoding="utf-8", newline="").write(script)
++    print("edited", CONFIG, BATTLE, SCRIPT, TEXT, "; messages from", first)
++
++
++if __name__ == "__main__":
++    main()
+-- 
+2.43.0
+

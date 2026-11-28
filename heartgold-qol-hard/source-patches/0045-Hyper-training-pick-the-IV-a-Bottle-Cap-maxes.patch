@@ -1,0 +1,973 @@
+From a7e57193459302e91302413a3b5bcabf965e980b Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 28 Nov 2026 06:58:28 +0000
+Subject: [PATCH 45/45] Hyper training: pick the IV a Bottle Cap maxes
+
+A man on Goldenrod Department Store 5F takes a Bottle Cap to make the IV the
+player picks 31, or a Gold Bottle Cap for all six, at no cost if they are 31
+already. The new script command takes the place of the unused command 384
+(mon_subtract_friendship). The Bottle Caps no longer work from the bag. Made by
+tools/hack/hyper_training.py.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEYSk2h6k1E1jWo3cHd
+---
+ data/eventdata/zone_event/188_T25R1005.json   | 141 ++++++++
+ data/itemdata/itemdata.c                      |   4 +-
+ data/scr_seq/include/event_T25R1005.inc       |  20 ++
+ data/scr_seq/scr_seq_0903_T25R1005.s          | 321 ++++++++++++++++++
+ data/text/custom/596.txt                      |  38 +++
+ hooks                                         |   1 +
+ src/field/script_commands.c                   |  28 ++
+ src/individual/PartyMenu_HandleUseItemOnMon.c |  32 --
+ tools/hack/hyper_training.py                  | 277 +++++++++++++++
+ 9 files changed, 828 insertions(+), 34 deletions(-)
+ create mode 100644 data/eventdata/zone_event/188_T25R1005.json
+ create mode 100644 data/scr_seq/include/event_T25R1005.inc
+ create mode 100644 data/scr_seq/scr_seq_0903_T25R1005.s
+ create mode 100644 data/text/custom/596.txt
+ create mode 100644 tools/hack/hyper_training.py
+
+diff --git a/data/eventdata/zone_event/188_T25R1005.json b/data/eventdata/zone_event/188_T25R1005.json
+new file mode 100644
+index 000000000..7f4499ea2
+--- /dev/null
++++ b/data/eventdata/zone_event/188_T25R1005.json
+@@ -0,0 +1,141 @@
++{
++  "header": "data/scr_seq/include/event_T25R1005.inc",
++  "eventId": "188",
++  "bg_events": [
++    {
++      "script": "_EV_scr_seq_T25R1005_004 + 1",
++      "type": 0,
++      "x": 17,
++      "z": 2,
++      "y": 0,
++      "player_facing_dir": 0
++    }
++  ],
++  "object_events": [
++    {
++      "id": "obj_T25R1005_shopm1_2",
++      "graphics_id": "SPRITE_SHOPM1_2",
++      "movement_type": 0,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_NOTHING",
++      "script": "_EV_scr_seq_T25R1005_000 + 1",
++      "initial_dir": 2,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 23,
++      "z": 7,
++      "y": 0
++    },
++    {
++      "id": "obj_T25R1005_gsmiddleman1",
++      "graphics_id": "SPRITE_GSMIDDLEMAN1",
++      "movement_type": 3,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_NOTHING",
++      "script": "_EV_scr_seq_T25R1005_001 + 1",
++      "initial_dir": 0,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 19,
++      "z": 11,
++      "y": 0
++    },
++    {
++      "id": "obj_T25R1005_gsbigman",
++      "graphics_id": "SPRITE_GSBIGMAN",
++      "movement_type": 0,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_NOTHING",
++      "script": "_EV_scr_seq_T25R1005_003 + 1",
++      "initial_dir": 3,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 2,
++      "z": 6,
++      "y": 0
++    },
++    {
++      "id": "obj_T25R1005_gsgirl3",
++      "graphics_id": "SPRITE_GSGIRL3",
++      "movement_type": 3,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_NOTHING",
++      "script": "_EV_scr_seq_T25R1005_002 + 1",
++      "initial_dir": 3,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 2,
++      "movement_range_z": 0,
++      "x": 12,
++      "z": 3,
++      "y": 0
++    },
++    {
++      "id": "obj_T25R1005_gswoman1",
++      "graphics_id": "SPRITE_GSWOMAN1",
++      "movement_type": 0,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_HIDE_GOLDENROD_DEPT_STORE_5F_RETURN_FRUSTRATION_LADY",
++      "script": "_EV_scr_seq_T25R1005_006 + 1",
++      "initial_dir": 2,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 23,
++      "z": 5,
++      "y": 0
++    },
++    {
++      "id": "obj_T25R1005_hyper_trainer",
++      "graphics_id": "SPRITE_GSMAN2",
++      "movement_type": 15,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_NOTHING",
++      "script": "_EV_scr_seq_T25R1005_007 + 1",
++      "initial_dir": 1,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 21,
++      "z": 4,
++      "y": 0
++    }
++  ],
++  "warp_events": [
++    {
++      "x": 18,
++      "z": 7,
++      "dest_header_id": "MAP_T25R1004",
++      "dest_warp_id": 1,
++      "y": 0
++    },
++    {
++      "x": 13,
++      "z": 7,
++      "dest_header_id": "MAP_T25R1006",
++      "dest_warp_id": 0,
++      "y": 0
++    },
++    {
++      "x": 19,
++      "z": 2,
++      "dest_header_id": "MAP_T25R1007",
++      "dest_warp_id": 0,
++      "y": 0
++    }
++  ]
++}
+diff --git a/data/itemdata/itemdata.c b/data/itemdata/itemdata.c
+index 47875882b..73b7feb97 100644
+--- a/data/itemdata/itemdata.c
++++ b/data/itemdata/itemdata.c
+@@ -51700,7 +51700,7 @@ const ITEMDATA __data[] =
+     .selectable = FALSE,
+     .fieldPocket = POCKET_ITEMS,
+     .battlePocket = BATTLE_POCKET_NONE,
+-    .fieldUseFunc = 33,
++    .fieldUseFunc = 0,
+     .battleUseFunc = 0,
+     .partyUse = 1,
+     .partyUseParam = {
+@@ -51765,7 +51765,7 @@ const ITEMDATA __data[] =
+     .selectable = FALSE,
+     .fieldPocket = POCKET_ITEMS,
+     .battlePocket = BATTLE_POCKET_NONE,
+-    .fieldUseFunc = 33,
++    .fieldUseFunc = 0,
+     .battleUseFunc = 0,
+     .partyUse = 1,
+     .partyUseParam = {
+diff --git a/data/scr_seq/include/event_T25R1005.inc b/data/scr_seq/include/event_T25R1005.inc
+new file mode 100644
+index 000000000..ca7c0f5b5
+--- /dev/null
++++ b/data/scr_seq/include/event_T25R1005.inc
+@@ -0,0 +1,20 @@
++.ifndef SCR_SEQ_T25R1005_H_
++.definelabel SCR_SEQ_T25R1005_H_, 0
++
++.equ _EV_scr_seq_T25R1005_000, 0
++.equ _EV_scr_seq_T25R1005_001, 1
++.equ _EV_scr_seq_T25R1005_002, 2
++.equ _EV_scr_seq_T25R1005_003, 3
++.equ _EV_scr_seq_T25R1005_004, 4
++.equ _EV_scr_seq_T25R1005_005, 5
++.equ _EV_scr_seq_T25R1005_006, 6
++.equ _EV_scr_seq_T25R1005_007, 7
++
++.equ obj_T25R1005_shopm1_2, 0
++.equ obj_T25R1005_gsmiddleman1, 1
++.equ obj_T25R1005_gsbigman, 2
++.equ obj_T25R1005_gsgirl3, 3
++.equ obj_T25R1005_gswoman1, 4
++.equ obj_T25R1005_hyper_trainer, 5
++
++.endif //SCR_SEQ_T25R1005_H_
+diff --git a/data/scr_seq/scr_seq_0903_T25R1005.s b/data/scr_seq/scr_seq_0903_T25R1005.s
+new file mode 100644
+index 000000000..f4b2e2ca5
+--- /dev/null
++++ b/data/scr_seq/scr_seq_0903_T25R1005.s
+@@ -0,0 +1,321 @@
++.include "asm/include/interop_macros.inc"
++
++.include "asm/include/scriptmacros.inc"
++.include "asm/include/flags.inc"
++.include "asm/include/soundeffects.inc"
++.include "asm/include/vars.inc"
++
++.include "asm/include/events.inc"
++.include "asm/include/game_stats.inc"
++.include "asm/include/maps.inc"
++.include "asm/include/map_sections.inc"
++.include "asm/include/movements.inc"
++.include "asm/include/rankings.inc"
++.include "asm/include/spawns.inc"
++.include "asm/include/std_scripts.inc"
++.include "asm/include/trainers.inc"
++
++#include "constants/item.h"
++#include "constants/moves.h"
++#include "constants/species.h"
++
++.include "data/scr_seq/include/event_T25R1005.inc"
++
++
++// text archive to grab from: 596.txt
++
++.data
++
++
++scrdef scr_seq_T25R1005_000
++scrdef scr_seq_T25R1005_001
++scrdef scr_seq_T25R1005_002
++scrdef scr_seq_T25R1005_003
++scrdef scr_seq_T25R1005_004
++scrdef scr_seq_T25R1005_005
++scrdef scr_seq_T25R1005_006
++scrdef scr_seq_T25R1005_007
++scrdef_end
++
++scr_seq_T25R1005_005:
++	setflag FLAG_HIDE_GOLDENROD_DEPT_STORE_5F_RETURN_FRUSTRATION_LADY
++	get_weekday VAR_TEMP_x4000
++	compare VAR_TEMP_x4000, 0
++	goto_if_eq _0046
++	compare VAR_TEMP_x4000, 0
++	goto_if_ne _0044
++	clearflag FLAG_HIDE_GOLDENROD_DEPT_STORE_5F_RETURN_FRUSTRATION_LADY
++_0044:
++	end
++
++_0046:
++	clearflag FLAG_HIDE_GOLDENROD_DEPT_STORE_5F_RETURN_FRUSTRATION_LADY
++	end
++
++scr_seq_T25R1005_000:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	callstd std_mart_intro
++	holdmsg
++	setvar VAR_SPECIAL_x8004, 7
++	callstd std_special_mart
++	releaseall
++	end
++
++scr_seq_T25R1005_001:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	compare VAR_SCENE_ROCKET_TAKEOVER, 3
++	goto_if_ne _0086
++	npc_msg 18
++	goto _0089
++
++_0086:
++	npc_msg 17
++_0089:
++	wait_button
++	closemsg
++	releaseall
++	end
++
++scr_seq_T25R1005_002:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	compare VAR_SCENE_ROCKET_TAKEOVER, 3
++	goto_if_ne _00AF
++	npc_msg 16
++	goto _00B2
++
++_00AF:
++	npc_msg 15
++_00B2:
++	wait_button
++	closemsg
++	releaseall
++	end
++
++scr_seq_T25R1005_003:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	goto_if_set FLAG_SYS_ROCKET_COSTUME, _017D
++	goto_if_set FLAG_TRADE_GOLDENROD_CITY_DROWZEE_MACHOP, _0172
++	npc_msg 9
++	touchscreen_menu_hide
++	getmenuchoice VAR_SPECIAL_RESULT
++	touchscreen_menu_show
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _00F6
++	goto _0167
++
++_00F6:
++	closemsg
++	fade_screen 6, 1, 0, RGB_BLACK
++	wait_fade
++	scrcmd_566
++	get_party_selection VAR_SPECIAL_RESULT
++	restore_overworld
++	fade_screen 6, 1, 1, RGB_BLACK
++	wait_fade
++	compare VAR_SPECIAL_RESULT, 255
++	goto_if_eq _0167
++	load_npc_trade 1
++	copyvar VAR_SPECIAL_x8004, VAR_SPECIAL_RESULT
++	get_partymon_species VAR_SPECIAL_x8004, VAR_SPECIAL_x8005
++	npc_trade_get_req_species VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
++	goto_if_ne _015A
++	npc_trade_exec VAR_SPECIAL_x8004
++	npc_trade_end
++	setflag FLAG_TRADE_GOLDENROD_CITY_DROWZEE_MACHOP
++	npc_msg 10
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_015A:
++	npc_trade_end
++	npc_msg 11
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_0167:
++	npc_msg 12
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_0172:
++	npc_msg 13
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_017D:
++	npc_msg 14
++	wait_button
++	closemsg
++	releaseall
++	end
++
++scr_seq_T25R1005_004:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	npc_msg 19
++	wait_button
++	closemsg
++	releaseall
++	end
++
++scr_seq_T25R1005_006:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	goto_if_set FLAG_UNK_08E, _0219
++	get_party_lead_alive VAR_SPECIAL_x8000
++	buffer_mon_species_name 0, VAR_SPECIAL_x8000
++	npc_msg 0
++	mon_get_friendship VAR_SPECIAL_RESULT, VAR_SPECIAL_x8000
++	compare VAR_SPECIAL_RESULT, 149
++	goto_if_ge _01E3
++	compare VAR_SPECIAL_RESULT, 50
++	goto_if_le _01FE
++	npc_msg 3
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_01E3:
++	npc_msg 1
++	setvar VAR_SPECIAL_x8004, 354
++	setvar VAR_SPECIAL_x8005, 1
++	callstd std_obtain_item_verbose
++	closemsg
++	goto _0219
++
++_01FE:
++	npc_msg 4
++	setvar VAR_SPECIAL_x8004, 348
++	setvar VAR_SPECIAL_x8005, 1
++	callstd std_obtain_item_verbose
++	closemsg
++	goto _0219
++
++_0219:
++	npc_msg 6
++	setflag FLAG_UNK_08E
++	wait_button
++	closemsg
++	releaseall
++	end
++	.balign 4
++
++// hyper training (tools/hack/hyper_training.py): a Bottle Cap for the IV picked, a Gold Bottle Cap for all six
++.macro hyper_train,slot,stat,result
++.hword 384
++.hword \slot
++.hword \stat
++.hword \result
++.endm
++
++scr_seq_T25R1005_007:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	npc_msg 20
++	hasitem ITEM_BOTTLE_CAP, 1, VAR_SPECIAL_x8006
++	hasitem ITEM_GOLD_BOTTLE_CAP, 1, VAR_SPECIAL_x8007
++	compare VAR_SPECIAL_x8006, 0
++	goto_if_ne _ht_choose
++	compare VAR_SPECIAL_x8007, 0
++	goto_if_ne _ht_choose
++	npc_msg 21
++	goto _ht_end
++
++_ht_choose:
++	npc_msg 22
++	closemsg
++	fade_screen 6, 1, 0, RGB_BLACK
++	wait_fade
++	party_select_ui
++	get_party_selection VAR_SPECIAL_x8005
++	restore_overworld
++	fade_screen 6, 1, 1, RGB_BLACK
++	wait_fade
++	compare VAR_SPECIAL_x8005, 255
++	goto_if_eq _ht_bye
++	get_partymon_species VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _ht_egg
++	npc_msg 23
++	touchscreen_menu_hide
++	menu_init 1, 1, 0, 1, VAR_SPECIAL_x8004
++	menu_item_add 24, 255, 0
++	menu_item_add 25, 255, 1
++	menu_item_add 26, 255, 2
++	menu_item_add 27, 255, 4
++	menu_item_add 28, 255, 5
++	menu_item_add 29, 255, 3
++	menu_item_add 30, 255, 6
++	menu_item_add 31, 255, 7
++	menu_exec
++	touchscreen_menu_show
++	compare VAR_SPECIAL_x8004, 6
++	goto_if_eq _ht_gold
++	compare VAR_SPECIAL_x8004, 6
++	goto_if_gt _ht_bye
++	compare VAR_SPECIAL_x8006, 0
++	goto_if_eq _ht_need_cap
++	hyper_train VAR_SPECIAL_x8005, VAR_SPECIAL_x8004, VAR_SPECIAL_x8003
++	compare VAR_SPECIAL_x8003, 0
++	goto_if_eq _ht_maxed
++	takeitem ITEM_BOTTLE_CAP, 1, VAR_SPECIAL_RESULT
++	goto _ht_done
++
++_ht_gold:
++	compare VAR_SPECIAL_x8007, 0
++	goto_if_eq _ht_need_gold
++	hyper_train VAR_SPECIAL_x8005, VAR_SPECIAL_x8004, VAR_SPECIAL_x8003
++	compare VAR_SPECIAL_x8003, 0
++	goto_if_eq _ht_maxed
++	takeitem ITEM_GOLD_BOTTLE_CAP, 1, VAR_SPECIAL_RESULT
++	goto _ht_done
++
++_ht_done:
++	play_fanfare SEQ_ME_ITEM
++	npc_msg 35
++	wait_fanfare
++	goto _ht_end
++
++_ht_maxed:
++	npc_msg 34
++	goto _ht_end
++
++_ht_need_gold:
++	npc_msg 32
++	goto _ht_end
++
++_ht_need_cap:
++	npc_msg 33
++	goto _ht_end
++
++_ht_egg:
++	npc_msg 36
++	goto _ht_end
++
++_ht_bye:
++	npc_msg 37
++_ht_end:
++	wait_button_or_walk_away
++	closemsg
++	releaseall
++	end
+diff --git a/data/text/custom/596.txt b/data/text/custom/596.txt
+new file mode 100644
+index 000000000..f50b366d2
+--- /dev/null
++++ b/data/text/custom/596.txt
+@@ -0,0 +1,38 @@
++Hello. Oh, your Pokémon...\r
++It’s very attached to you.\rThis move should be perfect for a\npair like you.\r
++                     
++It’s adorable!\rYou should teach it good TM moves.
++It looks a little bit evil.\nHow about this TM for it?\r
++                     
++There are sure to be TMs that are\njust perfect for your Pokémon.
++Mystery Gift.\rWith just a little beep, you get a gift.
++The Mystery Gift option is not\ncompatible with Game Boy Color.
++I collect Pokémon.\nDo you have a DROWZEE?\rWant to trade it for my MACHOP? {YESNO 0}
++Yay! I got myself a DROWZEE!\fThanks!
++Huh? That’s not DROWZEE.\nWhat a letdown...
++You don’t want to trade? Aww...
++Hi, how’s my old MACHOP doing?
++Huh? You...are part of Team Rocket?\nSince when?
++On Sundays, a lady comes to check\nout Pokémon.\rShe even gives away TMs!
++Team Rocket...\nWhy are they here?
++You can’t rename a Pokémon you get in\na trade.\rThe name is a reflection of the original\nTrainer’s feelings for it.
++You shouldn’t wear a black suit like\nthat. People will think you are a part\fof Team Rocket.\rWhat? You are one of them?
++Modify Your Pokémon\n5F TM Corner
++I’m a hyper trainer! Bring me a\nBottle Cap and I’ll max out one\fof a Pokémon’s IVs.\rA Gold Bottle Cap maxes out all six!\r
++You don’t have a Bottle Cap.\nCome back when you get one!
++Which Pokémon should I train?\r
++Which stat should I bring out?
++HP
++Attack
++Defense
++Sp. Atk
++Sp. Def
++Speed
++Every stat
++Never mind
++Every stat takes a Gold Bottle Cap.\nCome back when you have one!
++One stat takes a Bottle Cap.\nCome back when you have one!
++That’s already as good as it gets!\nNo charge.
++There! Its potential has been\nbrought out!
++An Egg can’t be trained.\nIt hasn’t even hatched!
++Come back any time you have a\nBottle Cap.
+diff --git a/hooks b/hooks
+index 4319a1dd7..3e97ffbf4 100644
+--- a/hooks
++++ b/hooks
+@@ -577,6 +577,7 @@ arm9 PartyMenu_LearnMoveToSlot 0208254C 3
+ 
+ #ifdef MART_EXPANSION
+ arm9 ScrCmd_MartBuy 02048060 1
++arm9 ScrCmd_HyperTrain 0204D7D8 1
+ arm9 ScrCmd_SpecialMartBuy 02048158 1
+ #endif
+ 
+diff --git a/src/field/script_commands.c b/src/field/script_commands.c
+index 128d10aa6..e201e1fa5 100644
+--- a/src/field/script_commands.c
++++ b/src/field/script_commands.c
+@@ -413,3 +413,31 @@ void SetupAndStartTotemBattle(TaskManager *taskManager, u16 species, u8 level, u
+ 
+     CallTask_StartEncounter(taskManager, setup, BattleSetup_GetWildTransitionEffect(setup), BattleSetup_GetWildBattleMusic(setup), winFlag);
+ }
++
++
++/**
++ *  @brief hyper_train SLOT, STAT, RESULT (tools/hack/hyper_training.py), in place of the unused script command 384:
++ *         make the IV STAT (0-5, in the order HP, Attack, Defense, Speed, Sp. Atk, Sp. Def; 6 for all six) of the
++ *         party Pokemon in SLOT 31.  RESULT is 1 if any IV went up, 0 if they were all at 31 already
++ */
++BOOL ScrCmd_HyperTrain(SCRIPTCONTEXT *ctx)
++{
++    u16 slot = ScriptGetVar(ctx);
++    u16 stat = ScriptGetVar(ctx);
++    u16 *result = ScriptGetVarPointer(ctx);
++    struct Party *party = SaveData_GetPlayerPartyPtr(ctx->fsys->savedata);
++    struct PartyPokemon *mon = Party_GetMonByIndex(party, slot);
++    u32 i, max = 31;
++
++    *result = 0;
++    for (i = 0; i < 6; i++) {
++        if ((stat == 6 || stat == i) && GetMonData(mon, MON_DATA_HP_IV + i, NULL) < 31) {
++            SetMonData(mon, MON_DATA_HP_IV + i, &max);
++            *result = 1;
++        }
++    }
++    if (*result) {
++        RecalcPartyPokemonStats(mon);
++    }
++    return FALSE;
++}
+diff --git a/src/individual/PartyMenu_HandleUseItemOnMon.c b/src/individual/PartyMenu_HandleUseItemOnMon.c
+index 567d68e88..a776f9251 100644
+--- a/src/individual/PartyMenu_HandleUseItemOnMon.c
++++ b/src/individual/PartyMenu_HandleUseItemOnMon.c
+@@ -270,38 +270,6 @@ u32 UseItemMonAttrChangeCheck(struct PartyMenu *wk, void *dat)
+         return TRUE;
+     }
+ 
+-    // handle bottle caps (tools/hack/training_items.py): the gold one makes every IV 31, the plain one the
+-    // lowest; neither is used up if every IV is already 31
+-
+-    if (wk->args->itemId == ITEM_BOTTLE_CAP || wk->args->itemId == ITEM_GOLD_BOTTLE_CAP) {
+-        u32 stat, lowest = 0, iv, max = 31;
+-        BOOL any = FALSE;
+-        for (stat = 0; stat < 6; stat++) {
+-            iv = GetMonData(pp, MON_DATA_HP_IV + stat, NULL);
+-            if (iv < 31) {
+-                if (!any || iv < GetMonData(pp, MON_DATA_HP_IV + lowest, NULL)) {
+-                    lowest = stat;
+-                }
+-                any = TRUE;
+-            }
+-        }
+-        if (any) {
+-            void *bag = Sav2_Bag_get(SaveBlock2_get());
+-            for (stat = 0; stat < 6; stat++) {
+-                if (wk->args->itemId == ITEM_GOLD_BOTTLE_CAP || stat == lowest) {
+-                    SetMonData(pp, MON_DATA_HP_IV + stat, &max);
+-                }
+-            }
+-            partyMenuSignal = wk->args->itemId == ITEM_GOLD_BOTTLE_CAP ? 228 : 227; // signal to change the message to this index
+-            wk->args->species = GetMonData(pp, MON_DATA_FORM, NULL); // no form change
+-            RecalcPartyPokemonStats(pp);
+-            Bag_TakeItem(bag, wk->args->itemId, 1, 11);
+-            sys_FreeMemoryEz(dat);
+-            PokeList_FormDemoOverlayLoad(wk);
+-            return TRUE;
+-        }
+-    }
+-
+     return FALSE;
+ }
+ 
+diff --git a/tools/hack/hyper_training.py b/tools/hack/hyper_training.py
+new file mode 100644
+index 000000000..1b8cb5e02
+--- /dev/null
++++ b/tools/hack/hyper_training.py
+@@ -0,0 +1,277 @@
++#!/usr/bin/env python3
++"""Hyper training: a trainer in the Goldenrod Department Store 5F maxes the IV the player picks, for a Bottle Cap.
++
++training_items.py sells the Bottle Caps on 5F, and had them used from the bag on the lowest IV. Here a man by
++the counter does it instead, as in the games since Sun and Moon: choose a Pokemon, then HP, Attack, Defense,
++Sp. Atk, Sp. Def or Speed for a Bottle Cap, or every stat for a Gold Bottle Cap. A stat at 31 already, or a
++Pokemon with all six at 31 for a Gold Bottle Cap, costs nothing. There is no level requirement. The Bottle Caps
++can no longer be used from the bag.
++
++The new script command, hyper_train SLOT, STAT, RESULT (STAT 0-5 in the game's order HP, Attack, Defense,
++Speed, Sp. Atk, Sp. Def, or 6 for all; RESULT 1 if any IV went up), takes the place of command 384,
++mon_subtract_friendship, which no script in the game uses: its handler at 0x0204D7D8 is hooked to
++ScrCmd_HyperTrain.
++
++It needs the vanilla dump of 5F (make dump_scripts, as for fossil_reviver.py); run after training_items.py:
++    python3 tools/hack/hyper_training.py /path/to/dumped/hg-engine
++"""
++import json
++import os
++import re
++import sys
++
++FLOOR_SCRIPT = "data/scr_seq/scr_seq_0903_T25R1005.s"
++FLOOR_INCLUDE = "data/scr_seq/include/event_T25R1005.inc"
++FLOOR_EVENTS = "data/eventdata/zone_event/188_T25R1005.json"
++FLOOR_TEXT = "data/text/custom/596.txt"
++NEW_SCRIPT = 7               # 5F has scripts 0-6
++NEW_OBJECT = 5               # and objects 0-4
++POSITION = (21, 4)           # by the right-hand wall, north of the counter; faces down, to be talked to from (21, 5)
++
++HOOKS = "hooks"
++COMMANDS = "src/field/script_commands.c"
++ITEMS = "data/itemdata/itemdata.c"
++HANDLER = "src/individual/PartyMenu_HandleUseItemOnMon.c"
++
++MESSAGES = [
++    r"I’m a hyper trainer! Bring me a\nBottle Cap and I’ll max out one\fof a Pokémon’s IVs.\rA Gold Bottle Cap maxes out all six!\r",
++    r"You don’t have a Bottle Cap.\nCome back when you get one!",
++    r"Which Pokémon should I train?\r",
++    r"Which stat should I bring out?",
++    r"HP",
++    r"Attack",
++    r"Defense",
++    r"Sp. Atk",
++    r"Sp. Def",
++    r"Speed",
++    r"Every stat",
++    r"Never mind",
++    r"Every stat takes a Gold Bottle Cap.\nCome back when you have one!",
++    r"One stat takes a Bottle Cap.\nCome back when you have one!",
++    r"That’s already as good as it gets!\nNo charge.",
++    r"There! Its potential has been\nbrought out!",
++    r"An Egg can’t be trained.\nIt hasn’t even hatched!",
++    r"Come back any time you have a\nBottle Cap.",
++]
++
++SCRIPT = """
++// hyper training (tools/hack/hyper_training.py): a Bottle Cap for the IV picked, a Gold Bottle Cap for all six
++.macro hyper_train,slot,stat,result
++.hword 384
++.hword \\slot
++.hword \\stat
++.hword \\result
++.endm
++
++scr_seq_T25R1005_{n:03d}:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	npc_msg {m0}
++	hasitem ITEM_BOTTLE_CAP, 1, VAR_SPECIAL_x8006
++	hasitem ITEM_GOLD_BOTTLE_CAP, 1, VAR_SPECIAL_x8007
++	compare VAR_SPECIAL_x8006, 0
++	goto_if_ne _ht_choose
++	compare VAR_SPECIAL_x8007, 0
++	goto_if_ne _ht_choose
++	npc_msg {m1}
++	goto _ht_end
++
++_ht_choose:
++	npc_msg {m2}
++	closemsg
++	fade_screen 6, 1, 0, RGB_BLACK
++	wait_fade
++	party_select_ui
++	get_party_selection VAR_SPECIAL_x8005
++	restore_overworld
++	fade_screen 6, 1, 1, RGB_BLACK
++	wait_fade
++	compare VAR_SPECIAL_x8005, 255
++	goto_if_eq _ht_bye
++	get_partymon_species VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _ht_egg
++	npc_msg {m3}
++	touchscreen_menu_hide
++	menu_init 1, 1, 0, 1, VAR_SPECIAL_x8004
++	menu_item_add {m4}, 255, 0
++	menu_item_add {m5}, 255, 1
++	menu_item_add {m6}, 255, 2
++	menu_item_add {m7}, 255, 4
++	menu_item_add {m8}, 255, 5
++	menu_item_add {m9}, 255, 3
++	menu_item_add {m10}, 255, 6
++	menu_item_add {m11}, 255, 7
++	menu_exec
++	touchscreen_menu_show
++	compare VAR_SPECIAL_x8004, 6
++	goto_if_eq _ht_gold
++	compare VAR_SPECIAL_x8004, 6
++	goto_if_gt _ht_bye
++	compare VAR_SPECIAL_x8006, 0
++	goto_if_eq _ht_need_cap
++	hyper_train VAR_SPECIAL_x8005, VAR_SPECIAL_x8004, VAR_SPECIAL_x8003
++	compare VAR_SPECIAL_x8003, 0
++	goto_if_eq _ht_maxed
++	takeitem ITEM_BOTTLE_CAP, 1, VAR_SPECIAL_RESULT
++	goto _ht_done
++
++_ht_gold:
++	compare VAR_SPECIAL_x8007, 0
++	goto_if_eq _ht_need_gold
++	hyper_train VAR_SPECIAL_x8005, VAR_SPECIAL_x8004, VAR_SPECIAL_x8003
++	compare VAR_SPECIAL_x8003, 0
++	goto_if_eq _ht_maxed
++	takeitem ITEM_GOLD_BOTTLE_CAP, 1, VAR_SPECIAL_RESULT
++	goto _ht_done
++
++_ht_done:
++	play_fanfare SEQ_ME_ITEM
++	npc_msg {m15}
++	wait_fanfare
++	goto _ht_end
++
++_ht_maxed:
++	npc_msg {m14}
++	goto _ht_end
++
++_ht_need_gold:
++	npc_msg {m12}
++	goto _ht_end
++
++_ht_need_cap:
++	npc_msg {m13}
++	goto _ht_end
++
++_ht_egg:
++	npc_msg {m16}
++	goto _ht_end
++
++_ht_bye:
++	npc_msg {m17}
++_ht_end:
++	wait_button_or_walk_away
++	closemsg
++	releaseall
++	end
++"""
++
++COMMAND = '''
++
++/**
++ *  @brief hyper_train SLOT, STAT, RESULT (tools/hack/hyper_training.py), in place of the unused script command 384:
++ *         make the IV STAT (0-5, in the order HP, Attack, Defense, Speed, Sp. Atk, Sp. Def; 6 for all six) of the
++ *         party Pokemon in SLOT 31.  RESULT is 1 if any IV went up, 0 if they were all at 31 already
++ */
++BOOL ScrCmd_HyperTrain(SCRIPTCONTEXT *ctx)
++{
++    u16 slot = ScriptGetVar(ctx);
++    u16 stat = ScriptGetVar(ctx);
++    u16 *result = ScriptGetVarPointer(ctx);
++    struct Party *party = SaveData_GetPlayerPartyPtr(ctx->fsys->savedata);
++    struct PartyPokemon *mon = Party_GetMonByIndex(party, slot);
++    u32 i, max = 31;
++
++    *result = 0;
++    for (i = 0; i < 6; i++) {
++        if ((stat == 6 || stat == i) && GetMonData(mon, MON_DATA_HP_IV + i, NULL) < 31) {
++            SetMonData(mon, MON_DATA_HP_IV + i, &max);
++            *result = 1;
++        }
++    }
++    if (*result) {
++        RecalcPartyPokemonStats(mon);
++    }
++    return FALSE;
++}
++'''
++
++
++def read_lines(text):
++    lines = text.split("\r\n")
++    if lines[-1] == "":
++        lines.pop()
++    return lines
++
++
++def edit(path, old, new):
++    text = open(path, encoding="utf-8", newline="").read()
++    if text.count(old) != 1:
++        sys.exit("expected one of this in %s: %r" % (path, old[:70]))
++    open(path, "w", encoding="utf-8", newline="").write(text.replace(old, new))
++
++
++def main():
++    dump = sys.argv[1]
++    read = lambda path: open(os.path.join(dump, path), encoding="utf-8", newline="").read()
++    out = {}
++
++    text = read_lines(read(FLOOR_TEXT))
++    first = len(text)
++    text += MESSAGES
++    out[FLOOR_TEXT] = "\r\n".join(text) + "\r\n"
++    numbers = {"m%d" % k: first + k for k in range(len(MESSAGES))}
++
++    script = read(FLOOR_SCRIPT)
++    if script.count("scrdef_end") != 1:
++        sys.exit("unexpected 5F script")
++    script = script.replace("scrdef_end", "scrdef scr_seq_T25R1005_%03d\nscrdef_end" % NEW_SCRIPT)
++    out[FLOOR_SCRIPT] = script.rstrip("\n") + "\n" + SCRIPT.format(n=NEW_SCRIPT, **numbers)
++
++    include = read(FLOOR_INCLUDE)
++    include = include.replace("\n\n.equ obj_T25R1005_shopm1_2,",
++                              "\n.equ _EV_scr_seq_T25R1005_%03d, %d\n\n.equ obj_T25R1005_shopm1_2," % (NEW_SCRIPT, NEW_SCRIPT), 1)
++    include = include.replace("\n\n.endif", "\n.equ obj_T25R1005_hyper_trainer, %d\n\n.endif" % NEW_OBJECT, 1)
++    if "hyper_trainer" not in include or "_EV_scr_seq_T25R1005_%03d" % NEW_SCRIPT not in include:
++        sys.exit("unexpected 5F include")
++    out[FLOOR_INCLUDE] = include
++
++    events = json.loads(read(FLOOR_EVENTS))
++    if len(events["object_events"]) != NEW_OBJECT:
++        sys.exit("unexpected number of objects on 5F")
++    events["object_events"].append({
++        "id": "obj_T25R1005_hyper_trainer",
++        "graphics_id": "SPRITE_GSMAN2",
++        "movement_type": 15,
++        "trainer_type": 0,
++        "hidden_flag": "FLAG_NOTHING",
++        "script": "_EV_scr_seq_T25R1005_%03d + 1" % NEW_SCRIPT,
++        "initial_dir": 1,      # facing down
++        "param0": 0, "param1": 0, "param2": 0,
++        "movement_range_x": 0, "movement_range_z": 0,
++        "x": POSITION[0], "z": POSITION[1], "y": 0,
++    })
++    out[FLOOR_EVENTS] = json.dumps(events, indent=2) + "\n"
++
++    for path, content in out.items():
++        os.makedirs(os.path.dirname(path), exist_ok=True)
++        open(path, "w", encoding="utf-8", newline="").write(content)
++        print("wrote", path)
++
++    # the script command
++    commands = open(COMMANDS, encoding="utf-8").read()
++    open(COMMANDS, "w", encoding="utf-8").write(commands.rstrip("\n") + "\n" + COMMAND)
++    edit(HOOKS, "arm9 ScrCmd_MartBuy 02048060 1\n",
++         "arm9 ScrCmd_MartBuy 02048060 1\narm9 ScrCmd_HyperTrain 0204D7D8 1\n")
++
++    # the Bottle Caps no longer work from the bag
++    items = open(ITEMS, encoding="utf-8").read()
++    for cap in ("BOTTLE_CAP", "GOLD_BOTTLE_CAP"):
++        m = re.search(r"\n\[ITEM_%s\] =\n\{\n(.*?)\n\},?\n" % cap, items, re.S)
++        block = m.group(1)
++        if ".fieldUseFunc = 33," not in block:
++            sys.exit("the %s isn't usable from the bag: run training_items.py first" % cap)
++        items = items[:m.start(1)] + block.replace(".fieldUseFunc = 33,", ".fieldUseFunc = 0,") + items[m.end(1):]
++    open(ITEMS, "w", encoding="utf-8").write(items)
++    handler = open(HANDLER, encoding="utf-8").read()
++    start = handler.find("    // handle bottle caps (tools/hack/training_items.py)")
++    end = handler.find("    return FALSE;\n}", start)
++    if start < 0 or end < 0:
++        sys.exit("no Bottle Cap handling in " + HANDLER)
++    open(HANDLER, "w", encoding="utf-8").write(handler[:start] + handler[end:])
++    print("edited", COMMANDS, HOOKS, ITEMS, HANDLER)
++
++
++if __name__ == "__main__":
++    main()
+-- 
+2.43.0
+
