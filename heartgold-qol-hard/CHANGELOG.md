@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v1.10
 
 - Hyper training (patch 0045): a man by the Goldenrod Department Store 5F
   counter makes the IV you pick 31 for a Bottle Cap, or all six for a Gold
@@ -16,6 +16,10 @@
   `playtest/challenge_test.py`, the hyper trainer in `playtest/qol_test.py`,
   and the Pokéathlon prize lists and the Supreme Cup waiting for the Champion
   in `playtest/champion_test.py`.
+
+The Exp. Share rule is kept in a script variable the game never used, so old
+saves start with it off. A save made in v1.9 on Route 29 loaded in v1.10, won
+two wild battles, and the game saved again (`playtest/save_carry.py`).
 
 ## v1.9
 
