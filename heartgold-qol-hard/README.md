@@ -29,8 +29,10 @@ repository and never will be.
    other emulators and flashcarts are untried.
 
 Start a new game: saves from the original game or from other hacks will not
-work properly. The [spoiler guide](guide/README.md) lists where everything
-is.
+work properly. [Playing HeartGold QoL + Hard](guide/PLAYING.md) is a short
+guide for a first run: what plays differently, the shops, and the levels to
+be at for each boss. The [spoiler guide](guide/README.md) lists where
+everything is.
 
 This hack is free and always will be. hg-engine's terms require that, and
 that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md).
