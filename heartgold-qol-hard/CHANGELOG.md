@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v1.8
 
 - Challenge rules you can turn on and off (patch 0039): a woman downstairs in
   the player's house in New Bark Town sets a level cap at the strongest level
@@ -10,6 +10,11 @@
   `playtest/challenge_test.py`.
 - A player's guide, [guide/PLAYING.md](guide/PLAYING.md), and the spoiler
   guide regenerated for v1.7.
+
+The level cap and no-items rule live in a script variable the game never
+used, so old saves start with both off. A save made in v1.7 on Route 29
+loaded in v1.8, won two wild battles, and the game saved again
+(`playtest/save_carry.py`).
 
 ## v1.7
 
