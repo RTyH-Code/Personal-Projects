@@ -589,9 +589,9 @@ def features(game, state, data, world, names, out_dir, results):
     # the counters the hack restocks: buy the item at each position in the list and see what arrives.
     # (name, map, where to stand, facing, badges, must be on sale, must not be on sale yet)
     counters = [
-        ("evolution shop, 0 badges", "T25R1004", (21, 7), 3, 0, ["MOON_STONE", "OVAL_STONE"], ["FIRE_STONE", "SHINY_STONE", "PEAT_BLOCK", "RAZOR_FANG", "POWER_WEIGHT"]),
-        ("evolution shop, 4 badges", "T25R1004", (21, 7), 3, 4, ["FIRE_STONE", "POWER_WEIGHT", "POWER_ANKLET"], ["SHINY_STONE", "PEAT_BLOCK"]),
-        ("evolution shop, 16 badges", "T25R1004", (21, 7), 3, 16, ["FIRE_STONE", "SHINY_STONE", "PEAT_BLOCK", "RAZOR_FANG", "POWER_WEIGHT", "POWER_ANKLET"], []),
+        ("evolution shop, 0 badges", "T25R1004", (21, 7), 3, 0, ["MOON_STONE", "OVAL_STONE"], ["FIRE_STONE", "SHINY_STONE", "PEAT_BLOCK", "RAZOR_FANG", "POWER_WEIGHT", "PP_UP", "PP_MAX"]),
+        ("evolution shop, 4 badges", "T25R1004", (21, 7), 3, 4, ["FIRE_STONE", "POWER_WEIGHT", "POWER_ANKLET", "PP_UP"], ["SHINY_STONE", "PEAT_BLOCK", "PP_MAX"]),
+        ("evolution shop, 16 badges", "T25R1004", (21, 7), 3, 16, ["FIRE_STONE", "SHINY_STONE", "PEAT_BLOCK", "RAZOR_FANG", "POWER_WEIGHT", "POWER_ANKLET", "PP_UP", "PP_MAX"], []),
         ("berry stand, 0 badges", "T25R1003", (21, 7), 3, 0, ["X_SPEED", "ORAN_BERRY", "ASPEAR_BERRY", "POMEG_BERRY", "TAMATO_BERRY"], ["SITRUS_BERRY", "OCCA_BERRY", "MAX_REVIVE", "LUCKY_EGG"]),
         ("berry stand, 4 badges", "T25R1003", (21, 7), 3, 4, ["SITRUS_BERRY", "LUM_BERRY", "ETHER", "LUCKY_EGG"], ["OCCA_BERRY", "ELIXIR", "MAX_REVIVE"]),
         ("berry stand, 16 badges", "T25R1003", (21, 7), 3, 16, ["OCCA_BERRY", "ROSELI_BERRY", "ELIXIR", "MAX_REVIVE"], []),

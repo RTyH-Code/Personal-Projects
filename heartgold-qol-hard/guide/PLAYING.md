@@ -27,7 +27,8 @@ A short guide for a first run. It has no story spoilers beyond what bosses you w
   grind catches you up quickly. Fishing, Rock Smash and Headbutt follow the same bands.
 - **Every Pokémon family can be caught in Johto before the Elite Four**, with nothing needing a trade, the
   Day Care or the Safari Zone. Trade evolutions use an item (King's Rock, Metal Coat and the like) or
-  happen at Lv. 37. The Safari Zone is still there but has nothing you can't get elsewhere.
+  happen at Lv. 37. The Safari Zone and the Pokéathlon are still there, but neither has anything you
+  can't get elsewhere.
 - **HMs work without being taught**, as long as the HM is in your bag and you have the badge. HM moves can
   be forgotten any time. TMs are reusable.
 - **Friendship evolutions** happen at 160 friendship instead of 220.
@@ -43,7 +44,8 @@ A short guide for a first run. It has no story spoilers beyond what bosses you w
 - **Goldenrod Department Store 3F:** Oran and the status berries from the start; Sitrus Berry, Lum Berry
   and Ether at four badges; the type-resist berries and Elixir at six; Max Ether, Max Elixir and Max Revive
   at eight. The Lucky Egg is here from four badges.
-- **Goldenrod Department Store 4F:** the vitamins, and every evolution item, in tiers:
+- **Goldenrod Department Store 4F:** the vitamins, PP Up (₽9,800, four badges) and PP Max (₽24,800, eight
+  badges), and every evolution item, in tiers:
 
   | Badges | Items | Price |
   |---|---|---|

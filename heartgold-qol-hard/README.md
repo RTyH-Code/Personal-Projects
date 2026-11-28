@@ -4,7 +4,7 @@ A quality-of-life, modernization and difficulty hack for Pokémon HeartGold,
 following the same recipe as [FireRed QoL + Hard](../firered-qol-hard/README.md).
 It is built on [hg-engine](https://github.com/BluRosie/hg-engine).
 
-**Status: v1.10.** Everything described below is in the
+**Status: v1.11.** Everything described below is in the
 patch. The battles, maps, legendaries, wild Pokémon and shops have been
 checked by automated playtesters, and a story bot has played from the bedroom
 to Red (see [playtest/BALANCE.md](playtest/BALANCE.md)), but no person has
@@ -16,16 +16,16 @@ You need your own US Pokémon HeartGold ROM (game code `IPKE`, SHA-1
 `4fcded0e2713dc03929845de631d0932ea2b5a37`). The ROM is not in this
 repository and never will be.
 
-1. Download `HeartGold-QoL-Hard-v1.10.xdelta`.
+1. Download `HeartGold-QoL-Hard-v1.11.xdelta`.
 2. Apply it to the ROM with an xdelta patcher such as Delta Patcher or
    xdelta UI, or on a command line:
 
    ```bash
-   xdelta3 -d -s heartgold-usa.nds HeartGold-QoL-Hard-v1.10.xdelta HeartGold-QoL-Hard.nds
+   xdelta3 -d -s heartgold-usa.nds HeartGold-QoL-Hard-v1.11.xdelta HeartGold-QoL-Hard.nds
    ```
 
 3. The patched ROM is 256 MB, twice the original's size, and its SHA-1 is
-   `1d9742a2c870339daa480b1717a60dd17c5f0f18`. It has been run in DeSmuME;
+   `6608c586e45b464691dda52785a46dd5d84f652b`. It has been run in DeSmuME;
    other emulators and flashcarts are untried.
 
 Start a new game: saves from the original game or from other hacks will not
@@ -184,7 +184,8 @@ that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md
   - 3F: the six EV-lowering berries (Pomeg, Kelpsy, Qualot, Hondew, Grepa,
     Tamato) from the start, ₽500;
   - 4F: the six Power items, for training one stat's EVs, from four badges,
-    ₽5,000;
+    ₽5,000; PP Up from four badges (₽9,800) and PP Max from eight
+    (₽24,800) (patch 0046, `tools/hack/pp_shop.py`);
   - 5F: the 21 nature mints from four badges, ₽5,000 (the Pokémon's stats
     follow the mint's nature; hg-engine already supports them), and from
     eight badges the Bottle Cap (₽20,000) and Gold Bottle Cap (₽60,000).
@@ -407,6 +408,15 @@ Contest's Scyther and Pinsir are where HeartGold already had them.
   Rhyhorn and Beldum since patch 0038, which put the seven that could only be
   bred into the table above). It has no item balls of its own, and the Safari
   Mart sells what Vermilion's does. A player can skip it.
+- **The Pokéathlon isn't needed for anything either.** It is unchanged, but
+  its prize exchange's goods are all to be had elsewhere: the evolution
+  stones, King's Rock, Metal Coat and Dragon Scale on Goldenrod 4F; PP Up
+  there too since patch 0046 (the exchange was the only repeatable source of
+  it); Rare Candies in the field and on Celadon 4F; Full Restores in the Poké
+  Marts; Moomoo Milk at the farm; Apricorns on the trees; and Nuggets, worth
+  only money. Its Heart Scales were only ever for the Move Maniac, who no
+  longer asks for one. What is left (the Data Cards, the medals, the Supreme
+  Cup) changes nothing in play. A player can skip it.
 - One Shiny Stone can still be picked up early in the National Park.
 
 The fossil reviver was played through in the emulator (Old Amber to
@@ -508,6 +518,7 @@ The FireRed recipe, and where each part comes from here:
 | Held-item shop, berry and consumables stand, earlier mart stock | Done: `tools/hack/shops.py` |
 | Training items: mints, EV-lowering berries, Power items, Bottle Caps | Done: `tools/hack/training_items.py`, `tools/hack/hyper_training.py` |
 | Faster breeding | Done: `tools/hack/faster_breeding.py` |
+| Safari Zone and Pokéathlon not needed for anything | Done: their Pokémon and goods are elsewhere; `tools/hack/pp_shop.py` |
 | Party-wide Exp. Share as a player option | Done: `tools/hack/party_exp_share.py` |
 | Free Move Reminders, one from the first town | Done: `tools/hack/move_reminder.py` |
 | Spoiler guide generated from the data | Done: `tools/spoiler_guide.py` writes [guide/](guide/README.md), and `tools/boss_guide.py` its boss teams page |
@@ -537,7 +548,7 @@ The first build takes several minutes. It clones hg-engine into `build/`,
 applies the patches and writes `build/hg-engine/test.nds`.
 
 The release patch is made from such a build, in a fresh work directory, with
-`tools/make_patch.sh`. v1.10 was built this way from all forty-five patches.
+`tools/make_patch.sh`. v1.11 was built this way from all forty-six patches.
 
 To confirm the result boots, without opening an emulator window:
 

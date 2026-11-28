@@ -1,5 +1,19 @@
 # Changelog
 
+## v1.11
+
+- PP Up and PP Max on Goldenrod Department Store 4F (patch 0046): PP Up from
+  four badges at ₽9,800, PP Max from eight at ₽24,800. The Pokéathlon's prize
+  exchange was the only repeatable source of PP Ups, and everything else it
+  offers is sold or found elsewhere, so, like the Safari Zone, the Pokéathlon
+  can be skipped.
+- Bottle Caps stay buy-only (Goldenrod 5F from eight badges): nothing else in
+  the game hands them out.
+
+This changes two items' prices and a shop list only. A save made in v1.10 on
+Route 29 loaded in v1.11, won two wild battles, and the game saved again
+(`playtest/save_carry.py`).
+
 ## v1.10
 
 - Hyper training (patch 0045): a man by the Goldenrod Department Store 5F
