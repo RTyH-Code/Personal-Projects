@@ -85,6 +85,10 @@ the post-game gate patch 0002 sets up), so its Rock Smash Pokémon are post-game
 Patch 0035 puts them back at their levels before patch 0032 (Krabby 23-30, Kingler 32-36), checked in the
 game the same way: Krabby 26, Kingler 36.
 
+The Super Rod (patch 0037) was checked the same way on six Johto maps: every Pokémon at the new Lv. 62
+(Route 30 Poliwag, Olivine Staryu, Lake of Rage Gyarados, Dragon's Den Dratini, Route 44 Remoraid, Route 26
+Lanturn).
+
 Patch 0029 puts the water in the same bands, from where a player can first surf. `walk_test.py`'s surf check on
 the build with the test harness met only Pokémon in the new tables on seven of ten areas: Route 34 Tentacool
 27-29, Route 41 Tentacruel 29, Route 42 Goldeen and Seaking 32, Route 43 Magikarp 32-33, the Lake of Rage

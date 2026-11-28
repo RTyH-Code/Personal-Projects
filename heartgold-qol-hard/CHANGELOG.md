@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.6
+
+- The Super Rod meets Lv. 62 Pokémon in Johto's water, as in Kanto's (patch
+  0037; it was 40). It is a post-game item, from Kanto's Route 12, and a team
+  is around Lv. 62-70 by then. Checked in the emulator on six Johto maps.
+- The Safari Zone stays open and unchanged, but a player can skip it: every
+  species in its tables can be had elsewhere (147 wild, 7 by breeding), and
+  its items and shop stock are had elsewhere too.
+
+This changes encounter data only. A save made in v1.5 on Route 29 loaded in
+v1.6, won two wild battles, and the game saved again
+(`playtest/save_carry.py`).
+
 ## v1.5
 
 - The rival's Feraligatr at Mt. Moon and Indigo Plateau (for a player who
