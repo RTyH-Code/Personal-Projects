@@ -534,7 +534,9 @@ clear and set: Cliff Cave's Rock Smash rocks (moved aside before); the Bug-Catch
 as it runs when the player enters the contest at the Route 36 gate; the Pokéathlon Dome prize clerk's two
 checks; and the Friendship Room scene that shows the Supreme Cup's receptionist. The contest is only held on
 Tuesdays, Thursdays and Saturdays, and the emulator keeps the computer's date, so on other days that check is
-skipped. Names after `out` (such as `pokeathlon`) run only those.
+skipped. It also checks the Pokégear radio's Pokémon Music preset (registering the Radio Card in the save in
+memory first), and Raikou and Entei waiting in the Burned Tower B1F (`beasts`). Names after `out` (such as
+`pokeathlon`) run only those.
 
 ```bash
 SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 playtest/champion_test.py /path/to/test.nds /path/to/hack/hg-engine /path/to/original/hg-engine out

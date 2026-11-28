@@ -345,7 +345,7 @@ GIVEN = [
     ("SQUIRTLE", "from Professor Oak after beating Red (one of three)"),
     ("TREECKO", "from Steven after beating Red (one of three)"), ("TORCHIC", "from Steven after beating Red (one of three)"),
     ("MUDKIP", "from Steven after beating Red (one of three)"),
-    ("RAIKOU", "roaming Johto"), ("ENTEI", "roaming Johto"), ("SUICUNE", "Route 25"), ("HO_OH", "Bell Tower"),
+    ("RAIKOU", "Burned Tower B1F"), ("ENTEI", "Burned Tower B1F"), ("SUICUNE", "Route 25"), ("HO_OH", "Bell Tower"),
     ("LUGIA", "Whirl Islands"), ("ARTICUNO", "Seafoam Islands"), ("ZAPDOS", "Route 10"), ("MOLTRES", "Mt. Silver Cave"),
     ("MEWTWO", "Cerulean Cave"), ("LATIAS", "roaming Kanto"), ("LATIOS", "roaming Kanto"), ("KYOGRE", "Embedded Tower"),
     ("RAYQUAZA", "Embedded Tower, with Groudon and Kyogre"),

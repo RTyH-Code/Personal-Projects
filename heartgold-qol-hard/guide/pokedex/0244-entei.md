@@ -10,7 +10,7 @@ No. 244 · Fire · catch rate 3
 
 ## Where
 
-- roaming Johto
+- Burned Tower B1F
 
 ## Moves by level
 

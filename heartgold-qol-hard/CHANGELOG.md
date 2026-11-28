@@ -1,5 +1,20 @@
 # Changelog
 
+## Unreleased
+
+- What only the Game Corners' coins bought, for money (patch 0049): Swords
+  Dance, Double Team, Endure, Substitute, Gyro Ball, Thunderbolt, Flamethrower,
+  Ice Beam and Giga Impact on Goldenrod 5F in badge tiers, and the Silk Scarf,
+  Wide Lens, Zoom Lens and Metronome on Goldenrod 4F.
+- Raikou and Entei no longer roam (patch 0050): once the Burned Tower scene
+  wakes them, each waits in B1F where it slept, at Lv. 46. Caught, it is gone;
+  beaten or fled from, it is back after the next Hall of Fame. Saves that
+  woke them in an earlier version keep them roaming.
+- Played in the emulator: the shop rows for the new stock, the beasts (hidden
+  while asleep and once caught, a Lv. 46 battle, gone after it), and the
+  Pokégear radio's Pokémon Music check waiting for the Champion
+  (`playtest/champion_test.py`).
+
 ## v1.12
 
 - Scyther and Pinsir wild in the National Park (patch 0047): 5% and 4% at any

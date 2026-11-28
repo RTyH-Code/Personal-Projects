@@ -1,0 +1,246 @@
+From 8074e8be7597c679abc686ab12593f70124016f6 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 28 Nov 2026 10:56:52 +0000
+Subject: [PATCH 49/50] For money, what only the Game Corners' coins bought
+
+Goldenrod 5F sells Swords Dance, Double Team, Endure and Substitute from four
+badges; Gyro Ball, Thunderbolt, Flamethrower and Ice Beam from six; Giga Impact
+from eight. Goldenrod 4F sells the Silk Scarf, Wide Lens, Zoom Lens and
+Metronome from four. The Game Corners' prize Pokemon are all wild or given
+elsewhere. Made by tools/hack/corner_items.py.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEYSk2h6k1E1jWo3cHd
+---
+ data/itemdata/itemdata.c   | 24 ++++++++--------
+ src/field/mart.c           | 23 +++++++++++++--
+ tools/hack/corner_items.py | 57 ++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 90 insertions(+), 14 deletions(-)
+ create mode 100644 tools/hack/corner_items.py
+
+diff --git a/data/itemdata/itemdata.c b/data/itemdata/itemdata.c
+index d8eacdc81..15c6538b7 100644
+--- a/data/itemdata/itemdata.c
++++ b/data/itemdata/itemdata.c
+@@ -16328,7 +16328,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_SILK_SCARF] =
+ {
+-    ITEM_PRICE(3000),
++    ITEM_PRICE(10000),
+     .holdEffect = HOLD_EFFECT_STRENGTHEN_NORMAL,
+     .holdEffectParam = 20,
+     .pluckEffect = 0,
+@@ -17238,7 +17238,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_WIDE_LENS] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(10000),
+     .holdEffect = HOLD_EFFECT_ACCURACY_UP,
+     .holdEffectParam = 10,
+     .pluckEffect = 0,
+@@ -18018,7 +18018,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_METRONOME] =
+ {
+-    ITEM_PRICE(15000),
++    ITEM_PRICE(10000),
+     .holdEffect = HOLD_EFFECT_BOOST_REPEATED,
+     .holdEffectParam = 10,
+     .pluckEffect = 0,
+@@ -22113,7 +22113,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_TM013] =
+ {
+-    ITEM_PRICE(3200),
++    ITEM_PRICE(30000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -22828,7 +22828,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_TM024] =
+ {
+-    ITEM_PRICE(3200),
++    ITEM_PRICE(30000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -23348,7 +23348,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_TM032] =
+ {
+-    ITEM_PRICE(800),
++    ITEM_PRICE(10000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -23543,7 +23543,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_TM035] =
+ {
+-    ITEM_PRICE(3200),
++    ITEM_PRICE(30000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -25038,7 +25038,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_TM058] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(10000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -25688,7 +25688,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_TM068] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(30000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -26078,7 +26078,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_TM074] =
+ {
+-    ITEM_PRICE(3200),
++    ITEM_PRICE(20000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -26143,7 +26143,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_TM075] =
+ {
+-    ITEM_PRICE(3200),
++    ITEM_PRICE(10000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -27118,7 +27118,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_TM090] =
+ {
+-    ITEM_PRICE(12000),
++    ITEM_PRICE(20000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+diff --git a/src/field/mart.c b/src/field/mart.c
+index 8d3d87dee..803fd15ec 100644
+--- a/src/field/mart.c
++++ b/src/field/mart.c
+@@ -93,7 +93,9 @@ u16 sGoldenrodDepartment4F[] = {
+     // training items (tools/hack/training_items.py)
+     ITEM_POWER_WEIGHT, ITEM_POWER_BRACER, ITEM_POWER_BELT, ITEM_POWER_LENS, ITEM_POWER_BAND, ITEM_POWER_ANKLET,
+     // PP Up and PP Max (tools/hack/pp_shop.py)
+-    ITEM_PP_UP, ITEM_PP_MAX, 0xFFFF
++    ITEM_PP_UP, ITEM_PP_MAX,
++    // only the Game Corners' coins bought these (tools/hack/corner_items.py)
++    ITEM_SILK_SCARF, ITEM_WIDE_LENS, ITEM_ZOOM_LENS, ITEM_METRONOME, 0xFFFF
+ };
+ 
+ u16 sGoldenrodDepartment5F[] = {
+@@ -105,7 +107,10 @@ u16 sGoldenrodDepartment5F[] = {
+     ITEM_JOLLY_MINT, ITEM_NAIVE_MINT, ITEM_SERIOUS_MINT, ITEM_BOTTLE_CAP, ITEM_GOLD_BOTTLE_CAP,
+     // only the Battle Frontier or the Pokewalker gave these (tools/hack/gap_items.py)
+     ITEM_TM006, ITEM_TM073, ITEM_TM061, ITEM_TM031, ITEM_TM008, ITEM_TM004,
+-    ITEM_TM053, ITEM_TM081, ITEM_TM071, 0xFFFF
++    ITEM_TM053, ITEM_TM081, ITEM_TM071,
++    // only the Game Corners' coins bought these (tools/hack/corner_items.py)
++    ITEM_TM075, ITEM_TM032, ITEM_TM058, ITEM_TM090, ITEM_TM074, ITEM_TM024,
++    ITEM_TM035, ITEM_TM013, ITEM_TM068, 0xFFFF
+ };
+ 
+ u16 sGoldenrodHerbs[] = {
+@@ -232,6 +237,20 @@ BOOL ScrCmd_MartBuy(SCRIPTCONTEXT *ctx)
+ 
+ // items that the special marts (every mart with its own stock list above) only sell once the player has this many badges
+ const struct BadgeMartItems sBadgeLockedMartItems[] = {
++    // only the Game Corners' coins bought these (tools/hack/corner_items.py)
++    { ITEM_TM075, 4 },
++    { ITEM_TM032, 4 },
++    { ITEM_TM058, 4 },
++    { ITEM_TM090, 4 },
++    { ITEM_TM074, 6 },
++    { ITEM_TM024, 6 },
++    { ITEM_TM035, 6 },
++    { ITEM_TM013, 6 },
++    { ITEM_TM068, 8 },
++    { ITEM_SILK_SCARF, 4 },
++    { ITEM_WIDE_LENS, 4 },
++    { ITEM_ZOOM_LENS, 4 },
++    { ITEM_METRONOME, 4 },
+     // only the Battle Frontier or the Pokewalker gave these (tools/hack/gap_items.py)
+     { ITEM_TM006, 4 },
+     { ITEM_TM073, 4 },
+diff --git a/tools/hack/corner_items.py b/tools/hack/corner_items.py
+new file mode 100644
+index 000000000..a65186568
+--- /dev/null
++++ b/tools/hack/corner_items.py
+@@ -0,0 +1,57 @@
++#!/usr/bin/env python3
++"""For money, what only the Game Corners' coins bought.
++
++The Goldenrod Game Corner (T25R1101, T25SP0101) and Celadon's prize room (T07R0501) trade coins for TMs, held items
++and Pokemon. The Pokemon (Abra, Ekans, Dratini; Mr. Mime, Eevee, Porygon) are wild or given elsewhere, and Rest,
++Hidden Power and Psychic are gifts, but six TMs and four held items were coin-only, and Thunderbolt, Flamethrower and
++Ice Beam lie on the ground only after the Champion (Cerulean Cave, Route 28, Seafoam Islands). All these are now sold:
++
++- Goldenrod Department Store 5F (TMs): Swords Dance, Double Team and Endure (P10,000) and Substitute (P20,000) from
++  four badges; Gyro Ball (P20,000) and Thunderbolt, Flamethrower and Ice Beam (P30,000) from six; Giga Impact
++  (P30,000) from eight;
++- Goldenrod Department Store 4F: Silk Scarf, Wide Lens, Zoom Lens and Metronome from four badges, P10,000.
++
++    python3 tools/hack/corner_items.py
++"""
++import re
++import sys
++
++MART = "src/field/mart.c"
++ITEMS = "data/itemdata/itemdata.c"
++STOCK = {  # counter: [(item, price, badges needed)]
++    "sGoldenrodDepartment5F": [("TM075", 10000, 4), ("TM032", 10000, 4), ("TM058", 10000, 4), ("TM090", 20000, 4),
++                               ("TM074", 20000, 6), ("TM024", 30000, 6), ("TM035", 30000, 6), ("TM013", 30000, 6),
++                               ("TM068", 30000, 8)],
++    "sGoldenrodDepartment4F": [(i, 10000, 4) for i in ("SILK_SCARF", "WIDE_LENS", "ZOOM_LENS", "METRONOME")],
++}
++
++
++def main():
++    mart, items = open(MART).read(), open(ITEMS).read()
++    for array, stock in STOCK.items():
++        m = re.search(r"(u16 %s\[\] = \{\n)([^}]*?)(,\s*0xFFFF\n\};)" % array, mart)
++        if not m:
++            sys.exit("no " + array)
++        if "ITEM_" + stock[0][0] + "," in m.group(2) or "ITEM_" + stock[0][0] + "\n" in m.group(2):
++            sys.exit("already stocked: " + array)
++        names = [n for n, _, _ in stock]
++        added = ",\n    ".join(", ".join("ITEM_" + n for n in names[i:i + 6]) for i in range(0, len(names), 6))
++        mart = mart.replace(m.group(0), "%s%s,\n    // only the Game Corners' coins bought these (tools/hack/corner_items.py)\n"
++                            "    %s, 0xFFFF\n};" % (m.group(1), m.group(2), added))
++        for name, price, _ in stock:
++            m = re.search(r"\n\[ITEM_%s\] =\n\{\n    ITEM_PRICE\(\d+\)" % name, items)
++            if not m:
++                sys.exit("no item data for " + name)
++            items = items[:m.start()] + re.sub(r"ITEM_PRICE\(\d+\)", "ITEM_PRICE(%d)" % price, m.group(0)) + items[m.end():]
++    head = "const struct BadgeMartItems sBadgeLockedMartItems[] = {\n"
++    if head not in mart:
++        sys.exit("no sBadgeLockedMartItems")
++    mart = mart.replace(head, head + "    // only the Game Corners' coins bought these (tools/hack/corner_items.py)\n"
++                        + "".join("    { ITEM_%s, %d },\n" % (n, b) for stock in STOCK.values() for n, _, b in stock if b))
++    open(MART, "w").write(mart)
++    open(ITEMS, "w").write(items)
++    print("stocked", ", ".join(STOCK))
++
++
++if __name__ == "__main__":
++    main()
+-- 
+2.43.0
+

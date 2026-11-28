@@ -219,8 +219,10 @@ no before and yes after; the Pokéathlon Dome's prize clerk's two checks
 (which prize list she shows and which she sells) do the same, and the
 Friendship Room's first-visit scene shows the Supreme Cup's receptionist
 only after the Champion (`playtest/champion_test.py`). The Hoenn and Sinnoh
-Sound radio shows and Baoba's calls use the same check but haven't been
-tried in play: the test harness can't give the Pokégear its Radio Card. In play, a King's Rock used on a Slowpoke evolved it into
+Sound radio shows wait too: the Pokégear radio's Pokémon Music preset runs
+the check and gets no before the Champion and yes after (the test registers
+the Radio Card in the save in memory). Baoba's calls use the same check but
+haven't been tried in play. In play, a King's Rock used on a Slowpoke evolved it into
 Slowking and a Rare Candy took a Lv. 36 Kadabra to 37 and Alakazam
 (`playtest/qol_test.py`, which also tries both reminders, a mint, and the
 hyper trainer with a Bottle Cap on Speed, again on Speed once it is 31,
@@ -413,6 +415,15 @@ Contest, are in the National Park's own grass at any time since patch 0047 (`too
   elsewhere (Scyther and Pinsir in the National Park since patch 0047), and
   its prizes (the evolution stones, the Everstone, berries) are sold or found
   elsewhere.
+- **Nor the Game Corners.** Their prize Pokémon are all wild or given
+  elsewhere, and their coin-only TMs and held items are sold for money since
+  patch 0049 (`tools/hack/corner_items.py`): Swords Dance, Double Team and
+  Endure (₽10,000) and Substitute (₽20,000) from four badges; Gyro Ball
+  (₽20,000), Thunderbolt, Flamethrower and Ice Beam (₽30,000) from six; Giga
+  Impact (₽30,000) from eight, all on Goldenrod 5F; and the Silk Scarf, Wide
+  Lens, Zoom Lens and Metronome on Goldenrod 4F from four badges (₽10,000).
+  (Thunderbolt, Flamethrower and Ice Beam otherwise lie only in post-game
+  places.)
 - **Nor the Pokéwalker or the Battle Frontier.** Every one of the Pokéwalker's
   118 species has a source in the game, and so do almost all of its items;
   the useful ones it alone gave, and the nine TMs only the Frontier's BP
@@ -458,7 +469,7 @@ Already in the game:
 | Pokémon | Where | Level |
 |---|---|---|
 | Red Gyarados | Lake of Rage | 34 (was 30) |
-| Raikou, Entei | Roaming Johto | 46 (was 40) |
+| Raikou, Entei | Burned Tower B1F, waiting where they slept once the scene has woken them (they roamed Johto; patch 0050) | 46 (was 40) |
 | Ho-Oh | Bell Tower | 52 (was 45) |
 | Suicune | Route 25 | 60 (was 40) |
 | Latias | Roaming Kanto | 60 (was 35) |
@@ -539,7 +550,8 @@ The FireRed recipe, and where each part comes from here:
 | Held-item shop, berry and consumables stand, earlier mart stock | Done: `tools/hack/shops.py` |
 | Training items: mints, EV-lowering berries, Power items, Bottle Caps | Done: `tools/hack/training_items.py`, `tools/hack/hyper_training.py` |
 | Faster breeding | Done: `tools/hack/faster_breeding.py` |
-| Safari Zone, Pokéathlon, Bug-Catching Contest, Pokéwalker and Battle Frontier not needed for anything | Done: their Pokémon and goods are elsewhere; `tools/hack/pp_shop.py`, `tools/hack/park_bugs.py`, `tools/hack/gap_items.py` |
+| Raikou and Entei don't roam | Done: `tools/hack/beasts_stay.py` |
+| Safari Zone, Pokéathlon, Bug-Catching Contest, Game Corners, Pokéwalker and Battle Frontier not needed for anything | Done: their Pokémon and goods are elsewhere; `tools/hack/pp_shop.py`, `tools/hack/park_bugs.py`, `tools/hack/gap_items.py`, `tools/hack/corner_items.py` |
 | Party-wide Exp. Share as a player option | Done: `tools/hack/party_exp_share.py` |
 | Free Move Reminders, one from the first town | Done: `tools/hack/move_reminder.py` |
 | Spoiler guide generated from the data | Done: `tools/spoiler_guide.py` writes [guide/](guide/README.md), and `tools/boss_guide.py` its boss teams page |

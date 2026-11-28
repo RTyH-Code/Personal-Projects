@@ -27,8 +27,10 @@ A short guide for a first run. It has no story spoilers beyond what bosses you w
   grind catches you up quickly. Fishing, Rock Smash and Headbutt follow the same bands.
 - **Every Pokémon family can be caught in Johto before the Elite Four**, with nothing needing a trade, the
   Day Care or the Safari Zone. Trade evolutions use an item (King's Rock, Metal Coat and the like) or
-  happen at Lv. 37. The Safari Zone, the Pokéathlon, the Bug-Catching Contest, the Battle Frontier's BP
-  and the Pokéwalker have nothing you can't get elsewhere.
+  happen at Lv. 37. The Safari Zone, the Pokéathlon, the Bug-Catching Contest, the Game Corners, the Battle
+  Frontier's BP and the Pokéwalker have nothing you can't get elsewhere.
+- **Raikou and Entei don't roam:** once the Burned Tower scene wakes them, each waits in the Burned Tower's
+  basement where it slept (Lv. 46). Beat or run from one and it is back after your next Hall of Fame.
 - **HMs work without being taught**, as long as the HM is in your bag and you have the badge. HM moves can
   be forgotten any time. TMs are reusable.
 - **Friendship evolutions** happen at 160 friendship instead of 220.
@@ -60,8 +62,10 @@ A short guide for a first run. It has no story spoilers beyond what bosses you w
   Power items on 4F from four badges (₽5,000); on 5F the nature mints from four badges (₽5,000), and the Bottle
   Cap (₽20,000) and Gold Bottle Cap (₽60,000) from eight. The man by the 5F counter takes a Bottle Cap to make
   the IV you pick 31, or a Gold Bottle Cap for all six.
-- **Goldenrod Department Store 5F, TMs:** Toxic, Thunder Wave, Will-O-Wisp, Brick Break, Bulk Up and Calm Mind
-  from four badges; Energy Ball, X-Scissor and Stone Edge from six (₽10,000-30,000).
+- **Goldenrod Department Store 5F, TMs:** Toxic, Thunder Wave, Will-O-Wisp, Brick Break, Bulk Up, Calm Mind,
+  Swords Dance, Double Team, Endure and Substitute from four badges; Energy Ball, X-Scissor, Stone Edge, Gyro
+  Ball, Thunderbolt, Flamethrower and Ice Beam from six; Giga Impact from eight (₽10,000-30,000). On 4F, the
+  Silk Scarf, Wide Lens, Zoom Lens and Metronome from four badges (₽10,000).
 - **Celadon Department Store 4F** (after the Elite Four): Leftovers, the Choice items, Life Orb and Focus
   Sash (₽25,000), other held items and the weather rocks (₽10,000), Rare Candies (₽3,000), the Ability Capsule
   and Ability Patch.

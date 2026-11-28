@@ -1,0 +1,978 @@
+From ac17698f51bc4158f21dfc432aca3d8392214f64 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 28 Nov 2026 10:56:53 +0000
+Subject: [PATCH 50/50] Raikou and Entei wait in the Burned Tower B1F instead
+ of roaming
+
+The release scene no longer makes them roamers. From the next visit to B1F
+each waits where it slept, at Lv. 46, and is fought like the static Suicune:
+caught, it is gone; beaten or fled from, it is back after the next Hall of
+Fame. Made by tools/hack/beasts_stay.py.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEYSk2h6k1E1jWo3cHd
+---
+ data/eventdata/zone_event/204_D18R0102.json | 307 ++++++++++++++++++++
+ data/scr_seq/include/event_D18R0102.inc     |   5 +
+ data/scr_seq/include/event_T10R0701.inc     |   9 +
+ data/scr_seq/scr_seq_0024_D18R0102.s        |  95 +++++-
+ data/scr_seq/scr_seq_0285_D18R0102_hdr.s    |  34 +++
+ data/scr_seq/scr_seq_0825_T10R0701.s        | 220 ++++++++++++++
+ tools/hack/beasts_stay.py                   | 196 +++++++++++++
+ 7 files changed, 864 insertions(+), 2 deletions(-)
+ create mode 100644 data/eventdata/zone_event/204_D18R0102.json
+ create mode 100644 data/scr_seq/include/event_T10R0701.inc
+ create mode 100644 data/scr_seq/scr_seq_0285_D18R0102_hdr.s
+ create mode 100644 data/scr_seq/scr_seq_0825_T10R0701.s
+ create mode 100644 tools/hack/beasts_stay.py
+
+diff --git a/data/eventdata/zone_event/204_D18R0102.json b/data/eventdata/zone_event/204_D18R0102.json
+new file mode 100644
+index 000000000..19d1ecf7f
+--- /dev/null
++++ b/data/eventdata/zone_event/204_D18R0102.json
+@@ -0,0 +1,307 @@
++{
++  "header": "data/scr_seq/include/event_D18R0102.inc",
++  "eventId": "204",
++  "bg_events": [
++    {
++      "script": "std_hiddenitem_d18r0102_revive",
++      "type": 2,
++      "x": 15,
++      "z": 24,
++      "y": 0,
++      "player_facing_dir": 4
++    },
++    {
++      "script": "std_hiddenitem_d18r0102_antidote",
++      "type": 2,
++      "x": 10,
++      "z": 7,
++      "y": 0,
++      "player_facing_dir": 4
++    }
++  ],
++  "object_events": [
++    {
++      "id": "obj_D18R0102_follower_mon_static_suicune",
++      "graphics_id": "SPRITE_FOLLOWER_MON_STATIC_SUICUNE",
++      "movement_type": 15,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_HIDE_BURNED_TOWER_B1F_SUICUNE",
++      "script": 0,
++      "initial_dir": 1,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 15,
++      "z": 16,
++      "y": 0
++    },
++    {
++      "id": "obj_D18R0102_follower_mon_static_entei",
++      "graphics_id": "SPRITE_FOLLOWER_MON_STATIC_ENTEI",
++      "movement_type": 15,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_HIDE_BURNED_TOWER_B1F_ENTEI",
++      "script": 0,
++      "initial_dir": 1,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 16,
++      "z": 14,
++      "y": 0
++    },
++    {
++      "id": "obj_D18R0102_follower_mon_static_raikou",
++      "graphics_id": "SPRITE_FOLLOWER_MON_STATIC_RAIKOU",
++      "movement_type": 15,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_HIDE_BURNED_TOWER_B1F_RAIKOU",
++      "script": 0,
++      "initial_dir": 1,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 14,
++      "z": 14,
++      "y": 0
++    },
++    {
++      "id": "obj_D18R0102_minaki",
++      "graphics_id": "SPRITE_MINAKI",
++      "movement_type": 16,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_HIDE_BURNED_TOWER_B1F_EUSINE",
++      "script": 0,
++      "initial_dir": 2,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 23,
++      "z": 16,
++      "y": 0
++    },
++    {
++      "id": "obj_D18R0102_rock",
++      "graphics_id": "SPRITE_ROCK",
++      "movement_type": 0,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_NOTHING",
++      "script": "std_field_strength",
++      "initial_dir": 0,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 14,
++      "z": 20,
++      "y": 0
++    },
++    {
++      "id": "obj_D18R0102_rock_2",
++      "graphics_id": "SPRITE_ROCK",
++      "movement_type": 0,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_NOTHING",
++      "script": "std_field_strength",
++      "initial_dir": 0,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 14,
++      "z": 19,
++      "y": 0
++    },
++    {
++      "id": "obj_D18R0102_rock_3",
++      "graphics_id": "SPRITE_ROCK",
++      "movement_type": 0,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_NOTHING",
++      "script": "std_field_strength",
++      "initial_dir": 0,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 18,
++      "z": 23,
++      "y": 0
++    },
++    {
++      "id": "obj_D18R0102_rock_4",
++      "graphics_id": "SPRITE_ROCK",
++      "movement_type": 0,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_NOTHING",
++      "script": "std_field_strength",
++      "initial_dir": 0,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 19,
++      "z": 22,
++      "y": 0
++    },
++    {
++      "id": "obj_D18R0102_breakrock",
++      "graphics_id": "SPRITE_BREAKROCK",
++      "movement_type": 0,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_MAPTEMP_010",
++      "script": "std_field_rock_smash",
++      "initial_dir": 0,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 18,
++      "z": 22,
++      "y": 0
++    },
++    {
++      "id": "obj_D18R0102_breakrock_2",
++      "graphics_id": "SPRITE_BREAKROCK",
++      "movement_type": 0,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_MAPTEMP_011",
++      "script": "std_field_rock_smash",
++      "initial_dir": 0,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 17,
++      "z": 23,
++      "y": 0
++    },
++    {
++      "id": "obj_D18R0102_rock_5",
++      "graphics_id": "SPRITE_ROCK",
++      "movement_type": 0,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_NOTHING",
++      "script": "std_field_strength",
++      "initial_dir": 0,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 12,
++      "z": 20,
++      "y": 0
++    },
++    {
++      "id": "obj_D18R0102_monstarball",
++      "graphics_id": "SPRITE_MONSTARBALL",
++      "movement_type": 0,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_HIDE_ITEMBALL_D18R0102_TM12",
++      "script": "std_itemball_d18r0102_tm12",
++      "initial_dir": 0,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 5,
++      "z": 6,
++      "y": 0
++    },
++    {
++      "id": "obj_D18R0102_follower_mon_static_suicune_2",
++      "graphics_id": "SPRITE_FOLLOWER_MON_STATIC_SUICUNE",
++      "movement_type": 15,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_HIDE_BURNED_TOWER_STATIC_SUICUNE",
++      "script": "_EV_scr_seq_D18R0102_001 + 1",
++      "initial_dir": 1,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 14,
++      "z": 6,
++      "y": 0
++    },
++    {
++      "id": "obj_D18R0102_raikou",
++      "graphics_id": "SPRITE_FOLLOWER_MON_STATIC_RAIKOU",
++      "movement_type": 15,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_UNK_A32",
++      "script": "_EV_scr_seq_D18R0102_003 + 1",
++      "initial_dir": 1,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 14,
++      "z": 14,
++      "y": 0
++    },
++    {
++      "id": "obj_D18R0102_entei",
++      "graphics_id": "SPRITE_FOLLOWER_MON_STATIC_ENTEI",
++      "movement_type": 15,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_UNK_A33",
++      "script": "_EV_scr_seq_D18R0102_004 + 1",
++      "initial_dir": 1,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 16,
++      "z": 14,
++      "y": 0
++    }
++  ],
++  "warp_events": [
++    {
++      "x": 23,
++      "z": 16,
++      "dest_header_id": "MAP_D18R0101",
++      "dest_warp_id": 1,
++      "y": 0
++    },
++    {
++      "x": 23,
++      "z": 15,
++      "dest_header_id": "MAP_D18R0101",
++      "dest_warp_id": 1,
++      "y": 0
++    }
++  ],
++  "coord_events": [
++    {
++      "script": "_EV_scr_seq_D18R0102_000 + 1",
++      "x": 20,
++      "z": 16,
++      "width": 1,
++      "length": 2,
++      "y": 0,
++      "value": 0,
++      "var": "VAR_UNK_40A1"
++    }
++  ]
++}
+diff --git a/data/scr_seq/include/event_D18R0102.inc b/data/scr_seq/include/event_D18R0102.inc
+index aa61e1f6f..6b1d7ffd0 100644
+--- a/data/scr_seq/include/event_D18R0102.inc
++++ b/data/scr_seq/include/event_D18R0102.inc
+@@ -4,6 +4,9 @@
+ .equ _EV_scr_seq_D18R0102_000, 0
+ .equ _EV_scr_seq_D18R0102_001, 1
+ .equ _EV_scr_seq_D18R0102_002, 2
++.equ _EV_scr_seq_D18R0102_003, 3
++.equ _EV_scr_seq_D18R0102_004, 4
++.equ _EV_scr_seq_D18R0102_005, 5
+ 
+ .equ obj_D18R0102_follower_mon_static_suicune, 0
+ .equ obj_D18R0102_follower_mon_static_entei, 1
+@@ -18,5 +21,7 @@
+ .equ obj_D18R0102_rock_5, 10
+ .equ obj_D18R0102_monstarball, 11
+ .equ obj_D18R0102_follower_mon_static_suicune_2, 12
++.equ obj_D18R0102_raikou, 13
++.equ obj_D18R0102_entei, 14
+ 
+ .endif //SCR_SEQ_D18R0102_H_
+diff --git a/data/scr_seq/include/event_T10R0701.inc b/data/scr_seq/include/event_T10R0701.inc
+new file mode 100644
+index 000000000..53cb5e95f
+--- /dev/null
++++ b/data/scr_seq/include/event_T10R0701.inc
+@@ -0,0 +1,9 @@
++.ifndef SCR_SEQ_T10R0701_H_
++.definelabel SCR_SEQ_T10R0701_H_, 0
++
++.equ _EV_scr_seq_T10R0701_000, 0
++.equ _EV_scr_seq_T10R0701_001, 1
++
++.equ obj_T10R0701_wataru, 0
++
++.endif //SCR_SEQ_T10R0701_H_
+diff --git a/data/scr_seq/scr_seq_0024_D18R0102.s b/data/scr_seq/scr_seq_0024_D18R0102.s
+index 5e67bf66d..bd545d72c 100644
+--- a/data/scr_seq/scr_seq_0024_D18R0102.s
++++ b/data/scr_seq/scr_seq_0024_D18R0102.s
+@@ -30,6 +30,9 @@
+ scrdef scr_seq_D18R0102_000
+ scrdef scr_seq_D18R0102_001
+ scrdef scr_seq_D18R0102_002
++scrdef scr_seq_D18R0102_003
++scrdef scr_seq_D18R0102_004
++scrdef scr_seq_D18R0102_005
+ scrdef_end
+ 
+ scr_seq_D18R0102_002:
+@@ -37,11 +40,29 @@ scr_seq_D18R0102_002:
+ 	end
+ 
+ _001B:
++	compare VAR_TEMP_x4003, 1
++	goto_if_eq _beasts_hide_raikou
++	compare VAR_TEMP_x4003, 2
++	goto_if_eq _beasts_hide_entei
+ 	setflag FLAG_HIDE_BURNED_TOWER_STATIC_SUICUNE
+ 	hide_person obj_D18R0102_follower_mon_static_suicune_2
+ 	clearflag FLAG_ENGAGING_STATIC_POKEMON
+ 	end
+ 
++_beasts_hide_raikou:
++	setvar VAR_TEMP_x4003, 0
++	setflag FLAG_UNK_A32
++	hide_person obj_D18R0102_raikou
++	clearflag FLAG_ENGAGING_STATIC_POKEMON
++	end
++
++_beasts_hide_entei:
++	setvar VAR_TEMP_x4003, 0
++	setflag FLAG_UNK_A33
++	hide_person obj_D18R0102_entei
++	clearflag FLAG_ENGAGING_STATIC_POKEMON
++	end
++
+ scr_seq_D18R0102_000:
+ 	scrcmd_609
+ 	lockall
+@@ -96,8 +117,6 @@ _00E2:
+ 	hide_person obj_D18R0102_follower_mon_static_raikou
+ 	hide_person obj_D18R0102_follower_mon_static_entei
+ 	hide_person obj_D18R0102_follower_mon_static_suicune
+-	create_roamer 0
+-	create_roamer 1
+ 	wait 15, VAR_SPECIAL_RESULT
+ 	clearflag FLAG_HIDE_BURNED_TOWER_B1F_EUSINE
+ 	play_se SEQ_SE_DP_KAIDAN2
+@@ -290,3 +309,75 @@ _0362:
+ 	setflag FLAG_CAUGHT_SUICUNE
+ 	return
+ 	.balign 4
++
++// raikou waits here (tools/hack/beasts_stay.py): caught, its roamer status is 1; beaten or fled from, 2
++scr_seq_D18R0102_003:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	play_cry SPECIES_RAIKOU, 0
++	wait_cry
++	setvar VAR_TEMP_x4003, 1
++	setflag FLAG_ENGAGING_STATIC_POKEMON
++	wild_battle SPECIES_RAIKOU, 46, 0
++	clearflag FLAG_ENGAGING_STATIC_POKEMON
++	check_battle_won VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _beasts_white_out
++	setvar VAR_ROAMER_RAIKOU_STATUS, 2
++	get_static_encounter_outcome VAR_TEMP_x4002
++	compare VAR_TEMP_x4002, 4
++	goto_if_ne _beasts_raikou_done
++	setvar VAR_ROAMER_RAIKOU_STATUS, 1
++_beasts_raikou_done:
++	releaseall
++	end
++
++// entei waits here (tools/hack/beasts_stay.py): caught, its roamer status is 1; beaten or fled from, 2
++scr_seq_D18R0102_004:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	play_cry SPECIES_ENTEI, 0
++	wait_cry
++	setvar VAR_TEMP_x4003, 2
++	setflag FLAG_ENGAGING_STATIC_POKEMON
++	wild_battle SPECIES_ENTEI, 46, 0
++	clearflag FLAG_ENGAGING_STATIC_POKEMON
++	check_battle_won VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _beasts_white_out
++	setvar VAR_ROAMER_ENTEI_STATUS, 2
++	get_static_encounter_outcome VAR_TEMP_x4002
++	compare VAR_TEMP_x4002, 4
++	goto_if_ne _beasts_entei_done
++	setvar VAR_ROAMER_ENTEI_STATUS, 1
++_beasts_entei_done:
++	releaseall
++	end
++
++// on entering B1F (tools/hack/beasts_stay.py): Raikou and Entei wait here once the scene has woken them, while
++// their roamer status is 0
++scr_seq_D18R0102_005:
++	goto_if_unset FLAG_HIDE_BURNED_TOWER_B1F_RAIKOU, _beasts_asleep
++	setflag FLAG_UNK_A32
++	compare VAR_ROAMER_RAIKOU_STATUS, 0
++	goto_if_ne _beasts_entei
++	clearflag FLAG_UNK_A32
++_beasts_entei:
++	setflag FLAG_UNK_A33
++	compare VAR_ROAMER_ENTEI_STATUS, 0
++	goto_if_ne _beasts_entered
++	clearflag FLAG_UNK_A33
++_beasts_entered:
++	end
++
++_beasts_asleep:
++	setflag FLAG_UNK_A32
++	setflag FLAG_UNK_A33
++	end
++
++_beasts_white_out:
++	white_out
++	releaseall
++	end
+diff --git a/data/scr_seq/scr_seq_0285_D18R0102_hdr.s b/data/scr_seq/scr_seq_0285_D18R0102_hdr.s
+new file mode 100644
+index 000000000..5cdf56d83
+--- /dev/null
++++ b/data/scr_seq/scr_seq_0285_D18R0102_hdr.s
+@@ -0,0 +1,34 @@
++.include "asm/include/interop_macros.inc"
++
++.include "asm/include/scriptmacros.inc"
++.include "asm/include/flags.inc"
++.include "asm/include/soundeffects.inc"
++.include "asm/include/vars.inc"
++
++.include "asm/include/events.inc"
++.include "asm/include/game_stats.inc"
++.include "asm/include/maps.inc"
++.include "asm/include/map_sections.inc"
++.include "asm/include/movements.inc"
++.include "asm/include/rankings.inc"
++.include "asm/include/spawns.inc"
++.include "asm/include/std_scripts.inc"
++.include "asm/include/trainers.inc"
++
++#include "constants/item.h"
++#include "constants/moves.h"
++#include "constants/species.h"
++
++.include "data/scr_seq/include/event_D18R0102.inc"
++
++
++.data
++
++
++	.byte 4
++	.hword 3, 0
++	.byte 2
++	.hword 6, 0
++	.byte 0
++
++	.balign 4
+diff --git a/data/scr_seq/scr_seq_0825_T10R0701.s b/data/scr_seq/scr_seq_0825_T10R0701.s
+new file mode 100644
+index 000000000..b3c920e50
+--- /dev/null
++++ b/data/scr_seq/scr_seq_0825_T10R0701.s
+@@ -0,0 +1,220 @@
++.include "asm/include/interop_macros.inc"
++
++.include "asm/include/scriptmacros.inc"
++.include "asm/include/flags.inc"
++.include "asm/include/soundeffects.inc"
++.include "asm/include/vars.inc"
++
++.include "asm/include/events.inc"
++.include "asm/include/game_stats.inc"
++.include "asm/include/maps.inc"
++.include "asm/include/map_sections.inc"
++.include "asm/include/movements.inc"
++.include "asm/include/rankings.inc"
++.include "asm/include/spawns.inc"
++.include "asm/include/std_scripts.inc"
++.include "asm/include/trainers.inc"
++
++#include "constants/item.h"
++#include "constants/moves.h"
++#include "constants/species.h"
++
++.include "data/scr_seq/include/event_T10R0701.inc"
++
++
++// text archive to grab from: 528.txt
++
++.data
++
++
++scrdef scr_seq_T10R0701_000
++scrdef scr_seq_T10R0701_001
++scrdef_end
++
++scr_seq_T10R0701_001:
++	stop_bgm 0
++	end
++
++scr_seq_T10R0701_000:
++	scrcmd_609
++	lockall
++	toggle_following_pokemon_movement 0
++	wait_following_pokemon_movement
++	following_pokemon_movement 55
++	apply_movement obj_player, _0188
++	apply_movement obj_T10R0701_wataru, _0194
++	wait_movement
++	wait_following_pokemon_movement
++	toggle_following_pokemon_movement 1
++	following_pokemon_movement 48
++	buffer_players_name 0
++	gender_msgbox 0, 1
++	closemsg
++	toggle_following_pokemon_movement 0
++	wait_following_pokemon_movement
++	following_pokemon_movement 55
++	apply_movement obj_player, _01A8
++	wait_movement
++	wait_following_pokemon_movement
++	toggle_following_pokemon_movement 1
++	following_pokemon_movement 48
++	party_count_not_egg VAR_SPECIAL_RESULT
++	hall_of_fame_anim VAR_SPECIAL_RESULT
++	add_special_game_stat 23
++	fade_screen 6, 1, 0, RGB_BLACK
++	wait_fade
++	call _01B4
++	hasitem ITEM_SS_TICKET, 1, VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 1
++	goto_if_eq _009A
++	setvar VAR_SCENE_PLAYERS_HOUSE_1F, 3
++_009A:
++	setflag FLAG_UNK_97E
++	clearflag FLAG_HIDE_LAKE_OF_RAGE_PRYCE
++	call_if_unset FLAG_CAUGHT_HO_OH, _01C9
++	call_if_unset FLAG_CAUGHT_LUGIA, _01CF
++	call_if_unset FLAG_CAUGHT_SUDOWOODO, _01D5
++	call_if_unset FLAG_CAUGHT_RED_GYARADOS, _01DB
++	call_if_unset FLAG_CAUGHT_MEWTWO, _01E1
++	call_if_unset FLAG_CAUGHT_ARTICUNO, _01E7
++	call_if_unset FLAG_CAUGHT_ZAPDOS, _01ED
++	call_if_unset FLAG_CAUGHT_MOLTRES, _0206
++	goto_if_unset FLAG_CAUGHT_SNORLAX, _020C
++_0105:
++	call_if_unset FLAG_CAUGHT_SUICUNE, _0227
++	get_game_version VAR_TEMP_x4000
++	compare VAR_TEMP_x4000, 7
++	goto_if_ne _012D
++	goto _023A
++
++	.byte 0x16, 0x00, 0x06, 0x00, 0x00, 0x00
++_012D:
++	goto _024F
++
++_0133:
++	call_if_unset FLAG_CAUGHT_RAYQUAZA, _0264
++	compare VAR_ROAMER_ENTEI_STATUS, 2
++	call_if_eq _026A
++	compare VAR_ROAMER_RAIKOU_STATUS, 2
++	call_if_eq _0275
++	compare VAR_ROAMER_LATIAS_STATUS, 2
++	call_if_eq _0280
++	compare VAR_ROAMER_LATIOS_STATUS, 2
++	call_if_eq _028B
++	hof_credits 0
++	restore_overworld
++	fade_screen 6, 1, 1, RGB_BLACK
++	wait_fade
++	releaseall
++	end
++
++	.balign 4
++_0188:
++
++	step 12, 14
++	step 3, 2
++	step_end
++	.balign 4
++_0194:
++
++	step 12, 12
++	step 3, 2
++	step 15, 1
++	step 2, 2
++	step_end
++	.balign 4
++_01A8:
++
++	step 0, 2
++	step 12, 4
++	step_end
++_01B4:
++	goto_if_set FLAG_GAME_CLEAR, _01C3
++	setflag FLAG_UNK_998
++_01C3:
++	clearflag FLAG_UNK_25F
++	return
++
++_01C9:
++	clearflag FLAG_HIDE_BELL_TOWER_HO_OH
++	return
++
++_01CF:
++	clearflag FLAG_HIDE_WHIRL_ISLAND_LUGIA
++	return
++
++_01D5:
++	clearflag FLAG_HIDE_ROUTE_36_SUDOWOODO
++	return
++
++_01DB:
++	clearflag FLAG_HIDE_LAKE_OF_RAGE_RED_GYARADOS
++	return
++
++_01E1:
++	clearflag FLAG_HIDE_CERULEAN_CAVE_MEWTWO
++	return
++
++_01E7:
++	clearflag FLAG_HIDE_SEAFOAM_ISLAND_ARTICUNO
++	return
++
++_01ED:
++	check_badge BADGE_EARTH, VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 1
++	goto_if_ne _0204
++	clearflag FLAG_HIDE_ROUTE_10_ZAPDOS
++_0204:
++	return
++
++_0206:
++	clearflag FLAG_HIDE_MT_SILVER_CAVE_MOLTRES
++	return
++
++_020C:
++	goto_if_set FLAG_SNORLAX_MEET, _021D
++	goto _0105
++
++_021D:
++	clearflag FLAG_HIDE_ROUTE_12_SNORLAX
++	goto _0105
++
++_0227:
++	compare VAR_SCENE_ROUTE_25, 3
++	goto_if_ne _0238
++	clearflag FLAG_HIDE_BURNED_TOWER_STATIC_SUICUNE
++_0238:
++	return
++
++_023A:
++	goto_if_set FLAG_CAUGHT_KYOGRE, _0133
++	clearflag FLAG_BEAT_OR_ESCAPED_FROM_GROUDON_OR_KYOGRE
++	goto _0133
++
++_024F:
++	goto_if_set FLAG_CAUGHT_KYOGRE, _0133
++	clearflag FLAG_BEAT_OR_ESCAPED_FROM_GROUDON_OR_KYOGRE
++	goto _0133
++
++_0264:
++	clearflag FLAG_HIDE_EMBEDDED_TOWER_RAYQUAZA
++	return
++
++_026A:
++	setvar VAR_ROAMER_ENTEI_STATUS, 0
++	return
++
++_0275:
++	setvar VAR_ROAMER_RAIKOU_STATUS, 0
++	return
++
++_0280:
++	setvar VAR_ROAMER_LATIAS_STATUS, 0
++	create_roamer 2
++	return
++
++_028B:
++	setvar VAR_ROAMER_LATIOS_STATUS, 0
++	create_roamer 3
++	return
++	.balign 4
+diff --git a/tools/hack/beasts_stay.py b/tools/hack/beasts_stay.py
+new file mode 100644
+index 000000000..6c7997cf5
+--- /dev/null
++++ b/tools/hack/beasts_stay.py
+@@ -0,0 +1,196 @@
++#!/usr/bin/env python3
++"""Raikou and Entei stay put: they wait in the Burned Tower's basement instead of roaming Johto.
++
++In HeartGold the two beasts run off when the player wakes them in the Burned Tower B1F and roam Johto's routes,
++fleeing every battle; after each Hall of Fame one that was beaten (not caught) starts roaming again. Here the
++scene still shows them run, but they no longer roam: from the next time the player comes down to B1F, each waits
++where it slept, at Lv. 46 (the level legendaries.py gives the roamers), and is fought like the static Suicune.
++Catching one ends it; beating one or running away hides it until the next Hall of Fame, when it is back in B1F.
++
++How:
++- the scene drops `create_roamer 0` and `create_roamer 1`, so their roamer status stays 0;
++- two new objects in B1F, Raikou at (14, 14) and Entei at (16, 14), hidden by FLAG_UNK_A32 and FLAG_UNK_A33
++  (which nothing in the game uses); a new script run on entering B1F shows each only once the scene is done
++  (FLAG_HIDE_BURNED_TOWER_B1F_RAIKOU set) and while its roamer status (VAR_ROAMER_*_STATUS) is 0;
++- after a battle the status is 1 if it was caught and 2 otherwise, as the game's own roamers have it, and the
++  map's resume script hides the beast that was fought (it hid only the static Suicune before);
++- after the Hall of Fame, the game sets a beaten beast's status back to 0 and called create_roamer; now it only
++  resets the status.
++
++Saves that had already woken the beasts in an earlier version keep them roaming.
++
++It needs the vanilla dump (make dump_scripts, as for fossil_reviver.py); run after legendaries.py:
++    python3 tools/hack/beasts_stay.py /path/to/dumped/hg-engine
++"""
++import json
++import os
++import sys
++
++B1F_SCRIPT = "data/scr_seq/scr_seq_0024_D18R0102.s"
++B1F_HEADER = "data/scr_seq/scr_seq_0285_D18R0102_hdr.s"
++B1F_INCLUDE = "data/scr_seq/include/event_D18R0102.inc"
++B1F_EVENTS = "data/eventdata/zone_event/204_D18R0102.json"
++HALL_OF_FAME = "data/scr_seq/scr_seq_0825_T10R0701.s"
++HALL_OF_FAME_INCLUDE = "data/scr_seq/include/event_T10R0701.inc"   # unchanged, but the script needs it beside it
++LEVEL = 46
++BEASTS = [  # (name, species, roamer status variable, hidden flag, script, object, tile)
++    ("raikou", "SPECIES_RAIKOU", "VAR_ROAMER_RAIKOU_STATUS", "FLAG_UNK_A32", 3, 13, (14, 14)),
++    ("entei", "SPECIES_ENTEI", "VAR_ROAMER_ENTEI_STATUS", "FLAG_UNK_A33", 4, 14, (16, 14)),
++]
++ON_ENTER = 5
++
++BATTLE = """
++// {name} waits here (tools/hack/beasts_stay.py): caught, its roamer status is 1; beaten or fled from, 2
++scr_seq_D18R0102_{n:03d}:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	play_cry {species}, 0
++	wait_cry
++	setvar VAR_TEMP_x4003, {which}
++	setflag FLAG_ENGAGING_STATIC_POKEMON
++	wild_battle {species}, {level}, 0
++	clearflag FLAG_ENGAGING_STATIC_POKEMON
++	check_battle_won VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _beasts_white_out
++	setvar {status}, 2
++	get_static_encounter_outcome VAR_TEMP_x4002
++	compare VAR_TEMP_x4002, 4
++	goto_if_ne _beasts_{name}_done
++	setvar {status}, 1
++_beasts_{name}_done:
++	releaseall
++	end
++"""
++
++ENTER = """
++// on entering B1F (tools/hack/beasts_stay.py): Raikou and Entei wait here once the scene has woken them, while
++// their roamer status is 0
++scr_seq_D18R0102_{n:03d}:
++	goto_if_unset FLAG_HIDE_BURNED_TOWER_B1F_RAIKOU, _beasts_asleep
++	setflag FLAG_UNK_A32
++	compare VAR_ROAMER_RAIKOU_STATUS, 0
++	goto_if_ne _beasts_entei
++	clearflag FLAG_UNK_A32
++_beasts_entei:
++	setflag FLAG_UNK_A33
++	compare VAR_ROAMER_ENTEI_STATUS, 0
++	goto_if_ne _beasts_entered
++	clearflag FLAG_UNK_A33
++_beasts_entered:
++	end
++
++_beasts_asleep:
++	setflag FLAG_UNK_A32
++	setflag FLAG_UNK_A33
++	end
++
++_beasts_white_out:
++	white_out
++	releaseall
++	end
++"""
++
++RESUME_OLD = """_001B:
++	setflag FLAG_HIDE_BURNED_TOWER_STATIC_SUICUNE
++	hide_person obj_D18R0102_follower_mon_static_suicune_2
++	clearflag FLAG_ENGAGING_STATIC_POKEMON
++	end
++"""
++RESUME_NEW = """_001B:
++	compare VAR_TEMP_x4003, 1
++	goto_if_eq _beasts_hide_raikou
++	compare VAR_TEMP_x4003, 2
++	goto_if_eq _beasts_hide_entei
++	setflag FLAG_HIDE_BURNED_TOWER_STATIC_SUICUNE
++	hide_person obj_D18R0102_follower_mon_static_suicune_2
++	clearflag FLAG_ENGAGING_STATIC_POKEMON
++	end
++
++_beasts_hide_raikou:
++	setvar VAR_TEMP_x4003, 0
++	setflag FLAG_UNK_A32
++	hide_person obj_D18R0102_raikou
++	clearflag FLAG_ENGAGING_STATIC_POKEMON
++	end
++
++_beasts_hide_entei:
++	setvar VAR_TEMP_x4003, 0
++	setflag FLAG_UNK_A33
++	hide_person obj_D18R0102_entei
++	clearflag FLAG_ENGAGING_STATIC_POKEMON
++	end
++"""
++
++
++def replace(text, old, new, path):
++    if text.count(old) != 1:
++        sys.exit("expected exactly one of this in %s: %r" % (path, old[:70]))
++    return text.replace(old, new)
++
++
++def main():
++    dump = sys.argv[1]
++
++    def read(path):
++        source = path if os.path.exists(path) else os.path.join(dump, path)
++        return open(source, encoding="utf-8", newline="").read()
++
++    out = {}
++    script = read(B1F_SCRIPT)
++    script = replace(script, "\tcreate_roamer 0\n\tcreate_roamer 1\n", "", B1F_SCRIPT)
++    script = replace(script, RESUME_OLD, RESUME_NEW, B1F_SCRIPT)
++    script = replace(script, "scrdef_end", "".join("scrdef scr_seq_D18R0102_%03d\n" % n
++                                                   for n in (3, 4, ON_ENTER)) + "scrdef_end", B1F_SCRIPT)
++    script = script.rstrip("\n") + "\n"
++    for which, (name, species, status, flag, n, obj, tile) in enumerate(BEASTS, 1):
++        script += BATTLE.format(name=name, species=species, status=status, n=n, which=which, level=LEVEL)
++    script += ENTER.format(n=ON_ENTER)
++    out[B1F_SCRIPT] = script
++
++    header = read(B1F_HEADER)
++    # type 2: run on entering, before the map's people are placed, as the game's own scripts that set hidden flags
++    header = replace(header, "\t.byte 0\n", "\t.byte 2\n\t.hword %d, 0\n\t.byte 0\n" % (ON_ENTER + 1), B1F_HEADER)
++    out[B1F_HEADER] = header
++
++    include = read(B1F_INCLUDE)
++    include = replace(include, "\n\n.equ obj_D18R0102_follower_mon_static_suicune,",
++                      "\n" + "".join(".equ _EV_scr_seq_D18R0102_%03d, %d\n" % (n, n) for n in (3, 4, ON_ENTER))
++                      + "\n.equ obj_D18R0102_follower_mon_static_suicune,", B1F_INCLUDE)
++    include = replace(include, "\n\n.endif", "\n" + "".join(".equ obj_D18R0102_%s, %d\n" % (b[0], b[5]) for b in BEASTS)
++                      + "\n.endif", B1F_INCLUDE)
++    out[B1F_INCLUDE] = include
++
++    events = json.loads(read(B1F_EVENTS))
++    if len(events["object_events"]) != BEASTS[0][5]:
++        sys.exit("unexpected number of objects in the Burned Tower B1F")
++    for name, species, status, flag, n, obj, tile in BEASTS:
++        events["object_events"].append({
++            "id": "obj_D18R0102_%s" % name,
++            "graphics_id": "SPRITE_FOLLOWER_MON_STATIC_%s" % name.upper(),
++            "movement_type": 15,
++            "trainer_type": 0,
++            "hidden_flag": flag,
++            "script": "_EV_scr_seq_D18R0102_%03d + 1" % n,
++            "initial_dir": 1,
++            "param0": 0, "param1": 0, "param2": 0,
++            "movement_range_x": 0, "movement_range_z": 0,
++            "x": tile[0], "z": tile[1], "y": 0,
++        })
++    out[B1F_EVENTS] = json.dumps(events, indent=2) + "\n"
++
++    hall = read(HALL_OF_FAME)
++    hall = replace(hall, "\tsetvar VAR_ROAMER_ENTEI_STATUS, 0\n\tcreate_roamer 1\n", "\tsetvar VAR_ROAMER_ENTEI_STATUS, 0\n", HALL_OF_FAME)
++    hall = replace(hall, "\tsetvar VAR_ROAMER_RAIKOU_STATUS, 0\n\tcreate_roamer 0\n", "\tsetvar VAR_ROAMER_RAIKOU_STATUS, 0\n", HALL_OF_FAME)
++    out[HALL_OF_FAME] = hall
++    out[HALL_OF_FAME_INCLUDE] = read(HALL_OF_FAME_INCLUDE)
++
++    for path, content in out.items():
++        os.makedirs(os.path.dirname(path), exist_ok=True)
++        open(path, "w", encoding="utf-8", newline="").write(content)
++        print("wrote", path)
++
++
++if __name__ == "__main__":
++    main()
+-- 
+2.43.0
+

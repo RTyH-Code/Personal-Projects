@@ -249,8 +249,8 @@ the [Pokédex](POKEDEX.md) for each Pokémon's page.
 | 240 | [Magby](pokedex/0240-magby.md) | breed Magmar |
 | 241 | [Miltank](pokedex/0241-miltank.md) | wild: Route 38, Route 39, Route 47 |
 | 242 | [Blissey](pokedex/0242-blissey.md) | evolve Chansey with high friendship |
-| 243 | [Raikou](pokedex/0243-raikou.md) | roaming Johto |
-| 244 | [Entei](pokedex/0244-entei.md) | roaming Johto |
+| 243 | [Raikou](pokedex/0243-raikou.md) | Burned Tower B1F |
+| 244 | [Entei](pokedex/0244-entei.md) | Burned Tower B1F |
 | 245 | [Suicune](pokedex/0245-suicune.md) | Route 25 |
 | 246 | [Larvitar](pokedex/0246-larvitar.md) | wild: Mount Mortar 2F |
 | 247 | [Pupitar](pokedex/0247-pupitar.md) | wild: Mount Silver Cave Moltres Chamber, Mount Silver Cave 2F, Mount Silver Cave 3F, Mount Silver Cave 1F, Mount Silver Cave Lower Mountainside, Mount Silver Cave Expert Belt Chamber and 1 more |
