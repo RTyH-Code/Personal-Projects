@@ -30,6 +30,8 @@ A short guide for a first run. It has no story spoilers beyond what bosses you w
 - **HMs work without being taught**, as long as the HM is in your bag and you have the badge. HM moves can
   be forgotten any time. TMs are reusable.
 - **Friendship evolutions** happen at 160 friendship instead of 220.
+- **Moves can be remembered for free:** a woman in Cherrygrove City's Pokémon Center, and the Move Maniac in
+  Blackthorn City, make a Pokémon remember any move it could have learned by level, as often as you like.
 
 ## Shops
 
@@ -47,6 +49,9 @@ A short guide for a first run. It has no story spoilers beyond what bosses you w
   | 6 | Metal Coat, Dragon Scale, Dusk, Dawn and Shiny Stones; Black Augurite | ₽3,000; ₽5,000 |
   | 7 | Peat Block, Protector, Electirizer, Magmarizer, Dubious Disc, Reaper Cloth, Razor Claw, Razor Fang | ₽5,000 |
 
+- **Goldenrod Department Store, training items:** the EV-lowering berries on 3F from the start (₽500); the
+  Power items on 4F from four badges (₽5,000); on 5F the nature mints from four badges (₽5,000), and the Bottle
+  Cap (₽20,000: the lowest IV to 31) and Gold Bottle Cap (₽60,000: every IV to 31) from eight.
 - **Celadon Department Store 4F** (after the Elite Four): Leftovers, the Choice items, Life Orb and Focus
   Sash (₽25,000), other held items (₽10,000), Rare Candies (₽3,000), the Ability Capsule and Ability Patch.
 

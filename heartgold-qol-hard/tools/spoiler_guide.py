@@ -443,7 +443,7 @@ def dex_pages(d, found, statics, have, parents, out):
     return "\n".join(index) + "\n"
 
 
-PRICED = {"GoldenrodDepartment3F", "GoldenrodDepartment4F", "CeladonDepartment4F"}
+PRICED = {"GoldenrodDepartment3F", "GoldenrodDepartment4F", "GoldenrodDepartment5F", "CeladonDepartment4F"}
 BOSS = re.compile(r"LEADER_|ELITE_FOUR_|CHAMPION|RIVAL|PKMN_TRAINER_RED|EXECUTIVE|KIMONO_GIRL")
 
 

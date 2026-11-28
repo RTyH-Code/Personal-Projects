@@ -818,7 +818,8 @@ Also, walking: swarm: Rattata; Hoenn Sound: Zigzagoon, Spinda; Sinnoh Sound: Cha
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
 | Rattata | 28 | 30% | 30% | 35% |
-| Raticate | 28 | 30% | 30% | 30% |
+| Raticate | 28 | 20% | 20% | 20% |
+| Voltorb | 28 | 10% | 10% | 10% |
 | Magnemite | 28 | 10% | 10% | 10% |
 | Meowth | 28 | 10% | 10% | 10% |
 | Spoink | 28 | 5% | 5% | 5% |

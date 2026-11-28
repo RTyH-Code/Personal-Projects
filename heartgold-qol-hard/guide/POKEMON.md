@@ -106,7 +106,7 @@ the [Pokédex](POKEDEX.md) for each Pokémon's page.
 | 97 | [Hypno](pokedex/0097-hypno.md) | wild: Route 11 |
 | 98 | [Krabby](pokedex/0098-krabby.md) | wild: Cherrygrove City, Union Cave B2F, Route 34, Olivine City, Route 40, Whirl Islands 1F and 5 more |
 | 99 | [Kingler](pokedex/0099-kingler.md) | wild: Cherrygrove City, Union Cave B2F, Route 34, Olivine City, Route 40, Whirl Islands 1F and 5 more |
-| 100 | [Voltorb](pokedex/0100-voltorb.md) | wild: Route 37 |
+| 100 | [Voltorb](pokedex/0100-voltorb.md) | wild: Route 37, Route 38 |
 | 101 | [Electrode](pokedex/0101-electrode.md) | Team Rocket HQ; wild: Route 10, Cerulean Cave 1F, Cerulean Cave 2F, Cerulean Cave B1F |
 | 102 | [Exeggcute](pokedex/0102-exeggcute.md) | wild: Route 26, Route 27, Route 29, Route 30, Route 31, Route 32 and 16 more |
 | 103 | [Exeggutor](pokedex/0103-exeggutor.md) | evolve Exeggcute with a Leaf Stone |

@@ -1,5 +1,29 @@
 # Changelog
 
+## Unreleased
+
+- Voltorb on Route 38 too (patch 0040): 10% at every time of day, Lv. 28, in
+  one of Raticate's two slots (Raticate 30% -> 20%). On Route 37 it is 1% at
+  night. In the emulator 3 of 60 Route 38 encounters were Voltorb.
+- Free Move Reminders (patch 0041): Blackthorn City's Move Maniac no longer
+  takes a Heart Scale, and a woman in Cherrygrove City's Pokémon Center makes
+  Pokémon remember moves too, from the first town on. Both tried in the
+  emulator.
+- Training items in the Goldenrod Department Store (patch 0042): the six
+  EV-lowering berries (3F, from the start, ₽500), the six Power items (4F,
+  from four badges, ₽5,000), the 21 nature mints (5F, from four badges,
+  ₽5,000) and the Bottle Cap and Gold Bottle Cap (5F, from eight badges,
+  ₽20,000 and ₽60,000). Used from the bag, a Bottle Cap makes a Pokémon's
+  lowest IV 31 and a Gold Bottle Cap all six. In the emulator the shop lists
+  and prices were bought through at each badge tier, and a Bottle Cap, a Gold
+  Bottle Cap and an Adamant Mint did what they should.
+- New playtests: `playtest/hm_test.py` (every field move from the bag, and
+  refused without its badge or the HM: all 21 tries pass),
+  `playtest/champion_test.py` (Cliff Cave's rocks and the Bug-Catching
+  Contest wait for the Champion) and `playtest/qol_test.py` (the reminders,
+  the training items, a King's Rock evolving Slowpoke and Kadabra evolving at
+  Lv. 37).
+
 ## v1.8
 
 - Challenge rules you can turn on and off (patch 0039): a woman downstairs in

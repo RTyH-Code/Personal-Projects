@@ -1,0 +1,623 @@
+From e3b652948d7462e20a03a7eba9a192b9d3c34a40 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 28 Nov 2026 02:38:36 +0000
+Subject: [PATCH 42/42] Training items: mints, EV-lowering berries, Power items
+ and Bottle Caps
+
+Goldenrod Department Store sells the six EV-lowering berries (3F, from the
+start, P500), the six Power items (4F, from four badges, P5,000), the 21 nature
+mints (5F, from four badges, P5,000) and the Bottle Cap and Gold Bottle Cap (5F,
+from eight badges, P20,000 and P60,000). Bottle Caps are used from the bag on a
+Pokemon: the Gold Bottle Cap makes every IV 31, the Bottle Cap the lowest. Made
+by tools/hack/training_items.py.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEYSk2h6k1E1jWo3cHd
+---
+ data/itemdata/itemdata.c                      |  70 ++++-----
+ data/text/300.txt                             |   4 +-
+ src/field/mart.c                              |  44 +++++-
+ src/individual/PartyMenu_HandleUseItemOnMon.c |  32 ++++
+ tools/hack/training_items.py                  | 143 ++++++++++++++++++
+ 5 files changed, 254 insertions(+), 39 deletions(-)
+ create mode 100644 tools/hack/training_items.py
+
+diff --git a/data/itemdata/itemdata.c b/data/itemdata/itemdata.c
+index 725b4e705..47875882b 100644
+--- a/data/itemdata/itemdata.c
++++ b/data/itemdata/itemdata.c
+@@ -10998,7 +10998,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_POMEG_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(500),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -11063,7 +11063,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_KELPSY_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(500),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -11128,7 +11128,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_QUALOT_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(500),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -11193,7 +11193,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_HONDEW_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(500),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -11258,7 +11258,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_GREPA_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(500),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -11323,7 +11323,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_TAMATO_BERRY] =
+ {
+-    ITEM_PRICE(80),
++    ITEM_PRICE(500),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -18798,7 +18798,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_POWER_BRACER] =
+ {
+-    ITEM_PRICE(10000),
++    ITEM_PRICE(5000),
+     .holdEffect = HOLD_EFFECT_LVLUP_ATK_EV_UP,
+     .holdEffectParam = 4,
+     .pluckEffect = 0,
+@@ -18863,7 +18863,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_POWER_BELT] =
+ {
+-    ITEM_PRICE(10000),
++    ITEM_PRICE(5000),
+     .holdEffect = HOLD_EFFECT_LVLUP_DEF_EV_UP,
+     .holdEffectParam = 4,
+     .pluckEffect = 0,
+@@ -18928,7 +18928,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_POWER_LENS] =
+ {
+-    ITEM_PRICE(10000),
++    ITEM_PRICE(5000),
+     .holdEffect = HOLD_EFFECT_LVLUP_SPATK_EV_UP,
+     .holdEffectParam = 4,
+     .pluckEffect = 0,
+@@ -18993,7 +18993,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_POWER_BAND] =
+ {
+-    ITEM_PRICE(10000),
++    ITEM_PRICE(5000),
+     .holdEffect = HOLD_EFFECT_LVLUP_SPDEF_EV_UP,
+     .holdEffectParam = 4,
+     .pluckEffect = 0,
+@@ -19058,7 +19058,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_POWER_ANKLET] =
+ {
+-    ITEM_PRICE(10000),
++    ITEM_PRICE(5000),
+     .holdEffect = HOLD_EFFECT_LVLUP_SPEED_EV_UP,
+     .holdEffectParam = 4,
+     .pluckEffect = 0,
+@@ -19123,7 +19123,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_POWER_WEIGHT] =
+ {
+-    ITEM_PRICE(10000),
++    ITEM_PRICE(5000),
+     .holdEffect = HOLD_EFFECT_LVLUP_HP_EV_UP,
+     .holdEffectParam = 4,
+     .pluckEffect = 0,
+@@ -51700,7 +51700,7 @@ const ITEMDATA __data[] =
+     .selectable = FALSE,
+     .fieldPocket = POCKET_ITEMS,
+     .battlePocket = BATTLE_POCKET_NONE,
+-    .fieldUseFunc = 0,
++    .fieldUseFunc = 33,
+     .battleUseFunc = 0,
+     .partyUse = 1,
+     .partyUseParam = {
+@@ -51765,7 +51765,7 @@ const ITEMDATA __data[] =
+     .selectable = FALSE,
+     .fieldPocket = POCKET_ITEMS,
+     .battlePocket = BATTLE_POCKET_NONE,
+-    .fieldUseFunc = 0,
++    .fieldUseFunc = 33,
+     .battleUseFunc = 0,
+     .partyUse = 1,
+     .partyUseParam = {
+@@ -80028,7 +80028,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_LONELY_MINT] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(5000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -80093,7 +80093,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_ADAMANT_MINT] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(5000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -80158,7 +80158,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_NAUGHTY_MINT] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(5000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -80223,7 +80223,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_BRAVE_MINT] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(5000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -80288,7 +80288,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_BOLD_MINT] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(5000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -80353,7 +80353,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_IMPISH_MINT] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(5000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -80418,7 +80418,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_LAX_MINT] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(5000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -80483,7 +80483,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_RELAXED_MINT] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(5000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -80548,7 +80548,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_MODEST_MINT] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(5000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -80613,7 +80613,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_MILD_MINT] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(5000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -80678,7 +80678,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_RASH_MINT] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(5000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -80743,7 +80743,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_QUIET_MINT] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(5000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -80808,7 +80808,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_CALM_MINT] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(5000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -80873,7 +80873,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_GENTLE_MINT] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(5000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -80938,7 +80938,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_CAREFUL_MINT] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(5000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -81003,7 +81003,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_SASSY_MINT] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(5000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -81068,7 +81068,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_TIMID_MINT] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(5000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -81133,7 +81133,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_HASTY_MINT] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(5000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -81198,7 +81198,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_JOLLY_MINT] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(5000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -81263,7 +81263,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_NAIVE_MINT] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(5000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+@@ -81328,7 +81328,7 @@ const ITEMDATA __data[] =
+ 
+ [ITEM_SERIOUS_MINT] =
+ {
+-    ITEM_PRICE(20000),
++    ITEM_PRICE(5000),
+     .holdEffect = 0,
+     .holdEffectParam = 0,
+     .pluckEffect = 0,
+diff --git a/data/text/300.txt b/data/text/300.txt
+index 7aca34c42..508d551e1 100644
+--- a/data/text/300.txt
++++ b/data/text/300.txt
+@@ -224,4 +224,6 @@ Electric Fan
+ Lawn Mower
+ Light Bulb
+ Microwave Oven
+-Washing Machine
+\ No newline at end of file
++Washing Machine
++{STRVAR_1 0, 0, 0}’s potential was brought\nout by the Bottle Cap!\r
++{STRVAR_1 0, 0, 0}’s potential was fully\nbrought out by the Gold Bottle Cap!\r
+diff --git a/src/field/mart.c b/src/field/mart.c
+index 300d48b13..10008b605 100644
+--- a/src/field/mart.c
++++ b/src/field/mart.c
+@@ -73,7 +73,9 @@ u16 sGoldenrodDepartment3F[] = {
+     ITEM_PAYAPA_BERRY, ITEM_TANGA_BERRY, ITEM_CHARTI_BERRY, ITEM_KASIB_BERRY, ITEM_HABAN_BERRY, ITEM_COLBUR_BERRY,
+     ITEM_BABIRI_BERRY, ITEM_CHILAN_BERRY, ITEM_ROSELI_BERRY, ITEM_ELIXIR, ITEM_MAX_ETHER, ITEM_MAX_ELIXIR,
+     ITEM_MAX_REVIVE,
+-    ITEM_LUCKY_EGG, 0xFFFF
++    ITEM_LUCKY_EGG,
++    // training items (tools/hack/training_items.py)
++    ITEM_POMEG_BERRY, ITEM_KELPSY_BERRY, ITEM_QUALOT_BERRY, ITEM_HONDEW_BERRY, ITEM_GREPA_BERRY, ITEM_TAMATO_BERRY, 0xFFFF
+ };
+ 
+ // the evolution items are added by the hack.  the ones in sBadgeLockedMartItems only show up once the player has enough badges
+@@ -84,11 +86,17 @@ u16 sGoldenrodDepartment4F[] = {
+     ITEM_KINGS_ROCK, ITEM_METAL_COAT, ITEM_DRAGON_SCALE, ITEM_UP_GRADE, ITEM_DEEP_SEA_TOOTH, ITEM_DEEP_SEA_SCALE, ITEM_PRISM_SCALE,
+     ITEM_BLACK_AUGURITE,
+     ITEM_PEAT_BLOCK, ITEM_PROTECTOR, ITEM_ELECTIRIZER, ITEM_MAGMARIZER, ITEM_DUBIOUS_DISC, ITEM_REAPER_CLOTH, ITEM_RAZOR_CLAW, ITEM_RAZOR_FANG,
+-    0xFFFF
++    // training items (tools/hack/training_items.py)
++    ITEM_POWER_WEIGHT, ITEM_POWER_BRACER, ITEM_POWER_BELT, ITEM_POWER_LENS, ITEM_POWER_BAND, ITEM_POWER_ANKLET, 0xFFFF
+ };
+ 
+ u16 sGoldenrodDepartment5F[] = {
+-    ITEM_TM070, ITEM_TM017, ITEM_TM054, ITEM_TM083, ITEM_TM016, ITEM_TM033, ITEM_TM022, ITEM_TM052, ITEM_TM038, ITEM_TM025, ITEM_TM014, ITEM_TM015, 0xFFFF
++    ITEM_TM070, ITEM_TM017, ITEM_TM054, ITEM_TM083, ITEM_TM016, ITEM_TM033, ITEM_TM022, ITEM_TM052, ITEM_TM038, ITEM_TM025, ITEM_TM014, ITEM_TM015,
++    // training items (tools/hack/training_items.py)
++    ITEM_LONELY_MINT, ITEM_ADAMANT_MINT, ITEM_NAUGHTY_MINT, ITEM_BRAVE_MINT, ITEM_BOLD_MINT, ITEM_IMPISH_MINT,
++    ITEM_LAX_MINT, ITEM_RELAXED_MINT, ITEM_MODEST_MINT, ITEM_MILD_MINT, ITEM_RASH_MINT, ITEM_QUIET_MINT,
++    ITEM_CALM_MINT, ITEM_GENTLE_MINT, ITEM_CAREFUL_MINT, ITEM_SASSY_MINT, ITEM_TIMID_MINT, ITEM_HASTY_MINT,
++    ITEM_JOLLY_MINT, ITEM_NAIVE_MINT, ITEM_SERIOUS_MINT, ITEM_BOTTLE_CAP, ITEM_GOLD_BOTTLE_CAP, 0xFFFF
+ };
+ 
+ u16 sGoldenrodHerbs[] = {
+@@ -213,6 +221,36 @@ BOOL ScrCmd_MartBuy(SCRIPTCONTEXT *ctx)
+ 
+ // items that the special marts (every mart with its own stock list above) only sell once the player has this many badges
+ const struct BadgeMartItems sBadgeLockedMartItems[] = {
++    // training items (tools/hack/training_items.py)
++    { ITEM_POWER_WEIGHT, 4 },
++    { ITEM_POWER_BRACER, 4 },
++    { ITEM_POWER_BELT, 4 },
++    { ITEM_POWER_LENS, 4 },
++    { ITEM_POWER_BAND, 4 },
++    { ITEM_POWER_ANKLET, 4 },
++    { ITEM_LONELY_MINT, 4 },
++    { ITEM_ADAMANT_MINT, 4 },
++    { ITEM_NAUGHTY_MINT, 4 },
++    { ITEM_BRAVE_MINT, 4 },
++    { ITEM_BOLD_MINT, 4 },
++    { ITEM_IMPISH_MINT, 4 },
++    { ITEM_LAX_MINT, 4 },
++    { ITEM_RELAXED_MINT, 4 },
++    { ITEM_MODEST_MINT, 4 },
++    { ITEM_MILD_MINT, 4 },
++    { ITEM_RASH_MINT, 4 },
++    { ITEM_QUIET_MINT, 4 },
++    { ITEM_CALM_MINT, 4 },
++    { ITEM_GENTLE_MINT, 4 },
++    { ITEM_CAREFUL_MINT, 4 },
++    { ITEM_SASSY_MINT, 4 },
++    { ITEM_TIMID_MINT, 4 },
++    { ITEM_HASTY_MINT, 4 },
++    { ITEM_JOLLY_MINT, 4 },
++    { ITEM_NAIVE_MINT, 4 },
++    { ITEM_SERIOUS_MINT, 4 },
++    { ITEM_BOTTLE_CAP, 8 },
++    { ITEM_GOLD_BOTTLE_CAP, 8 },
+     { ITEM_LUCKY_EGG, 4 },
+     { ITEM_SITRUS_BERRY, 4 },
+     { ITEM_LUM_BERRY, 4 },
+diff --git a/src/individual/PartyMenu_HandleUseItemOnMon.c b/src/individual/PartyMenu_HandleUseItemOnMon.c
+index a776f9251..567d68e88 100644
+--- a/src/individual/PartyMenu_HandleUseItemOnMon.c
++++ b/src/individual/PartyMenu_HandleUseItemOnMon.c
+@@ -270,6 +270,38 @@ u32 UseItemMonAttrChangeCheck(struct PartyMenu *wk, void *dat)
+         return TRUE;
+     }
+ 
++    // handle bottle caps (tools/hack/training_items.py): the gold one makes every IV 31, the plain one the
++    // lowest; neither is used up if every IV is already 31
++
++    if (wk->args->itemId == ITEM_BOTTLE_CAP || wk->args->itemId == ITEM_GOLD_BOTTLE_CAP) {
++        u32 stat, lowest = 0, iv, max = 31;
++        BOOL any = FALSE;
++        for (stat = 0; stat < 6; stat++) {
++            iv = GetMonData(pp, MON_DATA_HP_IV + stat, NULL);
++            if (iv < 31) {
++                if (!any || iv < GetMonData(pp, MON_DATA_HP_IV + lowest, NULL)) {
++                    lowest = stat;
++                }
++                any = TRUE;
++            }
++        }
++        if (any) {
++            void *bag = Sav2_Bag_get(SaveBlock2_get());
++            for (stat = 0; stat < 6; stat++) {
++                if (wk->args->itemId == ITEM_GOLD_BOTTLE_CAP || stat == lowest) {
++                    SetMonData(pp, MON_DATA_HP_IV + stat, &max);
++                }
++            }
++            partyMenuSignal = wk->args->itemId == ITEM_GOLD_BOTTLE_CAP ? 228 : 227; // signal to change the message to this index
++            wk->args->species = GetMonData(pp, MON_DATA_FORM, NULL); // no form change
++            RecalcPartyPokemonStats(pp);
++            Bag_TakeItem(bag, wk->args->itemId, 1, 11);
++            sys_FreeMemoryEz(dat);
++            PokeList_FormDemoOverlayLoad(wk);
++            return TRUE;
++        }
++    }
++
+     return FALSE;
+ }
+ 
+diff --git a/tools/hack/training_items.py b/tools/hack/training_items.py
+new file mode 100644
+index 000000000..f6d18a76e
+--- /dev/null
++++ b/tools/hack/training_items.py
+@@ -0,0 +1,143 @@
++#!/usr/bin/env python3
++"""Training items in the Goldenrod Department Store: mints, EV-lowering berries, Power items and Bottle Caps.
++
++- 3F (berries): Pomeg, Kelpsy, Qualot, Hondew, Grepa and Tamato Berries, which lower a stat's effort values
++  (the game's own use for them), from the start, at P500.
++- 4F (vitamins): the six Power items, which add effort values to one stat as their holder battles, from four
++  badges, at P5,000.
++- 5F (TMs): the 21 nature mints (hg-engine already makes them work: the Pokemon's stats follow the mint's
++  nature), from four badges, at P5,000; and from eight badges the Bottle Cap (P20,000) and the Gold Bottle Cap
++  (P60,000).
++
++hg-engine has Bottle Caps as items with no use. Here they are used from the bag on a Pokemon, like a mint: a
++Gold Bottle Cap makes all six of its IVs 31; a Bottle Cap makes its lowest IV 31 (the first of the lowest, in
++the order HP, Attack, Defense, Speed, Sp. Atk, Sp. Def). Neither is used up on a Pokemon whose IVs are all 31.
++
++    python3 tools/hack/training_items.py
++"""
++import re
++import sys
++
++MART = "src/field/mart.c"
++ITEMS = "data/itemdata/itemdata.c"
++HANDLER = "src/individual/PartyMenu_HandleUseItemOnMon.c"
++PARTY_TEXT = "data/text/300.txt"
++
++MINTS = ["LONELY", "ADAMANT", "NAUGHTY", "BRAVE", "BOLD", "IMPISH", "LAX", "RELAXED", "MODEST", "MILD", "RASH",
++         "QUIET", "CALM", "GENTLE", "CAREFUL", "SASSY", "TIMID", "HASTY", "JOLLY", "NAIVE", "SERIOUS"]
++STOCK = {  # counter: [(item, price, badges needed)]
++    "sGoldenrodDepartment3F": [(b + "_BERRY", 500, 0) for b in ("POMEG", "KELPSY", "QUALOT", "HONDEW", "GREPA", "TAMATO")],
++    "sGoldenrodDepartment4F": [("POWER_" + p, 5000, 4) for p in ("WEIGHT", "BRACER", "BELT", "LENS", "BAND", "ANKLET")],
++    "sGoldenrodDepartment5F": [(m + "_MINT", 5000, 4) for m in MINTS]
++                              + [("BOTTLE_CAP", 20000, 8), ("GOLD_BOTTLE_CAP", 60000, 8)],
++}
++FIELD_USE_ON_MON = 33       # what the mints have: Use, then choose a Pokemon
++
++CAP_MESSAGES = [
++    r"{STRVAR_1 0, 0, 0}’s potential was brought\nout by the Bottle Cap!\r",
++    r"{STRVAR_1 0, 0, 0}’s potential was fully\nbrought out by the Gold Bottle Cap!\r",
++]
++
++CAP_CODE = '''
++    // handle bottle caps (tools/hack/training_items.py): the gold one makes every IV 31, the plain one the
++    // lowest; neither is used up if every IV is already 31
++
++    if (wk->args->itemId == ITEM_BOTTLE_CAP || wk->args->itemId == ITEM_GOLD_BOTTLE_CAP) {
++        u32 stat, lowest = 0, iv, max = 31;
++        BOOL any = FALSE;
++        for (stat = 0; stat < 6; stat++) {
++            iv = GetMonData(pp, MON_DATA_HP_IV + stat, NULL);
++            if (iv < 31) {
++                if (!any || iv < GetMonData(pp, MON_DATA_HP_IV + lowest, NULL)) {
++                    lowest = stat;
++                }
++                any = TRUE;
++            }
++        }
++        if (any) {
++            void *bag = Sav2_Bag_get(SaveBlock2_get());
++            for (stat = 0; stat < 6; stat++) {
++                if (wk->args->itemId == ITEM_GOLD_BOTTLE_CAP || stat == lowest) {
++                    SetMonData(pp, MON_DATA_HP_IV + stat, &max);
++                }
++            }
++            partyMenuSignal = wk->args->itemId == ITEM_GOLD_BOTTLE_CAP ? %d : %d; // signal to change the message to this index
++            wk->args->species = GetMonData(pp, MON_DATA_FORM, NULL); // no form change
++            RecalcPartyPokemonStats(pp);
++            Bag_TakeItem(bag, wk->args->itemId, 1, 11);
++            sys_FreeMemoryEz(dat);
++            PokeList_FormDemoOverlayLoad(wk);
++            return TRUE;
++        }
++    }
++
++    return FALSE;
++}
++'''
++
++
++def item_block(items, name):
++    m = re.search(r"\n\[ITEM_%s\] =\n\{\n(.*?)\n\},?\n" % name, items, re.S)
++    if not m:
++        sys.exit("no item data for " + name)
++    return m
++
++
++def set_field(items, name, field, value):
++    m = item_block(items, name)
++    block = m.group(1)
++    if field == "price":
++        new = re.sub(r"ITEM_PRICE\(\d+\)", "ITEM_PRICE(%d)" % value, block, count=1)
++    else:
++        new = re.sub(r"\.%s = [^,]+," % field, ".%s = %s," % (field, value), block, count=1)
++    if new == block and not (field == "price" and "ITEM_PRICE(%d)" % value in block):
++        if ".%s = %s," % (field, value) not in block:
++            sys.exit("could not set %s of %s" % (field, name))
++    return items[:m.start(1)] + new + items[m.end(1):]
++
++
++def main():
++    mart, items = open(MART).read(), open(ITEMS).read()
++    if "ITEM_POMEG_BERRY" in mart:
++        sys.exit("the training items are already in")
++    for array, stock in STOCK.items():
++        # the list ends ", 0xFFFF" on its last line of items, or with 0xFFFF on a line of its own
++        m = re.search(r"(u16 %s\[\] = \{\n)([^}]*?)(,\s*0xFFFF\n\};)" % array, mart)
++        if not m:
++            sys.exit("no " + array)
++        names = [n for n, _, _ in stock]
++        added = ",\n    ".join(", ".join("ITEM_" + n for n in names[i:i + 6]) for i in range(0, len(names), 6))
++        mart = mart.replace(m.group(0), "%s%s,\n    // training items (tools/hack/training_items.py)\n    %s, 0xFFFF\n};" % (
++            m.group(1), m.group(2), added))
++        for name, price, _ in stock:
++            items = set_field(items, name, "price", price)
++    head = "const struct BadgeMartItems sBadgeLockedMartItems[] = {\n"
++    if head not in mart:
++        sys.exit("no sBadgeLockedMartItems")
++    locks = "".join("    { ITEM_%s, %d },\n" % (n, b) for stock in STOCK.values() for n, _, b in stock if b)
++    mart = mart.replace(head, head + "    // training items (tools/hack/training_items.py)\n" + locks)
++    for cap in ("BOTTLE_CAP", "GOLD_BOTTLE_CAP"):
++        items = set_field(items, cap, "fieldUseFunc", FIELD_USE_ON_MON)
++    open(MART, "w").write(mart)
++    open(ITEMS, "w").write(items)
++
++    raw = open(PARTY_TEXT, encoding="utf-8", newline="").read()
++    lines = raw.split("\r\n")
++    if lines[-1] == "":
++        lines.pop()
++    first = len(lines)
++    lines += CAP_MESSAGES
++    open(PARTY_TEXT, "w", encoding="utf-8", newline="").write("\r\n".join(lines) + "\r\n")
++
++    handler = open(HANDLER).read()
++    tail = "        PokeList_FormDemoOverlayLoad(wk);\n        return TRUE;\n    }\n\n    return FALSE;\n}\n"
++    if handler.count(tail) != 1:
++        sys.exit("unexpected end of UseItemMonAttrChangeCheck")
++    handler = handler.replace(tail, "        PokeList_FormDemoOverlayLoad(wk);\n        return TRUE;\n    }\n"
++                              + CAP_CODE % (first + 1, first))
++    open(HANDLER, "w").write(handler)
++    print("stocked", ", ".join(STOCK), "; Bottle Caps use messages %d and %d of %s" % (first, first + 1, PARTY_TEXT))
++
++
++if __name__ == "__main__":
++    main()
+-- 
+2.43.0
+

@@ -1,0 +1,84 @@
+From 76b9296a7933752dcf77e076ea01d39d8955f545 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 28 Nov 2026 02:38:35 +0000
+Subject: [PATCH 40/42] Voltorb on Route 38 too
+
+Route 37's Voltorb is 4-5% by morning and day but 1% at night. This adds it
+to Route 38 at 10% at every time of day, Lv. 28, in one of Raticate's two
+slots (Raticate 30% -> 20%). Made by tools/hack/voltorb_wild.py.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEYSk2h6k1E1jWo3cHd
+---
+ data/Encounters.c          |  6 +++---
+ tools/hack/voltorb_wild.py | 27 +++++++++++++++++++++++++++
+ 2 files changed, 30 insertions(+), 3 deletions(-)
+ create mode 100644 tools/hack/voltorb_wild.py
+
+diff --git a/data/Encounters.c b/data/Encounters.c
+index 100922959..0fa507625 100644
+--- a/data/Encounters.c
++++ b/data/Encounters.c
+@@ -3821,7 +3821,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATICATE,
+                 SPECIES_RATTATA,
+-                SPECIES_RATICATE,
++                SPECIES_VOLTORB,
+                 SPECIES_MAGNEMITE,
+                 SPECIES_MEOWTH,
+                 SPECIES_FARFETCHD,
+@@ -3835,7 +3835,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATICATE,
+                 SPECIES_RATTATA,
+-                SPECIES_RATICATE,
++                SPECIES_VOLTORB,
+                 SPECIES_MAGNEMITE,
+                 SPECIES_MEOWTH,
+                 SPECIES_FARFETCHD,
+@@ -3849,7 +3849,7 @@ const EncounterData __data[] =
+                 SPECIES_RATTATA,
+                 SPECIES_RATICATE,
+                 SPECIES_RATTATA,
+-                SPECIES_RATICATE,
++                SPECIES_VOLTORB,
+                 SPECIES_MAGNEMITE,
+                 SPECIES_MEOWTH,
+                 SPECIES_RATTATA,
+diff --git a/tools/hack/voltorb_wild.py b/tools/hack/voltorb_wild.py
+new file mode 100644
+index 000000000..7b97e63d7
+--- /dev/null
++++ b/tools/hack/voltorb_wild.py
+@@ -0,0 +1,27 @@
++#!/usr/bin/env python3
++"""Voltorb on Route 38 too.
++
++breeding_wild.py put Voltorb on Route 37 in the only slot free there, which is
++4-5% by morning and day but 1% at night, so a player out at night may never
++meet one (100 encounters in the emulator found none). This adds it to
++Route 38, the next route west, with Magnemite, as uncommon at every time of
++day, by encounters.py's rules (only a slot whose species fills another slot
++too, at that slot's level).
++
++Run once from the hg-engine root, after breeding_wild.py:
++    python3 tools/hack/voltorb_wild.py
++"""
++import encounters
++
++LAND = {
++    "ROUTE_38": [("VOLTORB", "U", "")],
++}
++
++
++def main():
++    encounters.LAND, encounters.WATER = LAND, {}
++    encounters.main()
++
++
++if __name__ == "__main__":
++    main()
+-- 
+2.43.0
+

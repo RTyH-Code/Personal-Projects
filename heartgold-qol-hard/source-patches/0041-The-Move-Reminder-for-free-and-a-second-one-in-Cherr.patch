@@ -1,0 +1,1277 @@
+From 6c7142d83ea913f2017bd0c601ca2de57f665656 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 28 Nov 2026 02:38:35 +0000
+Subject: [PATCH 41/42] The Move Reminder for free, and a second one in
+ Cherrygrove
+
+Blackthorn City's Move Maniac no longer asks for a Heart Scale, and his first
+meeting goes straight on to choosing a Pokemon. A woman in Cherrygrove City's
+Pokemon Center does the same from the first town on. Made by
+tools/hack/move_reminder.py.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEYSk2h6k1E1jWo3cHd
+---
+ data/eventdata/zone_event/066_T21PC0101.json | 219 ++++++++
+ data/scr_seq/include/event_T21PC0101.inc     |  24 +
+ data/scr_seq/include/event_T30R0601.inc      |  16 +
+ data/scr_seq/scr_seq_0852_T21PC0101.s        | 136 +++++
+ data/scr_seq/scr_seq_0948_T30R0601.s         | 544 +++++++++++++++++++
+ data/text/custom/552.txt                     |  12 +
+ data/text/custom/635.txt                     |  63 +++
+ tools/hack/move_reminder.py                  | 180 ++++++
+ 8 files changed, 1194 insertions(+)
+ create mode 100644 data/eventdata/zone_event/066_T21PC0101.json
+ create mode 100644 data/scr_seq/include/event_T21PC0101.inc
+ create mode 100644 data/scr_seq/include/event_T30R0601.inc
+ create mode 100644 data/scr_seq/scr_seq_0852_T21PC0101.s
+ create mode 100644 data/scr_seq/scr_seq_0948_T30R0601.s
+ create mode 100644 data/text/custom/552.txt
+ create mode 100644 data/text/custom/635.txt
+ create mode 100644 tools/hack/move_reminder.py
+
+diff --git a/data/eventdata/zone_event/066_T21PC0101.json b/data/eventdata/zone_event/066_T21PC0101.json
+new file mode 100644
+index 000000000..825bc53d7
+--- /dev/null
++++ b/data/eventdata/zone_event/066_T21PC0101.json
+@@ -0,0 +1,219 @@
++{
++  "header": "data/scr_seq/include/event_T21PC0101.inc",
++  "eventId": "066",
++  "bg_events": [
++    {
++      "script": 0,
++      "type": 0,
++      "x": 4,
++      "z": 8,
++      "y": 0,
++      "player_facing_dir": 3
++    }
++  ],
++  "object_events": [
++    {
++      "id": "obj_T21PC0101_pcwoman1",
++      "graphics_id": "SPRITE_PCWOMAN1",
++      "movement_type": 15,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_NOTHING",
++      "script": "_EV_scr_seq_T21PC0101_000 + 1",
++      "initial_dir": 1,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 8,
++      "z": 11,
++      "y": 0
++    },
++    {
++      "id": "obj_T21PC0101_pcwoman2",
++      "graphics_id": "SPRITE_PCWOMAN2",
++      "movement_type": 15,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_NOTHING",
++      "script": "std_trainer_card_explain",
++      "initial_dir": 1,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 2,
++      "z": 4,
++      "y": 0
++    },
++    {
++      "id": "obj_T21PC0101_pcwoman2_2",
++      "graphics_id": "SPRITE_PCWOMAN2",
++      "movement_type": 15,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_HIDE_COMM_CLUB_RECEPTIONISTS",
++      "script": "std_union_room",
++      "initial_dir": 1,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 6,
++      "z": 4,
++      "y": 0
++    },
++    {
++      "id": "obj_T21PC0101_pcwoman2_3",
++      "graphics_id": "SPRITE_PCWOMAN2",
++      "movement_type": 15,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_HIDE_COMM_CLUB_RECEPTIONISTS",
++      "script": "std_wireless_colosseum",
++      "initial_dir": 1,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 11,
++      "z": 4,
++      "y": 0
++    },
++    {
++      "id": "obj_T21PC0101_gsbigman",
++      "graphics_id": "SPRITE_GSBIGMAN",
++      "movement_type": 14,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_NOTHING",
++      "script": "_EV_scr_seq_T21PC0101_001 + 1",
++      "initial_dir": 0,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 6,
++      "z": 13,
++      "y": 0
++    },
++    {
++      "id": "obj_T21PC0101_gsgentleman",
++      "graphics_id": "SPRITE_GSGENTLEMAN",
++      "movement_type": 5,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_NOTHING",
++      "script": "_EV_scr_seq_T21PC0101_002 + 1",
++      "initial_dir": 2,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 1,
++      "movement_range_z": 0,
++      "x": 11,
++      "z": 16,
++      "y": 0
++    },
++    {
++      "id": "obj_T21PC0101_gswoman1",
++      "graphics_id": "SPRITE_GSWOMAN1",
++      "movement_type": 14,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_NOTHING",
++      "script": "_EV_scr_seq_T21PC0101_003 + 1",
++      "initial_dir": 0,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 2,
++      "z": 16,
++      "y": 0
++    },
++    {
++      "id": "obj_T21PC0101_pcwoman1_2",
++      "graphics_id": "SPRITE_PCWOMAN1",
++      "movement_type": 0,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_HIDE_WIFI_CLUB_CLOSED_LADY",
++      "script": "std_wifi_club_closed",
++      "initial_dir": 2,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 13,
++      "z": 17,
++      "y": 0
++    },
++    {
++      "id": "obj_T21PC0101_pcwoman2_4",
++      "graphics_id": "SPRITE_PCWOMAN2",
++      "movement_type": 15,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_HIDE_COMM_CLUB_CLOSED_LADIES",
++      "script": "_EV_scr_seq_T21PC0101_004 + 1",
++      "initial_dir": 1,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 6,
++      "z": 4,
++      "y": 0
++    },
++    {
++      "id": "obj_T21PC0101_pcwoman2_5",
++      "graphics_id": "SPRITE_PCWOMAN2",
++      "movement_type": 15,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_HIDE_COMM_CLUB_CLOSED_LADIES",
++      "script": "_EV_scr_seq_T21PC0101_005 + 1",
++      "initial_dir": 1,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 11,
++      "z": 4,
++      "y": 0
++    },
++    {
++      "id": "obj_T21PC0101_reminder",
++      "graphics_id": "SPRITE_GSWOMAN1",
++      "movement_type": 15,
++      "trainer_type": 0,
++      "hidden_flag": "FLAG_NOTHING",
++      "script": "_EV_scr_seq_T21PC0101_006 + 1",
++      "initial_dir": 3,
++      "param0": 0,
++      "param1": 0,
++      "param2": 0,
++      "movement_range_x": 0,
++      "movement_range_z": 0,
++      "x": 1,
++      "z": 10,
++      "y": 0
++    }
++  ],
++  "warp_events": [
++    {
++      "x": 8,
++      "z": 19,
++      "dest_header_id": "MAP_T21",
++      "dest_warp_id": 0,
++      "y": 0
++    },
++    {
++      "x": 14,
++      "z": 17,
++      "dest_header_id": "MAP_T21PC0102",
++      "dest_warp_id": 0,
++      "y": 0
++    }
++  ]
++}
+diff --git a/data/scr_seq/include/event_T21PC0101.inc b/data/scr_seq/include/event_T21PC0101.inc
+new file mode 100644
+index 000000000..a8672ea64
+--- /dev/null
++++ b/data/scr_seq/include/event_T21PC0101.inc
+@@ -0,0 +1,24 @@
++.ifndef SCR_SEQ_T21PC0101_H_
++.definelabel SCR_SEQ_T21PC0101_H_, 0
++
++.equ _EV_scr_seq_T21PC0101_000, 0
++.equ _EV_scr_seq_T21PC0101_001, 1
++.equ _EV_scr_seq_T21PC0101_002, 2
++.equ _EV_scr_seq_T21PC0101_003, 3
++.equ _EV_scr_seq_T21PC0101_004, 4
++.equ _EV_scr_seq_T21PC0101_005, 5
++.equ _EV_scr_seq_T21PC0101_006, 6
++
++.equ obj_T21PC0101_pcwoman1, 0
++.equ obj_T21PC0101_pcwoman2, 1
++.equ obj_T21PC0101_pcwoman2_2, 2
++.equ obj_T21PC0101_pcwoman2_3, 3
++.equ obj_T21PC0101_gsbigman, 4
++.equ obj_T21PC0101_gsgentleman, 5
++.equ obj_T21PC0101_gswoman1, 6
++.equ obj_T21PC0101_pcwoman1_2, 7
++.equ obj_T21PC0101_pcwoman2_4, 8
++.equ obj_T21PC0101_pcwoman2_5, 9
++.equ obj_T21PC0101_reminder, 10
++
++.endif //SCR_SEQ_T21PC0101_H_
+diff --git a/data/scr_seq/include/event_T30R0601.inc b/data/scr_seq/include/event_T30R0601.inc
+new file mode 100644
+index 000000000..263c96734
+--- /dev/null
++++ b/data/scr_seq/include/event_T30R0601.inc
+@@ -0,0 +1,16 @@
++.ifndef SCR_SEQ_T30R0601_H_
++.definelabel SCR_SEQ_T30R0601_H_, 0
++
++.equ _EV_scr_seq_T30R0601_000, 0
++.equ _EV_scr_seq_T30R0601_001, 1
++.equ _EV_scr_seq_T30R0601_002, 2
++.equ _EV_scr_seq_T30R0601_003, 3
++.equ _EV_scr_seq_T30R0601_004, 4
++
++.equ obj_T30R0601_gsmiddleman1, 0
++.equ obj_T30R0601_gsbigman, 1
++.equ obj_T30R0601_gsoldman1, 2
++.equ obj_T30R0601_gsoldwoman1, 3
++.equ obj_T30R0601_babyboy1_2, 4
++
++.endif //SCR_SEQ_T30R0601_H_
+diff --git a/data/scr_seq/scr_seq_0852_T21PC0101.s b/data/scr_seq/scr_seq_0852_T21PC0101.s
+new file mode 100644
+index 000000000..faecfea93
+--- /dev/null
++++ b/data/scr_seq/scr_seq_0852_T21PC0101.s
+@@ -0,0 +1,136 @@
++.include "asm/include/interop_macros.inc"
++
++.include "asm/include/scriptmacros.inc"
++.include "asm/include/flags.inc"
++.include "asm/include/soundeffects.inc"
++.include "asm/include/vars.inc"
++
++.include "asm/include/events.inc"
++.include "asm/include/game_stats.inc"
++.include "asm/include/maps.inc"
++.include "asm/include/map_sections.inc"
++.include "asm/include/movements.inc"
++.include "asm/include/rankings.inc"
++.include "asm/include/spawns.inc"
++.include "asm/include/std_scripts.inc"
++.include "asm/include/trainers.inc"
++
++#include "constants/item.h"
++#include "constants/moves.h"
++#include "constants/species.h"
++
++.include "data/scr_seq/include/event_T21PC0101.inc"
++
++
++// text archive to grab from: 552.txt
++
++.data
++
++
++scrdef scr_seq_T21PC0101_000
++scrdef scr_seq_T21PC0101_001
++scrdef scr_seq_T21PC0101_002
++scrdef scr_seq_T21PC0101_003
++scrdef scr_seq_T21PC0101_004
++scrdef scr_seq_T21PC0101_005
++scrdef scr_seq_T21PC0101_006
++scrdef_end
++
++scr_seq_T21PC0101_000:
++	setvar VAR_SPECIAL_x8007, 0
++	callstd std_nurse_joy
++	end
++
++scr_seq_T21PC0101_004:
++	simple_npc_msg 4
++	end
++
++scr_seq_T21PC0101_005:
++	simple_npc_msg 5
++	end
++
++scr_seq_T21PC0101_003:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	compare VAR_SCENE_ELMS_LAB, 3
++	goto_if_lt _006A
++	npc_msg 3
++	goto _006D
++
++_006A:
++	npc_msg 2
++_006D:
++	wait_button
++	closemsg
++	releaseall
++	end
++
++scr_seq_T21PC0101_001:
++	simple_npc_msg 0
++	end
++
++scr_seq_T21PC0101_002:
++	simple_npc_msg 1
++	end
++	.balign 4
++
++// a second Move Reminder, free (tools/hack/move_reminder.py)
++scr_seq_T21PC0101_006:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	npc_msg 6
++	closemsg
++	fade_screen 6, 1, 0, RGB_BLACK
++	wait_fade
++	party_select_ui
++	get_party_selection VAR_SPECIAL_x8005
++	restore_overworld
++	fade_screen 6, 1, 1, RGB_BLACK
++	wait_fade
++	compare VAR_SPECIAL_x8005, 255
++	goto_if_eq _reminder_bye
++	get_partymon_species VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _reminder_egg
++	scrcmd_466 VAR_SPECIAL_RESULT, VAR_SPECIAL_x8005
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _reminder_none
++	npc_msg 7
++	closemsg
++	fade_screen 6, 1, 0, RGB_BLACK
++	wait_fade
++	move_relearner_init VAR_SPECIAL_x8005
++	move_relearner_get_result VAR_SPECIAL_RESULT
++	restore_overworld
++	fade_screen 6, 1, 1, RGB_BLACK
++	wait_fade
++	compare VAR_SPECIAL_RESULT, 255
++	goto_if_eq _reminder_bye
++	npc_msg 8
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_reminder_bye:
++	npc_msg 9
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_reminder_none:
++	npc_msg 10
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_reminder_egg:
++	npc_msg 11
++	wait_button
++	closemsg
++	releaseall
++	end
+diff --git a/data/scr_seq/scr_seq_0948_T30R0601.s b/data/scr_seq/scr_seq_0948_T30R0601.s
+new file mode 100644
+index 000000000..87eac1564
+--- /dev/null
++++ b/data/scr_seq/scr_seq_0948_T30R0601.s
+@@ -0,0 +1,544 @@
++.include "asm/include/interop_macros.inc"
++
++.include "asm/include/scriptmacros.inc"
++.include "asm/include/flags.inc"
++.include "asm/include/soundeffects.inc"
++.include "asm/include/vars.inc"
++
++.include "asm/include/events.inc"
++.include "asm/include/game_stats.inc"
++.include "asm/include/maps.inc"
++.include "asm/include/map_sections.inc"
++.include "asm/include/movements.inc"
++.include "asm/include/rankings.inc"
++.include "asm/include/spawns.inc"
++.include "asm/include/std_scripts.inc"
++.include "asm/include/trainers.inc"
++
++#include "constants/item.h"
++#include "constants/moves.h"
++#include "constants/species.h"
++
++.include "data/scr_seq/include/event_T30R0601.inc"
++
++
++// text archive to grab from: 635.txt
++
++.data
++
++
++scrdef scr_seq_T30R0601_000
++scrdef scr_seq_T30R0601_001
++scrdef scr_seq_T30R0601_002
++scrdef scr_seq_T30R0601_003
++scrdef scr_seq_T30R0601_004
++scrdef_end
++
++scr_seq_T30R0601_000:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	goto_if_set FLAG_MAPTEMP_001, _0036
++	npc_msg 0
++	setflag FLAG_MAPTEMP_001
++	goto _0036
++
++_0036:
++	npc_msg 1
++	touchscreen_menu_hide
++	getmenuchoice VAR_SPECIAL_RESULT
++	touchscreen_menu_show
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _005D
++	compare VAR_SPECIAL_RESULT, 1
++	goto_if_eq _014A
++	end
++
++_005D:
++	npc_msg 2
++	closemsg
++	goto _0068
++
++_0068:
++	fade_screen 6, 1, 0, RGB_BLACK
++	wait_fade
++	party_select_ui
++	get_party_selection VAR_SPECIAL_x8002
++	restore_overworld
++	fade_screen 6, 1, 1, RGB_BLACK
++	wait_fade
++	compare VAR_SPECIAL_x8002, 255
++	goto_if_eq _014A
++	get_partymon_species VAR_SPECIAL_x8002, VAR_SPECIAL_x8001
++	compare VAR_SPECIAL_x8001, 0
++	goto_if_eq _0134
++	count_mon_moves VAR_SPECIAL_RESULT, VAR_SPECIAL_x8002
++	compare VAR_SPECIAL_RESULT, 1
++	goto_if_eq _013F
++	npc_msg 6
++	closemsg
++	fade_screen 6, 1, 0, RGB_BLACK
++	wait_fade
++	scrcmd_394 VAR_SPECIAL_x8002
++	scrcmd_395 VAR_SPECIAL_x8001
++	restore_overworld
++	fade_screen 6, 1, 1, RGB_BLACK
++	wait_fade
++	compare VAR_SPECIAL_x8001, 255
++	goto_if_eq _005D
++	buffer_party_mon_move_name 0, VAR_SPECIAL_x8002, VAR_SPECIAL_x8001
++	npc_msg 7
++	touchscreen_menu_hide
++	getmenuchoice VAR_SPECIAL_RESULT
++	touchscreen_menu_show
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _011D
++	compare VAR_SPECIAL_RESULT, 1
++	goto_if_eq _005D
++	end
++
++_011D:
++	mon_forget_move VAR_SPECIAL_x8002, VAR_SPECIAL_x8001
++	play_fanfare SEQ_ME_WASURE
++	wait_fanfare
++	npc_msg 8
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_0134:
++	npc_msg 5
++	closemsg
++	goto _0068
++
++_013F:
++	npc_msg 4
++	closemsg
++	goto _0068
++
++_014A:
++	npc_msg 3
++	wait_button
++	closemsg
++	releaseall
++	end
++
++scr_seq_T30R0601_001:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	goto_if_unset FLAG_MET_MOVE_MANIAC, _0238
++	npc_msg 10
++_maniac_choose:
++	npc_msg 12
++	closemsg
++	fade_screen 6, 1, 0, RGB_BLACK
++	wait_fade
++	party_select_ui
++	get_party_selection VAR_SPECIAL_x8005
++	restore_overworld
++	fade_screen 6, 1, 1, RGB_BLACK
++	wait_fade
++	compare VAR_SPECIAL_x8005, 255
++	goto_if_eq _022D
++	get_partymon_species VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _0247
++	scrcmd_466 VAR_SPECIAL_RESULT, VAR_SPECIAL_x8005
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _0222
++	npc_msg 13
++	closemsg
++	fade_screen 6, 1, 0, RGB_BLACK
++	wait_fade
++	move_relearner_init VAR_SPECIAL_x8005
++	move_relearner_get_result VAR_SPECIAL_RESULT
++	restore_overworld
++	fade_screen 6, 1, 1, RGB_BLACK
++	wait_fade
++	compare VAR_SPECIAL_RESULT, 255
++	goto_if_eq _022D
++	npc_msg 25
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_0222:
++	npc_msg 14
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_022D:
++	npc_msg 11
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_0238:
++	setflag FLAG_MET_MOVE_MANIAC
++	npc_msg 9
++	goto _maniac_choose
++
++_0247:
++	npc_msg 15
++	wait_button
++	closemsg
++	releaseall
++	end
++
++scr_seq_T30R0601_002:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	goto_if_set FLAG_UNK_186, _0287
++	setflag FLAG_UNK_186
++	npc_msg 26
++	touchscreen_menu_hide
++	getmenuchoice VAR_SPECIAL_RESULT
++	touchscreen_menu_show
++	compare VAR_SPECIAL_RESULT, 1
++	goto_if_eq _02A5
++	goto _02EC
++
++_0287:
++	npc_msg 27
++	touchscreen_menu_hide
++	getmenuchoice VAR_SPECIAL_RESULT
++	touchscreen_menu_show
++	compare VAR_SPECIAL_RESULT, 1
++	goto_if_eq _02A5
++	goto _02EC
++
++_02A5:
++	npc_msg 28
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_02B0:
++	npc_msg 29
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_02BB:
++	npc_msg 32
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_02C6:
++	npc_msg 33
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_02D1:
++	buffer_move_name 0, MOVE_DRACO_METEOR
++	npc_msg 34
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_02E1:
++	npc_msg 31
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_02EC:
++	get_party_count VAR_TEMP_x4000
++_02F0:
++	subvar VAR_TEMP_x4000, 1
++	get_partymon_species VAR_TEMP_x4000, VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _0346
++	get_mon_types VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_TEMP_x4000
++	compare VAR_SPECIAL_x8004, 16
++	goto_if_eq _0331
++	compare VAR_SPECIAL_x8005, 16
++	goto_if_eq _0331
++	goto _0346
++
++_0331:
++	mon_has_move VAR_SPECIAL_RESULT, MOVE_DRACO_METEOR, VAR_TEMP_x4000
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _0359
++_0346:
++	compare VAR_TEMP_x4000, 0
++	goto_if_ne _02F0
++	goto _02B0
++
++_0359:
++	npc_msg 30
++	closemsg
++	fade_screen 6, 1, 0, RGB_BLACK
++	wait_fade
++	party_select_ui
++	get_party_selection VAR_SPECIAL_x8000
++	restore_overworld
++	fade_screen 6, 1, 1, RGB_BLACK
++	wait_fade
++	compare VAR_SPECIAL_x8000, 255
++	goto_if_eq _02A5
++	get_partymon_species VAR_SPECIAL_x8000, VAR_SPECIAL_x8001
++	compare VAR_SPECIAL_x8001, 0
++	goto_if_eq _02C6
++	call _042B
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _02BB
++	mon_has_move VAR_SPECIAL_RESULT, MOVE_DRACO_METEOR, VAR_SPECIAL_x8000
++	compare VAR_SPECIAL_RESULT, 1
++	goto_if_eq _02D1
++	mon_get_friendship VAR_SPECIAL_RESULT, VAR_SPECIAL_x8000
++	compare VAR_SPECIAL_RESULT, 255
++	goto_if_lt _02E1
++	buffer_mon_species_name 0, VAR_SPECIAL_x8000
++	npc_msg 62
++	closemsg
++	setvar VAR_SPECIAL_x8003, 434
++	goto _03EF
++
++_03EF:
++	fade_screen 6, 1, 0, RGB_BLACK
++	wait_fade
++	move_tutor_init VAR_SPECIAL_x8000, MOVE_DRACO_METEOR
++	move_relearner_get_result VAR_SPECIAL_RESULT
++	restore_overworld
++	fade_screen 6, 1, 1, RGB_BLACK
++	wait_fade
++	compare VAR_SPECIAL_RESULT, 255
++	goto_if_eq _02A5
++	npc_msg 42
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_042B:
++	get_mon_types VAR_SPECIAL_x8004, VAR_SPECIAL_x8005, VAR_SPECIAL_x8000
++	compare VAR_SPECIAL_x8004, 16
++	goto_if_eq _0455
++	compare VAR_SPECIAL_x8005, 16
++	goto_if_eq _0455
++	setvar VAR_SPECIAL_RESULT, 0
++	return
++
++_0455:
++	setvar VAR_SPECIAL_RESULT, 1
++	return
++
++scr_seq_T30R0601_003:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	goto_if_set FLAG_UNK_187, _0490
++	setflag FLAG_UNK_187
++	npc_msg 43
++	touchscreen_menu_hide
++	getmenuchoice VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _04AC
++	goto _06EE
++
++_0490:
++	npc_msg 44
++	touchscreen_menu_hide
++	getmenuchoice VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _04AC
++	goto _06EE
++
++_04AC:
++	npc_msg 45
++	closemsg
++	fade_screen 6, 1, 0, RGB_BLACK
++	wait_fade
++	party_select_ui
++	get_party_selection VAR_SPECIAL_x8000
++	restore_overworld
++	fade_screen 6, 1, 1, RGB_BLACK
++	wait_fade
++	compare VAR_SPECIAL_x8000, 255
++	goto_if_eq _06EE
++	get_partymon_species VAR_SPECIAL_x8000, VAR_SPECIAL_x8001
++	compare VAR_SPECIAL_x8001, 0
++	goto_if_eq _0708
++	call _05F4
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _06FB
++	copyvar VAR_SPECIAL_x8002, VAR_SPECIAL_RESULT
++	call _06B0
++	compare VAR_SPECIAL_RESULT, 1
++	goto_if_eq _0722
++	mon_get_friendship VAR_SPECIAL_RESULT, VAR_SPECIAL_x8000
++	compare VAR_SPECIAL_RESULT, 255
++	goto_if_lt _0715
++	buffer_mon_species_name 0, VAR_SPECIAL_x8000
++	compare VAR_SPECIAL_x8002, 1
++	goto_if_eq _0555
++	compare VAR_SPECIAL_x8002, 2
++	goto_if_eq _0577
++	goto _0599
++
++_0555:
++	npc_msg 52
++	touchscreen_menu_hide
++	getmenuchoice VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 1
++	goto_if_eq _06EE
++	setvar VAR_SPECIAL_x8003, 307
++	goto _05BB
++
++_0577:
++	npc_msg 53
++	touchscreen_menu_hide
++	getmenuchoice VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 1
++	goto_if_eq _06EE
++	setvar VAR_SPECIAL_x8003, 308
++	goto _05BB
++
++_0599:
++	npc_msg 54
++	touchscreen_menu_hide
++	getmenuchoice VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 1
++	goto_if_eq _06EE
++	setvar VAR_SPECIAL_x8003, 338
++	goto _05BB
++
++_05BB:
++	closemsg
++	fade_screen 6, 1, 0, RGB_BLACK
++	wait_fade
++	move_tutor_init VAR_SPECIAL_x8000, VAR_SPECIAL_x8003
++	move_relearner_get_result VAR_SPECIAL_RESULT
++	restore_overworld
++	fade_screen 6, 1, 1, RGB_BLACK
++	wait_fade
++	compare VAR_SPECIAL_RESULT, 255
++	goto_if_eq _06EE
++	touchscreen_menu_show
++	releaseall
++	end
++
++_05F4:
++	compare VAR_SPECIAL_x8001, 6
++	goto_if_eq _0698
++	compare VAR_SPECIAL_x8001, 157
++	goto_if_eq _0698
++	compare VAR_SPECIAL_x8001, 257
++	goto_if_eq _0698
++	compare VAR_SPECIAL_x8001, 392
++	goto_if_eq _0698
++	compare VAR_SPECIAL_x8001, 9
++	goto_if_eq _06A0
++	compare VAR_SPECIAL_x8001, 160
++	goto_if_eq _06A0
++	compare VAR_SPECIAL_x8001, 260
++	goto_if_eq _06A0
++	compare VAR_SPECIAL_x8001, 395
++	goto_if_eq _06A0
++	compare VAR_SPECIAL_x8001, 3
++	goto_if_eq _06A8
++	compare VAR_SPECIAL_x8001, 154
++	goto_if_eq _06A8
++	compare VAR_SPECIAL_x8001, 254
++	goto_if_eq _06A8
++	compare VAR_SPECIAL_x8001, 389
++	goto_if_eq _06A8
++	setvar VAR_SPECIAL_RESULT, 0
++	return
++
++_0698:
++	setvar VAR_SPECIAL_RESULT, 1
++	return
++
++_06A0:
++	setvar VAR_SPECIAL_RESULT, 2
++	return
++
++_06A8:
++	setvar VAR_SPECIAL_RESULT, 3
++	return
++
++_06B0:
++	compare VAR_SPECIAL_x8002, 1
++	goto_if_eq _06D0
++	compare VAR_SPECIAL_x8002, 2
++	goto_if_eq _06DA
++	goto _06E4
++
++_06D0:
++	mon_has_move VAR_SPECIAL_RESULT, MOVE_BLAST_BURN, VAR_SPECIAL_x8000
++	return
++
++_06DA:
++	mon_has_move VAR_SPECIAL_RESULT, MOVE_HYDRO_CANNON, VAR_SPECIAL_x8000
++	return
++
++_06E4:
++	mon_has_move VAR_SPECIAL_RESULT, MOVE_FRENZY_PLANT, VAR_SPECIAL_x8000
++	return
++
++_06EE:
++	npc_msg 46
++	wait_button
++	closemsg
++	touchscreen_menu_show
++	releaseall
++	end
++
++_06FB:
++	npc_msg 48
++	wait_button
++	closemsg
++	touchscreen_menu_show
++	releaseall
++	end
++
++_0708:
++	npc_msg 49
++	wait_button
++	closemsg
++	touchscreen_menu_show
++	releaseall
++	end
++
++_0715:
++	npc_msg 50
++	wait_button
++	closemsg
++	touchscreen_menu_show
++	releaseall
++	end
++
++_0722:
++	npc_msg 51
++	wait_button
++	closemsg
++	touchscreen_menu_show
++	releaseall
++	end
++
++scr_seq_T30R0601_004:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	npc_msg 61
++	wait_button
++	closemsg
++	releaseall
++	end
++	.balign 4
+diff --git a/data/text/custom/552.txt b/data/text/custom/552.txt
+new file mode 100644
+index 000000000..144f27626
+--- /dev/null
++++ b/data/text/custom/552.txt
+@@ -0,0 +1,12 @@
++It’s great. I can store any number\nof Pokémon, and it’s all free.
++That PC is free for any Trainer to use.
++The Communication Center upstairs\nwas just built.\rBut they’re still finishing it up.
++The Communication Center upstairs\nwas just built.\rI traded Pokémon there already!
++Welcome to the Pokémon Wireless\nClub Union Room.\r...Oh, I was just trying to learn that\nline by heart.\rIt’ll take a little longer before\nwe open the Union Room.
++Welcome to the Pokémon\nCommunication Club Colosseum.\r...Oh, I was just trying to learn that\nline by heart.\rIt’ll take a little longer before\nwe open the Colosseum.
++I make Pokémon remember moves they\ncould have learned as they leveled up.\rIt’s free, as often as you like!\rWhich Pokémon needs tutoring?\r
++Which move should I make it remember?\r
++There! Come back whenever another\nmove needs remembering.
++Come back if one of your Pokémon\nneeds to remember a move.
++Sorry...\rThere isn’t any move I can make\nthat Pokémon remember.
++An Egg can’t remember a move.\nIt hasn’t even hatched!
+diff --git a/data/text/custom/635.txt b/data/text/custom/635.txt
+new file mode 100644
+index 000000000..608e795a0
+--- /dev/null
++++ b/data/text/custom/635.txt
+@@ -0,0 +1,63 @@
++Um...\nWho did you say I was again?\r...\n...\rOh, yes, I remember now!\nI’m the Move Deleter!\r
++You’ve come to make me force your\nPokémon to forget some moves? {YESNO 0}
++Which Pokémon should forget a move?\r
++Remember me if there are moves that\nneed to be forgotten.
++That Pokémon knows only one move,\nso it can’t be forgotten...\r
++What? That’s an Egg.\nNo Egg should know any moves.\r
++OK, then.\nWhich move should be forgotten?\r
++Hm! The move {STRVAR_1 6, 0, 0}?\nShould that move be forgotten? {YESNO 0}
++It worked perfectly!\rYour Pokémon has forgotten the move\n{STRVAR_1 6, 0, 0} completely.
++Me?\nI’m the Pokémon Move Maniac.\rI know every move that Pokémon learn\nwhile they’re leveling up, and I can\fmake Pokémon remember those moves.\rAnd I’ll do it for free, as often\nas you like!\r
++Want me to make one of your Pokémon\nremember a move?\r
++If any of your Pokémon needs to\nremember a move, come back any time.
++Which Pokémon needs tutoring?\r
++Which move should I make it remember?\r
++Sorry...\rThere isn’t any move I can make\nthat Pokémon remember.
++Hunh?\rDon’t you think it’d be tough for\nan Egg to remember a move?\rIt’s not even hatched.
++                        
++                 
++                                 
++                     
++                                                                                           
++                                  
++                           
++                      
++                                                                               
++There! Come back whenever another\nmove needs remembering.
++Hohoho...\nThey call me Grandma Wilma.\rI sense a slight talent as a\nDragon Tamer in you.\rWould you like me to teach a move\nto one of your Pokémon? {YESNO 0}
++Ah, it is you again...\rWould you like me to teach the best\nDragon-type move I know to one of\fyour Pokémon? {YESNO 0}
++Well, perhaps if you change your\nmind, do come back.
++I see...\nI like your sense of adventure.\rHowever, none of the Pokémon with\nyou now can learn the move.
++Fine, fine, now pick the Pokémon\nI should teach the move to.\r
++Sorry to disappoint you...\rThat Pokémon you have can learn this\nmove, but it hasn’t come to trust\fyou fully yet...\rUntil then, I can’t make it learn\nthis move.
++Sorry to disappoint you...\nThat Pokémon can’t learn this move.
++Hmm...\rTeaching a move to an Egg is\na challenge that’s beyond me.
++Oh? That Pokémon already\nknows {STRVAR_1 6, 0, 0}.
++                            
++                         
++                                                                                        
++                             
++                         
++                      
++                                                                            
++Draco Meteor’s destructive power\nis awe inspiring.\rHowever, using it will also lower\nthe user’s Special Attack.
++Your quest for power has brought\nyou here...\rVery well.\rLet me reward your passion with some\nabsolutely astounding moves.\rThey’re the ultimate moves!\rShall I teach them to\nyour Pokémon? {YESNO 0}
++The ultimate moves!\rShall I teach them to\nyour Pokémon? {YESNO 0}
++To which Pokémon should I teach\na move?\r
++Hmm... Well, that is fine, as well.\nVisit if you have a change of heart.
++                          
++That Pokémon can’t learn a move!\nRead the memo there! Keh!
++Teach a move to an Egg?\nImpossible even for me! Keh!
++You’ve not bonded strongly enough\nwith your Pokémon! Keh!
++That Pokémon already knows the move\nI’ve offered to teach! Keh!
++I should teach Blast Burn to\nyour {STRVAR_1 0, 0, 0}? {YESNO 0}
++I should teach Hydro Cannon to\nyour {STRVAR_1 0, 0, 0}? {YESNO 0}
++I should teach Frenzy Plant to\nyour {STRVAR_1 0, 0, 0}? {YESNO 0}
++                         
++                                                                                        
++                      
++                                                                            
++                             
++                         
++To the Pokémon listed here,\nthe ultimate moves may be taught!\rThe blazing Fire-type Pokémon\n{CURSOR_X 7}CHARIZARD TYPHLOSION\f{CURSOR_X 7}BLAZIKEN INFERNAPE\rThe restless Water-type Pokémon\n{CURSOR_X 7}BLASTOISE FERALIGATR\f{CURSOR_X 7}SWAMPERT EMPOLEON\rThe quiet Grass-type Pokémon\n{CURSOR_X 7}VENUSAUR MEGANIUM\f{CURSOR_X 7}SCEPTILE TORTERRA
++Well then, I will teach {STRVAR_1 0, 0, 0}\na move...\r
+diff --git a/tools/hack/move_reminder.py b/tools/hack/move_reminder.py
+new file mode 100644
+index 000000000..26bd04262
+--- /dev/null
++++ b/tools/hack/move_reminder.py
+@@ -0,0 +1,180 @@
++#!/usr/bin/env python3
++"""The Move Reminder for free, and a second one from the start.
++
++HeartGold's Move Maniac, in a house in Blackthorn City, makes a Pokemon remember a move it could have learned by
++level for one Heart Scale each time. This makes him free, and puts a second reminder, a woman doing the same, in
++Cherrygrove City's Pokemon Center, so moves can be remembered from the first town on.
++
++It needs the vanilla dump of both maps (make dump_scripts, as for fossil_reviver.py):
++    python3 tools/hack/move_reminder.py /path/to/dumped/hg-engine
++"""
++import json
++import os
++import sys
++
++# Blackthorn City's Move Maniac (T30R0601's script 1), and his lines in text bank 635
++MANIAC_SCRIPT = "data/scr_seq/scr_seq_0948_T30R0601.s"
++MANIAC_INCLUDE = "data/scr_seq/include/event_T30R0601.inc"     # unchanged, but the script needs it beside it
++MANIAC_TEXT = "data/text/custom/635.txt"
++MANIAC_LINES = {
++    9: r"Me?\nI’m the Pokémon Move Maniac.\rI know every move that Pokémon learn\nwhile they’re leveling up, and I can\f"
++       r"make Pokémon remember those moves.\rAnd I’ll do it for free, as often\nas you like!\r",
++    10: r"Want me to make one of your Pokémon\nremember a move?\r",
++    11: r"If any of your Pokémon needs to\nremember a move, come back any time.",
++    25: r"There! Come back whenever another\nmove needs remembering.",
++}
++
++# Cherrygrove City's Pokemon Center: a second reminder, its script 6 and object 10, in text bank 552
++CENTER_SCRIPT = "data/scr_seq/scr_seq_0852_T21PC0101.s"
++CENTER_INCLUDE = "data/scr_seq/include/event_T21PC0101.inc"
++CENTER_EVENTS = "data/eventdata/zone_event/066_T21PC0101.json"
++CENTER_TEXT = "data/text/custom/552.txt"
++NEW_SCRIPT = 6
++NEW_OBJECT = 10
++POSITION = (1, 10)          # the corridor down the left wall, out of everyone's way; she faces right, into it
++
++CENTER_LINES = [
++    r"I make Pokémon remember moves they\ncould have learned as they leveled up.\rIt’s free, as often as you like!\r"
++    r"Which Pokémon needs tutoring?\r",
++    r"Which move should I make it remember?\r",
++    r"There! Come back whenever another\nmove needs remembering.",
++    r"Come back if one of your Pokémon\nneeds to remember a move.",
++    r"Sorry...\rThere isn’t any move I can make\nthat Pokémon remember.",
++    r"An Egg can’t remember a move.\nIt hasn’t even hatched!",
++]
++
++CENTER_REMINDER = """
++// a second Move Reminder, free (tools/hack/move_reminder.py)
++scr_seq_T21PC0101_{n:03d}:
++	play_se SEQ_SE_DP_SELECT
++	lockall
++	faceplayer
++	npc_msg {m0}
++	closemsg
++	fade_screen 6, 1, 0, RGB_BLACK
++	wait_fade
++	party_select_ui
++	get_party_selection VAR_SPECIAL_x8005
++	restore_overworld
++	fade_screen 6, 1, 1, RGB_BLACK
++	wait_fade
++	compare VAR_SPECIAL_x8005, 255
++	goto_if_eq _reminder_bye
++	get_partymon_species VAR_SPECIAL_x8005, VAR_SPECIAL_RESULT
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _reminder_egg
++	scrcmd_466 VAR_SPECIAL_RESULT, VAR_SPECIAL_x8005
++	compare VAR_SPECIAL_RESULT, 0
++	goto_if_eq _reminder_none
++	npc_msg {m1}
++	closemsg
++	fade_screen 6, 1, 0, RGB_BLACK
++	wait_fade
++	move_relearner_init VAR_SPECIAL_x8005
++	move_relearner_get_result VAR_SPECIAL_RESULT
++	restore_overworld
++	fade_screen 6, 1, 1, RGB_BLACK
++	wait_fade
++	compare VAR_SPECIAL_RESULT, 255
++	goto_if_eq _reminder_bye
++	npc_msg {m2}
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_reminder_bye:
++	npc_msg {m3}
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_reminder_none:
++	npc_msg {m4}
++	wait_button
++	closemsg
++	releaseall
++	end
++
++_reminder_egg:
++	npc_msg {m5}
++	wait_button
++	closemsg
++	releaseall
++	end
++"""
++
++
++def read_lines(text):
++    lines = text.split("\r\n")
++    if lines[-1] == "":
++        lines.pop()
++    return lines
++
++
++def replace(text, old, new):
++    if text.count(old) != 1:
++        sys.exit("expected exactly one of: %r" % old[:60])
++    return text.replace(old, new)
++
++
++def main():
++    dump = sys.argv[1]
++    read = lambda path: open(os.path.join(dump, path), encoding="utf-8", newline="").read()
++    out = {}
++
++    # the Move Maniac: no Heart Scale asked for or taken; and his first meeting goes on to choosing a Pokemon
++    script = read(MANIAC_SCRIPT)
++    script = replace(script, "\thasitem ITEM_HEART_SCALE, 1, VAR_SPECIAL_RESULT\n\tcompare VAR_SPECIAL_RESULT, 0\n"
++                     "\tgoto_if_eq _022D\n", "")
++    script = replace(script, "\tnpc_msg 10\n\tnpc_msg 12\n", "\tnpc_msg 10\n_maniac_choose:\n\tnpc_msg 12\n")
++    script = replace(script, "\ttakeitem ITEM_HEART_SCALE, 1, VAR_SPECIAL_RESULT\n\tbuffer_players_name 3\n", "")
++    script = replace(script, "_0238:\n\tnpc_msg 9\n\twait_button\n\tclosemsg\n\treleaseall\n\tsetflag FLAG_MET_MOVE_MANIAC\n\tend",
++                     "_0238:\n\tsetflag FLAG_MET_MOVE_MANIAC\n\tnpc_msg 9\n\tgoto _maniac_choose")
++    out[MANIAC_SCRIPT] = script
++    out[MANIAC_INCLUDE] = read(MANIAC_INCLUDE)
++    text = read_lines(read(MANIAC_TEXT))
++    for i, line in MANIAC_LINES.items():
++        text[i] = line
++    out[MANIAC_TEXT] = "\r\n".join(text) + "\r\n"
++
++    # the second reminder
++    text = read_lines(read(CENTER_TEXT))
++    first = len(text)
++    text += CENTER_LINES
++    out[CENTER_TEXT] = "\r\n".join(text) + "\r\n"
++    numbers = {"m%d" % k: first + k for k in range(len(CENTER_LINES))}
++    script = read(CENTER_SCRIPT)
++    script = replace(script, "scrdef_end", "scrdef scr_seq_T21PC0101_%03d\nscrdef_end" % NEW_SCRIPT)
++    out[CENTER_SCRIPT] = script.rstrip("\n") + "\n" + CENTER_REMINDER.format(n=NEW_SCRIPT, **numbers)
++    include = read(CENTER_INCLUDE)
++    include = replace(include, "\n\n.equ obj_T21PC0101_pcwoman1,",
++                      "\n.equ _EV_scr_seq_T21PC0101_%03d, %d\n\n.equ obj_T21PC0101_pcwoman1," % (NEW_SCRIPT, NEW_SCRIPT))
++    include = replace(include, "\n\n.endif", "\n.equ obj_T21PC0101_reminder, %d\n\n.endif" % NEW_OBJECT)
++    out[CENTER_INCLUDE] = include
++    events = json.loads(read(CENTER_EVENTS))
++    if len(events["object_events"]) != NEW_OBJECT:
++        sys.exit("unexpected number of objects in Cherrygrove's Pokemon Center")
++    events["object_events"].append({
++        "id": "obj_T21PC0101_reminder",
++        "graphics_id": "SPRITE_GSWOMAN1",
++        "movement_type": 15,
++        "trainer_type": 0,
++        "hidden_flag": "FLAG_NOTHING",
++        "script": "_EV_scr_seq_T21PC0101_%03d + 1" % NEW_SCRIPT,
++        "initial_dir": 3,      # facing right, into the corridor
++        "param0": 0, "param1": 0, "param2": 0,
++        "movement_range_x": 0, "movement_range_z": 0,
++        "x": POSITION[0], "z": POSITION[1], "y": 0,
++    })
++    out[CENTER_EVENTS] = json.dumps(events, indent=2) + "\n"
++
++    for path, content in out.items():
++        os.makedirs(os.path.dirname(path), exist_ok=True)
++        open(path, "w", encoding="utf-8", newline="").write(content)
++        print("wrote", path)
++
++
++if __name__ == "__main__":
++    main()
+-- 
+2.43.0
+
