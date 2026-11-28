@@ -340,7 +340,12 @@ Contest's Scyther and Pinsir are where HeartGold already had them.
   back). Smashing rocks at the Ruins of Alph can turn up the Helix and Dome
   Fossils and the Old Amber; in Cliff Cave, the Claw, Root, Skull and Armor
   Fossils.
-- The Safari Zone is unchanged.
+- **The Safari Zone isn't needed for anything.** It is unchanged, but every
+  one of the 154 species in its tables can be had elsewhere: 147 wild (Farfetch'd
+  on Routes 38, 39, 47 and 48 among them), and Azurill, Beldum, Ponyta,
+  Rhyhorn, Seedot, Shroomish and Voltorb by breeding the evolved forms caught
+  elsewhere. It has no item balls of its own, and the Safari Mart sells what
+  Vermilion's does. A player can skip it.
 - One Shiny Stone can still be picked up early in the National Park.
 
 The fossil reviver was played through in the emulator (Old Amber to
