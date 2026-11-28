@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- The Super Rod meets Lv. 62 Pokémon in Johto's water, as in Kanto's (patch
+  0037; it was 40). It is a post-game item, from Kanto's Route 12, and a team
+  is around Lv. 62-70 by then. Checked in the emulator on six Johto maps.
+
 ## v1.5
 
 - The rival's Feraligatr at Mt. Moon and Indigo Plateau (for a player who

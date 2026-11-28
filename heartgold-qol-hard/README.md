@@ -200,9 +200,10 @@ The levels, IVs, AI and every boss team are in.
   Surf) meets each water's surfing levels, Rock Smash follows Morty by the
   Ruins of Alph and Dark Cave and Chuck in Cianwood, and Headbutt trees
   follow Whitney up to Ilex Forest, where Headbutt is had, and the walking
-  band of their area after it. Route 29, the Old Rod (Lv. 10), the Super
-  Rod (Lv. 40, a post-game item) and Cliff Cave's Rock Smash rocks (there
-  only once the Champion is beaten) keep their levels.
+  band of their area after it. The Super Rod, a post-game item, meets Lv.
+  62 Pokémon in Johto as in Kanto. Route 29, the Old Rod (Lv. 10) and Cliff
+  Cave's Rock Smash rocks (there only once the Champion is beaten) keep
+  their levels.
 - **Boss teams.** Every boss from Falkner to Red has a new team: the Johto
   and Kanto Gym Leaders, your rival, the Team Rocket executives, the Kimono
   Girls, both Elite Four rounds, Lance, Blue, Red and the Gym Leader
@@ -431,7 +432,7 @@ The FireRed recipe, and where each part comes from here:
 | Trainer levels, IVs and AI | Done: `tools/hack/difficulty.py` |
 | Johto and League boss teams | Done: `tools/hack/boss_teams.py` |
 | Kanto leaders, Blue, Red, second Elite Four round and rematch teams | Done: `tools/hack/boss_teams.py` |
-| Johto wild levels | Done: `tools/hack/wild_levels.py`, `tools/hack/johto_wild.py`, `tools/hack/side_wild.py`, `tools/hack/surf_wild.py`, `tools/hack/cianwood_wild.py`, `tools/hack/extra_wild.py`, `tools/hack/league_wild.py` |
+| Johto wild levels | Done: `tools/hack/wild_levels.py`, `tools/hack/johto_wild.py`, `tools/hack/side_wild.py`, `tools/hack/surf_wild.py`, `tools/hack/cianwood_wild.py`, `tools/hack/extra_wild.py`, `tools/hack/super_rod.py`, `tools/hack/league_wild.py` |
 | Kanto wild levels | Done: `tools/hack/kanto_wild.py`, `tools/hack/kanto_headbutt.py` |
 | Every non-legendary Pokémon obtainable in Johto | Done: `tools/hack/encounters.py`, `tools/hack/fossil_reviver.py` |
 | Legendary encounters | Done: `tools/hack/legendaries.py` |
