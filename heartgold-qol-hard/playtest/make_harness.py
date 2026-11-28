@@ -12,8 +12,9 @@ script variables that battle_test.py writes through the emulator:
     0x400C         the trainer to fight
     0x400F         result, written after the battle: 1 lost, 2 won
 
-With 0x400E set to 1 it instead gives the party, badges, money and up to
-four items, and warps the player, for walk_test.py:
+It also gives up to four items (0x4038-0x403B, below) in every mode.
+With 0x400E set to 1 it instead gives the party, badges and money, and warps
+the player, for walk_test.py:
 
     0x400D         how many badges to give (0 to 16, in the game's order)
     0x400E         2 instead of 1: also release Latias and Latios to roam
@@ -64,7 +65,7 @@ _harness_walk:
 	compare 0x400E, 2
 	call_if_eq _harness_roamers
 %s	addmoney 500000
-%s	fade_screen 6, 1, 0, RGB_BLACK
+	fade_screen 6, 1, 0, RGB_BLACK
 	wait_fade
 	warp 0x403C, 0, 0x403D, 0x403E, 0x403F
 	fade_screen 6, 1, 1, RGB_BLACK
@@ -81,7 +82,7 @@ _harness_multi:
 	goto _harness_result
 
 _harness_party:
-%s	return
+%s%s	return
 
 _harness_roamers:
 	create_roamer 2
@@ -145,7 +146,7 @@ def main():
                      for i in range(16)) + "_harness_badges_done:\n"
     items = "".join(ITEM % (0x38 + i, i, 0x38 + i, i) for i in range(4))
     text, n = re.subn(r"^scr_seq_T20R0202_000:\n.*?(?=^scr_seq_T20R0202_001:)",
-                      lambda _: HARNESS % (badges, items, gives),
+                      lambda _: HARNESS % (badges, gives, items),
                       text, flags=re.S | re.M)
     if n != 1:
         sys.exit("could not find the bedroom PC script")

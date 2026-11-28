@@ -7,6 +7,9 @@ A short guide for a first run. It has no story spoilers beyond what bosses you w
 
 - Patch a US HeartGold ROM and start a new game (see the [README](../README.md)). Old saves won't work.
 - Text is Fast by default and battles run at 60 fps. Running Shoes work from the start (hold B).
+- **Optional challenge rules:** the woman downstairs in your house keeps a level cap (at the strongest level
+  on the next boss's team; Rare Candies stop there too) and a no-items rule for trainer battles. Both start
+  off; talk to her again any time to change them. For Set mode, choose Battle Style: Set in Options.
 - The Pokédex is in National mode from the beginning. A few extras the original unlocks with the National
   Dex (the Hoenn and Sinnoh radio, the wider Bug-Catching Contest, the Supreme Cup) open when you become
   Champion instead.

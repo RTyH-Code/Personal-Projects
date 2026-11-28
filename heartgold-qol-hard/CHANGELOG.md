@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased
+
+- Challenge rules you can turn on and off (patch 0039): a woman downstairs in
+  the player's house in New Bark Town sets a level cap at the strongest level
+  on the next boss's team (Rare Candies included) and no items in trainer
+  battles, for both sides. Both start off and can be changed at any time. Set
+  mode is the game's own Battle Style option. Checked in the emulator with
+  `playtest/challenge_test.py`.
+- A player's guide, [guide/PLAYING.md](guide/PLAYING.md), and the spoiler
+  guide regenerated for v1.7.
+
 ## v1.7
 
 - The seven Pokémon that could only be had by breeding are wild in Johto

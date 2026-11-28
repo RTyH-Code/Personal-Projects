@@ -56,6 +56,23 @@ that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md
   close to the bosses' levels without grinding (see
   [playtest/LEVEL_CURVE.md](playtest/LEVEL_CURVE.md)).
 - Mega Evolution, Primal Reversion and critical captures are switched off.
+- **Challenge rules you can turn on and off.** A woman downstairs in your
+  house in New Bark Town keeps two optional rules, and you can go back to
+  her at any time to change them (patch 0039, `tools/hack/challenge_rules.py`):
+  - a **level cap** at the strongest level on the next boss's team: the
+    lowest top level of the Johto Gym Leaders you haven't beaten (Falkner's
+    14 up to Clair's 47), then Lance's 58 until you are Champion, then the
+    lowest of the Kanto Gym Leaders you haven't beaten (Lt. Surge's 64 up to
+    Blue's 76), and Red's 95 with all sixteen badges. A Pokémon at the cap
+    gains no experience and Rare Candies stop there too;
+  - **no items in trainer battles**, for you and for your opponents.
+
+  Both are off in a new game. For Set mode, choose Battle Style: Set in the
+  game's own Options. In the emulator, the woman turned the level cap on and
+  off again; a Lv. 14 Pokémon with no badges gained no experience from a wild
+  battle with the cap on and 6 with it off; and with no items on, a Potion
+  chosen from the bag in a trainer battle didn't get as far as choosing a
+  Pokémon (`playtest/challenge_test.py`).
 - **National Dex from the start.** The Pokédex has its National mode from
   the first moment, and Professor Oak rates the national count over the
   phone. What HeartGold unlocks along with the National Dex now waits until
@@ -436,7 +453,7 @@ The FireRed recipe, and where each part comes from here:
 | Fairy type, hidden abilities, later moves, abilities and Pokémon | hg-engine |
 | Reusable TMs, forgettable HMs, modern Exp. formula, EV/IV viewer | Done: hg-engine config switches |
 | National Dex from the start, with its unlocks moved to a Champion check | Done |
-| Set mode, level cap and no-items rules as player options | Undecided: hg-engine only offers them as fixed rules |
+| Set mode, level cap and no-items rules as player options | Done: `tools/hack/challenge_rules.py`; Set mode is the game's own Battle Style option |
 | Trainer levels, IVs and AI | Done: `tools/hack/difficulty.py` |
 | Johto and League boss teams | Done: `tools/hack/boss_teams.py` |
 | Kanto leaders, Blue, Red, second Elite Four round and rematch teams | Done: `tools/hack/boss_teams.py` |
