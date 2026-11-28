@@ -593,13 +593,16 @@ def features(game, state, data, world, names, out_dir, results):
         ("evolution shop, 4 badges", "T25R1004", (21, 7), 3, 4, ["FIRE_STONE", "POWER_WEIGHT", "POWER_ANKLET", "PP_UP"], ["SHINY_STONE", "PEAT_BLOCK", "PP_MAX"]),
         ("evolution shop, 16 badges", "T25R1004", (21, 7), 3, 16, ["FIRE_STONE", "SHINY_STONE", "PEAT_BLOCK", "RAZOR_FANG", "POWER_WEIGHT", "POWER_ANKLET", "PP_UP", "PP_MAX"], []),
         ("berry stand, 0 badges", "T25R1003", (21, 7), 3, 0, ["X_SPEED", "ORAN_BERRY", "ASPEAR_BERRY", "POMEG_BERRY", "TAMATO_BERRY"], ["SITRUS_BERRY", "OCCA_BERRY", "MAX_REVIVE", "LUCKY_EGG"]),
-        ("berry stand, 4 badges", "T25R1003", (21, 7), 3, 4, ["SITRUS_BERRY", "LUM_BERRY", "ETHER", "LUCKY_EGG"], ["OCCA_BERRY", "ELIXIR", "MAX_REVIVE"]),
-        ("berry stand, 16 badges", "T25R1003", (21, 7), 3, 16, ["OCCA_BERRY", "ROSELI_BERRY", "ELIXIR", "MAX_REVIVE"], []),
+        ("berry stand, 4 badges", "T25R1003", (21, 7), 3, 4, ["SITRUS_BERRY", "LUM_BERRY", "ETHER", "LUCKY_EGG"], ["OCCA_BERRY", "ELIXIR", "MAX_REVIVE", "LIECHI_BERRY"]),
+        ("berry stand, 16 badges", "T25R1003", (21, 7), 3, 16, ["OCCA_BERRY", "ROSELI_BERRY", "ELIXIR", "MAX_REVIVE", "LIECHI_BERRY", "APICOT_BERRY"], []),
         # the TM counter, with the mints from four badges and the Bottle Caps from eight (training_items.py)
-        ("TM counter, 3 badges", "T25R1005", (21, 7), 3, 3, ["TM070", "TM015"], ["ADAMANT_MINT", "BOTTLE_CAP"]),
-        ("TM counter, 4 badges", "T25R1005", (21, 7), 3, 4, ["TM015", "LONELY_MINT", "ADAMANT_MINT", "SERIOUS_MINT"], ["BOTTLE_CAP", "GOLD_BOTTLE_CAP"]),
-        ("TM counter, 8 badges", "T25R1005", (21, 7), 3, 8, ["SERIOUS_MINT", "BOTTLE_CAP", "GOLD_BOTTLE_CAP"], []),
-        ("held item counter", "T07R0104", (20, 11), 3, 16, ["AIR_MAIL", "LEFTOVERS", "CHOICE_SCARF", "POWER_HERB", "RARE_CANDY", "ABILITY_CAPSULE", "ABILITY_PATCH"], []),
+        ("TM counter, 3 badges", "T25R1005", (21, 7), 3, 3, ["TM070", "TM015"], ["ADAMANT_MINT", "BOTTLE_CAP", "TM006"]),
+        ("TM counter, 4 badges", "T25R1005", (21, 7), 3, 4, ["TM015", "LONELY_MINT", "ADAMANT_MINT", "SERIOUS_MINT", "TM006", "TM004"], ["BOTTLE_CAP", "GOLD_BOTTLE_CAP", "TM053", "TM071"]),
+        ("TM counter, 8 badges", "T25R1005", (21, 7), 3, 8, ["SERIOUS_MINT", "BOTTLE_CAP", "GOLD_BOTTLE_CAP", "TM053", "TM071"], []),
+        # the ball counter (Goldenrod 2F, the clerk at (23, 7)): Dive, Luxury, Repeat and Timer Balls from two badges (gap_items.py)
+        ("ball counter, 1 badge", "T25R1002", (22, 7), 3, 1, ["ESCAPE_ROPE"], ["DIVE_BALL", "TIMER_BALL"]),
+        ("ball counter, 2 badges", "T25R1002", (22, 7), 3, 2, ["ESCAPE_ROPE", "DIVE_BALL", "LUXURY_BALL", "REPEAT_BALL", "TIMER_BALL"], []),
+        ("held item counter", "T07R0104", (20, 11), 3, 16, ["AIR_MAIL", "LEFTOVERS", "CHOICE_SCARF", "POWER_HERB", "RARE_CANDY", "ABILITY_CAPSULE", "ABILITY_PATCH", "DAMP_ROCK", "SMOOTH_ROCK"], []),
         # an ordinary Poke Mart counter (Cherrygrove City's), whose stock grows with the badges
         # (no Poke Balls on this save: the game holds them back until the catching lesson, as the original does)
         ("Poke Mart, 0 badges", "T21FS0101", (4, 6), 2, 0, ["POTION", "ANTIDOTE"], ["GREAT_BALL", "SUPER_POTION", "REVIVE"]),

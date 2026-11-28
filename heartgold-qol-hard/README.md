@@ -4,7 +4,7 @@ A quality-of-life, modernization and difficulty hack for Pokémon HeartGold,
 following the same recipe as [FireRed QoL + Hard](../firered-qol-hard/README.md).
 It is built on [hg-engine](https://github.com/BluRosie/hg-engine).
 
-**Status: v1.11.** Everything described below is in the
+**Status: v1.12.** Everything described below is in the
 patch. The battles, maps, legendaries, wild Pokémon and shops have been
 checked by automated playtesters, and a story bot has played from the bedroom
 to Red (see [playtest/BALANCE.md](playtest/BALANCE.md)), but no person has
@@ -16,16 +16,16 @@ You need your own US Pokémon HeartGold ROM (game code `IPKE`, SHA-1
 `4fcded0e2713dc03929845de631d0932ea2b5a37`). The ROM is not in this
 repository and never will be.
 
-1. Download `HeartGold-QoL-Hard-v1.11.xdelta`.
+1. Download `HeartGold-QoL-Hard-v1.12.xdelta`.
 2. Apply it to the ROM with an xdelta patcher such as Delta Patcher or
    xdelta UI, or on a command line:
 
    ```bash
-   xdelta3 -d -s heartgold-usa.nds HeartGold-QoL-Hard-v1.11.xdelta HeartGold-QoL-Hard.nds
+   xdelta3 -d -s heartgold-usa.nds HeartGold-QoL-Hard-v1.12.xdelta HeartGold-QoL-Hard.nds
    ```
 
 3. The patched ROM is 256 MB, twice the original's size, and its SHA-1 is
-   `6608c586e45b464691dda52785a46dd5d84f652b`. It has been run in DeSmuME;
+   `cd75596358048f5a70aa0a1eafafbca456708784`. It has been run in DeSmuME;
    other emulators and flashcarts are untried.
 
 Start a new game: saves from the original game or from other hacks will not
@@ -394,8 +394,9 @@ an area was removed; the new Pokémon take slots that repeated a species.
 The starters, Kangaskhan, Munchlax, Trapinch, Riolu, Larvitar and Beldum
 are 4% encounters (Victory Road's Beldum appears as Metang, at the League's
 levels; Voltorb on Route 37 is 1% at night, and 10% on Route 38 at any time, since patch 0040); Rotom, Porygon, Chansey, Bagon, Gible, Spiritomb,
-Skorupi and Absol are 1%. The rest are 4–10%. Eevee, Togepi, Tyrogue, Lapras, Sudowoodo and the Bug-Catching
-Contest's Scyther and Pinsir are where HeartGold already had them.
+Skorupi and Absol are 1%. The rest are 4–10%. Eevee, Togepi, Tyrogue, Lapras and Sudowoodo are where
+HeartGold already had them. Scyther (5%) and Pinsir (4%), which HeartGold had only in the Bug-Catching
+Contest, are in the National Park's own grass at any time since patch 0047 (`tools/hack/park_bugs.py`).
 
 - **Fossils:** a scientist in the Ruins of Alph Research Center revives
   fossils, the same way the Pewter Museum does (hand one over, leave, come
@@ -408,6 +409,26 @@ Contest's Scyther and Pinsir are where HeartGold already had them.
   Rhyhorn and Beldum since patch 0038, which put the seven that could only be
   bred into the table above). It has no item balls of its own, and the Safari
   Mart sells what Vermilion's does. A player can skip it.
+- **Nor is the Bug-Catching Contest.** Every Pokémon in its tables is wild
+  elsewhere (Scyther and Pinsir in the National Park since patch 0047), and
+  its prizes (the evolution stones, the Everstone, berries) are sold or found
+  elsewhere.
+- **Nor the Pokéwalker or the Battle Frontier.** Every one of the Pokéwalker's
+  118 species has a source in the game, and so do almost all of its items;
+  the useful ones it alone gave, and the nine TMs only the Frontier's BP
+  bought, are sold for money since patch 0048 (`tools/hack/gap_items.py`):
+  - Goldenrod 5F: Toxic, Thunder Wave and Will-O-Wisp (₽10,000), Brick
+    Break, Bulk Up and Calm Mind (₽20,000) from four badges; Energy Ball and
+    X-Scissor (₽20,000) and Stone Edge (₽30,000) from six;
+  - Goldenrod 3F: the Liechi, Ganlon, Salac, Petaya and Apicot Berries from
+    six badges, ₽2,000;
+  - Goldenrod 2F: Dive, Luxury, Repeat and Timer Balls from two badges,
+    ₽1,000;
+  - Celadon 4F: the Damp, Heat, Icy and Smooth Rocks, ₽10,000.
+
+  The Pokéwalker's course table was read from the game (overlay 112), the
+  Frontier's prizes from its exchange script, and each item checked against
+  the shops, the field, the gifts and what wild Pokémon hold.
 - **The Pokéathlon isn't needed for anything either.** It is unchanged, but
   its prize exchange's goods are all to be had elsewhere: the evolution
   stones, King's Rock, Metal Coat and Dragon Scale on Goldenrod 4F; PP Up
@@ -518,7 +539,7 @@ The FireRed recipe, and where each part comes from here:
 | Held-item shop, berry and consumables stand, earlier mart stock | Done: `tools/hack/shops.py` |
 | Training items: mints, EV-lowering berries, Power items, Bottle Caps | Done: `tools/hack/training_items.py`, `tools/hack/hyper_training.py` |
 | Faster breeding | Done: `tools/hack/faster_breeding.py` |
-| Safari Zone and Pokéathlon not needed for anything | Done: their Pokémon and goods are elsewhere; `tools/hack/pp_shop.py` |
+| Safari Zone, Pokéathlon, Bug-Catching Contest, Pokéwalker and Battle Frontier not needed for anything | Done: their Pokémon and goods are elsewhere; `tools/hack/pp_shop.py`, `tools/hack/park_bugs.py`, `tools/hack/gap_items.py` |
 | Party-wide Exp. Share as a player option | Done: `tools/hack/party_exp_share.py` |
 | Free Move Reminders, one from the first town | Done: `tools/hack/move_reminder.py` |
 | Spoiler guide generated from the data | Done: `tools/spoiler_guide.py` writes [guide/](guide/README.md), and `tools/boss_guide.py` its boss teams page |
@@ -548,7 +569,7 @@ The first build takes several minutes. It clones hg-engine into `build/`,
 applies the patches and writes `build/hg-engine/test.nds`.
 
 The release patch is made from such a build, in a fresh work directory, with
-`tools/make_patch.sh`. v1.11 was built this way from all forty-six patches.
+`tools/make_patch.sh`. v1.12 was built this way from all forty-eight patches.
 
 To confirm the result boots, without opening an emulator window:
 

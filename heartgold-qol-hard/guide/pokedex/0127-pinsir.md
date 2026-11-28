@@ -11,6 +11,7 @@ No. 127 · Bug · catch rate 45
 ## Where
 
 - Bug-Catching Contest, National Park
+- National Park (walking)
 
 ## Moves by level
 

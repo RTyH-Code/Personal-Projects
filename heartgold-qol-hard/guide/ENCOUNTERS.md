@@ -625,13 +625,15 @@ Also, on the water: surfing swarm: Psyduck; fishing at night: Poliwag; fishing s
 
 | Walking | Lv. | Morning | Day | Night |
 |---|---|--:|--:|--:|
-| Hoothoot | 21–23 | — | — | 85% |
+| Hoothoot | 21–23 | — | — | 76% |
 | Caterpie | 21–22 | 40% | 30% | — |
 | Metapod | 21 | 30% | 30% | — |
 | Buneary | 22 | 10% | 10% | 10% |
-| Pidgey | 21–23 | 15% | 10% | — |
+| Scyther | 22 | 5% | 5% | 5% |
 | Carnivine | 22 | 5% | 5% | 5% |
 | Sunkern | 21–22 | — | 15% | — |
+| Pinsir | 23 | 4% | 4% | 4% |
+| Pidgey | 21–23 | 6% | 1% | — |
 
 Also, walking: swarm: Caterpie; Hoenn Sound: Plusle, Minun; Sinnoh Sound: Shinx.
 

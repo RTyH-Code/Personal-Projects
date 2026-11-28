@@ -17,7 +17,8 @@ TEST_ROM, TREE and DUMP are as for walk_test.py (a build with the test harness).
 - mint: an Adamant Mint (a Modest Mint if the lead is Adamant already) raises Attack or lowers Sp. Atk, or both;
 - king's rock: used on a Slowpoke, it evolves into Slowking;
 - level 37: a Rare Candy on a Lv. 36 Kadabra evolves it into Alakazam;
-- voltorb: Voltorb is among the first 60 wild Pokemon on Route 38.
+- voltorb: Voltorb is among the first 60 wild Pokemon on Route 38;
+- park bugs: Scyther and Pinsir are both among 120 wild Pokemon in the National Park (park_bugs.py).
 
 CHECK names some of them (such as hyper_all). Prints PASS or FAIL for each, with screenshots in OUT.
 """
@@ -272,8 +273,21 @@ class Tester:
         voltorb = [lv for s, lv in met if s == self.data["species"]["VOLTORB"]]
         return bool(voltorb), "%d of %d were Voltorb (Lv. %s) %s" % (len(voltorb), len(seen), sorted(set(voltorb)), note)
 
+    def check_park_bugs(self):
+        """Scyther (5%) and Pinsir (4%) in the National Park's own grass (park_bugs.py): both among 120 wild Pokemon
+        (each is missed by chance less than one time in a hundred)."""
+        far, tile, beside = grind_test.grass_tile(self.world, "D22R0101")
+        if self.start("D22R0101", tile, level=50) is None:
+            return False, "the harness did not put the player in the National Park"
+        there = beside[0]
+        back = {"up": "down", "down": "up", "left": "right", "right": "left"}[there]
+        met, note = w.meet(self.g, there, back, 120, self.out, "park_bugs")
+        sp = self.data["species"]
+        count = {name: sum(1 for s, _ in met if s == sp[name]) for name in ("SCYTHER", "PINSIR")}
+        return all(count.values()), "of %d: %d Scyther, %d Pinsir %s" % (len(met), count["SCYTHER"], count["PINSIR"], note)
 
-CHECKS = ["reminder", "maniac", "hyper_speed", "hyper_maxed", "hyper_all", "mint", "kings_rock", "level_37", "voltorb"]
+
+CHECKS = ["reminder", "maniac", "hyper_speed", "hyper_maxed", "hyper_all", "mint", "kings_rock", "level_37", "voltorb", "park_bugs"]
 
 
 def main():

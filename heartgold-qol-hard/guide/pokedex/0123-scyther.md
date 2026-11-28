@@ -16,6 +16,7 @@ No. 123 · Bug / Flying · catch rate 45
 ## Where
 
 - Bug-Catching Contest, National Park
+- National Park (walking)
 
 ## Moves by level
 
