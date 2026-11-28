@@ -1,0 +1,96 @@
+From 56b1a76c7dc0939adfc3221b69d668b95cff94cf Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 28 Nov 2026 08:19:01 +0000
+Subject: [PATCH 47/48] Scyther and Pinsir wild in the National Park
+
+In HeartGold they appear only in the Bug-Catching Contest. The National Park's
+own grass now has Scyther (5%) and Pinsir (4%) at every time of day, in two of
+Pidgey's and Hoothoot's slots, so the contest isn't needed for anything. Made by
+tools/hack/park_bugs.py.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01JQmLEYSk2h6k1E1jWo3cHd
+---
+ data/Encounters.c       | 12 ++++++------
+ tools/hack/park_bugs.py | 26 ++++++++++++++++++++++++++
+ 2 files changed, 32 insertions(+), 6 deletions(-)
+ create mode 100644 tools/hack/park_bugs.py
+
+diff --git a/data/Encounters.c b/data/Encounters.c
+index 0fa507625..b62852216 100644
+--- a/data/Encounters.c
++++ b/data/Encounters.c
+@@ -2324,10 +2324,10 @@ const EncounterData __data[] =
+                 SPECIES_METAPOD,
+                 SPECIES_CATERPIE,
+                 SPECIES_BUNEARY,
+-                SPECIES_PIDGEY,
++                SPECIES_SCYTHER,
+                 SPECIES_CARNIVINE,
+                 SPECIES_PIDGEY,
+-                SPECIES_PIDGEY,
++                SPECIES_PINSIR,
+                 SPECIES_PIDGEY,
+                 SPECIES_PIDGEY,
+             },
+@@ -2338,10 +2338,10 @@ const EncounterData __data[] =
+                 SPECIES_METAPOD,
+                 SPECIES_SUNKERN,
+                 SPECIES_BUNEARY,
+-                SPECIES_PIDGEY,
++                SPECIES_SCYTHER,
+                 SPECIES_CARNIVINE,
+                 SPECIES_SUNKERN,
+-                SPECIES_PIDGEY,
++                SPECIES_PINSIR,
+                 SPECIES_SUNKERN,
+                 SPECIES_PIDGEY,
+             },
+@@ -2352,10 +2352,10 @@ const EncounterData __data[] =
+                 SPECIES_HOOTHOOT,
+                 SPECIES_HOOTHOOT,
+                 SPECIES_BUNEARY,
+-                SPECIES_HOOTHOOT,
++                SPECIES_SCYTHER,
+                 SPECIES_CARNIVINE,
+                 SPECIES_HOOTHOOT,
+-                SPECIES_HOOTHOOT,
++                SPECIES_PINSIR,
+                 SPECIES_HOOTHOOT,
+                 SPECIES_HOOTHOOT,
+             },
+diff --git a/tools/hack/park_bugs.py b/tools/hack/park_bugs.py
+new file mode 100644
+index 000000000..2267773c6
+--- /dev/null
++++ b/tools/hack/park_bugs.py
+@@ -0,0 +1,26 @@
++#!/usr/bin/env python3
++"""Scyther and Pinsir wild in the National Park, so the Bug-Catching Contest isn't needed for anything.
++
++In HeartGold they appear only in the Bug-Catching Contest. Every other Pokemon in the contest's tables is wild
++elsewhere in the hack, and its prizes (Sun, Moon, Shiny, Dusk and Dawn Stones, the Everstone, berries) are sold or
++found elsewhere, so with these two the contest can be skipped. They go into the National Park's own grass, the
++contest's grounds on the other days, as rare encounters by encounters.py's rules (only a slot whose species fills
++another slot too, at that slot's level).
++
++Run once from the hg-engine root, after voltorb_wild.py:
++    python3 tools/hack/park_bugs.py
++"""
++import encounters
++
++LAND = {
++    "NATIONAL_PARK": [("SCYTHER", "R", ""), ("PINSIR", "R", "")],
++}
++
++
++def main():
++    encounters.LAND, encounters.WATER = LAND, {}
++    encounters.main()
++
++
++if __name__ == "__main__":
++    main()
+-- 
+2.43.0
+

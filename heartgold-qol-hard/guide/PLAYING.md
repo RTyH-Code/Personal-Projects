@@ -27,8 +27,8 @@ A short guide for a first run. It has no story spoilers beyond what bosses you w
   grind catches you up quickly. Fishing, Rock Smash and Headbutt follow the same bands.
 - **Every Pokémon family can be caught in Johto before the Elite Four**, with nothing needing a trade, the
   Day Care or the Safari Zone. Trade evolutions use an item (King's Rock, Metal Coat and the like) or
-  happen at Lv. 37. The Safari Zone and the Pokéathlon are still there, but neither has anything you
-  can't get elsewhere.
+  happen at Lv. 37. The Safari Zone, the Pokéathlon, the Bug-Catching Contest, the Battle Frontier's BP
+  and the Pokéwalker have nothing you can't get elsewhere.
 - **HMs work without being taught**, as long as the HM is in your bag and you have the badge. HM moves can
   be forgotten any time. TMs are reusable.
 - **Friendship evolutions** happen at 160 friendship instead of 220.
@@ -43,7 +43,9 @@ A short guide for a first run. It has no story spoilers beyond what bosses you w
   Ultra Balls, Hyper Potions and Full Heals at four, Max Potions at six, Full Restores at eight.
 - **Goldenrod Department Store 3F:** Oran and the status berries from the start; Sitrus Berry, Lum Berry
   and Ether at four badges; the type-resist berries and Elixir at six; Max Ether, Max Elixir and Max Revive
-  at eight. The Lucky Egg is here from four badges.
+  at eight. The Lucky Egg is here from four badges, and the Liechi, Ganlon, Salac, Petaya and Apicot Berries
+  (₽2,000) from six.
+- **Goldenrod Department Store 2F:** Dive, Luxury, Repeat and Timer Balls from two badges (₽1,000).
 - **Goldenrod Department Store 4F:** the vitamins, PP Up (₽9,800, four badges) and PP Max (₽24,800, eight
   badges), and every evolution item, in tiers:
 
@@ -58,8 +60,11 @@ A short guide for a first run. It has no story spoilers beyond what bosses you w
   Power items on 4F from four badges (₽5,000); on 5F the nature mints from four badges (₽5,000), and the Bottle
   Cap (₽20,000) and Gold Bottle Cap (₽60,000) from eight. The man by the 5F counter takes a Bottle Cap to make
   the IV you pick 31, or a Gold Bottle Cap for all six.
+- **Goldenrod Department Store 5F, TMs:** Toxic, Thunder Wave, Will-O-Wisp, Brick Break, Bulk Up and Calm Mind
+  from four badges; Energy Ball, X-Scissor and Stone Edge from six (₽10,000-30,000).
 - **Celadon Department Store 4F** (after the Elite Four): Leftovers, the Choice items, Life Orb and Focus
-  Sash (₽25,000), other held items (₽10,000), Rare Candies (₽3,000), the Ability Capsule and Ability Patch.
+  Sash (₽25,000), other held items and the weather rocks (₽10,000), Rare Candies (₽3,000), the Ability Capsule
+  and Ability Patch.
 
 ## Levels to aim for
 

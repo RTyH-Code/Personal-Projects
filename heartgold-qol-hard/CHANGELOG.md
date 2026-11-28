@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased
+
+- Scyther and Pinsir wild in the National Park (patch 0047): 5% and 4% at any
+  time, so the Bug-Catching Contest isn't needed for anything.
+- What only the Battle Frontier's BP or the Pokéwalker gave, for money (patch
+  0048): nine TMs on Goldenrod 5F, the pinch berries on 3F, Dive, Luxury,
+  Repeat and Timer Balls on 2F, and the weather rocks on Celadon 4F.
+- Played in the emulator: the shop rows for every changed counter, Scyther
+  and Pinsir among 120 National Park encounters, and the party-wide Exp.
+  Share over a trainer's two Pokémon (198 to the lead, 98 to the bench).
+
 ## v1.11
 
 - PP Up and PP Max on Goldenrod Department Store 4F (patch 0046): PP Up from

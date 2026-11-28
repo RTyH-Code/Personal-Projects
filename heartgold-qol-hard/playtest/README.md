@@ -513,7 +513,7 @@ cap on and off again; that with no badges a Lv. 14 party leader gains no experie
 on Route 29 with the cap on, and some with it off; that with no items on, a Potion from the bag in a
 trainer battle doesn't get as far as choosing a Pokémon, though it does with the rule off; and that with
 the shared experience on, the second Pokémon gets about half what the lead does from a wild battle, and
-nothing with it off.
+nothing with it off; and the same over a whole trainer battle with two foes.
 
 ```bash
 SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 playtest/challenge_test.py /path/to/test.nds /path/to/hack/hg-engine /path/to/original/hg-engine out
@@ -543,7 +543,8 @@ SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 playtest/champion_test.py /p
 `qol_test.py` plays the free Move Reminders (Cherrygrove's and Blackthorn's, with no Heart Scale), the hyper
 trainer on Goldenrod 5F (a Bottle Cap on Speed, Speed again once it is 31, a Gold Bottle Cap on every stat), an
 Adamant Mint used from the bag, a King's Rock evolving a Slowpoke, a Rare Candy
-evolving a Lv. 36 Kadabra, and Voltorb among 60 wild Pokemon on Route 38. Names after `out` (such as
+evolving a Lv. 36 Kadabra, Voltorb among 60 wild Pokemon on Route 38, and Scyther and Pinsir among 120 in
+the National Park. Names after `out` (such as
 `hyper_all mint`) run only those.
 
 ```bash

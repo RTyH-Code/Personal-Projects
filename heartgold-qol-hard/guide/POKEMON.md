@@ -129,11 +129,11 @@ the [Pokédex](POKEDEX.md) for each Pokémon's page.
 | 120 | [Staryu](pokedex/0120-staryu.md) | wild: Cherrygrove City, Union Cave B2F, Route 34, Olivine City, Route 40, Cianwood City and 2 more |
 | 121 | [Starmie](pokedex/0121-starmie.md) | evolve Staryu with a Water Stone |
 | 122 | [Mr. Mime](pokedex/0122-mr-mime.md) | wild: Route 21 |
-| 123 | [Scyther](pokedex/0123-scyther.md) | Bug-Catching Contest, National Park |
+| 123 | [Scyther](pokedex/0123-scyther.md) | Bug-Catching Contest, National Park; wild: National Park |
 | 124 | [Jynx](pokedex/0124-jynx.md) | wild: Ice Path 1F, Ice Path B1F, Ice Path B2F, Ice Path B3F, Seafoam Islands B4F |
 | 125 | [Electabuzz](pokedex/0125-electabuzz.md) | wild: Route 10 |
 | 126 | [Magmar](pokedex/0126-magmar.md) | wild: Burned Tower B1F |
-| 127 | [Pinsir](pokedex/0127-pinsir.md) | Bug-Catching Contest, National Park |
+| 127 | [Pinsir](pokedex/0127-pinsir.md) | Bug-Catching Contest, National Park; wild: National Park |
 | 128 | [Tauros](pokedex/0128-tauros.md) | wild: Route 38, Route 39, Route 48 |
 | 129 | [Magikarp](pokedex/0129-magikarp.md) | wild: New Bark Town, Cherrygrove City, Route 30, Route 31, Violet City, Route 32 and 64 more |
 | 130 | [Gyarados](pokedex/0130-gyarados.md) | the red Gyarados, Lake of Rage; wild: Lake of Rage, Mount Moon Square, Mount Moon Square Clefairy Event, Seafoam Islands B4F, Mount Silver Cave Moltres Chamber, Mount Silver Cave 2F and 26 more |
