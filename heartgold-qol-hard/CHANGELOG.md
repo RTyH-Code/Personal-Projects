@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v1.12
 
 - Scyther and Pinsir wild in the National Park (patch 0047): 5% and 4% at any
   time, so the Bug-Catching Contest isn't needed for anything.
@@ -10,6 +10,10 @@
 - Played in the emulator: the shop rows for every changed counter, Scyther
   and Pinsir among 120 National Park encounters, and the party-wide Exp.
   Share over a trainer's two Pokémon (198 to the lead, 98 to the bench).
+
+This changes the National Park's encounter table, item prices and shop lists
+only. A save made in v1.11 on Route 29 loaded in v1.12, won two wild battles,
+and the game saved again (`playtest/save_carry.py`).
 
 ## v1.11
 
