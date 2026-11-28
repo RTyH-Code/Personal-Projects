@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v1.9
 
 - Voltorb on Route 38 too (patch 0040): 10% at every time of day, Lv. 28, in
   one of Raticate's two slots (Raticate 30% -> 20%). On Route 37 it is 1% at
@@ -23,6 +23,11 @@
   Contest wait for the Champion) and `playtest/qol_test.py` (the reminders,
   the training items, a King's Rock evolving Slowpoke and Kadabra evolving at
   Lv. 37).
+
+The new Cherrygrove reminder is a new person on the map, and the Bottle Caps
+and mints only change items, so old saves carry over: a save made in v1.8 on
+Route 29 loaded in v1.9, won two wild battles, and the game saved again
+(`playtest/save_carry.py`).
 
 ## v1.8
 
