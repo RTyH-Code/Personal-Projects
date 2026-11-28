@@ -1,5 +1,19 @@
 # Changelog
 
+## Unreleased
+
+- The seven Pokémon that could only be had by breeding are wild in Johto
+  (patch 0038), so none needs the Day Care: Azurill on Route 32; Seedot and
+  Shroomish in Ilex Forest; Ponyta on Route 36 and Voltorb on Route 37;
+  Rhyhorn in Mt. Mortar's central room; and Beldum, very rare, on Dark Cave's
+  Route 45 side with Gible (Victory Road's Beldum has appeared as Metang
+  since the League's wild levels were raised). Each took a slot whose
+  species filled another slot too, so nothing was removed. In the emulator,
+  40 encounters on each map met Azurill (13), Seedot and Shroomish (16),
+  Ponyta (22), Rhyhorn (31) and Beldum (41). Voltorb didn't turn up in 100 on
+  Route 37: its slot there is 4-5% by morning and day but 1% at night, the
+  only one free in that table.
+
 ## v1.6
 
 - The Super Rod meets Lv. 62 Pokémon in Johto's water, as in Kanto's (patch

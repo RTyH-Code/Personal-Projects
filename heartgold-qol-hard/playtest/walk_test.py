@@ -62,7 +62,7 @@ DIRS = {"up": (0, -1, 0), "down": (0, 1, 1), "left": (-1, 0, 2), "right": (1, 0,
 WATER = (0x10, 0x15)
 GRASS = (0x02, 0x03)
 CAVE_FLOOR = (0x08,)
-ENCOUNTERS_WANTED = 3
+ENCOUNTERS_WANTED = int(os.environ.get("WALK_ENCOUNTERS", "3"))   # wild Pokemon to meet per map
 STEPS_PER_ENCOUNTER = 250
 
 

@@ -309,29 +309,30 @@ an area was removed; the new Pokémon take slots that repeated a species.
 | | Routes 30–31 | Ledyba (morning), Weedle, Kricketot (night), Pachirisu |
 | | Route 46, Dark Cave (Route 31 side) | Spinda, Sableye |
 | | Sprout Tower | Chingling |
-| | Route 32 | Poochyena, Wingull, Ekans, Surskit |
+| | Route 32 | Poochyena, Wingull, Ekans, Surskit, Azurill |
 | | Union Cave | Mawile, Cubone, Barboach (Old Rod) |
 | | Route 33 | Nincada, Meditite |
-| | Ilex Forest | Kecleon, Pikachu, Budew, Illumise and Volbeat (night) |
+| | Ilex Forest | Kecleon, Pikachu, Budew, Seedot, Shroomish, Illumise and Volbeat (night) |
 | Badges 2–4 | Route 34 | Skitty, Glameow, Shellos, Jigglypuff, Ralts, Corphish (Old Rod) |
 | | Route 35, National Park | Stunky, Gulpin, Chatot, Lotad, Buneary, Carnivine |
-| | Routes 36–37 | Vulpix, Shinx, Electrike, Bonsly, Plusle, Minun, Houndour (night), Cyndaquil |
+| | Routes 36–37 | Vulpix, Shinx, Electrike, Ponyta, Voltorb, Bonsly, Plusle, Minun, Houndour (night), Cyndaquil |
 | | Burned Tower | Shuppet, Drifloon, Murkrow (night), Slugma, Duskull, Torkoal, Rotom |
 | Badges 4–6 | Routes 38–39 | Meowth, Spoink, Zangoose, Kangaskhan, Chikorita, Totodile |
 | | Routes 40–41, Cianwood, Whirl Islands | Wailmer, Carvanha (surfing); Finneon, Clamperl, Luvdisc, Relicanth (Good Rod) |
 | | Ruins of Alph (outer area), Cliff Cave | Baltoy, Bronzor, Lunatone, Solrock, Nosepass |
 | | Routes 47–48 | Skorupi, Trapinch, Tropius, Cacnea |
-| Badges 6–7 | Route 42, Mt. Mortar | Numel, Seviper, Bulbasaur, Buizel (surfing), Makuhita, Whismur, Clefairy, Croagunk, Grimer, Aron |
+| Badges 6–7 | Route 42, Mt. Mortar | Numel, Seviper, Bulbasaur, Buizel (surfing), Makuhita, Whismur, Clefairy, Rhyhorn, Croagunk, Grimer, Aron |
 | | Route 43, Lake of Rage | Castform, Mime Jr., Charmander, Porygon, Feebas (Good Rod) |
 | Badges 7–8 | Route 44 | Elekid, Squirtle, Munchlax, Chansey |
 | | Ice Path | Delibird, Snorunt, Snover, Sneasel, Spheal |
-| | Route 45, Dark Cave (Blackthorn side) | Skarmory, Absol, Hippopotas, Swablu, Treecko, Torchic, Bagon, Teddiursa, Gible |
+| | Route 45, Dark Cave (Blackthorn side) | Skarmory, Absol, Hippopotas, Swablu, Treecko, Torchic, Bagon, Teddiursa, Gible, Beldum |
 | | Mt. Mortar (above the waterfall), Tohjo Falls | Riolu, Larvitar, Mudkip |
 | | Bell Tower | Spiritomb |
-| Before the Elite Four | Routes 26–27, Victory Road | Turtwig, Chimchar, Piplup, Beldum |
+| Before the Elite Four | Routes 26–27, Victory Road | Turtwig, Chimchar, Piplup, Metang |
 
 The starters, Kangaskhan, Munchlax, Trapinch, Riolu, Larvitar and Beldum
-are 4% encounters; Rotom, Porygon, Chansey, Bagon, Gible, Spiritomb,
+are 4% encounters (Victory Road's Beldum appears as Metang, at the League's
+levels; Voltorb on Route 37 is 1% at night); Rotom, Porygon, Chansey, Bagon, Gible, Spiritomb,
 Skorupi and Absol are 1%. The rest are 4–10%. Eevee, Togepi, Tyrogue, Lapras, Sudowoodo and the Bug-Catching
 Contest's Scyther and Pinsir are where HeartGold already had them.
 
@@ -341,11 +342,11 @@ Contest's Scyther and Pinsir are where HeartGold already had them.
   Fossils and the Old Amber; in Cliff Cave, the Claw, Root, Skull and Armor
   Fossils.
 - **The Safari Zone isn't needed for anything.** It is unchanged, but every
-  one of the 154 species in its tables can be had elsewhere: 147 wild (Farfetch'd
-  on Routes 38, 39, 47 and 48 among them), and Azurill, Beldum, Ponyta,
-  Rhyhorn, Seedot, Shroomish and Voltorb by breeding the evolved forms caught
-  elsewhere. It has no item balls of its own, and the Safari Mart sells what
-  Vermilion's does. A player can skip it.
+  one of the 154 species in its tables is wild elsewhere (Farfetch'd on Routes
+  38, 39, 47 and 48 among them; Azurill, Seedot, Shroomish, Ponyta, Voltorb,
+  Rhyhorn and Beldum since patch 0038, which put the seven that could only be
+  bred into the table above). It has no item balls of its own, and the Safari
+  Mart sells what Vermilion's does. A player can skip it.
 - One Shiny Stone can still be picked up early in the National Park.
 
 The fossil reviver was played through in the emulator (Old Amber to
