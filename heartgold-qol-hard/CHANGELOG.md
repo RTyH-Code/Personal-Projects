@@ -1,5 +1,22 @@
 # Changelog
 
+## Unreleased
+
+- Hyper training (patch 0045): a man by the Goldenrod Department Store 5F
+  counter makes the IV you pick 31 for a Bottle Cap, or all six for a Gold
+  Bottle Cap, as in the games since Sun and Moon. Bottle Caps no longer work
+  from the bag (in v1.9 they raised the lowest IV). His script command takes
+  the place of `mon_subtract_friendship`, which no script in the game uses.
+- A party-wide Exp. Share as a third challenge rule (patch 0044), off in a new
+  game: Pokémon that didn't battle get half the experience.
+- Faster breeding (patch 0043): eggs hatch in half the steps, and two
+  Pokémon that can breed always have an egg at each Day Care check.
+- Played in the emulator: `playtest/breed_test.py` (an egg at step 249, a
+  Magikarp egg hatched after 1,013 steps), the Exp. Share rule in
+  `playtest/challenge_test.py`, the hyper trainer in `playtest/qol_test.py`,
+  and the Pokéathlon prize lists and the Supreme Cup waiting for the Champion
+  in `playtest/champion_test.py`.
+
 ## v1.9
 
 - Voltorb on Route 38 too (patch 0040): 10% at every time of day, Lv. 28, in

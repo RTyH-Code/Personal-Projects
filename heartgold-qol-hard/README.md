@@ -57,22 +57,35 @@ that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md
   [playtest/LEVEL_CURVE.md](playtest/LEVEL_CURVE.md)).
 - Mega Evolution, Primal Reversion and critical captures are switched off.
 - **Challenge rules you can turn on and off.** A woman downstairs in your
-  house in New Bark Town keeps two optional rules, and you can go back to
-  her at any time to change them (patch 0039, `tools/hack/challenge_rules.py`):
+  house in New Bark Town keeps three optional rules, and you can go back to
+  her at any time to change them (patches 0039 and 0044,
+  `tools/hack/challenge_rules.py`, `tools/hack/party_exp_share.py`):
   - a **level cap** at the strongest level on the next boss's team: the
     lowest top level of the Johto Gym Leaders you haven't beaten (Falkner's
     14 up to Clair's 47), then Lance's 58 until you are Champion, then the
     lowest of the Kanto Gym Leaders you haven't beaten (Lt. Surge's 64 up to
     Blue's 76), and Red's 95 with all sixteen badges. A Pokémon at the cap
     gains no experience and Rare Candies stop there too;
-  - **no items in trainer battles**, for you and for your opponents.
+  - **no items in trainer battles**, for you and for your opponents;
+  - **share experience**, a party-wide Exp. Share as in the games since X
+    and Y: Pokémon that didn't battle get half the experience they would
+    have had for beating the foe alone.
 
-  Both are off in a new game. For Set mode, choose Battle Style: Set in the
+  All three are off in a new game. For Set mode, choose Battle Style: Set in the
   game's own Options. In the emulator, the woman turned the level cap on and
   off again; a Lv. 14 Pokémon with no badges gained no experience from a wild
   battle with the cap on and 6 with it off; and with no items on, a Potion
   chosen from the bag in a trainer battle didn't get as far as choosing a
-  Pokémon (`playtest/challenge_test.py`).
+  Pokémon; and with the party at Lv. 14, the second Pokémon got nothing
+  from a wild battle with the shared experience off and 7 (the lead's 14,
+  halved) with it on (`playtest/challenge_test.py`).
+- **Faster breeding** (patch 0043, `tools/hack/faster_breeding.py`): eggs
+  hatch in half the steps (a quarter with a Flame Body or Magma Armor
+  Pokémon in the party), and two Pokémon that can breed always have an egg
+  at the Day Care's check every 256 steps, where the original game gave a
+  20-70% chance. In the emulator a Ditto and a Magikarp left at the Day
+  Care had an egg at step 249, and the Magikarp egg hatched after 1,013
+  steps (at least 1,276 in the original game) (`playtest/breed_test.py`).
 - **National Dex from the start.** The Pokédex has its National mode from
   the first moment, and Professor Oak rates the national count over the
   phone. What HeartGold unlocks along with the National Dex now waits until
@@ -175,10 +188,10 @@ that its credits are reproduced: see [CREDITS-hg-engine.md](CREDITS-hg-engine.md
   - 5F: the 21 nature mints from four badges, ₽5,000 (the Pokémon's stats
     follow the mint's nature; hg-engine already supports them), and from
     eight badges the Bottle Cap (₽20,000) and Gold Bottle Cap (₽60,000).
-    Use a Bottle Cap from the bag on a Pokémon to make its lowest IV 31
-    (the first of the lowest, in the order HP, Attack, Defense, Speed,
-    Sp. Atk, Sp. Def); the Gold Bottle Cap makes all six 31. Neither is used
-    up on a Pokémon whose IVs are all 31 already.
+- **Hyper training** (patch 0045, `tools/hack/hyper_training.py`): a man
+  by the 5F counter takes a Bottle Cap to make the IV you pick 31 (HP,
+  Attack, Defense, Sp. Atk, Sp. Def or Speed), or a Gold Bottle Cap for all
+  six, at no cost if they are 31 already, and with no level requirement.
 - **Free Move Reminders** (patch 0041, `tools/hack/move_reminder.py`):
   Blackthorn City's Move Maniac no longer asks for a Heart Scale, and a
   second reminder, a woman in Cherrygrove City's Pokémon Center, does the
@@ -201,12 +214,16 @@ switches build cleanly but haven't been played through. The National Dex
 change was checked by disassembling the built ROM, and two of its checks
 in play: Cliff Cave's rocks are moved aside before the Champion and back
 after, and the Bug-Catching Contest's own check, run on entering it, says
-no before and yes after (`playtest/champion_test.py`). The radio shows,
-Baoba's calls and the Pokéathlon lists use the same check but haven't been
-tried in play. In play, a King's Rock used on a Slowpoke evolved it into
+no before and yes after; the Pokéathlon Dome's prize clerk's two checks
+(which prize list she shows and which she sells) do the same, and the
+Friendship Room's first-visit scene shows the Supreme Cup's receptionist
+only after the Champion (`playtest/champion_test.py`). The Hoenn and Sinnoh
+Sound radio shows and Baoba's calls use the same check but haven't been
+tried in play: the test harness can't give the Pokégear its Radio Card. In play, a King's Rock used on a Slowpoke evolved it into
 Slowking and a Rare Candy took a Lv. 36 Kadabra to 37 and Alakazam
-(`playtest/qol_test.py`, which also tries both reminders, a Bottle Cap, a
-Gold Bottle Cap and a mint). The shop's stock list and badge check are in the built
+(`playtest/qol_test.py`, which also tries both reminders, a mint, and the
+hyper trainer with a Bottle Cap on Speed, again on Speed once it is 31,
+and a Gold Bottle Cap on every stat). The shop's stock list and badge check are in the built
 ROM, and the overworld playtester has since bought every item on the shop's
 list with no badges and with all of them.
 
@@ -489,7 +506,9 @@ The FireRed recipe, and where each part comes from here:
 | Evolution item shop | Done |
 | Field HMs without teaching them | Done |
 | Held-item shop, berry and consumables stand, earlier mart stock | Done: `tools/hack/shops.py` |
-| Training items: mints, EV-lowering berries, Power items, Bottle Caps | Done: `tools/hack/training_items.py` |
+| Training items: mints, EV-lowering berries, Power items, Bottle Caps | Done: `tools/hack/training_items.py`, `tools/hack/hyper_training.py` |
+| Faster breeding | Done: `tools/hack/faster_breeding.py` |
+| Party-wide Exp. Share as a player option | Done: `tools/hack/party_exp_share.py` |
 | Free Move Reminders, one from the first town | Done: `tools/hack/move_reminder.py` |
 | Spoiler guide generated from the data | Done: `tools/spoiler_guide.py` writes [guide/](guide/README.md), and `tools/boss_guide.py` its boss teams page |
 | Unattended playtester | Done: battle tester and overworld tester, see [playtest](playtest/README.md). No story playthrough bot. |

@@ -510,8 +510,10 @@ SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 playtest/shop_test.py /path/
 
 `challenge_test.py` checks the challenge rules: that the woman in the player's house turns the level
 cap on and off again; that with no badges a Lv. 14 party leader gains no experience from a wild battle
-on Route 29 with the cap on, and some with it off; and that with no items on, a Potion from the bag in a
-trainer battle doesn't get as far as choosing a Pokémon, though it does with the rule off.
+on Route 29 with the cap on, and some with it off; that with no items on, a Potion from the bag in a
+trainer battle doesn't get as far as choosing a Pokémon, though it does with the rule off; and that with
+the shared experience on, the second Pokémon gets about half what the lead does from a wild battle, and
+nothing with it off.
 
 ```bash
 SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 playtest/challenge_test.py /path/to/test.nds /path/to/hack/hg-engine /path/to/original/hg-engine out
@@ -527,23 +529,33 @@ it to some moves (such as `Surf Rock_Climb`).
 SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 playtest/hm_test.py /path/to/test.nds /path/to/hack/hg-engine /path/to/original/hg-engine out
 ```
 
-`champion_test.py` checks two of the post-game unlocks that wait for the Champion (FLAG_GAME_CLEAR), with the
-flag clear and set: Cliff Cave's Rock Smash rocks (moved aside before), and the Bug-Catching Contest's own
-check, read as it runs when the player enters the contest at the Route 36 gate. The contest is only held on
+`champion_test.py` checks the post-game unlocks that wait for the Champion (FLAG_GAME_CLEAR), with the flag
+clear and set: Cliff Cave's Rock Smash rocks (moved aside before); the Bug-Catching Contest's own check, read
+as it runs when the player enters the contest at the Route 36 gate; the Pokéathlon Dome prize clerk's two
+checks; and the Friendship Room scene that shows the Supreme Cup's receptionist. The contest is only held on
 Tuesdays, Thursdays and Saturdays, and the emulator keeps the computer's date, so on other days that check is
-skipped.
+skipped. Names after `out` (such as `pokeathlon`) run only those.
 
 ```bash
 SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 playtest/champion_test.py /path/to/test.nds /path/to/hack/hg-engine /path/to/original/hg-engine out
 ```
 
-`qol_test.py` plays the free Move Reminders (Cherrygrove's and Blackthorn's, with no Heart Scale), a Bottle
-Cap, a Gold Bottle Cap and an Adamant Mint used from the bag, a King's Rock evolving a Slowpoke, a Rare Candy
+`qol_test.py` plays the free Move Reminders (Cherrygrove's and Blackthorn's, with no Heart Scale), the hyper
+trainer on Goldenrod 5F (a Bottle Cap on Speed, Speed again once it is 31, a Gold Bottle Cap on every stat), an
+Adamant Mint used from the bag, a King's Rock evolving a Slowpoke, a Rare Candy
 evolving a Lv. 36 Kadabra, and Voltorb among 60 wild Pokemon on Route 38. Names after `out` (such as
-`bottle_cap mint`) run only those.
+`hyper_all mint`) run only those.
 
 ```bash
 SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 playtest/qol_test.py /path/to/test.nds /path/to/hack/hg-engine /path/to/original/hg-engine out
+```
+
+`breed_test.py` leaves a Ditto and a Magikarp at the Route 34 Day Care, walks inside it until the game makes
+an egg (it must within 256 steps), has the Day-Care Man hand it over, and walks until it hatches (within 1,100
+steps; a Magikarp egg can't hatch before step 1,276 in the original game). It prints its steps as it goes.
+
+```bash
+SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 playtest/breed_test.py /path/to/test.nds /path/to/hack/hg-engine /path/to/original/hg-engine out
 ```
 
 `walk_test.py`'s `features` test buys through the restocked counters; `WALK_COUNTERS` (comma-separated parts
